@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import i18n from "@/utils/i18n";
 import { HeaderButton } from "@/components/layouts/Header/components/HeaderButton";

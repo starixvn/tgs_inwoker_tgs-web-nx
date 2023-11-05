@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { useHistory } from "react-router-dom";
 import { useAccountStore } from "@/core/stores/useAccountStore";
+import {useHistory} from "react-router";
 
-export function useNavigate() {
+export function useNavigation() {
   const appHistory = useHistory();
   const { account } = useAccountStore();
 

@@ -1,5 +1,5 @@
 import { useNotifications } from "@/core/feature/useNotifications";
-import { useNavigate } from "@/core/hooks/tools/pageProps/useNavigate";
+import { useNavigation } from "@/core/hooks/tools/pageProps/useNavigation";
 import { useCallback } from "react";
 import { useUiStore } from "@/core/stores/useUiStore";
 import { useGetSupportUrl } from "@/core/hooks/tools/pageProps/useGetSupportUrl";
@@ -10,7 +10,7 @@ import { useLocation } from "react-router";
 export function usePageProps() {
   // general
   const { alert } = useNotifications();
-  const { navigate } = useNavigate();
+  const { navigate } = useNavigation();
   const { getSupportUrl } = useGetSupportUrl();
   const { ui } = useUiStore();
   const history = useHistory();
