@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 
 export function useHandleMaintenance() {
   const {

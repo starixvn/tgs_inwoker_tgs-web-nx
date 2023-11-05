@@ -12,7 +12,7 @@ import i18n from "@/utils/i18n";
 import { Button } from "@/components/UI/Button";
 import Loading from "@/components/UI/Loading";
 import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetailsResDto";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 
 type Props = {
   transferDetails: DepositFormViewModel[];

@@ -52,7 +52,7 @@ type VipBonusStampAboveProps = {
 };
 const VipBonusStampAbove = styled.div<VipBonusStampAboveProps>`
   background-image: url(${(props: VipBonusStampAboveProps) =>
-    process.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$stampImage});
+    import.meta.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$stampImage});
   background-size: 100% auto;
   background-repeat: no-repeat;
   width: 100%;

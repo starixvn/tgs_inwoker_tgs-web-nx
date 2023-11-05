@@ -6,7 +6,7 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 import { ReactElement, useCallback } from "react";
 import { useLocation } from "react-router";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
 const DialogLayoutContainer = styled.div`

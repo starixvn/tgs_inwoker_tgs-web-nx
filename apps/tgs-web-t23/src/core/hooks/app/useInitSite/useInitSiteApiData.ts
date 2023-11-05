@@ -9,7 +9,7 @@ import { useWalletStore } from "@/core/stores/useWalletStore";
 import { useInboxStore } from "@/core/stores/useInboxStore";
 import ErrorSwitcher from "@/utils/ErrorSwitcher";
 import { useGameStore } from "@/core/stores/useGameStore";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { GeneralService } from "@/core/services/GeneralService";
 
 export function useInitSiteApiData() {

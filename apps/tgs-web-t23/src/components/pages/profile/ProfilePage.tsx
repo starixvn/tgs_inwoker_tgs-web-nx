@@ -8,7 +8,7 @@ import { useLocation } from "react-router";
 import { ValueOf } from "@/core/types/valueOf";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import ProfileMenu from "@/components/pages/profile/components/ProfileMenu";
 import { Theme, useTheme } from "@mui/material";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";

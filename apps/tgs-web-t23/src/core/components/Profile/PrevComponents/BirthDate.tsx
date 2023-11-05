@@ -13,8 +13,7 @@ import {
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { DatePickerForBirthDate } from "@/components/UI/DatePicker";
-
-const moment = require("moment");
+const { moment } = "moment";
 
 const Container = styled.div`
   width: 100%;
@@ -27,8 +26,8 @@ const Birthdate = () => {
 
   const [birthdate, setBirthdate] = useState<string>(
     moment(account.info.member_birthdate ? account.info.member_birthdate : new Date()).format(
-      "YYYY/MM/DD"
-    )
+      "YYYY/MM/DD",
+    ),
   );
 
   const [isConfigured, setIsConfigured] = useState<boolean>(false);
@@ -108,7 +107,7 @@ const Birthdate = () => {
             text2={i18n.t(
               config.features.Profile_SetUpBirthdateOnce
                 ? "common.customerService"
-                : "profile.birthdate.here"
+                : "profile.birthdate.here",
             )}
           />
         ) : (

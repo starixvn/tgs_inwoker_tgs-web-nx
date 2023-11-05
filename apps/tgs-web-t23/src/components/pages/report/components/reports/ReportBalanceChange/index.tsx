@@ -9,7 +9,7 @@ import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import BalanceChangeCards from "@/components/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeCards";
 import TransactionDetailTable from "@/components/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeTable";
-import BottomScrollListener from "react-bottom-scroll-listener";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

@@ -1,32 +1,32 @@
-import React, { Suspense } from 'react';
-import { Redirect, Route, Router, Switch } from 'react-router';
-import { AppHistory } from '@/history/History';
-import config from '@/config/config';
-import ForcedVerification from './components/project/ForcedVerification';
-import LiveChat from './components/tools/LiveChat';
-import { routes } from '@/router';
-import PopupAlertModal from '@/components/project/Popup/PopupAlertDialog';
-import PopupAnnouncement from '@/components/project/Popup/PopupAnnouncement';
-import PopupPromotion from '@/components/project/Popup/PopupPromotion';
+import React, { Suspense } from "react";
+import { Redirect, Route, Router, Switch } from "react-router";
+import { AppHistory } from "@/history/History";
+import config from "@/config/config";
+import ForcedVerification from "./components/project/ForcedVerification";
+import LiveChat from "./components/tools/LiveChat";
+import { routes } from "@/router";
+import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
+import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";
+import PopupPromotion from "@/components/project/Popup/PopupPromotion";
 import {
   AuthContextConsumer,
   AuthContextProvider,
-} from '@/core/feature/useAuth/contexts/authContext';
-import LayoutProvider from '@/layouts/LayoutProvider';
-import { AuthGuard } from '@/core/components/authentication/AuthGuard';
-import FloatingToolIcons from '@/components/project/FloatingToolIcons';
-import { PageNameContextProvider } from '@/core/feature/usePageName/contexts/pageNameContext';
-import Loading from '@/components/UI/Loading';
-import ScrollToTop from '@/core/utils/ScrollToTop';
-import LoginDialog from '@/core/components/authentication/LoginDialog';
-import RegisterDialog from '@/core/components/authentication/RegisterDialog';
-import { HeaderContextProvider } from '@/core/feature/useHeader/contexts/headerContext';
-import { AuthDialogContextProvider } from '@/core/feature/useAuthDialog/contexts/authDialogContext';
-import ForgotPasswordDialog from '@/core/components/authentication/ForgotPasswordDialog';
-import { useAccountStore } from '@/core/stores/useAccountStore';
-import { useInitSite } from '@/core/hooks/app/useInitSite';
-import { PopupContextProvider } from '@/core/feature/usePopup/contexts/popupContext';
-import { HomeGameContextProvider } from '@/core/feature/game/contexts/homeGameContext';
+} from "@/core/feature/useAuth/contexts/authContext";
+import LayoutProvider from "@/layouts/LayoutProvider";
+import { AuthGuard } from "@/core/components/authentication/AuthGuard";
+import FloatingToolIcons from "@/components/project/FloatingToolIcons";
+import { PageNameContextProvider } from "@/core/feature/usePageName/contexts/pageNameContext";
+import Loading from "@/components/UI/Loading";
+import ScrollToTop from "@/core/utils/ScrollToTop";
+import LoginDialog from "@/core/components/authentication/LoginDialog";
+import RegisterDialog from "@/core/components/authentication/RegisterDialog";
+import { HeaderContextProvider } from "@/core/feature/useHeader/contexts/headerContext";
+import { AuthDialogContextProvider } from "@/core/feature/useAuthDialog/contexts/authDialogContext";
+import ForgotPasswordDialog from "@/core/components/authentication/ForgotPasswordDialog";
+import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useInitSite } from "@/core/hooks/app/useInitSite";
+import { PopupContextProvider } from "@/core/feature/usePopup/contexts/popupContext";
+import { HomeGameContextProvider } from "@/core/feature/game/contexts/homeGameContext";
 
 const App: React.FC = () => {
   const { account } = useAccountStore();
@@ -58,13 +58,7 @@ const App: React.FC = () => {
                                 <AuthGuard route={route}>
                                   <LayoutProvider route={route}>
                                     <Suspense
-                                      fallback={
-                                        <Loading
-                                          show={true}
-                                          opacity={1}
-                                          noShrink={true}
-                                        />
-                                      }
+                                      fallback={<Loading show={true} opacity={1} noShrink={true} />}
                                     >
                                       <route.component />
                                     </Suspense>
@@ -75,7 +69,7 @@ const App: React.FC = () => {
                           />
                         );
                       })}
-                      <Redirect to="/" />
+                      {/*<Redirect to="/" />*/}
                     </Switch>
 
                     <LiveChat
@@ -84,7 +78,7 @@ const App: React.FC = () => {
                       group={
                         config.features.LiveChatVendor.group
                           ? config.features.LiveChatVendor.group
-                          : '0'
+                          : "0"
                       }
                     />
 
@@ -105,12 +99,7 @@ const App: React.FC = () => {
                     <ForgotPasswordDialog />
 
                     <AuthContextConsumer>
-                      {(authState) => (
-                        <Loading
-                          show={authState.isAuthLoading}
-                          noShrink={true}
-                        />
-                      )}
+                      {(authState) => <Loading show={authState.isAuthLoading} noShrink={true} />}
                     </AuthContextConsumer>
                   </HomeGameContextProvider>
                 </AuthDialogContextProvider>

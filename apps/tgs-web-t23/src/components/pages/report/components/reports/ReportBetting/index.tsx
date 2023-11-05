@@ -12,7 +12,7 @@ import TransactionDetailCards from "@/components/pages/report/components/reports
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import TransactionDetailTable from "@/components/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
 import TotalState from "@/components/pages/report/components/reports/ReportBetting/components/TotalState";
-import BottomScrollListener from "react-bottom-scroll-listener";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
@@ -45,7 +45,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
       PAGE_SIZE,
       true,
       "",
-      false
+      false,
     );
 
     if (getTransactionDetailsRes.IsSuccess) {
@@ -66,7 +66,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
 
     const getRoundsTotalRes = await ReportService.GetRoundsTotal(
       moment(dateRangeInfo.dateFrom).utc().format(),
-      moment(dateRangeInfo.dateTo).utc().add(1, "days").format()
+      moment(dateRangeInfo.dateTo).utc().add(1, "days").format(),
     );
 
     if (getRoundsTotalRes.IsSuccess) {

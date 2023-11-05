@@ -11,7 +11,7 @@ import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDet
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import WithdrawalDetailTable from "@/components/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
 import WithdrawalDetailCards from "@/components/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";
-import BottomScrollListener from "react-bottom-scroll-listener";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

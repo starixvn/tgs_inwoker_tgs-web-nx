@@ -12,7 +12,7 @@ import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import JoinPromotionCards from "@/components/pages/report/components/reports/JoinPromotion/components/JoinPromotionCards";
 import JoinPromotionTable from "@/components/pages/report/components/reports/JoinPromotion/components/JoinPromotionTable";
-import BottomScrollListener from "react-bottom-scroll-listener";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

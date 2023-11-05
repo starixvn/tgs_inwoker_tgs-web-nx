@@ -6,7 +6,7 @@ import { media } from "@/theme/breakpoints";
 import i18n from "@/utils/i18n";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
 const Button = styled.button<{ $disabled: boolean }>`

@@ -1,15 +1,10 @@
 import BannerImage from "@/components/pages/promotion/components/BannerImage";
 import JoinPromotionButton from "@/components/pages/promotion/components/JoinPromotionButton";
-import { NOT_SHOW_JOIN_BUTTON_KEY_LIST } from "@/core/constants/promotion";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
 import { media } from "@/theme/breakpoints";
-import i18n from "@/utils/i18n";
 import styled from "styled-components";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import { usePromotionDetailPage } from "@/core/hooks/pages/promotion/usePromotionDetailPage";
 import Loading from "@/components/UI/Loading";
-const moment = require("moment");
+import moment from "moment";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;

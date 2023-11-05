@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const ScrollToTop: React.FC = () => {
   const history = useHistory();

@@ -2,14 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>TgsWebT23</title>
     <base href="/" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <title id="title"></title>
+    <meta name="description" id="description" content="" />
+
+    <script language="javascript">
+      String.prototype.includes = function (str) {
+        var returnValue = false;
+
+        if (this.indexOf(str) !== -1) {
+          returnValue = true;
+        }
+
+        return returnValue;
+      };
+    </script>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
+
+  <link rel="stylesheet" href="/css/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "UA-156359717-1");
+  </script>
 </html>

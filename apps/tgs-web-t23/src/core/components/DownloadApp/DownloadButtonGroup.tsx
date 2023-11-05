@@ -70,7 +70,7 @@ const Icons = styled.div<IconsProp>`
 
   background: #000;
   mask: url(${({ $icon }: IconsProp) => {
-      return process.env.PUBLIC_URL + `/assets/images/download/icons/${$icon}.png`;
+      return import.meta.env.PUBLIC_URL + `/assets/images/download/icons/${$icon}.png`;
     }})
     no-repeat center / contain;
   background-size: 100%;
@@ -300,7 +300,7 @@ const Download = () => {
                 <QRCodeHolder style={{ padding: 0, marginBottom: 20 }}>
                   <img
                     src={
-                      process.env.PUBLIC_URL +
+                      import.meta.env.PUBLIC_URL +
                       `/assets/images/download/brand/${logoSwitcher(config.brand)}_logo.png`
                     }
                     style={{ width: 200 }}
@@ -359,7 +359,7 @@ const Download = () => {
         <div>
           <img
             style={{ height: 500, marginBottom: 100 }}
-            src={process.env.PUBLIC_URL + `/assets/images/download/girl.png`}
+            src={import.meta.env.PUBLIC_URL + `/assets/images/download/girl.png`}
             alt="girl"
           />
         </div>

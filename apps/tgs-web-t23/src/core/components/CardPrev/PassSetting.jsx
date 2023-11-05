@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { AppBar, Modal, styled as muiStyled } from "@mui/material";
+import { Modal, styled as muiStyled } from "@mui/material";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { AccountService } from "@/api-services/services/AccountService";
 import { UPDATE_INFO } from "@/api-services/constant/actionType";
@@ -27,7 +27,7 @@ const BottomInfo = styled.div`
   font-weight: 600;
   height: 30px;
   color: #e23a3f;
-  background: url(${process.env.PUBLIC_URL + `/assets/images/wapp/icon-red-info.png`}) no-repeat
+  background: url(${import.meta.env.PUBLIC_URL + `/assets/images/wapp/icon-red-info.png`}) no-repeat
     left center;
   padding-left: 40px;
   display: table;
@@ -110,7 +110,7 @@ class NameVerification extends Component {
       this.props.token,
 
       this.state.password,
-      this.state.confirmPassword
+      this.state.confirmPassword,
     ).then((response) => {
       if (response.IsSuccess) {
         this.props.dispatch({

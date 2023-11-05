@@ -13,12 +13,12 @@ import { BrandLanguage } from "@/core/types/stores/general";
 import { muiTheme } from "@/theme/mui";
 
 const imageMap: { [key in string]: string } = {
-  "zh-CN": process.env.PUBLIC_URL + `/assets/images/language/zh-CN.png`,
-  "zh-TW": process.env.PUBLIC_URL + `/assets/images/language/zh-TW.png`,
-  "en-US": process.env.PUBLIC_URL + `/assets/images/language/en-US.png`,
-  "th-TH": process.env.PUBLIC_URL + `/assets/images/language/th-TH.png`,
-  "vi-VN": process.env.PUBLIC_URL + `/assets/images/language/vi-VN.png`,
-  "id-ID": process.env.PUBLIC_URL + `/assets/images/language/id-ID.png`,
+  "zh-CN": import.meta.env.PUBLIC_URL + `/assets/images/language/zh-CN.png`,
+  "zh-TW": import.meta.env.PUBLIC_URL + `/assets/images/language/zh-TW.png`,
+  "en-US": import.meta.env.PUBLIC_URL + `/assets/images/language/en-US.png`,
+  "th-TH": import.meta.env.PUBLIC_URL + `/assets/images/language/th-TH.png`,
+  "vi-VN": import.meta.env.PUBLIC_URL + `/assets/images/language/vi-VN.png`,
+  "id-ID": import.meta.env.PUBLIC_URL + `/assets/images/language/id-ID.png`,
 };
 
 const StyledFormControl = styled(MuiFormControl)`

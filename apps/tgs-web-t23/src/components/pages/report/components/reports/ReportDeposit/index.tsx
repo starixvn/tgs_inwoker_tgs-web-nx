@@ -10,7 +10,7 @@ import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetails
 import DepositDetailCards from "@/components/pages/report/components/reports/ReportDeposit/components/DepositDetailCards";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import DepositDetailTable from "@/components/pages/report/components/reports/ReportDeposit/components/DepositDetailTable";
-import BottomScrollListener from "react-bottom-scroll-listener";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

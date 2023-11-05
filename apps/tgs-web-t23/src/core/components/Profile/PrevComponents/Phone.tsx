@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 
 const TabButtonContainer = styled.div`
   height: 90px;

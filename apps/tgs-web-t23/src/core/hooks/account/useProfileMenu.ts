@@ -1,5 +1,5 @@
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { useCallback, useMemo } from "react";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
@@ -55,7 +55,7 @@ export function useProfileMenu() {
                 config.features.ShowVerificationStatus
                   ? `(` + i18n.t("verified." + getStatus()) + `)`
                   : ""
-              }`
+              }`,
             )
           : i18n.t("profile.notSet"),
         routePath: "/profile/name",

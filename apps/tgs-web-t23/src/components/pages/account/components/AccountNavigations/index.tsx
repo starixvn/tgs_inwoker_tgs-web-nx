@@ -4,7 +4,7 @@ import { Button } from "@/components/UI/Button";
 import styled from "styled-components";
 import NavCard from "@/components/pages/account/components/AccountNavigations/NavCard";
 import AppDownloadButton from "@/components/project/AppDownloadButton";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { NavItem, NavCardKey, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
 import i18n from "@/utils/i18n";
 import { media } from "@/theme/breakpoints";

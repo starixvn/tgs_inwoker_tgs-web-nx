@@ -82,7 +82,7 @@ const HomePage = () => {
   return (
     <MainWrapper>
       {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && <SliderWrapper><Slider /></SliderWrapper>}
-      {!!activeGameType && <GameTypeBanner $imageUrl={activeGameTypeKey ? `${process.env.PUBLIC_URL}/assets/images/home/gp_banner/${activeGameTypeKey}.png` : ""} />}
+      {!!activeGameType && <GameTypeBanner $imageUrl={activeGameTypeKey ? `${import.meta.env.PUBLIC_URL}/assets/images/home/gp_banner/${activeGameTypeKey}.png` : ""} />}
 
       <MainContentWrapper>
         {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
@@ -90,7 +90,7 @@ const HomePage = () => {
 
         <CategoryRenderer />
 
-        {/* 
+        {/*
         <TabPanel />
         {isMobileSize && <SocialMedia />}
         {isMobileSize && (

@@ -1,6 +1,6 @@
 import React from "react";
 import WithdrawalPrev from "@/core/components/WithdrawalPrev";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { useNotifications } from "@/core/feature/useNotifications";
 import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";

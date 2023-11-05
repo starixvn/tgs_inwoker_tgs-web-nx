@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { useNotifications } from "@/core/feature/useNotifications";
 import AddCardPrev from "@/core/components/CardPrev/AddCardPrev";
 import styled from "styled-components";

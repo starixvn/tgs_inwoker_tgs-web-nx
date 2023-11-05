@@ -17,7 +17,7 @@ import Loading from "@/components/UI/Loading";
 import { usePlatformStatus } from "@/core/components/Report/hooks/usePlatformStatus";
 import StatusSelect from "@/components/pages/report/components/StatusSelect";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import BottomScrollListener from "react-bottom-scroll-listener";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

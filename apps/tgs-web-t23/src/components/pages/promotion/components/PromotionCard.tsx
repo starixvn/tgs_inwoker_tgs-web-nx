@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";

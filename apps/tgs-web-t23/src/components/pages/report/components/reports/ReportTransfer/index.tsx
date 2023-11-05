@@ -18,7 +18,7 @@ import { GameBalanceInfosViewModel } from "@/core/models/dto/report/GetTransferR
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import TransferDetailTable from "@/components/pages/report/components/reports/ReportTransfer/components/TransferDetailTable";
 import TransferDetailCard from "@/components/pages/report/components/reports/ReportTransfer/components/TransferDetailCard";
-import BottomScrollListener from "react-bottom-scroll-listener";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

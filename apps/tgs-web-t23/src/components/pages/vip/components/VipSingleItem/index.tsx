@@ -53,7 +53,7 @@ const VipCard = styled.div<VipCardProps>`
   max-width: 372px;
   min-height: 214px;
   background-image: url(${(props: VipCardProps) =>
-    process.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$cardImage});
+    import.meta.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$cardImage});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -91,7 +91,7 @@ const VipLine = styled.div<VipLineProps>`
   min-height: 8px;
   margin: 26px;
   background-image: url(${(props: VipLineProps) =>
-    process.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$lineImage});
+    import.meta.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$lineImage});
   background-size: contain;
   background-repeat: no-repeat;
 `;
@@ -128,7 +128,7 @@ const VipBadge = styled.div<VipBadgeProps>`
   max-width: 98px;
   min-height: 91px;
   background-image: url(${(props: VipBadgeProps) =>
-    process.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$badgeImage});
+    import.meta.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$badgeImage});
   background-size: contain;
   background-repeat: no-repeat;
 `;

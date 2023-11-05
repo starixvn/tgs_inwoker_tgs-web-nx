@@ -1,6 +1,6 @@
 import React from "react";
 import DepositPrev from "@/core/components/DepositPrev";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { useNotifications } from "@/core/feature/useNotifications";
 import styled from "styled-components";
 import { useLocation } from "react-router";

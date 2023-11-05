@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import Icon from "@/components/project/Icon";
 import ContactIcon from "@/assets/t18/images/header/contactIcon.svg";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
 

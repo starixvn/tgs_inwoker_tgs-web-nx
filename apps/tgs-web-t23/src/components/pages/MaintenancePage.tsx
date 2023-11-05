@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import i18n from "@/utils/i18n";
 import Common from "@/core/utils/Common";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { UiService } from "@/core/services/UiService";
 import { media } from "@/theme/breakpoints";
 
@@ -20,11 +20,11 @@ const MaintenanceBg = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url(${process.env.PUBLIC_URL}/assets/images/maintenance/maintenance_bg.png) no-repeat;
+  background: url(${import.meta.env.PUBLIC_URL}/assets/images/maintenance/maintenance_bg.png) no-repeat;
   background-size: cover;
 
   ${media.sm} {
-    background: url(${process.env.PUBLIC_URL}/assets/images/maintenance/maintenance_desktop_bg.png)
+    background: url(${import.meta.env.PUBLIC_URL}/assets/images/maintenance/maintenance_desktop_bg.png)
       no-repeat;
   }
 `;

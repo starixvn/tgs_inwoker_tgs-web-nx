@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { HeaderButton } from "@/components/layouts/Header/components/HeaderButton";
 import i18n from "@/utils/i18n";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import { useHeader } from "@/core/feature/useHeader";
 import styled from "styled-components";
 
