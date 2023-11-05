@@ -3,32 +3,23 @@ import likeIcon from "@/assets/t23/images/home/fullLike.svg";
 import styled from "styled-components";
 
 const LikeIcon = styled.div<{ $imageUrl: string }>`
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 12px;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   box-sizing: border-box;
   position: absolute;
   top: 6px;
-  right: 8px;
-  border-radius: 50%;
-  background-color: #ffffff1f;
+  right: 4.5px;
 `;
 
 type FavoriteProps = {
   isFavorite: boolean;
-  handleToggleFavorite: (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    id: number
-  ) => void;
+  handleToggleFavorite: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, id: number) => void;
   gameItemId: number;
 };
 
-const Favorite = ({
-  isFavorite,
-  handleToggleFavorite,
-  gameItemId,
-}: FavoriteProps) => {
+const Favorite = ({ isFavorite, handleToggleFavorite, gameItemId }: FavoriteProps) => {
   return (
     <>
       {isFavorite ? (

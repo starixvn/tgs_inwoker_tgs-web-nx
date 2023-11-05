@@ -1,7 +1,7 @@
+import { breakpoints } from "@/theme/breakpoints";
+import { fontFamily } from "@/theme/fontFamily";
 import { theme } from "@/theme/index";
 import i18n from "@/utils/i18n";
-import { fontFamily } from "@/theme/fontFamily";
-import { breakpoints } from "@/theme/breakpoints";
 import { createTheme } from "@mui/material";
 
 //@ts-ignore
@@ -65,7 +65,7 @@ const muiTheme = createTheme({
       secondary: theme.gray,
     },
     mainGradient: {
-      main: theme.primaryGradient,
+      main: theme.secondaryGradient,
     },
     mainBackground: {
       main: theme.mainBackground,

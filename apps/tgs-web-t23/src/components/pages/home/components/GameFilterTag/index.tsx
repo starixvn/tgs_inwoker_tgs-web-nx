@@ -1,9 +1,10 @@
 import { gameTagList } from "@/core/constants/gameTag";
+import { FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 import Tag from "./Tag";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
 
 const TagContainer = styled.div`
   width: 100%;
@@ -54,11 +55,14 @@ const GameFilterTag = () => {
           }
         })();
 
+        const tag = gameTagList.find((tag) => tag.text === name);
+
         return (
           <Tag
             key={name}
             text={name}
             isActive={isActive}
+            icon={tag ? <tag.icon $color={isActive ? theme.primary : theme.lighterGray} /> : null}
             isShowIcon={gameTagList.some((tag) => tag.text === name)}
             onClick={() => handleChangeActiveFilterTag(filterTag)}
           />

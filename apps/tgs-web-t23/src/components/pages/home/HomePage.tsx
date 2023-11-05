@@ -1,20 +1,13 @@
-import vendorsIcon from "@/assets/t18/images/home/mobile/vendors.png";
 import CardPrompt from "@/components/pages/home/components/CardPrompt";
+import CategoryRenderer from "@/components/pages/home/components/CategoryRenderer";
 import GameTypeTab from "@/components/pages/home/components/GameTypeTab";
 import Slider from "@/components/pages/home/components/Slider";
-import TabPanel from "@/components/pages/home/components/TabPanel";
-import SocialMedia from "@/components/project/SocialMedia";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import CategoryRenderer from "@/components/pages/home/components/CategoryRenderer";
-
-type Props = {
-  imageUrl: string;
-};
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -42,6 +35,20 @@ const SliderWrapper = styled.div`
   }
 `;
 
+const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+  width: 100%;
+
+  ${media.sm} {
+    max-width: 1200px;
+    height: 375px;
+    border-radius: 10px;
+    background-image: url(${({ $imageUrl }) => $imageUrl});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+`;
+
 const MainContentWrapper = styled.div`
   width: 100%;
   padding: 22px;
@@ -59,24 +66,10 @@ const MainContentWrapper = styled.div`
   }
 `;
 
-const VendorIconContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const VendorIcon = styled.div`
-  width: 392px;
-  height: 296px;
-  background-image: url(${vendorsIcon});
-  background-size: cover;
-`;
-
-const HomePage = (props: Props) => {
+const HomePage = () => {
   const { general } = useGeneralStore();
-  const { isMobileSize } = useRwd();
-  const { activeGameType } = useHomeGameContext();
+  const { isMobileSize, isDesktopSize } = useRwd();
+  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
 
   useEffect(() => {
     window.scrollTo({
@@ -88,22 +81,23 @@ const HomePage = (props: Props) => {
 
   return (
     <MainWrapper>
-      <SliderWrapper>{!!general.banner.length && <Slider />}</SliderWrapper>
+      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && <SliderWrapper><Slider /></SliderWrapper>}
+      {!!activeGameType && <GameTypeBanner $imageUrl={activeGameTypeKey ? `${process.env.PUBLIC_URL}/assets/images/home/gp_banner/${activeGameTypeKey}.png` : ""} />}
 
       <MainContentWrapper>
-        <CardPrompt />
-
+        {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
         {isMobileSize && <GameTypeTab />}
 
         <CategoryRenderer />
 
+        {/* 
         <TabPanel />
         {isMobileSize && <SocialMedia />}
         {isMobileSize && (
           <VendorIconContainer>
             <VendorIcon />
           </VendorIconContainer>
-        )}
+        )} */}
       </MainContentWrapper>
     </MainWrapper>
   );

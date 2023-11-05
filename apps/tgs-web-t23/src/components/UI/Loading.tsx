@@ -1,9 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { CircularProgress } from "@mui/material";
 import { useHeader } from "@/core/feature/useHeader";
-import { DRAWER_WIDTH } from "@/core/feature/useHeader/contexts/headerContext";
+import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { DRAWER_WIDTH } from "@/theme/constants";
+import { CircularProgress } from "@mui/material";
+import styled from "styled-components";
 
 type LoadingContainer = {
   $opacity: number;

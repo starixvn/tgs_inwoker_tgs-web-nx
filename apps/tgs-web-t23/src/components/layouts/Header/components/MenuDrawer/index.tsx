@@ -1,10 +1,9 @@
-import React from "react";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import MobileMenuDrawer from "@/components/layouts/Header/components/MenuDrawer/components/MobileMenuDrawer";
-import { DRAWER_SHRINK_WIDTH, DRAWER_WIDTH } from "@/core/feature/useHeader/contexts/headerContext";
-import { Drawer } from "@mui/material";
-import { useHeader } from "@/core/feature/useHeader";
 import DesktopMenuDrawer from "@/components/layouts/Header/components/MenuDrawer/components/DesktopMenuDrawer";
+import MobileMenuDrawer from "@/components/layouts/Header/components/MenuDrawer/components/MobileMenuDrawer";
+import { useHeader } from "@/core/feature/useHeader";
+import { useRwd } from "@/core/hooks/tools/useRwd";
+import { DRAWER_SHRINK_WIDTH, DRAWER_WIDTH } from "@/theme/constants";
+import { Drawer } from "@mui/material";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();

@@ -1,15 +1,15 @@
 import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
 import MenuButton from "@/components/layouts/Header/components/MenuButton";
+import MenuGameTypeList from "@/components/layouts/Header/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { useHeader } from "@/core/feature/useHeader";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import i18n from "@/utils/i18n";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import MenuGameTypeList from "@/components/layouts/Header/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainDarkBackground};
@@ -17,6 +17,24 @@ const MobileMenuDrawerContainer = styled.div`
   height: 100vh;
   overflow-y: scroll;
   padding-bottom: 20px;
+
+  &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background: ${(props) => props.theme.tertiaryDark};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #53535375;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
 `;
 
 const MenuHeaderContainer = styled.div`
@@ -40,10 +58,9 @@ const HeaderContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  //padding: 20px 30px;
 `;
 
-const DrawerCard = styled.div`
+const PromotionCard = styled.div`
   cursor: pointer;
   width: 250px;
   margin: 0 auto 8px;
@@ -111,10 +128,10 @@ const DesktopMenuDrawer = (props: Props) => {
       <HeaderContentContainer>
         <MenuGameTypeList />
 
-        <DrawerCard onClick={handleClickPromotion}>
+        <PromotionCard onClick={handleClickPromotion}>
           <Icon className={"icon"} iconUrl={iconPromotion} width={"31px"} height={"31px"} />
           {i18n.t("common.promotion")}
-        </DrawerCard>
+        </PromotionCard>
 
         <LanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
       </HeaderContentContainer>

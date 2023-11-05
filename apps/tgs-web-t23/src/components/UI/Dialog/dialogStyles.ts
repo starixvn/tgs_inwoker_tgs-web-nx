@@ -24,7 +24,7 @@ export const ButtonConfirm = styled.div`
   margin: 10px auto;
   background: linear-gradient(
     to top,
-    ${({ theme }) => theme.primaryGradient},
+    ${({ theme }) => theme.secondaryGradient},
     ${({ theme }) => theme.primary}
   );
   color: #ffffff;

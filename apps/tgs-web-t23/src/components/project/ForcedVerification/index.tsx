@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Dialog } from "@mui/material";
-import styled from "styled-components";
-import i18n from "@/utils/i18n";
 import config from "@/config/config";
-import { AccountService } from "@/core/services/AccountService";
-import { Textfit } from "react-textfit";
 import { useNotifications } from "@/core/feature/useNotifications";
+import { AccountService } from "@/core/services/AccountService";
 import { theme } from "@/theme";
+import i18n from "@/utils/i18n";
+import { Dialog } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Textfit } from "react-textfit";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 20px 10px;
@@ -90,7 +90,7 @@ const CustomButton = styled.div<CustomButtonType>`
   ${({ theme }: CustomButtonType) => {
     return (
       "background-image: linear-gradient(to top, " +
-      theme.primaryGradient +
+      theme.secondaryGradient +
       ", " +
       theme.primary +
       ");"

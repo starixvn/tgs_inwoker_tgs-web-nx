@@ -1,7 +1,8 @@
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { useHeader } from "@/core/feature/useHeader";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import styled from "styled-components";
 import MenuGameTab from "./MenuGameTab";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -14,6 +15,7 @@ const TabContainer = styled.div`
 const MenuGameTypeList = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { isMenuOpen } = useHeader();
 
   return (
     <TabContainer>
@@ -24,7 +26,7 @@ const MenuGameTypeList = () => {
           <MenuGameTab
             key={key}
             imageUrl={iconUrl}
-            text={text}
+            text={isMenuOpen ? text : ""}
             isActive={gameType === activeGameType}
             onClick={() => handleChangeGameType(gameType)}
           />

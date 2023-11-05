@@ -1,13 +1,12 @@
+import { socialMediaIconList } from "@/core/constants/socialMedia";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { socialMediaIconList } from "@/core/constants/socialMedia";
 
 const SocialMediaContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin: 15px 0;
   cursor: pointer;
 `;
 

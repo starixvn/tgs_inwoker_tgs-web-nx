@@ -1,10 +1,11 @@
 import picMask from "@/assets/t23/images/home/picMask.svg";
-import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { providerStatus } from "@/core/constants/games";
 import { useRwd } from "@/core/hooks/tools/useRwd";
+import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+import TextButton from "../TextButton";
 
 type Props = {
   imageUrl: string;
@@ -13,23 +14,19 @@ type Props = {
   venderLogoUrl?: string;
   launchGame: () => void;
   status: number;
-  lobbyVenderName?: string;
 };
 
 // -------- hover effect for desktop--------------
-const CardHoverBg = styled.div`
+const VendorCardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 81%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 80%);
-  border-radius: 10px;
-  padding: 0 5px;
+  background: rgb(0 0 0 / 60%);
+  border-radius: 15px;
   display: none;
   white-space: pre-line;
-  display: flex;
-  justify-content: flex-end;
 `;
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
@@ -41,6 +38,11 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   border-radius: 5px;
+
+  ${media.sm} {
+    padding-top: 63.33%;
+    border-radius: 15px;
+  }
 `;
 
 const GradientBg = styled.div`
@@ -51,24 +53,18 @@ const GradientBg = styled.div`
   top: 0;
   background-image: url(${picMask});
   background-size: cover;
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px;
+
+  ${media.sm} {
+    padding-top: 63.33%;
+    border-radius: 15px;
+  }
 `;
 
 const VendorCardContent = styled.div`
   width: 100%;
 `;
 
-const HoverVenderName = styled(VendorCardContent)`
-  color: ${(props) => props.theme.white};
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 16px;
-`;
-
-const PlayIcon = styled.img`
-  width: 65px;
-  height: 65px;
-`;
 
 const VendorCardBg = styled.div`
   width: calc(33.33% - 5.8px);
@@ -77,28 +73,19 @@ const VendorCardBg = styled.div`
   aspect-ratio: 110 / 142;
 
   ${media.sm} {
-    width: calc(16.67% - 24.4px);
-    min-width: 110px;
+    width: calc(25% - 30px);
+    min-width: 270px;
+    aspect-ratio: 270 / 211;
 
     &:hover {
-      ${CardHoverBg} {
+      ${VendorCardHoverBg} {
         z-index: 1;
-        display: inline-flex;
-        flex-direction: column;
-        justify-content: center;
+        display: flex;
         align-items: center;
+        justify-content: center;
       }
     }
   }
-`;
-
-const GameName = styled(VendorCardContent)`
-  color: ${(props) => props.theme.white};
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1rem;
-  font-weight: 900;
-  margin-bottom: 4px;
-  text-align: center;
 `;
 
 const VenderName = styled(VendorCardContent)`
@@ -136,6 +123,12 @@ const MaintenanceBg = styled.div`
   padding: 7px;
   display: flex;
   align-items: center;
+  justify-content: center;
+
+  ${media.sm} {
+    height: 81%;
+    border-radius: 15px;
+  }
 `;
 
 const MaintenanceText = styled.div`
@@ -143,21 +136,23 @@ const MaintenanceText = styled.div`
   font-size: 0.75rem;
   font-weight: 900;
   text-align: center;
+
+  ${media.sm} {
+    font-size: 1.5625rem;
+    font-weight: 700;
+  }
 `;
 
 const VendorCard = ({
   imageUrl,
-  gameName,
   venderName,
   venderLogoUrl,
   launchGame,
   status,
-  lobbyVenderName,
 }: Props) => {
   const { isDesktopSize } = useRwd();
   const gameNameRef = useRef<HTMLDivElement | null>(null);
   const venderNameRef = useRef<HTMLDivElement | null>(null);
-  const lobbyVenderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
   useEffect(() => {
@@ -167,10 +162,7 @@ const VendorCard = ({
     if (venderNameRef.current) {
       resizeText({ container: venderNameRef.current, text: venderNameRef.current });
     }
-    if (lobbyVenderNameRef.current) {
-      resizeText({ container: lobbyVenderNameRef.current, text: lobbyVenderNameRef.current });
-    }
-  }, [resizeText, gameNameRef.current, venderNameRef.current, lobbyVenderNameRef.current]);
+  }, [resizeText, gameNameRef.current, venderNameRef.current]);
 
   return (
     <VendorCardBg onClick={launchGame}>
@@ -186,16 +178,14 @@ const VendorCard = ({
             <MaintenanceText>UNDER MAINTENANCE</MaintenanceText>
           </MaintenanceBg>
         )}
-
-        {lobbyVenderName && <VenderName ref={venderNameRef}>{lobbyVenderName}</VenderName>}
+        {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
       </VendorCardContent>
 
-      {isDesktopSize && <CardHoverBg>
-        {gameName && <HoverVenderName ref={lobbyVenderNameRef}>{gameName}</HoverVenderName>}
-        {lobbyVenderName && (
-          <HoverVenderName ref={lobbyVenderNameRef}>{lobbyVenderName}</HoverVenderName>
-        )}
-      </CardHoverBg>}
+      {isDesktopSize && <VendorCardHoverBg>
+        <TextButton
+          text={"Go"}
+        />
+      </VendorCardHoverBg>}
     </VendorCardBg>
   );
 };

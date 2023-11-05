@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import Icon from "@/components/project/Icon";
+import styled from "styled-components";
 
 type Props = {
   imageUrl: string;
@@ -19,7 +19,7 @@ const Wrapper = styled.div<{
   align-items: center;
   background: ${({ theme, $isActive }) =>
     $isActive
-      ? "linear-gradient(90deg, rgba(255, 210, 40, 0.96) 0%, #24262B 49.27%)"
+      ? theme.primaryGradient
       : "transparent"};
   padding: 12px 46px;
   border-radius: 0 30px 30px 0;

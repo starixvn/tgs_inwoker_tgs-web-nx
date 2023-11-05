@@ -11,15 +11,16 @@ const VipMedal = ({ vipLevel }: Props) => {
   useEffect(() => {
     const loadImage = async () => {
       try {
-        const dynamicImage = `@/assets/t23/images/vip/level_${vipLevel}.png`
-        setImage(dynamicImage);
+        //@ts-ignore
+        const dynamicImage = await import(`@/assets/t23/images/vip/level_${vipLevel}.png`);
+        setImage(dynamicImage.default);
       } catch (error) {
         console.error("Error loading image:", error);
       }
     };
 
     loadImage();
-  }, [vipLevel]);
+  }, []);
 
   if (!image) return null;
 

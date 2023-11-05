@@ -1,19 +1,20 @@
 import searchIcon from "@/assets/t23/images/home/search.svg";
+import Loading from "@/components/UI/Loading";
 import GameCard from "@/components/pages/home/components/GameCard";
 import GameFilterTag from "@/components/pages/home/components/GameFilterTag";
+import HomeGameFilterTag from "@/components/pages/home/components/HomeGameFilterTag";
 import SearchInput from "@/components/pages/home/components/SearchInput";
 import config from "@/config/config";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
-import Common from "@/core/utils/Common";
-import i18n from "@/utils/i18n";
-import styled from "styled-components";
-import Tag from "@/components/pages/home/components/GameFilterTag/Tag";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCategoryList";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import Loading from "@/components/UI/Loading";
+import { useRwd } from "@/core/hooks/tools/useRwd";
+import Common from "@/core/utils/Common";
+import i18n from "@/core/utils/i18n";
+import { useGameTypeList } from "@/hooks/home/useGameTypeList";
+import { media } from "@/theme/breakpoints";
+import styled from "styled-components";
 
-const TagCategoryWrapper = styled.div`
+const CategoryContentWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -23,9 +24,13 @@ const TagCategoryWrapper = styled.div`
   flex-shrink: 0;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
+
+  ${media.sm} {
+    background-color: transparent;
+  }
 `;
 
-const TagCategoryContent = styled.div`
+const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -57,52 +62,64 @@ const CategoryTitle = styled.div`
   padding: 10px 0px;
 `;
 
-type Props = any;
+const FilterSection = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 10px;
+  gap: 12px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background-color: ${({ theme }) => theme.mainDarkBackground};
 
-const NonLobbyCategory = ({}: Props) => {
-  const gameTypeList = useGameTypeList();
-  const { activeGameType, favoriteList } = useHomeGameContext();
-  const title = gameTypeList.find((gameTypeItem) => gameTypeItem.gameType === activeGameType)?.text;
+  ${media.sm} {
+    background-color: transparent;
+  }
+`;
 
+const NonLobbyCategory = () => {
+  const { isMobileSize, isDesktopSize } = useRwd();
+  const { activeGameType, searchString, handleChangeSearch } = useHomeGameContext();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
+  const categoryTitle = useGameTypeList().find(item => item.gameType === activeGameType)?.text;
+  const hasMappingData = !!gameList.length;
 
-  // if (!filteredMatchGames) {
-  //   return <div>No data</div>;
-  // }
   return (
     <>
-      <CategoryLabel>
-        <CategoryTitle>{title}</CategoryTitle>
-        {/*<SearchInputWrapper>*/}
-        {/*  <SearchInput*/}
-        {/*    placeholder={i18n.t("slot.search")}*/}
-        {/*    imageUrl={searchIcon}*/}
-        {/*    handleChange={handleSearch}*/}
-        {/*    value={searchString}*/}
-        {/*  />*/}
-        {/*</SearchInputWrapper>*/}
-      </CategoryLabel>
+      {isMobileSize && <>
+        <CategoryLabel>
+          <CategoryTitle>{categoryTitle}</CategoryTitle>
+          <SearchInputWrapper>
+            <SearchInput
+              placeholder={i18n.t("slot.search")}
+              imageUrl={searchIcon}
+              handleChange={handleChangeSearch}
+              value={searchString}
+            />
+          </SearchInputWrapper>
+        </CategoryLabel>
+        <GameFilterTag />
+      </>
+      }
+      {isDesktopSize && <HomeGameFilterTag />}
 
-      <GameFilterTag />
-
-      <TagCategoryWrapper>
-        <TagCategoryContent>
-          {!!gameList.length &&
+      <CategoryContentWrapper>
+        <CategoryContent>
+          {hasMappingData &&
             gameList.map((gameItem) => (
               <GameCard
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
+                imageUrl={`${config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                  }.jpg`}
               />
             ))}
-          {!gameList.length && !isLoading && <div>No data</div>}
-        </TagCategoryContent>
-      </TagCategoryWrapper>
+          {!hasMappingData && !isLoading && <div>No data</div>}
+        </CategoryContent>
+      </CategoryContentWrapper>
 
       <Loading show={isLoading} />
     </>

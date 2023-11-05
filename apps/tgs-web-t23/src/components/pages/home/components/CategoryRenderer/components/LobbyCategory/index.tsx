@@ -1,54 +1,49 @@
+import VendorCard from "@/components/pages/home/components/VendorCard";
+import { useGetLobbyCategoryList } from "@/core/feature/game/useGetLobbyCategoryList";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameService } from "@/core/services/GameService";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
-import ButtonText from "@/components/pages/home/components/ButtonText";
-import CategoryLabel from "@/components/pages/home/components/CategoryRenderer/components/LobbyCategory/components/CategoryLabel";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useGameStore } from "@/core/stores/useGameStore";
+import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import Common from "@/core/utils/Common";
-import getDisplayGameType from "@/core/utils/getDisplayGameType";
-import { useMemo } from "react";
+import { media } from "@/theme/breakpoints";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import CardVendor from "../../../CardVender";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { useGetLobbyCategoryList } from "@/core/feature/game/useGetLobbyCategoryList";
 
-const Wrapper = styled.div`
+const CategoryContentWrapper = styled.div`
   width: 100%;
-  margin: 15px 0;
-  cursor: pointer;
-`;
-
-const CategoryTitle = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 12px 10px;
+  gap: 12px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background-color: ${({ theme }) => theme.mainDarkBackground};
+
+  ${media.sm} {
+    background-color: transparent;
+  }
 `;
 
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   align-content: flex-start;
-  gap: 15px;
+  gap: 8px;
+  flex-shrink: 0;
   width: 100%;
-  margin-bottom: 30px;
+
+  ${media.sm} {
+    row-gap: 36px;
+    flex-wrap: wrap;
+  }
 `;
 
-type Props = {
-  // iconUrl: string;
-  // text: string;
-  // gameType: number;
-  showDataLength: number;
-  // handleViewAllClick: () => void;
-  gameTypeName: string;
-};
-
-const LobbyCategory = ({ showDataLength, gameTypeName }: Props) => {
-  const { activeGameType } = useHomeGameContext();
+const LobbyCategory = () => {
+  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { account } = useAccountStore();
   const history = useHistory();
-
   const { lobbyCategoryList } = useGetLobbyCategoryList();
 
   const launchLobbyGame = (gpcode: string) => {
@@ -86,29 +81,32 @@ const LobbyCategory = ({ showDataLength, gameTypeName }: Props) => {
     }
   };
 
+  const hasMappingData = !!lobbyCategoryList.length;
+
   return (
-    <Wrapper>
-      {/*<CategoryTitle>*/}
-      {/*  <CategoryLabel imageUrl={iconUrl} text={text} />*/}
-      {/*  <ButtonText size="small" text={"View all"} onClick={handleViewAllClick} />*/}
-      {/*</CategoryTitle>*/}
-      <CategoryContent>
-        {lobbyCategoryList &&
-          lobbyCategoryList.map((provider) => {
-            const { code: gpCode, status, name } = provider;
-            return (
-              <CardVendor
-                key={gpCode}
-                imageUrl={`${process.env.PUBLIC_URL}/assets/images/home/${gameTypeName}/${gpCode}.png`}
-                venderLogoUrl={`${process.env.PUBLIC_URL}/assets/images/home/provider_logo/${gameTypeName}/${gpCode}.png`}
-                launchGame={() => launchLobbyGame(gpCode)}
-                status={status}
-                hoverVenderName={name}
-              />
-            );
-          })}
-      </CategoryContent>
-    </Wrapper>
+    <>
+      <CategoryContentWrapper>
+        <CategoryContent>
+          {hasMappingData &&
+            lobbyCategoryList.map((provider) => {
+              const { code: gpCode, status, name } = provider;
+
+              if (gpCode === "BC") return null;
+              return (
+                <VendorCard
+                  key={gpCode}
+                  imageUrl={`${process.env.PUBLIC_URL}/assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${process.env.PUBLIC_URL}/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  launchGame={() => launchLobbyGame(gpCode)}
+                  status={status}
+                  venderName={name}
+                />
+              );
+            })}
+          {!hasMappingData && <div>No data</div>}
+        </CategoryContent>
+      </CategoryContentWrapper>
+    </>
   );
 };
 

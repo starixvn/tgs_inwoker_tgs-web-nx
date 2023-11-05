@@ -1,78 +1,46 @@
+
+import SocialMedia from "@/components/project/SocialMedia";
+import { useGetHomeCategoryList } from "@/core/feature/game/useGetHomeCategoryList";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import styled from "styled-components";
-import { useGetHomeCategoryList } from "@/core/feature/game/useGetHomeCategoryList";
+import HomeNonLobbyCategory from "./components/HomeNonLobbyCategory";
+import ScrollableHomeNonLobbyCategory from "./components/ScrollableHomeNonLobbyCategory";
 
 const HomeCategoryContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
 `;
 
 const HomeCategory = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { hotGameList, newGameList, recommendGameList } = useGetHomeCategoryList();
-
-  const showCategoryAmount = (tag: string, isLobbyType: boolean) => {
-    if (isMobileSize) {
-      if (isLobbyType) {
-        return 3;
-      } else {
-        if (tag === "Hot") {
-          return 9;
-        }
-      }
-      return 6;
-    }
-    if (isDesktopSize) {
-      return 6;
-    }
-  };
-  return <h1>YOYO</h1>;
+  const { hotGameList, newGameList, recommendGameList, isLoading } = useGetHomeCategoryList();
+  const homeCategoryDataList = [
+    { title: "Hot Games", dataList: hotGameList },
+    { title: "New Games", dataList: newGameList },
+    { title: "Recommend", dataList: recommendGameList }
+  ];
 
   return (
     <HomeCategoryContainer>
-      {/*{Object.values(lobbyCategoryList).map((category) => {*/}
-      {/*  const { key, iconUrl, text, gameType } = category;*/}
+      {!!homeCategoryDataList.length && homeCategoryDataList.map((item, index) => (
+        <ScrollableHomeNonLobbyCategory
+          key={index}
+          title={item.title}
+          dataList={item.dataList}
+          isLoading={isLoading}
+        />
+      ))}
 
-      {/*  if ([GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME].includes(gameType)) {*/}
-      {/*    //  slots, fishing, and egame (with games)*/}
-      {/*    return (*/}
-      {/*      <HomeNonLobbyCategory*/}
-      {/*        key={key}*/}
-      {/*        iconUrl={iconUrl}*/}
-      {/*        text={text}*/}
-      {/*        gameType={gameType}*/}
-      {/*        gameTag={text}*/}
-      {/*        showDataLength={showCategoryAmount(text, false)!}*/}
-      {/*        handleViewAllClick={() => {*/}
-      {/*          handleGameTypeClick(gameType);*/}
-      {/*        }}*/}
-      {/*        gameTypeName={*/}
-      {/*          gameTypeList.find((gameTypeItem) => gameTypeItem.gameType === gameType)?.key || ""*/}
-      {/*        }*/}
-      {/*        groupBy_gameType={groupByGameTypeList}*/}
-      {/*      />*/}
-      {/*    );*/}
-      {/*  } else {*/}
-      {/*    //  others*/}
-      {/*    return (*/}
-      {/*      <LobbyCategory*/}
-      {/*        key={key}*/}
-      {/*        iconUrl={iconUrl}*/}
-      {/*        text={text}*/}
-      {/*        gameType={gameType}*/}
-      {/*        showDataLength={showCategoryAmount(text, true)!}*/}
-      {/*        handleViewAllClick={() => {*/}
-      {/*          handleGameTypeClick(gameType);*/}
-      {/*        }}*/}
-      {/*        gameTypeName={*/}
-      {/*          gameTypeList.find((gameTypeItem) => gameTypeItem.gameType === gameType)?.key || ""*/}
-      {/*        }*/}
-      {/*      />*/}
-      {/*    );*/}
-      {/*  }*/}
-      {/*})}*/}
+      {
+        isMobileSize && <HomeNonLobbyCategory
+          title={"Follow Us"}
+        >
+          <SocialMedia />
+        </HomeNonLobbyCategory>
+      }
     </HomeCategoryContainer>
   );
 };

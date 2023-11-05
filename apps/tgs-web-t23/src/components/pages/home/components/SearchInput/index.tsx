@@ -4,7 +4,7 @@ type Props = {
   placeholder?: string;
   imageUrl?: string;
   value?: string;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (searchString: string) => void;
 }
 
 const InputWrapper = styled.div`
@@ -29,14 +29,14 @@ const InputTextfield = styled.input`
     font-size: 0.875rem;
     color: ${(props) => props.theme.lightGray};
     &::placeholder {
-            color: ${(props) => props.theme.tertiary};
-            font-weight: 700;
-            line-height: 0.875rem;
-        }
+        color: ${(props) => props.theme.tertiary};
+        font-weight: 700;
+        line-height: 0.875rem;
+    }
 
-        &:focus {
-            outline: none;
-        }
+    &:focus {
+        outline: none;
+    }
 `;
 
 const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
@@ -46,7 +46,9 @@ const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={handleChange}
+        onChange={(event) => {
+          handleChange(event.target.value);
+        }}
       />
       {imageUrl && <img src={imageUrl} alt={"Search"} />}
     </InputWrapper>

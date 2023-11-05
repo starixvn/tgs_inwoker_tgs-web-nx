@@ -1,173 +1,56 @@
-import { GameService } from "@/core/services/GameService";
-import ButtonText from "@/components/pages/home/components/ButtonText";
-import CategoryLabel from "@/components/pages/home/components/CategoryRenderer/components/LobbyCategory/components/CategoryLabel";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import Common from "@/core/utils/Common";
-import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import styled from "styled-components";
-import CardVendor from "../../../../../CardVender";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 
-const Wrapper = styled.div`
+const HomeCategorySection = styled.div`
   width: 100%;
-  margin: 15px 0;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 13px;
+`;
+
+const CategoryTab = styled.div`
+  width: 184px;
+  height: 48px;
+  background-image: url(${tabBg});
+  background-size: contain;
+  padding: 15.5px 15px;
 `;
 
 const CategoryTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+  color: ${({ theme }) => theme.white};
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 0.875rem;
 `;
 
 const CategoryContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 15px;
   width: 100%;
-  margin-bottom: 30px;
-`;
-
-const ButtonContainer = styled.div`
+  box-sizing: border-box;
+  padding: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 0px 20px 20px 20px;
+  background-color: ${({ theme }) => theme.mainDarkBackground};
 `;
 
 type Props = {
-  iconUrl: string;
-  text: string;
-  gameType: number;
-  gameTag: string;
-  showDataLength: number;
-  handleViewAllClick: () => void;
-  gameTypeName: string;
-  groupBy_gameType: GroupByGameItem[][];
-};
-
-export type GroupByGameItem = {
-  abbreviation: string;
-  game_platform_id: number;
-  game_platform_name: string;
-  is_try: number;
-  name: string;
-  params: null | string;
-  gpcode: string;
-  type: number;
-  status: number;
+  title: string;
+  children: React.ReactNode;
 };
 
 const HomeNonLobbyCategory = ({
-  iconUrl,
-  text,
-  gameType,
-  gameTag,
-  showDataLength,
-  handleViewAllClick,
-  gameTypeName,
-  groupBy_gameType,
+  title,
+  children
 }: Props) => {
-  const { account } = useAccountStore();
-  const history = useHistory();
-  const [filteredGameList, setFilteredGameList] = useState<any[]>([]);
-  const [visibleGameCount, setVisibleGameCount] = useState(showDataLength);
-  const [isLoading, setIsLoading] = useState(false);
-  const { isMobileSize, isDesktopSize } = useRwd();
-
-  const statusMap = groupBy_gameType.reduce<{ [key in string]: number }>(
-    (accumulator, groupByGameItem) => {
-      groupByGameItem.forEach((item) => {
-        accumulator[item.gpcode] = item.status;
-      });
-      return accumulator;
-    },
-    {}
-  );
-
-  const handleLoadMoreClick = () => {
-    setVisibleGameCount(visibleGameCount + showDataLength);
-  };
-
-  const launchGame = (gameId: number, gpcode: string) => {
-    if (!account.token) {
-      history.push("/login");
-      return;
-    }
-
-    Common.closePreviousPopup();
-    Common.PopupCenter(`/joingame/${gameId}/${gpcode}`, "gamewindow");
-  };
-
-  useEffect(() => {
-    if (gameType && gameTag) {
-      GameService.GetGameList("", gameType).then((res) => {
-        setIsLoading(true);
-        if (res && res.data) {
-          switch (gameTag) {
-            case "Hot":
-              setIsLoading(false);
-              return setFilteredGameList(res.data?.filter((item: GameItem) => item.tag.hot));
-            case "New":
-              setIsLoading(false);
-              return setFilteredGameList(res.data?.filter((item: GameItem) => item.tag.new));
-            case "Recommend":
-              setIsLoading(false);
-              return setFilteredGameList(res.data?.filter((item: GameItem) => item.tag.recommend));
-            default:
-              setIsLoading(false);
-              return setFilteredGameList(res.data);
-          }
-        }
-      });
-    }
-  }, [gameType, gameTag]);
-
-  if (!filteredGameList.length) {
-    return null;
-  }
 
   return (
-    <Wrapper>
-      <CategoryTitle>
-        <CategoryLabel imageUrl={iconUrl} text={text} />
-        <ButtonText size="small" text={"View all"} onClick={handleViewAllClick} />
-      </CategoryTitle>
-      {isLoading && <div>Loading...</div>}
-      {!isLoading && (
-        <CategoryContent>
-          {filteredGameList.slice(0, visibleGameCount).map((game) => {
-            return (
-              <CardVendor
-                key={game?.id}
-                imageUrl={`${process.env.PUBLIC_URL}/assets/images/home/${gameTypeName}/${game?.gpcode}.png`}
-                gameName={game?.name}
-                venderName={game?.gpcode}
-                launchGame={() => launchGame(game?.id, game?.gpcode)}
-                status={statusMap[game?.gpcode]}
-              />
-            );
-          })}
-        </CategoryContent>
-      )}
-
-      {isMobileSize && visibleGameCount < filteredGameList.length && gameTag === "Hot" && (
-        <ButtonContainer>
-          <ButtonText size="large" text={"Load more"} onClick={handleLoadMoreClick} />
-        </ButtonContainer>
-      )}
-
-      {isDesktopSize &&
-        visibleGameCount < filteredGameList.length &&
-        (gameTag === "Hot" || gameTag === "New" || gameTag === "Recommend") && (
-          <ButtonContainer>
-            <ButtonText size="large" text={"Load more"} onClick={handleLoadMoreClick} />
-          </ButtonContainer>
-        )}
-    </Wrapper>
+    <HomeCategorySection>
+      <CategoryTab>
+        <CategoryTitle>{title}</CategoryTitle>
+      </CategoryTab>
+      <CategoryContent>{children}</CategoryContent>
+    </HomeCategorySection>
   );
 };
 
