@@ -1,5 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "workspaceLayout": {
+    "projectNameAndRootFormat": "derived",
+    "appsDir": "apps",
+    "libsDir": "libs"
+  },
   "targetDefaults": {
     "build": {
       "cache": true,
@@ -47,7 +52,8 @@
       },
       "library": {
         "style": "styled-components",
-        "linter": "eslint"
+        "linter": "eslint",
+        "unitTestRunner": "none"
       }
     }
   }

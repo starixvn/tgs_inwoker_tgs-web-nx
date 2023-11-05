@@ -9,7 +9,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/tgs-web-t23"
+        "outputPath": "dist/apps/tgs-web-t23",
+        "port": 3000
       },
       "configurations": {
         "development": {
