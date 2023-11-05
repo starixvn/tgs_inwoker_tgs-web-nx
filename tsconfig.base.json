@@ -12,9 +12,8 @@
     "module": "esnext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {}
+    "skipDefaultLibCheck": true
+    //    "baseUrl": "."
   },
   "exclude": ["node_modules", "tmp"]
 }

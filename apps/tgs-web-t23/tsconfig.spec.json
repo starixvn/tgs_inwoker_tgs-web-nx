@@ -8,7 +8,11 @@
       "vite/client",
       "node",
       "vitest"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "vite.config.ts",
