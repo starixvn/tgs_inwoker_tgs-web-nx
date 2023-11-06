@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 import { AppHistory } from "@/history/History";
 import config from "@/config/config";
 import ForcedVerification from "./components/project/ForcedVerification";
@@ -68,7 +68,7 @@ const App: React.FC = () => {
                         />
                       );
                     })}
-                    {/*<Redirect to="/" />*/}
+                    <Redirect to="/" />
                   </Switch>
 
                   <LiveChat
