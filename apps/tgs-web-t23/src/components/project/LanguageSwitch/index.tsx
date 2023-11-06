@@ -10,15 +10,14 @@ import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { BrandLanguage } from "@/core/types/stores/general";
-import { muiTheme } from "@/theme/mui";
 
 const imageMap: { [key in string]: string } = {
-  "zh-CN": import.meta.env.PUBLIC_URL + `/assets/images/language/zh-CN.png`,
-  "zh-TW": import.meta.env.PUBLIC_URL + `/assets/images/language/zh-TW.png`,
-  "en-US": import.meta.env.PUBLIC_URL + `/assets/images/language/en-US.png`,
-  "th-TH": import.meta.env.PUBLIC_URL + `/assets/images/language/th-TH.png`,
-  "vi-VN": import.meta.env.PUBLIC_URL + `/assets/images/language/vi-VN.png`,
-  "id-ID": import.meta.env.PUBLIC_URL + `/assets/images/language/id-ID.png`,
+  "zh-CN": import.meta.env.BASE_URL + `assets/images/language/zh-CN.png`,
+  "zh-TW": import.meta.env.BASE_URL + `assets/images/language/zh-TW.png`,
+  "en-US": import.meta.env.BASE_URL + `assets/images/language/en-US.png`,
+  "th-TH": import.meta.env.BASE_URL + `assets/images/language/th-TH.png`,
+  "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.png`,
+  "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
 };
 
 const StyledFormControl = styled(MuiFormControl)`
@@ -99,7 +98,7 @@ const LanguageSwitch = (props: FormControlProps) => {
 
   const handleChange = (event: SelectChangeEvent<any>, child?: any) => {
     const selectedLanguage = languageList.find(
-      (languageItem) => languageItem.culturecode === event.target.value
+      (languageItem) => languageItem.culturecode === event.target.value,
     );
 
     if (!selectedLanguage) return;

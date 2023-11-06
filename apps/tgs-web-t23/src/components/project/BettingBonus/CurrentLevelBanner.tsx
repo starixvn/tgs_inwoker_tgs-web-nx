@@ -15,7 +15,9 @@ const CurrentLevelBannerContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 17px;
-  background-image: url(${`${import.meta.env.PUBLIC_URL}/assets/images/mobile/bettingBonus/current_level_bg.png`});
+  background-image: url(${`${
+    import.meta.env.BASE_URL
+  }assets/images/mobile/bettingBonus/current_level_bg.png`});
   background-position: left center;
 `;
 const LevelIconContainer = styled.div`

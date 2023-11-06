@@ -53,7 +53,7 @@ const VipCard = styled.div<VipCardProps>`
   max-width: 372px;
   min-height: 214px;
   background-image: url(${(props: VipCardProps) =>
-    import.meta.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$cardImage});
+    import.meta.env.BASE_URL + "assets/images/vip/mobile" + props.$cardImage});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -91,7 +91,7 @@ const VipLine = styled.div<VipLineProps>`
   min-height: 8px;
   margin: 26px;
   background-image: url(${(props: VipLineProps) =>
-    import.meta.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$lineImage});
+    import.meta.env.BASE_URL + "assets/images/vip/mobile" + props.$lineImage});
   background-size: contain;
   background-repeat: no-repeat;
 `;
@@ -128,7 +128,7 @@ const VipBadge = styled.div<VipBadgeProps>`
   max-width: 98px;
   min-height: 91px;
   background-image: url(${(props: VipBadgeProps) =>
-    import.meta.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$badgeImage});
+    import.meta.env.BASE_URL + "assets/images/vip/mobile" + props.$badgeImage});
   background-size: contain;
   background-repeat: no-repeat;
 `;
@@ -213,18 +213,14 @@ type SingleCardProps = {
   isCurrentLevel: boolean;
 };
 
-const VipSingleItem = ({
-  vipCardItem: item,
-  isCurrentLevel,
-}: SingleCardProps) => {
+const VipSingleItem = ({ vipCardItem: item, isCurrentLevel }: SingleCardProps) => {
   const currentItemRef = useRef<HTMLDivElement | null>(null);
   const {} = item;
 
   useEffect(() => {
     if (!isCurrentLevel) return;
 
-    if (!(currentItemRef.current && "scrollIntoView" in currentItemRef.current))
-      return;
+    if (!(currentItemRef.current && "scrollIntoView" in currentItemRef.current)) return;
 
     currentItemRef.current.scrollIntoView({
       behavior: "smooth",
@@ -236,13 +232,9 @@ const VipSingleItem = ({
     <VipScrollableItem ref={currentItemRef}>
       <VipCard $cardImage={item.levelStyle.cardImage}>
         <VipCardLevelText>
-          <LevelText $levelColor={item.levelStyle.levelColor}>
-            {item.levelStyle.level}
-          </LevelText>
+          <LevelText $levelColor={item.levelStyle.levelColor}>{item.levelStyle.level}</LevelText>
           {isCurrentLevel ? (
-            <CurrentLevelText
-              $levelStatusColor={item.levelStyle.levelStatusColor}
-            >
+            <CurrentLevelText $levelStatusColor={item.levelStyle.levelStatusColor}>
               Current level
             </CurrentLevelText>
           ) : (
@@ -257,9 +249,7 @@ const VipSingleItem = ({
       </VipCard>
 
       <VipLine $lineImage={item.levelStyle.lineImage} />
-      <VipBonusText $bonusColor={item.levelStyle.bonusColor}>
-        VIP BONUS
-      </VipBonusText>
+      <VipBonusText $bonusColor={item.levelStyle.bonusColor}>VIP BONUS</VipBonusText>
 
       <VipBonusStampGrid
         stampImages={[
@@ -271,18 +261,12 @@ const VipSingleItem = ({
         bonusTextTitle={["PROMOTION", "BIRTHDAY", "QUARTERLY"]}
         iconUrl={[rocketIcon, bdcakeIcon, calendarIcon]}
         lockerIconColor={item.levelStyle.lockerIconColor}
-        vipBonus={[
-          item.promotionBenefit,
-          item.birthBenefit,
-          item.quarterlyBenefit,
-        ]}
+        vipBonus={[item.promotionBenefit, item.birthBenefit, item.quarterlyBenefit]}
       />
 
       <VipPrivilegeContent>
         <VipBadge $badgeImage={item.levelStyle.badgeImage} />
-        <VipPrivilegeText $privilegeTitleColor="#4C85F7">
-          Level Up
-        </VipPrivilegeText>
+        <VipPrivilegeText $privilegeTitleColor="#4C85F7">Level Up</VipPrivilegeText>
         <VipPrivilegeItemWrapper>
           <VipPrivilegeItem>
             <VipPrivilegeItemText>Deposit</VipPrivilegeItemText>
@@ -297,9 +281,7 @@ const VipSingleItem = ({
             </VipPrivilegeItemNumber>
           </VipPrivilegeItem>
         </VipPrivilegeItemWrapper>
-        <VipPrivilegeText $privilegeTitleColor="#4C85F7">
-          Level Protection
-        </VipPrivilegeText>
+        <VipPrivilegeText $privilegeTitleColor="#4C85F7">Level Protection</VipPrivilegeText>
         <VipPrivilegeItemWrapper>
           <VipPrivilegeItem>
             <VipPrivilegeItemText>Deposit</VipPrivilegeItemText>

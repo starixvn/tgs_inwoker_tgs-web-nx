@@ -52,7 +52,7 @@ type VipBonusStampAboveProps = {
 };
 const VipBonusStampAbove = styled.div<VipBonusStampAboveProps>`
   background-image: url(${(props: VipBonusStampAboveProps) =>
-    import.meta.env.PUBLIC_URL + "/assets/images/vip/mobile" + props.$stampImage});
+    import.meta.env.BASE_URL + "assets/images/vip/mobile" + props.$stampImage});
   background-size: 100% auto;
   background-repeat: no-repeat;
   width: 100%;
@@ -165,13 +165,9 @@ const VipBonusStampGrid = ({
                 <VipBonusStampTitle $bonusTextColor={bonusTextColor}>
                   {bonusTextTitle && bonusTextTitle[index]}
                 </VipBonusStampTitle>
-                <VipBonusStampTitle $bonusTextColor={bonusTextColor}>
-                  BONUS
-                </VipBonusStampTitle>
+                <VipBonusStampTitle $bonusTextColor={bonusTextColor}>BONUS</VipBonusStampTitle>
               </VipBonusStampTitleWrapper>
-              <BonusIcon
-                $iconUrl={iconUrl ? iconUrl[index] : undefined}
-              ></BonusIcon>
+              <BonusIcon $iconUrl={iconUrl ? iconUrl[index] : undefined}></BonusIcon>
 
               <VipBonusStampNumber $bonusTextColor={bonusTextColor}>
                 {vipBonus && formatAmount(vipBonus[index])}

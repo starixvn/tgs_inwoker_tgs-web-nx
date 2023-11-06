@@ -21,8 +21,7 @@ const CheckboxContainer = styled.div<CheckboxContainerProps>`
   height: 46px;
   margin: 56px 0 0 20px;
 
-  ${({ $isEdit }: CheckboxContainerProps) =>
-    $isEdit ? `display:block` : `display:none`};
+  ${({ $isEdit }: CheckboxContainerProps) => ($isEdit ? `display:block` : `display:none`)};
 `;
 
 const ContentContainer = styled.div`
@@ -65,8 +64,9 @@ const CheckboxCircle = styled.div<CheckboxCircleProps>`
 
   ${(props: CheckboxCircleProps) =>
     props.checked
-      ? `background: url(${import.meta.env.PUBLIC_URL + `/assets/images/wapp/icon-inbox-checked.png`
-      }) no-repeat;`
+      ? `background: url(${
+          import.meta.env.BASE_URL + `assets/images/wapp/icon-inbox-checked.png`
+        }) no-repeat;`
       : `border-radius: 23px;
     border: 2px solid #949494;`}
 `;
@@ -113,9 +113,7 @@ const InboxItem = ({
         <ContentContainer onClick={() => handleShowDetail(isread)}>
           <MsgTitle $isRead={isread}>
             <MsgTitleSpan>
-              {localization !== null && localization.subject
-                ? localization.subject
-                : subject}
+              {localization !== null && localization.subject ? localization.subject : subject}
             </MsgTitleSpan>
           </MsgTitle>
           <MsgDate>{moment(createon).format("YYYY-MM-DD hh:mm a")}</MsgDate>
@@ -125,9 +123,7 @@ const InboxItem = ({
           <LetterContent
             dangerouslySetInnerHTML={{
               __html:
-                localization !== null && localization.content
-                  ? localization.content
-                  : content,
+                localization !== null && localization.content ? localization.content : content,
             }}
           />
         </Collapse>

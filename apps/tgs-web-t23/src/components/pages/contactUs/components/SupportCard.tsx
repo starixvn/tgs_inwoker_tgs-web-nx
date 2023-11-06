@@ -99,8 +99,8 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
     <SupportCardContainer onClick={handleClickCard}>
       <IconContainer>
         <Icon
-          iconUrl={`${import.meta.env.PUBLIC_URL}/assets/images/support/${iconSwitcher(
-            brandsSupport.type
+          iconUrl={`${import.meta.env.BASE_URL}assets/images/support/${iconSwitcher(
+            brandsSupport.type,
           )}`}
           width={"40px"}
           height={"40px"}

@@ -20,11 +20,11 @@ const MaintenanceBg = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url(${import.meta.env.PUBLIC_URL}/assets/images/maintenance/maintenance_bg.png) no-repeat;
+  background: url(${import.meta.env.BASE_URL}assets/images/maintenance/maintenance_bg.png) no-repeat;
   background-size: cover;
 
   ${media.sm} {
-    background: url(${import.meta.env.PUBLIC_URL}/assets/images/maintenance/maintenance_desktop_bg.png)
+    background: url(${import.meta.env.BASE_URL}assets/images/maintenance/maintenance_desktop_bg.png)
       no-repeat;
   }
 `;
