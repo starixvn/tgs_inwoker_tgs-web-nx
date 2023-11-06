@@ -29,6 +29,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   border-radius: 4px;
   background: ${({ theme }) => theme.gray95};
+  margin-bottom: 20px;
 `;
 
 const PlayerInfoContainer = styled.div`

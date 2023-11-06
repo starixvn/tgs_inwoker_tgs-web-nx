@@ -5,11 +5,11 @@ import { media } from "@/theme/breakpoints";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const AccountPaperContainer = styled.div`
-  padding: 20px 0;
-  border-radius: 20px;
+  padding: 30px;
+  border-radius: 4px;
 
   ${media.sm} {
-    background: ${({ theme }) => theme.mainLightBackground};
+    background: ${({ theme }) => theme.gray95};
     padding: 20px 24px;
   }
 `;
@@ -24,16 +24,18 @@ const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
 
   return (
     <>
-      {isDesktopSize && (
-        <PageBadge
-          iconUrl={iconUrl}
-          text={pageName}
-          style={{
-            marginBottom: "12px",
-          }}
-        />
-      )}
-      <AccountPaperContainer>{children}</AccountPaperContainer>
+      <AccountPaperContainer>
+        {isDesktopSize && (
+          <PageBadge
+            iconUrl={iconUrl}
+            text={pageName}
+            style={{
+              marginBottom: "12px",
+            }}
+          />
+        )}
+        {children}
+      </AccountPaperContainer>
     </>
   );
 };
