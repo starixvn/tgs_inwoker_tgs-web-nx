@@ -14,7 +14,7 @@ import MemberCenterBorder from "@/components/pages/account/components/MemberCent
 const AccountContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 18px 0 0;
-  max-width: 1200px;
+  max-width: 1072px;
   margin: auto;
 
   & > div {

@@ -23,7 +23,7 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
 
   ${media.sm} {
-    max-width: 1200px;
+    max-width: 1072px;
     margin: 0 auto;
     padding: 20px 0px;
     gap: 20px;
@@ -44,7 +44,7 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
 
   ${media.sm} {
-    max-width: 1200px;
+    max-width: 1072px;
     height: 375px;
     border-radius: 10px;
     background-image: url(${({ $imageUrl }) => $imageUrl});

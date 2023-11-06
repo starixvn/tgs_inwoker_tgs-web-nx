@@ -1,8 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { UNAUTHORIZE } from "@/api-services/constant/actionType";
 import { AppHistory } from "@/history/History";
-import i18n from "@/utils/i18n";
-import { isMobileOnly } from "react-device-detect";
 import ErrorSwitcher from "@/utils/ErrorSwitcher";
 
 const Interceptor = {
@@ -15,11 +13,8 @@ const Interceptor = {
           config.headers["Authorization"] = "bearer " + client;
         }
 
-        const token =
-          localStorage.getItem("token1") || localStorage.getItem("token0");
-        const logintime =
-          localStorage.getItem("logintime1") ||
-          localStorage.getItem("logintime0");
+        const token = localStorage.getItem("token1") || localStorage.getItem("token0");
+        const logintime = localStorage.getItem("logintime1") || localStorage.getItem("logintime0");
 
         if (token != null && token !== "") {
           if (logintime != null && logintime !== "") {
@@ -36,10 +31,7 @@ const Interceptor = {
         config.headers["Content-Type"] = "application/json";
         config.headers["Accept-Language"] = localStorage.getItem("i18nextLng");
 
-        if (
-          config.url &&
-          config.url.toUpperCase().includes("/GAMEPROVIDER/LIST")
-        ) {
+        if (config.url && config.url.toUpperCase().includes("/GAMEPROVIDER/LIST")) {
           config.headers["Token"] = "";
         }
 
@@ -48,7 +40,7 @@ const Interceptor = {
       function (error: any) {
         // Do something with request error
         return Promise.reject(error);
-      }
+      },
     );
 
     axios.interceptors.response.use(
@@ -58,8 +50,7 @@ const Interceptor = {
           info: ErrorSwitcher.getTranslation(response.data.errmsgid),
           code: response.data.err,
           data:
-            response.data.data !== null &&
-            typeof response.data.data !== "undefined"
+            response.data.data !== null && typeof response.data.data !== "undefined"
               ? response.data.data
               : response.data,
         };
@@ -168,7 +159,7 @@ const Interceptor = {
             data: {},
           };
         }
-      }
+      },
     );
   },
 };

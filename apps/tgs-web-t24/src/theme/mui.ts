@@ -9,16 +9,13 @@ theme.lang = i18n.language;
 
 declare module "@mui/material/styles" {
   interface Palette {
-    white: Palette["primary"];
-    yellow: Palette["primary"];
-    mainBackground: Palette["primary"];
-    gray5: string;
-  }
-
-  interface PaletteOptions {
-    white?: PaletteOptions["primary"];
-    yellow?: PaletteOptions["primary"];
-    mainBackground?: PaletteOptions["primary"];
+    white: string;
+    yellow: string;
+    mainBackground: string;
+    gray10: string;
+    gray40: string;
+    gray90: string;
+    gray95: string;
   }
 }
 
@@ -43,20 +40,17 @@ const muiTheme = createTheme({
       disabledBackground: theme.gray5,
       disabled: theme.white,
     },
-    white: {
-      main: theme.white,
-    },
-    yellow: {
-      main: theme.yellow,
-    },
-
     text: {
       primary: theme.white,
       secondary: theme.gray5,
     },
-    mainBackground: {
-      main: theme.mainBackground,
-    },
+    white: theme.white,
+    yellow: theme.yellow,
+    mainBackground: theme.mainBackground,
+    gray10: theme.gray10,
+    gray40: theme.gray40,
+    gray90: theme.gray90,
+    gray95: theme.gray95,
   },
   typography: {
     fontFamily: fontFamily,

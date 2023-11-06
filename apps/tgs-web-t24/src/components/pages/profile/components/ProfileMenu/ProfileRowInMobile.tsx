@@ -5,23 +5,33 @@ import { ProfileItem } from "@/core/hooks/account/useProfileMenu";
 
 const ProfileItemContainer = styled.div`
   width: 100%;
-  padding: 21px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
 
   & .label {
-    color: #ffffff;
+    color: ${({ theme }) => theme.gray30};
     font-size: 1.25rem;
     font-weight: 400;
   }
 
   & .status {
-    color: #828282;
+    color: ${({ theme }) => theme.gray40};
     font-size: 0.93rem;
     font-weight: 400;
   }
+`;
+
+const IconContainer = styled.div`
+  width: 32px;
+  height: 32px;
+  background: ${({ theme }) => theme.primary};
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   & svg {
     color: ${({ theme }) => theme.white} !important;
@@ -50,7 +60,9 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         <div className={"status"}>{status}</div>
       </div>
 
-      <NavigateNextIcon style={{ transform: "scale(2)" }} />
+      <IconContainer>
+        <NavigateNextIcon style={{ transform: "scale(1.3)" }} />
+      </IconContainer>
     </ProfileItemContainer>
   );
 };

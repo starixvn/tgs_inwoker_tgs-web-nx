@@ -5,10 +5,12 @@ import ProfileRowInMobile from "@/components/pages/profile/components/ProfileMen
 
 const ProfileCard = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainLightBackground};
-  border-radius: 30px;
-  padding: 30px 63px;
-
+  background: ${({ theme }) => theme.gray95};
+  border-radius: 5px;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
   margin-bottom: 15px;
 
   &:last-child {
@@ -16,9 +18,7 @@ const ProfileCard = styled.div`
   }
 `;
 
-type Props = {};
-
-const ProfileMenuMobile = ({}: Props) => {
+const ProfileMenuMobile = () => {
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
 
   return (
