@@ -1,10 +1,7 @@
 
-import SocialMedia from "@/components/project/SocialMedia";
 import { useGetHomeCategoryList } from "@/core/feature/game/useGetHomeCategoryList";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import styled from "styled-components";
-import HomeNonLobbyCategory from "./components/HomeNonLobbyCategory";
-import ScrollableHomeNonLobbyCategory from "./components/ScrollableHomeNonLobbyCategory";
+import ScrollableHomeCategoryFolder from "./components/ScrollableHomeCategoryFolder";
 
 const HomeCategoryContainer = styled.div`
   display: flex;
@@ -15,7 +12,6 @@ const HomeCategoryContainer = styled.div`
 `;
 
 const HomeCategory = () => {
-  const { isMobileSize, isDesktopSize } = useRwd();
   const { hotGameList, newGameList, recommendGameList, isLoading } = useGetHomeCategoryList();
   const homeCategoryDataList = [
     { title: "Hot Games", dataList: hotGameList },
@@ -26,21 +22,13 @@ const HomeCategory = () => {
   return (
     <HomeCategoryContainer>
       {!!homeCategoryDataList.length && homeCategoryDataList.map((item, index) => (
-        <ScrollableHomeNonLobbyCategory
+        <ScrollableHomeCategoryFolder
           key={index}
           title={item.title}
           dataList={item.dataList}
           isLoading={isLoading}
         />
       ))}
-
-      {
-        isMobileSize && <HomeNonLobbyCategory
-          title={"Follow Us"}
-        >
-          <SocialMedia />
-        </HomeNonLobbyCategory>
-      }
     </HomeCategoryContainer>
   );
 };

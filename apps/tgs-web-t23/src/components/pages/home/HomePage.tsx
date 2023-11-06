@@ -9,6 +9,11 @@ import { media } from "@/theme/breakpoints";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
+import { footerCategoriesList } from "@/components/layouts/Footer/footerCategoriesList";
+import HomeCategoryFolder from "@/components/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
+import HomePromotionCard from "./components/HomePromotionCard";
+import ImageCard from "./components/ImageCard";
+
 const MainWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -101,15 +106,25 @@ const HomePage = () => {
         {isMobileSize && <GameTypeTab />}
 
         <CategoryRenderer />
+        <HomePromotionCard />
 
-        {/*
-        <TabPanel />
-        {isMobileSize && <SocialMedia />}
-        {isMobileSize && (
-          <VendorIconContainer>
-            <VendorIcon />
-          </VendorIconContainer>
-        )} */}
+        {isMobileSize &&
+          footerCategoriesList.length &&
+          footerCategoriesList.map((category, index) => (
+            <HomeCategoryFolder key={index} title={category.title} size={category.size!}>
+              {category.content ? (
+                category.content
+              ) : (
+                <ImageCard
+                  imageUrl={category.imageUrl}
+                  text={category.text}
+                  alignment={category.alignment}
+                />
+              )}
+            </HomeCategoryFolder>
+          ))}
+
+        {/* <TabPanel /> */}
       </MainContentWrapper>
     </MainWrapper>
   );

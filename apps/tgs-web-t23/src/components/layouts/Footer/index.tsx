@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import gc from "@/assets/t23/images/home/gc.png";
 import SocialMedia from "@/components/project/SocialMedia";
 import config from "@/config/config";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
+import styled from "styled-components";
 
 const FooterContainer = styled.div`
   display: none;
@@ -94,6 +94,7 @@ const Footer = (props: Props) => {
 
         <FooterGroup>
           <GroupTitle>Gaming License</GroupTitle>
+          <GroupContent><img src={gc} alt="gc" /></GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>
@@ -107,10 +108,12 @@ const Footer = (props: Props) => {
           <GroupContent>Privacy Policy</GroupContent>
           <GroupContent>Terms and Conditions</GroupContent>
           <GroupContent>Responsible Gaming</GroupContent>
+          <GroupTitle>Follow Us</GroupTitle>
+          <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>
-          <GroupTitle>Parners</GroupTitle>
+          <GroupTitle>Partners</GroupTitle>
           <PartnersContainer>
             {PartnerList.map((partner) => {
               return <ParnterBadge key={partner}>{partner}</ParnterBadge>;
@@ -118,9 +121,6 @@ const Footer = (props: Props) => {
           </PartnersContainer>
         </FooterGroup>
       </FooterGroups>
-
-      <SocialMediaTitle>Follow Us</SocialMediaTitle>
-      <SocialMedia />
     </FooterContainer>
   );
 };
