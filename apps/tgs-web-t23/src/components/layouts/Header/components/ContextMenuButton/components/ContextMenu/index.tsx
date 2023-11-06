@@ -12,7 +12,6 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useHeader } from "@/core/feature/useHeader";
 
 const ContextMenuContainer = styled.div`
-  width: 210px;
   padding: 15px;
   background: ${({ theme }) => theme.secondary};
   border-radius: 20px;
