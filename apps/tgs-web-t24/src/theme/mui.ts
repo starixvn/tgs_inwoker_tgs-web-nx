@@ -12,8 +12,10 @@ declare module "@mui/material/styles" {
     white: string;
     yellow: string;
     mainBackground: string;
+    gray5: string;
     gray10: string;
     gray40: string;
+    gray70: string;
     gray90: string;
     gray95: string;
   }
