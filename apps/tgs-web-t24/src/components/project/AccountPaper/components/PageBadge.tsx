@@ -4,12 +4,12 @@ import styled from "styled-components";
 
 const PageBadgeContainer = styled.div`
   padding: 10px 20px;
-  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
   color: ${({ theme }) => theme.white};
+  border-left: 3px solid ${({ theme }) => theme.primary};
   width: fit-content;
   font-size: 1.25rem;
   font-weight: 700;

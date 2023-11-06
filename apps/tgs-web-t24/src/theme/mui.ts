@@ -12,8 +12,10 @@ declare module "@mui/material/styles" {
     white: string;
     yellow: string;
     mainBackground: string;
+    gray5: string;
     gray10: string;
     gray40: string;
+    gray70: string;
     gray90: string;
     gray95: string;
   }
@@ -47,8 +49,10 @@ const muiTheme = createTheme({
     white: theme.white,
     yellow: theme.yellow,
     mainBackground: theme.mainBackground,
+    gray5: theme.gray5,
     gray10: theme.gray10,
     gray40: theme.gray40,
+    gray70: theme.gray70,
     gray90: theme.gray90,
     gray95: theme.gray95,
   },

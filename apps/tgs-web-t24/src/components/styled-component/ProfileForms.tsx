@@ -13,7 +13,6 @@ export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
-  max-width: 450px;
 `;
 
 export const LabelContainer = styled.div`
@@ -26,6 +25,7 @@ export const LabelContainer = styled.div`
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   borderRadius: "5px",
   background: theme.palette.gray95,
+  maxWidth: "500px",
 
   width: "100%",
   fontSize: "0.875rem",
@@ -33,8 +33,12 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
     border: "none",
   },
 
-  [theme.breakpoints.up("sm")]: {
-    border: `1px solid ${theme.palette.white}`,
+  // [theme.breakpoints.up("sm")]: {
+  //   border: `1px solid ${theme.palette.white}`,
+  // },
+
+  "& input": {
+    background: "#0F1923",
   },
 })) as typeof MuiFormControl;
 

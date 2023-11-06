@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import styled, { keyframes, DefaultTheme } from "styled-components";
 import DynamicFont from "react-dynamic-font";
-import refreshIcon from "@/assets/t23/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t24/images/account/icon-refresh.svg";
 import i18n from "@/utils/i18n";
 import Common from "@/core/utils/Common";
 import config from "@/config/config";
@@ -21,12 +21,15 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  padding: 22px 50px;
+  padding: 40px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.gray95};
+  margin-bottom: 20px;
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -37,9 +40,8 @@ const PlayerInfoContainer = styled.div`
 `;
 
 const PlayerName = styled.div`
-  font-size: 2.812rem;
-  line-height: 3.261rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.white};
 `;
 
@@ -67,7 +69,7 @@ const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
-  font-size: 2.125rem;
+  font-size: 1.75rem;
   color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
@@ -88,9 +90,7 @@ const RefreshButton = styled(Icon)`
 `;
 
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => {
-    return theme.useBackgroundColor ? theme.useBackgroundColor : theme.primary;
-  }};
+  color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
   margin-top: 11px;
   font-weight: 400;

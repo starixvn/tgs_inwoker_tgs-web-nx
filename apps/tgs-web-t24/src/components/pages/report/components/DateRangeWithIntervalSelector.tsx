@@ -17,19 +17,19 @@ type DateRangSelectionTypes = {
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
   text-align: center;
   cursor: pointer;
-  height: 40px;
+  height: 47px;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.primary : "none";
+    return $isSelected ? theme.primary : theme.gray90;
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? "black" : "white";
+    return $isSelected ? "white" : theme.gray5;
   }};
-  padding: 11px 20px;
+  padding: 15px 20px;
   border: ${({ $isSelected }: DateRangSelectionTypes) => {
-    return $isSelected ? "none" : `1px solid white`;
+    return $isSelected ? "none" : `1px solid ${theme.gray70}`;
   }};
-  border-radius: 30px;
+  border-radius: 5px;
   font-size: 0.937rem;
   line-height: 1;
 `;

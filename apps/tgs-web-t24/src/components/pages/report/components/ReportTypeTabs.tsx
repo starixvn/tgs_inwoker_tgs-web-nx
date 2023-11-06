@@ -24,7 +24,6 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
   };
 
   return (
-    //@ts-ignore
     <ReportTypeTabsContainer {...others}>
       {displayedTabList.map((reportTab) => {
         const { index, label } = reportTab;
@@ -34,17 +33,15 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
             key={index}
             onClick={() => handleButtonClick(index)}
             sx={{
-              color: isSelected ? "black" : "white",
-              border: isSelected ? "none" : "1px solid white",
-              background: isSelected
-                ? "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)"
-                : "none",
+              color: isSelected ? theme.white : theme.gray5,
+              border: isSelected ? "none" : `1px solid ${theme.gray70}`,
+              background: isSelected ? theme.primary : theme.gray90,
               whiteSpace: {
                 sx: "wrap",
                 sm: "no-wrap",
               },
-              padding: "16px",
-              borderRadius: "30px",
+              padding: "12px",
+              borderRadius: "5px",
               width: {
                 xs: "calc((100% - 2 * 9px) / 3)",
                 sm: "auto",

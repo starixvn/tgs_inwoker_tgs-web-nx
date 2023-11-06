@@ -122,12 +122,6 @@ const TransferCard = ({
   return (
     <TransferCardContainer>
       <RowContainer>
-        <ColContainer>{i18n.t("transfer.mainAccount")}</ColContainer>
-
-        <ColContainer>{Common.formatNumberWithCommas(wallet.mainBalance)}</ColContainer>
-      </RowContainer>
-
-      <RowContainer>
         <ColContainer>{i18n.t("transfer.transferFromWallet")}</ColContainer>
         <ColContainer>
           <WalletSelect
@@ -160,8 +154,8 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              border: "1px solid white",
-              borderRadius: "30px",
+              borderRadius: "6px",
+              background: "#0F1923",
             }}
           />
         </ColContainer>

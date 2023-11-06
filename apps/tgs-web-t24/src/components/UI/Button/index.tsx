@@ -3,12 +3,12 @@ import { Button as MuiButton, ButtonProps, styled as muiStyled } from "@mui/mate
 
 export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   whiteSpace: "nowrap",
-  borderRadius: "6px",
+  borderRadius: "3px",
   padding: "10px 6px",
   fontSize: "0.637rem",
   fontWeight: 400,
   color: theme.palette.common.white,
-  background: "linear-gradient(90deg, #FACE27 53.76%, #F3AF16 54.17%)",
+  background: theme.palette.primary.main,
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,

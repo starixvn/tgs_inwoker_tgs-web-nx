@@ -10,7 +10,7 @@ const ProfileMenu = (props: Props) => {
   useUpdatePageName(i18n.t("profile.basicInfo"));
   const { isDesktopSize } = useRwd();
 
-  return <>{isDesktopSize ? <ProfileMenuDesktop /> : <ProfileMenuMobile />}</>;
+  return isDesktopSize ? <ProfileMenuDesktop /> : <ProfileMenuMobile />;
 };
 
 export default ProfileMenu;

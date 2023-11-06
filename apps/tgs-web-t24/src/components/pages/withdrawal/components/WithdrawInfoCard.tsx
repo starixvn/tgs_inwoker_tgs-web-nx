@@ -7,17 +7,15 @@ import { WalletService } from "@/api-services/services/WalletService";
 import { GetMinWithdrawLimitResDto } from "@/core/models/dto/withdraw/GetMinWithdrawLimitResDto";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.primaryLight};
   color: ${({ theme }) => theme.white};
   padding: 25px 37px;
   border-radius: 5px;
   font-size: 0.937rem;
   line-height: 1.098rem;
-  max-width: 450px;
   align-self: flex-start;
 `;
 const RowContainer = styled.div`
-  border-left: 6px solid ${({ theme }) => theme.tertiary};
+  border-left: 6px solid ${({ theme }) => theme.primary};
   padding-left: 10px;
 
   &:first-child {
