@@ -12,8 +12,11 @@
     "module": "esnext",
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
-    "skipDefaultLibCheck": true
-    //    "baseUrl": "."
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tgs-web-nx/core": ["libs/core/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
