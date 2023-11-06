@@ -38,7 +38,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   // },
 
   "& input": {
-    background: "#0F1923",
+    background: theme.palette.mainBackground,
   },
 })) as typeof MuiFormControl;
 
