@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import Common from "@/core/utils/Common";
 import i18n from "@/utils/i18n";
-import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
 import { useHistory } from "react-router-dom";
-import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
+import iconMoney from "@/assets/t24/images/balanceTracker/icon_money.svg";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
 
@@ -15,26 +14,26 @@ type BalanceTrackerContainerProps = {
 };
 const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
   height: 36px;
-  background: ${({ theme }: BalanceTrackerContainerProps) => theme.mainLightBackground};
+  background: ${({ theme }: BalanceTrackerContainerProps) => theme.mainBackground};
   border: ${({ $size, theme }: BalanceTrackerContainerProps) =>
-    $size !== "small" ? `1px solid ${theme.gray}` : "none"};
+    $size !== "small" ? `1px solid ${theme.gray80}` : "none"};
   color: white;
-  border-radius: 50px;
+  border-radius: 4px;
   padding: 8px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1.318rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.058rem;
 `;
 
 const BalanceContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   gap: 10px;
 
   & span {
@@ -55,13 +54,8 @@ const BalanceTracker = ({ size, ...others }: Props) => {
     history.push("/deposit");
   }, []);
 
-  const handleRefreshBalance = useCallback(async () => {
-    await getBalanceList();
-  }, []);
-
   const isShow = size !== "small";
   return (
-    //@ts-ignore
     <BalanceTrackerContainer $size={size} {...others}>
       {isShow && (
         <span>
@@ -70,9 +64,8 @@ const BalanceTracker = ({ size, ...others }: Props) => {
       )}
 
       <BalanceContainer>
+        <span onClick={handleClick}>{`${wallet.mainSymbol}$ ${currentBalance}`}</span>
         <Icon iconUrl={iconMoney} width={"20px"} height={"20px"} />
-        <span onClick={handleClick}>{currentBalance}</span>
-        <RefreshButton handleClick={handleRefreshBalance} />
       </BalanceContainer>
     </BalanceTrackerContainer>
   );

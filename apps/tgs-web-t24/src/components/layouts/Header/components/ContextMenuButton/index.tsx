@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ContextMenu from "@/components/layouts/Header/components/ContextMenuButton/components/ContextMenu";
-import avatarImg from "@/assets/t23/images/account/avatar.svg";
-import SvgIcon from "@/components/UI/SvgIcon";
+import avatarImg from "@/assets/t24/images/contextButton/icon.svg";
 import Modal from "@/components/UI/Modal";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { media } from "@/theme/breakpoints";
 import Loading from "@/components/UI/Loading";
-import arrowImg from "@/assets/t23/images/header/contextMenu/icon_arrow.svg";
 import { useAuth } from "@/core/feature/useAuth";
-import Icon from "@/components/project/Icon";
 
 const ContextMenuButtonContainer = styled.div`
   height: 36px;
-  padding: 8px 15px;
-  border-radius: 50px;
-  background: ${({ theme }) => theme.mainLightBackground};
+  width: 36px;
+  padding: 10px;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.mainBackground};
+  border: 1px solid ${({ theme }) => theme.gray80};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,12 +66,6 @@ const ContextMenuButton = () => {
     <>
       <ContextMenuButtonContainer onClick={handleClick}>
         <AvatarContainer />
-
-        <UsernameContainer>{username}</UsernameContainer>
-
-        <ArrowContainer open={isOpen}>
-          <Icon iconUrl={arrowImg} width={"15px"} height={"9px"} />
-        </ArrowContainer>
       </ContextMenuButtonContainer>
 
       <Modal open={isOpen} onClose={handleClick}>

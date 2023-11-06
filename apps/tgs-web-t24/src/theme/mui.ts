@@ -12,6 +12,7 @@ declare module "@mui/material/styles" {
     white: Palette["primary"];
     yellow: Palette["primary"];
     mainBackground: Palette["primary"];
+    gray5: string;
   }
 
   interface PaletteOptions {
