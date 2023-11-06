@@ -27,7 +27,7 @@ const LiveChat = ({ vendor, license, group }: LiveChatProps) => {
       case "zendesk":
         return <Zendesk license={license} />;
       default:
-        return "";
+        return null;
     }
   };
 
