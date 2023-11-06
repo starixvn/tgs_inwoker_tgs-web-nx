@@ -11,30 +11,30 @@ import i18n from "@/utils/i18n";
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-const MobileMenuDrawerContainer = styled.div`
-  background: ${({ theme }) => theme.mainDarkBackground};
+const DesktopMenuDrawerContainer = styled.div`
+  background: ${({ theme }) => theme.mainBackground};
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
   padding-bottom: 20px;
 
   &::-webkit-scrollbar {
-      width: 10px;
-    }
+    width: 10px;
+  }
 
-    &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.tertiaryDark};
-    }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    background: ${(props) => props.theme.gray90};
+  }
 
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: #53535375;
-    }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #53535375;
+  }
 
-    &::-webkit-scrollbar-track-piece {
-      background: transparent;
-    }
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
 `;
 
 const MenuHeaderContainer = styled.div`
@@ -64,7 +64,6 @@ const PromotionCard = styled.div`
   cursor: pointer;
   width: 250px;
   margin: 0 auto 8px;
-  background: ${({ theme }) => theme.mainLightBackground};
   border-radius: 12px;
   padding: 12px 30px;
   display: flex;
@@ -112,7 +111,7 @@ const DesktopMenuDrawer = (props: Props) => {
   };
 
   return (
-    <MobileMenuDrawerContainer>
+    <DesktopMenuDrawerContainer>
       <MenuHeaderContainer>
         <Link to={"/"}>
           <LogoImgContainer>
@@ -135,7 +134,7 @@ const DesktopMenuDrawer = (props: Props) => {
 
         <LanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
       </HeaderContentContainer>
-    </MobileMenuDrawerContainer>
+    </DesktopMenuDrawerContainer>
   );
 };
 

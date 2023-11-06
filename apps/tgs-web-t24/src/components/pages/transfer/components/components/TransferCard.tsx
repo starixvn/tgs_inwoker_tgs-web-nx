@@ -7,6 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import { useGameStore } from "@/core/stores/useGameStore";
 import WalletSelect from "@/components/pages/transfer/components/components/WalletSelect";
 import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
+import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
   background: ${({ theme }) => theme.tertiary};
@@ -155,7 +156,7 @@ const TransferCard = ({
             onChange={handleChangeTransferAmount}
             sx={{
               borderRadius: "6px",
-              background: "#0F1923",
+              background: theme.mainBackground,
             }}
           />
         </ColContainer>
