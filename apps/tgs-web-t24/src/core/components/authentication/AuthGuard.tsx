@@ -1,9 +1,7 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "@/router";
 import { useHistory } from "react-router-dom";
 import Loading from "@/components/UI/Loading";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useAuth } from "@/core/feature/useAuth";
 
 interface AuthGuard {
@@ -17,7 +15,7 @@ export const AuthGuard = (props: AuthGuard) => {
   const history = useHistory();
 
   const checkIfHasAccessToViewPage = () => {
-    return isLogin || route.isAnonymousAllowed;
+    return !!(isLogin || route.isAnonymousAllowed);
   };
 
   const [checked, setChecked] = useState(checkIfHasAccessToViewPage());
