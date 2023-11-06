@@ -16,7 +16,8 @@ const CardContainer = styled.div`
   margin: auto;
 `;
 
-const CardPage = () => {
+type Props = {};
+const CardPage = (props: Props) => {
   const history = useHistory();
   const { alert } = useNotifications();
   const { navigate } = useNavigation();

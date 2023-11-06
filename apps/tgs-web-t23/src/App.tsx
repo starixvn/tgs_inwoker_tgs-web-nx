@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AppHistory } from "@/history/History";
 import config from "@/config/config";
 import ForcedVerification from "./components/project/ForcedVerification";
@@ -109,15 +109,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-function Home() {
-  return <h2>Home</h2>;
-}
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
