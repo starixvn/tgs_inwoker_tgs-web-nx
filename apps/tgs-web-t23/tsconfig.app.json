@@ -10,7 +10,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@tgs-web-nx/core": ["../../libs/core/src/index.ts"]
     }
   },
   "exclude": [
