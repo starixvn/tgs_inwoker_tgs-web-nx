@@ -19,6 +19,7 @@ import {
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/components/pages/deposit/components/components/CopyIcon";
+import { UploadFileTag } from "../../../components/styled-component/ProfileForms";
 
 const LimitLabel = styled.span`
   color: ${({ theme }) => theme.tertiary};
@@ -165,7 +166,7 @@ class Main extends Component {
                               : i18n.t(item.methodcode)}
                           </option>
                         );
-                      }
+                      },
                     )}
                 </Select>
               </FormControl>
@@ -495,13 +496,13 @@ class Main extends Component {
                 Common.formatNumberWithThousand(
                   this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
                     this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.from
+                  ].channel[this.props.selectedChannelIndex].transferlimit.from,
                 ) +
                 "-" +
                 Common.formatNumberWithThousand(
                   this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
                     this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.to
+                  ].channel[this.props.selectedChannelIndex].transferlimit.to,
                 ) +
                 i18n.t("deposit.dollor")
               }
@@ -527,13 +528,13 @@ class Main extends Component {
                 Common.formatNumberWithThousand(
                   this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
                     this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.from
+                  ].channel[this.props.selectedChannelIndex].transferlimit.from,
                 ) +
                 "-" +
                 Common.formatNumberWithThousand(
                   this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
                     this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.to
+                  ].channel[this.props.selectedChannelIndex].transferlimit.to,
                 ) +
                 i18n.t("deposit.dollor")}
             </span>
@@ -611,7 +612,7 @@ class Main extends Component {
                         <LimitAmount>{` ${
                           isNaN(this.props.amount) === false
                             ? (this.props.amount / this.props.exchangeRate[key][key2].rate).toFixed(
-                                2
+                                2,
                               )
                             : 0
                         }`}</LimitAmount>
@@ -647,7 +648,7 @@ class Main extends Component {
                     ].indexOf(item.promotionType) >= 0 &&
                     (item.promotionType === "DepositReward"
                       ? this.props.amount >= item.campaignDetail.depositMinimumLimit
-                      : true)
+                      : true),
                 )
                 .map((item, index) => {
                   return (
@@ -684,17 +685,13 @@ class Main extends Component {
                     accept="image/jpg, image/jpeg, image/png, image/tiff"
                     style={{ display: "none" }}
                   />
-                  {this.props.files ? (
-                    <div style={{ fontSize: 24 }}>{this.props.files[0].name}</div>
-                  ) : (
-                    ""
-                  )}
+                  <UploadFileTag>{this.props.files ? this.props.files[0].name : ""}</UploadFileTag>
                 </ItemContainer>
                 <Remark>
                   {i18n.t(
                     config.features.Deposit_UploadRequired
                       ? "deposit.msgPlsUploadProof"
-                      : "deposit.msgNotMustUploadProof"
+                      : "deposit.msgNotMustUploadProof",
                   )}
                 </Remark>
               </>

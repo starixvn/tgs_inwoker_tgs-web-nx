@@ -10,7 +10,6 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import ProfileMenu from "@/components/pages/profile/components/ProfileMenu";
-import { Theme, useTheme } from "@mui/material";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 
 const ProfilePageContainer = styled.div`
@@ -25,7 +24,6 @@ const ProfilePage = (props: Props) => {
   const history = useHistory();
   const location = useLocation();
   const path = location.pathname as ValueOf<typeof ProfilePathEnum>;
-  const theme = useTheme<Theme>();
 
   const ProfilePageComponent = useMemo(() => {
     return profilePageDictionary[path];

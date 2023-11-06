@@ -5,7 +5,6 @@ import { ProfileItem } from "@/core/hooks/account/useProfileMenu";
 
 const ProfileItemContainer = styled.div`
   width: 100%;
-  padding: 21px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -12,6 +12,7 @@ import {
   LabelContainer,
   ItemContainer,
   UploadFileButton,
+  UploadFileTag,
 } from "@/components/styled-component/ProfileForms";
 import { Button } from "@mui/material";
 
@@ -92,7 +93,7 @@ class Default extends BaseProfile {
               accept="image/jpg, image/jpeg, image/png, image/tiff"
               style={{ display: "none" }}
             />
-            {this.props.icUpload ? this.props.icUpload[0].name : ""}
+            <UploadFileTag>{this.props.icUpload ? this.props.icUpload[0].name : ""}</UploadFileTag>
           </ItemContainer>
         )}
       </>
@@ -109,15 +110,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAccountProfile: () => dispatch(accountAction.getAccountProfile()),
     getIDCardNo: () => dispatch(accountAction.getIDCardNo()),
-    updateMemberCardNo: (name, number) =>
-      dispatch(accountAction.updateMemberCardNo(name, number)),
+    updateMemberCardNo: (name, number) => dispatch(accountAction.updateMemberCardNo(name, number)),
     resetResult: () =>
       dispatch({
         type: RESET_ACCOUNTRESULT,
       }),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Default));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Default));

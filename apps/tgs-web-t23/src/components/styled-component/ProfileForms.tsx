@@ -56,6 +56,15 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   border: "none",
 })) as typeof MuiButton;
 
+export const UploadFileTag = styled.span`
+  width: 100%;
+  font-size: 0.937rem;
+  color: ${({ theme }) => theme.white};
+
+  display: flex;
+  align-items: center;
+`;
+
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   whiteSpace: "nowrap",

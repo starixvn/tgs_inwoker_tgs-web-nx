@@ -44,6 +44,8 @@ const NameContainer = styled.div`
 
 const BalanceContainer = styled.div`
   font-size: 1.625rem;
+  font-weight: 400;
+
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -60,7 +62,7 @@ const InfoCard = (props: any) => {
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
   const currentBalance = `${wallet.mainSymbol}$ ${Common.formatNumberWithThousand(
-    wallet.mainBalance
+    wallet.mainBalance,
   )}`;
   return (
     <InfoCardContainer {...props}>
