@@ -1,25 +1,39 @@
-export const colorListT23 = {
-  primary: "#FACE27",
+export const gray = {
+  gray5: "#BCBFC7",
+  gray10: "#8C9099",
+  gray20: "#B6B6B6",
+  gray30: "#ACB1CD",
+  gray40: "#73798F",
+  gray60: "#9095AC",
+  gray70: "#4B545E",
+  gray80: "#323B45",
+  gray85: "#252F38",
+  gray90: "#272B41",
+  gray95: "#1A242D",
+};
+
+export const colorListT24 = {
+  primary: "#F12C4C",
   secondary: "#7135F3",
   white: "#FFFFFF",
-  gray: "#828282",
-  lighterGray: "#BFBFBF",
-  darkGray: "#E0E0E0",
-  lightGray: "#BDBDBD",
+  yellow: "#FFD723",
   black: "#000000",
-  mainBackground: "#24262B", //BG-black
-  mainDarkBackground: "#1C1E22",
-  mainLightBackground: "#2E3237",
-  primaryGradient: "linear-gradient(90deg, rgba(255, 210, 40, 0.96) 0%, #24262B 49.27%)",
-  secondaryGradient:
-    "linear-gradient(180deg, rgba(57, 22, 164, 0.00) 8.88%, #3916A4 50.07%, rgba(57, 22, 164, 0.50) 89.25%)",
-  primaryMix: "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)",
-  secondaryMix: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
-  tagColor: "#161616",
+  mainBackground: "#0F1923",
+  gray5: gray.gray5,
+  gray10: gray.gray10,
+  gray20: gray.gray20,
+  gray30: gray.gray30,
+  gray40: gray.gray40,
+  gray60: gray.gray60,
+  gray70: gray.gray70,
+  gray80: gray.gray80,
+  gray85: gray.gray85,
+  gray90: gray.gray90,
+  gray95: gray.gray95,
 };
 
 export const themeList = {
-  colorListT23,
+  colorListT24,
 };
 
-export const theme = themeList["colorListT23"];
+export const theme = themeList["colorListT24"];

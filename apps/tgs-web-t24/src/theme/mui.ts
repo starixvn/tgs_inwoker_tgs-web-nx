@@ -2,7 +2,7 @@ import { breakpoints } from "@/theme/breakpoints";
 import { fontFamily } from "@/theme/fontFamily";
 import { theme } from "@/theme/index";
 import i18n from "@/utils/i18n";
-import { createTheme } from "@mui/material";
+import { createTheme, ThemeOptions } from "@mui/material";
 
 //@ts-ignore
 theme.lang = i18n.language;
@@ -11,21 +11,14 @@ declare module "@mui/material/styles" {
   interface Palette {
     white: Palette["primary"];
     yellow: Palette["primary"];
-    tertiary: Palette["primary"];
-    mainGradient: Palette["primary"];
     mainBackground: Palette["primary"];
-    mainDarkBackground: Palette["primary"];
-    mainLightBackground: Palette["primary"];
+    gray5: string;
   }
 
   interface PaletteOptions {
     white?: PaletteOptions["primary"];
     yellow?: PaletteOptions["primary"];
-    tertiary?: PaletteOptions["primary"];
-    mainGradient?: PaletteOptions["primary"];
     mainBackground?: PaletteOptions["primary"];
-    mainDarkBackground?: PaletteOptions["primary"];
-    mainLightBackground?: PaletteOptions["primary"];
   }
 }
 
@@ -46,35 +39,23 @@ const muiTheme = createTheme({
     secondary: {
       main: theme.secondary,
     },
-    tertiary: {
-      main: theme.lighterGray,
-    },
     action: {
-      disabledBackground: theme.gray,
+      disabledBackground: theme.gray5,
       disabled: theme.white,
     },
     white: {
       main: theme.white,
     },
     yellow: {
-      main: "#f4bd29",
+      main: theme.yellow,
     },
 
     text: {
       primary: theme.white,
-      secondary: theme.gray,
-    },
-    mainGradient: {
-      main: theme.secondaryGradient,
+      secondary: theme.gray5,
     },
     mainBackground: {
       main: theme.mainBackground,
-    },
-    mainDarkBackground: {
-      main: theme.mainDarkBackground,
-    },
-    mainLightBackground: {
-      main: theme.mainLightBackground,
     },
   },
   typography: {
@@ -107,7 +88,6 @@ const muiTheme = createTheme({
       },
     },
   },
-});
+} as ThemeOptions);
 
 export { muiTheme };
-

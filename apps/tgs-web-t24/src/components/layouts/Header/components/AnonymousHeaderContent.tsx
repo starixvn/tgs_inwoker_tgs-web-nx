@@ -6,6 +6,7 @@ import i18n from "@/utils/i18n";
 import { HeaderButton } from "@/components/layouts/Header/components/HeaderButton";
 import { useHeader } from "@/core/feature/useHeader";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
+import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
     }
 
     history.push("/login");
-  }, []);
+  }, [handleToggleLoginDialog, handleToggleMenu, history, isDesktopSize]);
 
   const toggleRegisterDialog = useCallback(() => {
     if (!isDesktopSize) {
@@ -53,22 +54,22 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <HeaderButton
         onClick={toggleLoginDialog}
         style={{
-          background: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
-          width: buttonWidth ?? "92px",
+          // background: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
+          width: buttonWidth ?? "105px",
         }}
       >
-        <>{i18n.t("common.login")}</>
+        {i18n.t("common.login")}
       </HeaderButton>
 
       <HeaderButton
         color={"primary"}
         onClick={toggleRegisterDialog}
         style={{
-          background: "linear-gradient(90deg, #FACE27 53.32%, #F3AF16 53.95%)",
-          width: buttonWidth ?? "92px",
+          background: theme.primary,
+          width: buttonWidth ?? "105px",
         }}
       >
-        <>{i18n.t("common.register")}</>
+        {i18n.t("common.register")}
       </HeaderButton>
     </ButtonContainer>
   );

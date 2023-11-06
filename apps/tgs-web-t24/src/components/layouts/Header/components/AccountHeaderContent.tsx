@@ -21,10 +21,10 @@ const AccountHeaderContent = () => {
 
   return (
     <ButtonContainer>
+      <BalanceTracker size={"small"} />
       <TransferButtonGroup />
 
-      {!isMobileSize && <BalanceTracker size={"small"} />}
-      {!isMobileSize && <ContextMenuButton />}
+      <ContextMenuButton />
     </ButtonContainer>
   );
 };
