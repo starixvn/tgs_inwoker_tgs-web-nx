@@ -2,7 +2,7 @@ import { breakpoints } from "@/theme/breakpoints";
 import { fontFamily } from "@/theme/fontFamily";
 import { theme } from "@/theme/index";
 import i18n from "@/utils/i18n";
-import { createTheme } from "@mui/material";
+import { createTheme, ThemeOptions } from "@mui/material";
 
 //@ts-ignore
 theme.lang = i18n.language;
@@ -107,7 +107,6 @@ const muiTheme = createTheme({
       },
     },
   },
-});
+} as ThemeOptions);
 
 export { muiTheme };
-

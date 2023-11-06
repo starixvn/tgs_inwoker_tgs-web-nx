@@ -1,0 +1,100 @@
+import React, { useEffect, useState } from "react";
+import moment from "moment/moment";
+import { ReportContainer } from "@/core/components/Report/styles";
+import { ReportService } from "@/core/services/ReportService";
+import { useNotifications } from "@/core/feature/useNotifications";
+import Loading from "@/components/UI/Loading";
+import { useWithdrawalStatus } from "@/core/components/Report/hooks/useWithdrawalStatus";
+import StatusSelect from "@/components/pages/report/components/StatusSelect";
+import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
+import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
+import { useRwd } from "@/core/hooks/tools/useRwd";
+import WithdrawalDetailTable from "@/components/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
+import WithdrawalDetailCards from "@/components/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
+
+type Props = {
+  dateRangeInfo: DateRangeInfo;
+};
+
+const PAGE_SIZE = 20;
+const ReportWithdraw = ({ dateRangeInfo }: Props) => {
+  const { alert } = useNotifications();
+  const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+
+  const [withdrawalDetails, setWithdrawalDetails] = useState<WithdrawFormViewModel[]>([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const [isMaxPage, setIsMaxPage] = useState(false);
+  const { isDesktopSize } = useRwd();
+
+  const { statusDictionary, status, handleStatusChange } = useWithdrawalStatus();
+
+  const fetchReports = async (page: number) => {
+    setIsLoading(true);
+
+    const getWithdrawalDetailsRes = await ReportService.GetWithdrawalDetails(
+      status,
+      moment(dateRangeInfo.dateFrom).utc().format(),
+      moment(dateRangeInfo.dateTo).utc().add(1, "days").format(),
+      page,
+      PAGE_SIZE,
+      true,
+      "CreatedOn",
+      false,
+      "1"
+    );
+
+    if (getWithdrawalDetailsRes.IsSuccess) {
+      const newWithdrawalDetails =
+        page > 1
+          ? withdrawalDetails.concat(getWithdrawalDetailsRes.data.items)
+          : getWithdrawalDetailsRes.data.items;
+      setWithdrawalDetails(newWithdrawalDetails);
+      setTotalCount(getWithdrawalDetailsRes.data.totalCount || 0);
+      setIsMaxPage(getWithdrawalDetailsRes.data.totalCount == newWithdrawalDetails.length);
+    } else {
+      alert("", getWithdrawalDetailsRes?.info || JSON.stringify(getWithdrawalDetailsRes));
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    const currentPage = 1;
+
+    setPage(currentPage);
+    fetchReports(currentPage);
+    setIsMaxPage(false);
+  }, [JSON.stringify(dateRangeInfo), status]);
+
+  const handleLoadMore = async () => {
+    if (isMaxPage) return;
+
+    const nextPage = page + 1;
+    setPage(nextPage);
+    await fetchReports(nextPage);
+  };
+
+  return (
+    <>
+      <StatusSelect
+        statusDictionary={statusDictionary}
+        status={status}
+        handleStatusChange={handleStatusChange}
+      />
+
+      <ReportContainer>
+        {isDesktopSize ? (
+          <WithdrawalDetailTable withdrawalDetails={withdrawalDetails} totalCount={totalCount} />
+        ) : (
+          <WithdrawalDetailCards withdrawalDetails={withdrawalDetails} />
+        )}
+        <Loading show={isLoading} />
+      </ReportContainer>
+      {/*@ts-ignore*/}
+      <BottomScrollListener onBottom={handleLoadMore} />
+    </>
+  );
+};
+
+export default ReportWithdraw;
