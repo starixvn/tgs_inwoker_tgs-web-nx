@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useCallback, useState } from "react";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 
 export const DRAWER_WIDTH = "310px";
@@ -25,14 +25,14 @@ export const HeaderContextProvider = ({ children }: ProviderProps) => {
   const initialIsMenuOpen = isDesktopSize;
   const [isMenuOpen, setIsMenuOpen] = useState(initialIsMenuOpen);
 
-  const handleToggleMenu = (newIsOpen?: boolean) => {
+  const handleToggleMenu = useCallback((newIsOpen?: boolean) => {
     if (typeof newIsOpen !== "undefined") {
       setIsMenuOpen(false);
       return;
     }
 
     setIsMenuOpen((prevState) => !prevState);
-  };
+  }, []);
 
   return (
     <HeaderContext.Provider
