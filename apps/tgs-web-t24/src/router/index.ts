@@ -1,3 +1,4 @@
+import React from "react";
 import CardPage from "@/components/pages/card/CardPage";
 import AddCardPage from "@/components/pages/card/AddCardPage";
 import AffiliatePage from "@/components/pages/affiliate/AffiliatePage";
@@ -20,7 +21,6 @@ import VIPPage from "@/components/pages/vip/VipPage";
 import WithdrawalPage from "@/components/pages/withdrawal/WithdrawalPage";
 import WithdrawalDetailsPage from "@/components/pages/withdrawal/WithdrawalDetailsPage";
 import config from "@/config/config";
-import React from "react";
 import PromotionDetailPage from "@/components/pages/promotion/PromotionDetailPage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/components/pages/forgotPassword/ForgotPasswordPage";

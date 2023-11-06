@@ -12,7 +12,7 @@ import AccountPaper from "@/components/project/AccountPaper";
 
 const WithdrawalDetailContainer = styled.div`
   padding: 21px 22px;
-  max-width: calc(1200px + 22px * 2);
+  max-width: calc(1072px + 22px * 2);
   margin: auto;
 `;
 

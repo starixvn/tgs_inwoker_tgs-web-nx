@@ -17,24 +17,24 @@ export const ItemContainer = styled.div`
 `;
 
 export const LabelContainer = styled.div`
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 0.875rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.white};
   float: left;
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  borderRadius: "30px",
-  background: theme.palette.mainLightBackground,
+  borderRadius: "5px",
+  background: theme.palette.gray95,
 
   width: "100%",
-  fontSize: "0.937rem",
+  fontSize: "0.875rem",
   "& fieldset": {
     border: "none",
   },
 
   [theme.breakpoints.up("sm")]: {
-    border: `1px solid ${theme.palette.tertiary.main}`,
+    border: `1px solid ${theme.palette.white}`,
   },
 })) as typeof MuiFormControl;
 
@@ -50,25 +50,24 @@ export const InfoContainer = styled.div`
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "0.937rem",
   height: "50px",
-  borderRadius: "30px",
+  borderRadius: "6px",
   color: "#828282",
-  background: theme.palette.mainLightBackground,
+  background: theme.palette.gray95,
   border: "none",
 })) as typeof MuiButton;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
+  fontSize: "0.937rem",
   height: "50px",
   whiteSpace: "nowrap",
-  borderRadius: "30px",
-  padding: "12px 20px",
-  fontSize: "1.562rem",
-  lineHeight: "1.812rem",
+  borderRadius: "6px",
+  padding: "13px",
   fontWeight: 400,
-  color: "black",
-  background: "linear-gradient(90deg, #FACE27 53.76%, #F3AF16 54.17%)",
+  color: theme.palette.white,
+  background: theme.palette.primary.main,
 
   "&:disabled": {
-    background: theme.palette.action.disabledBackground,
-    color: "black",
+    background: theme.palette.gray90,
+    color: theme.palette.gray40,
   },
 })) as typeof MuiButton;

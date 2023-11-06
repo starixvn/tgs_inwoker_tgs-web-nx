@@ -23,7 +23,7 @@ const FooterContainer = styled.div`
 const FooterGroups = styled.div`
   width: 100%;
   display: flex;
-  max-width: 1200px;
+  max-width: 1072px;
   gap: 20px;
   margin-bottom: 20px;
 `;
@@ -94,7 +94,9 @@ const Footer = (props: Props) => {
 
         <FooterGroup>
           <GroupTitle>Gaming License</GroupTitle>
-          <GroupContent><img src={gc} alt="gc" /></GroupContent>
+          <GroupContent>
+            <img src={gc} alt="gc" />
+          </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>

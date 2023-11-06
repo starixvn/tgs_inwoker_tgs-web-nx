@@ -8,15 +8,10 @@ import { ReactElement, useCallback } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-
-const DialogLayoutContainer = styled.div`
-  position: relative;
-  background: ${({ theme }) => theme.mainBackground};
-`;
+import Header from "@/components/layouts/Header";
 
 const ContentWrapper = styled.div`
   min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: 80px 0 82px;
   position: relative;
   z-index: 1;
 `;
@@ -49,11 +44,12 @@ const DialogLayout = ({ children }: Props) => {
   }
 
   return (
-    <DialogLayoutContainer>
+    <DefaultLayout>
+      <Header />
       <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
       <ContentWrapper>{children}</ContentWrapper>
       <BottomAppBar />
-    </DialogLayoutContainer>
+    </DefaultLayout>
   );
 };
 

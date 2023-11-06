@@ -1,13 +1,14 @@
 import React from "react";
-import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
+import { TextField as MuiTextField, TextFieldProps } from "@mui/material";
+import { styled as muiStyled } from "@mui/system";
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   color: theme.palette.common.white,
   overflow: "visible",
   input: {
-    padding: "12px 20px",
+    padding: "16px 10px",
     color: theme.palette.common.white,
-    fontSize: "1.125rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
 
@@ -18,17 +19,14 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   label: {
     color: "rgba(255,255,255,0.3)",
     alignItems: "center",
-    fontSize: "1.125rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
-  },
-  placeholder: {
-    color: "red",
   },
 
   "& input::placeholder": {
-    color: "#828282",
+    color: theme.palette.gray10,
     opacity: 1,
-    fontSize: "1.125rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
   },
   [theme.breakpoints.up("sm")]: {
