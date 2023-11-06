@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { useNotifications } from "@/core/feature/useNotifications";
 import styled from "styled-components";
 import Manual from "@/core/components/DepositPrev/Manual";

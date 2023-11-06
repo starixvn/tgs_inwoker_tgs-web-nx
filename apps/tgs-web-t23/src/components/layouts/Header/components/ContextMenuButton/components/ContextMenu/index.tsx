@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ContextMenuItem from "./ContextMenuItem";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import React, { useMemo } from "react";
 import i18n from "@/utils/i18n";
 import accountImg from "@/assets/t23/images/header/contextMenu/icon_my_account.svg";

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import InfoCard from "@/components/pages/account/components/InfoCard";
 import AccountNavigations from "./components/AccountNavigations";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import i18n from "@/utils/i18n";
 import { media } from "@/theme/breakpoints";
 import UserWalletInfo from "@/components/project/UserWalletInfo";

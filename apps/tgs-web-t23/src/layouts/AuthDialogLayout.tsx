@@ -4,7 +4,7 @@ import { HEADER_HEIGHT } from "@/theme/constants";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { ReactElement, useCallback } from "react";
 import { useLocation } from "react-router";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const DialogLayoutContainer = styled.div`

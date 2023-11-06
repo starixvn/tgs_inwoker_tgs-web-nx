@@ -9,7 +9,7 @@ import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
 import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
 import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
 import iconWithdrawal from "@/assets/t23/images/bottomNavBar/icon-withdrawal.svg";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 export function useGetBottomNavItemList() {
   const location = useLocation();

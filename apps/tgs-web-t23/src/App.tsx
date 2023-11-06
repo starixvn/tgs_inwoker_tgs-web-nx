@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Redirect, Route, Router, Switch } from "react-router";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { AppHistory } from "@/history/History";
 import config from "@/config/config";
 import ForcedVerification from "./components/project/ForcedVerification";
@@ -37,79 +37,87 @@ const App: React.FC = () => {
   }
 
   return (
-    <>
-      <Router history={AppHistory}>
-        <AuthContextProvider>
-          <PageNameContextProvider>
-            <HeaderContextProvider>
-              <PopupContextProvider>
-                <AuthDialogContextProvider>
-                  <HomeGameContextProvider>
-                    <ScrollToTop />
-                    <Switch>
-                      {routes.map((route, index) => {
-                        return (
-                          <Route
-                            exact
-                            key={index}
-                            path={route.path}
-                            render={(props) => {
-                              return (
-                                <AuthGuard route={route}>
-                                  <LayoutProvider route={route}>
-                                    <Suspense
-                                      fallback={<Loading show={true} opacity={1} noShrink={true} />}
-                                    >
-                                      <route.component />
-                                    </Suspense>
-                                  </LayoutProvider>
-                                </AuthGuard>
-                              );
-                            }}
-                          />
-                        );
-                      })}
-                      {/*<Redirect to="/" />*/}
-                    </Switch>
+    <Router history={AppHistory}>
+      <AuthContextProvider>
+        <PageNameContextProvider>
+          <HeaderContextProvider>
+            <PopupContextProvider>
+              <AuthDialogContextProvider>
+                <HomeGameContextProvider>
+                  <ScrollToTop />
+                  <Switch>
+                    {routes.map((route, index) => {
+                      return (
+                        <Route
+                          exact
+                          key={index}
+                          path={route.path}
+                          render={(props) => {
+                            return (
+                              <AuthGuard route={route}>
+                                <LayoutProvider route={route}>
+                                  <Suspense
+                                    fallback={<Loading show={true} opacity={1} noShrink={true} />}
+                                  >
+                                    <route.component />
+                                  </Suspense>
+                                </LayoutProvider>
+                              </AuthGuard>
+                            );
+                          }}
+                        />
+                      );
+                    })}
+                    {/*<Redirect to="/" />*/}
+                  </Switch>
 
-                    <LiveChat
-                      license={config.features.LiveChatVendor.license}
-                      vendor={config.features.LiveChatVendor.brand}
-                      group={
-                        config.features.LiveChatVendor.group
-                          ? config.features.LiveChatVendor.group
-                          : "0"
-                      }
-                    />
+                  <LiveChat
+                    license={config.features.LiveChatVendor.license}
+                    vendor={config.features.LiveChatVendor.brand}
+                    group={
+                      config.features.LiveChatVendor.group
+                        ? config.features.LiveChatVendor.group
+                        : "0"
+                    }
+                  />
 
-                    {config.features.SMSVerification &&
-                      account.registercompleted === false &&
-                      config.features.ForcedVerification && (
-                        <ForcedVerification forceVerify={true} />
-                      )}
+                  {config.features.SMSVerification &&
+                    account.registercompleted === false &&
+                    config.features.ForcedVerification && <ForcedVerification forceVerify={true} />}
 
-                    <PopupAnnouncement />
+                  <PopupAnnouncement />
 
-                    <PopupPromotion />
+                  <PopupPromotion />
 
-                    <PopupAlertModal />
-                    <FloatingToolIcons />
-                    <LoginDialog />
-                    <RegisterDialog />
-                    <ForgotPasswordDialog />
+                  <PopupAlertModal />
+                  <FloatingToolIcons />
+                  <LoginDialog />
+                  <RegisterDialog />
+                  <ForgotPasswordDialog />
 
-                    <AuthContextConsumer>
-                      {(authState) => <Loading show={authState.isAuthLoading} noShrink={true} />}
-                    </AuthContextConsumer>
-                  </HomeGameContextProvider>
-                </AuthDialogContextProvider>
-              </PopupContextProvider>
-            </HeaderContextProvider>
-          </PageNameContextProvider>
-        </AuthContextProvider>
-      </Router>
-    </>
+                  <AuthContextConsumer>
+                    {(authState) => <Loading show={authState.isAuthLoading} noShrink={true} />}
+                  </AuthContextConsumer>
+                </HomeGameContextProvider>
+              </AuthDialogContextProvider>
+            </PopupContextProvider>
+          </HeaderContextProvider>
+        </PageNameContextProvider>
+      </AuthContextProvider>
+    </Router>
   );
 };
 
 export default App;
+
+function Home() {
+  return <h2>Home</h2>;
+}
+
+function About() {
+  return <h2>About</h2>;
+}
+
+function Users() {
+  return <h2>Users</h2>;
+}

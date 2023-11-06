@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Route } from "@/router";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import Loading from "@/components/UI/Loading";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useAuth } from "@/core/feature/useAuth";

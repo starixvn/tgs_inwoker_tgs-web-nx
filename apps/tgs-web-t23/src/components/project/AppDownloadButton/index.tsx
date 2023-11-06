@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NavCardKey, NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
 import Icon from "@/components/project/Icon";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
 const AppDownloadButtonContainer = styled.button`
   width: 100%;

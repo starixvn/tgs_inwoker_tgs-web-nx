@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
 
 const CreateAccountContainer = styled.div`

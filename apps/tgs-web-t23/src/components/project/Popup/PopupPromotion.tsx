@@ -7,7 +7,7 @@ import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
 import { media } from "@/theme/breakpoints";
 import { Dialog as MuiDialog } from "@mui/material";
 import { useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "@/components/UI/Button";
 import i18n from "@/utils/i18n";

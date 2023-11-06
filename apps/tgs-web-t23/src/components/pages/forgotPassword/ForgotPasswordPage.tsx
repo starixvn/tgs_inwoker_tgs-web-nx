@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import i18n from "@/utils/i18n";
 import styled from "styled-components";
 import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";

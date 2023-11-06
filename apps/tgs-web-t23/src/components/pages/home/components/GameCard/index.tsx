@@ -8,7 +8,7 @@ import Common from "@/core/utils/Common";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
 import { MouseEvent, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import TextButton from "../TextButton";
 

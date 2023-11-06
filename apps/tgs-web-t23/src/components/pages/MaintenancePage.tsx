@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import i18n from "@/utils/i18n";
 import Common from "@/core/utils/Common";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { UiService } from "@/core/services/UiService";
 import { media } from "@/theme/breakpoints";
 

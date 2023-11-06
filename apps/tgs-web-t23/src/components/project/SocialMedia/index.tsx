@@ -1,5 +1,5 @@
 import { socialMediaIconList } from "@/core/constants/socialMedia";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const SocialMediaContainer = styled.div`

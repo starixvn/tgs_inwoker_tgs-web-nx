@@ -3,7 +3,7 @@ import config from "@/config/config";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import Common from "@/core/utils/Common";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import HomeGameCard from "../HomeGameCard";
 

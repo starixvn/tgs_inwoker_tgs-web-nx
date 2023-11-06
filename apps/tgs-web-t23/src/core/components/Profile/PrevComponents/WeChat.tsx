@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
 import { useNotifications } from "@/core/feature/useNotifications";

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Dialog as MuiDialog } from "@mui/material";
-import { useHistory } from "react-router"; // Import useHistory
+import { useHistory } from "react-router-dom"; // Import useHistory
 import i18n from "@/utils/i18n";
 import { Button } from "@/components/UI/Button";
 

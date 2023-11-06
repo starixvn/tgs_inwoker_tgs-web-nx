@@ -7,7 +7,7 @@ import { Button } from "@/components/UI/Button";
 import i18n from "@/utils/i18n";
 import styled from "styled-components";
 import { useHeader } from "@/core/feature/useHeader";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
 import profileImg from "@/assets/t23/images/header/sideMenuItem/icon-account.svg";
 import transferImg from "@/assets/t23/images/header/sideMenuItem/icon-transfer.svg";

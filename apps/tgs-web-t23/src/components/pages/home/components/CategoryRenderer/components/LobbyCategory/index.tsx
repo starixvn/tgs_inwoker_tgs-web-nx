@@ -6,7 +6,7 @@ import { useAccountStore } from "@/core/stores/useAccountStore";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import Common from "@/core/utils/Common";
 import { media } from "@/theme/breakpoints";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const CategoryContentWrapper = styled.div`
