@@ -29,17 +29,6 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontSize: "0.875rem",
     fontWeight: 400,
   },
-  [theme.breakpoints.up("sm")]: {
-    input: {
-      fontSize: "0.937rem",
-    },
-    label: {
-      fontSize: "0.937rem",
-    },
-    "& input::placeholder": {
-      fontSize: "0.937rem",
-    },
-  },
 
   "& .MuiInput-underline:after": {
     borderBottom: "none",
