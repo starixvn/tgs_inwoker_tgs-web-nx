@@ -18,12 +18,13 @@ const PageBadgeContainer = styled.div`
 
 type Props = {
   iconUrl: string;
+  text: string;
   width?: string;
   height?: string;
-  text: string;
 } & React.HTMLProps<HTMLDivElement>;
 
 const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
+  console.log(others);
   return (
     <PageBadgeContainer {...others}>
       <Icon

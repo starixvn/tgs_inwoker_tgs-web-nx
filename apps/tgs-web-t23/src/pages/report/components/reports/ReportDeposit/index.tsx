@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import moment from "moment/moment";
+import moment from "moment";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { ReportService } from "@/core/services/ReportService";
 import Loading from "@/components/UI/Loading";

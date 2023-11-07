@@ -13,7 +13,7 @@ import {
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { DatePickerForBirthDate } from "@/components/UI/DatePicker";
-const { moment } = "moment";
+import moment from "moment";
 
 const Container = styled.div`
   width: 100%;

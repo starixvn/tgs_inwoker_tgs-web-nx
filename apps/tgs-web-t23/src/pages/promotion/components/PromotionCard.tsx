@@ -64,7 +64,7 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
   };
 
   return (
-    <PromotionCardContainer onClick={handleEnterDetail}>
+    <PromotionCardContainer onClick={(e) => handleEnterDetail(e)}>
       <BannerWrapper>
         <BannerImage promotionData={promotionData} />
       </BannerWrapper>

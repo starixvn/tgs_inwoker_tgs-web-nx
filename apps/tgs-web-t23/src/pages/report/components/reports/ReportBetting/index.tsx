@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import config from "@/config/config";
-import moment from "moment/moment";
+import moment from "moment";
 import { ReportContainer } from "@/core/components/Report/styles";
 import { RoundTotalDto } from "@/core/models/dto/report/GetRoundsTotalResDto";
 import { ReportService } from "@/core/services/ReportService";
