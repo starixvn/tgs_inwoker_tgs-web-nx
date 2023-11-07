@@ -5,10 +5,9 @@ import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGameStore } from "@/core/stores/useGameStore";
 import Common from "@/core/utils/Common";
-import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import { MouseEvent, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { MouseEvent, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import TextButton from "../TextButton";
 
@@ -33,7 +32,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 5px;
+  border-radius: 12px;
 
     ${media.sm} {
       border-radius: 15px;
@@ -42,23 +41,24 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 
 const NewTag = styled.div`
   position: absolute;
-  width: 100%;
-  top: 60.56%;
+  top: 0;
+  width: 32px;
+  height: 18px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 12px 0px;
   background: ${(props) => props.theme.primaryMix};
   color: ${(props) => props.theme.tagColor};
   display:flex;
   justify-content: center;
   align-items: center;
-  aspect-ratio: 110 / 24;
-  font-size: 0.875rem;
-  font-weight: 400;
+  /* aspect-ratio: 110 / 24; */
+  font-size: 0.5rem;
+  font-weight: 700;
 
-  ${media.sm} {
+  /* ${media.sm} {
       border-radius: 15px;
       top: 63%;
-    }
+    } */
 `;
 
 const GameCardContent = styled.div`
@@ -87,7 +87,7 @@ const GameCardBg = styled.div`
   }
 `;
 
-const GameName = styled(GameCardContent)`
+const GameName = styled.div`
   position: absolute;
   bottom: 0;
   color: ${(props) => props.theme.white};
@@ -95,6 +95,10 @@ const GameName = styled(GameCardContent)`
   font-weight: 400;
   text-align: center;
   margin: 4px 0 12px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%; //利用最大寬度來限制文字長度
 `;
 
 const MaintenanceBg = styled.div`
@@ -138,8 +142,6 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
   const { account } = useAccountStore();
   const history = useHistory();
-  const gameNameRef = useRef<HTMLDivElement | null>(null);
-  const { resizeText } = useDynamicFontSize();
   const { favoriteList, fetchFavoriteList } = useHomeGameContext();
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
@@ -173,24 +175,18 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     }
   };
 
-  useEffect(() => {
-    if (gameNameRef.current) {
-      resizeText({ container: gameNameRef.current, text: gameNameRef.current });
-    }
-  }, [resizeText, gameNameRef.current]);
-
   return (
     <>
       <GameCardBg onClick={launchGame}>
         <GameCardContent>
           <GameIcon $imageUrl={imageUrl}></GameIcon>
-          <NewTag>New</NewTag>
+          {gameItem.tag.new && <NewTag>New</NewTag>}
           {!isActive && (
             <MaintenanceBg>
               <MaintenanceText>UNDER MAINTENANCE</MaintenanceText>
             </MaintenanceBg>
           )}
-          {gameItem && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
+          {gameItem && <GameName>{gameItem.name}</GameName>}
         </GameCardContent>
         <Favorite
           isFavorite={isFavorite}

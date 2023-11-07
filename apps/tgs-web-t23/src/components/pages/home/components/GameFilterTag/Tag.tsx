@@ -41,7 +41,6 @@ const Text = styled.div<{
     $isActive ? theme.white : theme.tertiary};
   font-size: 0.875rem;
   font-weight: 700;
-  line-height: 0.875rem;
 `;
 
 type Props = {

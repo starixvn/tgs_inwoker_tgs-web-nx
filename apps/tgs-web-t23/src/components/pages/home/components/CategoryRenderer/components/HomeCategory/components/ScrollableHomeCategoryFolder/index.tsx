@@ -1,11 +1,9 @@
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
+import Loading from "@/components/UI/Loading";
+import GameCard from "@/components/pages/home/components/GameCard";
 import config from "@/config/config";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import Common from "@/core/utils/Common";
-import { useHistory } from "react-router";
 import styled from "styled-components";
-import HomeGameCard from "../HomeGameCard";
 
 const HomeCategorySection = styled.div`
   width: 100%;
@@ -54,14 +52,12 @@ type Props = {
 const ScrollableHomeCategoryFolder = ({
   title,
   dataList,
-  isLoading
+  isLoading,
 }: Props) => {
-  const { account } = useAccountStore();
-  const history = useHistory();
-  // const [filteredGameList, setFilteredGameList] = useState<any[]>([]);
   // const [visibleGameCount, setVisibleGameCount] = useState(showDataLength);
-  // const [isLoading, setIsLoading] = useState(false);
   // const { isMobileSize, isDesktopSize } = useRwd();
+
+  const hasMappingData = !!dataList.length;
 
   // const statusMap = groupBy_gameType.reduce<{ [key in string]: number }>(
   //   (accumulator, groupByGameItem) => {
@@ -77,36 +73,29 @@ const ScrollableHomeCategoryFolder = ({
   //   setVisibleGameCount(visibleGameCount + showDataLength);
   // };
 
-  // const launchGame = (gameId: number, gpcode: string) => {
-  //   if (!account.token) {
-  //     history.push("/login");
-  //     return;
-  //   }
-
-  //   Common.closePreviousPopup();
-  //   Common.PopupCenter(`/joingame/${gameId}/${gpcode}`, "gamewindow");
-  // };
-
-  // console.log("dataList", dataList);
-
   return (
-    <HomeCategorySection>
-      <CategoryTab>
-        <CategoryTitle>{title}</CategoryTitle>
-      </CategoryTab>
-      <CategoryContent>
-        {!!dataList.length &&
-          dataList.map((gameItem) => (
-            <HomeGameCard
-              key={gameItem.id}
-              gameItem={gameItem}
-              isActive={gameItem.isactive}
-              imageUrl={`${config.sourceUrl}${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code}.jpg`}
-            />
-          ))}
-        {!dataList.length && !isLoading && <div>No data</div>}
-      </CategoryContent>
-    </HomeCategorySection>
+    <>
+      <HomeCategorySection>
+        <CategoryTab>
+          <CategoryTitle>{title}</CategoryTitle>
+        </CategoryTab>
+        <CategoryContent>
+          {hasMappingData &&
+            dataList.map((gameItem) => (
+              <GameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                  }.jpg`}
+              />
+            ))}
+        </CategoryContent>
+      </HomeCategorySection>
+
+      <Loading show={isLoading} />
+    </>
   );
 };
 

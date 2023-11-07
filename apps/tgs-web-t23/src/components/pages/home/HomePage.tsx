@@ -86,45 +86,40 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && (
-        <SliderWrapper>
-          <Slider />
-        </SliderWrapper>
-      )}
-      {!!activeGameType && (
-        <GameTypeBanner
-          $imageUrl={
-            activeGameTypeKey
-              ? `${import.meta.env.BASE_URL}assets/images/home/gp_banner/${activeGameTypeKey}.png`
-              : ""
-          }
-        />
-      )}
+      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && <SliderWrapper><Slider /></SliderWrapper>}
+      {!!activeGameType && <GameTypeBanner $imageUrl={activeGameTypeKey ? `${process.env.PUBLIC_URL}/assets/images/home/gp_banner/${activeGameTypeKey}.png` : ""} />}
 
       <MainContentWrapper>
         {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
         {isMobileSize && <GameTypeTab />}
 
         <CategoryRenderer />
-        <HomePromotionCard />
 
-        {isMobileSize &&
-          footerCategoriesList.length &&
-          footerCategoriesList.map((category, index) => (
-            <HomeCategoryFolder key={index} title={category.title} size={category.size!}>
-              {category.content ? (
-                category.content
-              ) : (
-                <ImageCard
-                  imageUrl={category.imageUrl}
-                  text={category.text}
-                  alignment={category.alignment}
-                />
-              )}
-            </HomeCategoryFolder>
-          ))}
+        {
+          !activeGameType && <>
+            <HomePromotionCard />
+            {isMobileSize &&
+              footerCategoriesList.length && footerCategoriesList.map((category, index) => (
+                <HomeCategoryFolder
+                  key={index}
+                  title={category.title}
+                  size={category.size!}
+                >
+                  {category.content ? (
+                    category.content
+                  ) : (
+                    <ImageCard
+                      imageUrl={category.imageUrl}
+                      text={category.text}
+                      alignment={category.alignment}
+                    />
+                  )}
+                </HomeCategoryFolder>
+              ))}
 
-        {/* <TabPanel /> */}
+            {/* <TabPanel /> */}
+          </>
+        }
       </MainContentWrapper>
     </MainWrapper>
   );
