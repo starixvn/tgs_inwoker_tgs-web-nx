@@ -1,5 +1,5 @@
-import AffiliateInfoRow from "@/components/pages/affiliate/components/AffiliateInfoRow";
-import RebateTable from "@/components/pages/affiliate/components/RebateTable";
+import AffiliateInfoRow from "@/pages/affiliate/components/AffiliateInfoRow";
+import RebateTable from "@/pages/affiliate/components/RebateTable";
 import { Button } from "@/components/UI/Button";
 import { useRebateTable } from "@/core/components/Affiliate/hooks/useRebateTable";
 import QRCode from "react-qr-code";

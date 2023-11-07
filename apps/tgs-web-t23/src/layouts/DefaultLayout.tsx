@@ -1,11 +1,16 @@
-import BottomAppBar from "@/components/layouts/BottomAppBar";
-import Footer from "@/components/layouts/Footer";
-import Header from "@/components/layouts/Header";
-import MenuDrawer from "@/components/layouts/Header/components/MenuDrawer";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
+import Footer from "@/layouts/components/Footer";
+import Header from "@/layouts/components/Header";
+import MenuDrawer from "@/layouts/components/Header/components/MenuDrawer";
 import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, DRAWER_SHRINK_WIDTH, DRAWER_WIDTH, HEADER_HEIGHT } from "@/theme/constants";
+import {
+  BOTTOM_APP_BAR_HEIGHT,
+  DRAWER_SHRINK_WIDTH,
+  DRAWER_WIDTH,
+  HEADER_HEIGHT,
+} from "@/theme/constants";
 import { styled as muiStyled } from "@mui/material";
 import { ReactElement } from "react";
 import styled from "styled-components";

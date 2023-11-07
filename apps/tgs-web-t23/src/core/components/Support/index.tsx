@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import config from "@/config/config";
 import { BrandsSupport } from "@/core/types/stores/general";
 import styled from "styled-components";
-import SupportCard from "@/components/pages/contactUs/components/SupportCard";
-import QrCodeDialog from "@/components/pages/contactUs/components/QRCodeHolder";
+import SupportCard from "@/pages/contactUs/components/SupportCard";
+import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/core/components/Support/IMHandler";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useContactCS } from "@/core/hooks/tools/useContactCS";
-import HeaderImage from "@/components/pages/contactUs/components/HeaderImage";
+import HeaderImage from "@/pages/contactUs/components/HeaderImage";
 
 const SupportContainer = styled.div``;
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import cardBackground from "@/assets/t23/images/account/infoCard/card-background.png";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import VipMedal from "@/components/project/VipMedal";
-import TransferButtonGroup from "@/components/layouts/Header/components/TransferButtonGroup";
+import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import Common from "@/core/utils/Common";
 
@@ -60,7 +60,7 @@ const InfoCard = (props: any) => {
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
   const currentBalance = `${wallet.mainSymbol}$ ${Common.formatNumberWithThousand(
-    wallet.mainBalance
+    wallet.mainBalance,
   )}`;
   return (
     <InfoCardContainer {...props}>

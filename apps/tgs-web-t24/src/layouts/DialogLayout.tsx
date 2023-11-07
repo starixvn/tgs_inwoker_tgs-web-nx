@@ -1,5 +1,5 @@
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
-import BottomAppBar from "@/components/layouts/BottomAppBar";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { usePageName } from "@/core/feature/usePageName";
 import { useRwd } from "@/core/hooks/tools/useRwd";
@@ -8,7 +8,7 @@ import { ReactElement, useCallback } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import Header from "@/components/layouts/Header";
+import Header from "@/layouts/components/Header";
 
 const ContentWrapper = styled.div`
   min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});

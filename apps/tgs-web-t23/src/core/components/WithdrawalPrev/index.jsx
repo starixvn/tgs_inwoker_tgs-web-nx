@@ -8,9 +8,9 @@ import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
 import Loading from "@/components/UI/Loading";
-import WithdrawInfoCard from "@/components/pages/withdrawal/components/WithdrawInfoCard";
-import ManageBankCardButton from "@/components/pages/withdrawal/components/ManageBankCardButton";
-import WithdrawAllToMainWallet from "@/components/pages/withdrawal/components/WithdrawAllToMainWallet";
+import WithdrawInfoCard from "@/pages/withdrawal/components/WithdrawInfoCard";
+import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
+import WithdrawAllToMainWallet from "@/pages/withdrawal/components/WithdrawAllToMainWallet";
 import {
   FormControl,
   ItemContainer,
@@ -116,7 +116,7 @@ class WithdrawalPrev extends Component {
         selectedBankCardIndex: 0,
       });
       this.getTransferLimit(
-        this.handleFilterCardList(this.props.wallet.bankCardList)[0].paymentchannelid
+        this.handleFilterCardList(this.props.wallet.bankCardList)[0].paymentchannelid,
       );
     }
 
@@ -129,9 +129,12 @@ class WithdrawalPrev extends Component {
         });
       }
       // this.GetWithdrawalDetails();
-      this.countDownInterval = setInterval(() => {
-        this.props.getWithdrawalChannel(); // call api every 30 mins
-      }, 30 * 60 * 1000);
+      this.countDownInterval = setInterval(
+        () => {
+          this.props.getWithdrawalChannel(); // call api every 30 mins
+        },
+        30 * 60 * 1000,
+      );
     } else {
       this.props.appHistory.replace("/login");
     }
@@ -166,7 +169,7 @@ class WithdrawalPrev extends Component {
             >
               {i18n.t("verified.goVerify")}
             </div>
-          )
+          ),
         );
         this.setState({
           ...this.initialState,
@@ -209,7 +212,7 @@ class WithdrawalPrev extends Component {
         this.state.password,
         this.handleFilterCardList(this.props.wallet.bankCardList)[this.state.selectedBankCardIndex]
           .id,
-        config.features.Deposit_Withdrawal_PlayerNote ? this.state.playerNote : null
+        config.features.Deposit_Withdrawal_PlayerNote ? this.state.playerNote : null,
       );
     }
 
@@ -284,7 +287,8 @@ class WithdrawalPrev extends Component {
     this.props.doWithdrawal(
       formatedamount,
       this.state.password,
-      this.handleFilterCardList(this.props.wallet.bankCardList)[this.state.selectedBankCardIndex].id
+      this.handleFilterCardList(this.props.wallet.bankCardList)[this.state.selectedBankCardIndex]
+        .id,
     );
   };
 
@@ -336,7 +340,7 @@ class WithdrawalPrev extends Component {
                 this.handleBankClick(e);
                 this.getTransferLimit(
                   this.handleFilterCardList(this.props.wallet.bankCardList)[e.target.value]
-                    .paymentchannelid
+                    .paymentchannelid,
                 );
               }}
             >
@@ -367,7 +371,7 @@ class WithdrawalPrev extends Component {
                 this.state.selectedBankCardIndex
                   ? i18n.t("withdrawal.enterAmount") +
                     ` (${Common.formatNumberWithThousand(
-                      this.state.min
+                      this.state.min,
                     )} - ${Common.formatNumberWithThousand(this.state.max)})`
                   : i18n.t("withdrawal.enterAmount")
               }

@@ -9,7 +9,7 @@ import { media } from "@/theme/breakpoints";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import { footerCategoriesList } from "@/components/layouts/Footer/footerCategoriesList";
+import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
 import HomePromotionCard from "./components/HomePromotionCard";
 import ImageCard from "./components/ImageCard";

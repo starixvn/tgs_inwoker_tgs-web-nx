@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "@/components/UI/Loading";
-import ReportTypeTabs from "@/components/pages/report/components/ReportTypeTabs";
-import DateRangeWithDatePicker from "@/components/pages/report/components/DateRangeWithDatePicker";
-import DateRangeWithIntervalSelector from "@/components/pages/report/components/DateRangeWithIntervalSelector";
-import ReportBetting from "@/components/pages/report/components/reports/ReportBetting";
-import ReportWithdraw from "@/components/pages/report/components/reports/ReportWithdraw";
-import ReportDeposit from "@/components/pages/report/components/reports/ReportDeposit";
-import ReportRebate from "@/components/pages/report/components/reports/ReportRebate";
-import Index from "@/components/pages/report/components/reports/ReportTransfer";
-import ReportJoinPromotion from "@/components/pages/report/components/reports/JoinPromotion";
-import ReportBalanceChange from "@/components/pages/report/components/reports/ReportBalanceChange";
-import ReportPlatform from "@/components/pages/report/components/reports/ReportPlatform";
+import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
+import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
+import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWithIntervalSelector";
+import ReportBetting from "@/pages/report/components/reports/ReportBetting";
+import ReportWithdraw from "@/pages/report/components/reports/ReportWithdraw";
+import ReportDeposit from "@/pages/report/components/reports/ReportDeposit";
+import ReportRebate from "@/pages/report/components/reports/ReportRebate";
+import Index from "@/pages/report/components/reports/ReportTransfer";
+import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion";
+import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
+import ReportPlatform from "@/pages/report/components/reports/ReportPlatform";
 import { useDateRange } from "@/core/components/Report/hooks/useDateRange";
 import i18n from "@/utils/i18n";
 import { media } from "@/theme/breakpoints";
@@ -52,7 +52,7 @@ const Report = () => {
   // TODO: tab function
   const { tab } = useParams<{ tab: string }>();
   const [selectedType, setSelectedType] = useState(
-    tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2
+    tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2,
   );
 
   const { dateRangeInfo, handleDateFromChange, handleDateToChange, handleDateRangeChange } =

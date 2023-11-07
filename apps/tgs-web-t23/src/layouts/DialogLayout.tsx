@@ -1,5 +1,5 @@
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
-import BottomAppBar from "@/components/layouts/BottomAppBar";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { usePageName } from "@/core/feature/usePageName";
 import { useRwd } from "@/core/hooks/tools/useRwd";
