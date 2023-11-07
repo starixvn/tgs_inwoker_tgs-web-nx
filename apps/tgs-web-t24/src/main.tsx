@@ -10,8 +10,8 @@ import { ThemeProvider as StyleComponentThemeProvider } from "styled-components"
 import rootReducer from "@/api-services/reducers/rootReducer";
 import App from "@/App";
 import { NotificationContextProvider } from "@/core/feature/useNotifications/contexts/notificationContext";
-import AudioPlayer from "./components/tools/audioplayer";
-import FeatureGetter from "./components/tools/feature-getter";
+import AudioPlayer from "./components/tools/AudioPlayer";
+import FeatureGetter from "./components/tools/FeatureGetter";
 import { GlobalStyles } from "./global";
 import { theme } from "./theme";
 import { muiTheme } from "@/theme/mui";

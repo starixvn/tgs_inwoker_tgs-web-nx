@@ -1,7 +1,7 @@
 import useVipStore from "@/core/hooks/tools/useVipStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { VipData as TypeVipData } from "@/core/models/dto/general/GetVipResDto";
-import { TypeProductRebateByLevel } from "@/components/pages/BettingBonusPage";
+import { TypeProductRebateByLevel } from "@/pages/BettingBonusPage";
 
 const productColumnNameMap: {
   [key: string]: string;

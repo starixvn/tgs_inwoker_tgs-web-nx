@@ -1,5 +1,5 @@
 import React from "react";
-import RegisterForm from "@/components/pages/register/components/RegisterForm";
+import RegisterForm from "@/pages/register/components/RegisterForm";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
 

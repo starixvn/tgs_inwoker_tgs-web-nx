@@ -1,7 +1,6 @@
-
 import gc from "@/assets/t23/images/home/gc.png";
 import logo from "@/assets/t23/images/home/logo.png";
-import PartnerTags from "@/components/pages/home/components/PartnerTags";
+import PartnerTags from "@/pages/home/components/PartnerTags";
 import SocialMedia from "@/components/project/SocialMedia";
 
 export const footerCategoriesList = [
@@ -29,4 +28,4 @@ export const footerCategoriesList = [
     size: null,
     content: <PartnerTags />,
   },
-]
+];
