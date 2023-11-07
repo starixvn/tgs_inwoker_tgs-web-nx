@@ -5,7 +5,7 @@ import { useUiStore } from "@/core/stores/useUiStore";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { Dialog as MuiDialog } from "@mui/material";
 import { media } from "@/theme/breakpoints";
-import { Button } from "@/components/UI/Button";
+import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 import i18n from "@/utils/i18n";
@@ -36,14 +36,12 @@ const ChildContainer = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.yellow};
 `;
 
 const Content = styled.div`
   font-size: 1rem;
-  font-weight: 400;
   color: #ffffff;
   margin-top: 1rem;
   line-height: 1.2rem;
@@ -55,7 +53,6 @@ const Content = styled.div`
 `;
 
 const AnnouncementCardContainer = styled.div`
-  padding: 20px;
   height: calc(283px - 52px - 20px - 20px);
 `;
 
@@ -133,7 +130,7 @@ const PopupAnnouncement = () => {
           onClick={handleCloseDialog}
           style={{
             margin: "0 auto",
-            width: "90%",
+            width: "100%"
           }}
         >
           <>{i18n.t("common.close")}</>

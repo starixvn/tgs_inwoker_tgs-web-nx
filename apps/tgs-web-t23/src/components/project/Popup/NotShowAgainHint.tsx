@@ -1,18 +1,14 @@
-import IconCheckBox from "@/assets/t18/images/checkbox.svg";
 import styled from "styled-components";
-import { media } from "@/theme/breakpoints";
 import { theme } from "@/theme";
 
 const NotShowAgainHintContainer = styled.div`
   background: ${({ theme }) => theme.primaryLight};
-  width: 171px;
+  width: 100%;
   height: 38px;
   font-size: 1rem;
   display: flex;
   align-items: center;
-  justify-content: center;
   color: #ffffff;
-  border-radius: 50px;
 `;
 
 type CheckBoxProps = {
