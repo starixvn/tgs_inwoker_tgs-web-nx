@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
-import { GameService } from "@/core/services/GameService";
+import { FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
-import { FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
+import { GameService } from "@/core/services/GameService";
+import { useEffect, useMemo, useState } from "react";
 
 interface GetGameListState {
   isLoading: boolean;
@@ -17,7 +17,8 @@ export function useGetNonLobbyCategoryList() {
     error: null,
   });
 
-  const { activeGameType, updateGpCodeList, activeFilterTag } = useHomeGameContext();
+  const { activeGameType, updateGpCodeList, activeFilterTag, searchString } = useHomeGameContext();
+  const { favoriteList } = useHomeGameContext();
 
   const getGameList = async () => {
     try {
@@ -58,7 +59,9 @@ export function useGetNonLobbyCategoryList() {
         return gameListState.gameList;
 
       case FilterTagTypeEnum.FAVORITE:
-        return gameListState.gameList;
+        return gameListState.gameList.filter((gameItem) => {
+          return favoriteList.includes(gameItem.id);
+        });
 
       case FilterTagTypeEnum.HOT:
         return gameListState.gameList.filter((gameItem) => {
@@ -84,9 +87,18 @@ export function useGetNonLobbyCategoryList() {
     }
   }, [JSON.stringify(gameListState.gameList), activeFilterTag]);
 
+  const searchedGamelist = useMemo(() => {
+    if (!searchString) return filteredGameList;
+
+    return filteredGameList.filter((item) => {
+      return item.name.toLowerCase().includes(searchString.toLowerCase());
+    })
+
+  }, [searchString, JSON.stringify(filteredGameList)])
+
   return {
     isLoading: gameListState.isLoading,
-    gameList: filteredGameList,
+    gameList: searchedGamelist,
     error: gameListState.error,
   };
 }

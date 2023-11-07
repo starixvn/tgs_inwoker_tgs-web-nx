@@ -1,8 +1,8 @@
-import { useCallback, useMemo, useState } from "react";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
+import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { useCallback, useMemo, useState } from "react";
 
 export enum FilterTagTypeEnum {
   "PROVIDER" = "PROVIDER",
@@ -24,9 +24,25 @@ export function useFilterTag(providerList: ProviderDto[], activeGameType: GameTy
     name: "All",
     tagType: FilterTagTypeEnum.ALL,
   });
+  const [activeFirstRowFilterTag, setActiveFirstRowFilterTag] = useState<FilterTag>({
+    name: "All",
+    tagType: FilterTagTypeEnum.ALL,
+  });
+  const [activeSecondRowFilterTag, setActiveSecondRowFilterTag] = useState<FilterTag>({
+    name: "All",
+    tagType: FilterTagTypeEnum.ALL,
+  });
 
   const handleChangeActiveFilterTag = useCallback((newFilterTag: FilterTag) => {
     setActiveFilterTag(newFilterTag);
+  }, []);
+
+  const handleChangeActiveFirstRowFilterTag = useCallback((newFilterTag: FilterTag) => {
+    setActiveFirstRowFilterTag(newFilterTag);
+  }, []);
+
+  const handleChangeActiveSecondRowFilterTag = useCallback((newFilterTag: FilterTag) => {
+    setActiveSecondRowFilterTag(newFilterTag);
   }, []);
 
   const { account } = useAccountStore();
@@ -65,10 +81,24 @@ export function useFilterTag(providerList: ProviderDto[], activeGameType: GameTy
     return additionalTags.filter((tag) => !!tag) as FilterTag[];
   }, [JSON.stringify(providerList), JSON.stringify(gpCodeList)]);
 
+  const firstRowTags = useMemo(() => {
+    return filterTagList.filter((tag) => tag.tagType !== FilterTagTypeEnum.PROVIDER);
+  }, [filterTagList]);
+
+  const secondRowTags = useMemo(() => {
+    return filterTagList.filter((tag) => tag.tagType === FilterTagTypeEnum.PROVIDER);
+  }, [filterTagList]);
+
   return {
     activeFilterTag,
     handleChangeActiveFilterTag,
     filterTagList,
+    firstRowTags,
+    secondRowTags,
     updateGpCodeList,
+    handleChangeActiveFirstRowFilterTag,
+    handleChangeActiveSecondRowFilterTag,
+    activeFirstRowFilterTag,
+    activeSecondRowFilterTag
   };
 }
