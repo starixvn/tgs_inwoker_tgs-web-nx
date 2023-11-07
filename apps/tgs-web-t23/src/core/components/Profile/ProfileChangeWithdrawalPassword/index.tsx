@@ -12,7 +12,6 @@ const ProfileChangeWithdrawalPasswordPage = (props: Props) => {
   const { alert } = useNotifications();
   const history = useHistory();
 
-  //@ts-ignore
   return <ChangeWithdrawalPassword alert={alert} appHistory={history} />;
 };
 

@@ -7,9 +7,11 @@ const ProfileCard = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.mainLightBackground};
   border-radius: 30px;
-  padding: 30px 63px;
-
+  padding: 36px 30px;
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 43px;
 
   &:last-child {
     margin-bottom: 0;

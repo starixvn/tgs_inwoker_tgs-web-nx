@@ -1,6 +1,6 @@
 import { breakpoints } from "@/theme/breakpoints";
 import { fontFamily } from "@/theme/fontFamily";
-import { theme } from "@/theme/index";
+import { theme } from "@/theme";
 import i18n from "@/utils/i18n";
 import { createTheme, ThemeOptions } from "@mui/material";
 

@@ -3,7 +3,6 @@ import i18n from "@/utils/i18n";
 import styled from "styled-components";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { useGameStore } from "@/core/stores/useGameStore";
-import { Button } from "@/components/UI/Button";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const CustomLabel = styled.div`

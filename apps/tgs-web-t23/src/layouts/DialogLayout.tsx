@@ -29,8 +29,8 @@ const DialogLayout = ({ children }: Props) => {
   const location = useLocation();
   const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
-
   const pathname = location.pathname;
+
   const handleCloseDialog = useCallback(() => {
     const profileRegex = /\/profile\//;
     if (profileRegex.test(pathname)) {
@@ -42,7 +42,7 @@ const DialogLayout = ({ children }: Props) => {
     }
 
     history.goBack();
-  }, [pathname]);
+  }, [history, pathname]);
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;
