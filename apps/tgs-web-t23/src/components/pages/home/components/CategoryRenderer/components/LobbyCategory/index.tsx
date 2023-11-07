@@ -6,7 +6,7 @@ import { useAccountStore } from "@/core/stores/useAccountStore";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import Common from "@/core/utils/Common";
 import { media } from "@/theme/breakpoints";
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
 const CategoryContentWrapper = styled.div`
@@ -95,12 +95,8 @@ const LobbyCategory = () => {
               return (
                 <VendorCard
                   key={gpCode}
-                  imageUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  imageUrl={`${process.env.PUBLIC_URL}/assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${process.env.PUBLIC_URL}/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}

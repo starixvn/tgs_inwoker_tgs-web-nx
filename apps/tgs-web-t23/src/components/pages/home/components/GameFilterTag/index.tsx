@@ -1,8 +1,9 @@
 import { gameTagList } from "@/core/constants/gameTag";
-import { FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
+import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Tag from "./Tag";
 
@@ -39,21 +40,41 @@ const TagContainer = styled.div`
 
 const GameFilterTag = () => {
   const { activeFilterTag, handleChangeActiveFilterTag, filterTagList } = useHomeGameContext();
+  const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(null);
+
+  const handleFilterClick = (filterTag: FilterTag) => {
+    setPrevFilterTag(filterTag);
+    if (filterTag.tagType === prevFilterTag?.tagType && filterTag.gpCode === prevFilterTag?.gpCode) {
+      handleChangeActiveFilterTag({
+        tagType: FilterTagTypeEnum.ALL,
+        name: ""
+      });
+    } else {
+      handleChangeActiveFilterTag(filterTag);
+    }
+  }
+
+  useEffect(() => {
+    setPrevFilterTag(activeFilterTag);
+  }, [activeFilterTag]);
 
   return (
     <TagContainer>
       {filterTagList.map((filterTag) => {
         const { name, tagType, gpCode } = filterTag;
+        const isActive =
+          (filterTag.tagType === FilterTagTypeEnum.PROVIDER && gpCode === activeFilterTag.gpCode) ||
+          (filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType);
 
-        const isActive = (function () {
-          switch (tagType) {
-            case FilterTagTypeEnum.PROVIDER:
-              return gpCode === activeFilterTag.gpCode;
+        // const isActive = (function () {
+        //   switch (tagType) {
+        //     case FilterTagTypeEnum.PROVIDER:
+        //       return gpCode === activeFilterTag.gpCode;
 
-            default:
-              return tagType === activeFilterTag.tagType;
-          }
-        })();
+        //     default:
+        //       return tagType === activeFilterTag.tagType;
+        //   }
+        // })();
 
         const tag = gameTagList.find((tag) => tag.text === name);
 
@@ -64,7 +85,7 @@ const GameFilterTag = () => {
             isActive={isActive}
             icon={tag ? <tag.icon $color={isActive ? theme.primary : theme.lighterGray} /> : null}
             isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleChangeActiveFilterTag(filterTag)}
+            onClick={() => handleFilterClick(filterTag)}
           />
         );
       })}

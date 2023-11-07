@@ -62,22 +62,6 @@ const CategoryTitle = styled.div`
   padding: 10px 0px;
 `;
 
-const FilterSection = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12px 10px;
-  gap: 12px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
-
-  ${media.sm} {
-    background-color: transparent;
-  }
-`;
-
 const NonLobbyCategory = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType, searchString, handleChangeSearch } = useHomeGameContext();
