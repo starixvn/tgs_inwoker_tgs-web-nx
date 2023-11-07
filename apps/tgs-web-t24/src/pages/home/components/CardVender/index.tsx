@@ -79,7 +79,6 @@ const GradientBg = styled.div`
   height: 60%;
   left: 0;
   bottom: 0;
-  background: ${(props) => props.theme.secondaryGradient};
   border-radius: 0 0 10px 10px;
   display: flex;
   justify-content: center;

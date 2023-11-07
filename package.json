@@ -7,7 +7,11 @@
     "create-lib": "nx g @nx/react:lib --bundler=none --projectNameAndRootFormat=derived",
     "t23": "nx serve tgs-web-t23",
     "t24": "nx serve tgs-web-t24",
-    "build": "nx build tgs-web-t23"
+    "docker-build:dev": "nx affected --target=docker-build --base=origin/develop~1 --head=origin/develop",
+    "docker-build:staging": "nx affected --target=docker-build --base=origin/release/current~1 --head=origin/release/current",
+    "docker-build:production": "nx affected --target=docker-build --base=origin/master~1 --head=origin/master",
+    "docker-build:force": "nx run-many --target=docker-build",
+    "docker-build:single": "nx docker-build"
   },
   "private": true,
   "dependencies": {

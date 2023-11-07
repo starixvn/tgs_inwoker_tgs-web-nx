@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 
 type IconContainerProps = {
@@ -23,12 +23,13 @@ type Props = {
   iconUrl: string;
   width: string;
   height: string;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 } & React.HTMLProps<HTMLDivElement>;
 
 const Icon: React.FC<Props> = ({ iconUrl, onClick, width, height, ...others }: Props) => {
   return (
-    <IconContainer {...others} onClick={onClick} $width={width} $height={height}>
+    // @ts-ignore
+    <IconContainer {...others} onClick={onClick || undefined} $width={width} $height={height}>
       <img src={iconUrl} alt={"icon"} />
     </IconContainer>
   );
