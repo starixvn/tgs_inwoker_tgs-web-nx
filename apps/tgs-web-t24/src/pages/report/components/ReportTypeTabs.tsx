@@ -24,6 +24,7 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
   };
 
   return (
+    //@ts-ignore
     <ReportTypeTabsContainer {...others}>
       {displayedTabList.map((reportTab) => {
         const { index, label } = reportTab;
