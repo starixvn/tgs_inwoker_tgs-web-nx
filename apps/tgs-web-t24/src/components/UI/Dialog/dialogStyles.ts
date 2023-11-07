@@ -22,10 +22,5 @@ export const ButtonConfirm = styled.div`
   text-align: center;
   padding-top: 24px;
   margin: 10px auto;
-  background: linear-gradient(
-    to top,
-    ${({ theme }) => theme.secondaryGradient},
-    ${({ theme }) => theme.primary}
-  );
   color: #ffffff;
 `;

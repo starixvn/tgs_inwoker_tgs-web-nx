@@ -87,15 +87,6 @@ const CustomButton = styled.div<CustomButtonType>`
   flex: 1;
   font-size: 1.8rem;
 
-  ${({ theme }: CustomButtonType) => {
-    return (
-      "background-image: linear-gradient(to top, " +
-      theme.secondaryGradient +
-      ", " +
-      theme.primary +
-      ");"
-    );
-  }}
 
   ${({ $disabled }: CustomButtonType) => {
     return $disabled && `filter: grayscale(01);pointer-events: none;`;
@@ -119,13 +110,13 @@ const ForcedVerification = ({ forceVerify }: ForcedVerificationProps) => {
 
   const handleGetCodeClick = async () => {
     if (countdown <= 0) {
-      var expr = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`);
+      const expr = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`);
       if (!expr.test(phone)) {
         alert(
           "",
           i18n
             .t("common.noReachMin")
-            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`)
+            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
         );
         return;
       }
@@ -166,11 +157,11 @@ const ForcedVerification = ({ forceVerify }: ForcedVerificationProps) => {
   }
 
   const handleActivationClick = async () => {
-    var expr = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`);
+    let expr = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`);
     if (!expr.test(phone)) {
       alert(
         "",
-        i18n.t("common.noReachMin").replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH}`)
+        i18n.t("common.noReachMin").replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH}`),
       );
       return;
     }
