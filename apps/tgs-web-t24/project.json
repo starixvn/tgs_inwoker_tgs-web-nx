@@ -66,6 +66,21 @@
       "options": {
         "lintFilePatterns": ["apps/tgs-web-t24/**/*.{ts,tsx,js,jsx}"]
       }
+    },
+    "docker-build": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "production",
+      "options": {
+        "commands": [],
+        "parallel": false
+      },
+      "configurations": {
+        "production": {
+          "DockerContainerRegistry": "pgtgs/",
+          "AppPath": "./apps/tgs-web-t23",
+          "ImageName": "tgs-web-t23"
+        }
+      }
     }
   },
   "tags": []
