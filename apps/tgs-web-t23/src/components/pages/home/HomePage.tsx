@@ -86,8 +86,20 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && <SliderWrapper><Slider /></SliderWrapper>}
-      {!!activeGameType && <GameTypeBanner $imageUrl={activeGameTypeKey ? `${process.env.PUBLIC_URL}/assets/images/home/gp_banner/${activeGameTypeKey}.png` : ""} />}
+      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && (
+        <SliderWrapper>
+          <Slider />
+        </SliderWrapper>
+      )}
+      {!!activeGameType && (
+        <GameTypeBanner
+          $imageUrl={
+            activeGameTypeKey
+              ? `${import.meta.env.BASE_URL}assets/images/home/gp_banner/${activeGameTypeKey}.png`
+              : ""
+          }
+        />
+      )}
 
       <MainContentWrapper>
         {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
@@ -95,16 +107,13 @@ const HomePage = () => {
 
         <CategoryRenderer />
 
-        {
-          !activeGameType && <>
+        {!activeGameType && (
+          <>
             <HomePromotionCard />
             {isMobileSize &&
-              footerCategoriesList.length && footerCategoriesList.map((category, index) => (
-                <HomeCategoryFolder
-                  key={index}
-                  title={category.title}
-                  size={category.size!}
-                >
+              footerCategoriesList.length &&
+              footerCategoriesList.map((category, index) => (
+                <HomeCategoryFolder key={index} title={category.title} size={category.size!}>
                   {category.content ? (
                     category.content
                   ) : (
@@ -119,7 +128,7 @@ const HomePage = () => {
 
             {/* <TabPanel /> */}
           </>
-        }
+        )}
       </MainContentWrapper>
     </MainWrapper>
   );
