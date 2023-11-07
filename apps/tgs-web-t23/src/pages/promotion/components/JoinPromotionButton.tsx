@@ -8,26 +8,16 @@ import { useSnackbar } from "notistack";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
-const Button = styled.button<{ $disabled: boolean }>`
-  border: none;
+const StyledButton = styled(SubmitButton)`
   width: 100%;
   height: 100%;
   padding: 12px 20px 12px 20px;
   border-radius: 12px;
   gap: 10px;
-  background: ${({ theme }) => theme.secondary};
-  color: #ffffff;
   font-size: 1.25rem;
   cursor: pointer;
-  background-image: ${({ $disabled }) => {
-    return $disabled
-      ? `
-    opacity: 0.65;
-    background-color: grey;
-    cursor: not-allowed;`
-      : ``;
-  }};
   ${media.sm} {
     height: 75px;
     font-size: 2rem;
@@ -86,9 +76,9 @@ const JoinPromotionButton = ({ id, promotionType }: { id: string; promotionType:
   if (loading) return <Loading show={true} />;
 
   return (
-    <Button onClick={handleJoinPromotion} $disabled={hasJoined}>
+    <StyledButton onClick={handleJoinPromotion} disabled={hasJoined}>
       Claim Bonus
-    </Button>
+    </StyledButton>
   );
 };
 

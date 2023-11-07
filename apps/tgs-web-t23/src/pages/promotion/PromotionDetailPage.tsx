@@ -8,7 +8,7 @@ import moment from "moment";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
-  padding: 22px 22px 80px 22px;
+  padding: 22px 22px 100px 22px;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -68,13 +68,13 @@ const TermsAndConditions = styled(Description)`
 
 const JoinPromotionButtonWrapper = styled.div`
   position: fixed;
-  bottom: 82px;
+  bottom: 67px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 22px;
-  background: ${({ theme }) => theme.primaryLight};
+  padding: 10px 22px 40px 22px;
+  background: ${({ theme }) => theme.mainBackground};
   ${media.sm} {
     position: relative;
     background: transparent;
