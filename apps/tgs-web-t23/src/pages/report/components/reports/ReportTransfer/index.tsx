@@ -1,15 +1,6 @@
 import React, { useEffect, useState } from "react";
-import config from "@/config/config";
-import i18n from "@/utils/i18n";
-import NoRecord from "@/pages/report/components/NoRecord";
-import moment from "moment/moment";
-import {
-  ReportCard,
-  ReportCardCol,
-  ReportCardRow,
-  ReportCardsContainer,
-  ReportContainer,
-} from "@/core/components/Report/styles";
+import moment from "moment";
+import { ReportContainer } from "@/core/components/Report/styles";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { ReportService } from "@/core/services/ReportService";
 import Loading from "@/components/UI/Loading";

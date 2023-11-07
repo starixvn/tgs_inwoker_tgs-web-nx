@@ -4,6 +4,7 @@ import GameCard from "@/pages/home/components/GameCard";
 import config from "@/config/config";
 import Common from "@/core/utils/Common";
 import styled from "styled-components";
+import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 
 const HomeCategorySection = styled.div`
   width: 100%;

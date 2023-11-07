@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@mui/material";
 import i18n from "@/utils/i18n";
-import moment from "moment/moment";
+import moment from "moment";
 
 const InboxListContainer = styled.div`
   & > div {

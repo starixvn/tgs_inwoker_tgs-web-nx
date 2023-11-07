@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import moment from "moment/moment";
+import moment from "moment";
 import { ReportContainer } from "@/core/components/Report/styles";
 import { ReportService } from "@/core/services/ReportService";
 import { useNotifications } from "@/core/feature/useNotifications";

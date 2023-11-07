@@ -44,15 +44,18 @@ const GameFilterTag = () => {
 
   const handleFilterClick = (filterTag: FilterTag) => {
     setPrevFilterTag(filterTag);
-    if (filterTag.tagType === prevFilterTag?.tagType && filterTag.gpCode === prevFilterTag?.gpCode) {
+    if (
+      filterTag.tagType === prevFilterTag?.tagType &&
+      filterTag.gpCode === prevFilterTag?.gpCode
+    ) {
       handleChangeActiveFilterTag({
         tagType: FilterTagTypeEnum.ALL,
-        name: ""
+        name: "",
       });
     } else {
       handleChangeActiveFilterTag(filterTag);
     }
-  }
+  };
 
   useEffect(() => {
     setPrevFilterTag(activeFilterTag);
@@ -83,7 +86,8 @@ const GameFilterTag = () => {
             key={name}
             text={name}
             isActive={isActive}
-            icon={tag ? <tag.icon $color={isActive ? theme.primary : theme.lighterGray} /> : null}
+            icon={tag ? <img src={tag.iconUrl} alt={tag.text} /> : null}
+            // icon={tag ? <tag.icon $color={isActive ? theme.primary : theme.lighterGray} /> : null}
             isShowIcon={gameTagList.some((tag) => tag.text === name)}
             onClick={() => handleFilterClick(filterTag)}
           />

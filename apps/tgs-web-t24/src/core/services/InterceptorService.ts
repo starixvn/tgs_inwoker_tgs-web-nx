@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios, { AxiosRequestConfig } from "axios";
 import { UNAUTHORIZE } from "@/api-services/constant/actionType";
 import { AppHistory } from "@/history/History";
@@ -7,7 +8,7 @@ const Interceptor = {
   setupInterceptors: (store: any) => {
     // Add a response interceptor
     axios.interceptors.request.use(
-      function (config: AxiosRequestConfig) {
+      async function (config: AxiosRequestConfig) {
         const client = localStorage.getItem("client-token");
         if (client != null && client !== "") {
           config.headers["Authorization"] = "bearer " + client;

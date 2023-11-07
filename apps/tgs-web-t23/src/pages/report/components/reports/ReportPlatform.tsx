@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import i18n from "@/utils/i18n";
 import NoRecord from "@/pages/report/components/NoRecord";
-import moment from "moment/moment";
+import moment from "moment";
 import {
   ReportCard,
   ReportCardCol,

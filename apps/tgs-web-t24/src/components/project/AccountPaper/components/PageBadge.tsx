@@ -25,6 +25,7 @@ type Props = {
 
 const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
   return (
+    // @ts-ignore
     <PageBadgeContainer {...others}>
       <Icon
         iconUrl={iconUrl}
