@@ -24,8 +24,8 @@ type Props = {
 } & React.HTMLProps<HTMLDivElement>;
 
 const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
-  console.log(others);
   return (
+    // @ts-ignore
     <PageBadgeContainer {...others}>
       <Icon
         iconUrl={iconUrl}

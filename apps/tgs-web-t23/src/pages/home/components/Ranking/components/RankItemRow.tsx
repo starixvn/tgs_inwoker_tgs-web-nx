@@ -1,4 +1,4 @@
-import React, { forwardRef, LegacyRef } from "react";
+import React, { forwardRef, Ref } from "react";
 import { RankTableCol, RankTableRow } from "@/pages/home/components/Ranking/styles";
 import ranking_1 from "@/assets/t18/images/home/mobile/ranking_1.svg";
 import ranking_2 from "@/assets/t18/images/home/mobile/ranking_2.svg";
@@ -42,12 +42,13 @@ type Props = {
   rank: number;
   rankItem: RankItem;
 };
+
 const RankItemRow = forwardRef(
-  ({ rank, rankItem }: Props, ref: LegacyRef<HTMLDivElement> | undefined) => {
+  ({ rank, rankItem }: Props, ref: Ref<HTMLDivElement> | undefined) => {
     const { playerName, betAmount } = rankItem;
 
     return (
-      <RankTableRow ref={ref}>
+      <RankTableRow ref={ref as any}>
         <RankTableCol>
           <RankLabel rank={rank} />
         </RankTableCol>

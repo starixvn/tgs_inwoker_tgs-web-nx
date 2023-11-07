@@ -47,7 +47,7 @@ const RankItemRow = forwardRef(
     const { playerName, betAmount } = rankItem;
 
     return (
-      <RankTableRow ref={ref}>
+      <RankTableRow ref={ref as any}>
         <RankTableCol>
           <RankLabel rank={rank} />
         </RankTableCol>

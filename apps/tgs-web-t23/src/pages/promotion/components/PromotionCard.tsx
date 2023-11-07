@@ -57,14 +57,16 @@ const ClickMoreContainer = styled.div`
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
   const history = useHistory();
 
-  const handleEnterDetail = (event: Event) => {
+  const handleEnterDetail: React.MouseEventHandler<HTMLDivElement> & ((event: Event) => void) = (
+    event,
+  ) => {
     event.preventDefault();
 
     history.push("/promotion/" + promotionData.id);
   };
 
   return (
-    <PromotionCardContainer onClick={(e) => handleEnterDetail(e)}>
+    <PromotionCardContainer onClick={handleEnterDetail}>
       <BannerWrapper>
         <BannerImage promotionData={promotionData} />
       </BannerWrapper>
