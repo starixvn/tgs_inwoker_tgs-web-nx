@@ -1,4 +1,4 @@
-import { usePageName } from "@/core/feature/usePageName/index";
+import { usePageName } from "@/core/feature/usePageName";
 import { useEffect } from "react";
 
 export function useUpdatePageName(pageName: string) {

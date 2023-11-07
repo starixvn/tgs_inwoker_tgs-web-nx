@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import TransferPrev from "@/core/components/TransferPrev/index.jsx";
+import TransferPrev from "@/core/components/TransferPrev";
 import { useNotifications } from "@/core/feature/useNotifications";
 import i18n from "@/utils/i18n";
 import styled from "styled-components";
