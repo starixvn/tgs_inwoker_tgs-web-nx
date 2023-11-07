@@ -1,10 +1,10 @@
-import Favorite from "@/pages/home/components/Favorite";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGameStore } from "@/core/stores/useGameStore";
 import Common from "@/core/utils/Common";
+import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import { MouseEvent, useState } from "react";
 import { useHistory } from "react-router";
@@ -22,6 +22,10 @@ const CardHoverBg = styled.div`
   border-radius: 15px;
   display: none;
   white-space: pre-line;
+
+  ${media.sm} {
+    height: 82.6%;
+  }
 `;
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
@@ -33,10 +37,6 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   border-radius: 12px;
-
-  ${media.sm} {
-    border-radius: 15px;
-  }
 `;
 
 const NewTag = styled.div`
@@ -51,14 +51,8 @@ const NewTag = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* aspect-ratio: 110 / 24; */
   font-size: 0.5rem;
   font-weight: 700;
-
-  /* ${media.sm} {
-      border-radius: 15px;
-      top: 63%;
-    } */
 `;
 
 const GameCardContent = styled.div`
@@ -66,15 +60,15 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 5.33px);
+  width: calc(30.3% - 10px);
   position: relative;
   cursor: pointer;
   aspect-ratio: 110 / 142;
 
   ${media.sm} {
-    width: calc(16.67% - 30px);
-    min-width: 170px;
-    aspect-ratio: 170 / 211;
+    width: calc(19.2% - 30px);
+    min-width: 190px;
+    aspect-ratio: 190 / 230;
 
     &:hover {
       ${CardHoverBg} {
@@ -176,31 +170,29 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <>
-      <GameCardBg onClick={launchGame}>
-        <GameCardContent>
-          <GameIcon $imageUrl={imageUrl}></GameIcon>
-          {gameItem.tag.new && <NewTag>New</NewTag>}
-          {!isActive && (
-            <MaintenanceBg>
-              <MaintenanceText>UNDER MAINTENANCE</MaintenanceText>
-            </MaintenanceBg>
-          )}
-          {gameItem && <GameName>{gameItem.name}</GameName>}
-        </GameCardContent>
-        <Favorite
-          isFavorite={isFavorite}
-          handleToggleFavorite={handleToggleFavorite}
-          gameItemId={gameItem.id}
-        />
-
-        {isDesktopSize && (
-          <CardHoverBg>
-            <TextButton text={"Go"} />
-          </CardHoverBg>
+    <GameCardBg onClick={launchGame}>
+      <GameCardContent>
+        <GameIcon $imageUrl={imageUrl}></GameIcon>
+        {gameItem.tag.new && <NewTag>New</NewTag>}
+        {!isActive && (
+          <MaintenanceBg>
+            <MaintenanceText>UNDER MAINTENANCE</MaintenanceText>
+          </MaintenanceBg>
         )}
-      </GameCardBg>
-    </>
+        {gameItem && <GameName>{gameItem.name}</GameName>}
+      </GameCardContent>
+      <Favorite
+        isFavorite={isFavorite}
+        handleToggleFavorite={handleToggleFavorite}
+        gameItemId={gameItem.id}
+      />
+
+      {isDesktopSize && (
+        <CardHoverBg>
+          <TextButton text={"Go"} />
+        </CardHoverBg>
+      )}
+    </GameCardBg>
   );
 };
 

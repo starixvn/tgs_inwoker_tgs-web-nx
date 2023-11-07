@@ -1,8 +1,12 @@
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import Loading from "@/components/UI/Loading";
-import GameCard from "@/pages/home/components/GameCard";
 import config from "@/config/config";
+import { SHOW_CATEGORY_AMOUNT } from "@/core/constants/games";
+import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import Common from "@/core/utils/Common";
+import AllCard from "@/pages/home/components/AllCard";
+import GameCard from "@/pages/home/components/GameCard";
+import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
 const HomeCategorySection = styled.div`
@@ -33,14 +37,39 @@ const CategoryContent = styled.div`
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   box-sizing: border-box;
-  padding: 12px 0px 12px 20px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 30vh;
+  height: 36vh;
   gap: 12px;
   border-radius: 0px 0px 0px 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
+
+  ${media.sm} {
+    height: 58vh;
+    gap: 22px;
+    max-width: 1200px;
+    margin: 0 auto;
+    scroll-snap-type: unset;
+    
+    &::-webkit-scrollbar {
+      height: 12px;
+      background-color: #1d1d1d40;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
+      border-radius: 8px;
+      background: ${(props) => props.theme.mainDarkBackground};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
+      background-color: ${(props) => props.theme.mainLightBackground};
+    }
+  }
 `;
 
 type Props = {
@@ -50,24 +79,7 @@ type Props = {
 };
 
 const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => {
-  // const [visibleGameCount, setVisibleGameCount] = useState(showDataLength);
-  // const { isMobileSize, isDesktopSize } = useRwd();
-
   const hasMappingData = !!dataList.length;
-
-  // const statusMap = groupBy_gameType.reduce<{ [key in string]: number }>(
-  //   (accumulator, groupByGameItem) => {
-  //     groupByGameItem.forEach((item) => {
-  //       accumulator[item.gpcode] = item.status;
-  //     });
-  //     return accumulator;
-  //   },
-  //   {}
-  // );
-
-  // const handleLoadMoreClick = () => {
-  //   setVisibleGameCount(visibleGameCount + showDataLength);
-  // };
 
   return (
     <>
@@ -77,18 +89,17 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
         </CategoryTab>
         <CategoryContent>
           {hasMappingData &&
-            dataList.map((gameItem) => (
+            dataList.slice(0, SHOW_CATEGORY_AMOUNT).map((gameItem) => (
               <GameCard
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
+                imageUrl={`${config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                  }.jpg`}
               />
             ))}
+          {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard />}
         </CategoryContent>
       </HomeCategorySection>
 
