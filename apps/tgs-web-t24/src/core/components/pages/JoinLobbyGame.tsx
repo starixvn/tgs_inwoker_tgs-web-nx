@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loading from "@/components/UI/Loading";
 import { GameService } from "@/core/services/GameService";
-import MaintenancePage from "@/components/pages/MaintenancePage";
+import MaintenancePage from "@/pages/MaintenancePage";
 import { useParams } from "react-router-dom";
 
 const JoinLobbyGame = () => {

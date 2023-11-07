@@ -1,20 +1,19 @@
-import React, {useEffect, useState} from "react";
-import {BottomScrollListener} from "react-bottom-scroll-listener";
+import React, { useEffect, useState } from "react";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 import Loading from "@/components/UI/Loading";
 import i18n from "@/utils/i18n";
-import {useAccountStore} from "@/core/stores/useAccountStore";
-import {useInboxStore} from "@/core/stores/useInboxStore";
-import {useRwd} from "@/core/hooks/tools/useRwd";
-import MobileInboxList from "@/components/pages/inbox/components/MobileInboxList";
-import DesktopInboxList from "@/components/pages/inbox/components/DesktopInboxList";
-import {useAuth} from "@/core/feature/useAuth";
-
+import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useInboxStore } from "@/core/stores/useInboxStore";
+import { useRwd } from "@/core/hooks/tools/useRwd";
+import MobileInboxList from "@/pages/inbox/components/MobileInboxList";
+import DesktopInboxList from "@/pages/inbox/components/DesktopInboxList";
+import { useAuth } from "@/core/feature/useAuth";
 
 const Inbox = () => {
-  const {isLogin} = useAuth();
-  const {account} = useAccountStore();
-  const {inbox, token} = account;
-  const {getMessages, setMessageRead} = useInboxStore();
+  const { isLogin } = useAuth();
+  const { account } = useAccountStore();
+  const { inbox, token } = account;
+  const { getMessages, setMessageRead } = useInboxStore();
 
   const [isEdit, setIsEdit] = useState(false);
   const [limit] = useState(10);
@@ -24,7 +23,7 @@ const Inbox = () => {
   const [selectedGuid, setSelectedGuid] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState(false);
-  const {isDesktopSize} = useRwd();
+  const { isDesktopSize } = useRwd();
 
   const getMessageList = async (page: number, isNew = false) => {
     setLoading(true);
@@ -95,9 +94,9 @@ const Inbox = () => {
         />
       )}
 
-      <BottomScrollListener onBottom={handleScrollBottom}/>
+      <BottomScrollListener onBottom={handleScrollBottom} />
 
-      <Loading show={loading} noShrink/>
+      <Loading show={loading} noShrink />
     </>
   );
 };

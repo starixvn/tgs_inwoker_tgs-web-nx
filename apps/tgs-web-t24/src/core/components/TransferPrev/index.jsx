@@ -7,9 +7,9 @@ import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
 import Loading from "@/components/UI/Loading";
 import i18n from "@/utils/i18n";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
-import TransferCard from "@/components/pages/transfer/components/components/TransferCard";
-import AutoTransferSwitch from "@/components/pages/transfer/components/components/AutoTransferSwitch";
-import WithdrawAllToMainWallet from "@/components/pages/withdrawal/components/WithdrawAllToMainWallet";
+import TransferCard from "@/pages/transfer/components/components/TransferCard";
+import AutoTransferSwitch from "@/pages/transfer/components/components/AutoTransferSwitch";
+import WithdrawAllToMainWallet from "@/pages/withdrawal/components/WithdrawAllToMainWallet";
 
 const Container = styled.div`
   width: 100%;
@@ -58,8 +58,7 @@ class Transfer extends Component {
     }
 
     const isWithdrawalAllResultChanged =
-      preProps.wallet.withdrawalAllResult !==
-        this.props.wallet.withdrawalAllResult &&
+      preProps.wallet.withdrawalAllResult !== this.props.wallet.withdrawalAllResult &&
       this.props.wallet.withdrawalAllResult !== null;
 
     if (isWithdrawalAllResultChanged) {
@@ -87,9 +86,7 @@ class Transfer extends Component {
     this.setState({ ...this.state, disabled: true });
     const transferFrom = this.state.fromWallet;
     const transferTo = this.state.toWallet;
-    const transferAmount = this.state.transferAmount
-      .toString()
-      .replace(/,/g, "");
+    const transferAmount = this.state.transferAmount.toString().replace(/,/g, "");
     const balance = this.props.wallet.mainBalance;
 
     if (
@@ -115,7 +112,7 @@ class Transfer extends Component {
       transferAmount,
       this.state.mainAccountId,
       transferTo === this.state.mainAccountId ? transferFrom : transferTo,
-      transferFrom === this.state.mainAccountId ? 1 : 2
+      transferFrom === this.state.mainAccountId ? 1 : 2,
     );
   };
 
@@ -201,9 +198,7 @@ class Transfer extends Component {
 
         <Loading
           show={
-            this.state.loading ||
-            this.props.wallet.loading ||
-            this.props.wallet.transferLoading
+            this.state.loading || this.props.wallet.loading || this.props.wallet.transferLoading
           }
         />
       </Container>
@@ -224,14 +219,10 @@ const mapDispatchToProps = (dispatch) => {
         type: RESET_WALLETRESULT,
       }),
 
-    doTransfer: (gpcode, amount) =>
-      dispatch(walletAction.doTransfer(gpcode, amount)),
+    doTransfer: (gpcode, amount) => dispatch(walletAction.doTransfer(gpcode, amount)),
     doWithdrawalFromGame: (gpcode, amount) =>
       dispatch(walletAction.doWithdrawalFromGame(gpcode, amount)),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Transfer));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Transfer));

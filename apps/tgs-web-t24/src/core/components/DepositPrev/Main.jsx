@@ -6,7 +6,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
 import { utility } from "@/core/utils/utility";
-import ResultPopupDialog from "@/components/pages/deposit/components/components/ResultPopupDialog";
+import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
 import {
   FormControl,
   InfoContainer,
@@ -18,7 +18,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
-import CopyIcon from "@/components/pages/deposit/components/components/CopyIcon";
+import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
 import { UploadFileTag } from "../../../components/styled-component/ProfileForms";
 
 const LimitLabel = styled.span`

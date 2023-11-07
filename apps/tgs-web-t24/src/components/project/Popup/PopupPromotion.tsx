@@ -1,5 +1,5 @@
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
-import BannerImage from "@/components/pages/promotion/components/BannerImage";
+import BannerImage from "@/pages/promotion/components/BannerImage";
 import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import usePromotion from "@/core/hooks/tools/usePromotion";

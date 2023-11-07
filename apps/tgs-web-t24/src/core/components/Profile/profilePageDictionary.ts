@@ -1,5 +1,5 @@
 import React, { MemoExoticComponent, NamedExoticComponent } from "react";
-import ProfileMenuMobile from "@/components/pages/profile/components/ProfileMenu/ProfileMenuMobile";
+import ProfileMenuMobile from "@/pages/profile/components/ProfileMenu/ProfileMenuMobile";
 import ProfileBirthDatePage from "@/core/components/Profile/ProfileBirthDate";
 import ProfileChangeEmail from "@/core/components/Profile/ProfileChangeEmail";
 import ProfileChangePasswordPage from "@/core/components/Profile/ProfileChangePassword";
