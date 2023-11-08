@@ -5,7 +5,7 @@ import {
   ReportCardCol,
   ReportCardRow,
   ReportCardsContainer,
-} from "@/core/components/Report/styles";
+} from "@/components/styled-component/Report";
 import moment from "moment";
 import i18n from "@/utils/i18n";
 import { JoinedPromotionsResponse } from "@/core/models/dto/general/GetJoinedPromoReportResDto";

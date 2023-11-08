@@ -111,13 +111,11 @@ const QQ = () => {
       </ItemContainer>
 
       {isConfigured && config.features.ChangesNotAllowed ? (
-        <>
-          <BottomNote
-            text1={i18n.t("profile.qq.toEdit")}
-            link={"../chat"}
-            text2={i18n.t("common.customerService")}
-          />
-        </>
+        <BottomNote
+          text1={i18n.t("profile.qq.toEdit")}
+          link={"../chat"}
+          text2={i18n.t("common.customerService")}
+        />
       ) : (
         <>
           <SubmitButton

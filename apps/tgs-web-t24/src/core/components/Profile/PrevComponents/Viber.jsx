@@ -108,13 +108,11 @@ class Viber extends BaseProfile {
       </ItemContainer>,
       this.state.isConfigured && config.features.ChangesNotAllowed
         ? i18n.t("common.configured")
-        : this.state.viber !== this.props.account.member_viber &&
-            i18n.t("common.complete"),
+        : this.state.viber !== this.props.account.member_viber && i18n.t("common.complete"),
       (() => {
         if (
           this.state.isConfigured &&
-          (config.features.ChangesNotAllowed ||
-            config.features.Profile_ExistingDetails_ViewOnly)
+          (config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly)
         ) {
           return (
             <BottomNote
@@ -124,12 +122,12 @@ class Viber extends BaseProfile {
                 config.features.ChangesNotAllowed ||
                   config.features.Profile_ExistingDetails_ViewOnly
                   ? "common.customerService"
-                  : "profile.viber.here"
+                  : "profile.viber.here",
               )}
             />
           );
         }
-      })()
+      })(),
     );
   }
 }

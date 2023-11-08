@@ -90,33 +90,29 @@ class Whatsapp extends BaseProfile {
   render() {
     return this.setupContent(
       i18n.t("common.whatsapp"),
-      <>
-        <ItemContainer>
-          <LabelContainer>{i18n.t("common.whatsapp")}</LabelContainer>
-          <FormControl variant="outlined">
-            <TextField
-              value={this.state.whatsapp}
-              onChange={this.handleChangeNumber}
-              placeholder={i18n.t("profile.whatsapp.plsEnterWhatsapp")}
-              disabled={
-                this.state.isConfigured &&
-                (config.features.ChangesNotAllowed ||
-                  config.features.Profile_ExistingDetails_ViewOnly)
-              }
-              maxLength={15}
-            />
-          </FormControl>
-        </ItemContainer>
-      </>,
+      <ItemContainer>
+        <LabelContainer>{i18n.t("common.whatsapp")}</LabelContainer>
+        <FormControl variant="outlined">
+          <TextField
+            value={this.state.whatsapp}
+            onChange={this.handleChangeNumber}
+            placeholder={i18n.t("profile.whatsapp.plsEnterWhatsapp")}
+            disabled={
+              this.state.isConfigured &&
+              (config.features.ChangesNotAllowed ||
+                config.features.Profile_ExistingDetails_ViewOnly)
+            }
+            maxLength={15}
+          />
+        </FormControl>
+      </ItemContainer>,
       this.state.isConfigured && config.features.ChangesNotAllowed
         ? i18n.t("common.configured")
-        : this.state.whatsapp !== this.props.account.member_whatsapp &&
-            i18n.t("common.complete"),
+        : this.state.whatsapp !== this.props.account.member_whatsapp && i18n.t("common.complete"),
       (() => {
         if (
           this.state.isConfigured &&
-          (config.features.ChangesNotAllowed ||
-            config.features.Profile_ExistingDetails_ViewOnly)
+          (config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly)
         ) {
           return (
             <BottomNote
@@ -126,12 +122,12 @@ class Whatsapp extends BaseProfile {
                 config.features.ChangesNotAllowed ||
                   config.features.Profile_ExistingDetails_ViewOnly
                   ? "common.customerService"
-                  : "profile.whatsapp.here"
+                  : "profile.whatsapp.here",
               )}
             />
           );
         }
-      })()
+      })(),
     );
   }
 }
@@ -146,7 +142,4 @@ const mapDispatchToProps = (dispatch) => {
     getAccountProfile: () => dispatch(accountAction.getAccountProfile(true)),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Whatsapp));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Whatsapp));

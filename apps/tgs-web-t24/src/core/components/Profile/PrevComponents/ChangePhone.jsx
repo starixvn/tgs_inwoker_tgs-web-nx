@@ -69,7 +69,7 @@ class ChangePhone extends BaseProfile {
       return this.showErrorMessage(
         i18n
           .t("common.noReachMin")
-          .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`)
+          .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
       );
     }
     this.showLoading(true);
@@ -226,7 +226,7 @@ class ChangePhone extends BaseProfile {
           </FormControl>
         </ItemContainer>
       </>,
-      this.state.currentStep === 1 ? i18n.t("common.nextStep") : i18n.t("common.submit")
+      this.state.currentStep === 1 ? i18n.t("common.nextStep") : i18n.t("common.submit"),
     );
   }
 }

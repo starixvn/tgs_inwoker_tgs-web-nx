@@ -112,14 +112,20 @@ const Affiliate = (props: Props) => {
           <Button
             variant={isCopied ? "outlined" : "contained"}
             onClick={() => handleQrAction(ImageActionEnum.COPY)}
+            sx={{
+              color: "black",
+            }}
           >
-            <>{isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}</>
+            {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
           </Button>
           <Button
             variant={isDownloaded ? "outlined" : "contained"}
             onClick={() => handleQrAction(ImageActionEnum.DOWNLOAD)}
+            sx={{
+              color: "black",
+            }}
           >
-            <>{isDownloaded ? i18n.t("common.download") : i18n.t("common.download")}</>
+            {isDownloaded ? i18n.t("common.download") : i18n.t("common.download")}
           </Button>
         </ActionButtonContainer>
 
@@ -148,7 +154,7 @@ const Affiliate = (props: Props) => {
             {rebateItemList.map((rebateItem, index) => {
               return (
                 <option key={index} value={rebateItem.value}>
-                  <>{i18n.t(`common.${rebateItem.label}`)}</>
+                  {i18n.t(`common.${rebateItem.label}`)}
                 </option>
               );
             })}

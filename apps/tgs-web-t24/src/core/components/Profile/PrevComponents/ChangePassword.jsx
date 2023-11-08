@@ -74,9 +74,7 @@ class ChangePassword extends BaseProfile {
       i18n.t("profile.changePassword.editPassword"),
       <>
         <ItemContainer>
-          <LabelContainer>
-            {i18n.t("profile.changePassword.OriPass")}
-          </LabelContainer>
+          <LabelContainer>{i18n.t("profile.changePassword.OriPass")}</LabelContainer>
           <FormControl variant="outlined">
             <TextField
               type={"password"}
@@ -111,7 +109,7 @@ class ChangePassword extends BaseProfile {
           </FormControl>
         </ItemContainer>
       </>,
-      i18n.t("common.complete")
+      i18n.t("common.complete"),
     );
   }
 }

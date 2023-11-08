@@ -316,17 +316,15 @@ class Main extends Component {
               .map((key, index) => {
                 if (content[key] !== "" && content[key]) {
                   if (typeof content[key] === "number") {
-                    return <></>;
+                    return null;
                   } else if (content[key].includes("http")) {
                     return (
-                      <>
-                        <QRCodeImg
-                          key={index}
-                          src={content[key]}
-                          alt={content[key]}
-                          style={{ marginBottom: "10px" }}
-                        />
-                      </>
+                      <QRCodeImg
+                        key={index}
+                        src={content[key]}
+                        alt={content[key]}
+                        style={{ marginBottom: "10px" }}
+                      />
                     );
                   } else {
                     return (
@@ -601,24 +599,21 @@ class Main extends Component {
             } else {
               return Object.keys(this.props.exchangeRate).map((key) => {
                 return Object.keys(this.props.exchangeRate[key]).map((key2) => {
-                  if (key2 === "HKD") {
-                    return (
-                      <ExchangeRateContainer key={`${key}-${key2}`}>
-                        <LimitLabel>{i18n.t("deposit.exchangeRate")}: </LimitLabel>
-                        <LimitAmount>{` ${this.props.exchangeRate[key][key2].rate}`}</LimitAmount>
-                        <LimitLabel style={{ marginLeft: "26px" }}>
-                          {i18n.t("deposit.expectedPayment")}
-                        </LimitLabel>{" "}
-                        <LimitAmount>{` ${
-                          isNaN(this.props.amount) === false
-                            ? (this.props.amount / this.props.exchangeRate[key][key2].rate).toFixed(
-                                2,
-                              )
-                            : 0
-                        }`}</LimitAmount>
-                      </ExchangeRateContainer>
-                    );
-                  }
+                  if (key2 !== "HKD") return null;
+                  return (
+                    <ExchangeRateContainer key={`${key}-${key2}`}>
+                      <LimitLabel>{i18n.t("deposit.exchangeRate")}: </LimitLabel>
+                      <LimitAmount>{` ${this.props.exchangeRate[key][key2].rate}`}</LimitAmount>
+                      <LimitLabel style={{ marginLeft: "26px" }}>
+                        {i18n.t("deposit.expectedPayment")}
+                      </LimitLabel>{" "}
+                      <LimitAmount>{` ${
+                        isNaN(this.props.amount) === false
+                          ? (this.props.amount / this.props.exchangeRate[key][key2].rate).toFixed(2)
+                          : 0
+                      }`}</LimitAmount>
+                    </ExchangeRateContainer>
+                  );
                 });
               });
             }

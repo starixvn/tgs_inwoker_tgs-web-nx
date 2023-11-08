@@ -80,7 +80,7 @@ function Phone() {
         "",
         i18n
           .t("common.noReachMin")
-          .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`)
+          .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
       );
       return;
     }
@@ -148,7 +148,7 @@ function Phone() {
         const response = await getRegisterStatus();
 
         if (response?.IsSuccess) {
-          var currentStepKey = response.data;
+          const currentStepKey = response.data;
           if (currentStepKey === "SetPhoneDontCareDuplicate") {
             const responseSetPhone = await newRegister("SetPhoneDontCareDuplicate", {
               areacode: areacode,
@@ -331,7 +331,7 @@ function Phone() {
             text2={i18n.t(
               config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly
                 ? "common.customerService"
-                : "profile.phone.here"
+                : "profile.phone.here",
             )}
           />
         )

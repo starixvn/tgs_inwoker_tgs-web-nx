@@ -88,33 +88,29 @@ class Line extends BaseProfile {
   render() {
     return this.setupContent(
       i18n.t("common.line"),
-      <>
-        <ItemContainer>
-          <LabelContainer>{i18n.t("common.line")}</LabelContainer>
-          <FormControl variant="outlined">
-            <TextField
-              value={this.state.line}
-              onChange={this.handleChangeNumber}
-              placeholder={i18n.t("profile.line.plsEnterLine")}
-              disabled={
-                this.state.isConfigured &&
-                (config.features.ChangesNotAllowed ||
-                  config.features.Profile_ExistingDetails_ViewOnly)
-              }
-              maxLength={15}
-            />
-          </FormControl>
-        </ItemContainer>
-      </>,
+      <ItemContainer>
+        <LabelContainer>{i18n.t("common.line")}</LabelContainer>
+        <FormControl variant="outlined">
+          <TextField
+            value={this.state.line}
+            onChange={this.handleChangeNumber}
+            placeholder={i18n.t("profile.line.plsEnterLine")}
+            disabled={
+              this.state.isConfigured &&
+              (config.features.ChangesNotAllowed ||
+                config.features.Profile_ExistingDetails_ViewOnly)
+            }
+            maxLength={15}
+          />
+        </FormControl>
+      </ItemContainer>,
       this.state.isConfigured && config.features.ChangesNotAllowed
         ? i18n.t("common.configured")
-        : this.state.line !== this.props.account.member_line &&
-            i18n.t("common.complete"),
+        : this.state.line !== this.props.account.member_line && i18n.t("common.complete"),
       (() => {
         if (
           this.state.isConfigured &&
-          (config.features.ChangesNotAllowed ||
-            config.features.Profile_ExistingDetails_ViewOnly)
+          (config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly)
         ) {
           return (
             <BottomNote
@@ -124,12 +120,12 @@ class Line extends BaseProfile {
                 config.features.ChangesNotAllowed ||
                   config.features.Profile_ExistingDetails_ViewOnly
                   ? "common.customerService"
-                  : "profile.line.here"
+                  : "profile.line.here",
               )}
             />
           );
         }
-      })()
+      })(),
     );
   }
 }
