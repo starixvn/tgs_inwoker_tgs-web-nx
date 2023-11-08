@@ -12,3 +12,5 @@ export const providerStatus = {
   Archived: 2,
   Maintenance: 3,
 };
+
+export const SHOW_CATEGORY_AMOUNT = 15;

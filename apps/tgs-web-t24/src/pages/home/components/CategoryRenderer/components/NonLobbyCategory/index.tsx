@@ -1,43 +1,43 @@
 import searchIcon from "@/assets/t23/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
-import GameCard from "@/pages/home/components/GameCard";
-import GameFilterTag from "@/pages/home/components/GameFilterTag";
-import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
-import SearchInput from "@/pages/home/components/SearchInput";
 import config from "@/config/config";
 import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCategoryList";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { useGameTypeList } from "@/core/hooks/pages/home/useGameTypeList";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import Common from "@/core/utils/Common";
 import i18n from "@/core/utils/i18n";
-import { useGameTypeList } from "@/hooks/home/useGameTypeList";
+import GameCard from "@/pages/home/components/GameCard";
+import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
+import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12px 10px;
-  gap: 12px;
+  padding: 20px 17px;
   flex-shrink: 0;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
 
   ${media.sm} {
     background-color: transparent;
+    padding: 32px 0px;
   }
 `;
 
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
   align-content: flex-start;
-  gap: 8px;
-  flex-shrink: 0;
   width: 100%;
+  row-gap: 12px;
+  column-gap: 8px;
+  align-self: stretch;
+  
+  ${media.sm} {
+    gap: 31px;
+  }
 `;
 
 const CategoryLabel = styled.div`
@@ -62,22 +62,6 @@ const CategoryTitle = styled.div`
   padding: 10px 0px;
 `;
 
-const FilterSection = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12px 10px;
-  gap: 12px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
-
-  ${media.sm} {
-    background-color: transparent;
-  }
-`;
-
 const NonLobbyCategory = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType, searchString, handleChangeSearch } = useHomeGameContext();
@@ -100,7 +84,7 @@ const NonLobbyCategory = () => {
               />
             </SearchInputWrapper>
           </CategoryLabel>
-          <GameFilterTag />
+          {/* <GameFilterTag /> */}
         </>
       )}
       {isDesktopSize && <HomeGameFilterTag />}
@@ -113,11 +97,9 @@ const NonLobbyCategory = () => {
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
+                imageUrl={`${config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                  }.jpg`}
               />
             ))}
           {!hasMappingData && !isLoading && <div>No data</div>}

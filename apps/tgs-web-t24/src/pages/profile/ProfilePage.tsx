@@ -1,20 +1,21 @@
-import React, { useMemo } from "react";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import UserWalletInfo from "@/components/project/UserWalletInfo";
+import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import {
   profilePageDictionary,
   ProfilePathEnum,
 } from "@/core/components/Profile/profilePageDictionary";
-import { useLocation } from "react-router";
+import { useRwd } from "@/core/hooks/tools/useRwd";
 import { ValueOf } from "@/core/types/valueOf";
-import UserWalletInfo from "@/components/project/UserWalletInfo";
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
-import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import React, { useMemo } from "react";
+import { useLocation } from "react-router";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const ProfilePageContainer = styled.div`
   padding: 0 22px 22px;
-  max-width: calc(1072px + 22px * 2);
+  max-width: calc(${MAIN_CONTENT_MAX_WIDTH} + 22px * 2);
   margin: auto;
 `;
 

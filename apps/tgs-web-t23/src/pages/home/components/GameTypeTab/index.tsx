@@ -1,7 +1,7 @@
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import useGameTypeList from "@/core/hooks/pages/home/useGameTypeList";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 import styled from "styled-components";
 import Tab from "./Tab";
 

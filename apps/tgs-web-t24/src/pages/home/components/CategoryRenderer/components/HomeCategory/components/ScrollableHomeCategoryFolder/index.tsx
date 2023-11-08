@@ -1,11 +1,13 @@
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
+import Loading from "@/components/UI/Loading";
 import config from "@/config/config";
+import { SHOW_CATEGORY_AMOUNT } from "@/core/constants/games";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import Common from "@/core/utils/Common";
-import { useHistory } from "react-router";
+import AllCard from "@/pages/home/components/AllCard";
+import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
+import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
-import HomeGameCard from "../HomeGameCard";
 
 const HomeCategorySection = styled.div`
   width: 100%;
@@ -31,18 +33,46 @@ const CategoryTitle = styled.div`
 
 const CategoryContent = styled.div`
   width: 100%;
+  max-height: 302px;
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   box-sizing: border-box;
-  padding: 12px 0px 12px 20px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 30vh;
-  gap: 12px;
+  height: 33%; //302/926
+  gap: 8px;
   border-radius: 0px 0px 0px 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
+
+  ${media.sm} {
+    height: 56%;
+    gap: 30px;
+    max-width: 1200px;
+    max-height: 600px;
+    padding: 40px 20px;
+    margin: 0 auto;
+    scroll-snap-type: unset;
+
+    &::-webkit-scrollbar {
+      height: 12px;
+      background-color: #1d1d1d40;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
+      border-radius: 8px;
+      background: ${(props) => props.theme.mainDarkBackground};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
+      background-color: ${(props) => props.theme.mainLightBackground};
+    }
+  }
 `;
 
 type Props = {
@@ -51,62 +81,37 @@ type Props = {
   isLoading: boolean;
 };
 
-const ScrollableHomeCategoryFolder = ({
-  title,
-  dataList,
-  isLoading
-}: Props) => {
-  const { account } = useAccountStore();
-  const history = useHistory();
-  // const [filteredGameList, setFilteredGameList] = useState<any[]>([]);
-  // const [visibleGameCount, setVisibleGameCount] = useState(showDataLength);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const { isMobileSize, isDesktopSize } = useRwd();
-
-  // const statusMap = groupBy_gameType.reduce<{ [key in string]: number }>(
-  //   (accumulator, groupByGameItem) => {
-  //     groupByGameItem.forEach((item) => {
-  //       accumulator[item.gpcode] = item.status;
-  //     });
-  //     return accumulator;
-  //   },
-  //   {}
-  // );
-
-  // const handleLoadMoreClick = () => {
-  //   setVisibleGameCount(visibleGameCount + showDataLength);
-  // };
-
-  // const launchGame = (gameId: number, gpcode: string) => {
-  //   if (!account.token) {
-  //     history.push("/login");
-  //     return;
-  //   }
-
-  //   Common.closePreviousPopup();
-  //   Common.PopupCenter(`/joingame/${gameId}/${gpcode}`, "gamewindow");
-  // };
-
-  // console.log("dataList", dataList);
+const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => {
+  const hasMappingData = !!dataList.length;
 
   return (
-    <HomeCategorySection>
-      <CategoryTab>
-        <CategoryTitle>{title}</CategoryTitle>
-      </CategoryTab>
-      <CategoryContent>
-        {!!dataList.length &&
-          dataList.map((gameItem) => (
-            <HomeGameCard
-              key={gameItem.id}
-              gameItem={gameItem}
-              isActive={gameItem.isactive}
-              imageUrl={`${config.sourceUrl}${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code}.jpg`}
-            />
-          ))}
-        {!dataList.length && !isLoading && <div>No data</div>}
-      </CategoryContent>
-    </HomeCategorySection>
+    <>
+      <HomeCategorySection>
+        <CategoryTab>
+          <CategoryTitle>{title}</CategoryTitle>
+        </CategoryTab>
+        <CategoryContent>
+          {hasMappingData &&
+            dataList
+              .slice(0, SHOW_CATEGORY_AMOUNT)
+              .map((gameItem) => (
+                <HomeGameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
+                />
+              ))}
+          {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard />}
+        </CategoryContent>
+      </HomeCategorySection>
+
+      <Loading show={isLoading} />
+    </>
   );
 };
 
