@@ -33,6 +33,8 @@ const CategoryTitle = styled.div`
 
 const CategoryContent = styled.div`
   width: 100%;
+  max-height: 288px; //home
+  /* max-height: 232px; */
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
@@ -41,15 +43,18 @@ const CategoryContent = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 36vh;
-  gap: 12px;
+  height: 25%; //232/926
+  gap: 8px;  //home
+  /* gap: 12px; */ //sot
   border-radius: 0px 0px 0px 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
 
   ${media.sm} {
-    height: 58vh;
-    gap: 22px;
+    height: 53%;
+    row-gap: 20px;
     max-width: 1200px;
+    max-height: 570px;
+    padding: 40px 20px;
     margin: 0 auto;
     scroll-snap-type: unset;
     

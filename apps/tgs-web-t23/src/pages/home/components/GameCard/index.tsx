@@ -61,14 +61,16 @@ const GameCardContent = styled.div`
 
 const GameCardBg = styled.div`
   width: calc(30.3% - 10px);
+  max-width: 110px;
   position: relative;
   cursor: pointer;
   aspect-ratio: 110 / 142;
 
   ${media.sm} {
-    width: calc(19.2% - 30px);
-    min-width: 190px;
-    aspect-ratio: 190 / 230;
+    width: calc(19.2% - 40px);
+    min-width: 190px;         //home
+    /* min-width: 170px; */   //sot
+    aspect-ratio: 170 / 210; 
 
     &:hover {
       ${CardHoverBg} {
@@ -189,7 +191,10 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg>
-          <TextButton text={"Go"} />
+          <TextButton
+            text={"Go"}
+            onClick={launchGame}
+          />
         </CardHoverBg>
       )}
     </GameCardBg>

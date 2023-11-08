@@ -45,6 +45,11 @@ const Text = styled.div`
   font-size: 0.875rem;
   font-weight: 400;
   margin-top: 8px;
+
+  ${media.sm} {
+    font-size: 1.25rem;
+    margin-top: 16px;
+  }
 `;
 
 const AllCard = () => {
