@@ -8,7 +8,6 @@ import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 
 const HomeCategorySection = styled.div`
   width: 100%;
@@ -56,7 +55,7 @@ const CategoryContent = styled.div`
     padding: 40px 20px;
     margin: 0 auto;
     scroll-snap-type: unset;
-    
+
     &::-webkit-scrollbar {
       height: 12px;
       background-color: #1d1d1d40;
@@ -93,16 +92,20 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
         </CategoryTab>
         <CategoryContent>
           {hasMappingData &&
-            dataList.slice(0, SHOW_CATEGORY_AMOUNT).map((gameItem) => (
-              <HomeGameCard
-                key={gameItem.id}
-                gameItem={gameItem}
-                isActive={gameItem.isactive}
-                imageUrl={`${config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+            dataList
+              .slice(0, SHOW_CATEGORY_AMOUNT)
+              .map((gameItem) => (
+                <HomeGameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
                   }.jpg`}
-              />
-            ))}
+                />
+              ))}
           {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard />}
         </CategoryContent>
       </HomeCategorySection>
