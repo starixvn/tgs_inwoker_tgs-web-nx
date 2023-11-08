@@ -75,7 +75,7 @@ const settings = {
 };
 
 const Carousel = ({ children }: { children: React.ReactNode }) => {
-  return <Slider style={{overflow: "visible"}} {...settings} >{children}</Slider>;
+  return <Slider {...settings} >{children}</Slider>;
 };
 
 export default Carousel;
