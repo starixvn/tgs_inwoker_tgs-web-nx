@@ -12,6 +12,12 @@ export function usePopupAnnouncementToggle() {
 
   const isInHomePage = promotionList && promotionList.length > 0;
 
+  useEffect(() => {
+    handleOpenAnnouncement();
+    // no need dependency: handleOpenAnnouncement
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(promotionList)]);
+
   const handleOpenAnnouncement = () => {
     if (!config.features.PopupAnnouncement) {
       return;

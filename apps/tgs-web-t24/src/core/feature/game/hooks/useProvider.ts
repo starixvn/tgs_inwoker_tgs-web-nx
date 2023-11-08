@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { GameTypeEnum } from "@/api-services/utils/Enum";
+import config from "@/config/config";
 import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
 import { GameService } from "@/core/services/GameService";
-import config from "@/config/config";
-import { GameTypeEnum } from "@/api-services/utils/Enum";
+import { useEffect, useState } from "react";
 
 interface ProviderState {
   isLoading: boolean;
@@ -54,7 +54,7 @@ export function useProvider() {
 }
 
 function getFormattedProviderList(providerList: ProviderDto[]): ProviderDto[] {
-  return providerList.map((provider) => {
+  return providerList && providerList.map((provider) => {
     if (provider.code === "BTI" && config.currency === "PHP") {
       return {
         ...provider,

@@ -1,8 +1,9 @@
-import { FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { GameService } from "@/core/services/GameService";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { getFilteredGameListByTag } from "@/core/feature/game/utils/getFilteredGameListByTag";
+import { getFilteredGameListByProvider } from "@/core/feature/game/utils/getFilteredGameListByProvider";
 
 interface GetGameListState {
   isLoading: boolean;
@@ -17,10 +18,16 @@ export function useGetNonLobbyCategoryList() {
     error: null,
   });
 
-  const { activeGameType, updateGpCodeList, activeFilterTag, searchString } = useHomeGameContext();
-  const { favoriteList } = useHomeGameContext();
+  const {
+    activeGameType,
+    updateGpCodeList,
+    activeFilterTag,
+    favoriteList,
+    activeProviderFilterTag,
+    searchString,
+  } = useHomeGameContext();
 
-  const getGameList = async () => {
+  const fetchGameList = useCallback(async () => {
     try {
       setGameListState({
         isLoading: true,
@@ -43,62 +50,34 @@ export function useGetNonLobbyCategoryList() {
         error: error,
       });
     }
-  };
+  }, [activeGameType]);
 
   useEffect(() => {
-    getGameList().then((response) => {
+    fetchGameList().then((response) => {
       if (!response?.data) return;
       updateGpCodeList(response.data);
     });
   }, [activeGameType]);
 
-  const filteredGameList = useMemo(() => {
-    switch (activeFilterTag.tagType) {
-      default:
-      case FilterTagTypeEnum.ALL:
-        return gameListState.gameList;
-
-      case FilterTagTypeEnum.FAVORITE:
-        return gameListState.gameList.filter((gameItem) => {
-          return favoriteList.includes(gameItem.id);
-        });
-
-      case FilterTagTypeEnum.HOT:
-        return gameListState.gameList.filter((gameItem) => {
-          return gameItem.tag.hot;
-        });
-
-      case FilterTagTypeEnum.NEW:
-        return gameListState.gameList.filter((gameItem) => {
-          return gameItem.tag.new;
-        });
-
-      case FilterTagTypeEnum.RECOMMEND:
-        return gameListState.gameList.filter((gameItem) => {
-          return gameItem.tag.recommend;
-        });
-
-      case FilterTagTypeEnum.PROVIDER:
-        if (!activeFilterTag.gpCode) return [];
-
-        return gameListState.gameList.filter((gameItem) => {
-          return gameItem.gpcode === activeFilterTag.gpCode;
-        });
-    }
+  const filteredGameListByTag = useMemo(() => {
+    return getFilteredGameListByTag(gameListState.gameList, activeFilterTag, favoriteList);
   }, [JSON.stringify(gameListState.gameList), activeFilterTag]);
 
-  const searchedGamelist = useMemo(() => {
-    if (!searchString) return filteredGameList;
+  const filteredGameListByProvider = useMemo(() => {
+    return getFilteredGameListByProvider(filteredGameListByTag, activeProviderFilterTag);
+  }, [JSON.stringify(filteredGameListByTag), activeProviderFilterTag]);
 
-    return filteredGameList.filter((item) => {
+  const searchedGameList = useMemo(() => {
+    if (!searchString) return filteredGameListByProvider;
+
+    return filteredGameListByProvider.filter((item) => {
       return item.name.toLowerCase().includes(searchString.toLowerCase());
-    })
-
-  }, [searchString, JSON.stringify(filteredGameList)])
+    });
+  }, [searchString, JSON.stringify(filteredGameListByProvider)]);
 
   return {
     isLoading: gameListState.isLoading,
-    gameList: searchedGamelist,
+    gameList: searchedGameList,
     error: gameListState.error,
   };
 }

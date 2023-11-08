@@ -1,4 +1,3 @@
-import React from "react";
 import AffiliateInfoRow from "@/pages/affiliate/components/AffiliateInfoRow";
 import RebateTable from "@/pages/affiliate/components/RebateTable";
 import { Button } from "@/components/UI/Button";
@@ -6,6 +5,7 @@ import { useRebateTable } from "@/core/components/Affiliate/hooks/useRebateTable
 import QRCode from "react-qr-code";
 import styled from "styled-components";
 import i18n from "@/utils/i18n";
+import React from "react";
 import { Select } from "@/components/UI/Select";
 import { FormControl } from "@/components/styled-component/ProfileForms";
 import { ImageActionEnum, useImageActions } from "@/core/hooks/tools/useImageActions";

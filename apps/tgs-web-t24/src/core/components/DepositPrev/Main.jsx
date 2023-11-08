@@ -15,11 +15,11 @@ import {
   Remark,
   SubmitButton,
   UploadFileButton,
+  UploadFileTag,
 } from "@/components/styled-component/ProfileForms";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
-import { UploadFileTag } from "../../../components/styled-component/ProfileForms";
 
 const LimitLabel = styled.span`
   color: ${({ theme }) => theme.tertiary};
@@ -685,7 +685,11 @@ class Main extends Component {
                     accept="image/jpg, image/jpeg, image/png, image/tiff"
                     style={{ display: "none" }}
                   />
-                  <UploadFileTag>{this.props.files ? this.props.files[0].name : ""}</UploadFileTag>
+                  {this.props.files ? (
+                    <UploadFileTag>{this.props.files[0].name}</UploadFileTag>
+                  ) : (
+                    ""
+                  )}
                 </ItemContainer>
                 <Remark>
                   {i18n.t(
