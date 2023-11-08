@@ -1,7 +1,7 @@
 import picMask from "@/assets/t23/images/home/picMask.svg";
 import { providerStatus } from "@/core/constants/games";
-import useDynamicFontSize from "@/core/hooks/pages/home/useDynamicFontSize";
 import { useRwd } from "@/core/hooks/tools/useRwd";
+import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
