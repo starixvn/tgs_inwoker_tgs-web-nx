@@ -1,16 +1,16 @@
 import { useFavoriteList } from "@/core/feature/game/hooks/useFavoriteList";
+import { useProviderFilter } from "@/core/feature/game/hooks/useFilter/useProviderFilter";
+import { useTagFilter } from "@/core/feature/game/hooks/useFilter/useTagFilter";
 import { useGameSearch } from "@/core/feature/game/hooks/useGameSearch";
 import { useGameType } from "@/core/feature/game/hooks/useGameType";
 import { useGpCode } from "@/core/feature/game/hooks/useGpCode";
 import { useProvider } from "@/core/feature/game/hooks/useProvider";
+import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
+import useGameTypeList from "@/core/hooks/pages/home/useGameTypeList";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 import React, { createContext } from "react";
-import { useTagFilter } from "@/core/feature/game/hooks/useFilter/useTagFilter";
-import { useProviderFilter } from "@/core/feature/game/hooks/useFilter/useProviderFilter";
-import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 
 export const initialState: {
   // provider
