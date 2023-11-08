@@ -7,16 +7,16 @@ import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
 
 const SupportCardContainer = styled.div`
-  border-radius: 30px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 20px;
-  background: #262626;
+  padding: 14px 24px;
+  background: ${({ theme }) => theme.gray85};
   color: ${({ theme }) => theme.white};
-  font-size: 1rem;
+  font-size: 0.937rem;
   font-weight: 400;
-  line-height: 1.098rem;
+  line-height: 1.184rem;
 
   & > * {
     margin-bottom: 20px;
@@ -62,26 +62,9 @@ const iconSwitcher = (icon: string) => {
 };
 
 const IconContainer = styled.div`
-  width: 55px;
-  height: 55px;
-  border-radius: 28px;
-  background: ${({ theme }) => theme.white};
-  border: 11px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const ContactButton = styled.div`
-  width: 100%;
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.primary};
-  padding: 6px;
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 0.878rem;
-  border-radius: 5px;
 `;
 
 type Props = {
@@ -102,12 +85,8 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
           iconUrl={`${import.meta.env.BASE_URL}assets/images/support/${iconSwitcher(
             brandsSupport.type,
           )}`}
-          width={"40px"}
-          height={"40px"}
-          style={{
-            display: "block",
-            overflow: "hidden",
-          }}
+          width={"55px"}
+          height={"55px"}
         />
       </IconContainer>
 

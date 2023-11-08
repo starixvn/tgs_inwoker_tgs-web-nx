@@ -27,16 +27,7 @@ const muiTheme = createTheme({
       main: theme.primary,
     },
   },
-  components: {
-    // MuiPickersLayout: {
-    //   styleOverrides: {
-    //     root: {
-    //       color: theme.primary,
-    //       display: "block",
-    //     },
-    //   },
-    // },
-  },
+  components: {},
 });
 
 export const DatePicker = (props: MobileDatePickerProps<any>) => {
@@ -85,13 +76,18 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  background: ${({ theme }) => theme.mainLightBackground};
-  border-radius: 30px;
+  background: ${({ theme }) => theme.gray95};
+  border-radius: 5px;
   //margin-top: 10px;
 
   .MuiInputBase-input {
+    cursor: pointer;
     background: none;
-    color: ${({ theme }) => theme.lightGray};
+    color: ${({ theme }) => theme.white};
+
+    &:read-only {
+      color: ${({ theme }) => theme.gray60};
+    }
   }
 
   .MuiInput-underline:before,
@@ -116,12 +112,11 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
     return $disabled && `pointer-events: none;`;
   }}
   border-radius: 5px;
-  //margin-top: 10px;
-  //border: 1px solid white;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.gray95};
   .MuiInputBase-input {
     background: none;
     color: ${({ theme }) => theme.white};
+    cursor: pointer;
   }
 
   .MuiInput-underline:before,

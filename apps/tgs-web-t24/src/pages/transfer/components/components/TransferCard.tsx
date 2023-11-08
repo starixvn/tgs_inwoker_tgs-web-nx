@@ -10,7 +10,7 @@ import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/materia
 import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.tertiary};
+  background: ${({ theme }) => theme.gray95};
   color: ${({ theme }) => theme.white};
   padding: 12px 15px;
   border-radius: 10px;
@@ -156,7 +156,7 @@ const TransferCard = ({
             onChange={handleChangeTransferAmount}
             sx={{
               borderRadius: "6px",
-              background: theme.mainBackground,
+              background: theme.gray85,
             }}
           />
         </ColContainer>

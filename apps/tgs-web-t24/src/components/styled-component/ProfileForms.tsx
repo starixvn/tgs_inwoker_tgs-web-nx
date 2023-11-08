@@ -26,7 +26,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   borderRadius: "5px",
   background: theme.palette.gray95,
   maxWidth: "500px",
-
+  height: "48px",
   width: "100%",
   fontSize: "0.875rem",
   "& fieldset": {
@@ -38,7 +38,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   // },
 
   "& input": {
-    background: theme.palette.mainBackground,
+    // background: theme.palette.mainBackground,
   },
 })) as typeof MuiFormControl;
 

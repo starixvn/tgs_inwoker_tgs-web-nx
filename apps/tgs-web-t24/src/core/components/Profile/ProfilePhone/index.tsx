@@ -9,11 +9,7 @@ type Props = {};
 const ProfilePhonePage = (props: Props) => {
   useUpdatePageName(i18n.t("common.phoneNumber"));
 
-  const { alert } = useNotifications();
-  const history = useHistory();
-
-  //@ts-ignore
-  return <Phone alert={alert} appHistory={history} />;
+  return <Phone />;
 };
 
 export default ProfilePhonePage;

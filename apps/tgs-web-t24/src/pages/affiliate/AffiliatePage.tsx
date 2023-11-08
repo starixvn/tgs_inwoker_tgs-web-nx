@@ -9,7 +9,7 @@ import AccountPaper from "@/components/project/AccountPaper";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
 const AffiliateContainer = styled.div`
-  padding: 21px 22px;
+  padding: 0 22px;
   max-width: calc(1072px + 22px * 2);
   margin: auto;
 `;

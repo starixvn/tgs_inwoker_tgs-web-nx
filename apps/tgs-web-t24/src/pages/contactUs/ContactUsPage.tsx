@@ -7,7 +7,7 @@ import iconAffiliate from "@/assets/t23/images/badge/icon-affiliate.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 
 const ContactUsContainer = styled.div`
-  padding: 21px 22px;
+  padding: 0 22px;
   max-width: calc(1072px + 22px * 2);
   margin: auto;
 `;

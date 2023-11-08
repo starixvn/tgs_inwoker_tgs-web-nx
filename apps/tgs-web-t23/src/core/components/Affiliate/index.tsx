@@ -113,18 +113,12 @@ const Affiliate = (props: Props) => {
           <QRCodeButton
             variant={isCopied ? "outlined" : "contained"}
             onClick={() => handleQrAction(ImageActionEnum.COPY)}
-            sx={{
-              color: "black",
-            }}
           >
             {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
           </QRCodeButton>
           <QRCodeButton
             variant={isDownloaded ? "outlined" : "contained"}
             onClick={() => handleQrAction(ImageActionEnum.DOWNLOAD)}
-            sx={{
-              color: "black",
-            }}
           >
             {isDownloaded ? i18n.t("common.download") : i18n.t("common.download")}
           </QRCodeButton>
