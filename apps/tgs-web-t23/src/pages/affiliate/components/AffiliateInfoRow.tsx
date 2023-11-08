@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Button } from "@/components/UI/Button";
 import i18n from "@/utils/i18n";
+import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
@@ -70,6 +71,7 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         sx={{
           width: "66px",
           color: "black",
+          background: theme.primary,
         }}
       >
         {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}

@@ -2,12 +2,13 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Button } from "@/components/UI/Button";
 import i18n from "@/utils/i18n";
+import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.tertiaryDark};
-  border-radius: 5px;
-  padding: 13px 17px;
+  background: ${({ theme }) => theme.mainLightBackground};
+  border-radius: 30px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -18,7 +19,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.318rem;
-    color: ${({ theme }) => theme.tertiaryLight};
+    color: ${({ theme }) => theme.white};
   }
 
   & .value {
@@ -67,11 +68,13 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         className={"button"}
         onClick={handleCopyText}
         variant={isCopied ? "outlined" : "contained"}
-        style={{
+        sx={{
           width: "66px",
+          color: "black",
+          background: theme.primary,
         }}
       >
-        <>{isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}</>
+        {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
       </Button>
     </AffiliateInfoRowContainer>
   );
