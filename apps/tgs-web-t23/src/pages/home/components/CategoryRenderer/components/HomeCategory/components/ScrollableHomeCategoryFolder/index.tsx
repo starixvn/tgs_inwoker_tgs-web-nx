@@ -5,7 +5,7 @@ import { SHOW_CATEGORY_AMOUNT } from "@/core/constants/games";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import Common from "@/core/utils/Common";
 import AllCard from "@/pages/home/components/AllCard";
-import GameCard from "@/pages/home/components/GameCard";
+import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
@@ -33,8 +33,7 @@ const CategoryTitle = styled.div`
 
 const CategoryContent = styled.div`
   width: 100%;
-  max-height: 288px; //home
-  /* max-height: 232px; */
+  max-height: 302px;
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
@@ -43,17 +42,16 @@ const CategoryContent = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 25%; //232/926
-  gap: 8px;  //home
-  /* gap: 12px; */ //sot
+  height: 33%; //302/926
+  gap: 8px;
   border-radius: 0px 0px 0px 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
 
   ${media.sm} {
-    height: 53%;
-    row-gap: 20px;
+    height: 56%;
+    gap: 30px;
     max-width: 1200px;
-    max-height: 570px;
+    max-height: 600px;
     padding: 40px 20px;
     margin: 0 auto;
     scroll-snap-type: unset;
@@ -95,7 +93,7 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
         <CategoryContent>
           {hasMappingData &&
             dataList.slice(0, SHOW_CATEGORY_AMOUNT).map((gameItem) => (
-              <GameCard
+              <HomeGameCard
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}

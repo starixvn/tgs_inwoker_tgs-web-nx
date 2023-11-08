@@ -2,6 +2,7 @@ import cardgame from "@/assets/t23/images/home/gameType/cardGame.svg";
 import egame from "@/assets/t23/images/home/gameType/egame.svg";
 import esports from "@/assets/t23/images/home/gameType/esports.svg";
 import fishing from "@/assets/t23/images/home/gameType/fishing.svg";
+import home from "@/assets/t23/images/home/gameType/home.svg";
 import live from "@/assets/t23/images/home/gameType/liveCasino.svg";
 import lottery from "@/assets/t23/images/home/gameType/lottery.svg";
 import sabong from "@/assets/t23/images/home/gameType/sabong.svg";
@@ -24,13 +25,13 @@ export const useGameTypeList = () => {
 
   useEffect(() => {
     const gameTypeList: GameTypeItem[] = [
-      // {
-      //   key: "home",
-      //   iconUrl: home,
-      //   text: i18n.t("common.home"),
-      //   fontSize: "small",
-      //   gameType: GameTypeEnum.NONE,
-      // },
+      {
+        key: "home",
+        iconUrl: home,
+        text: i18n.t("common.home"),
+        fontSize: "small",
+        gameType: GameTypeEnum.NONE,
+      },
       {
         key: "slots",
         iconUrl: slot,

@@ -60,7 +60,7 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(30.3% - 10px);
+  width: calc(30.3% - 5px);
   max-width: 110px;
   position: relative;
   cursor: pointer;
@@ -138,7 +138,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
   const { account } = useAccountStore();
   const history = useHistory();
-  const { favoriteList, fetchFavoriteList } = useHomeGameContext();
+  const { favoriteList, fetchFavoriteList, activeGameType } = useHomeGameContext();
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
@@ -170,6 +170,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       setIsUpdatingFavorite(false);
     }
   };
+
+  console.log("activeGameType", activeGameType)
 
   return (
     <GameCardBg onClick={launchGame}>

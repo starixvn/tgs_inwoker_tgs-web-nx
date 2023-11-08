@@ -184,6 +184,7 @@ const VendorCard = ({
       {isDesktopSize && <VendorCardHoverBg>
         <TextButton
           text={"Go"}
+          onClick={launchGame}
         />
       </VendorCardHoverBg>}
     </VendorCardBg>
