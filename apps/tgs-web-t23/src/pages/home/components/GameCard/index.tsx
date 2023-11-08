@@ -67,9 +67,8 @@ const GameCardBg = styled.div`
   aspect-ratio: 110 / 142;
 
   ${media.sm} {
-    width: calc(19.2% - 40px);
-    min-width: 190px;         //home
-    /* min-width: 170px; */   //sot
+    width: calc(16.7% - 30px);
+    min-width: 170px;
     aspect-ratio: 170 / 210; 
 
     &:hover {

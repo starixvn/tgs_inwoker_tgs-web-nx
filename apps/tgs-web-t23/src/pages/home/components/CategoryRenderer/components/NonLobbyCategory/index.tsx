@@ -12,31 +12,33 @@ import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
+import GameFilterTag from "../../../GameFilterTag";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 12px 10px;
-  gap: 12px;
   flex-shrink: 0;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
 
   ${media.sm} {
     background-color: transparent;
+    padding: 32px 0px;
   }
 `;
 
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: flex-start;
-  align-content: flex-start;
-  gap: 8px;
+  gap: 10px;
   flex-shrink: 0;
   width: 100%;
+  
+  ${media.sm} {
+    gap: 31px;
+  }
 `;
 
 const CategoryLabel = styled.div`
@@ -83,7 +85,7 @@ const NonLobbyCategory = () => {
               />
             </SearchInputWrapper>
           </CategoryLabel>
-          {/* <GameFilterTag /> */}
+          <GameFilterTag />
         </>
       )}
       {isDesktopSize && <HomeGameFilterTag />}
