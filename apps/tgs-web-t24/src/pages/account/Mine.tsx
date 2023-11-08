@@ -1,20 +1,21 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import InfoCard from "@/pages/account/components/InfoCard";
-import AccountNavigations from "./components/AccountNavigations";
-import { useHistory } from "react-router-dom";
-import i18n from "@/utils/i18n";
-import { media } from "@/theme/breakpoints";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import { useAuth } from "@/core/feature/useAuth";
+import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
+import { useRwd } from "@/core/hooks/tools/useRwd";
+import InfoCard from "@/pages/account/components/InfoCard";
 import MemberCenterBorder from "@/pages/account/components/MemberCenterBorder";
+import { media } from "@/theme/breakpoints";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import i18n from "@/utils/i18n";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+import AccountNavigations from "./components/AccountNavigations";
 
 const AccountContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 18px 0 0;
-  max-width: 1072px;
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
   margin: auto;
 
   & > div {

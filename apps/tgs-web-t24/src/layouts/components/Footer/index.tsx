@@ -3,6 +3,7 @@ import SocialMedia from "@/components/project/SocialMedia";
 import config from "@/config/config";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
@@ -23,7 +24,7 @@ const FooterContainer = styled.div`
 const FooterGroups = styled.div`
   width: 100%;
   display: flex;
-  max-width: 1072px;
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
   gap: 20px;
   margin-bottom: 20px;
 `;

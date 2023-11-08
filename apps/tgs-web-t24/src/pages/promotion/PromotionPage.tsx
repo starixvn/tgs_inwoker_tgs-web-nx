@@ -1,14 +1,15 @@
+import { usePromotionPage } from "@/core/hooks/pages/promotion/usePromotionPage";
 import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import { usePromotionPage } from "@/core/hooks/pages/promotion/usePromotionPage";
+import styled from "styled-components";
 
 const PromotionContainer = styled.div`
   padding: 22px 18px;
   ${media.sm} {
-    max-width: 1072px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
   }
 `;
