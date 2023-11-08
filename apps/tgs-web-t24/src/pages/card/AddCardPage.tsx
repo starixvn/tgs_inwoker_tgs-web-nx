@@ -10,7 +10,7 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import AccountPaper from "@/components/project/AccountPaper";
 
 const CardContainer = styled.div`
-  padding: 21px 22px;
+  padding: 0 22px;
   max-width: calc(1072px + 22px * 2);
   margin: auto;
 `;

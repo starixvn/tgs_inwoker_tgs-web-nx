@@ -15,10 +15,10 @@ const CardsContainer = styled.div`
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  padding-top: 16px;
 `;
 
-type Props = {};
-const Support = ({}: Props) => {
+const Support = () => {
   const { general } = useGeneralStore();
   const { handleContactCs } = useContactCS();
   const brandsSupportList = general.brandsSupport;
@@ -45,9 +45,8 @@ const Support = ({}: Props) => {
 
   return (
     <SupportContainer>
+      <HeaderImage />
       <CardsContainer>
-        <HeaderImage />
-
         {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
             brandsSupport={{

@@ -5,7 +5,7 @@ import { media } from "@/theme/breakpoints";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const AccountPaperContainer = styled.div`
-  padding: 30px;
+  padding: 0;
   border-radius: 4px;
 
   ${media.sm} {
@@ -23,20 +23,18 @@ const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
   const { isDesktopSize } = useRwd();
 
   return (
-    <>
-      <AccountPaperContainer>
-        {isDesktopSize && (
-          <PageBadge
-            iconUrl={iconUrl}
-            text={pageName}
-            style={{
-              marginBottom: "12px",
-            }}
-          />
-        )}
-        {children}
-      </AccountPaperContainer>
-    </>
+    <AccountPaperContainer>
+      {isDesktopSize && (
+        <PageBadge
+          iconUrl={iconUrl}
+          text={pageName}
+          style={{
+            marginBottom: "12px",
+          }}
+        />
+      )}
+      {children}
+    </AccountPaperContainer>
   );
 };
 
