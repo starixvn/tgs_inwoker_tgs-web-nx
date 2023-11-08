@@ -25,13 +25,13 @@ export const useGameTypeList = () => {
 
   useEffect(() => {
     const gameTypeList: GameTypeItem[] = [
-      // {
-      //   key: "home",
-      //   iconUrl: home,
-      //   text: i18n.t("common.home"),
-      //   fontSize: "small",
-      //   gameType: GameTypeEnum.NONE,
-      // },
+      {
+        key: "home",
+        iconUrl: home,
+        text: i18n.t("common.home"),
+        fontSize: "small",
+        gameType: GameTypeEnum.NONE,
+      },
       {
         key: "slots",
         iconUrl: slot,
