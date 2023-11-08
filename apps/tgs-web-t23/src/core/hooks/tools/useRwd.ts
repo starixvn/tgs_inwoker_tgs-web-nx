@@ -9,7 +9,7 @@ export function useRwd() {
   const isXlSize = useMediaQuery(theme.breakpoints.only("xl"));
 
   const isMobileSize = isXsSize;
-  const isDesktopSize = isMdSize || isLgSize || isXlSize;
+  const isDesktopSize = isSmSize || isMdSize || isLgSize || isXlSize;
 
   return {
     isXsSize,

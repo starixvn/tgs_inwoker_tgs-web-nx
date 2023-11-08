@@ -73,13 +73,7 @@ class BaseProfile extends Component {
   showLoading(loading) {
     this.setState({ ...this.state, loading: loading });
   }
-  setupContent(
-    title,
-    body,
-    buttonTitle = i18n.t("common.submit"),
-    bottomNode,
-    noBack
-  ) {
+  setupContent(title, body, buttonTitle = i18n.t("common.submit"), bottomNode, noBack) {
     return (
       <Container>
         {body}

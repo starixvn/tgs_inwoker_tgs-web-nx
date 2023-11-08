@@ -11,6 +11,7 @@ import { FormControl } from "@/components/styled-component/ProfileForms";
 import { ImageActionEnum, useImageActions } from "@/core/hooks/tools/useImageActions";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { media } from "@/theme/breakpoints";
+import { QRCodeButton } from "@/pages/affiliate/components/QRCodeButton";
 
 const AffiliateContainer = styled.div`
   color: ${({ theme }) => theme.white};
@@ -109,18 +110,24 @@ const Affiliate = (props: Props) => {
 
         {/* QRCode action region */}
         <ActionButtonContainer>
-          <Button
+          <QRCodeButton
             variant={isCopied ? "outlined" : "contained"}
             onClick={() => handleQrAction(ImageActionEnum.COPY)}
+            sx={{
+              color: "black",
+            }}
           >
-            <>{isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}</>
-          </Button>
-          <Button
+            {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
+          </QRCodeButton>
+          <QRCodeButton
             variant={isDownloaded ? "outlined" : "contained"}
             onClick={() => handleQrAction(ImageActionEnum.DOWNLOAD)}
+            sx={{
+              color: "black",
+            }}
           >
-            <>{isDownloaded ? i18n.t("common.download") : i18n.t("common.download")}</>
-          </Button>
+            {isDownloaded ? i18n.t("common.download") : i18n.t("common.download")}
+          </QRCodeButton>
         </ActionButtonContainer>
 
         {/* Referral ID/Link */}
@@ -148,7 +155,7 @@ const Affiliate = (props: Props) => {
             {rebateItemList.map((rebateItem, index) => {
               return (
                 <option key={index} value={rebateItem.value}>
-                  <>{i18n.t(`common.${rebateItem.label}`)}</>
+                  {i18n.t(`common.${rebateItem.label}`)}
                 </option>
               );
             })}

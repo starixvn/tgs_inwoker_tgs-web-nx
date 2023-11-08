@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import { ReportContainer } from "@/core/components/Report/styles";
+import { ReportContainer } from "@/components/styled-component/Report";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { GeneralService } from "@/api-services/services/GeneralService";
 import {

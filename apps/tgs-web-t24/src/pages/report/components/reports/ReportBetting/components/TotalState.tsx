@@ -5,7 +5,7 @@ import {
   ReportSummary,
   ReportSummaryCol,
   ReportSummaryRow,
-} from "@/core/components/Report/styles";
+} from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
 import { RoundTotalDto } from "@/core/models/dto/report/GetRoundsTotalResDto";
 

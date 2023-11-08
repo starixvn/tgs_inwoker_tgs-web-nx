@@ -1,14 +1,14 @@
 import React from "react";
 import NoRecord from "@/pages/report/components/NoRecord";
+import moment from "moment";
+import i18n from "@/utils/i18n";
+import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
 import {
   ReportCard,
   ReportCardCol,
   ReportCardRow,
   ReportCardsContainer,
-} from "@/core/components/Report/styles";
-import moment from "moment";
-import i18n from "@/utils/i18n";
-import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
+} from "@/components/styled-component/Report";
 
 type Props = {
   withdrawalDetails: WithdrawFormViewModel[];

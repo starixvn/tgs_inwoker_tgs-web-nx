@@ -10,7 +10,7 @@ import {
   ReportSummary,
   ReportSummaryCol,
   ReportSummaryRow,
-} from "@/core/components/Report/styles";
+} from "@/components/styled-component/Report";
 import { useNotifications } from "@/core/feature/useNotifications";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";

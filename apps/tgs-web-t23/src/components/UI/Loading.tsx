@@ -1,6 +1,5 @@
-import { useHeader } from "@/core/feature/useHeader";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { DRAWER_WIDTH } from "@/theme/constants";
+import { DESKTOP_DRAWER_WIDTH } from "@/theme/constants";
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
 
@@ -11,11 +10,13 @@ type LoadingContainer = {
 };
 const LoadingContainer = styled.div<LoadingContainer>`
   width: ${({ $isMenuOpen }: LoadingContainer) =>
-    $isMenuOpen ? `calc(100% - ${DRAWER_WIDTH})` : "100%"};
+    $isMenuOpen ? `calc(100% - ${DESKTOP_DRAWER_WIDTH})` : "100%"};
   top: 0;
-  left: ${({ $isMenuOpen }: LoadingContainer) => ($isMenuOpen ? DRAWER_WIDTH : 0)};
+  left: ${({ $isMenuOpen }: LoadingContainer) => ($isMenuOpen ? DESKTOP_DRAWER_WIDTH : 0)};
   position: fixed;
-  transition: opacity 0.2s linear, height 0.02s linear 0.2s;
+  transition:
+    opacity 0.2s linear,
+    height 0.02s linear 0.2s;
   background-color: rgba(0, 0, 0, ${({ $opacity }: LoadingContainer) => $opacity});
   ${({ $open }) => ($open ? "opacity:1;height: 100%;" : "opacity:0;height:0px;")};
   z-index: 9999;
@@ -40,16 +41,10 @@ type Props = {
 
 const Loading = ({ show, opacity, noShrink }: Props) => {
   const { general } = useGeneralStore();
-  const { isMenuOpen } = useHeader();
-
   const backgroundOpacity = typeof opacity === "number" ? opacity : 0.5;
 
   return (
-    <LoadingContainer
-      $open={show}
-      $opacity={backgroundOpacity}
-      $isMenuOpen={isMenuOpen && !noShrink}
-    >
+    <LoadingContainer $open={show} $opacity={backgroundOpacity} $isMenuOpen={false}>
       <Inner>
         <LogoImg src={general.brand && general.brand.loadingUrl} />
         <div className="clear" />

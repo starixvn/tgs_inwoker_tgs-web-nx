@@ -88,33 +88,29 @@ class FacebookMessenger extends BaseProfile {
   render() {
     return this.setupContent(
       i18n.t("common.fb"),
-      <>
-        <ItemContainer>
-          <LabelContainer>{i18n.t("common.fb")}</LabelContainer>
-          <FormControl variant="outlined">
-            <TextField
-              value={this.state.fb}
-              onChange={this.handleChangeNumber}
-              placeholder={i18n.t("profile.fb.plsEnterFB")}
-              disabled={
-                this.state.isConfigured &&
-                (config.features.ChangesNotAllowed ||
-                  config.features.Profile_ExistingDetails_ViewOnly)
-              }
-              maxLength={15}
-            />
-          </FormControl>
-        </ItemContainer>
-      </>,
+      <ItemContainer>
+        <LabelContainer>{i18n.t("common.fb")}</LabelContainer>
+        <FormControl variant="outlined">
+          <TextField
+            value={this.state.fb}
+            onChange={this.handleChangeNumber}
+            placeholder={i18n.t("profile.fb.plsEnterFB")}
+            disabled={
+              this.state.isConfigured &&
+              (config.features.ChangesNotAllowed ||
+                config.features.Profile_ExistingDetails_ViewOnly)
+            }
+            maxLength={15}
+          />
+        </FormControl>
+      </ItemContainer>,
       this.state.isConfigured && config.features.ChangesNotAllowed
         ? i18n.t("common.configured")
-        : this.state.fb !== this.props.account.member_fb &&
-            i18n.t("common.complete"),
+        : this.state.fb !== this.props.account.member_fb && i18n.t("common.complete"),
       (() => {
         if (
           this.state.isConfigured &&
-          (config.features.ChangesNotAllowed ||
-            config.features.Profile_ExistingDetails_ViewOnly)
+          (config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly)
         ) {
           return (
             <BottomNote
@@ -124,12 +120,12 @@ class FacebookMessenger extends BaseProfile {
                 config.features.ChangesNotAllowed ||
                   config.features.Profile_ExistingDetails_ViewOnly
                   ? "common.customerService"
-                  : "profile.fb.here"
+                  : "profile.fb.here",
               )}
             />
           );
         }
-      })()
+      })(),
     );
   }
 }
@@ -144,7 +140,4 @@ const mapDispatchToProps = (dispatch) => {
     getAccountProfile: () => dispatch(accountAction.getAccountProfile(true)),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(FacebookMessenger));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FacebookMessenger));

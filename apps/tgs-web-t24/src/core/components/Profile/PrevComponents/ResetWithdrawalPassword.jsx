@@ -118,7 +118,7 @@ class ResetResetWithdrawalPassword extends Component {
           //   this.props.alert('', response.info)
           // }
         }
-      }
+      },
     );
   };
   showInfoMessage = (msg) => {
@@ -260,5 +260,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withRouter(ResetResetWithdrawalPassword));

@@ -208,7 +208,7 @@ class ChangeEmail extends BaseProfile {
           </FormControl>
         </ItemContainer>
       </>,
-      this.state.currentStep === 1 ? i18n.t("common.nextStep") : i18n.t("common.submit")
+      this.state.currentStep === 1 ? i18n.t("common.nextStep") : i18n.t("common.submit"),
     );
   }
 }

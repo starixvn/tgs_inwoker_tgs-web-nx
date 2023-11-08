@@ -13,7 +13,7 @@ import { SubmitButton as Button } from "@/components/styled-component/ProfileFor
 import i18n from "@/utils/i18n";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 import { usePopup } from "@/core/feature/usePopup";
-import { usePromotionData } from "@/hooks/popup/usePromotionData" 
+import { usePromotionData } from "@/hooks/popup/usePromotionData";
 const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
 const StyledDialog = styled(MuiDialog)`
@@ -84,7 +84,7 @@ const Description = styled.div`
   ${media.sm} {
     font-size: 1.5rem;
   }
-`
+`;
 const PromotionBanner = ({
   handleCloseDialog,
   promotionData,
@@ -93,7 +93,7 @@ const PromotionBanner = ({
   promotionData: Promotion;
 }) => {
   const history = useHistory();
-  const {contentToDisplay} = usePromotionData(promotionData);
+  const { contentToDisplay } = usePromotionData(promotionData);
 
   const handleClickBanner = () => {
     handleCloseDialog();
@@ -105,7 +105,8 @@ const PromotionBanner = ({
         <BannerImage promotionData={promotionData} />
       </ImgWrapper>
       <Title>{promotionData.name}</Title>
-      <Description dangerouslySetInnerHTML={{
+      <Description
+        dangerouslySetInnerHTML={{
           __html: "<div>" + contentToDisplay + "</div>",
         }}
       />

@@ -1,15 +1,15 @@
 import React from "react";
 import { TransactionLogViewModel } from "@/core/models/dto/report/GetBalanceChangesResDto";
 import NoRecord from "@/pages/report/components/NoRecord";
+import moment from "moment";
+import i18n from "@/utils/i18n";
+import ErrorSwitcher from "@/utils/ErrorSwitcher";
 import {
   ReportCard,
   ReportCardCol,
   ReportCardRow,
   ReportCardsContainer,
-} from "@/core/components/Report/styles";
-import moment from "moment";
-import i18n from "@/utils/i18n";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+} from "@/components/styled-component/Report";
 
 type Props = {
   balanceChangeDetails: TransactionLogViewModel[];

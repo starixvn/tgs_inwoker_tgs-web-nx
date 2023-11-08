@@ -38,10 +38,7 @@ class WithdrawalPassword extends BaseProfile {
     }
 
     if (password !== confirmPassword) {
-      this.props.alert(
-        "",
-        i18n.t("profile.withdrawalPassword.msgInvalidConPass")
-      );
+      this.props.alert("", i18n.t("profile.withdrawalPassword.msgInvalidConPass"));
       return;
     }
 
@@ -72,9 +69,7 @@ class WithdrawalPassword extends BaseProfile {
       i18n.t("profile.withdrawalPassword.title"),
       <React.Fragment>
         <ItemContainer>
-          <LabelContainer>
-            {i18n.t("profile.withdrawalPassword.newPass")}
-          </LabelContainer>
+          <LabelContainer>{i18n.t("profile.withdrawalPassword.newPass")}</LabelContainer>
           <FormControl variant="outlined">
             <TextField
               type={"password"}
@@ -86,9 +81,7 @@ class WithdrawalPassword extends BaseProfile {
         </ItemContainer>
 
         <ItemContainer>
-          <LabelContainer>
-            {i18n.t("profile.withdrawalPassword.conPass")}
-          </LabelContainer>
+          <LabelContainer>{i18n.t("profile.withdrawalPassword.conPass")}</LabelContainer>
           <FormControl variant="outlined">
             <TextField
               type={"password"}
@@ -98,7 +91,7 @@ class WithdrawalPassword extends BaseProfile {
             />
           </FormControl>
         </ItemContainer>
-      </React.Fragment>
+      </React.Fragment>,
     );
   }
 }
@@ -110,11 +103,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAccountProfile: (token) =>
-      dispatch(accountAction.getAccountProfile(true)),
+    getAccountProfile: (token) => dispatch(accountAction.getAccountProfile(true)),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(WithdrawalPassword));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(WithdrawalPassword));

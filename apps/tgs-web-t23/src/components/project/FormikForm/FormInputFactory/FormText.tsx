@@ -24,14 +24,8 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
         value={formik.values[name]}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        helperText={
-          showErrorOn === "input" && formik.touched[name] && formik.errors[name]
-        }
-        error={
-          showErrorOn === "input" &&
-          !!formik.touched[name] &&
-          !!formik.errors[name]
-        }
+        helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
+        error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
         inputProps={{
           autoComplete: "off",
         }}

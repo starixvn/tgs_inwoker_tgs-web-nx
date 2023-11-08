@@ -265,7 +265,7 @@ class AddCardPrev extends Component {
           "",
           config.features.AddCard_DisplayFPS
             ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
-            : i18n.t("card.addCard.msgEnterBankAccountName")
+            : i18n.t("card.addCard.msgEnterBankAccountName"),
         );
         return;
       }
@@ -275,7 +275,7 @@ class AddCardPrev extends Component {
           "",
           config.features.AddCard_DisplayFPS
             ? i18n.t("hk28.msgEnterWithdrawalNumber")
-            : i18n.t("common.msgEnterWithdrawalNumber")
+            : i18n.t("common.msgEnterWithdrawalNumber"),
         );
         return;
       }
@@ -292,7 +292,7 @@ class AddCardPrev extends Component {
           "",
           i18n
             .t("common.noReachMin")
-            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`)
+            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
         );
         return;
       }
@@ -318,7 +318,7 @@ class AddCardPrev extends Component {
           "",
           i18n
             .t("common.noReachMin")
-            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`)
+            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
         );
         return;
       }
@@ -342,7 +342,7 @@ class AddCardPrev extends Component {
           "",
           i18n
             .t("common.noReachMin")
-            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`)
+            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
         );
         return;
       }

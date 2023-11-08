@@ -6,10 +6,10 @@ import { FormControl, styled as muiStyled } from "@mui/material";
 
 const StatusSelectContainer = styled.div`
   padding: 1px 29px;
-  background: ${({ theme }) => theme.tertiaryDark};
+  background: ${({ theme }) => theme.mainLightBackground};
   font-size: 0.937rem;
   color: ${({ theme }) => theme.white};
-  border-radius: 5px;
+  border-radius: 6px;
   box-shadow: 0 4px 8px 0 rgba(35, 31, 27, 0.1);
   display: flex;
   align-items: center;
@@ -52,14 +52,12 @@ const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) =
 
       <SelectFormControl variant="outlined">
         <Select native onChange={handleStatusChange} value={status} fullWidth>
-          <option value={""}>
-            <>{i18n.t("report.all")}</>
-          </option>
+          <option value={""}>{i18n.t("report.all")}</option>
 
           {Object.keys(statusDictionary).map((key) => {
             return (
               <option key={key} value={key}>
-                <>{i18n.t(`report.withdrawal.status${key}`)}</>
+                {i18n.t(`report.withdrawal.status${key}`)}
               </option>
             );
           })}

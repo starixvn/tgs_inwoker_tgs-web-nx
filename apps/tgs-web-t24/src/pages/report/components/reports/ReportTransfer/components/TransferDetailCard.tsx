@@ -5,7 +5,7 @@ import {
   ReportCardCol,
   ReportCardRow,
   ReportCardsContainer,
-} from "@/core/components/Report/styles";
+} from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
 import moment from "moment";

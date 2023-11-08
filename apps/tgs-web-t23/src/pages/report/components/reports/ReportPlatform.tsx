@@ -2,6 +2,12 @@ import React, { useEffect, useState } from "react";
 import i18n from "@/utils/i18n";
 import NoRecord from "@/pages/report/components/NoRecord";
 import moment from "moment";
+import { useNotifications } from "@/core/feature/useNotifications";
+import Loading from "@/components/UI/Loading";
+import { usePlatformStatus } from "@/core/components/Report/hooks/usePlatformStatus";
+import StatusSelect from "@/pages/report/components/StatusSelect";
+import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 import {
   ReportCard,
   ReportCardCol,
@@ -11,13 +17,7 @@ import {
   ReportSummary,
   ReportSummaryCol,
   ReportSummaryRow,
-} from "@/core/components/Report/styles";
-import { useNotifications } from "@/core/feature/useNotifications";
-import Loading from "@/components/UI/Loading";
-import { usePlatformStatus } from "@/core/components/Report/hooks/usePlatformStatus";
-import StatusSelect from "@/pages/report/components/StatusSelect";
-import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { BottomScrollListener } from "react-bottom-scroll-listener";
+} from "@/components/styled-component/Report";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
