@@ -146,12 +146,9 @@ export function useProfileMenu() {
     });
   }, []);
 
-  const handleClickProfileItem = useCallback(
-    (newProfileItem: ProfileItem) => {
-      history.push(newProfileItem.routePath);
-    },
-    [history],
-  );
+  const handleClickProfileItem = useCallback((newProfileItem: ProfileItem) => {
+    history.push(newProfileItem.routePath);
+  }, []);
 
   return {
     profileItemDictionary,

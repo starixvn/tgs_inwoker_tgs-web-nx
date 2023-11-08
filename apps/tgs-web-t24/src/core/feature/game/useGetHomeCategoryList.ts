@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GameService } from "@/core/services/GameService";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
-import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 
 interface GetGameListState {
   isLoading: boolean;
