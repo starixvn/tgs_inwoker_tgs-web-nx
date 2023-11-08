@@ -32,7 +32,7 @@ const ContentWrapper = styled.div`
   height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const NavsContainer = styled.div`
@@ -40,26 +40,7 @@ const NavsContainer = styled.div`
   height: fit-content;
 `;
 
-const DrawerCard = styled.div`
-  cursor: pointer;
-  width: 100%;
-  margin-bottom: 8px;
-  background: ${({ theme }) => theme.tertiaryDark};
-  border-radius: 12px;
-  padding: 12px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  font-size: 1.375rem;
-  line-height: 1.611rem;
-  font-weight: 700;
-
-  & > .icon {
-    margin-right: 10px;
-  }
-`;
-type Props = {};
-const MobileMenuDrawer = (props: Props) => {
+const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isLogin } = useAuth();
   const history = useHistory();
@@ -124,7 +105,7 @@ const MobileMenuDrawer = (props: Props) => {
         navType: "route",
         routePath: "/appDownload",
       },
-    ];
+    ] as NavItem[];
   }, []);
 
   const handleClickNav = useCallback((navItem: NavItem) => {

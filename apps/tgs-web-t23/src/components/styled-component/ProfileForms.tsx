@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Button as MuiButton, FormControl as MuiFormControl } from "@mui/material";
 import { styled as muiStyled } from "@mui/system";
+import { media } from "@/theme/breakpoints";
 
 export const Remark = styled.div`
   font-size: 0.937rem;
@@ -13,7 +14,9 @@ export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
-  max-width: 450px;
+  ${media.sm} {
+    max-width: 450px;
+  }
 `;
 
 export const LabelContainer = styled.div`
