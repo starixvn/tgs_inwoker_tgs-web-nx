@@ -1,11 +1,11 @@
-import Favorite from "@/pages/home/components/Favorite";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import useDynamicFontSize from "@/core/hooks/pages/home/useDynamicFontSize";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGameStore } from "@/core/stores/useGameStore";
 import Common from "@/core/utils/Common";
-import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
+import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";

@@ -1,7 +1,7 @@
-import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import useGameTypeList from "@/core/hooks/pages/home/useGameTypeList";
 import styled from "styled-components";
 import Tab from "./Tab";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 const TabContainer = styled.div`
   width: 100%;

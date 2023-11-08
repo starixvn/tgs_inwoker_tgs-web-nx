@@ -1,10 +1,10 @@
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
 import React, { useEffect } from "react";
 import styled from "styled-components";
@@ -86,11 +86,12 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && (
+      {((isDesktopSize && !activeGameType)) && !!general.banner.length && (
         <SliderWrapper>
           <Slider />
         </SliderWrapper>
       )}
+
       {!!activeGameType && (
         <GameTypeBanner
           $imageUrl={
