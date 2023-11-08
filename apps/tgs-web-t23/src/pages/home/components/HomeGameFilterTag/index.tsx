@@ -1,12 +1,13 @@
-import { FilterTagTypeEnum } from "@/core/feature/game/hooks/useFilterTag";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import styled from "styled-components";
 import CommonTag from "./CommonTag";
 import Tag from "./ProviderTag";
+import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
+import { filterTagAll } from "@/core/feature/game/constants/filterTagAll";
 
 const FilterTagWrapper = styled.div`
   width: 100%;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -16,9 +17,9 @@ const CommonTagContainer = styled.div`
   width: 100%;
   height: 50px;
   padding: 4px 0px;
-  display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   gap: 5px;
 `;
@@ -26,9 +27,9 @@ const CommonTagContainer = styled.div`
 const ProviderTagContainer = styled.div`
   width: 100%;
   height: 40px;
-  display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   gap: 5px;
   row-gap: 8px;
@@ -37,36 +38,45 @@ const ProviderTagContainer = styled.div`
 
 const HomeGameFilterTag = () => {
   const {
-    handleChangeActiveFirstRowFilterTag,
-    handleChangeActiveSecondRowFilterTag,
-    activeFirstRowFilterTag,
-    activeSecondRowFilterTag,
-    firstRowTags,
-    secondRowTags
+    filterTagList,
+    providerFilterTagList,
+    handleChangeActiveFilterTag,
+    handleChangeActiveProviderFilterTag,
+    activeFilterTag,
+    activeProviderFilterTag,
   } = useHomeGameContext();
+
+  const onChangeFilterTag = (newFilterTag: FilterTag) => {
+    handleChangeActiveFilterTag(newFilterTag);
+    handleChangeActiveProviderFilterTag(filterTagAll);
+  };
+
+  const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
+    handleChangeActiveProviderFilterTag(newFilterTag);
+  };
 
   return (
     <FilterTagWrapper>
       <CommonTagContainer>
-        {firstRowTags.map((filterTag) => {
+        {filterTagList.map((filterTag) => {
           return (
             <CommonTag
               key={filterTag.name}
               text={filterTag.name}
-              isActive={filterTag.tagType === activeFirstRowFilterTag.tagType}
-              onClick={() => handleChangeActiveFirstRowFilterTag(filterTag)}
+              isActive={filterTag.tagType === activeFilterTag.tagType}
+              onClick={() => onChangeFilterTag(filterTag)}
             />
           );
         })}
       </CommonTagContainer>
       <ProviderTagContainer>
-        {[{ name: "All", tagType: FilterTagTypeEnum.ALL }, ...secondRowTags].map((filterTag) => {
+        {providerFilterTagList.map((filterTag) => {
           return (
             <Tag
               key={filterTag.name}
               text={filterTag.name}
-              isActive={filterTag.tagType === activeSecondRowFilterTag.tagType}
-              onClick={() => handleChangeActiveSecondRowFilterTag(filterTag)}
+              isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
+              onClick={() => onChangeProviderFilterTag(filterTag)}
             />
           );
         })}
