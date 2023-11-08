@@ -1,7 +1,9 @@
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { useRwd } from "@/core/hooks/tools/useRwd";
+import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import styled from "styled-components";
 import Tab from "./Tab";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -17,11 +19,16 @@ const TabContainer = styled.div`
 const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { isMobileSize } = useRwd();
 
   return (
     <TabContainer>
       {gameTypeList.map((gameTypeItem) => {
         const { key, iconUrl, text, gameType } = gameTypeItem;
+
+        if (isMobileSize && gameType === GameTypeEnum.NONE) {
+          return null;
+        }
 
         return (
           <Tab
