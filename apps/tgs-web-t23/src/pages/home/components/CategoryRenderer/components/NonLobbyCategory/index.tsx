@@ -12,11 +12,10 @@ import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
-import GameFilterTag from "../../../GameFilterTag";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  padding: 12px 10px;
+  padding: 20px 17px;
   flex-shrink: 0;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
@@ -30,11 +29,11 @@ const CategoryContentWrapper = styled.div`
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
-  flex-shrink: 0;
+  align-content: flex-start;
   width: 100%;
+  row-gap: 12px;
+  column-gap: 8px;
+  align-self: stretch;
   
   ${media.sm} {
     gap: 31px;
@@ -85,7 +84,7 @@ const NonLobbyCategory = () => {
               />
             </SearchInputWrapper>
           </CategoryLabel>
-          <GameFilterTag />
+          {/* <GameFilterTag /> */}
         </>
       )}
       {isDesktopSize && <HomeGameFilterTag />}

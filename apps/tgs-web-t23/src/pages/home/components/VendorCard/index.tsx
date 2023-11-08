@@ -68,6 +68,7 @@ const VendorCardContent = styled.div`
 
 const VendorCardBg = styled.div`
   width: calc(33.33% - 5.8px);
+  max-width: 110px;
   position: relative;
   cursor: pointer;
   aspect-ratio: 110 / 142;
