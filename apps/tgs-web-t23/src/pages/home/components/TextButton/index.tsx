@@ -5,10 +5,10 @@ import styled from "styled-components";
 type Props = {
   text: string;
   onClick?: () => void;
-  width?: string | "76px";
-  height?: string | "36px";
-  bgColor?: string | typeof theme.primaryMix;
-  color?: string | typeof theme.mainDarkBackground;
+  width?: string;
+  height?: string;
+  bgColor?: string;
+  color?: string;
 };
 
 const StyledButton = styled.button<{ $width?: string, $height?: string, $bgColor?: string, $color?: string }>`
@@ -36,7 +36,7 @@ const StyledButton = styled.button<{ $width?: string, $height?: string, $bgColor
   }
 `;
 
-const TextButton = ({ text, onClick, width, height, bgColor, color }: Props) => {
+const TextButton = ({ text, onClick, width = "76px", height = "36px", bgColor = theme.primaryMix, color = theme.mainDarkBackground }: Props) => {
   return (
     <StyledButton
       onClick={onClick}
