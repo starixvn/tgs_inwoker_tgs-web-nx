@@ -1,15 +1,15 @@
 import React from "react";
 import NoRecord from "@/pages/report/components/NoRecord";
+import i18n from "@/utils/i18n";
+import config from "@/config/config";
+import moment from "moment";
+import { GameBalanceInfosViewModel } from "@/core/models/dto/report/GetTransferReportResDto";
 import {
   ReportCard,
   ReportCardCol,
   ReportCardRow,
   ReportCardsContainer,
-} from "@/core/components/Report/styles";
-import i18n from "@/utils/i18n";
-import config from "@/config/config";
-import moment from "moment";
-import { GameBalanceInfosViewModel } from "@/core/models/dto/report/GetTransferReportResDto";
+} from "@/components/styled-component/Report";
 
 type Props = {
   transferDetails: GameBalanceInfosViewModel[];

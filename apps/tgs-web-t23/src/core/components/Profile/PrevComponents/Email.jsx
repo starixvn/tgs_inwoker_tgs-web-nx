@@ -277,14 +277,14 @@ class Email extends BaseProfile {
                   config.features.ChangesNotAllowed ||
                     config.features.Profile_ExistingDetails_ViewOnly
                     ? "common.customerService"
-                    : "profile.email.here"
+                    : "profile.email.here",
                 )}
               />
             </ItemContainer>
           );
         }
       })(),
-      cannotAccessOther
+      cannotAccessOther,
     );
   }
 }

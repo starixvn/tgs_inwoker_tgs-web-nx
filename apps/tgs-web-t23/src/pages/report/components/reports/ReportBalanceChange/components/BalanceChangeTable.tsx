@@ -1,6 +1,5 @@
 import React from "react";
 import NoRecord from "@/pages/report/components/NoRecord";
-import { CustomWinLose, ReportCardsContainer, ReportTable } from "@/core/components/Report/styles";
 import moment from "moment";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
@@ -8,6 +7,11 @@ import { TransactionDetail } from "@/core/models/dto/report/GetTransactionDetail
 import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { TransactionLogViewModel } from "@/core/models/dto/report/GetBalanceChangesResDto";
 import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import {
+  CustomWinLose,
+  ReportCardsContainer,
+  ReportTable,
+} from "@/components/styled-component/Report";
 
 type Props = {
   balanceChangeDetails: TransactionLogViewModel[];

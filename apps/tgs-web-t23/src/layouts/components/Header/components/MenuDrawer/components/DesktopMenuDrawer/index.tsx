@@ -15,7 +15,6 @@ const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainDarkBackground};
   width: 100%;
   height: 100vh;
-  overflow-y: scroll;
   padding-bottom: 20px;
 
   &::-webkit-scrollbar {
@@ -24,7 +23,6 @@ const MobileMenuDrawerContainer = styled.div`
 
   &::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-    background: ${(props) => props.theme.tertiaryDark};
   }
 
   &::-webkit-scrollbar-thumb {
@@ -40,10 +38,20 @@ const MobileMenuDrawerContainer = styled.div`
 const MenuHeaderContainer = styled.div`
   position: relative;
   height: ${HEADER_HEIGHT};
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 19px 0;
+`;
+
+const HeaderContentContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - ${HEADER_HEIGHT});
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
 `;
 
 const MenuButtonContainer = styled.div`
@@ -51,13 +59,6 @@ const MenuButtonContainer = styled.div`
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-`;
-
-const HeaderContentContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 const PromotionCard = styled.div`

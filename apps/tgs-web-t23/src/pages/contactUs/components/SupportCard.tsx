@@ -12,7 +12,7 @@ const SupportCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: #262626;
+  background: #2e3237;
   color: ${({ theme }) => theme.white};
   font-size: 1rem;
   font-weight: 400;
@@ -113,8 +113,13 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
 
       <span>{type}</span>
 
-      <Button fullWidth>
-        <>{i18n.t("common.contact")}</>
+      <Button
+        fullWidth
+        sx={{
+          color: "black",
+        }}
+      >
+        {i18n.t("common.contact")}
       </Button>
     </SupportCardContainer>
   );

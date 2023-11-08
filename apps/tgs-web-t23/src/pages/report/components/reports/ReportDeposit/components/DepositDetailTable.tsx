@@ -1,10 +1,10 @@
 import React from "react";
 import NoRecord from "@/pages/report/components/NoRecord";
-import { ReportCardsContainer, ReportTable } from "@/core/components/Report/styles";
 import moment from "moment";
 import i18n from "@/utils/i18n";
 import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetailsResDto";
+import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 
 type Props = {
   transferDetails: DepositFormViewModel[];

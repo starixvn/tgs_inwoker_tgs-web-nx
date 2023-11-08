@@ -1,11 +1,4 @@
 import React from "react";
-import {
-  ReportCard,
-  ReportCardCol,
-  ReportCardRow,
-  ReportCardsContainer,
-  ReportContainer,
-} from "@/core/components/Report/styles";
 import NoRecord from "@/pages/report/components/NoRecord";
 import moment from "moment";
 import i18n from "@/utils/i18n";
@@ -13,6 +6,13 @@ import { Button } from "@/components/UI/Button";
 import Loading from "@/components/UI/Loading";
 import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetailsResDto";
 import { useHistory } from "react-router-dom";
+import {
+  ReportCard,
+  ReportCardCol,
+  ReportCardRow,
+  ReportCardsContainer,
+  ReportContainer,
+} from "@/components/styled-component/Report";
 
 type Props = {
   transferDetails: DepositFormViewModel[];
@@ -46,9 +46,7 @@ const DepositDetailCards = ({ transferDetails }: Props) => {
               </ReportCardRow>
 
               <ReportCardRow>
-                <ReportCardCol>
-                  <>{i18n.t(`report.deposit.status${status}`)}</>
-                </ReportCardCol>
+                <ReportCardCol>{i18n.t(`report.deposit.status${status}`)}</ReportCardCol>
 
                 <ReportCardCol>{amount}</ReportCardCol>
 
@@ -58,8 +56,11 @@ const DepositDetailCards = ({ transferDetails }: Props) => {
                       onClick={() => {
                         handleManualDeposit(id);
                       }}
+                      sx={{
+                        color: "black",
+                      }}
                     >
-                      <>{i18n.t("deposit.uploadReceipt")}</>
+                      {i18n.t("deposit.uploadReceipt")}
                     </Button>
                   )}
                 </ReportCardCol>

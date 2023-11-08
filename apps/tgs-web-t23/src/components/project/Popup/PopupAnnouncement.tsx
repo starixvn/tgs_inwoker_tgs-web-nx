@@ -130,7 +130,7 @@ const PopupAnnouncement = () => {
           onClick={handleCloseDialog}
           style={{
             margin: "0 auto",
-            width: "100%"
+            width: "100%",
           }}
         >
           <>{i18n.t("common.close")}</>

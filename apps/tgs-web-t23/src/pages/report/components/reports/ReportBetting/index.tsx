@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import config from "@/config/config";
 import moment from "moment";
-import { ReportContainer } from "@/core/components/Report/styles";
 import { RoundTotalDto } from "@/core/models/dto/report/GetRoundsTotalResDto";
 import { ReportService } from "@/core/services/ReportService";
 import { useNotifications } from "@/core/feature/useNotifications";
@@ -13,6 +12,7 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
 import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
+import { ReportContainer } from "@/components/styled-component/Report";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

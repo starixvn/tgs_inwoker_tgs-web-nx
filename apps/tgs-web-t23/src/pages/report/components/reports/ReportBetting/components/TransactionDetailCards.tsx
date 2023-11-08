@@ -1,16 +1,16 @@
 import React from "react";
 import NoRecord from "@/pages/report/components/NoRecord";
+import moment from "moment";
+import i18n from "@/utils/i18n";
+import config from "@/config/config";
+import { TransactionDetail } from "@/core/models/dto/report/GetTransactionDetailsResDto";
 import {
   CustomWinLose,
   ReportCard,
   ReportCardCol,
   ReportCardRow,
   ReportCardsContainer,
-} from "@/core/components/Report/styles";
-import moment from "moment";
-import i18n from "@/utils/i18n";
-import config from "@/config/config";
-import { TransactionDetail } from "@/core/models/dto/report/GetTransactionDetailsResDto";
+} from "@/components/styled-component/Report";
 
 type Props = {
   transactionDetails: TransactionDetail[];

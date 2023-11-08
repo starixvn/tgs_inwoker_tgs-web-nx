@@ -60,14 +60,14 @@ class ForgotPasswordPrev extends Component {
           "",
           i18n
             .t("common.noReachMin")
-            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`)
+            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
         );
         return;
       }
       AccountService.VerifyForgotPassword("", this.state.areaCode, this.state.phone).then(
         (response) => {
           this.getCodeResponse(response);
-        }
+        },
       );
     } else {
       if (this.state.email.length > 0) {
@@ -106,7 +106,7 @@ class ForgotPasswordPrev extends Component {
       AccountService.ResetPassword(
         this.state.securityKey,
         this.state.code,
-        this.state.password
+        this.state.password,
       ).then((response) => {
         if (response.IsSuccess) {
           this.props.alert("", i18n.t("forgotPassword.updateSuccess"));

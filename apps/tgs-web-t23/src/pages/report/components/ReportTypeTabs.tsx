@@ -34,7 +34,7 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
             key={index}
             onClick={() => handleButtonClick(index)}
             sx={{
-              color: isSelected ? "black" : "white",
+              color: isSelected ? "black" : "white !important",
               border: isSelected ? "none" : "1px solid white",
               background: isSelected
                 ? "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)"

@@ -1,13 +1,13 @@
 import React from "react";
 import config from "@/config/config";
+import i18n from "@/utils/i18n";
+import { RoundTotalDto } from "@/core/models/dto/report/GetRoundsTotalResDto";
 import {
   CustomWinLose,
   ReportSummary,
   ReportSummaryCol,
   ReportSummaryRow,
-} from "@/core/components/Report/styles";
-import i18n from "@/utils/i18n";
-import { RoundTotalDto } from "@/core/models/dto/report/GetRoundsTotalResDto";
+} from "@/components/styled-component/Report";
 
 type Props = {
   roundTotal: RoundTotalDto;
