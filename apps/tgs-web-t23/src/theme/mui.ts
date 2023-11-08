@@ -99,13 +99,6 @@ const muiTheme = createTheme({
         },
       },
     },
-    MuiSelect: {
-      styleOverrides: {
-        root: {
-          color: theme.white,
-        },
-      },
-    },
   },
 } as ThemeOptions);
 
