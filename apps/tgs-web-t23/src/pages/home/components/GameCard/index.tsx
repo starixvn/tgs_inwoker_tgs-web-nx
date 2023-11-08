@@ -15,7 +15,7 @@ import TextButton from "../TextButton";
 const CardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 80.6%;
+  height: 82%;
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
@@ -42,12 +42,30 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 const NewTag = styled.div`
   position: absolute;
   top: 0;
+  left: 0;
   width: 32px;
   height: 18px;
   padding: 10px;
   border-radius: 12px 0px;
   background: ${(props) => props.theme.primaryMix};
   color: ${(props) => props.theme.tagColor};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.5rem;
+  font-weight: 700;
+`;
+
+const HotTag = styled.div`
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 32px;
+  height: 18px;
+  padding: 10px;
+  border-radius: 12px 0px;
+  background: #FF1727;
+  color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,6 +193,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
+        {gameItem.tag.hot && <HotTag>Hot</HotTag>}
         {!isActive && (
           <MaintenanceBg>
             <MaintenanceText>UNDER MAINTENANCE</MaintenanceText>
