@@ -1,6 +1,18 @@
+import CardPrompt from "@/pages/home/components/CardPrompt";
+import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
+import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import Slider from "@/pages/home/components/Slider";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+
+import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
+import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
+import HomePromotionCard from "./components/HomePromotionCard";
+import ImageCard from "./components/ImageCard";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -11,7 +23,7 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px 0px;
     gap: 20px;
@@ -32,7 +44,7 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    max-width: 1200px;
     height: 375px;
     border-radius: 10px;
     background-image: url(${({ $imageUrl }) => $imageUrl});
@@ -74,12 +86,11 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {((isDesktopSize && !activeGameType)) && !!general.banner.length && (
+      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && (
         <SliderWrapper>
           <Slider />
         </SliderWrapper>
       )}
-
       {!!activeGameType && (
         <GameTypeBanner
           $imageUrl={
@@ -90,29 +101,35 @@ const HomePage = () => {
         />
       )}
 
-      {/* <MainContentWrapper>
+      <MainContentWrapper>
         {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
         {isMobileSize && <GameTypeTab />}
 
         <CategoryRenderer />
-        <HomePromotionCard />
 
-        {isMobileSize &&
-          footerCategoriesList.length &&
-          footerCategoriesList.map((category, index) => (
-            <HomeCategoryFolder key={index} title={category.title} size={category.size!}>
-              {category.content ? (
-                category.content
-              ) : (
-                <ImageCard
-                  imageUrl={category.imageUrl}
-                  text={category.text}
-                  alignment={category.alignment}
-                />
-              )}
-            </HomeCategoryFolder>
-          ))}
-      </MainContentWrapper> */}
+        {!activeGameType && (
+          <>
+            <HomePromotionCard />
+            {isMobileSize &&
+              footerCategoriesList.length &&
+              footerCategoriesList.map((category, index) => (
+                <HomeCategoryFolder key={index} title={category.title} size={category.size!}>
+                  {category.content ? (
+                    category.content
+                  ) : (
+                    <ImageCard
+                      imageUrl={category.imageUrl}
+                      text={category.text}
+                      alignment={category.alignment}
+                    />
+                  )}
+                </HomeCategoryFolder>
+              ))}
+
+            {/* <TabPanel /> */}
+          </>
+        )}
+      </MainContentWrapper>
     </MainWrapper>
   );
 };
