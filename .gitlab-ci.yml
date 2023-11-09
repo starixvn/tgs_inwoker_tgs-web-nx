@@ -29,19 +29,18 @@ deploy-domain:
   rules:
     - if: '$domain != null'
       when: on_success
-    - if: $CI_COMMIT_BRANCH == 'develop'
-      variables:
-        tgs_env: dev
-    - if: $CI_COMMIT_BRANCH == 'release/current'
-      variables:
-        tgs_env: staging
-    - if: $CI_COMMIT_BRANCH == 'master'
-      variables:
-        tgs_env: prod
   script:
     - |
       echo "domain=$domain"
       echo "brand=$brand"
+      
+      if [[ $CI_COMMIT_BRANCH == "master" ]]; then 
+        export tgs_dev = "prod"  
+      elif   [[ $CI_COMMIT_BRANCH == "release/current" ]]; then
+        export tgs_dev = "staging"   
+      else
+        export tgs_dev = "dev"   
+      fi 
       
       if [[ $domain != "" && $brand != "" ]]; then 
         export image=$(docker image ls | grep pgtgs | awk '{print $1}')
