@@ -36,18 +36,19 @@ deploy-domain:
       
       if [[ $CI_COMMIT_BRANCH == "master" ]]; then 
         export tgs_dev = "prod"  
-      elif   [[ $CI_COMMIT_BRANCH == "release/current" ]]; then
+      elif [[ $CI_COMMIT_BRANCH == "release/current" ]]; then
         export tgs_dev = "staging"   
       else
         export tgs_dev = "dev"   
       fi 
+      
+      echo "tgs_env=$tgs_env"
       
       if [[ $domain != "" && $brand != "" ]]; then 
         export image=$(docker image ls | grep pgtgs | awk '{print $1}')
         export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
         echo "image=$image"
         echo "tag=$tag"
-        echo "tgs_env=$tgs_env"
         envsubst < ./deployment/values-$tgs_env.yaml > values.yaml
         helm template $brand deployment -f values.yaml -n $tgs_env
       else 
