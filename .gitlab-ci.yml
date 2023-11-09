@@ -15,8 +15,6 @@ stages:
 
 docker-build-dev:
   stage: docker-build
-  before_script:
-    - docker login -u $docker_user -p $docker_pwd
   script:
     - git submodule init
     - git submodule sync
@@ -30,8 +28,6 @@ docker-build-dev:
 
 docker-build-staging:
   stage: docker-build
-  before_script:
-    - docker login -u $docker_user -p $docker_pwd
   script:
     - git submodule init
     - git submodule sync
@@ -45,8 +41,6 @@ docker-build-staging:
 
 docker-build-prod:
   stage: docker-build
-  before_script:
-    - docker login -u $docker_user -p $docker_pwd
   script:
     - git submodule init
     - git submodule sync
