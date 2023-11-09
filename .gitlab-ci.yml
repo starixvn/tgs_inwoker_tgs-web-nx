@@ -30,16 +30,24 @@ deploy-domain-dev:
   stage: deploy-domain
   rules:
     - if: '$domain != ""'
+      when: on_success
+    - if: $CI_COMMIT_REF_NAME == 'develop'
+      variables:
+        tgs_env: dev
+    - if: $CI_COMMIT_REF_NAME == 'release/current'
+      variables:
+        tgs_env: staging
+    - if: $CI_COMMIT_REF_NAME == 'master'
+      variables:
+        tgs_env: prod
   script:
     - export image=$(docker image ls | grep pgtgs | awk '{print $1}')
     - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
     - echo "image=$image"
     - echo "tag=$tag"
     - echo "domain=$domain"
-    - envsubst < ./deployment/values-dev.yaml > values.yaml
-    - helm template $brand deployment -f values.yaml -n dev
-  only: 
-    - develop
+    - envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+    - helm template $brand deployment -f values.yaml -n $tgs_env
     
 deploy-domain-staging:
   stage: deploy-domain
