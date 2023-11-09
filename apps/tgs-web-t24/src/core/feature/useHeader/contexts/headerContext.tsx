@@ -27,7 +27,7 @@ export const HeaderContextProvider = ({ children }: ProviderProps) => {
 
   const handleToggleMenu = (newIsOpen?: boolean) => {
     if (typeof newIsOpen !== "undefined") {
-      setIsMenuOpen(false);
+      setIsMenuOpen(newIsOpen);
       return;
     }
 

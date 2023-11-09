@@ -1,9 +1,10 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
+import { TFunctionDetailedResult } from "i18next";
 import { RouteCategoryEnum } from "@/router";
 import Icon from "@/components/project/Icon";
 
-const BottomNavContainer = styled.div<{ $isSelected: boolean }>`
+const BottomNavContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -18,28 +19,30 @@ const NavLabel = styled.h6`
   font-weight: 700;
   line-height: 1rem;
 `;
-
+export enum NavTypeEnum {
+  ITEM,
+  BIG_ITEM,
+  MENU,
+}
 export type BottomNavItem = {
-  navType: "item" | "big-item" | "menu";
-  label: string;
+  navType: NavTypeEnum;
+  key: string;
+  label: any;
   iconUrl: string;
-  iconActiveUrl: string;
   routePath: string;
-  routeCategory: RouteCategoryEnum;
 };
 type Props = {
   bottomNavItem: BottomNavItem;
-  isSelected: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
 };
-const BottomNav = ({ bottomNavItem, onClick, isSelected }: Props) => {
-  const { label, iconUrl, iconActiveUrl } = bottomNavItem;
+const BottomNav = ({ bottomNavItem, onClick }: Props) => {
+  const { label, iconUrl } = bottomNavItem;
 
   if (bottomNavItem.navType === "big-item") {
     return (
-      <BottomNavContainer onClick={onClick} $isSelected={isSelected}>
+      <BottomNavContainer onClick={onClick}>
         <Icon
-          iconUrl={isSelected ? iconActiveUrl ?? iconUrl : iconUrl}
+          iconUrl={iconUrl}
           width={"64px"}
           height={"64px"}
           style={{
@@ -53,9 +56,9 @@ const BottomNav = ({ bottomNavItem, onClick, isSelected }: Props) => {
   }
 
   return (
-    <BottomNavContainer onClick={onClick} $isSelected={isSelected}>
+    <BottomNavContainer onClick={onClick}>
       <Icon
-        iconUrl={isSelected ? iconActiveUrl ?? iconUrl : iconUrl}
+        iconUrl={iconUrl}
         width={"26px"}
         height={"26px"}
         style={{

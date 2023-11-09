@@ -12,7 +12,7 @@ const MenuDrawer = () => {
   return (
     <Drawer
       variant={isDesktopSize ? "persistent" : "temporary"}
-      anchor={isDesktopSize ? "left" : "right"}
+      anchor={"left"}
       open={isDesktopSize ? true : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{

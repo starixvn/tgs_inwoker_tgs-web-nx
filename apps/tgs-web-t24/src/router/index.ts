@@ -70,12 +70,12 @@ const routes: Route[] = [
     layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
-  {
-    path: "/account",
-    component: Mine,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
+  // {
+  //   path: "/account",
+  //   component: Mine,
+  //   category: RouteCategoryEnum.MINE,
+  //   layout: DialogLayout,
+  // },
   {
     path: "/deposit",
     component: DepositPage,
