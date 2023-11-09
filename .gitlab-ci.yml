@@ -29,9 +29,7 @@ docker-build:
 deploy-domain-dev:
   stage: deploy-domain
   rules:
-    - if: '$domain == ""'
-      when: never
-    - when: always
+    - if: '$domain != ""'
   script:
     - export image=$(docker image ls | grep pgtgs | awk '{print $1}')
     - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
