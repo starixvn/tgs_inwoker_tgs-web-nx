@@ -29,7 +29,9 @@ docker-build:
 deploy-domain-dev:
   stage: deploy-domain
   rules:
-    - if: '$domain != ""'
+    - if: '$domain == ""'
+      when: never
+    - when: always
   script:
     - export image=$(docker image ls | grep pgtgs | awk '{print $1}')
     - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
@@ -44,7 +46,9 @@ deploy-domain-dev:
 deploy-domain-staging:
   stage: deploy-domain
   rules:
-    - if: '$domain != ""'
+    - if: '$domain == ""'
+      when: never
+    - when: always
   script:
     - export image=$(docker image ls | grep pgtgs | awk '{print $1}')
     - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
@@ -59,7 +63,9 @@ deploy-domain-staging:
 deploy-domain-prod:
   stage: deploy-domain
   rules:
-    - if: '$domain != ""'
+    - if: '$domain == ""'
+      when: never
+    - when: always
   script:
     - export image=$(docker image ls | grep pgtgs | awk '{print $1}')
     - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
