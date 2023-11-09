@@ -39,14 +39,21 @@ deploy-domain:
       variables:
         tgs_env: prod
   script:
-    - export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-    - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-    - echo "image=$image"
-    - echo "tag=$tag"
-    - echo "tgs_env=$tgs_env"
-    - echo "domain=$domain"
-    - envsubst < ./deployment/values-$tgs_env.yaml > values.yaml
-    - helm template $brand deployment -f values.yaml -n $tgs_env
+    - |
+      echo "domain=$domain"
+      echo "brand=$brand"
+      if [[ $domain !== "" && $domain != "" ]]; then 
+        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+        echo "image=$image"
+        echo "tag=$tag"
+        echo "tgs_env=$tgs_env"
+        envsubst < ./deployment/values-$tgs_env.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n $tgs_env
+      else 
+        echo "No Deployment Brand and Domain"
+      fi
+
  
 deploy-dev:
   stage: deploy
