@@ -50,9 +50,6 @@ deploy-domain:
  
 deploy-dev:
   stage: deploy
-  rules:
-    - if: '$domain == null'
-      when: on_success
   needs:
     - job: docker-build
   before_script:
