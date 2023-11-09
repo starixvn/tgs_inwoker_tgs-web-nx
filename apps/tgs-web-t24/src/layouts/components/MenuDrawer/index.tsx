@@ -3,6 +3,7 @@ import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { DRAWER_SHRINK_WIDTH, DRAWER_WIDTH } from "@/theme/constants";
 import MenuDrawerList from "@/layouts/components/MenuDrawer/components/MenuDrawerList";
+import MenuDrawerHeader from "@/layouts/components/MenuDrawer/components/MenuDrawerHeader";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
@@ -23,6 +24,7 @@ const MenuDrawer = () => {
         },
       }}
     >
+      <MenuDrawerHeader />
       <MenuDrawerList />
     </Drawer>
   );
