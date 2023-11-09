@@ -15,7 +15,7 @@ import i18n from "@/utils/i18n";
 type GameTypeItem = {
   key: string;
   iconUrl: string;
-  text: string;
+  text: string | any;
   fontSize: string;
   gameType: GameTypeEnum;
 };
