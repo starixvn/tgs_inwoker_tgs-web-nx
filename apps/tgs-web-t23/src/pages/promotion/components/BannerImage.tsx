@@ -1,6 +1,6 @@
+import { useMemo } from "react";
 import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
 import i18n from "@/utils/i18n";
-import { useMemo } from "react";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const BannerImage = ({ promotionData }: { promotionData: Promotion }) => {

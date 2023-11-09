@@ -1,9 +1,9 @@
+import styled from "styled-components";
+import Tab from "./Tab";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import styled from "styled-components";
-import Tab from "./Tab";
 
 const TabContainer = styled.div`
   width: 100%;

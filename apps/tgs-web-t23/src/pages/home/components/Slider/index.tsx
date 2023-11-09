@@ -1,6 +1,6 @@
+import Slick from "react-slick";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import Slick from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import styled from "styled-components";
@@ -48,7 +48,7 @@ const Slider = () => {
     <SlickWrapper>
       <Slick {...settings}>
         {general.banner.map((item: Props) => (
-          <a href={item.navurl} key={item.id} target="_blank">
+          <a href={item.navurl} key={item.id} target="_blank" rel="noreferrer">
             <SlickImage
               src={isMobileSize ? item.mobileurl : item.desktopurl}
               alt={item.alt}

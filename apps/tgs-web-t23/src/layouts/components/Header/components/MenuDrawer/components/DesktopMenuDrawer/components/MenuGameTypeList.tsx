@@ -1,8 +1,8 @@
+import styled from "styled-components";
+import MenuGameTab from "./MenuGameTab";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useHeader } from "@/core/feature/useHeader";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import styled from "styled-components";
-import MenuGameTab from "./MenuGameTab";
 
 const TabContainer = styled.div`
   width: 100%;

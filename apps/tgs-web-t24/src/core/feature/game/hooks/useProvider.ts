@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@/api-services/utils/Enum";
 import config from "@/config/config";
 import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
 import { GameService } from "@/core/services/GameService";
-import { useEffect, useState } from "react";
 
 interface ProviderState {
   isLoading: boolean;

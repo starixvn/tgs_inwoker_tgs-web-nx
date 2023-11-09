@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import { InboxMessage } from "@/core/types/stores/account";
 import InboxItem from "@/pages/inbox/components/InboxItem";
-import styled from "styled-components";
 
 const InboxListContainer = styled.div`
   & > div {

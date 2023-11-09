@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import config from "@/config/config";
 import { useParams } from "react-router";
+import config from "@/config/config";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { UserTypeEnum } from "@/core/feature/useAuthForm/useRegisterForm";
 

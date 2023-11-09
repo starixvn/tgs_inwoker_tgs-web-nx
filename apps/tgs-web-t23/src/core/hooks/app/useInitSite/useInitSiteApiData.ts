@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import i18n from "@/utils/i18n";
 import BlowFishEncryption from "@/core/utils/BlowFishEncryption";
 import config from "@/config/config";
@@ -9,7 +10,6 @@ import { useWalletStore } from "@/core/stores/useWalletStore";
 import { useInboxStore } from "@/core/stores/useInboxStore";
 import ErrorSwitcher from "@/utils/ErrorSwitcher";
 import { useGameStore } from "@/core/stores/useGameStore";
-import { useHistory } from "react-router-dom";
 import { GeneralService } from "@/core/services/GeneralService";
 
 export function useInitSiteApiData() {
@@ -102,7 +102,7 @@ export function useInitSiteApiData() {
   };
 
   const handleGoto = () => {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     if (!urlParams.has("goto")) return;
 
     const gotoValue = urlParams.get("goto");
@@ -112,7 +112,7 @@ export function useInitSiteApiData() {
   };
 
   const handleTo = () => {
-    let urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
     if (!urlParams.has("do")) return;
 
     const doValue = urlParams.get("do");
@@ -150,10 +150,10 @@ export function useInitSiteApiData() {
     const getMemberInfoRes = await getAccountProfile(true);
 
     if (!getMemberInfoRes) return;
-    let bankInfoAuthentication = getMemberInfoRes.data.bankinfoauthentication;
-    let isPhoneNull = !getMemberInfoRes.data.phone;
-    let isEmailNull = !getMemberInfoRes.data.email;
-    let isRegisterCompleted = getMemberInfoRes?.data.registercompleted;
+    const bankInfoAuthentication = getMemberInfoRes.data.bankinfoauthentication;
+    const isPhoneNull = !getMemberInfoRes.data.phone;
+    const isEmailNull = !getMemberInfoRes.data.email;
+    const isRegisterCompleted = getMemberInfoRes?.data.registercompleted;
 
     if (config.features.ForceRedirectAddCard && !bankInfoAuthentication) {
       setIsInitSiteLoading(false);

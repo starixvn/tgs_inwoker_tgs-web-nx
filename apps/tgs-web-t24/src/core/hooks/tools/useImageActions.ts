@@ -21,14 +21,14 @@ export function useImageActions() {
       const svgElement = document.querySelector(`#${imageId}`).firstElementChild;
       if (!svgElement) return;
 
-      let { width, height } = svgElement.getBBox();
-      let clonedSvgElement = svgElement.cloneNode(true);
-      let outerHTML = clonedSvgElement.outerHTML,
+      const { width, height } = svgElement.getBBox();
+      const clonedSvgElement = svgElement.cloneNode(true);
+      const outerHTML = clonedSvgElement.outerHTML,
         blob = new Blob([outerHTML], { type: "image/svg+xml;charset=utf-8" });
-      let URL = window.URL || window.webkitURL || window;
-      let blobURL = URL.createObjectURL(blob);
+      const URL = window.URL || window.webkitURL || window;
+      const blobURL = URL.createObjectURL(blob);
 
-      let image = new Image();
+      const image = new Image();
       image.onload = () => {
         const canvas = document.createElement("canvas");
         canvas.width = 300;

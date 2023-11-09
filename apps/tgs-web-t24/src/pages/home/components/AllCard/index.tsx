@@ -1,8 +1,8 @@
+import styled from "styled-components";
 import dots from "@/assets/t23/images/home/dots.svg";
 import { useGameType } from "@/core/feature/game/hooks/useGameType";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
 
 const AllCardBg = styled.div`
   width: calc(30.3% - 10px);

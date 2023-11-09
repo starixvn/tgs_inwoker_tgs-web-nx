@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+import AccountNavigations from "./components/AccountNavigations";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import { useAuth } from "@/core/feature/useAuth";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
@@ -7,10 +11,6 @@ import MemberCenterBorder from "@/pages/account/components/MemberCenterBorder";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
-import AccountNavigations from "./components/AccountNavigations";
 
 const AccountContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};

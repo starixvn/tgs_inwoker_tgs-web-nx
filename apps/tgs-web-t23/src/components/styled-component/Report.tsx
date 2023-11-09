@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { media } from "@/theme/breakpoints";
 import { styled as muiStyled, Table } from "@mui/material";
+import { media } from "@/theme/breakpoints";
 
 export const ReportContainer = styled.div``;
 export const ReportSummary = styled.div`

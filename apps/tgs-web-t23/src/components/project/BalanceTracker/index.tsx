@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import Common from "@/core/utils/Common";
 import i18n from "@/utils/i18n";
 import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
-import { useHistory } from "react-router-dom";
 import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -65,7 +65,7 @@ const BalanceTracker = ({ size, ...others }: Props) => {
     <BalanceTrackerContainer $size={size} {...others}>
       {isShow && (
         <span>
-          <>{i18n.t("wap.main.account.totalFund")}</>
+          {i18n.t("wap.main.account.totalFund")}
         </span>
       )}
 

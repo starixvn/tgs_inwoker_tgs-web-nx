@@ -1,6 +1,6 @@
+import Slider from "react-slick";
 import CarouselArrow from "@/assets/t23/images/promotion/icon_arrow.svg";
 import CarouselArrowYellow from "@/assets/t23/images/promotion/icon_arrow_yellow.svg";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import styled from "styled-components";

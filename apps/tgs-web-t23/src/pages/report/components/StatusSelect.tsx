@@ -1,8 +1,8 @@
 import React from "react";
-import i18n from "@/utils/i18n";
-import { Select } from "@/components/UI/Select";
 import styled from "styled-components";
 import { FormControl, styled as muiStyled } from "@mui/material";
+import i18n from "@/utils/i18n";
+import { Select } from "@/components/UI/Select";
 
 const StatusSelectContainer = styled.div`
   padding: 1px 29px;

@@ -1,10 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import { utility } from "@/core/utils/utility";
 import { useNotifications } from "@/core/feature/useNotifications";
 import Icon from "@/components/project/Icon";
 import copyImg from "@/assets/t18/images/deposit/copy.png";
-import styled from "styled-components";
 
 const CopyIconContainer = styled.div`
   width: 30px;

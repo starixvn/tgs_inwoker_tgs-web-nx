@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import i18n from "@/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useHistory } from "react-router-dom";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
 
 const CreateAccountContainer = styled.div`
@@ -41,10 +41,10 @@ const RedirectToLoginHint = (props: Props) => {
   return (
     <CreateAccountContainer>
       <span>
-        <>{i18n.t("T13.proceedLogin")}</>
+        {i18n.t("T13.proceedLogin")}
       </span>
       <span onClick={handleRedirect} className={"link"}>
-        <>{i18n.t("common.login")}</>
+        {i18n.t("common.login")}
       </span>
     </CreateAccountContainer>
   );

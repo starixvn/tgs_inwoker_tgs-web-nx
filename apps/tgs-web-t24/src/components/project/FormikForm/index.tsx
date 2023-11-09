@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "@/components/UI/Button";
 import * as Yup from "yup";
 import styled from "styled-components";
+import { Button } from "@/components/UI/Button";
 import {
   FormInputFactory,
   FormInputTypeEnum,

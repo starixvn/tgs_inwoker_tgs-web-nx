@@ -1,4 +1,3 @@
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import config from "../../config/config";
 
 import TopMenuLivePNG_PB from "../assets/t18/images/top-menu-live-pb.png";
@@ -30,6 +29,7 @@ import TopMenuTigerHoverPNG from "../assets/t18/images/top-menu-tiger-hover.png"
 import TopMenuFishHoverPNG from "../assets/t18/images/top-menu-fish-hover.png";
 import TopMenuSlotHoverPNG from "../assets/t18/images/top-menu-slot-hover.png";
 import TopMenuCockfightHoverPNG from "../assets/t18/images/top-menu-cockfight-hover.png";
+import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 
 const MenuItemList = [
   {

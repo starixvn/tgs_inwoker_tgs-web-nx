@@ -1,7 +1,7 @@
 export class PromotionCampaignDetail {
-  percentage: number = 0;
-  bonusAmountLimit: number = 0;
-  turnoverMultiple: number = 0;
+  percentage = 0;
+  bonusAmountLimit = 0;
+  turnoverMultiple = 0;
 }
 
 interface PromotionLocalization {
@@ -15,24 +15,24 @@ interface PromotionLocalization {
 
 export class Promotion {
   campaignDetail: PromotionCampaignDetail[] = [];
-  content: string = "";
-  desktopBanner: string = "";
-  from: string = "";
-  id: string = "";
+  content = "";
+  desktopBanner = "";
+  from = "";
+  id = "";
   localization: PromotionLocalization = {};
-  mobileBanner: string = "";
-  name: string = "";
-  order: number = 0;
-  promotionType: string = "";
-  subSubject: string = "";
-  terms: string = "";
-  to: string = "";
+  mobileBanner = "";
+  name = "";
+  order = 0;
+  promotionType = "";
+  subSubject = "";
+  terms = "";
+  to = "";
   vipLevels: number[] = [];
 }
 
 export class GetPromotionListResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: Promotion[] = [];
 }

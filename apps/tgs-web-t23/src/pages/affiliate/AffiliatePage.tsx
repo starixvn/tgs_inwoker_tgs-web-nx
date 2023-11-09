@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import Affiliate from "@/core/components/Affiliate";
-import styled from "styled-components";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconAffiliate from "@/assets/t23/images/badge/icon-affiliate.svg";

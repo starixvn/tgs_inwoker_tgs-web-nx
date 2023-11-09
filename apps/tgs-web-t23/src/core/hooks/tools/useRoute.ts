@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
-import { Route, routes } from "@/router";
 import { useEffect, useState } from "react";
+import { Route, routes } from "@/router";
 
 function compareRoutePathAndCurrentPathIsEqual(routePath: string, currentPath: string) {
   //ex:

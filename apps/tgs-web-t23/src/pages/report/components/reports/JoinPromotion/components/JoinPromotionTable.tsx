@@ -1,8 +1,8 @@
 import React from "react";
-import NoRecord from "@/pages/report/components/NoRecord";
 import moment from "moment";
-import i18n from "@/utils/i18n";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import NoRecord from "@/pages/report/components/NoRecord";
+import i18n from "@/utils/i18n";
 import { JoinedPromotionsResponse } from "@/core/models/dto/general/GetJoinedPromoReportResDto";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 

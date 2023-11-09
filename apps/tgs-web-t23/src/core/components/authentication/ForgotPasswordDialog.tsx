@@ -1,8 +1,8 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
 import { useNotifications } from "@/core/feature/useNotifications";
-import { useHistory } from "react-router-dom";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
 
 type Props = {};

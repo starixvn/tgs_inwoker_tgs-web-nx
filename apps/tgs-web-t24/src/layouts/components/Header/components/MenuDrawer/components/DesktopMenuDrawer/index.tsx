@@ -1,3 +1,5 @@
+import { Link, useHistory } from "react-router-dom";
+import styled from "styled-components";
 import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/Header/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
@@ -8,8 +10,6 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import { Link, useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 const DesktopMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};

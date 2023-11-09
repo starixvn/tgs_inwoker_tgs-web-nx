@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { TextFieldProps } from "@mui/material";
 import { TextField } from "@/components/UI/TextField";
 import { Button } from "@/components/UI/Button";
-import { TextFieldProps } from "@mui/material";
 
 const CustomText = styled.div`
   width: 100%;

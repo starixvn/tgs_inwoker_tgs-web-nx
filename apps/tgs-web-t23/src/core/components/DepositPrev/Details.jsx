@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { WalletService } from "@/api-services/services/WalletService";
 import { withRouter } from "react-router-dom";
 import { Modal, styled as muiStyled } from "@mui/material";
 
 import { Textfit } from "react-textfit";
+import { WalletService } from "@/api-services/services/WalletService";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import i18n from "@/utils/i18n";

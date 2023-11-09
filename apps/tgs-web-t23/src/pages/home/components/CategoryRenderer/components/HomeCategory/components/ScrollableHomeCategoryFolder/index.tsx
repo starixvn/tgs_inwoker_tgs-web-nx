@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import Loading from "@/components/UI/Loading";
 import config from "@/config/config";
@@ -7,7 +8,6 @@ import Common from "@/core/utils/Common";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
 
 const HomeCategorySection = styled.div`
   width: 100%;

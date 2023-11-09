@@ -1,16 +1,16 @@
 class DataDto {
-  amount: number = 0;
-  paymentid: string = "";
-  promotionid: string = "";
-  banktype: string = "";
-  note: string = "";
-  emoneyname: string = "";
-  phone: string = "";
+  amount = 0;
+  paymentid = "";
+  promotionid = "";
+  banktype = "";
+  note = "";
+  emoneyname = "";
+  phone = "";
 }
 
 export class PerformEWalletDepositResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: DataDto = new DataDto();
   info: string | null = null;
 }

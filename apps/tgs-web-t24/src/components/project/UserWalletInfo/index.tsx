@@ -169,8 +169,7 @@ const UserWalletInfo = ({}) => {
           </AmountContainer>
         </MainWalletContainer>
         {game.containTransferWallet && (
-          <>
-            <MainWalletContainer>
+          <MainWalletContainer>
               <MainAccountLabel>{i18n.t("web.account.header.allGameWallet")}:</MainAccountLabel>
               <AmountContainer>
                 {isLoading ? (
@@ -186,7 +185,6 @@ const UserWalletInfo = ({}) => {
                 />
               </AmountContainer>
             </MainWalletContainer>
-          </>
         )}
         <MainWalletContainer>
           <MainAccountLabel>{i18n.t("web.account.header.total")}:</MainAccountLabel>

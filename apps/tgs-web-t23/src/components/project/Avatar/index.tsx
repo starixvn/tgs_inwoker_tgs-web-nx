@@ -1,6 +1,6 @@
 import React from "react";
-import avatarImg from "@/assets/t18/images/account/avatar.png";
 import styled from "styled-components";
+import avatarImg from "@/assets/t18/images/account/avatar.png";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import VipMedal from "@/components/project/VipMedal";
 import Icon from "@/components/project/Icon";

@@ -1,5 +1,5 @@
-import { media } from '@/theme/breakpoints';
 import styled from 'styled-components';
+import { media } from '@/theme/breakpoints';
 
 const PartnersContainer = styled.div`
   display: flex;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import moment from "moment";
 import i18n from "@/utils/i18n";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
@@ -13,7 +14,6 @@ import {
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { DatePickerForBirthDate } from "@/components/UI/DatePicker";
-import moment from "moment";
 
 const Container = styled.div`
   width: 100%;

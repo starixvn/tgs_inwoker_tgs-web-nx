@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
 
 type Props = {
   text: string;

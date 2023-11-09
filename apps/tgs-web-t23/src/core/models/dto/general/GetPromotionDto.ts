@@ -1,23 +1,23 @@
 class Promotion {
-  campaignDetail: string = "";
-  content: string = "";
-  desktopBanner: string = "";
-  from: string = "";
-  id: string = "";
-  localization: string = "";
-  mobileBanner: string = "";
-  name: string = "";
-  order: number = 0;
-  promotionType: string = "";
-  subSubject: string = "";
-  terms: string = "";
-  to: string = "";
+  campaignDetail = "";
+  content = "";
+  desktopBanner = "";
+  from = "";
+  id = "";
+  localization = "";
+  mobileBanner = "";
+  name = "";
+  order = 0;
+  promotionType = "";
+  subSubject = "";
+  terms = "";
+  to = "";
   vipLevels: number[] = [];
 }
 
 export class GetPromotionDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: Promotion[] = [];
 }

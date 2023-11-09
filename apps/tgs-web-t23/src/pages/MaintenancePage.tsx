@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import i18n from "@/utils/i18n";
 import Common from "@/core/utils/Common";
-import { useHistory } from "react-router-dom";
 import { UiService } from "@/core/services/UiService";
 import { media } from "@/theme/breakpoints";
 
@@ -158,7 +158,7 @@ const MaintenancePage = (props: MaintenamcePageProps) => {
           {content && (
             <>
               <p>
-                <>{i18n.t("common.maintenance")}</>: <br />
+                {i18n.t("common.maintenance")}: <br />
                 {beginTime} ~ {endTime} (GMT+8){" "}
               </p>
               <p

@@ -6,6 +6,24 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
+        "import/order": [
+          "error",
+          {
+            "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+            "pathGroups": [
+              {
+                "pattern": "@metasports-backoffice/**",
+                "group": "external",
+                "position": "after"
+              },
+              {
+                "pattern": "src/**",
+                "group": "internal",
+                "position": "after"
+              }
+            ]
+          }
+        ],
         "@nx/enforce-module-boundaries": [
           "error",
           {

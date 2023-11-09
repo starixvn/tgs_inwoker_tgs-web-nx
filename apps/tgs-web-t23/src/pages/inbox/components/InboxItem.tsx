@@ -1,8 +1,8 @@
-import { InboxMessage } from "@/core/types/stores/account";
 import { Collapse } from "@mui/material";
 import moment from "moment";
 import { useState } from "react";
 import styled from "styled-components";
+import { InboxMessage } from "@/core/types/stores/account";
 
 const InboxItemContainer = styled.div`
   width: 100%;

@@ -1,13 +1,13 @@
+import { useSnackbar } from "notistack";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import Loading from "@/components/UI/Loading";
 import { REDIRECT_PROMOTION_TYPE } from "@/core/constants/promotion";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
 import i18n from "@/utils/i18n";
-import { useSnackbar } from "notistack";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const StyledButton = styled(SubmitButton)`

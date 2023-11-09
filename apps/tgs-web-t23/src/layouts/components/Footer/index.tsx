@@ -1,9 +1,9 @@
+import styled from "styled-components";
 import gc from "@/assets/t23/images/home/gc.png";
 import SocialMedia from "@/components/project/SocialMedia";
 import config from "@/config/config";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
 
 const FooterContainer = styled.div`
   display: none;

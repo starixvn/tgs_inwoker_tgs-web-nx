@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import iconInbox from "@/assets/t23/images/badge/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
@@ -6,7 +7,6 @@ import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName"
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import styled from "styled-components";
 
 const InboxContainer = styled.div`
   padding: 0 22px;

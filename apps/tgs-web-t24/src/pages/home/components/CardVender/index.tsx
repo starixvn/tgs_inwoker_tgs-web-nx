@@ -1,8 +1,8 @@
+import styled from "styled-components";
+import { providerStatus } from "../../../../core/constants/games";
 import playIcon from "@/assets/t18/images/home/mobile/play.svg";
 import bg from "@/assets/t18/images/home/mobile/vender_card_bg.png";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
-import { providerStatus } from "../../../../core/constants/games";
 
 type Props = {
   imageUrl: string;

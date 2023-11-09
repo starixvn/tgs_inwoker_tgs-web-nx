@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { BetRecord } from "@/pages/home/components/Ranking/components/BetRecordRow";
 import { useAutoBettingToggle } from "@/pages/home/components/Ranking/hooks/useAutoBettingToggle";
 import { mockBetRecordList } from "@/pages/home/components/Ranking/mocks/betRecordList";
 import { userList } from "@/pages/home/components/Ranking/mocks/userList";
 import { gameTypeList } from "@/core/constants/gameType";
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 function getRandomBetAmount() {
   const amountStatus = Math.floor(Math.random() * 10);

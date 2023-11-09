@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Loading from "@/components/UI/Loading";
 import { GameService } from "@/core/services/GameService";
 import MaintenancePage from "@/pages/MaintenancePage";
-import { useParams } from "react-router-dom";
 
 const JoinLobbyGame = () => {
   const { gameType, gpCode } = useParams<{ gameType: string; gpCode: string }>();

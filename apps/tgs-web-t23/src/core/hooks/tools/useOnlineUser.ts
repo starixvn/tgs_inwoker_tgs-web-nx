@@ -1,5 +1,5 @@
-import config from "@/config/config";
 import { useEffect, useState } from "react";
+import config from "@/config/config";
 
 const min = config.features.Home_OnlineUsers.min
 const max = config.features.Home_OnlineUsers.max

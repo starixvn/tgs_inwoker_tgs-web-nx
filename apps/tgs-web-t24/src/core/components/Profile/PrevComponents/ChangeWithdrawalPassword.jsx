@@ -76,9 +76,7 @@ class ChangeWithdrawalPassword extends BaseProfile {
   };
   render() {
     return (
-      <React.Fragment>
-        <ResetWithdrawalPassword alert={this.props.alert} />
-      </React.Fragment>
+      <ResetWithdrawalPassword alert={this.props.alert} />
     );
   }
 }

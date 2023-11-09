@@ -1,11 +1,11 @@
 import React from "react";
-import NoRecord from "@/pages/report/components/NoRecord";
 import moment from "moment";
+import { useHistory } from "react-router-dom";
+import NoRecord from "@/pages/report/components/NoRecord";
 import i18n from "@/utils/i18n";
 import { Button } from "@/components/UI/Button";
 import Loading from "@/components/UI/Loading";
 import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetailsResDto";
-import { useHistory } from "react-router-dom";
 import {
   ReportCard,
   ReportCardCol,

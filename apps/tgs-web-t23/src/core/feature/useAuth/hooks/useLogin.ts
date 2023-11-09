@@ -1,12 +1,12 @@
 import { useState } from "react";
-import i18n from "@/utils/i18n";
 import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import i18n from "@/utils/i18n";
 import config from "@/config/config";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { useInboxStore } from "@/core/stores/useInboxStore";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { useLocation } from "react-router-dom";
 
 export type LoginState = {
   data: any | null;

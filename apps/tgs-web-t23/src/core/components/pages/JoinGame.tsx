@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Loading from "@/components/UI/Loading";
 import MaintenancePage from "@/pages/MaintenancePage";
-import { useParams } from "react-router-dom";
 import { GameService } from "@/core/services/GameService";
 
 const JoinGame = () => {

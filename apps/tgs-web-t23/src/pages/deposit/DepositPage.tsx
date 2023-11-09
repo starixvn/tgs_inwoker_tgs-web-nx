@@ -1,9 +1,9 @@
 import React from "react";
-import DepositPrev from "@/core/components/DepositPrev";
 import { useHistory } from "react-router-dom";
-import { useNotifications } from "@/core/feature/useNotifications";
 import styled from "styled-components";
 import { useLocation } from "react-router";
+import { useNotifications } from "@/core/feature/useNotifications";
+import DepositPrev from "@/core/components/DepositPrev";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";

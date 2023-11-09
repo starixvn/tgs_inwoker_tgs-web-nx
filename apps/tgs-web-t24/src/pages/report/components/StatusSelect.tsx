@@ -1,8 +1,8 @@
 import React from "react";
-import i18n from "@/utils/i18n";
-import { Select } from "@/components/UI/Select";
 import styled from "styled-components";
 import { FormControl, styled as muiStyled } from "@mui/material";
+import i18n from "@/utils/i18n";
+import { Select } from "@/components/UI/Select";
 
 const StatusSelectContainer = styled.div`
   padding: 1px 29px;
@@ -53,13 +53,13 @@ const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) =
       <SelectFormControl variant="outlined">
         <Select native onChange={handleStatusChange} value={status} fullWidth>
           <option value={""}>
-            <>{i18n.t("report.all")}</>
+            {i18n.t("report.all")}
           </option>
 
           {Object.keys(statusDictionary).map((key) => {
             return (
               <option key={key} value={key}>
-                <>{i18n.t(`report.withdrawal.status${key}`)}</>
+                {i18n.t(`report.withdrawal.status${key}`)}
               </option>
             );
           })}

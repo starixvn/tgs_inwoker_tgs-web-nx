@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { ReportContainer } from "@/components/styled-component/Report";
 import { ReportService } from "@/core/services/ReportService";
 import { useNotifications } from "@/core/feature/useNotifications";
@@ -11,7 +12,6 @@ import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDet
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import WithdrawalDetailTable from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
 import WithdrawalDetailCards from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";
-import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

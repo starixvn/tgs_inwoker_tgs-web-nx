@@ -1,12 +1,12 @@
 class Roulette {
-  "promotionid": string = "";
-  "promotiontype": string = "";
-  "roulettecount": number = 0;
+  "promotionid" = "";
+  "promotiontype" = "";
+  "roulettecount" = 0;
 }
 
 export class GetPromotionRouletteCountResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: Roulette[] = [];
 }

@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import Tag from "./Tag";
 import { gameTagList } from "@/core/constants/gameTag";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Tag from "./Tag";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 
 const TagContainer = styled.div`
