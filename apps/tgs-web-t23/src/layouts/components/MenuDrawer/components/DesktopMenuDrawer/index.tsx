@@ -4,13 +4,13 @@ import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.s
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import i18n from "@/utils/i18n";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
+import { theme } from "@/theme";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainDarkBackground};
@@ -74,7 +74,7 @@ const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
   width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "250px")};
   margin: 0 auto 8px;
-  background: ${({ theme, $isShrink }: PromotionCardProps) =>
+  background: ${({ $isShrink }: PromotionCardProps) =>
     $isShrink ? theme.mainDarkBackground : theme.mainLightBackground};
   border-radius: 12px;
   padding: 12px 30px;
