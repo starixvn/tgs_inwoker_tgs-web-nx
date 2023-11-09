@@ -4,7 +4,7 @@ import deleteIcon from "@/assets/t18/images/card/delete.svg";
 
 const InputContainer = styled.div`
   padding: 13px 20px;
-  background: ${({ theme }) => theme.primaryLight};
+  background: ${({ theme }) => theme.mainBackground};
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -12,7 +12,7 @@ const InputContainer = styled.div`
 `;
 
 const CardTitle = styled.div`
-  color: ${({ theme }) => theme.tertiaryLight};
+  color: ${({ theme }) => theme.white};
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   padding-bottom: 10px;
 `;

@@ -5,7 +5,7 @@ import AddCardIcon from "@/assets/t18/images/card/add-card.svg";
 
 const InputContainer = styled.div`
   padding: 13px 20px;
-  background: ${({ theme }) => theme.primaryLight};
+  background: ${({ theme }) => theme.mainBackground};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,12 +17,12 @@ const InputContainer = styled.div`
 const EmptyCardTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.tertiaryMiddle};
+  color: ${({ theme }) => theme.white};
 `;
 
 const EmptyCardDesc = styled.div`
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.tertiaryMiddle};
+  color: ${({ theme }) => theme.white};
 `;
 
 const IconContainer = styled.div`
