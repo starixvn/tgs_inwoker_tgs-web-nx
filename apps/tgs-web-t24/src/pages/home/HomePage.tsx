@@ -11,13 +11,7 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
-import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
-import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
-import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import ImageCard from "./components/ImageCard";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -62,7 +56,7 @@ const MainContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.primaryDark};
+  background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 16px;
 `;
@@ -83,7 +77,7 @@ const HomePage = () => {
   return (
     <MainWrapper>
       {/* Slider - for desktop */}
-      {((isDesktopSize && !activeGameType)) && !!general.banner.length && (
+      {isDesktopSize && !activeGameType && !!general.banner.length && (
         <SliderWrapper>
           <Slider />
         </SliderWrapper>
@@ -101,7 +95,9 @@ const HomePage = () => {
       )}
 
       <MainContentWrapper>
-        {((isMobileSize && !activeGameType) || (isDesktopSize && !activeGameType)) && <CardPrompt />}
+        {((isMobileSize && !activeGameType) || (isDesktopSize && !activeGameType)) && (
+          <CardPrompt />
+        )}
 
         {/* GameTypeTab - left side menu */}
         {isMobileSize && !activeGameType && <GameTypeTab />}
