@@ -24,38 +24,66 @@ docker-build:
     - release/current
     - master  
 
-deploy-domain:
+deploy-domain-dev:
   stage: deploy-domain
-  rules:
-    - if: '$domain != null'
-      when: on_success
   script:
     - |
       echo "domain=$domain"
       echo "brand=$brand"
-      
-      if [[ $CI_COMMIT_BRANCH == "master" ]]; then 
-        export tgs_dev="prod"  
-      elif [[ $CI_COMMIT_BRANCH == "release/current" ]]; then
-        export tgs_dev="staging"   
-      else
-        export tgs_dev="dev"   
-      fi 
-      
-      echo "tgs_env=$tgs_env"
       
       if [[ $domain != "" && $brand != "" ]]; then 
         export image=$(docker image ls | grep pgtgs | awk '{print $1}')
         export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
         echo "image=$image"
         echo "tag=$tag"
-        envsubst < ./deployment/values-$tgs_env.yaml > values.yaml
-        helm template $brand deployment -f values.yaml -n $tgs_env
+        envsubst < ./deployment/values-dev.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n dev
       else 
         echo "No Deployment Brand and Domain"
       fi
-
+  only: 
+    - develop
  
+deploy-domain-staging:
+  stage: deploy-domain
+  script:
+    - |
+      echo "domain=$domain"
+      echo "brand=$brand"
+      
+      if [[ $domain != "" && $brand != "" ]]; then 
+        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+        echo "image=$image"
+        echo "tag=$tag"
+        envsubst < ./deployment/values-staging.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n staging
+      else 
+        echo "No Deployment Brand and Domain"
+      fi
+  only: 
+    - relase/current
+    
+deploy-domain-prod:
+  stage: deploy-domain
+  script:
+    - |
+      echo "domain=$domain"
+      echo "brand=$brand"
+      
+      if [[ $domain != "" && $brand != "" ]]; then 
+        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+        echo "image=$image"
+        echo "tag=$tag"
+        envsubst < ./deployment/values-prod.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n prod
+      else 
+        echo "No Deployment Brand and Domain"
+      fi
+  only: 
+    - master
+    
 deploy-dev:
   stage: deploy
   needs:
