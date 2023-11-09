@@ -1,30 +1,60 @@
 import { Drawer } from "@mui/material";
-import DesktopMenuDrawer from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer";
-import MobileMenuDrawer from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer";
+import { useMemo } from "react";
+
 import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { DRAWER_SHRINK_WIDTH, DRAWER_WIDTH } from "@/theme/constants";
+import MenuDrawerList from "@/layouts/components/MenuDrawer/components/MenuDrawerList";
+import {
+  DESKTOP_DRAWER_WIDTH,
+  DRAWER_SHRINK_WIDTH,
+  HEADER_HEIGHT,
+  MOBILE_DRAWER_WIDTH,
+  TABLET_DRAWER_WIDTH,
+} from "@/theme/constants";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isDesktopSize } = useRwd();
+  const { isExtraLargeDesktopSize, isXlSize } = useRwd();
+
+  const drawerWidth = useMemo(() => {
+    if (isXlSize) {
+      return isMenuOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
+    }
+
+    if (isExtraLargeDesktopSize) {
+      return isMenuOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
+    }
+
+    return MOBILE_DRAWER_WIDTH;
+  }, [isXlSize, isExtraLargeDesktopSize, isMenuOpen]);
 
   return (
     <Drawer
-      variant={isDesktopSize ? "persistent" : "temporary"}
-      anchor={isDesktopSize ? "left" : "right"}
-      open={isDesktopSize ? true : isMenuOpen}
+      variant={isExtraLargeDesktopSize ? "persistent" : "temporary"}
+      anchor={"left"}
+      open={isExtraLargeDesktopSize ? true : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{
         flexShrink: 0,
         "& .MuiDrawer-paper": {
-          width: isMenuOpen ? DRAWER_WIDTH : DRAWER_SHRINK_WIDTH,
-          transition: "width ease-in-out 0.2s",
+          marginTop: {
+            xs: 0,
+            md: 0,
+            lg: HEADER_HEIGHT,
+          },
+          height: {
+            sx: "100vh",
+            md: "100vh",
+            lg: `calc(100vh - ${HEADER_HEIGHT})`,
+          },
+          width: drawerWidth,
+          transition: "all ease-in-out 0.2s",
           border: "none",
         },
       }}
     >
-      {isDesktopSize ? <DesktopMenuDrawer /> : <MobileMenuDrawer />}
+      {/*<MenuDrawerHeader />*/}
+      <MenuDrawerList />
     </Drawer>
   );
 };

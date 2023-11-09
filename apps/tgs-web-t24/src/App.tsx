@@ -68,7 +68,7 @@ const App: React.FC = () => {
                         />
                       );
                     })}
-                    {/*<Redirect to="/" />*/}
+                    <Redirect to="/" />
                   </Switch>
 
                   <LiveChat

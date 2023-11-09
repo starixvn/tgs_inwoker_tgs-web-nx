@@ -37,27 +37,17 @@ type ContentWrapperProps = {
   $isDesktop: boolean;
 };
 
-const ContentWrapper = muiStyled("div", {
-  shouldForwardProp: (prop) => prop !== "$isOpen" && prop !== "$isDesktop",
-})<ContentWrapperProps>(({ theme, $isOpen, $isDesktop }) => {
-  return {
-    position: "relative",
-    flexGrow: 1,
-    transition: theme.transitions.create("all", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: $isDesktop ? DRAWER_SHRINK_WIDTH : 0,
+const ContentWrapper = styled.div<ContentWrapperProps>`
+  position: relative;
+  flex-grow: 1;
+  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
+  transition: all ease-in-out 0.2s;
 
-    ...($isOpen && {
-      transition: theme.transitions.create("all", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: DESKTOP_DRAWER_WIDTH,
-    }),
-  };
-});
+  ${media.sm} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
+      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+  }
+`;
 
 const ChildrenWrapper = styled.div`
   padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};

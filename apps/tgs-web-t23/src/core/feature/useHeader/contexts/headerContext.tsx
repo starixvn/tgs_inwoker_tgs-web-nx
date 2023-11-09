@@ -1,9 +1,6 @@
 import React, { createContext, useState } from "react";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 
-export const DRAWER_WIDTH = "310px";
-export const DRAWER_SHRINK_WIDTH = "126px";
-
 export const initialState: {
   isMenuOpen: boolean;
   handleToggleMenu: (newIsOpen?: boolean) => void;
@@ -27,7 +24,7 @@ export const HeaderContextProvider = ({ children }: ProviderProps) => {
 
   const handleToggleMenu = (newIsOpen?: boolean) => {
     if (typeof newIsOpen !== "undefined") {
-      setIsMenuOpen(false);
+      setIsMenuOpen(newIsOpen);
       return;
     }
 

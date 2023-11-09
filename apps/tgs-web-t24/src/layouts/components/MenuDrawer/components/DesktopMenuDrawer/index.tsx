@@ -4,17 +4,36 @@ import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.s
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import i18n from "@/utils/i18n";
+import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 
-const DesktopMenuDrawerContainer = styled.div`
+const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   width: 100%;
   height: 100vh;
+  padding-bottom: 20px;
+`;
+
+const MenuHeaderContainer = styled.div`
+  position: relative;
+  height: ${HEADER_HEIGHT};
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 19px 0;
+`;
+
+const HeaderContentContainer = styled.div`
+  width: 100%;
+  height: calc(100vh - ${HEADER_HEIGHT});
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow-y: scroll;
   padding-bottom: 20px;
 
@@ -24,7 +43,6 @@ const DesktopMenuDrawerContainer = styled.div`
 
   &::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-    background: ${(props) => props.theme.gray90};
   }
 
   &::-webkit-scrollbar-thumb {
@@ -35,15 +53,10 @@ const DesktopMenuDrawerContainer = styled.div`
   &::-webkit-scrollbar-track-piece {
     background: transparent;
   }
-`;
 
-const MenuHeaderContainer = styled.div`
-  position: relative;
-  height: ${HEADER_HEIGHT};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 19px 0;
+  & > * {
+    flex-shrink: 0;
+  }
 `;
 
 const MenuButtonContainer = styled.div`
@@ -53,29 +66,29 @@ const MenuButtonContainer = styled.div`
   transform: translateY(-50%);
 `;
 
-const HeaderContentContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const PromotionCard = styled.div`
+type PromotionCardProps = {
+  $isShrink: boolean;
+};
+const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
-  width: 250px;
+  width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "250px")};
   margin: 0 auto 8px;
+  background: ${({ theme, $isShrink }: PromotionCardProps) =>
+    $isShrink ? theme.mainDarkBackground : theme.mainLightBackground};
   border-radius: 12px;
   padding: 12px 30px;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "center" : "flex-start")};
   font-size: 1.375rem;
   line-height: 1.611rem;
   font-weight: 700;
 
   & > .icon {
-    margin-right: 10px;
+    margin-right: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "0" : "10px")};
   }
+
+  transition: all 0.2s ease-in-out;
 `;
 
 const LogoImgContainer = styled.div`
@@ -98,6 +111,8 @@ const DesktopMenuDrawer = () => {
   const { handleToggleMenu } = useHeader();
   const history = useHistory();
   const { isDesktopSize } = useRwd();
+  const { isMenuOpen } = useHeader();
+  const isShrink = isDesktopSize && !isMenuOpen;
 
   const handleDrawerClose = () => {
     if (isDesktopSize) return;
@@ -110,7 +125,7 @@ const DesktopMenuDrawer = () => {
   };
 
   return (
-    <DesktopMenuDrawerContainer>
+    <MobileMenuDrawerContainer>
       <MenuHeaderContainer>
         <Link to={"/"}>
           <LogoImgContainer>
@@ -126,14 +141,15 @@ const DesktopMenuDrawer = () => {
       <HeaderContentContainer>
         <MenuGameTypeList />
 
-        <PromotionCard onClick={handleClickPromotion}>
+        <PromotionCard $isShrink={isShrink} onClick={handleClickPromotion}>
           <Icon className={"icon"} iconUrl={iconPromotion} width={"31px"} height={"31px"} />
-          {i18n.t("common.promotion")}
+
+          {!isShrink && i18n.t("common.promotion")}
         </PromotionCard>
 
-        <LanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
+        <MenuLanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
       </HeaderContentContainer>
-    </DesktopMenuDrawerContainer>
+    </MobileMenuDrawerContainer>
   );
 };
 

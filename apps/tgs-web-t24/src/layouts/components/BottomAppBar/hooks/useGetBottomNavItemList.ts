@@ -1,91 +1,74 @@
-import { useEffect, useMemo, useState } from "react";
-import { useLocation } from "react-router";
+import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import i18n from "@/utils/i18n";
-import { RouteCategoryEnum } from "@/router";
-import { BottomNavItem } from "@/layouts/components/BottomAppBar/BottomNav";
-import { useRoute } from "@/core/hooks/tools/useRoute";
-import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
-import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
-import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
-import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
-import iconWithdrawal from "@/assets/t23/images/bottomNavBar/icon-withdrawal.svg";
+import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
+import iconMenu from "@/assets/t24/images/bottomNavBar/icon-menu.svg";
+import iconPromotion from "@/assets/t24/images/bottomNavBar/icon-promotion.svg";
+import iconVip from "@/assets/t24/images/bottomNavBar/icon-vip.svg";
+import iconContact from "@/assets/t24/images/bottomNavBar/icon-chat.svg";
+import iconAffiliate from "@/assets/t24/images/bottomNavBar/icon-affiliate.svg";
+import { useHeader } from "@/core/feature/useHeader";
 
 export function useGetBottomNavItemList() {
-  const location = useLocation();
   const history = useHistory();
 
-  const bottomNavItemList = useMemo(() => {
+  const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
     return [
       {
-        navType: "item",
-        label: i18n.t("common.home"),
-        iconUrl: iconHome,
-        iconActiveUrl: iconHome,
+        navType: NavTypeEnum.ITEM,
+        key: "menu",
+        label: "Menu",
+        iconUrl: iconMenu,
         routePath: "/",
-        routeCategory: RouteCategoryEnum.HOME,
       },
-
       {
-        navType: "item",
+        navType: NavTypeEnum.ITEM,
+        key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: iconPromo,
-        iconActiveUrl: iconPromo,
+        iconUrl: iconPromotion,
         routePath: "/promotion-list",
-        routeCategory: RouteCategoryEnum.PROMOTION,
       },
       {
-        navType: "big-item",
-        label: i18n.t("common.deposit"),
-        iconUrl: iconDeposit,
-        iconActiveUrl: iconDeposit,
+        navType: NavTypeEnum.BIG_ITEM,
+        key: "vip",
+        label: "VIP",
+        iconUrl: iconVip,
         routePath: "/deposit",
-        routeCategory: RouteCategoryEnum.REFER,
       },
       {
-        navType: "item",
-        label: i18n.t("common.withdrawal"),
-        iconUrl: iconWithdrawal,
-        iconActiveUrl: iconWithdrawal,
+        navType: NavTypeEnum.ITEM,
+        key: "contact",
+        label: i18n.t("common.contact"),
+        iconUrl: iconContact,
         routePath: "/withdrawal",
-        routeCategory: RouteCategoryEnum.INBOX,
       },
       {
-        navType: "item",
-        label: i18n.t("web.account.profile"),
-        iconUrl: iconProfile,
-        iconActiveUrl: iconProfile,
+        navType: NavTypeEnum.ITEM,
+        key: "affiliate",
+        label: i18n.t("web.account.affiliate"),
+        iconUrl: iconAffiliate,
         routePath: "/account",
-        routeCategory: RouteCategoryEnum.MINE,
       },
-    ] as BottomNavItem[];
+    ];
   }, []);
 
-  const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
-  const { route } = useRoute();
-
-  useEffect(() => {
-    const matchNavItem =
-      bottomNavItemList.find((bottomNavItem) => {
-        return bottomNavItem.routeCategory === route?.category;
-      }) || null;
-
-    if (!matchNavItem) {
-      console.log(location.pathname);
-      return;
-    }
-
-    setSelectedBottomNavItem(matchNavItem);
-  }, [route]);
+  const { handleToggleMenu } = useHeader();
 
   const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    setSelectedBottomNavItem(appBarItem);
-    history.push(appBarItem.routePath);
+    switch (appBarItem.key) {
+      case "menu":
+        handleToggleMenu(true);
+
+        break;
+
+      default:
+        history.push(appBarItem.routePath);
+        break;
+    }
   };
 
   return {
     bottomNavItemList,
-    selectedBottomNavItem,
     handleClickBottomNavItem,
   };
 }

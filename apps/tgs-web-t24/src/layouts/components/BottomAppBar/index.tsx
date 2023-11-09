@@ -10,7 +10,7 @@ const BottomAppBarContainer = styled.div`
   top: auto;
   bottom: 0;
   left: 0;
-  background: black;
+  background: ${({ theme }) => theme.gray90};
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
@@ -20,8 +20,7 @@ const BottomAppBarContainer = styled.div`
 `;
 
 const BottomAppBar = () => {
-  const { bottomNavItemList, selectedBottomNavItem, handleClickBottomNavItem } =
-    useGetBottomNavItemList();
+  const { bottomNavItemList, handleClickBottomNavItem } = useGetBottomNavItemList();
 
   return (
     <BottomAppBarContainer>
@@ -31,7 +30,6 @@ const BottomAppBar = () => {
             key={bottomNavItem.label}
             bottomNavItem={bottomNavItem}
             onClick={() => handleClickBottomNavItem(bottomNavItem)}
-            isSelected={selectedBottomNavItem?.label === bottomNavItem.label}
           />
         );
       })}

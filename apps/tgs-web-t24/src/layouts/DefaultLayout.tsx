@@ -10,9 +10,11 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import { media } from "@/theme/breakpoints";
 import {
   BOTTOM_APP_BAR_HEIGHT,
+  DESKTOP_DRAWER_WIDTH,
   DRAWER_SHRINK_WIDTH,
-  DRAWER_WIDTH,
   HEADER_HEIGHT,
+  MOBILE_DRAWER_WIDTH,
+  TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
 
 const DefaultLayoutContainer = styled.div`
@@ -34,30 +36,24 @@ const DashboardContainer = styled.div`
 
 type ContentWrapperProps = {
   $isOpen: boolean;
-  $isDesktop: boolean;
 };
 
-const ContentWrapper = muiStyled("div", {
-  shouldForwardProp: (prop) => prop !== "$isOpen" && prop !== "$isDesktop",
-})<ContentWrapperProps>(({ theme, $isOpen, $isDesktop }) => {
-  return {
-    position: "relative",
-    flexGrow: 1,
-    transition: theme.transitions.create("all", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: $isDesktop ? DRAWER_SHRINK_WIDTH : 0,
+const ContentWrapper = styled.div<ContentWrapperProps>`
+  position: relative;
+  flex-grow: 1;
+  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
+  transition: all ease-in-out 0.2s;
 
-    ...($isOpen && {
-      transition: theme.transitions.create("all", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: DRAWER_WIDTH,
-    }),
-  };
-});
+  ${media.lg} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
+      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+  }
+
+  ${media.xl} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
+      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+  }
+`;
 
 const ChildrenWrapper = styled.div`
   padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
@@ -71,7 +67,7 @@ type Props = {
   children: ReactElement;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
+  const { isMobileSize } = useRwd();
   const { isMenuOpen } = useHeader();
 
   return (
@@ -81,7 +77,7 @@ const DefaultLayout = ({ children }: Props) => {
       <DashboardContainer>
         <MenuDrawer />
 
-        <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
+        <ContentWrapper $isOpen={isMenuOpen}>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />

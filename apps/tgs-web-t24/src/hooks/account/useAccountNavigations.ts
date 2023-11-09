@@ -21,7 +21,6 @@ import contactSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon
 import vipSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-vip.svg";
 import logoutSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-logout.svg";
 import i18n from "@/utils/i18n";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useAuth } from "@/core/feature/useAuth";
 
 export enum NavCardKey {
@@ -39,8 +38,8 @@ export enum NavCardKey {
 }
 
 export type NavItem = {
-  key: NavCardKey;
-  label: string;
+  key: NavCardKey | string;
+  label: string | any;
   iconUrl: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
