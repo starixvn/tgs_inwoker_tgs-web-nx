@@ -12,6 +12,7 @@ import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
+import GameFilterTag from "@/pages/home/components/GameFilterTag";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
@@ -34,7 +35,7 @@ const CategoryContent = styled.div`
   row-gap: 12px;
   column-gap: 8px;
   align-self: stretch;
-  
+
   ${media.sm} {
     gap: 31px;
   }
@@ -97,9 +98,11 @@ const NonLobbyCategory = () => {
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}
-                imageUrl={`${config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                  }.jpg`}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
               />
             ))}
           {!hasMappingData && !isLoading && <div>No data</div>}

@@ -4,8 +4,6 @@ import { getFilteredGameListByProvider } from "@/core/feature/game/utils/getFilt
 import { getFilteredGameListByTag } from "@/core/feature/game/utils/getFilteredGameListByTag";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { GameService } from "@/core/services/GameService";
-import { getFilteredGameListByTag } from "@/core/feature/game/utils/getFilteredGameListByTag";
-import { getFilteredGameListByProvider } from "@/core/feature/game/utils/getFilteredGameListByProvider";
 
 interface GetGameListState {
   isLoading: boolean;

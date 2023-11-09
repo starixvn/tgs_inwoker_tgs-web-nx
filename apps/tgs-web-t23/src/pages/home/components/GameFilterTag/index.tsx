@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Tag from "./Tag";
 import { gameTagList } from "@/core/constants/gameTag";
@@ -6,7 +6,6 @@ import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
-import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 
 const TagContainer = styled.div`
   width: 100%;
@@ -25,7 +24,7 @@ const TagContainer = styled.div`
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.tertiaryDark};
+      background: ${(props) => props.theme.mainDarkBackground};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -40,13 +39,20 @@ const TagContainer = styled.div`
 `;
 
 const GameFilterTag = () => {
-  const { activeFilterTag, handleChangeActiveFilterTag, filterTagList, activeProviderFilterTag, handleChangeActiveProviderFilterTag, providerFilterTagList } = useHomeGameContext();
+  const {
+    activeFilterTag,
+    handleChangeActiveFilterTag,
+    filterTagList,
+    activeProviderFilterTag,
+    handleChangeActiveProviderFilterTag,
+    providerFilterTagList,
+  } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
     name: "",
-  }
+  };
 
   const handleFilterClick = (filterTag: FilterTag) => {
     setPrevFilterTag(filterTag);
@@ -60,9 +66,7 @@ const GameFilterTag = () => {
         handleChangeActiveProviderFilterTag(filterTag);
       }
     } else {
-      if (
-        filterTag.tagType === prevFilterTag?.tagType
-      ) {
+      if (filterTag.tagType === prevFilterTag?.tagType) {
         handleChangeActiveFilterTag(allTag);
         handleChangeActiveProviderFilterTag(allTag);
         setPrevFilterTag(allTag);
@@ -74,11 +78,11 @@ const GameFilterTag = () => {
 
   return (
     <TagContainer>
-
       {filterTagList.map((filterTag) => {
         const { name, tagType } = filterTag;
 
-        const isActive = filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType;
+        const isActive =
+          filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType;
 
         const tagCmp = gameTagList.find((tag) => tag.text === name);
 
@@ -94,9 +98,11 @@ const GameFilterTag = () => {
             isShowIcon={gameTagList.some((tag) => tag.text === name)}
             onClick={() => handleFilterClick(filterTag)}
           >
-            {tagCmp && tagCmp.iconComponent && React.createElement(tagCmp.iconComponent, {
-              $color: isActive ? theme.primary : theme.lighterGray,
-            })}
+            {tagCmp &&
+              tagCmp.iconComponent &&
+              React.createElement(tagCmp.iconComponent, {
+                $color: isActive ? theme.primary : theme.lighterGray,
+              })}
           </Tag>
         );
       })}
@@ -106,7 +112,9 @@ const GameFilterTag = () => {
       {providerFilterTagList.map((filterTag) => {
         const { name, gpCode } = filterTag;
 
-        const isActive = filterTag.tagType === FilterTagTypeEnum.PROVIDER && gpCode === activeProviderFilterTag.gpCode
+        const isActive =
+          filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
+          gpCode === activeProviderFilterTag.gpCode;
 
         const tagCmp = gameTagList.find((tag) => tag.text === name);
 
@@ -122,9 +130,11 @@ const GameFilterTag = () => {
             isShowIcon={gameTagList.some((tag) => tag.text === name)}
             onClick={() => handleFilterClick(filterTag)}
           >
-            {tagCmp && tagCmp.iconComponent && React.createElement(tagCmp.iconComponent, {
-              $color: isActive ? theme.primary : theme.lighterGray,
-            })}
+            {tagCmp &&
+              tagCmp.iconComponent &&
+              React.createElement(tagCmp.iconComponent, {
+                $color: isActive ? theme.primary : theme.lighterGray,
+              })}
           </Tag>
         );
       })}
