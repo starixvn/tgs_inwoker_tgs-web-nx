@@ -48,41 +48,7 @@ deploy-domain-dev:
     - echo "domain=$domain"
     - envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
     - helm template $brand deployment -f values.yaml -n $tgs_env
-    
-deploy-domain-staging:
-  stage: deploy-domain
-  rules:
-    - if: '$domain == ""'
-      when: never
-    - when: always
-  script:
-    - export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-    - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-    - echo "image=$image"
-    - echo "tag=$tag"
-    - echo "domain=$domain"
-    - envsubst < ./deployment/values-staging.yaml > values.yaml
-    - helm template $brand deployment -f values.yaml -n staging
-  only: 
-    - release/current
-    
-deploy-domain-prod:
-  stage: deploy-domain
-  rules:
-    - if: '$domain == ""'
-      when: never
-    - when: always
-  script:
-    - export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-    - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-    - echo "image=$image"
-    - echo "tag=$tag"
-    - echo "domain=$domain"
-    - envsubst < ./deployment/values-prod.yaml > values.yaml
-    - helm template $brand deployment -f values.yaml -n prod
-  only: 
-    - master
-    
+ 
 deploy-dev:
   stage: deploy
   needs:
