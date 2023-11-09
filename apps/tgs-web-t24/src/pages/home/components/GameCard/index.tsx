@@ -78,16 +78,15 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 5.8px);
-  max-width: 110px;
+  width: calc(33.33% - 11px);
+  max-width: 121px;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 110 / 142;
+  aspect-ratio: 121 / 158;
 
   ${media.sm} {
-    width: calc(16.7% - 30px);
-    min-width: 170px;
-    aspect-ratio: 170 / 210; 
+    width: calc(16.67% - 20.67px);
+    min-width: 158px;
 
     &:hover {
       ${CardHoverBg} {

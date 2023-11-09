@@ -17,18 +17,20 @@ const HomeCategorySection = styled.div`
 `;
 
 const CategoryTab = styled.div`
-  width: 184px;
-  height: 48px;
-  background-image: url(${tabBg});
-  background-size: contain;
-  padding: 15.5px 15px;
+  width: 100%;
+  height: 32px;
+  border-left: 3px solid ${({ theme }) => theme.primary};
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const CategoryTitle = styled.div`
   color: ${({ theme }) => theme.white};
-  font-size: 1.125rem;
-  font-weight: 700;
-  line-height: 0.875rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.131px;
+  margin-left: 14px;
 `;
 
 const CategoryContent = styled.div`
@@ -99,11 +101,9 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
                 />
               ))}
           {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard />}

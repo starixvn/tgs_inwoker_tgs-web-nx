@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Tag from "./Tag";
 import { gameTagList } from "@/core/constants/gameTag";
+import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 
@@ -69,18 +69,8 @@ const GameFilterTag = () => {
           (filterTag.tagType === FilterTagTypeEnum.PROVIDER && gpCode === activeFilterTag.gpCode) ||
           (filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType);
 
-        // const isActive = (function () {
-        //   switch (tagType) {
-        //     case FilterTagTypeEnum.PROVIDER:
-        //       return gpCode === activeFilterTag.gpCode;
-
-        //     default:
-        //       return tagType === activeFilterTag.tagType;
-        //   }
-        // })();
-
         const tag = gameTagList.find((tag) => tag.text === name);
-
+        // test
         return (
           <Tag
             key={name}

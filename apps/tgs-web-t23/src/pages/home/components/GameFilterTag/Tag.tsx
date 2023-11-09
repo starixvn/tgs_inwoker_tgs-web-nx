@@ -47,11 +47,11 @@ type Props = {
   text: string;
   isActive: boolean;
   isShowIcon: boolean;
-  icon: React.ReactElement | null;
+  children: React.ReactNode;
   onClick: () => void;
 };
 
-const Tag = ({ text, isActive, isShowIcon, icon, onClick }: Props) => {
+const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
   const { isMobileSize } = useRwd();
 
   return (
@@ -61,7 +61,12 @@ const Tag = ({ text, isActive, isShowIcon, icon, onClick }: Props) => {
       $hasBackground={!isShowIcon && isActive}
       onClick={onClick}
     >
-      {isMobileSize && isShowIcon && icon ? React.cloneElement(icon) : <Text $isActive={isActive}>{text}</Text>}
+      {isMobileSize && isShowIcon && children}
+      {!isShowIcon && (
+        <Text $isActive={isActive}>
+          {text}
+        </Text>
+      )}
     </Wrapper>
   );
 };

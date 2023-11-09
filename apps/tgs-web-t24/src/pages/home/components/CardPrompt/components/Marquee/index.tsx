@@ -7,14 +7,15 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   overflow-x: auto;
-  white-space: nowrap;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
   height: 100%;
   white-space: nowrap;
   word-break: keep-all;
-  border-radius: 5px;
+  border-radius: 3px;
+  padding: 4px 0 4px 10px;
   font-size: 0.875rem;
+  background-color: ${({ theme }) => theme.gray80};
+  color: ${({ theme }) => theme.white};
+  margin-right: 10px;
 `;
 
 const Background = styled.div`
@@ -39,10 +40,9 @@ const Marquee = () => {
         <marquee>
           {marquees.map((item, index) => {
             const content = `
-              *${
-                item.localization !== null && item.localization.content
-                  ? item.localization.content
-                  : item.content
+              *${item.localization !== null && item.localization.content
+                ? item.localization.content
+                : item.content
               }
               `;
             return <Background key={index}>{content}</Background>;

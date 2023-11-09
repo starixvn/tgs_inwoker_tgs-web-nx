@@ -14,8 +14,8 @@ const HomeCategoryContainer = styled.div`
 const HomeCategory = () => {
   const { hotGameList, newGameList, recommendGameList, isLoading } = useGetHomeCategoryList();
   const homeCategoryDataList = [
-    { title: "Hot Games", dataList: hotGameList },
-    { title: "New Games", dataList: newGameList },
+    { title: "Hot", dataList: hotGameList },
+    { title: "New", dataList: newGameList },
     { title: "Recommend", dataList: recommendGameList }
   ];
 

@@ -1,8 +1,8 @@
-import { useCallback, useMemo, useState } from "react";
+import { filterTagAll } from "@/core/feature/game/constants/filterTagAll";
+import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
-import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
-import { filterTagAll } from "@/core/feature/game/constants/filterTagAll";
+import { useCallback, useMemo, useState } from "react";
 
 export function useProviderFilter(providerList: ProviderDto[]) {
   const [activeProviderFilterTag, setActiveProviderFilterTag] = useState<FilterTag>(filterTagAll);
@@ -34,7 +34,7 @@ export function useProviderFilter(providerList: ProviderDto[]) {
     });
 
     return filteredTags.filter((tag) => !!tag) as FilterTag[];
-  }, [JSON.stringify(providerList), JSON.stringify(gpCodeList)]);
+  }, [gpCodeList, providerList]);
 
   return {
     providerFilterTagList,

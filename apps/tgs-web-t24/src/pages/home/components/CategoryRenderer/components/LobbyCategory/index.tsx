@@ -11,12 +11,6 @@ import { media } from "@/theme/breakpoints";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 17px;
-  flex-shrink: 0;
-  border-radius: 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
 
   ${media.sm} {
@@ -30,13 +24,11 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   align-content: flex-start;
   width: 100%;
-  row-gap: 12px;
-  column-gap: 8px;
+  gap: 12px 16.5px;
   align-self: stretch;
 
   ${media.sm} {
-    row-gap: 36px;
-    column-gap: 40px;
+    gap: 24px;
   }
 `;
 
