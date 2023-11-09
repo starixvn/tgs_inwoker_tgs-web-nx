@@ -1,10 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import { useNotifications } from "@/core/feature/useNotifications";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
 import { ButtonConfirm, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
 import { Button } from "@/components/UI/Button";
-import styled from "styled-components";
 
 const AlertContainer = styled.div`
   padding: 20px;

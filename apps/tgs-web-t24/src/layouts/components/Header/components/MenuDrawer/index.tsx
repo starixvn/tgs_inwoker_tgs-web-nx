@@ -1,9 +1,9 @@
+import { Drawer } from "@mui/material";
 import DesktopMenuDrawer from "@/layouts/components/Header/components/MenuDrawer/components/DesktopMenuDrawer";
 import MobileMenuDrawer from "@/layouts/components/Header/components/MenuDrawer/components/MobileMenuDrawer";
 import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { DRAWER_SHRINK_WIDTH, DRAWER_WIDTH } from "@/theme/constants";
-import { Drawer } from "@mui/material";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();

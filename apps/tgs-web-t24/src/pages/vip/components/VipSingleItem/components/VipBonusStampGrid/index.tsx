@@ -1,7 +1,7 @@
-import { media } from "@/theme/breakpoints";
-import formatAmount from "@/core/utils/getFormatAmount";
 import styled from "styled-components";
 import LockerSvgIcon from "./LockerSvgIcon";
+import { media } from "@/theme/breakpoints";
+import formatAmount from "@/core/utils/getFormatAmount";
 
 type Props = {
   bonusColor?: string;

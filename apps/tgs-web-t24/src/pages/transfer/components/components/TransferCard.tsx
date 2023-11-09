@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import styled from "styled-components";
+import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
 import i18n from "@/utils/i18n";
 import Common from "@/core/utils/Common";
-import styled from "styled-components";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { TextField } from "@/components/UI/TextField";
 import { useGameStore } from "@/core/stores/useGameStore";
 import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
-import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
 import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`

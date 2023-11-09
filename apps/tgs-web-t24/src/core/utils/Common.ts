@@ -91,7 +91,7 @@ function readFileDataAsBinary(e: { files: FileList }): Promise<ArrayBuffer> {
 
 function ConvertSlotGameParentIdToString(id: number): string | undefined {
   const slotGameParentIdDictionary: { [key in string]: number } = SlotGameParentId;
-  for (let key in slotGameParentIdDictionary) {
+  for (const key in slotGameParentIdDictionary) {
     if (slotGameParentIdDictionary[key] === id) {
       return key;
     }
@@ -101,7 +101,7 @@ function ConvertSlotGameParentIdToString(id: number): string | undefined {
 function GetBankImageByTitle(title: string): string {
   let bank = null;
 
-  for (let k in bankImageMapping) {
+  for (const k in bankImageMapping) {
     if (bankImageMapping[k.toLowerCase()].title === title) {
       bank = bankImageMapping[k.toLowerCase()];
       break;
@@ -134,7 +134,7 @@ function ConvertGameTypeToText(gameType: ValueOf<typeof GameTypeEnum>): string {
 }
 
 function GetBankImageByCode(code: string): any {
-  let mapp = bankImageMapping[code.toLowerCase()];
+  const mapp = bankImageMapping[code.toLowerCase()];
   if (mapp) {
     return mapp;
   } else {

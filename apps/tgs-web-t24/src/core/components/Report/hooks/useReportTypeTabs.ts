@@ -1,5 +1,5 @@
-import { useGameStore } from "@/core/stores/useGameStore";
 import { useMemo } from "react";
+import { useGameStore } from "@/core/stores/useGameStore";
 import i18n from "@/utils/i18n";
 
 export enum ReportTabIndexEnum {

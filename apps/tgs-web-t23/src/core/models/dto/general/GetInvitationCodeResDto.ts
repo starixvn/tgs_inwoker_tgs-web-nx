@@ -1,12 +1,12 @@
 class DataDto {
-  agentId: string = "";
-  invitationCode: string = "";
-  userName: string = "";
+  agentId = "";
+  invitationCode = "";
+  userName = "";
 }
 
 export class GetInvitationCodeResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: DataDto = new DataDto();
 }

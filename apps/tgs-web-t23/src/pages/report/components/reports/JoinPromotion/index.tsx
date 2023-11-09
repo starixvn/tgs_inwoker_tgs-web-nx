@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { GeneralService } from "@/api-services/services/GeneralService";
 import {
@@ -11,7 +12,6 @@ import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import JoinPromotionCards from "@/pages/report/components/reports/JoinPromotion/components/JoinPromotionCards";
 import JoinPromotionTable from "@/pages/report/components/reports/JoinPromotion/components/JoinPromotionTable";
-import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { ReportContainer } from "@/components/styled-component/Report";
 
 type Props = {

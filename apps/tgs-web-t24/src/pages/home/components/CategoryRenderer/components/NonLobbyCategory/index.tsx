@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import searchIcon from "@/assets/t23/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
 import config from "@/config/config";
@@ -11,7 +12,6 @@ import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;

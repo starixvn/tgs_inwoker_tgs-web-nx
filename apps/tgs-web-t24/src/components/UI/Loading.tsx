@@ -1,8 +1,8 @@
+import { CircularProgress } from "@mui/material";
+import styled from "styled-components";
 import { useHeader } from "@/core/feature/useHeader";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { DRAWER_WIDTH } from "@/theme/constants";
-import { CircularProgress } from "@mui/material";
-import styled from "styled-components";
 
 type LoadingContainer = {
   $opacity: number;

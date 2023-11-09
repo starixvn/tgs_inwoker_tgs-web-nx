@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 import i18n from "@/utils/i18n";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
@@ -14,7 +15,6 @@ import {
 import { useNotifications } from "@/core/feature/useNotifications";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

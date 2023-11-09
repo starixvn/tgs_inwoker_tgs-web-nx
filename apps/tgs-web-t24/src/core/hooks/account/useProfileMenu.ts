@@ -1,6 +1,6 @@
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useHistory } from "react-router-dom";
 import { useCallback, useMemo } from "react";
+import { useAccountStore } from "@/core/stores/useAccountStore";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
 

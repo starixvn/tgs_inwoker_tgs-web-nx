@@ -1,9 +1,9 @@
 import React from "react";
+import moment from "moment";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
-import moment from "moment";
 import i18n from "@/utils/i18n";
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { JoinedPromotionsResponse } from "@/core/models/dto/general/GetJoinedPromoReportResDto";
 
 type Props = {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { ReportService } from "@/core/services/ReportService";
 import Loading from "@/components/UI/Loading";
@@ -10,7 +11,6 @@ import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetails
 import DepositDetailCards from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailCards";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import DepositDetailTable from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailTable";
-import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

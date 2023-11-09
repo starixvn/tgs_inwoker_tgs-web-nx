@@ -112,7 +112,7 @@ const DepositPopupAnnouncement = ({ open, onClose, header, type, content, text }
               return a.order - b.order;
             })
             .map((data, index) => {
-              var checkLocale = data.localization[i18n.language];
+              const checkLocale = data.localization[i18n.language];
               return (
                 <ImageBanner
                   img={checkLocale ? checkLocale.mobileBanner : data.mobileBanner}

@@ -1,11 +1,11 @@
+import { useCallback } from "react";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useNavigation } from "@/core/hooks/tools/pageProps/useNavigation";
-import { useCallback } from "react";
 import { useUiStore } from "@/core/stores/useUiStore";
 import { useGetSupportUrl } from "@/core/hooks/tools/pageProps/useGetSupportUrl";
-import { useHistory } from "react-router-dom";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { useLocation } from "react-router";
 
 export function usePageProps() {
   // general

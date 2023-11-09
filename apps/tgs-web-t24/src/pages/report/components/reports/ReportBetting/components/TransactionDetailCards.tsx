@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   CustomWinLose,
@@ -7,7 +8,6 @@ import {
   ReportCardRow,
   ReportCardsContainer,
 } from "@/components/styled-component/Report";
-import moment from "moment";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
 import { TransactionDetail } from "@/core/models/dto/report/GetTransactionDetailsResDto";

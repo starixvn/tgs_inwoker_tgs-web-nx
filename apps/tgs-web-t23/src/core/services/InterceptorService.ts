@@ -19,10 +19,10 @@ const Interceptor = {
 
         if (token != null && token !== "") {
           if (logintime != null && logintime !== "") {
-            var date = new Date(parseInt(logintime, 10 | 0));
+            let date = new Date(parseInt(logintime, 10 | 0));
             date = new Date(new Date(date).setHours(date.getHours() + 11));
-            var newD = new Date(date.getTime() + 50 * 60000);
-            var currentDate = new Date();
+            const newD = new Date(date.getTime() + 50 * 60000);
+            const currentDate = new Date();
             if (currentDate < newD) {
               config.headers["Token"] = token;
             }
@@ -46,7 +46,7 @@ const Interceptor = {
 
     axios.interceptors.response.use(
       function (response: any) {
-        var newResponse: any = {
+        const newResponse: any = {
           IsSuccess: false,
           info: ErrorSwitcher.getTranslation(response.data.errmsgid),
           code: response.data.err,

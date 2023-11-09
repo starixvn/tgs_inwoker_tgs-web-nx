@@ -1,14 +1,14 @@
 import React, { useMemo } from "react";
+import { useLocation } from "react-router";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import {
   profilePageDictionary,
   ProfilePathEnum,
 } from "@/core/components/Profile/profilePageDictionary";
-import { useLocation } from "react-router";
 import { ValueOf } from "@/core/types/valueOf";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 

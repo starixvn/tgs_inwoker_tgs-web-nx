@@ -1,11 +1,11 @@
 class DataDto {
-  amount: number = 0;
-  paymentid: string = "";
-  promotionid: string = "";
+  amount = 0;
+  paymentid = "";
+  promotionid = "";
 }
 export class PerformLeePayDepositResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: DataDto = new DataDto();
   info: string | null = null;
 }

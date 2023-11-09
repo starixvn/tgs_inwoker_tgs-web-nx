@@ -1,11 +1,11 @@
 export default class HomePageGame {
-  abbreviation: string = "";
-  game_platform_id: number = 0;
-  game_platform_name: string = "";
-  is_try: number = 2;
-  name: string = "";
+  abbreviation = "";
+  game_platform_id = 0;
+  game_platform_name = "";
+  is_try = 2;
+  name = "";
   params: any | null = null;
-  gpcode: string = "";
-  type: number = 0;
-  status: number = 0;
+  gpcode = "";
+  type = 0;
+  status = 0;
 }

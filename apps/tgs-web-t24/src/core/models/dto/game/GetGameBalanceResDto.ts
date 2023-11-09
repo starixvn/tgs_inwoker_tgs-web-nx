@@ -1,10 +1,10 @@
 class DataDto {
-  balance: number = 0;
+  balance = 0;
 }
 
 export class GetGameBalanceResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: DataDto = new DataDto();
   info: string | null = null;
 }

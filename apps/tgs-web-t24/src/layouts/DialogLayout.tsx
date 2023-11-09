@@ -1,13 +1,13 @@
+import { ReactElement, useCallback } from "react";
+import { useLocation } from "react-router";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { usePageName } from "@/core/feature/usePageName";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
-import { ReactElement, useCallback } from "react";
-import { useLocation } from "react-router";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import Header from "@/layouts/components/Header";
 
 const ContentWrapper = styled.div`

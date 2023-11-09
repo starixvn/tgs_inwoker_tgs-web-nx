@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
+import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import { useWalletStore } from "@/core/stores/useWalletStore";
-import styled from "styled-components";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import { media } from "@/theme/breakpoints";
 

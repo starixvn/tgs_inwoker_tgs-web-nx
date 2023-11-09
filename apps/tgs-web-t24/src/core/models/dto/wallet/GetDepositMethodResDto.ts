@@ -1,16 +1,16 @@
 export class DepositMethod {
-  banktype: string = "";
-  channelcode: string = "";
-  channelid: string = "";
-  channelname: string = "";
-  displayorder: number = 0;
-  extended: string = "";
-  feepercentile: number = 0;
-  id: string = "";
-  methodcode: string = "";
-  methodid: string = "";
-  paymentcode: string = "";
-  paymentid: string = "";
+  banktype = "";
+  channelcode = "";
+  channelid = "";
+  channelname = "";
+  displayorder = 0;
+  extended = "";
+  feepercentile = 0;
+  id = "";
+  methodcode = "";
+  methodid = "";
+  paymentcode = "";
+  paymentid = "";
   transferlimit: {
     from: number;
     to: number;
@@ -21,8 +21,8 @@ export class DepositMethod {
 }
 
 export class GetDepositMethodResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: DepositMethod[] = [];
   info: string | null = null;
 }

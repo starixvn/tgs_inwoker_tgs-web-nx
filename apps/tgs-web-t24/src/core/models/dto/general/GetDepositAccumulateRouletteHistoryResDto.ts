@@ -1,13 +1,13 @@
 class RouletteHistory {
-  createdon: string = "";
-  date: string = "";
-  id: string = "";
-  itemindex: number = 0;
+  createdon = "";
+  date = "";
+  id = "";
+  itemindex = 0;
 }
 
 export class GetDepositAccumulateRouletteHistoryResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: RouletteHistory[] = [];
 }

@@ -1,10 +1,10 @@
+import styled from "styled-components";
 import { usePromotionPage } from "@/core/hooks/pages/promotion/usePromotionPage";
 import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import styled from "styled-components";
 
 const PromotionContainer = styled.div`
   padding: 22px 18px;

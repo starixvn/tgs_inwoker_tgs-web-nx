@@ -1,8 +1,8 @@
-import { ProfileItem } from "@/core/hooks/account/useProfileMenu";
 import { useTheme } from "@mui/material";
-import { Button } from "@/components/UI/Button";
 import React from "react";
 import styled from "styled-components";
+import { Button } from "@/components/UI/Button";
+import { ProfileItem } from "@/core/hooks/account/useProfileMenu";
 
 const ProfileItemContainer = styled.div`
   width: 100%;

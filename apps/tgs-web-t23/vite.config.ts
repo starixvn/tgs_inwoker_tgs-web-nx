@@ -1,8 +1,8 @@
 /// <reference types='vitest' />
+import { resolve } from "path";
 import { defineConfig, searchForWorkspaceRoot } from "vite";
 import react from "@vitejs/plugin-react";
 import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
-import { resolve } from "path";
 
 export default defineConfig({
   cacheDir: "../../node_modules/.vite/tgs-web-t23",

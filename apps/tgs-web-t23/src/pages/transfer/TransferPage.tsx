@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import TransferPrev from "@/core/components/TransferPrev";
 import { useNotifications } from "@/core/feature/useNotifications";
 import i18n from "@/utils/i18n";
-import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconTransfer from "@/assets/t23/images/badge/icon-transfer.svg";
 import { useRwd } from "@/core/hooks/tools/useRwd";

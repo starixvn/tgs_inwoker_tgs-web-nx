@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   GETFAVGAME_BEGIN,
   GETFAVGAME_FAIL,
@@ -16,8 +18,6 @@ import { GetFavoriteGameResDto } from "@/core/models/dto/game/GetFavoriteGameRes
 import { RemoveFavoriteGameResDto } from "@/core/models/dto/game/RemoveFavoriteGameResDto";
 import { SetFavoriteGameResDto } from "@/core/models/dto/game/SetFavoriteGameResDto";
 import { GameState } from "@/core/types/stores/game";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { GameService } from "@/core/services/GameService";
 
 export function useGameStore() {

@@ -1,7 +1,7 @@
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { DESKTOP_DRAWER_WIDTH } from "@/theme/constants";
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
+import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { DESKTOP_DRAWER_WIDTH } from "@/theme/constants";
 
 type LoadingContainer = {
   $opacity: number;

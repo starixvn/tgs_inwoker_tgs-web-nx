@@ -1,6 +1,6 @@
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 
-const getDisplayGameType = (brand: string = "default"): GameTypeEnum[] => {
+const getDisplayGameType = (brand = "default"): GameTypeEnum[] => {
   switch (brand) {
     default:
       return [

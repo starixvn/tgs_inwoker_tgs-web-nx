@@ -1,9 +1,9 @@
+import styled from "styled-components";
 import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { Promotion as Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
+import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import i18n from "@/utils/i18n";
 import { usePromotionPage } from "@/core/hooks/pages/promotion/usePromotionPage";

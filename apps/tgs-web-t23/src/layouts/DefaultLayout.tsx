@@ -1,3 +1,6 @@
+import { styled as muiStyled } from "@mui/material";
+import { ReactElement } from "react";
+import styled from "styled-components";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
@@ -11,9 +14,6 @@ import {
   DESKTOP_DRAWER_WIDTH,
   HEADER_HEIGHT,
 } from "@/theme/constants";
-import { styled as muiStyled } from "@mui/material";
-import { ReactElement } from "react";
-import styled from "styled-components";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;

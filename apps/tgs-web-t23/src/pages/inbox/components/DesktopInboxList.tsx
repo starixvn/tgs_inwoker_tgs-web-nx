@@ -1,5 +1,4 @@
 import React from "react";
-import { InboxMessage } from "@/core/types/stores/account";
 import styled from "styled-components";
 import {
   styled as muiStyled,
@@ -9,8 +8,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import i18n from "@/utils/i18n";
 import moment from "moment";
+import i18n from "@/utils/i18n";
+import { InboxMessage } from "@/core/types/stores/account";
 
 const InboxListContainer = styled.div`
   & > div {

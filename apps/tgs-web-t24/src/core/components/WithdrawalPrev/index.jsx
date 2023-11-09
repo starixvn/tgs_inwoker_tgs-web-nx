@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { ListItem, ListItemText, styled as muiStyled } from "@mui/material";
+import Modal from "@mui/material/Modal";
+import styled from "styled-components";
 import Common from "@/core/utils/Common";
 import { walletAction } from "@/api-services/actions/walletAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
@@ -21,8 +23,6 @@ import {
 import { Button } from "@/components/UI/Button";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
-import Modal from "@mui/material/Modal";
-import styled from "styled-components";
 
 const StyledModalBank = muiStyled(Modal)(({ theme }) => ({
   "& .MuiModal-paper": {

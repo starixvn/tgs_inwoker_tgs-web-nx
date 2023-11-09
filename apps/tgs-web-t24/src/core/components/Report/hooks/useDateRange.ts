@@ -32,7 +32,7 @@ export function useDateRange() {
   };
 
   const handleDateRangeChange = (dateRangeEnum: number) => {
-    let today = new Date();
+    const today = new Date();
     today.setHours(0);
     today.setMinutes(0);
     today.setSeconds(0);

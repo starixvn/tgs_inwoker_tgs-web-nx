@@ -1,33 +1,33 @@
 export class MemberInfo {
-  bankinfoauthentication: boolean = true;
+  bankinfoauthentication = true;
   birthdate: string | null = null;
   email: string | null = null;
-  emailauthentication: boolean = true;
+  emailauthentication = true;
   facebookmessenger: string | null = null;
-  identityauthentication: boolean = true;
+  identityauthentication = true;
   identityformid: string | null = null;
-  identityformstatus: number = 0;
-  autotransfertogame: boolean = true;
+  identityformstatus = 0;
+  autotransfertogame = true;
   registercompleted: boolean | string = "";
-  issetpaypassword: boolean = true;
+  issetpaypassword = true;
   line: string | null = null;
   phone: string | null = null;
-  areacode: string = "";
-  phoneauthentication: boolean = false;
+  areacode = "";
+  phoneauthentication = false;
   playercode: string | null = null;
   qq: string | null = null;
   realname: string | null = null;
   telegram: string | null = null;
   username: string | null = null;
   viber: string | null = null;
-  viplevel: number = 0;
+  viplevel = 0;
   wechat: string | null = null;
   whatsapp: string | null = null;
 }
 
 export class GetMemberInfoResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: MemberInfo = new MemberInfo();
   info: string | null = null;
 }

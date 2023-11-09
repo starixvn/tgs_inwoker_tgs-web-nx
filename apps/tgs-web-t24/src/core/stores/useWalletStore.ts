@@ -1,6 +1,7 @@
 // @ts-nocheck
 
 import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
 import { WalletState } from "@/core/types/stores/wallet";
 import {
   GETWALLETBALANCE_BEGIN,
@@ -83,7 +84,6 @@ import {
   DODEPOSIT_FAILED,
 } from "@/api-services/constant/actionType";
 import { WalletService } from "@/api-services/services/WalletService";
-import { useCallback } from "react";
 import { GetWalletBalanceResDto } from "@/core/models/dto/wallet/GetWalletBalanceResDto";
 import { GetDepositMethodResDto } from "@/core/models/dto/wallet/GetDepositMethodResDto";
 import { PerformManualBankDepositResDto } from "@/core/models/dto/wallet/PerformManualBankDepositResDto";

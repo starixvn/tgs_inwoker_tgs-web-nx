@@ -1,6 +1,6 @@
 export class PerformManualBankDepositResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
-  data: string = "";
+  IsSuccess = true;
+  code = 0;
+  data = "";
   info: string | null = null;
 }

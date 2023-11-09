@@ -1,7 +1,7 @@
 class DataDto {
-  content: string = "";
-  localization: string = "";
-  name: string = "";
+  content = "";
+  localization = "";
+  name = "";
   period: {
     from: string;
     to: string;
@@ -12,14 +12,14 @@ class DataDto {
   rouletteitems: {
     title: string;
   }[] = [];
-  subsubject: string = "";
-  terms: string = "";
+  subsubject = "";
+  terms = "";
   viplevels: number[] = [];
 }
 
 export class GetDepositAccumulateRouletteResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: DataDto = new DataDto();
 }

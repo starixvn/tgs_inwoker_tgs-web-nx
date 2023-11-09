@@ -1,18 +1,18 @@
 export class Brand {
-  brandId: string = "";
-  code: string = "";
-  desktopLogoUrl: string = "";
-  hasInvitationCode: boolean = false;
-  loadingUrl: string = "";
-  mobileLogoUrl: string = "";
-  playerIdentityAuthenticationEnabled: boolean = false;
-  playerRegisterFlowSettings: string = "";
-  smsEnable: boolean = false;
+  brandId = "";
+  code = "";
+  desktopLogoUrl = "";
+  hasInvitationCode = false;
+  loadingUrl = "";
+  mobileLogoUrl = "";
+  playerIdentityAuthenticationEnabled = false;
+  playerRegisterFlowSettings = "";
+  smsEnable = false;
 }
 
 export class GetBrandResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: Brand = new Brand();
 }

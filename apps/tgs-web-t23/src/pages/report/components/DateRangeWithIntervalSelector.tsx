@@ -1,6 +1,6 @@
 import React from "react";
-import i18n from "@/utils/i18n";
 import styled from "styled-components";
+import i18n from "@/utils/i18n";
 import { theme } from "@/theme";
 
 const DateRangContainer = styled.div`
