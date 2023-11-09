@@ -84,7 +84,7 @@ const NonLobbyCategory = () => {
               />
             </SearchInputWrapper>
           </CategoryLabel>
-          {/* <GameFilterTag /> */}
+          <GameFilterTag />
         </>
       )}
       {isDesktopSize && <HomeGameFilterTag />}

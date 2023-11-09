@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Tag from "./Tag";
 import { gameTagList } from "@/core/constants/gameTag";
+import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
@@ -69,28 +70,20 @@ const GameFilterTag = () => {
           (filterTag.tagType === FilterTagTypeEnum.PROVIDER && gpCode === activeFilterTag.gpCode) ||
           (filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType);
 
-        // const isActive = (function () {
-        //   switch (tagType) {
-        //     case FilterTagTypeEnum.PROVIDER:
-        //       return gpCode === activeFilterTag.gpCode;
-
-        //     default:
-        //       return tagType === activeFilterTag.tagType;
-        //   }
-        // })();
-
-        const tag = gameTagList.find((tag) => tag.text === name);
+        const tagCmp = gameTagList.find((tag) => tag.text === name);
 
         return (
           <Tag
             key={name}
             text={name}
             isActive={isActive}
-            icon={tag ? <img src={tag.iconUrl} alt={tag.text} /> : null}
-            // icon={tag ? <tag.icon $color={isActive ? theme.primary : theme.lighterGray} /> : null}
             isShowIcon={gameTagList.some((tag) => tag.text === name)}
             onClick={() => handleFilterClick(filterTag)}
-          />
+          >
+            {tagCmp && tagCmp.iconComponent && React.createElement(tagCmp.iconComponent, {
+              $color: isActive ? theme.primary : theme.lighterGray,
+            })}
+          </Tag>
         );
       })}
     </TagContainer>
