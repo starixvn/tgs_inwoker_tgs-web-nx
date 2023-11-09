@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { getFilteredGameListByProvider } from "@/core/feature/game/utils/getFilteredGameListByProvider";
+import { getFilteredGameListByTag } from "@/core/feature/game/utils/getFilteredGameListByTag";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { GameService } from "@/core/services/GameService";
 import { getFilteredGameListByTag } from "@/core/feature/game/utils/getFilteredGameListByTag";
@@ -65,7 +67,7 @@ export function useGetNonLobbyCategoryList() {
 
   const filteredGameListByProvider = useMemo(() => {
     return getFilteredGameListByProvider(filteredGameListByTag, activeProviderFilterTag);
-  }, [JSON.stringify(filteredGameListByTag), activeProviderFilterTag]);
+  }, [filteredGameListByTag, activeProviderFilterTag]);
 
   const searchedGameList = useMemo(() => {
     if (!searchString) return filteredGameListByProvider;

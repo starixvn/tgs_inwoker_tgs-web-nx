@@ -58,7 +58,7 @@ const NewTag = styled.div`
 
 const HotTag = styled.div`
   position: absolute;
-  top: 18px;
+  top: 25px;
   left: 0;
   width: 32px;
   height: 18px;
