@@ -1,16 +1,13 @@
 variables:
-  ImageName: pgtgs/agent-v2
-  BRAND: GPI-V2
-  LANG: zh-CN
-  dev_t23_deploy: lobby-gpi-t23
+  app: tgs-web-t23
   
 default:
   before_script:
-    - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
-    - echo "Tag=$Tag"
-
+    - docker image prune -a -f
+    
 stages:
   - docker-build
+  - deploy-domain
   - deploy
 
 docker-build:
@@ -21,12 +18,43 @@ docker-build:
     - git submodule update --remote
     - git status
     - yarn add -D @nx/react
-    - yarn docker-build:force
+    - yarn docker-build:single $app
     - docker image ls
+    - docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
   only: 
     - develop
     - release/current
     - master  
+
+deploy-domain-dev:
+  stage: deploy-domain
+  rules:
+    - if: '$domain != ""'
+  script:
+    - export image=$(docker image ls | grep pgtgs | awk '{print $1}'
+    - export tag=$(docker image ls | grep pgtgs | awk '{print $2}'
+    - envsubst < ./deployment/values-dev.yaml > values.yaml
+    - helm template $brand deployment -f values.yaml -n dev
+
+deploy-domain-staging:
+  stage: deploy-domain
+  rules:
+    - if: '$domain != ""'
+  script:
+    - export image=$(docker image ls | grep pgtgs | awk '{print $1}'
+    - export tag=$(docker image ls | grep pgtgs | awk '{print $2}'
+    - envsubst < ./deployment/values-staging.yaml > values.yaml
+    - helm template $brand deployment -f values.yaml -n staging
+
+deploy-domain-prod:
+  stage: deploy-domain
+  rules:
+    - if: '$domain != ""'
+  script:
+    - export image=$(docker image ls | grep pgtgs | awk '{print $1}'
+    - export tag=$(docker image ls | grep pgtgs | awk '{print $2}'
+    - envsubst < ./deployment/values-prod.yaml > values.yaml
+    - helm template $brand deployment -f values.yaml -n prod
     
 deploy-dev:
   stage: deploy
@@ -35,10 +63,6 @@ deploy-dev:
   before_script:
     - export KUBECONFIG=$kubeconfig_staging
   script:
-    - export Tag=$(cat tag_file)
-    - echo "DEPLOY=$DEPLOY"
-    - echo "ImageName=$ImageName"
-    - echo "Tag=$Tag"
     - kubectl config get-contexts
     - kubectl set image deployment/$DEPLOY $DEPLOY=${ImageName}:$Tag --record -n dev
     - echo "Deployment successful"
