@@ -9,12 +9,15 @@ type Props = {
 const Wrapper = styled.div`
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 32px;
 `;
 
 const Text = styled.div`
-    color:#9DACD0;
-    margin-left: 5px;
-    font-size: 18px;
+    color: ${({ theme }) => theme.white};
+    margin-left: 14px;
+    font-size: 22px;
     font-weight: 700;
 `;
 

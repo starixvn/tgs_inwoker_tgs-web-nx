@@ -5,12 +5,19 @@ import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
+import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
+import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
 import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
+import { media } from "@/theme/breakpoints";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import ImageCard from "./components/ImageCard";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -19,12 +26,11 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-
+  padding: 16px;
   ${media.sm} {
-    max-width: 1200px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 20px 0px;
-    gap: 20px;
+    padding: 16px 0;
   }
 `;
 
@@ -33,8 +39,7 @@ const SliderWrapper = styled.div`
   height: 160px;
 
   ${media.sm} {
-    height: 375px;
-    border-radius: 10px;
+    height: 416px;
   }
 `;
 
@@ -42,8 +47,8 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
 
   ${media.sm} {
-    max-width: 1200px;
-    height: 375px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    height: 273px;
     border-radius: 10px;
     background-image: url(${({ $imageUrl }) => $imageUrl});
     background-size: cover;
@@ -54,19 +59,12 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
 
 const MainContentWrapper = styled.div`
   width: 100%;
-  padding: 22px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: ${({ theme }) => theme.primaryDark};
   color: ${({ theme }) => theme.white};
-  gap: 10px;
-  flex-shrink: 0;
-
-  ${media.sm} {
-    gap: 20px;
-    padding: unset;
-  }
+  gap: 16px;
 `;
 
 const HomePage = () => {
@@ -84,12 +82,15 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && (
+      {/* Slider - for desktop */}
+      {((isDesktopSize && !activeGameType)) && !!general.banner.length && (
         <SliderWrapper>
           <Slider />
         </SliderWrapper>
       )}
-      {!!activeGameType && (
+
+      {/* GameTypeBanner - for desktop */}
+      {!!activeGameType && isDesktopSize && (
         <GameTypeBanner
           $imageUrl={
             activeGameTypeKey
@@ -100,8 +101,20 @@ const HomePage = () => {
       )}
 
       <MainContentWrapper>
-        {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
-        {isMobileSize && <GameTypeTab />}
+        {((isMobileSize && !activeGameType) || (isDesktopSize && !activeGameType)) && <CardPrompt />}
+
+        {/* GameTypeTab - left side menu */}
+        {isMobileSize && !activeGameType && <GameTypeTab />}
+
+        {/* Ad - Welcome to PG */}
+        {/* Promotion card - Casino & Sports */}
+
+        {/* {activeGameType > 0 &&
+          <CategoryLabel
+            imageUrl={back}
+            text={"sports"}
+          />
+        } */}
 
         <CategoryRenderer />
 

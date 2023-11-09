@@ -6,18 +6,12 @@ import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCa
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import Common from "@/core/utils/Common";
-import i18n from "@/core/utils/i18n";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
-import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
-import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  padding: 20px 17px;
-  flex-shrink: 0;
-  border-radius: 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
 
   ${media.sm} {
@@ -31,21 +25,12 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   align-content: flex-start;
   width: 100%;
-  row-gap: 12px;
-  column-gap: 8px;
+  gap: 12px 16.5px;
   align-self: stretch;
-  
-  ${media.sm} {
-    gap: 31px;
-  }
-`;
 
-const CategoryLabel = styled.div`
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  ${media.sm} {
+    gap: 24px;
+  }
 `;
 
 const SearchInputWrapper = styled.div`
@@ -73,8 +58,13 @@ const NonLobbyCategory = () => {
     <>
       {isMobileSize && (
         <>
-          <CategoryLabel>
-            <CategoryTitle>{categoryTitle}</CategoryTitle>
+          <CategoryLabel
+            imageUrl={back}
+            text={categoryTitle || ""}
+          ></CategoryLabel>
+
+          {/* to-do : Search and Filter tag */}
+          {/* 
             <SearchInputWrapper>
               <SearchInput
                 placeholder={i18n.t("slot.search")}
@@ -83,11 +73,11 @@ const NonLobbyCategory = () => {
                 value={searchString}
               />
             </SearchInputWrapper>
-          </CategoryLabel>
-          {/* <GameFilterTag /> */}
+
+            <GameFilterTag /> */}
         </>
       )}
-      {isDesktopSize && <HomeGameFilterTag />}
+      {/* {isDesktopSize && <HomeGameFilterTag />} */}
 
       <CategoryContentWrapper>
         <CategoryContent>
