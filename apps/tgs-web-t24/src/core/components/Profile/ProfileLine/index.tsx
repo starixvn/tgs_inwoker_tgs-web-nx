@@ -5,8 +5,7 @@ import i18n from "@/utils/i18n";
 import Line from "@/core/components/Profile/PrevComponents/Line";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileLinePage = (props: Props) => {
+const ProfileLinePage = () => {
   useUpdatePageName(i18n.t("common.line"));
 
   const { alert } = useNotifications();

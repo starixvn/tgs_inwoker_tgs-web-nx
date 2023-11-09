@@ -5,8 +5,7 @@ import i18n from "@/utils/i18n";
 import WeChat from "@/core/components/Profile/PrevComponents/WeChat";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileWeChatPage = (props: Props) => {
+const ProfileWeChatPage = () => {
   useUpdatePageName(i18n.t("common.wechatNumber"));
 
   const { alert } = useNotifications();

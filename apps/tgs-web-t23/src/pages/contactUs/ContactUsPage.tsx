@@ -12,8 +12,7 @@ const ContactUsContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const ContactUsPage = (props: Props) => {
+const ContactUsPage = () => {
   useUpdatePageName(i18n.t("common.contactus"));
 
   return (

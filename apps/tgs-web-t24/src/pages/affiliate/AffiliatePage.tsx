@@ -14,8 +14,7 @@ const AffiliateContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const AffiliatePage = (props: Props) => {
+const AffiliatePage = () => {
   useUpdatePageName(i18n.t("affiliate.title"));
   const { isDesktopSize } = useRwd();
 

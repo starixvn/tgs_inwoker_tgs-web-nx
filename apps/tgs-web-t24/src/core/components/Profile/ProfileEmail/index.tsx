@@ -5,8 +5,7 @@ import i18n from "@/utils/i18n";
 import Email from "@/core/components/Profile/PrevComponents/Email";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileEmailPage = (props: Props) => {
+const ProfileEmailPage = () => {
   useUpdatePageName(i18n.t("common.emailAddress"));
 
   const { alert } = useNotifications();

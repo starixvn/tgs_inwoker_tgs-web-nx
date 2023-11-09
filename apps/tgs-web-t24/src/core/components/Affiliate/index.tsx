@@ -85,8 +85,7 @@ const AffiliateInfoRowContainer = styled.div`
   }
 `;
 
-type Props = {};
-const Affiliate = (props: Props) => {
+const Affiliate = () => {
   const { account } = useAccountStore();
   const {
     rebateItemList,

@@ -5,8 +5,7 @@ import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordP
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
 
-type Props = {};
-const ForgotPasswordDialog = ({}: Props) => {
+const ForgotPasswordDialog = () => {
   const { isForgotPasswordDialogOpen, handleToggleForgotPasswordDialog } = useAuthDialog();
 
   const { alert } = useNotifications();

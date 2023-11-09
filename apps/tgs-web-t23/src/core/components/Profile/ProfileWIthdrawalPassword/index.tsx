@@ -5,8 +5,7 @@ import i18n from "@/utils/i18n";
 import WithdrawalPassword from "@/core/components/Profile/PrevComponents/WithdrawalPassword";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileWithdrawalPasswordPage = (props: Props) => {
+const ProfileWithdrawalPasswordPage = () => {
   useUpdatePageName(i18n.t("profile.withdrawalPassword.title"));
 
   const { alert } = useNotifications();

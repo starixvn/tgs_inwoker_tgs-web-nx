@@ -202,7 +202,6 @@ const Links = styled.div`
   cursor: pointer;
 `;
 
-type Props = {};
 const Download = () => {
   const [open, setOpen] = useState(false);
   const [download, setDownload] = useState<any[]>([]);
@@ -324,9 +323,7 @@ const Download = () => {
               >
                 <>
                   <DialogTitle2>
-                    <div>
-                      {i18n.t("pointless.download")}
-                    </div>
+                    <div>{i18n.t("pointless.download")}</div>
                     <CloseButton
                       onClick={() => {
                         setPointlessDialog(false);
@@ -374,9 +371,7 @@ const Download = () => {
       >
         <>
           <DialogTitle2>
-            <div>
-              {i18n.t("download.openGuide")}
-            </div>
+            <div>{i18n.t("download.openGuide")}</div>
             <CloseButton
               onClick={() => {
                 setOpen(false);

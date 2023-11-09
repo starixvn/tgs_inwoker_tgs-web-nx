@@ -21,8 +21,7 @@ const CustomSwitchContainer = styled.div`
   }
 `;
 
-type Props = {};
-const AutoTransferSwitch = (props: Props) => {
+const AutoTransferSwitch = () => {
   const { wallet, updateAutoTransferStatus } = useWalletStore();
   const [isChecked, setIsChecked] = useState(!!wallet.autotransfer);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +44,7 @@ const AutoTransferSwitch = (props: Props) => {
           <div>
             {isLoading}
             {i18n.t("transfer.autoTransfer")} (
-              {wallet.autotransfer ? i18n.t("transfer.on") : i18n.t("transfer.off")})
+            {wallet.autotransfer ? i18n.t("transfer.on") : i18n.t("transfer.off")})
           </div>
         </CustomSwitchContainer>
       </AutoTransferContainer>

@@ -80,8 +80,7 @@ const PartnerList = [
   "KY",
 ];
 
-type Props = {};
-const Footer = (props: Props) => {
+const Footer = () => {
   const { general } = useGeneralStore();
 
   const brand = config.brand;
@@ -94,7 +93,9 @@ const Footer = (props: Props) => {
 
         <FooterGroup>
           <GroupTitle>Gaming License</GroupTitle>
-          <GroupContent><img src={gc} alt="gc" /></GroupContent>
+          <GroupContent>
+            <img src={gc} alt="gc" />
+          </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>

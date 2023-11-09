@@ -5,8 +5,7 @@ import Telegram from "@/core/components/Profile/PrevComponents/Telegram";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileTelegramPage = (props: Props) => {
+const ProfileTelegramPage = () => {
   useUpdatePageName(i18n.t("common.telegram"));
 
   const { alert } = useNotifications();

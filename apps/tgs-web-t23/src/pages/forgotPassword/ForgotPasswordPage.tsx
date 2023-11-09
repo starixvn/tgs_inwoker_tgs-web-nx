@@ -17,8 +17,7 @@ const TitleContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-type Props = {};
-const ForgotPasswordPage = (props: Props) => {
+const ForgotPasswordPage = () => {
   useUpdatePageName(i18n.t("forgotPassword.title"));
 
   const { alert } = useNotifications();

@@ -22,8 +22,7 @@ const ContactButtonContainer = styled.div`
   }
 `;
 
-type Props = {};
-const ContactButton = (props: Props) => {
+const ContactButton = () => {
   const history = useHistory();
 
   const handleClick = useCallback(() => {

@@ -58,9 +58,7 @@ const ForgotPasswordContainer = styled.span`
   cursor: pointer;
 `;
 
-type Props = {};
-
-const LoginForm = (props: Props) => {
+const LoginForm = () => {
   const {
     formInputConfigList,
     formik,

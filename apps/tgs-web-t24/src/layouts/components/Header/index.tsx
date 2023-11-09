@@ -45,8 +45,7 @@ const HeaderContentContainer = styled.div`
   justify-content: end;
 `;
 
-type Props = {};
-const Header = (props: Props) => {
+const Header = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;

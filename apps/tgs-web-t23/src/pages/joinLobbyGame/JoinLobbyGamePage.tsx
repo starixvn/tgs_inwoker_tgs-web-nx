@@ -1,8 +1,7 @@
 import React from "react";
 import JoinLobbyGame from "@/core/components/pages/JoinLobbyGame";
 
-type Props = {};
-const JoinLobbyGamePage = (props: Props) => {
+const JoinLobbyGamePage = () => {
   return <JoinLobbyGame />;
 };
 

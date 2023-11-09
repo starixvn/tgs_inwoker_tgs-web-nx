@@ -5,8 +5,7 @@ import i18n from "@/utils/i18n";
 import ChangePhone from "@/core/components/Profile/PrevComponents/ChangePhone";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileChangePhonePage = (props: Props) => {
+const ProfileChangePhonePage = () => {
   useUpdatePageName(i18n.t("profile.changePhone.title"));
 
   const { alert } = useNotifications();

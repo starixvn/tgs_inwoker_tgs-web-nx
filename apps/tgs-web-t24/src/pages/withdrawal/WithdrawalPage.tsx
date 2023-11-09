@@ -22,8 +22,7 @@ const WithdrawalContainer = styled.div`
   }
 `;
 
-type Props = {};
-const Withdrawal = (props: Props) => {
+const Withdrawal = () => {
   useUpdatePageName(i18n.t("common.withdrawal"));
 
   const history = useHistory();

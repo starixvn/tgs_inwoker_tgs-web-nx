@@ -18,8 +18,7 @@ const ProfilePageContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const ProfilePage = (props: Props) => {
+const ProfilePage = () => {
   const { isDesktopSize } = useRwd();
   const history = useHistory();
   const location = useLocation();

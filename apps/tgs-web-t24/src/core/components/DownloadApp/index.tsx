@@ -46,8 +46,7 @@ const infoCardItemList: InfoCardItem[] = [
   },
   {
     title: "EXTENSIVE",
-    content:
-      "Access to more than 1000+ games including sports betting and more.",
+    content: "Access to more than 1000+ games including sports betting and more.",
     logo: logoExtensiveImg,
   },
   {
@@ -57,8 +56,7 @@ const infoCardItemList: InfoCardItem[] = [
   },
 ];
 
-type Props = {};
-const DownloadApp = (props: Props) => {
+const DownloadApp = () => {
   return (
     <DownloadAppContainer>
       <GirlImage>
@@ -68,17 +66,14 @@ const DownloadApp = (props: Props) => {
       <IntroductionContainer>
         <p>Introduction</p>
         <p>
-          The Mobile Casino App transfers all the powers of our site onto your
-          fingertips. We are available for IOS and Android that features a
-          multitude of entertaining games.
+          The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
+          available for IOS and Android that features a multitude of entertaining games.
         </p>
       </IntroductionContainer>
 
       <InfoCardListContainer>
         {infoCardItemList.map((infoCardItem) => {
-          return (
-            <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />
-          );
+          return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
         })}
       </InfoCardListContainer>
 

@@ -58,8 +58,8 @@ const DrawerCard = styled.div`
     margin-right: 10px;
   }
 `;
-type Props = {};
-const MobileMenuDrawer = (props: Props) => {
+
+const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isLogin } = useAuth();
   const history = useHistory();

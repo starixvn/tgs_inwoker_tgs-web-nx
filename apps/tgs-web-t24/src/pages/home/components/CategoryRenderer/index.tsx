@@ -4,8 +4,7 @@ import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/component
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 
-type Props = {};
-const CategoryRenderer = (props: Props) => {
+const CategoryRenderer = () => {
   const { activeGameType } = useHomeGameContext();
 
   switch (activeGameType) {

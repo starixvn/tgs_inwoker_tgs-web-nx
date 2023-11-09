@@ -3,8 +3,7 @@ import config from "@/config/config";
 import DepositPopupAnnouncement from "@/pages/deposit/components/components/DepositNotificationDialog/DepositPopupAnnouncement";
 import { useUiStore } from "@/core/stores/useUiStore";
 
-type Props = {};
-const DepositNotificationDialog = (props: Props) => {
+const DepositNotificationDialog = () => {
   const { ui } = useUiStore();
   const [isDialogOpen, setIsDialogOpen] = useState(config.features.DepositNotification);
 

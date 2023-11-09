@@ -21,8 +21,7 @@ interface FloatingTool {
   pathUrl: string;
 }
 
-type Props = {};
-const FloatingToolIcons = (props: Props) => {
+const FloatingToolIcons = () => {
   const floatingTools = useMemo<FloatingTool[]>(() => {
     return [
       // {

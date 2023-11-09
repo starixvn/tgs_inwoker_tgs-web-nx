@@ -30,8 +30,7 @@ const NoDataText = styled.div`
   color: ${({ theme }) => theme.gray};
 `;
 
-type Props = {};
-const NoRecord = (props: Props) => {
+const NoRecord = () => {
   return (
     <NoRecordWrapper>
       <NoRecordContainer>

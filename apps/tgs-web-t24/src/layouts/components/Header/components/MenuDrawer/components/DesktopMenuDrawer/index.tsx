@@ -91,8 +91,7 @@ const LogoImgContainer = styled.div`
   }
 `;
 
-type Props = {};
-const DesktopMenuDrawer = (props: Props) => {
+const DesktopMenuDrawer = () => {
   const {
     general: { brand },
   } = useGeneralStore();

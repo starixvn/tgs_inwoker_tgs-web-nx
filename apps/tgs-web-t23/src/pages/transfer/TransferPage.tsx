@@ -16,8 +16,7 @@ const TransferContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const Transfer = (props: Props) => {
+const Transfer = () => {
   useUpdatePageName(i18n.t("transfer.title"));
   const { isDesktopSize } = useRwd();
 

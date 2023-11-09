@@ -16,8 +16,7 @@ const WithdrawalDetailContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const WithdrawalDetails = (props: Props) => {
+const WithdrawalDetails = () => {
   const history = useHistory();
   const { alert } = useNotifications();
   const location = useLocation<{ order?: string }>();

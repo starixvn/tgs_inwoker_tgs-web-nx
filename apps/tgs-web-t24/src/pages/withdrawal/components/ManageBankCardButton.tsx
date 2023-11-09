@@ -20,8 +20,7 @@ const IconContainer = styled.div`
   margin-right: 7.5px;
 `;
 
-type Props = {};
-const ManageBankCardButton = (props: Props) => {
+const ManageBankCardButton = () => {
   const history = useHistory();
   const handleClick = () => {
     history.push("/card");
