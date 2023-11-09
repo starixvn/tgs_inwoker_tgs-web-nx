@@ -24,10 +24,10 @@ docker-build:
     - release/current
     - master  
 
-deploy-domain-dev:
+deploy-domain:
   stage: deploy-domain
   rules:
-    - if: '$domain != ""'
+    - if: '$domain != null'
       when: on_success
     - if: $CI_COMMIT_REF_NAME == 'develop'
       variables:
@@ -43,12 +43,16 @@ deploy-domain-dev:
     - export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
     - echo "image=$image"
     - echo "tag=$tag"
+    - echo "tgs_env=$tgs_env"
     - echo "domain=$domain"
-    - envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+    - envsubst < ./deployment/values-$tgs_env.yaml > values.yaml
     - helm template $brand deployment -f values.yaml -n $tgs_env
  
 deploy-dev:
   stage: deploy
+  rules:
+    - if: '$domain == null'
+      when: on_success
   needs:
     - job: docker-build
   before_script:
