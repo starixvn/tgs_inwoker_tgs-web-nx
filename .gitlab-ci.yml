@@ -42,7 +42,7 @@ deploy-domain:
     - |
       echo "domain=$domain"
       echo "brand=$brand"
-      if [[ $domain !== "" && $domain != "" ]]; then 
+      if [[ $domain != "" && $brand != "" ]]; then 
         export image=$(docker image ls | grep pgtgs | awk '{print $1}')
         export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
         echo "image=$image"
