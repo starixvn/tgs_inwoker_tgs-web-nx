@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
 import AnonymousHeaderContent from "@/layouts/components/Header/components/AnonymousHeaderContent";
-import SideMenuNavItem from "@/layouts/components/Header/components/MenuDrawer/components/SideMenuNavItem";
+import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
 import i18n from "@/utils/i18n";
@@ -32,31 +32,12 @@ const ContentWrapper = styled.div`
   height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const NavsContainer = styled.div`
   padding: 12px 20px;
   height: fit-content;
-`;
-
-const DrawerCard = styled.div`
-  cursor: pointer;
-  width: 100%;
-  margin-bottom: 8px;
-  background: ${({ theme }) => theme.tertiaryDark};
-  border-radius: 12px;
-  padding: 12px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  font-size: 1.375rem;
-  line-height: 1.611rem;
-  font-weight: 700;
-
-  & > .icon {
-    margin-right: 10px;
-  }
 `;
 
 const MobileMenuDrawer = () => {
@@ -124,7 +105,7 @@ const MobileMenuDrawer = () => {
         navType: "route",
         routePath: "/appDownload",
       },
-    ];
+    ] as NavItem[];
   }, []);
 
   const handleClickNav = useCallback((navItem: NavItem) => {
@@ -153,7 +134,7 @@ const MobileMenuDrawer = () => {
           })}
         </NavsContainer>
 
-        <LanguageSwitch style={{ marginBottom: "24px" }} />
+        <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
 
         <Button
           fullWidth
