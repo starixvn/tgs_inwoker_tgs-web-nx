@@ -213,9 +213,8 @@ type SingleCardProps = {
   isCurrentLevel: boolean;
 };
 
-const VipSingleItem = ({ vipCardItem: item, isCurrentLevel }: SingleCardProps) => {
+const VipSingleItem = ({ vipCardItem, isCurrentLevel }: SingleCardProps) => {
   const currentItemRef = useRef<HTMLDivElement | null>(null);
-  const {} = item;
 
   useEffect(() => {
     if (!isCurrentLevel) return;
@@ -230,11 +229,13 @@ const VipSingleItem = ({ vipCardItem: item, isCurrentLevel }: SingleCardProps) =
 
   return (
     <VipScrollableItem ref={currentItemRef}>
-      <VipCard $cardImage={item.levelStyle.cardImage}>
+      <VipCard $cardImage={vipCardItem.levelStyle.cardImage}>
         <VipCardLevelText>
-          <LevelText $levelColor={item.levelStyle.levelColor}>{item.levelStyle.level}</LevelText>
+          <LevelText $levelColor={vipCardItem.levelStyle.levelColor}>
+            {vipCardItem.levelStyle.level}
+          </LevelText>
           {isCurrentLevel ? (
-            <CurrentLevelText $levelStatusColor={item.levelStyle.levelStatusColor}>
+            <CurrentLevelText $levelStatusColor={vipCardItem.levelStyle.levelStatusColor}>
               Current level
             </CurrentLevelText>
           ) : (
@@ -245,39 +246,43 @@ const VipSingleItem = ({ vipCardItem: item, isCurrentLevel }: SingleCardProps) =
           )}
         </VipCardLevelText>
 
-        <VipBadge $badgeImage={item.levelStyle.badgeImage} />
+        <VipBadge $badgeImage={vipCardItem.levelStyle.badgeImage} />
       </VipCard>
 
-      <VipLine $lineImage={item.levelStyle.lineImage} />
-      <VipBonusText $bonusColor={item.levelStyle.bonusColor}>VIP BONUS</VipBonusText>
+      <VipLine $lineImage={vipCardItem.levelStyle.lineImage} />
+      <VipBonusText $bonusColor={vipCardItem.levelStyle.bonusColor}>VIP BONUS</VipBonusText>
 
       <VipBonusStampGrid
         stampImages={[
-          item.levelStyle.stampImage,
-          item.levelStyle.stampImage,
-          item.levelStyle.stampImage,
+          vipCardItem.levelStyle.stampImage,
+          vipCardItem.levelStyle.stampImage,
+          vipCardItem.levelStyle.stampImage,
         ]}
-        bonusTextColor={item.levelStyle.bonusTextColor}
+        bonusTextColor={vipCardItem.levelStyle.bonusTextColor}
         bonusTextTitle={["PROMOTION", "BIRTHDAY", "QUARTERLY"]}
         iconUrl={[rocketIcon, bdcakeIcon, calendarIcon]}
-        lockerIconColor={item.levelStyle.lockerIconColor}
-        vipBonus={[item.promotionBenefit, item.birthBenefit, item.quarterlyBenefit]}
+        lockerIconColor={vipCardItem.levelStyle.lockerIconColor}
+        vipBonus={[
+          vipCardItem.promotionBenefit,
+          vipCardItem.birthBenefit,
+          vipCardItem.quarterlyBenefit,
+        ]}
       />
 
       <VipPrivilegeContent>
-        <VipBadge $badgeImage={item.levelStyle.badgeImage} />
+        <VipBadge $badgeImage={vipCardItem.levelStyle.badgeImage} />
         <VipPrivilegeText $privilegeTitleColor="#4C85F7">Level Up</VipPrivilegeText>
         <VipPrivilegeItemWrapper>
           <VipPrivilegeItem>
             <VipPrivilegeItemText>Deposit</VipPrivilegeItemText>
             <VipPrivilegeItemNumber>
-              {formatAmount(item.levelUpAccumulateDeposit)}/ Daily
+              {formatAmount(vipCardItem.levelUpAccumulateDeposit)}/ Daily
             </VipPrivilegeItemNumber>
           </VipPrivilegeItem>
           <VipPrivilegeItem>
             <VipPrivilegeItemText>Betting</VipPrivilegeItemText>
             <VipPrivilegeItemNumber>
-              {formatAmount(item.levelUpAccumulateBetAmount)}/ Daily
+              {formatAmount(vipCardItem.levelUpAccumulateBetAmount)}/ Daily
             </VipPrivilegeItemNumber>
           </VipPrivilegeItem>
         </VipPrivilegeItemWrapper>
@@ -286,13 +291,13 @@ const VipSingleItem = ({ vipCardItem: item, isCurrentLevel }: SingleCardProps) =
           <VipPrivilegeItem>
             <VipPrivilegeItemText>Deposit</VipPrivilegeItemText>
             <VipPrivilegeItemNumber>
-              {formatAmount(item.levelKeepAccumulateDeposit)}/ Quarterly
+              {formatAmount(vipCardItem.levelKeepAccumulateDeposit)}/ Quarterly
             </VipPrivilegeItemNumber>
           </VipPrivilegeItem>
           <VipPrivilegeItem>
             <VipPrivilegeItemText>Betting</VipPrivilegeItemText>
             <VipPrivilegeItemNumber>
-              {formatAmount(item.levelKeepAccumulateBetAmount)}/ Quarterly
+              {formatAmount(vipCardItem.levelKeepAccumulateBetAmount)}/ Quarterly
             </VipPrivilegeItemNumber>
           </VipPrivilegeItem>
         </VipPrivilegeItemWrapper>
