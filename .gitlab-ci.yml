@@ -13,7 +13,7 @@ stages:
   - docker-build
   - deploy
 
-docker-build-dev:
+docker-build:
   stage: docker-build
   script:
     - git submodule init
@@ -21,41 +21,11 @@ docker-build-dev:
     - git submodule update --remote
     - git status
     - yarn add -D @nx/react
-    - yarn docker-build:dev
+    - yarn docker-build:force
     - docker image ls
-  environment:
-    name: dev
   only: 
     - develop
-
-docker-build-staging:
-  stage: docker-build
-  script:
-    - git submodule init
-    - git submodule sync
-    - git submodule update --remote
-    - git status
-    - yarn add -D @nx/react
-    - yarn docker-build:staging
-    - docker image ls
-  environment:
-    name: staging
-  only: 
     - release/current
-
-docker-build-prod:
-  stage: docker-build
-  script:
-    - git submodule init
-    - git submodule sync
-    - git submodule update --remote
-    - git status
-    - yarn add -D @nx/react
-    - yarn docker-build:prod
-    - docker image ls
-  environment:
-    name: prod
-  only: 
     - master  
     
 deploy-dev:
