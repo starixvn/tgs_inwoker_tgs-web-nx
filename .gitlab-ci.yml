@@ -35,11 +35,11 @@ deploy-domain:
       echo "brand=$brand"
       
       if [[ $CI_COMMIT_BRANCH == "master" ]]; then 
-        export tgs_dev = "prod"  
+        export tgs_dev="prod"  
       elif [[ $CI_COMMIT_BRANCH == "release/current" ]]; then
-        export tgs_dev = "staging"   
+        export tgs_dev="staging"   
       else
-        export tgs_dev = "dev"   
+        export tgs_dev="dev"   
       fi 
       
       echo "tgs_env=$tgs_env"
