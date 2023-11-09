@@ -1,9 +1,9 @@
 import Slider from "react-slick";
+import styled from "styled-components";
 import CarouselArrow from "@/assets/t23/images/promotion/icon_arrow.svg";
 import CarouselArrowYellow from "@/assets/t23/images/promotion/icon_arrow_yellow.svg";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import styled from "styled-components";
 
 const NextArrowContainer = styled.div`
   position: absolute;
@@ -38,7 +38,7 @@ const CustomPageIndicator = styled.div`
 `;
 
 const settings = {
-  className: "center",
+  className: "custom-slider-class",
   centerMode: true,
   infinite: true,
   centerPadding: "0",
@@ -71,11 +71,11 @@ const settings = {
         }}
       />
     );
-  }
+  },
 };
 
 const Carousel = ({ children }: { children: React.ReactNode }) => {
-  return <Slider {...settings} >{children}</Slider>;
+  return <Slider {...settings}>{children}</Slider>;
 };
 
 export default Carousel;

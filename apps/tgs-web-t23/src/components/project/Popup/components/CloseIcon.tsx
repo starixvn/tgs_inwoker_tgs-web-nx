@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Close } from "@mui/icons-material";
+import { media } from "@/theme/breakpoints";
 
 const CloseIconContainer = styled.div`
   position: absolute;
@@ -15,14 +16,23 @@ const CloseIconContainer = styled.div`
   background: ${({ theme }) => theme.primary};
   cursor: pointer;
   z-index: 3;
+
+  ${media.sm} {
+    width: 36px;
+    height: 36px;
+    transform: scale(1.5);
+    background: ${({ theme }) => theme.mainBackground};
+    border-radius: 36px;
+  }
 `;
 
 type Props = {
   onClick: () => void;
+  style?: React.CSSProperties;
 };
-const CloseIcon = ({ onClick, ...others }: Props) => {
+const CloseIcon = ({ onClick, style, ...others }: Props) => {
   return (
-    <CloseIconContainer {...others}>
+    <CloseIconContainer style={style} {...others}>
       <Close
         onClick={onClick}
         style={{

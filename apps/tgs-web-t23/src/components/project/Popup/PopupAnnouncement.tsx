@@ -17,12 +17,11 @@ const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     background: ${({ theme }) => theme.mainBackground};
     width: 321px;
-    height: 283px;
+    height: auto;
     border-radius: 10px;
 
     ${media.sm} {
       width: 652px;
-      height: 386px;
     }
   }
 `;
@@ -33,6 +32,10 @@ const ChildContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 36px 24px 18px;
+
+  ${media.sm} {
+    padding: 60px 50px 30px;
+  }
 `;
 
 const Title = styled.div`
@@ -53,7 +56,20 @@ const Content = styled.div`
 `;
 
 const AnnouncementCardContainer = styled.div`
-  height: calc(283px - 52px - 20px - 20px);
+  min-height: 120px;
+  height: auto;
+
+  ${media.sm} {
+    min-height: 150px;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  ${media.sm} {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const doNotShowAnnouncementDialogKey = "doNotShowAnnouncementDialog";
@@ -126,22 +142,26 @@ const PopupAnnouncement = () => {
           />
         )}
 
-        <Button
-          onClick={handleCloseDialog}
-          style={{
-            margin: "0 auto",
-            width: "100%",
-          }}
-        >
-          <>{i18n.t("common.close")}</>
-        </Button>
+        <ButtonWrapper>
+          <Button
+            onClick={handleCloseDialog}
+            style={{
+              margin: isDesktopSize ? "20px 0 10px 0" : "0 auto",
+              width: isDesktopSize ? "242px" : "100%",
+              textAlign: "center",
+            }}
+          >
+            <>{i18n.t("common.close")}</>
+          </Button>
+        </ButtonWrapper>
 
         {isDesktopSize && (
           <NotShowAgainHint
             onClick={handleClickCheckbox}
             isCheck={isCheck}
             style={{
-              margin: "0 auto 18px",
+              margin: "0 auto",
+              justifyContent: "center",
             }}
           />
         )}
