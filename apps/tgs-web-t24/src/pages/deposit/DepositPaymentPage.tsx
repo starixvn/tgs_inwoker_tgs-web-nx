@@ -21,8 +21,7 @@ const DepositContainer = styled.div`
   }
 `;
 
-type Props = {};
-const DepositPaymentPage = (props: Props) => {
+const DepositPaymentPage = () => {
   const { isDesktopSize } = useRwd();
   const history = useHistory();
   const { alert } = useNotifications();

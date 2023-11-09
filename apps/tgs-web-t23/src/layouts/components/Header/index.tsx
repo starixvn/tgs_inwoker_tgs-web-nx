@@ -49,8 +49,7 @@ const HeaderContentContainer = styled.div`
   margin-right: 20px;
 `;
 
-type Props = {};
-const Header = (props: Props) => {
+const Header = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;

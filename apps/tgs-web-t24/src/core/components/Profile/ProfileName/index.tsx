@@ -5,8 +5,7 @@ import NameVerify from "@/core/components/Profile/PrevComponents/NameVerify";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileNamePage = (props: Props) => {
+const ProfileNamePage = () => {
   useUpdatePageName(i18n.t("profile.nameVerify.title"));
 
   const { alert } = useNotifications();

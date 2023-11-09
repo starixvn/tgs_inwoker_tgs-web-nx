@@ -42,8 +42,7 @@ const hideInDesktopDictionary = {
   [NavCardKey.LOGOUT]: true,
 } as { [key in NavCardKey]: boolean };
 
-type Props = {};
-const AccountNavigations = (props: Props) => {
+const AccountNavigations = () => {
   const history = useHistory();
   const { navItemList, navItemDictionary } = useAccountNavigations();
   const { handleLogout, logoutState } = useAuth();

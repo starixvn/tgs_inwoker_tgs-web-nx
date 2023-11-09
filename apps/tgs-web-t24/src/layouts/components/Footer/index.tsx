@@ -81,8 +81,7 @@ const PartnerList = [
   "KY",
 ];
 
-type Props = {};
-const Footer = (props: Props) => {
+const Footer = () => {
   const { general } = useGeneralStore();
 
   const brand = config.brand;

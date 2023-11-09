@@ -34,8 +34,7 @@ const CloseIconContainer = styled.div`
   cursor: pointer;
 `;
 
-type Props = {};
-const SideMenuHeader = (props: Props) => {
+const SideMenuHeader = () => {
   const {
     general: { brand },
   } = useGeneralStore();

@@ -5,9 +5,7 @@ import { useProfileMenu } from "@/core/hooks/account/useProfileMenu";
 import ProfileRowInDesktop from "@/pages/profile/components/ProfileMenu/ProfileRowInDesktop";
 import AccountPaper from "@/components/project/AccountPaper";
 
-type Props = {};
-
-const ProfileMenuDesktop = ({}: Props) => {
+const ProfileMenuDesktop = () => {
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
 
   return (

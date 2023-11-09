@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
 import AnonymousHeaderContent from "@/layouts/components/Header/components/AnonymousHeaderContent";
-import SideMenuNavItem from "@/layouts/components/Header/components/MenuDrawer/components/SideMenuNavItem";
+import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
 import i18n from "@/utils/i18n";
@@ -134,7 +134,7 @@ const MobileMenuDrawer = () => {
           })}
         </NavsContainer>
 
-        <LanguageSwitch style={{ marginBottom: "24px" }} />
+        <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
 
         <Button
           fullWidth

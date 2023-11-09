@@ -5,8 +5,7 @@ import i18n from "@/utils/i18n";
 import FacebookMessenger from "@/core/components/Profile/PrevComponents/FacebookMessenger";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileFacebookMessengerPage = (props: Props) => {
+const ProfileFacebookMessengerPage = () => {
   useUpdatePageName(i18n.t("common.fb"));
 
   const { alert } = useNotifications();

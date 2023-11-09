@@ -23,8 +23,7 @@ const CreateAccountContainer = styled.div`
   }
 `;
 
-type Props = {};
-const RedirectToLoginHint = (props: Props) => {
+const RedirectToLoginHint = () => {
   const { isDesktopSize } = useRwd();
   const { handleToggleRegisterDialog, handleToggleLoginDialog } = useAuthDialog();
   const history = useHistory();
@@ -40,9 +39,7 @@ const RedirectToLoginHint = (props: Props) => {
 
   return (
     <CreateAccountContainer>
-      <span>
-        {i18n.t("T13.proceedLogin")}
-      </span>
+      <span>{i18n.t("T13.proceedLogin")}</span>
       <span onClick={handleRedirect} className={"link"}>
         {i18n.t("common.login")}
       </span>

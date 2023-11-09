@@ -15,8 +15,7 @@ const CardContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const AddCardPage = (props: Props) => {
+const AddCardPage = () => {
   const history = useHistory();
   const { alert } = useNotifications();
   const { isDesktopSize } = useRwd();

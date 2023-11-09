@@ -30,8 +30,7 @@ const Label = styled.div`
 `;
 const Value = styled.div``;
 
-type Props = {};
-const WithdrawInfoCard = (props: Props) => {
+const WithdrawInfoCard = () => {
   const [minWithdrawLimit, setMinWithdrawLimit] = useState(0);
 
   const getMinWithdrawLimit = useCallback(async () => {

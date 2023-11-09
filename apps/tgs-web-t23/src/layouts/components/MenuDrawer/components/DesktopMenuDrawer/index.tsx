@@ -2,7 +2,7 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
-import MenuGameTypeList from "@/layouts/components/Header/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
+import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { useHeader } from "@/core/feature/useHeader";
@@ -105,8 +105,7 @@ const LogoImgContainer = styled.div`
   }
 `;
 
-type Props = {};
-const DesktopMenuDrawer = (props: Props) => {
+const DesktopMenuDrawer = () => {
   const {
     general: { brand },
   } = useGeneralStore();

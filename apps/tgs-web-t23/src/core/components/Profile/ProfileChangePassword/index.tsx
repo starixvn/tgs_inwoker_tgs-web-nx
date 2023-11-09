@@ -5,8 +5,7 @@ import { useNotifications } from "@/core/feature/useNotifications";
 import i18n from "@/utils/i18n";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileChangePasswordPage = (props: Props) => {
+const ProfileChangePasswordPage = () => {
   useUpdatePageName(i18n.t("profile.changePassword.editPassword"));
 
   const { alert } = useNotifications();

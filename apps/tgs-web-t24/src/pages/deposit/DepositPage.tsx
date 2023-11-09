@@ -23,8 +23,7 @@ const DepositContainer = styled.div`
   }
 `;
 
-type Props = {};
-const DepositPage = (props: Props) => {
+const DepositPage = () => {
   useUpdatePageName(i18n.t("common.deposit"));
 
   const history = useHistory();

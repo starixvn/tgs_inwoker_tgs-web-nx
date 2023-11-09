@@ -16,8 +16,7 @@ const ReportContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const ReportPage = (props: Props) => {
+const ReportPage = () => {
   useUpdatePageName(i18n.t("affiliate.report"));
 
   const { alert } = useNotifications();

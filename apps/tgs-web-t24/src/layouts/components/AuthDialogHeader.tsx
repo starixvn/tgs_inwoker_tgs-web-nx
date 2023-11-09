@@ -19,8 +19,7 @@ const CloseIconContainer = styled.div`
   cursor: pointer;
 `;
 
-type Props = {};
-const AuthDialogHeader = (props: Props) => {
+const AuthDialogHeader = () => {
   const history = useHistory();
   const location = useLocation();
   const pathname = location.pathname;

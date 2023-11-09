@@ -21,8 +21,7 @@ const DepositContainer = styled.div`
   }
 `;
 
-type Props = {};
-const DepositManualPage = (props: Props) => {
+const DepositManualPage = () => {
   const { isDesktopSize } = useRwd();
   const history = useHistory();
   const { alert } = useNotifications();

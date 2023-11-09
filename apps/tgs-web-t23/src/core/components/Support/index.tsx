@@ -17,8 +17,7 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-type Props = {};
-const Support = ({}: Props) => {
+const Support = () => {
   const { general } = useGeneralStore();
   const { handleContactCs } = useContactCS();
   const brandsSupportList = general.brandsSupport;

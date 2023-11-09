@@ -18,9 +18,7 @@ const ProfileCard = styled.div`
   }
 `;
 
-type Props = {};
-
-const ProfileMenuMobile = ({}: Props) => {
+const ProfileMenuMobile = () => {
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
 
   return (

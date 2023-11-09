@@ -29,8 +29,7 @@ const TitleContainer = styled.div`
   overflow: visible;
 `;
 
-type Props = {};
-const AuthDialogImage = (props: Props) => {
+const AuthDialogImage = () => {
   const { pageName } = usePageName();
 
   return (

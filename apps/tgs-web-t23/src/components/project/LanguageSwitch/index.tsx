@@ -4,6 +4,7 @@ import {
   MenuItem as MuiMenuItem,
   Select as MuiSelect,
   SelectChangeEvent,
+  SelectProps,
 } from "@mui/material";
 import styled from "styled-components";
 import i18n from "@/utils/i18n";
@@ -24,8 +25,8 @@ const StyledSelect = styled(MuiSelect)`
   border-radius: 30px !important;
   border: 1px solid white;
 
-  width: 140px;
-  margin-right: 10px;
+  //width: 140px;
+  //margin-right: 10px;
   overflow: visible;
   background: ${({ theme }) => theme.mainLightBackground};
   font-weight: 700 !important;
@@ -78,7 +79,7 @@ const NameContainer = styled.div`
   font-size: 1rem;
 `;
 
-const LanguageSwitch = (props: FormControlProps) => {
+const LanguageSwitch = (props: SelectProps) => {
   const { general } = useGeneralStore();
   const languageList = general.brandLanguage;
 
@@ -103,6 +104,7 @@ const LanguageSwitch = (props: FormControlProps) => {
   if (languageList.length < 2) return null;
   return (
     <StyledSelect
+      {...props}
       type={"string"}
       value={culturecode}
       onChange={handleChange}
