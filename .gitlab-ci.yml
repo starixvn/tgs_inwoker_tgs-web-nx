@@ -19,6 +19,7 @@ docker-build-dev:
     - git submodule init
     - git submodule sync
     - git submodule update --remote
+    - git status
     - yarn add -D @nx/react
     - yarn docker-build:dev
     - docker image ls
@@ -33,6 +34,7 @@ docker-build-staging:
     - git submodule init
     - git submodule sync
     - git submodule update --remote
+    - git status
     - yarn add -D @nx/react
     - yarn docker-build:staging
     - docker image ls
@@ -47,6 +49,7 @@ docker-build-prod:
     - git submodule init
     - git submodule sync
     - git submodule update --remote
+    - git status
     - yarn add -D @nx/react
     - yarn docker-build:prod
     - docker image ls
