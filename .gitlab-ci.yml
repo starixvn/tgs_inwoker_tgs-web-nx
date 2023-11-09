@@ -1,0 +1,115 @@
+variables:
+  ImageName: pgtgs/agent-v2
+  BRAND: GPI-V2
+  LANG: zh-CN
+  dev_t23_deploy: lobby-gpi-t23
+  
+default:
+  before_script:
+    - export Tag="$(date -d $CI_PIPELINE_CREATED_AT +%Y%m%d%H%M).$CI_PIPELINE_IID"
+    - echo "Tag=$Tag"
+
+stages:
+  - docker-build
+  - deploy
+
+docker-build-dev:
+  stage: docker-build
+  before_script:
+    - docker login -u $docker_user -p $docker_pwd
+  script:
+    - git submodule init
+    - git submodule sync
+    - git submodule update --remote
+    - yarn docker-build:dev
+    - docker image ls
+  environment:
+    name: dev
+  only: 
+    - develop
+
+docker-build-staging:
+  stage: docker-build
+  before_script:
+    - docker login -u $docker_user -p $docker_pwd
+  script:
+    - git submodule init
+    - git submodule sync
+    - git submodule update --remote
+    - yarn docker-build:staging
+    - docker image ls
+  environment:
+    name: staging
+  only: 
+    - release/current
+
+docker-build-prod:
+  stage: docker-build
+  before_script:
+    - docker login -u $docker_user -p $docker_pwd
+  script:
+    - git submodule init
+    - git submodule sync
+    - git submodule update --remote
+    - yarn docker-build:prod
+    - docker image ls
+  environment:
+    name: prod
+  only: 
+    - master  
+    
+deploy-dev:
+  stage: deploy
+    - job: docker-build
+  before_script:
+    - export KUBECONFIG=$kubeconfig_staging
+  script:
+    - export Tag=$(cat tag_file)
+    - echo "DEPLOY=$DEPLOY"
+    - echo "ImageName=$ImageName"
+    - echo "Tag=$Tag"
+    - kubectl config get-contexts
+    - kubectl set image deployment/$DEPLOY $DEPLOY=${ImageName}:$Tag --record -n dev
+    - echo "Deployment successful"
+  environment:
+    name: dev
+  only: 
+    - develop
+    
+deploy-staging:
+  stage: deploy
+  needs:
+    - job: docker-build
+  before_script:
+    - export KUBECONFIG=$kubeconfig_staging
+  script:
+    - export Tag=$(cat tag_file)
+    - echo "DEPLOY=$DEPLOY"
+    - echo "ImageName=$ImageName"
+    - echo "Tag=$Tag"
+    - kubectl config get-contexts
+    - kubectl set image deployment/$DEPLOY $DEPLOY=${ImageName}:$Tag --record -n staging
+    - echo "Deployment successful"
+  environment:
+    name: staging
+  only: 
+    - release/current
+    
+deploy-prod:
+  stage: deploy
+  needs:
+    - job: docker-build
+  before_script:
+    - export KUBECONFIG=$kubeconfig_prod
+  script:
+    - export Tag=$(cat tag_file)
+    - echo "DEPLOY=$DEPLOY"
+    - echo "ImageName=$ImageName"
+    - echo "Tag=$Tag"
+    - kubectl set image deployment/$DEPLOY $DEPLOY=${ImageName}:${Tag} --record -n prod
+    - echo "Deployment successful"
+  environment:
+    name: prod
+  only: 
+    - master
+  when: manual
