@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import ContextMenuItem from "./ContextMenuItem";
 import { useHistory } from "react-router-dom";
 import React, { useMemo } from "react";
+import ContextMenuItem from "./ContextMenuItem";
 import i18n from "@/utils/i18n";
 import accountImg from "@/assets/t23/images/header/contextMenu/icon_my_account.svg";
 import supportImg from "@/assets/t23/images/header/contextMenu/icon_service_support.svg";
@@ -78,8 +78,7 @@ const ContextMenu = () => {
   };
 
   return (
-    <>
-      <ContextMenuContainer>
+    <ContextMenuContainer>
         <ContextMenuItemWrapper>
           {contextMenuList.map((contextMenuItem) => {
             const { label, iconUrl, routePath } = contextMenuItem;
@@ -112,7 +111,6 @@ const ContextMenu = () => {
         </ContextMenuItemWrapper>
         <VersionTagContainer>V1.1.3795703</VersionTagContainer>
       </ContextMenuContainer>
-    </>
   );
 };
 

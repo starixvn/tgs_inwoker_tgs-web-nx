@@ -3,8 +3,7 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useLoginPage } from "@/core/hooks/pages/login/useLoginPage";
 import LoginForm from "@/pages/login/components/LoginForm";
 
-type Props = {};
-const LoginPage = (props: Props) => {
+const LoginPage = () => {
   useLoginPage();
   const { isDesktopSize } = useRwd();
 

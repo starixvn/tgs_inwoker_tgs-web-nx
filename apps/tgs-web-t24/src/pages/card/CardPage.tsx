@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
@@ -7,8 +9,6 @@ import { useNavigation } from "@/core/hooks/tools/pageProps/useNavigation";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 const CardContainer = styled.div`
   padding: 0 22px;
@@ -16,8 +16,7 @@ const CardContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const CardPage = (props: Props) => {
+const CardPage = () => {
   const history = useHistory();
   const { alert } = useNotifications();
   const { navigate } = useNavigation();

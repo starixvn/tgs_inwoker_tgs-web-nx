@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,
@@ -8,7 +9,6 @@ import {
 } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
-import moment from "moment";
 import { GameBalanceInfosViewModel } from "@/core/models/dto/report/GetTransferReportResDto";
 
 type Props = {

@@ -1,4 +1,3 @@
-import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { Dialog as MuiDialog, DialogProps } from "@mui/material";
 import React, {
   CSSProperties,
@@ -7,8 +6,9 @@ import React, {
   RefAttributes,
 } from "react";
 import styled from "styled-components";
-import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import { TransitionProps } from "@mui/material/transitions";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
+import { UpTransition } from "@/components/UI/Dialog/Transition";
 
 const DialogContainer = styled(MuiDialog)`
   z-index: 999 !important; // can't overlap footer(which z-index is 1000)

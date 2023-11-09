@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
@@ -7,8 +9,6 @@ import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName"
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 const WithdrawalContainer = styled.div`
   padding: 0 22px;
@@ -22,8 +22,7 @@ const WithdrawalContainer = styled.div`
   }
 `;
 
-type Props = {};
-const Withdrawal = (props: Props) => {
+const Withdrawal = () => {
   useUpdatePageName(i18n.t("common.withdrawal"));
 
   const history = useHistory();

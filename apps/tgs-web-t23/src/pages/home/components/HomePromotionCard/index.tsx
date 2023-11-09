@@ -1,8 +1,8 @@
-import adBanner from "@/assets/t23/images/home/ad-banner.png";
-import { theme } from "@/theme";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import TextButton from "../TextButton";
+import { theme } from "@/theme";
+import adBanner from "@/assets/t23/images/home/ad-banner.png";
 
 const PromotionContent = styled.div`
   width: 100%;

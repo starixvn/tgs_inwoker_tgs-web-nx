@@ -26,7 +26,7 @@ const WalletSelect = ({ value, handleChange, walletBalance, mainAccountId }: Pro
   return (
     <Select native value={value} onChange={(e) => handleChange(e as ChangeEvent)}>
       <option value={mainAccountId}>
-        <>{i18n.t("transfer.mainAccount")}</>
+        {i18n.t("transfer.mainAccount")}
       </option>
       {game.providerList
         .filter((provider) => provider.status === 0 && provider.transferwallet)

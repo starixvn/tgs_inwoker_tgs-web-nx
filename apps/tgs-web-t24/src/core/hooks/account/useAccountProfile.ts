@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { UPDATE_INFO } from "@/api-services/constant/actionType";
 import { useDispatch } from "react-redux";
+import { UPDATE_INFO } from "@/api-services/constant/actionType";
 
 function duplicateText(count: number): string {
   let value = "";

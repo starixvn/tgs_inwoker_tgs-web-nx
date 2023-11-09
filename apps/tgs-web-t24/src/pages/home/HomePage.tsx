@@ -1,3 +1,6 @@
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import ImageCard from "./components/ImageCard";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
@@ -6,12 +9,9 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import React, { useEffect } from "react";
-import styled from "styled-components";
 
 import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
-import ImageCard from "./components/ImageCard";
 
 const MainWrapper = styled.div`
   width: 100%;

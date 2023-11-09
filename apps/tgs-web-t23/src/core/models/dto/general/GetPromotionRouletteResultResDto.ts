@@ -1,11 +1,11 @@
 class DataDto {
-  id: string = "";
-  itemindex: number = 0;
+  id = "";
+  itemindex = 0;
 }
 
 export class GetPromotionRouletteResultResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: DataDto = new DataDto();
 }

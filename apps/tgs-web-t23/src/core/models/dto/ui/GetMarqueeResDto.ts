@@ -1,10 +1,10 @@
 class Marquee {
-  subject: string = "";
-  content: string = "";
-  from: number = 0;
-  to: number = 0;
-  localization: string = "";
-  type: string = "";
+  subject = "";
+  content = "";
+  from = 0;
+  to = 0;
+  localization = "";
+  type = "";
 }
 
 class DataDto {
@@ -14,8 +14,8 @@ class DataDto {
 }
 
 export class GetMarqueeResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: DataDto = new DataDto();
 }

@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router";
+import { useHistory } from "react-router-dom";
 import i18n from "@/utils/i18n";
 import { RouteCategoryEnum } from "@/router";
 import { BottomNavItem } from "@/layouts/components/BottomAppBar/BottomNav";
 import { useRoute } from "@/core/hooks/tools/useRoute";
-import { useLocation } from "react-router";
 import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
 import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
 import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
 import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
 import iconWithdrawal from "@/assets/t23/images/bottomNavBar/icon-withdrawal.svg";
-import { useHistory } from "react-router-dom";
 
 export function useGetBottomNavItemList() {
   const location = useLocation();

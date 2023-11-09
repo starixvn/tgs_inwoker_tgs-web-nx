@@ -26,8 +26,7 @@ const ButtonAddCard = styled.div`
   }
 `;
 
-type Props = {};
-const DepositAddCard = (props: Props) => {
+const DepositAddCard = () => {
   const history = useHistory();
 
   const handleAddCard = useCallback(() => {

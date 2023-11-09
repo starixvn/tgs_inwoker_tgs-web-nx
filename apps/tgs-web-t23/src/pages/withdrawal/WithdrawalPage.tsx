@@ -1,8 +1,8 @@
 import React from "react";
-import WithdrawalPrev from "@/core/components/WithdrawalPrev";
 import { useHistory } from "react-router-dom";
-import { useNotifications } from "@/core/feature/useNotifications";
 import styled from "styled-components";
+import WithdrawalPrev from "@/core/components/WithdrawalPrev";
+import { useNotifications } from "@/core/feature/useNotifications";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import i18n from "@/utils/i18n";
@@ -22,8 +22,7 @@ const WithdrawalContainer = styled.div`
   }
 `;
 
-type Props = {};
-const Withdrawal = (props: Props) => {
+const Withdrawal = () => {
   useUpdatePageName(i18n.t("common.withdrawal"));
 
   const history = useHistory();

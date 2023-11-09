@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import i18n from "@/utils/i18n";
 import styled from "styled-components";
+import i18n from "@/utils/i18n";
 import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
@@ -17,8 +17,7 @@ const TitleContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-type Props = {};
-const ForgotPasswordPage = (props: Props) => {
+const ForgotPasswordPage = () => {
   useUpdatePageName(i18n.t("forgotPassword.title"));
 
   const { alert } = useNotifications();

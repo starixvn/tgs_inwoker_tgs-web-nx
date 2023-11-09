@@ -1,15 +1,15 @@
 class Banner {
-  desktopurl: string = "";
-  id: string = "";
-  mobileurl: string = "";
-  navurl: string = "";
-  alt: string = "";
-  title: string = "";
+  desktopurl = "";
+  id = "";
+  mobileurl = "";
+  navurl = "";
+  alt = "";
+  title = "";
 }
 
 export class GetBannerResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: Banner[] = [];
 }

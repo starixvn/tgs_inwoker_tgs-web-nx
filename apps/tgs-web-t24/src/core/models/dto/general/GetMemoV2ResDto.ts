@@ -1,17 +1,17 @@
 class DataDto {
-  content: string = "";
-  haveRead: boolean = true;
-  id: string = "";
-  quotation: string = "";
-  receiver: string = "";
-  replied: boolean = true;
-  sender: string = "";
-  sentOn: string = "";
-  subject: string = "";
+  content = "";
+  haveRead = true;
+  id = "";
+  quotation = "";
+  receiver = "";
+  replied = true;
+  sender = "";
+  sentOn = "";
+  subject = "";
 }
 export class GetMemoV2ResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: DataDto = new DataDto();
 }

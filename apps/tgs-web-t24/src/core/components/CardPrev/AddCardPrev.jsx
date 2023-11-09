@@ -5,7 +5,7 @@ import { ListItem, ListItemText, Modal, styled as muiStyled } from "@mui/materia
 import { walletAction } from "@/api-services/actions/walletAction";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
-import MessageDialog from "@/core/components/CardPrev/components/MessageDialog";
+import MessageDialog from "@/pages/card/components/MessageDialog";
 import Loading from "@/components/UI/Loading";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";

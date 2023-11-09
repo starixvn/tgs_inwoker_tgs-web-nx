@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog } from "@mui/material";
-import { BrandsSupport } from "@/core/types/stores/general";
 import styled from "styled-components";
+import { BrandsSupport } from "@/core/types/stores/general";
 
 const QRCodeContainer = styled.div`
   margin: 50px;

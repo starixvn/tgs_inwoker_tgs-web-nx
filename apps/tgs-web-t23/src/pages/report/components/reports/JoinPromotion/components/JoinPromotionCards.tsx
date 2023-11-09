@@ -1,6 +1,6 @@
 import React from "react";
-import NoRecord from "@/pages/report/components/NoRecord";
 import moment from "moment";
+import NoRecord from "@/pages/report/components/NoRecord";
 import i18n from "@/utils/i18n";
 import { JoinedPromotionsResponse } from "@/core/models/dto/general/GetJoinedPromoReportResDto";
 import {

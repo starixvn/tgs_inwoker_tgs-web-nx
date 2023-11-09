@@ -5,8 +5,7 @@ import ProfileMenuMobile from "@/pages/profile/components/ProfileMenu/ProfileMen
 import i18n from "@/utils/i18n";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileMenu = (props: Props) => {
+const ProfileMenu = () => {
   useUpdatePageName(i18n.t("profile.basicInfo"));
   const { isDesktopSize } = useRwd();
 

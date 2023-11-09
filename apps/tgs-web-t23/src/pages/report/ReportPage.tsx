@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import Report from "@/core/components/Report";
 import { useNotifications } from "@/core/feature/useNotifications";
 import i18n from "@/utils/i18n";
-import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconReport from "@/assets/t23/images/badge/icon-report.svg";
 import { useRwd } from "@/core/hooks/tools/useRwd";
@@ -16,8 +16,7 @@ const ReportContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const ReportPage = (props: Props) => {
+const ReportPage = () => {
   useUpdatePageName(i18n.t("affiliate.report"));
 
   const { alert } = useNotifications();

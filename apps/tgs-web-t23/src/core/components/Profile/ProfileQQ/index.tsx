@@ -5,8 +5,7 @@ import i18n from "@/utils/i18n";
 import QQ from "@/core/components/Profile/PrevComponents/QQ";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileQQPage = (props: Props) => {
+const ProfileQQPage = () => {
   useUpdatePageName(i18n.t("common.qqNumber"));
 
   const { alert } = useNotifications();

@@ -3,8 +3,7 @@ import RegisterForm from "@/pages/register/components/RegisterForm";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
 
-type Props = {};
-const RegisterDialog = ({}: Props) => {
+const RegisterDialog = () => {
   const { isRegisterDialogOpen, handleToggleRegisterDialog } = useAuthDialog();
 
   return (

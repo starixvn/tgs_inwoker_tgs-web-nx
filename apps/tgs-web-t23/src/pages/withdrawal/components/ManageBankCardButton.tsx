@@ -1,7 +1,7 @@
 import React from "react";
-import i18n from "@/utils/i18n";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import i18n from "@/utils/i18n";
 import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
 
 const ButtonContainer = styled.div`
@@ -20,8 +20,7 @@ const IconContainer = styled.div`
   margin-right: 7.5px;
 `;
 
-type Props = {};
-const ManageBankCardButton = (props: Props) => {
+const ManageBankCardButton = () => {
   const history = useHistory();
   const handleClick = () => {
     history.push("/card");

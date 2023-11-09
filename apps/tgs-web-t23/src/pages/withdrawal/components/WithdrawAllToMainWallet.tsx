@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import i18n from "@/utils/i18n";
 import styled from "styled-components";
+import i18n from "@/utils/i18n";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { useGameStore } from "@/core/stores/useGameStore";
 import { Button } from "@/components/UI/Button";

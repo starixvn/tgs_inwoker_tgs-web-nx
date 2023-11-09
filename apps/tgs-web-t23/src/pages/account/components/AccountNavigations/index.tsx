@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect } from "react";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
-import styled from "styled-components";
 import NavCard from "@/pages/account/components/AccountNavigations/NavCard";
 import AppDownloadButton from "@/components/project/AppDownloadButton";
-import { useHistory } from "react-router-dom";
 import { NavItem, NavCardKey, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
 import i18n from "@/utils/i18n";
 import { media } from "@/theme/breakpoints";
@@ -42,8 +42,7 @@ const hideInDesktopDictionary = {
   [NavCardKey.LOGOUT]: true,
 } as { [key in NavCardKey]: boolean };
 
-type Props = {};
-const AccountNavigations = (props: Props) => {
+const AccountNavigations = () => {
   const history = useHistory();
   const { navItemList, navItemDictionary } = useAccountNavigations();
   const { handleLogout, logoutState } = useAuth();

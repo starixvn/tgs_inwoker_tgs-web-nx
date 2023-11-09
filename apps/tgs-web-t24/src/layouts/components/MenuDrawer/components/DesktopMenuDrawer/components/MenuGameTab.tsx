@@ -1,5 +1,5 @@
-import Icon from "@/components/project/Icon";
 import styled from "styled-components";
+import Icon from "@/components/project/Icon";
 
 type Props = {
   imageUrl: string;

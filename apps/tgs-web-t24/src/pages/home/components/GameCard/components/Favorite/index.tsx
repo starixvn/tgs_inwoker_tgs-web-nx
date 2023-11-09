@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import likeIcon from "@/assets/t23/images/home/fullLike.svg";
 import dislikeIcon from "@/assets/t23/images/home/disLike.svg";
-import styled from "styled-components";
 
 const LikeIcon = styled.div<{ $imageUrl: string }>`
   width: 15px;

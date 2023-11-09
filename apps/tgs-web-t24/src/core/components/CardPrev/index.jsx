@@ -4,12 +4,12 @@ import styled from "styled-components";
 import { walletAction } from "@/api-services/actions/walletAction";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
-import MessageDialog from "@/core/components/CardPrev/components/MessageDialog";
+import MessageDialog from "@/pages/card/components/MessageDialog";
 import Loading from "@/components/UI/Loading";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
-import AddCardsButton from "@/core/components/CardPrev/components/AddCardsButton";
-import Card from "@/core/components/CardPrev/components/Card";
+import AddCardsButton from "@/pages/card/components/AddCardsButton";
+import Card from "@/pages/card/components/Card";
 
 const Container = styled.div`
   width: 100%;
@@ -34,8 +34,7 @@ class CardPrev extends Component {
   }
   componentDidUpdate(preProps) {
     if (
-      preProps.wallet.deleteBankCardResult !==
-        this.props.wallet.deleteBankCardResult &&
+      preProps.wallet.deleteBankCardResult !== this.props.wallet.deleteBankCardResult &&
       this.props.wallet.deleteBankCardResult !== null
     ) {
       if (this.props.wallet.deleteBankCardResult.IsSuccess) {
@@ -83,9 +82,7 @@ class CardPrev extends Component {
             <Card
               key={row.id}
               title={row.banktype}
-              content={
-                row.detail.address || row.detail.bankAccount || row.detail.phone
-              }
+              content={row.detail.address || row.detail.bankAccount || row.detail.phone}
               handleDelete={this.handleDeleteCard}
               disable={
                 config.features.AddCard_NotAllowedEditDelete ||
@@ -99,8 +96,7 @@ class CardPrev extends Component {
         {!(
           config.features.AddCard_NotAllowedEditDelete ||
           config.features.ChangesNotAllowed ||
-          (this.props.wallet.bankCardList.length >=
-            config.features.AddCard_MaximumCardAllowed &&
+          (this.props.wallet.bankCardList.length >= config.features.AddCard_MaximumCardAllowed &&
             config.features.AddCard_DisableCreateUpdateDelete)
         ) && (
           <AddCardsButton
@@ -108,8 +104,7 @@ class CardPrev extends Component {
               this.props.wallet.bankCardList.length > 0 &&
               (config.features.ChangesNotAllowed ||
                 config.features.AddCard_NotAllowedEditDelete ||
-                this.props.wallet.bankCardList.length >=
-                  config.features.AddCard_MaximumCardAllowed)
+                this.props.wallet.bankCardList.length >= config.features.AddCard_MaximumCardAllowed)
                 ? this.props.alert("", i18n.t("card.toEdit"))
                 : this.props.navigate("/card/add");
             }}

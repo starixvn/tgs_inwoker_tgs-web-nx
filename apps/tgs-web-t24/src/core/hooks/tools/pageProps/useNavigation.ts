@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useHistory } from "react-router-dom";
+import { useAccountStore } from "@/core/stores/useAccountStore";
 
 export function useNavigation() {
   const appHistory = useHistory();

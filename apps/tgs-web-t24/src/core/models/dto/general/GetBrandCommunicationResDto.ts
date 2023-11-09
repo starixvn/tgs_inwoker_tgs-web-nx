@@ -1,13 +1,13 @@
 export class BrandCommunication {
-  type: string = "";
-  phone: string = "";
-  appid: string = "";
-  qrcodeurl: string = "";
+  type = "";
+  phone = "";
+  appid = "";
+  qrcodeurl = "";
 }
 
 export class GetBrandCommunicationResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: BrandCommunication[] = [];
 }

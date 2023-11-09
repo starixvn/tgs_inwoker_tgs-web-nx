@@ -1,6 +1,6 @@
 import React from "react";
-import Icon from "@/components/project/Icon";
 import styled from "styled-components";
+import Icon from "@/components/project/Icon";
 
 const PageBadgeContainer = styled.div`
   padding: 10px 20px;

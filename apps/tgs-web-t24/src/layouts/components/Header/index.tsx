@@ -1,11 +1,11 @@
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { HEADER_HEIGHT } from "@/theme/constants";
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
+import { HEADER_HEIGHT } from "@/theme/constants";
+import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useAccountStore } from "@/core/stores/useAccountStore";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -45,8 +45,7 @@ const HeaderContentContainer = styled.div`
   justify-content: end;
 `;
 
-type Props = {};
-const Header = (props: Props) => {
+const Header = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;

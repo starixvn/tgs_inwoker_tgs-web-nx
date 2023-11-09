@@ -1,6 +1,6 @@
 export class GetIDCardNoResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: any;
   info: string | null = null;
 }

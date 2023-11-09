@@ -1,6 +1,6 @@
 import i18n from "@/utils/i18n";
 
-var fontFamily = "Gill Sans MT, sans-serif";
+let fontFamily = "Gill Sans MT, sans-serif";
 
 if (i18n.language === "zh-CN") {
   fontFamily = "'Noto Sans SC', Microsoft Yahei, '微软雅黑', STXihei, '华文细黑'";

@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import bigTabBg from "@/assets/t23/images/home/bigTabBg.svg";
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
-import styled from "styled-components";
 
 const HomeCategorySection = styled.div`
   width: 100%;

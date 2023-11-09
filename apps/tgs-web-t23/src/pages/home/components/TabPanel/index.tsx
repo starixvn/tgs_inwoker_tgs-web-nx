@@ -1,10 +1,10 @@
+import { useState } from "react";
+import styled from "styled-components";
+import TabButton from "./TabButton";
 import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
 import WinningRankingTable from "@/pages/home/components/Ranking/WinningRankingTable";
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
 import { rankingTabList } from "@/core/constants/gameType";
-import { useState } from "react";
-import styled from "styled-components";
-import TabButton from "./TabButton";
 
 const RankingContainer = styled.div`
   width: 100%;

@@ -5,8 +5,7 @@ import { useNotifications } from "@/core/feature/useNotifications";
 import i18n from "@/utils/i18n";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileChangeEmail = (props: Props) => {
+const ProfileChangeEmail = () => {
   useUpdatePageName(i18n.t("profile.email.editEmail"));
 
   const { alert } = useNotifications();

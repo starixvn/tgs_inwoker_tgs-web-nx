@@ -1,10 +1,10 @@
+import styled from "styled-components";
+import moment from "moment";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import JoinPromotionButton from "@/pages/promotion/components/JoinPromotionButton";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
 import { usePromotionDetailPage } from "@/core/hooks/pages/promotion/usePromotionDetailPage";
 import Loading from "@/components/UI/Loading";
-import moment from "moment";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;

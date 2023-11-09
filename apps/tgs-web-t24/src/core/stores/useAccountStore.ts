@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { AccountState } from "@/core/types/stores/account";
 import { useCallback } from "react";
+import { AccountState } from "@/core/types/stores/account";
 import {
   CHECKTOKEN_BEGIN,
   CHECKTOKEN_FAILURE,

@@ -1,4 +1,5 @@
 import React from "react";
+import FlipMove from "react-flip-move";
 import {
   RankingTable,
   RankingTableTitle,
@@ -6,7 +7,6 @@ import {
   RankTableCol,
   RankTableRow,
 } from "@/pages/home/components/Ranking/styles";
-import FlipMove from "react-flip-move";
 import BetRecordRow, { BetRecord } from "@/pages/home/components/Ranking/components/BetRecordRow";
 
 type Props = {

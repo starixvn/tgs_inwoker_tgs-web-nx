@@ -1,3 +1,7 @@
+import { Dialog as MuiDialog } from "@mui/material";
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import Carousel from "@/components/UI/Carousel";
@@ -5,10 +9,6 @@ import { UpTransition } from "@/components/UI/Dialog/Transition";
 import usePromotion from "@/core/hooks/tools/usePromotion";
 import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
 import { media } from "@/theme/breakpoints";
-import { Dialog as MuiDialog } from "@mui/material";
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { Button } from "@/components/UI/Button";
 import i18n from "@/utils/i18n";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
@@ -96,8 +96,7 @@ const PopupPromotion = () => {
   if (isEmptyData || disableDialog) return null;
 
   return (
-    <>
-      <StyledDialog
+    <StyledDialog
         open={isShowPromotion}
         TransitionComponent={UpTransition}
         onClose={handleCloseDialog}
@@ -133,7 +132,6 @@ const PopupPromotion = () => {
 
         <CloseIcon onClick={handleCloseDialog} />
       </StyledDialog>
-    </>
   );
 };
 

@@ -1,8 +1,8 @@
 import React from "react";
-import CardPrev from "@/core/components/CardPrev";
 import { useHistory } from "react-router-dom";
-import { useNotifications } from "@/core/feature/useNotifications";
 import styled from "styled-components";
+import CardPrev from "@/core/components/CardPrev";
+import { useNotifications } from "@/core/feature/useNotifications";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import i18n from "@/utils/i18n";
@@ -16,8 +16,7 @@ const CardContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const CardPage = (props: Props) => {
+const CardPage = () => {
   const history = useHistory();
   const { alert } = useNotifications();
   const { navigate } = useNavigation();

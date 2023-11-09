@@ -1,7 +1,7 @@
-import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import styled from "styled-components";
 import BottomNav from "./BottomNav";
 import { useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
+import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 
 const BottomAppBarContainer = styled.div`
   position: fixed;

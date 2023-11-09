@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import BaseProfile from "../BaseProfile";
+import Default from "./default";
+import Approved from "./approved";
 import i18n from "@/utils/i18n";
 import BottomNote from "@/components/UI/BottomNote";
-import BaseProfile from "../BaseProfile";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_ACCOUNTRESULT } from "@/api-services/constant/actionType";
 import config from "@/config/config";
 import { AccountService } from "@/api-services/services/AccountService";
-import Default from "./default";
-import Approved from "./approved";
 
 class NameVerify extends BaseProfile {
   constructor(props) {

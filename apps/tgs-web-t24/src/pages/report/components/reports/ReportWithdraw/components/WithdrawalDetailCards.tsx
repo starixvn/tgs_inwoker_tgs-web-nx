@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,
@@ -6,7 +7,6 @@ import {
   ReportCardRow,
   ReportCardsContainer,
 } from "@/components/styled-component/Report";
-import moment from "moment";
 import i18n from "@/utils/i18n";
 import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
 

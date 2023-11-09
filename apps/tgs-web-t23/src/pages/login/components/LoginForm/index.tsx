@@ -1,10 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import FormikForm from "@/components/project/FormikForm";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
 import { useLoginForm } from "@/core/feature/useAuthForm/useLoginForm";
-import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
 
 const LoginFormContainer = styled.div`
@@ -58,9 +58,7 @@ const ForgotPasswordContainer = styled.span`
   cursor: pointer;
 `;
 
-type Props = {};
-
-const LoginForm = (props: Props) => {
+const LoginForm = () => {
   const {
     formInputConfigList,
     formik,

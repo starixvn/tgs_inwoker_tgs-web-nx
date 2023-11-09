@@ -1,10 +1,10 @@
-import config from "@/config/config";
-import i18n from "@/utils/i18n";
-import { utility } from "@/core/utils/utility";
 import { Dialog } from "@mui/material";
 import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import styled from "styled-components";
+import { utility } from "@/core/utils/utility";
+import i18n from "@/utils/i18n";
+import config from "@/config/config";
 
 type ContainerProps = {
   $language: string;
@@ -202,7 +202,6 @@ const Links = styled.div`
   cursor: pointer;
 `;
 
-type Props = {};
 const Download = () => {
   const [open, setOpen] = useState(false);
   const [download, setDownload] = useState<any[]>([]);
@@ -324,9 +323,7 @@ const Download = () => {
               >
                 <>
                   <DialogTitle2>
-                    <div>
-                      <>{i18n.t("pointless.download")}</>
-                    </div>
+                    <div>{i18n.t("pointless.download")}</div>
                     <CloseButton
                       onClick={() => {
                         setPointlessDialog(false);
@@ -374,9 +371,7 @@ const Download = () => {
       >
         <>
           <DialogTitle2>
-            <div>
-              <>{i18n.t("download.openGuide")}</>
-            </div>
+            <div>{i18n.t("download.openGuide")}</div>
             <CloseButton
               onClick={() => {
                 setOpen(false);

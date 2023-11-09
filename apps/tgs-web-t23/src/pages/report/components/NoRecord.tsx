@@ -1,6 +1,6 @@
 import React from "react";
-import i18n from "@/utils/i18n";
 import styled from "styled-components";
+import i18n from "@/utils/i18n";
 import noResultImg from "@/assets/t18/images/report/no_result.svg";
 
 const NoRecordWrapper = styled.div`
@@ -30,8 +30,7 @@ const NoDataText = styled.div`
   color: ${({ theme }) => theme.gray};
 `;
 
-type Props = {};
-const NoRecord = (props: Props) => {
+const NoRecord = () => {
   return (
     <NoRecordWrapper>
       <NoRecordContainer>

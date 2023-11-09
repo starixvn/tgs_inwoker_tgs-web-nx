@@ -1,3 +1,7 @@
+import React, { useMemo } from "react";
+import { useLocation } from "react-router";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import {
@@ -8,10 +12,6 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import { ValueOf } from "@/core/types/valueOf";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import React, { useMemo } from "react";
-import { useLocation } from "react-router";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 const ProfilePageContainer = styled.div`
   padding: 0 22px 22px;
@@ -19,8 +19,7 @@ const ProfilePageContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const ProfilePage = (props: Props) => {
+const ProfilePage = () => {
   const { isDesktopSize } = useRwd();
   const history = useHistory();
   const location = useLocation();

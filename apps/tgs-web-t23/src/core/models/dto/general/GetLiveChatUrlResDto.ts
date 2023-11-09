@@ -1,10 +1,10 @@
 class DataDto {
-  name: string = "";
-  setting: string = "";
+  name = "";
+  setting = "";
 }
 export class GetLiveChatUrlResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: DataDto = new DataDto();
 }

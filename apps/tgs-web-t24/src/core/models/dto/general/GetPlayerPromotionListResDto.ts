@@ -1,16 +1,16 @@
 export class PlayerPromotion {
-  joinedOn: string = "";
-  promotionName: string = "";
+  joinedOn = "";
+  promotionName = "";
 }
 
 class DataDto {
   items: PlayerPromotion[] = [];
-  totalCount: number = 0;
+  totalCount = 0;
 }
 
 export class GetPlayerPromotionListResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   info: string | null = null;
   data: DataDto = new DataDto();
 }

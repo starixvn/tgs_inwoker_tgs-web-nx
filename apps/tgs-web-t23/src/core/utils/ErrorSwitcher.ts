@@ -1,6 +1,6 @@
 import { LocalizationData } from "@/core/models/dto/general/GetLocalizationResDto";
 
-var translation: LocalizationData | null = null;
+let translation: LocalizationData | null = null;
 
 const ErrorSwitcher = {
   translation,

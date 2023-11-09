@@ -1,13 +1,13 @@
 class DataDto {
-  err: number = 0;
-  errmsg: string = "";
-  errmsgid: string = "";
-  updatetime: number = 0;
+  err = 0;
+  errmsg = "";
+  errmsgid = "";
+  updatetime = 0;
 }
 
 export class LogoutResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: DataDto = new DataDto();
   info: string | null = null;
 }

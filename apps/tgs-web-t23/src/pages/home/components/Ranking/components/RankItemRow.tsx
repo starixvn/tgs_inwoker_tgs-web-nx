@@ -1,9 +1,9 @@
 import React, { forwardRef, Ref } from "react";
+import styled from "styled-components";
 import { RankTableCol, RankTableRow } from "@/pages/home/components/Ranking/styles";
 import ranking_1 from "@/assets/t18/images/home/mobile/ranking_1.svg";
 import ranking_2 from "@/assets/t18/images/home/mobile/ranking_2.svg";
 import ranking_3 from "@/assets/t18/images/home/mobile/ranking_3.svg";
-import styled from "styled-components";
 import MaskPlayerName from "@/pages/home/components/Ranking/components/MaskPlayerName";
 
 const RankLabelContainer = styled.div`

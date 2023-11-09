@@ -21,8 +21,7 @@ const Label = styled.div`
   transform: translateY(-50%);
 `;
 
-type Props = {};
-const MemberCenterBorder = (props: Props) => {
+const MemberCenterBorder = () => {
   return (
     <MemberCenterBorderContainer>
       <Label>Member Center</Label>

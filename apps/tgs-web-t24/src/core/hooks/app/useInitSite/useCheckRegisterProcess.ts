@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import config from "@/config/config";
 import { AppHistory } from "@/history/History";
-import { useEffect } from "react";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 
 export function useCheckRegisterProcess() {

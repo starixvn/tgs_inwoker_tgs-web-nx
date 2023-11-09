@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import iconTransfer from "@/assets/t23/images/badge/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
@@ -7,8 +9,6 @@ import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName"
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 const TransferContainer = styled.div`
   padding: 0 22px;
@@ -16,8 +16,7 @@ const TransferContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const Transfer = (props: Props) => {
+const Transfer = () => {
   useUpdatePageName(i18n.t("transfer.title"));
   const { isDesktopSize } = useRwd();
 

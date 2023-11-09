@@ -1,14 +1,14 @@
 export class BrandAllAgent {
-  activenumber: number = 0;
-  allagentgametype: number = 0;
-  rank: number = 0;
-  rebatepercentage: number = 0;
-  turnover: number = 0;
+  activenumber = 0;
+  allagentgametype = 0;
+  rank = 0;
+  rebatepercentage = 0;
+  turnover = 0;
 }
 
 export class GetBrandAllAgentResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: BrandAllAgent[] = [];
   info: string | null = null;
 }

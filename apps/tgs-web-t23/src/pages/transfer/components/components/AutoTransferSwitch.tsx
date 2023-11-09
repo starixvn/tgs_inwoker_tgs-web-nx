@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import i18n from "@/utils/i18n";
 import styled from "styled-components";
+import i18n from "@/utils/i18n";
 import { Switch } from "@/components/UI/Switch";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import Loading from "@/components/UI/Loading";
@@ -21,8 +21,7 @@ const CustomSwitchContainer = styled.div`
   }
 `;
 
-type Props = {};
-const AutoTransferSwitch = (props: Props) => {
+const AutoTransferSwitch = () => {
   const { wallet, updateAutoTransferStatus } = useWalletStore();
   const [isChecked, setIsChecked] = useState(!!wallet.autotransfer);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,10 +43,8 @@ const AutoTransferSwitch = (props: Props) => {
           <Switch checked={isChecked} onChange={handleSwitchAutoTransfer} />
           <div>
             {isLoading}
-            <>
-              {i18n.t("transfer.autoTransfer")} (
-              {wallet.autotransfer ? i18n.t("transfer.on") : i18n.t("transfer.off")})
-            </>
+            {i18n.t("transfer.autoTransfer")} (
+            {wallet.autotransfer ? i18n.t("transfer.on") : i18n.t("transfer.off")})
           </div>
         </CustomSwitchContainer>
       </AutoTransferContainer>

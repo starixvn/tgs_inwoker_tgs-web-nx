@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import i18n from "@/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { useEffect } from "react";
 
 export function useLanguageDetect() {
   const {

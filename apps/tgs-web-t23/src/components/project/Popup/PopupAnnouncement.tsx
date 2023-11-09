@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { Dialog as MuiDialog } from "@mui/material";
 import Carousel from "@/components/UI/Carousel";
 import { useUiStore } from "@/core/stores/useUiStore";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
-import { Dialog as MuiDialog } from "@mui/material";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
 import { UpTransition } from "@/components/UI/Dialog/Transition";

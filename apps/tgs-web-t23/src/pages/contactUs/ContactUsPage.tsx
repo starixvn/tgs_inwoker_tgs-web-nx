@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import i18n from "@/utils/i18n";
 import Support from "@/core/components/Support";
-import styled from "styled-components";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import iconAffiliate from "@/assets/t23/images/badge/icon-affiliate.svg";
 import AccountPaper from "@/components/project/AccountPaper";
@@ -12,8 +12,7 @@ const ContactUsContainer = styled.div`
   margin: auto;
 `;
 
-type Props = {};
-const ContactUsPage = (props: Props) => {
+const ContactUsPage = () => {
   useUpdatePageName(i18n.t("common.contactus"));
 
   return (

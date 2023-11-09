@@ -1,3 +1,5 @@
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
@@ -6,8 +8,6 @@ import { useNotifications } from "@/core/feature/useNotifications";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 
 const DepositContainer = styled.div`
   padding: 0 22px;
@@ -21,8 +21,7 @@ const DepositContainer = styled.div`
   }
 `;
 
-type Props = {};
-const DepositPaymentPage = (props: Props) => {
+const DepositPaymentPage = () => {
   const { isDesktopSize } = useRwd();
   const history = useHistory();
   const { alert } = useNotifications();

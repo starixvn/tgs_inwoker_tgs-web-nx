@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useNotifications } from "@/core/feature/useNotifications";
 import styled from "styled-components";
+import { useNotifications } from "@/core/feature/useNotifications";
 import Manual from "@/core/components/DepositPrev/Manual";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import i18n from "@/utils/i18n";
@@ -21,8 +21,7 @@ const DepositContainer = styled.div`
   }
 `;
 
-type Props = {};
-const DepositManualPage = (props: Props) => {
+const DepositManualPage = () => {
   const { isDesktopSize } = useRwd();
   const history = useHistory();
   const { alert } = useNotifications();

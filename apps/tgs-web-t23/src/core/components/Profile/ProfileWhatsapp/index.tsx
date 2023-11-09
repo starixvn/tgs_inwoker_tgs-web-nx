@@ -5,8 +5,7 @@ import i18n from "@/utils/i18n";
 import Whatsapp from "@/core/components/Profile/PrevComponents/Whatsapp";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
-type Props = {};
-const ProfileWhatsappPage = (props: Props) => {
+const ProfileWhatsappPage = () => {
   useUpdatePageName(i18n.t("common.whatsapp"));
 
   const { alert } = useNotifications();

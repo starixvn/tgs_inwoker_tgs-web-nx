@@ -1,3 +1,6 @@
+import { MouseEvent, useState } from "react";
+import { useHistory } from "react-router";
+import styled from "styled-components";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
@@ -7,9 +10,6 @@ import Common from "@/core/utils/Common";
 import Favorite from "@/pages/home/components/Favorite";
 import TextButton from "@/pages/home/components/TextButton";
 import { media } from "@/theme/breakpoints";
-import { MouseEvent, useState } from "react";
-import { useHistory } from "react-router";
-import styled from "styled-components";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`

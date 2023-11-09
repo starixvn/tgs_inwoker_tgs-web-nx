@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import notification from "@/assets/t23/images/home/notifications.svg";
 import { useUiStore } from "@/core/stores/useUiStore";
-import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;

@@ -1,15 +1,15 @@
 class DataDto {
-  account: string = "";
-  name: string = "";
-  amount: number = 0;
-  paymentid: string = "";
-  promotionid: string = "";
-  banktype: string = "";
+  account = "";
+  name = "";
+  amount = 0;
+  paymentid = "";
+  promotionid = "";
+  banktype = "";
 }
 
 export class PerformManualFPSDepositWithNameResDto {
-  IsSuccess: boolean = true;
-  code: number = 0;
+  IsSuccess = true;
+  code = 0;
   data: DataDto = new DataDto();
   info: string | null = null;
 }

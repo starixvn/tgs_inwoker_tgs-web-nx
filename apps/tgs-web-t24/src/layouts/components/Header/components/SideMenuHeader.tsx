@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { Close as CloseIcon } from "@mui/icons-material";
 import headerBg from "@/assets/t23/images/header/side-menu-bg.png";
 import Avatar from "@/components/project/Avatar";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { Close as CloseIcon } from "@mui/icons-material";
 import { useHeader } from "@/core/feature/useHeader";
 import { useAuth } from "@/core/feature/useAuth";
 
@@ -34,8 +34,7 @@ const CloseIconContainer = styled.div`
   cursor: pointer;
 `;
 
-type Props = {};
-const SideMenuHeader = (props: Props) => {
+const SideMenuHeader = () => {
   const {
     general: { brand },
   } = useGeneralStore();

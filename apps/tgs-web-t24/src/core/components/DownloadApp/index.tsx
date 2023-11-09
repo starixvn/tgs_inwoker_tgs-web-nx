@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compatible.svg";
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
@@ -5,7 +6,6 @@ import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg"
 import downloadGirlImg from "@/assets/t18/images/account/girl/download.png";
 import DownloadButtonGroup from "@/core/components/DownloadApp/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/core/components/DownloadApp/InfoCard";
-import styled from "styled-components";
 
 const DownloadAppContainer = styled.div``;
 
@@ -46,8 +46,7 @@ const infoCardItemList: InfoCardItem[] = [
   },
   {
     title: "EXTENSIVE",
-    content:
-      "Access to more than 1000+ games including sports betting and more.",
+    content: "Access to more than 1000+ games including sports betting and more.",
     logo: logoExtensiveImg,
   },
   {
@@ -57,8 +56,7 @@ const infoCardItemList: InfoCardItem[] = [
   },
 ];
 
-type Props = {};
-const DownloadApp = (props: Props) => {
+const DownloadApp = () => {
   return (
     <DownloadAppContainer>
       <GirlImage>
@@ -68,17 +66,14 @@ const DownloadApp = (props: Props) => {
       <IntroductionContainer>
         <p>Introduction</p>
         <p>
-          The Mobile Casino App transfers all the powers of our site onto your
-          fingertips. We are available for IOS and Android that features a
-          multitude of entertaining games.
+          The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
+          available for IOS and Android that features a multitude of entertaining games.
         </p>
       </IntroductionContainer>
 
       <InfoCardListContainer>
         {infoCardItemList.map((infoCardItem) => {
-          return (
-            <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />
-          );
+          return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
         })}
       </InfoCardListContainer>
 

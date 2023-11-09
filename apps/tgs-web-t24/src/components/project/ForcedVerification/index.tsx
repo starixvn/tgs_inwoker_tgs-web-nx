@@ -1,12 +1,12 @@
+import { Dialog } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Textfit } from "react-textfit";
+import styled from "styled-components";
 import config from "@/config/config";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { AccountService } from "@/core/services/AccountService";
 import { theme } from "@/theme";
 import i18n from "@/utils/i18n";
-import { Dialog } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Textfit } from "react-textfit";
-import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 20px 10px;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { ReportService } from "@/core/services/ReportService";
 import Loading from "@/components/UI/Loading";
@@ -8,7 +9,6 @@ import { GameBalanceInfosViewModel } from "@/core/models/dto/report/GetTransferR
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import TransferDetailTable from "@/pages/report/components/reports/ReportTransfer/components/TransferDetailTable";
 import TransferDetailCard from "@/pages/report/components/reports/ReportTransfer/components/TransferDetailCard";
-import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { ReportContainer } from "@/components/styled-component/Report";
 
 type Props = {
