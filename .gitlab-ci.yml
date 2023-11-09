@@ -1,10 +1,6 @@
 variables:
   app: tgs-web-t23
-  
-default:
-  before_script:
-    - docker image prune -a -f
-    
+
 stages:
   - docker-build
   - deploy-domain
@@ -12,6 +8,8 @@ stages:
 
 docker-build:
   stage: docker-build
+  before_script:
+    - docker image prune -a -f
   script:
     - git submodule init
     - git submodule sync
