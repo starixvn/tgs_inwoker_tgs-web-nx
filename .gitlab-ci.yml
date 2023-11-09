@@ -61,7 +61,7 @@ docker-build-prod:
 deploy-dev:
   stage: deploy
   needs:
-    - job: docker-build
+    - job: docker-build-dev
   before_script:
     - export KUBECONFIG=$kubeconfig_staging
   script:
@@ -80,7 +80,7 @@ deploy-dev:
 deploy-staging:
   stage: deploy
   needs:
-    - job: docker-build
+    - job: docker-build-staging
   before_script:
     - export KUBECONFIG=$kubeconfig_staging
   script:
@@ -99,7 +99,7 @@ deploy-staging:
 deploy-prod:
   stage: deploy
   needs:
-    - job: docker-build
+    - job: docker-build-prod
   before_script:
     - export KUBECONFIG=$kubeconfig_prod
   script:
