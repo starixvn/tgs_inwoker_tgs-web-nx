@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useHistory } from "react-router-dom";
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
 import i18n from "@/utils/i18n";
 import accountIcon from "@/assets/t24/images/menuDrawer/icon-account.svg";
@@ -12,9 +13,12 @@ import vipIcon from "@/assets/t24/images/menuDrawer/icon-vip.svg";
 import contactIcon from "@/assets/t24/images/menuDrawer/icon-contact.svg";
 import downloadIcon from "@/assets/t24/images/menuDrawer/icon-download.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
+  const { handleChangeGameType } = useHomeGameContext();
+  const history = useHistory();
 
   const gameTypeNavItemList: NavItem[] = useMemo(() => {
     return gameTypeList.map((gameTypeItem) => {
@@ -24,7 +28,10 @@ export function useGetNavItemList() {
         iconUrl: gameTypeItem.iconUrl,
         iconSecondaryUrl: gameTypeItem.iconUrl,
         navType: "action",
-        callback: () => {},
+        callback: () => {
+          history.push("/");
+          handleChangeGameType(gameTypeItem.gameType);
+        },
       };
     });
   }, [gameTypeList]);
@@ -36,7 +43,7 @@ export function useGetNavItemList() {
         label: i18n.t("wap.main.my"),
         iconUrl: accountIcon,
         navType: "route",
-        routePath: "/account",
+        routePath: "/profile",
       },
       {
         key: NavCardKey.DEPOSIT,

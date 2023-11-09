@@ -9,15 +9,27 @@ theme.lang = i18n.language;
 
 declare module "@mui/material/styles" {
   interface Palette {
-    white: string;
-    yellow: string;
-    mainBackground: string;
-    gray5: string;
-    gray10: string;
-    gray40: string;
-    gray70: string;
-    gray90: string;
-    gray95: string;
+    white: Palette["primary"];
+    yellow: Palette["primary"];
+    mainBackground: Palette["primary"];
+    gray5: Palette["primary"];
+    gray10: Palette["primary"];
+    gray40: Palette["primary"];
+    gray70: Palette["primary"];
+    gray90: Palette["primary"];
+    gray95: Palette["primary"];
+  }
+
+  interface PaletteOptions {
+    white?: PaletteOptions["primary"];
+    yellow?: PaletteOptions["primary"];
+    mainBackground?: PaletteOptions["primary"];
+    gray5?: PaletteOptions["primary"];
+    gray10?: PaletteOptions["primary"];
+    gray40?: PaletteOptions["primary"];
+    gray70?: PaletteOptions["primary"];
+    gray90?: PaletteOptions["primary"];
+    gray95?: PaletteOptions["primary"];
   }
 }
 

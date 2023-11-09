@@ -13,8 +13,8 @@ const MenuButton = ({ width, height }: Props) => {
   return (
     <Icon
       iconUrl={menuIcon}
-      width={width ?? "33px"}
-      height={height ?? "33px"}
+      width={width ?? "16px"}
+      height={height ?? "16px"}
       onClick={() => handleToggleMenu()}
       style={{
         cursor: "pointer",

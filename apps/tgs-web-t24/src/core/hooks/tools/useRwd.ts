@@ -10,6 +10,8 @@ export function useRwd() {
 
   const isMobileSize = isXsSize;
   const isDesktopSize = isSmSize || isMdSize || isLgSize || isXlSize;
+  const isLargeDesktopSize = isMdSize || isLgSize || isXlSize;
+  const isExtraLargeDesktopSize = isLgSize || isXlSize;
 
   return {
     isXsSize,
@@ -19,5 +21,7 @@ export function useRwd() {
     isXlSize,
     isMobileSize,
     isDesktopSize,
+    isLargeDesktopSize,
+    isExtraLargeDesktopSize,
   };
 }

@@ -13,8 +13,9 @@ const MenuHeaderContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 19px 0;
+  justify-content: start;
+  padding: 12px 0 0 16px;
+  gap: 36px;
 `;
 
 const LogoImgContainer = styled.div`
@@ -30,12 +31,7 @@ const LogoImgContainer = styled.div`
   }
 `;
 
-const MenuButtonContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-`;
+const MenuButtonContainer = styled.div``;
 
 const MenuDrawerHeader = () => {
   const {
@@ -44,15 +40,15 @@ const MenuDrawerHeader = () => {
 
   return (
     <MenuHeaderContainer>
+      <MenuButtonContainer>
+        <MenuButton width={"18px"} height={"18px"} />
+      </MenuButtonContainer>
+
       <Link to={"/"}>
         <LogoImgContainer>
           <img src={brand && brand.loadingUrl} alt={"logo"} />
         </LogoImgContainer>
       </Link>
-
-      <MenuButtonContainer>
-        <MenuButton width={"18px"} height={"18px"} />
-      </MenuButtonContainer>
     </MenuHeaderContainer>
   );
 };

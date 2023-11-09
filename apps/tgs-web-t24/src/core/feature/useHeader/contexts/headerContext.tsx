@@ -1,9 +1,6 @@
 import React, { createContext, useState } from "react";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 
-export const DRAWER_WIDTH = "310px";
-export const DRAWER_SHRINK_WIDTH = "126px";
-
 export const initialState: {
   isMenuOpen: boolean;
   handleToggleMenu: (newIsOpen?: boolean) => void;
@@ -21,8 +18,8 @@ type ProviderProps = {
 };
 
 export const HeaderContextProvider = ({ children }: ProviderProps) => {
-  const { isDesktopSize } = useRwd();
-  const initialIsMenuOpen = isDesktopSize;
+  const { isLargeDesktopSize } = useRwd();
+  const initialIsMenuOpen = isLargeDesktopSize;
   const [isMenuOpen, setIsMenuOpen] = useState(initialIsMenuOpen);
 
   const handleToggleMenu = (newIsOpen?: boolean) => {

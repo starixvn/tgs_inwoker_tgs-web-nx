@@ -6,6 +6,7 @@ import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
+import MenuButton from "@/layouts/components/Header/components/MenuButton";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -15,14 +16,16 @@ const HeaderContainer = styled.div`
   height: ${HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
+  border-bottom: 1px solid ${({ theme }) => theme.gray80};
 `;
 
 const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 13.49px 16px;
+  padding: 16px 12px;
   display: flex;
+  gap: 20px;
   align-items: center;
   justify-content: start;
   z-index: 2;
@@ -53,6 +56,8 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
+        <MenuButton />
+
         <Link to={"/"}>
           <LogoImgContainer>
             <img src={general.brand && general.brand.loadingUrl} alt={"logo"} />
