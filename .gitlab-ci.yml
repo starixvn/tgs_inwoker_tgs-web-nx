@@ -100,10 +100,8 @@ deploy-dev:
   variables:
     tgs_env: dev
   before_script:
-    - !reference [default, before_script]
-    - kubePath=$(eval eval 'echo \$"$kube_config"')
-    - export KUBECONFIG=$kubePath
-
+    - export KUBECONFIG=$kubeconfig_dev
+    - echo "kubeconfig_dev=$kubeconfig_dev"
   script:
     - | 
       kubectl config get-contexts
