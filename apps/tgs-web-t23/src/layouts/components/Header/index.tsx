@@ -10,7 +10,7 @@ import { HEADER_HEIGHT } from "@/theme/constants";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { GameTypeEnum } from "@tgs-web-nx/constants";meGameContext";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 const HeaderContainer = styled.div`
   position: fixed;

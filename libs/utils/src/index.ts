@@ -5,6 +5,7 @@ import getDisplayGameType from "./utils/getDisplayGameType";
 import getFormatAmount from "./utils/getFormatAmount";
 import i18n from "./utils/i18n";
 import ScrollToTop from "./utils/ScrollToTop";
+export * from "./utils/formatAmount";
 export * from "./utils/regex";
 export * from "./utils/updateHtmlTitleDescription";
 export * from "./utils/utility";
