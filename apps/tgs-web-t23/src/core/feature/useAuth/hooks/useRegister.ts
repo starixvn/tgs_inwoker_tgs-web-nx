@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { RegisterReqDto } from "@tgs-web-nx/types";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 import i18n from "@/utils/i18n";
 
 export type RegisterState = {

@@ -2,7 +2,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { UNAUTHORIZE } from "@/api-services/constant/actionType";
 import { AppHistory } from "@/history/History";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 
 const Interceptor = {
   setupInterceptors: (store: any) => {

@@ -1,4 +1,4 @@
-import { GetGameListResDto, GetProviderListResDto } from "@tgs-web-nx/types";
+import { GetGameListResDto, GetProviderListResDto, JoinGameResDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { ApiService } from "@/api-services/services/ApiService";
 import i18n from "@/utils/i18n";

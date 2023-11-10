@@ -1,16 +1,16 @@
 import { useEffect, useRef } from "react";
-import { utility } from "@/utils/utility";
+import { utility } from "@/core/utils/utility";
 
 const exceptionName = (text: string | null) => {
   switch (text) {
     case "JUNGLEJUNGLE":
-      return text = "JUNGLE\nJUNGLE";
+      return (text = "JUNGLE\nJUNGLE");
     case "PRAGMATICPLAY":
-      return text = "PRAGMATIC\nPLAY";
+      return (text = "PRAGMATIC\nPLAY");
     default:
       return text;
   }
-}
+};
 
 const adjustFontSize = (container: HTMLElement, text: HTMLElement) => {
   if (container && text) {
@@ -24,7 +24,7 @@ const adjustFontSize = (container: HTMLElement, text: HTMLElement) => {
     const textWidth = text.scrollWidth;
 
     // 先轉成大寫再計算字體大小
-    const originalText = text.textContent || '';
+    const originalText = text.textContent || "";
     const upperCaseText = originalText.toUpperCase();
     text.textContent = upperCaseText;
 
@@ -36,11 +36,11 @@ const adjustFontSize = (container: HTMLElement, text: HTMLElement) => {
       text.style.fontSize = newFontSize + "px";
     }
   }
-}
+};
 
 const resizeText = ({ container, text }: { container: HTMLElement; text: HTMLElement }) => {
   adjustFontSize(container, text);
-}
+};
 
 const useDynamicFontSize = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);

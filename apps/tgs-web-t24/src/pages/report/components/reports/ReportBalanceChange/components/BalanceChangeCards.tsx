@@ -9,7 +9,7 @@ import {
   ReportCardsContainer,
 } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 
 type Props = {
   balanceChangeDetails: TransactionLogViewModel[];

@@ -4,7 +4,7 @@ import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { TransactionLogViewModel } from "@tgs-web-nx/types";
 import NoRecord from "@/pages/report/components/NoRecord";
 import i18n from "@/utils/i18n";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 
 type Props = {

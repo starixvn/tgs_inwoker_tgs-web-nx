@@ -5,7 +5,7 @@ import { TransactionLogViewModel } from "@tgs-web-nx/types";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 
 type Props = {
   balanceChangeDetails: TransactionLogViewModel[];

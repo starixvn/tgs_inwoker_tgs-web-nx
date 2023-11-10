@@ -8,7 +8,7 @@ import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useUiStore } from "@/core/stores/useUiStore";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { useInboxStore } from "@/core/stores/useInboxStore";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 import { useGameStore } from "@/core/stores/useGameStore";
 import { GeneralService } from "@/core/services/GeneralService";
 
