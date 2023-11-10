@@ -33,21 +33,21 @@ export function useGetBottomNavItemList() {
         key: "vip",
         label: "VIP",
         iconUrl: iconVip,
-        routePath: "/deposit",
+        routePath: "/vip",
       },
       {
         navType: NavTypeEnum.ITEM,
         key: "contact",
         label: i18n.t("common.contact"),
         iconUrl: iconContact,
-        routePath: "/withdrawal",
+        routePath: "/support",
       },
       {
         navType: NavTypeEnum.ITEM,
         key: "affiliate",
         label: i18n.t("web.account.affiliate"),
         iconUrl: iconAffiliate,
-        routePath: "/account",
+        routePath: "/affiliate",
       },
     ];
   }, []);
