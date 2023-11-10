@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
 // import { AccountState } from "@tgs-web-nx/types";
 import { AccountState } from "@tgs-web-nx/types";
+import { RegisterReqDto } from "@tgs-web-nx/types";
 import {
   CHECKTOKEN_BEGIN,
   CHECKTOKEN_FAILURE,
@@ -27,7 +28,6 @@ import {
   UPDATECARDNO_SUCCESS,
 } from "@/api-services/constant/actionType";
 import { AccountService } from "@/core/services/AccountService";
-import { RegisterReqDto } from "@/core/types/dto/player/RegisterReqDto";
 
 export function useAccountStore() {
   const dispatch = useDispatch();

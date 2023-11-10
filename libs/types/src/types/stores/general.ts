@@ -1,4 +1,5 @@
-import { Promotion } from "@/core/types/dto/general/GetPromotionListResDto";
+import { Promotion } from "../dto";
+
 export interface GeneralState {
   banner: any[];
   brand: {

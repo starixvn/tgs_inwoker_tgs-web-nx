@@ -1,12 +1,6 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import styled from "styled-components";
-import { BrandAllAgent } from "@/core/types/dto/general/GetBrandAllAgentResDto";
+import { BrandAllAgent } from "@tgs-web-nx/types";
 import i18n from "@/utils/i18n";
 
 const StyledTable = styled(Table)`

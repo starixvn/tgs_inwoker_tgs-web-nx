@@ -1,4 +1,5 @@
 import React, { createContext } from "react";
+import { GameItem, ProviderDto } from "@tgs-web-nx/types";
 import { useFavoriteList } from "@/core/feature/game/hooks/useFavoriteList";
 import { useProviderFilter } from "@/core/feature/game/hooks/useFilter/useProviderFilter";
 import { useTagFilter } from "@/core/feature/game/hooks/useFilter/useTagFilter";
@@ -7,8 +8,6 @@ import { useGameType } from "@/core/feature/game/hooks/useGameType";
 import { useGpCode } from "@/core/feature/game/hooks/useGpCode";
 import { useProvider } from "@/core/feature/game/hooks/useProvider";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
-import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
-import { ProviderDto } from "@/core/types/dto/game/GetProviderListResDto";
 import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 

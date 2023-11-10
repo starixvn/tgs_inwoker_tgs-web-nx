@@ -1,12 +1,14 @@
+import {
+  GetBalanceChangesResDto,
+  GetDepositDetailsResDto,
+  GetDepositStatusResDto,
+  GetRoundsTotalResDto,
+  GetTransactionDetailsResDto,
+  GetTransferReportResDto,
+  GetWithdrawalDetailsResDto,
+  GetWithdrawalStatusResDto,
+} from "@tgs-web-nx/types";
 import { ApiService } from "@/api-services/services/ApiService";
-import { GetTransactionDetailsResDto } from "@/core/types/dto/report/GetTransactionDetailsResDto";
-import { GetRoundsTotalResDto } from "@/core/types/dto/report/GetRoundsTotalResDto";
-import { GetWithdrawalDetailsResDto } from "@/core/types/dto/report/GetWithdrawalDetailsResDto";
-import { GetDepositDetailsResDto } from "@/core/types/dto/report/GetDepositDetailsResDto";
-import { GetDepositStatusResDto } from "@/core/types/dto/report/GetDepositStatusResDto";
-import { GetWithdrawalStatusResDto } from "@/core/types/dto/report/GetWithdrawalStatusResDto";
-import { GetTransferReportResDto } from "@/core/types/dto/report/GetTransferReportResDto";
-import { GetBalanceChangesResDto } from "@/core/types/dto/report/GetBalanceChangesResDto";
 
 export const ReportService = {
   GetTransactionDetails,
@@ -26,16 +28,16 @@ function GetTransactionDetails(
   rows: number,
   desc: boolean,
   sort: string,
-  all: boolean
+  all: boolean,
 ) {
   return ApiService.get(
-    `playerreport/rounds?From=${from}&To=${to}&page=${page}&rows=${rows}&desc=${desc}&sort=${sort}&all=${all}`
+    `playerreport/rounds?From=${from}&To=${to}&page=${page}&rows=${rows}&desc=${desc}&sort=${sort}&all=${all}`,
   ) as unknown as Promise<GetTransactionDetailsResDto>;
 }
 
 function GetRoundsTotal(from: string, to: string) {
   return ApiService.get(
-    `playerreport/rounds/total?From=${from}&To=${to}`
+    `playerreport/rounds/total?From=${from}&To=${to}`,
   ) as unknown as Promise<GetRoundsTotalResDto>;
 }
 
@@ -48,10 +50,10 @@ function GetWithdrawalDetails(
   desc: boolean,
   sort: string,
   all: boolean,
-  order: string
+  order: string,
 ) {
   return ApiService.get(
-    `withdraw/player/list?status=${status}&begincreate=${from}&endcreate=${to}&Page=${page}&Rows=${rows}&IsDesc=${desc}&SortBy=${sort}&ShowAll=${all}&OrderBy=${order}`
+    `withdraw/player/list?status=${status}&begincreate=${from}&endcreate=${to}&Page=${page}&Rows=${rows}&IsDesc=${desc}&SortBy=${sort}&ShowAll=${all}&OrderBy=${order}`,
   ) as unknown as Promise<GetWithdrawalDetailsResDto>;
 }
 
@@ -64,23 +66,19 @@ function GetDepositDetails(
   desc: boolean,
   sort: string,
   all: boolean,
-  order: string
+  order: string,
 ) {
   return ApiService.get(
-    `deposit/player/list?status=${status}&begincreate=${from}&endcreate=${to}&Page=${page}&Rows=${rows}&IsDesc=${desc}&SortBy=${sort}&ShowAll=${all}&OrderBy=${order}`
+    `deposit/player/list?status=${status}&begincreate=${from}&endcreate=${to}&Page=${page}&Rows=${rows}&IsDesc=${desc}&SortBy=${sort}&ShowAll=${all}&OrderBy=${order}`,
   ) as unknown as Promise<GetDepositDetailsResDto>;
 }
 
 function GetDepositStatus() {
-  return ApiService.get(
-    `deposit/status`
-  ) as unknown as Promise<GetDepositStatusResDto>;
+  return ApiService.get(`deposit/status`) as unknown as Promise<GetDepositStatusResDto>;
 }
 
 function GetWithdrawalStatus() {
-  return ApiService.get(
-    `withdraw/status`
-  ) as unknown as Promise<GetWithdrawalStatusResDto>;
+  return ApiService.get(`withdraw/status`) as unknown as Promise<GetWithdrawalStatusResDto>;
 }
 
 function GetTransferReport(
@@ -91,20 +89,15 @@ function GetTransferReport(
   order: number,
   desc: boolean,
   sort: string,
-  all: boolean
+  all: boolean,
 ) {
   return ApiService.get(
-    `game/balance/list?beginrecord=${from}&endrecord=${to}&Page=${page}&Rows=${rows}&OrderBy=${order}&IsDesc=${desc}&SortBy=${sort}&ShowAll=${all}`
+    `game/balance/list?beginrecord=${from}&endrecord=${to}&Page=${page}&Rows=${rows}&OrderBy=${order}&IsDesc=${desc}&SortBy=${sort}&ShowAll=${all}`,
   ) as unknown as Promise<GetTransferReportResDto>;
 }
 
-function GetBalanceChanges(
-  from: string,
-  to: string,
-  page: number,
-  rows: number
-) {
+function GetBalanceChanges(from: string, to: string, page: number, rows: number) {
   return ApiService.get(
-    `transaction?from=${from}&to=${to}&page=${page}&rows=${rows}`
+    `transaction?from=${from}&to=${to}&page=${page}&rows=${rows}`,
   ) as unknown as Promise<GetBalanceChangesResDto>;
 }

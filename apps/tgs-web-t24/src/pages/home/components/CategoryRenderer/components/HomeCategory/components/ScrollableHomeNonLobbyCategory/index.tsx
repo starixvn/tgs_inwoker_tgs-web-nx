@@ -1,9 +1,9 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { GameItem } from "@tgs-web-nx/types";
 import HomeGameCard from "../HomeGameCard";
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import config from "@/config/config";
-import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import Common from "@/core/utils/Common";
 
@@ -51,11 +51,7 @@ type Props = {
   isLoading: boolean;
 };
 
-const ScrollableHomeNonLobbyCategory = ({
-  title,
-  dataList,
-  isLoading
-}: Props) => {
+const ScrollableHomeNonLobbyCategory = ({ title, dataList, isLoading }: Props) => {
   const { account } = useAccountStore();
   const history = useHistory();
   // const [filteredGameList, setFilteredGameList] = useState<any[]>([]);
@@ -101,7 +97,11 @@ const ScrollableHomeNonLobbyCategory = ({
               key={gameItem.id}
               gameItem={gameItem}
               isActive={gameItem.isactive}
-              imageUrl={`${config.sourceUrl}${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code}.jpg`}
+              imageUrl={`${
+                config.sourceUrl
+              }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                gameItem.code
+              }.jpg`}
             />
           ))}
         {!dataList.length && !isLoading && <div>No data</div>}

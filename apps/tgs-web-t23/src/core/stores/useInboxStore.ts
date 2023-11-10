@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { InboxListResDto, UpdateReadMessageResDto } from "@tgs-web-nx/types";
 import {
   GETMESSAGE_BEGIN,
   GETMESSAGE_FAILED,
@@ -9,20 +10,12 @@ import {
   SETMESSAGEREAD_SUCCESS,
 } from "@/api-services/constant/actionType";
 import { InboxService } from "@/api-services/services/InboxService";
-import { InboxListResDto } from "@/core/types/dto/inbox/InboxListResDto";
-import { UpdateReadMessageResDto } from "@/core/types/dto/inbox/UpdateReadMessageResDto";
 
 export function useInboxStore() {
   const dispatch = useDispatch();
 
   const getMessages = useCallback(
-    async (
-      language: string,
-      pages: number,
-      limit: number,
-      isNew = true,
-      getCount = false
-    ) => {
+    async (language: string, pages: number, limit: number, isNew = true, getCount = false) => {
       try {
         dispatch({
           type: GETMESSAGE_BEGIN,
@@ -31,7 +24,7 @@ export function useInboxStore() {
         const response = (await InboxService.InboxList(
           language,
           pages,
-          limit
+          limit,
         )) as unknown as InboxListResDto;
         if (response?.IsSuccess) {
           dispatch({
@@ -58,7 +51,7 @@ export function useInboxStore() {
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   const setMessageRead = useCallback(
@@ -69,7 +62,7 @@ export function useInboxStore() {
       });
       try {
         const response = (await InboxService.UpdateReadMessage(
-          ids
+          ids,
         )) as unknown as UpdateReadMessageResDto;
         if (response.IsSuccess) {
           dispatch({
@@ -94,7 +87,7 @@ export function useInboxStore() {
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   return {

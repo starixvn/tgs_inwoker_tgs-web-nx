@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { Promotion } from "@tgs-web-nx/types";
 import BannerImage from "./BannerImage";
-import { Promotion } from "@/core/types/dto/general/GetPromotionListResDto";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 import iconMore from "@/assets/t23/images/promotion/iconMore.svg";

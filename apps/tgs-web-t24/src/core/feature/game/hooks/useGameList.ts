@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { GameItem } from "@tgs-web-nx/types";
 import { GameService } from "@/core/services/GameService";
-import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
 
 interface GameListState {
   isLoading: boolean;

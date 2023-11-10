@@ -1,13 +1,37 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GeneralState } from "@tgs-web-nx/types";
+import {
+  ComposeMemoResDto,
+  GeneralState,
+  GetAffiliateStatusResDto,
+  GetBannerResDto,
+  GetBrandAllAgentResDto,
+  GetBrandCommunicationResDto,
+  GetBrandLanguageResDto,
+  GetBrandResDto,
+  GetDepositAccumulateRouletteHistoryResDto,
+  GetDepositAccumulateRouletteResDto,
+  GetDepositAccumulateRouletteResultResDto,
+  GetInvitationCodeResDto,
+  GetLiveChatUrlResDto,
+  GetMemoV2ResDto,
+  GetPlayerPromotionListResDto,
+  GetPromotionDto,
+  GetPromotionListResDto,
+  GetPromotionRouletteCountResDto,
+  GetPromotionRouletteResultResDto,
+  GetPromotionRouletteStatusResDto,
+  GetSiteTokenResDto,
+  GetVipResDto,
+  JoinPromotionResDto,
+  ReadMemoResDto,
+  ReplyMemoResDto,
+} from "@tgs-web-nx/types";
+import { GeneralService } from "@/api-services/services/GeneralService";
 import {
   COMPOSEMEMO_BEGIN,
   COMPOSEMEMO_FAIL,
   COMPOSEMEMO_SUCCESS,
-  DELIVERYBOX_BEGIN,
-  DELIVERYBOX_FAIL,
-  DELIVERYBOX_SUCCESS,
   GETAFFILIATESTATUS_FAIL,
   GETAFFILIATESTATUS_SUCCESS,
   GETBANNER_BEGIN,
@@ -64,31 +88,6 @@ import {
   REPLYMEMO_FAIL,
   REPLYMEMO_SUCCESS,
 } from "@/api-services/constant/actionType";
-import { GeneralService } from "@/api-services/services/GeneralService";
-import { GetSiteTokenResDto } from "@/core/types/dto/general/GetSiteTokenResDto";
-import { GetBrandResDto } from "@/core/types/dto/general/GetBrandResDto";
-import { GetPromotionListResDto } from "@/core/types/dto/general/GetPromotionListResDto";
-import { GetPlayerPromotionListResDto } from "@/core/types/dto/general/GetPlayerPromotionListResDto";
-import { JoinPromotionResDto } from "@/core/types/dto/general/JoinPromotionResDto";
-import { GetBrandCommunicationResDto } from "@/core/types/dto/general/GetBrandCommunicationResDto";
-import { GetBrandLanguageResDto } from "@/core/types/dto/general/GetBrandLanguageResDto";
-import { GetBannerResDto } from "@/core/types/dto/general/GetBannerResDto";
-import { GetLiveChatUrlResDto } from "@/core/types/dto/general/GetLiveChatUrlResDto";
-import { GetVipResDto } from "@/core/types/dto/general/GetVipResDto";
-import { GetInvitationCodeResDto } from "@/core/types/dto/general/GetInvitationCodeResDto";
-import { GetPromotionRouletteResultResDto } from "@/core/types/dto/general/GetPromotionRouletteResultResDto";
-import { GetPromotionRouletteStatusResDto } from "@/core/types/dto/general/GetPromotionRouletteStatusResDto";
-import { GetPromotionDto } from "@/core/types/dto/general/GetPromotionDto";
-import { GetPromotionRouletteCountResDto } from "@/core/types/dto/general/GetPromotionRouletteCountResDto";
-import { GetDepositAccumulateRouletteResDto } from "@/core/types/dto/general/GetDepositAccumulateRouletteResDto";
-import { GetDepositAccumulateRouletteResultResDto } from "@/core/types/dto/general/GetDepositAccumulateRouletteResultResDto";
-import { GetDepositAccumulateRouletteHistoryResDto } from "@/core/types/dto/general/GetDepositAccumulateRouletteHistoryResDto";
-import { GetBrandAllAgentResDto } from "@/core/types/dto/general/GetBrandAllAgentResDto";
-import { GetAffiliateStatusResDto } from "@/core/types/dto/general/GetAffiliateStatusResDto";
-import { GetMemoV2ResDto } from "@/core/types/dto/general/GetMemoV2ResDto";
-import { ReplyMemoResDto } from "@/core/types/dto/general/ReplyMemoResDto";
-import { ComposeMemoResDto } from "@/core/types/dto/general/ComposeMemoResDto";
-import { ReadMemoResDto } from "@/core/types/dto/general/ReadMemoResDto";
 
 export function useGeneralStore() {
   const dispatch = useDispatch();

@@ -1,8 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
+import { GameItem, ProviderDto } from "@tgs-web-nx/types";
 import { filterTagAll } from "@/core/feature/game/constants/filterTagAll";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
-import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
-import { ProviderDto } from "@/core/types/dto/game/GetProviderListResDto";
 
 export function useProviderFilter(providerList: ProviderDto[]) {
   const [activeProviderFilterTag, setActiveProviderFilterTag] = useState<FilterTag>(filterTagAll);

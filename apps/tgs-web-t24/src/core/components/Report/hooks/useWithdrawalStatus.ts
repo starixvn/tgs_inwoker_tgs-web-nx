@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
+import { WithdrawalStatusDictionary } from "@tgs-web-nx/types";
 import { ReportService } from "@/core/services/ReportService";
-import { WithdrawalStatusDictionary } from "@/core/types/dto/report/GetWithdrawalStatusResDto";
 
 export function useWithdrawalStatus() {
-  const [statusDictionary, setStatusDictionary] =
-    useState<WithdrawalStatusDictionary>({});
+  const [statusDictionary, setStatusDictionary] = useState<WithdrawalStatusDictionary>({});
   const [status, setStatus] = useState("");
 
   useEffect(() => {

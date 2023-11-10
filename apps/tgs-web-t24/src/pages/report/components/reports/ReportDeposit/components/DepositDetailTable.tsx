@@ -1,10 +1,10 @@
 import React from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { DepositFormViewModel } from "@tgs-web-nx/types";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import { DepositFormViewModel } from "@/core/types/dto/report/GetDepositDetailsResDto";
 
 type Props = {
   transferDetails: DepositFormViewModel[];

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
+import { TransactionLogViewModel } from "@tgs-web-nx/types";
 import { ReportContainer } from "@/components/styled-component/Report";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { ReportService } from "@/core/services/ReportService";
 import Loading from "@/components/UI/Loading";
-import { TransactionLogViewModel } from "@/core/types/dto/report/GetBalanceChangesResDto";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import BalanceChangeCards from "@/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeCards";

@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { GameBalanceInfosViewModel } from "@tgs-web-nx/types";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,
@@ -9,7 +10,6 @@ import {
 } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
-import { GameBalanceInfosViewModel } from "@/core/types/dto/report/GetTransferReportResDto";
 
 type Props = {
   transferDetails: GameBalanceInfosViewModel[];

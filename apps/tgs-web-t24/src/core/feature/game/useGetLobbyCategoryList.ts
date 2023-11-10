@@ -1,6 +1,6 @@
 import { useMemo } from "react";
+import { ProviderDto } from "@tgs-web-nx/types";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { ProviderDto } from "@/core/types/dto/game/GetProviderListResDto";
 
 export function useGetLobbyCategoryList() {
   const { providerList, activeGameType } = useHomeGameContext();

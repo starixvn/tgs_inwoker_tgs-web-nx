@@ -1,4 +1,4 @@
-import { LocalizationData } from "@/core/types/dto/general/GetLocalizationResDto";
+import { LocalizationData } from "@tgs-web-nx/types";
 
 let translation: LocalizationData | null = null;
 

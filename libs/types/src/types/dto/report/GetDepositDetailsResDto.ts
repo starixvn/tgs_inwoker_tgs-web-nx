@@ -1,4 +1,4 @@
-import { FlowState } from "@/core/types/dto/report/GetWithdrawalDetailsResDto";
+import { FlowState } from "./GetWithdrawalDetailsResDto";
 
 export interface DepositFormViewModel {
   id: string;

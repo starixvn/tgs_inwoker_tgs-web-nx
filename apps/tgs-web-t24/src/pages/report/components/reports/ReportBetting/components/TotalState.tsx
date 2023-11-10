@@ -1,4 +1,5 @@
 import React from "react";
+import { RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@/config/config";
 import {
   CustomWinLose,
@@ -7,7 +8,6 @@ import {
   ReportSummaryRow,
 } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import { RoundTotalDto } from "@/core/types/dto/report/GetRoundsTotalResDto";
 
 type Props = {
   roundTotal: RoundTotalDto;

@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { JoinedPromotionsResponse } from "@tgs-web-nx/types";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,
@@ -8,7 +9,6 @@ import {
   ReportCardsContainer,
 } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import { JoinedPromotionsResponse } from "@/core/types/dto/general/GetJoinedPromoReportResDto";
 
 type Props = {
   promotionDetails: JoinedPromotionsResponse[];

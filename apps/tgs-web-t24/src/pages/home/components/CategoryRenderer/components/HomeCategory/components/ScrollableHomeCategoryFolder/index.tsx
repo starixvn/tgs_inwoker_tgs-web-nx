@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import tabBg from "@/assets/t23/images/home/tabBg.svg";
+import { GameItem } from "@tgs-web-nx/types";
 import Loading from "@/components/UI/Loading";
 import config from "@/config/config";
 import { SHOW_CATEGORY_AMOUNT } from "@/core/constants/games";
-import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
 import Common from "@/core/utils/Common";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
@@ -101,9 +100,11 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                    }.jpg`}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
               ))}
           {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard />}

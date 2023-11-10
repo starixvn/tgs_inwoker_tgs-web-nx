@@ -1,4 +1,4 @@
-import { DoTransferResDto } from "@/core/types/dto/wallet/DoTransferResDto";
+import { DoTransferResDto } from "../dto";
 
 interface TransferChannel {
   channelcode: string;

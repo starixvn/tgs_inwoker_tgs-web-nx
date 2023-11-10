@@ -1,10 +1,9 @@
 import React, { createContext } from "react";
+import { RegisterReqDto } from "@tgs-web-nx/types";
 import { LoginState, useLogin } from "@/core/feature/useAuth/hooks/useLogin";
 import { LogoutState, useLogout } from "@/core/feature/useAuth/hooks/useLogout";
 import { RegisterState, useRegister } from "@/core/feature/useAuth/hooks/useRegister";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { RegisterReqDto } from "@/core/types/dto/player/RegisterReqDto";
-import { HomeGameContext } from "@/core/feature/game/contexts/homeGameContext";
 
 export const initialState: {
   loginState: LoginState;

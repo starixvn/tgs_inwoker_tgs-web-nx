@@ -15,7 +15,6 @@ const CardsContainer = styled.div`
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  padding-top: 16px;
 `;
 
 const Support = () => {
@@ -45,8 +44,9 @@ const Support = () => {
 
   return (
     <SupportContainer>
-      <HeaderImage />
       <CardsContainer>
+        <HeaderImage />
+
         {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
             brandsSupport={{

@@ -1,6 +1,11 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GameState } from "@tgs-web-nx/types";
+import {
+  GameState,
+  GetFavoriteGameResDto,
+  RemoveFavoriteGameResDto,
+  SetFavoriteGameResDto,
+} from "@tgs-web-nx/types";
 import {
   GETFAVGAME_BEGIN,
   GETFAVGAME_FAIL,
@@ -15,9 +20,6 @@ import {
   SETFAVGAME_FAIL,
   SETFAVGAME_SUCCESS,
 } from "@/api-services/constant/actionType";
-import { GetFavoriteGameResDto } from "@/core/types/dto/game/GetFavoriteGameResDto";
-import { RemoveFavoriteGameResDto } from "@/core/types/dto/game/RemoveFavoriteGameResDto";
-import { SetFavoriteGameResDto } from "@/core/types/dto/game/SetFavoriteGameResDto";
 import { GameService } from "@/core/services/GameService";
 
 export function useGameStore() {

@@ -1,8 +1,7 @@
-import { useEffect } from "react";
+import { Promotion } from "@tgs-web-nx/types";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import i18n from "@/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { Promotion } from "@/core/types/dto/general/GetPromotionListResDto";
 import { NOT_SHOW_JOIN_BUTTON_KEY_LIST } from "@/core/constants/promotion";
 
 export interface PromotionDetail {

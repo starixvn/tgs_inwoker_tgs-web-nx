@@ -1,6 +1,6 @@
+import { VipData as TypeVipData } from "@tgs-web-nx/types";
 import useVipStore from "@/core/hooks/tools/useVipStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { VipData as TypeVipData } from "@/core/types/dto/general/GetVipResDto";
 import { TypeProductRebateByLevel } from "@/pages/BettingBonusPage";
 
 const productColumnNameMap: {
