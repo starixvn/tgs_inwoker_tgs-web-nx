@@ -4,6 +4,9 @@ import styled from "styled-components";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import iconClose from "@/assets/t24/images/menuDrawer/close.svg";
+import Icon from "@/components/project/Icon";
+import { useHeader } from "@/core/feature/useHeader";
 
 const MenuHeaderContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -13,9 +16,10 @@ const MenuHeaderContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: start;
-  padding: 12px 0 0 16px;
+  justify-content: space-between;
+  padding: 12px 16px 0 16px;
   gap: 36px;
+  border-right: 1px solid ${({ theme }) => theme.gray80};
 `;
 
 const LogoImgContainer = styled.div`
@@ -31,24 +35,27 @@ const LogoImgContainer = styled.div`
   }
 `;
 
-const MenuButtonContainer = styled.div``;
-
 const MenuDrawerHeader = () => {
   const {
     general: { brand },
   } = useGeneralStore();
+  const { handleToggleMenu } = useHeader();
 
   return (
     <MenuHeaderContainer>
-      <MenuButtonContainer>
-        <MenuButton width={"18px"} height={"18px"} />
-      </MenuButtonContainer>
-
       <Link to={"/"}>
         <LogoImgContainer>
           <img src={brand && brand.loadingUrl} alt={"logo"} />
         </LogoImgContainer>
       </Link>
+
+      <Icon
+        iconUrl={iconClose}
+        width={"36px"}
+        height={"36px"}
+        onClick={() => handleToggleMenu(false)}
+        style={{ cursor: "pointer" }}
+      />
     </MenuHeaderContainer>
   );
 };
