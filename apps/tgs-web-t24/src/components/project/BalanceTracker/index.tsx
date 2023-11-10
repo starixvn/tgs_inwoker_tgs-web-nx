@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
+import { Common } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@/core/stores/useWalletStore";
-import Common from "@/core/utils/Common";
-import i18n from "@/core/utils/i18n";
 import iconMoney from "@/assets/t24/images/balanceTracker/icon_money.svg";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";

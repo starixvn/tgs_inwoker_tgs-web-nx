@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { theme } from "@/theme";
 import { useHeader } from "@/core/feature/useHeader";

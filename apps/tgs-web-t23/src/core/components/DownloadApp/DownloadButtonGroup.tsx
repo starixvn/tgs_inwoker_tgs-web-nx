@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { utility } from "@/core/utils/utility";
-import i18n from "@/core/utils/i18n";
+import { utility } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 
 type ContainerProps = {
   $language: string;

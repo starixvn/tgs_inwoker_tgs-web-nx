@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import BaseProfile from "./BaseProfile";
 import ResetWithdrawalPassword from "./ResetWithdrawalPassword";
 import { AccountService } from "@/api-services/services/AccountService";
-import i18n from "@/core/utils/i18n";
 
 class ChangeWithdrawalPassword extends BaseProfile {
   componentDidMount() {}

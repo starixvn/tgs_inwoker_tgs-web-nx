@@ -3,9 +3,9 @@ import moment from "moment";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { GameBalanceInfosViewModel } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
+import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
-import i18n from "@/core/utils/i18n";
 
 type Props = {
   transferDetails: GameBalanceInfosViewModel[];

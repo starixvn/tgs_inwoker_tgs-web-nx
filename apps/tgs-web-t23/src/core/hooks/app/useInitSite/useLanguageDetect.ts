@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 
 export function useLanguageDetect() {

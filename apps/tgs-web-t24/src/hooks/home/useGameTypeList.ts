@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { i18n } from "@tgs-web-nx/utils";
 import cardgame from "@/assets/t24/images/home/gameType/cardGame.svg";
 import egame from "@/assets/t24/images/home/gameType/egame.svg";
 import esports from "@/assets/t24/images/home/gameType/esports.svg";
@@ -10,7 +11,6 @@ import sabong from "@/assets/t24/images/home/gameType/sabong.svg";
 import slot from "@/assets/t24/images/home/gameType/slot.svg";
 import sports from "@/assets/t24/images/home/gameType/sports.svg";
 import { GameTypeEnum } from "@/constants/GameTypeEnum";
-import i18n from "@/core/utils/i18n";
 
 type GameTypeItem = {
   key: string;

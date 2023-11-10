@@ -1,11 +1,11 @@
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import Manual from "@/core/components/DepositPrev/Manual";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import i18n from "@/core/utils/i18n";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 const DepositManualPage = () => {

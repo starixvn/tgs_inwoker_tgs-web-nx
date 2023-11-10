@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
-import i18n from "@/core/utils/i18n";
 import accountIcon from "@/assets/t24/images/menuDrawer/icon-account.svg";
 import depositIcon from "@/assets/t24/images/menuDrawer/icon-deposit.svg";
 import withdrawIcon from "@/assets/t24/images/menuDrawer/icon-withdraw.svg";

@@ -1,5 +1,5 @@
 import React from "react";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import Inbox from "@/core/components/Inbox";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconInbox from "@/assets/t23/images/badge/icon-inbox.svg";

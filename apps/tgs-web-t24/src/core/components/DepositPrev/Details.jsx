@@ -7,7 +7,7 @@ import { Textfit } from "react-textfit";
 import config from "@tgs-web-nx/config";
 import { WalletService } from "@/api-services/services/WalletService";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import Loading from "@/components/UI/Loading";
 import { Button } from "@/components/UI/Button";
 

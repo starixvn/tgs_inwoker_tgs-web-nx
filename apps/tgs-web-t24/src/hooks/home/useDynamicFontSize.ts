@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { utility } from "@/core/utils/utility";
+import { utility } from "@tgs-web-nx/utils";
 
 const exceptionName = (text: string | null) => {
   switch (text) {

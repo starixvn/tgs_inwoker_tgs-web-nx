@@ -1,11 +1,11 @@
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { Common } from "@tgs-web-nx/utils";
 import { useGetLobbyCategoryList } from "@/core/feature/game/useGetLobbyCategoryList";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameService } from "@/core/services/GameService";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import Common from "@/core/utils/Common";
 import VendorCard from "@/pages/home/components/VendorCard";
 import { media } from "@/theme/breakpoints";
 

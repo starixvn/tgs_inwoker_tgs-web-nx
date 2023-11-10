@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Promotion } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import Carousel from "@/components/UI/Carousel";
@@ -10,7 +11,6 @@ import { UpTransition } from "@/components/UI/Dialog/Transition";
 import usePromotion from "@/core/hooks/tools/usePromotion";
 import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
-import i18n from "@/core/utils/i18n";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 import { usePopup } from "@/core/feature/usePopup";
 

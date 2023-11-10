@@ -1,8 +1,8 @@
 // @ts-nocheck
 import axios, { AxiosRequestConfig } from "axios";
+import { ErrorSwitcher } from "@tgs-web-nx/utils";
 import { UNAUTHORIZE } from "@/api-services/constant/actionType";
 import { AppHistory } from "@/history/History";
-import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 
 const Interceptor = {
   setupInterceptors: (store: any) => {

@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { formatAmount } from "@tgs-web-nx/utils";
 import bdcakeIcon from "@/assets/t18/images/vip/bdcake.svg";
 import calendarIcon from "@/assets/t18/images/vip/calendar.svg";
 import rocketIcon from "@/assets/t18/images/vip/rocket.svg";
 import uncompletedIcon from "@/assets/t18/images/vip/uncompleted.svg";
 import VipBonusStampGrid from "@/pages/vip/components/VipSingleItem/components/VipBonusStampGrid";
 import { media } from "@/theme/breakpoints";
-import formatAmount from "@/core/utils/getFormatAmount";
 
 export type VipCardItem = any;
 

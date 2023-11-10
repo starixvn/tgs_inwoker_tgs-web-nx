@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import AddCardIcon from "@/assets/t18/images/card/add-card.svg";
 
 const InputContainer = styled.div`

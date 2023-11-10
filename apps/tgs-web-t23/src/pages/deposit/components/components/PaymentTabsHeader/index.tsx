@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import { media } from "@/theme/breakpoints";

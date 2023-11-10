@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 import config from "@tgs-web-nx/config";
+import { ScrollToTop } from "@tgs-web-nx/utils";
 import ForcedVerification from "./components/project/ForcedVerification";
 import LiveChat from "./components/tools/LiveChat";
 import { AppHistory } from "@/history/History";
@@ -17,7 +18,6 @@ import { AuthGuard } from "@/core/components/authentication/AuthGuard";
 import FloatingToolIcons from "@/components/project/FloatingToolIcons";
 import { PageNameContextProvider } from "@/core/feature/usePageName/contexts/pageNameContext";
 import Loading from "@/components/UI/Loading";
-import ScrollToTop from "@/core/utils/ScrollToTop";
 import LoginDialog from "@/components/project/LoginDialog";
 import RegisterDialog from "@/components/project/RegisterDialog";
 import { HeaderContextProvider } from "@/core/feature/useHeader/contexts/headerContext";

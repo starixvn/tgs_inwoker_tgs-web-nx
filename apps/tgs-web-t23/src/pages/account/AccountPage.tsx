@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import AccountNavigations from "./components/AccountNavigations";
 import InfoCard from "@/pages/account/components/InfoCard";
-import i18n from "@/core/utils/i18n";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";

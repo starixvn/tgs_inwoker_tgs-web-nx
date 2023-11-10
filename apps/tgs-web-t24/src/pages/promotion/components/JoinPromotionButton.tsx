@@ -2,12 +2,12 @@ import { useSnackbar } from "notistack";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import Loading from "@/components/UI/Loading";
 import { REDIRECT_PROMOTION_TYPE } from "@/constants/promotion";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
-import i18n from "@/core/utils/i18n";
 
 const Button = styled.button<{ $disabled: boolean }>`
   border: none;

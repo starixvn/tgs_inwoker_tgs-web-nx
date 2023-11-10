@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import { FormikValues } from "formik";
+import { i18n } from "@tgs-web-nx/utils";
 import { useGenerateRegisterFormik } from "@/core/feature/useAuthForm/hooks/useGenerateRegisterFormik";
 import { usePromotionCode } from "@/core/feature/useAuthForm/hooks/usePromotionCode";
-import i18n from "@/core/utils/i18n";
 import { useConfirmAdult } from "@/core/feature/useAuthForm/hooks/useConfirmAdult";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useAuth } from "@/core/feature/useAuth";

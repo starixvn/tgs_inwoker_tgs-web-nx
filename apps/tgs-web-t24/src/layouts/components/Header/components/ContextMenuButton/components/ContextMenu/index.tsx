@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import React from "react";
+import { i18n } from "@tgs-web-nx/utils";
 import ContextMenuItem from "./ContextMenuItem";
-import i18n from "@/core/utils/i18n";
 import { useAuth } from "@/core/feature/useAuth";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useHeader } from "@/core/feature/useHeader";

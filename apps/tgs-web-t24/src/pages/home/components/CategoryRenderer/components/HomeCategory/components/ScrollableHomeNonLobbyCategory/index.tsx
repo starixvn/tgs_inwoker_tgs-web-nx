@@ -2,10 +2,10 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
+import { Common } from "@tgs-web-nx/utils";
 import HomeGameCard from "../HomeGameCard";
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import Common from "@/core/utils/Common";
 
 const HomeCategorySection = styled.div`
   width: 100%;

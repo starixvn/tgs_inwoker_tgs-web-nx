@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
 import iconMenu from "@/assets/t24/images/bottomNavBar/icon-menu.svg";
 import iconPromotion from "@/assets/t24/images/bottomNavBar/icon-promotion.svg";

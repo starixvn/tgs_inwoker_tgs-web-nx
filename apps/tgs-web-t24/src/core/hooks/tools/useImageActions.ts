@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useCallback, useState } from "react";
-import { utility } from "@/core/utils/utility";
+import { utility } from "@tgs-web-nx/utils";
 
 export enum ImageActionEnum {
   "COPY",

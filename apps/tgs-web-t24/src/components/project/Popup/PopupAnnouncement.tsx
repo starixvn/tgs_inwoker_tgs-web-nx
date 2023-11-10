@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { Dialog as MuiDialog } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
 import Carousel from "@/components/UI/Carousel";
 import { useUiStore } from "@/core/stores/useUiStore";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
@@ -8,7 +9,6 @@ import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
-import i18n from "@/core/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { usePopup } from "@/core/feature/usePopup";
 

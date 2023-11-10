@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 
 export function updateHtmlTitleDescription() {
   const title = document.getElementById("title");

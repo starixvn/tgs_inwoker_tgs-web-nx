@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import { formatAmount } from "@tgs-web-nx/utils";
 import LockerSvgIcon from "./LockerSvgIcon";
 import { media } from "@/theme/breakpoints";
-import formatAmount from "@/core/utils/getFormatAmount";
 
 type Props = {
   bonusColor?: string;

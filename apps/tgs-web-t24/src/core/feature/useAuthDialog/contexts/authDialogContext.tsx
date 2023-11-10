@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { usePageName } from "@/core/feature/usePageName";
 
 export const initialState: {

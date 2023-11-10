@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from "react";
 import { Provider } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import Common from "@/core/utils/Common";
+import { Common } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@/core/stores/useGameStore";
 import { TransferWallet } from "@/pages/transfer/components/components/TransferCard";
-import i18n from "@/core/utils/i18n";
 import { Select } from "@/components/UI/Select";
 
 type Props = {

@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { Common } from "@tgs-web-nx/utils";
 import avatarImg from "@/assets/t18/images/account/avatar.png";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import VipMedal from "@/components/project/VipMedal";
 import Icon from "@/components/project/Icon";
 import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
 import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
-import Common from "@/core/utils/Common";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 
 const AvatarContainer = styled.div`

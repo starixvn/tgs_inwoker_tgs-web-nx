@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { WALLET_HIDEMESSAGE } from "@/api-services/constant/actionType";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";

@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
+import { i18n } from "@tgs-web-nx/utils";
 import BaseProfile from "./BaseProfile";
 import Step from "@/components/project/Step";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { AccountService } from "@/api-services/services/AccountService";
-import i18n from "@/core/utils/i18n";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
 import {

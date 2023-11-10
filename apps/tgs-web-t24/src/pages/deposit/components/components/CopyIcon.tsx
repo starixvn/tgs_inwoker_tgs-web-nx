@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import i18n from "@/core/utils/i18n";
-import { utility } from "@/core/utils/utility";
+import { i18n } from "@tgs-web-nx/utils";
+import { utility } from "@tgs-web-nx/utils";
 import { useNotifications } from "@/core/feature/useNotifications";
 import Icon from "@/components/project/Icon";
 import copyImg from "@/assets/t18/images/deposit/copy.png";
