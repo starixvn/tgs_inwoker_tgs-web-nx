@@ -6,10 +6,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  overflow-x: auto;
   height: 100%;
-  white-space: nowrap;
-  word-break: keep-all;
   border-radius: 3px;
   padding: 4px 0 4px 10px;
   font-size: 0.875rem;

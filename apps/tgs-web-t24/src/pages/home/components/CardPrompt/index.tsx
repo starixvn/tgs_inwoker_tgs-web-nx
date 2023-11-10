@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Marquee from "./components/Marquee";
 import OnlineUser from "./components/OnlineUser";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const CardPromptContainer = styled.div`
   display: flex;
@@ -12,12 +11,10 @@ const CardPromptContainer = styled.div`
 `;
 
 const CardPrompt = () => {
-  const { isMobileSize } = useRwd();
-
   return (
     <CardPromptContainer>
       <Marquee />
-      {isMobileSize && <OnlineUser />}
+      <OnlineUser />
     </CardPromptContainer>
   );
 };
