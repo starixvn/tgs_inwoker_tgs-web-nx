@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 export const PageContainer = styled.div`
-  padding: 0 22px;
+  padding: 20px 22px;
   max-width: calc(${MAIN_CONTENT_MAX_WIDTH} + 22px * 2);
   margin: auto;
 `;
 
 export const TransferPageContainer = styled.div`
-  padding: 0 22px;
+  padding: 20px 22px;
   max-width: calc(${MAIN_CONTENT_MAX_WIDTH} + 22px * 2);
   margin: auto;
 
