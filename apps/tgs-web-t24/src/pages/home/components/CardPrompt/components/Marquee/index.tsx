@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import notification from "@/assets/t23/images/home/notifications.svg";
+import notification from "@/assets/t24/images/home/notification.svg";
 import { useUiStore } from "@/core/stores/useUiStore";
 
 const Container = styled.div`
@@ -16,6 +16,7 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.gray80};
   color: ${({ theme }) => theme.white};
   margin-right: 10px;
+  gap: 7px;
 `;
 
 const Background = styled.div`
