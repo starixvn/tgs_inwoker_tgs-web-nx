@@ -1,6 +1,5 @@
 import React, { useMemo } from "react";
 import { useLocation } from "react-router";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import {
@@ -11,12 +10,7 @@ import { ValueOf } from "@/core/types/valueOf";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
-
-const ProfilePageContainer = styled.div`
-  padding: 21px 22px;
-  max-width: calc(1200px + 22px * 2);
-  margin: auto;
-`;
+import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const ProfilePage = () => {
   const { isDesktopSize } = useRwd();
@@ -30,10 +24,10 @@ const ProfilePage = () => {
 
   if (path === ProfilePathEnum.PROFILE || !ProfilePageComponent) {
     return (
-      <ProfilePageContainer>
+      <PageContainer>
         {isDesktopSize && <UserWalletInfo />}
         <ProfileMenu />
-      </ProfilePageContainer>
+      </PageContainer>
     );
   }
 
@@ -44,7 +38,7 @@ const ProfilePage = () => {
   };
 
   return (
-    <ProfilePageContainer>
+    <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
       {isDesktopSize ? <ProfileMenu /> : <ProfilePageComponent />}
 
@@ -53,7 +47,7 @@ const ProfilePage = () => {
           <ProfilePageComponent />
         </ProfileDialog>
       )}
-    </ProfilePageContainer>
+    </PageContainer>
   );
 };
 

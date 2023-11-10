@@ -30,7 +30,7 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 
-const Mine = React.lazy(() => import("@/pages/account/Mine"));
+const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
 export enum RouteCategoryEnum {
   HOME,
@@ -72,7 +72,7 @@ const routes: Route[] = [
   },
   {
     path: "/account",
-    component: Mine,
+    component: AccountPage,
     category: RouteCategoryEnum.MINE,
     layout: DialogLayout,
   },

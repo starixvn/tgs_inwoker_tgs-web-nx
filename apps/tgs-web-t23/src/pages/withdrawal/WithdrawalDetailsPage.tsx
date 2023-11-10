@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { useLocation } from "react-router";
 import { useNotifications } from "@/core/feature/useNotifications";
 import Details from "@/core/components/WithdrawalPrev/Details";
@@ -9,12 +8,7 @@ import i18n from "@/utils/i18n";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import AccountPaper from "@/components/project/AccountPaper";
-
-const WithdrawalDetailContainer = styled.div`
-  padding: 21px 22px;
-  max-width: calc(1200px + 22px * 2);
-  margin: auto;
-`;
+import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 const WithdrawalDetails = () => {
   const history = useHistory();
@@ -24,13 +18,13 @@ const WithdrawalDetails = () => {
   const { isDesktopSize } = useRwd();
 
   return (
-    <WithdrawalDetailContainer>
+    <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
 
       <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
         <Details appHistory={history} alert={alert} order={order} />
       </AccountPaper>
-    </WithdrawalDetailContainer>
+    </TransferPageContainer>
   );
 };
 
