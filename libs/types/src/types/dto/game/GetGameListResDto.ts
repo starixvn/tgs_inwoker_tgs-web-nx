@@ -15,7 +15,7 @@ export interface GameItem {
   tag: GameTagItem;
 }
 
-export interface GetFavoriteGameResDto {
+export interface GetGameListResDto {
   IsSuccess: boolean;
   code: number;
   data: GameItem[];

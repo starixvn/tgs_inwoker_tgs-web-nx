@@ -1,4 +1,4 @@
-export class DataDto {
+class DataDto {
   amount = 0;
   paymentid = "";
   promotionid = "";

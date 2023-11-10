@@ -1,4 +1,9 @@
-import { GetFavoriteGameResDto, GetProviderListResDto } from "@tgs-web-nx/types";
+import {
+  GetGameListResDto,
+  GetProviderListResDto,
+  JoinGameResDto,
+  JoinLobbyGameResDto,
+} from "@tgs-web-nx/types";
 import { ApiService } from "@/api-services/services/ApiService";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
@@ -49,5 +54,5 @@ function GetGameList(gpCode: string, gametypes: number) {
   return ApiService.get(
     //@ts-ignore
     `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}&gametypes=${gametypes}`,
-  ) as unknown as Promise<GetFavoriteGameResDto>;
+  ) as unknown as Promise<GetGameListResDto>;
 }

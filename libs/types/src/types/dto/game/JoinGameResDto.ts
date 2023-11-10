@@ -1,4 +1,4 @@
-interface JoinGameResDto {
+export interface JoinGameResDto {
   IsSuccess: boolean;
   code: number;
   data: {

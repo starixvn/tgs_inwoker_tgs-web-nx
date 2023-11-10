@@ -1,4 +1,4 @@
-interface JoinLobbyGameResDto {
+export interface JoinLobbyGameResDto {
   IsSuccess: boolean;
   code: number;
   data: {
