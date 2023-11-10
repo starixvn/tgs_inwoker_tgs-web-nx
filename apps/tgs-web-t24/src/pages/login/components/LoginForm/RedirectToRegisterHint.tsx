@@ -8,16 +8,15 @@ import { useAuthDialog } from "@/core/feature/useAuthDialog";
 const CreateAccountContainer = styled.div`
   width: 100%;
   color: white;
-  font-size: 1.062rem;
-  font-weight: 400;
-  line-height: 1.245;
+  font-size: 0.937rem;
+  font-weight: 700;
   align-self: baseline;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .link {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.yellow};
     margin-left: 8px;
     cursor: pointer;
   }

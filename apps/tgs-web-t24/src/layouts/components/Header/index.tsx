@@ -50,7 +50,9 @@ const HeaderContentContainer = styled.div`
 `;
 
 const Header = () => {
-  const { general } = useGeneralStore();
+  const {
+    general: { brand },
+  } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize } = useRwd();
@@ -62,7 +64,7 @@ const Header = () => {
 
         <Link to={"/"}>
           <LogoImgContainer>
-            <img src={general.brand && general.brand.loadingUrl} alt={"logo"} />
+            <img src={brand && brand.loadingUrl} alt={"logo"} />
           </LogoImgContainer>
         </Link>
 
