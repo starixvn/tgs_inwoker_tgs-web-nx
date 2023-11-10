@@ -7,6 +7,7 @@ import { HEADER_HEIGHT } from "@/theme/constants";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
+import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -52,11 +53,12 @@ const Header = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
+  const { isDesktopSize } = useRwd();
 
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <MenuButton />
+        {isDesktopSize && <MenuButton />}
 
         <Link to={"/"}>
           <LogoImgContainer>

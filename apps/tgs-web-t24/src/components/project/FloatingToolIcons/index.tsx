@@ -5,7 +5,7 @@ import ToolIcon from "@/components/project/FloatingToolIcons/ToolIcon";
 import { media } from "@/theme/breakpoints";
 
 const FloatingToolIconsContainer = styled.div`
-  z-index: 9999;
+  z-index: 1000;
   position: fixed;
   right: 22px;
   bottom: 102px;

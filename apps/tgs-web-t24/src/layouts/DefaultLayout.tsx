@@ -42,12 +42,12 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
   margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
   transition: all ease-in-out 0.2s;
 
-  ${media.lg} {
+  ${media.md} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
       $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
   }
 
-  ${media.xl} {
+  ${media.lg} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
       $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
   }
