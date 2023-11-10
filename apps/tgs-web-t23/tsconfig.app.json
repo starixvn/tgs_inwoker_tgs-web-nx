@@ -12,6 +12,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@tgs-web-nx/core": ["../../libs/core/src/index.ts"]
+      "@tgs-web-nx/types": ["../../libs/types/src/index.ts"]
     }
   },
   "exclude": [

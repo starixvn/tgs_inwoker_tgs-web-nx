@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ModalState } from "@/core/types/stores/modal";
+import { ModalState } from "@tgs-web-nx/types";
 import { CLOSE_MODAL, SHOW_MODAL } from "@/api-services/constant/actionType";
 
 export function useModalStore() {

@@ -2,7 +2,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
-import { WalletState } from "@/core/types/stores/wallet";
+import { WalletState } from "@tgs-web-nx/types";
 import {
   GETWALLETBALANCE_BEGIN,
   GETWALLETEBALANCE_SUCCESS,
@@ -177,7 +177,7 @@ export function useWalletStore() {
       paymentid: string,
       promotionid: string,
       banktype: string,
-      note: string
+      note: string,
     ) => {
       try {
         dispatch({
@@ -193,7 +193,7 @@ export function useWalletStore() {
           paymentid,
           promotionid,
           banktype,
-          note
+          note,
         )) as PerformManualBankDepositResDto;
         //@ts-ignore
         if (response?.IsSuccess) {
@@ -220,7 +220,7 @@ export function useWalletStore() {
         throw error; // Re-throw the error to indicate failure
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   const doFPSDeposit = useCallback(
@@ -229,7 +229,7 @@ export function useWalletStore() {
       amount: number,
       paymentid: string,
       promotionid: string,
-      banktype: string
+      banktype: string,
     ) => {
       try {
         dispatch({
@@ -243,7 +243,7 @@ export function useWalletStore() {
           amount,
           paymentid,
           promotionid,
-          banktype
+          banktype,
         )) as PerformManualFPSDepositResDto;
         //@ts-ignore
         if (response?.IsSuccess) {
@@ -267,7 +267,7 @@ export function useWalletStore() {
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   const doFPSDepositWithName = useCallback(
@@ -277,7 +277,7 @@ export function useWalletStore() {
       amount: number,
       paymentid: string,
       promotionid: string,
-      banktype: string
+      banktype: string,
     ) => {
       dispatch({
         type: DOMANUALDEPOSIT_BEGIN,
@@ -292,7 +292,7 @@ export function useWalletStore() {
           amount,
           paymentid,
           promotionid,
-          banktype
+          banktype,
         )) as PerformManualFPSDepositWithNameResDto;
         //@ts-ignore
         if (response?.IsSuccess) {
@@ -318,16 +318,11 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doThirdPartyDeposit = useCallback(
-    async (
-      amount: number,
-      paymentid: string,
-      promotionid: string,
-      banktype: string
-    ) => {
+    async (amount: number, paymentid: string, promotionid: string, banktype: string) => {
       dispatch({
         type: DOTHIRDPARTYDEPOSIT_BEGIN,
         loading: true,
@@ -339,7 +334,7 @@ export function useWalletStore() {
           amount,
           paymentid,
           promotionid,
-          banktype
+          banktype,
         )) as PerformManualThirdPartyDepositResDto;
 
         if (response?.IsSuccess) {
@@ -364,16 +359,11 @@ export function useWalletStore() {
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   const doUsdtDeposit = useCallback(
-    async (
-      amount: number,
-      paymentid: string,
-      promotionid: string,
-      banktype: string
-    ) => {
+    async (amount: number, paymentid: string, promotionid: string, banktype: string) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
         loading: true,
@@ -385,7 +375,7 @@ export function useWalletStore() {
           amount,
           paymentid,
           promotionid,
-          banktype
+          banktype,
         )) as PerformUsdtDepositResDto;
 
         if (response?.IsSuccess) {
@@ -411,7 +401,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doPulsaDeposit = useCallback(
@@ -421,7 +411,7 @@ export function useWalletStore() {
       promotionid: string,
       banktype: string,
       note: string,
-      phone: string
+      phone: string,
     ) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
@@ -436,7 +426,7 @@ export function useWalletStore() {
           promotionid,
           banktype,
           note,
-          phone
+          phone,
         )) as PerformPulsaDepositResDto;
 
         if (response?.IsSuccess) {
@@ -462,7 +452,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doEWalletDeposit = useCallback(
@@ -473,7 +463,7 @@ export function useWalletStore() {
       banktype: string,
       note: string,
       emoneyname: string,
-      phone: string
+      phone: string,
     ) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
@@ -489,7 +479,7 @@ export function useWalletStore() {
           banktype,
           note,
           emoneyname,
-          phone
+          phone,
         )) as PerformEWalletDepositResDto;
 
         if (response?.IsSuccess) {
@@ -515,7 +505,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doLeePayDeposit = useCallback(
@@ -530,7 +520,7 @@ export function useWalletStore() {
         const response = (await WalletService.PerformLeePayDeposit(
           amount,
           paymentid,
-          promotionid
+          promotionid,
         )) as PerformLeePayDepositResDto;
 
         if (response?.IsSuccess) {
@@ -556,7 +546,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doUmPayBankDeposit = useCallback(
@@ -570,7 +560,7 @@ export function useWalletStore() {
         const response = await WalletService.PerformUmPayBankDeposit(
           amount,
           paymentid,
-          promotionid
+          promotionid,
         );
 
         if (response?.IsSuccess) {
@@ -596,7 +586,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
   //-----------
   const doUmPayCryptoDeposit = useCallback(
@@ -610,7 +600,7 @@ export function useWalletStore() {
         const response = await WalletService.PerformUmPayCrytoDeposit(
           amount,
           paymentid,
-          promotionid
+          promotionid,
         );
 
         if (response?.IsSuccess) {
@@ -636,7 +626,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doPrimePayDeposit = useCallback(
@@ -647,11 +637,7 @@ export function useWalletStore() {
       });
 
       try {
-        const response = await WalletService.PerformPrimePayDeposit(
-          amount,
-          paymentid,
-          promotionid
-        );
+        const response = await WalletService.PerformPrimePayDeposit(amount, paymentid, promotionid);
 
         if (response?.IsSuccess) {
           dispatch({
@@ -676,7 +662,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doMaticPayDeposit = useCallback(
@@ -687,11 +673,7 @@ export function useWalletStore() {
       });
 
       try {
-        const response = await WalletService.PerformMaticPayDeposit(
-          amount,
-          paymentid,
-          promotionid
-        );
+        const response = await WalletService.PerformMaticPayDeposit(amount, paymentid, promotionid);
 
         if (response?.IsSuccess) {
           dispatch({
@@ -716,7 +698,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doHelp2PayDeposit = useCallback(
@@ -727,11 +709,7 @@ export function useWalletStore() {
       });
 
       try {
-        const response = await WalletService.PerformHelp2PayDeposit(
-          amount,
-          paymentid,
-          promotionid
-        );
+        const response = await WalletService.PerformHelp2PayDeposit(amount, paymentid, promotionid);
 
         if (response?.IsSuccess) {
           dispatch({
@@ -756,7 +734,7 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doSkyPayDeposit = useCallback(
@@ -767,11 +745,7 @@ export function useWalletStore() {
       });
 
       try {
-        const response = await WalletService.PerformSkyPayDeposit(
-          amount,
-          paymentid,
-          promotionid
-        );
+        const response = await WalletService.PerformSkyPayDeposit(amount, paymentid, promotionid);
 
         if (response?.IsSuccess) {
           dispatch({
@@ -796,16 +770,11 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const doApplePayDeposit = useCallback(
-    async (
-      amount: number,
-      paymentid: string,
-      promotionid: string,
-      transname: string
-    ) => {
+    async (amount: number, paymentid: string, promotionid: string, transname: string) => {
       dispatch({
         type: DOAPPLEPAYDEPOSIT_BEGIN,
         loading: true,
@@ -816,7 +785,7 @@ export function useWalletStore() {
           amount,
           paymentid,
           promotionid,
-          transname
+          transname,
         );
 
         if (response?.IsSuccess) {
@@ -842,48 +811,42 @@ export function useWalletStore() {
         });
       }
     },
-    []
+    [],
   );
 
-  const doUploadDepositProof = useCallback(
-    async (id: string, file: File, payload: any) => {
-      dispatch({
-        type: DOMANUALDEPOSITUPLOAD_BEGIN,
-        loading: true,
-      });
+  const doUploadDepositProof = useCallback(async (id: string, file: File, payload: any) => {
+    dispatch({
+      type: DOMANUALDEPOSITUPLOAD_BEGIN,
+      loading: true,
+    });
 
-      try {
-        const response = await WalletService.PerformUploadDepositProof(
-          id,
-          file
-        );
+    try {
+      const response = await WalletService.PerformUploadDepositProof(id, file);
 
-        //@ts-ignore
-        if (response?.IsSuccess) {
-          dispatch({
-            type: DOMANUALDEPOSITUPLOAD_SUCCESS,
-            payload: response,
-            loading: true,
-          });
-        } else {
-          dispatch({
-            type: DOMANUALDEPOSITUPLOAD_FAIL,
-            payload: response,
-            loading: false,
-          });
-        }
-
-        return response;
-      } catch (error: any) {
+      //@ts-ignore
+      if (response?.IsSuccess) {
+        dispatch({
+          type: DOMANUALDEPOSITUPLOAD_SUCCESS,
+          payload: response,
+          loading: true,
+        });
+      } else {
         dispatch({
           type: DOMANUALDEPOSITUPLOAD_FAIL,
-          payload: error,
+          payload: response,
           loading: false,
         });
       }
-    },
-    []
-  );
+
+      return response;
+    } catch (error: any) {
+      dispatch({
+        type: DOMANUALDEPOSITUPLOAD_FAIL,
+        payload: error,
+        loading: false,
+      });
+    }
+  }, []);
 
   const getWithdrawalChannel = useCallback(async () => {
     dispatch({
@@ -953,75 +916,69 @@ export function useWalletStore() {
       });
   }, []);
 
-  const initBankCard = useCallback(
-    (channelid: string, bankType: string, address: string) => {
-      dispatch({
-        type: ADDBANKCARD_BEGIN,
-        loading: true,
-      });
+  const initBankCard = useCallback((channelid: string, bankType: string, address: string) => {
+    dispatch({
+      type: ADDBANKCARD_BEGIN,
+      loading: true,
+    });
 
-      return WalletService.InitBankCard(channelid, bankType, address)
-        .then((response) => {
-          if (response?.IsSuccess) {
-            dispatch({
-              type: ADDBANKCARD_SUCCESS,
-              payload: response,
-              loading: false,
-            });
-          } else {
-            dispatch({
-              type: ADDBANKCARD_FAIL,
-              payload: response,
-              loading: false,
-            });
-          }
-          return response;
-        })
-        .catch((e) => {
+    return WalletService.InitBankCard(channelid, bankType, address)
+      .then((response) => {
+        if (response?.IsSuccess) {
           dispatch({
-            type: ADDBANKCARD_FAIL,
-            payload: { IsSuccess: false, info: e.status },
+            type: ADDBANKCARD_SUCCESS,
+            payload: response,
             loading: false,
           });
-        });
-    },
-    []
-  );
-
-  const addBankCard = useCallback(
-    (channelid: string, bankType: string, address: string) => {
-      dispatch({
-        type: ADDBANKCARD_BEGIN,
-        loading: true,
-      });
-
-      return WalletService.AddBankCard(channelid, bankType, address)
-        .then((response) => {
-          if (response?.IsSuccess) {
-            dispatch({
-              type: ADDBANKCARD_SUCCESS,
-              payload: response,
-              loading: false,
-            });
-          } else {
-            dispatch({
-              type: ADDBANKCARD_FAIL,
-              payload: response,
-              loading: false,
-            });
-          }
-          return response;
-        })
-        .catch((e) => {
+        } else {
           dispatch({
             type: ADDBANKCARD_FAIL,
-            payload: { IsSuccess: false, info: e.status },
+            payload: response,
             loading: false,
           });
+        }
+        return response;
+      })
+      .catch((e) => {
+        dispatch({
+          type: ADDBANKCARD_FAIL,
+          payload: { IsSuccess: false, info: e.status },
+          loading: false,
         });
-    },
-    []
-  );
+      });
+  }, []);
+
+  const addBankCard = useCallback((channelid: string, bankType: string, address: string) => {
+    dispatch({
+      type: ADDBANKCARD_BEGIN,
+      loading: true,
+    });
+
+    return WalletService.AddBankCard(channelid, bankType, address)
+      .then((response) => {
+        if (response?.IsSuccess) {
+          dispatch({
+            type: ADDBANKCARD_SUCCESS,
+            payload: response,
+            loading: false,
+          });
+        } else {
+          dispatch({
+            type: ADDBANKCARD_FAIL,
+            payload: response,
+            loading: false,
+          });
+        }
+        return response;
+      })
+      .catch((e) => {
+        dispatch({
+          type: ADDBANKCARD_FAIL,
+          payload: { IsSuccess: false, info: e.status },
+          loading: false,
+        });
+      });
+  }, []);
 
   const deleteBankCard = useCallback((id: string) => {
     dispatch({
@@ -1196,7 +1153,7 @@ export function useWalletStore() {
 
       const response = (await WalletService.Transfer(
         gpcode,
-        amount
+        amount,
       )) as unknown as DoTransferResDto;
 
       if (response?.IsSuccess) {
@@ -1297,7 +1254,7 @@ export function useWalletStore() {
 
     try {
       const response = (await WalletService.GetGameBalance(
-        gpcode
+        gpcode,
       )) as unknown as GetGameBalanceResDto;
 
       if (response?.IsSuccess) {
@@ -1328,22 +1285,12 @@ export function useWalletStore() {
   }, []);
 
   const doBankDeposit2 = useCallback(
-    (
-      amount: number,
-      paymentid: string,
-      promotionid: string,
-      paymentcode: string
-    ) => {
+    (amount: number, paymentid: string, promotionid: string, paymentcode: string) => {
       dispatch({
         type: DOBANKDEPOSIT_BEGIN,
         loading: true,
       });
-      const result = WalletService.PerformBankDeposit(
-        amount,
-        paymentid,
-        promotionid,
-        paymentcode
-      )
+      const result = WalletService.PerformBankDeposit(amount, paymentid, promotionid, paymentcode)
         .then((response) => {
           if (response?.IsSuccess) {
             dispatch({
@@ -1369,26 +1316,16 @@ export function useWalletStore() {
         });
       return result;
     },
-    []
+    [],
   );
 
   const doCryptoDeposit = useCallback(
-    (
-      amount: number,
-      paymentid: string,
-      promotionid: string,
-      paymentcode: string
-    ) => {
+    (amount: number, paymentid: string, promotionid: string, paymentcode: string) => {
       dispatch({
         type: DOCRYPTODEPOSIT_BEGIN,
         loading: true,
       });
-      const result = WalletService.PerformCryptoDeposit(
-        amount,
-        paymentid,
-        promotionid,
-        paymentcode
-      )
+      const result = WalletService.PerformCryptoDeposit(amount, paymentid, promotionid, paymentcode)
         .then((response) => {
           if (response?.IsSuccess) {
             dispatch({
@@ -1414,28 +1351,16 @@ export function useWalletStore() {
         });
       return result;
     },
-    []
+    [],
   );
 
   const performDeposit = useCallback(
-    (
-      amount: number,
-      paymentid: string,
-      promotionid: string,
-      paymentcode: string,
-      type: string
-    ) => {
+    (amount: number, paymentid: string, promotionid: string, paymentcode: string, type: string) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
         loading: true,
       });
-      const result = WalletService.PerformDeposit(
-        amount,
-        paymentid,
-        promotionid,
-        paymentcode,
-        type
-      )
+      const result = WalletService.PerformDeposit(amount, paymentid, promotionid, paymentcode, type)
         .then((response) => {
           if (response?.IsSuccess) {
             dispatch({
@@ -1461,7 +1386,7 @@ export function useWalletStore() {
         });
       return result;
     },
-    []
+    [],
   );
 
   const addBilling = useCallback((card_id: string, amount: number) => {
@@ -1503,12 +1428,7 @@ export function useWalletStore() {
         type: DOWITHDRAWAL_BEGIN,
         loading: true,
       });
-      const result = WalletService.DoWithdraw(
-        amount,
-        bankinfoid,
-        paypassword,
-        note
-      )
+      const result = WalletService.DoWithdraw(amount, bankinfoid, paypassword, note)
         .then((response) => {
           if (response?.IsSuccess) {
             dispatch({
@@ -1535,7 +1455,7 @@ export function useWalletStore() {
 
       return result;
     },
-    []
+    [],
   );
 
   const getAutoTransferStatus = useCallback(() => {
@@ -1612,7 +1532,7 @@ export function useWalletStore() {
       promotionid: string,
       banktype: string,
       detail: string,
-      note: string
+      note: string,
     ) => {
       dispatch({
         type: DOMANUALDEPOSIT_BEGIN,
@@ -1626,7 +1546,7 @@ export function useWalletStore() {
         promotionid,
         banktype,
         detail,
-        note
+        note,
       )
         .then((response) => {
           if (response?.IsSuccess) {
@@ -1653,7 +1573,7 @@ export function useWalletStore() {
         });
       return result;
     },
-    []
+    [],
   );
 
   const doPulsaDepositWithDetail = useCallback(
@@ -1664,7 +1584,7 @@ export function useWalletStore() {
       banktype: string,
       note: string,
       detail: string,
-      phone: string
+      phone: string,
     ) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
@@ -1677,7 +1597,7 @@ export function useWalletStore() {
         banktype,
         note,
         detail,
-        phone
+        phone,
       )
         .then((response) => {
           if (response?.IsSuccess) {
@@ -1704,7 +1624,7 @@ export function useWalletStore() {
         });
       return result;
     },
-    []
+    [],
   );
 
   const doEWalletDepositWithDetail = useCallback(
@@ -1716,7 +1636,7 @@ export function useWalletStore() {
       note: string,
       detail: string,
       emoneyname: string,
-      phone: string
+      phone: string,
     ) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
@@ -1730,7 +1650,7 @@ export function useWalletStore() {
         note,
         detail,
         emoneyname,
-        phone
+        phone,
       )
         .then((response) => {
           //@ts-ignore
@@ -1758,7 +1678,7 @@ export function useWalletStore() {
         });
       return result;
     },
-    []
+    [],
   );
 
   return {

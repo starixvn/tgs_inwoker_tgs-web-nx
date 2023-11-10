@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { InboxMessage } from "@/core/types/stores/account";
+import { InboxMessage } from "@tgs-web-nx/types";
 import InboxItem from "@/pages/inbox/components/InboxItem";
 
 const InboxListContainer = styled.div`

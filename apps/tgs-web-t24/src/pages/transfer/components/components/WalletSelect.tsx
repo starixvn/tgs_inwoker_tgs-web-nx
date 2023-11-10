@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useMemo } from "react";
+import React, { ChangeEvent } from "react";
+import { Provider } from "@tgs-web-nx/types";
 import config from "@/config/config";
 import Common from "@/core/utils/Common";
-import { Provider } from "@/core/types/stores/game";
 import { useGameStore } from "@/core/stores/useGameStore";
 import { TransferWallet } from "@/pages/transfer/components/components/TransferCard";
 import i18n from "@/utils/i18n";
@@ -25,9 +25,7 @@ const WalletSelect = ({ value, handleChange, walletBalance, mainAccountId }: Pro
 
   return (
     <Select native value={value} onChange={(e) => handleChange(e as ChangeEvent)}>
-      <option value={mainAccountId}>
-        {i18n.t("transfer.mainAccount")}
-      </option>
+      <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
       {game.providerList
         .filter((provider) => provider.status === 0 && provider.transferwallet)
         .filter((provider) => {

@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GeneralState } from "@/core/types/stores/general";
+import { GeneralState } from "@tgs-web-nx/types";
 import {
   COMPOSEMEMO_BEGIN,
   COMPOSEMEMO_FAIL,
@@ -164,7 +164,7 @@ export function useGeneralStore() {
       rows: number,
       desc: boolean,
       sort: string,
-      all: boolean
+      all: boolean,
     ) => {
       dispatch({
         type: GETPROMOLIST_BEGIN,
@@ -179,7 +179,7 @@ export function useGeneralStore() {
           rows,
           desc,
           sort,
-          all
+          all,
         )) as unknown as GetPromotionListResDto;
         if (response?.IsSuccess) {
           dispatch({
@@ -203,7 +203,7 @@ export function useGeneralStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const getPlayerPromotionList = useCallback(
@@ -213,7 +213,7 @@ export function useGeneralStore() {
       rows: number,
       desc: boolean,
       sort: string,
-      all: boolean
+      all: boolean,
     ) => {
       dispatch({
         type: GETPLAYERPROMOLIST_BEGIN,
@@ -228,7 +228,7 @@ export function useGeneralStore() {
           rows,
           desc,
           sort,
-          all
+          all,
         )) as unknown as GetPlayerPromotionListResDto;
         if (response?.IsSuccess) {
           dispatch({
@@ -252,7 +252,7 @@ export function useGeneralStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const joinPromotion = useCallback(async (id: string) => {
@@ -467,7 +467,7 @@ export function useGeneralStore() {
     try {
       //  @ts-ignore
       const response = (await GeneralService.GetPromotionRouletteStatus(
-        id
+        id,
       )) as unknown as GetPromotionRouletteStatusResDto;
       if (response?.IsSuccess) {
         dispatch({
@@ -492,7 +492,7 @@ export function useGeneralStore() {
     try {
       //  @ts-ignore
       const response = (await GeneralService.GetPromotionRouletteResult(
-        id
+        id,
       )) as unknown as GetPromotionRouletteResultResDto;
       if (response?.IsSuccess) {
         dispatch({
@@ -558,7 +558,7 @@ export function useGeneralStore() {
   const getDepositAccumulateRoulette = useCallback(async (id: string) => {
     try {
       return (await GeneralService.GetDepositAccumulateRoulette(
-        id
+        id,
       )) as unknown as GetDepositAccumulateRouletteResDto;
     } catch (error: any) {}
   }, []);
@@ -566,7 +566,7 @@ export function useGeneralStore() {
   const getDepositAccumulateRouletteResult = useCallback(async (id: string) => {
     try {
       return (await GeneralService.GetDepositAccumulateRouletteResult(
-        id
+        id,
       )) as unknown as GetDepositAccumulateRouletteResultResDto;
     } catch (error: any) {}
   }, []);
@@ -574,7 +574,7 @@ export function useGeneralStore() {
   const getDepositAccumulateRouletteHistory = useCallback(async (id: string) => {
     try {
       return (await GeneralService.GetDepositAccumulateRouletteHistory(
-        id
+        id,
       )) as unknown as GetDepositAccumulateRouletteHistoryResDto;
     } catch (error: any) {}
   }, []);
@@ -583,7 +583,7 @@ export function useGeneralStore() {
     try {
       //  @ts-ignore
       const response = (await GeneralService.GetBrandAllAgent(
-        ""
+        "",
       )) as unknown as GetBrandAllAgentResDto;
       if (response.IsSuccess) {
         dispatch({

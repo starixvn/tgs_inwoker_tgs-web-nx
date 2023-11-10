@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog } from "@mui/material";
 import styled from "styled-components";
-import { BrandsSupport } from "@/core/types/stores/general";
+import { BrandsSupport } from "@tgs-web-nx/types";
 
 const QRCodeContainer = styled.div`
   margin: 50px;
@@ -56,9 +56,7 @@ type Props = {
 const QrCodeDialog = ({ selectedBrandsSupport, handleClose }: Props) => {
   return (
     <Dialog open={!!selectedBrandsSupport} onClose={handleClose}>
-      {selectedBrandsSupport && (
-        <QRCodeHolder selectedBrandsSupport={selectedBrandsSupport} />
-      )}
+      {selectedBrandsSupport && <QRCodeHolder selectedBrandsSupport={selectedBrandsSupport} />}
     </Dialog>
   );
 };

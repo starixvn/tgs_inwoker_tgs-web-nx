@@ -5,7 +5,7 @@ import {
   BONUSNEW_FAILURE,
   BONUSNEW_SUCCESS,
 } from "@/api-services/constant/actionType";
-import { BonusState } from "@/core/types/stores/bonus";
+import { BonusState } from from "@tgs-web-nx/types";
 
 /*
  * LIYI:

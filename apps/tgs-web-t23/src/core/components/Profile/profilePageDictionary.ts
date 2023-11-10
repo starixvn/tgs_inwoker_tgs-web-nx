@@ -1,4 +1,5 @@
 import React, { MemoExoticComponent, NamedExoticComponent } from "react";
+import { ValueOf } from "@tgs-web-nx/types";
 import ProfileMenuMobile from "@/pages/profile/components/ProfileMenu/ProfileMenuMobile";
 import ProfileBirthDatePage from "@/core/components/Profile/ProfileBirthDate";
 import ProfileChangeEmail from "@/core/components/Profile/ProfileChangeEmail";
@@ -17,7 +18,6 @@ import ProfileViberPage from "@/core/components/Profile/ProfileViber";
 import ProfileWithdrawalPasswordPage from "@/core/components/Profile/ProfileWIthdrawalPassword";
 import ProfileWeChatPage from "@/core/components/Profile/ProfileWeChat";
 import ProfileWhatsappPage from "@/core/components/Profile/ProfileWhatsapp";
-import { ValueOf } from "@/core/types/valueOf";
 
 export const ProfilePathEnum = {
   PROFILE: "/profile",

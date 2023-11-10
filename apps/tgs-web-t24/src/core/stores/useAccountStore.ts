@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
-import { AccountState } from "@/core/types/stores/account";
+import { AccountState } from "@tgs-web-nx/types";
 import {
   CHECKTOKEN_BEGIN,
   CHECKTOKEN_FAILURE,
@@ -236,7 +236,7 @@ export function useAccountStore() {
         throw e;
       }
     },
-    []
+    [],
   );
 
   const getIDCardNo = useCallback(async () => {
@@ -356,7 +356,7 @@ export function useAccountStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const resetAccountResult = useCallback(() => {

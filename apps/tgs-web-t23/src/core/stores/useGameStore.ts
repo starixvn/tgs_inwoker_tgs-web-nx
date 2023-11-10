@@ -17,7 +17,7 @@ import {
 import { GetFavoriteGameResDto } from "@/core/types/dto/game/GetFavoriteGameResDto";
 import { RemoveFavoriteGameResDto } from "@/core/types/dto/game/RemoveFavoriteGameResDto";
 import { SetFavoriteGameResDto } from "@/core/types/dto/game/SetFavoriteGameResDto";
-import { GameState } from "@/core/types/stores/game";
+import { GameState } from  from "@tgs-web-nx/types";
 import { GameService } from "@/core/services/GameService";
 
 export function useGameStore() {

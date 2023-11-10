@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UiState } from "@/core/types/stores/ui";
+import { UiState } from "@tgs-web-nx/types";
 import {
   GETANNOUNCEMENT_BEGIN,
   GETANNOUNCEMENT_FAIL,

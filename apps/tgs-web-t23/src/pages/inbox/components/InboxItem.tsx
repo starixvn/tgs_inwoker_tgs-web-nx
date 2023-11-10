@@ -2,7 +2,7 @@ import { Collapse } from "@mui/material";
 import moment from "moment";
 import { useState } from "react";
 import styled from "styled-components";
-import { InboxMessage } from "@/core/types/stores/account";
+import { InboxMessage } from "@tgs-web-nx/types";
 
 const InboxItemContainer = styled.div`
   width: 100%;

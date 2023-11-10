@@ -9,8 +9,8 @@ import {
   TableRow,
 } from "@mui/material";
 import moment from "moment";
+import { InboxMessage } from "@tgs-web-nx/types";
 import i18n from "@/utils/i18n";
-import { InboxMessage } from "@/core/types/stores/account";
 
 const InboxListContainer = styled.div`
   & > div {

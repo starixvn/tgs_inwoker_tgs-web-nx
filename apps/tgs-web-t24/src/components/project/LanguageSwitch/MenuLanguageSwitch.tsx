@@ -7,9 +7,9 @@ import {
   SelectProps,
 } from "@mui/material";
 import styled from "styled-components";
+import { BrandLanguage } from "@tgs-web-nx/types";
 import i18n from "@/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { BrandLanguage } from "@/core/types/stores/general";
 import { theme } from "@/theme";
 import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";

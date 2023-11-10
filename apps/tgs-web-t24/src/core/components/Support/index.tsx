@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { BrandsSupport } from "@tgs-web-nx/types";
 import config from "@/config/config";
-import { BrandsSupport } from "@/core/types/stores/general";
 import SupportCard from "@/pages/contactUs/components/SupportCard";
 import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/core/components/Support/IMHandler";
