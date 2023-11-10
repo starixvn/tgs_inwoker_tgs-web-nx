@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import "./assets/fonts/notosans/notosans-sc/css.css";
 import "./assets/fonts/notosans/notosans-tc/css.css";
-import i18n from "./utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 const languageSwitcher = (language) => {
   switch (language) {
@@ -25,7 +25,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     scroll-behavior: smooth;
   }
-  
+
   body {
     background: ${({ theme }) => theme.body};
     background-size: 100%;
@@ -36,17 +36,17 @@ export const GlobalStyles = createGlobalStyle`
   .headerSubmenu .slick-slider .slick-list {
     height: auto;
   }
-  
+
   .headerSubmenu .slick-slide > div {
     display: flex;
     align-items: center;
   }
-  
+
   .headerSubmenu .slick-prev {
     left: 0;
     top: 90px;
   }
-  
+
   .headerSubmenu .slick-next {
     right: 0;
     top: 90px;
@@ -56,12 +56,12 @@ export const GlobalStyles = createGlobalStyle`
     margin-left: 25px;
     margin-right: 35px;
   }
-  
+
   .headerSubmenu .slick-prev::before,
   .headerSubmenu .slick-next::before {
     color: ${({ theme }) => theme.primary};
   }
-  
+
 
 
 `;

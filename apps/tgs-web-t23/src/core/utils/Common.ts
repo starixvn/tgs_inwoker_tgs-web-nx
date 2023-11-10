@@ -1,4 +1,4 @@
-import i18n from "i18next";
+import i18n from "@/core/utils/i18n";
 
 let newWindow: Window | undefined;
 
