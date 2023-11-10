@@ -1,7 +1,7 @@
 import { GetGameListResDto, GetProviderListResDto } from "@tgs-web-nx/types";
+import config from "@tgs-web-nx/config";
 import { ApiService } from "@/api-services/services/ApiService";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import { GameService as PrevGameService } from "@/api-services/services/GameService";
 
 export const GameService = {

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import config from "@/config/config";
+import config from "@tgs-web-nx/config";
 import { useGameStore } from "@/core/stores/useGameStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useWalletStore } from "@/core/stores/useWalletStore";

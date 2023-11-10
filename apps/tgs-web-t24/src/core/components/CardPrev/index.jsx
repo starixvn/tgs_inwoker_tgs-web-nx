@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import config from "@tgs-web-nx/config";
 import { walletAction } from "@/api-services/actions/walletAction";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
 import MessageDialog from "@/pages/card/components/MessageDialog";
 import Loading from "@/components/UI/Loading";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import AddCardsButton from "@/pages/card/components/AddCardsButton";
 import Card from "@/pages/card/components/Card";
 

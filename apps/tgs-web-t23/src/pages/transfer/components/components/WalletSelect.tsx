@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { Provider } from "@tgs-web-nx/types";
-import config from "@/config/config";
+import config from "@tgs-web-nx/config";
 import Common from "@/core/utils/Common";
 import { useGameStore } from "@/core/stores/useGameStore";
 import { TransferWallet } from "@/pages/transfer/components/components/TransferCard";

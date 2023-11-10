@@ -2,7 +2,7 @@ import { Dialog } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Textfit } from "react-textfit";
 import styled from "styled-components";
-import config from "@/config/config";
+import config from "@tgs-web-nx/config";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { AccountService } from "@/core/services/AccountService";
 import { theme } from "@/theme";

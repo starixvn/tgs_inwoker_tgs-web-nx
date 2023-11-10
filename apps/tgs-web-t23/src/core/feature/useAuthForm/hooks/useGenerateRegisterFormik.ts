@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 import * as Yup from "yup";
 import { FormikValues, useFormik } from "formik";
+import config from "@tgs-web-nx/config";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import i18n from "@/utils/i18n";
 import { FormInputTypeEnum } from "@/components/project/FormikForm/FormInputFactory";
 import { useFormikInitValue } from "@/core/feature/useAuthForm/hooks/useFormikInitValue";
-import config from "@/config/config";
 import { UserTypeEnum } from "@/core/feature/useAuthForm/useRegisterForm";
 
 type Props = {

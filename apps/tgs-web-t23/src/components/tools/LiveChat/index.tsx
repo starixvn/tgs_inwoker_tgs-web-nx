@@ -1,9 +1,9 @@
 import React from "react";
+import config from "@tgs-web-nx/config";
 import Smartsupp from "./Smartsupp";
 import LiveChatCS from "./LiveChat";
 import Tawkto from "./Tawkto";
 import Zendesk from "./Zendesk";
-import config from "@/config/config";
 
 type LiveChatProps = {
   vendor: string;

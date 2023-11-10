@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import BlowFishEncryption from "@/core/utils/BlowFishEncryption";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useUiStore } from "@/core/stores/useUiStore";

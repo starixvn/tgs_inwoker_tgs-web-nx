@@ -1,4 +1,4 @@
-import config from "../../config/config";
+import config from "@tgs-web-nx/config";
 
 var phone = (phone) => {
   var phoneRegex = new RegExp(

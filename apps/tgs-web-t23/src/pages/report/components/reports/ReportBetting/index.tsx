@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
-import config from "@/config/config";
+import config from "@tgs-web-nx/config";
 import { ReportService } from "@/core/services/ReportService";
 import { useNotifications } from "@/core/feature/useNotifications";
 import Loading from "@/components/UI/Loading";

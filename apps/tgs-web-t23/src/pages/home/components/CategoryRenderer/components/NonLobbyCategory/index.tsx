@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import config from "@tgs-web-nx/config";
 import searchIcon from "@/assets/t23/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
-import config from "@/config/config";
 import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCategoryList";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";

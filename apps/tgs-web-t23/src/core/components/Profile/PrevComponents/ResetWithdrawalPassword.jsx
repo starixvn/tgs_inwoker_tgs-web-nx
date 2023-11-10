@@ -8,10 +8,9 @@ import Step from "@/components/project/Step";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
-  LabelContainer,
   ItemContainer,
+  LabelContainer,
 } from "@/components/styled-component/ProfileForms";
-import config from "@/config/config";
 import { Button } from "@/components/UI/Button";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 

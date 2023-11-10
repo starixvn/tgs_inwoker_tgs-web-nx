@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import BaseProfile from "../../BaseProfile";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
-  LabelContainer,
   ItemContainer,
+  LabelContainer,
 } from "@/components/styled-component/ProfileForms";
 
 class Approved extends BaseProfile {

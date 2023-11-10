@@ -1,6 +1,7 @@
 import React from "react";
 import moment from "moment";
 import { TransactionDetail } from "@tgs-web-nx/types";
+import config from "@tgs-web-nx/config";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   CustomWinLose,
@@ -10,7 +11,6 @@ import {
   ReportCardsContainer,
 } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 
 type Props = {
   transactionDetails: TransactionDetail[];

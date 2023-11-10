@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import BaseProfile from "./BaseProfile";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { AccountService } from "@/api-services/services/AccountService";
 import BottomNote from "@/components/UI/BottomNote";
 
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import {
   FormControl,
   ItemContainer,
@@ -15,6 +15,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
+
 class Email extends BaseProfile {
   state = {
     countdownToken: 0,

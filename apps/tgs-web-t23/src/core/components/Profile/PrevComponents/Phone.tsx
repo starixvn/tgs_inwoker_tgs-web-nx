@@ -1,8 +1,8 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import config from "@tgs-web-nx/config";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import { useNotifications } from "@/core/feature/useNotifications";
@@ -11,8 +11,8 @@ import { AccountService } from "@/core/services/AccountService";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,
-  LabelContainer,
   ItemContainer,
+  LabelContainer,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";

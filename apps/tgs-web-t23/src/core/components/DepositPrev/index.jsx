@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
-
+import config from "@tgs-web-nx/config";
 import Details from "./Details";
 import DetailsManual from "./DetailsManual";
 import Main from "./Main";
@@ -12,7 +12,6 @@ import { WalletService } from "@/api-services/services/WalletService";
 import { RESET_WALLETRESULT, WALLET_HIDEMESSAGE } from "@/api-services/constant/actionType";
 
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Loading from "@/components/UI/Loading";
 import DepositNotificationDialog from "@/pages/deposit/components/components/DepositNotificationDialog";

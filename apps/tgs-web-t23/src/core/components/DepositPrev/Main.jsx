@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+import config from "@tgs-web-nx/config";
 import Common from "@/core/utils/Common";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import { utility } from "@/core/utils/utility";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
 import {

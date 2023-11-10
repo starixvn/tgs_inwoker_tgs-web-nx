@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import BaseProfile from "./BaseProfile";
 import i18n from "@/utils/i18n";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { AccountService } from "@/api-services/services/AccountService";
-import config from "@/config/config";
 import BottomNote from "@/components/UI/BottomNote";
 import {
   FormControl,
