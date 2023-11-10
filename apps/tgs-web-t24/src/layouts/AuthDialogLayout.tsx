@@ -1,9 +1,8 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
-import { HEADER_HEIGHT } from "@/theme/constants";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import AuthDialogHeader from "@/layouts/components/AuthDialogHeader";
+import AuthDialogHeaderForMobile from "@/layouts/components/AuthDialogHeaderForMobile";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -13,7 +12,6 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  // min-height: calc(100vh - ${HEADER_HEIGHT}); // 80px:Header, 82px: BottomAppBar
   //margin: 80px 0 0;
   margin-top: 60px;
   position: relative;
@@ -32,7 +30,7 @@ const AuthDialogLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <AuthDialogHeader />
+      <AuthDialogHeaderForMobile />
 
       <ContentWrapper>{children}</ContentWrapper>
     </DialogLayoutContainer>

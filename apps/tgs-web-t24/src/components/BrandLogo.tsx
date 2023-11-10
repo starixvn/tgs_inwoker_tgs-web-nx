@@ -21,7 +21,7 @@ const BrandLogo = () => {
 
   return (
     <LogoImgContainer>
-      <img src={brand && brand.loadingUrl} alt={"logo"} />
+      <img src={brand.loadingUrl} alt={"logo"} />
     </LogoImgContainer>
   );
 };
