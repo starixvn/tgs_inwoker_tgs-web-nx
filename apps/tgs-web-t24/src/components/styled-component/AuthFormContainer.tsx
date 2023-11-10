@@ -7,6 +7,6 @@ export const AuthFormContainer = styled.div`
   padding: 0 24px;
 
   ${media.sm} {
-    padding: 42px 42px;
+    padding: 37px 24px;
   }
 `;
