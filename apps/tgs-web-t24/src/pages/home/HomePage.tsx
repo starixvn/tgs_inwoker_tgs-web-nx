@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import ImageCard from "./components/ImageCard";
+import PromotionCard from "./components/HomePromotionCard";
+import HomePromotionCard from "./components/HomePromotionCard";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
@@ -100,9 +102,17 @@ const HomePage = () => {
         )}
 
         {/* GameTypeTab - left side menu */}
-        {isMobileSize && !activeGameType && <GameTypeTab />}
+        {/* {isMobileSize && !activeGameType && <GameTypeTab />} */}
 
         {/* Ad - Welcome to PG */}
+        <HomePromotionCard />
+
+
+
+
+
+
+
         {/* Promotion card - Casino & Sports */}
 
         {/* {activeGameType > 0 &&
@@ -114,9 +124,8 @@ const HomePage = () => {
 
         <CategoryRenderer />
 
-        {!activeGameType && (
+        {/* {!activeGameType && (
           <>
-            {/* <HomePromotionCard /> */}
             {isMobileSize &&
               footerCategoriesList.length &&
               footerCategoriesList.map((category, index) => (
@@ -133,7 +142,7 @@ const HomePage = () => {
                 </HomeCategoryFolder>
               ))}
           </>
-        )}
+        )} */}
       </MainContentWrapper>
     </MainWrapper>
   );
