@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import React, { useMemo } from "react";
+import React from "react";
 import ContextMenuItem from "./ContextMenuItem";
 import i18n from "@/utils/i18n";
-import accountImg from "@/assets/t23/images/header/contextMenu/icon_my_account.svg";
-import supportImg from "@/assets/t23/images/header/contextMenu/icon_service_support.svg";
-import logoutImg from "@/assets/t23/images/header/contextMenu/icon_logout.svg";
 import { useAuth } from "@/core/feature/useAuth";
-import { Button } from "@/components/UI/Button";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useHeader } from "@/core/feature/useHeader";
+import { useGetNavItemList } from "@/layouts/components/MenuDrawer/hooks/useGetNavItemList";
+import logoutIcon from "@/assets/t24/images/menuDrawer/icon-logout.svg";
+import { theme } from "@/theme";
 
 const ContextMenuContainer = styled.div`
   background: ${({ theme }) => theme.white};
@@ -20,41 +19,18 @@ const ContextMenuContainer = styled.div`
   z-index: 99;
 `;
 const ContextMenuItemWrapper = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 44px);
   gap: 10px;
-`;
-const VersionTagContainer = styled.div`
-  color: #ffffff;
-  text-align: center;
-  font-size: 0.75rem;
-  margin-top: 10px;
 `;
 
 const ContextMenu = () => {
-  const { handleLogout, logoutState } = useAuth();
+  const { handleLogout } = useAuth();
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { isMenuOpen, handleToggleMenu } = useHeader();
-
-  const contextMenuList = useMemo(() => {
-    return [
-      {
-        label: i18n.t("wap.main.my"),
-        iconUrl: accountImg,
-        routePath: "/account",
-      },
-      {
-        label: i18n.t("support.online"),
-        iconUrl: supportImg,
-        routePath: "/main/support",
-      },
-      {
-        label: i18n.t("wap.main.account.signout"),
-        iconUrl: logoutImg,
-        routePath: "/logout",
-      },
-    ];
-  }, []);
+  const { accountNavItemList } = useGetNavItemList();
 
   const handleClick = async (routerPath: string) => {
     switch (routerPath) {
@@ -73,43 +49,42 @@ const ContextMenu = () => {
       case "/main/support":
         history.push("/support");
         break;
+
+      default:
+        history.push(routerPath);
+        break;
     }
   };
 
   return (
     <ContextMenuContainer>
-        <ContextMenuItemWrapper>
-          {contextMenuList.map((contextMenuItem) => {
-            const { label, iconUrl, routePath } = contextMenuItem;
+      <ContextMenuItemWrapper>
+        {accountNavItemList.map((navItem) => {
+          const { label, iconUrl, routePath } = navItem;
 
-            if (routePath === "/logout") return null;
+          if (routePath === "/logout") return null;
 
-            return (
-              <ContextMenuItem
-                key={label}
-                label={label}
-                iconUrl={iconUrl}
-                onClick={() => handleClick(routePath)}
-              />
-            );
-          })}
+          return (
+            <ContextMenuItem
+              key={label}
+              label={label}
+              iconUrl={iconUrl}
+              onClick={() => handleClick(routePath)}
+            />
+          );
+        })}
 
-          <Button
-            variant={"contained"}
-            onClick={handleLogout}
-            fullWidth
-            sx={{
-              color: "white",
-              background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
-              fontSize: "1.125rem",
-              height: "44px",
-            }}
-          >
-            <>{i18n.t("web.header.logout")}</>
-          </Button>
-        </ContextMenuItemWrapper>
-        <VersionTagContainer>V1.1.3795703</VersionTagContainer>
-      </ContextMenuContainer>
+        <ContextMenuItem
+          key={"logout"}
+          label={i18n.t("web.header.logout")}
+          iconUrl={logoutIcon}
+          onClick={() => handleClick("/logout")}
+          style={{
+            borderTop: `1px solid ${theme.gray30}`,
+          }}
+        />
+      </ContextMenuItemWrapper>
+    </ContextMenuContainer>
   );
 };
 

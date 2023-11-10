@@ -1,17 +1,16 @@
 import styled from "styled-components";
+import React from "react";
 
 const ContextMenuItemContainer = styled.div`
-  width: 100%;
-  height: 48px;
-  font-size: 1.125rem;
-  font-weight: 500;
+  width: 264px;
+  font-size: 0.875rem;
+  font-weight: 700;
   cursor: pointer;
-  background: ${({ theme }) => theme.secondary};
-  color: ${({ theme }) => theme.white};
-  padding: 12px 20px;
-  border-radius: 12px;
+  color: ${({ theme }) => theme.gray60};
+  padding: 17px 34px;
   gap: 10px;
   display: flex;
+  align-items: center;
 `;
 
 const IconContainer = styled.div`
@@ -22,12 +21,12 @@ const IconContainer = styled.div`
 type ContextMenuItemProps = {
   iconUrl: string;
   label: string;
-  onClick?: () => void;
-};
+} & React.HTMLProps<HTMLDivElement>;
 
-const ContextMenuItem = ({ label, iconUrl, onClick }: ContextMenuItemProps) => {
+const ContextMenuItem = ({ label, iconUrl, ...others }: ContextMenuItemProps) => {
   return (
-    <ContextMenuItemContainer onClick={onClick}>
+    //@ts-ignore
+    <ContextMenuItemContainer {...others}>
       <IconContainer>
         <img src={iconUrl} alt={label} />
       </IconContainer>
