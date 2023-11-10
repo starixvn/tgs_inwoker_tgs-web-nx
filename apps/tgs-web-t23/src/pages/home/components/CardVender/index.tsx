@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { providerStatus } from "@/core/constants/games";
+import { providerStatus } from "@tgs-web-nx/constants";
 import playIcon from "@/assets/t18/images/home/mobile/play.svg";
 import bg from "@/assets/t18/images/home/mobile/vender_card_bg.png";
 import { media } from "@/theme/breakpoints";

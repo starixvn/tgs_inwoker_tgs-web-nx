@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import dots from "@/assets/t23/images/home/dots.svg";
 import { useGameType } from "@/core/feature/game/hooks/useGameType";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 import { media } from "@/theme/breakpoints";
 
 const AllCardBg = styled.div`

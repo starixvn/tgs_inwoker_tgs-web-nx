@@ -1,8 +1,8 @@
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import HomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory";
 import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
 import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/components/NonLobbyCategory";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 
 const CategoryRenderer = () => {
   const { activeGameType } = useHomeGameContext();

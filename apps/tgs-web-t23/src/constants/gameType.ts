@@ -1,3 +1,4 @@
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import cardgame from "@/assets/t23/images/home/gameType/cardGame.svg";
 import egame from "@/assets/t23/images/home/gameType/egame.svg";
 import esports from "@/assets/t23/images/home/gameType/esports.svg";
@@ -11,7 +12,6 @@ import sports from "@/assets/t23/images/home/gameType/sports.svg";
 import hot from "@/assets/t23/images/home/hot.svg";
 import newIcon from "@/assets/t23/images/home/new.svg";
 import i18n from "@/core/utils/i18n";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 // Note : Horse belongs to SPORTS: 1,
 
 type TabIcon = {
