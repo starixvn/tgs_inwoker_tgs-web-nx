@@ -1,6 +1,9 @@
 variables:
   app: tgs-web-t23
-
+  dev_tgs-web-t23: lobby-t23
+  staging_tgs-web-t23: lobby-t23
+  prod_tgs-web-t23: lobby-t23
+  
 stages:
   - docker-build
   - deploy-domain
@@ -26,6 +29,8 @@ docker-build:
 
 deploy-domain-dev:
   stage: deploy-domain
+  variables:
+    tgs_env: dev
   script:
     - |
       echo "domain=$domain"
@@ -36,8 +41,8 @@ deploy-domain-dev:
         export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
         echo "image=$image"
         echo "tag=$tag"
-        envsubst < ./deployment/values-dev.yaml > values.yaml
-        helm template $brand deployment -f values.yaml -n dev
+        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n ${tgs_env}
       else 
         echo "No Deployment Brand and Domain"
       fi
@@ -46,6 +51,8 @@ deploy-domain-dev:
  
 deploy-domain-staging:
   stage: deploy-domain
+  variables:
+    tgs_env: staging
   script:
     - |
       echo "domain=$domain"
@@ -56,8 +63,8 @@ deploy-domain-staging:
         export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
         echo "image=$image"
         echo "tag=$tag"
-        envsubst < ./deployment/values-staging.yaml > values.yaml
-        helm template $brand deployment -f values.yaml -n staging
+        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n ${tgs_env}
       else 
         echo "No Deployment Brand and Domain"
       fi
@@ -66,6 +73,8 @@ deploy-domain-staging:
     
 deploy-domain-prod:
   stage: deploy-domain
+  variables:
+    tgs_env: prod
   script:
     - |
       echo "domain=$domain"
@@ -76,8 +85,8 @@ deploy-domain-prod:
         export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
         echo "image=$image"
         echo "tag=$tag"
-        envsubst < ./deployment/values-prod.yaml > values.yaml
-        helm template $brand deployment -f values.yaml -n prod
+        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n ${tgs_env}
       else 
         echo "No Deployment Brand and Domain"
       fi
@@ -88,12 +97,29 @@ deploy-dev:
   stage: deploy
   needs:
     - job: docker-build
+  variables:
+    tgs_env: dev
   before_script:
-    - export KUBECONFIG=$kubeconfig_staging
+    - export KUBECONFIG=$kubeconfig_dev
   script:
-    - kubectl config get-contexts
-    - kubectl set image deployment/$DEPLOY $DEPLOY=${ImageName}:$Tag --record -n dev
-    - echo "Deployment successful"
+    - | 
+      kubectl config get-contexts
+      export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+      export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+      echo "image=$image"
+      echo "tag=$tag"
+        
+      lobbies="${tgs_env}_$app"
+      
+      echo "lobbies=${!lobbies}"
+      
+      IFS=', ' read -ra array <<< "${!lobbies}"
+
+      for lobby in "${array[@]}"; do
+          echo "$element"
+          kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n ${tgs_env}
+      done
+      echo "Deployment successful"
   environment:
     name: dev
   only: 
@@ -103,16 +129,27 @@ deploy-staging:
   stage: deploy
   needs:
     - job: docker-build
+  variables:
+    tgs_env: staging
   before_script:
     - export KUBECONFIG=$kubeconfig_staging
   script:
-    - export Tag=$(cat tag_file)
-    - echo "DEPLOY=$DEPLOY"
-    - echo "ImageName=$ImageName"
-    - echo "Tag=$Tag"
-    - kubectl config get-contexts
-    - kubectl set image deployment/$DEPLOY $DEPLOY=${ImageName}:$Tag --record -n staging
-    - echo "Deployment successful"
+    - | 
+      kubectl config get-contexts
+      export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+      export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+      echo "image=$image"
+      echo "tag=$tag"
+        
+      lobbies="${tgs_env}_$app"
+      
+      IFS=', ' read -ra array <<< "${!lobbies}"
+
+      for lobby in "${array[@]}"; do
+          echo "$element"
+          kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n ${tgs_env}
+      done
+      echo "Deployment successful"
   environment:
     name: staging
   only: 
@@ -122,15 +159,27 @@ deploy-prod:
   stage: deploy
   needs:
     - job: docker-build
+   variables:
+    tgs_env: prod
   before_script:
     - export KUBECONFIG=$kubeconfig_prod
   script:
-    - export Tag=$(cat tag_file)
-    - echo "DEPLOY=$DEPLOY"
-    - echo "ImageName=$ImageName"
-    - echo "Tag=$Tag"
-    - kubectl set image deployment/$DEPLOY $DEPLOY=${ImageName}:${Tag} --record -n prod
-    - echo "Deployment successful"
+    - | 
+      kubectl config get-contexts
+      export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+      export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+      echo "image=$image"
+      echo "tag=$tag"
+        
+      lobbies="${tgs_env}_$app"
+      
+      IFS=', ' read -ra array <<< "${!lobbies}"
+
+      for lobby in "${array[@]}"; do
+          echo "$element"
+          kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n  ${tgs_env}
+      done
+      echo "Deployment successful"
   environment:
     name: prod
   only: 
