@@ -4,7 +4,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import Inbox from "@/core/components/Inbox";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const InboxPage = () => {

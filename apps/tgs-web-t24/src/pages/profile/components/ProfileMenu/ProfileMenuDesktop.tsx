@@ -1,5 +1,5 @@
 import React from "react";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import iconAccount from "@/assets/t23/images/badge/icon-account.svg";
 import { useProfileMenu } from "@/core/hooks/account/useProfileMenu";
 import ProfileRowInDesktop from "@/pages/profile/components/ProfileMenu/ProfileRowInDesktop";

@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { walletAction } from "@/api-services/actions/walletAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
 import Loading from "@/components/UI/Loading";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import TransferCard from "@/pages/transfer/components/components/TransferCard";
 import AutoTransferSwitch from "@/pages/transfer/components/components/AutoTransferSwitch";

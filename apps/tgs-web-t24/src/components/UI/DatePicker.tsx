@@ -12,7 +12,7 @@ import thLocale from "date-fns/locale/th";
 import styled from "styled-components";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { theme } from "@/theme";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,

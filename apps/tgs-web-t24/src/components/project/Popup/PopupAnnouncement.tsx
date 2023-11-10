@@ -8,7 +8,7 @@ import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { usePopup } from "@/core/feature/usePopup";
 

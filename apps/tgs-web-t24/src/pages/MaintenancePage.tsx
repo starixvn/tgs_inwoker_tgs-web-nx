@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import Common from "@/core/utils/Common";
 import { UiService } from "@/core/services/UiService";
 import { media } from "@/theme/breakpoints";

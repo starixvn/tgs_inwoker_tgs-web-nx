@@ -14,7 +14,7 @@ import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion
 import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
 import ReportPlatform from "@/pages/report/components/reports/ReportPlatform";
 import { useDateRange } from "@/core/components/Report/hooks/useDateRange";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { media } from "@/theme/breakpoints";
 
 const Container = styled.div`

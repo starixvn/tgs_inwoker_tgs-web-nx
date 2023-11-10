@@ -7,7 +7,7 @@ import { REDIRECT_PROMOTION_TYPE } from "@/constants/promotion";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const StyledButton = styled(SubmitButton)`

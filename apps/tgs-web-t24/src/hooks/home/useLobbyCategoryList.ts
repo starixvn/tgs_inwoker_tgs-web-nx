@@ -11,7 +11,7 @@ import sports from "@/assets/t23/images/home/gameType/sports.svg";
 import hot from "@/assets/t23/images/home/hot.svg";
 import newIcon from "@/assets/t23/images/home/new.svg";
 import recommend from "@/assets/t23/images/home/recommend.svg";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 type LobbyCategoryIcon = {
   key: string;

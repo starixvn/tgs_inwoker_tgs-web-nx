@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { UPDATE_INFO } from "@/api-services/constant/actionType";
 import { Button } from "@/components/UI/Button";
 import BottomNote from "@/components/UI/BottomNote";

@@ -10,7 +10,7 @@ import slot from "@/assets/t23/images/home/gameType/slot.svg";
 import sports from "@/assets/t23/images/home/gameType/sports.svg";
 import hot from "@/assets/t23/images/home/hot.svg";
 import newIcon from "@/assets/t23/images/home/new.svg";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { GameTypeEnum } from "@/constants/GameTypeEnum";
 // Note : Horse belongs to SPORTS: 1,
 

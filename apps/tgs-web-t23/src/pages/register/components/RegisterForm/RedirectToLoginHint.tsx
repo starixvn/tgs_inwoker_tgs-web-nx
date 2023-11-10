@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
 

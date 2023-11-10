@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Promotion } from "@tgs-web-nx/types";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const BannerImage = ({ promotionData }: { promotionData: Promotion }) => {

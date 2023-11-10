@@ -6,7 +6,7 @@ import WithdrawalPrev from "@/core/components/WithdrawalPrev";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 const Withdrawal = () => {

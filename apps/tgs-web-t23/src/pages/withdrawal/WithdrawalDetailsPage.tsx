@@ -4,7 +4,7 @@ import { useLocation } from "react-router";
 import { useNotifications } from "@/core/feature/useNotifications";
 import Details from "@/core/components/WithdrawalPrev/Details";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import AccountPaper from "@/components/project/AccountPaper";

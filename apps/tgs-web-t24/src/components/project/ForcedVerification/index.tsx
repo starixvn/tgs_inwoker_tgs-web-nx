@@ -6,7 +6,7 @@ import config from "@tgs-web-nx/config";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { AccountService } from "@/core/services/AccountService";
 import { theme } from "@/theme";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 const Wrapper = styled.div`
   padding: 20px 10px;

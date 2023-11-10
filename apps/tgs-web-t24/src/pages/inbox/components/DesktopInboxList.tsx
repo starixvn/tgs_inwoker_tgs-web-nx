@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import moment from "moment";
 import { InboxMessage } from "@tgs-web-nx/types";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 const InboxListContainer = styled.div`
   & > div {

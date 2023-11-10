@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useGameStore } from "@/core/stores/useGameStore";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 export enum ReportTabIndexEnum {
   "PLATFORM" = 1,

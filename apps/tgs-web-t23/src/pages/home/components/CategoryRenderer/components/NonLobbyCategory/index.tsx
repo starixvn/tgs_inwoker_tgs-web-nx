@@ -6,7 +6,7 @@ import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCa
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import Common from "@/core/utils/Common";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";

@@ -6,7 +6,7 @@ import { Button } from "@/components/UI/Button";
 import NavCard from "@/pages/account/components/AccountNavigations/NavCard";
 import AppDownloadButton from "@/components/project/AppDownloadButton";
 import { NavItem, NavCardKey, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { media } from "@/theme/breakpoints";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useAuth } from "@/core/feature/useAuth";

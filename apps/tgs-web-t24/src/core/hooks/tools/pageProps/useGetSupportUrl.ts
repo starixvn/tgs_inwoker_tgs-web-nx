@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import config from "@tgs-web-nx/config";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 
 export function useGetSupportUrl() {

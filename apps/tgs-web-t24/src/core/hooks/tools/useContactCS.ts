@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import Common from "@/core/utils/Common";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";

@@ -10,7 +10,7 @@ import {
   ReportContainer,
 } from "@/components/styled-component/Report";
 import NoRecord from "@/pages/report/components/NoRecord";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { Button } from "@/components/UI/Button";
 
 type Props = {

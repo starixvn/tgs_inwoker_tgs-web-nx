@@ -6,7 +6,7 @@ import AnonymousHeaderContent from "@/layouts/components/Header/components/Anony
 import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useHeader } from "@/core/feature/useHeader";
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
 import profileImg from "@/assets/t23/images/header/sideMenuItem/icon-account.svg";

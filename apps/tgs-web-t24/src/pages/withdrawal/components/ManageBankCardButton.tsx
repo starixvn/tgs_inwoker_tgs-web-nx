@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
 
 const ButtonContainer = styled.div`

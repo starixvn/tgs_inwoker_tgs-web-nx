@@ -5,7 +5,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import Payment from "@/core/components/DepositPrev/Payment";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 const DepositPaymentPage = () => {

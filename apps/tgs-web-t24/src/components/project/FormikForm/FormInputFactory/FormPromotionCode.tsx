@@ -6,7 +6,7 @@ import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 import { Select } from "@/components/UI/Select";
 import { UserTypeEnum } from "@/core/feature/useAuthForm/useRegisterForm";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 
 const FormPromotionCodeContainer = styled.div`

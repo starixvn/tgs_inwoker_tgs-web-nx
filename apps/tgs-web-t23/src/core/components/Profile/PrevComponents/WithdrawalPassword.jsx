@@ -6,7 +6,7 @@ import BaseProfile from "./BaseProfile";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { AccountService } from "@/api-services/services/AccountService";
 
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,

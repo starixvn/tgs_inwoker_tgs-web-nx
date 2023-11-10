@@ -10,7 +10,7 @@ import sabong from "@/assets/t24/images/home/gameType/sabong.svg";
 import slot from "@/assets/t24/images/home/gameType/slot.svg";
 import sports from "@/assets/t24/images/home/gameType/sports.svg";
 import { GameTypeEnum } from "@/constants/GameTypeEnum";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 type GameTypeItem = {
   key: string;

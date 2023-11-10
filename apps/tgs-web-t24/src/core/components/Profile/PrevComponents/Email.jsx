@@ -7,7 +7,7 @@ import { accountAction } from "@/api-services/actions/accountAction";
 import { AccountService } from "@/api-services/services/AccountService";
 import BottomNote from "@/components/UI/BottomNote";
 
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import {
   FormControl,
   ItemContainer,

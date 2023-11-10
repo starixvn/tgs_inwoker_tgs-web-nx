@@ -8,7 +8,7 @@ import config from "@tgs-web-nx/config";
 import Common from "@/core/utils/Common";
 import { walletAction } from "@/api-services/actions/walletAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import Loading from "@/components/UI/Loading";
 import WithdrawInfoCard from "@/pages/withdrawal/components/WithdrawInfoCard";
 import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";

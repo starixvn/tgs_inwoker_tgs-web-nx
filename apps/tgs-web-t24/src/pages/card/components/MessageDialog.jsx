@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Modal, Slide, styled as muiStyled } from "@mui/material";
 
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 function MessageDialog(props) {
   const Transition = React.forwardRef(function Transition(props, ref) {

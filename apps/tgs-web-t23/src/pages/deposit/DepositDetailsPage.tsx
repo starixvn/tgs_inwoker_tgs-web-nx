@@ -4,7 +4,7 @@ import { useNotifications } from "@/core/feature/useNotifications";
 import Details from "@/core/components/DepositPrev/Details";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";

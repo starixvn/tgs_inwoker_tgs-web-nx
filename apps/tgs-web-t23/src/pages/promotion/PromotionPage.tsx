@@ -2,7 +2,7 @@ import styled from "styled-components";
 import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { media } from "@/theme/breakpoints";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { usePromotionPage } from "@/core/hooks/pages/promotion/usePromotionPage";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

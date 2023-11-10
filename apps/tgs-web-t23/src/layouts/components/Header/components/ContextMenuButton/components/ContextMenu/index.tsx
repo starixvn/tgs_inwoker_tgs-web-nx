@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import React, { useMemo } from "react";
 import ContextMenuItem from "./ContextMenuItem";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import accountImg from "@/assets/t23/images/header/contextMenu/icon_my_account.svg";
 import supportImg from "@/assets/t23/images/header/contextMenu/icon_service_support.svg";
 import logoutImg from "@/assets/t23/images/header/contextMenu/icon_logout.svg";

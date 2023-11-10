@@ -1,4 +1,4 @@
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 let fontFamily = "Gill Sans MT, sans-serif";
 

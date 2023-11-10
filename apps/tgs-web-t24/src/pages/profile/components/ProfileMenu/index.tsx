@@ -2,7 +2,7 @@ import React from "react";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import ProfileMenuDesktop from "@/pages/profile/components/ProfileMenu/ProfileMenuDesktop";
 import ProfileMenuMobile from "@/pages/profile/components/ProfileMenu/ProfileMenuMobile";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
 const ProfileMenu = () => {

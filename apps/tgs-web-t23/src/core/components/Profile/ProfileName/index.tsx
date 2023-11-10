@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import NameVerify from "@/core/components/Profile/PrevComponents/NameVerify";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { updateHtmlTitleDescription } from "@/core/utils/updateHtmlTitleDescription";
 

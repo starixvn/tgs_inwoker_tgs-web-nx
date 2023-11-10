@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
 import NoRecord from "@/pages/report/components/NoRecord";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import {
   ReportCard,
   ReportCardCol,

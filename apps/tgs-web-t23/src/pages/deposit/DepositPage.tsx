@@ -6,7 +6,7 @@ import DepositPrev from "@/core/components/DepositPrev";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import AccountPaper from "@/components/project/AccountPaper";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";

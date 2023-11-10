@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useHeader } from "@/core/feature/useHeader";
 import { theme } from "@/theme";
 

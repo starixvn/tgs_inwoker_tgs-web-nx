@@ -4,7 +4,7 @@ import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 type Props = {
   transferDetails: DepositFormViewModel[];

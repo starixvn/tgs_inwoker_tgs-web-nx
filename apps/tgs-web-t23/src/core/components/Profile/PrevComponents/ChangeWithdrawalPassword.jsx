@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import BaseProfile from "./BaseProfile";
 import ResetWithdrawalPassword from "./ResetWithdrawalPassword";
 import { AccountService } from "@/api-services/services/AccountService";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 class ChangeWithdrawalPassword extends BaseProfile {
   componentDidMount() {}
