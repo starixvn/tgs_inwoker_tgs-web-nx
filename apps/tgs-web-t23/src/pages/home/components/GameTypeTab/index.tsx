@@ -4,6 +4,7 @@ import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { FilterTagTypeEnum } from "@/core/feature/game/types";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -20,6 +21,22 @@ const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isMobileSize } = useRwd();
+  const {
+    handleChangeActiveFilterTag,
+    handleChangeActiveProviderFilterTag,
+  } = useHomeGameContext();
+
+  const allTag = {
+    tagType: FilterTagTypeEnum.ALL,
+    name: "",
+  };
+
+  const switchGameType = (gameType: GameTypeEnum) => {
+    handleChangeGameType(gameType);
+    // 把filter tag的狀態清空
+    handleChangeActiveProviderFilterTag(allTag);
+    handleChangeActiveFilterTag(allTag);
+  }
 
   return (
     <TabContainer>
@@ -36,7 +53,7 @@ const GameTypeTab = () => {
             imageUrl={iconUrl}
             text={text}
             isActive={gameType === activeGameType}
-            onClick={() => handleChangeGameType(gameType)}
+            onClick={() => switchGameType(gameType)}
           />
         );
       })}
