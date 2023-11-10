@@ -9,6 +9,8 @@ import { HEADER_HEIGHT } from "@/theme/constants";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -54,13 +56,14 @@ const Header = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize, isLargeDesktopSize } = useRwd();
+  const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <Link to={"/"}>
+        <Link to={""}>
           <LogoImgContainer>
-            <img src={general.brand && general.brand.loadingUrl} alt={"logo"} />
+            <img src={general.brand && general.brand.loadingUrl} alt={"logo"} onClick={() => handleChangeGameType(GameTypeEnum.NONE)} />
           </LogoImgContainer>
         </Link>
 
