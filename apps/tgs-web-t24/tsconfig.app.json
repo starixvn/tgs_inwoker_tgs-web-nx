@@ -11,7 +11,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@tgs-web-nx/core": ["../../libs/core/src/index.ts"]
+      "@tgs-web-nx/core": ["../../libs/core/src/index.ts"],
+      "@tgs-web-nx/core/utils": ["../../libs/core/utils/src/index.ts"]
     }
   },
   "exclude": [
