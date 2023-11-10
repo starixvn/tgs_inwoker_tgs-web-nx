@@ -1,4 +1,3 @@
-import { styled as muiStyled } from "@mui/material";
 import { ReactElement } from "react";
 import styled from "styled-components";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
@@ -13,7 +12,6 @@ import {
   DESKTOP_DRAWER_WIDTH,
   DRAWER_SHRINK_WIDTH,
   HEADER_HEIGHT,
-  MOBILE_DRAWER_WIDTH,
   TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
 

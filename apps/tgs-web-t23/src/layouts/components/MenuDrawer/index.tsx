@@ -4,36 +4,45 @@ import DesktopMenuDrawer from "@/layouts/components/MenuDrawer/components/Deskto
 import MobileMenuDrawer from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer";
 import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { DRAWER_SHRINK_WIDTH, DESKTOP_DRAWER_WIDTH, MOBILE_DRAWER_WIDTH } from "@/theme/constants";
+import {
+  DRAWER_SHRINK_WIDTH,
+  DESKTOP_DRAWER_WIDTH,
+  MOBILE_DRAWER_WIDTH,
+  TABLET_DRAWER_WIDTH,
+} from "@/theme/constants";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isDesktopSize } = useRwd();
+  const { isLargeDesktopSize, isXlSize } = useRwd();
 
   const drawerWidth = useMemo(() => {
-    if (isDesktopSize) {
+    if (isXlSize) {
       return isMenuOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
     }
 
+    if (isLargeDesktopSize) {
+      return isMenuOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
+    }
+
     return MOBILE_DRAWER_WIDTH;
-  }, [isDesktopSize, isMenuOpen]);
+  }, [isXlSize, isLargeDesktopSize, isMenuOpen]);
 
   return (
     <Drawer
-      variant={isDesktopSize ? "persistent" : "temporary"}
-      anchor={isDesktopSize ? "left" : "right"}
-      open={isDesktopSize ? true : isMenuOpen}
+      variant={isLargeDesktopSize ? "persistent" : "temporary"}
+      anchor={isLargeDesktopSize ? "left" : "right"}
+      open={isLargeDesktopSize ? true : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-          transition: "width ease-in-out 0.2s",
+          transition: "all ease-in-out 0.2s",
           border: "none",
         },
       }}
     >
-      {isDesktopSize ? <DesktopMenuDrawer /> : <MobileMenuDrawer />}
+      {isLargeDesktopSize ? <DesktopMenuDrawer /> : <MobileMenuDrawer />}
     </Drawer>
   );
 };

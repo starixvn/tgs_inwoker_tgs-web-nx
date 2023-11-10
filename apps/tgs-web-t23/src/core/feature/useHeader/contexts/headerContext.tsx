@@ -18,8 +18,8 @@ type ProviderProps = {
 };
 
 export const HeaderContextProvider = ({ children }: ProviderProps) => {
-  const { isDesktopSize } = useRwd();
-  const initialIsMenuOpen = isDesktopSize;
+  const { isLargeDesktopSize } = useRwd();
+  const initialIsMenuOpen = isLargeDesktopSize;
   const [isMenuOpen, setIsMenuOpen] = useState(initialIsMenuOpen);
 
   const handleToggleMenu = (newIsOpen?: boolean) => {

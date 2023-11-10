@@ -12,14 +12,14 @@ const ButtonContainer = styled.div`
 `;
 
 const AccountHeaderContent = () => {
-  const { isMobileSize } = useRwd();
+  const { isDesktopSize, isLargeDesktopSize } = useRwd();
 
   return (
     <ButtonContainer>
       <TransferButtonGroup />
 
-      {!isMobileSize && <BalanceTracker size={"small"} />}
-      {!isMobileSize && <ContextMenuButton />}
+      {isDesktopSize && <BalanceTracker size={"small"} />}
+      {isLargeDesktopSize && <ContextMenuButton />}
     </ButtonContainer>
   );
 };

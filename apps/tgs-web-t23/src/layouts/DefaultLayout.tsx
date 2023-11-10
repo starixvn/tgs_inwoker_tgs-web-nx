@@ -1,4 +1,3 @@
-import { styled as muiStyled } from "@mui/material";
 import { ReactElement } from "react";
 import styled from "styled-components";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
@@ -10,9 +9,10 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import { media } from "@/theme/breakpoints";
 import {
   BOTTOM_APP_BAR_HEIGHT,
-  DRAWER_SHRINK_WIDTH,
   DESKTOP_DRAWER_WIDTH,
+  DRAWER_SHRINK_WIDTH,
   HEADER_HEIGHT,
+  TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
 
 const DefaultLayoutContainer = styled.div`
@@ -43,7 +43,12 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
   margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
   transition: all ease-in-out 0.2s;
 
-  ${media.sm} {
+  ${media.md} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
+      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+  }
+
+  ${media.lg} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
       $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
   }

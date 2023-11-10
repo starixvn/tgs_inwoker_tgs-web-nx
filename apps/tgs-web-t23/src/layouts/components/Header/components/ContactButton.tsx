@@ -11,7 +11,7 @@ const ContactButtonContainer = styled.div`
   ${media.sm} {
     width: 33px;
     height: 33px;
-    background: ${({ theme }) => theme.tertiaryDark};
+    background: ${({ theme }) => theme.mainBackground};
     cursor: pointer;
     display: flex;
     align-items: center;

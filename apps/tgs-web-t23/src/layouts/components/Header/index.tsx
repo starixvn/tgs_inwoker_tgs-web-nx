@@ -53,7 +53,7 @@ const Header = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isLargeDesktopSize } = useRwd();
 
   return (
     <HeaderContainer>
@@ -70,7 +70,7 @@ const Header = () => {
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
 
-        {!isDesktopSize && <MenuButton />}
+        {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
   );
