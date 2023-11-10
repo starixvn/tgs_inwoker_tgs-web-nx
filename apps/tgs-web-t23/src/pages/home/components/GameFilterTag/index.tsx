@@ -64,6 +64,7 @@ const GameFilterTag = () => {
         setPrevFilterTag(allTag);
       } else {
         handleChangeActiveProviderFilterTag(filterTag);
+        handleChangeActiveFilterTag(allTag);
       }
     } else {
       if (filterTag.tagType === prevFilterTag?.tagType) {
@@ -72,6 +73,7 @@ const GameFilterTag = () => {
         setPrevFilterTag(allTag);
       } else {
         handleChangeActiveFilterTag(filterTag);
+        handleChangeActiveProviderFilterTag(allTag);
       }
     }
   };
