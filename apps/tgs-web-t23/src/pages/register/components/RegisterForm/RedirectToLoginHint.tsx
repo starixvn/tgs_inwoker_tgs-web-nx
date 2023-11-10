@@ -27,7 +27,8 @@ type Props = React.HTMLProps<HTMLDivElement>;
 
 const RedirectToLoginHint = (props: Props) => {
   const { isDesktopSize } = useRwd();
-  const { handleToggleRegisterDialog, handleToggleLoginDialog } = useAuthDialog();
+  const { handleToggleRegisterDialog, handleToggleLoginDialog, handleToggleForgotPasswordDialog } =
+    useAuthDialog();
   const history = useHistory();
 
   const handleRedirect = useCallback(() => {
@@ -36,6 +37,7 @@ const RedirectToLoginHint = (props: Props) => {
     }
 
     handleToggleRegisterDialog(false);
+    handleToggleForgotPasswordDialog(false);
     handleToggleLoginDialog(true);
   }, []);
 

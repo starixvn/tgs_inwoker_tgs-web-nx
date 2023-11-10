@@ -5,24 +5,22 @@ import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import AuthDialogImage from "@/components/UI/Dialog/AuthDialog/components/AuthDialogImage";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
-import { usePageName } from "@/core/feature/usePageName";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
 
   & .MuiPaper-root {
-    position: relative;
-    background: #6401d5;
+    background: #1c242c;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 4px;
+    //max-width: 871px;
   }
 `;
 
 const ChildContainer = styled.div`
-  width: 100%;
-  background: ${({ theme }) => theme.mainBackground};
+  width: 50%;
   border-radius: 20px;
   z-index: 2;
 `;
@@ -45,7 +43,7 @@ const AuthDialog = ({ open, onClose, children, ...others }: Props & DialogProps)
       open={open}
       TransitionComponent={UpTransition}
       onClose={onClose}
-      maxWidth={"xs"}
+      maxWidth={"md"}
       {...others}
     >
       <CloseIcon onClick={onClose} />

@@ -4,6 +4,8 @@ import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useAuthDialog } from "@/core/feature/useAuthDialog";
+import BrandLogo from "@/components/BrandLogo";
+import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 
 const ForgotPasswordDialog = () => {
   const { isForgotPasswordDialogOpen, handleToggleForgotPasswordDialog } = useAuthDialog();
@@ -20,8 +22,10 @@ const ForgotPasswordDialog = () => {
         fontSize: "0.937rem !important",
       }}
     >
+      <BrandLogo />
       {/*@ts-ignore*/}
       <ForgotPasswordPrev alert={alert} history={history} />
+      <RedirectToLoginHint style={{ marginTop: "20px" }} />
     </AuthDialog>
   );
 };
