@@ -10,7 +10,7 @@ import { walletAction } from "@/api-services/actions/walletAction";
 import { generalAction } from "@/api-services/actions/generalAction";
 import { WalletService } from "@/api-services/services/WalletService";
 import { RESET_WALLETRESULT, WALLET_HIDEMESSAGE } from "@/api-services/constant/actionType";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Loading from "@/components/UI/Loading";
 import DepositNotificationDialog from "@/pages/deposit/components/components/DepositNotificationDialog";

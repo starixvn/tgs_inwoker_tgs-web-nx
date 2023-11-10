@@ -8,7 +8,7 @@ import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { HEADER_HEIGHT } from "@/theme/constants";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
 

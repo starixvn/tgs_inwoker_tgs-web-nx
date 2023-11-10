@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import BaseProfile from "../BaseProfile";
 import Default from "./default";
 import Approved from "./approved";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import BottomNote from "@/components/UI/BottomNote";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_ACCOUNTRESULT } from "@/api-services/constant/actionType";

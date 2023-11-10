@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import noResultImg from "@/assets/t18/images/report/no_result.svg";
 
 const NoRecordWrapper = styled.div`

@@ -8,7 +8,7 @@ import { UpTransition } from "@/components/UI/Dialog/Transition";
 import usePromotion from "@/core/hooks/tools/usePromotion";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 import { usePopup } from "@/core/feature/usePopup";
 import PromotionBanner from "@/components/project/Popup/components/PromotionBanner";

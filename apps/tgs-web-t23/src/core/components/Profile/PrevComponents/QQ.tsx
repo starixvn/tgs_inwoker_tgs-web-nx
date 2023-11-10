@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import config from "@tgs-web-nx/config";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { AccountService } from "@/api-services/services/AccountService";
 import BottomNote from "@/components/UI/BottomNote";
 import { useNotifications } from "@/core/feature/useNotifications";

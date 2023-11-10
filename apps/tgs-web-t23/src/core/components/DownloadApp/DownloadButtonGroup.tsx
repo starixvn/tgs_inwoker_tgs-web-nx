@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { utility } from "@/core/utils/utility";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 type ContainerProps = {
   $language: string;

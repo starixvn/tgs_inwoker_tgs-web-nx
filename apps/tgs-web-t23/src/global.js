@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import "./assets/fonts/notosans/notosans-sc/css.css";
 import "./assets/fonts/notosans/notosans-tc/css.css";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 const languageSwitcher = (language) => {
   switch (language) {

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { AccountService } from "@/api-services/services/AccountService";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";

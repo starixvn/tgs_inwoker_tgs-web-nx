@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import Common from "@/core/utils/Common";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { TextField } from "@/components/UI/TextField";

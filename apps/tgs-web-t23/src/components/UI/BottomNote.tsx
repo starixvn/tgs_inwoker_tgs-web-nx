@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGeneralStore } from "@/core/stores/useGeneralStore"; // Import the RootState type
 

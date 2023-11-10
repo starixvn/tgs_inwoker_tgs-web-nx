@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import Common from "@/core/utils/Common";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { WalletService } from "@/api-services/services/WalletService";

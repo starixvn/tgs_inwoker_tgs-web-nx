@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { Modal, Slide, styled as muiStyled } from "@mui/material";
 import Loading from "@/components/UI/Loading";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { walletAction } from "@/api-services/actions/walletAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
 import "slick-carousel/slick/slick.css";

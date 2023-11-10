@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import BaseProfile from "../../BaseProfile";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,

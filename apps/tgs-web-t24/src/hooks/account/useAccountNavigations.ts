@@ -20,7 +20,7 @@ import downloadSecondaryImg from "@/assets/t23/images/account/navItem/mobile/ico
 import contactSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-contact.svg";
 import vipSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-vip.svg";
 import logoutSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-logout.svg";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useAuth } from "@/core/feature/useAuth";
 
 export enum NavCardKey {

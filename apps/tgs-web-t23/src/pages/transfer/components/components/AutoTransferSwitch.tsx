@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { Switch } from "@/components/UI/Switch";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import Loading from "@/components/UI/Loading";

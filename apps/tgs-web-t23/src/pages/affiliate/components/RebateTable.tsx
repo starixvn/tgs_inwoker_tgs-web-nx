@@ -1,7 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import styled from "styled-components";
 import { BrandAllAgent } from "@tgs-web-nx/types";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 const StyledTable = styled(Table)`
   padding: 20px;

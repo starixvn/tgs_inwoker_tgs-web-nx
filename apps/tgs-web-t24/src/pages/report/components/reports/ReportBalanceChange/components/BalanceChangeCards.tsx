@@ -8,8 +8,8 @@ import {
   ReportCardRow,
   ReportCardsContainer,
 } from "@/components/styled-component/Report";
-import i18n from "@/utils/i18n";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import i18n from "@/core/utils/i18n";
+import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 
 type Props = {
   balanceChangeDetails: TransactionLogViewModel[];

@@ -7,7 +7,7 @@ import {
   ReportSummaryCol,
   ReportSummaryRow,
 } from "@/components/styled-component/Report";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 type Props = {
   roundTotal: RoundTotalDto;

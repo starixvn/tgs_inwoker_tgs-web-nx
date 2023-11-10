@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { AccountService } from "@/api-services/services/AccountService";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import Step from "@/components/project/Step";
 import { TextField } from "@/components/UI/TextField";
 import {

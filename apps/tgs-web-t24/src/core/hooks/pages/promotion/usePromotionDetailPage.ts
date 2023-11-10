@@ -1,6 +1,6 @@
 import { Promotion } from "@tgs-web-nx/types";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { NOT_SHOW_JOIN_BUTTON_KEY_LIST } from "@/constants/promotion";
 

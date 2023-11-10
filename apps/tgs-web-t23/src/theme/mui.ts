@@ -2,7 +2,7 @@ import { createTheme, ThemeOptions } from "@mui/material";
 import { breakpoints } from "@/theme/breakpoints";
 import { fontFamily } from "@/theme/fontFamily";
 import { theme } from "@/theme";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 
 //@ts-ignore
 theme.lang = i18n.language;

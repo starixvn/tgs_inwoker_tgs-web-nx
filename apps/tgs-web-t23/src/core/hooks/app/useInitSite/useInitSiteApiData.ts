@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import BlowFishEncryption from "@/core/utils/BlowFishEncryption";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useUiStore } from "@/core/stores/useUiStore";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { useInboxStore } from "@/core/stores/useInboxStore";
-import ErrorSwitcher from "@/utils/ErrorSwitcher";
+import ErrorSwitcher from "@/core/utils/ErrorSwitcher";
 import { useGameStore } from "@/core/stores/useGameStore";
 import { GeneralService } from "@/core/services/GeneralService";
 

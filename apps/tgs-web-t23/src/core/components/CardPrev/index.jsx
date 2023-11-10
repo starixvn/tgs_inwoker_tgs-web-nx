@@ -7,7 +7,7 @@ import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
 import MessageDialog from "@/pages/card/components/MessageDialog";
 import Loading from "@/components/UI/Loading";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import AddCardsButton from "@/pages/card/components/AddCardsButton";
 import Card from "@/pages/card/components/Card";
 

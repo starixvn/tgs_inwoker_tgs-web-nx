@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { walletAction } from "@/api-services/actions/walletAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import Loading from "@/components/UI/Loading";
 import { Button } from "@/components/UI/Button";
 

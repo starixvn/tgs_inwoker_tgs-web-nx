@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Checkbox from "@/components/UI/Checkbox";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import { useRegisterForm } from "@/core/feature/useAuthForm/useRegisterForm";
 import FormikForm from "@/components/project/FormikForm";

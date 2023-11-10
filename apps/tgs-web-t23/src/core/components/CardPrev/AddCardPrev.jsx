@@ -8,7 +8,7 @@ import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
 import MessageDialog from "@/pages/card/components/MessageDialog";
 import Loading from "@/components/UI/Loading";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import Common from "@/core/utils/Common";
 import { TextField } from "@/components/UI/TextField";
 import {

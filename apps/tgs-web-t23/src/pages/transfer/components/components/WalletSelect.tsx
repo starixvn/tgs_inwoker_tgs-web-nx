@@ -4,7 +4,7 @@ import config from "@tgs-web-nx/config";
 import Common from "@/core/utils/Common";
 import { useGameStore } from "@/core/stores/useGameStore";
 import { TransferWallet } from "@/pages/transfer/components/components/TransferCard";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { Select } from "@/components/UI/Select";
 
 type Props = {

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
-import i18n from "@/utils/i18n";
+import i18n from "@/core/utils/i18n";
 import { RouteCategoryEnum } from "@/router";
 import { BottomNavItem } from "@/layouts/components/BottomAppBar/BottomNav";
 import { useRoute } from "@/core/hooks/tools/useRoute";
