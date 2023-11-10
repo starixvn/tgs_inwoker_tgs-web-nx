@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
+import { GameTypeEnum } from "@/constants/GameTypeEnum";
 
 export function useGameType() {
   const [activeGameType, setActiveGameType] = useState<GameTypeEnum>(GameTypeEnum.NONE);

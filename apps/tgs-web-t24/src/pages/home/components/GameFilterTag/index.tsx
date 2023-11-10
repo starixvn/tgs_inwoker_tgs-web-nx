@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Tag from "./Tag";
-import { gameTagList } from "@/core/constants/gameTag";
+import { gameTagList } from "@/constants/gameTag";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { media } from "@/theme/breakpoints";

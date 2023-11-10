@@ -4,7 +4,7 @@ import { useGetLobbyCategoryList } from "@/core/feature/game/useGetLobbyCategory
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameService } from "@/core/services/GameService";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
+import { GameTypeEnum } from "@/constants/GameTypeEnum";
 import Common from "@/core/utils/Common";
 import VendorCard from "@/pages/home/components/VendorCard";
 import { media } from "@/theme/breakpoints";

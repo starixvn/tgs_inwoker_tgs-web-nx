@@ -12,7 +12,7 @@ import Common from "@/core/utils/Common";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import { media } from "@/theme/breakpoints";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
+import { GameTypeEnum } from "@/constants/GameTypeEnum";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;

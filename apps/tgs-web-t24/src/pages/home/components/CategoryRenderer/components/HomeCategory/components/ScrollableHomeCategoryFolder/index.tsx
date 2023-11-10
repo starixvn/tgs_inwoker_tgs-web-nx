@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
 import Loading from "@/components/UI/Loading";
 import config from "@/config/config";
-import { SHOW_CATEGORY_AMOUNT } from "@/core/constants/games";
+import { SHOW_CATEGORY_AMOUNT } from "@/constants/games";
 import Common from "@/core/utils/Common";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";

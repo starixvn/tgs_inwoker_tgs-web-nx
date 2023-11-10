@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Tab from "./Tab";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
+import { GameTypeEnum } from "@/constants/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const TabContainer = styled.div`

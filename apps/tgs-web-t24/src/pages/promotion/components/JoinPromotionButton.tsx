@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "@/components/UI/Loading";
-import { REDIRECT_PROMOTION_TYPE } from "@/core/constants/promotion";
+import { REDIRECT_PROMOTION_TYPE } from "@/constants/promotion";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
