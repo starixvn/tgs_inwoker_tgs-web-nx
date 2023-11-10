@@ -1,4 +1,3 @@
-import React from "react";
 import CardPage from "@/pages/card/CardPage";
 import AddCardPage from "@/pages/card/AddCardPage";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
@@ -29,8 +28,6 @@ import { ProfilePathEnum } from "@/core/components/Profile/profilePageDictionary
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
-
-const Mine = React.lazy(() => import("@/pages/account/Mine"));
 
 export enum RouteCategoryEnum {
   HOME,

@@ -15,10 +15,10 @@ import MenuDrawerHeader from "@/layouts/components/MenuDrawer/components/MenuDra
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isLargeDesktopSize, isXlSize } = useRwd();
+  const { isLargeDesktopSize, isExtraLargeDesktopSize } = useRwd();
 
   const drawerWidth = useMemo(() => {
-    if (isXlSize) {
+    if (isExtraLargeDesktopSize) {
       return isMenuOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
     }
 
@@ -27,7 +27,7 @@ const MenuDrawer = () => {
     }
 
     return MOBILE_DRAWER_WIDTH;
-  }, [isXlSize, isLargeDesktopSize, isMenuOpen]);
+  }, [isExtraLargeDesktopSize, isLargeDesktopSize, isMenuOpen]);
 
   return (
     <Drawer
