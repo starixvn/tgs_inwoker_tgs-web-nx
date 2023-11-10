@@ -23,9 +23,10 @@ const MenuDrawerList = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const history = useHistory();
   const { isDesktopSize } = useRwd();
+  const initGameTypeNavIsOpen = history.location.pathname === "/";
 
-  const [isGameTypeNavOpen, setIsGameTypeNavOpen] = useState(true);
-  const [isAccountNavOpen, setIsAccountNavOpen] = useState(false);
+  const [isGameTypeNavOpen, setIsGameTypeNavOpen] = useState(initGameTypeNavIsOpen);
+  const [isAccountNavOpen, setIsAccountNavOpen] = useState(!initGameTypeNavIsOpen);
 
   const handleAfterClick = () => {
     if (!(!isDesktopSize && isMenuOpen)) return;
