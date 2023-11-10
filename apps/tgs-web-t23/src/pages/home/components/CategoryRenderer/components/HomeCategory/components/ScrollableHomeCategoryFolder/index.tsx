@@ -8,6 +8,8 @@ import Common from "@/core/utils/Common";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import { media } from "@/theme/breakpoints";
+import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 const HomeCategorySection = styled.div`
   width: 100%;
@@ -82,6 +84,8 @@ type Props = {
 };
 
 const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => {
+  const { handleChangeGameType } = useHomeGameContext();
+
   const hasMappingData = !!dataList.length;
 
   return (
@@ -99,14 +103,12 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
                 />
               ))}
-          {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard />}
+          {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard onClick={() => handleChangeGameType(GameTypeEnum.SLOT)} />}
         </CategoryContent>
       </HomeCategorySection>
 

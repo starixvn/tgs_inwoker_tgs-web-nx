@@ -52,11 +52,13 @@ const Text = styled.div`
   }
 `;
 
-const AllCard = () => {
-  const { handleChangeGameType } = useGameType();
+type Props = {
+  onClick?: () => void;
+}
 
+const AllCard = ({ onClick }: Props) => {
   return (
-    <AllCardBg onClick={() => handleChangeGameType(GameTypeEnum.SLOT)}>
+    <AllCardBg onClick={onClick}>
       <AllCardContent>
         <AllIcon>
           <img src={dots} alt="view all" />
