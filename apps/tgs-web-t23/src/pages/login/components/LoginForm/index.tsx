@@ -6,16 +6,7 @@ import Checkbox from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
 import { useLoginForm } from "@/core/feature/useAuthForm/useLoginForm";
 import { media } from "@/theme/breakpoints";
-
-const LoginFormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 7.343vh 24px;
-
-  ${media.sm} {
-    padding: 42px 42px;
-  }
-`;
+import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const TitleContainer = styled.div`
   font-size: 3rem;
@@ -70,7 +61,7 @@ const LoginForm = () => {
   } = useLoginForm();
 
   return (
-    <LoginFormContainer>
+    <AuthFormContainer>
       <TitleContainer>{i18n.t("common.login")}</TitleContainer>
 
       <FormikForm
@@ -98,7 +89,7 @@ const LoginForm = () => {
       </FormikForm>
 
       <RedirectToRegisterHint />
-    </LoginFormContainer>
+    </AuthFormContainer>
   );
 };
 

@@ -5,33 +5,8 @@ import FormikForm from "@/components/project/FormikForm";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
 import { useLoginForm } from "@/core/feature/useAuthForm/useLoginForm";
-import { media } from "@/theme/breakpoints";
-
-const LoginFormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 7.343vh 24px;
-
-  ${media.sm} {
-    padding: 42px 42px;
-  }
-`;
-
-const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
-  font-weight: 700;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-  white-space: nowrap;
-
-  ${media.sm} {
-    display: none;
-  }
-`;
+import BrandLogo from "@/components/BrandLogo";
+import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const FormSubContainer = styled.div`
   width: 100%;
@@ -44,16 +19,17 @@ const RememberMeContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.white};
-  font-size: 1.062rem;
+  color: ${({ theme }) => theme.yellow};
+  font-size: 0.937rem;
+  font-weight: 700;
   cursor: pointer;
   //margin: 8px 0;
 `;
 
 const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
-  font-size: 1.062rem;
-  font-weight: 400;
+  color: ${({ theme }) => theme.yellow};
+  font-size: 0.937rem;
+  font-weight: 700;
   white-space: nowrap;
   cursor: pointer;
 `;
@@ -70,8 +46,8 @@ const LoginForm = () => {
   } = useLoginForm();
 
   return (
-    <LoginFormContainer>
-      <TitleContainer>{i18n.t("common.login")}</TitleContainer>
+    <AuthFormContainer>
+      <BrandLogo />
 
       <FormikForm
         formInputList={formInputConfigList}
@@ -98,7 +74,7 @@ const LoginForm = () => {
       </FormikForm>
 
       <RedirectToRegisterHint />
-    </LoginFormContainer>
+    </AuthFormContainer>
   );
 };
 

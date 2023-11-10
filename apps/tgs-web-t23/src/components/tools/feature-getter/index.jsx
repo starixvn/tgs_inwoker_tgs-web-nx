@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import config from "../../../config/config";
-import featureList from "../../../config/features";
+import config from "@/config/config";
+import featureList from "@/config/features";
 
 const FeatureGetter = () => {
   const [feature, setFeatures] = useState("");
