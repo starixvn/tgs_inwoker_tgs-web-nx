@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
+import config from "@tgs-web-nx/config";
 import Loading from "@/components/UI/Loading";
-import config from "@/config/config";
 import { SHOW_CATEGORY_AMOUNT } from "@/constants/games";
 import Common from "@/core/utils/Common";
 import AllCard from "@/pages/home/components/AllCard";

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import i18n from "@/utils/i18n";
 import { AccountService } from "@/api-services/services/AccountService";
-import config from "@/config/config";
 import BottomNote from "@/components/UI/BottomNote";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useAccountStore } from "@/core/stores/useAccountStore";
@@ -10,8 +10,8 @@ import Loading from "@/components/UI/Loading";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
-  LabelContainer,
   ItemContainer,
+  LabelContainer,
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 

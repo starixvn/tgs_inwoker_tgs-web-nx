@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import { Router, Switch, Route, Redirect } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import ForcedVerification from "./components/project/ForcedVerification";
 import LiveChat from "./components/tools/LiveChat";
 import { AppHistory } from "@/history/History";
-import config from "@/config/config";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
 import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";

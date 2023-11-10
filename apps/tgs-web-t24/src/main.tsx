@@ -7,6 +7,7 @@ import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { ThemeProvider as StyleComponentThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
+import config from "@tgs-web-nx/config";
 import AudioPlayer from "./components/tools/AudioPlayer";
 import FeatureGetter from "./components/tools/FeatureGetter";
 import { GlobalStyles } from "./global";
@@ -16,7 +17,6 @@ import rootReducer from "@/api-services/reducers/rootReducer";
 import App from "@/App";
 import { NotificationContextProvider } from "@/core/feature/useNotifications/contexts/notificationContext";
 import { muiTheme } from "@/theme/mui";
-import Config from "@/config/config";
 import StyledSnakeBarProvider from "@/components/UI/StyledSnakeBarProvider";
 import Loading from "@/components/UI/Loading";
 import { useInitApp } from "@/core/hooks/app/useInitApp";
@@ -36,7 +36,7 @@ const AppWrapper = () => {
   return (
     <NotificationContextProvider>
       <FeatureGetter />
-      {Config.features.BackgroundMusic && <AudioPlayer />}
+      {config.features.BackgroundMusic && <AudioPlayer />}
 
       <StylesProvider injectFirst>
         <MuiThemeProvider theme={muiTheme as any}>

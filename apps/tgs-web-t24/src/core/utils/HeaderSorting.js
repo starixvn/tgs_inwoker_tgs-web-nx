@@ -1,4 +1,4 @@
-import config from "../../config/config";
+import config from "@tgs-web-nx/config";
 
 import TopMenuLivePNG_PB from "../assets/t18/images/top-menu-live-pb.png";
 import TopMenuQipaiPNG_PB from "../assets/t18/images/top-menu-qipai-pb.png";

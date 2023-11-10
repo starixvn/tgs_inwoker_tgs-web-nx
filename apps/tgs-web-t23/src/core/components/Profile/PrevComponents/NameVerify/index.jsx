@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import BaseProfile from "../BaseProfile";
 import Default from "./default";
 import Approved from "./approved";
@@ -8,7 +9,6 @@ import i18n from "@/utils/i18n";
 import BottomNote from "@/components/UI/BottomNote";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_ACCOUNTRESULT } from "@/api-services/constant/actionType";
-import config from "@/config/config";
 import { AccountService } from "@/api-services/services/AccountService";
 
 class NameVerify extends BaseProfile {
@@ -67,17 +67,13 @@ class NameVerify extends BaseProfile {
     }
   }
   componentDidUpdate(preProps, prevState) {
-    if (
-      preProps.account.info.member_card_no !==
-      this.props.account.info.member_card_no
-    ) {
+    if (preProps.account.info.member_card_no !== this.props.account.info.member_card_no) {
       const ic = this.props.account.info.member_card_no;
       const isConfigured = this.checkisConfigure();
       this.setState({ ...this.state, ic: ic, isConfigured: isConfigured });
     }
     if (
-      preProps.account.updateCardResult !==
-        this.props.account.updateCardResult &&
+      preProps.account.updateCardResult !== this.props.account.updateCardResult &&
       this.props.account.updateCardResult !== null
     ) {
       if (this.props.account.updateCardResult.IsSuccess) {
@@ -89,8 +85,7 @@ class NameVerify extends BaseProfile {
           });
         }
         if (
-          preProps.account.info.identityformstatus !==
-          this.props.account.info.identityformstatus
+          preProps.account.info.identityformstatus !== this.props.account.info.identityformstatus
         ) {
           this.setState({
             ...this.state,
@@ -154,9 +149,7 @@ class NameVerify extends BaseProfile {
     const name = this.state.name || "";
     const ic = this.state.ic || "";
 
-    const isDisableButton = config.features.ICVerification
-      ? !(name && ic)
-      : name === "";
+    const isDisableButton = config.features.ICVerification ? !(name && ic) : name === "";
     return isDisableButton;
   };
 
@@ -259,7 +252,7 @@ class NameVerify extends BaseProfile {
         : i18n.t("common.complete"),
       config.features.Profile_DisplayEditNameButton
         ? this.bottomNoteSwitcher(this.state.scene)
-        : null
+        : null,
     );
   }
 }
@@ -273,8 +266,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAccountProfile: () => dispatch(accountAction.getAccountProfile()),
     getIDCardNo: () => dispatch(accountAction.getIDCardNo()),
-    updateMemberCardNo: (name, number) =>
-      dispatch(accountAction.updateMemberCardNo(name, number)),
+    updateMemberCardNo: (name, number) => dispatch(accountAction.updateMemberCardNo(name, number)),
     resetResult: () =>
       dispatch({
         type: RESET_ACCOUNTRESULT,
@@ -282,7 +274,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(NameVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NameVerify));

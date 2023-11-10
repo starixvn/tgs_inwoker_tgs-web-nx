@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
+import config from "@tgs-web-nx/config";
 import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { Select } from "@/components/UI/Select";
-import config from "@/config/config";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 
 const PhoneContainer = styled.div`

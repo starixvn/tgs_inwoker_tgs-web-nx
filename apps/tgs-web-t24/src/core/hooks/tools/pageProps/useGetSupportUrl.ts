@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import config from "@/config/config";
+import config from "@tgs-web-nx/config";
 import i18n from "@/utils/i18n";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 

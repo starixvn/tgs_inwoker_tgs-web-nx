@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import config from "@/config/config";
+import config from "@tgs-web-nx/config";
 import { useUiStore } from "@/core/stores/useUiStore";
 import { useAudio } from "@/core/hooks/tools/useAudio";
 

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { useHistory } from "react-router";
+import config from "@tgs-web-nx/config";
 import CategoryLabel from "../../../CategoryLabel";
 import searchIcon from "@/assets/t23/images/home/search.svg";
 import back from "@/assets/t24/images/home/back.svg";
 import Loading from "@/components/UI/Loading";
-import config from "@/config/config";
 import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCategoryList";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";

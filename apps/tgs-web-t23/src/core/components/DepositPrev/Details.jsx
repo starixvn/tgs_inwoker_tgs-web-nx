@@ -3,13 +3,11 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { Modal, styled as muiStyled } from "@mui/material";
-
 import { Textfit } from "react-textfit";
+import config from "@tgs-web-nx/config";
 import { WalletService } from "@/api-services/services/WalletService";
 import "react-lazy-load-image-component/src/effects/blur.css";
-
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import Loading from "@/components/UI/Loading";
 import { Button } from "@/components/UI/Button";
 
@@ -320,7 +318,7 @@ class Details extends Component {
                           <LeftLabel>{i18n.t("deposit.expectedPayment")}</LeftLabel>
                           <RightLabel>
                             {(this.props.amount / this.state.exchangeRate[key][key2].rate).toFixed(
-                              2
+                              2,
                             )}
                           </RightLabel>
                           <SplitBoth></SplitBoth>

@@ -1,9 +1,9 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
+import config from "@tgs-web-nx/config";
 import HomeGameCard from "../HomeGameCard";
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
-import config from "@/config/config";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import Common from "@/core/utils/Common";
 

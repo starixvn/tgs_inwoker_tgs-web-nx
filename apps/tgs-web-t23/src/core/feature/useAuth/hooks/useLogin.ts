@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { useInboxStore } from "@/core/stores/useInboxStore";

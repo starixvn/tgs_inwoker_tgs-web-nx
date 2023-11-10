@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { ListItem, ListItemText, Modal, styled as muiStyled } from "@mui/material";
+import config from "@tgs-web-nx/config";
 import { walletAction } from "@/api-services/actions/walletAction";
 import { accountAction } from "@/api-services/actions/accountAction";
 import { RESET_WALLETRESULT } from "@/api-services/constant/actionType";
 import MessageDialog from "@/pages/card/components/MessageDialog";
 import Loading from "@/components/UI/Loading";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import Common from "@/core/utils/Common";
 import { TextField } from "@/components/UI/TextField";
 import {

@@ -1,3 +1,4 @@
+import config from "@tgs-web-nx/config";
 import CardPage from "@/pages/card/CardPage";
 import AddCardPage from "@/pages/card/AddCardPage";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
@@ -19,7 +20,6 @@ import TransferPage from "@/pages/transfer/TransferPage";
 import VIPPage from "@/pages/vip/VipPage";
 import WithdrawalPage from "@/pages/withdrawal/WithdrawalPage";
 import WithdrawalDetailsPage from "@/pages/withdrawal/WithdrawalDetailsPage";
-import config from "@/config/config";
 import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";

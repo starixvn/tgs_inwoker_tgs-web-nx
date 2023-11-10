@@ -2,9 +2,9 @@ import React from "react";
 import moment from "moment";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { TransactionDetail } from "@tgs-web-nx/types";
+import config from "@tgs-web-nx/config";
 import NoRecord from "@/pages/report/components/NoRecord";
 import i18n from "@/utils/i18n";
-import config from "@/config/config";
 import {
   CustomWinLose,
   ReportCardsContainer,

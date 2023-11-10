@@ -6,7 +6,7 @@ import Icon from "@/components/project/Icon";
 import { useHeader } from "@/core/feature/useHeader";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
 import promotionIcon from "@/assets/t24/images/menuDrawer/icon-promotion.svg";
-import i18n from "@/core/utils/i18n";
+import i18n from "@/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import {
   Accordion,

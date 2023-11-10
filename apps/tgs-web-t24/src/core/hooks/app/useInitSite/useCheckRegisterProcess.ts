@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import config from "@/config/config";
+import config from "@tgs-web-nx/config";
 import { AppHistory } from "@/history/History";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 
