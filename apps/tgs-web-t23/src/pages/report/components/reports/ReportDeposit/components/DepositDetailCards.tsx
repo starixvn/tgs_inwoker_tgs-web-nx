@@ -5,7 +5,7 @@ import NoRecord from "@/pages/report/components/NoRecord";
 import i18n from "@/utils/i18n";
 import { Button } from "@/components/UI/Button";
 import Loading from "@/components/UI/Loading";
-import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetailsResDto";
+import { DepositFormViewModel } from "@/core/types/dto/report/GetDepositDetailsResDto";
 import {
   ReportCard,
   ReportCardCol,

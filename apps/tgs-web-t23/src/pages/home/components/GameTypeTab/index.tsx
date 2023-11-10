@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Tab from "./Tab";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { FilterTagTypeEnum } from "@/core/feature/game/types";
 
@@ -21,10 +21,7 @@ const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isMobileSize } = useRwd();
-  const {
-    handleChangeActiveFilterTag,
-    handleChangeActiveProviderFilterTag,
-  } = useHomeGameContext();
+  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
@@ -36,7 +33,7 @@ const GameTypeTab = () => {
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
-  }
+  };
 
   return (
     <TabContainer>

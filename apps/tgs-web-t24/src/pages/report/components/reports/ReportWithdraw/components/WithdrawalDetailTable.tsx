@@ -4,7 +4,7 @@ import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
+import { WithdrawFormViewModel } from "@/core/types/dto/report/GetWithdrawalDetailsResDto";
 
 type Props = {
   withdrawalDetails: WithdrawFormViewModel[];

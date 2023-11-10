@@ -7,9 +7,9 @@ import { useGameType } from "@/core/feature/game/hooks/useGameType";
 import { useGpCode } from "@/core/feature/game/hooks/useGpCode";
 import { useProvider } from "@/core/feature/game/hooks/useProvider";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
-import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
+import { ProviderDto } from "@/core/types/dto/game/GetProviderListResDto";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export const initialState: {

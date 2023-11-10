@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ReportService } from "@/core/services/ReportService";
-import { WithdrawalStatusDictionary } from "@/core/models/dto/report/GetWithdrawalStatusResDto";
+import { WithdrawalStatusDictionary } from "@/core/types/dto/report/GetWithdrawalStatusResDto";
 
 export function useDepositStatus() {
   const [statusDictionary, setStatusDictionary] =

@@ -4,7 +4,7 @@ import i18n from "@/utils/i18n";
 import Common from "@/core/utils/Common";
 import { useWalletStore } from "@/core/stores/useWalletStore";
 import { WalletService } from "@/api-services/services/WalletService";
-import { GetMinWithdrawLimitResDto } from "@/core/models/dto/withdraw/GetMinWithdrawLimitResDto";
+import { GetMinWithdrawLimitResDto } from "@/core/types/dto/withdraw/GetMinWithdrawLimitResDto";
 
 const CardContainer = styled.div`
   background: ${({ theme }) => theme.primaryLight};

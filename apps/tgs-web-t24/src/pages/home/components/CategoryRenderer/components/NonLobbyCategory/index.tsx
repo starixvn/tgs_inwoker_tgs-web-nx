@@ -12,7 +12,7 @@ import Common from "@/core/utils/Common";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import { media } from "@/theme/breakpoints";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
@@ -54,7 +54,8 @@ const CategoryTitle = styled.div`
 const NonLobbyCategory = () => {
   const history = useHistory();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, searchString, handleChangeSearch, handleChangeGameType } = useHomeGameContext();
+  const { activeGameType, searchString, handleChangeSearch, handleChangeGameType } =
+    useHomeGameContext();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const categoryTitle = useGameTypeList().find((item) => item.gameType === activeGameType)?.text;
   const hasMappingData = !!gameList.length;
@@ -70,7 +71,7 @@ const NonLobbyCategory = () => {
           ></CategoryLabel>
 
           {/* to-do : Search and Filter tag */}
-          {/* 
+          {/*
             <SearchInputWrapper>
               <SearchInput
                 placeholder={i18n.t("slot.search")}
@@ -93,9 +94,11 @@ const NonLobbyCategory = () => {
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}
-                imageUrl={`${config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                  }.jpg`}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
               />
             ))}
           {!hasMappingData && !isLoading && <div>No data</div>}

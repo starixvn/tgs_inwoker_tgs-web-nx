@@ -3,7 +3,7 @@ import styled from "styled-components";
 import HomeGameCard from "../HomeGameCard";
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import config from "@/config/config";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
+import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import Common from "@/core/utils/Common";
 

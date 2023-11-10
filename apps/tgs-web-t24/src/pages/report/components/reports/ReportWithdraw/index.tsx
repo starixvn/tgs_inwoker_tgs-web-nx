@@ -8,7 +8,7 @@ import Loading from "@/components/UI/Loading";
 import { useWithdrawalStatus } from "@/core/components/Report/hooks/useWithdrawalStatus";
 import StatusSelect from "@/pages/report/components/StatusSelect";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
+import { WithdrawFormViewModel } from "@/core/types/dto/report/GetWithdrawalDetailsResDto";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import WithdrawalDetailTable from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
 import WithdrawalDetailCards from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";

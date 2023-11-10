@@ -1,12 +1,12 @@
 import { ApiService } from "@/api-services/services/ApiService";
-import { GetTransactionDetailsResDto } from "@/core/models/dto/report/GetTransactionDetailsResDto";
-import { GetRoundsTotalResDto } from "@/core/models/dto/report/GetRoundsTotalResDto";
-import { GetWithdrawalDetailsResDto } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
-import { GetDepositDetailsResDto } from "@/core/models/dto/report/GetDepositDetailsResDto";
-import { GetDepositStatusResDto } from "@/core/models/dto/report/GetDepositStatusResDto";
-import { GetWithdrawalStatusResDto } from "@/core/models/dto/report/GetWithdrawalStatusResDto";
-import { GetTransferReportResDto } from "@/core/models/dto/report/GetTransferReportResDto";
-import { GetBalanceChangesResDto } from "@/core/models/dto/report/GetBalanceChangesResDto";
+import { GetTransactionDetailsResDto } from "@/core/types/dto/report/GetTransactionDetailsResDto";
+import { GetRoundsTotalResDto } from "@/core/types/dto/report/GetRoundsTotalResDto";
+import { GetWithdrawalDetailsResDto } from "@/core/types/dto/report/GetWithdrawalDetailsResDto";
+import { GetDepositDetailsResDto } from "@/core/types/dto/report/GetDepositDetailsResDto";
+import { GetDepositStatusResDto } from "@/core/types/dto/report/GetDepositStatusResDto";
+import { GetWithdrawalStatusResDto } from "@/core/types/dto/report/GetWithdrawalStatusResDto";
+import { GetTransferReportResDto } from "@/core/types/dto/report/GetTransferReportResDto";
+import { GetBalanceChangesResDto } from "@/core/types/dto/report/GetBalanceChangesResDto";
 
 export const ReportService = {
   GetTransactionDetails,

@@ -3,7 +3,7 @@ import moment from "moment";
 import NoRecord from "@/pages/report/components/NoRecord";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
-import { TransactionDetail } from "@/core/models/dto/report/GetTransactionDetailsResDto";
+import { TransactionDetail } from "@/core/types/dto/report/GetTransactionDetailsResDto";
 import {
   CustomWinLose,
   ReportCard,

@@ -3,7 +3,7 @@ import moment from "moment";
 import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import NoRecord from "@/pages/report/components/NoRecord";
 import i18n from "@/utils/i18n";
-import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
+import { WithdrawFormViewModel } from "@/core/types/dto/report/GetWithdrawalDetailsResDto";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 
 type Props = {

@@ -1,4 +1,4 @@
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
+import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 
 export function getFilteredGameListByProvider(

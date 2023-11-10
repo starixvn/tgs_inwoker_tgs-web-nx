@@ -11,7 +11,7 @@ import sports from "@/assets/t23/images/home/gameType/sports.svg";
 import hot from "@/assets/t23/images/home/hot.svg";
 import newIcon from "@/assets/t23/images/home/new.svg";
 import i18n from "@/utils/i18n";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 // Note : Horse belongs to SPORTS: 1,
 
 type TabIcon = {

@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { RegisterReqDto } from "@/core/models/dto/player/RegisterReqDto";
+import { RegisterReqDto } from "@/core/types/dto/player/RegisterReqDto";
 import ErrorSwitcher from "@/utils/ErrorSwitcher";
 import i18n from "@/utils/i18n";
 

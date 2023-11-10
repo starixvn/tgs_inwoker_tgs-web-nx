@@ -4,7 +4,7 @@ import styled from "styled-components";
 import TextButton from "../TextButton";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
+import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGameStore } from "@/core/stores/useGameStore";
 import Common from "@/core/utils/Common";
@@ -87,7 +87,7 @@ const GameCardBg = styled.div`
   ${media.sm} {
     width: calc(16.7% - 30px);
     min-width: 170px;
-    aspect-ratio: 170 / 210; 
+    aspect-ratio: 170 / 210;
 
     &:hover {
       ${CardHoverBg} {

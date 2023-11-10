@@ -9,7 +9,7 @@ import {
 } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
-import { TransactionDetail } from "@/core/models/dto/report/GetTransactionDetailsResDto";
+import { TransactionDetail } from "@/core/types/dto/report/GetTransactionDetailsResDto";
 
 type Props = {
   transactionDetails: TransactionDetail[];

@@ -9,8 +9,8 @@ import {
   SETMESSAGEREAD_SUCCESS,
 } from "@/api-services/constant/actionType";
 import { InboxService } from "@/api-services/services/InboxService";
-import { InboxListResDto } from "@/core/models/dto/inbox/InboxListResDto";
-import { UpdateReadMessageResDto } from "@/core/models/dto/inbox/UpdateReadMessageResDto";
+import { InboxListResDto } from "@/core/types/dto/inbox/InboxListResDto";
+import { UpdateReadMessageResDto } from "@/core/types/dto/inbox/UpdateReadMessageResDto";
 
 export function useInboxStore() {
   const dispatch = useDispatch();

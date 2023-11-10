@@ -1,19 +1,19 @@
 import { ApiService } from "@/api-services/services/ApiService";
 import config from "@/config/config";
-import { AddRealNameResDto } from "@/core/models/dto/player/AddRealNameResDto";
-import { LoginResDto } from "@/core/models/dto/player/LoginResDto";
-import { LogoutResDto } from "@/core/models/dto/player/LooutResDto";
-import { GetMemberInfoResDto } from "@/core/models/dto/player/GetMemberInfoResDto";
-import { RegisterResDto } from "@/core/models/dto/player/RegisterResDto";
-import { GetIDCardNoResDto } from "@/core/models/dto/pc/GetIDCardNoResDto";
-import { GetPromoteUserResDto } from "@/core/models/dto/pc/GetPromoteUserResDto";
-import { GetPromoteBillResDto } from "@/core/models/dto/pc/GetPromoteBillResDto";
-import { GetRegisterStatusResDto } from "@/core/models/dto/player/GetRegisterStatusResDto";
-import { NewRegisterResDto } from "@/core/models/dto/player/NewRegisterResDto";
-import { UpdateMemberNameAndICResDto } from "@/core/models/dto/player/UpdateMemberNameAndICResDto";
-import { UpdateIMResDto } from "@/core/models/dto/player/UpdateIMResDto";
-import { SetBirthDateResDto } from "@/core/models/dto/player/SetBirthDateResDto";
-import { UpdatePhoneResDto } from "@/core/models/dto/player/UpdatePhoneResDto";
+import { AddRealNameResDto } from "@/core/types/dto/player/AddRealNameResDto";
+import { LoginResDto } from "@/core/types/dto/player/LoginResDto";
+import { LogoutResDto } from "@/core/types/dto/player/LooutResDto";
+import { GetMemberInfoResDto } from "@/core/types/dto/player/GetMemberInfoResDto";
+import { RegisterResDto } from "@/core/types/dto/player/RegisterResDto";
+import { GetIDCardNoResDto } from "@/core/types/dto/pc/GetIDCardNoResDto";
+import { GetPromoteUserResDto } from "@/core/types/dto/pc/GetPromoteUserResDto";
+import { GetPromoteBillResDto } from "@/core/types/dto/pc/GetPromoteBillResDto";
+import { GetRegisterStatusResDto } from "@/core/types/dto/player/GetRegisterStatusResDto";
+import { NewRegisterResDto } from "@/core/types/dto/player/NewRegisterResDto";
+import { UpdateMemberNameAndICResDto } from "@/core/types/dto/player/UpdateMemberNameAndICResDto";
+import { UpdateIMResDto } from "@/core/types/dto/player/UpdateIMResDto";
+import { SetBirthDateResDto } from "@/core/types/dto/player/SetBirthDateResDto";
+import { UpdatePhoneResDto } from "@/core/types/dto/player/UpdatePhoneResDto";
 
 function CheckUserName(username: string) {
   return ApiService.get(`Player/checkUsername?=${username}`);

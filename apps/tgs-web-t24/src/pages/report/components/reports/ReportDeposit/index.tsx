@@ -7,7 +7,7 @@ import Loading from "@/components/UI/Loading";
 import { useDepositStatus } from "@/core/components/Report/hooks/useDepositStatus";
 import StatusSelect from "@/pages/report/components/StatusSelect";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetailsResDto";
+import { DepositFormViewModel } from "@/core/types/dto/report/GetDepositDetailsResDto";
 import DepositDetailCards from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailCards";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import DepositDetailTable from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailTable";

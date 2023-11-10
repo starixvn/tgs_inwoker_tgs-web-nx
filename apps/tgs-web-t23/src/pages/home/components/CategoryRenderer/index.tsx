@@ -2,7 +2,7 @@ import HomeCategory from "@/pages/home/components/CategoryRenderer/components/Ho
 import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
 import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/components/NonLobbyCategory";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 
 const CategoryRenderer = () => {
   const { activeGameType } = useHomeGameContext();

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGameStore } from "@/core/stores/useGameStore";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 
 export function useFavoriteList(activeGameType: GameTypeEnum) {
   const { account } = useAccountStore();

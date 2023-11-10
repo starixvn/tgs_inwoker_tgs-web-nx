@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
+import { Promotion } from "@/core/types/dto/general/GetPromotionListResDto";
 import i18n from "@/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 

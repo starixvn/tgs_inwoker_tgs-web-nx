@@ -2,8 +2,8 @@ import { ApiService } from "@/api-services/services/ApiService";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
 import { GameService as PrevGameService } from "@/api-services/services/GameService";
-import { GetProviderListResDto } from "@/core/models/dto/game/GetProviderListResDto";
-import { GetFavoriteGameResDto } from "@/core/models/dto/game/GetGameListResDto";
+import { GetProviderListResDto } from "@/core/types/dto/game/GetProviderListResDto";
+import { GetFavoriteGameResDto } from "@/core/types/dto/game/GetGameListResDto";
 
 export const GameService = {
   ...PrevGameService,

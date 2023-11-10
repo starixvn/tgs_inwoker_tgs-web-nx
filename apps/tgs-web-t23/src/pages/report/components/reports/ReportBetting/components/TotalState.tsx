@@ -1,7 +1,7 @@
 import React from "react";
 import config from "@/config/config";
 import i18n from "@/utils/i18n";
-import { RoundTotalDto } from "@/core/models/dto/report/GetRoundsTotalResDto";
+import { RoundTotalDto } from "@/core/types/dto/report/GetRoundsTotalResDto";
 import {
   CustomWinLose,
   ReportSummary,

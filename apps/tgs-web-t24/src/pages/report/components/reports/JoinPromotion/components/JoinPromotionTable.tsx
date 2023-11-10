@@ -4,7 +4,7 @@ import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import { JoinedPromotionsResponse } from "@/core/models/dto/general/GetJoinedPromoReportResDto";
+import { JoinedPromotionsResponse } from "@/core/types/dto/general/GetJoinedPromoReportResDto";
 
 type Props = {
   promotionDetails: JoinedPromotionsResponse[];

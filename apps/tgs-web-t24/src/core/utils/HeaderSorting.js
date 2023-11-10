@@ -29,7 +29,7 @@ import TopMenuTigerHoverPNG from "../assets/t18/images/top-menu-tiger-hover.png"
 import TopMenuFishHoverPNG from "../assets/t18/images/top-menu-fish-hover.png";
 import TopMenuSlotHoverPNG from "../assets/t18/images/top-menu-slot-hover.png";
 import TopMenuCockfightHoverPNG from "../assets/t18/images/top-menu-cockfight-hover.png";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 
 const MenuItemList = [
   {

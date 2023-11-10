@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { SelectChangeEvent } from "@mui/material";
-import { BrandAllAgent } from "@/core/models/dto/general/GetBrandAllAgentResDto";
+import { BrandAllAgent } from "@/core/types/dto/general/GetBrandAllAgentResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 

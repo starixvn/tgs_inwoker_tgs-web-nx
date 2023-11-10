@@ -4,8 +4,8 @@ import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui
 import NoRecord from "@/pages/report/components/NoRecord";
 import i18n from "@/utils/i18n";
 import config from "@/config/config";
-import { TransactionDetail } from "@/core/models/dto/report/GetTransactionDetailsResDto";
-import { TransactionLogViewModel } from "@/core/models/dto/report/GetBalanceChangesResDto";
+import { TransactionDetail } from "@/core/types/dto/report/GetTransactionDetailsResDto";
+import { TransactionLogViewModel } from "@/core/types/dto/report/GetBalanceChangesResDto";
 import ErrorSwitcher from "@/utils/ErrorSwitcher";
 import {
   CustomWinLose,

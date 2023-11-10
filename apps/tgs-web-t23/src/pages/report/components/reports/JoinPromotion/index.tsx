@@ -6,7 +6,7 @@ import { GeneralService } from "@/api-services/services/GeneralService";
 import {
   GetJoinedPromoReportResDto,
   JoinedPromotionsResponse,
-} from "@/core/models/dto/general/GetJoinedPromoReportResDto";
+} from "@/core/types/dto/general/GetJoinedPromoReportResDto";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
 import { useRwd } from "@/core/hooks/tools/useRwd";

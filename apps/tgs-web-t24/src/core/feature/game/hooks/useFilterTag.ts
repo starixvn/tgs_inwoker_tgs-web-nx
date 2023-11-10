@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from "react";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
-import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
+import { ProviderDto } from "@/core/types/dto/game/GetProviderListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
+import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
 
 export enum FilterTagTypeEnum {
   "PROVIDER" = "PROVIDER",

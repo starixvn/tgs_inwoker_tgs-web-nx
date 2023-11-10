@@ -6,7 +6,7 @@ import IconStarUrl from "@/assets/t23/images/promotion/icon_star.svg";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import usePromotion from "@/core/hooks/tools/usePromotion";
-import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
+import { Promotion } from "@/core/types/dto/general/GetPromotionListResDto";
 import { media } from "@/theme/breakpoints";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 import { usePopup } from "@/core/feature/usePopup";

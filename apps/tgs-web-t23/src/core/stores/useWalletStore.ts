@@ -84,20 +84,20 @@ import {
   DODEPOSIT_FAILED,
 } from "@/api-services/constant/actionType";
 import { WalletService } from "@/api-services/services/WalletService";
-import { GetWalletBalanceResDto } from "@/core/models/dto/wallet/GetWalletBalanceResDto";
-import { GetDepositMethodResDto } from "@/core/models/dto/wallet/GetDepositMethodResDto";
-import { PerformManualBankDepositResDto } from "@/core/models/dto/wallet/PerformManualBankDepositResDto";
-import { PerformManualFPSDepositResDto } from "@/core/models/dto/wallet/PerformManualFPSDepositResDto";
-import { PerformManualThirdPartyDepositResDto } from "@/core/models/dto/wallet/PerformManualThirdPartyDepositResDto";
-import { PerformUsdtDepositResDto } from "@/core/models/dto/wallet/PerformUsdtDepositResDto";
-import { PerformPulsaDepositResDto } from "@/core/models/dto/wallet/PerformPulsaDepositResDto";
-import { PerformEWalletDepositResDto } from "@/core/models/dto/wallet/PerformEWalletDepositResDto";
-import { PerformLeePayDepositResDto } from "@/core/models/dto/wallet/PerformLeePayDepositResDto";
-import { PerformManualFPSDepositWithNameResDto } from "@/core/models/dto/wallet/PerformManualFPSDepositWithNameResDto";
-import { GetListOfWithdrawChannelResDto } from "@/core/models/dto/wallet/GetListOfWithdrawChannelResDto";
-import { GetGameBalanceResDto } from "@/core/models/dto/game/GetGameBalanceResDto";
-import { DoTransferResDto } from "@/core/models/dto/wallet/DoTransferResDto";
-import { UpdateAutoTransferStatusResDto } from "@/core/models/dto/player/UpdateAutoTransferStatusResDto";
+import { GetWalletBalanceResDto } from "@/core/types/dto/wallet/GetWalletBalanceResDto";
+import { GetDepositMethodResDto } from "@/core/types/dto/wallet/GetDepositMethodResDto";
+import { PerformManualBankDepositResDto } from "@/core/types/dto/wallet/PerformManualBankDepositResDto";
+import { PerformManualFPSDepositResDto } from "@/core/types/dto/wallet/PerformManualFPSDepositResDto";
+import { PerformManualThirdPartyDepositResDto } from "@/core/types/dto/wallet/PerformManualThirdPartyDepositResDto";
+import { PerformUsdtDepositResDto } from "@/core/types/dto/wallet/PerformUsdtDepositResDto";
+import { PerformPulsaDepositResDto } from "@/core/types/dto/wallet/PerformPulsaDepositResDto";
+import { PerformEWalletDepositResDto } from "@/core/types/dto/wallet/PerformEWalletDepositResDto";
+import { PerformLeePayDepositResDto } from "@/core/types/dto/wallet/PerformLeePayDepositResDto";
+import { PerformManualFPSDepositWithNameResDto } from "@/core/types/dto/wallet/PerformManualFPSDepositWithNameResDto";
+import { GetListOfWithdrawChannelResDto } from "@/core/types/dto/wallet/GetListOfWithdrawChannelResDto";
+import { GetGameBalanceResDto } from "@/core/types/dto/game/GetGameBalanceResDto";
+import { DoTransferResDto } from "@/core/types/dto/wallet/DoTransferResDto";
+import { UpdateAutoTransferStatusResDto } from "@/core/types/dto/player/UpdateAutoTransferStatusResDto";
 
 export function useWalletStore() {
   const dispatch = useDispatch();

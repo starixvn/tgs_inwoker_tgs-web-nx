@@ -1,4 +1,4 @@
-import { LocalizationData } from "@/core/models/dto/general/GetLocalizationResDto";
+import { LocalizationData } from "@/core/types/dto/general/GetLocalizationResDto";
 
 let translation: LocalizationData | null = null;
 

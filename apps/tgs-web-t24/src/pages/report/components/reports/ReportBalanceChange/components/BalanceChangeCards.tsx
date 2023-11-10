@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { TransactionLogViewModel } from "@/core/models/dto/report/GetBalanceChangesResDto";
+import { TransactionLogViewModel } from "@/core/types/dto/report/GetBalanceChangesResDto";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,

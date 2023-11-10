@@ -10,7 +10,7 @@ import {
   GETMARQUEE_SUCCESS,
 } from "@/api-services/constant/actionType";
 import { UiService } from "@/api-services/services/UiService";
-import { GetMarqueeResDto } from "@/core/models/dto/ui/GetMarqueeResDto";
+import { GetMarqueeResDto } from "@/core/types/dto/ui/GetMarqueeResDto";
 
 export function useUiStore() {
   const dispatch = useDispatch();

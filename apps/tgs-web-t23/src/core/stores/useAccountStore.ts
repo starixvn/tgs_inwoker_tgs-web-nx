@@ -26,7 +26,7 @@ import {
   UPDATECARDNO_SUCCESS,
 } from "@/api-services/constant/actionType";
 import { AccountService } from "@/core/services/AccountService";
-import { RegisterReqDto } from "@/core/models/dto/player/RegisterReqDto";
+import { RegisterReqDto } from "@/core/types/dto/player/RegisterReqDto";
 
 export function useAccountStore() {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { getFilteredGameListByProvider } from "@/core/feature/game/utils/getFilteredGameListByProvider";
 import { getFilteredGameListByTag } from "@/core/feature/game/utils/getFilteredGameListByTag";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
+import { GameItem } from "@/core/types/dto/game/GetGameListResDto";
 import { GameService } from "@/core/services/GameService";
 
 interface GetGameListState {

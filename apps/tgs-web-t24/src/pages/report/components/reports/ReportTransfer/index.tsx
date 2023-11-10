@@ -6,7 +6,7 @@ import { useNotifications } from "@/core/feature/useNotifications";
 import { ReportService } from "@/core/services/ReportService";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { GameBalanceInfosViewModel } from "@/core/models/dto/report/GetTransferReportResDto";
+import { GameBalanceInfosViewModel } from "@/core/types/dto/report/GetTransferReportResDto";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import TransferDetailTable from "@/pages/report/components/reports/ReportTransfer/components/TransferDetailTable";
 import TransferDetailCard from "@/pages/report/components/reports/ReportTransfer/components/TransferDetailCard";

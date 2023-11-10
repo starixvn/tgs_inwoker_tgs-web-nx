@@ -6,7 +6,7 @@ import {
   TableRow,
 } from "@mui/material";
 import styled from "styled-components";
-import { BrandAllAgent } from "@/core/models/dto/general/GetBrandAllAgentResDto";
+import { BrandAllAgent } from "@/core/types/dto/general/GetBrandAllAgentResDto";
 import i18n from "@/utils/i18n";
 
 const StyledTable = styled(Table)`

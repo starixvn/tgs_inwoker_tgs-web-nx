@@ -14,9 +14,9 @@ import {
   SETFAVGAME_FAIL,
   SETFAVGAME_SUCCESS,
 } from "@/api-services/constant/actionType";
-import { GetFavoriteGameResDto } from "@/core/models/dto/game/GetFavoriteGameResDto";
-import { RemoveFavoriteGameResDto } from "@/core/models/dto/game/RemoveFavoriteGameResDto";
-import { SetFavoriteGameResDto } from "@/core/models/dto/game/SetFavoriteGameResDto";
+import { GetFavoriteGameResDto } from "@/core/types/dto/game/GetFavoriteGameResDto";
+import { RemoveFavoriteGameResDto } from "@/core/types/dto/game/RemoveFavoriteGameResDto";
+import { SetFavoriteGameResDto } from "@/core/types/dto/game/SetFavoriteGameResDto";
 import { GameState } from "@/core/types/stores/game";
 import { GameService } from "@/core/services/GameService";
 

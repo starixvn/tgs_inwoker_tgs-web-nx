@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 
 export function useGpCode() {
   const [gpCode, setGpCode] = useState<string>("");

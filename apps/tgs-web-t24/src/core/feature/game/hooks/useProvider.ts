@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@/api-services/utils/Enum";
 import config from "@/config/config";
-import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
+import { ProviderDto } from "@/core/types/dto/game/GetProviderListResDto";
 import { GameService } from "@/core/services/GameService";
 
 interface ProviderState {

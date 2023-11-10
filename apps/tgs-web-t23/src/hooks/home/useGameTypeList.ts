@@ -9,7 +9,7 @@ import lottery from "@/assets/t23/images/home/gameType/lottery.svg";
 import sabong from "@/assets/t23/images/home/gameType/sabong.svg";
 import slot from "@/assets/t23/images/home/gameType/slot.svg";
 import sports from "@/assets/t23/images/home/gameType/sports.svg";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 import i18n from "@/utils/i18n";
 
 type GameTypeItem = {

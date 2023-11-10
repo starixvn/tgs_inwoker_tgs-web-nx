@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { VipData } from "@/core/models/dto/general/GetVipResDto";
+import { VipData } from "@/core/types/dto/general/GetVipResDto";
 
 const useVipStore = () => {
   const { getVIP } = useGeneralStore();
