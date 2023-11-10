@@ -1,10 +1,10 @@
 import { MouseEvent, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { GameItem } from "@tgs-web-nx/types";
 import TextButton from "../TextButton";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGameStore } from "@/core/stores/useGameStore";
 import Common from "@/core/utils/Common";
@@ -64,7 +64,7 @@ const HotTag = styled.div`
   height: 18px;
   padding: 10px;
   border-radius: 12px 0px;
-  background: #FF1727;
+  background: #ff1727;
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
@@ -87,7 +87,7 @@ const GameCardBg = styled.div`
   ${media.sm} {
     width: calc(16.7% - 30px);
     min-width: 170px;
-    aspect-ratio: 170 / 210; 
+    aspect-ratio: 170 / 210;
 
     &:hover {
       ${CardHoverBg} {
@@ -209,10 +209,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg>
-          <TextButton
-            text={"Go"}
-            onClick={launchGame}
-          />
+          <TextButton text={"Go"} onClick={launchGame} />
         </CardHoverBg>
       )}
     </GameCardBg>

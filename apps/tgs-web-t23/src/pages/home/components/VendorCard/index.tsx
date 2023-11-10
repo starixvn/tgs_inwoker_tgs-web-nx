@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import TextButton from "../TextButton";
 import picMask from "@/assets/t23/images/home/picMask.svg";
-import { providerStatus } from "@/core/constants/games";
+import { providerStatus } from "@/constants/games";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
@@ -64,7 +64,6 @@ const GradientBg = styled.div`
 const VendorCardContent = styled.div`
   width: 100%;
 `;
-
 
 const VendorCardBg = styled.div`
   width: calc(33.33% - 5.8px);
@@ -144,13 +143,7 @@ const MaintenanceText = styled.div`
   }
 `;
 
-const VendorCard = ({
-  imageUrl,
-  venderName,
-  venderLogoUrl,
-  launchGame,
-  status,
-}: Props) => {
+const VendorCard = ({ imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
   const { isDesktopSize } = useRwd();
   const gameNameRef = useRef<HTMLDivElement | null>(null);
   const venderNameRef = useRef<HTMLDivElement | null>(null);
@@ -170,9 +163,7 @@ const VendorCard = ({
       <VendorCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         <GradientBg>
-          {venderLogoUrl && (
-            <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
-          )}
+          {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
         </GradientBg>
         {status === providerStatus.Maintenance && (
           <MaintenanceBg>
@@ -182,12 +173,11 @@ const VendorCard = ({
         {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
       </VendorCardContent>
 
-      {isDesktopSize && <VendorCardHoverBg>
-        <TextButton
-          text={"Go"}
-          onClick={launchGame}
-        />
-      </VendorCardHoverBg>}
+      {isDesktopSize && (
+        <VendorCardHoverBg>
+          <TextButton text={"Go"} onClick={launchGame} />
+        </VendorCardHoverBg>
+      )}
     </VendorCardBg>
   );
 };

@@ -5,7 +5,7 @@ import { useGetLobbyCategoryList } from "@/core/feature/game/useGetLobbyCategory
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameService } from "@/core/services/GameService";
 import { useAccountStore } from "@/core/stores/useAccountStore";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/constants/GameTypeEnum";
 import Common from "@/core/utils/Common";
 import VendorCard from "@/pages/home/components/VendorCard";
 import { media } from "@/theme/breakpoints";
@@ -96,10 +96,12 @@ const LobbyCategory = () => {
               return (
                 <VendorCard
                   key={gpCode}
-                  imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  imageUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}

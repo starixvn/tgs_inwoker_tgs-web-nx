@@ -2,12 +2,12 @@ import { Dialog as MuiDialog } from "@mui/material";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { Promotion } from "@tgs-web-nx/types";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import usePromotion from "@/core/hooks/tools/usePromotion";
-import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
 import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
 import i18n from "@/utils/i18n";
@@ -97,41 +97,41 @@ const PopupPromotion = () => {
 
   return (
     <StyledDialog
-        open={isShowPromotion}
-        TransitionComponent={UpTransition}
-        onClose={handleCloseDialog}
-      >
-        <ChildContainer>
-          <Carousel>
-            {displayPromotionList.map((promotionData: Promotion) => (
-              <PromotionBanner
-                key={promotionData.id}
-                promotionData={promotionData}
-                handleCloseDialog={handleCloseDialog}
-              />
-            ))}
-          </Carousel>
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              marginBottom: "18px",
-            }}
-          />
+      open={isShowPromotion}
+      TransitionComponent={UpTransition}
+      onClose={handleCloseDialog}
+    >
+      <ChildContainer>
+        <Carousel>
+          {displayPromotionList.map((promotionData: Promotion) => (
+            <PromotionBanner
+              key={promotionData.id}
+              promotionData={promotionData}
+              handleCloseDialog={handleCloseDialog}
+            />
+          ))}
+        </Carousel>
+        <NotShowAgainHint
+          onClick={handleClickCheckbox}
+          isCheck={isCheck}
+          style={{
+            marginBottom: "18px",
+          }}
+        />
 
-          <Button
-            onClick={handleCloseDialog}
-            style={{
-              margin: "0 auto",
-              width: "90%",
-            }}
-          >
-            <>{i18n.t("common.close")}</>
-          </Button>
-        </ChildContainer>
+        <Button
+          onClick={handleCloseDialog}
+          style={{
+            margin: "0 auto",
+            width: "90%",
+          }}
+        >
+          <>{i18n.t("common.close")}</>
+        </Button>
+      </ChildContainer>
 
-        <CloseIcon onClick={handleCloseDialog} />
-      </StyledDialog>
+      <CloseIcon onClick={handleCloseDialog} />
+    </StyledDialog>
   );
 };
 

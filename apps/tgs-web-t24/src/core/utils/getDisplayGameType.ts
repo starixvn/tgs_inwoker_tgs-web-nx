@@ -1,4 +1,4 @@
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/constants/GameTypeEnum";
 
 const getDisplayGameType = (brand = "default"): GameTypeEnum[] => {
   switch (brand) {

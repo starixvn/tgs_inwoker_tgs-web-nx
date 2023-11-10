@@ -1,9 +1,9 @@
 import { MouseEvent, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { GameItem } from "@tgs-web-nx/types";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useGameStore } from "@/core/stores/useGameStore";
 import Common from "@/core/utils/Common";
@@ -70,7 +70,7 @@ const GameCardBg = styled.div`
   ${media.sm} {
     width: calc(19.2% - 40px);
     min-width: 190px;
-    aspect-ratio: 170 / 210; 
+    aspect-ratio: 170 / 210;
 
     &:hover {
       ${CardHoverBg} {
@@ -191,10 +191,7 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg>
-          <TextButton
-            text={"Go"}
-            onClick={launchGame}
-          />
+          <TextButton text={"Go"} onClick={launchGame} />
         </CardHoverBg>
       )}
     </GameCardBg>

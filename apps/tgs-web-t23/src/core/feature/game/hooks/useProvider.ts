@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { ProviderDto } from "@tgs-web-nx/types";
 import { GameTypeEnum } from "@/api-services/utils/Enum";
 import config from "@/config/config";
-import { ProviderDto } from "@/core/models/dto/game/GetProviderListResDto";
 import { GameService } from "@/core/services/GameService";
 
 interface ProviderState {
@@ -54,22 +54,25 @@ export function useProvider() {
 }
 
 function getFormattedProviderList(providerList: ProviderDto[]): ProviderDto[] {
-  return providerList && providerList.map((provider) => {
-    if (provider.code === "BTI" && config.currency === "PHP") {
-      return {
-        ...provider,
-        code: "PHSB",
-        name: "PHSB",
-      };
-    }
+  return (
+    providerList &&
+    providerList.map((provider) => {
+      if (provider.code === "BTI" && config.currency === "PHP") {
+        return {
+          ...provider,
+          code: "PHSB",
+          name: "PHSB",
+        };
+      }
 
-    if (provider.code === "AWC_COCKFIGHT" || provider.code === "SM01") {
-      return {
-        ...provider,
-        gametypes: [GameTypeEnum.COCKFIGHT],
-      };
-    }
+      if (provider.code === "AWC_COCKFIGHT" || provider.code === "SM01") {
+        return {
+          ...provider,
+          gametypes: [GameTypeEnum.COCKFIGHT],
+        };
+      }
 
-    return provider;
-  });
+      return provider;
+    })
+  );
 }

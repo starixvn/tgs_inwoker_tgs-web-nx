@@ -1,10 +1,10 @@
 import React from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { WithdrawFormViewModel } from "@tgs-web-nx/types";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import i18n from "@/utils/i18n";
-import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
 
 type Props = {
   withdrawalDetails: WithdrawFormViewModel[];

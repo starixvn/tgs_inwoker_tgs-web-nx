@@ -1,6 +1,12 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  GameState,
+  GetFavoriteGameResDto,
+  RemoveFavoriteGameResDto,
+  SetFavoriteGameResDto,
+} from "@tgs-web-nx/types";
+import {
   GETFAVGAME_BEGIN,
   GETFAVGAME_FAIL,
   GETFAVGAME_SUCCESS,
@@ -14,10 +20,6 @@ import {
   SETFAVGAME_FAIL,
   SETFAVGAME_SUCCESS,
 } from "@/api-services/constant/actionType";
-import { GetFavoriteGameResDto } from "@/core/models/dto/game/GetFavoriteGameResDto";
-import { RemoveFavoriteGameResDto } from "@/core/models/dto/game/RemoveFavoriteGameResDto";
-import { SetFavoriteGameResDto } from "@/core/models/dto/game/SetFavoriteGameResDto";
-import { GameState } from "@/core/types/stores/game";
 import { GameService } from "@/core/services/GameService";
 
 export function useGameStore() {
@@ -94,7 +96,7 @@ export function useGameStore() {
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   const removeFavoriteGame = useCallback(
@@ -131,7 +133,7 @@ export function useGameStore() {
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   const getFavoriteGame = useCallback(
@@ -144,7 +146,7 @@ export function useGameStore() {
       try {
         //  @ts-ignore
         const response = (await GameService.GetFavoriteGame(
-          gameType
+          gameType,
         )) as unknown as GetFavoriteGameResDto;
 
         if (response?.IsSuccess) {
@@ -170,7 +172,7 @@ export function useGameStore() {
         });
       }
     },
-    [dispatch]
+    [dispatch],
   );
 
   return {

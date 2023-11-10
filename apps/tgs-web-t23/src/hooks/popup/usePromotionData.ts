@@ -1,7 +1,7 @@
+import { Promotion } from "@tgs-web-nx/types";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import i18n from "@/utils/i18n";
-import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
-import { NOT_SHOW_JOIN_BUTTON_KEY_LIST } from "@/core/constants/promotion";
+import { NOT_SHOW_JOIN_BUTTON_KEY_LIST } from "@/constants/promotion";
 
 export interface PromotionDetail {
   contentToDisplay: string;

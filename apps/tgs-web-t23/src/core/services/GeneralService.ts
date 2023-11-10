@@ -1,6 +1,6 @@
+import { GetLocalizationResDto } from "@tgs-web-nx/types";
 import { ApiService } from "@/api-services/services/ApiService";
 import { GeneralService as PrevGeneralService } from "@/api-services/services/GeneralService";
-import { GetLocalizationResDto } from "@/core/models/dto/general/GetLocalizationResDto";
 
 export const GeneralService = {
   ...PrevGeneralService,

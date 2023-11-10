@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { Promotion } from "@tgs-web-nx/types";
 import BannerImage from "@/pages/promotion/components/BannerImage";
-import { Promotion } from "@/core/models/dto/general/GetPromotionListResDto";
 import { media } from "@/theme/breakpoints";
 import { usePromotionData } from "@/hooks/popup/usePromotionData";
 import { useRwd } from "@/core/hooks/tools/useRwd";

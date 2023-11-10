@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import useVipStore from "@/core/hooks/tools/useVipStore";
 import { media } from "@/theme/breakpoints";
-import { levelItemStyleList } from "@/core/constants/vip";
+import { levelItemStyleList } from "@/constants/vip";
 import VipSingleItem, { VipCardItem } from "@/pages/vip/components/VipSingleItem";
 
 const VipScrollableContainer = styled.div`

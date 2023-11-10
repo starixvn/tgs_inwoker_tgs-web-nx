@@ -1,7 +1,7 @@
 import React from "react";
+import { RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@/config/config";
 import i18n from "@/utils/i18n";
-import { RoundTotalDto } from "@/core/models/dto/report/GetRoundsTotalResDto";
 import {
   CustomWinLose,
   ReportSummary,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { VipData } from "@tgs-web-nx/types";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { VipData } from "@/core/models/dto/general/GetVipResDto";
 
 const useVipStore = () => {
   const { getVIP } = useGeneralStore();

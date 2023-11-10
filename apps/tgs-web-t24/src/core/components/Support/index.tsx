@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { BrandsSupport } from "@tgs-web-nx/types";
 import config from "@/config/config";
-import { BrandsSupport } from "@/core/types/stores/general";
 import SupportCard from "@/pages/contactUs/components/SupportCard";
 import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/core/components/Support/IMHandler";
@@ -15,7 +15,6 @@ const CardsContainer = styled.div`
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  padding-top: 16px;
 `;
 
 const Support = () => {
@@ -45,8 +44,9 @@ const Support = () => {
 
   return (
     <SupportContainer>
-      <HeaderImage />
       <CardsContainer>
+        <HeaderImage />
+
         {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
             brandsSupport={{

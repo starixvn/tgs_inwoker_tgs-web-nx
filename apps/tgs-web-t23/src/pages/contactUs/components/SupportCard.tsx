@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { BrandsSupport } from "@/core/types/stores/general";
+import { BrandsSupport } from "@tgs-web-nx/types";
 import i18n from "@/utils/i18n";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";

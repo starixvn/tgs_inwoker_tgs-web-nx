@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
+import { GetJoinedPromoReportResDto, JoinedPromotionsResponse } from "@tgs-web-nx/types";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { GeneralService } from "@/api-services/services/GeneralService";
-import {
-  GetJoinedPromoReportResDto,
-  JoinedPromotionsResponse,
-} from "@/core/models/dto/general/GetJoinedPromoReportResDto";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
 import { useRwd } from "@/core/hooks/tools/useRwd";

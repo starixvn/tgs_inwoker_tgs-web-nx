@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import dots from "@/assets/t23/images/home/dots.svg";
 import { useGameType } from "@/core/feature/game/hooks/useGameType";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/constants/GameTypeEnum";
 import { media } from "@/theme/breakpoints";
 
 const AllCardBg = styled.div`
@@ -36,7 +36,7 @@ const AllIcon = styled.div`
   justify-content: center;
 
   ${media.sm} {
-    height: 82.6%;;
+    height: 82.6%;
   }
 `;
 

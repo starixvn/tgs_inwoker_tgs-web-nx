@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
+import { WithdrawFormViewModel } from "@tgs-web-nx/types";
 import { ReportService } from "@/core/services/ReportService";
 import { useNotifications } from "@/core/feature/useNotifications";
 import Loading from "@/components/UI/Loading";
 import { useWithdrawalStatus } from "@/core/components/Report/hooks/useWithdrawalStatus";
 import StatusSelect from "@/pages/report/components/StatusSelect";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { WithdrawFormViewModel } from "@/core/models/dto/report/GetWithdrawalDetailsResDto";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import WithdrawalDetailTable from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
 import WithdrawalDetailCards from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";

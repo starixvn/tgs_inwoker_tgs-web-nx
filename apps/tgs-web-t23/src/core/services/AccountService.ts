@@ -1,19 +1,21 @@
+import {
+  AddRealNameResDto,
+  GetIDCardNoResDto,
+  GetMemberInfoResDto,
+  GetPromoteBillResDto,
+  GetPromoteUserResDto,
+  GetRegisterStatusResDto,
+  LoginResDto,
+  LogoutResDto,
+  NewRegisterResDto,
+  RegisterResDto,
+  SetBirthDateResDto,
+  UpdateIMResDto,
+  UpdateMemberNameAndICResDto,
+  UpdatePhoneResDto,
+} from "@tgs-web-nx/types";
 import { ApiService } from "@/api-services/services/ApiService";
 import config from "@/config/config";
-import { AddRealNameResDto } from "@/core/models/dto/player/AddRealNameResDto";
-import { LoginResDto } from "@/core/models/dto/player/LoginResDto";
-import { LogoutResDto } from "@/core/models/dto/player/LooutResDto";
-import { GetMemberInfoResDto } from "@/core/models/dto/player/GetMemberInfoResDto";
-import { RegisterResDto } from "@/core/models/dto/player/RegisterResDto";
-import { GetIDCardNoResDto } from "@/core/models/dto/pc/GetIDCardNoResDto";
-import { GetPromoteUserResDto } from "@/core/models/dto/pc/GetPromoteUserResDto";
-import { GetPromoteBillResDto } from "@/core/models/dto/pc/GetPromoteBillResDto";
-import { GetRegisterStatusResDto } from "@/core/models/dto/player/GetRegisterStatusResDto";
-import { NewRegisterResDto } from "@/core/models/dto/player/NewRegisterResDto";
-import { UpdateMemberNameAndICResDto } from "@/core/models/dto/player/UpdateMemberNameAndICResDto";
-import { UpdateIMResDto } from "@/core/models/dto/player/UpdateIMResDto";
-import { SetBirthDateResDto } from "@/core/models/dto/player/SetBirthDateResDto";
-import { UpdatePhoneResDto } from "@/core/models/dto/player/UpdatePhoneResDto";
 
 function CheckUserName(username: string) {
   return ApiService.get(`Player/checkUsername?=${username}`);
@@ -33,7 +35,7 @@ function Register(
   pwd: string,
   confirmpwd: string,
   invitationcode = "",
-  upper: any
+  upper: any,
 ) {
   const currency = config.currency;
   return ApiService.post("Player/create", {
@@ -49,12 +51,7 @@ function Register(
   }) as unknown as Promise<RegisterResDto>;
 }
 
-function Activation(
-  username: string,
-  pwd: string,
-  areacode: string,
-  phone: string
-) {
+function Activation(username: string, pwd: string, areacode: string, phone: string) {
   return ApiService.post("player/init-phone", {
     username,
     pwd,
@@ -84,10 +81,7 @@ function VerifyActivationEmail(securitykey: string, validatecode: string) {
 }
 
 async function Logout() {
-  const response = (await ApiService.del(
-    "Player/logout",
-    {}
-  )) as unknown as LogoutResDto;
+  const response = (await ApiService.del("Player/logout", {})) as unknown as LogoutResDto;
 
   if (response.IsSuccess) {
     localStorage.removeItem("token");
@@ -97,9 +91,7 @@ async function Logout() {
 }
 
 function GetMemberInfo() {
-  return ApiService.get(
-    "Player/info"
-  ) as unknown as Promise<GetMemberInfoResDto>;
+  return ApiService.get("Player/info") as unknown as Promise<GetMemberInfoResDto>;
 }
 
 function SetBirthDate(yyyymmdd: string) {
@@ -114,11 +106,7 @@ function UpdateIM(value: string, im: string, param: string) {
   }) as unknown as Promise<UpdateIMResDto>;
 }
 
-function ChangeWithdrawalPassword(
-  newpwd: string,
-  validateCode: string,
-  securityKey: string
-) {
+function ChangeWithdrawalPassword(newpwd: string, validateCode: string, securityKey: string) {
   return ApiService.patch("pay/password", {
     newpwd: newpwd,
     validatecode: validateCode,
@@ -189,11 +177,7 @@ function VerifyForgotPassword(email: string, areaCode: string, phone: string) {
   });
 }
 
-function ResetPassword(
-  securitykey: string,
-  validatecode: string,
-  newpwd: string
-) {
+function ResetPassword(securitykey: string, validatecode: string, newpwd: string) {
   return ApiService.post("player/password/reset", {
     securitykey: securitykey,
     validatecode: validatecode,
@@ -202,20 +186,18 @@ function ResetPassword(
 }
 
 function GetIDCardNo() {
-  return ApiService.get(
-    "pc/authentication"
-  ) as unknown as Promise<GetIDCardNoResDto>;
+  return ApiService.get("pc/authentication") as unknown as Promise<GetIDCardNoResDto>;
 }
 
 function GetPromoteUser(page: number, limit: number) {
   return ApiService.get(
-    `pc/user/promoteUser?page=${page}&page_size=${limit}`
+    `pc/user/promoteUser?page=${page}&page_size=${limit}`,
   ) as unknown as Promise<GetPromoteUserResDto>;
 }
 
 function GetPromoteBill(page: number, limit: number) {
   return ApiService.get(
-    `pc/userPromoteBill?page=${page}&page_size=${limit}`
+    `pc/userPromoteBill?page=${page}&page_size=${limit}`,
   ) as unknown as Promise<GetPromoteBillResDto>;
 }
 
@@ -226,15 +208,11 @@ function UpdateMemberName(token: string, name: string) {
       name,
       token,
     },
-    true
+    true,
   );
 }
 
-function UpdateMemberNameAndIC(
-  realname: string,
-  id: string,
-  file: File | null
-) {
+function UpdateMemberNameAndIC(realname: string, id: string, file: File | null) {
   const request = file
     ? ApiService.postFile(
         `player/identity/upload`,
@@ -243,7 +221,7 @@ function UpdateMemberNameAndIC(
           realname,
           id,
         },
-        true
+        true,
       )
     : ApiService.patch(`player/identity`, {
         realname,
@@ -261,9 +239,7 @@ function NewRegister(type: string, input: any) {
 }
 
 function GetRegisterStatus() {
-  return ApiService.get(
-    "player/register"
-  ) as unknown as Promise<GetRegisterStatusResDto>;
+  return ApiService.get("player/register") as unknown as Promise<GetRegisterStatusResDto>;
 }
 
 function UploadIC(file: File) {

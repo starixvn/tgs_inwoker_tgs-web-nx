@@ -1,14 +1,14 @@
 import styled from "styled-components";
+import { GameItem } from "@tgs-web-nx/types";
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import Loading from "@/components/UI/Loading";
 import config from "@/config/config";
-import { SHOW_CATEGORY_AMOUNT } from "@/core/constants/games";
-import { GameItem } from "@/core/models/dto/game/GetGameListResDto";
+import { SHOW_CATEGORY_AMOUNT } from "@/constants/games";
 import Common from "@/core/utils/Common";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import { media } from "@/theme/breakpoints";
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { GameTypeEnum } from "@/constants/GameTypeEnum";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 const HomeCategorySection = styled.div`
@@ -103,12 +103,16 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                    }.jpg`}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
               ))}
-          {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard onClick={() => handleChangeGameType(GameTypeEnum.SLOT)} />}
+          {dataList.length > SHOW_CATEGORY_AMOUNT && (
+            <AllCard onClick={() => handleChangeGameType(GameTypeEnum.SLOT)} />
+          )}
         </CategoryContent>
       </HomeCategorySection>
 

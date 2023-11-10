@@ -1,13 +1,37 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GeneralState } from "@/core/types/stores/general";
+import {
+  ComposeMemoResDto,
+  GeneralState,
+  GetAffiliateStatusResDto,
+  GetBannerResDto,
+  GetBrandAllAgentResDto,
+  GetBrandCommunicationResDto,
+  GetBrandLanguageResDto,
+  GetBrandResDto,
+  GetDepositAccumulateRouletteHistoryResDto,
+  GetDepositAccumulateRouletteResDto,
+  GetDepositAccumulateRouletteResultResDto,
+  GetInvitationCodeResDto,
+  GetLiveChatUrlResDto,
+  GetMemoV2ResDto,
+  GetPlayerPromotionListResDto,
+  GetPromotionDto,
+  GetPromotionListResDto,
+  GetPromotionRouletteCountResDto,
+  GetPromotionRouletteResultResDto,
+  GetPromotionRouletteStatusResDto,
+  GetSiteTokenResDto,
+  GetVipResDto,
+  JoinPromotionResDto,
+  ReadMemoResDto,
+  ReplyMemoResDto,
+} from "@tgs-web-nx/types";
+import { GeneralService } from "@/api-services/services/GeneralService";
 import {
   COMPOSEMEMO_BEGIN,
   COMPOSEMEMO_FAIL,
   COMPOSEMEMO_SUCCESS,
-  DELIVERYBOX_BEGIN,
-  DELIVERYBOX_FAIL,
-  DELIVERYBOX_SUCCESS,
   GETAFFILIATESTATUS_FAIL,
   GETAFFILIATESTATUS_SUCCESS,
   GETBANNER_BEGIN,
@@ -64,31 +88,6 @@ import {
   REPLYMEMO_FAIL,
   REPLYMEMO_SUCCESS,
 } from "@/api-services/constant/actionType";
-import { GeneralService } from "@/api-services/services/GeneralService";
-import { GetSiteTokenResDto } from "@/core/models/dto/general/GetSiteTokenResDto";
-import { GetBrandResDto } from "@/core/models/dto/general/GetBrandResDto";
-import { GetPromotionListResDto } from "@/core/models/dto/general/GetPromotionListResDto";
-import { GetPlayerPromotionListResDto } from "@/core/models/dto/general/GetPlayerPromotionListResDto";
-import { JoinPromotionResDto } from "@/core/models/dto/general/JoinPromotionResDto";
-import { GetBrandCommunicationResDto } from "@/core/models/dto/general/GetBrandCommunicationResDto";
-import { GetBrandLanguageResDto } from "@/core/models/dto/general/GetBrandLanguageResDto";
-import { GetBannerResDto } from "@/core/models/dto/general/GetBannerResDto";
-import { GetLiveChatUrlResDto } from "@/core/models/dto/general/GetLiveChatUrlResDto";
-import { GetVipResDto } from "@/core/models/dto/general/GetVipResDto";
-import { GetInvitationCodeResDto } from "@/core/models/dto/general/GetInvitationCodeResDto";
-import { GetPromotionRouletteResultResDto } from "@/core/models/dto/general/GetPromotionRouletteResultResDto";
-import { GetPromotionRouletteStatusResDto } from "@/core/models/dto/general/GetPromotionRouletteStatusResDto";
-import { GetPromotionDto } from "@/core/models/dto/general/GetPromotionDto";
-import { GetPromotionRouletteCountResDto } from "@/core/models/dto/general/GetPromotionRouletteCountResDto";
-import { GetDepositAccumulateRouletteResDto } from "@/core/models/dto/general/GetDepositAccumulateRouletteResDto";
-import { GetDepositAccumulateRouletteResultResDto } from "@/core/models/dto/general/GetDepositAccumulateRouletteResultResDto";
-import { GetDepositAccumulateRouletteHistoryResDto } from "@/core/models/dto/general/GetDepositAccumulateRouletteHistoryResDto";
-import { GetBrandAllAgentResDto } from "@/core/models/dto/general/GetBrandAllAgentResDto";
-import { GetAffiliateStatusResDto } from "@/core/models/dto/general/GetAffiliateStatusResDto";
-import { GetMemoV2ResDto } from "@/core/models/dto/general/GetMemoV2ResDto";
-import { ReplyMemoResDto } from "@/core/models/dto/general/ReplyMemoResDto";
-import { ComposeMemoResDto } from "@/core/models/dto/general/ComposeMemoResDto";
-import { ReadMemoResDto } from "@/core/models/dto/general/ReadMemoResDto";
 
 export function useGeneralStore() {
   const dispatch = useDispatch();
@@ -164,7 +163,7 @@ export function useGeneralStore() {
       rows: number,
       desc: boolean,
       sort: string,
-      all: boolean
+      all: boolean,
     ) => {
       dispatch({
         type: GETPROMOLIST_BEGIN,
@@ -179,7 +178,7 @@ export function useGeneralStore() {
           rows,
           desc,
           sort,
-          all
+          all,
         )) as unknown as GetPromotionListResDto;
         if (response?.IsSuccess) {
           dispatch({
@@ -203,7 +202,7 @@ export function useGeneralStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const getPlayerPromotionList = useCallback(
@@ -213,7 +212,7 @@ export function useGeneralStore() {
       rows: number,
       desc: boolean,
       sort: string,
-      all: boolean
+      all: boolean,
     ) => {
       dispatch({
         type: GETPLAYERPROMOLIST_BEGIN,
@@ -228,7 +227,7 @@ export function useGeneralStore() {
           rows,
           desc,
           sort,
-          all
+          all,
         )) as unknown as GetPlayerPromotionListResDto;
         if (response?.IsSuccess) {
           dispatch({
@@ -252,7 +251,7 @@ export function useGeneralStore() {
         });
       }
     },
-    []
+    [],
   );
 
   const joinPromotion = useCallback(async (id: string) => {
@@ -467,7 +466,7 @@ export function useGeneralStore() {
     try {
       //  @ts-ignore
       const response = (await GeneralService.GetPromotionRouletteStatus(
-        id
+        id,
       )) as unknown as GetPromotionRouletteStatusResDto;
       if (response?.IsSuccess) {
         dispatch({
@@ -492,7 +491,7 @@ export function useGeneralStore() {
     try {
       //  @ts-ignore
       const response = (await GeneralService.GetPromotionRouletteResult(
-        id
+        id,
       )) as unknown as GetPromotionRouletteResultResDto;
       if (response?.IsSuccess) {
         dispatch({
@@ -558,7 +557,7 @@ export function useGeneralStore() {
   const getDepositAccumulateRoulette = useCallback(async (id: string) => {
     try {
       return (await GeneralService.GetDepositAccumulateRoulette(
-        id
+        id,
       )) as unknown as GetDepositAccumulateRouletteResDto;
     } catch (error: any) {}
   }, []);
@@ -566,7 +565,7 @@ export function useGeneralStore() {
   const getDepositAccumulateRouletteResult = useCallback(async (id: string) => {
     try {
       return (await GeneralService.GetDepositAccumulateRouletteResult(
-        id
+        id,
       )) as unknown as GetDepositAccumulateRouletteResultResDto;
     } catch (error: any) {}
   }, []);
@@ -574,7 +573,7 @@ export function useGeneralStore() {
   const getDepositAccumulateRouletteHistory = useCallback(async (id: string) => {
     try {
       return (await GeneralService.GetDepositAccumulateRouletteHistory(
-        id
+        id,
       )) as unknown as GetDepositAccumulateRouletteHistoryResDto;
     } catch (error: any) {}
   }, []);
@@ -583,7 +582,7 @@ export function useGeneralStore() {
     try {
       //  @ts-ignore
       const response = (await GeneralService.GetBrandAllAgent(
-        ""
+        "",
       )) as unknown as GetBrandAllAgentResDto;
       if (response.IsSuccess) {
         dispatch({

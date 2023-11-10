@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
+import { DepositFormViewModel } from "@tgs-web-nx/types";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { ReportService } from "@/core/services/ReportService";
 import Loading from "@/components/UI/Loading";
 import { useDepositStatus } from "@/core/components/Report/hooks/useDepositStatus";
 import StatusSelect from "@/pages/report/components/StatusSelect";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { DepositFormViewModel } from "@/core/models/dto/report/GetDepositDetailsResDto";
 import DepositDetailCards from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailCards";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import DepositDetailTable from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailTable";
