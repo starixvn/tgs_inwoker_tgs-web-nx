@@ -4,7 +4,7 @@ import TabButton from "./TabButton";
 import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
 import WinningRankingTable from "@/pages/home/components/Ranking/WinningRankingTable";
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
-import { rankingTabList } from "@/constants/gameType";
+import { rankingTabList } from "@/core/constants/gameType";
 
 const RankingContainer = styled.div`
   width: 100%;

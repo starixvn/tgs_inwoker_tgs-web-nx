@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GameTypeEnum } from "@/constants/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 import cardgame from "@/assets/t23/images/home/gameType/cardGame.svg";
 import egame from "@/assets/t23/images/home/gameType/egame.svg";
 import esports from "@/assets/t23/images/home/gameType/esports.svg";

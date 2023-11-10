@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ProviderDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { GameService } from "@/core/services/GameService";
-import { GameTypeEnum } from "@/constants/GameTypeEnum";
+import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 
 interface ProviderState {
   isLoading: boolean;

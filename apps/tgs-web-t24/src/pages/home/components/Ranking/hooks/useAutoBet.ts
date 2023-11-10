@@ -4,7 +4,7 @@ import { BetRecord } from "@/pages/home/components/Ranking/components/BetRecordR
 import { useAutoBettingToggle } from "@/pages/home/components/Ranking/hooks/useAutoBettingToggle";
 import { mockBetRecordList } from "@/pages/home/components/Ranking/mocks/betRecordList";
 import { userList } from "@/pages/home/components/Ranking/mocks/userList";
-import { gameTypeList } from "@/constants/gameType";
+import { gameTypeList } from "@/core/constants/gameType";
 
 function getRandomBetAmount() {
   const amountStatus = Math.floor(Math.random() * 10);
