@@ -12,6 +12,7 @@ import rightArrow from "@/assets/t24/images/home/right-arrow.svg";
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,7 +23,9 @@ const Wrapper = styled.div`
   padding: 32px 24px 14px 24px;
 
   ${media.sm} {
-    max-width: 348px
+    max-width: 348px;
+    padding: unset;
+    background-color: transparent;
   }
 `;
 
@@ -43,7 +46,7 @@ const HomePromotionCardContent = styled.div`
 `;
 
 const RegisterBtn = styled.div`
-  width: 348px;
+  width: 100%;
   height: 48px;
   padding: 16px 133.405px 16px 133.595px;
   border-radius: 4px;
@@ -52,6 +55,9 @@ const RegisterBtn = styled.div`
   font-size: 0.7rem;
   font-weight: 900;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const LinkIconGroup = styled.div`
@@ -80,7 +86,6 @@ const IconLabelGroup = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 24px 14px 24px;
   gap: 16px;
   align-self: stretch;
   max-height: 42px;

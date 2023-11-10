@@ -14,6 +14,7 @@ import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/compone
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import promotionBanner from "@/assets/t24/images/home/promo-banner.png";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -23,6 +24,8 @@ const MainWrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   padding: 16px;
+  gap: 16px;
+
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
@@ -32,11 +35,6 @@ const MainWrapper = styled.div`
 
 const SliderWrapper = styled.div`
   width: 100%;
-  height: 160px;
-
-  ${media.sm} {
-    height: 416px;
-  }
 `;
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
@@ -61,6 +59,25 @@ const MainContentWrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 16px;
+`;
+
+const HomePromotionBanner = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  background-image: url(${promotionBanner});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 32px 24px 14px 100px;
+`;
+
+const HomePromotionWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const HomePage = () => {
@@ -104,11 +121,21 @@ const HomePage = () => {
         {/* GameTypeTab - left side menu */}
         {/* {isMobileSize && !activeGameType && <GameTypeTab />} */}
 
+        {isDesktopSize && !activeGameType &&
+          <HomePromotionBanner>
+            <HomePromotionCard />
+          </HomePromotionBanner>
+        }
+
         {/* Ad - Welcome to PG */}
-        <HomePromotionCard />
-
-
-
+        {isMobileSize && !activeGameType &&
+          <HomePromotionWrapper>
+            <HomePromotionCard />
+            <SliderWrapper>
+              <Slider />
+            </SliderWrapper>
+          </HomePromotionWrapper>
+        }
 
 
 
