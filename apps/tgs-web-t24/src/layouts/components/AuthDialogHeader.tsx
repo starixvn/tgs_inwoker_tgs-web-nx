@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const AuthDialogHeaderContainer = styled.div`
   width: 100%;

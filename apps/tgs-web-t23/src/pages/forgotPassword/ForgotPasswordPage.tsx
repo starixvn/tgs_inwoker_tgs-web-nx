@@ -1,10 +1,13 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import RedirectToRegisterHint from "../../../../tgs-web-t24/src/pages/login/components/LoginForm/RedirectToRegisterHint";
 import i18n from "@/utils/i18n";
 import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
+import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
+import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 
 const TitleContainer = styled.div`
   font-size: 3rem;
@@ -24,11 +27,12 @@ const ForgotPasswordPage = () => {
   const history = useHistory();
 
   return (
-    <>
+    <AuthFormContainer>
       <TitleContainer>{i18n.t("forgotPassword.title")}</TitleContainer>
       {/*@ts-ignore*/}
       <ForgotPasswordPrev alert={alert} history={history} />
-    </>
+      <RedirectToLoginHint style={{ marginTop: "20px" }} />
+    </AuthFormContainer>
   );
 };
 

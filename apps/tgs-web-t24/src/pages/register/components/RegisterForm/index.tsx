@@ -5,37 +5,14 @@ import i18n from "@/utils/i18n";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import { useRegisterForm } from "@/core/feature/useAuthForm/useRegisterForm";
 import FormikForm from "@/components/project/FormikForm";
-import { media } from "@/theme/breakpoints";
-
-const RegisterFormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 7.343vh 24px;
-
-  ${media.sm} {
-    padding: 42px 42px;
-  }
-`;
-
-const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
-  font-weight: 700;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-
-  ${media.sm} {
-    display: none;
-  }
-`;
+import BrandLogo from "@/components/BrandLogo";
+import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
   color: white;
-  font-size: 0.937rem;
+  font-size: 0.75rem;
+  font-weight: 700;
   margin: 24px 0 0;
   display: flex;
   align-items: start;
@@ -52,8 +29,8 @@ const RegisterForm = () => {
   } = useRegisterForm();
 
   return (
-    <RegisterFormContainer>
-      <TitleContainer>{i18n.t("common.register")}</TitleContainer>
+    <AuthFormContainer>
+      <BrandLogo />
 
       <FormikForm
         formInputList={formInputConfigList}
@@ -69,7 +46,7 @@ const RegisterForm = () => {
       </FormikForm>
 
       <RedirectToLoginHint />
-    </RegisterFormContainer>
+    </AuthFormContainer>
   );
 };
 

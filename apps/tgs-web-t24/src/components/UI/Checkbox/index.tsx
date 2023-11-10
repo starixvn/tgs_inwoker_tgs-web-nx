@@ -4,8 +4,11 @@ import styled from "styled-components";
 
 const StyledCheckbox = styled(MuiCheckbox)`
   color: white;
+  &.MuiCheckbox-root {
+    padding: 0 9px 0 0;
+  }
   &.Mui-checked {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.yellow};
   }
 `;
 const Checkbox = (props: CheckboxProps) => {

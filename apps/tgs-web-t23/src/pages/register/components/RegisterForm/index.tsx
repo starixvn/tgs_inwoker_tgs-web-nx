@@ -6,16 +6,7 @@ import RedirectToLoginHint from "@/pages/register/components/RegisterForm/Redire
 import { useRegisterForm } from "@/core/feature/useAuthForm/useRegisterForm";
 import FormikForm from "@/components/project/FormikForm";
 import { media } from "@/theme/breakpoints";
-
-const RegisterFormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 7.343vh 24px;
-
-  ${media.sm} {
-    padding: 42px 42px;
-  }
-`;
+import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const TitleContainer = styled.div`
   font-size: 3rem;
@@ -52,7 +43,7 @@ const RegisterForm = () => {
   } = useRegisterForm();
 
   return (
-    <RegisterFormContainer>
+    <AuthFormContainer>
       <TitleContainer>{i18n.t("common.register")}</TitleContainer>
 
       <FormikForm
@@ -69,7 +60,7 @@ const RegisterForm = () => {
       </FormikForm>
 
       <RedirectToLoginHint />
-    </RegisterFormContainer>
+    </AuthFormContainer>
   );
 };
 
