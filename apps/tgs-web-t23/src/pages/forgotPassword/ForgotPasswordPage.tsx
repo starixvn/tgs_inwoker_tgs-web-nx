@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import RedirectToRegisterHint from "../../../../tgs-web-t24/src/pages/login/components/LoginForm/RedirectToRegisterHint";
 import i18n from "@/utils/i18n";
 import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
 import { useNotifications } from "@/core/feature/useNotifications";

@@ -40,6 +40,7 @@ const RedirectToLoginHint = (props: Props) => {
   }, []);
 
   return (
+    //@ts-ignore
     <CreateAccountContainer {...props}>
       <span>{i18n.t("T13.proceedLogin")}</span>
       <span onClick={handleRedirect} className={"link"}>
