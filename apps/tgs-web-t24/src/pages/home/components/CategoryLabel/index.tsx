@@ -4,6 +4,7 @@ import styled from 'styled-components';
 type Props = {
   imageUrl: string;
   text: string;
+  onClick?: () => void;
 }
 
 const Wrapper = styled.div`
@@ -21,10 +22,10 @@ const Text = styled.div`
     font-weight: 700;
 `;
 
-const CategoryLabel: FC<Props> = ({ imageUrl, text }) => {
+const CategoryLabel: FC<Props> = ({ imageUrl, text, onClick }) => {
   return (
     <Wrapper>
-      <img src={imageUrl} alt={text} />
+      <img src={imageUrl} alt={text} onClick={onClick} />
       <Text>{text}</Text>
     </Wrapper>
   );

@@ -1,5 +1,8 @@
 import styled from "styled-components";
+import { useHistory } from "react-router";
+import CategoryLabel from "../../../CategoryLabel";
 import searchIcon from "@/assets/t23/images/home/search.svg";
+import back from "@/assets/t24/images/home/back.svg";
 import Loading from "@/components/UI/Loading";
 import config from "@/config/config";
 import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCategoryList";
@@ -9,6 +12,7 @@ import Common from "@/core/utils/Common";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import { media } from "@/theme/breakpoints";
+import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
@@ -48,8 +52,9 @@ const CategoryTitle = styled.div`
 `;
 
 const NonLobbyCategory = () => {
+  const history = useHistory();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, searchString, handleChangeSearch } = useHomeGameContext();
+  const { activeGameType, searchString, handleChangeSearch, handleChangeGameType } = useHomeGameContext();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const categoryTitle = useGameTypeList().find((item) => item.gameType === activeGameType)?.text;
   const hasMappingData = !!gameList.length;
@@ -61,6 +66,7 @@ const NonLobbyCategory = () => {
           <CategoryLabel
             imageUrl={back}
             text={categoryTitle || ""}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
           ></CategoryLabel>
 
           {/* to-do : Search and Filter tag */}

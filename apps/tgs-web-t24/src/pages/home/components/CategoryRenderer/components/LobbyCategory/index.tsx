@@ -1,5 +1,6 @@
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import CategoryLabel from "../../../CategoryLabel";
 import { useGetLobbyCategoryList } from "@/core/feature/game/useGetLobbyCategoryList";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameService } from "@/core/services/GameService";
@@ -8,6 +9,8 @@ import { GameTypeEnum } from "@/core/types/GameTypeEnum";
 import Common from "@/core/utils/Common";
 import VendorCard from "@/pages/home/components/VendorCard";
 import { media } from "@/theme/breakpoints";
+import back from "@/assets/t24/images/home/back.svg";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
@@ -33,10 +36,11 @@ const CategoryContent = styled.div`
 `;
 
 const LobbyCategory = () => {
-  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
   const { account } = useAccountStore();
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
+  const categoryTitle = useGameTypeList().find((item) => item.gameType === activeGameType)?.text;
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -76,29 +80,36 @@ const LobbyCategory = () => {
   const hasMappingData = !!lobbyCategoryList.length;
 
   return (
-    <CategoryContentWrapper>
-      <CategoryContent>
-        {hasMappingData &&
-          lobbyCategoryList.map((provider) => {
-            const { code: gpCode, status, name } = provider;
+    <>
+      <CategoryLabel
+        imageUrl={back}
+        text={categoryTitle || ""}
+        onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+      ></CategoryLabel>
+      <CategoryContentWrapper>
+        <CategoryContent>
+          {hasMappingData &&
+            lobbyCategoryList.map((provider) => {
+              const { code: gpCode, status, name } = provider;
 
-            if (gpCode === "BC") return null;
-            return (
-              <VendorCard
-                key={gpCode}
-                imageUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                launchGame={() => launchLobbyGame(gpCode)}
-                status={status}
-                venderName={name}
-              />
-            );
-          })}
-        {!hasMappingData && <div>No data</div>}
-      </CategoryContent>
-    </CategoryContentWrapper>
+              if (gpCode === "BC") return null;
+              return (
+                <VendorCard
+                  key={gpCode}
+                  imageUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  launchGame={() => launchLobbyGame(gpCode)}
+                  status={status}
+                  venderName={name}
+                />
+              );
+            })}
+          {!hasMappingData && <div>No data</div>}
+        </CategoryContent>
+      </CategoryContentWrapper>
+    </>
   );
 };
 
