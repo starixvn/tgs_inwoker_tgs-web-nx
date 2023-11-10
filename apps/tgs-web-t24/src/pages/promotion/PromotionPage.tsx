@@ -3,16 +3,8 @@ import { usePromotionPage } from "@/core/hooks/pages/promotion/usePromotionPage"
 import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import i18n from "@/utils/i18n";
-
-const PromotionContainer = styled.div`
-  padding: 22px 18px;
-  ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
-    margin: 0 auto;
-  }
-`;
+import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const PromotionCardListContainer = styled.div`
   display: flex;
@@ -39,7 +31,7 @@ const PromotionPage = () => {
     return <EmptyPage />;
   }
   return (
-    <PromotionContainer>
+    <PageContainer>
       <TitleText>{i18n.t("common.promotion")}</TitleText>
       <PromotionCardListContainer>
         {promotionList
@@ -48,7 +40,7 @@ const PromotionPage = () => {
             <PromotionCard key={promotionData.id} promotionData={promotionData} />
           ))}
       </PromotionCardListContainer>
-    </PromotionContainer>
+    </PageContainer>
   );
 };
 
