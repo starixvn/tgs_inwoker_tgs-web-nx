@@ -1,4 +1,3 @@
-import React, { MemoExoticComponent, NamedExoticComponent } from "react";
 import { ValueOf } from "@tgs-web-nx/types";
 import ProfileMenuMobile from "@/pages/profile/components/ProfileMenu/ProfileMenuMobile";
 import ProfileBirthDatePage from "@/core/components/Profile/ProfileBirthDate";

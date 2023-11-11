@@ -10,17 +10,17 @@ import { Provider } from "react-redux";
 import config from "@tgs-web-nx/config";
 import { updateHtmlTitleDescription } from "@tgs-web-nx/utils";
 import { InterceptorService } from "@tgs-web-nx/core";
+import { useInitApp } from "@tgs-web-nx/core/hooks";
+import { NotificationContextProvider } from "@tgs-web-nx/core/features";
 import AudioPlayer from "./components/tools/audioplayer";
 import FeatureGetter from "./components/tools/feature-getter";
 import { GlobalStyles } from "./global";
 import { theme } from "./theme";
 import rootReducer from "@/api-services/reducers/rootReducer";
 import App from "@/App";
-import { NotificationContextProvider } from "@/core/feature/useNotifications/contexts/notificationContext";
 import { muiTheme } from "@/theme/mui";
 import StyledSnakeBarProvider from "@/components/UI/StyledSnakeBarProvider";
 import Loading from "@/components/UI/Loading";
-import { useInitApp } from "@/core/hooks/app/useInitApp";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 

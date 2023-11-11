@@ -4,9 +4,9 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
+import { useNotifications } from "@tgs-web-nx/core/features";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
-import { useNotifications } from "@/core/feature/useNotifications";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,

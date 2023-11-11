@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import AuthDialogHeaderForMobile from "@/layouts/components/AuthDialogHeaderForMobile";
 

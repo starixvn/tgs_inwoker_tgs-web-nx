@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList } from "@/core/feature/game/useGetLobbyCategoryList";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import VendorCard from "@/pages/home/components/VendorCard";
 import { media } from "@/theme/breakpoints";
 

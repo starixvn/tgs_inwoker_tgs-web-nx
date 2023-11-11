@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
 import accountIcon from "@/assets/t24/images/menuDrawer/icon-account.svg";
 import depositIcon from "@/assets/t24/images/menuDrawer/icon-deposit.svg";
@@ -13,7 +14,6 @@ import vipIcon from "@/assets/t24/images/menuDrawer/icon-vip.svg";
 import contactIcon from "@/assets/t24/images/menuDrawer/icon-contact.svg";
 import downloadIcon from "@/assets/t24/images/menuDrawer/icon-download.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();

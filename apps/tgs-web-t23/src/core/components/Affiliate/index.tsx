@@ -3,12 +3,12 @@ import styled from "styled-components";
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { ImageActionEnum, useImageActions } from "@tgs-web-nx/core/hooks";
 import AffiliateInfoRow from "@/pages/affiliate/components/AffiliateInfoRow";
 import RebateTable from "@/pages/affiliate/components/RebateTable";
 import { useRebateTable } from "@/core/components/Affiliate/hooks/useRebateTable";
 import { Select } from "@/components/UI/Select";
 import { FormControl } from "@/components/styled-component/ProfileForms";
-import { ImageActionEnum, useImageActions } from "@/core/hooks/tools/useImageActions";
 import { media } from "@/theme/breakpoints";
 import { QRCodeButton } from "@/pages/affiliate/components/QRCodeButton";
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { useGameType } from "@tgs-web-nx/core/features";
 import dots from "@/assets/t23/images/home/dots.svg";
-import { useGameType } from "@/core/feature/game/hooks/useGameType";
 import { GameTypeEnum } from "@/constants/GameTypeEnum";
 import { media } from "@/theme/breakpoints";
 

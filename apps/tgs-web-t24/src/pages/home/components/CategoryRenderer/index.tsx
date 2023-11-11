@@ -1,7 +1,7 @@
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import HomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory";
 import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
 import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/components/NonLobbyCategory";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { GameTypeEnum } from "@/constants/GameTypeEnum";
 
 const CategoryRenderer = () => {

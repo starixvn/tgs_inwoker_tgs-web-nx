@@ -2,12 +2,13 @@ import React, { useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useAuth, useHeader } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
 import AnonymousHeaderContent from "@/layouts/components/Header/components/AnonymousHeaderContent";
 import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
-import { useHeader } from "@/core/feature/useHeader";
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
 import profileImg from "@/assets/t23/images/header/sideMenuItem/icon-account.svg";
 import transferImg from "@/assets/t23/images/header/sideMenuItem/icon-transfer.svg";
@@ -15,9 +16,7 @@ import reportImg from "@/assets/t23/images/header/sideMenuItem/icon-report.svg";
 import inboxImg from "@/assets/t23/images/header/sideMenuItem/icon-inbox.svg";
 import affiliateImg from "@/assets/t23/images/header/sideMenuItem/icon-affiliate.svg";
 import downloadImg from "@/assets/t23/images/header/sideMenuItem/icon-download.svg";
-import { useAuth } from "@/core/feature/useAuth";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};

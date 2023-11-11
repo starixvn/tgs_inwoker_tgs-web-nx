@@ -52,11 +52,11 @@ const BalanceTracker = ({ size, ...others }: Props) => {
 
   const handleClick = useCallback(() => {
     history.push("/deposit");
-  }, []);
+  }, [history]);
 
   const handleRefreshBalance = useCallback(async () => {
     await getBalanceList();
-  }, []);
+  }, [getBalanceList]);
 
   const isShow = size !== "small";
   return (

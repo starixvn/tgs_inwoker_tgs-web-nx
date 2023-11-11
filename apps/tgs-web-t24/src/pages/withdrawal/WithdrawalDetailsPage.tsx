@@ -1,12 +1,12 @@
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import Details from "@/core/components/WithdrawalPrev/Details";
-import { useNotifications } from "@/core/feature/useNotifications";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 const WithdrawalDetails = () => {

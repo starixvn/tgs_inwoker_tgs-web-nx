@@ -2,13 +2,13 @@ import React, { useMemo } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { ValueOf } from "@tgs-web-nx/types";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import {
   profilePageDictionary,
   ProfilePathEnum,
 } from "@/core/components/Profile/profilePageDictionary";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

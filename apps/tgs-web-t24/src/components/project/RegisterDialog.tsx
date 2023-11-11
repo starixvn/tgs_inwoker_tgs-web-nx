@@ -1,7 +1,7 @@
 import React from "react";
+import { useAuthDialog } from "@tgs-web-nx/core/features";
 import RegisterForm from "@/pages/register/components/RegisterForm";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
-import { useAuthDialog } from "@/core/feature/useAuthDialog";
 
 const RegisterDialog = () => {
   const { isRegisterDialogOpen, handleToggleRegisterDialog } = useAuthDialog();

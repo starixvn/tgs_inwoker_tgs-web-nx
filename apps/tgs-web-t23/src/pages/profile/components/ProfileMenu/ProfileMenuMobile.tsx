@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useProfileMenu } from "@/core/hooks/account/useProfileMenu";
+import { useProfileMenu } from "@tgs-web-nx/core/hooks";
 import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
 
 const ProfileCard = styled.div`

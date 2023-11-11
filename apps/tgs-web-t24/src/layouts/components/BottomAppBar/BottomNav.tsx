@@ -1,7 +1,5 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
-import { TFunctionDetailedResult } from "i18next";
-import { RouteCategoryEnum } from "@/router";
 import Icon from "@/components/project/Icon";
 
 const BottomNavContainer = styled.div`

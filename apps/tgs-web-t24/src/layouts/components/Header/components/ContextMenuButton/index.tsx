@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useAuth } from "@tgs-web-nx/core/features";
 import ContextMenu from "@/layouts/components/Header/components/ContextMenuButton/components/ContextMenu";
 import avatarImg from "@/assets/t24/images/contextButton/icon.svg";
 import Modal from "@/components/UI/Modal";
 import Loading from "@/components/UI/Loading";
-import { useAuth } from "@/core/feature/useAuth";
 
 const ContextMenuButtonContainer = styled.div`
   height: 36px;

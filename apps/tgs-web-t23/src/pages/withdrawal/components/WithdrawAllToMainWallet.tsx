@@ -54,7 +54,7 @@ const WithdrawAllToMainWallet = ({ label = "", buttonText = "", ...others }: Pro
           fullWidth
           disabled={isLoading}
         >
-          <>{buttonText || i18n.t("transfer.oneKeyTransferAll")}</>
+          {buttonText || i18n.t("transfer.oneKeyTransferAll")}
         </SubmitButton>
       </ButtonWrapper>
     </>

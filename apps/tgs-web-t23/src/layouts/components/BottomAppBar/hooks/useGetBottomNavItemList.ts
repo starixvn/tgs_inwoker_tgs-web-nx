@@ -4,12 +4,12 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { RouteCategoryEnum } from "@/router";
 import { BottomNavItem } from "@/layouts/components/BottomAppBar/BottomNav";
-import { useRoute } from "@/core/hooks/tools/useRoute";
 import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
 import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
 import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
 import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
 import iconWithdrawal from "@/assets/t23/images/bottomNavBar/icon-withdrawal.svg";
+import { useRoute } from "@/hooks/useRoute";
 
 export function useGetBottomNavItemList() {
   const location = useLocation();

@@ -4,9 +4,9 @@ import moment from "moment";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
+import { useNotifications } from "@tgs-web-nx/core/features";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
-import { useNotifications } from "@/core/feature/useNotifications";
 import {
   ItemContainer,
   LabelContainer,

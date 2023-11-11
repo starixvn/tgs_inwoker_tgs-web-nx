@@ -3,15 +3,16 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Promotion } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+import { usePromotion } from "@tgs-web-nx/core/hooks";
+import { usePopup } from "@tgs-web-nx/core/features";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import usePromotion from "@/core/hooks/tools/usePromotion";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
-import { usePopup } from "@/core/feature/usePopup";
 import PromotionBanner from "@/components/project/Popup/components/PromotionBanner";
+
 const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
 const StyledDialog = styled(MuiDialog)`

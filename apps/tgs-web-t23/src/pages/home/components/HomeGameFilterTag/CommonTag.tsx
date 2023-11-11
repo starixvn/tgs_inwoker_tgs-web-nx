@@ -3,9 +3,9 @@ import styled from "styled-components";
 const Wrapper = styled.div<{
   $isActive: boolean;
 }>`
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100px;
   min-width: 60px;
   max-width: none;
@@ -14,12 +14,11 @@ const Wrapper = styled.div<{
   box-sizing: border-box;
   user-select: none;
   background-color: transparent;
-  padding:4px;
+  padding: 4px;
 
   &:hover {
     cursor: pointer;
   }
-   
 `;
 
 const Text = styled.div<{

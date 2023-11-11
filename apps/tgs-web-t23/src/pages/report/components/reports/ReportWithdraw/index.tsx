@@ -3,12 +3,12 @@ import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
 import { ReportService } from "@tgs-web-nx/core";
-import { useNotifications } from "@/core/feature/useNotifications";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import { useWithdrawalStatus } from "@/core/components/Report/hooks/useWithdrawalStatus";
 import StatusSelect from "@/pages/report/components/StatusSelect";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import WithdrawalDetailTable from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
 import WithdrawalDetailCards from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";
 import { ReportContainer } from "@/components/styled-component/Report";
@@ -65,7 +65,7 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
     setPage(currentPage);
     fetchReports(currentPage);
     setIsMaxPage(false);
-  }, [JSON.stringify(dateRangeInfo), status]);
+  }, [dateRangeInfo, fetchReports, status]);
 
   const handleLoadMore = async () => {
     if (isMaxPage) return;

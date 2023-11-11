@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import refreshImg from "@/assets/t18/images/account/balanceTracker/refresh.svg";
 
 type StyledRefreshButtonProps = {

@@ -1,7 +1,6 @@
 import React from "react";
+import { useRegisterPage, useRwd } from "@tgs-web-nx/core/hooks";
 import RegisterForm from "@/pages/register/components/RegisterForm";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useRegisterPage } from "@/core/hooks/pages/register/useRegisterPage";
 
 const RegisterPage = () => {
   useRegisterPage();

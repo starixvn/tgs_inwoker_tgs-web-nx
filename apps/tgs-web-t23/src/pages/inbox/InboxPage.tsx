@@ -1,11 +1,11 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import Inbox from "@/core/components/Inbox";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconInbox from "@/assets/t23/images/badge/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const InboxPage = () => {

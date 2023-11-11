@@ -2,10 +2,9 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
-import { useHeader } from "@/core/feature/useHeader";
-import { useAuthDialog } from "@/core/feature/useAuthDialog";
 
 const ButtonContainer = styled.div`
   display: flex;

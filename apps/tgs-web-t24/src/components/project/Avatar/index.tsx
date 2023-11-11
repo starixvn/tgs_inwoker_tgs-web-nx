@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Common } from "@tgs-web-nx/utils";
-import { useAccountStore } from "@tgs-web-nx/core";
-import { useWalletStore } from "@tgs-web-nx/core";
+import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import VipMedal from "@/components/project/VipMedal";
 import Icon from "@/components/project/Icon";
 import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";

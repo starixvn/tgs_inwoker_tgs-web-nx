@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { useOnlineUser } from "@tgs-web-nx/core/hooks";
 import member from "@/assets/t24/images/home/member.svg";
-import useOnlineUser from "@/core/hooks/tools/useOnlineUser";
 
 const Wrapper = styled.div`
   min-width: 100px;
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.div`
-  color:  ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.white};
 `;
 
 const OnlineUser = () => {

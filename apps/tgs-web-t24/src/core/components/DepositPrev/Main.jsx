@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { i18n } from "@tgs-web-nx/utils";
-import { utility } from "@tgs-web-nx/utils";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
 import {
   FormControl,

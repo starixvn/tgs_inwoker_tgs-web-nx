@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import dislikeIcon from "@/assets/t23/images/home/disLike.svg";
 import likeIcon from "@/assets/t23/images/home/fullLike.svg";
-import { media } from "@/theme/breakpoints";
+import {media} from "@/theme/breakpoints";
 
 const LikeIcon = styled.div<{ $imageUrl: string }>`
   width: 15px;

@@ -1,9 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useAuthDialog, useNotifications } from "@tgs-web-nx/core/features";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
-import { useNotifications } from "@/core/feature/useNotifications";
-import { useAuthDialog } from "@/core/feature/useAuthDialog";
 import BrandLogo from "@/components/BrandLogo";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 

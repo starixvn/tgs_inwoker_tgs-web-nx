@@ -1,7 +1,7 @@
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHeader } from "@/core/feature/useHeader";
+import { useHeader } from "@tgs-web-nx/core/features";
 import { DESKTOP_DRAWER_WIDTH, MOBILE_DRAWER_WIDTH } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
 

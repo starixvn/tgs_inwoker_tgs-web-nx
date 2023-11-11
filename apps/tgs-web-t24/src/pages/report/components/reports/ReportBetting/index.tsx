@@ -4,12 +4,12 @@ import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { ReportService } from "@tgs-web-nx/core";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { ReportContainer } from "@/components/styled-component/Report";
-import { useNotifications } from "@/core/feature/useNotifications";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
 import TransactionDetailCards from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailCards";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
 import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 

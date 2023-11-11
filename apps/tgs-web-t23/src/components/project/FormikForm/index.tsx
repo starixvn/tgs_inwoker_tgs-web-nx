@@ -1,11 +1,8 @@
 import React from "react";
 import * as Yup from "yup";
 import styled from "styled-components";
-import { Button } from "@/components/UI/Button";
-import {
-  FormInputFactory,
-  FormInputTypeEnum,
-} from "@/components/project/FormikForm/FormInputFactory";
+import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
+import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const ErrorMessageContainer = styled.div`

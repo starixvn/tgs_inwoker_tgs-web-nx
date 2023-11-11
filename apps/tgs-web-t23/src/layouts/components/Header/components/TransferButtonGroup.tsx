@@ -2,8 +2,8 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import { useHeader } from "@tgs-web-nx/core/features";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
-import { useHeader } from "@/core/feature/useHeader";
 
 const ButtonContainer = styled.div`
   display: flex;

@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { BrandsSupport } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { useContactCS } from "@tgs-web-nx/core/hooks";
 import SupportCard from "@/pages/contactUs/components/SupportCard";
 import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/core/components/Support/IMHandler";
-import { useContactCS } from "@/core/hooks/tools/useContactCS";
 import HeaderImage from "@/pages/contactUs/components/HeaderImage";
 
 const SupportContainer = styled.div``;

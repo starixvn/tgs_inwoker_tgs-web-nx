@@ -3,11 +3,11 @@ import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { GameBalanceInfosViewModel } from "@tgs-web-nx/types";
 import { ReportService } from "@tgs-web-nx/core";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { ReportContainer } from "@/components/styled-component/Report";
-import { useNotifications } from "@/core/feature/useNotifications";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import TransferDetailTable from "@/pages/report/components/reports/ReportTransfer/components/TransferDetailTable";
 import TransferDetailCard from "@/pages/report/components/reports/ReportTransfer/components/TransferDetailCard";
 

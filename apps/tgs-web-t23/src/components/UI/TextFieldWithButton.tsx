@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { InputAdornment, TextFieldProps } from "@mui/material";
+import { TextFieldProps } from "@mui/material";
 import { TextField } from "@/components/UI/TextField";
 import { Button } from "@/components/UI/Button";
 

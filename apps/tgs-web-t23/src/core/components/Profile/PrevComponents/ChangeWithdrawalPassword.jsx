@@ -38,11 +38,7 @@ class ChangeWithdrawalPassword extends BaseProfile {
       return;
     }
     this.showLoading(true);
-    AccountService.ChangeWithdrawalPassword(
-      oldpassword,
-      newpassword,
-      newpassword2
-    )
+    AccountService.ChangeWithdrawalPassword(oldpassword, newpassword, newpassword2)
       .then((response) => {
         if (response.IsSuccess) {
           this.props.alert("", response.info);
@@ -75,9 +71,7 @@ class ChangeWithdrawalPassword extends BaseProfile {
     return isDisableButton;
   };
   render() {
-    return (
-      <ResetWithdrawalPassword alert={this.props.alert} />
-    );
+    return <ResetWithdrawalPassword alert={this.props.alert} />;
   }
 }
 

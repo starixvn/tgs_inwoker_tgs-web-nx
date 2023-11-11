@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { RankItem } from "@/pages/home/components/Ranking/components/RankItemRow";
-import { mockUserBetDictionary } from "@/pages/home/components/Ranking/mocks/userBetDictionary";
-import { BetRecord } from "@/pages/home/components/Ranking/components/BetRecordRow";
-import { mockLeaderboard } from "@/pages/home/components/Ranking/mocks/leaderboard";
+import {useEffect, useState} from "react";
+import {RankItem} from "@/pages/home/components/Ranking/components/RankItemRow";
+import {mockUserBetDictionary} from "@/pages/home/components/Ranking/mocks/userBetDictionary";
+import {BetRecord} from "@/pages/home/components/Ranking/components/BetRecordRow";
+import {mockLeaderboard} from "@/pages/home/components/Ranking/mocks/leaderboard";
 
 // this dictionary is used for calculate rank
 const userBetDictionary: { [key in string]: RankItem } = (function () {

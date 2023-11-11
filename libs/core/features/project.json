@@ -1,0 +1,16 @@
+{
+  "name": "core-features",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core/features/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/core/features/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

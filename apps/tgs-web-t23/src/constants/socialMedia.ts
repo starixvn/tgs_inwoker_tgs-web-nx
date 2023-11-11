@@ -6,12 +6,4 @@ import telegram from "@/assets/t18/images/home/mobile/social_media/telegram.svg"
 import wechat from "@/assets/t18/images/home/mobile/social_media/wechat.svg";
 import whatsapp from "@/assets/t18/images/home/mobile/social_media/whatapp.svg";
 
-export const socialMediaIconList: string[] = [
-  fb,
-  ig,
-  wechat,
-  telegram,
-  whatsapp,
-  talk,
-  mail,
-];
+export const socialMediaIconList: string[] = [fb, ig, wechat, telegram, whatsapp, talk, mail];

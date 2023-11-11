@@ -1,7 +1,6 @@
-
 import styled from "styled-components";
+import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import ScrollableHomeCategoryFolder from "./components/ScrollableHomeCategoryFolder";
-import { useGetHomeCategoryList } from "@/core/feature/game/useGetHomeCategoryList";
 
 const HomeCategoryContainer = styled.div`
   display: flex;

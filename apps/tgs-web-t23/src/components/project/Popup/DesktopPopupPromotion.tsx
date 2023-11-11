@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Promotion } from "@tgs-web-nx/types";
+import { usePromotion } from "@tgs-web-nx/core/hooks";
+import { usePopup } from "@tgs-web-nx/core/features";
 import IconStarUrl from "@/assets/t23/images/promotion/icon_star.svg";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import usePromotion from "@/core/hooks/tools/usePromotion";
 import { media } from "@/theme/breakpoints";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
-import { usePopup } from "@/core/feature/usePopup";
 import PromotionBanner from "@/components/project/Popup/components/PromotionBanner";
+
 const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
 const StyledDialog = styled(MuiDialog)`

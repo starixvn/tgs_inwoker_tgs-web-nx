@@ -1,8 +1,8 @@
-import { createTheme, ThemeOptions } from "@mui/material";
-import { i18n } from "@tgs-web-nx/utils";
-import { breakpoints } from "@/theme/breakpoints";
-import { fontFamily } from "@/theme/fontFamily";
-import { theme } from "@/theme";
+import {createTheme, ThemeOptions} from "@mui/material";
+import {i18n} from "@tgs-web-nx/utils";
+import {breakpoints} from "@/theme/breakpoints";
+import {fontFamily} from "@/theme/fontFamily";
+import {theme} from "@/theme";
 
 //@ts-ignore
 theme.lang = i18n.language;

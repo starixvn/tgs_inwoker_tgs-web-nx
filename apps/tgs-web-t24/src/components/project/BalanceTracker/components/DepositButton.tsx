@@ -2,12 +2,11 @@ import { useHistory } from "react-router-dom";
 import React, { useCallback } from "react";
 import { Add as AddIcon } from "@mui/icons-material";
 import styled from "styled-components";
-import { useMediaQuery, useTheme } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import depositIcon from "@/assets/t18/images/header/deposit_icon.svg";
 import Icon from "@/components/project/Icon";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const DepositButtonContainer = styled.div`
   background: linear-gradient(180deg, #922acf 0%, #2f26ad 100%);

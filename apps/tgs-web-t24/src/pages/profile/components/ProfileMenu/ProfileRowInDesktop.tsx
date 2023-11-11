@@ -1,8 +1,8 @@
 import { useTheme } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
+import { ProfileItem } from "@tgs-web-nx/core/hooks";
 import { Button } from "@/components/UI/Button";
-import { ProfileItem } from "@/core/hooks/account/useProfileMenu";
 
 const ProfileItemContainer = styled.div`
   width: 100%;
