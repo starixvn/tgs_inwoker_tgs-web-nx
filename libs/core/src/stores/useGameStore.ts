@@ -19,8 +19,8 @@ import {
   SETFAVGAME_BEGIN,
   SETFAVGAME_FAIL,
   SETFAVGAME_SUCCESS,
-} from "@/api-services/constant/actionType";
-import { GameService } from "@/core/services/GameService";
+} from "../api-services/constant/actionType";
+import { GameService } from "../services";
 
 export function useGameStore() {
   const dispatch = useDispatch();

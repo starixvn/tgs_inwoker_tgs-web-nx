@@ -3,11 +3,10 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import { useNotifications } from "@/core/feature/useNotifications";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { AccountService } from "@/core/services/AccountService";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,

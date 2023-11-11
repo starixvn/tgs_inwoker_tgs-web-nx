@@ -27,26 +27,15 @@ const TitleText = styled.div`
   text-align: start;
 `;
 
-export interface TypeProductRebateByLevel {
-  name: string;
-  rebate: number[];
-}
-
 const BettingBonusPage = () => {
   const { isLoading, currentLevel, productRebateByLevel } = useBettingBonus();
 
   if (isLoading) return <Loading show={true} />;
   return (
     <Container>
-      <CurrentLevelBanner
-        level={currentLevel}
-        productRebateByLevel={productRebateByLevel}
-      />
+      <CurrentLevelBanner level={currentLevel} productRebateByLevel={productRebateByLevel} />
       <TitleText>Ratio of Bet Bonus</TitleText>
-      <LevelTable
-        currentLevel={currentLevel}
-        productRebateByLevel={productRebateByLevel}
-      />
+      <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
     </Container>
   );
 };

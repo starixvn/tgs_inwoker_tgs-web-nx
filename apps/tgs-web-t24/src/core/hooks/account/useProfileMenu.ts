@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useCallback, useMemo } from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useAccountStore } from "@tgs-web-nx/core";
 
 export interface ProfileItem {
   key: string;

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { GameItem } from "@tgs-web-nx/types";
+import { GameService } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { getFilteredGameListByProvider } from "@/core/feature/game/utils/getFilteredGameListByProvider";
 import { getFilteredGameListByTag } from "@/core/feature/game/utils/getFilteredGameListByTag";
-import { GameService } from "@/core/services/GameService";
 
 interface GetGameListState {
   isLoading: boolean;

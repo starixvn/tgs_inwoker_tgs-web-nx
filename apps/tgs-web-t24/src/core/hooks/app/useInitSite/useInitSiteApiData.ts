@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import config from "@tgs-web-nx/config";
-import { BlowFishEncryption } from "@tgs-web-nx/utils";
-import { i18n } from "@tgs-web-nx/utils";
-import { ErrorSwitcher } from "@tgs-web-nx/utils";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useUiStore } from "@/core/stores/useUiStore";
-import { useWalletStore } from "@/core/stores/useWalletStore";
-import { useInboxStore } from "@/core/stores/useInboxStore";
-import { useGameStore } from "@/core/stores/useGameStore";
-import { GeneralService } from "@/core/services/GeneralService";
+import { BlowFishEncryption, ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import {
+  GeneralService,
+  useAccountStore,
+  useGameStore,
+  useGeneralStore,
+  useInboxStore,
+  useUiStore,
+  useWalletStore,
+} from "@tgs-web-nx/core";
 
 export function useInitSiteApiData() {
   const {

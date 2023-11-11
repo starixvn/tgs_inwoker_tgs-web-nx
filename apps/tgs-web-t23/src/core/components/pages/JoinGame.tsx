@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { GameService } from "@tgs-web-nx/core";
 import Loading from "@/components/UI/Loading";
 import MaintenancePage from "@/pages/MaintenancePage";
-import { GameService } from "@/core/services/GameService";
 
 const JoinGame = () => {
   const { gameId, gpCode } = useParams<{ gameId: string; gpCode: string }>();

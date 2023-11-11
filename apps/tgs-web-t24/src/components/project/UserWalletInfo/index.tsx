@@ -2,12 +2,9 @@ import React, { useState } from "react";
 import styled, { DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useAccountStore, useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import refreshIcon from "@/assets/t24/images/account/icon-refresh.svg";
-import { useGameStore } from "@/core/stores/useGameStore";
-import { useWalletStore } from "@/core/stores/useWalletStore";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 

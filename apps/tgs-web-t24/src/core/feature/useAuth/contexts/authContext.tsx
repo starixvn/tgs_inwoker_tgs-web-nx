@@ -1,9 +1,9 @@
 import React, { createContext } from "react";
 import { RegisterReqDto } from "@tgs-web-nx/types";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { LoginState, useLogin } from "@/core/feature/useAuth/hooks/useLogin";
 import { LogoutState, useLogout } from "@/core/feature/useAuth/hooks/useLogout";
 import { RegisterState, useRegister } from "@/core/feature/useAuth/hooks/useRegister";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 
 export const initialState: {
   loginState: LoginState;

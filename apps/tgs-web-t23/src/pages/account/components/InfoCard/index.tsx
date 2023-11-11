@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Common } from "@tgs-web-nx/utils";
+import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import cardBackground from "@/assets/t23/images/account/infoCard/card-background.png";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import VipMedal from "@/components/project/VipMedal";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
-import { useWalletStore } from "@/core/stores/useWalletStore";
 
 const InfoCardContainer = styled.div`
   background: url(${cardBackground});

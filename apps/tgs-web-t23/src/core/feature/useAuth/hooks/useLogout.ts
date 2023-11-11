@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useAccountStore } from "@tgs-web-nx/core";
 
 export type LogoutState = {
   data: any | null;

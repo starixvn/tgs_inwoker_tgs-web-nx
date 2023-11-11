@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { ReportService } from "@/core/services/ReportService";
 
 export interface PlatformStatusDictionary {
   [key: string]: string | null;
@@ -7,8 +6,7 @@ export interface PlatformStatusDictionary {
 
 // TODO: no platform status found
 export function usePlatformStatus() {
-  const [statusDictionary, setStatusDictionary] =
-    useState<PlatformStatusDictionary>({});
+  const [statusDictionary, setStatusDictionary] = useState<PlatformStatusDictionary>({});
   const [status, setStatus] = useState("");
 
   useEffect(() => {

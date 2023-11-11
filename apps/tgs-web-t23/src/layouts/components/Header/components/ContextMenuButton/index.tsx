@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useAccountStore } from "@tgs-web-nx/core";
 import ContextMenu from "@/layouts/components/Header/components/ContextMenuButton/components/ContextMenu";
 import avatarImg from "@/assets/t23/images/account/avatar.svg";
-import SvgIcon from "@/components/UI/SvgIcon";
 import Modal from "@/components/UI/Modal";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import { media } from "@/theme/breakpoints";
 import Loading from "@/components/UI/Loading";
 import arrowImg from "@/assets/t23/images/header/contextMenu/icon_arrow.svg";

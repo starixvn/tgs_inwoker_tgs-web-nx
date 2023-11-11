@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { useWalletStore } from "@/core/stores/useWalletStore";
-import { useGameStore } from "@/core/stores/useGameStore";
-import { Button } from "@/components/UI/Button";
+import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const CustomLabel = styled.div`

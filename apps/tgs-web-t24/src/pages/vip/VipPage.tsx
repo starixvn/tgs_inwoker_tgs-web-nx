@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useAccountStore } from "@tgs-web-nx/core";
 import useVipStore from "@/core/hooks/tools/useVipStore";
 import { media } from "@/theme/breakpoints";
 import { levelItemStyleList } from "@/constants/vip";

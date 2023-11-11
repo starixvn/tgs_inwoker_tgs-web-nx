@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { GameItem, ProviderDto } from "@tgs-web-nx/types";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { GameTypeEnum } from "@/constants/GameTypeEnum";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 
 export enum FilterTagTypeEnum {
   "PROVIDER" = "PROVIDER",

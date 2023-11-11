@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import ImageCard from "./components/ImageCard";
-import PromotionCard from "./components/HomePromotionCard";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import HomePromotionCard from "./components/HomePromotionCard";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
-import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import promotionBanner from "@/assets/t24/images/home/promo-banner.png";
@@ -121,24 +116,21 @@ const HomePage = () => {
         {/* GameTypeTab - left side menu */}
         {/* {isMobileSize && !activeGameType && <GameTypeTab />} */}
 
-        {isDesktopSize && !activeGameType &&
+        {isDesktopSize && !activeGameType && (
           <HomePromotionBanner>
             <HomePromotionCard />
           </HomePromotionBanner>
-        }
+        )}
 
         {/* Ad - Welcome to PG */}
-        {isMobileSize && !activeGameType &&
+        {isMobileSize && !activeGameType && (
           <HomePromotionWrapper>
             <HomePromotionCard />
             <SliderWrapper>
               <Slider />
             </SliderWrapper>
           </HomePromotionWrapper>
-        }
-
-
-
+        )}
 
         {/* Promotion card - Casino & Sports */}
 

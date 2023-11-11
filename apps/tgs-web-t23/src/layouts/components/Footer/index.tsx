@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import gc from "@/assets/t23/images/home/gc.png";
 import SocialMedia from "@/components/project/SocialMedia";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
 
 const FooterContainer = styled.div`

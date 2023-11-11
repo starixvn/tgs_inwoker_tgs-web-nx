@@ -3,6 +3,7 @@ import { useCallback } from "react";
 // import { AccountState } from "@tgs-web-nx/types";
 import { AccountState } from "@tgs-web-nx/types";
 import { RegisterReqDto } from "@tgs-web-nx/types";
+import { AccountService } from "../services";
 import {
   CHECKTOKEN_BEGIN,
   CHECKTOKEN_FAILURE,
@@ -26,8 +27,7 @@ import {
   UPDATECARDNO_BEGIN,
   UPDATECARDNO_FAILURE,
   UPDATECARDNO_SUCCESS,
-} from "@/api-services/constant/actionType";
-import { AccountService } from "@/core/services/AccountService";
+} from "../api-services/constant/actionType";
 
 export function useAccountStore() {
   const dispatch = useDispatch();

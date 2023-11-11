@@ -1,11 +1,10 @@
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
+import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useNavigation } from "@/core/hooks/tools/pageProps/useNavigation";
-import { useUiStore } from "@/core/stores/useUiStore";
 import { useGetSupportUrl } from "@/core/hooks/tools/pageProps/useGetSupportUrl";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 
 export function usePageProps() {
   // general

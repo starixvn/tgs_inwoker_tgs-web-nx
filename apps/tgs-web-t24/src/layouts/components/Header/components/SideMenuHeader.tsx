@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import headerBg from "@/assets/t23/images/header/side-menu-bg.png";
 import Avatar from "@/components/project/Avatar";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useHeader } from "@/core/feature/useHeader";
 import { useAuth } from "@/core/feature/useAuth";
 

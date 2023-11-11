@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { SelectChangeEvent } from "@mui/material";
 import { BrandAllAgent } from "@tgs-web-nx/types";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 
 export interface SelectItem {
   label: string;

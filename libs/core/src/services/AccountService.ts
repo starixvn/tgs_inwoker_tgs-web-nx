@@ -15,7 +15,7 @@ import {
   UpdatePhoneResDto,
 } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { ApiService } from "@/api-services/services/ApiService";
+import { ApiService } from "../api-services/services/ApiService";
 
 function CheckUserName(username: string) {
   return ApiService.get(`Player/checkUsername?=${username}`);

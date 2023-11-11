@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import authImage from "@/assets/t23/images/auth/login-header-img 1.png";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { usePageName } from "@/core/feature/usePageName";
 
 const AuthDialogImageContainer = styled.div`

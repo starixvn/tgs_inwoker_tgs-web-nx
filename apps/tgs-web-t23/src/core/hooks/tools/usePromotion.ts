@@ -1,4 +1,4 @@
-import { useGeneralStore } from "../../stores/useGeneralStore";
+import { useGeneralStore } from "@tgs-web-nx/core";
 
 const usePromotion = () => {
   const { general } = useGeneralStore();

@@ -1,13 +1,13 @@
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
 import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 

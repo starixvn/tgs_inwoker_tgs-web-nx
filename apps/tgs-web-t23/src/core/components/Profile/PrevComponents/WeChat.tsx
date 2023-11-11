@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import { useAccountStore } from "@tgs-web-nx/core";
+import { AccountService } from "@tgs-web-nx/core";
 import { useNotifications } from "@/core/feature/useNotifications";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import Loading from "@/components/UI/Loading";
 import BottomNote from "@/components/UI/BottomNote";
-import { AccountService } from "@/core/services/AccountService";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
