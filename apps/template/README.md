@@ -64,7 +64,7 @@ export default defineConfig({
 
 
 # CICD
-## 1. create docker-build custom script
+## 1. create docker-build custom script in `project.json`
 ```typescript jsx
 {
   "targets": {
