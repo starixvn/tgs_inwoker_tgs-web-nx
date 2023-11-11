@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import config from "@tgs-web-nx/config";
-import { useUiStore } from "@/core/stores/useUiStore";
+import { useUiStore } from "@tgs-web-nx/core";
 import { useAudio } from "@/core/hooks/tools/useAudio";
 
 export function usePopupAnnouncementToggle() {

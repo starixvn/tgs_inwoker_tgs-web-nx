@@ -1,7 +1,7 @@
 import { Promotion } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 
 export function usePromotionPage() {
   useUpdatePageName(i18n.t("common.promotion"));

@@ -4,8 +4,8 @@ import { Textfit } from "react-textfit";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import { AccountService } from "@tgs-web-nx/core";
 import { useNotifications } from "@/core/feature/useNotifications";
-import { AccountService } from "@/core/services/AccountService";
 import { theme } from "@/theme";
 
 const Wrapper = styled.div`

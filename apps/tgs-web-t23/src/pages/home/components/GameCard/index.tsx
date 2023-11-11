@@ -3,11 +3,10 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
 import { Common } from "@tgs-web-nx/utils";
+import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import TextButton from "../TextButton";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useGameStore } from "@/core/stores/useGameStore";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 

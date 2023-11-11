@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGameStore } from "@/core/stores/useGameStore";
+import { useGameStore } from "@tgs-web-nx/core";
 
 export enum ReportTabIndexEnum {
   "PLATFORM" = 1,

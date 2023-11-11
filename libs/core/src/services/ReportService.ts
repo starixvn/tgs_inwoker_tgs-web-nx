@@ -8,7 +8,7 @@ import {
   GetWithdrawalDetailsResDto,
   GetWithdrawalStatusResDto,
 } from "@tgs-web-nx/types";
-import { ApiService } from "@/api-services/services/ApiService";
+import { ApiService } from "../api-services/services/ApiService";
 
 export const ReportService = {
   GetTransactionDetails,

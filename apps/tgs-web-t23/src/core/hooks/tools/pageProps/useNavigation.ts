@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useAccountStore } from "@tgs-web-nx/core";
 
 export function useNavigation() {
   const appHistory = useHistory();

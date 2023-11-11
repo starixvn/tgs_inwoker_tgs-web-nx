@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import MenuButton from "@/layouts/components/Header/components/MenuButton";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import { HEADER_HEIGHT } from "@/theme/constants";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import iconClose from "@/assets/t24/images/menuDrawer/close.svg";
 import Icon from "@/components/project/Icon";
 import { useHeader } from "@/core/feature/useHeader";

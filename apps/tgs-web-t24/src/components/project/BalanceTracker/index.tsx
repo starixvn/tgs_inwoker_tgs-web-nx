@@ -1,9 +1,8 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import { Common } from "@tgs-web-nx/utils";
-import { useWalletStore } from "@/core/stores/useWalletStore";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useWalletStore } from "@tgs-web-nx/core";
 import iconMoney from "@/assets/t24/images/balanceTracker/icon_money.svg";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -57,11 +56,7 @@ const BalanceTracker = ({ size, ...others }: Props) => {
   const isShow = size !== "small";
   return (
     <BalanceTrackerContainer $size={size} {...others}>
-      {isShow && (
-        <span>
-          {i18n.t("wap.main.account.totalFund")}
-        </span>
-      )}
+      {isShow && <span>{i18n.t("wap.main.account.totalFund")}</span>}
 
       <BalanceContainer>
         <span onClick={handleClick}>{`${wallet.mainSymbol}$ ${currentBalance}`}</span>

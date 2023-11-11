@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import HomePromotionCard from "./components/HomePromotionCard";
 import ImageCard from "./components/ImageCard";
 import CardPrompt from "@/pages/home/components/CardPrompt";
@@ -8,7 +9,6 @@ import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
 
 import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";

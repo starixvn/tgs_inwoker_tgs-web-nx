@@ -1,6 +1,6 @@
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import { DESKTOP_DRAWER_WIDTH } from "@/theme/constants";
 
 type LoadingContainer = {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { GameItem } from "@tgs-web-nx/types";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { GameService } from "@/core/services/GameService";
+import { GameService } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 

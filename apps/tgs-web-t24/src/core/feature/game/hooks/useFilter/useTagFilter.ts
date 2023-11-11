@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 import { filterTagAll } from "@/core/feature/game/constants/filterTagAll";
 

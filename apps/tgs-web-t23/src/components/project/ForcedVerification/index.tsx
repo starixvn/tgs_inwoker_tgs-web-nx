@@ -4,8 +4,8 @@ import { Textfit } from "react-textfit";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import { AccountService } from "@tgs-web-nx/core";
 import { useNotifications } from "@/core/feature/useNotifications";
-import { AccountService } from "@/core/services/AccountService";
 import { theme } from "@/theme";
 
 const Wrapper = styled.div`
@@ -125,7 +125,7 @@ const ForcedVerification = ({ forceVerify }: ForcedVerificationProps) => {
           "",
           i18n
             .t("common.noReachMin")
-            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`)
+            .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
         );
         return;
       }
@@ -170,7 +170,7 @@ const ForcedVerification = ({ forceVerify }: ForcedVerificationProps) => {
     if (!expr.test(phone)) {
       alert(
         "",
-        i18n.t("common.noReachMin").replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH}`)
+        i18n.t("common.noReachMin").replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH}`),
       );
       return;
     }

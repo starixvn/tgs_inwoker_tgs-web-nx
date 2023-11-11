@@ -1,8 +1,8 @@
 import { Promotion } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+import { useGeneralStore } from "@tgs-web-nx/core";
+import { NOT_SHOW_JOIN_BUTTON_KEY_LIST } from "@tgs-web-nx/constants";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { NOT_SHOW_JOIN_BUTTON_KEY_LIST } from "@/constants/promotion";
 
 export interface PromotionDetail {
   promotionData: Promotion | undefined;

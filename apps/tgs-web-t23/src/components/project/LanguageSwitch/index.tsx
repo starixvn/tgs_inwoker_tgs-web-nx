@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  FormControlProps,
   MenuItem as MuiMenuItem,
   Select as MuiSelect,
   SelectChangeEvent,
@@ -9,7 +8,7 @@ import {
 import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import { theme } from "@/theme";
 
 export const imageMap: { [key in string]: string } = {

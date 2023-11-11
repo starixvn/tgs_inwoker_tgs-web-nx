@@ -1,7 +1,6 @@
 import { useState } from "react";
 import config from "@tgs-web-nx/config";
-import { useUiStore } from "@/core/stores/useUiStore";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
 import { useAudio } from "@/core/hooks/tools/useAudio";
 
 export function usePopupPromotionToggle() {

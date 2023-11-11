@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useGeneralStore } from "@/core/stores/useGeneralStore"; // Import the RootState type
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core"; // Import the RootState type
 
 const Content = styled.div`
   font-size: 0.937rem;

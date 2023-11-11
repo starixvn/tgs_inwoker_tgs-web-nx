@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import config from "@tgs-web-nx/config";
+import { useUiStore } from "@tgs-web-nx/core";
 import DepositPopupAnnouncement from "@/pages/deposit/components/components/DepositNotificationDialog/DepositPopupAnnouncement";
-import { useUiStore } from "@/core/stores/useUiStore";
 
 const DepositNotificationDialog = () => {
   const { ui } = useUiStore();

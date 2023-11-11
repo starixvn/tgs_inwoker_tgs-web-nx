@@ -1,8 +1,13 @@
-import { GetGameListResDto, GetProviderListResDto, JoinGameResDto } from "@tgs-web-nx/types";
+import {
+  GetGameListResDto,
+  GetProviderListResDto,
+  JoinGameResDto,
+  JoinLobbyGameResDto,
+} from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { ApiService } from "@/api-services/services/ApiService";
-import { GameService as PrevGameService } from "@/api-services/services/GameService";
+import { ApiService } from "../api-services/services/ApiService";
+import { GameService as PrevGameService } from "../api-services/services/GameService";
 
 export const GameService = {
   ...PrevGameService,

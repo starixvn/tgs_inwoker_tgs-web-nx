@@ -1,8 +1,6 @@
 import { useCallback } from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { Common } from "@tgs-web-nx/utils";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { useAccountStore } from "@/core/stores/useAccountStore";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useAuth } from "@/core/feature/useAuth";
 
 interface ContactCSProps {
@@ -30,7 +28,7 @@ export function useContactCS() {
         }
       }
     },
-    [general.livechat]
+    [general.livechat],
   );
 
   const handleContactCs = useCallback(() => {

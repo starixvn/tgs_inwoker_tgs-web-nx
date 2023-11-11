@@ -3,7 +3,7 @@ import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { ReportService } from "@/core/services/ReportService";
+import { ReportService } from "@tgs-web-nx/core";
 import { useNotifications } from "@/core/feature/useNotifications";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";

@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import config from "@tgs-web-nx/config";
-import { AppHistory } from "@/history/History";
-import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useHistory } from "react-router-dom";
+import { useAccountStore } from "@tgs-web-nx/core";
 
 export function useCheckRegisterProcess() {
+  const history = useHistory();
+
   const {
     account: { registercompleted },
   } = useAccountStore();
@@ -14,7 +16,7 @@ export function useCheckRegisterProcess() {
       config.features.Register_ShowPhone &&
       config.features.ForcedVerification
     ) {
-      AppHistory.push({
+      history.push({
         pathname: "/profile/phone",
         state: { forced: true },
       });

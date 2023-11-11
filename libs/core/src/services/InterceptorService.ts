@@ -1,10 +1,10 @@
 // @ts-nocheck
 import axios, { AxiosRequestConfig } from "axios";
 import { ErrorSwitcher } from "@tgs-web-nx/utils";
-import { UNAUTHORIZE } from "@/api-services/constant/actionType";
-import { AppHistory } from "@/history/History";
+import { UNAUTHORIZE } from "../api-services/constant/actionType";
+import { AppHistory } from "../history/History";
 
-const Interceptor = {
+export const InterceptorService = {
   setupInterceptors: (store: any) => {
     // Add a response interceptor
     axios.interceptors.request.use(
@@ -164,5 +164,3 @@ const Interceptor = {
     );
   },
 };
-
-export default Interceptor;

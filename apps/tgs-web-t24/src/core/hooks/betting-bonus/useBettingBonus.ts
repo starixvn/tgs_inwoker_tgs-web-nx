@@ -1,7 +1,6 @@
 import { VipData as TypeVipData } from "@tgs-web-nx/types";
+import { useAccountStore } from "@tgs-web-nx/core";
 import useVipStore from "@/core/hooks/tools/useVipStore";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { TypeProductRebateByLevel } from "@/pages/BettingBonusPage";
 
 const productColumnNameMap: {
   [key: string]: string;
@@ -13,6 +12,11 @@ const productColumnNameMap: {
   Lottery: "lotteryRebate",
   "Virtual Sports": "virtualSportsRebate",
 };
+
+export interface TypeProductRebateByLevel {
+  name: string;
+  rebate: number[];
+}
 
 export function useBettingBonus() {
   const { vipData, isLoading } = useVipStore();

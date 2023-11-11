@@ -9,11 +9,11 @@ import { ThemeProvider as StyleComponentThemeProvider } from "styled-components"
 import { Provider } from "react-redux";
 import config from "@tgs-web-nx/config";
 import { updateHtmlTitleDescription } from "@tgs-web-nx/utils";
+import { InterceptorService } from "@tgs-web-nx/core";
 import AudioPlayer from "./components/tools/AudioPlayer";
 import FeatureGetter from "./components/tools/FeatureGetter";
 import { GlobalStyles } from "./global";
 import { theme } from "./theme";
-import InterceptorService from "@/core/services/InterceptorService";
 import rootReducer from "@/api-services/reducers/rootReducer";
 import App from "@/App";
 import { NotificationContextProvider } from "@/core/feature/useNotifications/contexts/notificationContext";

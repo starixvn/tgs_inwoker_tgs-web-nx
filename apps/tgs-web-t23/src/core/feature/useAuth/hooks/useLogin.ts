@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useWalletStore } from "@/core/stores/useWalletStore";
-import { useInboxStore } from "@/core/stores/useInboxStore";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useAccountStore } from "@tgs-web-nx/core";
+import { useWalletStore } from "@tgs-web-nx/core";
+import { useInboxStore } from "@tgs-web-nx/core";
+import { useGeneralStore } from "@tgs-web-nx/core";
 
 export type LoginState = {
   data: any | null;

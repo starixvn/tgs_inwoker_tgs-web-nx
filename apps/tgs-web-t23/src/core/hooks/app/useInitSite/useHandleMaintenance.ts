@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useGeneralStore } from "@tgs-web-nx/core";
 
 export function useHandleMaintenance() {
   const {

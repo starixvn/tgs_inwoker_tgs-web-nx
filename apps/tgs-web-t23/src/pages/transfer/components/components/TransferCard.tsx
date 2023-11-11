@@ -1,11 +1,9 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
-import { i18n } from "@tgs-web-nx/utils";
-import { Common } from "@tgs-web-nx/utils";
-import { useWalletStore } from "@/core/stores/useWalletStore";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { TextField } from "@/components/UI/TextField";
-import { useGameStore } from "@/core/stores/useGameStore";
 import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
 
 const TransferCardContainer = styled.div`

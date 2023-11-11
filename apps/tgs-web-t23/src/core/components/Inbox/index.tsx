@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { i18n } from "@tgs-web-nx/utils";
+import { useAccountStore, useInboxStore } from "@tgs-web-nx/core";
 import Loading from "@/components/UI/Loading";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useInboxStore } from "@/core/stores/useInboxStore";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import MobileInboxList from "@/pages/inbox/components/MobileInboxList";
 import DesktopInboxList from "@/pages/inbox/components/DesktopInboxList";

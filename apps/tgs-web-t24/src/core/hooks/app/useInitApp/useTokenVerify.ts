@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAccountStore } from "@/core/stores/useAccountStore";
+import { useAccountStore } from "@tgs-web-nx/core";
 
 export function useTokenVerify() {
   const { checkTokenIsValid } = useAccountStore();

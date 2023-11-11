@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useGeneralStore } from "@tgs-web-nx/core";
 
 export function useGetSupportUrl() {
   const { general } = useGeneralStore();

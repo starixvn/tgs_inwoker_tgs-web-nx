@@ -3,10 +3,9 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { REDIRECT_PROMOTION_TYPE } from "@tgs-web-nx/constants";
 import Loading from "@/components/UI/Loading";
-import { REDIRECT_PROMOTION_TYPE } from "@/constants/promotion";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { media } from "@/theme/breakpoints";
 
 const Button = styled.button<{ $disabled: boolean }>`

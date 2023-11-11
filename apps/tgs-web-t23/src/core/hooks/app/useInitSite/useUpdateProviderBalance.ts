@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import config from "@tgs-web-nx/config";
-import { useGameStore } from "@/core/stores/useGameStore";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useWalletStore } from "@/core/stores/useWalletStore";
+import { useAccountStore, useGameStore, useWalletStore } from "@tgs-web-nx/core";
 
 export function useUpdateProviderBalance() {
   const { game } = useGameStore();

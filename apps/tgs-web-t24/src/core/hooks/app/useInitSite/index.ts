@@ -1,4 +1,4 @@
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import { useLanguageDetect } from "@/core/hooks/app/useInitSite/useLanguageDetect";
 import { useHandleMaintenance } from "@/core/hooks/app/useInitSite/useHandleMaintenance";
 import { useUpdateProviderBalance } from "@/core/hooks/app/useInitSite/useUpdateProviderBalance";

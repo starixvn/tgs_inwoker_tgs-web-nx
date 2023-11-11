@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { GameService } from "@tgs-web-nx/core";
 import Loading from "@/components/UI/Loading";
-import { GameService } from "@/core/services/GameService";
 import MaintenancePage from "@/pages/MaintenancePage";
 
 const JoinLobbyGame = () => {

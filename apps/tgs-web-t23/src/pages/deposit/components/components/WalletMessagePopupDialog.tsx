@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { i18n } from "@tgs-web-nx/utils";
+import { useWalletStore } from "@tgs-web-nx/core";
 import { WALLET_HIDEMESSAGE } from "@/api-services/constant/actionType";
-import { useWalletStore } from "@/core/stores/useWalletStore";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
-import { DialogContent, DialogTitle, ButtonConfirm } from "@/components/UI/Dialog/dialogStyles";
+import { ButtonConfirm, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
 
 const WalletMessagePopupDialog = () => {
   const { wallet } = useWalletStore();
