@@ -29,14 +29,16 @@ export type BottomNavItem = {
   iconUrl: string;
   routePath: string;
 };
+
 type Props = {
   bottomNavItem: BottomNavItem;
   onClick?: MouseEventHandler<HTMLDivElement>;
 };
+
 const BottomNav = ({ bottomNavItem, onClick }: Props) => {
   const { label, iconUrl } = bottomNavItem;
 
-  if (bottomNavItem.navType === "big-item") {
+  if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
     return (
       <BottomNavContainer onClick={onClick}>
         <Icon

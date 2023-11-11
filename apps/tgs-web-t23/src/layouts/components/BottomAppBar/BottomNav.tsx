@@ -19,23 +19,31 @@ const NavLabel = styled.h6`
   line-height: 1rem;
 `;
 
+export enum NavTypeEnum {
+  ITEM,
+  BIG_ITEM,
+  MENU,
+}
+
 export type BottomNavItem = {
-  navType: "item" | "big-item" | "menu";
+  navType: NavTypeEnum;
   label: string;
   iconUrl: string;
   iconActiveUrl: string;
   routePath: string;
   routeCategory: RouteCategoryEnum;
 };
+
 type Props = {
   bottomNavItem: BottomNavItem;
   isSelected: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
 };
+
 const BottomNav = ({ bottomNavItem, onClick, isSelected }: Props) => {
   const { label, iconUrl, iconActiveUrl } = bottomNavItem;
 
-  if (bottomNavItem.navType === "big-item") {
+  if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
     return (
       <BottomNavContainer onClick={onClick} $isSelected={isSelected}>
         <Icon

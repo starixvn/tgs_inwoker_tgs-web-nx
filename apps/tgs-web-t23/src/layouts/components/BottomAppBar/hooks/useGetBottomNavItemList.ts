@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { RouteCategoryEnum } from "@/router";
-import { BottomNavItem } from "@/layouts/components/BottomAppBar/BottomNav";
+import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
 import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
 import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
 import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
@@ -18,7 +18,7 @@ export function useGetBottomNavItemList() {
   const bottomNavItemList = useMemo(() => {
     return [
       {
-        navType: "item",
+        navType: NavTypeEnum.ITEM,
         label: i18n.t("common.home"),
         iconUrl: iconHome,
         iconActiveUrl: iconHome,
@@ -27,7 +27,7 @@ export function useGetBottomNavItemList() {
       },
 
       {
-        navType: "item",
+        navType: NavTypeEnum.ITEM,
         label: i18n.t("common.promotion"),
         iconUrl: iconPromo,
         iconActiveUrl: iconPromo,
@@ -35,7 +35,7 @@ export function useGetBottomNavItemList() {
         routeCategory: RouteCategoryEnum.PROMOTION,
       },
       {
-        navType: "big-item",
+        navType: NavTypeEnum.BIG_ITEM,
         label: i18n.t("common.deposit"),
         iconUrl: iconDeposit,
         iconActiveUrl: iconDeposit,
@@ -43,7 +43,7 @@ export function useGetBottomNavItemList() {
         routeCategory: RouteCategoryEnum.REFER,
       },
       {
-        navType: "item",
+        navType: NavTypeEnum.ITEM,
         label: i18n.t("common.withdrawal"),
         iconUrl: iconWithdrawal,
         iconActiveUrl: iconWithdrawal,
@@ -51,7 +51,7 @@ export function useGetBottomNavItemList() {
         routeCategory: RouteCategoryEnum.INBOX,
       },
       {
-        navType: "item",
+        navType: NavTypeEnum.ITEM,
         label: i18n.t("web.account.profile"),
         iconUrl: iconProfile,
         iconActiveUrl: iconProfile,

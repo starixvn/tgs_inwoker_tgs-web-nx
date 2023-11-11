@@ -73,8 +73,7 @@ const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
   width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "250px")};
   margin: 0 auto 8px;
-  background: ${({ theme, $isShrink }: PromotionCardProps) =>
-    $isShrink ? theme.mainDarkBackground : theme.mainLightBackground};
+  background: ${({ theme }) => theme.mainBackground};
   border-radius: 12px;
   padding: 12px 30px;
   display: flex;

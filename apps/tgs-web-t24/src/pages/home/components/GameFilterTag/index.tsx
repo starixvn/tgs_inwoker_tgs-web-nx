@@ -22,7 +22,7 @@ const TagContainer = styled.div`
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.tertiaryDark};
+      background: ${(props) => props.theme.mainBackground};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -68,13 +68,15 @@ const GameFilterTag = () => {
           (filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType);
 
         const tag = gameTagList.find((tag) => tag.text === name);
+
+        if (!tag) return null;
         // test
         return (
           <Tag
             key={name}
             text={name}
             isActive={isActive}
-            icon={tag ? <img src={tag.iconUrl} alt={tag.text} /> : null}
+            icon={tag ? <img src={tag?.iconUrl || ""} alt={tag.text} /> : null}
             // icon={tag ? <tag.icon $color={isActive ? theme.primary : theme.lighterGray} /> : null}
             isShowIcon={gameTagList.some((tag) => tag.text === name)}
             onClick={() => handleFilterClick(filterTag)}

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { GameTypeItem } from "@tgs-web-nx/core/features";
 import { BetRecord } from "@/pages/home/components/Ranking/components/BetRecordRow";
 import { useAutoBettingToggle } from "@/pages/home/components/Ranking/hooks/useAutoBettingToggle";
 import { mockBetRecordList } from "@/pages/home/components/Ranking/mocks/betRecordList";
 import { userList } from "@/pages/home/components/Ranking/mocks/userList";
-import { gameTypeList } from "@/core/constants/gameType";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 function getRandomBetAmount() {
   const amountStatus = Math.floor(Math.random() * 10);
@@ -19,7 +20,7 @@ function getRandomBetAmount() {
   }
 }
 
-function getRandomGameType() {
+function getRandomGameType(gameTypeList: GameTypeItem[]) {
   const randomGameType = gameTypeList[Math.floor(Math.random() * gameTypeList.length)];
 
   return randomGameType.text;
@@ -36,10 +37,11 @@ export function useAutoBet() {
   const [latestBetRecord, setLatestBetRecord] = useState(
     initialBetRecordList[initialBetRecordList.length - 1],
   );
+  const gameTypeList = useGameTypeList();
 
   const generateSingleBetRecord = (): BetRecord => {
     const key = uuidv4();
-    const gameName = getRandomGameType();
+    const gameName = getRandomGameType(gameTypeList);
     const playerName = userList[Math.floor(Math.random() * userList.length)];
     const betAmount = getRandomBetAmount();
 

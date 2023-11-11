@@ -59,6 +59,8 @@ const ContextMenu = () => {
     <ContextMenuContainer>
       <ContextMenuItemWrapper>
         {accountNavItemList.map((navItem) => {
+          if (navItem.navType !== "route") return null;
+
           const { label, iconUrl, routePath } = navItem;
 
           if (routePath === "/logout") return null;

@@ -21,10 +21,12 @@ const ForgotPasswordDialog = () => {
         fontSize: "0.937rem !important",
       }}
     >
-      <BrandLogo />
-      {/*@ts-ignore*/}
-      <ForgotPasswordPrev alert={alert} history={history} />
-      <RedirectToLoginHint style={{ marginTop: "20px" }} />
+      <>
+        <BrandLogo />
+        {/*@ts-ignore*/}
+        <ForgotPasswordPrev alert={alert} history={history} />
+        <RedirectToLoginHint style={{ marginTop: "20px" }} />
+      </>
     </AuthDialog>
   );
 };

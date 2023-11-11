@@ -103,7 +103,7 @@ const MenuLanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainLightBackground,
+            background: theme.mainBackground,
 
             "& .MuiMenuItem-root": {
               padding: 2,

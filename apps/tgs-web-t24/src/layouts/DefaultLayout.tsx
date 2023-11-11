@@ -62,7 +62,7 @@ const ChildrenWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: ReactElement | ReactElement[];
 };
 const DefaultLayout = ({ children }: Props) => {
   const { isMobileSize } = useRwd();

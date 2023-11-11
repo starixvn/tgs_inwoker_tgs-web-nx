@@ -48,6 +48,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
 
 export const TextField = (props: TextFieldProps) => {
   return (
+    //@ts-ignore
     <StyledTextField
       {...props}
       fullWidth={typeof props.fullWidth !== "undefined" ? props.fullWidth : true}
