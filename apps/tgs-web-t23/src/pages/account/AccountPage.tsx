@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuth, useUpdatePageName } from "@tgs-web-nx/core/features";
 import AccountNavigations from "./components/AccountNavigations";
 import InfoCard from "@/pages/account/components/InfoCard";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
-import { useAuth } from "@/core/feature/useAuth";
 import MemberCenterBorder from "@/pages/account/components/MemberCenterBorder";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

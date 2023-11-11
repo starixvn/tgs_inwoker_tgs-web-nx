@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { usePromotionPage } from "@/core/hooks/pages/promotion/usePromotionPage";
+import { usePromotionPage } from "@tgs-web-nx/core/hooks";
 import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { media } from "@/theme/breakpoints";

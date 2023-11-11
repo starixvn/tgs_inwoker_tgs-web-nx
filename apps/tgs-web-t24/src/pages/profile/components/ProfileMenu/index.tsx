@@ -1,9 +1,9 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import ProfileMenuDesktop from "@/pages/profile/components/ProfileMenu/ProfileMenuDesktop";
 import ProfileMenuMobile from "@/pages/profile/components/ProfileMenu/ProfileMenuMobile";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
 const ProfileMenu = () => {
   useUpdatePageName(i18n.t("profile.basicInfo"));

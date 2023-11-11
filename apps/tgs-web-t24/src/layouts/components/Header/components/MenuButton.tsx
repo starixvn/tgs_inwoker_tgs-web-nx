@@ -1,6 +1,6 @@
 import React from "react";
+import { useHeader } from "@tgs-web-nx/core/features";
 import menuIcon from "@/assets/t23/images/header/icon-menu.png";
-import { useHeader } from "@/core/feature/useHeader";
 import Icon from "@/components/project/Icon";
 
 type Props = {

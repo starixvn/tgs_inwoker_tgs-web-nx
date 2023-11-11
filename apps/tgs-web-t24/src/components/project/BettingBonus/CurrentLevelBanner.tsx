@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
 import Arrow from "@/assets/t18/images/bettingBonus/icon_arrow.svg";
 import LevelIcon from "@/components/UI/LevelIcon";
 import { media } from "@/theme/breakpoints";
-import { TypeProductRebateByLevel } from "@/core/hooks/betting-bonus/useBettingBonus";
 
 const CurrentLevelBannerContainer = styled.div`
   width: 100%;

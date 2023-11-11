@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import useVipStore from "@/core/hooks/tools/useVipStore";
+import { useVipStore } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import { levelItemStyleList } from "@/constants/vip";
 import VipSingleItem, { VipCardItem } from "@/pages/vip/components/VipSingleItem";
@@ -59,7 +59,7 @@ const VIP = () => {
 
       setVipSortingData(vipList);
     }
-  }, [levelItemStyleList, isLoading, vipData]);
+  }, [isLoading, vipData]);
 
   const numberOfLevels = vipSortingData.length;
   const levelItems = levelItemStyleList.slice(0, numberOfLevels);

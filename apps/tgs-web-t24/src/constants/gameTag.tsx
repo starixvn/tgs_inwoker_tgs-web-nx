@@ -5,7 +5,7 @@ import RecommendIcon from "@/pages/home/components/TagIcon/RecommendIcon";
 
 export type TagIcon = {
   text: string;
-  iconComponent: React.FC<{ $color: string }>
+  iconComponent: React.FC<{ $color: string }>;
 };
 
 export const gameTagList: TagIcon[] = [

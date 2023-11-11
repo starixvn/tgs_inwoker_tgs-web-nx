@@ -1,10 +1,10 @@
 import { FC } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 type Props = {
   imageUrl: string;
   text: string;
-}
+};
 
 const Wrapper = styled.div`
     display: flex;

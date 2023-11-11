@@ -1,11 +1,11 @@
 import { FC } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 type Props = {
   imageUrl: string;
   text: string;
   onClick?: () => void;
-}
+};
 
 const Wrapper = styled.div`
     display: flex;

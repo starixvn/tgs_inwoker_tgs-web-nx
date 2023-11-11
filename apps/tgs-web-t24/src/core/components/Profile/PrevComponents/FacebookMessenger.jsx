@@ -9,8 +9,8 @@ import { AccountService } from "@/api-services/services/AccountService";
 import BottomNote from "@/components/UI/BottomNote";
 import {
   FormControl,
-  LabelContainer,
   ItemContainer,
+  LabelContainer,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 

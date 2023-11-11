@@ -3,13 +3,13 @@ import moment from "moment";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
 import { ReportService } from "@tgs-web-nx/core";
-import { useNotifications } from "@/core/feature/useNotifications";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import { useDepositStatus } from "@/core/components/Report/hooks/useDepositStatus";
 import StatusSelect from "@/pages/report/components/StatusSelect";
 import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
 import DepositDetailCards from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailCards";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import DepositDetailTable from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailTable";
 
 type Props = {

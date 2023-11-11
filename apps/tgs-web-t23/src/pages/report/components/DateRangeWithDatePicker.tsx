@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 
 import styled from "styled-components";
 import addDays from "date-fns/addDays";
-import DatePicker, { DatePickerForReport } from "@/components/UI/DatePicker";
+import { DatePickerForReport } from "@/components/UI/DatePicker";
 import { media } from "@/theme/breakpoints";
 
 const DateContainer = styled.div`

@@ -1,9 +1,7 @@
 import styled from "styled-components";
+import { FilterTag, filterTagAll, useHomeGameContext } from "@tgs-web-nx/core/features";
 import CommonTag from "./CommonTag";
 import Tag from "./ProviderTag";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
-import { filterTagAll } from "@/core/feature/game/constants/filterTagAll";
 
 const FilterTagWrapper = styled.div`
   width: 100%;

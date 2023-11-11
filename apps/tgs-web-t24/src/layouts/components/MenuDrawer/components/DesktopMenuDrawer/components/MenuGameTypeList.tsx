@@ -1,7 +1,6 @@
 import styled from "styled-components";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import MenuGameTab from "./MenuGameTab";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { useHeader } from "@/core/feature/useHeader";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const TabContainer = styled.div`

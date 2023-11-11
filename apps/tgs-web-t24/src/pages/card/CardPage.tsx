@@ -1,12 +1,11 @@
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useNavigation, useRwd } from "@tgs-web-nx/core/hooks";
+import { useNotifications } from "@tgs-web-nx/core/features";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import CardPrev from "@/core/components/CardPrev";
-import { useNotifications } from "@/core/feature/useNotifications";
-import { useNavigation } from "@/core/hooks/tools/pageProps/useNavigation";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const CardPage = () => {

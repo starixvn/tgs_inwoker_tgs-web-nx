@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGeneralStore } from "@tgs-web-nx/core";
-import { UiService } from "@tgs-web-nx/core";
+import { UiService, useGeneralStore } from "@tgs-web-nx/core";
 import { media } from "@/theme/breakpoints";
 
 const MaintenanceContainer = styled.div`

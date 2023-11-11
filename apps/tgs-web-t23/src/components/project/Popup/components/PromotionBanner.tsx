@@ -1,10 +1,10 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Promotion } from "@tgs-web-nx/types";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import { media } from "@/theme/breakpoints";
 import { usePromotionData } from "@/hooks/popup/usePromotionData";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const PromotionBannerWrapper = styled.div`
   width: 100%;

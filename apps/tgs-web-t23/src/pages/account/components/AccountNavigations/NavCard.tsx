@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { media } from "@/theme/breakpoints";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import Icon from "@/components/project/Icon";
 
 const NavCardContainer = styled.div`

@@ -1,9 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications } from "@/core/feature/useNotifications";
+import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import Line from "@/core/components/Profile/PrevComponents/Line";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
 const ProfileLinePage = () => {
   useUpdatePageName(i18n.t("common.line"));

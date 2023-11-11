@@ -19,6 +19,8 @@
       "@tgs-web-nx/config": ["libs/config/src/index.ts"],
       "@tgs-web-nx/constants": ["libs/constants/src/index.ts"],
       "@tgs-web-nx/core": ["libs/core/src/index.ts"],
+      "@tgs-web-nx/core/features": ["libs/core/features/src/index.ts"],
+      "@tgs-web-nx/core/hooks": ["libs/core/hooks/src/index.ts"],
       "@tgs-web-nx/types": ["libs/types/src/index.ts"],
       "@tgs-web-nx/utils": ["libs/utils/src/index.ts"]
     }

@@ -1,10 +1,8 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "@tgs-web-nx/core/features";
 import { Route } from "@/router";
 import Loading from "@/components/UI/Loading";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useAuth } from "@/core/feature/useAuth";
 
 interface AuthGuard {
   children: React.ReactNode;

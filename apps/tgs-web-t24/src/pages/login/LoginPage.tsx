@@ -1,6 +1,5 @@
 import React from "react";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useLoginPage } from "@/core/hooks/pages/login/useLoginPage";
+import { useLoginPage, useRwd } from "@tgs-web-nx/core/hooks";
 import LoginForm from "@/pages/login/components/LoginForm";
 
 const LoginPage = () => {

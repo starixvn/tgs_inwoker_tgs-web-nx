@@ -7,8 +7,8 @@ import BaseProfile from "../../BaseProfile";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
-  LabelContainer,
   ItemContainer,
+  LabelContainer,
 } from "@/components/styled-component/ProfileForms";
 
 class Approved extends BaseProfile {

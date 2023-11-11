@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import { FilterTagTypeEnum } from "@/core/feature/game/types";
 
 const TabContainer = styled.div`
   width: 100%;

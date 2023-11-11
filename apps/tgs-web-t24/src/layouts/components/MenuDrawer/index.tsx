@@ -1,8 +1,8 @@
 import { Drawer } from "@mui/material";
 import { useMemo } from "react";
 
-import { useHeader } from "@/core/feature/useHeader";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useHeader } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import MenuDrawerList from "@/layouts/components/MenuDrawer/components/MenuDrawerList";
 import {
   DESKTOP_DRAWER_WIDTH,

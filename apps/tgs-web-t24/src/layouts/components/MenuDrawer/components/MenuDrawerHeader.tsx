@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { useHeader } from "@tgs-web-nx/core/features";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import iconClose from "@/assets/t24/images/menuDrawer/close.svg";
 import Icon from "@/components/project/Icon";
-import { useHeader } from "@/core/feature/useHeader";
 
 const MenuHeaderContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};

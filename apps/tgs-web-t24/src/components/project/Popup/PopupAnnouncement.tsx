@@ -3,14 +3,14 @@ import { useState } from "react";
 import { Dialog as MuiDialog } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { useUiStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePopup } from "@tgs-web-nx/core/features";
 import Carousel from "@/components/UI/Carousel";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { usePopup } from "@/core/feature/usePopup";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;

@@ -9,9 +9,9 @@ import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useHeader } from "@tgs-web-nx/core/features";
 import { theme } from "@/theme";
-import { useHeader } from "@/core/feature/useHeader";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import { imageMap } from "@/components/project/LanguageSwitch/index";
 
 const StyledSelect = styled(MuiSelect)`

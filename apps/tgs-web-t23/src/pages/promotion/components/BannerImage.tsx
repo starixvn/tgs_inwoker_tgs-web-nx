@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Promotion } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const BannerImage = ({ promotionData }: { promotionData: Promotion }) => {
   const { isMobileSize } = useRwd();

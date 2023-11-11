@@ -3,8 +3,8 @@ import { ReactElement, useCallback } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { HEADER_HEIGHT } from "@/theme/constants";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import DefaultLayout from "@/layouts/DefaultLayout";
 
 const DialogLayoutContainer = styled.div`

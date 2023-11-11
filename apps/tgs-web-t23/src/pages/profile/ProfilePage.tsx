@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { ValueOf } from "@tgs-web-nx/types";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import {
   profilePageDictionary,
   ProfilePathEnum,

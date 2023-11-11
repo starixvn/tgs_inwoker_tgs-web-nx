@@ -2,8 +2,8 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useAuthDialog } from "@/core/feature/useAuthDialog";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuthDialog } from "@tgs-web-nx/core/features";
 
 const CreateAccountContainer = styled.div`
   width: 100%;

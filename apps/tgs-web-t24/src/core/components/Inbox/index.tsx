@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useInboxStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuth } from "@tgs-web-nx/core/features";
 import Loading from "@/components/UI/Loading";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import MobileInboxList from "@/pages/inbox/components/MobileInboxList";
 import DesktopInboxList from "@/pages/inbox/components/DesktopInboxList";
-import { useAuth } from "@/core/feature/useAuth";
 
 const Inbox = () => {
   const { isLogin } = useAuth();

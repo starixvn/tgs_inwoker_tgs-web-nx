@@ -1,14 +1,14 @@
-import { MouseEvent, useState } from "react";
-import { useHistory } from "react-router";
+import {MouseEvent, useState} from "react";
+import {useHistory} from "react-router";
 import styled from "styled-components";
-import { GameItem } from "@tgs-web-nx/types";
-import { Common } from "@tgs-web-nx/utils";
-import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
+import {GameItem} from "@tgs-web-nx/types";
+import {Common} from "@tgs-web-nx/utils";
+import {useAccountStore, useGameStore} from "@tgs-web-nx/core";
+import {useHomeGameContext} from "@tgs-web-nx/core/features";
+import {useRwd} from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import Favorite from "@/pages/home/components/Favorite";
-import { media } from "@/theme/breakpoints";
+import {media} from "@/theme/breakpoints";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`

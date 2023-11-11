@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import HomePromotionCard from "./components/HomePromotionCard";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import { media } from "@/theme/breakpoints";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";

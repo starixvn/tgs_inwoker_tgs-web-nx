@@ -44,6 +44,7 @@ const WithdrawInfoCard = () => {
 
   useEffect(() => {
     getMinWithdrawLimit().then();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { wallet } = useWalletStore();

@@ -1,6 +1,6 @@
 import Slick from "react-slick";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import styled from "styled-components";

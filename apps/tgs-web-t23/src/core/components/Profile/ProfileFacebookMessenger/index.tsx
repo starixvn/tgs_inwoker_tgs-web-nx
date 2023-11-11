@@ -1,9 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications } from "@/core/feature/useNotifications";
+import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import FacebookMessenger from "@/core/components/Profile/PrevComponents/FacebookMessenger";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
 const ProfileFacebookMessengerPage = () => {
   useUpdatePageName(i18n.t("common.fb"));

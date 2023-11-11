@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useRwd } from "@/core/hooks/tools/useRwd";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 
 const Wrapper = styled.div<{
@@ -21,16 +21,14 @@ const Wrapper = styled.div<{
   user-select: none;
   background-color: ${({ theme, $hasBackground }) =>
     $hasBackground ? theme.primary : theme.mainDarkBackground};
-  min-width: ${({ $isShowIcon }) =>
-    $isShowIcon ? "23px" : "60px"};
-  padding: ${({ $isShowIcon }) =>
-    $isShowIcon ? "0px" : "4px"};
+  min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
+  padding: ${({ $isShowIcon }) => ($isShowIcon ? "0px" : "4px")};
 
   ${media.sm} {
     cursor: pointer;
     & :hover {
-    color: ${({ theme }) => theme.white};
-   }
+      color: ${({ theme }) => theme.white};
+    }
   }
 `;
 

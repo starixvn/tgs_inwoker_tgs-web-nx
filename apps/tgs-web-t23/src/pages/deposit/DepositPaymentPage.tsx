@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications } from "@/core/feature/useNotifications";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Payment from "@/core/components/DepositPrev/Payment";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";

@@ -5,7 +5,7 @@ type Props = {
   imageUrl?: string;
   value?: string;
   handleChange: (searchString: string) => void;
-}
+};
 
 const InputWrapper = styled.div`
     width: 100%;

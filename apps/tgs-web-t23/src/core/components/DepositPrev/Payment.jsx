@@ -10,7 +10,7 @@ class Payment extends Component {
       this.props.match.params.id,
       this.props.match.params.bank || 0,
       this.props.match.params.amount,
-      this.props.match.params.bonus || ""
+      this.props.match.params.bonus || "",
     ).then((response) => {
       if (response.IsSuccess) {
         if (response.data.is_qrcode !== 1) {

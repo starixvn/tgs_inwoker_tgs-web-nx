@@ -12,7 +12,7 @@
             "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
             "pathGroups": [
               {
-                "pattern": "@metasports-backoffice/**",
+                "pattern": "@tgs-web-nx/**",
                 "group": "external",
                 "position": "after"
               },
@@ -43,7 +43,7 @@
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
       "rules": {
-        "@typescript-eslint/ban-ts-comment": ["warn", { "ts-ignore": "allow-with-description" }],
+        "@typescript-eslint/ban-ts-comment": ["off"],
         "@typescript-eslint/no-empty-function": ["off"]
       }
     },

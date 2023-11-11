@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications } from "@/core/feature/useNotifications";
+import { useNotifications } from "@tgs-web-nx/core/features";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
-import { ButtonConfirm, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
+import { DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
 import { Button } from "@/components/UI/Button";
 
 const AlertContainer = styled.div`

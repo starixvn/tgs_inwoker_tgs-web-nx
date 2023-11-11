@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import { useLoginForm } from "@tgs-web-nx/core/features";
 import FormikForm from "@/components/project/FormikForm";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
-import { useLoginForm } from "@/core/feature/useAuthForm/useLoginForm";
 import { media } from "@/theme/breakpoints";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 

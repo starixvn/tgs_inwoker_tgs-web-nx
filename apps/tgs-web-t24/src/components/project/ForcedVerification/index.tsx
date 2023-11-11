@@ -5,7 +5,7 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService } from "@tgs-web-nx/core";
-import { useNotifications } from "@/core/feature/useNotifications";
+import { useNotifications } from "@tgs-web-nx/core/features";
 import { theme } from "@/theme";
 
 const Wrapper = styled.div`

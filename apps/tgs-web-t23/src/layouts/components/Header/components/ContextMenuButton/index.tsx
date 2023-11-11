@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { useAuth } from "@tgs-web-nx/core/features";
 import ContextMenu from "@/layouts/components/Header/components/ContextMenuButton/components/ContextMenu";
 import avatarImg from "@/assets/t23/images/account/avatar.svg";
 import Modal from "@/components/UI/Modal";
 import { media } from "@/theme/breakpoints";
 import Loading from "@/components/UI/Loading";
 import arrowImg from "@/assets/t23/images/header/contextMenu/icon_arrow.svg";
-import { useAuth } from "@/core/feature/useAuth";
 import Icon from "@/components/project/Icon";
 
 const ContextMenuButtonContainer = styled.div`

@@ -4,7 +4,7 @@ import { media } from "@/theme/breakpoints";
 type Props = {
   text: string;
   onClick?: () => void;
-  size: 'small' | 'large';
+  size: "small" | "large";
 };
 
 const StyledButton = styled.button<{ size: string }>`
@@ -20,7 +20,7 @@ const StyledButton = styled.button<{ size: string }>`
   color: ${(props) => props.theme.tertiaryMiddle};
   font-size: ${(props) => (props.size === 'small' ? '0.625rem' : props.size === 'large' ? '1.125rem' : '1rem')};
   font-weight: ${(props) => (props.size === 'small' ? '700' : props.size === 'large' ? '500' : '600')};
-  
+
   ${media.sm} {
     cursor: pointer;
   }

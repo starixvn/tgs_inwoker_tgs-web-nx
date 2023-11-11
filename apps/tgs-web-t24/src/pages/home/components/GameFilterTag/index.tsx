@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
 import Tag from "./Tag";
 import { gameTagList } from "@/constants/gameTag";
-import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
-import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { media } from "@/theme/breakpoints";
-import { FilterTag, FilterTagTypeEnum } from "@/core/feature/game/types";
 
 const TagContainer = styled.div`
   width: 100%;

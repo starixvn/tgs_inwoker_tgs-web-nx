@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import IconCheckBox from "@/assets/t18/images/checkbox.svg";
-import { media } from "@/theme/breakpoints";
 import { theme } from "@/theme";
 
 const NotShowAgainHintContainer = styled.div`

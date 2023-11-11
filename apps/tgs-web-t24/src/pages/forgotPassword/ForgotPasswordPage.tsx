@@ -1,9 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
-import { useNotifications } from "@/core/feature/useNotifications";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import BrandLogo from "@/components/BrandLogo";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";

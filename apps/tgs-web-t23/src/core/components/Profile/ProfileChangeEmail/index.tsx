@@ -1,9 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import ChangeEmail from "@/core/components/Profile/PrevComponents/ChangeEmail";
-import { useNotifications } from "@/core/feature/useNotifications";
-import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 
 const ProfileChangeEmail = () => {
   useUpdatePageName(i18n.t("profile.email.editEmail"));

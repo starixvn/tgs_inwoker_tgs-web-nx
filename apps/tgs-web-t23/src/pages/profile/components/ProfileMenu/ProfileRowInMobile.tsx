@@ -1,7 +1,7 @@
 import { NavigateNext as NavigateNextIcon } from "@mui/icons-material";
 import React from "react";
 import styled from "styled-components";
-import { ProfileItem } from "@/core/hooks/account/useProfileMenu";
+import { ProfileItem } from "@tgs-web-nx/core/hooks";
 
 const ProfileItemContainer = styled.div`
   width: 100%;

@@ -2,14 +2,13 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import React, { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
+import { useAuth, useHeader } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import ContextMenuItem from "./ContextMenuItem";
 import accountImg from "@/assets/t23/images/header/contextMenu/icon_my_account.svg";
 import supportImg from "@/assets/t23/images/header/contextMenu/icon_service_support.svg";
 import logoutImg from "@/assets/t23/images/header/contextMenu/icon_logout.svg";
-import { useAuth } from "@/core/feature/useAuth";
 import { Button } from "@/components/UI/Button";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useHeader } from "@/core/feature/useHeader";
 
 const ContextMenuContainer = styled.div`
   padding: 15px;
