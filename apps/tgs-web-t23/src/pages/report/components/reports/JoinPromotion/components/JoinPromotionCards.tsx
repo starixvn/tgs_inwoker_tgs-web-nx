@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
 import { JoinedPromotionsResponse } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
-import i18n from "@/core/utils/i18n";
 import {
   ReportCard,
   ReportCardCol,

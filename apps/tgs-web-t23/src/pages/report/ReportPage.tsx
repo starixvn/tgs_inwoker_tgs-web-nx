@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import Report from "@/core/components/Report";
 import { useNotifications } from "@/core/feature/useNotifications";
-import i18n from "@/core/utils/i18n";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconReport from "@/assets/t23/images/badge/icon-report.svg";
 import { useRwd } from "@/core/hooks/tools/useRwd";

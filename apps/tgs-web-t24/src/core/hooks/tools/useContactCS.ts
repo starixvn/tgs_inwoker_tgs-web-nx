@@ -1,6 +1,6 @@
 import { useCallback } from "react";
-import i18n from "@/core/utils/i18n";
-import Common from "@/core/utils/Common";
+import { i18n } from "@tgs-web-nx/utils";
+import { Common } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useAuth } from "@/core/feature/useAuth";

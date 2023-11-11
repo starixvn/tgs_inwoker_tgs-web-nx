@@ -1,13 +1,13 @@
 import React from "react";
 import { RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
+import { i18n } from "@tgs-web-nx/utils";
 import {
   CustomWinLose,
   ReportSummary,
   ReportSummaryCol,
   ReportSummaryRow,
 } from "@/components/styled-component/Report";
-import i18n from "@/core/utils/i18n";
 
 type Props = {
   roundTotal: RoundTotalDto;

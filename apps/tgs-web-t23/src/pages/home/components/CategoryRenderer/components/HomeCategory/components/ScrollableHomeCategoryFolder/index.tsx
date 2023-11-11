@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
+import { SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { Common } from "@tgs-web-nx/utils";
 import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import Loading from "@/components/UI/Loading";
-import { SHOW_CATEGORY_AMOUNT } from "@/core/constants/games";
-import Common from "@/core/utils/Common";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import { media } from "@/theme/breakpoints";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 
 const HomeCategorySection = styled.div`

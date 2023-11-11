@@ -1,4 +1,4 @@
-import { GameTypeEnum } from "@/constants/GameTypeEnum";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 const getDisplayGameType = (brand = "default"): GameTypeEnum[] => {
   switch (brand) {

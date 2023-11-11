@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
-import i18n from "@/core/utils/i18n";
 import { useHeader } from "@/core/feature/useHeader";
 import { theme } from "@/theme";
 

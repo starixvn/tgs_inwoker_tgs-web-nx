@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import BaseProfile from "./BaseProfile";
 import { AccountService } from "@/api-services/services/AccountService";
-import i18n from "@/core/utils/i18n";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,

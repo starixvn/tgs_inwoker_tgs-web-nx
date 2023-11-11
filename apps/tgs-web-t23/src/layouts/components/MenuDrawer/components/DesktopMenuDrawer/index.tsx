@@ -1,5 +1,6 @@
 import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
@@ -8,7 +9,6 @@ import { useHeader } from "@/core/feature/useHeader";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { HEADER_HEIGHT } from "@/theme/constants";
-import i18n from "@/core/utils/i18n";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
 

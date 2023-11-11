@@ -1,4 +1,5 @@
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import iconReport from "@/assets/t23/images/badge/icon-report.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
@@ -6,7 +7,6 @@ import Report from "@/core/components/Report";
 import { useNotifications } from "@/core/feature/useNotifications";
 import { useUpdatePageName } from "@/core/feature/usePageName/useUpdatePageName";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import i18n from "@/core/utils/i18n";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const ReportPage = () => {

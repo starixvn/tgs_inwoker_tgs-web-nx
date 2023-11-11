@@ -2,8 +2,8 @@ import React from "react";
 import moment from "moment";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
-import i18n from "@/core/utils/i18n";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 
 type Props = {

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { i18n } from "@tgs-web-nx/utils";
 import { useGetNavItemList } from "@/layouts/components/MenuDrawer/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { useHeader } from "@/core/feature/useHeader";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
 import promotionIcon from "@/assets/t24/images/menuDrawer/icon-promotion.svg";
-import i18n from "@/core/utils/i18n";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import {
   Accordion,

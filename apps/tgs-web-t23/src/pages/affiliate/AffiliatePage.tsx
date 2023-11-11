@@ -1,5 +1,5 @@
 import React from "react";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import Affiliate from "@/core/components/Affiliate";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import UserWalletInfo from "@/components/project/UserWalletInfo";

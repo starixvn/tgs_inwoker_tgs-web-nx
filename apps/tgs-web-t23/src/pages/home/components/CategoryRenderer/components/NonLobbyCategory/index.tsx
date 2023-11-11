@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
+import { Common } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import searchIcon from "@/assets/t23/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
 import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCategoryList";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import Common from "@/core/utils/Common";
-import i18n from "@/core/utils/i18n";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";

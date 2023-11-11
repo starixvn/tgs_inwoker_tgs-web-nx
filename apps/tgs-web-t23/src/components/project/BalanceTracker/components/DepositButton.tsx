@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { Add as AddIcon } from "@mui/icons-material";
 import styled from "styled-components";
 import { useMediaQuery, useTheme } from "@mui/material";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
 import depositIcon from "@/assets/t18/images/header/deposit_icon.svg";
 import Icon from "@/components/project/Icon";

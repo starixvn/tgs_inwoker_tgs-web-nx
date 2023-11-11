@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FormControl, styled as muiStyled } from "@mui/material";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { Select } from "@/components/UI/Select";
 
 const StatusSelectContainer = styled.div`

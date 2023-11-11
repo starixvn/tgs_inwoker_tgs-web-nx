@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@/core/feature/useNotifications";
 import AddCardPrev from "@/core/components/CardPrev/AddCardPrev";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import i18n from "@/core/utils/i18n";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import { useRwd } from "@/core/hooks/tools/useRwd";
 import AccountPaper from "@/components/project/AccountPaper";

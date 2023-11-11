@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Dialog as MuiDialog } from "@mui/material";
 import { useHistory } from "react-router-dom"; // Import useHistory
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import { Button } from "@/components/UI/Button";
 
 const StyledDialog = styled(MuiDialog)`

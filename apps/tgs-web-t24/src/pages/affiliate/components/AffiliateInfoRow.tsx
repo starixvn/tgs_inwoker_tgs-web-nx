@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import { Button } from "@/components/UI/Button";
-import i18n from "@/core/utils/i18n";
 import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`

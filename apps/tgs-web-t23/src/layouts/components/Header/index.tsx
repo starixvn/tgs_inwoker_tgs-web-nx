@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import ContactButton from "./components/ContactButton";
@@ -10,7 +11,6 @@ import { useRwd } from "@/core/hooks/tools/useRwd";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
 import { useAccountStore } from "@/core/stores/useAccountStore";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 
 const HeaderContainer = styled.div`
   position: fixed;

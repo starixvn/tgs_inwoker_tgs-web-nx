@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,

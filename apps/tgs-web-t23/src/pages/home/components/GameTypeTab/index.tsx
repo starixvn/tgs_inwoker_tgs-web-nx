@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Tab from "./Tab";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import { GameTypeEnum } from "@/core/constants/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { FilterTagTypeEnum } from "@/core/feature/game/types";
 

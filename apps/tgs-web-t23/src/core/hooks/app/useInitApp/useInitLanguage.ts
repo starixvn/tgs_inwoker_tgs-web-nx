@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
+import { updateHtmlTitleDescription } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { updateHtmlTitleDescription } from "@/core/utils/updateHtmlTitleDescription";
 
 export function useInitLanguage() {
   const [isLanguageReady, setIsLanguageReady] = React.useState(false);

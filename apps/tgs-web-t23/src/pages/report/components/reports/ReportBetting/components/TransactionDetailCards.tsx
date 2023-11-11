@@ -2,8 +2,8 @@ import React from "react";
 import moment from "moment";
 import { TransactionDetail } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
+import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
-import i18n from "@/core/utils/i18n";
 import {
   CustomWinLose,
   ReportCard,

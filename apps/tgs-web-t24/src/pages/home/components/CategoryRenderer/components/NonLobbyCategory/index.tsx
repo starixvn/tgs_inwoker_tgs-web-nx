@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import config from "@tgs-web-nx/config";
+import { Common } from "@tgs-web-nx/utils";
 import CategoryLabel from "../../../CategoryLabel";
 import searchIcon from "@/assets/t23/images/home/search.svg";
 import back from "@/assets/t24/images/home/back.svg";
@@ -8,7 +9,6 @@ import Loading from "@/components/UI/Loading";
 import { useGetNonLobbyCategoryList } from "@/core/feature/game/useGetNonLobbyCategoryList";
 import { useHomeGameContext } from "@/core/feature/game/useHomeGameContext";
 import { useRwd } from "@/core/hooks/tools/useRwd";
-import Common from "@/core/utils/Common";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import { media } from "@/theme/breakpoints";

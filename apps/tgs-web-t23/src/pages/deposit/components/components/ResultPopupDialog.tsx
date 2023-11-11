@@ -1,5 +1,5 @@
 import React from "react";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
 import { DialogContent, ButtonConfirm } from "@/components/UI/Dialog/dialogStyles";
 

@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { BrandsSupport } from "@tgs-web-nx/types";
-import i18n from "@/core/utils/i18n";
+import { i18n } from "@tgs-web-nx/utils";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";

@@ -8,6 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { ThemeProvider as StyleComponentThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import config from "@tgs-web-nx/config";
+import { updateHtmlTitleDescription } from "@tgs-web-nx/utils";
 import AudioPlayer from "./components/tools/audioplayer";
 import FeatureGetter from "./components/tools/feature-getter";
 import { GlobalStyles } from "./global";
@@ -20,7 +21,6 @@ import { muiTheme } from "@/theme/mui";
 import StyledSnakeBarProvider from "@/components/UI/StyledSnakeBarProvider";
 import Loading from "@/components/UI/Loading";
 import { useInitApp } from "@/core/hooks/app/useInitApp";
-import { updateHtmlTitleDescription } from "@/core/utils/updateHtmlTitleDescription";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
