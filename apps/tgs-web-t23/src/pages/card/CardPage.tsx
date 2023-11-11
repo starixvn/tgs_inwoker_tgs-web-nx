@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNavigation, useRwd } from "@tgs-web-nx/core/hooks";
 import { useNotifications } from "@tgs-web-nx/core/features";
-import CardPrev from "@/core/components/CardPrev";
+import CardPrev from "@/components/account/CardPrev";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";

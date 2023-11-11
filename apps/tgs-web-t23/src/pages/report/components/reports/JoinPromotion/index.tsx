@@ -6,7 +6,7 @@ import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GeneralService } from "@tgs-web-nx/core";
 import Loading from "@/components/UI/Loading";
-import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
+import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import JoinPromotionCards from "@/pages/report/components/reports/JoinPromotion/components/JoinPromotionCards";
 import JoinPromotionTable from "@/pages/report/components/reports/JoinPromotion/components/JoinPromotionTable";
 import { ReportContainer } from "@/components/styled-component/Report";

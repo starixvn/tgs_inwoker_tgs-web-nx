@@ -25,7 +25,7 @@ import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
 import DialogLayout from "@/layouts/DialogLayout";
-import { ProfilePathEnum } from "@/core/components/Profile/profilePageDictionary";
+import { ProfilePathEnum } from "@/components/account/Profile/profilePageDictionary";
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";

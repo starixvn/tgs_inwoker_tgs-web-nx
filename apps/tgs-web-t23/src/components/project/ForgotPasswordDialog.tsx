@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthDialog, useNotifications } from "@tgs-web-nx/core/features";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
-import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
+import ForgotPasswordPrev from "@/components/account/authentication/ForgotPasswordPrev";
 
 const ForgotPasswordDialog = () => {
   const { isForgotPasswordDialogOpen, handleToggleForgotPasswordDialog } = useAuthDialog();

@@ -4,7 +4,7 @@ import { useLocation } from "react-router";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import DepositPrev from "@/core/components/DepositPrev";
+import DepositPrev from "@/components/account/DepositPrev";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";

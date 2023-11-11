@@ -4,7 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import NoRecord from "@/pages/report/components/NoRecord";
 import Loading from "@/components/UI/Loading";
-import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
+import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import {
   ReportCard,
   ReportCardCol,

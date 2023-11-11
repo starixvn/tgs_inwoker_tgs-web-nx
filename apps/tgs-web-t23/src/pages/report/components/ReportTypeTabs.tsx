@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import { Button } from "@mui/material";
-import { useReportTypeTabs } from "@/core/components/Report/hooks/useReportTypeTabs";
+import { useReportTypeTabs } from "@/components/account/Report/hooks/useReportTypeTabs";
 
 const ReportTypeTabsContainer = styled.div`
   display: flex;

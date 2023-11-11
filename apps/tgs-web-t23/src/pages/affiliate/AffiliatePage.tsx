@@ -2,7 +2,7 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
-import Affiliate from "@/core/components/Affiliate";
+import Affiliate from "@/components/account/Affiliate";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconAffiliate from "@/assets/t23/images/badge/icon-affiliate.svg";
 import AccountPaper from "@/components/project/AccountPaper";

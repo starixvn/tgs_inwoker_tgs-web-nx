@@ -5,7 +5,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import iconTransfer from "@/assets/t23/images/badge/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import TransferPrev from "@/core/components/TransferPrev";
+import TransferPrev from "@/components/account/TransferPrev";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const Transfer = () => {

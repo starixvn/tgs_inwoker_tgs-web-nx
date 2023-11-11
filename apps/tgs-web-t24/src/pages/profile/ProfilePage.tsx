@@ -8,7 +8,7 @@ import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import {
   profilePageDictionary,
   ProfilePathEnum,
-} from "@/core/components/Profile/profilePageDictionary";
+} from "@/components/account/Profile/profilePageDictionary";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

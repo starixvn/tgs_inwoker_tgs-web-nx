@@ -8,7 +8,7 @@ import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { ReportContainer } from "@/components/styled-component/Report";
 import Loading from "@/components/UI/Loading";
-import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
+import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import TransactionDetailCards from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailCards";
 import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
 import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";

@@ -5,7 +5,7 @@ import { useNotifications } from "@tgs-web-nx/core/features";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import CardPrev from "@/core/components/CardPrev";
+import CardPrev from "@/components/account/CardPrev";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const CardPage = () => {

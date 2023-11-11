@@ -5,7 +5,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import Manual from "@/core/components/DepositPrev/Manual";
+import Manual from "@/components/account/DepositPrev/Manual";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 const DepositManualPage = () => {

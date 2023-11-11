@@ -15,9 +15,9 @@ import {
   ReportSummaryRow,
 } from "@/components/styled-component/Report";
 import Loading from "@/components/UI/Loading";
-import { usePlatformStatus } from "@/core/components/Report/hooks/usePlatformStatus";
+import { usePlatformStatus } from "@/components/account/Report/hooks/usePlatformStatus";
 import StatusSelect from "@/pages/report/components/StatusSelect";
-import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
+import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;

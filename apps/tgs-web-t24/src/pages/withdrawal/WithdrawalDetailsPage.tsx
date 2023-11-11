@@ -6,7 +6,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import Details from "@/core/components/WithdrawalPrev/Details";
+import Details from "@/components/account/WithdrawalPrev/Details";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 const WithdrawalDetails = () => {

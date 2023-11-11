@@ -6,7 +6,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import {
   profilePageDictionary,
   ProfilePathEnum,
-} from "@/core/components/Profile/profilePageDictionary";
+} from "@/components/account/Profile/profilePageDictionary";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";

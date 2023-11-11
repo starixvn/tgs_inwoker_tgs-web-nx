@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
-import ForgotPasswordPrev from "@/core/components/authentication/ForgotPasswordPrev";
+import ForgotPasswordPrev from "@/components/account/authentication/ForgotPasswordPrev";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 

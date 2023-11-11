@@ -3,7 +3,7 @@ import CarouselArrow from "@/assets/t23/images/promotion/icon_arrow.svg";
 import CarouselArrowYellow from "@/assets/t23/images/promotion/icon_arrow_yellow.svg";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import Carousel from "@/core/components/Carousel";
+import Carousel from "@/components/account/Carousel";
 
 const NextArrowContainer = styled.div`
   position: absolute;

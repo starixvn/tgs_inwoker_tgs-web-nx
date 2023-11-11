@@ -4,7 +4,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import iconInbox from "@/assets/t23/images/badge/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import Inbox from "@/core/components/Inbox";
+import Inbox from "@/components/account/Inbox";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const InboxPage = () => {

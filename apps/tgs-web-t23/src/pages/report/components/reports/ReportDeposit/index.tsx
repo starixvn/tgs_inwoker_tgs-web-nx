@@ -6,9 +6,9 @@ import { ReportService } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
-import { useDepositStatus } from "@/core/components/Report/hooks/useDepositStatus";
+import { useDepositStatus } from "@/components/account/Report/hooks/useDepositStatus";
 import StatusSelect from "@/pages/report/components/StatusSelect";
-import { DateRangeInfo } from "@/core/components/Report/hooks/useDateRange";
+import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import DepositDetailCards from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailCards";
 import DepositDetailTable from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailTable";
 
