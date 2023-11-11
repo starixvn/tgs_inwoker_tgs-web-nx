@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { WalletService } from "@/api-services/services/WalletService";
+import { WalletService } from "@tgs-web-nx/core";
 
 class Payment extends Component {
   componentDidMount() {

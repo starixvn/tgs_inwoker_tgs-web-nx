@@ -27,11 +27,11 @@ import {
   ReadMemoResDto,
   ReplyMemoResDto,
 } from "@tgs-web-nx/types";
-import { GeneralService } from "@/api-services/services/GeneralService";
 import {
   COMPOSEMEMO_BEGIN,
   COMPOSEMEMO_FAIL,
   COMPOSEMEMO_SUCCESS,
+  GeneralService,
   GETAFFILIATESTATUS_FAIL,
   GETAFFILIATESTATUS_SUCCESS,
   GETBANNER_BEGIN,
@@ -87,7 +87,7 @@ import {
   REPLYMEMO_BEGIN,
   REPLYMEMO_FAIL,
   REPLYMEMO_SUCCESS,
-} from "@/api-services/constant/actionType";
+} from "@tgs-web-nx/core";
 
 export function useGeneralStore() {
   const dispatch = useDispatch();

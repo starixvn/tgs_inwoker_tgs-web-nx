@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useGameType } from "@tgs-web-nx/core/features";
 import dots from "@/assets/t23/images/home/dots.svg";
 import { media } from "@/theme/breakpoints";
 

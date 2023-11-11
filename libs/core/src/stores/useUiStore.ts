@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UiState } from "@tgs-web-nx/types";
-import { GetMarqueeResDto } from "@tgs-web-nx/types";
+import { GetMarqueeResDto, UiState } from "@tgs-web-nx/types";
 import {
   GETANNOUNCEMENT_BEGIN,
   GETANNOUNCEMENT_FAIL,
@@ -9,8 +8,8 @@ import {
   GETMARQUEE_BEGIN,
   GETMARQUEE_FAIL,
   GETMARQUEE_SUCCESS,
-} from "@/api-services/constant/actionType";
-import { UiService } from "@/api-services/services/UiService";
+  UiService,
+} from "@tgs-web-nx/core";
 
 export function useUiStore() {
   const dispatch = useDispatch();

@@ -1,11 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import { BonusState } from "@tgs-web-nx/types";
-import { BonusService } from "@/api-services/services/BonusService";
-import {
-  BONUSNEW_BEGIN,
-  BONUSNEW_FAILURE,
-  BONUSNEW_SUCCESS,
-} from "@/api-services/constant/actionType";
+import {useDispatch, useSelector} from "react-redux";
+import {BonusState} from "@tgs-web-nx/types";
+import {BONUSNEW_BEGIN, BONUSNEW_FAILURE, BONUSNEW_SUCCESS, BonusService} from "@tgs-web-nx/core";
 
 /*
  * LIYI:

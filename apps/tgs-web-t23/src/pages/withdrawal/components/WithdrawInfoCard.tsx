@@ -2,8 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useWalletStore } from "@tgs-web-nx/core";
-import { WalletService } from "@/api-services/services/WalletService";
+import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 const CardContainer = styled.div`
   background: ${({ theme }) => theme.primaryLight};

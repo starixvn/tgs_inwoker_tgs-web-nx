@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useAccountStore } from "@tgs-web-nx/core";
-import { useGameStore } from "@tgs-web-nx/core";
+import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 
 export function useFavoriteList(activeGameType: GameTypeEnum) {
   const { account } = useAccountStore();

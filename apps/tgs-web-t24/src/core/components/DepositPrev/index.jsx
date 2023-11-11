@@ -4,13 +4,16 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import {
+  generalAction,
+  RESET_WALLETRESULT,
+  WALLET_HIDEMESSAGE,
+  walletAction,
+  WalletService,
+} from "@tgs-web-nx/core";
 import Details from "./Details";
 import DetailsManual from "./DetailsManual";
 import Main from "./Main";
-import { walletAction } from "@/api-services/actions/walletAction";
-import { generalAction } from "@/api-services/actions/generalAction";
-import { WalletService } from "@/api-services/services/WalletService";
-import { RESET_WALLETRESULT, WALLET_HIDEMESSAGE } from "@/api-services/constant/actionType";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Loading from "@/components/UI/Loading";

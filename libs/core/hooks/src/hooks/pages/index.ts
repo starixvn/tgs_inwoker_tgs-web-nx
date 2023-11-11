@@ -3,3 +3,5 @@ export * from "./login/useLoginPage";
 export * from "./promotion/usePromotionPage";
 export * from "./promotion/usePromotionDetailPage";
 export * from "./register/useRegisterPage";
+export * from "./joinGame/useJoinGamePage";
+export * from "./joinLobbyGame/useJoinLobbyGamePage";

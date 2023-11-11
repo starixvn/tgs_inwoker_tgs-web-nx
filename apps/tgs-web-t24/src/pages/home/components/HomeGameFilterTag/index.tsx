@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-  FilterTag,
-  filterTagAll,
-  FilterTagTypeEnum,
-  useHomeGameContext,
-} from "@tgs-web-nx/core/features";
+import { FilterTag, filterTagAll, useHomeGameContext } from "@tgs-web-nx/core/features";
 import CommonTag from "./CommonTag";
 import Tag from "./ProviderTag";
 

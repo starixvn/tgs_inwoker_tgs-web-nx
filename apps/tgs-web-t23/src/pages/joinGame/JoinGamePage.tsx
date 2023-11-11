@@ -1,8 +1,16 @@
 import React from "react";
-import JoinGame from "@/core/components/pages/JoinGame";
+import { useJoinGamePage } from "@tgs-web-nx/core/hooks";
+import MaintenancePage from "@/pages/MaintenancePage";
+import Loading from "@/components/UI/Loading";
 
 const JoinGamePage = () => {
-  return <JoinGame />;
+  const { isLoading, isMaintenance } = useJoinGamePage();
+
+  if (isMaintenance) {
+    return <MaintenancePage isGameMaintenance={true} />;
+  }
+
+  return <Loading show={isLoading} noShrink={true} opacity={1} />;
 };
 
 export default JoinGamePage;

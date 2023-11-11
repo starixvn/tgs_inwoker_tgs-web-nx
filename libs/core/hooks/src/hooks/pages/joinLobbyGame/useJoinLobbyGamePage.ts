@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { GameService } from "@tgs-web-nx/core";
-import Loading from "@/components/UI/Loading";
-import MaintenancePage from "@/pages/MaintenancePage";
 
-const JoinLobbyGame = () => {
+export function useJoinLobbyGamePage() {
   const { gameType, gpCode } = useParams<{ gameType: string; gpCode: string }>();
   const [isLoading, setIsLoading] = useState(true);
   const [isMaintenance, setIsMaintenance] = useState(false);
@@ -28,11 +26,8 @@ const JoinLobbyGame = () => {
     setIsLoading(false);
   };
 
-  if (isMaintenance) {
-    return <MaintenancePage isGameMaintenance={true} />;
-  }
-
-  return <Loading show={isLoading} noShrink={true} opacity={1} />;
-};
-
-export default JoinLobbyGame;
+  return {
+    isMaintenance,
+    isLoading,
+  };
+}

@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import { accountAction, AccountService } from "@tgs-web-nx/core";
 import BaseProfile from "./BaseProfile";
-import { accountAction } from "@/api-services/actions/accountAction";
-import { AccountService } from "@/api-services/services/AccountService";
 import BottomNote from "@/components/UI/BottomNote";
 import {
   FormControl,
