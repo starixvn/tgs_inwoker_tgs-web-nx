@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
 // import { AccountState } from "@tgs-web-nx/types";
-import { AccountState } from "@tgs-web-nx/types";
-import { RegisterReqDto } from "@tgs-web-nx/types";
+import { AccountState, RegisterReqDto } from "@tgs-web-nx/types";
 import { AccountService } from "../services";
 import {
   CHECKTOKEN_BEGIN,

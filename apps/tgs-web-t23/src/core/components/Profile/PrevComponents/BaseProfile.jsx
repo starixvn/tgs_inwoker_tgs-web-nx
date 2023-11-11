@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { UPDATE_INFO } from "@/api-services/constant/actionType";
+import { UPDATE_INFO } from "@tgs-web-nx/core";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";

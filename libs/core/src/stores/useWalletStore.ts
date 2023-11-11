@@ -97,8 +97,8 @@ import {
   UPDATEBALANCELIST_BEGIN,
   UPDATEBALANCELIST_FAIL,
   UPDATEBALANCELIST_SUCCESS,
-} from "@/api-services/constant/actionType";
-import { WalletService } from "@/api-services/services/WalletService";
+  WalletService,
+} from "@tgs-web-nx/core";
 
 export function useWalletStore() {
   const dispatch = useDispatch();

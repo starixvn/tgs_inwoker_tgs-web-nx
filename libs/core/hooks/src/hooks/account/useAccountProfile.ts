@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { UPDATE_INFO } from "@/api-services/constant/actionType";
+import { UPDATE_INFO } from "@tgs-web-nx/core";
 
 function duplicateText(count: number): string {
   let value = "";

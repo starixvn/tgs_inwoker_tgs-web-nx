@@ -71,7 +71,7 @@ export function useImageActions() {
 
       image.src = blobURL;
     },
-    [isCopied, isDownloaded]
+    [isCopied, isDownloaded],
   );
 
   return {

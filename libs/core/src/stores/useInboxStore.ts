@@ -5,11 +5,11 @@ import {
   GETMESSAGE_BEGIN,
   GETMESSAGE_FAILED,
   GETMESSAGE_SUCCESS,
+  InboxService,
   SETMESSAGEREAD_BEGIN,
   SETMESSAGEREAD_FAILED,
   SETMESSAGEREAD_SUCCESS,
-} from "@/api-services/constant/actionType";
-import { InboxService } from "@/api-services/services/InboxService";
+} from "@tgs-web-nx/core";
 
 export function useInboxStore() {
   const dispatch = useDispatch();

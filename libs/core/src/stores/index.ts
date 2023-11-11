@@ -1,3 +1,5 @@
+export * from "./actions";
+
 export * from "./useAccountStore";
 export * from "./useBonusStore";
 export * from "./useGameStore";

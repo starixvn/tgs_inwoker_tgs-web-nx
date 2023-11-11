@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { updateHtmlTitleDescription } from "@tgs-web-nx/utils";
+import { i18n, updateHtmlTitleDescription } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
 
 export function useInitLanguage() {

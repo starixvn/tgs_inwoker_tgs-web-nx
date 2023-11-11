@@ -1,9 +1,7 @@
 import config from "@tgs-web-nx/config";
 
 var phone = (phone) => {
-  var phoneRegex = new RegExp(
-    `^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`
-  );
+  var phoneRegex = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`);
   return phoneRegex.test(phone);
 };
 

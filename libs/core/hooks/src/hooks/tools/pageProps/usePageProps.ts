@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
-import {  useNotifications } from "@tgs-web-nx/core/features";
+import { useNotifications } from "@tgs-web-nx/core/features";
 import { useNavigation } from "./useNavigation";
 import { useGetSupportUrl } from "./useGetSupportUrl";
 

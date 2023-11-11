@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { Modal, styled as muiStyled } from "@mui/material";
 import { Textfit } from "react-textfit";
 import config from "@tgs-web-nx/config";
-import { WalletService } from "@/api-services/services/WalletService";
+import { WalletService } from "@tgs-web-nx/core";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { i18n } from "@tgs-web-nx/utils";
 import Loading from "@/components/UI/Loading";

@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { accountAction } from "@/api-services/actions/accountAction";
-import { AccountService } from "@/api-services/services/AccountService";
+import { accountAction, AccountService } from "@tgs-web-nx/core";
 import Step from "@/components/project/Step";
 import { TextField } from "@/components/UI/TextField";
 import {
