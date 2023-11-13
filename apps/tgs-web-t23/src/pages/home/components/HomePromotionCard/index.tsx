@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
 import { theme } from "@/theme";
 import adBanner from "@/assets/t23/images/home/ad-banner.png";
@@ -14,6 +15,11 @@ const PromotionContent = styled.div`
   align-items: center;
   border-radius: 20px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
+
+  ${media.sm} {
+    min-width: 580px;
+    min-height: 395px;
+  }
 `;
 
 const Banner = styled.div<{ $imageUrl: string }>`
@@ -24,6 +30,10 @@ const Banner = styled.div<{ $imageUrl: string }>`
   background-repeat: no-repeat;
   border-radius: 20px;
   margin-bottom: 19px;
+
+  ${media.sm} {
+    margin-bottom: 48px;
+  }
 `;
 
 const PromotionDetailWrapper = styled.div`
@@ -31,6 +41,10 @@ const PromotionDetailWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${media.sm} {
+    padding: 0 10px;
+  }
 `;
 
 const PromotionText = styled.div`
@@ -38,10 +52,17 @@ const PromotionText = styled.div`
   line-height: 1.25rem;
   font-weight: 400;
   color: ${(props) => props.theme.white};
+
+  ${media.sm} {
+    font-size: 1.5625rem;
+    width: calc(100% - 200px);
+    padding-right: 30px;
+  }
 `;
 
 const PromotionCard = () => {
   const history = useHistory();
+  const { isMobileSize } = useRwd();
 
   return (
     <PromotionContent>
@@ -50,8 +71,8 @@ const PromotionCard = () => {
         <PromotionText>Welcome Bonus of 100% Up to 100,000</PromotionText>
         <TextButton
           text={"Details"}
-          width={"105px"}
-          height={"34px"}
+          width={isMobileSize ? "105px" : "200px"}
+          height={isMobileSize ? "34px" : "40px"}
           bgColor={theme.secondaryMix}
           color={theme.white}
           onClick={() => history.push("/promotion-list")}

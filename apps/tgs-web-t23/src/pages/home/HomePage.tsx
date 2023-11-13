@@ -82,7 +82,6 @@ const HomeAdContainer = styled.div`
     align-items: center;
     gap: 40px;
     height: 100%;
-    max-height: 395px;
   }
 `;
 

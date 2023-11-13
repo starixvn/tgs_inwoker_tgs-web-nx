@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FlipMove from "react-flip-move";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import WinnerRankRow, { RankItem } from "./components/WinnerRankRow";
 import { theme } from "@/theme";
 import winnerBanner from "@/assets/t23/images/home/winner-banner.png";
@@ -22,7 +23,8 @@ const Wrapper = styled.div`
   ${media.sm} {
     height: 100%;
     padding: 20px 20px 20px 20px;
-    min-height: unset;
+    min-height: 395px;
+    min-width: 580px;
   }
 `;
 
@@ -76,6 +78,8 @@ type Props = {
 };
 
 const WinnerCard = ({ leaderboard }: Props) => {
+  const { isMobileSize } = useRwd();
+
   return (
     <Wrapper>
       <Banner>
@@ -87,7 +91,7 @@ const WinnerCard = ({ leaderboard }: Props) => {
       </Banner>
 
       <Content>
-        <FlipMove style={{ width: "100%", display: "flex", gap: "19px", flexDirection: "column" }}>
+        <FlipMove style={{ width: "100%", display: "flex", gap: isMobileSize ? "19px" : "28px", flexDirection: "column" }}>
           {leaderboard.map((rankItem) => {
             return <WinnerRankRow key={rankItem.key} rankItem={rankItem} />;
           })}
