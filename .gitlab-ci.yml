@@ -37,6 +37,7 @@ deploy-domain-dev:
     - |
       echo "domain=$domain"
       echo "brand=$brand"
+      echo "tgs_env=$tgs_env"
       
       if [[ $domain != "" && $brand != "" ]]; then 
         export image=$(docker image ls | grep pgtgs | awk '{print $1}')
