@@ -25,7 +25,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px 17px;
+  padding: 11px 10px 12.5px 15px;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -47,7 +47,6 @@ const HeaderContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-right: 20px;
 `;
 
 const Header = () => {
@@ -60,6 +59,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
+        {!isLargeDesktopSize && <MenuButton />}
         <Link to={""}>
           <LogoImgContainer>
             <img
@@ -75,8 +75,6 @@ const Header = () => {
 
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
-
-        {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
   );

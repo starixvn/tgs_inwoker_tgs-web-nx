@@ -3,13 +3,14 @@ import { useMemo } from "react";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import DesktopMenuDrawer from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer";
-import MobileMenuDrawer from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer";
+import MobileMenuDrawer from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer/MobileMenuDrawer";
 import {
   DESKTOP_DRAWER_WIDTH,
   DRAWER_SHRINK_WIDTH,
   MOBILE_DRAWER_WIDTH,
   TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
+import { theme } from "@/theme";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
@@ -30,7 +31,7 @@ const MenuDrawer = () => {
   return (
     <Drawer
       variant={isLargeDesktopSize ? "persistent" : "temporary"}
-      anchor={isLargeDesktopSize ? "left" : "right"}
+      anchor={"left"}
       open={isLargeDesktopSize ? true : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{
@@ -39,10 +40,11 @@ const MenuDrawer = () => {
           width: drawerWidth,
           transition: "all ease-in-out 0.2s",
           border: "none",
+          background: theme.gray30,
         },
       }}
     >
-      {isLargeDesktopSize ? <DesktopMenuDrawer /> : <MobileMenuDrawer />}
+      {isLargeDesktopSize ? null : <MobileMenuDrawer />}
     </Drawer>
   );
 };

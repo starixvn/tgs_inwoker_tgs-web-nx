@@ -1,43 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useGeneralStore } from "@tgs-web-nx/core";
-import { useAuth, useHeader } from "@tgs-web-nx/core/features";
-import headerBg from "@/assets/t23/images/header/side-menu-bg.png";
-import Avatar from "@/components/project/Avatar";
+import { useHeader } from "@tgs-web-nx/core/features";
 
 const SideMenuHeaderContainer = styled.div`
+  background: ${({ theme }) => theme.gray30};
   position: relative;
   flex-shrink: 0;
   width: 100%;
-  height: 219px;
-  background-image: url(${headerBg});
+  height: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `;
 
-const LogoImg = styled.img`
-  margin: 0 auto;
-  display: block;
-  width: 174px;
-`;
-
 const CloseIconContainer = styled.div`
   position: absolute;
   top: 10px;
-  right: 10px;
+  left: 10px;
   display: flex;
   align-items: center;
   cursor: pointer;
 `;
 
 const SideMenuHeader = () => {
-  const {
-    general: { brand },
-  } = useGeneralStore();
-  const { isLogin } = useAuth();
   const { handleToggleMenu } = useHeader();
 
   return (
@@ -46,12 +33,11 @@ const SideMenuHeader = () => {
         <CloseIcon
           style={{
             color: "white",
-            transform: "scale(1.6)",
+            width: "20px",
+            height: "20px",
           }}
         />
       </CloseIconContainer>
-
-      {isLogin ? <Avatar /> : <LogoImg src={brand && brand.loadingUrl} />}
     </SideMenuHeaderContainer>
   );
 };
