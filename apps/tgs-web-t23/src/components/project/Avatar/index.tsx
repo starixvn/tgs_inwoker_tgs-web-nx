@@ -1,13 +1,10 @@
 import React from "react";
-import avatarImg from "@/assets/t18/images/account/avatar.png";
 import styled from "styled-components";
-import { useAccountStore } from "@/core/stores/useAccountStore";
+import { Common } from "@tgs-web-nx/utils";
+import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import VipMedal from "@/components/project/VipMedal";
 import Icon from "@/components/project/Icon";
 import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
-import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
-import Common from "@/core/utils/Common";
-import { useWalletStore } from "@/core/stores/useWalletStore";
 
 const AvatarContainer = styled.div`
   display: flex;

@@ -1,13 +1,10 @@
-import React, { FC, useState } from "react";
-import styled, { keyframes, DefaultTheme } from "styled-components";
+import React, { useState } from "react";
+import styled, { DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
+import config from "@tgs-web-nx/config";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useAccountStore, useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import refreshIcon from "@/assets/t23/images/account/icon-refresh.svg";
-import i18n from "@/utils/i18n";
-import Common from "@/core/utils/Common";
-import config from "@/config/config";
-import { useGameStore } from "@/core/stores/useGameStore";
-import { useWalletStore } from "@/core/stores/useWalletStore";
-import { useAccountStore } from "@/core/stores/useAccountStore";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -169,24 +166,22 @@ const UserWalletInfo = ({}) => {
           </AmountContainer>
         </MainWalletContainer>
         {game.containTransferWallet && (
-          <>
-            <MainWalletContainer>
-              <MainAccountLabel>{i18n.t("web.account.header.allGameWallet")}:</MainAccountLabel>
-              <AmountContainer>
-                {isLoading ? (
-                  <span>-</span>
-                ) : (
-                  <DynamicFont content={wallet.mainSymbol + ingame.toFixed(2)} />
-                )}
-                <RefreshButton
-                  width={"44px"}
-                  height={"44px"}
-                  iconUrl={refreshIcon}
-                  onClick={handleRefreshClick}
-                />
-              </AmountContainer>
-            </MainWalletContainer>
-          </>
+          <MainWalletContainer>
+            <MainAccountLabel>{i18n.t("web.account.header.allGameWallet")}:</MainAccountLabel>
+            <AmountContainer>
+              {isLoading ? (
+                <span>-</span>
+              ) : (
+                <DynamicFont content={wallet.mainSymbol + ingame.toFixed(2)} />
+              )}
+              <RefreshButton
+                width={"44px"}
+                height={"44px"}
+                iconUrl={refreshIcon}
+                onClick={handleRefreshClick}
+              />
+            </AmountContainer>
+          </MainWalletContainer>
         )}
         <MainWalletContainer>
           <MainAccountLabel>{i18n.t("web.account.header.total")}:</MainAccountLabel>

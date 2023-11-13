@@ -1,10 +1,9 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { useWalletStore } from "@/core/stores/useWalletStore";
-import Common from "@/core/utils/Common";
-import i18n from "@/utils/i18n";
-import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
 import { useHistory } from "react-router-dom";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useWalletStore } from "@tgs-web-nx/core";
+import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
 import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -53,21 +52,17 @@ const BalanceTracker = ({ size, ...others }: Props) => {
 
   const handleClick = useCallback(() => {
     history.push("/deposit");
-  }, []);
+  }, [history]);
 
   const handleRefreshBalance = useCallback(async () => {
     await getBalanceList();
-  }, []);
+  }, [getBalanceList]);
 
   const isShow = size !== "small";
   return (
     //@ts-ignore
     <BalanceTrackerContainer $size={size} {...others}>
-      {isShow && (
-        <span>
-          <>{i18n.t("wap.main.account.totalFund")}</>
-        </span>
-      )}
+      {isShow && <span>{i18n.t("wap.main.account.totalFund")}</span>}
 
       <BalanceContainer>
         <Icon iconUrl={iconMoney} width={"20px"} height={"20px"} />

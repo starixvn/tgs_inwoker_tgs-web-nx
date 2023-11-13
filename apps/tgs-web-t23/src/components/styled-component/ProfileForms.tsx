@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Button as MuiButton, FormControl as MuiFormControl } from "@mui/material";
 import { styled as muiStyled } from "@mui/system";
+import { media } from "@/theme/breakpoints";
 
 export const Remark = styled.div`
   font-size: 0.937rem;
@@ -13,7 +14,9 @@ export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 24px;
-  max-width: 450px;
+  ${media.sm} {
+    max-width: 450px;
+  }
 `;
 
 export const LabelContainer = styled.div`
@@ -25,7 +28,7 @@ export const LabelContainer = styled.div`
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   borderRadius: "30px",
-  background: theme.palette.mainLightBackground,
+  background: theme.palette.mainLightBackground.main,
 
   width: "100%",
   fontSize: "0.937rem",
@@ -52,9 +55,18 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   borderRadius: "30px",
   color: "#828282",
-  background: theme.palette.mainLightBackground,
+  background: theme.palette.mainLightBackground.main,
   border: "none",
 })) as typeof MuiButton;
+
+export const UploadFileTag = styled.span`
+  width: 100%;
+  font-size: 0.937rem;
+  color: ${({ theme }) => theme.white};
+
+  display: flex;
+  align-items: center;
+`;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",

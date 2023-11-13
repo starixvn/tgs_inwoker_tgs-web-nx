@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TypeProductRebateByLevel } from "@/components/pages/BettingBonusPage";
+import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
 import LevelIcon from "@/components/UI/LevelIcon";
 
 const LevelTableContainer = styled.table`
@@ -65,11 +65,7 @@ export const LevelTableRow = ({
     <Row>
       <IconCell>
         <LevelIconWrapper>
-          <LevelIcon
-            isCurrentLevel={isCurrentLevel}
-            level={level}
-            width={"57px"}
-          />
+          <LevelIcon isCurrentLevel={isCurrentLevel} level={level} width={"57px"} />
         </LevelIconWrapper>
       </IconCell>
       {bonusList.map((bonus, index) => {

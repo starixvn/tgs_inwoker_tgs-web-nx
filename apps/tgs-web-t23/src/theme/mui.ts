@@ -1,8 +1,8 @@
-import { breakpoints } from "@/theme/breakpoints";
-import { fontFamily } from "@/theme/fontFamily";
-import { theme } from "@/theme/index";
-import i18n from "@/utils/i18n";
-import { createTheme } from "@mui/material";
+import {createTheme, ThemeOptions} from "@mui/material";
+import {i18n} from "@tgs-web-nx/utils";
+import {breakpoints} from "@/theme/breakpoints";
+import {fontFamily} from "@/theme/fontFamily";
+import {theme} from "@/theme";
 
 //@ts-ignore
 theme.lang = i18n.language;
@@ -99,15 +99,7 @@ const muiTheme = createTheme({
         },
       },
     },
-    MuiSelect: {
-      styleOverrides: {
-        root: {
-          color: theme.white,
-        },
-      },
-    },
   },
-});
+} as ThemeOptions);
 
 export { muiTheme };
-

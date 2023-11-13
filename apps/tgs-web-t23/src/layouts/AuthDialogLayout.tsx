@@ -1,11 +1,11 @@
-import DefaultLayout from "@/layouts/DefaultLayout";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { HEADER_HEIGHT } from "@/theme/constants";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { ReactElement, useCallback } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { HEADER_HEIGHT } from "@/theme/constants";
+import DefaultLayout from "@/layouts/DefaultLayout";
 
 const DialogLayoutContainer = styled.div`
   position: relative;

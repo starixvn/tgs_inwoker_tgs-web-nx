@@ -1,10 +1,9 @@
-import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { Dialog as MuiDialog, DialogProps } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useAuth } from "@/core/feature/useAuth";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { UpTransition } from "@/components/UI/Dialog/Transition";
 
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {

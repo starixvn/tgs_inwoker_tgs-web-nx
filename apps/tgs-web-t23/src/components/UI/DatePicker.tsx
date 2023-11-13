@@ -6,13 +6,13 @@ import {
   MobileDatePickerProps,
 } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import i18n from "@/utils/i18n";
-import { theme } from "@/theme";
 import zhLocale from "date-fns/locale/zh-CN";
 import enLocale from "date-fns/locale/en-US";
 import thLocale from "date-fns/locale/th";
 import styled from "styled-components";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import { theme } from "@/theme";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,

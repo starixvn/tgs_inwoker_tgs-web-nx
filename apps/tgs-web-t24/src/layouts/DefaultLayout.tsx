@@ -1,0 +1,91 @@
+import { ReactElement } from "react";
+import styled from "styled-components";
+import { useHeader } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
+import Footer from "@/layouts/components/Footer";
+import Header from "@/layouts/components/Header";
+import MenuDrawer from "@/layouts/components/MenuDrawer";
+import { media } from "@/theme/breakpoints";
+import {
+  BOTTOM_APP_BAR_HEIGHT,
+  DESKTOP_DRAWER_WIDTH,
+  DRAWER_SHRINK_WIDTH,
+  HEADER_HEIGHT,
+  TABLET_DRAWER_WIDTH,
+} from "@/theme/constants";
+
+const DefaultLayoutContainer = styled.div`
+  position: relative;
+  background: ${({ theme }) => theme.mainBackground};
+`;
+
+const DashboardContainer = styled.div`
+  display: flex;
+  margin-top: ${HEADER_HEIGHT};
+  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+
+  ${media.sm} {
+    margin-top: ${HEADER_HEIGHT};
+    min-height: calc(100vh - ${HEADER_HEIGHT});
+    margin-bottom: unset;
+  }
+`;
+
+type ContentWrapperProps = {
+  $isOpen: boolean;
+};
+
+const ContentWrapper = styled.div<ContentWrapperProps>`
+  position: relative;
+  flex-grow: 1;
+  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
+  transition: all ease-in-out 0.2s;
+
+  ${media.md} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
+      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+  }
+
+  ${media.lg} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
+      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+  }
+`;
+
+const ChildrenWrapper = styled.div`
+  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
+
+  ${media.sm} {
+    padding-bottom: 0;
+  }
+`;
+
+type Props = {
+  children: ReactElement | ReactElement[];
+};
+const DefaultLayout = ({ children }: Props) => {
+  const { isMobileSize } = useRwd();
+  const { isMenuOpen } = useHeader();
+
+  return (
+    <DefaultLayoutContainer>
+      <Header />
+
+      <DashboardContainer>
+        <MenuDrawer />
+
+        <ContentWrapper $isOpen={isMenuOpen}>
+          <>
+            <ChildrenWrapper>{children}</ChildrenWrapper>
+            <Footer />
+          </>
+        </ContentWrapper>
+      </DashboardContainer>
+
+      {isMobileSize && <BottomAppBar />}
+    </DefaultLayoutContainer>
+  );
+};
+
+export default DefaultLayout;

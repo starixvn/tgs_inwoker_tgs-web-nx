@@ -1,4 +1,6 @@
 import { useMemo } from "react";
+import { i18n } from "@tgs-web-nx/utils";
+import { useAuth } from "@tgs-web-nx/core/features";
 import profileImg from "@/assets/t23/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t23/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t23/images/account/navItem/icon-withdraw.svg";
@@ -20,9 +22,6 @@ import downloadSecondaryImg from "@/assets/t23/images/account/navItem/mobile/ico
 import contactSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-contact.svg";
 import vipSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-vip.svg";
 import logoutSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-logout.svg";
-import i18n from "@/utils/i18n";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useAuth } from "@/core/feature/useAuth";
 
 export enum NavCardKey {
   PROFILE,
@@ -40,7 +39,7 @@ export enum NavCardKey {
 
 export type NavItem = {
   key: NavCardKey;
-  label: string;
+  label: string | any;
   iconUrl: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
@@ -98,7 +97,7 @@ export function useAccountNavigations() {
         label: "VIP",
         iconUrl: vipSecondaryImg,
         iconSecondaryUrl: vipSecondaryImg,
-        routePath: "/transfer",
+        routePath: "/vip",
       },
       {
         key: NavCardKey.REPORT,

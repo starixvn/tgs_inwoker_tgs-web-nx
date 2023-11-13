@@ -3,7 +3,18 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "t23": "nx serve tgs-web-t23"
+    "create-template": "nx g @nx/react:app --bundler=vite --routing=false --e2eTestRunner=none --projectNameAndRootFormat=derived",
+    "create-lib": "nx g @nx/react:lib --bundler=none --projectNameAndRootFormat=derived",
+    "t23": "nx serve tgs-web-t23",
+    "t24": "nx serve tgs-web-t24",
+    "t33": "nx serve tgs-web-t33",
+    "t34": "nx serve tgs-web-t34",
+    "build": "nx build",
+    "docker-build:dev": "nx affected --target=docker-build --base=origin/develop~1 --head=origin/develop --parallel=3",
+    "docker-build:staging": "nx affected --target=docker-build --base=origin/release/current~1 --head=origin/release/current --parallel=3",
+    "docker-build:production": "nx affected --target=docker-build --base=origin/master~1 --head=origin/master --parallel=3",
+    "docker-build:force": "nx run-many --target=docker-build",
+    "docker-build:single": "nx docker-build"
   },
   "private": true,
   "dependencies": {
@@ -64,6 +75,7 @@
     "redux-thunk": "^2.4.2",
     "slick-carousel": "^1.8.1",
     "styled-components": "5.3.6",
+    "tslib": "^2.3.0",
     "uuid": "^9.0.1",
     "yup": "^1.3.2"
   },

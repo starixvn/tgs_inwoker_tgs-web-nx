@@ -1,4 +1,6 @@
-import { GameTypeEnum } from "@/core/types/GameTypeEnum";
+import { useEffect, useState } from "react";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { i18n } from "@tgs-web-nx/utils";
 import cardgame from "@/assets/t23/images/home/gameType/cardGame.svg";
 import egame from "@/assets/t23/images/home/gameType/egame.svg";
 import esports from "@/assets/t23/images/home/gameType/esports.svg";
@@ -10,8 +12,6 @@ import sports from "@/assets/t23/images/home/gameType/sports.svg";
 import hot from "@/assets/t23/images/home/hot.svg";
 import newIcon from "@/assets/t23/images/home/new.svg";
 import recommend from "@/assets/t23/images/home/recommend.svg";
-import i18n from "@/utils/i18n";
-import { useEffect, useState } from "react";
 
 type LobbyCategoryIcon = {
   key: string;

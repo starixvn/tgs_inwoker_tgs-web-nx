@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import {
-  FormControl as MuiFormControl,
-  FormControlProps,
   MenuItem as MuiMenuItem,
   Select as MuiSelect,
   SelectChangeEvent,
+  SelectProps,
 } from "@mui/material";
 import styled from "styled-components";
-import i18n from "@/utils/i18n";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { BrandLanguage } from "@/core/types/stores/general";
+import { BrandLanguage } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { useGeneralStore } from "@tgs-web-nx/core";
+import { theme } from "@/theme";
 
-const imageMap: { [key in string]: string } = {
+export const imageMap: { [key in string]: string } = {
   "zh-CN": import.meta.env.BASE_URL + `assets/images/language/zh-CN.png`,
   "zh-TW": import.meta.env.BASE_URL + `assets/images/language/zh-TW.png`,
   "en-US": import.meta.env.BASE_URL + `assets/images/language/en-US.png`,
@@ -20,38 +20,23 @@ const imageMap: { [key in string]: string } = {
   "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
 };
 
-const StyledFormControl = styled(MuiFormControl)`
-  border-radius: 10px;
-  width: 140px;
-  margin-right: 10px;
+const StyledSelect = styled(MuiSelect)`
+  border-radius: 30px !important;
+  border: 1px solid white;
+
+  //width: 140px;
+  //margin-right: 10px;
   overflow: visible;
   background: ${({ theme }) => theme.mainLightBackground};
-
-  & label {
-    color: ${({ theme }) => theme.white};
-  }
-
-  & input {
-    color: ${({ theme }) => theme.white};
-  }
-
-  & .MuiSelect-root {
-    overflow: visible;
-  }
+  font-weight: 700 !important;
+  font-size: 1rem !important;
 
   .MuiOutlinedInput-input {
-    padding: 12px !important;
+    padding: 10px 30px !important;
   }
-`;
-
-const StyledSelect = styled(MuiSelect)`
-  border-radius: 100px;
-  overflow: visible;
-
   & .MuiSelect-select {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.white} !important;
 
     & > img {
       margin-right: 10px;
@@ -88,7 +73,12 @@ const FlagContainer = styled.div`
   }
 `;
 
-const LanguageSwitch = (props: FormControlProps) => {
+const NameContainer = styled.div`
+  font-weight: 700;
+  font-size: 1rem;
+`;
+
+const LanguageSwitch = (props: SelectProps) => {
   const { general } = useGeneralStore();
   const languageList = general.brandLanguage;
 
@@ -112,40 +102,36 @@ const LanguageSwitch = (props: FormControlProps) => {
 
   if (languageList.length < 2) return null;
   return (
-    <StyledFormControl {...props} variant="outlined">
-      <StyledSelect
-        type={"string"}
-        value={culturecode}
-        onChange={handleChange}
-        MenuProps={{
-          PaperProps: {
-            sx: {
-              // background: (theme: typeof muiTheme) => {
-              //   //@ts-ignore
-              //   return theme.palette.mainBackground;
-              // },
+    <StyledSelect
+      {...props}
+      type={"string"}
+      value={culturecode}
+      onChange={handleChange}
+      MenuProps={{
+        PaperProps: {
+          sx: {
+            background: theme.mainLightBackground,
 
-              "& .MuiMenuItem-root": {
-                padding: 2,
-              },
+            "& .MuiMenuItem-root": {
+              padding: 2,
             },
           },
-        }}
-      >
-        {languageList.length > 1 &&
-          languageList.map((languageItem) => {
-            const { culturecode } = languageItem;
-            return (
-              <StyledMenuItem key={culturecode} value={culturecode}>
-                <FlagContainer>
-                  <img src={imageMap[culturecode] || ""} alt={culturecode} />
-                </FlagContainer>
-                {i18n.t("lang." + culturecode)}
-              </StyledMenuItem>
-            );
-          })}
-      </StyledSelect>
-    </StyledFormControl>
+        },
+      }}
+    >
+      {languageList.length > 1 &&
+        languageList.map((languageItem) => {
+          const { culturecode } = languageItem;
+          return (
+            <StyledMenuItem key={culturecode} value={culturecode}>
+              <FlagContainer>
+                <img src={imageMap[culturecode] || ""} alt={culturecode} />
+              </FlagContainer>
+              <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
+            </StyledMenuItem>
+          );
+        })}
+    </StyledSelect>
   );
 };
 

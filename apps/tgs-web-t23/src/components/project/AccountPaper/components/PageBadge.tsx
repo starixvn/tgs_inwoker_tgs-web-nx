@@ -1,6 +1,6 @@
 import React from "react";
-import Icon from "@/components/project/Icon";
 import styled from "styled-components";
+import Icon from "@/components/project/Icon";
 
 const PageBadgeContainer = styled.div`
   padding: 10px 20px;
@@ -18,13 +18,14 @@ const PageBadgeContainer = styled.div`
 
 type Props = {
   iconUrl: string;
+  text: string;
   width?: string;
   height?: string;
-  text: string;
 } & React.HTMLProps<HTMLDivElement>;
 
 const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
   return (
+    // @ts-ignore
     <PageBadgeContainer {...others}>
       <Icon
         iconUrl={iconUrl}

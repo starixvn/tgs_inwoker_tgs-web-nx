@@ -1,8 +1,7 @@
 import React from "react";
-import authImage from "@/assets/t23/images/auth/login-header-img 1.png";
 import styled from "styled-components";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { usePageName } from "@/core/feature/usePageName";
+import { usePageName } from "@tgs-web-nx/core/features";
+import authImage from "@/assets/t23/images/auth/login-header-img 1.png";
 
 const AuthDialogImageContainer = styled.div`
   position: relative;
@@ -29,8 +28,7 @@ const TitleContainer = styled.div`
   overflow: visible;
 `;
 
-type Props = {};
-const AuthDialogImage = (props: Props) => {
+const AuthDialogImage = () => {
   const { pageName } = usePageName();
 
   return (

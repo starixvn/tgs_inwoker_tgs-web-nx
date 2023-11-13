@@ -1,13 +1,13 @@
-import DialogHeader from "@/components/UI/Dialog/DialogHeader";
-import BottomAppBar from "@/components/layouts/BottomAppBar";
-import DefaultLayout from "@/layouts/DefaultLayout";
-import { usePageName } from "@/core/feature/usePageName";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 import { ReactElement, useCallback } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePageName } from "@tgs-web-nx/core/features";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
+import DefaultLayout from "@/layouts/DefaultLayout";
+import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -29,8 +29,8 @@ const DialogLayout = ({ children }: Props) => {
   const location = useLocation();
   const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
-
   const pathname = location.pathname;
+
   const handleCloseDialog = useCallback(() => {
     const profileRegex = /\/profile\//;
     if (profileRegex.test(pathname)) {
@@ -42,7 +42,7 @@ const DialogLayout = ({ children }: Props) => {
     }
 
     history.goBack();
-  }, [pathname]);
+  }, [history, pathname]);
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;

@@ -1,28 +1,27 @@
 import styled from "styled-components";
 import { useState } from "react";
-import Carousel from "@/components/UI/Carousel";
-import { useUiStore } from "@/core/stores/useUiStore";
-import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { Dialog as MuiDialog } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import { useUiStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePopup } from "@tgs-web-nx/core/features";
+import Carousel from "@/components/UI/Carousel";
+import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { media } from "@/theme/breakpoints";
-import { Button } from "@/components/UI/Button";
+import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
-import i18n from "@/utils/i18n";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { usePopup } from "@/core/feature/usePopup";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
     background: ${({ theme }) => theme.mainBackground};
     width: 321px;
-    height: 283px;
+    height: auto;
     border-radius: 10px;
 
     ${media.sm} {
       width: 652px;
-      height: 386px;
     }
   }
 `;
@@ -33,17 +32,19 @@ const ChildContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 36px 24px 18px;
+
+  ${media.sm} {
+    padding: 60px 50px 30px;
+  }
 `;
 
 const Title = styled.div`
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.yellow};
 `;
 
 const Content = styled.div`
   font-size: 1rem;
-  font-weight: 400;
   color: #ffffff;
   margin-top: 1rem;
   line-height: 1.2rem;
@@ -55,8 +56,20 @@ const Content = styled.div`
 `;
 
 const AnnouncementCardContainer = styled.div`
-  padding: 20px;
-  height: calc(283px - 52px - 20px - 20px);
+  min-height: 120px;
+  height: auto;
+
+  ${media.sm} {
+    min-height: 150px;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  ${media.sm} {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const doNotShowAnnouncementDialogKey = "doNotShowAnnouncementDialog";
@@ -129,22 +142,26 @@ const PopupAnnouncement = () => {
           />
         )}
 
-        <Button
-          onClick={handleCloseDialog}
-          style={{
-            margin: "0 auto",
-            width: "90%",
-          }}
-        >
-          <>{i18n.t("common.close")}</>
-        </Button>
+        <ButtonWrapper>
+          <Button
+            onClick={handleCloseDialog}
+            style={{
+              margin: isDesktopSize ? "20px 0 10px 0" : "0 auto",
+              width: isDesktopSize ? "242px" : "100%",
+              textAlign: "center",
+            }}
+          >
+            <>{i18n.t("common.close")}</>
+          </Button>
+        </ButtonWrapper>
 
         {isDesktopSize && (
           <NotShowAgainHint
             onClick={handleClickCheckbox}
             isCheck={isCheck}
             style={{
-              margin: "0 auto 18px",
+              margin: "0 auto",
+              justifyContent: "center",
             }}
           />
         )}

@@ -1,36 +1,38 @@
 import React, { Suspense } from "react";
-import { Router, Switch, Route, Redirect } from "react-router-dom";
-import { AppHistory } from "@/history/History";
-import config from "@/config/config";
+import { Redirect, Route, Router, Switch } from "react-router-dom";
+import config from "@tgs-web-nx/config";
+import { ScrollToTop } from "@tgs-web-nx/utils";
+import { AppHistory, useAccountStore } from "@tgs-web-nx/core";
+import { useInitSite } from "@tgs-web-nx/core/hooks";
+import {
+  AuthContextConsumer,
+  AuthContextProvider,
+  AuthDialogContextProvider,
+  HeaderContextProvider,
+  HomeGameContextProvider,
+  PageNameContextProvider,
+  PopupContextProvider,
+} from "@tgs-web-nx/core/features";
 import ForcedVerification from "./components/project/ForcedVerification";
 import LiveChat from "./components/tools/LiveChat";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
 import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";
 import PopupPromotion from "@/components/project/Popup/PopupPromotion";
-import {
-  AuthContextConsumer,
-  AuthContextProvider,
-} from "@/core/feature/useAuth/contexts/authContext";
+
 import LayoutProvider from "@/layouts/LayoutProvider";
-import { AuthGuard } from "@/core/components/authentication/AuthGuard";
+import { AuthGuard } from "@/components/account/authentication/AuthGuard";
 import FloatingToolIcons from "@/components/project/FloatingToolIcons";
-import { PageNameContextProvider } from "@/core/feature/usePageName/contexts/pageNameContext";
 import Loading from "@/components/UI/Loading";
-import ScrollToTop from "@/core/utils/ScrollToTop";
-import LoginDialog from "@/core/components/authentication/LoginDialog";
-import RegisterDialog from "@/core/components/authentication/RegisterDialog";
-import { HeaderContextProvider } from "@/core/feature/useHeader/contexts/headerContext";
-import { AuthDialogContextProvider } from "@/core/feature/useAuthDialog/contexts/authDialogContext";
-import ForgotPasswordDialog from "@/core/components/authentication/ForgotPasswordDialog";
-import { useAccountStore } from "@/core/stores/useAccountStore";
-import { useInitSite } from "@/core/hooks/app/useInitSite";
-import { PopupContextProvider } from "@/core/feature/usePopup/contexts/popupContext";
-import { HomeGameContextProvider } from "@/core/feature/game/contexts/homeGameContext";
+import LoginDialog from "@/components/project/LoginDialog";
+import RegisterDialog from "@/components/project/RegisterDialog";
+import ForgotPasswordDialog from "@/components/project/ForgotPasswordDialog";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const App: React.FC = () => {
   const { account } = useAccountStore();
   const { isLoading } = useInitSite();
+  const gameTypeList = useGameTypeList();
 
   if (isLoading) {
     return <Loading show={true} opacity={1} noShrink={true} />;
@@ -43,7 +45,7 @@ const App: React.FC = () => {
           <HeaderContextProvider>
             <PopupContextProvider>
               <AuthDialogContextProvider>
-                <HomeGameContextProvider>
+                <HomeGameContextProvider gameTypeList={gameTypeList}>
                   <ScrollToTop />
                   <Switch>
                     {routes.map((route, index) => {

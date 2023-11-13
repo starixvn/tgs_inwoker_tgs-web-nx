@@ -1,0 +1,87 @@
+{
+  "name": "tgs-web-template",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tgs-web-template/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/tgs-web-template"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "tgs-web-template:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tgs-web-template:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "tgs-web-template:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "tgs-web-template:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "tgs-web-template:build:development"
+        },
+        "production": {
+          "buildTarget": "tgs-web-template:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/tgs-web-template"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/tgs-web-template/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "docker-build": {
+      "executor": "nx:run-commands",
+      "defaultConfiguration": "production",
+      "options": {
+        "commands": [],
+        "parallel": false
+      },
+      "configurations": {
+        "production": {
+          "DockerContainerRegistry": "pgtgs/",
+          "AppPath": "./apps/tgs-web-template",
+          "ImageName": "tgs-web-template"
+        }
+      }
+    }
+  },
+  "tags": []
+}

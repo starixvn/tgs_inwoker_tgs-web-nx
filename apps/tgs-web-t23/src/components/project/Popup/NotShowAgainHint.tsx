@@ -1,18 +1,15 @@
-import IconCheckBox from "@/assets/t18/images/checkbox.svg";
 import styled from "styled-components";
-import { media } from "@/theme/breakpoints";
 import { theme } from "@/theme";
+import IconCheckBox from "@/assets/t23/images/icon_checkbox.svg";
 
 const NotShowAgainHintContainer = styled.div`
   background: ${({ theme }) => theme.primaryLight};
-  width: 171px;
+  width: 100%;
   height: 38px;
   font-size: 1rem;
   display: flex;
   align-items: center;
-  justify-content: center;
   color: #ffffff;
-  border-radius: 50px;
 `;
 
 type CheckBoxProps = {
@@ -22,8 +19,8 @@ type CheckBoxProps = {
 const CheckBox = styled.div<CheckBoxProps>`
   width: 18px;
   height: 18px;
-  background: ${({ $isCheck, theme }: CheckBoxProps) => ($isCheck ? theme.primary : null)};
-  margin-right: 10px;
+  background: ${(props: CheckBoxProps) =>
+    props.$isCheck ? `url(${IconCheckBox}) no-repeat center center;` : null};  margin-right: 10px;
   border: ${(props) => (props.$isCheck ? "0" : "1px")} solid #ffffff;
   border-radius: 5px;
 `;

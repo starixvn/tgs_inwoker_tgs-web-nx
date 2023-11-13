@@ -1,4 +1,4 @@
-import { FormInputTypeEnum } from "@/components/project/FormikForm/FormInputFactory";
+import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
 
 export function getFormInputType(type: FormInputTypeEnum) {
   switch (type) {

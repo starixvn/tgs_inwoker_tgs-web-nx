@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import config from "../../../config/config";
-import featureList from "../../../config/features";
+import config, { featureList } from "@tgs-web-nx/config";
 
 const FeatureGetter = () => {
   const [feature, setFeatures] = useState("");
