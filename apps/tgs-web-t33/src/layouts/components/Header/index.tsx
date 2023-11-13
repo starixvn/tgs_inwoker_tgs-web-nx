@@ -1,16 +1,14 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
-import ContactButton from "./components/ContactButton";
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypes";
 
 const HeaderContainer = styled.div`
@@ -55,7 +53,7 @@ const Header = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isDesktopSize, isLargeDesktopSize } = useRwd();
+  const { isLargeDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
 
   return (
@@ -73,11 +71,9 @@ const Header = () => {
         </Link>
 
         <HeaderContentContainer>
-          <HeaderGameTypes />
+          {isLargeDesktopSize && <HeaderGameTypes />}
 
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-
-          {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
       </HeaderWrapper>
     </HeaderContainer>
