@@ -43,6 +43,7 @@ deploy-domain-dev:
         echo "tag=$tag"
         envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
         helm template $brand deployment -f values.yaml -n ${tgs_env}
+        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
       else 
         echo "No Deployment Brand and Domain"
       fi
@@ -65,6 +66,7 @@ deploy-domain-staging:
         echo "tag=$tag"
         envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
         helm template $brand deployment -f values.yaml -n ${tgs_env}
+        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
       else 
         echo "No Deployment Brand and Domain"
       fi
@@ -86,7 +88,8 @@ deploy-domain-prod:
         echo "image=$image"
         echo "tag=$tag"
         envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
-        helm template $brand deployment -f values.yaml -n ${tgs_env}
+        helm template $brand deployment -f values.yaml -n ${tgs_env} 
+        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
       else 
         echo "No Deployment Brand and Domain"
       fi

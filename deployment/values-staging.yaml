@@ -22,8 +22,6 @@ lobbyName: ${brand}
 domains:
   - domain: ${domain}
     lobbyName: ${brand}
-  - domain: www.${domain}
-    lobbyName: ${brand}
 
 nodeSelector:
   dedicated: staging
