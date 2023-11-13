@@ -7,12 +7,12 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   padding: "10px 6px",
   fontSize: "0.637rem",
   fontWeight: 400,
-  color: theme.palette.common.white,
+  color: theme.palette.white,
   background: theme.palette.primary.main,
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
-    color: theme.palette.common.white,
+    color: theme.palette.white,
   },
 }));
 

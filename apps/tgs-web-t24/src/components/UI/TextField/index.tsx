@@ -1,6 +1,5 @@
 import React from "react";
-import { TextField as MuiTextField, TextFieldProps } from "@mui/material";
-import { styled as muiStyled } from "@mui/system";
+import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   color: theme.palette.common.white,

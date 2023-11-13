@@ -10,10 +10,6 @@ interface Styles extends Partial<Record<SwitchClassKey, string>> {
   focusVisible?: string;
 }
 
-interface Props extends SwitchProps {
-  classes: Styles;
-}
-
 export const Switch = muiStyled(MuiSwitch)(({ theme }) => ({
   width: 42,
   height: 26,
@@ -25,13 +21,13 @@ export const Switch = muiStyled(MuiSwitch)(({ theme }) => ({
       transform: "translateX(16px)",
       color: theme.palette.common.white,
       "& + $track": {
-        backgroundColor: theme.palette.primary,
+        backgroundColor: theme.palette.primary.main,
         opacity: 1,
         border: "none",
       },
     },
     "&$focusVisible $thumb": {
-      color: theme.palette.primary,
+      color: theme.palette.primary.main,
       border: "6px solid #fff",
     },
   },

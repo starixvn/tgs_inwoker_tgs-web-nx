@@ -45,7 +45,7 @@ const hideInDesktopDictionary = {
 const AccountNavigations = () => {
   const history = useHistory();
   const { navItemList, navItemDictionary } = useAccountNavigations();
-  const { handleLogout, logoutState } = useAuth();
+  const { handleLogout } = useAuth();
   const { isDesktopSize } = useRwd();
 
   const handleClickNav = useCallback((navItem: NavItem) => {

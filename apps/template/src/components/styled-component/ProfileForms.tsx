@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import { Button as MuiButton, FormControl as MuiFormControl } from "@mui/material";
-import { styled as muiStyled } from "@mui/system";
+import {
+  Button as MuiButton,
+  FormControl as MuiFormControl,
+  styled as muiStyled,
+} from "@mui/material";
 import { media } from "@/theme/breakpoints";
 
 export const Remark = styled.div`
@@ -28,7 +31,7 @@ export const LabelContainer = styled.div`
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   borderRadius: "30px",
-  background: theme.palette.mainLightBackground.main,
+  background: theme.palette.mainLightBackground,
 
   width: "100%",
   fontSize: "0.937rem",
@@ -37,7 +40,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   },
 
   [theme.breakpoints.up("sm")]: {
-    border: `1px solid ${theme.palette.tertiary.main}`,
+    border: `1px solid ${theme.palette.tertiary}`,
   },
 })) as typeof MuiFormControl;
 
@@ -55,7 +58,7 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   borderRadius: "30px",
   color: "#828282",
-  background: theme.palette.mainLightBackground.main,
+  background: theme.palette.mainLightBackground,
   border: "none",
 })) as typeof MuiButton;
 

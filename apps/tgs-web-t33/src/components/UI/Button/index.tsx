@@ -1,6 +1,5 @@
 import React from "react";
-import { Button as MuiButton, ButtonProps } from "@mui/material";
-import { styled as muiStyled } from "@mui/material/styles";
+import { Button as MuiButton, ButtonProps, styled as muiStyled } from "@mui/material";
 
 export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   whiteSpace: "nowrap",
