@@ -56,7 +56,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
           width: buttonWidth ?? "92px",
         }}
       >
-        <>{i18n.t("common.login")}</>
+        {i18n.t("common.login")}
       </HeaderButton>
 
       <HeaderButton
@@ -67,7 +67,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
           width: buttonWidth ?? "92px",
         }}
       >
-        <>{i18n.t("common.register")}</>
+        {i18n.t("common.register")}
       </HeaderButton>
     </ButtonContainer>
   );

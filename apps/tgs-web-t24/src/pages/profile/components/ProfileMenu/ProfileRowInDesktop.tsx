@@ -48,7 +48,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         sx={{
           fontSize: "1rem",
           color: isVerified ? theme.palette.white : theme.palette.gray5,
-          background: isVerified ? theme.palette.primary.main : theme.palette.gray90,
+          background: isVerified ? theme.palette.primary : theme.palette.gray90,
           border: isVerified ? "none" : `1px solid ${theme.palette.gray70}`,
           width: "150px",
           marginLeft: "auto",

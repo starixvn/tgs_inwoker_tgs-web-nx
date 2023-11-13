@@ -25,13 +25,13 @@ export const Switch = muiStyled(MuiSwitch)(({ theme }) => ({
       transform: "translateX(16px)",
       color: theme.palette.common.white,
       "& + $track": {
-        backgroundColor: theme.palette.primary,
+        backgroundColor: theme.palette.primary.main,
         opacity: 1,
         border: "none",
       },
     },
     "&$focusVisible $thumb": {
-      color: theme.palette.primary,
+      color: theme.palette.primary.main,
       border: "6px solid #fff",
     },
   },

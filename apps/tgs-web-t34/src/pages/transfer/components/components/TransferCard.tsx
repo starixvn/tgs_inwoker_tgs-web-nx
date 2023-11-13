@@ -35,17 +35,6 @@ const ColContainer = styled.div`
   width: 50%;
 `;
 
-const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  borderRadius: "30px",
-  border: `1px solid white`,
-  width: "100%",
-  fontSize: "0.937rem",
-  padding: "2px 15px",
-  "& fieldset": {
-    border: "none",
-  },
-}));
-
 const Spacing = styled.div`
   margin-bottom: 10px;
 `;

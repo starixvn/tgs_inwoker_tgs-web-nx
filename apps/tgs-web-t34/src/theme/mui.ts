@@ -1,31 +1,21 @@
-import {createTheme, ThemeOptions} from "@mui/material";
-import {i18n} from "@tgs-web-nx/utils";
-import {breakpoints} from "@/theme/breakpoints";
-import {fontFamily} from "@/theme/fontFamily";
-import {theme} from "@/theme";
+import { createTheme, ThemeOptions } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import { breakpoints } from "@/theme/breakpoints";
+import { fontFamily } from "@/theme/fontFamily";
+import { theme } from "@/theme";
 
 //@ts-ignore
 theme.lang = i18n.language;
 
-declare module "@mui/material/styles" {
+declare module "@mui/material/styles/createPalette" {
   interface Palette {
-    white: Palette["primary"];
-    yellow: Palette["primary"];
-    tertiary: Palette["primary"];
-    mainGradient: Palette["primary"];
-    mainBackground: Palette["primary"];
-    mainDarkBackground: Palette["primary"];
-    mainLightBackground: Palette["primary"];
-  }
-
-  interface PaletteOptions {
-    white?: PaletteOptions["primary"];
-    yellow?: PaletteOptions["primary"];
-    tertiary?: PaletteOptions["primary"];
-    mainGradient?: PaletteOptions["primary"];
-    mainBackground?: PaletteOptions["primary"];
-    mainDarkBackground?: PaletteOptions["primary"];
-    mainLightBackground?: PaletteOptions["primary"];
+    white: string;
+    yellow: string;
+    tertiary: string;
+    mainGradient: string;
+    mainBackground: string;
+    mainDarkBackground: string;
+    mainLightBackground: string;
   }
 }
 

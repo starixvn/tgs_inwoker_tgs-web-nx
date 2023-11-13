@@ -22,7 +22,7 @@ export const Switch = muiStyled(MuiSwitch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.primary,
+        backgroundColor: theme.palette.primary.main,
       },
     },
   },

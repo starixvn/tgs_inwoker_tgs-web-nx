@@ -2,6 +2,7 @@ import gc from "@/assets/t23/images/home/gc.png";
 import logo from "@/assets/t23/images/home/logo.png";
 import PartnerTags from "@/pages/home/components/PartnerTags";
 import SocialMedia from "@/components/project/SocialMedia";
+import AppFlag from "@/pages/home/components/AppFlag";
 
 export const footerCategoriesList = [
   {
@@ -24,8 +25,13 @@ export const footerCategoriesList = [
     content: <SocialMedia />,
   },
   {
+    title: "Download APP",
+    size: null,
+    content: <AppFlag />,
+  },
+  {
     title: "Partners",
     size: null,
     content: <PartnerTags />,
-  },
+  }
 ];

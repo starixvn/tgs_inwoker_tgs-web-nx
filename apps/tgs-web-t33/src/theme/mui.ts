@@ -1,31 +1,24 @@
-import {createTheme, ThemeOptions} from "@mui/material";
-import {i18n} from "@tgs-web-nx/utils";
-import {breakpoints} from "@/theme/breakpoints";
-import {fontFamily} from "@/theme/fontFamily";
-import {theme} from "@/theme";
+import { createTheme, ThemeOptions } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import { breakpoints } from "@/theme/breakpoints";
+import { fontFamily } from "@/theme/fontFamily";
+import { theme } from "@/theme";
 
 //@ts-ignore
 theme.lang = i18n.language;
 
-declare module "@mui/material/styles" {
+declare module "@mui/material/styles/createPalette" {
   interface Palette {
-    white: Palette["primary"];
-    yellow: Palette["primary"];
-    tertiary: Palette["primary"];
-    mainGradient: Palette["primary"];
-    mainBackground: Palette["primary"];
-    mainDarkBackground: Palette["primary"];
-    mainLightBackground: Palette["primary"];
-  }
-
-  interface PaletteOptions {
-    white?: PaletteOptions["primary"];
-    yellow?: PaletteOptions["primary"];
-    tertiary?: PaletteOptions["primary"];
-    mainGradient?: PaletteOptions["primary"];
-    mainBackground?: PaletteOptions["primary"];
-    mainDarkBackground?: PaletteOptions["primary"];
-    mainLightBackground?: PaletteOptions["primary"];
+    white: string;
+    red: string;
+    black: string;
+    mainBackground: string;
+    gray10: string;
+    gray20: string;
+    gray30: string;
+    gray40: string;
+    gray50: string;
+    gray60: string;
   }
 }
 
@@ -46,35 +39,24 @@ const muiTheme = createTheme({
     secondary: {
       main: theme.secondary,
     },
-    tertiary: {
-      main: theme.lighterGray,
-    },
     action: {
-      disabledBackground: theme.gray,
+      disabledBackground: theme.gray20,
       disabled: theme.white,
     },
-    white: {
-      main: theme.white,
-    },
-    yellow: {
-      main: "#f4bd29",
-    },
+    white: theme.white,
+    red: theme.red,
 
+    black: theme.black,
+    mainBackground: theme.mainBackground,
+    gray10: theme.gray10,
+    gray20: theme.gray20,
+    gray30: theme.gray30,
+    gray40: theme.gray40,
+    gray50: theme.gray50,
+    gray60: theme.gray60,
     text: {
       primary: theme.white,
-      secondary: theme.gray,
-    },
-    mainGradient: {
-      main: theme.secondaryGradient,
-    },
-    mainBackground: {
-      main: theme.mainBackground,
-    },
-    mainDarkBackground: {
-      main: theme.mainDarkBackground,
-    },
-    mainLightBackground: {
-      main: theme.mainLightBackground,
+      secondary: theme.gray20,
     },
   },
   typography: {
