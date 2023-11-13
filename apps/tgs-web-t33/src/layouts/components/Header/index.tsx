@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import ContactButton from "./components/ContactButton";
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypes";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -71,6 +73,8 @@ const Header = () => {
         </Link>
 
         <HeaderContentContainer>
+          <HeaderGameTypes />
+
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
 
           {!isDesktopSize && <ContactButton />}
