@@ -31,6 +31,8 @@ deploy-domain-dev:
   stage: deploy-domain
   variables:
     tgs_env: dev
+  before_script:
+    - export KUBECONFIG=$kubeconfig_dev
   script:
     - |
       echo "domain=$domain"
@@ -54,6 +56,8 @@ deploy-domain-staging:
   stage: deploy-domain
   variables:
     tgs_env: staging
+  before_script:
+    - export KUBECONFIG=$kubeconfig_staging
   script:
     - |
       echo "domain=$domain"
@@ -77,6 +81,8 @@ deploy-domain-prod:
   stage: deploy-domain
   variables:
     tgs_env: prod
+  before_script:
+    - export KUBECONFIG=$kubeconfig_staging
   script:
     - |
       echo "domain=$domain"
@@ -104,7 +110,6 @@ deploy-dev:
     tgs_env: dev
   before_script:
     - export KUBECONFIG=$kubeconfig_dev
-    - echo "kubeconfig_dev=$kubeconfig_dev"
   script:
     - | 
       kubectl config get-contexts
