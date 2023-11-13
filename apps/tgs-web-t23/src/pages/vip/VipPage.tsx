@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useVipStore } from "@tgs-web-nx/core/hooks";
+import { useBettingBonus } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import { levelItemStyleList } from "@/constants/vip";
-import VipSingleItem, { VipCardItem } from "@/pages/vip/components/VipSingleItem";
+import LevelTable from "@/components/project/BettingBonus/LevelTable";
+import Loading from "@/components/UI/Loading";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const VipScrollableContainer = styled.div`
-  width: 100%;
+  width: 100%; 
+  padding: 20px 0px;
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
-  padding: 20px;
-  margin: 0 20px;
-  background-color: ${(props) => props.theme.primaryDark};
-  color: ${(props) => props.theme.white};
-  box-sizing: border-box;
-  /* 對外層的高度修正 */
-  margin-top: unset;
-  margin-bottom: unset;
-
+  
   ${media.sm} {
-    max-width: 870px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     scroll-snap-type: unset;
+
     &::-webkit-scrollbar {
       width: 10px;
       background-color: #1d1d1d40;
@@ -44,7 +40,7 @@ const VipScrollableContainer = styled.div`
 `;
 
 const VIP = () => {
-  const { vipData, isLoading } = useVipStore();
+  const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
   const accountStore = useAccountStore();
   const [vipSortingData, setVipSortingData] = useState<VipCardItem[]>([]);
   const accountLevel = accountStore.account.info.member_level_id;
@@ -61,30 +57,11 @@ const VIP = () => {
     }
   }, [isLoading, vipData]);
 
-  const numberOfLevels = vipSortingData.length;
-  const levelItems = levelItemStyleList.slice(0, numberOfLevels);
-  // 將 levelItems 中對應索引的等級資料添加到 sortingItem 中
-  const updatedVipSortingData = vipSortingData.map((sortingItem, index) => {
-    sortingItem.levelStyle = levelItems[index];
-    return sortingItem;
-  });
-
-  // to-do: 多抽一層資料處理hooks/vip for useVipDataHandler.ts 把資料和UI切分乾淨
+  if (isLoading) return <Loading show={true} />;
 
   return (
     <VipScrollableContainer>
-      {updatedVipSortingData &&
-        updatedVipSortingData.map((vipCardItem, index) => {
-          const isCurrentLevel = index === accountLevel - 1;
-
-          return (
-            <VipSingleItem
-              key={vipCardItem.levelStyle.level}
-              isCurrentLevel={isCurrentLevel}
-              vipCardItem={vipCardItem}
-            />
-          );
-        })}
+      <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
     </VipScrollableContainer>
   );
 };

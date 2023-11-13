@@ -49,5 +49,6 @@ export function useBettingBonus() {
     isLoading,
     currentLevel,
     productRebateByLevel,
+    vipData
   };
 }
