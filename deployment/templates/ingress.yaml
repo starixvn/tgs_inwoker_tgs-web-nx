@@ -11,7 +11,7 @@ spec:
   ingressClassName: nginx
   rules:
   {{- range .Values.domains }}
-  - host: {{ .domain }}
+  - host: {{ . }}
     http:
       paths:
       - pathType: Prefix
