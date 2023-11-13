@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TextButton from "../TextButton";
 import { theme } from "@/theme";
 import adBanner from "@/assets/t23/images/home/ad-banner.png";
+import { media } from "@/theme/breakpoints";
 
 const PromotionContent = styled.div`
   width: 100%;
@@ -48,7 +49,7 @@ const PromotionCard = () => {
       <PromotionDetailWrapper>
         <PromotionText>Welcome Bonus of 100% Up to 100,000</PromotionText>
         <TextButton
-          text={"Go"}
+          text={"Details"}
           width={"105px"}
           height={"34px"}
           bgColor={theme.secondaryMix}
