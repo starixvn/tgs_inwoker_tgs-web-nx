@@ -1,7 +1,9 @@
-export const colorListT23 = {
-  primary: "#FACE27",
-  secondary: "#7135F3",
+export const colorListT33 = {
+  primary: "#79C000",
+  secondary: "#0055FE",
   white: "#FFFFFF",
+  gradient: "linear-gradient(180deg, #0587F5 0%, #0057A0 100%)",
+  red: "#ff2546",
   yellow: "#FFD723",
   gray: "#828282",
   lighterGray: "#BFBFBF",
@@ -20,7 +22,7 @@ export const colorListT23 = {
 };
 
 export const themeList = {
-  colorListT23,
+  colorListT23: colorListT33,
 };
 
 export const theme = themeList["colorListT23"];
