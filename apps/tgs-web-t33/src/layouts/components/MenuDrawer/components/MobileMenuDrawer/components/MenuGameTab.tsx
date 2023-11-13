@@ -13,21 +13,17 @@ const Wrapper = styled.div<{
   $text: string;
   $isActive: boolean;
 }>`
-  width: 247px;
+  width: 100%;
   cursor: pointer;
   display: flex;
   align-items: center;
-  background: ${({ theme, $isActive }) =>
-    $isActive
-      ? theme.primaryGradient
-      : "transparent"};
-  padding: 12px 46px;
-  border-radius: 0 30px 30px 0;
+  //background: ${({ theme, $isActive }) => ($isActive ? theme.gray40 : "transparent")};
+  padding: 9.87px 10px;
 `;
 
 const Text = styled.div<{ $isActive: boolean }>`
   color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.white)};
-  font-size: 1.25rem;
+  font-size: 0.975rem;
   font-weight: 400;
 `;
 

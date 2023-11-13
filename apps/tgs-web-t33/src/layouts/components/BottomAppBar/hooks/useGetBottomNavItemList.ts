@@ -42,22 +42,6 @@ export function useGetBottomNavItemList() {
         routePath: "/deposit",
         routeCategory: RouteCategoryEnum.REFER,
       },
-      {
-        navType: NavTypeEnum.ITEM,
-        label: i18n.t("common.withdrawal"),
-        iconUrl: iconWithdrawal,
-        iconActiveUrl: iconWithdrawal,
-        routePath: "/withdrawal",
-        routeCategory: RouteCategoryEnum.INBOX,
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        label: i18n.t("web.account.profile"),
-        iconUrl: iconProfile,
-        iconActiveUrl: iconProfile,
-        routePath: "/account",
-        routeCategory: RouteCategoryEnum.MINE,
-      },
     ] as BottomNavItem[];
   }, []);
 

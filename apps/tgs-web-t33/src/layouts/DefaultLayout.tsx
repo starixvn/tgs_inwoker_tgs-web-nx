@@ -32,26 +32,10 @@ const DashboardContainer = styled.div`
   }
 `;
 
-type ContentWrapperProps = {
-  $isOpen: boolean;
-  $isDesktop: boolean;
-};
-
-const ContentWrapper = styled.div<ContentWrapperProps>`
+const ContentWrapper = styled.div`
   position: relative;
   flex-grow: 1;
-  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
   transition: all ease-in-out 0.2s;
-
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
 `;
 
 const ChildrenWrapper = styled.div`
@@ -66,8 +50,7 @@ type Props = {
   children: ReactElement;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
-  const { isMenuOpen } = useHeader();
+  const { isMobileSize } = useRwd();
 
   return (
     <DefaultLayoutContainer>
@@ -76,7 +59,7 @@ const DefaultLayout = ({ children }: Props) => {
       <DashboardContainer>
         <MenuDrawer />
 
-        <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
+        <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />

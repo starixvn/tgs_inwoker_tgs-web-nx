@@ -26,23 +26,12 @@ type Props = {
 };
 const DialogLayout = ({ children }: Props) => {
   const history = useHistory();
-  const location = useLocation();
   const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
-  const pathname = location.pathname;
 
   const handleCloseDialog = useCallback(() => {
-    const profileRegex = /\/profile\//;
-    if (profileRegex.test(pathname)) {
-      return history.push("/profile");
-    }
-
-    if (pathname === "/profile") {
-      return history.push("/account");
-    }
-
     history.goBack();
-  }, [history, pathname]);
+  }, [history]);
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;
