@@ -20,9 +20,11 @@ service:
 brandToken: ${token}
 lobbyName: ${brand}
 domains:
-  - ${domain}
-  - www.${domain}
-
+  - domain: ${domain}
+    lobbyName: ${brand}
+  - domain: www.${domain}
+    lobbyName: ${brand}
+    
 nodeSelector: {}
 
 tolerations: []
