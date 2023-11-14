@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAccountStore } from "@tgs-web-nx/core";
 import { useBettingBonus } from "@tgs-web-nx/core/hooks";
 import { VipData } from "@tgs-web-nx/types";
 import LevelTable from "./components/LevelTable";
 import { media } from "@/theme/breakpoints";
-import { levelItemStyleList, vipBonusList } from "@/constants/vip";
 import BonusTable from "@/pages/vip/components/BonusTable";
 import Loading from "@/components/UI/Loading";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";

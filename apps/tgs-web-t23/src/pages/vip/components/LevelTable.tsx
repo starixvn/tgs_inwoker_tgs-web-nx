@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const ScrollableContainer = styled.div`
   width: 100%;
@@ -16,7 +17,6 @@ const ScrollableContainer = styled.div`
   gap: 12px;
   
   ${media.sm} {
-    max-width: 1200px;
     margin: 0 auto;
     scroll-snap-type: unset;
 
@@ -47,20 +47,38 @@ const LevelTableWrapper = styled.div`
   align-items: center;
   width: 570px;
   height: 100%;
+
+  ${media.sm} {
+    width: ${MAIN_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    background: ${(props) => props.theme.mainLightBackground};
+    border-radius: 10px;
+  }
 `;
 
 const LevelTableHeader = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   height: 48px;
   padding: 12px 15px 12px 15px;
   background: ${(props) => props.theme.mainDarkBackground};
+
+  ${media.sm} {
+    border-radius: 10px;
+    height: 45px;
+    padding: 12px 0px;
+    background: transparent;
+  }
 `;
 
 const HeaderItem = styled.div`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 60px;
+  width: 60px;
   height: 100%;
   flex: 1;
   color: ${(props) => props.theme.white};
@@ -72,7 +90,9 @@ const HeaderItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
-    cursor: pointer;
+    width: 166px;
+    font-size: 1.125rem;
+    margin: unset;
   }
 `;
 
@@ -83,10 +103,18 @@ const LevelTableBody = styled.div`
   gap: 8px;
   align-self: stretch;
   background: ${(props) => props.theme.mainBackground};
+
+  ${media.sm} {
+    background: ${(props) => props.theme.mainLightBackground};
+    border-radius: 10px;
+  }
 `;
 
 const LevelTableRowWrapper = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   border-bottom: 1px solid ${(props) => props.theme.mainDarkBackground};
 
   ${media.sm} {
@@ -110,11 +138,15 @@ const RowItem = styled.div`
   font-weight: 400;
   text-align: center;
   margin: 0px 8px;
+
+  ${media.sm} {
+    width: 166px;
+    font-size: 1rem;
+  }
 `;
 
 export const LevelTableRow = ({
   level,
-  isCurrentLevel,
   bonusList,
 }: {
   level: number;
@@ -123,11 +155,6 @@ export const LevelTableRow = ({
 }) => {
   return (
     <LevelTableRowWrapper>
-      {/* <IconCell>
-        <LevelIconWrapper>
-          <LevelIcon isCurrentLevel={isCurrentLevel} level={level} width={"57px"} />
-        </LevelIconWrapper>
-      </IconCell> */}
       <RowItem>{level}</RowItem>
       {bonusList.map((bonus, index) => {
         return <RowItem key={index}>{bonus}%</RowItem>;

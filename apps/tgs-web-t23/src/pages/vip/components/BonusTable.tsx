@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
 import { media } from "@/theme/breakpoints";
 import { vipBonusList } from "@/constants/vip";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const ScrollableContainer = styled.div`
   width: 100%;
@@ -17,7 +18,6 @@ const ScrollableContainer = styled.div`
   gap: 12px;
   
   ${media.sm} {
-    max-width: 1200px;
     margin: 0 auto;
     scroll-snap-type: unset;
 
@@ -48,9 +48,15 @@ const BonusTableWrapper = styled.div`
   align-items: center;
   width: 670px;
   height: 100%;
+
+  ${media.sm} {
+    width: ${MAIN_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+  }
 `;
 
 const BonusTableHeader = styled.div`
+width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,6 +64,13 @@ const BonusTableHeader = styled.div`
   height: 48px;
   padding: 10.5px 0;
   background: ${(props) => props.theme.mainDarkBackground};
+
+  ${media.sm} {
+    border-radius: 10px;
+    height: 86px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 const HeaderItem = styled.div`
@@ -73,7 +86,8 @@ const HeaderItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
-    cursor: pointer;
+    width: 128px;
+    font-size: 1.25rem;
   }
 `;
 
@@ -84,6 +98,11 @@ const BonusTableBody = styled.div`
   gap: 8px;
   align-self: stretch;
   background: ${(props) => props.theme.mainBackground};
+
+  ${media.sm} {
+    background: ${(props) => props.theme.mainLightBackground};
+    border-radius: 10px;
+  }
 `;
 
 const BonusTableRowWrapper = styled.div`
@@ -114,6 +133,11 @@ const RowItem = styled.div`
   font-weight: 400;
   text-align: center;
   margin: 0px 8px;
+
+  ${media.sm} {
+    width: 128px;
+    font-size: 1rem;
+  }
 `;
 
 const LevelIcon = styled.div`
