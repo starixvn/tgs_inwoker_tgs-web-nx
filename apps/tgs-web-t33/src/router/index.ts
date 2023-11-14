@@ -29,6 +29,7 @@ import { ProfilePathEnum } from "@/components/account/Profile/profilePageDiction
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
+import ProfileLayout from "@/layouts/ProfileLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -155,103 +156,103 @@ const routes: Route[] = [
     path: ProfilePathEnum.NAME,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.WECHAT,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.BIRTHDATE,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.QQ,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.FB,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.TELEGRAM,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.LINE,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.VIBER,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.WHATSAPP,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.EMAIL,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_EMAIL,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PHONE,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.PHONE,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PASSWORD,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.WIDHDRAWAL_PASSWORD,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.RESET_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
 
   // {
