@@ -33,7 +33,7 @@ const SupportCardContainer = styled.div`
   //   width: calc((100% - 16px * (2 - 1)) / 3);
   // }
   ${media.md} {
-    width: calc((100% - 16px * (3 - 1)) / 4);
+    width: calc((100% - 16px * (4 - 1)) / 4);
   }
 `;
 
@@ -61,17 +61,6 @@ const iconSwitcher = (icon: string) => {
       return "support-call.svg";
   }
 };
-
-const IconContainer = styled.div`
-  width: 55px;
-  height: 55px;
-  border-radius: 28px;
-  background: ${({ theme }) => theme.white};
-  border: 11px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 type Props = {
   brandsSupport: BrandsSupport;

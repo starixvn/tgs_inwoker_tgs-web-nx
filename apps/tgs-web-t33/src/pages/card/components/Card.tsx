@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import deleteIcon from "@/assets/t33/images/card/delete.svg";
+import { media } from "@/theme/breakpoints";
 
 const CardContainer = styled.div`
   padding: 16px;
@@ -9,6 +10,10 @@ const CardContainer = styled.div`
   flex-direction: column;
   gap: 8px;
   border-radius: 4px;
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.gray50};
+  }
 `;
 
 const CardTitle = styled.div`

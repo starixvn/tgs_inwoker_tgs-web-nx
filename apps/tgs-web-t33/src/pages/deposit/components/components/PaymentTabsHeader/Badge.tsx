@@ -15,7 +15,7 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   text-align: center;
   color: white;
   background: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? theme.gradient : theme.gray40};
+    $isActive ? theme.gradient : theme.gray30};
 
   font-size: 0.812rem;
   font-weight: 400;

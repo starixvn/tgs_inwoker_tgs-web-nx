@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
@@ -30,9 +29,9 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
 
 type Props = {
   handleCloseContextMenu: () => void;
-};
+} & React.HTMLProps<HTMLDivElement>;
 
-const MemberMenu = ({ handleCloseContextMenu }: Props) => {
+const MemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
   const history = useHistory();
 
@@ -49,7 +48,8 @@ const MemberMenu = ({ handleCloseContextMenu }: Props) => {
   };
 
   return (
-    <MemberMenuContainer>
+    //@ts-ignore
+    <MemberMenuContainer {...others}>
       {accountNavItemList.map((navItem) => {
         return (
           <MemberMenuItem key={navItem.key} $isActive={false} onClick={() => handleClick(navItem)}>
