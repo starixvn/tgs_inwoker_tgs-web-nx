@@ -749,7 +749,7 @@ class DepositPrev extends Component {
           return (
             <>
               {config.features.Deposit_AddCard ? (
-                <>{this.state.showTabContainer && <DepositAddCard />}</>
+                this.state.showTabContainer && <DepositAddCard />
               ) : (
                 <PaymentTabsHeader
                   selectedPaymentIndex={this.state.selectedPaymentIndex}

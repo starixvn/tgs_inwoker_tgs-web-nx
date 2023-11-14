@@ -1,7 +1,9 @@
-import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/material";
 import React from "react";
+import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/material";
+import iconDown from "@/assets/t33/images/ui/icon-down.svg";
+import Icon from "@/components/project/Icon";
 
-export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
+const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: "white",
   fontSize: "0.937rem",
   fontWeight: 400,
@@ -35,5 +37,12 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
 }));
 
 export const Select = (props: SelectProps) => {
-  return <StyledSelect {...props} />;
+  return (
+    <StyledSelect
+      {...props}
+      // IconComponent={() => (
+      //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
+      // )}
+    />
+  );
 };

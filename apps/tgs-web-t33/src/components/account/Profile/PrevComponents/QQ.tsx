@@ -123,7 +123,7 @@ const QQ = () => {
             disabled={checkButtonState() || isLoading}
             style={{ marginBottom: "20px" }}
           >
-            <>{i18n.t("common.submit")}</>
+           {i18n.t("common.submit")}
           </SubmitButton>
 
           <BottomNote

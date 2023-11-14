@@ -736,7 +736,7 @@ class Main extends Component {
             );
           })()}
         >
-          <>{i18n.t("common.submit")}</>
+         {i18n.t("common.submit")}
         </SubmitButton>
       </>
     );

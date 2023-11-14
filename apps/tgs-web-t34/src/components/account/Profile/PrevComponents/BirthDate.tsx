@@ -122,7 +122,7 @@ const Birthdate = () => {
         disabled={isDisableButton() || isLoading}
         onClick={handleSubmitClicked}
       >
-        <>{i18n.t("common.submit")}</>
+       {i18n.t("common.submit")}
       </SubmitButton>
 
       <Loading show={isLoading} />

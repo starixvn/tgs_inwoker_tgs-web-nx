@@ -31,10 +31,6 @@ export const LabelContainer = styled.div`
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   background: theme.palette.gray30,
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "center",
-  justifyContent: "center",
 
   width: "100%",
   fontSize: "0.875rem",
@@ -74,11 +70,16 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   whiteSpace: "nowrap",
   borderRadius: "50px",
-  padding: "13.5px 20px",
+  padding: "11.5px 20px",
   fontSize: "1.25rem",
+  lineHeight: 1,
   fontWeight: 400,
   color: "white",
   background: theme.palette.secondary.main,
+
+  "&:hover": {
+    background: theme.palette.gray30,
+  },
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
