@@ -136,7 +136,7 @@ class ForgotPasswordPrev extends Component {
           <>
             {/* 手機驗證 */}
             <PhoneContainer>
-              <GrayInputWrapper style={{ width: "20%" }}>
+              <GrayInputWrapper style={{ width: "30%" }}>
                 <Select
                   style={{ width: "100%" }}
                   native
@@ -153,7 +153,7 @@ class ForgotPasswordPrev extends Component {
                 </Select>
               </GrayInputWrapper>
 
-              <GrayInputWrapper style={{ width: "80%" }}>
+              <GrayInputWrapper style={{ width: "70%" }}>
                 <TextField
                   value={this.state.phone}
                   onChange={this.handlePhoneChange}

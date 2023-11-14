@@ -1,12 +1,10 @@
-import { ReactElement, useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { usePageName } from "@tgs-web-nx/core/features";
-import DefaultLayout from "@/layouts/DefaultLayout";
 import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
+import MemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenu";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -15,9 +13,12 @@ const DialogLayoutContainer = styled.div`
 
 const ContentWrapper = styled.div`
   min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`${HEADER_HEIGHT} 0 ${BOTTOM_APP_BAR_HEIGHT}`};
+  margin: ${`${HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
+
+  display: flex;
+  justify-content: center;
 `;
 
 type Props = {
@@ -26,16 +27,20 @@ type Props = {
 const DialogLayout = ({ children }: Props) => {
   const { isDesktopSize } = useRwd();
 
-  if (isDesktopSize) {
-    return <DefaultLayout>{children}</DefaultLayout>;
-  }
-
   return (
     <DialogLayoutContainer>
       <Header />
-      <MenuDrawer />
+      {!isDesktopSize && <MenuDrawer />}
 
-      <ContentWrapper>{children}</ContentWrapper>
+      <ContentWrapper>
+        {isDesktopSize && (
+          <MemberMenu
+            handleCloseContextMenu={() => {}}
+            style={{ width: "222px", margin: "22px 0 0 22px", flexShrink: 0 }}
+          />
+        )}
+        {children}
+      </ContentWrapper>
     </DialogLayoutContainer>
   );
 };
