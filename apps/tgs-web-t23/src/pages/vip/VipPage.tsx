@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useBettingBonus } from "@tgs-web-nx/core/hooks";
+import { VipData } from "@tgs-web-nx/types";
 import LevelTable from "./components/LevelTable";
 import { media } from "@/theme/breakpoints";
 import { levelItemStyleList, vipBonusList } from "@/constants/vip";
@@ -26,12 +27,10 @@ const VipWrapper = styled.div`
 
 const VIP = () => {
   const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
-  const accountStore = useAccountStore();
-  const [vipSortingData, setVipSortingData] = useState<VipCardItem[]>([]);
-  const accountLevel = accountStore.account.info.member_level_id;
+  const [vipSortingData, setVipSortingData] = useState<VipData[]>([]);
 
   useEffect(() => {
-    if (!isLoading && levelItemStyleList) {
+    if (!isLoading) {
       const vipList =
         vipData &&
         vipData.sort((a, b) => {
@@ -46,6 +45,7 @@ const VIP = () => {
 
   return (
     <VipWrapper>
+      <BonusTable vipSortingData={vipSortingData} />
       <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
     </VipWrapper>
   );
