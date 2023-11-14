@@ -1,5 +1,8 @@
 import styled from "styled-components";
-import BottomNav from "./BottomNav";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router-dom";
+import BottomNav, { BottomNavItem } from "./BottomNav";
 import { useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 
@@ -22,6 +25,17 @@ const BottomAppBarContainer = styled.div`
 const BottomAppBar = () => {
   const { bottomNavItemList, selectedBottomNavItem, handleClickBottomNavItem } =
     useGetBottomNavItemList();
+  const { handleChangeGameType } = useHomeGameContext();
+  const history = useHistory();
+
+  const handleClick = (bottomNavItem: BottomNavItem) => {
+    if (bottomNavItem.routePath === "/") {
+      handleChangeGameType(GameTypeEnum.NONE);
+      history.push("/");
+      return;
+    }
+    handleClickBottomNavItem(bottomNavItem);
+  }
 
   return (
     <BottomAppBarContainer>
@@ -30,7 +44,7 @@ const BottomAppBar = () => {
           <BottomNav
             key={bottomNavItem.label}
             bottomNavItem={bottomNavItem}
-            onClick={() => handleClickBottomNavItem(bottomNavItem)}
+            onClick={() => handleClick(bottomNavItem)}
             isSelected={selectedBottomNavItem?.label === bottomNavItem.label}
           />
         );
