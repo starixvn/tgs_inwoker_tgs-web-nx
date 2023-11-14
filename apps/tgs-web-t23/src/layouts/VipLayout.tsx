@@ -3,8 +3,9 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
-import DialogHeader from "@/components/UI/Dialog/DialogHeader";
+import DialogHeader from "@/components/UI/Dialog/VipDialogHeader";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 
 const VipLayoutContainer = styled.div`
   position: relative;
@@ -12,8 +13,8 @@ const VipLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - 80px - 82px); // 80px:Header, 82px: BottomAppBar
-  margin: 80px 0 82px;
+  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin: ${HEADER_HEIGHT} 0 ${BOTTOM_APP_BAR_HEIGHT};
   position: relative;
   z-index: 1;
 `;
