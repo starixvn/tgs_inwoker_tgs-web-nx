@@ -9,14 +9,14 @@ import { media } from "@/theme/breakpoints";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
+  font-size: 1.875rem;
   font-weight: 700;
-  color: white;
+  color: ${({ theme }) => theme.primary};
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 24px;
+  white-space: nowrap;
 
   ${media.sm} {
     display: none;
@@ -26,7 +26,7 @@ const TitleContainer = styled.div`
 const VerifyAgeContainer = styled.div`
   width: 100%;
   color: white;
-  font-size: 0.937rem;
+  font-size: 0.875rem;
   margin: 24px 0 0;
   display: flex;
   align-items: start;

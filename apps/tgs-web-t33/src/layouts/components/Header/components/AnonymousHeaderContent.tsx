@@ -65,6 +65,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         color={"primary"}
         onClick={toggleRegisterDialog}
         style={{
+          color: theme.white,
           background: theme.secondary,
           width: buttonWidth ?? "92px",
         }}

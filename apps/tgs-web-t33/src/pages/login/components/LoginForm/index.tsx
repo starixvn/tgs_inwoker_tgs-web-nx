@@ -9,10 +9,9 @@ import { media } from "@/theme/breakpoints";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
+  font-size: 1.875rem;
   font-weight: 700;
-  color: white;
+  color: ${({ theme }) => theme.primary};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,14 +35,14 @@ const RememberMeContainer = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.white};
-  font-size: 1.062rem;
+  font-size: 0.875rem;
   cursor: pointer;
   //margin: 8px 0;
 `;
 
 const ForgotPasswordContainer = styled.span`
   color: ${({ theme }) => theme.primary};
-  font-size: 1.062rem;
+  font-size: 0.875rem;
   font-weight: 400;
   white-space: nowrap;
   cursor: pointer;
