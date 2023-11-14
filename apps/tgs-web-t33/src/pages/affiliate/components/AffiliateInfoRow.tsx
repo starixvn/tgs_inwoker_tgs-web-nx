@@ -6,9 +6,8 @@ import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainLightBackground};
-  border-radius: 30px;
-  padding: 14px 16px;
+  background: ${({ theme }) => theme.gray30};
+  padding: 16px 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -70,8 +69,12 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         variant={isCopied ? "outlined" : "contained"}
         sx={{
           width: "66px",
-          color: "black",
-          background: theme.primary,
+          color: theme.white,
+          background: theme.secondary,
+          borderRadius: "50px !important",
+          fontSize: "0.75rem",
+          padding: "4px",
+          height: "22px",
         }}
       >
         {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
