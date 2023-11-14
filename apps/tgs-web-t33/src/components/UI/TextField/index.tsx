@@ -7,7 +7,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   input: {
     padding: "12px 20px",
     color: theme.palette.common.white,
-    fontSize: "1.125rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
 
@@ -18,7 +18,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   label: {
     color: "rgba(255,255,255,0.3)",
     alignItems: "center",
-    fontSize: "1.125rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
   },
   placeholder: {
@@ -28,18 +28,18 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   "& input::placeholder": {
     color: "#828282",
     opacity: 1,
-    fontSize: "1.125rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
   },
   [theme.breakpoints.up("sm")]: {
     input: {
-      fontSize: "0.937rem",
+      fontSize: "0.875rem",
     },
     label: {
-      fontSize: "0.937rem",
+      fontSize: "0.875rem",
     },
     "& input::placeholder": {
-      fontSize: "0.937rem",
+      fontSize: "0.875rem",
     },
   },
 
