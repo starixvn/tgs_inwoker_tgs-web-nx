@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Drawer } from "@mui/material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import avatarImg from "@/assets/t33/images/account/avatar.svg";
 import { theme } from "@/theme";
-import MemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenu";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
+import WhiteMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/WhiteMemberMenu";
 
 const ContextMenuButtonContainer = styled.div`
   cursor: pointer;
@@ -18,6 +20,7 @@ const AvatarContainer = styled.div`
 
 const ContextMenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isDesktopSize } = useRwd();
 
   const handleClick = (isOpen?: boolean) => {
     if (typeof isOpen !== "undefined") {
@@ -45,11 +48,14 @@ const ContextMenuButton = () => {
             width: "222px",
             transition: "all ease-in-out 0.2s",
             border: "none",
-            background: theme.gray60,
           },
         }}
       >
-        <MemberMenu handleCloseContextMenu={() => handleClick(false)} />
+        {isDesktopSize ? (
+          <WhiteMemberMenu handleCloseContextMenu={() => handleClick(false)} />
+        ) : (
+          <DarkMemberMenu handleCloseContextMenu={() => handleClick(false)} />
+        )}
       </Drawer>
     </>
   );

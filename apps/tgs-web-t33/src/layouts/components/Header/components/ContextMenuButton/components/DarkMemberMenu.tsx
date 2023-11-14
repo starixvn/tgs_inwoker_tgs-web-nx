@@ -31,7 +31,7 @@ type Props = {
   handleCloseContextMenu: () => void;
 } & React.HTMLProps<HTMLDivElement>;
 
-const MemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
+const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
   const history = useHistory();
 
@@ -62,4 +62,4 @@ const MemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   );
 };
 
-export default MemberMenu;
+export default DarkMemberMenu;

@@ -4,7 +4,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
-import MemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenu";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -34,7 +34,7 @@ const DialogLayout = ({ children }: Props) => {
 
       <ContentWrapper>
         {isDesktopSize && (
-          <MemberMenu
+          <DarkMemberMenu
             handleCloseContextMenu={() => {}}
             style={{ width: "222px", margin: "22px 0 0 22px", flexShrink: 0 }}
           />
