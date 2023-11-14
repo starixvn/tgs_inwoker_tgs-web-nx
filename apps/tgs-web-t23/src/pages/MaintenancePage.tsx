@@ -13,17 +13,19 @@ const MaintenanceContainer = styled.div`
   //height: calc(100vh - 80px - 82px);
   height: 100vh;
   color: #ffffff;
+  background: black;
 `;
 const MaintenanceBg = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url(${import.meta.env.BASE_URL}assets/images/maintenance/maintenance_bg.png) no-repeat;
+  background: url(${import.meta.env.BASE_URL}assets/images/maintenance/maintenance_bg.png) center;
   background-size: cover;
+  //background-position: center;
 
   ${media.sm} {
     background: url(${import.meta.env.BASE_URL}assets/images/maintenance/maintenance_desktop_bg.png)
-      no-repeat;
+      center;
   }
 `;
 
@@ -83,10 +85,10 @@ const DefaultMaintenance = () => {
   );
 };
 
-type MaintenamcePageProps = {
+type MaintenancePageProps = {
   isGameMaintenance?: boolean;
 };
-const MaintenancePage = (props: MaintenamcePageProps) => {
+const MaintenancePage = (props: MaintenancePageProps) => {
   const history = useHistory();
   const { GetMaintenance } = UiService;
   const {
@@ -114,10 +116,10 @@ const MaintenancePage = (props: MaintenamcePageProps) => {
   useEffect(() => {
     // NOTE: while GeneralService.GetSiteToken encounter error,
     // then general.isMaintenance will set to false
-    if (!isMaintenance) {
-      history.push("/");
-      return;
-    }
+    // if (!isMaintenance) {
+    //   history.push("/");
+    //   return;
+    // }
 
     const fetchGetMaintenance = async () => {
       const result = await GetMaintenance();

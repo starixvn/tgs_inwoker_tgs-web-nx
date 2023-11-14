@@ -80,9 +80,6 @@ const DateRangeWithDatePicker = ({
             format="yyyy/MM/dd"
             value={dateFrom}
             onChange={handleDateFromChange}
-            sx={{
-              background: "gold",
-            }}
           />
         </DateInner>
 

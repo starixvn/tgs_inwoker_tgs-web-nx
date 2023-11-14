@@ -34,20 +34,6 @@ const DateRangeSelector = styled.div`
   }
 `;
 
-const DateTitle = styled.div`
-  align-self: flex-start;
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.465rem;
-  color: ${({ theme }) => theme.white};
-  white-space: nowrap;
-  flex-shrink: 0;
-
-  ${media.sm} {
-    align-self: center;
-  }
-`;
-
 const Report = () => {
   // TODO: tab function
   const { tab } = useParams<{ tab: string }>();
@@ -78,8 +64,6 @@ const Report = () => {
       />
 
       <DateRangeSelector>
-        <DateTitle>{i18n.t("report.date")}</DateTitle>
-
         <DateRangeWithDatePicker
           dateFrom={dateRangeInfo.dateFrom}
           dateTo={dateRangeInfo.dateTo}

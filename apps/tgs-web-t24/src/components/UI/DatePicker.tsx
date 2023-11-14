@@ -57,7 +57,6 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                 [`.MuiPickersLayout-root`]: {
                   gridColumn: 1,
                   gridRow: 2,
-                  background: "gold",
                 },
               },
             },
