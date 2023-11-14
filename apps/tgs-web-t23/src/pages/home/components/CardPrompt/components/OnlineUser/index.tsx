@@ -14,6 +14,13 @@ const Wrapper = styled.div`
 const Text = styled.div`
   color: ${({ theme }) => theme.white};
   margin-left: 6px;
+  text-align: center;
+  font-family: Gill Sans MT;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  
 `;
 
 const OnlineUser = () => {
