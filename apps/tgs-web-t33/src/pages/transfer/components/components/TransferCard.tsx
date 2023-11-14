@@ -1,20 +1,19 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.tertiary};
+  background: ${({ theme }) => theme.gray40};
   color: ${({ theme }) => theme.white};
   padding: 12px 15px;
   border-radius: 10px;
 
   & > div {
     font-size: 0.875rem !important;
-    margin-bottom: 20px;
+    margin-bottom: 6px;
   }
 
   input,
@@ -36,7 +35,7 @@ const ColContainer = styled.div`
 `;
 
 const Spacing = styled.div`
-  margin-bottom: 10px;
+  height: 14px;
 `;
 
 export interface TransferWallet {
@@ -147,8 +146,7 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              border: "1px solid white",
-              borderRadius: "30px",
+              background: "#1A1C20",
             }}
           />
         </ColContainer>

@@ -23,7 +23,7 @@ const ButtonContainer = styled.div`
     height: 40px;
     font-size: 1rem;
     padding: 10px 8px;
-    background: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.secondary};
   }
 `;
 
@@ -33,7 +33,7 @@ const TextFieldWithButton = (
     onClick: () => void;
     maxLength?: number;
     buttonLabel?: string;
-  }
+  },
 ) => {
   return (
     <CustomText>

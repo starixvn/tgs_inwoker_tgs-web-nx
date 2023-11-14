@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 
@@ -34,10 +35,10 @@ const GameTypeNav = styled.div`
   }
 `;
 
-type Props = {};
-const HeaderGameTypes = (props: Props) => {
+const HeaderGameTypeNavs = () => {
   const gameTypeList = useGameTypeList();
   const { handleChangeGameType } = useHomeGameContext();
+  const history = useHistory();
 
   const displayedGameTypeList = useMemo(() => {
     const gameTypes: GameTypeItem[] = [];
@@ -53,13 +54,17 @@ const HeaderGameTypes = (props: Props) => {
 
   const handleClickNav = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);
+
+    if (history.location.pathname !== "/") {
+      history.push("/");
+    }
   };
 
   return (
     <HeaderGameTypesContainer>
       {displayedGameTypeList.map((gameTypeItem) => {
         return (
-          <GameTypeNav onClick={() => handleClickNav(gameTypeItem)}>
+          <GameTypeNav key={gameTypeItem.key} onClick={() => handleClickNav(gameTypeItem)}>
             {gameTypeItem.text}
           </GameTypeNav>
         );
@@ -68,4 +73,4 @@ const HeaderGameTypes = (props: Props) => {
   );
 };
 
-export default React.memo(HeaderGameTypes);
+export default React.memo(HeaderGameTypeNavs);

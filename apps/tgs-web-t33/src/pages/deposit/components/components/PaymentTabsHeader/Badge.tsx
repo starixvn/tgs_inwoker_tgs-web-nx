@@ -14,12 +14,12 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   padding: 13px 8px;
   text-align: center;
   color: white;
-  border: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? `1px solid ${theme.primary}` : `1px solid ${theme.white}`};
+  background: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? theme.gradient : theme.gray40};
 
-  font-size: 0.75rem;
+  font-size: 0.812rem;
   font-weight: 400;
-  border-radius: 6px;
+  border-radius: 4px;
 
   ${media.md} {
     width: auto;

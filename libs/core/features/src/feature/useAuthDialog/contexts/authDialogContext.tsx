@@ -67,31 +67,34 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     }
   }, []);
 
-  const handleToggleForgetPasswordDialog = useCallback((isOpen?: boolean) => {
-    if (typeof isOpen === "undefined") {
-      setIsForgotPasswordDialogOpen((prevState) => !prevState);
-    } else {
-      setIsForgotPasswordDialogOpen(isOpen);
+  const handleToggleForgotPasswordDialog = useCallback(
+    (isOpen?: boolean) => {
+      if (typeof isOpen === "undefined") {
+        setIsForgotPasswordDialogOpen((prevState) => !prevState);
+      } else {
+        setIsForgotPasswordDialogOpen(isOpen);
 
-      if (isOpen) {
-        updatePageName(i18n.t("forgotPassword.title"));
+        if (isOpen) {
+          updatePageName(i18n.t("forgotPassword.title"));
+        }
       }
-    }
 
-    if (location.pathname === "/forgot-password" && !isOpen) {
-      history.push("/");
-    }
-  }, []);
+      if (location.pathname === "/forgot-password" && !isOpen) {
+        history.push("/");
+      }
+    },
+    [history, location.pathname, updatePageName],
+  );
 
   return (
     <AuthDialogContext.Provider
       value={{
         isLoginDialogOpen,
         isRegisterDialogOpen,
-        isForgotPasswordDialogOpen: isForgotPasswordDialogOpen,
+        isForgotPasswordDialogOpen,
         handleToggleLoginDialog,
         handleToggleRegisterDialog,
-        handleToggleForgotPasswordDialog: handleToggleForgetPasswordDialog,
+        handleToggleForgotPasswordDialog,
       }}
     >
       {children}

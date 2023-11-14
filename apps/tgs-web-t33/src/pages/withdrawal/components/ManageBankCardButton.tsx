@@ -12,6 +12,9 @@ const ButtonContainer = styled.div`
   color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
+  background: ${({ theme }) => theme.secondary};
+  padding: 10px 22px;
+  border-radius: 50px;
 `;
 
 const IconContainer = styled.div`

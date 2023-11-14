@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeItem, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
 import MenuGameTab from "./MenuGameTab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -14,7 +15,17 @@ const TabContainer = styled.div`
 const MenuGameTypeList = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { isMenuOpen } = useHeader();
+  const { isMenuOpen, handleToggleMenu } = useHeader();
+  const history = useHistory();
+
+  const handleTabClick = (gameTypeItem: GameTypeItem) => {
+    if (history.location.pathname !== "/") {
+      history.push("/");
+    }
+
+    handleChangeGameType(gameTypeItem.gameType);
+    handleToggleMenu(false);
+  };
 
   return (
     <TabContainer>
@@ -27,7 +38,7 @@ const MenuGameTypeList = () => {
             imageUrl={iconUrl}
             text={isMenuOpen ? text : ""}
             isActive={gameType === activeGameType}
-            onClick={() => handleChangeGameType(gameType)}
+            onClick={() => handleTabClick(gameTypeItem)}
           />
         );
       })}

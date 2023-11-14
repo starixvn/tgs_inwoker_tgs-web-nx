@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import deleteIcon from "@/assets/t18/images/card/delete.svg";
 
-const InputContainer = styled.div`
+const CardContainer = styled.div`
   padding: 13px 20px;
   background: ${({ theme }) => theme.mainBackground};
   display: flex;
@@ -43,7 +43,7 @@ type Props = {
 };
 const Card = ({ title, content, handleDelete, disable }: Props) => {
   return (
-    <InputContainer>
+    <CardContainer>
       <CardTitle>{title}</CardTitle>
       <CardContent>
         <ContentRow>{content}</ContentRow>
@@ -55,7 +55,7 @@ const Card = ({ title, content, handleDelete, disable }: Props) => {
           )}
         </ContentRow>
       </CardContent>
-    </InputContainer>
+    </CardContainer>
   );
 };
 

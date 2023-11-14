@@ -9,7 +9,7 @@ import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
-import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypes";
+import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 
 const HeaderContainer = styled.div`
   position: fixed;
