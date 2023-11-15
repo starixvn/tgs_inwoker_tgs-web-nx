@@ -8,11 +8,7 @@ type Props = {
   onClick: () => void;
 };
 
-const Wrapper = styled.div<{
-  $imageUrl: string;
-  $text: string;
-  $isActive: boolean;
-}>`
+const Wrapper = styled.div`
   flex-shrink: 0;
   width: 60px;
   cursor: pointer;
@@ -30,7 +26,7 @@ const Text = styled.div<{ $isActive: boolean }>`
 
 const MenuGameTab = ({ imageUrl, text, isActive, onClick }: Props) => {
   return (
-    <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
+    <Wrapper onClick={onClick}>
       <Icon iconUrl={imageUrl} width={"24px"} height={"24px"} style={{ marginBottom: "8px" }} />
       <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
