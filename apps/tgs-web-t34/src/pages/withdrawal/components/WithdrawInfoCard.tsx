@@ -5,7 +5,7 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.primaryLight};
+  background: ${({ theme }) => theme.grey00};
   color: ${({ theme }) => theme.white};
   padding: 25px 37px;
   border-radius: 5px;
@@ -15,7 +15,7 @@ const CardContainer = styled.div`
   align-self: flex-start;
 `;
 const RowContainer = styled.div`
-  border-left: 6px solid ${({ theme }) => theme.tertiary};
+  border-left: 6px solid ${({ theme }) => theme.maskWhite50};
   padding-left: 10px;
 
   &:first-child {

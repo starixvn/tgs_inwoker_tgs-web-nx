@@ -2,14 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
+import iconImg from "@/assets/t34/images/withdraw/icon-plus.svg";
 
 const ButtonContainer = styled.div`
   cursor: pointer;
   font-weight: 400;
   font-size: 0.937rem;
   line-height: 1.098rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
+  background: ${({ theme }) => theme.yellow};
+  padding: 10px;
+  border-radius: 50px;
+  margin-top: 20px;
+
   display: flex;
   align-items: center;
 `;
