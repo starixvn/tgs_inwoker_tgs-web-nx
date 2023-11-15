@@ -13,28 +13,25 @@ const Wrapper = styled.div<{
   $text: string;
   $isActive: boolean;
 }>`
-  width: 247px;
+  flex-shrink: 0;
+  width: 60px;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  background: ${({ theme, $isActive }) =>
-    $isActive
-      ? theme.primaryGradient
-      : "transparent"};
-  padding: 12px 46px;
-  border-radius: 0 30px 30px 0;
+  padding: 10px 7.5px;
 `;
 
 const Text = styled.div<{ $isActive: boolean }>`
   color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.white)};
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 400;
 `;
 
 const MenuGameTab = ({ imageUrl, text, isActive, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
-      <Icon iconUrl={imageUrl} width={"30px"} height={"30px"} style={{ marginRight: "10px" }} />
+      <Icon iconUrl={imageUrl} width={"24px"} height={"24px"} style={{ marginBottom: "8px" }} />
       <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );

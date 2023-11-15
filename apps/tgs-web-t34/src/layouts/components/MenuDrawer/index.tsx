@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import DesktopMenuDrawer from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer";
-import MobileMenuDrawer from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer";
+import MenuDrawerNavList from "@/layouts/components/MenuDrawer/components/MenuDrawerNavList";
 import {
   DESKTOP_DRAWER_WIDTH,
   DRAWER_SHRINK_WIDTH,
@@ -42,7 +42,7 @@ const MenuDrawer = () => {
         },
       }}
     >
-      {isLargeDesktopSize ? <DesktopMenuDrawer /> : <MobileMenuDrawer />}
+      <MenuDrawerNavList />
     </Drawer>
   );
 };
