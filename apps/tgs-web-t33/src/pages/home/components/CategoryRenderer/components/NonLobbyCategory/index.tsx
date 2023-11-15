@@ -14,28 +14,23 @@ import GameFilterTag from "@/pages/home/components/GameFilterTag";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  padding: 20px 17px;
   flex-shrink: 0;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
-
-  ${media.sm} {
-    background-color: transparent;
-    padding: 32px 0px;
-  }
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
+  align-content: center;
+  justify-content: center;
   width: 100%;
-  row-gap: 12px;
-  column-gap: 8px;
+  row-gap: 10px;
+  column-gap: 9px;
   align-self: stretch;
 
   ${media.sm} {
-    gap: 31px;
+    row-gap: 5px;
+    column-gap: 9px;
   }
 `;
 
@@ -96,11 +91,9 @@ const NonLobbyCategory = () => {
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
+                imageUrl={`${config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                  }.jpg`}
               />
             ))}
           {!hasMappingData && !isLoading && <div>No data</div>}
