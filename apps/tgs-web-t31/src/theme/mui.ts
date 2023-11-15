@@ -16,6 +16,26 @@ declare module "@mui/material/styles/createPalette" {
     mainBackground: string;
     mainDarkBackground: string;
     mainLightBackground: string;
+    black: string;
+    red: string;
+    secondBackground: string;
+    iconLable: string;
+    accountLableText: string;
+    priBTNOutline: string;
+    toggleDefault: string;
+    activeNav: string;
+    secBTNOutline: string;
+    tabText: string;
+    navbar: string;
+    header: string;
+    sideMenu: string;
+    accountBGC: string;
+    black60: string;
+    black30: string;
+    supplierMask: string;
+    white30: string;
+    white50: string;
+    white60: string;
   }
 }
 
@@ -36,23 +56,38 @@ const muiTheme = createTheme({
     secondary: {
       main: theme.secondary,
     },
-    tertiary: {
-      main: theme.lighterGray,
-    },
     action: {
-      disabledBackground: theme.gray,
+      disabledBackground: theme.white30,
       disabled: theme.white,
     },
     text: {
       primary: theme.white,
-      secondary: theme.gray,
+      secondary: theme.white50,
     },
     white: theme.white,
-    yellow: "#f4bd29",
-    mainGradient: theme.secondaryGradient,
+    black: theme.black,
+    green: theme.green,
+    red: theme.red,
+    yellow: theme.yellow,
     mainBackground: theme.mainBackground,
-    mainDarkBackground: theme.mainDarkBackground,
-    mainLightBackground: theme.mainLightBackground,
+    secondBackground: theme.secondBackground,
+    iconLable: theme.iconLable,
+    accountLableText: theme.accountLableText,
+    priBTNOutline: theme.priBTNOutline,
+    toggleDefault: theme.toggleDefault,
+    activeNav: theme.activeNav,
+    secBTNOutline: theme.secBTNOutline,
+    tabText: theme.tabText,
+    navbar: theme.navbar,
+    header: theme.header,
+    sideMenu: theme.sideMenu,
+    accountBGC: theme.accountBGC,
+    black60: theme.black60,
+    black30: theme.black30,
+    supplierMask: theme.supplierMask,
+    white30: theme.white30,
+    white50: theme.white50,
+    white60: theme.white60,
   },
   typography: {
     fontFamily: fontFamily,
