@@ -10,6 +10,7 @@ import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import ContactButton from "./components/ContactButton";
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
+import { media } from "@/theme/breakpoints";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -40,6 +41,13 @@ const LogoImgContainer = styled.div`
   & > img {
     height: 100%;
   }
+
+  ${media.tiny} {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
 
 const HeaderContentContainer = styled.div`
@@ -47,7 +55,6 @@ const HeaderContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-right: 20px;
 `;
 
 const Header = () => {
@@ -61,6 +68,7 @@ const Header = () => {
     <HeaderContainer>
       <HeaderWrapper>
         {!isLargeDesktopSize && <MenuButton />}
+
         <Link to={""}>
           <LogoImgContainer>
             <img

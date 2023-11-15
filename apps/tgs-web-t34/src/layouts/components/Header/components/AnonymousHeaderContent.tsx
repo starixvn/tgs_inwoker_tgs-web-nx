@@ -5,11 +5,12 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 4px;
 `;
 
 type Props = {
@@ -52,8 +53,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <HeaderButton
         onClick={toggleLoginDialog}
         style={{
-          background: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
-          width: buttonWidth ?? "92px",
+          width: buttonWidth ?? "77px",
         }}
       >
         {i18n.t("common.login")}
@@ -63,8 +63,8 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         color={"primary"}
         onClick={toggleRegisterDialog}
         style={{
-          background: "linear-gradient(90deg, #FACE27 53.32%, #F3AF16 53.95%)",
-          width: buttonWidth ?? "92px",
+          width: buttonWidth ?? "77px",
+          color: theme.secondary,
         }}
       >
         {i18n.t("common.register")}

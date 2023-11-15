@@ -32,6 +32,7 @@ const muiTheme = createTheme({
   breakpoints: {
     values: {
       xs: breakpoints.xs,
+      tiny: breakpoints.tiny,
       sm: breakpoints.sm,
       md: breakpoints.md,
       lg: breakpoints.lg,
