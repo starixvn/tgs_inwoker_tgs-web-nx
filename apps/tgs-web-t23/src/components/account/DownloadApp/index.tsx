@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compatible.svg";
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
@@ -8,8 +9,7 @@ import InfoCard, { InfoCardItem } from "@/components/account/DownloadApp/InfoCar
 import { media } from "@/theme/breakpoints";
 
 const DownloadAppContainer = styled.div`
-  ${media.sm} {
-    padding: 0 205px;
+  padding: 0 205px;
   }
   ${media.xs} {
     padding: 0 24px;
@@ -68,6 +68,8 @@ const infoCardItemList: InfoCardItem[] = [
 ];
 
 const DownloadApp = () => {
+  const { isDesktopSize } = useRwd();
+
   return (
     <DownloadAppContainer>
       <IntroductionContainer>
@@ -83,8 +85,8 @@ const DownloadApp = () => {
           return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
         })}
       </InfoCardListContainer>
-      {/* to do qrcode */}
-      {/* <DownloadButtonGroup /> */}
+      
+      <DownloadButtonGroup />
     </DownloadAppContainer>
   );
 };
