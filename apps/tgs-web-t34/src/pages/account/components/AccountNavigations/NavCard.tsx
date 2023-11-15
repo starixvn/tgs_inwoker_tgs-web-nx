@@ -1,31 +1,34 @@
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
-import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 
 const NavCardContainer = styled.div`
   position: relative;
-  border-radius: 10px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc((100% - 3 * 8px) / 4);
-  padding: 28px;
+  width: calc((100% - 2 * 8px) / 3);
+  padding: 6.5px 0 0;
   color: ${({ theme }) => theme.white};
-  font-size: 1rem;
-  font-weight: 400;
   cursor: pointer;
   white-space: nowrap;
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s; /* Safari */
   overflow: visible;
-
-  ${media.sm} {
-    background: ${({ theme }) => theme.mainLightBackground};
-    //width: calc((100% - 7 * 8px) / 8);
-  }
+  background: ${({ theme }) => theme.grey00};
 }
+`;
+
+const LabelContainer = styled.div`
+  padding: 6px;
+  text-align: center;
+  background: ${({ theme }) => theme.maskWhite20};
+  width: 100%;
+  height: 40px;
+  font-size: 0.75rem;
+  font-weight: 400;
 `;
 
 type Props = {
@@ -41,14 +44,14 @@ const NavCard = ({ navItem, handleClick }: Props) => {
     <NavCardContainer onClick={() => handleClick(navItem)}>
       <Icon
         iconUrl={imageUrl}
-        width={isDesktopSize ? "40px" : "50px"}
-        height={isDesktopSize ? "40px" : "50px"}
+        width={"26px"}
+        height={"26px"}
         style={{
-          marginBottom: "16px",
+          marginBottom: "6.5px",
         }}
       />
 
-      <span>{label}</span>
+      <LabelContainer>{label}</LabelContainer>
     </NavCardContainer>
   );
 };
