@@ -20,8 +20,8 @@ const ReportPage = () => {
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
       <AccountPaper pageName={i18n.t("affiliate.report")} iconUrl={iconReport}>
-        {/*@ts-ignore*/}
-        <Report alert={alert} history={history} />
+
+        <Report />
       </AccountPaper>
     </PageContainer>
   );

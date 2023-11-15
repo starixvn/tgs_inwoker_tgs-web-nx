@@ -26,6 +26,7 @@ const DateSpliter = styled.div`
   color: white;
   width: 48px;
   text-align: center;
+  color: ${({ theme }) => theme.black};
 `;
 const DateInner = styled.div`
   max-width: 168px;

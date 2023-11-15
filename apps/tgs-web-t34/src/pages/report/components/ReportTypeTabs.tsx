@@ -2,6 +2,7 @@ import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import { Button } from "@mui/material";
 import { useReportTypeTabs } from "@/components/account/Report/hooks/useReportTypeTabs";
+import { theme } from "@/theme";
 
 const ReportTypeTabsContainer = styled.div`
   display: flex;
@@ -32,17 +33,20 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
             key={index}
             onClick={() => handleButtonClick(index)}
             sx={{
-              color: isSelected ? "black" : "white !important",
-              border: isSelected ? "none" : "1px solid white",
-              background: isSelected
-                ? "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)"
-                : "none",
+              color: isSelected ? theme.white : theme.maskBlack50,
+              border: `1px solid ${isSelected ? "transparent" : theme.maskBlack50}`,
+              background: isSelected ? theme.black : "none",
+              "&:hover": {
+                color: "initial",
+                border: `1px solid ${isSelected ? "transparent" : theme.maskBlack50}`,
+                background: isSelected ? theme.grey02 : "none",
+              },
               whiteSpace: {
                 sx: "wrap",
                 sm: "no-wrap",
               },
               padding: "16px",
-              borderRadius: "30px",
+              borderRadius: "2px",
               width: {
                 xs: "calc((100% - 2 * 9px) / 3)",
                 sm: "auto",
