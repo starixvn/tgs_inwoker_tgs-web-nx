@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { useGameType } from "@tgs-web-nx/core/features";
-import dots from "@/assets/t23/images/home/dots.svg";
-import { GameTypeEnum } from "@/constants/GameTypeEnum";
+import dots from "@/assets/t24/images/home/dots.svg";
 import { media } from "@/theme/breakpoints";
 
 const AllCardBg = styled.div`
@@ -52,11 +50,13 @@ const Text = styled.div`
   }
 `;
 
-const AllCard = () => {
-  const { handleChangeGameType } = useGameType();
+type Props = {
+  onClick?: () => void;
+};
 
+const AllCard = ({ onClick }: Props) => {
   return (
-    <AllCardBg onClick={() => handleChangeGameType(GameTypeEnum.SLOT)}>
+    <AllCardBg onClick={onClick}>
       <AllCardContent>
         <AllIcon>
           <img src={dots} alt="view all" />

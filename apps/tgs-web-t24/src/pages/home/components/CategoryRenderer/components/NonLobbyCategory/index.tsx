@@ -9,7 +9,7 @@ import SearchInput from "@/pages/home/components/SearchInput";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import back from "@/assets/t24/images/home/back.svg";
-import searchIcon from "@/assets/t24/images/home/searchIcon.svg";
+import searchIcon from "@/assets/t24/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
