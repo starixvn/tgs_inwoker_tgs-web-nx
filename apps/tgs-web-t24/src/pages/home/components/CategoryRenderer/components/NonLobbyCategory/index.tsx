@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import config from "@tgs-web-nx/config";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import CategoryLabel from "../../../CategoryLabel";
+import CategoryLabel from "@/pages/home/components/CategoryLabel";
+import SearchInput from "@/pages/home/components/SearchInput";
+import GameFilterTag from "@/pages/home/components/GameFilterTag";
+import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import back from "@/assets/t24/images/home/back.svg";
+import searchIcon from "@/assets/t24/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
@@ -68,21 +72,19 @@ const NonLobbyCategory = () => {
             onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
           ></CategoryLabel>
 
-          {/* to-do : Search and Filter tag */}
-          {/*
-            <SearchInputWrapper>
-              <SearchInput
-                placeholder={i18n.t("slot.search")}
-                imageUrl={searchIcon}
-                handleChange={handleChangeSearch}
-                value={searchString}
-              />
-            </SearchInputWrapper>
+          <SearchInputWrapper>
+            <SearchInput
+              placeholder={i18n.t("slot.search")}
+              imageUrl={searchIcon}
+              handleChange={handleChangeSearch}
+              value={searchString}
+            />
+          </SearchInputWrapper>
 
-            <GameFilterTag /> */}
+          <GameFilterTag />
         </>
       )}
-      {/* {isDesktopSize && <HomeGameFilterTag />} */}
+      {isDesktopSize && <HomeGameFilterTag />}
 
       <CategoryContentWrapper>
         <CategoryContent>
@@ -92,11 +94,9 @@ const NonLobbyCategory = () => {
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
+                imageUrl={`${config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                  }.jpg`}
               />
             ))}
           {!hasMappingData && !isLoading && <div>No data</div>}
