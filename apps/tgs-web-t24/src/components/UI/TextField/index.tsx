@@ -2,17 +2,16 @@ import React from "react";
 import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
-  color: theme.palette.common.white,
   overflow: "visible",
   input: {
     padding: "16px 10px",
-    color: theme.palette.common.white,
+    color: theme.palette.white,
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
 
     "&:-webkit-autofill": {
-      WebkitTextFillColor: `${theme.palette.common.white} !important`,
+      WebkitTextFillColor: `${theme.palette.white} !important`,
     },
   },
   label: {

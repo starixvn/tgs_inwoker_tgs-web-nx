@@ -3,10 +3,12 @@ import styled from "styled-components";
 import iconReturn from "@/assets/t33/images/layout/icon-return.svg";
 import Icon from "@/components/project/Icon";
 
+export const DIALOG_HEADER_HEIGHT = "73px";
+
 const DialogHeaderContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 73px;
+  height: ${DIALOG_HEADER_HEIGHT};
   background: ${({ theme }) => theme.mainBackground};
   display: flex;
   align-items: center;
