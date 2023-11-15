@@ -5,6 +5,7 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
+import downloadIcon from "@/assets/t23/images/account/navItem/icon-download.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
@@ -92,6 +93,8 @@ const PromotionCard = styled.div<PromotionCardProps>`
   transition: all 0.2s ease-in-out;
 `;
 
+const DownLoadCard = styled(PromotionCard)``;
+
 const LogoImgContainer = styled.div`
   max-width: 100px;
   height: 27px;
@@ -125,6 +128,11 @@ const DesktopMenuDrawer = () => {
     handleDrawerClose();
   };
 
+  const handleClickDownload = () => {
+    history.push("/download");
+    handleDrawerClose();
+  };
+
   return (
     <MobileMenuDrawerContainer>
       <MenuHeaderContainer>
@@ -147,6 +155,11 @@ const DesktopMenuDrawer = () => {
 
           {!isShrink && i18n.t("common.promotion")}
         </PromotionCard>
+
+        <DownLoadCard $isShrink={isShrink} onClick={handleClickDownload}>
+          <Icon className={"icon"} iconUrl={downloadIcon} width={"31px"} height={"31px"} />
+          {!isShrink && i18n.t("common.download")}
+        </DownLoadCard>
 
         <MenuLanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
       </HeaderContentContainer>

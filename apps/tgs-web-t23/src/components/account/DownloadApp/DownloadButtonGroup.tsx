@@ -4,17 +4,55 @@ import QRCode from "react-qr-code";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n, utility } from "@tgs-web-nx/utils";
+import AppFlag from "@/pages/home/components/AppFlag";
+import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { theme } from "@/theme";
 
-type ContainerProps = {
-  $language: string;
-};
-const Container = styled.div<ContainerProps>`
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  background-size: cover;
-  position: relative;
+const Container = styled.div`
+  color: ${({ theme }) => theme.white};
+  padding-top: 12px;
+  font-family: Gill Sans MT;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  background: #2e3237;
+  margin-top: 12px;
+`;
+
+const ContentContainer = styled.div`
   display: flex;
+`;
+
+const QRCodeContainer = styled.div``;
+
+const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const DownloadText = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-family: Gill Sans MT;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 16px;
+`;
+
+const DownloadBtn = styled.div`
+  width: 100%;
+  height: 48px;
+  padding: 16px 133.405px 16px 133.595px;
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
   justify-content: center;
 `;
 
@@ -141,12 +179,12 @@ const DownloadSection = styled.div`
   justify-content: center;
 `;
 
-const QRCodeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  align-items: center;
-`;
+// const QRCodeContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   padding: 20px;
+//   align-items: center;
+// `;
 
 const DeviceText = styled.div`
   padding: 20px 0px;
@@ -222,12 +260,12 @@ const Download = () => {
     utility.copy(link);
   }
 
-  useEffect(() => {
-    if (download.length === 0) {
-      getJsonData();
-    } else {
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (download.length === 0) {
+  //     getJsonData();
+  //   } else {
+  //   }
+  // }, []);
 
   function logoSwitcher(brand: string) {
     switch (brand) {
@@ -240,159 +278,24 @@ const Download = () => {
     }
   }
   return (
-    <Container $language={i18n.language}>
-      <ContentPlacedHere>
-        <TheFirstSection>
-          <FirstSectionContent>
-            <SectionContentItem>
-              <Text>{i18n.t("download.supported")}:</Text>
-            </SectionContentItem>
-            <SectionContentItem>
-              <Icons $icon="android" />
-            </SectionContentItem>
-            <SectionContentItem>
-              <Icons $icon="ios" />
-            </SectionContentItem>
-          </FirstSectionContent>
-        </TheFirstSection>
-        <TheGuide>
-          <SectionContentItem>
-            <InstallationGuideButton
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              <>{i18n.t("download.openGuide")}</>
-            </InstallationGuideButton>
-          </SectionContentItem>
-        </TheGuide>
-        <TheSecondSection>
-          <DownloadTitleSection>
-            <DownloadIcon $icon="download" />
-            <TitleText>{i18n.t("download.downloadMethod")}</TitleText>
-          </DownloadTitleSection>
-        </TheSecondSection>
-        <DownloadSection>
-          {download.map((data, index) => {
-            return (
-              <QRCodeContainer>
-                <QRCodeHolder>
-                  <QRCode value={data.link} size={180} />
-                </QRCodeHolder>
-                <DeviceText>{data.platform}</DeviceText>
-                <DownloadButton
-                  onClick={() => {
-                    window.open(data.link, "_blank");
-                  }}
-                >
-                  {i18n.t("download.title")}
-                </DownloadButton>
-              </QRCodeContainer>
-            );
-          })}
-        </DownloadSection>{" "}
-        <HiddenDialogContainer>
-          {config.features.Download_PointlessDialog && (
-            <>
-              <QRCodeContainer>
-                <QRCodeHolder style={{ padding: 0, marginBottom: 20 }}>
-                  <img
-                    src={
-                      import.meta.env.BASE_URL +
-                      `assets/images/download/brand/${logoSwitcher(config.brand)}_logo.png`
-                    }
-                    style={{ width: 200 }}
-                    alt="pointless download section"
-                  />
-                </QRCodeHolder>
-                <DownloadButton
-                  onClick={() => {
-                    setPointlessDialog(true);
-                  }}
-                >
-                  {i18n.t("pointless.link")}
-                </DownloadButton>
-              </QRCodeContainer>
-              <CustomModal
-                maxWidth="md"
-                open={pointlessDialog}
-                onClose={() => {
-                  setPointlessDialog(false);
-                }}
-              >
-                <>
-                  <DialogTitle2>
-                    <div>{i18n.t("pointless.download")}</div>
-                    <CloseButton
-                      onClick={() => {
-                        setPointlessDialog(false);
-                      }}
-                    >
-                      ✖
-                    </CloseButton>
-                  </DialogTitle2>
-                  <DialogContent>
-                    {download.map((data, index) => {
-                      return (
-                        <PointlessShit>
-                          <DeviceName>{data.platform}</DeviceName>
-                          <Links
-                            onClick={() => {
-                              copyStupidLink(data.link);
-                            }}
-                          >
-                            {data.link}
-                          </Links>
-                        </PointlessShit>
-                      );
-                    })}
-                  </DialogContent>
-                </>
-              </CustomModal>
-            </>
-          )}
-        </HiddenDialogContainer>
-        <div>
-          <img
-            style={{ height: 500, marginBottom: 100 }}
-            src={import.meta.env.BASE_URL + `assets/images/download/girl.png`}
-            alt="girl"
-          />
-        </div>
-      </ContentPlacedHere>
-
-      <CustomModal
-        open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
-        maxWidth="md"
-      >
-        <>
-          <DialogTitle2>
-            <div>{i18n.t("download.openGuide")}</div>
-            <CloseButton
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              ✖
-            </CloseButton>
-          </DialogTitle2>
-          <DialogContent>
-            <DeviceGuide>
-              {i18n.t("download.iphone.title")} <br />
-              {i18n.t("download.iphone.point1")} <br />
-              {i18n.t("download.iphone.point2")} <br />
-            </DeviceGuide>
-            <DeviceGuide>
-              {i18n.t("download.android.title")} <br />
-              {i18n.t("download.android.point1")} <br />
-              {i18n.t("download.android.point2")} <br />
-            </DeviceGuide>
-          </DialogContent>
-        </>
-      </CustomModal>
+    <Container>
+      <ContentContainer>
+        <QRCodeContainer>
+          <HeaderButton
+            color={"primary"}
+            onClick={() => {}}
+            style={{
+              background: "linear-gradient(90deg, #FACE27 53.32%, #F3AF16 53.95%)",
+              color: theme.black,
+            }}
+          >
+            <>DOWNLOD</>
+          </HeaderButton>
+        </QRCodeContainer>
+        <AppContainer>
+          <AppFlag />
+        </AppContainer>
+      </ContentContainer>
     </Container>
   );
 };
