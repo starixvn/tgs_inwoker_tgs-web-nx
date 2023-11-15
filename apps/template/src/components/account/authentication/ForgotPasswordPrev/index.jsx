@@ -8,18 +8,12 @@ import { AccountService } from "@tgs-web-nx/core";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-import { media } from "@/theme/breakpoints";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 15px;
-
-  ${media.sm} {
-    padding: 42px 42px;
-  }
 `;
 
 const PhoneContainer = styled.div`

@@ -6,13 +6,16 @@ const LogoImgContainer = styled.div`
   height: 55px;
   justify-self: start;
   padding: 0 10px;
-  margin: 0 auto 50px;
+  margin: 0 auto;
 
   & > img {
     height: 100%;
+    display: block;
+    margin: auto;
   }
 `;
-const BrandLogo = () => {
+
+const BrandLogo = (props: React.HTMLProps<HTMLDivElement>) => {
   const {
     general: { brand },
   } = useGeneralStore();
@@ -20,7 +23,8 @@ const BrandLogo = () => {
   if (!brand.loadingUrl) return null;
 
   return (
-    <LogoImgContainer>
+    //@ts-ignore
+    <LogoImgContainer {...props}>
       <img src={brand.loadingUrl} alt={"logo"} />
     </LogoImgContainer>
   );

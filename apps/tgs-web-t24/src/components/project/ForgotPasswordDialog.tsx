@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useAuthDialog, useNotifications } from "@tgs-web-nx/core/features";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import ForgotPasswordPrev from "@/components/account/authentication/ForgotPasswordPrev";
-import BrandLogo from "@/components/BrandLogo";
+import BrandLogo from "@/components/project/BrandLogo";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 
 const ForgotPasswordDialog = () => {

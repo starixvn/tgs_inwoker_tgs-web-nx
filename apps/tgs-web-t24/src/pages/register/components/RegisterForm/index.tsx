@@ -5,7 +5,7 @@ import { useRegisterForm } from "@tgs-web-nx/core/features";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import FormikForm from "@/components/project/FormikForm";
-import BrandLogo from "@/components/BrandLogo";
+import BrandLogo from "@/components/project/BrandLogo";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const VerifyAgeContainer = styled.div`

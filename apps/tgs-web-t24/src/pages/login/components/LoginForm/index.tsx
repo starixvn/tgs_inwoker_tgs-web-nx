@@ -5,7 +5,7 @@ import { useLoginForm } from "@tgs-web-nx/core/features";
 import FormikForm from "@/components/project/FormikForm";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
-import BrandLogo from "@/components/BrandLogo";
+import BrandLogo from "@/components/project/BrandLogo";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const FormSubContainer = styled.div`
