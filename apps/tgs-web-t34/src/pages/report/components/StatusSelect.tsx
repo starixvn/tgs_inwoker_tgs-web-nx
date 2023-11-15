@@ -6,7 +6,7 @@ import { Select } from "@/components/UI/Select";
 
 const StatusSelectContainer = styled.div`
   padding: 1px 29px;
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.black};
   font-size: 0.937rem;
   color: ${({ theme }) => theme.white};
   border-radius: 6px;
@@ -28,11 +28,11 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
   },
   "& select": {
     padding: 0,
-    color: theme.palette.white,
+    color: `${theme.palette.white} !important`,
     fontSize: "0.937rem",
   },
   "& .MuiSvgIcon-root": {
-    color: theme.palette.white,
+    color: `${theme.palette.white} !important`,
   },
 }));
 

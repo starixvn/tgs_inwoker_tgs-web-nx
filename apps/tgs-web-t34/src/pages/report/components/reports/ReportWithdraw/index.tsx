@@ -65,7 +65,8 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
     setPage(currentPage);
     fetchReports(currentPage);
     setIsMaxPage(false);
-  }, [dateRangeInfo, fetchReports, status]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(dateRangeInfo), status]);
 
   const handleLoadMore = async () => {
     if (isMaxPage) return;

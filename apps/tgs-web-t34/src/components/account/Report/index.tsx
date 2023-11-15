@@ -39,7 +39,7 @@ const DateTitle = styled.div`
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.465rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   white-space: nowrap;
   flex-shrink: 0;
 
