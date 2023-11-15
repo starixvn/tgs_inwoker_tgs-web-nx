@@ -2,45 +2,33 @@ import React from "react";
 import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
-  color: theme.palette.common.white,
   overflow: "visible",
   input: {
     padding: "12px 20px",
-    color: theme.palette.common.white,
-    fontSize: "1.125rem",
+    color: theme.palette.black,
+    fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
 
     "&:-webkit-autofill": {
-      WebkitTextFillColor: `${theme.palette.common.white} !important`,
+      WebkitTextFillColor: `${theme.palette.white} !important`,
     },
   },
   label: {
     color: "rgba(255,255,255,0.3)",
     alignItems: "center",
-    fontSize: "1.125rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
   },
   placeholder: {
-    color: "red",
+    // color: "red",
   },
 
   "& input::placeholder": {
-    color: "#828282",
+    color: theme.palette.maskBlack50,
     opacity: 1,
-    fontSize: "1.125rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
-  },
-  [theme.breakpoints.up("sm")]: {
-    input: {
-      fontSize: "0.937rem",
-    },
-    label: {
-      fontSize: "0.937rem",
-    },
-    "& input::placeholder": {
-      fontSize: "0.937rem",
-    },
   },
 
   "& .MuiInput-underline:after": {

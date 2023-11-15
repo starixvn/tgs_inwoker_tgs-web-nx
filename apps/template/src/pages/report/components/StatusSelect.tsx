@@ -28,11 +28,11 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
   },
   "& select": {
     padding: 0,
-    color: theme.palette.common.white,
+    color: theme.palette.white,
     fontSize: "0.937rem",
   },
   "& .MuiSvgIcon-root": {
-    color: theme.palette.common.white,
+    color: theme.palette.white,
   },
 }));
 

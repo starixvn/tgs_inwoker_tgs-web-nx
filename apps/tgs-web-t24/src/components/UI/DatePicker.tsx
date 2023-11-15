@@ -83,6 +83,7 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
     cursor: pointer;
     background: none;
     color: ${({ theme }) => theme.white};
+    text-align: left;
 
     &:read-only {
       color: ${({ theme }) => theme.gray60};

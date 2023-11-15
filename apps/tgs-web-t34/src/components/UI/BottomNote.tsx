@@ -9,7 +9,7 @@ const Content = styled.div`
   font-weight: 400;
   line-height: 1.0025rem;
   text-align: center;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
 `;
 
 const LabelLink = styled(Link)`
@@ -23,8 +23,8 @@ const LabelNormal = styled.span`
 `;
 
 type Props = {
-  text1?: string;
-  text2?: string;
+  text1?: string | any;
+  text2?: string | any;
   link?: string;
   empty?: boolean;
   toEdit?: () => void;

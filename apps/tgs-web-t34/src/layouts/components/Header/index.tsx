@@ -15,7 +15,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.mainDarkBackground};
+  background: ${({ theme }) => theme.black};
   height: ${HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -60,6 +60,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
+        {!isLargeDesktopSize && <MenuButton />}
         <Link to={""}>
           <LogoImgContainer>
             <img
@@ -75,8 +76,6 @@ const Header = () => {
 
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
-
-        {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
   );
