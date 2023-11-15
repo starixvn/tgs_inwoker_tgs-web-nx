@@ -10,12 +10,21 @@ theme.lang = i18n.language;
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
+    black: string;
+    green: string;
+    red: string;
     yellow: string;
-    tertiary: string;
-    mainGradient: string;
+    mask: string;
+    grey00: string;
+    grey01: string;
+    grey02: string;
+    grey03: string;
+    maskPopupBG: string;
+    maskBlack50: string;
+    maskBlack20: string;
+    maskWhite50: string;
+    maskWhite20: string;
     mainBackground: string;
-    mainDarkBackground: string;
-    mainLightBackground: string;
   }
 }
 
@@ -23,6 +32,7 @@ const muiTheme = createTheme({
   breakpoints: {
     values: {
       xs: breakpoints.xs,
+      tiny: breakpoints.tiny,
       sm: breakpoints.sm,
       md: breakpoints.md,
       lg: breakpoints.lg,
@@ -36,36 +46,30 @@ const muiTheme = createTheme({
     secondary: {
       main: theme.secondary,
     },
-    tertiary: {
-      main: theme.lighterGray,
-    },
     action: {
-      disabledBackground: theme.gray,
+      disabledBackground: theme.maskBlack50,
       disabled: theme.white,
     },
-    white: {
-      main: theme.white,
-    },
-    yellow: {
-      main: "#f4bd29",
-    },
-
     text: {
       primary: theme.white,
-      secondary: theme.gray,
+      secondary: theme.grey01,
     },
-    mainGradient: {
-      main: theme.secondaryGradient,
-    },
-    mainBackground: {
-      main: theme.mainBackground,
-    },
-    mainDarkBackground: {
-      main: theme.mainDarkBackground,
-    },
-    mainLightBackground: {
-      main: theme.mainLightBackground,
-    },
+    white: theme.white,
+    black: theme.black,
+    green: theme.green,
+    red: theme.red,
+    yellow: theme.yellow,
+    mask: theme.mask,
+    grey00: theme.grey00,
+    grey01: theme.grey01,
+    grey02: theme.grey02,
+    grey03: theme.grey03,
+    maskPopupBG: theme.maskPopupBG,
+    maskBlack50: theme.maskBlack50,
+    maskBlack20: theme.maskBlack20,
+    maskWhite50: theme.maskWhite50,
+    maskWhite20: theme.maskWhite20,
+    mainBackground: theme.mainBackground,
   },
   typography: {
     fontFamily: fontFamily,

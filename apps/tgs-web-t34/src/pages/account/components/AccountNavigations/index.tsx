@@ -45,7 +45,7 @@ const hideInDesktopDictionary = {
 const AccountNavigations = () => {
   const history = useHistory();
   const { navItemList, navItemDictionary } = useAccountNavigations();
-  const { handleLogout, logoutState } = useAuth();
+  const { handleLogout } = useAuth();
   const { isDesktopSize } = useRwd();
 
   const handleClickNav = useCallback((navItem: NavItem) => {
@@ -90,7 +90,7 @@ const AccountNavigations = () => {
                 height: "44px",
               }}
             >
-              <>{i18n.t("web.header.logout")}</>
+             {i18n.t("web.header.logout")}
             </Button>
           </AccountNavCardsSubContainer>
         )}

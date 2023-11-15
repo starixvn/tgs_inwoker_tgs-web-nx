@@ -1,5 +1,5 @@
-import React from "react";
 import { Switch as MuiSwitch } from "@mui/material";
+import React from "react";
 import { styled as muiStyled } from "@mui/material/styles";
 
 export const Switch = muiStyled(MuiSwitch)(({ theme }) => ({
@@ -22,7 +22,7 @@ export const Switch = muiStyled(MuiSwitch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary,
       },
     },
   },

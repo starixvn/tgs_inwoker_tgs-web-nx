@@ -57,7 +57,7 @@ export function useRebateTable() {
     if (!res?.IsSuccess) return;
 
     setRebateTableRows(res.data);
-  }, []);
+  }, [getBrandAllAgent]);
 
   useEffect(() => {
     fetchRebateTable().then();

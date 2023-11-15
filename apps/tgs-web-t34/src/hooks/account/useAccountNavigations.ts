@@ -35,11 +35,12 @@ export enum NavCardKey {
   APP_DOWNLOAD,
   VIP,
   LOGOUT,
+  PROMOTION,
 }
 
 export type NavItem = {
   key: NavCardKey;
-  label: string;
+  label: string | any;
   iconUrl: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
@@ -97,7 +98,7 @@ export function useAccountNavigations() {
         label: "VIP",
         iconUrl: vipSecondaryImg,
         iconSecondaryUrl: vipSecondaryImg,
-        routePath: "/transfer",
+        routePath: "/vip",
       },
       {
         key: NavCardKey.REPORT,

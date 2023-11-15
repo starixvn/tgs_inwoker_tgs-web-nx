@@ -17,13 +17,14 @@ const CustomText = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  padding: 5px 20px;
+  padding: 5px;
 
   & > button {
     height: 40px;
     font-size: 1rem;
     padding: 10px 8px;
-    background: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.secondary};
+    border-radius: 2px;
   }
 `;
 
@@ -33,7 +34,7 @@ const TextFieldWithButton = (
     onClick: () => void;
     maxLength?: number;
     buttonLabel?: string;
-  }
+  },
 ) => {
   return (
     <CustomText>

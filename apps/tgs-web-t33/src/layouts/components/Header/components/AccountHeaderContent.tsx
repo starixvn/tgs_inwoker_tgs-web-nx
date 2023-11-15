@@ -1,25 +1,36 @@
 import React from "react";
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useHistory } from "react-router-dom";
 import ContextMenuButton from "@/layouts/components/Header/components/ContextMenuButton";
 import BalanceTracker from "@/components/project/BalanceTracker";
-import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
+import Icon from "@/components/project/Icon";
+import iconDeposit from "@/assets/t33/images/header/icon-deposit.svg";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 6.5px;
+`;
+
+const DepositIconContainer = styled.div`
+  cursor: pointer;
 `;
 
 const AccountHeaderContent = () => {
-  const { isDesktopSize, isLargeDesktopSize } = useRwd();
+  const history = useHistory();
+
+  const handleDeposit = () => {
+    history.push("/deposit");
+  };
 
   return (
     <ButtonContainer>
-      <TransferButtonGroup />
+      <DepositIconContainer onClick={handleDeposit}>
+        <Icon iconUrl={iconDeposit} width={"33.53px"} height={"34.5px"} />
+      </DepositIconContainer>
 
-      {isDesktopSize && <BalanceTracker size={"small"} />}
-      {isLargeDesktopSize && <ContextMenuButton />}
+      <BalanceTracker size={"small"} />
+      <ContextMenuButton />
     </ButtonContainer>
   );
 };

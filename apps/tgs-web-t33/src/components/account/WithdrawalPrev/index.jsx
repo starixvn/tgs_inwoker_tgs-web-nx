@@ -73,6 +73,7 @@ const ManageBankCardButtonContainer = styled.div`
   justify-content: end;
   max-width: 450px;
   align-self: flex-start;
+  margin-top: 10px;
 `;
 
 class WithdrawalPrev extends Component {
@@ -437,7 +438,7 @@ class WithdrawalPrev extends Component {
             this.state.disabled === true
           }
         >
-          <>{i18n.t("common.submit")}</>
+          {i18n.t("common.submit")}
         </SubmitButton>
         <StyledModalBank
           onClose={() => this.setState({ ...this.state, bankOpen: false })}

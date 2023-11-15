@@ -1,5 +1,4 @@
 import { ReactElement, useCallback } from "react";
-import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { usePageName } from "@tgs-web-nx/core/features";
@@ -21,23 +20,12 @@ type Props = {
 };
 const DialogLayout = ({ children }: Props) => {
   const history = useHistory();
-  const location = useLocation();
   const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
 
-  const pathname = location.pathname;
   const handleCloseDialog = useCallback(() => {
-    const profileRegex = /\/profile\//;
-    if (profileRegex.test(pathname)) {
-      return history.push("/profile");
-    }
-
-    if (pathname === "/profile") {
-      return history.push("/account");
-    }
-
     history.goBack();
-  }, [pathname]);
+  }, [history]);
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;

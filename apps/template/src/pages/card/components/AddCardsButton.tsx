@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import AddCardIcon from "@/assets/t18/images/card/add-card.svg";
 
-const InputContainer = styled.div`
+const CardContainer = styled.div`
   padding: 13px 20px;
   background: ${({ theme }) => theme.mainBackground};
   display: flex;
@@ -40,13 +40,13 @@ type Props = {
 };
 const AddCardsButton = ({ handleClick }: Props) => {
   return (
-    <InputContainer onClick={handleClick}>
+    <CardContainer onClick={handleClick}>
       <IconContainer>
         <img src={AddCardIcon} alt={"addCard"} />
       </IconContainer>
       <EmptyCardTitle>{i18n.t("card.msgAddCard")}</EmptyCardTitle>
       <EmptyCardDesc>{i18n.t("card.msgAddCardDesc")}</EmptyCardDesc>
-    </InputContainer>
+    </CardContainer>
   );
 };
 

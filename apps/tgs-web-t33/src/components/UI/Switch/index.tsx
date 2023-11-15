@@ -1,47 +1,45 @@
-import {
-  styled as muiStyled,
-  Switch as MuiSwitch,
-  SwitchClassKey,
-  SwitchProps,
-} from "@mui/material";
+import { Switch as MuiSwitch } from "@mui/material";
 import React from "react";
-
-interface Styles extends Partial<Record<SwitchClassKey, string>> {
-  focusVisible?: string;
-}
+import { styled as muiStyled } from "@mui/material/styles";
 
 export const Switch = muiStyled(MuiSwitch)(({ theme }) => ({
-  width: 42,
-  height: 26,
+  width: 62,
+  height: 28,
   padding: 0,
-  margin: theme.spacing(1),
-  switchBase: {
-    padding: 1,
-    "&$checked": {
-      transform: "translateX(16px)",
-      color: theme.palette.common.white,
-      "& + $track": {
-        backgroundColor: theme.palette.primary.main,
+  display: "flex",
+  "&:active": {
+    "& .MuiSwitch-thumb": {
+      width: 15,
+    },
+    "& .MuiSwitch-switchBase.Mui-checked": {
+      transform: "translateX(18px)",
+    },
+  },
+  "& .MuiSwitch-switchBase": {
+    padding: 2,
+    "&.Mui-checked": {
+      transform: "translateX(32px)",
+      color: "#fff",
+      "& + .MuiSwitch-track": {
         opacity: 1,
-        border: "none",
+        backgroundColor: theme.palette.primary,
       },
     },
-    "&$focusVisible $thumb": {
-      color: theme.palette.primary.main,
-      border: "6px solid #fff",
-    },
   },
-  thumb: {
+  "& .MuiSwitch-thumb": {
+    boxShadow: "0 2px 4px 0 rgb(0 35 11 / 20%)",
     width: 24,
     height: 24,
+    borderRadius: 24,
+    transition: theme.transitions.create(["width"], {
+      duration: 200,
+    }),
   },
-  track: {
-    borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
-    backgroundColor: theme.palette.grey[50],
+  "& .MuiSwitch-track": {
+    borderRadius: 28 / 2,
     opacity: 1,
+    boxSizing: "border-box",
+    backgroundColor: "#808080",
     transition: theme.transitions.create(["background-color", "border"]),
   },
-  checked: {},
-  focusVisible: {},
 }));

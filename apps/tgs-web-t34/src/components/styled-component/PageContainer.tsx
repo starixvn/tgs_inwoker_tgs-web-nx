@@ -3,7 +3,8 @@ import { media } from "@/theme/breakpoints";
 
 export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
-  padding: 21px 22px;
+  color: ${({ theme }) => theme.black};
+  padding: 20px;
   max-width: calc(1200px + 22px * 2);
   margin: auto;
 

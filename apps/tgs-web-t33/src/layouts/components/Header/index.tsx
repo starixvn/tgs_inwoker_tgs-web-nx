@@ -7,9 +7,9 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
-import ContactButton from "./components/ContactButton";
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
+import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -25,7 +25,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px 17px;
+  padding: 11px 10px 12.5px 15px;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -47,19 +47,19 @@ const HeaderContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-right: 20px;
 `;
 
 const Header = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isDesktopSize, isLargeDesktopSize } = useRwd();
+  const { isLargeDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <HeaderContainer>
       <HeaderWrapper>
+        {!isLargeDesktopSize && <MenuButton />}
         <Link to={""}>
           <LogoImgContainer>
             <img
@@ -71,12 +71,10 @@ const Header = () => {
         </Link>
 
         <HeaderContentContainer>
+          {isLargeDesktopSize && <HeaderGameTypes />}
+
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-
-          {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
-
-        {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
   );

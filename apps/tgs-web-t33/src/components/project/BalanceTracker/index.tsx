@@ -4,8 +4,6 @@ import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
 import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
-import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
-import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
 
 type BalanceTrackerContainerProps = {
@@ -13,19 +11,16 @@ type BalanceTrackerContainerProps = {
   theme: typeof theme;
 };
 const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
-  height: 36px;
-  background: ${({ theme }: BalanceTrackerContainerProps) => theme.mainLightBackground};
-  border: ${({ $size, theme }: BalanceTrackerContainerProps) =>
-    $size !== "small" ? `1px solid ${theme.gray}` : "none"};
-  color: white;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.2);
+  color: ${({ theme }) => theme.gray30};
   border-radius: 50px;
-  padding: 8px 15px;
+  padding: 6px 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  font-size: 1.125rem;
-  font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 700;
   line-height: 1.318rem;
 `;
 
@@ -33,7 +28,7 @@ const BalanceContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.gray30};
   gap: 10px;
 
   & span {
@@ -65,8 +60,7 @@ const BalanceTracker = ({ size, ...others }: Props) => {
       {isShow && <span>{i18n.t("wap.main.account.totalFund")}</span>}
 
       <BalanceContainer>
-        <Icon iconUrl={iconMoney} width={"20px"} height={"20px"} />
-        <span onClick={handleClick}>{currentBalance}</span>
+        <span onClick={handleClick}>${currentBalance}</span>
         <RefreshButton handleClick={handleRefreshBalance} />
       </BalanceContainer>
     </BalanceTrackerContainer>

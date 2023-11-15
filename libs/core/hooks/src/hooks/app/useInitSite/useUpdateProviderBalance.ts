@@ -3,15 +3,20 @@ import config from "@tgs-web-nx/config";
 import { useAccountStore, useGameStore, useWalletStore } from "@tgs-web-nx/core";
 
 export function useUpdateProviderBalance() {
-  const { game } = useGameStore();
-  const { account } = useAccountStore();
+  const {
+    game: { providerList },
+  } = useGameStore();
+  const {
+    account: { info, token },
+  } = useAccountStore();
   const { getGameBalance } = useWalletStore();
 
   const handleUpdateProviderBalance = () => {
-    if (config.features.ForceRedirectAddCard && !account.info.bankInfoAuthentication) return;
+    if (config.features.ForceRedirectAddCard && !info.bankInfoAuthentication) return;
+    if (!providerList.length) return;
 
     // update provider's game balance
-    game.providerList
+    providerList
       .filter((provider) => provider.status === 0 && provider.transferwallet)
       .filter((provider) => provider.abbreviation !== "NTTF" && provider.abbreviation !== "RTTF")
       .map((a) => {
@@ -20,10 +25,10 @@ export function useUpdateProviderBalance() {
   };
 
   useEffect(() => {
-    if (!account.token) return;
+    if (!token) return;
 
     handleUpdateProviderBalance();
-  }, [JSON.stringify(game.providerList)]);
+  }, [token, providerList.length]);
 
   return {
     handleUpdateProviderBalance,

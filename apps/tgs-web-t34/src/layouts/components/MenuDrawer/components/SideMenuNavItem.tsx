@@ -4,20 +4,25 @@ import Icon from "@/components/project/Icon";
 
 const NavCardContainer = styled.div`
   cursor: pointer;
-  height: 58px;
-  width: 254px;
+  height: 44px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  color: ${({ theme }) => theme.white};
-  font-size: 1.125rem;
+  color: ${({ theme }) => theme.black};
+  border-bottom: 1px solid ${({ theme }) => theme.maskBlack20};
+  font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.304rem;
-  padding: 19px 0;
+  padding: 10px 12px;
+
+  &:hover {
+  background: #00000011;
+}
+}
 
   & > div:first-child {
-    margin-right: 10px;
+    margin-right: 30px;
   }
 `;
 
@@ -29,7 +34,7 @@ const SideMenuNavItem = ({ navItem, handleClick }: Props) => {
   const { label, iconUrl } = navItem;
   return (
     <NavCardContainer onClick={() => handleClick(navItem)}>
-      <Icon iconUrl={iconUrl} width={"20px"} height={"20px"} />
+      <Icon iconUrl={iconUrl} width={"24px"} height={"24px"} />
 
       <span>{label}</span>
     </NavCardContainer>

@@ -24,9 +24,9 @@ import LayoutProvider from "@/layouts/LayoutProvider";
 import { AuthGuard } from "@/components/account/authentication/AuthGuard";
 import FloatingToolIcons from "@/components/project/FloatingToolIcons";
 import Loading from "@/components/UI/Loading";
-import LoginDialog from "@/components/project/LoginDialog";
-import RegisterDialog from "@/components/project/RegisterDialog";
-import ForgotPasswordDialog from "@/components/project/ForgotPasswordDialog";
+import LoginDialog from "@/components/project/auth/LoginDialog";
+import RegisterDialog from "@/components/project/auth/RegisterDialog";
+import ForgotPasswordDialog from "@/components/project/auth/ForgotPasswordDialog";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const App: React.FC = () => {

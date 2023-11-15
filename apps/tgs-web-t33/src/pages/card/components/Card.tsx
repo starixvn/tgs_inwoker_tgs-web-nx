@@ -1,24 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import deleteIcon from "@/assets/t18/images/card/delete.svg";
+import deleteIcon from "@/assets/t33/images/card/delete.svg";
+import { media } from "@/theme/breakpoints";
 
-const InputContainer = styled.div`
-  padding: 13px 20px;
-  background: ${({ theme }) => theme.mainBackground};
+const CardContainer = styled.div`
+  padding: 16px;
+  background: ${({ theme }) => theme.gray40};
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-radius: 5px;
+  border-radius: 4px;
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.gray50};
+  }
 `;
 
 const CardTitle = styled.div`
   color: ${({ theme }) => theme.white};
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   padding-bottom: 10px;
+  font-size: 1.25rem;
+  font-weight: 700;
 `;
 
 const CardContent = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray20};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,7 +50,7 @@ type Props = {
 };
 const Card = ({ title, content, handleDelete, disable }: Props) => {
   return (
-    <InputContainer>
+    <CardContainer>
       <CardTitle>{title}</CardTitle>
       <CardContent>
         <ContentRow>{content}</ContentRow>
@@ -55,7 +62,7 @@ const Card = ({ title, content, handleDelete, disable }: Props) => {
           )}
         </ContentRow>
       </CardContent>
-    </InputContainer>
+    </CardContainer>
   );
 };
 

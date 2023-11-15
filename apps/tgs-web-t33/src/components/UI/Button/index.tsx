@@ -5,23 +5,23 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   whiteSpace: "nowrap",
   borderRadius: "50px",
   padding: "10px",
-  fontSize: "0.637rem",
-  fontWeight: 400,
-  color: theme.palette.black,
-  background: "linear-gradient(90deg, #FACE27 53.76%, #F3AF16 54.17%)",
+  fontSize: "1rem",
+  fontWeight: 700,
+  color: theme.palette.white,
+  // background: "linear-gradient(90deg, #FACE27 53.76%, #F3AF16 54.17%)",
+  boxShadow: "none",
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
     color: "black",
   },
+
+  "&:hover": {
+    background: theme.palette.gray30,
+    border: "none",
+  },
 }));
 
 export const Button = (props: ButtonProps) => {
-  return (
-    <StyledButton
-      variant={props.variant || "contained"}
-      // color={props.color || "primary"}
-      {...props}
-    />
-  );
+  return <StyledButton variant={props.variant || "contained"} {...props} />;
 };

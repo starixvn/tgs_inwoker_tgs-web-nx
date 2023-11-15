@@ -13,7 +13,26 @@ export const MenuDrawerListContainer = styled.div`
   overflow-y: scroll;
   border-right: 1px solid ${({ theme }) => theme.gray80};
 
-  padding-bottom: 50px;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #53535375;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+
+  & > * {
+    flex-shrink: 0;
+  }
 `;
 export const MenuDrawerListGroup = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.gray80};

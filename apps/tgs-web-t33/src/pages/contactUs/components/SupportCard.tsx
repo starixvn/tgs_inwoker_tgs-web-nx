@@ -5,14 +5,15 @@ import { i18n } from "@tgs-web-nx/utils";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
 
 const SupportCardContainer = styled.div`
-  border-radius: 30px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: #2e3237;
+  background: ${({ theme }) => theme.gray40};
   color: ${({ theme }) => theme.white};
   font-size: 1rem;
   font-weight: 400;
@@ -32,7 +33,7 @@ const SupportCardContainer = styled.div`
   //   width: calc((100% - 16px * (2 - 1)) / 3);
   // }
   ${media.md} {
-    width: calc((100% - 16px * (3 - 1)) / 4);
+    width: calc((100% - 16px * (4 - 1)) / 4);
   }
 `;
 
@@ -61,29 +62,6 @@ const iconSwitcher = (icon: string) => {
   }
 };
 
-const IconContainer = styled.div`
-  width: 55px;
-  height: 55px;
-  border-radius: 28px;
-  background: ${({ theme }) => theme.white};
-  border: 11px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ContactButton = styled.div`
-  width: 100%;
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.primary};
-  padding: 6px;
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 0.878rem;
-  border-radius: 5px;
-`;
-
 type Props = {
   brandsSupport: BrandsSupport;
   handleClick: (brandsSupport: BrandsSupport) => void;
@@ -97,26 +75,22 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
 
   return (
     <SupportCardContainer onClick={handleClickCard}>
-      <IconContainer>
-        <Icon
-          iconUrl={`${import.meta.env.BASE_URL}assets/images/support/${iconSwitcher(
-            brandsSupport.type,
-          )}`}
-          width={"40px"}
-          height={"40px"}
-          style={{
-            display: "block",
-            overflow: "hidden",
-          }}
-        />
-      </IconContainer>
+      <Icon
+        iconUrl={`${import.meta.env.BASE_URL}assets/images/support/${iconSwitcher(
+          brandsSupport.type,
+        )}`}
+        width={"55px"}
+        height={"55px"}
+      />
 
       <span>{type}</span>
 
       <Button
         fullWidth
         sx={{
-          color: "black",
+          color: theme.white,
+          background: theme.secondary,
+          padding: "6px",
         }}
       >
         {i18n.t("common.contact")}

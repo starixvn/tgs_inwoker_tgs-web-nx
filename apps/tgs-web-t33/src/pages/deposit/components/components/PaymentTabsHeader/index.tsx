@@ -7,12 +7,13 @@ import { media } from "@/theme/breakpoints";
 
 const BadgeContainer = styled.div`
   display: flex;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 12px;
 
   ${media.sm} {
     margin-bottom: 40px;
+    gap: 10px;
   }
 `;
 

@@ -105,7 +105,7 @@ const ContextMenu = () => {
               height: "44px",
             }}
           >
-            <>{i18n.t("web.header.logout")}</>
+           {i18n.t("web.header.logout")}
           </Button>
         </ContextMenuItemWrapper>
         <VersionTagContainer>V1.1.3795703</VersionTagContainer>

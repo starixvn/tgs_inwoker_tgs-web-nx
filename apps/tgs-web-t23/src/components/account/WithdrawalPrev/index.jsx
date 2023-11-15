@@ -437,7 +437,7 @@ class WithdrawalPrev extends Component {
             this.state.disabled === true
           }
         >
-          <>{i18n.t("common.submit")}</>
+         {i18n.t("common.submit")}
         </SubmitButton>
         <StyledModalBank
           onClose={() => this.setState({ ...this.state, bankOpen: false })}

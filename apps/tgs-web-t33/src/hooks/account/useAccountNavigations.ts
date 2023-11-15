@@ -39,8 +39,9 @@ export enum NavCardKey {
 
 export type NavItem = {
   key: NavCardKey;
-  label: string;
+  label: string | any;
   iconUrl: string;
+  darkIconUrl?: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
 } & (

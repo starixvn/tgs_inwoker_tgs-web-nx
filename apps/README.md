@@ -18,9 +18,10 @@ nx g @nx/react:app tgs-web-t123
   //  ...
   "compilerOptions": {
   //...
-    "baseUrl": ".",
+    "allowJs": true, // for legacy code adapting
+    "baseUrl": ".",  // make project absolute path working
     "paths": {
-        "@/*": ["./src/*"], // make project absolute path
+        "@/*": ["./src/*"], // make project absolute path working
        // make project can load libs successfully
         "@tgs-web-nx/config": ["../../libs/config/src/index.ts"],
         "@tgs-web-nx/constants": ["../../libs/constants/src/index.ts"],
@@ -66,8 +67,9 @@ export default defineConfig({
 
 ```
 
-## Optional: Replace whole src with `apps/template/src` (don't forget `index.html` in the root of project)
+## Optional: Replace whole src with `apps/template/src` (don't forget `index.html` and `public` in the root of project)
 `apps/template/src` contains full functionality of tgs template, you can copy all of it them just modify css.
+
 
 
 # CICD

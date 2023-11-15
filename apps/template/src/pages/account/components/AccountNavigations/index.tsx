@@ -90,7 +90,7 @@ const AccountNavigations = () => {
                 height: "44px",
               }}
             >
-              <>{i18n.t("web.header.logout")}</>
+             {i18n.t("web.header.logout")}
             </Button>
           </AccountNavCardsSubContainer>
         )}
