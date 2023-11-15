@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compatible.svg";
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
@@ -68,8 +67,6 @@ const infoCardItemList: InfoCardItem[] = [
 ];
 
 const DownloadApp = () => {
-  const { isDesktopSize } = useRwd();
-
   return (
     <DownloadAppContainer>
       <IntroductionContainer>

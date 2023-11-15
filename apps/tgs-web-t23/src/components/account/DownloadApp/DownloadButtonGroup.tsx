@@ -31,7 +31,7 @@ const ContentContainer = styled.div`
 
 const QRCodeContainer = styled.div`
   display: flex;
-  align-items:center
+  align-items:center;
   justify-content: center;
   flex-direction: column;
 `;
