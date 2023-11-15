@@ -1,4 +1,3 @@
-import { Close as CloseIcon } from "@mui/icons-material";
 import { ReactElement, useCallback } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
@@ -6,6 +5,7 @@ import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import DialogHeader from "@/layouts/components/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -15,19 +15,8 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  // min-height: calc(100vh - ${HEADER_HEIGHT}); // 80px:Header, 82px: BottomAppBar
-  margin: 80px 0 0;
   position: relative;
   z-index: 1;
-`;
-
-const CloseIconContainer = styled.div`
-  position: fixed;
-  top: 22px;
-  right: 22px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
 `;
 
 type Props = {
@@ -58,14 +47,8 @@ const AuthDialogLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <CloseIconContainer onClick={handleCloseDialog}>
-        <CloseIcon
-          style={{
-            color: "white",
-            transform: "scale(1.6)",
-          }}
-        />
-      </CloseIconContainer>
+      <DialogHeader handleClose={handleCloseDialog} />
+
       <ContentWrapper>{children}</ContentWrapper>
     </DialogLayoutContainer>
   );

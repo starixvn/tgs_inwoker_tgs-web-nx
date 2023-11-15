@@ -29,8 +29,6 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      <TitleContainer>{i18n.t("common.register")}</TitleContainer>
-
       <FormikForm
         formInputList={formInputConfigList}
         formik={formik}

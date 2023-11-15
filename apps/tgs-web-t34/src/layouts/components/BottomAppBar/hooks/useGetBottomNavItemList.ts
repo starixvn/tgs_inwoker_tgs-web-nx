@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { RouteCategoryEnum } from "@/router";
 import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
-import iconPromo from "@/assets/t34/bottomNavBar/icon-promotion.svg";
-import iconHome from "@/assets/t34/bottomNavBar/icon-home.svg";
-import iconDeposit from "@/assets/t34/bottomNavBar/icon-deposit.svg";
-import iconWithdrawal from "@/assets/t34/bottomNavBar/icon-withdraw.svg";
+import iconPromo from "@/assets/t34/images/bottomNavBar/icon-promotion.svg";
+import iconHome from "@/assets/t34/images/bottomNavBar/icon-home.svg";
+import iconDeposit from "@/assets/t34/images/bottomNavBar/icon-deposit.svg";
+import iconWithdrawal from "@/assets/t34/images/bottomNavBar/icon-withdraw.svg";
 import { useRoute } from "@/hooks/useRoute";
 
 export function useGetBottomNavItemList() {
