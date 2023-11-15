@@ -28,7 +28,6 @@ import { ProfilePathEnum } from "@/components/account/Profile/profilePageDiction
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
-import VipLayout from "@/layouts/VipLayout";
 
 export enum RouteCategoryEnum {
   HOME,
@@ -381,7 +380,7 @@ const routes: Route[] = [
     path: "/vip",
     component: VIPPage,
     category: RouteCategoryEnum.MINE,
-    layout: VipLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/sports/:platform",

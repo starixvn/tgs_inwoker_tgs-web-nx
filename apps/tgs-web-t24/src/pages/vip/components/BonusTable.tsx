@@ -56,20 +56,19 @@ const BonusTableWrapper = styled.div`
 `;
 
 const BonusTableHeader = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 48px;
   padding: 10.5px 0;
-  background: ${(props) => props.theme.mainDarkBackground};
+  background-color: ${(props) => props.theme.gray80};
 
   ${media.sm} {
-    border-radius: 10px;
     height: 86px;
     padding: 20px;
-    margin-bottom: 20px;
+    background-color: transparent;
   }
 `;
 
@@ -101,7 +100,10 @@ const BonusTableBody = styled.div`
 
   ${media.sm} {
     background: ${(props) => props.theme.mainLightBackground};
-    border-radius: 10px;
+  }
+
+  > div:nth-child(even) {
+    background-color: ${(props) => props.theme.gray80};
   }
 `;
 
@@ -110,11 +112,6 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid ${(props) => props.theme.mainDarkBackground};
-
-  ${media.sm} {
-    border-bottom: 1px solid #434343;
-  }
 `;
 
 const RowItem = styled.div`

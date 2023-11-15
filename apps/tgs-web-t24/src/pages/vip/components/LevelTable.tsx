@@ -65,9 +65,9 @@ const LevelTableHeader = styled.div`
   height: 48px;
   padding: 12px 15px 12px 15px;
   background: ${(props) => props.theme.mainDarkBackground};
+  border-bottom: 1px solid ${(props) => props.theme.gray60};
 
   ${media.sm} {
-    border-radius: 10px;
     height: 45px;
     padding: 12px 0px;
     background: transparent;
@@ -108,6 +108,10 @@ const LevelTableBody = styled.div`
     background: ${(props) => props.theme.mainLightBackground};
     border-radius: 10px;
   }
+
+  > div:nth-child(even) {
+    background-color: ${(props) => props.theme.gray80};
+  }
 `;
 
 const LevelTableRowWrapper = styled.div`
@@ -115,11 +119,6 @@ const LevelTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid ${(props) => props.theme.mainDarkBackground};
-
-  ${media.sm} {
-    border-bottom: 1px solid #434343;
-  }
 `;
 
 const RowItem = styled.div`
