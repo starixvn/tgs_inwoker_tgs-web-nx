@@ -11,7 +11,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     border: "none",
 
     "&:-webkit-autofill": {
-      WebkitTextFillColor: `${theme.palette.white} !important`,
+      WebkitTextFillColor: `${theme.palette.maskBlack50} !important`,
     },
   },
   label: {

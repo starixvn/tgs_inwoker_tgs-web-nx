@@ -11,7 +11,7 @@ const AuthDialogImageContainer = styled.div`
   background: #6401d5;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 33px 60px 0 27px;
 
   & > .bg {
@@ -22,10 +22,15 @@ const AuthDialogImageContainer = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  white-space: nowrap;
+  line-height: 2.899rem;
   overflow: visible;
+  position: absolute;
+  max-width: 300px;
+  top: 50%;
+  left: 27px;
+  transform: translateY(-50%);
 `;
 
 const AuthDialogImage = () => {

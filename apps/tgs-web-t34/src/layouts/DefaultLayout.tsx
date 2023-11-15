@@ -32,26 +32,10 @@ const DashboardContainer = styled.div`
   }
 `;
 
-type ContentWrapperProps = {
-  $isOpen: boolean;
-  $isDesktop: boolean;
-};
-
-const ContentWrapper = styled.div<ContentWrapperProps>`
+const ContentWrapper = styled.div`
   position: relative;
   flex-grow: 1;
-  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
   transition: all ease-in-out 0.2s;
-
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
 `;
 
 const ChildrenWrapper = styled.div`
@@ -74,9 +58,9 @@ const DefaultLayout = ({ children }: Props) => {
       <Header />
 
       <DashboardContainer>
-        <MenuDrawer />
+        {!isDesktopSize && <MenuDrawer />}
 
-        <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
+        <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />
@@ -84,7 +68,7 @@ const DefaultLayout = ({ children }: Props) => {
         </ContentWrapper>
       </DashboardContainer>
 
-      {isMobileSize && <BottomAppBar />}
+      {!isDesktopSize && <BottomAppBar />}
     </DefaultLayoutContainer>
   );
 };

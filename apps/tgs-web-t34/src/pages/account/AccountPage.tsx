@@ -6,8 +6,8 @@ import { useAuth, useUpdatePageName } from "@tgs-web-nx/core/features";
 import AccountNavigations from "./components/AccountNavigations";
 import InfoCard from "@/pages/account/components/InfoCard";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import MemberCenterBorder from "@/pages/account/components/MemberCenterBorder";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const AccountPage = () => {
   useUpdatePageName(i18n.t("TIGER.my"));
@@ -24,9 +24,10 @@ const AccountPage = () => {
 
   return (
     <PageContainer>
-      {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "50px" }} />}
-      {!isDesktopSize && <MemberCenterBorder />}
+      {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "20px" }} />}
       <AccountNavigations />
+
+      <LanguageSwitch />
     </PageContainer>
   );
 };

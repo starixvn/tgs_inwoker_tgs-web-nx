@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useGeneralStore } from "@tgs-web-nx/core";
-import { useAuth, useHeader } from "@tgs-web-nx/core/features";
-import headerBg from "@/assets/t23/images/header/side-menu-bg.png";
-import Avatar from "@/components/project/Avatar";
+import { useHeader } from "@tgs-web-nx/core/features";
 import BrandLogo from "@/components/project/BrandLogo";
 
 const SideMenuHeaderContainer = styled.div`

@@ -1,7 +1,5 @@
 import React from "react";
 import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/material";
-import iconDown from "@/assets/t33/images/ui/icon-down.svg";
-import Icon from "@/components/project/Icon";
 
 const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: "white",
@@ -15,7 +13,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     background: "none",
   },
   select: {
-    color: "white",
+    color: theme.palette.white,
     padding: "14px",
     "&:focus": {
       background: "none",
@@ -28,7 +26,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
   "& .MuiSvgIcon-root": {
-    color: "white",
+    color: theme.palette.white,
   },
 
   "& .MuiOutlinedInput-notchedOutline": {

@@ -21,13 +21,14 @@ export const imageMap: { [key in string]: string } = {
 };
 
 const StyledSelect = styled(MuiSelect)`
-  border-radius: 30px !important;
-  border: 1px solid white;
+  border-radius: 2px !important;
+  border: 1px solid ${({ theme }) => theme.grey02};
+  width: 100%;
 
   //width: 140px;
   //margin-right: 10px;
   overflow: visible;
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.white};
   font-weight: 700 !important;
   font-size: 1rem !important;
 
@@ -37,6 +38,7 @@ const StyledSelect = styled(MuiSelect)`
   & .MuiSelect-select {
     display: flex;
     align-items: center;
+    color: ${({ theme }) => theme.black};
 
     & > img {
       margin-right: 10px;
@@ -48,7 +50,7 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
   }
 `;
 
@@ -110,7 +112,8 @@ const LanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainLightBackground,
+            background: theme.white,
+            color: theme.black,
 
             "& .MuiMenuItem-root": {
               padding: 2,
