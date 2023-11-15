@@ -4,11 +4,10 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { RouteCategoryEnum } from "@/router";
 import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
-import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
-import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
-import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
-import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
-import iconWithdrawal from "@/assets/t23/images/bottomNavBar/icon-withdrawal.svg";
+import iconPromo from "@/assets/t34/bottomNavBar/icon-promotion.svg";
+import iconHome from "@/assets/t34/bottomNavBar/icon-home.svg";
+import iconDeposit from "@/assets/t34/bottomNavBar/icon-deposit.svg";
+import iconWithdrawal from "@/assets/t34/bottomNavBar/icon-withdraw.svg";
 import { useRoute } from "@/hooks/useRoute";
 
 export function useGetBottomNavItemList() {
@@ -25,17 +24,8 @@ export function useGetBottomNavItemList() {
         routePath: "/",
         routeCategory: RouteCategoryEnum.HOME,
       },
-
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("common.promotion"),
-        iconUrl: iconPromo,
-        iconActiveUrl: iconPromo,
-        routePath: "/promotion-list",
-        routeCategory: RouteCategoryEnum.PROMOTION,
-      },
-      {
-        navType: NavTypeEnum.BIG_ITEM,
         label: i18n.t("common.deposit"),
         iconUrl: iconDeposit,
         iconActiveUrl: iconDeposit,
@@ -52,11 +42,11 @@ export function useGetBottomNavItemList() {
       },
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("web.account.profile"),
-        iconUrl: iconProfile,
-        iconActiveUrl: iconProfile,
-        routePath: "/account",
-        routeCategory: RouteCategoryEnum.MINE,
+        label: i18n.t("common.promotion"),
+        iconUrl: iconPromo,
+        iconActiveUrl: iconPromo,
+        routePath: "/promotion-list",
+        routeCategory: RouteCategoryEnum.PROMOTION,
       },
     ] as BottomNavItem[];
   }, []);
