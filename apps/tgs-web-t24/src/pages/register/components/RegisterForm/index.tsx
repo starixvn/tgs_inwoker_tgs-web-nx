@@ -7,6 +7,7 @@ import RedirectToLoginHint from "@/pages/register/components/RegisterForm/Redire
 import FormikForm from "@/components/project/FormikForm";
 import BrandLogo from "@/components/project/BrandLogo";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
+import { media } from "@/theme/breakpoints";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
@@ -16,6 +17,14 @@ const VerifyAgeContainer = styled.div`
   margin: 24px 0 0;
   display: flex;
   align-items: start;
+`;
+
+const BrandLogoContainer = styled.div`
+  margin-bottom: 50px;
+
+  ${media.sm} {
+    margin-bottom: 30px;
+  }
 `;
 
 const RegisterForm = () => {
@@ -30,7 +39,9 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      <BrandLogo />
+      <BrandLogoContainer>
+        <BrandLogo />
+      </BrandLogoContainer>
 
       <FormikForm
         formInputList={formInputConfigList}

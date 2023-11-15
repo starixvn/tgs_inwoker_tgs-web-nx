@@ -7,6 +7,7 @@ import Checkbox from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
 import BrandLogo from "@/components/project/BrandLogo";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
+import { media } from "@/theme/breakpoints";
 
 const FormSubContainer = styled.div`
   width: 100%;
@@ -34,6 +35,14 @@ const ForgotPasswordContainer = styled.span`
   cursor: pointer;
 `;
 
+const BrandLogoContainer = styled.div`
+  margin-bottom: 50px;
+
+  ${media.sm} {
+    margin-bottom: 30px;
+  }
+`;
+
 const LoginForm = () => {
   const {
     formInputConfigList,
@@ -47,7 +56,9 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      <BrandLogo />
+      <BrandLogoContainer>
+        <BrandLogo />
+      </BrandLogoContainer>
 
       <FormikForm
         formInputList={formInputConfigList}
