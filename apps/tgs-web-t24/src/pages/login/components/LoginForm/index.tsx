@@ -8,6 +8,7 @@ import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectT
 import BrandLogo from "@/components/project/BrandLogo";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import { media } from "@/theme/breakpoints";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const FormSubContainer = styled.div`
   width: 100%;
@@ -85,6 +86,8 @@ const LoginForm = () => {
       </FormikForm>
 
       <RedirectToRegisterHint />
+
+      <LanguageSwitch style={{ width: "129px", margin: "69px auto 0" }} />
     </AuthFormContainer>
   );
 };

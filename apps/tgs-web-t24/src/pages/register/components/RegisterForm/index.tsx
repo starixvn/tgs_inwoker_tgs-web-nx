@@ -8,6 +8,7 @@ import FormikForm from "@/components/project/FormikForm";
 import BrandLogo from "@/components/project/BrandLogo";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import { media } from "@/theme/breakpoints";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
@@ -57,6 +58,7 @@ const RegisterForm = () => {
       </FormikForm>
 
       <RedirectToLoginHint />
+      <LanguageSwitch style={{ width: "129px", margin: "20px auto 20px" }} />
     </AuthFormContainer>
   );
 };

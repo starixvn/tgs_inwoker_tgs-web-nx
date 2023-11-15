@@ -8,6 +8,7 @@ import BrandLogo from "@/components/project/BrandLogo";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import { media } from "@/theme/breakpoints";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const BrandLogoContainer = styled.div`
   margin-bottom: 50px;
@@ -35,6 +36,7 @@ const ForgotPasswordDialog = () => {
         {/*@ts-ignore*/}
         <ForgotPasswordPrev alert={alert} history={history} />
         <RedirectToLoginHint style={{ marginTop: "20px" }} />
+        <LanguageSwitch style={{ width: "129px", margin: "69px auto 0" }} />
       </AuthFormContainer>
     </AuthDialog>
   );
