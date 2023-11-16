@@ -5,6 +5,7 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import HomePromotionCard from "./components/HomePromotionCard";
 import ImageCard from "./components/ImageCard";
+import AppFlag from "./components/AppFlag";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -68,6 +69,14 @@ const MainContentWrapper = styled.div`
   }
 `;
 
+const AppFlagWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 30px;
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
@@ -96,6 +105,9 @@ const HomePage = () => {
 
         <CategoryRenderer />
 
+        <AppFlagWrapper><AppFlag /></AppFlagWrapper>
+
+        {/* 
         {!activeGameType && (
           <>
             <HomePromotionCard />
