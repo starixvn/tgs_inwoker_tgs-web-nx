@@ -7,7 +7,7 @@ const AccountPaperContainer = styled.div`
 
   ${media.sm} {
     background: ${({ theme }) => theme.mainBackground};
-    padding: 20px 24px;
+    padding: 12px 24px;
   }
 `;
 

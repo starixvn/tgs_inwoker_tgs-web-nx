@@ -7,13 +7,7 @@ import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { media } from "@/theme/breakpoints";
-import {
-  BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_DRAWER_WIDTH,
-  DRAWER_SHRINK_WIDTH,
-  HEADER_HEIGHT,
-  TABLET_DRAWER_WIDTH,
-} from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -50,8 +44,7 @@ type Props = {
   children: ReactElement;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
-  const { isMenuOpen } = useHeader();
+  const { isDesktopSize } = useRwd();
 
   return (
     <DefaultLayoutContainer>

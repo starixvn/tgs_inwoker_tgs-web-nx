@@ -13,12 +13,12 @@ const ProfileItemContainer = styled.div`
 `;
 
 const ProfileRowLabel = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   font-size: 1.25rem;
   font-weight: 400;
 `;
 const ProfileStatus = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   font-size: 0.93rem;
   font-weight: 400;
 `;
@@ -43,16 +43,8 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
       </ProfileStatus>
 
       <Button
-        variant={isVerified ? "contained" : "outlined"}
         sx={{
-          fontSize: "1.25rem",
-          color: isVerified ? theme.black : theme.white,
-          background: isVerified
-            ? "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)"
-            : "none",
-          border: isVerified ? "none" : "1px solid white",
           width: "160px",
-          borderRadius: "30px",
         }}
         onClick={() => {
           if (!profileItem) return;
