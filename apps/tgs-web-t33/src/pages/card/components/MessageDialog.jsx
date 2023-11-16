@@ -51,7 +51,7 @@ function MessageDialog(props) {
       ${({ theme }) => theme.primaryGradient},
       ${({ theme }) => theme.primary}
     );
-    color: #ffffff;
+    color: ${({ theme }) => theme.white};
   `;
   return (
     <StyledModalPopup onClose={props.onClose} open={props.open} TransitionComponent={Transition}>

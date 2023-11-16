@@ -11,7 +11,7 @@ const ProfileItemContainer = styled.div`
   cursor: pointer;
 
   & .label {
-    color: #ffffff;
+    color: ${({ theme }) => theme.white};
     font-size: 1.25rem;
     font-weight: 400;
   }
