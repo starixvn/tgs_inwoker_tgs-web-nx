@@ -3,6 +3,8 @@ import { GameTypeItem, useHeader, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useHistory } from "react-router-dom";
 import MenuGameTab from "./MenuGameTab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -13,32 +15,28 @@ const TabContainer = styled.div`
 `;
 
 const MenuGameTypeList = () => {
-  const gameTypeList = useGameTypeList();
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { gameTypeNavItemList } = useGetNavItemList();
+  const { activeGameType } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const history = useHistory();
 
-  const handleTabClick = (gameTypeItem: GameTypeItem) => {
-    if (history.location.pathname !== "/") {
-      history.push("/");
-    }
-
-    handleChangeGameType(gameTypeItem.gameType);
+  const handleTabClick = (navItem: NavItem) => {
+    if (navItem.navType !== "action") return;
+    navItem.callback();
     handleToggleMenu(false);
   };
 
   return (
     <TabContainer>
-      {gameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType } = gameTypeItem;
+      {gameTypeNavItemList.map((navItem) => {
+        const { key, iconUrl, label, gameType } = navItem;
 
         return (
           <MenuGameTab
             key={key}
             imageUrl={iconUrl}
-            text={isMenuOpen ? text : ""}
+            text={isMenuOpen ? label : ""}
             isActive={gameType === activeGameType}
-            onClick={() => handleTabClick(gameTypeItem)}
+            onClick={() => handleTabClick(navItem)}
           />
         );
       })}

@@ -35,10 +35,11 @@ export enum NavCardKey {
   APP_DOWNLOAD,
   VIP,
   LOGOUT,
+  PROMOTION,
 }
 
 export type NavItem = {
-  key: NavCardKey;
+  key: NavCardKey | string;
   label: string | any;
   iconUrl: string;
   iconActiveUrl?: string;
