@@ -10,6 +10,8 @@ import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import ContactButton from "./components/ContactButton";
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
+import userAvatar from "@/assets/t31/images/header/contextMenu/Member.png";
+import logOutIcon from "@/assets/t31/images/header/contextMenu/Log out.png";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -25,7 +27,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px 17px;
+  padding: 0px 12px 0px 12px;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -47,7 +49,17 @@ const HeaderContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-right: 20px;
+  gap:8px;
+`;
+
+const UserAvatar = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+const LogOut = styled.img`
+  width: 40px;
+  height: 40px;
 `;
 
 const Header = () => {
@@ -60,6 +72,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
+        {!isLargeDesktopSize && <MenuButton width="40px" height="40px" />}
         <Link to={""}>
           <LogoImgContainer>
             <img
@@ -71,12 +84,12 @@ const Header = () => {
         </Link>
 
         <HeaderContentContainer>
-          {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+          {isDesktopSize ? null : <UserAvatar src={userAvatar} />}
 
+          {/* {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />} */}
+          {!noLoginAccount && <LogOut src={logOutIcon} alt={"log out"} />}
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
-
-        {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
   );

@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
+import DeskTopHeader from "./components/Header/components/DeskTopHeader";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
@@ -71,7 +72,7 @@ const DefaultLayout = ({ children }: Props) => {
 
   return (
     <DefaultLayoutContainer>
-      <Header />
+      {isDesktopSize ? <DeskTopHeader /> : <Header />}
 
       <DashboardContainer>
         <MenuDrawer />

@@ -41,7 +41,7 @@ const MenuDrawer = () => {
         },
       }}
     >
-      {isLargeDesktopSize ? null : <MobileMenuDrawer />}
+      {isLargeDesktopSize && <MobileMenuDrawer />}
     </Drawer>
   );
 };
