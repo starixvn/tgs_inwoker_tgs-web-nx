@@ -7,9 +7,9 @@ import { InboxMessage } from "@tgs-web-nx/types";
 const InboxItemContainer = styled.div`
   width: 100%;
   padding: 10px 30px;
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.grey01};
   cursor: pointer;
-  border-radius: 30px;
+  border-radius: 2px;
 `;
 
 type CheckboxContainerProps = {
@@ -35,7 +35,7 @@ type MsgTitleProps = {
   $isRead: boolean;
 };
 const MsgTitle = styled.div<MsgTitleProps>`
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: ${({ $isRead }: MsgTitleProps) => ($isRead ? "400" : "600")};
   color: ${({ theme }) => theme.white};
   white-space: nowrap;
@@ -50,8 +50,8 @@ const MsgTitleSpan = styled.span`
 `;
 
 const MsgDate = styled.div`
-  font-size: 0.937rem;
-  color: ${({ theme }) => theme.lighterGray};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.white};
 `;
 
 type CheckboxCircleProps = {
@@ -73,7 +73,7 @@ const CheckboxCircle = styled.div<CheckboxCircleProps>`
 
 const LetterContent = styled.div`
   font-size: 1rem;
-  color: ${({ theme }) => theme.lighterGray};
+  color: ${({ theme }) => theme.grey03};
   padding: 20px 0px;
 `;
 
