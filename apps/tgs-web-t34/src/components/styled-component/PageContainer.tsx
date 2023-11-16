@@ -20,7 +20,7 @@ export const PageContainer = styled.div`
 `;
 
 export const TransferPageContainer = styled.div`
-  padding: 21px 22px;
+  padding: 20px;
   max-width: calc(1200px + 22px * 2);
   margin: auto;
 
