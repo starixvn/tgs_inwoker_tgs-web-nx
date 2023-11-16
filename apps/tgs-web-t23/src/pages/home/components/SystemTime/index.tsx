@@ -22,7 +22,7 @@ const SystemTime = () => {
     return () => clearTimeout(timer);
   }, [tickCount]);
 
-  return <Wrapper>{"GMT+8 " + systemTime}</Wrapper>;
+  return <Wrapper>{systemTime}</Wrapper>;
 };
 
 export default SystemTime;

@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
-import DialogHeader from "@/components/UI/Dialog/DialogHeader";
+import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
@@ -15,8 +15,8 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`${HEADER_HEIGHT} 0 ${BOTTOM_APP_BAR_HEIGHT}`};
+  min-height: calc(100vh - ${DIALOG_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin: ${`${DIALOG_HEADER_HEIGHT} 0 ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
 `;

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
-import cardgame from "@/assets/t23/images/home/gameType/cardGame.svg";
-import egame from "@/assets/t23/images/home/gameType/egame.svg";
-import esports from "@/assets/t23/images/home/gameType/esports.svg";
-import fishing from "@/assets/t23/images/home/gameType/fishing.svg";
-import home from "@/assets/t23/images/home/gameType/home.svg";
-import live from "@/assets/t23/images/home/gameType/liveCasino.svg";
-import lottery from "@/assets/t23/images/home/gameType/lottery.svg";
-import sabong from "@/assets/t23/images/home/gameType/sabong.svg";
-import slot from "@/assets/t23/images/home/gameType/slot.svg";
-import sports from "@/assets/t23/images/home/gameType/sports.svg";
+import cardgame from "@/assets/t33/images/home/gameType/cardGame.svg";
+import egame from "@/assets/t33/images/home/gameType/egame.svg";
+import esports from "@/assets/t33/images/home/gameType/esports.svg";
+import fishing from "@/assets/t33/images/home/gameType/fishing.svg";
+import home from "@/assets/t33/images/home/gameType/home.svg";
+import live from "@/assets/t33/images/home/gameType/liveCasino.svg";
+import lottery from "@/assets/t33/images/home/gameType/lottery.svg";
+import sabong from "@/assets/t33/images/home/gameType/sabong.svg";
+import slot from "@/assets/t33/images/home/gameType/slot.svg";
+import sports from "@/assets/t33/images/home/gameType/sports.svg";
 
 type GameTypeItem = {
   key: string;
