@@ -10,18 +10,18 @@ import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import CloseIcon from "@/components/project/Popup/components/CloseIcon";
+import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
     background: ${({ theme }) => theme.mainBackground};
-    width: 321px;
+    width: calc(100vw - 8px);
     height: auto;
-    border-radius: 10px;
+    margin: 4px;
 
     ${media.sm} {
-      width: 652px;
+      max-width: 745px;
     }
   }
 `;
@@ -31,21 +31,18 @@ const ChildContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 36px 24px 18px;
-
-  ${media.sm} {
-    padding: 60px 50px 30px;
-  }
+  padding: 16px;
 `;
 
 const Title = styled.div`
-  font-size: 1.2rem;
-  color: ${({ theme }) => theme.yellow};
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.black};
 `;
 
 const Content = styled.div`
   font-size: 1rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   margin-top: 1rem;
   line-height: 1.2rem;
 
@@ -121,6 +118,8 @@ const PopupAnnouncement = () => {
       onClose={handleCloseDialog}
       TransitionComponent={UpTransition}
     >
+      <PopupHeader title={i18n.t("web.header.announcement")} handleClose={handleCloseDialog} />
+
       <ChildContainer>
         <Carousel>
           {announcementList
@@ -142,6 +141,8 @@ const PopupAnnouncement = () => {
           />
         )}
 
+        {isDesktopSize && <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />}
+
         <ButtonWrapper>
           <Button
             onClick={handleCloseDialog}
@@ -154,20 +155,7 @@ const PopupAnnouncement = () => {
             <>{i18n.t("common.close")}</>
           </Button>
         </ButtonWrapper>
-
-        {isDesktopSize && (
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              margin: "0 auto",
-              justifyContent: "center",
-            }}
-          />
-        )}
       </ChildContainer>
-
-      <CloseIcon onClick={handleCloseDialog} />
     </StyledDialog>
   );
 };
