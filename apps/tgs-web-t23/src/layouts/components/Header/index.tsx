@@ -17,7 +17,7 @@ import {
   TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
 import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
-import SystemTime from "@/pages/home/components/SystemTime";
+import CurrentTime from "@/components/project/CurrentTime";
 import { media } from "@/theme/breakpoints";
 
 const HeaderContainer = styled.div`
@@ -109,7 +109,7 @@ const Header = () => {
             <OnlineUserContainer>
               <OnlineUser />
             </OnlineUserContainer>
-            <SystemTime />
+            <CurrentTime />
           </SystemInfoContainer>
         )}
         <HeaderContentContainer>
