@@ -10,9 +10,9 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-
 import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -23,20 +23,17 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
 
   ${media.sm} {
-    max-width: 1200px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 20px 0px;
-    gap: 20px;
   }
 `;
 
 const SliderWrapper = styled.div`
   width: 100%;
-  height: 182px;
+  padding-bottom: 42.52%
 
   ${media.sm} {
-    height: 375px;
-    border-radius: 10px;
+    padding-bottom: 41.35%
   }
 `;
 
@@ -56,6 +53,7 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
 
 const MainContentWrapper = styled.div`
   width: 100%;
+  margin: 0 auto;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -65,6 +63,7 @@ const MainContentWrapper = styled.div`
   gap: 6px;
 
   ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
     padding: 10px 10px 50px 10px;
   }
 `;
@@ -84,24 +83,16 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && (
+      {!!general.banner.length && (
         <SliderWrapper>
           <Slider />
         </SliderWrapper>
       )}
-      {!!activeGameType && (
-        <GameTypeBanner
-          $imageUrl={
-            activeGameTypeKey
-              ? `${import.meta.env.BASE_URL}assets/images/home/gp_banner/${activeGameTypeKey}.png`
-              : ""
-          }
-        />
-      )}
 
       <MainContentWrapper>
-        {(isDesktopSize && !activeGameType) && <CardPrompt />}
-        {isMobileSize && <GameTypeTab />}
+        <CardPrompt />
+
+        {/* {isMobileSize && !activeGameType && <GameTypeTab />} */}
 
         <CategoryRenderer />
 
@@ -123,11 +114,21 @@ const HomePage = () => {
                   )}
                 </HomeCategoryFolder>
               ))}
-
-            {/* <TabPanel /> */}
           </>
         )}
       </MainContentWrapper>
+
+
+      {/*       
+      {!!activeGameType && (
+        <GameTypeBanner
+          $imageUrl={
+            activeGameTypeKey
+              ? `${import.meta.env.BASE_URL}assets/images/home/gp_banner/${activeGameTypeKey}.png`
+              : ""
+          }
+        />
+      )} */}
     </MainWrapper>
   );
 };
