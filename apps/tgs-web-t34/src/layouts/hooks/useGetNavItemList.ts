@@ -145,8 +145,50 @@ export function useGetNavItemList() {
     ] as NavItem[];
   }, []);
 
+  const headerNavItemList: NavItem[] = useMemo(() => {
+    return [
+      {
+        key: NavCardKey.HOME,
+        label: i18n.t("common.home"),
+        iconUrl: "",
+        navType: "route",
+        routePath: "/",
+      },
+      {
+        key: NavCardKey.PROMOTION,
+        label: i18n.t("common.promotion"),
+        iconUrl: "",
+        navType: "route",
+        routePath: "/promotion-list",
+      },
+
+      {
+        key: NavCardKey.VIP,
+        label: "VIP",
+        iconUrl: "",
+        navType: "route",
+        routePath: "/vip",
+      },
+      {
+        key: NavCardKey.TRANSFER,
+        label: i18n.t("common.transfer"),
+        iconUrl: "",
+        navType: "route",
+        routePath: "/transfer",
+      },
+      {
+        key: NavCardKey.WITHDRAW,
+        label: i18n.t("common.withdrawal"),
+        iconUrl: "",
+        navType: "route",
+        routePath: "/withdrawal",
+      },
+    ] as NavItem[];
+  }, []);
+
   return {
     gameTypeNavItemList,
     accountNavItemList,
+    headerNavItemList,
   };
 }

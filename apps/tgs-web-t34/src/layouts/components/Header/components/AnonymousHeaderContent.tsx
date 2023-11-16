@@ -52,8 +52,11 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
     <ButtonContainer>
       <HeaderButton
         onClick={toggleLoginDialog}
-        style={{
+        sx={{
           width: buttonWidth ?? "77px",
+          background: {
+            sm: "#0A79B0",
+          },
         }}
       >
         {i18n.t("common.login")}
@@ -62,9 +65,15 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <HeaderButton
         color={"primary"}
         onClick={toggleRegisterDialog}
-        style={{
+        sx={{
           width: buttonWidth ?? "77px",
-          color: theme.secondary,
+          color: {
+            xs: theme.secondary,
+            sm: theme.white,
+          },
+          background: {
+            sm: "#01B402",
+          },
         }}
       >
         {i18n.t("common.register")}

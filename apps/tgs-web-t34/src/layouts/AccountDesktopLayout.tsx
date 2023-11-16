@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 import AccountNavList from "@/layouts/components/AccountNavList";
 import { theme } from "@/theme";
 
@@ -18,8 +18,8 @@ const DashboardContainer = styled.div`
   min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
 
   ${media.sm} {
-    margin-top: ${HEADER_HEIGHT};
-    min-height: calc(100vh - ${HEADER_HEIGHT});
+    margin-top: ${DESKTOP_HEADER_HEIGHT};
+    min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
     margin-bottom: unset;
   }
 `;

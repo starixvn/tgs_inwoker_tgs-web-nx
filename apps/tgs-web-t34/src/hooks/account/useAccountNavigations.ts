@@ -26,6 +26,7 @@ export enum NavCardKey {
   VIP,
   LOGOUT,
   PROMOTION,
+  HOME,
 }
 
 export type NavItem = {
