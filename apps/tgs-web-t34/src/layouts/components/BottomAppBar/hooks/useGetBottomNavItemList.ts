@@ -2,13 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRoute } from "@tgs-web-nx/core/features";
 import { RouteCategoryEnum } from "@/router";
 import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
 import iconPromo from "@/assets/t34/images/bottomNavBar/icon-promotion.svg";
 import iconHome from "@/assets/t34/images/bottomNavBar/icon-home.svg";
 import iconDeposit from "@/assets/t34/images/bottomNavBar/icon-deposit.svg";
 import iconWithdrawal from "@/assets/t34/images/bottomNavBar/icon-withdraw.svg";
-import { useRoute } from "@/hooks/useRoute";
 
 export function useGetBottomNavItemList() {
   const location = useLocation();
@@ -55,13 +55,9 @@ export function useGetBottomNavItemList() {
   const { route } = useRoute();
 
   useEffect(() => {
-    const matchNavItem =
-      bottomNavItemList.find((bottomNavItem) => {
-        return bottomNavItem.routeCategory === route?.category;
-      }) || null;
+    const matchNavItem = null;
 
     if (!matchNavItem) {
-      console.log(location.pathname);
       return;
     }
 

@@ -35,7 +35,6 @@ const App: React.FC = () => {
   const { isLoading } = useInitSite();
   const gameTypeList = useGameTypeList();
   const routeRef = useRef<RouteType>();
-
   const currentRoute = routeRef.current;
 
   if (isLoading) {
