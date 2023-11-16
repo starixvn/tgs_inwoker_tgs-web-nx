@@ -10,6 +10,7 @@ theme.lang = i18n.language;
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
+    black: string;
     yellow: string;
     tertiary: string;
     mainGradient: string;
@@ -49,6 +50,7 @@ const muiTheme = createTheme({
     },
     white: theme.white,
     yellow: "#f4bd29",
+    black: theme.black,
     mainGradient: theme.secondaryGradient,
     mainBackground: theme.mainBackground,
     mainDarkBackground: theme.mainDarkBackground,

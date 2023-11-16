@@ -7,7 +7,7 @@ import { HEADER_HEIGHT } from "@/theme/constants";
 const DialogHeaderContainer = styled.div`
   position: fixed;
   width: 100%;
-  height: ${HEADER_HEIGHT} ;
+  height: ${HEADER_HEIGHT};
   top: 0;
   left: 0;
   background: ${({ theme }) => theme.mainDarkBackground};

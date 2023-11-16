@@ -1,0 +1,49 @@
+import React, { useMemo } from "react";
+import styled from "styled-components";
+import supportImg from "@/assets/t18/images/floatingToolIcon/service.svg";
+import ToolIcon from "@/components/project/FloatingToolIcons/ToolIcon";
+import { media } from "@/theme/breakpoints";
+
+const FloatingToolIconsContainer = styled.div`
+  z-index: 9999;
+  position: fixed;
+  right: 22px;
+  bottom: 142px;
+  overflow: visible;
+  ${media.sm} {
+    display: none;
+  }
+`;
+
+interface FloatingTool {
+  key: string;
+  imgUrl: string;
+  pathUrl: string;
+}
+
+const FloatingToolIcons = () => {
+  const floatingTools = useMemo<FloatingTool[]>(() => {
+    return [
+      // {
+      //   key: "download",
+      //   imgUrl: downloadImg,
+      //   pathUrl: "/appDownload",
+      // },
+      {
+        key: "support",
+        imgUrl: supportImg,
+        pathUrl: "/support",
+      },
+    ];
+  }, []);
+
+  return (
+    <FloatingToolIconsContainer>
+      {floatingTools.map((floatingTool) => {
+        return <ToolIcon key={floatingTool.key} floatingTool={floatingTool} />;
+      })}
+    </FloatingToolIconsContainer>
+  );
+};
+
+export default FloatingToolIcons;

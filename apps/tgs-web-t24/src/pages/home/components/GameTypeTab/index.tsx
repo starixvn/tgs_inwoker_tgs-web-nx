@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
-import { GameTypeEnum } from "@/constants/GameTypeEnum";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const TabContainer = styled.div`
@@ -20,6 +20,19 @@ const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isMobileSize } = useRwd();
+  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
+
+  const allTag = {
+    tagType: FilterTagTypeEnum.ALL,
+    name: "",
+  };
+
+  const switchGameType = (gameType: GameTypeEnum) => {
+    handleChangeGameType(gameType);
+    // 把filter tag的狀態清空
+    handleChangeActiveProviderFilterTag(allTag);
+    handleChangeActiveFilterTag(allTag);
+  };
 
   return (
     <TabContainer>
@@ -36,7 +49,7 @@ const GameTypeTab = () => {
             imageUrl={iconUrl}
             text={text}
             isActive={gameType === activeGameType}
-            onClick={() => handleChangeGameType(gameType)}
+            onClick={() => switchGameType(gameType)}
           />
         );
       })}

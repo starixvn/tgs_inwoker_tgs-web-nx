@@ -91,6 +91,7 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   .MuiInputBase-input {
     background: none;
     color: ${({ theme }) => theme.white};
+    text-align: left;
   }
 
   .MuiInput-underline:before,

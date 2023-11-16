@@ -102,7 +102,7 @@ const ButtonConfirm = styled.div`
     ${({ theme }) => theme.primaryGradient},
     ${({ theme }) => theme.primary}
   );
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
 `;
 
 class Details extends Component {

@@ -12,7 +12,7 @@ const MaintenanceContainer = styled.div`
   width: 100%;
   //height: calc(100vh - 80px - 82px);
   height: 100vh;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   background: black;
 `;
 const MaintenanceBg = styled.div`
@@ -63,7 +63,7 @@ const Button = styled.button`
   font-size: 1rem;
   border: none;
   border-radius: 4px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   font-weight: 500;
 `;
 const CSButton = styled(Button)`

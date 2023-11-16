@@ -29,6 +29,7 @@ import { ProfilePathEnum } from "@/components/account/Profile/profilePageDiction
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
+import AppDownloadPage from "@/pages/download/DownloadPage";
 import VipLayout from "@/layouts/VipLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
@@ -392,6 +393,12 @@ const routes: Route[] = [
   //   alert: true,
   //   navigate: true,
   // },
+  {
+    path: "/download",
+    component: AppDownloadPage,
+    category: RouteCategoryEnum.MINE,
+    layout: DefaultLayout,
+  },
   {
     path: "/support",
     component: ContactUsPage,
