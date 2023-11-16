@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
@@ -65,4 +65,4 @@ const DefaultLayout = ({ children }: Props) => {
   );
 };
 
-export default DefaultLayout;
+export default React.memo(DefaultLayout);

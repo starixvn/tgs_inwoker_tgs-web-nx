@@ -6,3 +6,4 @@ export * from "./feature/useHeader";
 export * from "./feature/useNotifications";
 export * from "./feature/usePageName";
 export * from "./feature/usePopup";
+export * from "./feature/useRoute";
