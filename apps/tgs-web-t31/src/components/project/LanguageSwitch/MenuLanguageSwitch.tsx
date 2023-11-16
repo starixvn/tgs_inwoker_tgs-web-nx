@@ -12,21 +12,14 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { theme } from "@/theme";
-import { imageMap } from "@/components/project/LanguageSwitch/index";
 
 const StyledSelect = styled(MuiSelect)`
-  border-radius: 12px !important;
-  border: ${({ theme }) => ` 1px solid ${theme.mainBackground}`};
-  height: 56px;
-  width: 250px;
+  border: ${({ theme }) => ` 1px solid ${theme.white}`};
+  height: 30px;
   overflow: visible;
   background: ${({ theme }) => theme.mainDarkBackground};
   &:hover {
     border: 0;
-  }
-
-  .MuiOutlinedInput-input {
-    padding: 10px 30px !important;
   }
 
   & .MuiSelect-select {
@@ -45,19 +38,6 @@ const StyledSelect = styled(MuiSelect)`
 const StyledMenuItem = styled(MuiMenuItem)`
   & > img {
     margin-right: 10px;
-  }
-`;
-
-const FlagContainer = styled.div`
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  margin-right: 10px;
-
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 `;
 
@@ -103,8 +83,7 @@ const MenuLanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainLightBackground,
-
+            background: theme.accountLableText,
             "& .MuiMenuItem-root": {
               padding: 2,
             },
@@ -117,10 +96,6 @@ const MenuLanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
-              <FlagContainer>
-                <img src={imageMap[culturecode] || ""} alt={culturecode} />
-              </FlagContainer>
-
               {!isShrink && <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>}
             </StyledMenuItem>
           );

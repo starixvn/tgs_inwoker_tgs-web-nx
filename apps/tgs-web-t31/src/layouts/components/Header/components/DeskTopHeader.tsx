@@ -5,12 +5,22 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
+
 // import AccountHeaderContent from "./components/AccountHeaderContent";
 // import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 // import ContactButton from "./components/ContactButton";
 // import MenuButton from "./components/MenuButton";
+import List from "./DesktopMenuDrawer/components/MenuGameTypeList";
+
 import { HEADER_HEIGHT } from "@/theme/constants";
 import announce from "@/assets/t31/images/header/Announce.png";
+import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
+import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { Select } from "@/components/UI/Select";
+import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
+import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -19,22 +29,31 @@ const HeaderContainer = styled.div`
   background: ${({ theme }) => theme.accountLableText};
   height: ${HEADER_HEIGHT};
   width: 100%;
+  height: 120px;
   z-index: 10;
 `;
 
+const HeadContentContainer = styled.div`
+  height: 48px;
+  display: flex;
+  justify-content: center;
+`;
+
+const HeadMenuContainer = styled(HeadContentContainer)`
+  height: 69px;
+`;
+
 const HeaderWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
   padding: 0px 12px 0px 12px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   z-index: 2;
 `;
 
 const LogoImgContainer = styled.div`
-  height: 27px;
+  gap: 10px;
+  height: 69px;
   justify-self: start;
   padding: 0 10px;
 
@@ -47,8 +66,7 @@ const HeaderContentContainer = styled.div`
   flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: end;
-  gap: 8px;
+  gap: 12px;
 `;
 
 const AnnounceIcon = styled.img`
@@ -56,6 +74,10 @@ const AnnounceIcon = styled.img`
   height: 18px;
 `;
 
+const SystemInfo = styled.div`
+  display: flex;
+  gap: 24px;
+`;
 const DeskTopHeader = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
@@ -65,22 +87,45 @@ const DeskTopHeader = () => {
 
   return (
     <HeaderContainer>
-      <HeaderWrapper>
-        <AnnounceIcon src={announce} />
-        {/* {!isLargeDesktopSize && <MenuButton width="40px" height="40px" />} */}
-        {/* <Link to={""}>
-          <LogoImgContainer>
-            <img
-              src={general.brand && general.brand.loadingUrl}
-              alt={"logo"}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-            />
-          </LogoImgContainer>
-        </Link> */}
+      <HeadContentContainer>
+        <HeaderWrapper>
+          <SystemInfo>
+            <AnnounceIcon src={announce} />
+            {/* todo current time */}
+          </SystemInfo>
+          <HeaderContentContainer>
+            <MenuLanguageSwitch />
+            <HeaderButton
+              // onClick={toggleLoginDialog}
+              style={{
+                background: theme.tertiaryGradient,
+              }}
+            >
+              {i18n.t("common.login")}
+            </HeaderButton>
 
-        {/* <HeaderContentContainer>
-        </HeaderContentContainer> */}
-      </HeaderWrapper>
+            <HeaderButton
+              color={"primary"}
+              // onClick={toggleRegisterDialog}
+              style={{
+                background: theme.secondaryGradient,
+              }}
+            >
+              {i18n.t("common.register")}
+            </HeaderButton>
+          </HeaderContentContainer>
+        </HeaderWrapper>
+      </HeadContentContainer>
+      <HeadMenuContainer>
+        <LogoImgContainer>
+          <img
+            src={general.brand && general.brand.loadingUrl}
+            alt={"logo"}
+            // onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
+        </LogoImgContainer>
+        <List />
+      </HeadMenuContainer>
     </HeaderContainer>
   );
 };
