@@ -23,7 +23,7 @@ const TitleText = styled.div`
   margin-top: 20px;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   text-align: start;
 `;
 

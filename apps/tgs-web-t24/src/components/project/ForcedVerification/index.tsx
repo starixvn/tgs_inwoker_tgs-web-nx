@@ -92,7 +92,7 @@ const CustomButton = styled.div<CustomButtonType>`
     return $disabled && `filter: grayscale(01);pointer-events: none;`;
   }}
 
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
 }`;
 
 type ForcedVerificationProps = {

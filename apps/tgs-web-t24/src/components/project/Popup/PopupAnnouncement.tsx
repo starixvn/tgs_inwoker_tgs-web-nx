@@ -38,13 +38,13 @@ const ChildContainer = styled.div`
 const Title = styled.div`
   font-size: 1.8rem;
   font-weight: 700;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
 `;
 
 const Content = styled.div`
   font-size: 1rem;
   font-weight: 400;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   margin-top: 1rem;
   line-height: 1.2rem;
 

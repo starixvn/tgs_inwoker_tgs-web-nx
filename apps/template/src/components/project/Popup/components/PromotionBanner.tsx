@@ -48,7 +48,7 @@ const Title = styled.h2`
 `;
 
 const Description = styled.div`
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem !important;
   font-weight: 500;
   max-height: 100px;

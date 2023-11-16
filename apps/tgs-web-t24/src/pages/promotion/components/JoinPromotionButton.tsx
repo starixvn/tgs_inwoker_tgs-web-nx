@@ -16,7 +16,7 @@ const Button = styled.button<{ $disabled: boolean }>`
   border-radius: 12px;
   gap: 10px;
   background: ${({ theme }) => theme.secondary};
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   font-size: 1.25rem;
   cursor: pointer;
   background-image: ${({ $disabled }) => {

@@ -55,7 +55,7 @@ const LevelText = styled.div<LevelTextProps>`
       }
     }}
     scale(${({ $scale }: LevelTextProps) => $scale});
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   font-size: 1.2rem;
   text-stroke: 2px #e5c0a2;
   font-weight: 900;
