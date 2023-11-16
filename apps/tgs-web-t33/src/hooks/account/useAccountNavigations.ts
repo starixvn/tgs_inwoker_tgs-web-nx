@@ -41,7 +41,7 @@ export type NavItem = {
   key: NavCardKey;
   label: string | any;
   iconUrl: string;
-  darkIconUrl?: string;
+  iconActiveUrl?: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
 } & (

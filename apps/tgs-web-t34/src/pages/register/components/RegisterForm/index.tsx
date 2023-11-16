@@ -10,8 +10,8 @@ import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
-  color: white;
-  font-size: 0.937rem;
+  color: ${({ theme }) => theme.black};
+  font-size: 1rem;
   margin: 24px 0 0;
   display: flex;
   align-items: start;

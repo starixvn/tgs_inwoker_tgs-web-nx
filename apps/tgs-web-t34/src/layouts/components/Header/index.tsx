@@ -9,8 +9,10 @@ import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import ContactButton from "./components/ContactButton";
 import MenuButton from "./components/MenuButton";
-import { HEADER_HEIGHT } from "@/theme/constants";
+import { DESKTOP_HEADER_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
+import HeaderGreyRegion from "@/layouts/components/Header/components/HeaderGreyRegion";
+import HeaderRedRegion from "@/layouts/components/Header/components/HeaderRedRegion";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -20,17 +22,28 @@ const HeaderContainer = styled.div`
   height: ${HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
+
+  ${media.sm} {
+    height: ${DESKTOP_HEADER_HEIGHT};
+  }
 `;
 
 const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
+  max-width: 1200px;
+  margin: auto;
   height: 100%;
   padding: 10px 17px;
   display: flex;
   align-items: center;
   justify-content: start;
   z-index: 2;
+
+  ${media.sm} {
+    height: 84px;
+    padding: 0 10px;
+  }
 `;
 
 const LogoImgContainer = styled.div`
@@ -48,6 +61,13 @@ const LogoImgContainer = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  ${media.sm} {
+    position: relative;
+    top: initial;
+    left: initial;
+    transform: none;
+  }
 `;
 
 const HeaderContentContainer = styled.div`
@@ -61,13 +81,15 @@ const Header = () => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isDesktopSize, isLargeDesktopSize } = useRwd();
+  const { isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <HeaderContainer>
+      {isDesktopSize && <HeaderGreyRegion />}
+
       <HeaderWrapper>
-        {!isLargeDesktopSize && <MenuButton />}
+        {!isDesktopSize && <MenuButton />}
 
         <Link to={""}>
           <LogoImgContainer>
@@ -85,6 +107,8 @@ const Header = () => {
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
       </HeaderWrapper>
+
+      {isDesktopSize && <HeaderRedRegion />}
     </HeaderContainer>
   );
 };

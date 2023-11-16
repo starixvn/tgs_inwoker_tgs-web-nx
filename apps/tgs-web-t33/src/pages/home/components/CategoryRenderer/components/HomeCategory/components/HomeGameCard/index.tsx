@@ -1,30 +1,27 @@
-import {MouseEvent, useState} from "react";
-import {useHistory} from "react-router";
+import { MouseEvent, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
-import {GameItem} from "@tgs-web-nx/types";
-import {Common} from "@tgs-web-nx/utils";
-import {useAccountStore, useGameStore} from "@tgs-web-nx/core";
-import {useHomeGameContext} from "@tgs-web-nx/core/features";
-import {useRwd} from "@tgs-web-nx/core/hooks";
+import { GameItem } from "@tgs-web-nx/types";
+import { Common } from "@tgs-web-nx/utils";
+import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
-import TextButton from "@/pages/home/components/TextButton";
-import {media} from "@/theme/breakpoints";
+import { media } from "@/theme/breakpoints";
+import playIcon from "@/assets/t33/images/home/play.svg";
+import maintenanceIcon from "@/assets/t33/images/home/maintenance.svg";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 77.78%;
+  height: 100%;
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
-  border-radius: 15px;
+  border-radius: 10px;
   display: none;
   white-space: pre-line;
-
-  ${media.sm} {
-    height: 80.85%;
-  }
 `;
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
@@ -35,23 +32,41 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 12px;
+  border-radius: 10px;
 `;
 
 const NewTag = styled.div`
   position: absolute;
-  top: 0;
-  width: 32px;
-  height: 18px;
-  padding: 10px;
-  border-radius: 12px 0px;
-  background: ${(props) => props.theme.primaryMix};
-  color: ${(props) => props.theme.tagColor};
+  top: 8px;
+  left: 0;
+  width: 52px;
+  height: 27px;
+  padding: 4px 10px;
+  border-radius: 0px 50px 50px 0px;
+  background: ${(props) => props.theme.red};
+  color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.5rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 400;
+`;
+
+const HotTag = styled.div`
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 52px;
+  height: 27px;
+  padding: 4px 10px;
+  border-radius: 0px 50px 50px 0px;
+  background: ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.white};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
 `;
 
 const GameCardContent = styled.div`
@@ -59,22 +74,22 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(30.3% - 5px);
-  max-width: 110px;
+  width: calc(30.3% - 5.33px);
+  max-width: 130px;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 110 / 142;
+  aspect-ratio: 130 / 130;
 
-  /* width - For home scrollable*/
   ${media.sm} {
-    width: calc(19.2% - 40px);
-    min-width: 190px;
-    aspect-ratio: 170 / 210;
+    width: calc(24% - 30px);
+    min-width: 250px;
+    aspect-ratio: 250 / 250;
 
     &:hover {
       ${CardHoverBg} {
         z-index: 1;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
       }
@@ -99,7 +114,7 @@ const GameName = styled.div`
 const MaintenanceBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 77%;
+  height: 100%;
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 50%);
@@ -107,24 +122,13 @@ const MaintenanceBg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  ${media.sm} {
-    height: 81%;
-    border-radius: 15px;
-    z-index: 1;
-  }
+  border-radius: 10px;
+  z-index: 3;
 `;
 
-const MaintenanceText = styled.div`
-  color: ${(props) => props.theme.darkGray};
-  font-size: 0.75rem;
-  font-weight: 900;
-  text-align: center;
-
-  ${media.sm} {
-    font-size: 1rem;
-    font-weight: 700;
-  }
+const MaintenanceIcon = styled.img`
+  width: 118px;
+  height: 83px;
 `;
 
 type GameCardProps = {
@@ -133,11 +137,23 @@ type GameCardProps = {
   imageUrl: string;
 };
 
+const HoverGameName = styled(GameCardContent)`
+  color: ${(props) => props.theme.white};
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 16px;
+`;
+
+const PlayIcon = styled.img`
+  width: 65px;
+  height: 65px;
+`;
+
 const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
   const { account } = useAccountStore();
   const history = useHistory();
-  const { favoriteList, fetchFavoriteList, activeGameType } = useHomeGameContext();
+  const { favoriteList, fetchFavoriteList } = useHomeGameContext();
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
@@ -174,13 +190,14 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     <GameCardBg onClick={launchGame}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        {gameItem.tag.new && <NewTag>New</NewTag>}
+        {/* 先把tag拿掉 畫面太花了 */}
+        {/* {gameItem.tag.new && <NewTag>New</NewTag>}
+        {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
         {!isActive && (
           <MaintenanceBg>
-            <MaintenanceText>UNDER MAINTENANCE</MaintenanceText>
+            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
           </MaintenanceBg>
         )}
-        {gameItem && <GameName>{gameItem.name}</GameName>}
       </GameCardContent>
       <Favorite
         isFavorite={isFavorite}
@@ -189,8 +206,9 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       />
 
       {isDesktopSize && (
-        <CardHoverBg>
-          <TextButton text={"Go"} onClick={launchGame} />
+        <CardHoverBg onClick={launchGame}>
+          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
+          <PlayIcon src={playIcon} alt={"play"} />
         </CardHoverBg>
       )}
     </GameCardBg>

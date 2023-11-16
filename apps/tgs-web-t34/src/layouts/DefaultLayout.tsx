@@ -1,19 +1,12 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader } from "@tgs-web-nx/core/features";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { media } from "@/theme/breakpoints";
-import {
-  BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_DRAWER_WIDTH,
-  DRAWER_SHRINK_WIDTH,
-  HEADER_HEIGHT,
-  TABLET_DRAWER_WIDTH,
-} from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -26,8 +19,8 @@ const DashboardContainer = styled.div`
   min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
 
   ${media.sm} {
-    margin-top: ${HEADER_HEIGHT};
-    min-height: calc(100vh - ${HEADER_HEIGHT});
+    margin-top: ${DESKTOP_HEADER_HEIGHT};
+    min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
     margin-bottom: unset;
   }
 `;
@@ -50,8 +43,7 @@ type Props = {
   children: ReactElement;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
-  const { isMenuOpen } = useHeader();
+  const { isDesktopSize } = useRwd();
 
   return (
     <DefaultLayoutContainer>

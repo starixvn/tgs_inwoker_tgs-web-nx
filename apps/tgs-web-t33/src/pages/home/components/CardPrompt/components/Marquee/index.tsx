@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
-import notification from "@/assets/t23/images/home/notifications.svg";
+import notification from "@/assets/t33/images/home/notification.svg";
 
 const Container = styled.div`
   display: flex;
@@ -15,6 +15,7 @@ const Container = styled.div`
   word-break: keep-all;
   border-radius: 5px;
   font-size: 0.875rem;
+  padding: 4px 0 4px 10px;
 `;
 
 const Background = styled.div`
@@ -39,10 +40,9 @@ const Marquee = () => {
         <marquee>
           {marquees.map((item, index) => {
             const content = `
-              *${
-                item.localization !== null && item.localization.content
-                  ? item.localization.content
-                  : item.content
+              *${item.localization !== null && item.localization.content
+                ? item.localization.content
+                : item.content
               }
               `;
             return <Background key={index}>{content}</Background>;
