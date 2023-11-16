@@ -11,18 +11,18 @@ const Wrapper = styled.div`
   line-height: normal;
 `;
 
-const SystemTime = () => {
-  const [systemTime, setSystemTime] = useState(moment().format("YYYY-MM-DD HH:mm:ss"));
+const CurrentTime = () => {
+  const [currentTime, setcurrentTime] = useState(moment().format("YYYY-MM-DD HH:mm:ss"));
   const [tickCount, setTickCount] = useState(0);
   useEffect(() => {
     const timer = setTimeout(() => {
       setTickCount(tickCount + 1);
-      setSystemTime(moment().format("YYYY-MM-DD HH:mm:ss"));
+      setcurrentTime(moment().format("YYYY-MM-DD HH:mm:ss"));
     }, 1000);
     return () => clearTimeout(timer);
   }, [tickCount]);
 
-  return <Wrapper>{systemTime}</Wrapper>;
+  return <Wrapper>{currentTime}</Wrapper>;
 };
 
-export default SystemTime;
+export default CurrentTime;
