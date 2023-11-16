@@ -30,7 +30,7 @@ const DialogLayout = ({ children }: Props) => {
   return (
     <DialogLayoutContainer>
       <Header />
-      {!isDesktopSize && <MenuDrawer />}
+      <MenuDrawer />
 
       <ContentWrapper>
         {isDesktopSize && (

@@ -2,8 +2,10 @@ import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
 import accountIcon from "@/assets/t33/images/menuDrawer/icon-account.svg";
+import promotionIcon from "@/assets/t33/images/menuDrawer/icon-promotion.svg";
 import depositIcon from "@/assets/t33/images/menuDrawer/icon-deposit.svg";
 import withdrawIcon from "@/assets/t33/images/menuDrawer/icon-withdraw.svg";
 import transferIcon from "@/assets/t33/images/menuDrawer/icon-transfer.svg";
@@ -35,19 +37,49 @@ export function useGetNavItemList() {
   const history = useHistory();
 
   const gameTypeNavItemList: NavItem[] = useMemo(() => {
-    return gameTypeList.map((gameTypeItem) => {
-      return {
+    const navItemList: NavItem[] = [];
+
+    for (const gameTypeItem of gameTypeList) {
+      if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
+
+      navItemList.push({
         key: gameTypeItem.key,
         label: gameTypeItem.text as string,
         iconUrl: gameTypeItem.iconUrl,
-        iconSecondaryUrl: gameTypeItem.iconUrl,
         navType: "action",
         callback: () => {
-          history.push("/");
           handleChangeGameType(gameTypeItem.gameType);
+
+          if (history.location.pathname !== "/") {
+            history.push("/");
+          }
         },
-      };
-    }) as NavItem[];
+      });
+    }
+
+    navItemList.push({
+      key: NavCardKey.VIP,
+      label: "VIP",
+      iconUrl: vipIcon,
+      iconActiveUrl: vipIconDark,
+      navType: "action",
+      callback: () => {
+        history.push("/vip");
+      },
+    });
+
+    navItemList.push({
+      key: NavCardKey.PROMOTION,
+      label: i18n.t("common.promotion"),
+      iconUrl: promotionIcon,
+      navType: "action",
+      callback: () => {
+        history.push("/promotion-list");
+      },
+    });
+
+    return navItemList;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameTypeList]);
 
   const accountNavItemList: NavItem[] = useMemo(() => {
