@@ -42,8 +42,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.45);
 
   ${media.sm} {
-    padding-top: 63.33%;
-    border-radius: 15px;
+    padding-top: 54.5%;
   }
 `;
 
@@ -55,6 +54,10 @@ const VendorCardContentBg = styled.div`
   height: 89%;
   border-radius: 2px;
   background:${(props) => props.theme.gray40};
+
+  ${media.sm} {
+    border-radius: 4px;
+  }
 `;
 
 const VendorCardContent = styled.div`
@@ -65,7 +68,6 @@ const VendorCardBg = styled.div`
   width: 50%;
   max-width: 200px;
   position: relative;
-  cursor: pointer;
   aspect-ratio: 200 / 163;
 
   ${media.sm} {
@@ -101,7 +103,11 @@ const VenderNameInfo = styled.div`
     height: 29px;
     border-radius: 48px;
     background: ${(props) => props.theme.white};
-    margin-right: 5px;
+    margin-right: 16px;
+  }
+
+  ${media.sm} {
+    padding: 20px 10px 20px 10px;
   }
 `;
 
@@ -109,15 +115,20 @@ const VenderName = styled(VendorCardContent)`
   color: ${(props) => props.theme.white};
   font-size: 0.875rem;
   font-weight: 700;
-  text-align: center;
+  text-align: flex-start;
+
+  ${media.sm} {
+    font-size: 1.91rem;
+    letter-spacing: 1px;
+  }
 `;
 
 const PlayBtn = styled.div`
-  min-width: 64px;
+  width: 64px;
   height: 36px;
   background: linear-gradient(180deg, #0587F5 0%, #0057A0 100%);
   border-radius: 30px;
-  color: ${(props) => props.theme.mainBackground};
+  color: ${(props) => props.theme.white};
   font-size: 0.875rem;
   font-weight: 400;
   text-align: center;
@@ -125,6 +136,19 @@ const PlayBtn = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px 15px;
+  cursor: pointer;
+
+  ${media.sm} {
+    min-width: 119px;
+    height: 64px;
+    padding: 15px 20px;
+    font-size: 1.7875rem;
+
+    &:hover {
+      border: 1px solid ${(props) => props.theme.white};
+      box-shadow: 0px 0px 10px 0px ${(props) => props.theme.white};
+    }
+  }
 `;
 
 const MaintenanceBg = styled.div`
@@ -172,7 +196,7 @@ const VendorCard = ({ imageUrl, venderName, venderLogoUrl, launchGame, status }:
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         <VenderNameInfo>
           <VenderName ref={venderNameRef}>{venderName}</VenderName>
-          <PlayBtn>PLAY</PlayBtn>
+          <PlayBtn onClick={launchGame}>PLAY</PlayBtn>
         </VenderNameInfo>
         {status === providerStatus.Maintenance && (
           <MaintenanceBg>
@@ -180,12 +204,6 @@ const VendorCard = ({ imageUrl, venderName, venderLogoUrl, launchGame, status }:
           </MaintenanceBg>
         )}
       </VendorCardContent>
-
-      {isDesktopSize && (
-        <VendorCardHoverBg>
-          <TextButton text={"Go"} onClick={launchGame} />
-        </VendorCardHoverBg>
-      )}
     </VendorCardBg>
   );
 };

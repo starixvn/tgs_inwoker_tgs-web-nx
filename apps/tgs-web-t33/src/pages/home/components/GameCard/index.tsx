@@ -9,6 +9,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import playIcon from "@/assets/t33/images/home/play.svg";
+import maintenanceIcon from "@/assets/t33/images/home/maintenance.svg";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -121,24 +122,13 @@ const MaintenanceBg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  ${media.sm} {
-    height: 81%;
-    border-radius: 15px;
-    z-index: 1;
-  }
+  border-radius: 10px;
+  z-index: 3;
 `;
 
-const MaintenanceText = styled.div`
-  color: ${(props) => props.theme.darkGray};
-  font-size: 0.75rem;
-  font-weight: 900;
-  text-align: center;
-
-  ${media.sm} {
-    font-size: 1rem;
-    font-weight: 700;
-  }
+const MaintenanceIcon = styled.img`
+  width: 118px;
+  height: 83px;
 `;
 
 type GameCardProps = {
@@ -204,7 +194,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         {gameItem.tag.hot && <HotTag>Hot</HotTag>}
         {!isActive && (
           <MaintenanceBg>
-            <MaintenanceText>UNDER MAINTENANCE</MaintenanceText>
+            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
           </MaintenanceBg>
         )}
       </GameCardContent>
