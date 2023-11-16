@@ -5,7 +5,7 @@ import { socialMediaIconList } from "@/constants/socialMedia";
 const SocialMediaContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
 `;
