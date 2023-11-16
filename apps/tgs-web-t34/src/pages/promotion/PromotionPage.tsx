@@ -19,12 +19,6 @@ const PromotionCardListContainer = styled.div`
   }
 `;
 
-const TitleText = styled.h1`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.black};
-`;
-
 const PromotionPage = () => {
   const { promotionList, isEmpty } = usePromotionPage();
   const { isDesktopSize } = useRwd();

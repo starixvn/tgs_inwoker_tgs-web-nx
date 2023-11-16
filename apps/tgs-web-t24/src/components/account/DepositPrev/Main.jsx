@@ -18,59 +18,17 @@ import {
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
-
-const LimitLabel = styled.span`
-  color: ${({ theme }) => theme.tertiary};
-`;
-
-const LimitAmount = styled.span`
-  color: ${({ theme }) => theme.white};
-`;
-
-const TransferLabel = styled.div``;
-const TransferValue = styled.div``;
-
-const ExchangeRateContainer = styled.div`
-  margin: 20px auto;
-  font-size: 0.937rem;
-  font-weight: 400;
-`;
-
-const QRCodeImg = styled.img`
-  display: block;
-  margin-top: 10px;
-  width: 200px;
-  height: 200px;
-`;
-
-const HintText = styled.div`
-  color: ${({ theme }) => theme.primary};
-`;
-
-const InputWrapper = styled.div`
-  background: #fff;
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  padding-right: 100px;
-  border-radius: 16px;
-  width: 100%;
-`;
-
-const AmountHint = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-size: 0.937rem;
-  font-weight: 400;
-  margin-top: 9px;
-  text-align: center;
-`;
-
-const FeeSpot = styled.div`
-  margin-bottom: 17px;
-  span {
-    font-weight: bold;
-  }
-`;
+import {
+  LimitLabel,
+  LimitAmount,
+  TransferLabel,
+  TransferValue,
+  ExchangeRateContainer,
+  QRCodeImg,
+  HintText,
+  AmountHint,
+  FeeSpot,
+} from "@/components/styled-component/Deposit";
 
 class Main extends Component {
   render() {
@@ -736,7 +694,7 @@ class Main extends Component {
             );
           })()}
         >
-         {i18n.t("common.submit")}
+          {i18n.t("common.submit")}
         </SubmitButton>
       </>
     );

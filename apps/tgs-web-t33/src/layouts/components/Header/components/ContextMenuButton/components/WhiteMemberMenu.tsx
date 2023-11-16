@@ -56,7 +56,7 @@ const WhiteMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
       {accountNavItemList.map((navItem) => {
         return (
           <MemberMenuItem key={navItem.key} $isActive={false} onClick={() => handleClick(navItem)}>
-            <Icon iconUrl={navItem.darkIconUrl || ""} width={"24px"} height={"24px"} />
+            <Icon iconUrl={navItem.iconActiveUrl || ""} width={"24px"} height={"24px"} />
             <span className={"label"}>{navItem.label}</span>
           </MemberMenuItem>
         );
