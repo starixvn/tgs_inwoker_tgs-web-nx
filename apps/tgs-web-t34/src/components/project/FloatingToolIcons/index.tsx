@@ -8,7 +8,7 @@ const FloatingToolIconsContainer = styled.div`
   z-index: 9999;
   position: fixed;
   right: 22px;
-  bottom: 102px;
+  bottom: 142px;
   overflow: visible;
   ${media.sm} {
     display: none;
