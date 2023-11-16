@@ -10,6 +10,8 @@ import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Introduction from "@/pages/home/components/Introduction";
+import SocialMedia from "@/components/project/SocialMedia";
+import vendorsIcon from "@/assets/t33/images/home/vendors.png";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -59,10 +61,24 @@ const AppFlagWrapper = styled.div`
   padding: 20px 30px;
 `;
 
+const VendorIconContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const VendorIcon = styled.div`
+  width: 392px;
+  height: 296px;
+  background-image: url(${vendorsIcon});
+  background-size: cover;
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
-  const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const { isMobileSize } = useRwd();
+  const { activeGameType } = useHomeGameContext();
 
   useEffect(() => {
     window.scrollTo({
@@ -82,15 +98,17 @@ const HomePage = () => {
 
       <MainContentWrapper>
         <CardPrompt />
-
         {/* {isMobileSize && !activeGameType && <GameTypeTab />} */}
-
         <CategoryRenderer />
-
         <AppFlagWrapper><AppFlag /></AppFlagWrapper>
-
         <Introduction />
 
+        {isMobileSize && <SocialMedia />}
+        {isMobileSize && (
+          <VendorIconContainer>
+            <VendorIcon />
+          </VendorIconContainer>
+        )}
       </MainContentWrapper>
     </MainWrapper>
   );
