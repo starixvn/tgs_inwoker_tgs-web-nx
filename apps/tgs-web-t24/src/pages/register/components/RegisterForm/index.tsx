@@ -12,7 +12,7 @@ import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
-  color: white;
+  color: ${({ theme }) => theme.white};
   font-size: 0.75rem;
   font-weight: 700;
   margin: 24px 0 0;

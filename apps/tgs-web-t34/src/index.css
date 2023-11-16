@@ -542,7 +542,7 @@ div[class*=" SnackbarItem-variantInfo-"]:before {
     font-family: Arial;
     font-size: 14px;
     font-weight: bold;
-  color: ${({ theme }) => theme.white};
+    color: white;
     text-align: center;
     padding-top: 2px;
     float: left;

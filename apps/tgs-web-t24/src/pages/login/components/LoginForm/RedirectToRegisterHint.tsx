@@ -7,7 +7,7 @@ import { useAuthDialog } from "@tgs-web-nx/core/features";
 
 const CreateAccountContainer = styled.div`
   width: 100%;
-  color: white;
+  color: ${({ theme }) => theme.white};
   font-size: 0.937rem;
   font-weight: 700;
   align-self: baseline;

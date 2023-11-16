@@ -44,7 +44,7 @@ const PromotionTextContainer = styled.div`
 const TitleWrapper = styled.div`
   font-size: 1.062rem;
   font-weight: 400;
-  color: white;
+  color: ${({ theme }) => theme.white};
   text-overflow: ellipsis;
 `;
 
