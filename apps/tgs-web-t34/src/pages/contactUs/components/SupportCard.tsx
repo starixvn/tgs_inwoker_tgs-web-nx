@@ -5,15 +5,17 @@ import { i18n } from "@tgs-web-nx/utils";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
 
 const SupportCardContainer = styled.div`
-  border-radius: 30px;
+  border-radius: 2px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: #2e3237;
-  color: ${({ theme }) => theme.white};
+  background ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
+  border: 1px solid ${({ theme }) => theme.maskBlack20};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.098rem;
@@ -28,7 +30,7 @@ const SupportCardContainer = styled.div`
 
   width: calc((100% - 16px * (2 - 1)) / 2);
 
-  // ${media.sm} {
+    // ${media.sm} {
   //   width: calc((100% - 16px * (2 - 1)) / 3);
   // }
   ${media.md} {
@@ -72,18 +74,6 @@ const IconContainer = styled.div`
   justify-content: center;
 `;
 
-const ContactButton = styled.div`
-  width: 100%;
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.primary};
-  padding: 6px;
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 0.878rem;
-  border-radius: 5px;
-`;
-
 type Props = {
   brandsSupport: BrandsSupport;
   handleClick: (brandsSupport: BrandsSupport) => void;
@@ -116,7 +106,7 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
       <Button
         fullWidth
         sx={{
-          color: "black",
+          color: theme.white,
         }}
       >
         {i18n.t("common.contact")}
