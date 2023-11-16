@@ -10,7 +10,7 @@ import { theme } from "@/theme";
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 12px;
 `;
 
 type Props = {
