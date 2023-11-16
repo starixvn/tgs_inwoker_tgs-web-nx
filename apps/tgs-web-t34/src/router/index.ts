@@ -265,7 +265,7 @@ const routes: Route[] = [
     path: "/promotion-list",
     component: PromotionPage,
     category: RouteCategoryEnum.PROMOTION,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {

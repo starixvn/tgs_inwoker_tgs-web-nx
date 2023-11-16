@@ -123,7 +123,7 @@ const DialogContent = styled.div`
 
 const DialogTitle2 = styled(DialogTitle)`
   background: ${({ theme }) => theme.primary};
-  color: white;
+  color: ${({ theme }) => theme.white};
 `;
 
 const CloseButton = styled.div`
