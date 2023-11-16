@@ -51,7 +51,7 @@ const App: React.FC = () => {
                 <AuthDialogContextProvider>
                   <HomeGameContextProvider gameTypeList={gameTypeList}>
                     <ScrollToTop />
-                    <LayoutProvider route={currentRoute}>
+                    <LayoutProvider>
                       <Switch>
                         {routes.map((route, index) => {
                           return (

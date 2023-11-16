@@ -81,6 +81,8 @@ const SystemInfoContainer = styled.div`
 
 const OnlineUserContainer = styled.div`
   margin-left: 50px;
+  display: flex;
+  align-items: center;
 `;
 
 const Header = () => {

@@ -18,7 +18,7 @@ export const RouteContext = createContext({
 });
 
 type ProviderProps = {
-  route: Route;
+  route: Route | undefined;
   children: React.ReactNode;
 };
 
