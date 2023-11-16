@@ -3,7 +3,7 @@ import { Checkbox as MuiCheckbox, CheckboxProps } from "@mui/material";
 import styled from "styled-components";
 
 const StyledCheckbox = styled(MuiCheckbox)`
-  color: white;
+  color: ${({ theme }) => theme.white};
   &.Mui-checked {
     color: ${({ theme }) => theme.primary};
   }

@@ -19,7 +19,7 @@ const CopyIconContainer = styled.div`
   transition: all ease-in-out 0.2s;
   &:hover {
     color: ${({ theme }) => theme.primary};
-    background-color: white;
+    background-color: ${({ theme }) => theme.white};
   }
 `;
 

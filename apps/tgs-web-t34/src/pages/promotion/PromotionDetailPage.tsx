@@ -8,8 +8,8 @@ import Loading from "@/components/UI/Loading";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
-  padding: 22px 22px 100px 22px;
-  color: ${({ theme }) => theme.white};
+  padding: 16px 20px 0;
+  color: ${({ theme }) => theme.black};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -19,7 +19,6 @@ const PromotionDetailContainer = styled.div`
   ${media.sm} {
     max-width: 870px;
     margin: 0 auto;
-    padding: 22px 22px 100px 22px;
   }
 `;
 const BannerWrapper = styled.div`
@@ -41,7 +40,7 @@ const TextArea = styled.div`
   /* margin-bottom: 40px; */
 `;
 const Title = styled.h2`
-  color: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.black};
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -51,7 +50,7 @@ const Title = styled.h2`
   }
 `;
 const Description = styled.p`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.maskBlack50};
   font-size: 0.875rem;
   font-weight: 500;
   ${media.sm} {
@@ -93,7 +92,11 @@ const PromotionDetail = () => {
 
   return (
     <>
-      <PromotionDetailContainer>
+      <PromotionDetailContainer
+        style={{
+          marginBottom: showJoinButton ? "94px " : "0px",
+        }}
+      >
         <BannerWrapper>
           <BannerImage promotionData={promotionData} />
         </BannerWrapper>
@@ -123,6 +126,7 @@ const PromotionDetail = () => {
           </TextArea>
         </ContentContainer>
       </PromotionDetailContainer>
+
       {showJoinButton && (
         <JoinPromotionButtonWrapper>
           <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />

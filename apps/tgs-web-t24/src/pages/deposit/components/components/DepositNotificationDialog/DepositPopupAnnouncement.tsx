@@ -14,33 +14,12 @@ const StyledDialog = styled(MuiDialog)`
     justify-content: center;
     border-radius: 30px;
 
-    color: white;
+    color: ${({ theme }) => theme.white};
     background-attachment: fixed;
     background-position: center;
     padding: 20px;
     align-items: center;
   }
-`;
-
-const Container = styled.div`
-  color: white;
-  background-attachment: fixed;
-  background-position: center;
-  display: flex;
-  padding: 20px;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-`;
-// const CloseButton = styled.div<{ theme: Theme & { primary: string } }>`
-const CloseButton = styled.div`
-  background: ${({ theme }) => theme.primary};
-  width: 100%;
-  color: white;
-  padding: 12px;
-  font-size: 1.56rem;
-  border-radius: 12px;
-  text-align: center;
 `;
 const TitleContainer = styled.div`
   text-align: center;
@@ -80,7 +59,9 @@ const ImageBanner = styled.div<ImageBannerProps>`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0/0.1), 0 2px 4px -2px rgb(0 0 0/0.1);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0/0.1),
+    0 2px 4px -2px rgb(0 0 0/0.1);
 `;
 
 type Props = {

@@ -32,7 +32,7 @@ const MainWrapper = styled.div`
 
 const SliderWrapper = styled.div`
   width: 100%;
-  height: 160px;
+  height: 182px;
 
   ${media.sm} {
     height: 375px;
@@ -56,18 +56,16 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
 
 const MainContentWrapper = styled.div`
   width: 100%;
-  padding: 22px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.primaryDark};
+  background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 10px;
-  flex-shrink: 0;
+  gap: 6px;
 
   ${media.sm} {
-    gap: 20px;
-    padding: unset;
+    padding: 10px 10px 50px 10px;
   }
 `;
 
@@ -102,7 +100,7 @@ const HomePage = () => {
       )}
 
       <MainContentWrapper>
-        {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
+        {(isDesktopSize && !activeGameType) && <CardPrompt />}
         {isMobileSize && <GameTypeTab />}
 
         <CategoryRenderer />
