@@ -10,7 +10,7 @@ const FooterContainer = styled.div`
 
   ${media.sm} {
     width: 100%;
-    background: ${({ theme }) => theme.mainDarkBackground};
+    background: ${({ theme }) => theme.gray40};
     color: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
