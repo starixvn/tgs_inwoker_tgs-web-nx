@@ -140,28 +140,12 @@ const PopupAnnouncement = () => {
             })}
         </Carousel>
 
-        {!isDesktopSize && (
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              marginBottom: "18px",
-            }}
-          />
-        )}
-
         <ButtonWrapper>
-          <Button
-            onClick={handleCloseDialog}
-            style={{
-              width: isDesktopSize ? "242px" : "100%",
-              textAlign: "center",
-            }}
-          >
+          <Button fullWidth onClick={handleCloseDialog}>
             <>{i18n.t("common.close")}</>
           </Button>
         </ButtonWrapper>
-        {isDesktopSize && <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />}
+        <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
       </ChildContainer>
     </StyledDialog>
   );

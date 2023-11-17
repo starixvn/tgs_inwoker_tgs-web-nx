@@ -10,8 +10,8 @@ import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
-import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 import PromotionBanner from "@/components/project/Popup/components/PromotionBanner";
+import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 
 const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
@@ -76,6 +76,8 @@ const MobilePopupPromotion = () => {
       TransitionComponent={UpTransition}
       onClose={handleCloseDialog}
     >
+      <PopupHeader title={i18n.t("web.header.promotion")} handleClose={handleCloseDialog} />
+
       <ChildContainer>
         <Carousel>
           {displayPromotionList.map((promotionData: Promotion) => (
@@ -98,8 +100,6 @@ const MobilePopupPromotion = () => {
           </Button>
         </ButtonWrapper>
       </ChildContainer>
-
-      <CloseIcon onClick={handleCloseDialog} />
 
       <NotShowAgainHint
         onClick={handleClickCheckbox}
