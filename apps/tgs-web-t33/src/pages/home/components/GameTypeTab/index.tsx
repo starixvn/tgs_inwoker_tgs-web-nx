@@ -7,6 +7,8 @@ import useHomeGameTypeList from "@/hooks/home/useHomeGameTypeList";
 import { media } from "@/theme/breakpoints";
 
 const TabContainer = styled.div`
+border: 1px solid yellow;
+
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;

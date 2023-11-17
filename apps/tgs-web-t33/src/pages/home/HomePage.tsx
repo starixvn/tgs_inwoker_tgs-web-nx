@@ -72,6 +72,19 @@ const VendorIcon = styled.div`
   background-size: cover;
 `;
 
+const GameTypeTabWrapper = styled.div`
+
+  ${media.sm} {
+    border: 1px solid red;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${({ theme }) => theme.gray40};
+  }
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize } = useRwd();
@@ -92,10 +105,14 @@ const HomePage = () => {
           <Slider />
         </SliderWrapper>
       )}
+      {!!activeGameType &&
+        // <GameTypeTabWrapper>
+        <GameTypeTab />
+        // </GameTypeTabWrapper>
+      }
 
       <MainContentWrapper>
         {!activeGameType && <CardPrompt />}
-        {!!activeGameType && <GameTypeTab />}
         <CategoryRenderer />
         <AppFlagWrapper><AppFlag /></AppFlagWrapper>
         <Introduction />

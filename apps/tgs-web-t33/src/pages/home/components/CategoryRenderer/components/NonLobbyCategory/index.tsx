@@ -5,7 +5,6 @@ import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import searchIcon from "@/assets/t33/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
-import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import SearchInput from "@/pages/home/components/SearchInput";
@@ -22,7 +21,6 @@ const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center;
   width: 100%;
   row-gap: 10px;
   column-gap: 9px;
@@ -41,7 +39,7 @@ const SearchInputWrapper = styled.div`
 
 const NonLobbyCategory = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, searchString, handleChangeSearch } = useHomeGameContext();
+  const { searchString, handleChangeSearch } = useHomeGameContext();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
 

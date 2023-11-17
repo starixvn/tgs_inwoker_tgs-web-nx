@@ -26,9 +26,10 @@ const InputTextfield = styled.input`
     outline: none;
     width: 100%;
     font-size: 0.875rem;
-    color: ${(props) => props.theme.lightGray};
+    color: ${(props) => props.theme.gray20};
+    margin-left: 5px;
     &::placeholder {
-        color: ${(props) => props.theme.tertiary};
+        color: ${(props) => props.theme.gray20};
         font-weight: 700;
         line-height: 0.875rem;
     }
