@@ -5,10 +5,9 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
 import useHomeGameTypeList from "@/hooks/home/useHomeGameTypeList";
 import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const TabContainer = styled.div`
-border: 1px solid yellow;
-
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
@@ -16,8 +15,7 @@ border: 1px solid yellow;
   -webkit-overflow-scrolling: touch;
 
   ${media.sm} {
-    margin-bottom: unset;
-    padding-bottom: 5px;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
 
     &::-webkit-scrollbar {
       height: 10px;
@@ -42,7 +40,7 @@ border: 1px solid yellow;
 const GameTypeTab = () => {
   const gameTypeList = useHomeGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { isMobileSize } = useRwd();
+  const { isMobileSize, isDesktopSize } = useRwd();
   const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
 
   const allTag = {
@@ -62,7 +60,7 @@ const GameTypeTab = () => {
       {gameTypeList.map((gameTypeItem) => {
         const { key, iconUrl, text, gameType } = gameTypeItem;
 
-        if (isMobileSize && gameType === GameTypeEnum.NONE) {
+        if (isMobileSize && isDesktopSize && gameType === GameTypeEnum.NONE) {
           return null;
         }
 

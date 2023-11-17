@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { isDesktop } from "react-device-detect";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import AppFlag from "@/pages/home/components/AppFlag";
 import CardPrompt from "@/pages/home/components/CardPrompt";
@@ -73,21 +74,19 @@ const VendorIcon = styled.div`
 `;
 
 const GameTypeTabWrapper = styled.div`
-
   ${media.sm} {
-    border: 1px solid red;
     width: 100%;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: ${({ theme }) => theme.gray40};
+    display: flex;
+    align-items: center;
+    justify-content: center
   }
 `;
 
 const HomePage = () => {
   const { general } = useGeneralStore();
-  const { isMobileSize } = useRwd();
+  const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType } = useHomeGameContext();
 
   useEffect(() => {
@@ -105,11 +104,13 @@ const HomePage = () => {
           <Slider />
         </SliderWrapper>
       )}
-      {!!activeGameType &&
-        // <GameTypeTabWrapper>
-        <GameTypeTab />
-        // </GameTypeTabWrapper>
+      {!!activeGameType && isDesktopSize &&
+        <GameTypeTabWrapper>
+          <GameTypeTab />
+        </GameTypeTabWrapper>
       }
+
+      {!!activeGameType && isMobileSize && <GameTypeTab />}
 
       <MainContentWrapper>
         {!activeGameType && <CardPrompt />}
