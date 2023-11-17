@@ -1,7 +1,10 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
-import { RouteCategoryEnum } from "@/router";
 import Icon from "@/components/project/Icon";
+import {
+  BottomNavItem,
+  NavTypeEnum,
+} from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
 
 const BottomNavContainer = styled.div<{ $isSelected: boolean }>`
   flex: 1;
@@ -18,21 +21,6 @@ const NavLabel = styled.h6`
   font-weight: 700;
   line-height: 1rem;
 `;
-
-export enum NavTypeEnum {
-  ITEM,
-  BIG_ITEM,
-  MENU,
-}
-
-export type BottomNavItem = {
-  navType: NavTypeEnum;
-  label: string;
-  iconUrl: string;
-  iconActiveUrl: string;
-  routePath: string;
-  routeCategory: RouteCategoryEnum;
-};
 
 type Props = {
   bottomNavItem: BottomNavItem;
