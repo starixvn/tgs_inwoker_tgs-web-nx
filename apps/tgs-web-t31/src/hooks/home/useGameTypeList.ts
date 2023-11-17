@@ -11,15 +11,12 @@ import fishing from "@/assets/t31/images/home/gameType/Fish.png";
 import activedFishing from "@/assets/t31/images/home/gameType/Fish-1.png";
 import horse from "@/assets/t31/images/home/gameType/Horse.png";
 import activedHorse from "@/assets/t31/images/home/gameType/Horse-1.png";
-
 import live from "@/assets/t31/images/home/gameType/Live.png";
 import ActivedLive from "@/assets/t31/images/home/gameType/Live-1.png";
 import lottery from "@/assets/t31/images/home/gameType/Lottery.png";
 import activedLottery from "@/assets/t31/images/home/gameType/Lottery-1.png";
-
-import sabong from "@/assets/t31/images/home/gameType/Sabong.png"
-import actviedSabong from "@/assets/t31/images/home/gameType/Sabong.png"
-
+import sabong from "@/assets/t31/images/home/gameType/Sabong.png";
+import actviedSabong from "@/assets/t31/images/home/gameType/Sabong.png";
 import slot from "@/assets/t31/images/home/gameType/Slot.png";
 import activedSlot from "@/assets/t31/images/home/gameType/Slot-1.png";
 import sports from "@/assets/t31/images/home/gameType/Sports.png";
@@ -87,14 +84,14 @@ export const useGameTypeList = () => {
         fontSize: "small",
         gameType: GameTypeEnum.FISH,
       },
-      {
-        key: "horse",
-        iconUrl: horse,
-        activedIconUrl: activedHorse,
-        text: i18n.t("common.horserace"),
-        fontSize: "small",
-        gameType: GameTypeEnum.NONE,
-      },
+      // {
+      //   key: "horse",
+      //   iconUrl: horse,
+      //   activedIconUrl: activedHorse,
+      //   text: i18n.t("common.horserace"),
+      //   fontSize: "small",
+      //   gameType: GameTypeEnum.NONE,
+      // },
       {
         key: "liveCasino",
         iconUrl: live,
@@ -106,7 +103,7 @@ export const useGameTypeList = () => {
       {
         key: "lottery",
         iconUrl: lottery,
-        activedIconUrl:activedLottery,
+        activedIconUrl: activedLottery,
         text: i18n.t("common.lottery"),
         fontSize: "small",
         gameType: GameTypeEnum.LOTTERYLOBBY,
@@ -114,25 +111,11 @@ export const useGameTypeList = () => {
       {
         key: "sabong",
         iconUrl: sabong,
-        activedIconUrl:actviedSabong,
+        activedIconUrl: actviedSabong,
         text: i18n.t("common.cockfight"),
         fontSize: "smaller",
         gameType: GameTypeEnum.COCKFIGHT,
       },
-      // {
-      //   key: "promotion",
-      //   iconUrl: home,
-      //   text: i18n.t("common.promotion"),
-      //   fontSize: "small",
-      //   gameType: GameTypeEnum.NONE,
-      // },
-      // {
-      //   key: "VIP",
-      //   iconUrl: home,
-      //   text: "VIP",
-      //   fontSize: "small",
-      //   gameType: GameTypeEnum.NONE,
-      // },
     ];
 
     const translatedList: GameTypeItem[] = gameTypeList.map((gameItem) => ({

@@ -15,12 +15,10 @@ import List from "./DesktopMenuDrawer/components/MenuGameTypeList";
 
 import { HEADER_HEIGHT } from "@/theme/constants";
 import announce from "@/assets/t31/images/header/Announce.png";
-import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
-import { Select } from "@/components/UI/Select";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
-import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer";
+import CurrentTime from "@/components/project/CurrentTime";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -44,6 +42,7 @@ const HeadMenuContainer = styled(HeadContentContainer)`
 `;
 
 const HeaderWrapper = styled.div`
+  width: 100%;
   padding: 0px 12px 0px 12px;
   display: flex;
   align-items: center;
@@ -63,7 +62,6 @@ const LogoImgContainer = styled.div`
 `;
 
 const HeaderContentContainer = styled.div`
-  flex-grow: 1;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -91,7 +89,7 @@ const DeskTopHeader = () => {
         <HeaderWrapper>
           <SystemInfo>
             <AnnounceIcon src={announce} />
-            {/* todo current time */}
+            <CurrentTime />
           </SystemInfo>
           <HeaderContentContainer>
             <MenuLanguageSwitch />

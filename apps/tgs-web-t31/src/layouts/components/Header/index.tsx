@@ -36,7 +36,7 @@ const HeaderWrapper = styled.div`
 
 const LogoImgContainer = styled.div`
   height: 27px;
-  justify-self: start;
+  /* justify-self: start; */
   padding: 0 10px;
 
   & > img {
