@@ -35,6 +35,21 @@ const CategoryContent = styled.div`
 const SearchInputWrapper = styled.div`
   width: 100%;
   height: 37px;
+
+  ${media.sm} {
+    width: 300px;
+    height: 100%;
+    margin-left: 8px;
+  }
+`;
+
+const FilterWrapper = styled.div`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
 `;
 
 const NonLobbyCategory = () => {
@@ -58,7 +73,20 @@ const NonLobbyCategory = () => {
           </SearchInputWrapper>
         </>
       )}
-      {/* {isDesktopSize && <HomeGameFilterTag />} */}
+
+      {isDesktopSize && (
+        <FilterWrapper>
+          <GameFilterTag />
+          <SearchInputWrapper>
+            <SearchInput
+              placeholder={i18n.t("slot.search")}
+              imageUrl={searchIcon}
+              handleChange={handleChangeSearch}
+              value={searchString}
+            />
+          </SearchInputWrapper>
+        </FilterWrapper>
+      )}
 
       <CategoryContentWrapper>
         <CategoryContent>

@@ -50,8 +50,6 @@ type Props = {
 };
 
 const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
-  const { isMobileSize } = useRwd();
-
   return (
     <Wrapper
       $isActive={isActive}
@@ -59,7 +57,7 @@ const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
       $hasBackground={!isShowIcon && isActive}
       onClick={onClick}
     >
-      {isMobileSize && isShowIcon && children}
+      {isShowIcon && children}
       {!isShowIcon && (
         <Text $isActive={isActive}>
           {text}

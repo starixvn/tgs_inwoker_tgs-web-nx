@@ -19,9 +19,6 @@ const TagContainer = styled.div`
   border-radius: 100px;
 
   ${media.sm} {
-    margin-top: 20px;
-    padding-bottom: 5px;
-
     &::-webkit-scrollbar {
       height: 10px;
     }

@@ -60,10 +60,6 @@ const GameTypeTab = () => {
       {gameTypeList.map((gameTypeItem) => {
         const { key, iconUrl, text, gameType } = gameTypeItem;
 
-        if (isMobileSize && isDesktopSize && gameType === GameTypeEnum.NONE) {
-          return null;
-        }
-
         return (
           <Tab
             key={key}
