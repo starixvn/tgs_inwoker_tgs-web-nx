@@ -9,7 +9,7 @@ const Wrapper = styled.div<{ $alignment: string }>`
 
 const Text = styled.div`
   color: ${({ theme }) => theme.white};
-  font-family: Gill Sans MT;
+  font-family: Roboto sens-serif;
   font-size: 0.9375rem;
   font-weight: 400;
   margin-top: 19px;
@@ -21,13 +21,15 @@ type Props = {
   imageUrl: string;
   text: string;
   alignment: string;
-}
+};
 
 const ImageCard = ({ imageUrl, text, alignment }: Props) => {
   return (
     <Wrapper $alignment={alignment}>
       <img src={imageUrl} alt={text} />
-      <Text><div dangerouslySetInnerHTML={{ __html: text }}></div></Text>
+      <Text>
+        <div dangerouslySetInnerHTML={{ __html: text }}></div>
+      </Text>
     </Wrapper>
   );
 };
