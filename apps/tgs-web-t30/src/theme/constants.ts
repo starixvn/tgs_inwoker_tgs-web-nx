@@ -1,6 +1,6 @@
 // Mobile
 export const HEADER_HEIGHT = "54.43px";
-export const BOTTOM_APP_BAR_HEIGHT = "67px";
+export const BOTTOM_APP_BAR_HEIGHT = "0px";
 export const MOBILE_DRAWER_WIDTH = "300px";
 
 // Desktop
