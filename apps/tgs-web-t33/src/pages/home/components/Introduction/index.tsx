@@ -1,7 +1,10 @@
 
 import styled from "styled-components";
-import emphasizedLine from "@/assets/t33/images/home/emphasized-line.svg";
+import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
+import emphasizedLine from "@/assets/t33/images/home/emphasized-line.svg";
 
 const Wrapper = styled.div`
   display: flex;
@@ -66,6 +69,7 @@ const LinkText = styled.div`
   
   ${media.sm} {
     width: unset;
+    cursor: pointer;
   }
 `;
 
@@ -156,17 +160,34 @@ const RegisterBtn = styled.div`
 `;
 
 const Introduction = () => {
+  const { handleChangeGameType } = useHomeGameContext();
+  const history = useHistory();
+
+  const linkTextList = [
+    "Soccer",
+    "American football",
+    "Basketball",
+    "Baseball",
+    "Hockey",
+    "Boxing",
+  ];
+
+  const handleClick = () => {
+    handleChangeGameType(GameTypeEnum.SPORTS);
+
+    if (history.location.pathname !== "/") {
+      history.push("/");
+    }
+  };
+
   return (
     <Wrapper>
       <Title>The #1 Sports Betting Website in Mexico</Title>
       <Content>Welcome to the new way of experiencing your favorite sports, our offer is unique in the world of online betting, covering the most popular sports in the world:</Content>
       <LinkSection>
-        <LinkText>Soccer</LinkText>
-        <LinkText>American football</LinkText>
-        <LinkText>Basketball</LinkText>
-        <LinkText>Baseball</LinkText>
-        <LinkText>Hockey</LinkText>
-        <LinkText>Boxing</LinkText>
+        {linkTextList.map((linkText) => (
+          <LinkText key={linkText} onClick={handleClick}>{linkText}</LinkText>
+        ))}
       </LinkSection>
       <ArticleSection>
         <Title>Guide to sports betting</Title>
