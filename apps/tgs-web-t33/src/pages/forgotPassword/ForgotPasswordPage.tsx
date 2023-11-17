@@ -8,6 +8,7 @@ import { AuthFormContainer } from "@/components/styled-component/AuthFormContain
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
 import BrandLogo from "@/components/project/BrandLogo";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const ForgotPasswordPage = () => {
   useUpdatePageName(i18n.t("forgotPassword.title"));
@@ -23,6 +24,8 @@ const ForgotPasswordPage = () => {
       {/*@ts-ignore*/}
       <ForgotPasswordPrev alert={alert} history={history} />
       <RedirectToLoginHint style={{ marginTop: "20px" }} />
+
+      <LanguageSwitch style={{ width: "129px", margin: "20px auto 0" }} />
     </AuthFormContainer>
   );
 };
