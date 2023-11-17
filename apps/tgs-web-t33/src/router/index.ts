@@ -384,7 +384,7 @@ const routes: Route[] = [
     path: "/vip",
     component: VIPPage,
     category: RouteCategoryEnum.MINE,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/sports/:platform",
