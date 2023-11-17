@@ -4,23 +4,26 @@ import { Close as CloseIcon } from "@mui/icons-material";
 import { useHeader } from "@tgs-web-nx/core/features";
 
 const SideMenuHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.gray30};
   position: relative;
   flex-shrink: 0;
   width: 100%;
-  height: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 `;
 
 const CloseIconContainer = styled.div`
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 0;
+  right: 100%;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme["515c"]};
   cursor: pointer;
 `;
 

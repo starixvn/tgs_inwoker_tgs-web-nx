@@ -4,7 +4,6 @@ import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import MenuDrawerList from "@/layouts/components/MenuDrawer/components/MenuDrawerList/MenuDrawerList";
 import { MOBILE_DRAWER_WIDTH } from "@/theme/constants";
-import { theme } from "@/theme";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
@@ -17,7 +16,7 @@ const MenuDrawer = () => {
   return (
     <Drawer
       variant={isLargeDesktopSize ? "persistent" : "temporary"}
-      anchor={"left"}
+      anchor={"right"}
       open={isLargeDesktopSize ? false : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{
@@ -26,7 +25,8 @@ const MenuDrawer = () => {
           width: drawerWidth,
           transition: "all ease-in-out 0.2s",
           border: "none",
-          background: theme.gray30,
+          background: "#0F324FE5",
+          overflow: "visible",
         },
       }}
     >

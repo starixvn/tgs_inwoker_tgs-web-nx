@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Drawer } from "@mui/material";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import avatarImg from "@/assets/t33/images/account/avatar.svg";
-import { theme } from "@/theme";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
-import WhiteMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/WhiteMemberMenu";
+import avatarImg from "@/assets/t30/images/header/icon-avatar.svg";
+import MemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenu";
 
 const ContextMenuButtonContainer = styled.div`
   cursor: pointer;
+  padding: 0px 11px;
 `;
 
 const AvatarContainer = styled.div`
-  width: 33px;
-  height: 33px;
+  width: 20px;
+  height: 20px;
   background: url(${avatarImg}) no-repeat center center;
   background-size: cover;
 `;
 
 const ContextMenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isDesktopSize } = useRwd();
 
   const handleClick = (isOpen?: boolean) => {
     if (typeof isOpen !== "undefined") {
@@ -39,19 +36,21 @@ const ContextMenuButton = () => {
 
       <Drawer
         variant={"temporary"}
-        anchor={"right"}
+        anchor={"left"}
         open={isOpen}
         onClose={() => handleClick(false)}
         sx={{
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: "222px",
+            width: "300px",
             transition: "all ease-in-out 0.2s",
             border: "none",
+            overflow: "visible",
+            background: "#0f324fe5",
           },
         }}
       >
-        <WhiteMemberMenu handleCloseContextMenu={() => handleClick(false)} />
+        <MemberMenu handleCloseContextMenu={() => handleClick(false)} />
       </Drawer>
     </>
   );

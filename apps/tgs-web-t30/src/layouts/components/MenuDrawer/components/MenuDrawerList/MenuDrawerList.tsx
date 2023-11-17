@@ -4,8 +4,8 @@ import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeade
 import SideMenuNavList from "@/layouts/components/MenuDrawer/components/MenuDrawerList/components/SideMenuNavList";
 
 const MobileMenuDrawerContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
   width: 100%;
+  overflow: visible;
 `;
 
 const ContentWrapper = styled.div`

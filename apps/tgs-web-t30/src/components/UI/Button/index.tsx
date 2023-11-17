@@ -2,13 +2,15 @@ import React from "react";
 import { Button as MuiButton, ButtonProps, styled as muiStyled } from "@mui/material";
 
 export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
+  height: "53px",
   whiteSpace: "nowrap",
-  borderRadius: "50px",
-  padding: "10px",
+  padding: "15px",
   fontSize: "1rem",
   fontWeight: 700,
   color: theme.palette.white,
-  // background: "linear-gradient(90deg, #FACE27 53.76%, #F3AF16 54.17%)",
+  background: theme.palette.primary,
+  borderRadius: 0,
+  borderBottom: `4px solid ${theme.palette.greenBorder}`,
   boxShadow: "none",
 
   "&:disabled": {
@@ -17,8 +19,9 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   },
 
   "&:hover": {
-    background: theme.palette.gray30,
-    border: "none",
+    background: "none",
+    color: theme.palette.primary.main,
+    borderBottom: `4px solid transparent`,
   },
 }));
 

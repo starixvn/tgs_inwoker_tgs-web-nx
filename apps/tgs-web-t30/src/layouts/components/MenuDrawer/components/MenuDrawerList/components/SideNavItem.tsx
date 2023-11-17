@@ -17,7 +17,6 @@ const Wrapper = styled.div<{
   cursor: pointer;
   display: flex;
   align-items: center;
-  //background: ${({ theme, $isActive }) => ($isActive ? theme.gray40 : "transparent")};
   padding: 9.87px 10px;
 `;
 

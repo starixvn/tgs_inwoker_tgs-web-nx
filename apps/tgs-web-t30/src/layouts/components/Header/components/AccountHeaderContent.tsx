@@ -1,19 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import ContextMenuButton from "@/layouts/components/Header/components/ContextMenuButton";
-import BalanceTracker from "@/components/project/BalanceTracker";
-import Icon from "@/components/project/Icon";
-import iconDeposit from "@/assets/t33/images/header/icon-deposit.svg";
+import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 6.5px;
-`;
-
-const DepositIconContainer = styled.div`
-  cursor: pointer;
 `;
 
 const AccountHeaderContent = () => {
@@ -25,11 +20,15 @@ const AccountHeaderContent = () => {
 
   return (
     <ButtonContainer>
-      <DepositIconContainer onClick={handleDeposit}>
-        <Icon iconUrl={iconDeposit} width={"33.53px"} height={"34.5px"} />
-      </DepositIconContainer>
+      <HeaderButton
+        onClick={handleDeposit}
+        style={{
+          background: "linear-gradient(180deg, #91C538 0%, #648626 100%)",
+        }}
+      >
+        {i18n.t("common.deposit")}
+      </HeaderButton>
 
-      <BalanceTracker size={"small"} />
       <ContextMenuButton />
     </ButtonContainer>
   );

@@ -1,11 +1,11 @@
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 
 export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
-  color: theme.palette.gray30,
-  padding: "10px",
+  color: theme.palette.white,
+  padding: "6px 5px",
   whiteSpace: "nowrap",
-  fontSize: "0.937rem",
-  lineHeight: "0.937rem",
+  fontSize: "0.875rem",
+  lineHeight: "1.25rem",
   fontWeight: 400,
-  borderRadius: "50px",
+  borderRadius: "3px",
 }));

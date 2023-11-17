@@ -15,7 +15,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.primary};
+  background: linear-gradient(180deg, #ffffff 0%, #dbe5ed 100%);
   height: ${HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -59,7 +59,6 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        {!isLargeDesktopSize && <MenuButton />}
         <Link to={""}>
           <LogoImgContainer>
             <img
@@ -74,6 +73,8 @@ const Header = () => {
           {isLargeDesktopSize && <HeaderGameTypes />}
 
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+
+          {!isLargeDesktopSize && <MenuButton />}
         </HeaderContentContainer>
       </HeaderWrapper>
     </HeaderContainer>
