@@ -12,9 +12,6 @@ const ScrollableContainer = styled.div`
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  background-color: ${(props) => props.theme.primaryDark};
-  color: ${(props) => props.theme.white};
-  box-sizing: border-box;
   gap: 12px;
   
   ${media.sm} {
@@ -50,7 +47,7 @@ const BonusTableWrapper = styled.div`
   height: 100%;
 
   ${media.sm} {
-    width: ${MAIN_CONTENT_MAX_WIDTH};
+    width: 100%;
     margin: 0 auto;
   }
 `;
@@ -63,12 +60,14 @@ const BonusTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 10.5px 0;
-  background-color: ${(props) => props.theme.gray80};
+  background-color: ${({ theme }) => theme.subBackground};
+  border-bottom: 1px solid #98A7B5;
 
   ${media.sm} {
-    height: 86px;
-    padding: 20px;
-    background-color: transparent;
+    height: 97px;
+    padding: 20px 0;
+    border-radius: 8px 8px 0px 0px;
+    border-bottom: 1px solid ${(props) => props.theme.gray20};
   }
 `;
 
@@ -85,8 +84,9 @@ const HeaderItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
-    width: 128px;
-    font-size: 1.25rem;
+    max-width: 115px;
+    font-size: 1rem;
+    margin: 0px 6px;
   }
 `;
 
@@ -94,16 +94,14 @@ const BonusTableBody = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  gap: 8px;
   align-self: stretch;
-  background: ${(props) => props.theme.mainBackground};
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainLightBackground};
-  }
-
-  > div:nth-child(even) {
-    background-color: ${(props) => props.theme.gray80};
+    background: ${(props) => props.theme.subBackground};
+    
+    > div:nth-child(even) {
+      background: rgba(255, 255, 255, 0.10);
+    }
   }
 `;
 
@@ -112,18 +110,22 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: 1px solid #67707B;
+
+  ${media.sm} {
+    border-bottom: unset;
+  }
 `;
 
 const RowItem = styled.div`
   display: flex;
-  height: 46px;
-  padding: 24px 0px;
+  min-height: 69px;
   justify-content: center;
   align-items: center;
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.white};
+  color: #98A7B5;
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -132,6 +134,7 @@ const RowItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
+    min-height: 106px;
     width: 128px;
     font-size: 1rem;
   }
@@ -164,7 +167,8 @@ const BonusTable = ({ vipSortingData }: Props) => {
               <BonusTableRowWrapper key={vipData.level}>
                 <RowItem>
                   <LevelIcon>
-                    <img width={"50px"} height={"50px"} src={`${import.meta.env.BASE_URL}assets/images/vip/level_${vipData.level}.png`} alt={`level_${vipData.level}`} />VIP{vipData.level}                  </LevelIcon>
+                    <img width={"50px"} height={"50px"} src={`${import.meta.env.BASE_URL}assets/images/vip/level_${vipData.level}.png`} alt={`level_${vipData.level}`} /><span>VIP{vipData.level}</span>
+                  </LevelIcon>
                 </RowItem>
                 <RowItem>{(vipData.levelKeepAccumulateBetAmount).toLocaleString()}</RowItem>
                 <RowItem>{(vipData.levelKeepAccumulateDeposit).toLocaleString()}</RowItem>

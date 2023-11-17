@@ -14,12 +14,12 @@ const VipWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
-  padding: 16px 16px 0px 16px;
+  background-color: ${({ theme }) => theme.subBackground};
+  padding: 10px;
   gap: 16px;
  
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    max-width: 958px;
     margin: 0 auto;
     padding: 20px 0px;
     gap: 20px;
@@ -37,7 +37,7 @@ const VipBanner = styled.div<{ $imageUrl: string }>`
 
     ${media.sm} {
       max-width: ${MAIN_CONTENT_MAX_WIDTH};
-      height: 273px;
+      height: 299px;
     }
 `;
 

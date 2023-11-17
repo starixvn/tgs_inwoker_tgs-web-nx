@@ -11,9 +11,6 @@ const ScrollableContainer = styled.div`
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  background-color: ${(props) => props.theme.primaryDark};
-  color: ${(props) => props.theme.white};
-  box-sizing: border-box;
   gap: 12px;
   
   ${media.sm} {
@@ -51,8 +48,6 @@ const LevelTableWrapper = styled.div`
   ${media.sm} {
     width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    background: ${(props) => props.theme.mainLightBackground};
-    border-radius: 10px;
   }
 `;
 
@@ -64,13 +59,12 @@ const LevelTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 12px 15px 12px 15px;
-  background: ${(props) => props.theme.mainDarkBackground};
-  border-bottom: 1px solid ${(props) => props.theme.gray60};
+  background-color: ${({ theme }) => theme.subBackground};
+  border-bottom: 1px solid #98A7B5;
 
   ${media.sm} {
     height: 45px;
     padding: 12px 0px;
-    background: transparent;
   }
 `;
 
@@ -100,17 +94,15 @@ const LevelTableBody = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  gap: 8px;
   align-self: stretch;
   background: ${(props) => props.theme.mainBackground};
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainLightBackground};
-    border-radius: 10px;
-  }
-
-  > div:nth-child(even) {
-    background-color: ${(props) => props.theme.gray80};
+    background: ${(props) => props.theme.subBackground};
+    
+    > div:nth-child(even) {
+      background: rgba(255, 255, 255, 0.10);
+    }
   }
 `;
 
@@ -119,6 +111,8 @@ const LevelTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.subBackground};
+  border-bottom: 1px solid #67707B;
 `;
 
 const RowItem = styled.div`
