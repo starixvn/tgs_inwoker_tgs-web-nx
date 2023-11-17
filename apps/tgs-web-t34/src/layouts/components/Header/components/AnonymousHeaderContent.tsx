@@ -34,7 +34,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
     }
 
     history.push("/login");
-  }, []);
+  }, [handleToggleLoginDialog, handleToggleMenu, history, isDesktopSize]);
 
   const toggleRegisterDialog = useCallback(() => {
     if (!isDesktopSize) {
@@ -46,7 +46,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       return;
     }
     history.push("/register");
-  }, []);
+  }, [handleToggleMenu, handleToggleRegisterDialog, history, isDesktopSize]);
 
   return (
     <ButtonContainer>

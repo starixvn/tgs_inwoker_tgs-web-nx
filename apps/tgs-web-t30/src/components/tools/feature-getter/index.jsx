@@ -1,0 +1,35 @@
+import { useEffect, useState } from "react";
+import config, { featureList } from "@tgs-web-nx/config";
+
+const FeatureGetter = () => {
+  const [feature, setFeatures] = useState("");
+
+  function getJsonData() {
+    return fetch("https://app12.srvptt.com/features_" + config.brand + ".json")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        setFeatures(responseJson);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  var defaultFeature = featureList["default"];
+  var brandFeature = feature || featureList["default"];
+  for (var k in brandFeature) {
+    defaultFeature[k] = brandFeature[k];
+  }
+  config.features = defaultFeature;
+
+  useEffect(() => {
+    if (feature === "") {
+      getJsonData();
+    } else {
+    }
+  }, []);
+
+  return <div />;
+};
+
+export default FeatureGetter;
