@@ -94,7 +94,6 @@ const App: React.FC = () => {
                       )}
 
                     <PopupAnnouncement />
-
                     <PopupPromotion />
 
                     <PopupAlertModal />

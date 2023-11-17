@@ -5,6 +5,7 @@ import {
   styled as muiStyled,
 } from "@mui/material";
 import { media } from "@/theme/breakpoints";
+import { Button } from "@/components/UI/Button";
 
 export const Remark = styled.div`
   font-size: 0.937rem;
@@ -66,23 +67,4 @@ export const UploadFileTag = styled.span`
   align-items: center;
 `;
 
-export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "50px",
-  whiteSpace: "nowrap",
-  borderRadius: "50px",
-  padding: "11.5px 20px",
-  fontSize: "1.25rem",
-  lineHeight: 1,
-  fontWeight: 400,
-  color: theme.palette.white,
-  background: theme.palette.secondary.main,
-
-  "&:hover": {
-    background: theme.palette.gray30,
-  },
-
-  "&:disabled": {
-    background: theme.palette.action.disabledBackground,
-    color: "black",
-  },
-})) as typeof MuiButton;
+export const SubmitButton = muiStyled(Button)(({ theme }) => ({})) as typeof MuiButton;

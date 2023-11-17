@@ -1,7 +1,5 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
@@ -43,8 +41,6 @@ type Props = {
   children: ReactElement;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isMobileSize } = useRwd();
-
   return (
     <DefaultLayoutContainer>
       <Header />
@@ -59,8 +55,6 @@ const DefaultLayout = ({ children }: Props) => {
           </>
         </ContentWrapper>
       </DashboardContainer>
-
-      {isMobileSize && <BottomAppBar />}
     </DefaultLayoutContainer>
   );
 };

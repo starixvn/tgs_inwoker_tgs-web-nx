@@ -15,7 +15,7 @@ import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.white};
     width: calc(100vw - 10px * 2);
     height: auto;
     margin: 4px;
@@ -42,7 +42,7 @@ const ChildContainer = styled.div`
 const Title = styled.div`
   font-size: 1.062rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.main};
 
   ${media.sm} {
     font-size: 1.5rem;
@@ -51,7 +51,7 @@ const Title = styled.div`
 
 const Content = styled.div`
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.gray20};
+  color: ${({ theme }) => theme.font};
   margin-top: 1rem;
 
   ${media.sm} {
@@ -161,9 +161,8 @@ const PopupAnnouncement = () => {
             <>{i18n.t("common.close")}</>
           </Button>
         </ButtonWrapper>
+        {isDesktopSize && <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />}
       </ChildContainer>
-
-      {isDesktopSize && <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />}
     </StyledDialog>
   );
 };
