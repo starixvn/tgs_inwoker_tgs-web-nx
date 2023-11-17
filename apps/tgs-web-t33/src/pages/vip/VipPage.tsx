@@ -22,7 +22,7 @@ const VipWrapper = styled.div`
   ${media.sm} {
     max-width: 958px;
     margin: 0 auto;
-    padding: 20px 0px;
+    padding: unset;
     gap: 20px;
   }
 `;
