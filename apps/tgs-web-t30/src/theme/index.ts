@@ -1,21 +1,20 @@
-export const colorListT33 = {
-  primary: "#79C000",
-  secondary: "#0055FE",
-  gradient: "linear-gradient(180deg, #0587F5 0%, #0057A0 100%);",
-  red: "#FF2546",
+export const theme = {
+  primary: "#49a430",
+  secondary: "#4D8AB9",
   white: "#FFFFFF",
   black: "#000000",
-  gray10: "#E3E3E3a1",
-  gray20: "#c8c8c8",
-  gray30: "#333f48",
-  gray40: "#26363f",
-  gray50: "#252a30",
-  gray60: "#29333a",
-  mainBackground: "#252a30",
+  error: "#FF2546",
+  darkBlue: "#10192B",
+  bg: "#0F324F",
+  "515c": "#44515C",
+  font: "#23507D",
+  blue: "#76B7EC",
+  main: "#4D8AB9",
+  dae3: "#D0DAE3",
+  border: "#FFFFFF",
+  greenBorder: "#526E1F",
+  green: "#79A430",
+  blueGradient: "linear-gradient(180deg, #57A0D8 0%, #417AA6 100%)",
+  greenGradient: "linear-gradient(180deg, #91C538 0%, #648626 100%)",
+  mainBackground: "#0F324F",
 };
-
-export const themeList = {
-  colorListT33: colorListT33,
-};
-
-export const theme = themeList["colorListT33"];

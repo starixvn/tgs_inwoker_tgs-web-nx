@@ -10,15 +10,21 @@ theme.lang = i18n.language;
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
-    red: string;
     black: string;
+    error: string;
+    darkBlue: string;
+    bg: string;
+    "515c": string;
+    font: string;
+    blue: string;
+    main: string;
+    dae3: string;
+    border: string;
+    greenBorder: string;
+    green: string;
+    blueGradient: string;
+    greenGradient: string;
     mainBackground: string;
-    gray10: string;
-    gray20: string;
-    gray30: string;
-    gray40: string;
-    gray50: string;
-    gray60: string;
   }
 }
 
@@ -40,24 +46,27 @@ const muiTheme = createTheme({
       main: theme.secondary,
     },
     action: {
-      disabledBackground: theme.gray20,
+      disabledBackground: theme.blue,
       disabled: theme.white,
     },
     white: theme.white,
-    red: theme.red,
-
     black: theme.black,
-    mainBackground: theme.mainBackground,
-    gray10: theme.gray10,
-    gray20: theme.gray20,
-    gray30: theme.gray30,
-    gray40: theme.gray40,
-    gray50: theme.gray50,
-    gray60: theme.gray60,
-    text: {
-      primary: theme.white,
-      secondary: theme.gray20,
+    error: {
+      main: theme.error,
     },
+    darkBlue: theme.darkBlue,
+    bg: theme.bg,
+    "515c": theme["515c"],
+    font: theme.font,
+    blue: theme.blue,
+    main: theme.main,
+    dae3: theme.dae3,
+    border: theme.border,
+    greenBorder: theme.greenBorder,
+    green: theme.green,
+    blueGradient: theme.blueGradient,
+    greenGradient: theme.greenGradient,
+    mainBackground: theme.mainBackground,
   },
   typography: {
     fontFamily: fontFamily,
