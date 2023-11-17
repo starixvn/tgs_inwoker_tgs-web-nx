@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { GameTypeItem, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useHistory } from "react-router-dom";
-import MenuGameTab from "./MenuGameTab";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import SideNavItem from "./SideNavItem";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import { NavItem } from "@/hooks/account/useAccountNavigations";
+import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -14,8 +12,8 @@ const TabContainer = styled.div`
   gap: 5px;
 `;
 
-const MenuGameTypeList = () => {
-  const { gameTypeNavItemList } = useGetNavItemList();
+const SideMenuNavList = () => {
+  const { sideNavItemList } = useGetNavItemList();
   const { activeGameType } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
 
@@ -27,11 +25,13 @@ const MenuGameTypeList = () => {
 
   return (
     <TabContainer>
-      {gameTypeNavItemList.map((navItem) => {
+      {sideNavItemList.map((navItem) => {
         const { key, iconUrl, label, gameType } = navItem;
 
+        if (navItem.key === NavCardKey.VIP) return null;
+
         return (
-          <MenuGameTab
+          <SideNavItem
             key={key}
             imageUrl={iconUrl}
             text={isMenuOpen ? label : ""}
@@ -44,4 +44,4 @@ const MenuGameTypeList = () => {
   );
 };
 
-export default MenuGameTypeList;
+export default SideMenuNavList;

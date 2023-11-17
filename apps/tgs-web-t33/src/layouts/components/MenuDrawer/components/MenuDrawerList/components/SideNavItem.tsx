@@ -27,7 +27,7 @@ const Text = styled.div<{ $isActive: boolean }>`
   font-weight: 400;
 `;
 
-const MenuGameTab = ({ imageUrl, text, isActive, onClick }: Props) => {
+const SideNavItem = ({ imageUrl, text, isActive, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
       <Icon iconUrl={imageUrl} width={"30px"} height={"30px"} style={{ marginRight: "10px" }} />
@@ -36,4 +36,4 @@ const MenuGameTab = ({ imageUrl, text, isActive, onClick }: Props) => {
   );
 };
 
-export default MenuGameTab;
+export default SideNavItem;

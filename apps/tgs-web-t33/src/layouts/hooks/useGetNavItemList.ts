@@ -36,7 +36,7 @@ export function useGetNavItemList() {
 
   const history = useHistory();
 
-  const gameTypeNavItemList: NavItem[] = useMemo(() => {
+  const sideNavItemList: NavItem[] = useMemo(() => {
     const navItemList: NavItem[] = [];
 
     for (const gameTypeItem of gameTypeList) {
@@ -178,7 +178,7 @@ export function useGetNavItemList() {
   }, []);
 
   return {
-    gameTypeNavItemList,
+    sideNavItemList,
     accountNavItemList,
   };
 }
