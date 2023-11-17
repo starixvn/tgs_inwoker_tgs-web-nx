@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
-import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer/components/MenuGameTypeList";
+import SideMenuNavList from "@/layouts/components/MenuDrawer/components/MenuDrawerList/components/SideMenuNavList";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -16,16 +16,16 @@ const ContentWrapper = styled.div`
   align-items: center;
 `;
 
-const MobileMenuDrawer = () => {
+const MenuDrawerList = () => {
   return (
     <MobileMenuDrawerContainer>
       <SideMenuHeader />
 
       <ContentWrapper>
-        <MenuGameTypeList />
+        <SideMenuNavList />
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );
 };
 
-export default MobileMenuDrawer;
+export default MenuDrawerList;

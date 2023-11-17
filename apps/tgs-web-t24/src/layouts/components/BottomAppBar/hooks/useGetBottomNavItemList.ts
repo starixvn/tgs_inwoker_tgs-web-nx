@@ -2,12 +2,25 @@ import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHeader } from "@tgs-web-nx/core/features";
-import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
 import iconMenu from "@/assets/t24/images/bottomNavBar/icon-menu.svg";
 import iconPromotion from "@/assets/t24/images/bottomNavBar/icon-promotion.svg";
 import iconVip from "@/assets/t24/images/bottomNavBar/icon-vip.svg";
 import iconContact from "@/assets/t24/images/bottomNavBar/icon-chat.svg";
 import iconAffiliate from "@/assets/t24/images/bottomNavBar/icon-affiliate.svg";
+
+export enum NavTypeEnum {
+  ITEM,
+  BIG_ITEM,
+  MENU,
+}
+
+export type BottomNavItem = {
+  navType: NavTypeEnum;
+  key: string;
+  label: any;
+  iconUrl: string;
+  routePath: string;
+};
 
 export function useGetBottomNavItemList() {
   const history = useHistory();

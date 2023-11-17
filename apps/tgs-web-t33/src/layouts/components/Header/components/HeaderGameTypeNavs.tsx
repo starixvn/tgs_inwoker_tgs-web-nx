@@ -38,7 +38,7 @@ const GameTypeNav = styled.div`
 `;
 
 const HeaderGameTypeNavs = () => {
-  const { gameTypeNavItemList } = useGetNavItemList();
+  const { sideNavItemList } = useGetNavItemList();
 
   const handleClickNav = (navItem: NavItem) => {
     if (navItem.navType !== "action") return;
@@ -47,7 +47,7 @@ const HeaderGameTypeNavs = () => {
 
   return (
     <HeaderGameTypesContainer>
-      {gameTypeNavItemList.map((navItem) => {
+      {sideNavItemList.map((navItem) => {
         return (
           <GameTypeNav key={navItem.key} onClick={() => handleClickNav(navItem)}>
             {navItem.label}
