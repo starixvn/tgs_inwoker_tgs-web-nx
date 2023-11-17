@@ -24,7 +24,7 @@ const ContentWrapper = styled.div`
 type Props = {
   children: ReactElement;
 };
-const DialogLayout = ({ children }: Props) => {
+const ProfileLayout = ({ children }: Props) => {
   const history = useHistory();
   const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
@@ -51,4 +51,4 @@ const DialogLayout = ({ children }: Props) => {
   );
 };
 
-export default DialogLayout;
+export default ProfileLayout;

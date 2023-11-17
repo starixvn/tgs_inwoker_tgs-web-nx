@@ -5,7 +5,7 @@ import { media } from "@/theme/breakpoints";
 export const ReportContainer = styled.div``;
 export const ReportSummary = styled.div`
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   border-radius: 5px;
   margin-bottom: 5px;
 
@@ -21,15 +21,15 @@ export const ReportSummaryRow = styled.div`
 export const ReportSummaryCol = styled.div``;
 export const ReportCardsContainer = styled.div`
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   border-radius: 5px;
   margin-bottom: 5px;
 `;
 export const ReportCard = styled.div`
   padding: 9px 16px;
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.mainLightBackground};
+  color: ${({ theme }) => theme.black};
+  background: ${({ theme }) => theme.grey02};
   border-radius: 5px;
   margin-bottom: 10px;
 `;
@@ -56,15 +56,17 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     lineHeight: "1.098rem",
     fontWeight: 400,
     whiteSpace: "nowrap",
-    padding: "0 5px",
+    padding: "10px 12px",
+    color: theme.palette.black,
+    background: theme.palette.grey03,
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
     fontSize: "0.812rem",
     fontWeight: 400,
     lineHeight: "0.951rem",
-    color: theme.palette.white,
-    borderBottom: `1px solid ${theme.palette.white}`,
+    color: theme.palette.black,
+    borderBottom: `1px solid ${theme.palette.grey01}`,
     padding: "26px 5px 10px",
   },
 }));

@@ -26,6 +26,7 @@ export enum NavCardKey {
   VIP,
   LOGOUT,
   PROMOTION,
+  HOME,
 }
 
 export type NavItem = {
@@ -33,6 +34,7 @@ export type NavItem = {
   label: string | any;
   iconUrl: string;
   iconSecondaryUrl?: string;
+  iconActiveUrl?: string;
   isHide?: boolean;
 } & (
   | {

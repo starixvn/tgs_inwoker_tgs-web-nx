@@ -14,7 +14,7 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   width: calc((100% - 6px * 3) / 4);
   height: fit-content;
   cursor: pointer;
-  padding: 13px 0;
+  padding: 13px;
   text-align: center;
   color: ${({ theme }) => theme.maskBlack50};
   border: 1px solid
