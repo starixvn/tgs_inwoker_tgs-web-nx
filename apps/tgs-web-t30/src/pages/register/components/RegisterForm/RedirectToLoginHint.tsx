@@ -17,7 +17,7 @@ const CreateAccountContainer = styled.div`
   justify-content: center;
 
   .link {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.blue};
     margin-left: 8px;
     cursor: pointer;
     font-weight: 700;

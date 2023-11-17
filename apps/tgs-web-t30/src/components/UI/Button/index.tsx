@@ -2,10 +2,11 @@ import React from "react";
 import { Button as MuiButton, ButtonProps, styled as muiStyled } from "@mui/material";
 
 export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "53px",
+  // height: "53px",
   whiteSpace: "nowrap",
   padding: "15px",
   fontSize: "1rem",
+  lineHeight: "1.172rem",
   fontWeight: 700,
   color: theme.palette.white,
   background: theme.palette.primary,
@@ -15,7 +16,8 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
-    color: "black",
+    borderBottom: `4px solid ${theme.palette.darkBlue}`,
+    color: theme.palette.white,
   },
 
   "&:hover": {

@@ -5,6 +5,6 @@ export const GrayInputWrapper = styled.div`
   display: flex;
   align-items: center;
   border: none;
-  background: ${({ theme }) => theme.gray30};
+  background: ${({ theme }) => theme.white};
   overflow: visible;
 `;

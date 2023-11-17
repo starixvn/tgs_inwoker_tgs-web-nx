@@ -24,12 +24,14 @@ const StyledSelect = styled(MuiSelect)`
   //width: 140px;
   //margin-right: 10px;
   overflow: visible;
-  background: ${({ theme }) => theme.gray30};
+  background: #214061;
+  border: 1px solid ${theme.black};
   font-weight: 400 !important;
   font-size: 1rem !important;
 
   .MuiOutlinedInput-input {
     padding: 12px !important;
+    color: ${({ theme }) => theme.white};
   }
   & .MuiSelect-select {
     display: flex;
@@ -107,7 +109,8 @@ const LanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainBackground,
+            background: "#214061",
+            color: theme.white,
 
             "& .MuiMenuItem-root": {
               padding: 2,

@@ -46,7 +46,7 @@ const muiTheme = createTheme({
       main: theme.secondary,
     },
     action: {
-      disabledBackground: theme.blue,
+      disabledBackground: theme["515c"],
       disabled: theme.white,
     },
     white: theme.white,
