@@ -13,11 +13,10 @@ const BottomAppBarContainer = styled.div`
   top: auto;
   bottom: 0;
   left: 0;
-  background: black;
+  background: ${({ theme }) => theme.navbar};
   display: flex;
   align-items: flex-end;
   justify-content: space-around;
-  padding: 0 20px;
   z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
 `;
@@ -35,7 +34,7 @@ const BottomAppBar = () => {
       return;
     }
     handleClickBottomNavItem(bottomNavItem);
-  }
+  };
 
   return (
     <BottomAppBarContainer>

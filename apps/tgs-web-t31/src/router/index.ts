@@ -106,14 +106,14 @@ const routes: Route[] = [
     path: "/register",
     component: RegisterPage,
     category: RouteCategoryEnum.MINE,
-    layout: AuthDialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/forgot-password",
     component: ForgotPasswordPage,
     category: RouteCategoryEnum.MINE,
-    layout: AuthDialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   // TODO:these 4 params looks like is unused?

@@ -91,6 +91,7 @@ const LoginForm = () => {
         </ForgotPasswordContainer>
         <RedirectToRegisterHint />
       </RegisterContainer>
+       {/* todo switch language component */}
     </AuthFormContainer>
   );
 };

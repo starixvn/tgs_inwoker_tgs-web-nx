@@ -18,12 +18,12 @@ const CustomText = styled.div`
 
 const ButtonContainer = styled.div`
   padding: 5px 20px;
-
+  
   & > button {
     height: 40px;
     font-size: 1rem;
     padding: 10px 8px;
-    background: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.priBTNOutline};
   }
 `;
 

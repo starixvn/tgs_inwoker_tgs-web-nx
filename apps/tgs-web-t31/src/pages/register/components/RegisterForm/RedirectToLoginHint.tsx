@@ -23,6 +23,10 @@ const CreateAccountContainer = styled.div`
   }
 `;
 
+const LinkText = styled.div`
+  text-decoration: underline;
+`;
+
 type Props = React.HTMLProps<HTMLDivElement>;
 
 const RedirectToLoginHint = (props: Props) => {
@@ -44,10 +48,9 @@ const RedirectToLoginHint = (props: Props) => {
   return (
     //@ts-ignore
     <CreateAccountContainer {...props}>
-      <span>{i18n.t("T13.proceedLogin")}</span>
-      <span onClick={handleRedirect} className={"link"}>
+      <LinkText onClick={handleRedirect} >
         {i18n.t("common.login")}
-      </span>
+      </LinkText>
     </CreateAccountContainer>
   );
 };

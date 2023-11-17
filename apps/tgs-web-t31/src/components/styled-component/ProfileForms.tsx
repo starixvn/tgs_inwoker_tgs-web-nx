@@ -76,7 +76,7 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   whiteSpace: "nowrap",
   padding: "10px 12px",
   color: theme.palette.white,
-  background: theme.palette.primaryGradient,
+  background: theme.palette.primaryGradient ,
   fontFamily: "SF Pro",
   fontSize: "16px",
   fontWeight: 590,
@@ -86,6 +86,6 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
-    color: "black",
+    color: theme.palette.white60,
   },
 })) as typeof MuiButton;

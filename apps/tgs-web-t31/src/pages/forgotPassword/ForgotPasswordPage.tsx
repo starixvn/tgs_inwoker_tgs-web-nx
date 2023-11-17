@@ -8,14 +8,17 @@ import { AuthFormContainer } from "@/components/styled-component/AuthFormContain
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 
 const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
+  font-family: SF Pro;
+  font-size: 16px;
   font-weight: 700;
-  color: white;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 `;
 
 const ForgotPasswordPage = () => {
