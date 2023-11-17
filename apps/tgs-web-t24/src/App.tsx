@@ -51,17 +51,16 @@ const App: React.FC = () => {
                 <AuthDialogContextProvider>
                   <HomeGameContextProvider gameTypeList={gameTypeList}>
                     <ScrollToTop />
-                    <LayoutProvider>
-                      <Switch>
-                        {routes.map((route, index) => {
-                          return (
-                            <Route
-                              exact
-                              key={index}
-                              path={route.path}
-                              render={(props) => {
-                                routeRef.current = route;
-                                return (
+                    <Switch>
+                      {routes.map((route, index) => {
+                        return (
+                          <Route
+                            exact
+                            key={index}
+                            path={route.path}
+                            render={(props) => {
+                              return (
+                                <LayoutProvider route={route}>
                                   <AuthGuard route={route}>
                                     <Suspense
                                       fallback={<Loading show={true} opacity={1} noShrink={true} />}
@@ -69,14 +68,14 @@ const App: React.FC = () => {
                                       <route.component route={route} />
                                     </Suspense>
                                   </AuthGuard>
-                                );
-                              }}
-                            />
-                          );
-                        })}
-                        <Redirect to="/" />
-                      </Switch>
-                    </LayoutProvider>
+                                </LayoutProvider>
+                              );
+                            }}
+                          />
+                        );
+                      })}
+                      <Redirect to="/" />
+                    </Switch>
 
                     <LiveChat
                       license={config.features.LiveChatVendor.license}

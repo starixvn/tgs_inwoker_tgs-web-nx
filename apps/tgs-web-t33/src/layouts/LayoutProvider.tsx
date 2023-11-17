@@ -1,12 +1,12 @@
 import React from "react";
-import { useRoute } from "@tgs-web-nx/core/features";
+import { Route } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
 
 type Props = {
+  route: Route;
   children: React.ReactElement;
 };
-const LayoutProvider = ({ children }: Props) => {
-  const { route } = useRoute();
+const LayoutProvider = ({ children, route }: Props) => {
   const LayoutComponent = route?.layout;
 
   if (!LayoutComponent) return <DefaultLayout>{children}</DefaultLayout>;

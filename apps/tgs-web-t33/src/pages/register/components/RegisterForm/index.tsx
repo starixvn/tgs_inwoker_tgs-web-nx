@@ -9,6 +9,7 @@ import FormikForm from "@/components/project/FormikForm";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
 import BrandLogo from "@/components/project/BrandLogo";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
@@ -32,7 +33,7 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      {isDesktopSize && <BrandLogo style={{ marginBottom: "4px" }} />}
+      {/*{isDesktopSize && <BrandLogo style={{ marginBottom: "4px" }} />}*/}
       <TitleContainer>{i18n.t("common.register")}</TitleContainer>
 
       <FormikForm
@@ -49,6 +50,7 @@ const RegisterForm = () => {
       </FormikForm>
 
       <RedirectToLoginHint />
+      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );
 };

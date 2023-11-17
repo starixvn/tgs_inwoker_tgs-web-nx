@@ -10,18 +10,16 @@ const StyledDialog = styled(MuiDialog)`
 
   & .MuiPaper-root {
     position: relative;
-    background: #6401d5;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: 20px;
   }
 `;
 
 const ChildContainer = styled.div`
   width: 100%;
+  height: calc(100vh - 40px);
   background: ${({ theme }) => theme.mainBackground};
-  border-radius: 20px;
   z-index: 2;
 `;
 
