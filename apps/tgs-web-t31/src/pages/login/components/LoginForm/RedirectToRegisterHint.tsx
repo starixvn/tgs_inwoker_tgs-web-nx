@@ -14,7 +14,9 @@ const CreateAccountContainer = styled.div`
   align-self: baseline;
   display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
+  justify-content: end;
+  text-decoration: underline;
 
   .link {
     color: ${({ theme }) => theme.primary};
@@ -39,10 +41,7 @@ const RedirectToRegisterHint = () => {
 
   return (
     <CreateAccountContainer>
-      <span>{i18n.t("T13.proceedRegister")}</span>
-      <span onClick={handleRedirect} className="link">
-        {i18n.t("common.register")}
-      </span>
+      <div onClick={handleRedirect}>{i18n.t("common.register")}</div>
     </CreateAccountContainer>
   );
 };

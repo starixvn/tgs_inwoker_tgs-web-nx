@@ -40,16 +40,14 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
         InputProps={{
           autoComplete: "new-password",
           endAdornment: (
-            <InputAdornment position="end" style={{ height: "20px" }}>
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                style={{ color: "white" }}
-              >
-                {isShowPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+              style={{ color: "white" }}
+            >
+              {isShowPassword ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
           ),
         }}
       />

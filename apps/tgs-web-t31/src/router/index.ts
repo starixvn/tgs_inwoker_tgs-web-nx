@@ -99,7 +99,7 @@ const routes: Route[] = [
     path: "/login",
     component: LoginPage,
     category: RouteCategoryEnum.MINE,
-    layout: AuthDialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {

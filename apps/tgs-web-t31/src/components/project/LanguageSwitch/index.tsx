@@ -32,12 +32,11 @@ const StyledSelect = styled(MuiSelect)`
   font-size: 1rem !important;
 
   .MuiOutlinedInput-input {
-    padding: 10px 30px !important;
+    padding: 0!important;
   }
   & .MuiSelect-select {
     display: flex;
     align-items: center;
-
     & > img {
       margin-right: 10px;
     }
@@ -48,12 +47,12 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
+    display: none;
     color: ${({ theme }) => theme.white};
   }
 `;
 
 const StyledMenuItem = styled(MuiMenuItem)`
-  //border-radius: 8px;
 
   & > img {
     margin-right: 10px;
@@ -61,10 +60,9 @@ const StyledMenuItem = styled(MuiMenuItem)`
 `;
 
 const FlagContainer = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 33px;
+  height: 33px;
   border-radius: 50%;
-  margin-right: 10px;
 
   & > img {
     width: 100%;
@@ -73,10 +71,10 @@ const FlagContainer = styled.div`
   }
 `;
 
-const NameContainer = styled.div`
-  font-weight: 700;
-  font-size: 1rem;
-`;
+// const NameContainer = styled.div`
+//   font-weight: 700;
+//   font-size: 1rem;
+// `;
 
 const LanguageSwitch = (props: SelectProps) => {
   const { general } = useGeneralStore();
@@ -104,16 +102,17 @@ const LanguageSwitch = (props: SelectProps) => {
   return (
     <StyledSelect
       {...props}
+      style={{border:"none"}}
       type={"string"}
       value={culturecode}
       onChange={handleChange}
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainLightBackground,
-
+            background: theme.accountLableText,
             "& .MuiMenuItem-root": {
-              padding: 2,
+              display:"flex",
+              justifyContent:"center"
             },
           },
         },
@@ -127,7 +126,7 @@ const LanguageSwitch = (props: SelectProps) => {
               <FlagContainer>
                 <img src={imageMap[culturecode] || ""} alt={culturecode} />
               </FlagContainer>
-              <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
+              {/* <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer> */}
             </StyledMenuItem>
           );
         })}

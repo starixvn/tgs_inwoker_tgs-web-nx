@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
+
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import ContactButton from "./components/ContactButton";
@@ -12,6 +14,7 @@ import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import userAvatar from "@/assets/t31/images/header/contextMenu/Member.png";
 import logOutIcon from "@/assets/t31/images/header/contextMenu/Log out.png";
+import MenuLanguageSwitch from "@/components/project/LanguageSwitch/index";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -49,7 +52,7 @@ const HeaderContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  gap:8px;
+  gap: 8px;
 `;
 
 const UserAvatar = styled.img`
@@ -63,11 +66,27 @@ const LogOut = styled.img`
 `;
 
 const Header = () => {
+  const history = useHistory();
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize, isLargeDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
+  const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
+  const { handleToggleMenu } = useHeader();
+
+  const toggleLoginDialog = useCallback(() => {
+    if (!isDesktopSize) {
+      handleToggleMenu(false);
+    }
+
+    if (isDesktopSize) {
+      handleToggleLoginDialog(true);
+      return;
+    }
+
+    history.push("/login");
+  }, []);
 
   return (
     <HeaderContainer>
@@ -84,9 +103,13 @@ const Header = () => {
         </Link>
 
         <HeaderContentContainer>
-          {isDesktopSize ? null : <UserAvatar src={userAvatar} />}
+          {isDesktopSize ? null : (
+            <>
+              <UserAvatar src={userAvatar} onClick={toggleLoginDialog} />
+              <MenuLanguageSwitch />
+            </>
+          )}
 
-          {/* {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />} */}
           {!noLoginAccount && <LogOut src={logOutIcon} alt={"log out"} />}
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>

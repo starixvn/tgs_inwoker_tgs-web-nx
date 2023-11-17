@@ -9,16 +9,13 @@ import { media } from "@/theme/breakpoints";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
+  font-family: SF Pro;
+  font-size: 16px;
   font-weight: 700;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-  white-space: nowrap;
-
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: ${({ theme }) => theme.white};
   ${media.sm} {
     display: none;
   }
@@ -42,11 +39,17 @@ const RememberMeContainer = styled.div`
 `;
 
 const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   font-size: 1.062rem;
   font-weight: 400;
   white-space: nowrap;
   cursor: pointer;
+  text-decoration: underline;
+`;
+
+const RegisterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const LoginForm = () => {
@@ -63,7 +66,6 @@ const LoginForm = () => {
   return (
     <AuthFormContainer>
       <TitleContainer>{i18n.t("common.login")}</TitleContainer>
-
       <FormikForm
         formInputList={formInputConfigList}
         formik={formik}
@@ -81,14 +83,14 @@ const LoginForm = () => {
             />
             {i18n.t("wap.login.rememberMe")}
           </RememberMeContainer>
-
-          <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-            {i18n.t("forgotPassword.title")}?
-          </ForgotPasswordContainer>
         </FormSubContainer>
       </FormikForm>
-
-      <RedirectToRegisterHint />
+      <RegisterContainer>
+        <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+          {i18n.t("forgotPassword.title")}?
+        </ForgotPasswordContainer>
+        <RedirectToRegisterHint />
+      </RegisterContainer>
     </AuthFormContainer>
   );
 };
