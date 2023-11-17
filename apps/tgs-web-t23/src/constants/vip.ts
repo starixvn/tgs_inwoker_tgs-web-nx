@@ -1,4 +1,3 @@
-
 type levelItem = {
   key: string;
   level: string;
@@ -11,7 +10,7 @@ type levelItem = {
   bonusColor: string;
   bonusTextColor: string;
   lockerIconColor: string;
-}
+};
 
 export const levelItemStyleList: levelItem[] = [
   {
@@ -25,7 +24,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#6C4921",
     bonusColor: "#C49586",
     bonusTextColor: "#6E491F",
-    lockerIconColor: "#F4C483"
+    lockerIconColor: "#F4C483",
   },
   {
     key: "level 2",
@@ -38,7 +37,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#312F59",
     bonusColor: "#AAA2C5",
     bonusTextColor: "#22203D",
-    lockerIconColor: "#DED5FC"
+    lockerIconColor: "#DED5FC",
   },
   {
     key: "level 3",
@@ -51,7 +50,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#643E13",
     bonusColor: "#E5D78E",
     bonusTextColor: "#452B0D",
-    lockerIconColor: "#FCFED8"
+    lockerIconColor: "#FCFED8",
   },
   {
     key: "level 4",
@@ -64,7 +63,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#2E575F",
     bonusColor: "#E5D78E",
     bonusTextColor: "#213D44",
-    lockerIconColor: "#DDFCFE"
+    lockerIconColor: "#DDFCFE",
   },
   {
     key: "level 5",
@@ -77,7 +76,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#73ADF8",
     bonusColor: "#E5D78E",
     bonusTextColor: "#76A6E5",
-    lockerIconColor: "#D7E3FC"
+    lockerIconColor: "#D7E3FC",
   },
   {
     key: "level 6",
@@ -90,7 +89,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#2D1652",
     bonusColor: "#E5D78E",
     bonusTextColor: "#2C194E",
-    lockerIconColor: "#F1D6FC"
+    lockerIconColor: "#F1D6FC",
   },
   {
     key: "level 7",
@@ -103,7 +102,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#550F61",
     bonusColor: "#E5D78E",
     bonusTextColor: "#3A0942",
-    lockerIconColor: "#F7D6F8"
+    lockerIconColor: "#F7D6F8",
   },
   {
     key: "level 8",
@@ -116,7 +115,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#64171C",
     bonusColor: "#E5D78E",
     bonusTextColor: "#441013",
-    lockerIconColor: "#F3BDBB"
+    lockerIconColor: "#F3BDBB",
   },
   {
     key: "level 9",
@@ -129,7 +128,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#713316",
     bonusColor: "#E5D78E",
     bonusTextColor: "#512611",
-    lockerIconColor: "#F4C483"
+    lockerIconColor: "#F4C483",
   },
   {
     key: "level 10",
@@ -142,7 +141,7 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#336E69",
     bonusColor: "#E5D78E",
     bonusTextColor: "#26514E",
-    lockerIconColor: "#C8F5FD"
+    lockerIconColor: "#C8F5FD",
   },
   {
     key: "level 11",
@@ -155,9 +154,9 @@ export const levelItemStyleList: levelItem[] = [
     levelStatusColor: "#3D095A",
     bonusColor: "#E5D78E",
     bonusTextColor: "#2A053E",
-    lockerIconColor: "#ECBDFB"
-  }
-]
+    lockerIconColor: "#ECBDFB",
+  },
+];
 
 export const vipBonusList = [
   "Promotion Conditions",
@@ -167,5 +166,5 @@ export const vipBonusList = [
   "Daily Deposit to level UP",
   "Birthday Bonus",
   "Level UP Bonus",
-  "Quarterly Bonus"
-]
+  "Quarterly Bonus",
+];

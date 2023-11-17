@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
+import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const HeaderGameTypesContainer = styled.div`
   margin-right: auto;
@@ -36,36 +38,19 @@ const GameTypeNav = styled.div`
 `;
 
 const HeaderGameTypeNavs = () => {
-  const gameTypeList = useGameTypeList();
-  const { handleChangeGameType } = useHomeGameContext();
-  const history = useHistory();
+  const { gameTypeNavItemList } = useGetNavItemList();
 
-  const displayedGameTypeList = useMemo(() => {
-    const gameTypes: GameTypeItem[] = [];
-
-    for (const gameTypeItem of gameTypeList) {
-      if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
-
-      gameTypes.push(gameTypeItem);
-    }
-
-    return gameTypes;
-  }, [gameTypeList]);
-
-  const handleClickNav = (gameTypeItem: GameTypeItem) => {
-    handleChangeGameType(gameTypeItem.gameType);
-
-    if (history.location.pathname !== "/") {
-      history.push("/");
-    }
+  const handleClickNav = (navItem: NavItem) => {
+    if (navItem.navType !== "action") return;
+    navItem.callback();
   };
 
   return (
     <HeaderGameTypesContainer>
-      {displayedGameTypeList.map((gameTypeItem) => {
+      {gameTypeNavItemList.map((navItem) => {
         return (
-          <GameTypeNav key={gameTypeItem.key} onClick={() => handleClickNav(gameTypeItem)}>
-            {gameTypeItem.text}
+          <GameTypeNav key={navItem.key} onClick={() => handleClickNav(navItem)}>
+            {navItem.label}
           </GameTypeNav>
         );
       })}

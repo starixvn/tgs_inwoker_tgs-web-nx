@@ -30,7 +30,7 @@ export enum NavCardKey {
 }
 
 export type NavItem = {
-  key: NavCardKey;
+  key: NavCardKey | string;
   label: string | any;
   iconUrl: string;
   iconSecondaryUrl?: string;
