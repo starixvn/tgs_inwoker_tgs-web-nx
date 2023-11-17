@@ -14,15 +14,15 @@ const Wrapper = styled.div<{
   align-items: center;
   width: auto;
   max-width: none;
-  height: 32px;
-  margin-right: 5px;
+  height: 26px;
+  margin-right: 10px;
   border-radius: 20px;
   box-sizing: border-box;
   user-select: none;
   background-color: ${({ theme, $hasBackground }) =>
     $hasBackground ? theme.primary : theme.mainDarkBackground};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
-  padding: ${({ $isShowIcon }) => ($isShowIcon ? "0px" : "4px")};
+  padding: ${({ $isShowIcon }) => ($isShowIcon ? "0px" : "4px 6px")};
 
   ${media.sm} {
     cursor: pointer;

@@ -3,7 +3,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import searchIcon from "@/assets/t23/images/home/search.svg";
+import searchIcon from "@/assets/t33/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
@@ -34,51 +34,30 @@ const CategoryContent = styled.div`
   }
 `;
 
-const CategoryLabel = styled.div`
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const SearchInputWrapper = styled.div`
-  width: 150px;
-  height: 40px;
-`;
-
-const CategoryTitle = styled.div`
-  color: ${(props) => props.theme.white};
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.125rem;
-  font-weight: 700;
-  line-height: 14px;
-  padding: 10px 0px;
+  width: 100%;
+  height: 37px;
 `;
 
 const NonLobbyCategory = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType, searchString, handleChangeSearch } = useHomeGameContext();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
-  const categoryTitle = useGameTypeList().find((item) => item.gameType === activeGameType)?.text;
   const hasMappingData = !!gameList.length;
 
   return (
     <>
       {isMobileSize && (
         <>
-          <CategoryLabel>
-            <CategoryTitle>{categoryTitle}</CategoryTitle>
-            <SearchInputWrapper>
-              <SearchInput
-                placeholder={i18n.t("slot.search")}
-                imageUrl={searchIcon}
-                handleChange={handleChangeSearch}
-                value={searchString}
-              />
-            </SearchInputWrapper>
-          </CategoryLabel>
           <GameFilterTag />
+          <SearchInputWrapper>
+            <SearchInput
+              placeholder={i18n.t("slot.search")}
+              imageUrl={searchIcon}
+              handleChange={handleChangeSearch}
+              value={searchString}
+            />
+          </SearchInputWrapper>
         </>
       )}
       {isDesktopSize && <HomeGameFilterTag />}
