@@ -10,6 +10,7 @@ import { AuthFormContainer } from "@/components/styled-component/AuthFormContain
 import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
 import BrandLogo from "@/components/project/BrandLogo";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
+import { theme } from "@/theme";
 
 const FormSubContainer = styled.div`
   width: 100%;
@@ -29,7 +30,7 @@ const RememberMeContainer = styled.div`
 `;
 
 const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   font-weight: 400;
   white-space: nowrap;
@@ -52,7 +53,6 @@ const LoginForm = () => {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   } = useLoginForm();
-  const { isDesktopSize } = useRwd();
 
   return (
     <AuthFormContainer>
@@ -75,6 +75,7 @@ const LoginForm = () => {
                 checked={needToRemember}
                 style={{
                   padding: "0px 5px 0px",
+                  color: theme.main,
                 }}
               />
               {i18n.t("wap.login.rememberMe")}

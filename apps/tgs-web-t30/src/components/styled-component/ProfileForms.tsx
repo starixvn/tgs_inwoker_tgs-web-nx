@@ -67,4 +67,4 @@ export const UploadFileTag = styled.span`
   align-items: center;
 `;
 
-export const SubmitButton = muiStyled(Button)(({ theme }) => ({})) as typeof MuiButton;
+export const SubmitButton = Button;
