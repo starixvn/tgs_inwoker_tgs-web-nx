@@ -3,13 +3,18 @@ import { theme } from "@/theme";
 import IconCheckBox from "@/assets/t23/images/icon_checkbox.svg";
 
 const NotShowAgainHintContainer = styled.div`
-  background: ${({ theme }) => theme.primaryLight};
-  width: 100%;
+  background: ${({ theme }) => theme.gray50};
+  width: fit-content;
   height: 38px;
+  padding: 10px;
   font-size: 1rem;
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.white};
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 type CheckBoxProps = {
