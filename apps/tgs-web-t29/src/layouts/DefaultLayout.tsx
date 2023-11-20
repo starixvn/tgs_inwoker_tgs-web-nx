@@ -10,7 +10,7 @@ import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.white};
 `;
 
 const DashboardContainer = styled.div`

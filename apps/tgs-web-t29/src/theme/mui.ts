@@ -10,15 +10,21 @@ theme.lang = i18n.language;
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
-    red: string;
     black: string;
     mainBackground: string;
+    red: string;
+    green: string;
+    gradient: string;
+    blue10: string;
+    blue20: string;
+    blue30: string;
+    blue40: string;
+    blue50: string;
     gray10: string;
     gray20: string;
     gray30: string;
     gray40: string;
     gray50: string;
-    gray60: string;
   }
 }
 
@@ -44,16 +50,21 @@ const muiTheme = createTheme({
       disabled: theme.white,
     },
     white: theme.white,
-    red: theme.red,
-
     black: theme.black,
     mainBackground: theme.mainBackground,
+    red: theme.red,
+    green: theme.green,
+    gradient: theme.gradient,
+    blue10: theme.blue10,
+    blue20: theme.blue20,
+    blue30: theme.blue30,
+    blue40: theme.blue40,
+    blue50: theme.blue50,
     gray10: theme.gray10,
     gray20: theme.gray20,
     gray30: theme.gray30,
     gray40: theme.gray40,
     gray50: theme.gray50,
-    gray60: theme.gray60,
     text: {
       primary: theme.white,
       secondary: theme.gray20,
