@@ -1,25 +1,84 @@
-import React from "react";
-import { Button } from "@/components/UI/Button";
-import { theme } from "@/theme";
+import React, { MouseEventHandler } from "react";
+import styled from "styled-components";
+import Icon from "@/components/project/Icon";
+import {
+  BottomNavItem,
+  NavTypeEnum,
+} from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
+
+const BottomNavContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${({ theme }) => theme.black};
+  padding: 6px 0;
+  cursor: pointer;
+`;
+
+const NavLabel = styled.h6`
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 0.625rem;
+  text-transform: uppercase;
+`;
 
 type Props = {
-  label: string;
-  isSelected: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  bottomNavItem: BottomNavItem;
+  onClick: MouseEventHandler<HTMLDivElement>;
 };
 
-const BottomNav = ({ label, onClick }: Props) => {
+const BottomNav = ({ bottomNavItem, onClick }: Props) => {
+  const { label, iconUrl } = bottomNavItem;
+
+  if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
+    return (
+      <BottomNavContainer onClick={onClick}>
+        <Icon
+          iconUrl={iconUrl}
+          width={"64px"}
+          height={"64px"}
+          style={{
+            marginBottom: "13px",
+          }}
+        />
+
+        <NavLabel>{label}</NavLabel>
+      </BottomNavContainer>
+    );
+  }
+
+  if (bottomNavItem.key === "vip") {
+    return (
+      <BottomNavContainer onClick={onClick}>
+        <Icon
+          iconUrl={iconUrl}
+          width={"64px"}
+          height={"64px"}
+          style={{
+            marginBottom: "-4px",
+            marginLeft: "5px",
+          }}
+        />
+
+        <NavLabel>{label}</NavLabel>
+      </BottomNavContainer>
+    );
+  }
+
   return (
-    <Button
-      onClick={onClick}
-      sx={{
-        background: theme.primary,
-        flex: 1,
-        height: "100%",
-      }}
-    >
-      {label}
-    </Button>
+    <BottomNavContainer onClick={onClick}>
+      <Icon
+        iconUrl={iconUrl}
+        width={"24px"}
+        height={"24px"}
+        style={{
+          marginBottom: "13px",
+        }}
+      />
+
+      <NavLabel>{label}</NavLabel>
+    </BottomNavContainer>
   );
 };
 
