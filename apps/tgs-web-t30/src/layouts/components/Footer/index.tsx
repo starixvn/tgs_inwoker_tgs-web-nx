@@ -1,23 +1,18 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { useGeneralStore } from "@tgs-web-nx/core";
 import gc from "@/assets/t23/images/home/gc.png";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 
 const FooterContainer = styled.div`
-  display: none;
-
-  ${media.sm} {
-    width: 100%;
-    background: ${({ theme }) => theme.gray40};
-    color: ${({ theme }) => theme.white};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-  }
+  width: 100%;
+  background: ${({ theme }) => theme.mainBackground};
+  color: ${({ theme }) => theme.white};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 `;
 
 const FooterGroups = styled.div`
@@ -81,8 +76,6 @@ const PartnerList = [
 ];
 
 const Footer = () => {
-  const { general } = useGeneralStore();
-
   const brand = config.brand;
   return (
     <FooterContainer>

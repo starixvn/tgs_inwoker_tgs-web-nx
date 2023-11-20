@@ -35,7 +35,7 @@ const ChildContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  padding: 36px 24px 18px;
+  padding: 0 20px 20px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -99,15 +99,9 @@ const MobilePopupPromotion = () => {
             <>{i18n.t("common.close")}</>
           </Button>
         </ButtonWrapper>
-      </ChildContainer>
 
-      <NotShowAgainHint
-        onClick={handleClickCheckbox}
-        isCheck={isCheck}
-        style={{
-          margin: "10px 0",
-        }}
-      />
+        <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
+      </ChildContainer>
     </StyledDialog>
   );
 };

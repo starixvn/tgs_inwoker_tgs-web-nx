@@ -37,26 +37,17 @@ const ImgWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  color: ${({ theme }) => theme.yellow};
-  font-size: 1.125rem;
+  color: ${({ theme }) => theme.primary};
+  font-size: 1.062rem;
   margin: 10px 0;
-
-  ${media.sm} {
-    font-size: 1.5rem;
-    margin: 0;
-  }
 `;
 
 const Description = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   font-size: 0.875rem !important;
   font-weight: 500;
   max-height: 100px;
   overflow-y: scroll;
-
-  ${media.sm} {
-    font-size: 1.5rem;
-  }
 `;
 
 const PromotionBanner = ({

@@ -26,6 +26,7 @@ const BannerImage = ({ promotionData }: { promotionData: Promotion }) => {
   }, [promotionData, language]);
 
   const imageUrl = isMobileSize ? mobileBanner : desktopBanner;
+
   return (
     <img
       src={imageUrl}
