@@ -5,21 +5,21 @@ import { Promotion } from "@tgs-web-nx/types";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
-import iconMore from "@/assets/t23/images/promotion/iconMore.svg";
+import iconMore from "@/assets/t30/images/promotion/icon-more.svg";
 
 type PromotionCardContainerProps = {
   onClick: (event: Event) => void;
 };
 const PromotionCardContainer = styled.div<PromotionCardContainerProps>`
   width: 100%;
-  border-radius: 10px;
   gap: 8px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  overflow: hidden;
-  border: 1px solid #4f4f4f;
+  overflow: visible;
   cursor: pointer;
+  padding: 12px;
+  border-bottom: 2px solid ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     width: calc((100% - 40px) / 2);
@@ -37,12 +37,11 @@ const PromotionTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 17.5px 11px;
   gap: 20.84px;
 `;
 
 const TitleWrapper = styled.div`
-  font-size: 1.062rem;
+  font-size: 1rem;
   font-weight: 400;
   color: ${({ theme }) => theme.white};
   text-overflow: ellipsis;
