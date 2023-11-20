@@ -25,7 +25,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 11px 10px 12.5px 15px;
+  padding: 1.49px 24px;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -59,7 +59,6 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        {!isLargeDesktopSize && <MenuButton />}
         <Link to={""}>
           <LogoImgContainer>
             <img

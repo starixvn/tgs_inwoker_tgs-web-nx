@@ -13,13 +13,13 @@ const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
   position: relative;
   height: 35px;
   background: rgba(255, 255, 255, 0.2);
-  color: ${({ theme }) => theme.gray30};
+  color: ${({ theme }) => theme.black};
   border-radius: 50px;
-  padding: 6px 12px;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.25rem;
+  font-size: 0.732rem;
   font-weight: 700;
   line-height: 1.318rem;
   cursor: pointer;
@@ -29,7 +29,6 @@ const BalanceContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  color: ${({ theme }) => theme.gray30};
   gap: 10px;
 
   & span {
@@ -41,7 +40,7 @@ const RefreshButtonWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(160, 203, 97, 1);
+  background: ${({ theme }) => theme.primary};
   width: 100%;
   height: 100%;
   display: flex;
