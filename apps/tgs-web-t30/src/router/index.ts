@@ -30,6 +30,7 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import ProfileLayout from "@/layouts/ProfileLayout";
+import PromotionLayout from "@/layouts/PromotionLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -265,14 +266,14 @@ const routes: Route[] = [
     path: "/promotion-list",
     component: PromotionPage,
     category: RouteCategoryEnum.PROMOTION,
-    layout: DefaultLayout,
+    layout: PromotionLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
     category: RouteCategoryEnum.PROMOTION,
-    layout: DefaultLayout,
+    layout: PromotionLayout,
     isAnonymousAllowed: true,
   },
   //

@@ -52,28 +52,12 @@ const TermsAndConditions = styled(Description)`
   }
 `;
 
-const JoinPromotionButtonWrapper = styled.div`
-  position: fixed;
-  bottom: 67px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 22px 40px 22px;
-  background: ${({ theme }) => theme.mainBackground};
-  ${media.sm} {
-    position: relative;
-    background: transparent;
-  }
-`;
-
 const PromotionDetail = () => {
-  const { promotionData, contentToDisplay, termsToDisplay, showJoinButton } =
-    usePromotionDetailPage();
+  const { promotionData, contentToDisplay, termsToDisplay } = usePromotionDetailPage();
 
   const isLoading = !promotionData || Object.keys(promotionData).length === 0;
 
-  if (isLoading) {
+  if (isLoading || !promotionData) {
     return <Loading show={true} />;
   }
 
