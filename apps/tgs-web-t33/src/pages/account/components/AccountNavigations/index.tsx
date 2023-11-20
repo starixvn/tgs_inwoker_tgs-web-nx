@@ -40,7 +40,7 @@ const hideInDesktopDictionary = {
   [NavCardKey.VIP]: true,
   [NavCardKey.APP_DOWNLOAD]: true,
   [NavCardKey.LOGOUT]: true,
-} as { [key in NavCardKey]: boolean };
+} as { [key in NavCardKey | string]: boolean };
 
 const AccountNavigations = () => {
   const history = useHistory();
@@ -90,7 +90,7 @@ const AccountNavigations = () => {
                 height: "44px",
               }}
             >
-             {i18n.t("web.header.logout")}
+              {i18n.t("web.header.logout")}
             </Button>
           </AccountNavCardsSubContainer>
         )}

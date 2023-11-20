@@ -36,8 +36,8 @@ export function useGetNavItemList() {
 
   const history = useHistory();
 
-  const sideNavItemList: NavItem[] = useMemo(() => {
-    const navItemList: NavItem[] = [];
+  const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] = useMemo(() => {
+    const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
     for (const gameTypeItem of gameTypeList) {
       if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
@@ -47,6 +47,7 @@ export function useGetNavItemList() {
         label: gameTypeItem.text as string,
         iconUrl: gameTypeItem.iconUrl,
         navType: "action",
+        gameType: gameTypeItem.gameType,
         callback: () => {
           handleChangeGameType(gameTypeItem.gameType);
 
@@ -63,6 +64,7 @@ export function useGetNavItemList() {
       iconUrl: vipIcon,
       iconActiveUrl: vipIconDark,
       navType: "action",
+      gameType: GameTypeEnum.NONE,
       callback: () => {
         history.push("/vip");
       },
@@ -73,6 +75,7 @@ export function useGetNavItemList() {
       label: i18n.t("common.promotion"),
       iconUrl: promotionIcon,
       navType: "action",
+      gameType: GameTypeEnum.NONE,
       callback: () => {
         history.push("/promotion-list");
       },

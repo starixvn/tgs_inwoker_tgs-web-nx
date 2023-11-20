@@ -6,7 +6,7 @@ import { Select } from "@/components/UI/Select";
 
 const StatusSelectContainer = styled.div`
   padding: 1px 29px;
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.mainBackground};
   font-size: 0.937rem;
   color: ${({ theme }) => theme.white};
   border-radius: 6px;

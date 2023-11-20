@@ -13,8 +13,7 @@ const Wrapper = styled.div<{
   border-radius: 20px;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $isActive }) =>
-    $isActive ? theme.primary : theme.mainDarkBackground};
+  background-color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.mainBackground)};
   padding: 4px;
 
   &:hover {
@@ -25,8 +24,7 @@ const Wrapper = styled.div<{
 const Text = styled.div<{
   $isActive: boolean;
 }>`
-  color: ${({ theme, $isActive }) =>
-    $isActive ? theme.black : theme.gray};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.black : theme.gray)};
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 0.875rem;
@@ -39,16 +37,11 @@ type Props = {
 };
 
 const ProviderTag = ({ text, isActive, onClick }: Props) => {
-
   return (
-    <Wrapper
-      $isActive={isActive}
-      onClick={onClick}
-    >
+    <Wrapper $isActive={isActive} onClick={onClick}>
       <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );
 };
 
 export default ProviderTag;
-

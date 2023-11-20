@@ -31,8 +31,8 @@ import ForgotPasswordDialog from "@/components/project/auth/ForgotPasswordDialog
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const App: React.FC = () => {
-  const { account } = useAccountStore();
   const { isLoading } = useInitSite();
+  const { account } = useAccountStore();
   const gameTypeList = useGameTypeList();
   const routeRef = useRef<RouteType>();
 

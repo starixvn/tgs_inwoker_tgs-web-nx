@@ -71,7 +71,7 @@ const MemberMenuHeader = ({ handleCloseContextMenu }: Props) => {
         {i18n.t("common.deposit")}
       </Button>
 
-      <CloseButtonContainer onClick={() => handleCloseContextMenu(false)}>
+      <CloseButtonContainer onClick={() => handleCloseContextMenu()}>
         <CloseIcon
           style={{
             color: "white",

@@ -86,16 +86,8 @@ const CustomButton = styled.div<CustomButtonType>`
   width: 100%;
   flex: 1;
   font-size: 1.8rem;
+  background: ${({ theme }) => theme.mainBackground};;
 
-  ${({ theme }: CustomButtonType) => {
-    return (
-      "background-image: linear-gradient(to top, " +
-      theme.secondaryGradient +
-      ", " +
-      theme.primary +
-      ");"
-    );
-  }}
 
   ${({ $disabled }: CustomButtonType) => {
     return $disabled && `filter: grayscale(01);pointer-events: none;`;

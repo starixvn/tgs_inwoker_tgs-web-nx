@@ -3,11 +3,14 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
+import { theme } from "@/theme";
 
 const MemberMenuContainer = styled.div``;
 
 type MemberMenuItemProps = {
   $isActive: boolean;
+  theme: typeof theme;
 };
 
 const MemberMenuItem = styled.div<MemberMenuItemProps>`
@@ -35,7 +38,7 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
   const history = useHistory();
 
-  const handleClick = (navItem) => {
+  const handleClick = (navItem: NavItem) => {
     switch (navItem.navType) {
       case "route":
         history.push(navItem.routePath);

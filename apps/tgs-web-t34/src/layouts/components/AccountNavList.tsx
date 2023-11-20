@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
+import { theme } from "@/theme";
 
 const MemberMenuContainer = styled.div``;
 
@@ -21,11 +23,10 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   cursor: pointer;
 
   &:hover {
-    background: ${({ $isActive, theme }: MemberMenuItemProps) =>
+    background: ${({ $isActive, theme }: MemberMenuItemProps & { theme: typeof theme }) =>
       $isActive ? theme.grey02 : theme.black};
     color: ${({ theme }) => theme.white}
 `;
-
 type Props = {
   handleCloseContextMenu: () => void;
 } & React.HTMLProps<HTMLDivElement>;
@@ -34,7 +35,7 @@ const AccountNavList = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
   const history = useHistory();
 
-  const handleClick = (navItem) => {
+  const handleClick = (navItem: NavItem) => {
     switch (navItem.navType) {
       case "route":
         history.push(navItem.routePath);

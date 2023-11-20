@@ -20,7 +20,7 @@ const Wrapper = styled.div<{
   box-sizing: border-box;
   user-select: none;
   background-color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.primary : theme.mainDarkBackground};
+    $hasBackground ? theme.primary : theme.mainBackground};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
   padding: ${({ $isShowIcon }) => ($isShowIcon ? "0px" : "4px 6px")};
 
@@ -35,8 +35,7 @@ const Wrapper = styled.div<{
 const Text = styled.div<{
   $isActive: boolean;
 }>`
- color: ${({ $isActive, theme }) =>
-    $isActive ? theme.white : theme.tertiary};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.tertiary)};
   font-size: 0.875rem;
   font-weight: 700;
 `;
@@ -58,14 +57,9 @@ const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
       onClick={onClick}
     >
       {isShowIcon && children}
-      {!isShowIcon && (
-        <Text $isActive={isActive}>
-          {text}
-        </Text>
-      )}
+      {!isShowIcon && <Text $isActive={isActive}>{text}</Text>}
     </Wrapper>
   );
 };
 
 export default Tag;
-

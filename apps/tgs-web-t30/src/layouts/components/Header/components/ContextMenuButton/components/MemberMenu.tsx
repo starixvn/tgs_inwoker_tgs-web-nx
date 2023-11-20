@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import MemberMenuHeader from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenuHeader";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 
 const MemberMenuContainer = styled.div`
   overflow: visible;
@@ -41,7 +42,7 @@ const MemberMenu = ({ handleCloseContextMenu, hideHeader, ...others }: Props) =>
   const { accountNavItemList } = useGetNavItemList();
   const history = useHistory();
 
-  const handleClick = (navItem) => {
+  const handleClick = (navItem: NavItem) => {
     switch (navItem.navType) {
       case "route":
         history.push(navItem.routePath);

@@ -18,6 +18,8 @@ export type BottomNavItem = {
   label: string;
   routePath: string;
   routeCategory: RouteCategoryEnum;
+  iconUrl: string;
+  iconActiveUrl: string;
 };
 
 export function useGetBottomNavItemList() {

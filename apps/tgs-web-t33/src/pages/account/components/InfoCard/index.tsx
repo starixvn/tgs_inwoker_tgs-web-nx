@@ -64,6 +64,7 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
     wallet.mainBalance,
   )}`;
   return (
+    //@ts-ignore
     <InfoCardContainer {...props}>
       <InfoWrapper>
         <VipMedal vipLevel={accountLevel} />
