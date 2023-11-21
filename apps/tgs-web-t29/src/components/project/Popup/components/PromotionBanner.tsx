@@ -37,8 +37,9 @@ const ImgWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  color: ${({ theme }) => theme.yellow};
-  font-size: 1.125rem;
+  color: ${({ theme }) => theme.black};
+  font-size: 1.062rem;
+  font-weight: 700;
   margin: 10px 0;
 
   ${media.sm} {
@@ -48,9 +49,9 @@ const Title = styled.h2`
 `;
 
 const Description = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
   font-size: 0.875rem !important;
-  font-weight: 500;
+  font-weight: 400;
   max-height: 100px;
   overflow-y: scroll;
 

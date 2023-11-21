@@ -3,18 +3,14 @@ import { theme } from "@/theme";
 import IconCheckBox from "@/assets/t23/images/icon_checkbox.svg";
 
 const NotShowAgainHintContainer = styled.div`
-  background: ${({ theme }) => theme.gray50};
   width: fit-content;
   height: 38px;
   padding: 10px;
   font-size: 1rem;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.white};
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 50%;
-  transform: translateX(-50%);
+  color: ${({ theme }) => theme.gray50};
+  margin: 18px 0;
 `;
 
 type CheckBoxProps = {
@@ -27,7 +23,7 @@ const CheckBox = styled.div<CheckBoxProps>`
   background: ${(props: CheckBoxProps) =>
     props.$isCheck ? `url(${IconCheckBox}) no-repeat center center;` : null};
   margin-right: 10px;
-  border: ${(props) => (props.$isCheck ? "0" : "1px")} solid #ffffff;
+  border: ${(props) => (props.$isCheck ? "0" : "1px")} solid ${({ theme }) => theme.black};
   border-radius: 5px;
 `;
 

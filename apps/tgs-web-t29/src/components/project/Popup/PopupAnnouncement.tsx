@@ -42,7 +42,7 @@ const ChildContainer = styled.div`
 const Title = styled.div`
   font-size: 1.062rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
 
   ${media.sm} {
     font-size: 1.5rem;
@@ -51,7 +51,7 @@ const Title = styled.div`
 
 const Content = styled.div`
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.gray20};
+  color: ${({ theme }) => theme.gray50};
   margin-top: 1rem;
 
   ${media.sm} {
@@ -69,9 +69,7 @@ const AnnouncementCardContainer = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  margin-top: 20px;
   ${media.sm} {
-    margin-top: 40px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -140,15 +138,7 @@ const PopupAnnouncement = () => {
             })}
         </Carousel>
 
-        {!isDesktopSize && (
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              marginBottom: "18px",
-            }}
-          />
-        )}
+        {!isDesktopSize && <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />}
 
         <ButtonWrapper>
           <Button
