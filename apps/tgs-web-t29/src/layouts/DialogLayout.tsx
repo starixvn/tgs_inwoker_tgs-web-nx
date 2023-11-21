@@ -1,11 +1,12 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useCallback } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
-import Header from "@/layouts/components/Header";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
+import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
+import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -13,8 +14,8 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`${HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
+  min-height: calc(100vh - ${DIALOG_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin: ${`${DIALOG_HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
 
@@ -27,6 +28,12 @@ type Props = {
 };
 const DialogLayout = ({ children }: Props) => {
   const { isDesktopSize } = useRwd();
+  const { pageName } = usePageName();
+  const history = useHistory();
+
+  const handleCloseDialog = useCallback(() => {
+    history.goBack();
+  }, [history]);
 
   if (isDesktopSize) {
     return <AccountDesktopLayout>{children}</AccountDesktopLayout>;
@@ -34,8 +41,7 @@ const DialogLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <Header />
-      <MenuDrawer />
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
 
       <ContentWrapper>
         {isDesktopSize && (

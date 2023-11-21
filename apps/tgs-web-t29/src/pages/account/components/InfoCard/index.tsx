@@ -7,11 +7,9 @@ import VipMedal from "@/components/project/VipMedal";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
 
 const InfoCardContainer = styled.div`
-  background: url(${cardBackground});
-  background-size: cover;
+  background: gold;
   width: 100%;
-  height: 248px;
-  margin-left: 29px;
+  height: 105px;
   padding: 46px 28px 21px;
   color: ${({ theme }) => theme.white};
 

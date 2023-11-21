@@ -1,18 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import iconReturn from "@/assets/t33/images/layout/icon-return.svg";
+import iconReturn from "@/assets/t29/images/dialog/icon-return.svg";
 import Icon from "@/components/project/Icon";
 
-export const DIALOG_HEADER_HEIGHT = "73px";
+export const DIALOG_HEADER_HEIGHT = "40px";
 
 const DialogHeaderContainer = styled.div`
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.blue50};
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   color: ${({ theme }) => theme.white};
   font-size: 1.125rem;
   font-weight: 700;
@@ -23,6 +25,10 @@ const DialogHeaderContainer = styled.div`
 `;
 
 const ReturnIconContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -37,7 +43,7 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl={iconReturn} width={"14.82px"} height={"25px"} />
+        <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
 
       {dialogHeaderTitle}
