@@ -13,7 +13,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     background: "none",
   },
   select: {
-    color: theme.palette.white,
+    color: theme.palette.gray50,
     padding: "14px",
     "&:focus": {
       background: "none",

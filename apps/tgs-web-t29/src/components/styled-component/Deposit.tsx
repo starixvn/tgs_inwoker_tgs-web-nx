@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const LimitLabel = styled.span`
-  color: ${({ theme }) => theme.tertiary};
+  color: ${({ theme }) => theme.gray50};
 `;
 
 export const LimitAmount = styled.span`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
 `;
 
 export const TransferLabel = styled.div``;
@@ -29,7 +29,7 @@ export const HintText = styled.div`
 `;
 
 export const AmountHint = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
   font-size: 0.937rem;
   font-weight: 400;
   margin-top: 9px;
