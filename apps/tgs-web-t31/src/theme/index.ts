@@ -24,7 +24,7 @@ export const colorListT31 = {
   black60: "#00000099",
   black30: " #0000004D",
   supplierMask: "linear-gradient(180deg, rgba(0, 0, 0, 0) 72.13%, rgba(0, 0, 0, 0.3) 100%)",
-  white30: "#0000004D",
+  white30: "#FFFFFF4D",
   white50: "#FFFFFF80",
   white60: "#FFFFFF99",
   white: "#FFFFFF",

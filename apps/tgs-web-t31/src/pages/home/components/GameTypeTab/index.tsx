@@ -1,19 +1,41 @@
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-
+import { media } from "@/theme/breakpoints";
+import HomeUrl from "@/assets/t31/images/home/Home.png";
 const TabContainer = styled.div`
   width: 100%;
-  padding: 5px 10px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainLightBackground};
-  gap: 5px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  ${media.sm} {
+    margin-top: 20px;
+    padding-bottom: 5px;
+
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background: ${(props) => props.theme.mainDarkBackground};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #53535375;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
+  }
 `;
 
 const GameTypeTab = () => {
@@ -36,6 +58,12 @@ const GameTypeTab = () => {
 
   return (
     <TabContainer>
+      <Tab
+        imageUrl={HomeUrl}
+        text={i18n.t("common.home")}
+        isActive={false}
+        onClick={() => switchGameType(GameTypeEnum.NONE)}
+      />
       {gameTypeList.map((gameTypeItem) => {
         const { key, iconUrl, text, gameType } = gameTypeItem;
 

@@ -68,6 +68,8 @@ const DownloadCardContainer = styled.div`
 
 const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
+  const { handleChangeGameType } = useHomeGameContext();
+
   const history = useHistory();
 
   const sideNavItemList: GameTypeItem[] = useMemo(() => {
@@ -138,11 +140,9 @@ const MobileMenuDrawer = () => {
     ] as GameTypeItem[];
   }, []);
 
-  const handleClickNav = useCallback((navItem: NavItem) => {
+  const handleClickNav = useCallback((navItem: GameTypeItem) => {
     handleToggleMenu(false);
-
-    if (navItem.navType !== "route") return;
-    history.push(navItem.routePath);
+    handleChangeGameType(navItem.gameType);
   }, []);
   return (
     <MobileMenuDrawerContainer>
