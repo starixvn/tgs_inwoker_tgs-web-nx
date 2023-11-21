@@ -1,22 +1,28 @@
 import React, { useCallback, useMemo } from "react";
 import styled from "styled-components";
+import { GameTypeItem } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHeader } from "@tgs-web-nx/core/features";
+import { useAuth, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
-import AnonymousHeaderContent from "@/layouts/components/Header/components/AnonymousHeaderContent";
 import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
-import { Button } from "@/components/UI/Button";
+
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
-import profileImg from "@/assets/t23/images/header/sideMenuItem/icon-account.svg";
-import transferImg from "@/assets/t23/images/header/sideMenuItem/icon-transfer.svg";
-import reportImg from "@/assets/t23/images/header/sideMenuItem/icon-report.svg";
-import inboxImg from "@/assets/t23/images/header/sideMenuItem/icon-inbox.svg";
-import affiliateImg from "@/assets/t23/images/header/sideMenuItem/icon-affiliate.svg";
-import downloadImg from "@/assets/t23/images/header/sideMenuItem/icon-download.svg";
-import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import Icon from "@/components/project/Icon";
+
+import downloadImg from "@/assets/t31/images/header/sideMenuItem/Download.png";
+import cardgame from "@/assets/t31/images/header/sideMenuItem/Card.png";
+import egame from "@/assets/t31/images/header/sideMenuItem/Egame.png";
+import esports from "@/assets/t31/images/header/sideMenuItem/Esports.png";
+import fishing from "@/assets/t31/images/header/sideMenuItem/Fish.png";
+import live from "@/assets/t31/images/header/sideMenuItem/Live.png";
+import lottery from "@/assets/t31/images/header/sideMenuItem/Lottery.png";
+import sabong from "@/assets/t31/images/header/sideMenuItem/Sabong.png";
+import slot from "@/assets/t31/images/header/sideMenuItem/Slot.png";
+import sports from "@/assets/t31/images/header/sideMenuItem/Sports.png";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -27,84 +33,109 @@ const MobileMenuDrawerContainer = styled.div`
 
 const ContentWrapper = styled.div`
   flex-shrink: 0;
-  padding: 30px 25px;
   height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${({ theme }) => theme.white};
+  height: 100%;
 `;
 
 const NavsContainer = styled.div`
-  padding: 12px 20px;
+  width: 100%;
   height: fit-content;
+`;
+
+const DownloadCardContainer = styled.div`
+  cursor: pointer;
+  height: 62px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  color: ${({ theme }) => theme.white};
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.09px;
+  padding: 0 12px;
+  color: ${({ theme }) => theme.iconLable};
+  border-bottom: 1px solid ${({ theme }) => theme.white30};
+  & > div:first-child {
+    margin-right: 10px;
+  }
 `;
 
 const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isLogin } = useAuth();
   const history = useHistory();
-  const { handleLogout } = useAuth();
-  const { isDesktopSize } = useRwd();
 
-  const handleClickLogout = async () => {
-    if (!isDesktopSize && isMenuOpen) {
-      handleToggleMenu(false);
-    }
-    await handleLogout();
-  };
-
-  const sideNavItemList: NavItem[] = useMemo(() => {
+  const sideNavItemList: GameTypeItem[] = useMemo(() => {
     return [
       {
-        key: NavCardKey.PROFILE,
-        label: i18n.t("wap.main.my"),
-        iconUrl: profileImg,
-        navType: "route",
-        routePath: "/account",
+        key: "slots",
+        iconUrl: slot,
+        text: i18n.t("common.slot"),
+        fontSize: "small",
+        gameType: GameTypeEnum.SLOT,
       },
       {
-        key: NavCardKey.TRANSFER,
-        label: i18n.t("common.transfer"),
-        iconUrl: transferImg,
-        navType: "route",
-        routePath: "/transfer",
+        key: "cardGame",
+        iconUrl: cardgame,
+        text: i18n.t("common.chess"),
+        fontSize: "smaller",
+        gameType: GameTypeEnum.QIPAILOBBY,
       },
       {
-        key: NavCardKey.REPORT,
-        label: i18n.t("report.title"),
-        iconUrl: reportImg,
-        navType: "route",
-        routePath: "/report",
+        key: "egame",
+        iconUrl: egame,
+        text: i18n.t("common.egame"),
+        fontSize: "small",
+        gameType: GameTypeEnum.TABLEGAME,
       },
       {
-        key: NavCardKey.INBOX,
-        label: i18n.t("wap.main.account.inbox"),
-        iconUrl: inboxImg,
-        navType: "route",
-        routePath: "/inbox",
+        key: "esports",
+        iconUrl: esports,
+        text: i18n.t("common.esports"),
+        fontSize: "smaller",
+        gameType: GameTypeEnum.ESPORTS,
       },
       {
-        key: NavCardKey.AFFILIATE,
-        label: i18n.t("wap.main.account.affiliate"),
-        iconUrl: affiliateImg,
-        navType: "route",
-        routePath: "/affiliate",
+        key: "fishing",
+        iconUrl: fishing,
+        text: i18n.t("common.fish"),
+        fontSize: "small",
+        gameType: GameTypeEnum.FISH,
       },
       {
-        key: NavCardKey.CONTACT_US,
-        label: i18n.t("common.contact"),
-        iconUrl: profileImg,
-        navType: "route",
-        routePath: "/support",
+        key: "liveCasino",
+        iconUrl: live,
+        text: i18n.t("common.live"),
+        fontSize: "smaller",
+        gameType: GameTypeEnum.LIVELOBBY,
       },
       {
-        key: NavCardKey.APP_DOWNLOAD,
-        label: i18n.t("wap.main.account.appDownload"),
-        iconUrl: downloadImg,
-        navType: "route",
-        routePath: "/appDownload",
+        key: "lottery",
+        iconUrl: lottery,
+        text: i18n.t("common.lottery"),
+        fontSize: "small",
+        gameType: GameTypeEnum.LOTTERYLOBBY,
       },
-    ] as NavItem[];
+      {
+        key: "sabong",
+        iconUrl: sabong,
+        text: i18n.t("common.cockfight"),
+        fontSize: "smaller",
+        gameType: GameTypeEnum.COCKFIGHT,
+      },
+      {
+        key: "sports",
+        iconUrl: sports,
+        text: i18n.t("common.sports"),
+        fontSize: "small",
+        gameType: GameTypeEnum.SPORTS,
+      },
+    ] as GameTypeItem[];
   }, []);
 
   const handleClickNav = useCallback((navItem: NavItem) => {
@@ -113,42 +144,21 @@ const MobileMenuDrawer = () => {
     if (navItem.navType !== "route") return;
     history.push(navItem.routePath);
   }, []);
-
   return (
     <MobileMenuDrawerContainer>
       <SideMenuHeader />
-
       <ContentWrapper>
-        {isLogin ? (
-          <TransferButtonGroup buttonWidth={"140px"} />
-        ) : (
-          <AnonymousHeaderContent buttonWidth={"140px"} />
-        )}
-
         <NavsContainer>
+          <DownloadCardContainer onClick={() => {}}>
+            <Icon iconUrl={downloadImg} width={"40px"} height={"40px"} />
+            <span>{i18n.t("common.download")}</span>
+          </DownloadCardContainer>
           {sideNavItemList.map((navItem) => {
             return (
               <SideMenuNavItem key={navItem.key} navItem={navItem} handleClick={handleClickNav} />
             );
           })}
         </NavsContainer>
-
-        <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
-
-        <Button
-          fullWidth
-          variant={"contained"}
-          onClick={handleClickLogout}
-          sx={{
-            fontSize: "1.562rem",
-            padding: "12px 20px",
-            borderRadius: "30px",
-            color: "white",
-            background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
-          }}
-        >
-         {i18n.t("web.header.logout")}
-        </Button>
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );

@@ -10,18 +10,12 @@ const SideMenuHeaderContainer = styled.div`
   position: relative;
   flex-shrink: 0;
   width: 100%;
-  height: 219px;
-  background-image: url(${headerBg});
+  height: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const LogoImg = styled.img`
-  margin: 0 auto;
-  display: block;
-  width: 174px;
+  background: ${({ theme }) => theme.sideMenu};
 `;
 
 const CloseIconContainer = styled.div`
@@ -51,7 +45,7 @@ const SideMenuHeader = () => {
         />
       </CloseIconContainer>
 
-      {isLogin ? <Avatar /> : <LogoImg src={brand && brand.loadingUrl} />}
+      {/* {isLogin ? <Avatar /> : <LogoImg src={brand && brand.loadingUrl} />} */}
     </SideMenuHeaderContainer>
   );
 };
