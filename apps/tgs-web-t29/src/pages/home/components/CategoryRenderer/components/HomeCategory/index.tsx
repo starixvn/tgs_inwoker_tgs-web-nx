@@ -1,11 +1,23 @@
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import bg from "@/assets/t29/images/home/home_bg.png";
 import sport from "@/assets/t29/images/home/home_sport.png";
 import live_casino from "@/assets/t29/images/home/home_live_casino.png";
 import slot from "@/assets/t29/images/home/home_slot.png";
 import lottery from "@/assets/t29/images/home/home_lottery.png";
+import GameTypeTab from "@/pages/home/components/GameTypeTab";
 
-const HomeCategoryContainer = styled.div`
+const MobileContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 15px 0px;
+
+  color: ${({ theme }) => theme.gray50};
+`;
+
+const DesktopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,6 +49,7 @@ const CategoryName = styled.div`
 `;
 
 const HomeCategory = () => {
+  const { isDesktopSize } = useRwd();
 
   const homeCategotyList = [
     {
@@ -57,17 +70,25 @@ const HomeCategory = () => {
     },
   ];
 
+  if (isDesktopSize) {
+    return (
+      <DesktopContainer>
+        {homeCategotyList.map((item) => {
+          return (
+            <CategoryWrapper key={item.name}>
+              <CategoryImage src={item.imgUrl} alt={item.name} />
+              <CategoryName>{item.name}</CategoryName>
+            </CategoryWrapper>
+          );
+        })};
+      </DesktopContainer>
+    );
+  }
+
   return (
-    <HomeCategoryContainer>
-      {homeCategotyList.map((item) => {
-        return (
-          <CategoryWrapper key={item.name}>
-            <CategoryImage src={item.imgUrl} alt={item.name} />
-            <CategoryName>{item.name}</CategoryName>
-          </CategoryWrapper>
-        );
-      })};
-    </HomeCategoryContainer>
+    <MobileContainer>
+      <GameTypeTab />
+    </MobileContainer>
   );
 };
 

@@ -3,14 +3,11 @@ import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { isDesktop } from "react-device-detect";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import AppFlag from "@/pages/home/components/AppFlag";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 
 const MainWrapper = styled.div`
@@ -36,6 +33,25 @@ const SliderWrapper = styled.div`
   /* to-do: 最大高度限制問題 */
 `;
 
+const MainContentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: ${({ theme }) => theme.mainBackground};
+  color: ${({ theme }) => theme.white};
+  padding: 0px 8px 12px 8px;
+  gap: 6px;
+  flex-shrink: 0;
+
+  ${media.sm} {
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    gap: unset;
+    padding: unset;
+  }
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
@@ -58,8 +74,11 @@ const HomePage = () => {
         </SliderWrapper>
       )}
       {!activeGameType && isMobileSize && <CardPrompt />}
-      {isMobileSize && <GameTypeTab />}
-      {isDesktopSize && <CategoryRenderer />}
+
+      <MainContentWrapper>
+        <CategoryRenderer />
+      </MainContentWrapper>
+
     </MainWrapper>
   );
 };
