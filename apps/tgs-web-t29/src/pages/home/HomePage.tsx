@@ -27,57 +27,13 @@ const MainWrapper = styled.div`
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
+    gap: unset;
   }
 `;
 
 const SliderWrapper = styled.div`
   width: 100%;
   /* to-do: 最大高度限制問題 */
-`;
-
-const MainContentWrapper = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
-  color: ${({ theme }) => theme.white};
-  gap: 6px;
-
-  ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
-    padding: 10px 10px 50px 10px;
-  }
-`;
-
-const AppFlagWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 30px;
-`;
-
-const VendorIconContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-
-
-const GameTypeTabWrapper = styled.div`
-  ${media.sm} {
-    width: 100%;
-    margin: 0 auto;
-    background-color: ${({ theme }) => theme.gray40};
-    display: flex;
-    align-items: center;
-    justify-content: center
-  }
 `;
 
 const HomePage = () => {
@@ -102,18 +58,8 @@ const HomePage = () => {
         </SliderWrapper>
       )}
       {!activeGameType && isMobileSize && <CardPrompt />}
-
-      {/* 
-      {!!activeGameType && isDesktopSize &&
-        <GameTypeTabWrapper>
-          <GameTypeTab />
-        </GameTypeTabWrapper>
-      }
-      {!!activeGameType && isMobileSize && <GameTypeTab />} */}
-
-      {/* <MainContentWrapper>
-        <CategoryRenderer />
-      </MainContentWrapper> */}
+      {isMobileSize && <GameTypeTab />}
+      {isDesktopSize && <CategoryRenderer />}
     </MainWrapper>
   );
 };
