@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
-  padding: 22px;
-  max-width: calc(961px + 22px * 2);
+  padding: 20px;
+  max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: auto;
 `;

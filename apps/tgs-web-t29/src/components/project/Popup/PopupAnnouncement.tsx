@@ -138,7 +138,7 @@ const PopupAnnouncement = () => {
             })}
         </Carousel>
 
-        {!isDesktopSize && <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />}
+        <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
 
         <ButtonWrapper>
           <Button
@@ -152,8 +152,6 @@ const PopupAnnouncement = () => {
           </Button>
         </ButtonWrapper>
       </ChildContainer>
-
-      {isDesktopSize && <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />}
     </StyledDialog>
   );
 };
