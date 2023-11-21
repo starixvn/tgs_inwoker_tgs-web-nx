@@ -4,6 +4,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { theme } from "@/theme";
 
 type Props = {
   formInput: FormikFormInput;
@@ -45,7 +46,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                style={{ color: "white" }}
+                style={{ color: theme.gray50 }}
               >
                 {isShowPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>

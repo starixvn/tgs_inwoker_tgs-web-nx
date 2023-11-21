@@ -1,13 +1,11 @@
-import { Close as CloseIcon } from "@mui/icons-material";
 import { ReactElement, useCallback } from "react";
-import { useLocation } from "react-router";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useHistory } from "react-router-dom";
+import { usePageName } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import Header from "@/layouts/components/Header";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { HEADER_HEIGHT } from "@/theme/constants";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -27,7 +25,13 @@ type Props = {
   children: ReactElement;
 };
 const AuthDialogLayout = ({ children }: Props) => {
+  const history = useHistory();
+  const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
+
+  const handleCloseDialog = useCallback(() => {
+    history.goBack();
+  }, [history]);
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;
@@ -35,8 +39,7 @@ const AuthDialogLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <Header />
-      <MenuDrawer />
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
 
       <ContentWrapper>{children}</ContentWrapper>
     </DialogLayoutContainer>

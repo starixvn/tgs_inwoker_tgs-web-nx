@@ -6,7 +6,7 @@ import { FormInputFactory } from "@/components/project/FormikForm/FormInputFacto
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const ErrorMessageContainer = styled.div`
-  color: ${({ theme }) => "red"};
+  color: ${({ theme }) => theme.red};
   font-size: 0.875rem;
   font-weight: 400;
   text-align: center;

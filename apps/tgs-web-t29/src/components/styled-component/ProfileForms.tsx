@@ -70,10 +70,10 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   whiteSpace: "nowrap",
   borderRadius: "6px",
-  padding: "15px",
-  fontSize: "1.25rem",
+  padding: "16px",
+  fontSize: "1rem",
   lineHeight: 1,
-  fontWeight: 400,
+  fontWeight: 700,
   color: theme.palette.white,
   background: theme.palette.primary.main,
 
