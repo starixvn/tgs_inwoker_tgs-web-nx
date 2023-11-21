@@ -1,11 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRoute } from "@tgs-web-nx/core/features";
-import { RouteCategoryEnum } from "@/router";
-import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
-import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
-import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
+import { useHeader } from "@tgs-web-nx/core/features";
+import giftIcon from "@/assets/t29/images/bottomAppBar/icon-gift.svg";
+import contactIcon from "@/assets/t29/images/bottomAppBar/icon-contact.svg";
+import transferIcon from "@/assets/t29/images/bottomAppBar/icon-transfer.svg";
+import reportIcon from "@/assets/t29/images/bottomAppBar/icon-report.svg";
+import accountIcon from "@/assets/t29/images/bottomAppBar/icon-account.svg";
 
 export enum NavTypeEnum {
   ITEM,
@@ -15,67 +16,83 @@ export enum NavTypeEnum {
 
 export type BottomNavItem = {
   navType: NavTypeEnum;
-  label: string;
-  routePath: string;
-  routeCategory: RouteCategoryEnum;
+  key: string;
+  label: any;
   iconUrl: string;
-  iconActiveUrl: string;
+  handleClick: () => void;
 };
 
 export function useGetBottomNavItemList() {
   const history = useHistory();
 
-  const bottomNavItemList = useMemo(() => {
+  const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
     return [
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("common.home"),
-        iconUrl: iconHome,
-        iconActiveUrl: iconHome,
-        routePath: "/",
-        routeCategory: RouteCategoryEnum.HOME,
+        key: "vip",
+        label: "Vip",
+        iconUrl: giftIcon,
+        handleClick: () => {
+          history.push("/vip");
+        },
       },
-
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("common.promotion"),
-        iconUrl: iconPromo,
-        iconActiveUrl: iconPromo,
-        routePath: "/promotion-list",
-        routeCategory: RouteCategoryEnum.PROMOTION,
+        key: "contact",
+        label: i18n.t("common.contact"),
+        iconUrl: contactIcon,
+        handleClick: () => {
+          history.push("/support");
+        },
       },
       {
         navType: NavTypeEnum.BIG_ITEM,
-        label: i18n.t("common.deposit"),
-        iconUrl: iconDeposit,
-        iconActiveUrl: iconDeposit,
-        routePath: "/deposit",
-        routeCategory: RouteCategoryEnum.REFER,
+        key: "vip",
+        label: i18n.t("common.transfer"),
+        iconUrl: transferIcon,
+        handleClick: () => {
+          console.log("OPEN");
+          // history.push("/deposit");
+        },
       },
-    ] as BottomNavItem[];
+      {
+        navType: NavTypeEnum.ITEM,
+        key: "contact",
+        label: i18n.t("report.title"),
+        iconUrl: reportIcon,
+        handleClick: () => {
+          history.push("/report");
+        },
+      },
+      {
+        navType: NavTypeEnum.ITEM,
+        key: "affiliate",
+        label: i18n.t("deposit.details.account"),
+        iconUrl: accountIcon,
+        handleClick: () => {
+          history.push("/account");
+        },
+      },
+    ];
   }, []);
 
-  const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
-  const { route } = useRoute();
-
-  useEffect(() => {
-    const matchNavItem = null;
-
-    if (!matchNavItem) {
-      return;
-    }
-
-    setSelectedBottomNavItem(matchNavItem);
-  }, [route]);
+  const { handleToggleMenu } = useHeader();
 
   const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    setSelectedBottomNavItem(appBarItem);
-    history.push(appBarItem.routePath);
+    switch (appBarItem.key) {
+      case "menu":
+        handleToggleMenu(true);
+
+        break;
+
+      default:
+        appBarItem.handleClick();
+        break;
+    }
   };
 
   return {
     bottomNavItemList,
-    selectedBottomNavItem,
     handleClickBottomNavItem,
   };
 }

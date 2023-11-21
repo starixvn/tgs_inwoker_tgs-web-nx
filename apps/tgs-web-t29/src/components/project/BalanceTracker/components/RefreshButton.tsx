@@ -16,8 +16,8 @@ const spinAnimation = keyframes`
 `;
 
 const StyledRefreshButton = styled.div<StyledRefreshButtonProps>`
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   animation: ${({ $isSpinning }: StyledRefreshButtonProps) =>
     $isSpinning

@@ -6,11 +6,13 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
+import iconLogin from "@/assets/t29/images/header/icon-login.svg";
+import Icon from "@/components/project/Icon";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 `;
 
 type Props = {
@@ -53,11 +55,11 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <HeaderButton
         onClick={toggleLoginDialog}
         style={{
+          color: theme.white,
           background: theme.primary,
-          width: buttonWidth ?? "92px",
-          border: `1px solid ${theme.gray30}`,
         }}
       >
+        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.login")}
       </HeaderButton>
 
@@ -67,9 +69,9 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         style={{
           color: theme.white,
           background: theme.secondary,
-          width: buttonWidth ?? "92px",
         }}
       >
+        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.register")}
       </HeaderButton>
     </ButtonContainer>

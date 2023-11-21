@@ -17,6 +17,7 @@ const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
+  border-radius: 4px;
   & .MuiPaper-root {
     background: ${({ theme }) => theme.mainBackground};
     width: calc(100vw - 10px * 2);
@@ -35,13 +36,11 @@ const ChildContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  padding: 36px 24px 18px;
+  padding: 0 24px 18px;
 `;
 
 const ButtonWrapper = styled.div`
-  margin-top: 20px;
   ${media.sm} {
-    margin-top: 40px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -88,6 +87,15 @@ const MobilePopupPromotion = () => {
             />
           ))}
         </Carousel>
+
+        <NotShowAgainHint
+          onClick={handleClickCheckbox}
+          isCheck={isCheck}
+          style={{
+            margin: "10px 0",
+          }}
+        />
+
         <ButtonWrapper>
           <Button
             onClick={handleCloseDialog}
@@ -100,14 +108,6 @@ const MobilePopupPromotion = () => {
           </Button>
         </ButtonWrapper>
       </ChildContainer>
-
-      <NotShowAgainHint
-        onClick={handleClickCheckbox}
-        isCheck={isCheck}
-        style={{
-          margin: "10px 0",
-        }}
-      />
     </StyledDialog>
   );
 };
