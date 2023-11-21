@@ -11,9 +11,7 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import Introduction from "@/pages/home/components/Introduction";
-import SocialMedia from "@/components/project/SocialMedia";
-import vendorsIcon from "@/assets/t33/images/home/vendors.png";
+import Banner from "@/pages/home/components/Banner";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -22,6 +20,9 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
+  padding: 0px 8px 12px 8px;
+  gap: 6px;
+  flex-shrink: 0;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -66,12 +67,7 @@ const VendorIconContainer = styled.div`
   align-items: center;
 `;
 
-const VendorIcon = styled.div`
-  width: 392px;
-  height: 296px;
-  background-image: url(${vendorsIcon});
-  background-size: cover;
-`;
+
 
 const GameTypeTabWrapper = styled.div`
   ${media.sm} {
@@ -101,29 +97,23 @@ const HomePage = () => {
     <MainWrapper>
       {!!general.banner.length && (
         <SliderWrapper>
-          <Slider />
+          {isMobileSize && <Slider settings={{}} />}
+          {isDesktopSize && <Banner />}
         </SliderWrapper>
       )}
+      {!activeGameType && isMobileSize && <CardPrompt />}
+
+      {/* 
       {!!activeGameType && isDesktopSize &&
         <GameTypeTabWrapper>
           <GameTypeTab />
         </GameTypeTabWrapper>
       }
+      {!!activeGameType && isMobileSize && <GameTypeTab />} */}
 
-      {!!activeGameType && isMobileSize && <GameTypeTab />}
-
-      <MainContentWrapper>
-        {!activeGameType && <CardPrompt />}
+      {/* <MainContentWrapper>
         <CategoryRenderer />
-        <AppFlagWrapper><AppFlag /></AppFlagWrapper>
-        <Introduction />
-        {isMobileSize && <SocialMedia />}
-        {isMobileSize && (
-          <VendorIconContainer>
-            <VendorIcon />
-          </VendorIconContainer>
-        )}
-      </MainContentWrapper>
+      </MainContentWrapper> */}
     </MainWrapper>
   );
 };
