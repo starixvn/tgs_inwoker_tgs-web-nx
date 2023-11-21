@@ -11,9 +11,7 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import Introduction from "@/pages/home/components/Introduction";
-import SocialMedia from "@/components/project/SocialMedia";
-import vendorsIcon from "@/assets/t33/images/home/vendors.png";
+import Banner from "@/pages/home/components/Banner";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -22,66 +20,20 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
+  padding: 0px 8px 12px 8px;
+  gap: 6px;
+  flex-shrink: 0;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
+    gap: unset;
   }
 `;
 
 const SliderWrapper = styled.div`
   width: 100%;
   /* to-do: 最大高度限制問題 */
-`;
-
-const MainContentWrapper = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
-  color: ${({ theme }) => theme.white};
-  gap: 6px;
-
-  ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
-    padding: 10px 10px 50px 10px;
-  }
-`;
-
-const AppFlagWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 30px;
-`;
-
-const VendorIconContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const VendorIcon = styled.div`
-  width: 392px;
-  height: 296px;
-  background-image: url(${vendorsIcon});
-  background-size: cover;
-`;
-
-const GameTypeTabWrapper = styled.div`
-  ${media.sm} {
-    width: 100%;
-    margin: 0 auto;
-    background-color: ${({ theme }) => theme.gray40};
-    display: flex;
-    align-items: center;
-    justify-content: center
-  }
 `;
 
 const HomePage = () => {
@@ -101,29 +53,13 @@ const HomePage = () => {
     <MainWrapper>
       {!!general.banner.length && (
         <SliderWrapper>
-          <Slider />
+          {isMobileSize && <Slider settings={{}} />}
+          {isDesktopSize && <Banner />}
         </SliderWrapper>
       )}
-      {!!activeGameType && isDesktopSize &&
-        <GameTypeTabWrapper>
-          <GameTypeTab />
-        </GameTypeTabWrapper>
-      }
-
-      {!!activeGameType && isMobileSize && <GameTypeTab />}
-
-      <MainContentWrapper>
-        {!activeGameType && <CardPrompt />}
-        <CategoryRenderer />
-        <AppFlagWrapper><AppFlag /></AppFlagWrapper>
-        <Introduction />
-        {isMobileSize && <SocialMedia />}
-        {isMobileSize && (
-          <VendorIconContainer>
-            <VendorIcon />
-          </VendorIconContainer>
-        )}
-      </MainContentWrapper>
+      {!activeGameType && isMobileSize && <CardPrompt />}
+      {isMobileSize && <GameTypeTab />}
+      {isDesktopSize && <CategoryRenderer />}
     </MainWrapper>
   );
 };

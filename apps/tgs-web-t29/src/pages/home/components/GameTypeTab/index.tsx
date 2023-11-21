@@ -3,7 +3,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
-import useHomeGameTypeList from "@/hooks/home/useHomeGameTypeList";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
@@ -38,7 +38,7 @@ const TabContainer = styled.div`
 `;
 
 const GameTypeTab = () => {
-  const gameTypeList = useHomeGameTypeList();
+  const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();

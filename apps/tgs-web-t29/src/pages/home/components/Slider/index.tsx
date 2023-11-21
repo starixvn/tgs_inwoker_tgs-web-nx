@@ -19,16 +19,39 @@ const SlickImage = styled.img`
   height: auto;
 `;
 
-const settings = {
+const SlickDot = styled.div`
+  width: 5.7px;
+  height: 5.7px;
+  border-radius: 50%;
+  background: #CBDEED;
+`;
+
+const baseSettings = {
   dots: true,
   className: "center",
   centerMode: true,
   infinite: true,
   centerPadding: "0",
   slidesToShow: 1,
+  slidesToScroll: 1,
   speed: 500,
   arrows: false,
   autoplay: true,
+
+  appendDots: (dots: any) => (
+    <div
+      style={{
+        marginBottom: "30px",
+      }}
+    >
+      <ul>{dots}</ul>
+    </div>
+  ),
+  customPaging: (i: number) => {
+    return (
+      <SlickDot key={i} />
+    );
+  },
 };
 
 type Props = {
@@ -40,13 +63,17 @@ type Props = {
   title: string;
 };
 
-const Slider = () => {
+const Slider = ({
+  settings
+}: {
+  settings: { [key: string]: any };
+}) => {
   const { general } = useGeneralStore();
   const { isMobileSize } = useRwd();
-
+  const sliderSettings = { ...baseSettings, ...settings };
   return (
     <SlickWrapper>
-      <Slick {...settings}>
+      <Slick {...sliderSettings}>
         {general.banner.map((item: Props) => (
           <a href={item.navurl} key={item.id} target="_blank" rel="noreferrer">
             <SlickImage
