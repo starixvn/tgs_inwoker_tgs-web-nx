@@ -1,13 +1,11 @@
-import { ReactElement, useCallback } from "react";
+import React, { ReactElement, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
-import Header from "@/layouts/components/Header";
-import DialogHeader from "@/components/UI/Dialog/DialogHeader";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
+import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
+import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -15,8 +13,8 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`${HEADER_HEIGHT} 0 ${BOTTOM_APP_BAR_HEIGHT}`};
+  min-height: calc(100vh - ${DIALOG_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin: ${`${DIALOG_HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
 `;
@@ -39,8 +37,7 @@ const ProfileLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <Header />
-      <MenuDrawer />
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
 
       <ContentWrapper>
         <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />

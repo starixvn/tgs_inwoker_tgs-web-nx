@@ -5,18 +5,17 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.gray40};
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.blue20};
   padding: 12px;
   border-radius: 5px;
-  font-size: 0.937rem;
+  font-size: 0.875rem;
   line-height: 1.098rem;
   max-width: 450px;
   align-self: flex-start;
 `;
 
 const RowContainer = styled.div`
-  border-left: 6px solid ${({ theme }) => theme.primary};
+  border-left: 6px solid ${({ theme }) => theme.blue50};
   padding-left: 10px;
 
   &:first-child {
@@ -25,9 +24,11 @@ const RowContainer = styled.div`
 `;
 
 const Label = styled.div`
-  margin-bottom: 8px;
+  color: ${({ theme }) => theme.blue50};
 `;
-const Value = styled.div``;
+const Value = styled.div`
+  color: ${({ theme }) => theme.gray50};
+`;
 
 const WithdrawInfoCard = () => {
   const [minWithdrawLimit, setMinWithdrawLimit] = useState(0);

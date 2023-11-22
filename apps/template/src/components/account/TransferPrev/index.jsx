@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { RESET_WALLETRESULT, walletAction } from "@tgs-web-nx/core";
@@ -9,15 +8,7 @@ import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import TransferCard from "@/pages/transfer/components/components/TransferCard";
 import AutoTransferSwitch from "@/pages/transfer/components/components/AutoTransferSwitch";
 import WithdrawAllToMainWallet from "@/pages/withdrawal/components/WithdrawAllToMainWallet";
-
-const Container = styled.div`
-  width: 100%;
-  overflow: hidden;
-
-  & > * {
-    margin-bottom: 20px;
-  }
-`;
+import { Container } from "@/components/styled-component/Transfer";
 
 class Transfer extends Component {
   constructor(props) {
