@@ -55,22 +55,21 @@ export function useLogin() {
   };
 
   const handleLoginSuccess = async (username: string, needToRemember?: boolean) => {
-    const urlParams = new URLSearchParams(location.search);
-    if (urlParams.has("return_url")) {
-      // const returnValue = urlParams.get('return_url')
-      // if (returnValue) {
-      //   window.location.href =
-      //     returnValue + '?token=' + BlowFishEncryption.Encrypt(token)
-      // }
+    if (await shouldRedirectToProfile(username)) {
+      return redirectToProfile();
     }
 
-    if (await shouldRedirectToProfile(username)) {
-      redirectToProfile();
-    } else {
-      await fetchData();
-      handleLocalStorage(needToRemember || false, username);
-      redirectToHome();
+    await fetchData();
+    handleLocalStorage(needToRemember || false, username);
+
+    // handle return url
+    const urlParams = new URLSearchParams(location.search);
+    const returnUrl = urlParams.get("return_url");
+    if (returnUrl) {
+      return history.push(returnUrl);
     }
+
+    redirectToHome();
   };
 
   const shouldRedirectToProfile = async (username: string) => {
