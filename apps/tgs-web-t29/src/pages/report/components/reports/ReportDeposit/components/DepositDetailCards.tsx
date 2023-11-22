@@ -55,9 +55,6 @@ const DepositDetailCards = ({ transferDetails }: Props) => {
                       onClick={() => {
                         handleManualDeposit(id);
                       }}
-                      sx={{
-                        color: "black",
-                      }}
                     >
                       {i18n.t("deposit.uploadReceipt")}
                     </Button>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
 import Loading from "@/components/UI/Loading";
 import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
 import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
