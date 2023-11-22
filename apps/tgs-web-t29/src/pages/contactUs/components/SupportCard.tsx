@@ -8,13 +8,12 @@ import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 
 const SupportCardContainer = styled.div`
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: ${({ theme }) => theme.gray40};
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.blue20};
+  color: ${({ theme }) => theme.gray50};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.098rem;
