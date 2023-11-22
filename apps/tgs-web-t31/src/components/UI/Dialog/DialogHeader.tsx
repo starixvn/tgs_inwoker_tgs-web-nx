@@ -9,7 +9,7 @@ const DialogHeaderContainer = styled.div`
   height: 73px;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.mainDarkBackground};
+  background: ${({ theme }) => theme.sideMenu};
   display: flex;
   align-items: center;
   justify-content: center;

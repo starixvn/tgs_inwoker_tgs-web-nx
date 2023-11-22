@@ -9,14 +9,16 @@ import { media } from "@/theme/breakpoints";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
+  font-family: SF Pro;
+  font-size: 16px;
   font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0em;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 
   ${media.sm} {
     display: none;
@@ -58,8 +60,8 @@ const RegisterForm = () => {
           {i18n.t("web.register.contract")}
         </VerifyAgeContainer>
       </FormikForm>
-
       <RedirectToLoginHint />
+      {/* todo switch language component */}
     </AuthFormContainer>
   );
 };

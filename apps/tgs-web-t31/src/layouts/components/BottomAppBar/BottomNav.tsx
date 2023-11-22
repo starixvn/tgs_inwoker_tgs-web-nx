@@ -11,9 +11,10 @@ const BottomNavContainer = styled.div<{ $isSelected: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #bdbdbd;
+  color: ${({ theme }) => theme.accountBGC};
   padding: 10px 0;
   cursor: pointer;
+  padding:10px 24px;
 `;
 
 const NavLabel = styled.h6`
@@ -31,29 +32,12 @@ type Props = {
 const BottomNav = ({ bottomNavItem, onClick, isSelected }: Props) => {
   const { label, iconUrl, iconActiveUrl } = bottomNavItem;
 
-  if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
-    return (
-      <BottomNavContainer onClick={onClick} $isSelected={isSelected}>
-        <Icon
-          iconUrl={isSelected ? iconActiveUrl ?? iconUrl : iconUrl}
-          width={"64px"}
-          height={"64px"}
-          style={{
-            marginBottom: "6px",
-          }}
-        />
-
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
-
   return (
     <BottomNavContainer onClick={onClick} $isSelected={isSelected}>
       <Icon
         iconUrl={isSelected ? iconActiveUrl ?? iconUrl : iconUrl}
-        width={"26px"}
-        height={"26px"}
+        width={"24px"}
+        height={"24px"}
         style={{
           marginBottom: "6px",
         }}

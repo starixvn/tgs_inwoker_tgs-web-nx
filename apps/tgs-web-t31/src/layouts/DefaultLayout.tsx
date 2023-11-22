@@ -2,10 +2,10 @@ import { ReactElement } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
-import DeskTopHeader from "./components/Header/components/DeskTopHeader";
+import DeskTopHeader from "./components/Header/DesktopHeader";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
-import Header from "@/layouts/components/Header";
+import MobileHeader from "@/layouts/components/Header/MobileHeader";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { media } from "@/theme/breakpoints";
 import {
@@ -72,7 +72,7 @@ const DefaultLayout = ({ children }: Props) => {
 
   return (
     <DefaultLayoutContainer>
-      {isDesktopSize ? <DeskTopHeader /> : <Header />}
+      {isDesktopSize ? <DeskTopHeader /> : <MobileHeader />}
 
       <DashboardContainer>
         <MenuDrawer />

@@ -9,7 +9,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     color: theme.palette.common.white,
     fontSize: "1.125rem",
     fontWeight: 400,
-    border: "none",
+    border: `1px solid ${theme.palette.white30}`,
 
     "&:-webkit-autofill": {
       WebkitTextFillColor: `${theme.palette.common.white} !important`,

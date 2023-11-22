@@ -74,7 +74,7 @@ const FormikForm = ({
 
       <SubmitButton
         fullWidth={true}
-        style={{ margin: "24px 0" }}
+        style={{ marginTop: "24px" }}
         type={"submit"}
         disabled={isLoading}
       >

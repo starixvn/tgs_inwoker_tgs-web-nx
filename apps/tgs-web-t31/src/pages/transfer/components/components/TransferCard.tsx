@@ -7,7 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.tertiary};
+  background: ${({ theme }) => theme.iconLable};
   color: ${({ theme }) => theme.white};
   padding: 12px 15px;
   border-radius: 10px;
@@ -146,10 +146,6 @@ const TransferCard = ({
             placeholder={i18n.t("transfer.msgEnterAmount")}
             value={transferAmount}
             onChange={handleChangeTransferAmount}
-            sx={{
-              border: "1px solid white",
-              borderRadius: "30px",
-            }}
           />
         </ColContainer>
       </RowContainer>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 type Props = {
   imageUrl: string;
@@ -7,36 +8,49 @@ type Props = {
   onClick: () => void;
 };
 
-const Wrapper = styled.div<{
-  $imageUrl: string;
-  $text: string;
-  $isActive: boolean;
-}>`
-  cursor: pointer;
-  display: flex;
+const Wrapper = styled.div`
+  vertical-align: middle;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme, $isActive }) =>
-    $isActive ? "linear-gradient(270deg,#34363f,#48452c 80%,#5a5817)" : "transparent"};
-  margin-right: 5px;
+  padding: 6px 12px;
+  gap: 8px;
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const GameIcon = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
 `;
 
-const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.white)};
-  font-size: 0.6rem;
-  font-weight: 700;
+const Text = styled.div`
+  font-family: SF Pro;
+  font-size: 12px;
+  font-weight: 590;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
 `;
 
-const Tab = ({ imageUrl, text, isActive, onClick }: Props) => {
+const GameContainer = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const Tab = ({ imageUrl, text, onClick }: Props) => {
   return (
-    <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
-      <GameIcon src={imageUrl} alt={text} />
-      <Text $isActive={isActive}>{text}</Text>
+    <Wrapper onClick={onClick}>
+      <GameContainer>
+        <IconContainer>
+          <GameIcon src={imageUrl} alt={text} />
+        </IconContainer>
+        <Text>{text}</Text>
+      </GameContainer>
     </Wrapper>
   );
 };

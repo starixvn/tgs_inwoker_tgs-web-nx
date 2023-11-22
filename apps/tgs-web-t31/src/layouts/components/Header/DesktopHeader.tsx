@@ -11,7 +11,7 @@ import { i18n } from "@tgs-web-nx/utils";
 // import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 // import ContactButton from "./components/ContactButton";
 // import MenuButton from "./components/MenuButton";
-import List from "./DesktopMenuDrawer/components/MenuGameTypeList";
+import List from "./components/DesktopMenuDrawer/components/MenuGameTypeList";
 
 import { HEADER_HEIGHT } from "@/theme/constants";
 import announce from "@/assets/t31/images/header/Announce.png";

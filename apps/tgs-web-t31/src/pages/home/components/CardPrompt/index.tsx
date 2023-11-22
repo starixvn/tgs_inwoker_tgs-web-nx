@@ -8,9 +8,9 @@ const CardPromptContainer = styled.div`
   display: flex;
   align-items: center;
   align-self: stretch;
-  padding: 4px 10px;
+  padding: 4px 12px;
   width: 100%;
-  gap: 7px;
+  gap: 8px;
   border-radius: 30px;
   background-color: ${({ theme }) => theme.mainDarkBackground};
 
@@ -24,8 +24,8 @@ const CardPrompt = () => {
 
   return (
     <CardPromptContainer>
+      <OnlineUser />
       <Marquee />
-      {isMobileSize && <OnlineUser />}
     </CardPromptContainer>
   );
 };

@@ -3,11 +3,12 @@ import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { RouteCategoryEnum } from "@/router";
-import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
-import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
-import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
-import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
-import iconWithdrawal from "@/assets/t23/images/bottomNavBar/icon-withdrawal.svg";
+import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
+import iconPromo from "@/assets/t31/images/bottomNavBar/icon-promo.png";
+import iconHome from "@/assets/t31/images/bottomNavBar/icon-home.png";
+import iconProfile from "@/assets/t31/images/bottomNavBar/icon-profile.png";
+import iconDeposit from "@/assets/t31/images/bottomNavBar/icon-deposit.png";
+import iconWithdrawal from "@/assets/t31/images/bottomNavBar/icon-withdrawal.png";
 import { useRoute } from "@/hooks/useRoute";
 
 export enum NavTypeEnum {
@@ -33,13 +34,12 @@ export function useGetBottomNavItemList() {
     return [
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("common.home"),
-        iconUrl: iconHome,
-        iconActiveUrl: iconHome,
-        routePath: "/",
-        routeCategory: RouteCategoryEnum.HOME,
+        label: i18n.t("web.account.profile"),
+        iconUrl: iconProfile,
+        iconActiveUrl: iconProfile,
+        routePath: "/account",
+        routeCategory: RouteCategoryEnum.MINE,
       },
-
       {
         navType: NavTypeEnum.ITEM,
         label: i18n.t("common.promotion"),
@@ -49,7 +49,15 @@ export function useGetBottomNavItemList() {
         routeCategory: RouteCategoryEnum.PROMOTION,
       },
       {
-        navType: NavTypeEnum.BIG_ITEM,
+        navType: NavTypeEnum.ITEM,
+        label: i18n.t("common.home"),
+        iconUrl: iconHome,
+        iconActiveUrl: iconHome,
+        routePath: "/",
+        routeCategory: RouteCategoryEnum.HOME,
+      },
+      {
+        navType: NavTypeEnum.ITEM,
         label: i18n.t("common.deposit"),
         iconUrl: iconDeposit,
         iconActiveUrl: iconDeposit,
@@ -63,14 +71,6 @@ export function useGetBottomNavItemList() {
         iconActiveUrl: iconWithdrawal,
         routePath: "/withdrawal",
         routeCategory: RouteCategoryEnum.INBOX,
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        label: i18n.t("web.account.profile"),
-        iconUrl: iconProfile,
-        iconActiveUrl: iconProfile,
-        routePath: "/account",
-        routeCategory: RouteCategoryEnum.MINE,
       },
     ] as BottomNavItem[];
   }, []);

@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import AccountHeaderContent from "./components/AccountHeaderContent";
-import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
-import ContactButton from "./components/ContactButton";
+import { useHomeGameContext, useAuth } from "@tgs-web-nx/core/features";
+
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import userAvatar from "@/assets/t31/images/header/contextMenu/Member.png";
 import logOutIcon from "@/assets/t31/images/header/contextMenu/Log out.png";
+import MenuLanguageSwitch from "@/components/project/LanguageSwitch/index";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -30,13 +29,12 @@ const HeaderWrapper = styled.div`
   padding: 0px 12px 0px 12px;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
   z-index: 2;
 `;
 
 const LogoImgContainer = styled.div`
   height: 27px;
-  /* justify-self: start; */
   padding: 0 10px;
 
   & > img {
@@ -45,11 +43,9 @@ const LogoImgContainer = styled.div`
 `;
 
 const HeaderContentContainer = styled.div`
-  flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: end;
-  gap:8px;
+  gap: 8px;
 `;
 
 const UserAvatar = styled.img`
@@ -63,16 +59,21 @@ const LogOut = styled.img`
 `;
 
 const Header = () => {
+  const history = useHistory();
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isDesktopSize, isLargeDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
+  const { handleLogout } = useAuth();
+
+  const toggleLogin = useCallback(() => {
+    history.push("/login");
+  }, []);
 
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        {!isLargeDesktopSize && <MenuButton width="40px" height="40px" />}
+        <MenuButton width="40px" height="40px" />
         <Link to={""}>
           <LogoImgContainer>
             <img
@@ -82,13 +83,12 @@ const Header = () => {
             />
           </LogoImgContainer>
         </Link>
-
         <HeaderContentContainer>
-          {isDesktopSize ? null : <UserAvatar src={userAvatar} />}
-
-          {/* {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />} */}
-          {!noLoginAccount && <LogOut src={logOutIcon} alt={"log out"} />}
-          {!isDesktopSize && <ContactButton />}
+          <UserAvatar src={userAvatar} onClick={toggleLogin} />
+          <MenuLanguageSwitch />
+          {!noLoginAccount && (
+            <LogOut src={logOutIcon} alt={"log out"} onClick={() => handleLogout()} />
+          )}
         </HeaderContentContainer>
       </HeaderWrapper>
     </HeaderContainer>
