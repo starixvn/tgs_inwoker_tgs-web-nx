@@ -7,6 +7,7 @@ import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -52,6 +53,8 @@ const DialogLayout = ({ children }: Props) => {
         )}
         {children}
       </ContentWrapper>
+
+      <BottomAppBar />
     </DialogLayoutContainer>
   );
 };
