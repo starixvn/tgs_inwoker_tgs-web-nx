@@ -4,7 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import VendorCard from "@/pages/home/components/VendorCard";
+import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import { media } from "@/theme/breakpoints";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 
@@ -16,23 +16,20 @@ const Wrapper = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
-  width: calc(100% - 72px);
+  width: calc(100% - 78px);
   flex-shrink: 0;
+  gap: 6px;
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CategoryContent = styled.div`
+  margin-left: 6px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  width: 100%;
-  row-gap: 15px;
-  column-gap: 8px;
+  row-gap: 13px;
+  column-gap: 12px;
   align-self: stretch;
-
-  ${media.sm} {
-    gap: 20px;
-  }
 `;
 
 const LobbyCategory = () => {
@@ -89,10 +86,12 @@ const LobbyCategory = () => {
 
               if (gpCode === "BC") return null;
               return (
-                <VendorCard
+                <MobileVendorCard
                   key={gpCode}
+                  bgUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/mobile/${activeGameTypeKey}/bg.png`}
                   imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
+                    }assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
                   venderLogoUrl={`${import.meta.env.BASE_URL
                     }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
