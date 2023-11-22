@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import MemberMenuHeader from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenuHeader";
-import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { theme } from "@/theme";
 
 const MemberMenuContainer = styled.div``;

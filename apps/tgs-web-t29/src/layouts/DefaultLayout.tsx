@@ -7,10 +7,15 @@ import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { media } from "@/theme/breakpoints";
 import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
+import bg from "@/assets/t29/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.white};
+
+  ${media.sm} {
+    background: url(${bg});
+  }
 `;
 
 const DashboardContainer = styled.div`

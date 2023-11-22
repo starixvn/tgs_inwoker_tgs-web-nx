@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
+import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 
 const NavCardContainer = styled.div`
   position: relative;
@@ -20,11 +20,14 @@ const NavCardContainer = styled.div`
   -webkit-transition-duration: 0.4s; /* Safari */
   overflow: visible;
 
-  ${media.sm} {
-    background: ${({ theme }) => theme.mainBackground};
-    //width: calc((100% - 7 * 8px) / 8);
+  &:hover {
+    background: ${({ theme }) => theme.gray20};
+
+    ${media.sm} {
+      background: ${({ theme }) => theme.mainBackground};
+      //width: calc((100% - 7 * 8px) / 8);
+    }
   }
-}
 `;
 
 type Props = {
