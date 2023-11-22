@@ -20,6 +20,8 @@ declare module "@mui/material/styles/createPalette" {
     blue30: string;
     blue40: string;
     blue50: string;
+    blue60: string;
+    blue70: string;
     gray10: string;
     gray20: string;
     gray30: string;
@@ -60,6 +62,8 @@ const muiTheme = createTheme({
     blue30: theme.blue30,
     blue40: theme.blue40,
     blue50: theme.blue50,
+    blue60: theme.blue60,
+    blue70: theme.blue70,
     gray10: theme.gray10,
     gray20: theme.gray20,
     gray30: theme.gray30,

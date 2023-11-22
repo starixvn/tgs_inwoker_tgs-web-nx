@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
-import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { theme } from "@/theme";
 
-const MemberMenuContainer = styled.div``;
+const MemberMenuContainer = styled.div`
+  background: ${({ theme }) => theme.blue50};
+`;
 
 type MemberMenuItemProps = {
   $isActive: boolean;
@@ -19,14 +20,14 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   align-items: center;
   gap: 10px;
   background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.gray30 : theme.gray60};
+    $isActive ? theme.gray30 : theme.blue50};
   color: ${({ $isActive, theme }: MemberMenuItemProps) =>
     $isActive ? theme.primary : theme.white};
   cursor: pointer;
 
   &:hover {
-    background: ${({ theme }) => theme.gray30};
-    color: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.blue40};
+    color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -56,7 +57,11 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
       {accountNavItemList.map((navItem) => {
         return (
           <MemberMenuItem key={navItem.key} $isActive={false} onClick={() => handleClick(navItem)}>
-            <Icon iconUrl={navItem.iconUrl} width={"24px"} height={"24px"} />
+            <Icon
+              iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
+              width={"24px"}
+              height={"24px"}
+            />
             <span className={"label"}>{navItem.label}</span>
           </MemberMenuItem>
         );

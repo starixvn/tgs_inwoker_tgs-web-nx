@@ -5,8 +5,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
-import { NavItem } from "@/hooks/account/useAccountNavigations";
-import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const HeaderGameTypesContainer = styled.div`
   margin-right: auto;

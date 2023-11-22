@@ -4,7 +4,7 @@ import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useGameStore, useWalletStore } from "@tgs-web-nx/core";
-import refreshIcon from "@/assets/t33/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -24,7 +24,7 @@ const Container = styled.div`
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
-  background: ${({ theme }) => theme.gray60};
+  background: ${({ theme }) => theme.mainBackground};
   margin-bottom: 20px;
 `;
 
@@ -38,7 +38,7 @@ const PlayerInfoContainer = styled.div`
 const PlayerName = styled.div`
   font-size: 2rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.blue60};
 `;
 
 const WalletsWrapper = styled.div`
@@ -61,13 +61,14 @@ const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
   font-weight: 700;
   line-height: 1.245rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
   white-space: nowrap;
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
-  font-size: 2.125rem;
-  color: ${({ theme }) => theme.white};
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.blue60};
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -148,7 +149,7 @@ const UserWalletInfo = () => {
 
       <WalletsWrapper>
         <MainWalletContainer>
-          <MainAccountLabel>{i18n.t("web.account.header.mainWallet")}:</MainAccountLabel>
+          <MainAccountLabel>{i18n.t("web.account.header.mainWallet")}</MainAccountLabel>
           <AmountContainer>
             {isLoading ? (
               <span>-</span>
@@ -167,7 +168,7 @@ const UserWalletInfo = () => {
         </MainWalletContainer>
         {game.containTransferWallet && (
           <MainWalletContainer>
-            <MainAccountLabel>{i18n.t("web.account.header.allGameWallet")}:</MainAccountLabel>
+            <MainAccountLabel>{i18n.t("web.account.header.allGameWallet")}</MainAccountLabel>
             <AmountContainer>
               {isLoading ? (
                 <span>-</span>
@@ -184,7 +185,7 @@ const UserWalletInfo = () => {
           </MainWalletContainer>
         )}
         <MainWalletContainer>
-          <MainAccountLabel>{i18n.t("web.account.header.total")}:</MainAccountLabel>
+          <MainAccountLabel>{i18n.t("web.account.header.total")}</MainAccountLabel>
           <AmountContainer>
             {isLoading ? (
               <span>-</span>

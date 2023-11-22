@@ -5,10 +5,15 @@ import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
 import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
+import bg from "@/assets/t29/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.white};
+
+  ${media.sm} {
+    background: url(${bg});
+  }
 `;
 
 const DashboardContainer = styled.div`
@@ -37,6 +42,7 @@ const ChildrenWrapper = styled.div`
   justify-content: center;
   ${media.sm} {
     padding-bottom: 0;
+    margin-top: 20px;
   }
 `;
 
@@ -54,8 +60,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
             <DarkMemberMenu
               handleCloseContextMenu={() => {}}
               style={{
-                width: "222px",
-                margin: "22px 0 0 22px",
+                width: "200px",
                 flexShrink: 0,
               }}
             />
