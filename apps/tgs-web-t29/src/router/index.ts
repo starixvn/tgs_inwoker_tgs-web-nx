@@ -31,6 +31,7 @@ import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import ProfileLayout from "@/layouts/ProfileLayout";
 import AppDownloadPage from "@/pages/download/DownloadPage";
+import HomeLayout from "@/layouts/HomeLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -55,21 +56,21 @@ const routes: Route[] = [
     path: "/",
     component: MainPage,
     category: RouteCategoryEnum.HOME,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main",
     component: MainPage,
     category: RouteCategoryEnum.HOME,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main/:page",
     component: MainPage,
     category: RouteCategoryEnum.HOME,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
