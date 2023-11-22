@@ -156,16 +156,19 @@ const HomePage = () => {
 
       <MainContentWrapper>
         {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
-        {isLogin ? (
-          isMobileSize && <MemberInfo />
-        ) : (
-          <ButtonContainer>
-            <Button onClick={() => history.push("/login")}>{i18n.t("common.login")}</Button>
-            <RegisterButton onClick={() => history.push("/register")}>
-              {i18n.t("common.register")}
-            </RegisterButton>
-          </ButtonContainer>
-        )}
+
+        {isMobileSize ? (
+          isLogin ? (
+            <MemberInfo />
+          ) : (
+            <ButtonContainer>
+              <Button onClick={() => history.push("/login")}>{i18n.t("common.login")}</Button>
+              <RegisterButton onClick={() => history.push("/register")}>
+                {i18n.t("common.register")}
+              </RegisterButton>
+            </ButtonContainer>
+          )
+        ) : null}
         {isMobileSize && <GameTypeTab />}
 
         <CategoryRenderer />

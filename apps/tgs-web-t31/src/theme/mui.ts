@@ -61,7 +61,7 @@ const muiTheme = createTheme({
     },
     action: {
       disabledBackground: theme.white30,
-      disabled: theme.white,
+      disabled: theme.white60,
     },
     text: {
       primary: theme.white,

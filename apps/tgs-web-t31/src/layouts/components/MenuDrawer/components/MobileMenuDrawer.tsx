@@ -141,6 +141,7 @@ const MobileMenuDrawer = () => {
   }, []);
 
   const handleClickNav = useCallback((navItem: GameTypeItem) => {
+    history.push('/')
     handleToggleMenu(false);
     handleChangeGameType(navItem.gameType);
   }, []);

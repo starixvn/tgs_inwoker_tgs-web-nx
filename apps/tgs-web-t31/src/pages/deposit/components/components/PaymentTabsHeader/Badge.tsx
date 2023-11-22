@@ -15,7 +15,7 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   text-align: center;
   color: white;
   border: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? `1px solid ${theme.primary}` : `1px solid ${theme.white}`};
+    $isActive ? `1px solid ${theme.red}` : `1px solid ${theme.white50}`};
 
   font-size: 0.75rem;
   font-weight: 400;
