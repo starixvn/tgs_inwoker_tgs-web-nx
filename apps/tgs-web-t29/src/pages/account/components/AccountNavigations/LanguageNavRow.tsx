@@ -8,12 +8,11 @@ const NavCardContainer = styled.div`
   position: relative;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: calc((100% - 3 * 8px) / 4);
-  padding: 28px;
-  color: ${({ theme }) => theme.white};
-  font-size: 1rem;
+  gap: 10px;
+  padding: 10px 20px;
+  color: ${({ theme }) => theme.gray50};
+  font-size: 0.875rem;
   font-weight: 400;
   cursor: pointer;
   white-space: nowrap;
@@ -32,25 +31,18 @@ type Props = {
   navItem: NavItem;
   handleClick: (navItem: NavItem) => void;
 };
-const NavCard = ({ navItem, handleClick }: Props) => {
+const LanguageNavRow = ({ navItem, handleClick }: Props) => {
   const { label, iconUrl, iconSecondaryUrl } = navItem;
   const { isDesktopSize } = useRwd();
 
   const imageUrl = !isDesktopSize ? iconSecondaryUrl ?? iconUrl : iconUrl;
   return (
     <NavCardContainer onClick={() => handleClick(navItem)}>
-      <Icon
-        iconUrl={imageUrl}
-        width={isDesktopSize ? "40px" : "50px"}
-        height={isDesktopSize ? "40px" : "50px"}
-        style={{
-          marginBottom: "16px",
-        }}
-      />
+      <Icon iconUrl={imageUrl} width={"24px"} height={"24px"} />
 
       <span>{label}</span>
     </NavCardContainer>
   );
 };
 
-export default NavCard;
+export default LanguageNavRow;

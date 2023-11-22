@@ -11,18 +11,13 @@ type BalanceTrackerContainerProps = {
 };
 const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
   position: relative;
-  height: 35px;
   background: rgba(255, 255, 255, 0.2);
   color: ${({ theme }) => theme.black};
-  border-radius: 50px;
-  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.732rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  line-height: 1.318rem;
-  cursor: pointer;
 `;
 
 const BalanceContainer = styled.div`
@@ -33,24 +28,6 @@ const BalanceContainer = styled.div`
 
   & span {
     white-space: nowrap;
-  }
-`;
-
-const RefreshButtonWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: ${({ theme }) => theme.primary};
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s linear;
-
-  &:hover {
-    opacity: 1;
   }
 `;
 
@@ -76,9 +53,7 @@ const BalanceTracker = ({ size, ...others }: Props) => {
         <span>${currentBalance}</span>
       </BalanceContainer>
 
-      <RefreshButtonWrapper onClick={() => handleRefreshBalance()}>
-        <RefreshButton handleClick={() => Promise.resolve()} />
-      </RefreshButtonWrapper>
+      <RefreshButton handleClick={() => handleRefreshBalance()} />
     </BalanceTrackerContainer>
   );
 };

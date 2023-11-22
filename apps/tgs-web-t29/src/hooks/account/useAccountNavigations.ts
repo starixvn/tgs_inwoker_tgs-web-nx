@@ -1,27 +1,16 @@
 import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth } from "@tgs-web-nx/core/features";
-import profileImg from "@/assets/t23/images/account/navItem/icon-profile.svg";
-import depositImg from "@/assets/t23/images/account/navItem/icon-deposit.svg";
-import withdrawImg from "@/assets/t23/images/account/navItem/icon-withdraw.svg";
-import transferImg from "@/assets/t23/images/account/navItem/icon-transfer.svg";
-import reportImg from "@/assets/t23/images/account/navItem/icon-report.svg";
-import inboxImg from "@/assets/t23/images/account/navItem/icon-inbox.svg";
-import affiliateImg from "@/assets/t23/images/account/navItem/icon-affiliate.svg";
-import downloadImg from "@/assets/t23/images/account/navItem/icon-download.svg";
-import contactImg from "@/assets/t23/images/account/navItem/icon-contact.svg";
-
-import profileSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-profile.svg";
-import depositSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-deposit.svg";
-import withdrawSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-withdrawal.svg";
-import transferSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-transfer.svg";
-import reportSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-report.svg";
-import inboxSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-inbox.svg";
-import affiliateSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-affiliate.svg";
-import downloadSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-download.svg";
-import contactSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-contact.svg";
-import vipSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-vip.svg";
-import logoutSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-logout.svg";
+import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
+import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
+import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
+import transferImg from "@/assets/t29/images/account/navItem/icon-transfer.svg";
+import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
+import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
+import affiliateImg from "@/assets/t29/images/account/navItem/icon-affiliate.svg";
+import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
+import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
+import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
 
 export enum NavCardKey {
   PROFILE,
@@ -66,7 +55,6 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("wap.main.my"),
         iconUrl: profileImg,
-        iconSecondaryUrl: profileSecondaryImg,
         routePath: "/profile",
       },
       {
@@ -74,7 +62,6 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("common.deposit"),
         iconUrl: depositImg,
-        iconSecondaryUrl: depositSecondaryImg,
         routePath: "/deposit",
       },
       {
@@ -82,7 +69,6 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("common.withdrawal"),
         iconUrl: withdrawImg,
-        iconSecondaryUrl: withdrawSecondaryImg,
         routePath: "/withdrawal",
       },
       {
@@ -90,15 +76,13 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("common.transfer"),
         iconUrl: transferImg,
-        iconSecondaryUrl: transferSecondaryImg,
         routePath: "/transfer",
       },
       {
         key: NavCardKey.VIP,
         navType: "route",
         label: "VIP",
-        iconUrl: vipSecondaryImg,
-        iconSecondaryUrl: vipSecondaryImg,
+        iconUrl: vipImg,
         routePath: "/transfer",
       },
       {
@@ -106,7 +90,6 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("report.title"),
         iconUrl: reportImg,
-        iconSecondaryUrl: reportSecondaryImg,
         routePath: "/report",
       },
       {
@@ -114,7 +97,6 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("wap.main.account.inbox"),
         iconUrl: inboxImg,
-        iconSecondaryUrl: inboxSecondaryImg,
         routePath: "/inbox",
       },
       {
@@ -122,7 +104,6 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("wap.main.account.affiliate"),
         iconUrl: affiliateImg,
-        iconSecondaryUrl: affiliateSecondaryImg,
         routePath: "/affiliate",
       },
       {
@@ -130,7 +111,6 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("common.contact"),
         iconUrl: contactImg,
-        iconSecondaryUrl: contactSecondaryImg,
         routePath: "/support",
       },
       {
@@ -138,19 +118,17 @@ export function useAccountNavigations() {
         navType: "route",
         label: i18n.t("wap.main.account.appDownload"),
         iconUrl: downloadImg,
-        iconSecondaryUrl: downloadSecondaryImg,
         routePath: "/appDownload",
       },
-      {
-        key: NavCardKey.LOGOUT,
-        navType: "action",
-        label: i18n.t("web.header.logout"),
-        iconUrl: logoutSecondaryImg,
-        iconSecondaryUrl: logoutSecondaryImg,
-        callback: () => {
-          handleLogout();
-        },
-      },
+      // {
+      //   key: NavCardKey.LOGOUT,
+      //   navType: "action",
+      //   label: i18n.t("web.header.logout"),
+      //   iconUrl: logoutSecondaryImg,
+      //   callback: () => {
+      //     handleLogout();
+      //   },
+      // },
     ];
   }, []);
 
