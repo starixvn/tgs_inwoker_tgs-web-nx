@@ -1,7 +1,6 @@
-import { ReactElement, useCallback } from "react";
+import { ReactElement } from "react";
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHistory } from "react-router-dom";
+import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { HEADER_HEIGHT } from "@/theme/constants";
@@ -25,13 +24,9 @@ type Props = {
   children: ReactElement;
 };
 const AuthDialogLayout = ({ children }: Props) => {
-  const history = useHistory();
+  const { handleCloseDialog } = useAuthDialogLayout();
   const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
-
-  const handleCloseDialog = useCallback(() => {
-    history.goBack();
-  }, [history]);
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;

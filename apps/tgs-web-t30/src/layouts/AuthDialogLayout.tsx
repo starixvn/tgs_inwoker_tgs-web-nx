@@ -1,6 +1,6 @@
 import { ReactElement, useCallback } from "react";
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { Close as CloseIcon } from "@mui/icons-material";
@@ -40,23 +40,8 @@ type Props = {
   children: ReactElement;
 };
 const AuthDialogLayout = ({ children }: Props) => {
-  const history = useHistory();
-  const location = useLocation();
+  const { handleCloseDialog } = useAuthDialogLayout();
   const { isDesktopSize } = useRwd();
-
-  const pathname = location.pathname;
-  const handleCloseDialog = useCallback(() => {
-    const profileRegex = /\/profile\//;
-    if (profileRegex.test(pathname)) {
-      return history.push("/profile");
-    }
-
-    if (pathname === "/profile") {
-      return history.push("/account");
-    }
-
-    history.push("/");
-  }, [pathname]);
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;
