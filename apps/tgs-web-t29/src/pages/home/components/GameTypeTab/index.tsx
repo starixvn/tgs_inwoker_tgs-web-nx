@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const TabContainer = styled.div`
+  overflow-y: scroll;
+  height: 100%;
   display: flex;
   flex-direction: column;
   width: 72px;

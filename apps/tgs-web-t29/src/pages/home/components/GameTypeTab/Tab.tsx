@@ -14,6 +14,7 @@ const Wrapper = styled.div<{
   $text: string;
   $isActive: boolean;
 }>`
+  flex-shrink: 0;
   cursor: pointer;
   display: inline-flex;
   flex-direction: column;

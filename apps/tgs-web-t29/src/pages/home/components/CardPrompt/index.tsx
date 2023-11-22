@@ -3,6 +3,7 @@ import Marquee from "./components/Marquee";
 import OnlineUser from "./components/OnlineUser";
 
 const CardPromptContainer = styled.div`
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   align-self: stretch;

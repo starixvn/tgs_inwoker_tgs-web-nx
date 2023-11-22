@@ -5,7 +5,6 @@ import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
-import { media } from "@/theme/breakpoints";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 
 const Wrapper = styled.div`
@@ -16,6 +15,8 @@ const Wrapper = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
+  overflow-y: scroll;
+  height: 100%;
   width: calc(100% - 78px);
   flex-shrink: 0;
   gap: 6px;

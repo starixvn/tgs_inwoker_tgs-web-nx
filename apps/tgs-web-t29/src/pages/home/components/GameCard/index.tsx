@@ -8,8 +8,8 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t33/images/home/play.svg";
-import maintenanceIcon from "@/assets/t33/images/home/maintenance.svg";
+import playIcon from "@/assets/t29/images/home/play.svg";
+import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -37,12 +37,12 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 
 const NewTag = styled.div`
   position: absolute;
-  top: 8px;
-  left: 0;
-  width: 52px;
-  height: 27px;
+  top: 5px;
+  left: 3px;
+  width: 53px;
+  height: 26px;
   padding: 4px 10px;
-  border-radius: 0px 50px 50px 0px;
+  border-radius: 50px;
   background: ${(props) => props.theme.red};
   color: ${(props) => props.theme.white};
   display: flex;
@@ -54,13 +54,13 @@ const NewTag = styled.div`
 
 const HotTag = styled.div`
   position: absolute;
-  bottom: 8px;
+  bottom: 7px;
   left: 0;
-  width: 52px;
-  height: 27px;
+  width: 53px;
+  height: 26px;
   padding: 4px 10px;
-  border-radius: 0px 50px 50px 0px;
-  background: ${(props) => props.theme.primary};
+  border-radius: 50px;
+  background: ${(props) => props.theme.green};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
@@ -74,11 +74,12 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 6px);
-  max-width: 130px;
+  width: calc(50% - 6px);
+  max-width: 161px;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 130 / 130;
+  aspect-ratio: 161 / 161;
+  border-radius: 10px;
 
   ${media.sm} {
     width: calc(14.29% - 11.4px);

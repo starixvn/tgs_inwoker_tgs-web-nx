@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 
 const Wrapper = styled.div<{
@@ -16,13 +15,13 @@ const Wrapper = styled.div<{
   max-width: none;
   height: 26px;
   margin-right: 10px;
-  border-radius: 20px;
+  border-radius: 50px;
   box-sizing: border-box;
   user-select: none;
   background-color: ${({ theme, $hasBackground }) =>
     $hasBackground ? theme.primary : theme.mainBackground};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
-  padding: ${({ $isShowIcon }) => ($isShowIcon ? "0px" : "4px 6px")};
+  /* padding: ${({ $isShowIcon }) => ($isShowIcon ? "0px" : "0px 6px")}; */
 
   ${media.sm} {
     cursor: pointer;
@@ -35,8 +34,8 @@ const Wrapper = styled.div<{
 const Text = styled.div<{
   $isActive: boolean;
 }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.tertiary)};
-  font-size: 0.875rem;
+  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.gray50)};
+  font-size: 1rem;
   font-weight: 700;
 `;
 

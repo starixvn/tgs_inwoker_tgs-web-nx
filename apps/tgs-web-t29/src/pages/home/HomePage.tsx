@@ -13,6 +13,7 @@ import Banner from "@/pages/home/components/Banner";
 
 const MainWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -21,7 +22,8 @@ const MainWrapper = styled.div`
   padding: 0px 8px 12px 8px;
   gap: 6px;
   flex-shrink: 0;
-
+  flex: 1;
+  
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
@@ -30,12 +32,14 @@ const MainWrapper = styled.div`
 `;
 
 const SliderWrapper = styled.div`
+  flex-shrink: 0;
   width: 100%;
   /* to-do: 最大高度限制問題 */
 `;
 
 const MainContentWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -43,7 +47,8 @@ const MainContentWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   gap: 6px;
   flex-shrink: 0;
-
+  flex: 1;
+  
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;

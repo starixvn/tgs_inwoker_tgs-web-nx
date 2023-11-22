@@ -36,7 +36,6 @@ const VendorCardBg = styled.div<{ $bgUrl: string }>`
   border-radius: 10px;
   background-image: url(${({ $bgUrl }) => $bgUrl});
   background-size: cover;
-  border-radius: 10px;
 `;
 
 const VenderNameInfo = styled.div`
