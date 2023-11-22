@@ -1,6 +1,6 @@
 import { i18n } from "@tgs-web-nx/utils";
 
-let fontFamily = "Roboto, sans-serif";
+let fontFamily = "Arial, sans-serif";
 
 if (i18n.language === "zh-CN") {
   fontFamily = "'Noto Sans SC', Microsoft Yahei, '微软雅黑', STXihei, '华文细黑'";

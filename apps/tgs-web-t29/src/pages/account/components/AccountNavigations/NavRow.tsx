@@ -35,10 +35,9 @@ type Props = {
   handleClick: (navItem: NavItem) => void;
 };
 const NavRow = ({ navItem, handleClick }: Props) => {
-  const { label, iconUrl, iconSecondaryUrl } = navItem;
-  const { isDesktopSize } = useRwd();
+  const { label, iconUrl } = navItem;
 
-  const imageUrl = !isDesktopSize ? iconSecondaryUrl ?? iconUrl : iconUrl;
+  const imageUrl = iconUrl;
   return (
     <NavCardContainer onClick={() => handleClick(navItem)}>
       <Icon iconUrl={imageUrl} width={"24px"} height={"24px"} />

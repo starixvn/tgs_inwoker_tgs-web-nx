@@ -193,11 +193,11 @@ code {
     }
 
     input {
-        font-family:Roboto, sans-serif;
+        font-family:Arial, sans-serif;
     }
 
     body {
-        font-family:  Roboto, sans-serif;
+        font-family:  Arial, sans-serif;
         background-color: #ececec;
         background-repeat: no-repeat;
         -webkit-text-size-adjust: 100%;
@@ -353,7 +353,7 @@ code {
 @media (min-width: 961px) {
     /* tablet, landscape iPad, lo-res laptops ands desktops */
     body {
-        font-family:  Roboto, sans-serif;
+        font-family:  Arial, sans-serif;
     }
 
     html {
