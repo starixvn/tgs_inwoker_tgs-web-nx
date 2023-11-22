@@ -60,7 +60,7 @@ const DownloadCardContainer = styled.div`
   line-height: 19.09px;
   padding: 0 12px;
   color: ${({ theme }) => theme.iconLable};
-  border-bottom: 1px solid ${({ theme }) => theme.white30};
+  border-bottom: 1px solid ${({ theme }) => theme.black30};
   & > div:first-child {
     margin-right: 10px;
   }
