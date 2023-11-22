@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
+import { Button } from "@/components/UI/Button";
+import iconLogout from "@/assets/t29/images/account/navItemWhite/icon-logout.svg";
 
 const MemberMenuContainer = styled.div`
   background: ${({ theme }) => theme.blue50};
@@ -15,7 +18,7 @@ type MemberMenuItemProps = {
 };
 
 const MemberMenuItem = styled.div<MemberMenuItemProps>`
-  padding: 10px;
+  padding: 10px 24px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -66,6 +69,16 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
           </MemberMenuItem>
         );
       })}
+
+      <Button
+        sx={{
+          margin: " 15px 10px 0",
+          width: "180px",
+        }}
+      >
+        <Icon iconUrl={iconLogout} width={"24px"} height={"24px"} style={{ marginRight: "10px" }} />
+        {i18n.t("web.header.logout")}
+      </Button>
     </MemberMenuContainer>
   );
 };

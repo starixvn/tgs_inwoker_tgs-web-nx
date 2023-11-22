@@ -2,6 +2,7 @@ import React from "react";
 import { Button as MuiButton, ButtonProps, styled as muiStyled } from "@mui/material";
 
 export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
+  borderRadius: "0",
   whiteSpace: "nowrap",
   padding: "10px",
   fontSize: "1rem",
