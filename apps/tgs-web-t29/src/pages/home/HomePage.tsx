@@ -40,7 +40,6 @@ const MainContentWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  padding: 0px 8px 12px 8px;
   gap: 6px;
   flex-shrink: 0;
 
@@ -48,7 +47,6 @@ const MainContentWrapper = styled.div`
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
-    padding: unset;
   }
 `;
 
@@ -73,7 +71,7 @@ const HomePage = () => {
           {isDesktopSize && <Banner />}
         </SliderWrapper>
       )}
-      {!activeGameType && isMobileSize && <CardPrompt />}
+      {isMobileSize && <CardPrompt />}
 
       <MainContentWrapper>
         <CategoryRenderer />

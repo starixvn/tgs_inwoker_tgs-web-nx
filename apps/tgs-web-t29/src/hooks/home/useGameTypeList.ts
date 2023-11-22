@@ -24,13 +24,13 @@ export const useGameTypeList = () => {
 
   useEffect(() => {
     const gameTypeList: GameTypeItem[] = [
-      // {
-      //   key: "home",
-      //   iconUrl: home,
-      //   text: i18n.t("common.home"),
-      //   fontSize: "small",
-      //   gameType: GameTypeEnum.NONE,
-      // },
+      {
+        key: "sports",
+        iconUrl: sports,
+        text: i18n.t("common.sports"),
+        fontSize: "small",
+        gameType: GameTypeEnum.SPORTS,
+      },
       {
         key: "slots",
         iconUrl: slot,
@@ -44,27 +44,6 @@ export const useGameTypeList = () => {
         text: i18n.t("common.live"),
         fontSize: "smaller",
         gameType: GameTypeEnum.LIVELOBBY,
-      },
-      {
-        key: "lottery",
-        iconUrl: lottery,
-        text: i18n.t("common.lottery"),
-        fontSize: "small",
-        gameType: GameTypeEnum.LOTTERYLOBBY,
-      },
-      {
-        key: "fishing",
-        iconUrl: fishing,
-        text: i18n.t("common.fish"),
-        fontSize: "small",
-        gameType: GameTypeEnum.FISH,
-      },
-      {
-        key: "sports",
-        iconUrl: sports,
-        text: i18n.t("common.sports"),
-        fontSize: "small",
-        gameType: GameTypeEnum.SPORTS,
       },
       {
         key: "sabong",
@@ -81,11 +60,25 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.TABLEGAME,
       },
       {
+        key: "fishing",
+        iconUrl: fishing,
+        text: i18n.t("common.fish"),
+        fontSize: "small",
+        gameType: GameTypeEnum.FISH,
+      },
+      {
         key: "cardGame",
         iconUrl: cardgame,
         text: i18n.t("common.chess"),
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
+      },
+      {
+        key: "lottery",
+        iconUrl: lottery,
+        text: i18n.t("common.lottery"),
+        fontSize: "small",
+        gameType: GameTypeEnum.LOTTERYLOBBY,
       },
       {
         key: "esports",

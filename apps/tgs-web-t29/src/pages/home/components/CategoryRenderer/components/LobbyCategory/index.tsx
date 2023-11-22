@@ -6,9 +6,17 @@ import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import VendorCard from "@/pages/home/components/VendorCard";
 import { media } from "@/theme/breakpoints";
+import GameTypeTab from "@/pages/home/components/GameTypeTab";
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+`;
 
 const CategoryContentWrapper = styled.div`
-  width: 100%;
+  width: calc(100% - 72px);
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
 `;
@@ -71,31 +79,32 @@ const LobbyCategory = () => {
   const hasMappingData = !!lobbyCategoryList.length;
 
   return (
-    <CategoryContentWrapper>
-      <CategoryContent>
-        {hasMappingData &&
-          lobbyCategoryList.map((provider) => {
-            const { code: gpCode, status, name } = provider;
+    <Wrapper>
+      <GameTypeTab />
+      <CategoryContentWrapper>
+        <CategoryContent>
+          {hasMappingData &&
+            lobbyCategoryList.map((provider) => {
+              const { code: gpCode, status, name } = provider;
 
-            if (gpCode === "BC") return null;
-            return (
-              <VendorCard
-                key={gpCode}
-                imageUrl={`${
-                  import.meta.env.BASE_URL
-                }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${
-                  import.meta.env.BASE_URL
-                }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                launchGame={() => launchLobbyGame(gpCode)}
-                status={status}
-                venderName={name}
-              />
-            );
-          })}
-        {!hasMappingData && <div>No data</div>}
-      </CategoryContent>
-    </CategoryContentWrapper>
+              if (gpCode === "BC") return null;
+              return (
+                <VendorCard
+                  key={gpCode}
+                  imageUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  launchGame={() => launchLobbyGame(gpCode)}
+                  status={status}
+                  venderName={name}
+                />
+              );
+            })}
+          {!hasMappingData && <div>No data</div>}
+        </CategoryContent>
+      </CategoryContentWrapper>
+    </Wrapper>
   );
 };
 

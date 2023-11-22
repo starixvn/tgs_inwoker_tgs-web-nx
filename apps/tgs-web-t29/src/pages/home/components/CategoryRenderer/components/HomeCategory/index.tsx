@@ -5,17 +5,6 @@ import sport from "@/assets/t29/images/home/home_sport.png";
 import live_casino from "@/assets/t29/images/home/home_live_casino.png";
 import slot from "@/assets/t29/images/home/home_slot.png";
 import lottery from "@/assets/t29/images/home/home_lottery.png";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
-
-const MobileContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 15px 0px;
-
-  color: ${({ theme }) => theme.gray50};
-`;
 
 const DesktopContainer = styled.div`
   display: flex;
@@ -84,12 +73,6 @@ const HomeCategory = () => {
       </DesktopContainer>
     );
   }
-
-  return (
-    <MobileContainer>
-      <GameTypeTab />
-    </MobileContainer>
-  );
 };
 
 export default HomeCategory;
