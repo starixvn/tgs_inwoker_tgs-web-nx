@@ -5,6 +5,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
 
 const SupportCardContainer = styled.div`
   border-radius: 30px;
@@ -12,7 +13,7 @@ const SupportCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: #2e3237;
+  background: ${({ theme }) => theme.iconLable};
   color: ${({ theme }) => theme.white};
   font-size: 1rem;
   font-weight: 400;
@@ -65,7 +66,7 @@ const IconContainer = styled.div`
   width: 55px;
   height: 55px;
   border-radius: 28px;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.white60};
   border: 11px solid black;
   display: flex;
   align-items: center;
@@ -116,7 +117,15 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
       <Button
         fullWidth
         sx={{
-          color: "black",
+          height: "30px",
+          color: theme.white,
+          borderRadius: "4px",
+          fontFamily: "SF Pro",
+          fontSize: "12px",
+          fontWeight: "400",
+          lineHeight: "14px",
+          letterSpacing: "0em",
+          textAlign: "center",
         }}
       >
         {i18n.t("common.contact")}

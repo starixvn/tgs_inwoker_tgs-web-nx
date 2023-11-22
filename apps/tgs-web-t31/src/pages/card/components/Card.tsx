@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import deleteIcon from "@/assets/t18/images/card/delete.svg";
+import deleteIcon from "@/assets/t31/images/card/delete.png";
 
 const CardContainer = styled.div`
   padding: 13px 20px;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.iconLable};
   display: flex;
   flex-direction: column;
   gap: 8px;

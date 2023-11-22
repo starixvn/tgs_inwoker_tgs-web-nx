@@ -11,9 +11,6 @@ const ScrollableContainer = styled.div`
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  background-color: ${(props) => props.theme.primaryDark};
-  color: ${(props) => props.theme.white};
-  box-sizing: border-box;
   gap: 12px;
   
   ${media.sm} {
@@ -49,10 +46,8 @@ const LevelTableWrapper = styled.div`
   height: 100%;
 
   ${media.sm} {
-    width: ${MAIN_CONTENT_MAX_WIDTH};
+    width: 100%;
     margin: 0 auto;
-    background: ${(props) => props.theme.mainLightBackground};
-    border-radius: 10px;
   }
 `;
 
@@ -64,13 +59,13 @@ const LevelTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 12px 15px 12px 15px;
-  background: ${(props) => props.theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.subBackground};
+  border-bottom: 1px solid #98A7B5;
 
   ${media.sm} {
-    border-radius: 10px;
-    height: 45px;
-    padding: 12px 0px;
-    background: transparent;
+    height: 86px;
+    padding: 20px 0px;
+    border-bottom: 1px solid ${(props) => props.theme.gray20};
   }
 `;
 
@@ -90,7 +85,7 @@ const HeaderItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
-    width: 166px;
+    max-width: 136px;
     font-size: 1.125rem;
     margin: unset;
   }
@@ -100,13 +95,16 @@ const LevelTableBody = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  gap: 8px;
   align-self: stretch;
   background: ${(props) => props.theme.mainBackground};
+  padding-top: 20px;
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainLightBackground};
-    border-radius: 10px;
+    background: ${(props) => props.theme.subBackground};
+    
+    > div:nth-child(even) {
+      background: rgba(255, 255, 255, 0.10);
+    }
   }
 `;
 
@@ -115,10 +113,11 @@ const LevelTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid ${(props) => props.theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.subBackground};
+  border-bottom: 1px solid #67707B;
 
   ${media.sm} {
-    border-bottom: 1px solid #434343;
+    border-bottom: unset;
   }
 `;
 
@@ -140,6 +139,7 @@ const RowItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
+    min-height: 67px;
     width: 166px;
     font-size: 1rem;
   }

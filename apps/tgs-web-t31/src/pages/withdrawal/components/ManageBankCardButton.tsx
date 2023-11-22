@@ -2,14 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
+import iconImg from "@/assets/t31/images/account/Add.png";
 
 const ButtonContainer = styled.div`
   cursor: pointer;
   font-weight: 400;
   font-size: 0.937rem;
   line-height: 1.098rem;
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.priBTNOutline};
+  padding: 10px;
+  border-radius: 100px;
+  color: ${({ theme }) => theme.black};
   display: flex;
   align-items: center;
 `;
@@ -28,7 +31,7 @@ const ManageBankCardButton = () => {
   return (
     <ButtonContainer onClick={handleClick}>
       <IconContainer>
-        <img src={iconImg} alt={"manage-card"} />
+        <img width={24} src={iconImg} alt={"manage-card"} />
       </IconContainer>
 
       {i18n.t("withdrawal.manageBank")}

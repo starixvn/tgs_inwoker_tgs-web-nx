@@ -4,9 +4,8 @@ import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
 
 const DateRangContainer = styled.div`
+  width: 100%;
   display: flex;
-  //align-items: center;
-  justify-content: center;
   gap: 13px;
 `;
 
@@ -15,21 +14,22 @@ type DateRangSelectionTypes = {
   theme: typeof theme;
 };
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
+  flex-grow:1;
   text-align: center;
   cursor: pointer;
   height: 40px;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.primary : "none";
+    return $isSelected ? theme.priBTNOutline : "none";
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? "black" : "white";
+    return $isSelected ? theme.white : theme.white50;
   }};
   padding: 11px 20px;
   border: ${({ $isSelected }: DateRangSelectionTypes) => {
-    return $isSelected ? "none" : `1px solid white`;
+    return $isSelected ? "none" : `1px solid ${theme.white50}`;
   }};
-  border-radius: 30px;
+  border-radius: 4px;
   font-size: 0.937rem;
   line-height: 1;
 `;

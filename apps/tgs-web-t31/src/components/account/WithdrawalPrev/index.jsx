@@ -318,9 +318,6 @@ class WithdrawalPrev extends Component {
     return (
       <>
         <WithdrawInfoCard />
-        <ManageBankCardButtonContainer>
-          <ManageBankCardButton />
-        </ManageBankCardButtonContainer>
         {config.features.NewTransferUI && (
           <WithdrawAllToMainWallet
             label={i18n.t("transfer.msgTransferOutFromGP")}

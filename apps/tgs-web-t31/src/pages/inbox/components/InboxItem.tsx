@@ -51,7 +51,7 @@ const MsgTitleSpan = styled.span`
 
 const MsgDate = styled.div`
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.lighterGray};
+  color: ${({ theme }) => theme.white};
 `;
 
 type CheckboxCircleProps = {
@@ -73,7 +73,7 @@ const CheckboxCircle = styled.div<CheckboxCircleProps>`
 
 const LetterContent = styled.div`
   font-size: 1rem;
-  color: ${({ theme }) => theme.lighterGray};
+  color: ${({ theme }) => theme.white};
   padding: 20px 0px;
 `;
 

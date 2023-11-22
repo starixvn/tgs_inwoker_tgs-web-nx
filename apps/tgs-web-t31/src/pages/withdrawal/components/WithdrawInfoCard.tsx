@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
+import ManageBankCardButton from "./ManageBankCardButton";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.primaryLight};
+  background: ${({ theme }) => theme.iconLable};
   color: ${({ theme }) => theme.white};
   padding: 25px 37px;
   border-radius: 5px;
@@ -27,6 +28,13 @@ const Label = styled.div`
   margin-bottom: 8px;
 `;
 const Value = styled.div``;
+
+const ManageBankCardButtonContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  max-width: 450px;
+  align-self: flex-end;
+`;
 
 const WithdrawInfoCard = () => {
   const [minWithdrawLimit, setMinWithdrawLimit] = useState(0);
@@ -66,6 +74,9 @@ const WithdrawInfoCard = () => {
           {Common.formatNumberWithThousand(minWithdrawLimit)}
         </Value>
       </RowContainer>
+      <ManageBankCardButtonContainer>
+        <ManageBankCardButton />
+      </ManageBankCardButtonContainer>
     </CardContainer>
   );
 };

@@ -87,7 +87,7 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
 
   .MuiInputBase-input {
     background: none;
-    color: ${({ theme }) => theme.lightGray};
+    color: ${({ theme }) => theme.white};
   }
 
   .MuiInput-underline:before,
@@ -111,13 +111,13 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  border-radius: 30px;
+  border-radius: 4px;
   //margin-top: 10px;
-  border: 1px solid white;
+  border: 1px solid ${({ theme }) => theme.white30};;
 
   .MuiInputBase-input {
     background: none;
-    color: ${({ theme }) => theme.lightGray};
+    color: ${({ theme }) => theme.white};
   }
 
   .MuiInput-underline:before,
