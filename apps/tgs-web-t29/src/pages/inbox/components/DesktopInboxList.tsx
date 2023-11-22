@@ -32,8 +32,8 @@ const StyledTable = muiStyled(Table)(({ theme }) => ({
     fontSize: "1.125rem",
     fontWeight: 400,
     lineHeight: "1.318rem",
-    color: theme.palette.white,
-    borderBottom: `1px solid ${theme.palette.white}`,
+    color: theme.palette.gray50,
+    borderBottom: `1px solid ${theme.palette.gray10}`,
     padding: "26px 0 10px",
   },
 }));
