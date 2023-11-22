@@ -15,7 +15,7 @@ export const AuthGuard = (props: AuthGuard) => {
   const history = useHistory();
 
   const checkIfHasAccessToViewPage = () => {
-    return !!(isLogin || route.isAnonymousAllowed);
+    return Boolean(isLogin || route.isAnonymousAllowed);
   };
 
   const [checked, setChecked] = useState(checkIfHasAccessToViewPage());

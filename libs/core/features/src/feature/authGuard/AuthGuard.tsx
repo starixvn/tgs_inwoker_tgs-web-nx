@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "@tgs-web-nx/core/features";
-import { Route } from "@/router";
-import Loading from "@/components/UI/Loading";
+import { Route } from "@tgs-web-nx/types";
+import { Loading } from "@tgs-web-nx/core";
+import { useAuth } from "../useAuth";
 
-interface AuthGuard {
+interface AuthGuardProps {
   children: React.ReactNode;
   route: Route;
 }
 
-export const AuthGuard = (props: AuthGuard) => {
+export const AuthGuard = (props: AuthGuardProps) => {
   const { children, route } = props;
   const { isLogin } = useAuth();
   const history = useHistory();
 
   const checkIfHasAccessToViewPage = () => {
-    return isLogin || route.isAnonymousAllowed;
+    return Boolean(isLogin || route.isAnonymousAllowed);
   };
 
   const [checked, setChecked] = useState(checkIfHasAccessToViewPage());

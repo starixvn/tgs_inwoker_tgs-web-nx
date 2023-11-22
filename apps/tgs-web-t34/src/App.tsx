@@ -8,6 +8,7 @@ import {
   AuthContextConsumer,
   AuthContextProvider,
   AuthDialogContextProvider,
+  AuthGuard,
   HeaderContextProvider,
   HomeGameContextProvider,
   PageNameContextProvider,
@@ -20,9 +21,7 @@ import { Route as RouteType, routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
 import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";
 import PopupPromotion from "@/components/project/Popup/PopupPromotion";
-
 import LayoutProvider from "@/layouts/LayoutProvider";
-import { AuthGuard } from "@/components/account/authentication/AuthGuard";
 import FloatingToolIcons from "@/components/project/FloatingToolIcons";
 import Loading from "@/components/UI/Loading";
 import LoginDialog from "@/components/project/auth/LoginDialog";

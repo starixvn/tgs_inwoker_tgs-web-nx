@@ -31,7 +31,7 @@ In `Wap`, different props may be injected into components based on different rou
       propsObj["brandComm"] = this.props.getBrandCommunicationList;
 
       return (
-        <Route
+        <Index
           exact
           key={index}
           path={route.path}
@@ -106,7 +106,7 @@ However, in TypeScript, this approach can make it challenging for children compo
 
 1. **Clearly understand which props are available to them**
 2. **The types of those properties/methods are**
-3. **[Most important] those "Route Components" can't be used outside `Wap` (because those props are not passed anymore)**
+3. **[Most important] those "Index Components" can't be used outside `Wap` (because those props are not passed anymore)**
 
 ## Solution
 If you closely examine those route components (such as Main, Deposit, Withdraw......etc.), you'll notice that their `this.props.OOXX` comes from:
