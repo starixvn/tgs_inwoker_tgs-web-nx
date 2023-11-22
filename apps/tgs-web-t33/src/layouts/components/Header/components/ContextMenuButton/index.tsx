@@ -51,11 +51,7 @@ const ContextMenuButton = () => {
           },
         }}
       >
-        {isDesktopSize ? (
-          <WhiteMemberMenu handleCloseContextMenu={() => handleClick(false)} />
-        ) : (
-          <DarkMemberMenu handleCloseContextMenu={() => handleClick(false)} />
-        )}
+        <WhiteMemberMenu handleCloseContextMenu={() => handleClick(false)} />
       </Drawer>
     </>
   );

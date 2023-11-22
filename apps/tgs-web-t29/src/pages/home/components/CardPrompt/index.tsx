@@ -1,0 +1,23 @@
+import styled from "styled-components";
+import Marquee from "./components/Marquee";
+import OnlineUser from "./components/OnlineUser";
+
+const CardPromptContainer = styled.div`
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  width: 100%;
+  gap: 7px;
+  background-color: ${({ theme }) => theme.mainBackground};
+`;
+
+const CardPrompt = () => {
+  return (
+    <CardPromptContainer>
+      <Marquee />
+      <OnlineUser />
+    </CardPromptContainer>
+  );
+};
+
+export default CardPrompt;

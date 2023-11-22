@@ -1,0 +1,36 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc",
+    "types": [
+      "node",
+      "@nx/react/typings/cssmodule.d.ts",
+      "@nx/react/typings/image.d.ts",
+      "vite/client"
+    ],
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"], // make project absolute path
+      // make project can load libs successfully
+      "@tgs-web-nx/config": ["../../libs/config/src/index.ts"],
+      "@tgs-web-nx/constants": ["../../libs/constants/src/index.ts"],
+      "@tgs-web-nx/core": ["../../libs/core/src/index.ts"],
+      "@tgs-web-nx/core/hooks": ["../../libs/core/hooks/src/index.ts"],
+      "@tgs-web-nx/core/features": ["../../libs/core/features/src/index.ts"],
+      "@tgs-web-nx/types": ["../../libs/types/src/index.ts"],
+      "@tgs-web-nx/utils": ["../../libs/utils/src/index.ts"]
+    }
+  },
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.js",
+    "src/**/*.test.js",
+    "src/**/*.spec.jsx",
+    "src/**/*.test.jsx"
+  ],
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+}

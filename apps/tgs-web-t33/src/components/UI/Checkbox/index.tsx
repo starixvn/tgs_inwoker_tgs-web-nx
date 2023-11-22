@@ -1,15 +1,10 @@
-import React from "react";
-import { Checkbox as MuiCheckbox, CheckboxProps } from "@mui/material";
-import styled from "styled-components";
+import { Checkbox as MuiCheckbox, styled as muiStyled } from "@mui/material";
 
-const StyledCheckbox = styled(MuiCheckbox)`
-  color: ${({ theme }) => theme.white};
-  &.Mui-checked {
-    color: ${({ theme }) => theme.primary};
-  }
-`;
-const Checkbox = (props: CheckboxProps) => {
-  return <StyledCheckbox {...props} />;
-};
+const Checkbox = muiStyled(MuiCheckbox)(({ theme }) => ({
+  color: theme.palette.white,
+  " &.Mui-checked": {
+    color: theme.palette.primary,
+  },
+}));
 
 export default Checkbox;

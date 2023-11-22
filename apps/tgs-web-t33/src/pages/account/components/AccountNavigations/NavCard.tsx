@@ -22,7 +22,7 @@ const NavCardContainer = styled.div`
   overflow: visible;
 
   ${media.sm} {
-    background: ${({ theme }) => theme.mainLightBackground};
+    background: ${({ theme }) => theme.mainBackground};
     //width: calc((100% - 7 * 8px) / 8);
   }
 }

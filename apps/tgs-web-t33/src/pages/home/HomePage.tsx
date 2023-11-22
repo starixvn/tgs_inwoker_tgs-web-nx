@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { isDesktop } from "react-device-detect";
+import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import AppFlag from "@/pages/home/components/AppFlag";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
@@ -29,11 +31,7 @@ const MainWrapper = styled.div`
 
 const SliderWrapper = styled.div`
   width: 100%;
-  padding-bottom: 42.52%
-
-  ${media.sm} {
-    padding-bottom: 41.35%
-  }
+  /* to-do: 最大高度限制問題 */
 `;
 
 const MainContentWrapper = styled.div`
@@ -75,9 +73,20 @@ const VendorIcon = styled.div`
   background-size: cover;
 `;
 
+const GameTypeTabWrapper = styled.div`
+  ${media.sm} {
+    width: 100%;
+    margin: 0 auto;
+    background-color: ${({ theme }) => theme.gray40};
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
-  const { isMobileSize } = useRwd();
+  const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType } = useHomeGameContext();
 
   useEffect(() => {
@@ -95,14 +104,19 @@ const HomePage = () => {
           <Slider />
         </SliderWrapper>
       )}
+      {!!activeGameType && isDesktopSize &&
+        <GameTypeTabWrapper>
+          <GameTypeTab />
+        </GameTypeTabWrapper>
+      }
+
+      {!!activeGameType && isMobileSize && <GameTypeTab />}
 
       <MainContentWrapper>
-        <CardPrompt />
-        {/* {isMobileSize && !activeGameType && <GameTypeTab />} */}
+        {!activeGameType && <CardPrompt />}
         <CategoryRenderer />
         <AppFlagWrapper><AppFlag /></AppFlagWrapper>
         <Introduction />
-
         {isMobileSize && <SocialMedia />}
         {isMobileSize && (
           <VendorIconContainer>

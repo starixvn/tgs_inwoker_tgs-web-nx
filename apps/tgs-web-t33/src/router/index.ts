@@ -265,14 +265,14 @@ const routes: Route[] = [
     path: "/promotion-list",
     component: PromotionPage,
     category: RouteCategoryEnum.PROMOTION,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
     category: RouteCategoryEnum.PROMOTION,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   //
@@ -384,7 +384,7 @@ const routes: Route[] = [
     path: "/vip",
     component: VIPPage,
     category: RouteCategoryEnum.MINE,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/sports/:platform",

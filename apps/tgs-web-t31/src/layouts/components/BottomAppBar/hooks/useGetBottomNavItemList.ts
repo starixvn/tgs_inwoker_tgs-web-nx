@@ -11,6 +11,21 @@ import iconDeposit from "@/assets/t31/images/bottomNavBar/icon-deposit.png";
 import iconWithdrawal from "@/assets/t31/images/bottomNavBar/icon-withdrawal.png";
 import { useRoute } from "@/hooks/useRoute";
 
+export enum NavTypeEnum {
+  ITEM,
+  BIG_ITEM,
+  MENU,
+}
+
+export type BottomNavItem = {
+  navType: NavTypeEnum;
+  label: string;
+  iconUrl: string;
+  iconActiveUrl: string;
+  routePath: string;
+  routeCategory: RouteCategoryEnum;
+};
+
 export function useGetBottomNavItemList() {
   const location = useLocation();
   const history = useHistory();

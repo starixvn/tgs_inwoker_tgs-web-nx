@@ -2,7 +2,7 @@ import { Drawer } from "@mui/material";
 import { useMemo } from "react";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import MobileMenuDrawer from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer/MobileMenuDrawer";
+import MenuDrawerList from "@/layouts/components/MenuDrawer/components/MenuDrawerList/MenuDrawerList";
 import { MOBILE_DRAWER_WIDTH } from "@/theme/constants";
 import { theme } from "@/theme";
 
@@ -30,7 +30,7 @@ const MenuDrawer = () => {
         },
       }}
     >
-      {isLargeDesktopSize ? null : <MobileMenuDrawer />}
+      {isLargeDesktopSize ? null : <MenuDrawerList />}
     </Drawer>
   );
 };

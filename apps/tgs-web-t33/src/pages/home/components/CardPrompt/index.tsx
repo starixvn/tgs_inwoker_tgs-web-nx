@@ -8,7 +8,7 @@ const CardPromptContainer = styled.div`
   align-self: stretch;
   width: 100%;
   gap: 7px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CardPrompt = () => {

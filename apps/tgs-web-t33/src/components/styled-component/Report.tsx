@@ -29,7 +29,7 @@ export const ReportCard = styled.div`
   padding: 9px 16px;
   font-size: 0.8rem;
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.mainBackground};
   border-radius: 5px;
   margin-bottom: 10px;
 `;

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import BottomNav, { BottomNavItem } from "./BottomNav";
-import { useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
+import BottomNav from "./BottomNav";
+import { BottomNavItem, useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 
 const BottomAppBarContainer = styled.div`
@@ -35,7 +35,7 @@ const BottomAppBar = () => {
       return;
     }
     handleClickBottomNavItem(bottomNavItem);
-  }
+  };
 
   return (
     <BottomAppBarContainer>

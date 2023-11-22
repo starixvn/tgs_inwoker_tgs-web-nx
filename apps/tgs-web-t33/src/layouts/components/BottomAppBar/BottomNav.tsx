@@ -1,32 +1,17 @@
-import React, { MouseEventHandler } from "react";
-import styled from "styled-components";
-import { RouteCategoryEnum } from "@/router";
+import React from "react";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 
-export enum NavTypeEnum {
-  ITEM,
-  BIG_ITEM,
-  MENU,
-}
-
-export type BottomNavItem = {
-  navType: NavTypeEnum;
-  label: string;
-  routePath: string;
-  routeCategory: RouteCategoryEnum;
-};
-
 type Props = {
-  bottomNavItem: BottomNavItem;
+  label: string;
   isSelected: boolean;
-  onClick?: MouseEventHandler<HTMLDivElement>;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const BottomNav = ({ bottomNavItem }: Props) => {
-  const { label } = bottomNavItem;
+const BottomNav = ({ label, onClick }: Props) => {
   return (
     <Button
+      onClick={onClick}
       sx={{
         background: theme.primary,
         flex: 1,

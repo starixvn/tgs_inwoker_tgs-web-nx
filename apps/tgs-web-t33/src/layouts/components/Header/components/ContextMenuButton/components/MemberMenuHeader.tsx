@@ -34,7 +34,7 @@ const MemberMenuHeader = ({ handleCloseContextMenu }: Props) => {
           cursor: "pointer",
           marginLeft: "auto",
         }}
-        onClick={() => handleCloseContextMenu(false)}
+        onClick={() => handleCloseContextMenu()}
       />
     </MemberMenuHeaderContainer>
   );

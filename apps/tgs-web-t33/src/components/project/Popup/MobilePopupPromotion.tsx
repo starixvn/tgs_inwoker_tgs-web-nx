@@ -10,22 +10,22 @@ import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
-import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 import PromotionBanner from "@/components/project/Popup/components/PromotionBanner";
+import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 
 const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
-    max-width: 370px;
-    width: 100%;
-    height: auto;
     background: ${({ theme }) => theme.mainBackground};
-    border-radius: 10px;
+    width: calc(100vw - 10px * 2);
+    height: auto;
+    margin: 4px;
+    overflow: visible;
 
     ${media.sm} {
-      width: 688px;
+      max-width: 478px;
     }
   }
 `;
@@ -38,8 +38,14 @@ const ChildContainer = styled.div`
   padding: 36px 24px 18px;
 `;
 
-const ContentContainer = styled.div`
-  width: 100%;
+const ButtonWrapper = styled.div`
+  margin-top: 20px;
+  ${media.sm} {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const MobilePopupPromotion = () => {
@@ -70,6 +76,8 @@ const MobilePopupPromotion = () => {
       TransitionComponent={UpTransition}
       onClose={handleCloseDialog}
     >
+      <PopupHeader title={i18n.t("web.header.promotion")} handleClose={handleCloseDialog} />
+
       <ChildContainer>
         <Carousel>
           {displayPromotionList.map((promotionData: Promotion) => (
@@ -80,15 +88,7 @@ const MobilePopupPromotion = () => {
             />
           ))}
         </Carousel>
-        <ContentContainer>
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              margin: "10px 0",
-            }}
-          />
-
+        <ButtonWrapper>
           <Button
             onClick={handleCloseDialog}
             style={{
@@ -98,10 +98,16 @@ const MobilePopupPromotion = () => {
           >
             <>{i18n.t("common.close")}</>
           </Button>
-        </ContentContainer>
+        </ButtonWrapper>
       </ChildContainer>
 
-      <CloseIcon onClick={handleCloseDialog} />
+      <NotShowAgainHint
+        onClick={handleClickCheckbox}
+        isCheck={isCheck}
+        style={{
+          margin: "10px 0",
+        }}
+      />
     </StyledDialog>
   );
 };

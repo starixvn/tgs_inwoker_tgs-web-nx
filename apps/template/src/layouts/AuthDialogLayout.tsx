@@ -16,7 +16,7 @@ const DialogLayoutContainer = styled.div`
 
 const ContentWrapper = styled.div`
   // min-height: calc(100vh - ${HEADER_HEIGHT}); // 80px:Header, 82px: BottomAppBar
-  margin: 80px 0 0;
+  margin: ${HEADER_HEIGHT} 0 0;
   position: relative;
   z-index: 1;
 `;

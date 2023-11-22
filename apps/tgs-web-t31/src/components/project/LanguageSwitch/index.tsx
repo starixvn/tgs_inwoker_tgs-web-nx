@@ -21,13 +21,13 @@ export const imageMap: { [key in string]: string } = {
 };
 
 const StyledSelect = styled(MuiSelect)`
-  border-radius: 30px !important;
-  border: 1px solid white;
+  border-radius: 4px !important;
+  border: 1px solid ${({ theme }) => theme.gray80};
 
   //width: 140px;
   //margin-right: 10px;
   overflow: visible;
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.gray95};
   font-weight: 700 !important;
   font-size: 1rem !important;
 

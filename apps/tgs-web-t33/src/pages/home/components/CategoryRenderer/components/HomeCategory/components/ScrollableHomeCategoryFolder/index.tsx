@@ -43,7 +43,7 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   height: 16.2%; //max-height: 150 /figma mobile height:926
   gap: 8px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     max-height: 270px;
@@ -51,7 +51,7 @@ const CategoryContent = styled.div`
     scroll-snap-type: unset;
     height: 20.9%;
     padding-bottom: 5px;
-    
+
     &::-webkit-scrollbar {
       height: 12px;
       background-color: ${({ theme }) => theme.gray30};
@@ -60,13 +60,13 @@ const CategoryContent = styled.div`
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
       border-radius: 8px;
-      background: ${(props) => props.theme.mainDarkBackground};
+      background: ${(props) => props.theme.subBackground};
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
       -webkit-box-shadow: inset 0 0 6px ${({ theme }) => theme.gray10};
-      background-color: ${(props) => props.theme.mainLightBackground};
+      background-color: ${(props) => props.theme.mainBackground};
     }
   }
 `;
@@ -95,9 +95,11 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                    }.jpg`}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
               ))}
           {dataList.length > SHOW_CATEGORY_AMOUNT && (

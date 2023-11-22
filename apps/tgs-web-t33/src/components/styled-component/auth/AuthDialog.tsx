@@ -13,6 +13,6 @@ export const TitleContainer = styled.div`
 
   ${media.sm} {
     color: ${({ theme }) => theme.white};
-    margin-bottom: 46px;
+    margin-bottom: 26px;
   }
 `;

@@ -10,14 +10,13 @@ import { media } from "@/theme/breakpoints";
 const CategoryContentWrapper = styled.div`
   width: 100%;
   flex-shrink: 0;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: center;
   width: 100%;
   row-gap: 15px;
   column-gap: 8px;
@@ -82,10 +81,12 @@ const LobbyCategory = () => {
             return (
               <VendorCard
                 key={gpCode}
-                imageUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                imageUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
+                venderLogoUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode)}
                 status={status}
                 venderName={name}

@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
 import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
@@ -11,6 +10,7 @@ type BalanceTrackerContainerProps = {
   theme: typeof theme;
 };
 const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
+  position: relative;
   height: 35px;
   background: rgba(255, 255, 255, 0.2);
   color: ${({ theme }) => theme.gray30};
@@ -22,6 +22,7 @@ const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.318rem;
+  cursor: pointer;
 `;
 
 const BalanceContainer = styled.div`
@@ -36,18 +37,31 @@ const BalanceContainer = styled.div`
   }
 `;
 
+const RefreshButtonWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(160, 203, 97, 1);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s linear;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 type Props = {
   size?: "normal" | "small";
 };
 const BalanceTracker = ({ size, ...others }: Props) => {
   const { wallet, getBalanceList } = useWalletStore();
-  const history = useHistory();
 
   const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
-
-  const handleClick = useCallback(() => {
-    history.push("/deposit");
-  }, [history]);
 
   const handleRefreshBalance = useCallback(async () => {
     await getBalanceList();
@@ -60,9 +74,12 @@ const BalanceTracker = ({ size, ...others }: Props) => {
       {isShow && <span>{i18n.t("wap.main.account.totalFund")}</span>}
 
       <BalanceContainer>
-        <span onClick={handleClick}>${currentBalance}</span>
-        <RefreshButton handleClick={handleRefreshBalance} />
+        <span>${currentBalance}</span>
       </BalanceContainer>
+
+      <RefreshButtonWrapper onClick={() => handleRefreshBalance()}>
+        <RefreshButton handleClick={() => Promise.resolve()} />
+      </RefreshButtonWrapper>
     </BalanceTrackerContainer>
   );
 };

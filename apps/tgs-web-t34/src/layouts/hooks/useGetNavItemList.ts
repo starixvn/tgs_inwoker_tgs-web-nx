@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
 import accountIcon from "@/assets/t34/images/menuDrawer/icon-account.svg";
 import depositIcon from "@/assets/t34/images/menuDrawer/icon-deposit.svg";
@@ -35,19 +36,29 @@ export function useGetNavItemList() {
   const history = useHistory();
 
   const gameTypeNavItemList: NavItem[] = useMemo(() => {
-    return gameTypeList.map((gameTypeItem) => {
-      return {
+    const navItemList: NavItem[] = [];
+
+    for (const gameTypeItem of gameTypeList) {
+      if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
+
+      navItemList.push({
         key: gameTypeItem.key,
         label: gameTypeItem.text as string,
         iconUrl: gameTypeItem.iconUrl,
         iconSecondaryUrl: gameTypeItem.iconUrl,
         navType: "action",
         callback: () => {
-          history.push("/");
           handleChangeGameType(gameTypeItem.gameType);
+
+          if (history.location.pathname !== "/") {
+            history.push("/");
+          }
         },
-      };
-    }) as NavItem[];
+      });
+    }
+
+    return navItemList;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameTypeList]);
 
   const accountNavItemList: NavItem[] = useMemo(() => {
