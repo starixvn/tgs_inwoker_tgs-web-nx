@@ -7,7 +7,7 @@ import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/component
 
 const CategoryRenderer = () => {
   const { activeGameType } = useHomeGameContext();
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   if (isDesktopSize) {
     switch (activeGameType) {
