@@ -1,9 +1,5 @@
-import React, { useMemo } from "react";
-import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
@@ -14,10 +10,29 @@ const HeaderGameTypesContainer = styled.div`
   align-items: stretch;
   //gap: 10px;
   height: 40px;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${(props) => props.theme.mainBackground};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.gray10};
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
 `;
 
 const GameTypeNav = styled.div`
-  font-size: 0.8rem;
+  flex-shrink: 0;
+  font-size: 0.875rem;
   font-weight: 700;
   white-space: nowrap;
   cursor: pointer;
@@ -26,6 +41,7 @@ const GameTypeNav = styled.div`
   align-items: center;
   padding: 5px;
   border-radius: 5px;
+  color: ${({ theme }) => theme.gray50};
 
   &:hover {
     background: ${({ theme }) => theme.gray10};
