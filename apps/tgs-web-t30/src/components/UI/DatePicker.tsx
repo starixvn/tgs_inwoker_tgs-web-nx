@@ -63,10 +63,7 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
           slotProps={{
             layout: {
               sx: {
-                [`.MuiPickersLayout-root`]: {
-                  gridColumn: 1,
-                  gridRow: 2,
-                },
+                display: "block !important",
               },
             },
           }}

@@ -3,7 +3,6 @@ import { Button as MuiButton, ButtonProps, styled as muiStyled } from "@mui/mate
 
 export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   whiteSpace: "nowrap",
-  borderRadius: "50px",
   padding: "10px",
   fontSize: "1rem",
   fontWeight: 700,
@@ -17,7 +16,7 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   },
 
   "&:hover": {
-    background: theme.palette.gray30,
+    background: theme.palette.primary.dark,
     border: "none",
   },
 }));

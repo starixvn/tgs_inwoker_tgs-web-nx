@@ -17,6 +17,7 @@ const BottomAppBarContainer = styled.div`
   padding: 0 20px;
   z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
+  border-top: 1px solid ${({ theme }) => theme.gray30};
 `;
 
 const BottomAppBar = () => {

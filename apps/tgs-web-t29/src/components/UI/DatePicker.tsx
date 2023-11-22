@@ -63,10 +63,7 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
           slotProps={{
             layout: {
               sx: {
-                [`.MuiPickersLayout-root`]: {
-                  gridColumn: 1,
-                  gridRow: 2,
-                },
+                display: "block !important",
               },
             },
           }}
@@ -84,13 +81,13 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  background: ${({ theme }) => theme.gray30};
-  border-radius: 30px;
+  border-bottom: 1px solid ${({ theme }) => theme.gray10};
+
   //margin-top: 10px;
 
   .MuiInputBase-input {
     background: none;
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.gray50};
     text-align: left;
   }
 
@@ -116,10 +113,11 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
+  border: 1px solid ${({ theme }) => theme.gray10};
 
   .MuiInputBase-input {
-    background: ${({ theme }) => theme.gray30};
-    color: ${({ theme }) => theme.white};
+    background: ${({ theme }) => theme.mainBackground};
+    color: ${({ theme }) => theme.gray50};
   }
 
   .MuiInput-underline:before,

@@ -8,13 +8,14 @@ import Loading from "@/components/UI/Loading";
 const AutoTransferContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  font-size: 0.937rem;
 `;
 
 const CustomSwitchContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: normal;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
 
   & > :first-child {
     margin-right: 10px;

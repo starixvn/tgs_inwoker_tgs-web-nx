@@ -4,10 +4,11 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
+import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.gray40};
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.blue20};
+  color: ${({ theme }) => theme.gray50};
   padding: 12px 15px;
   border-radius: 10px;
 
@@ -146,7 +147,8 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              background: "#1A1C20",
+              background: theme.blue10,
+              border: "4px",
             }}
           />
         </ColContainer>
