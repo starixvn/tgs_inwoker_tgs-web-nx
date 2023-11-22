@@ -6,6 +6,8 @@ export const theme = {
   red: "#FF2546",
   green: "#12B436",
   gradient: "linear-gradient(315deg, #F37A3F 14.64%, #FFA23E 85.36%)",
+  blue70: "#3281D0",
+  blue60: "#0E6399",
   blue50: "#0F548B",
   blue40: "#3281D0",
   blue30: "#399FDA",

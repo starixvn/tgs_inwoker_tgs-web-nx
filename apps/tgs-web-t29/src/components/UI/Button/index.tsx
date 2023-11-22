@@ -16,7 +16,9 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   },
 
   "&:hover": {
-    background: theme.palette.primary.dark,
+    background: theme.palette.gray50,
+    color: theme.palette.white,
+
     border: "none",
   },
 }));

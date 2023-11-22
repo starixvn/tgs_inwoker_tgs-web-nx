@@ -1,38 +1,67 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
-import accountIcon from "@/assets/t33/images/menuDrawer/icon-account.svg";
-import promotionIcon from "@/assets/t33/images/menuDrawer/icon-promotion.svg";
-import depositIcon from "@/assets/t33/images/menuDrawer/icon-deposit.svg";
-import withdrawIcon from "@/assets/t33/images/menuDrawer/icon-withdraw.svg";
-import transferIcon from "@/assets/t33/images/menuDrawer/icon-transfer.svg";
-import reportIcon from "@/assets/t33/images/menuDrawer/icon-report.svg";
-import inboxIcon from "@/assets/t33/images/menuDrawer/icon-inbox.svg";
-import affiliateIcon from "@/assets/t33/images/menuDrawer/icon-affiliate.svg";
-import vipIcon from "@/assets/t33/images/menuDrawer/icon-vip.svg";
-import contactIcon from "@/assets/t33/images/menuDrawer/icon-contact.svg";
-import downloadIcon from "@/assets/t33/images/menuDrawer/icon-download.svg";
-import logoutIcon from "@/assets/t33/images/menuDrawer/icon-logout.svg";
-import accountIconDark from "@/assets/t33/images/menuDrawer/dark/icon-account-dark.svg";
-import depositIconDark from "@/assets/t33/images/menuDrawer/dark/icon-deposit-dark.svg";
-import withdrawIconDark from "@/assets/t33/images/menuDrawer/dark/icon-withdraw-dark.svg";
-import transferIconDark from "@/assets/t33/images/menuDrawer/dark/icon-transfer-dark.svg";
-import reportIconDark from "@/assets/t33/images/menuDrawer/dark/icon-report-dark.svg";
-import inboxIconDark from "@/assets/t33/images/menuDrawer/dark/icon-inbox-dark.svg";
-import affiliateIconDark from "@/assets/t33/images/menuDrawer/dark/icon-affiliate-dark.svg";
-import vipIconDark from "@/assets/t33/images/menuDrawer/dark/icon-vip-dark.svg";
-import contactIconDark from "@/assets/t33/images/menuDrawer/dark/icon-contact-dark.svg";
-import downloadIconDark from "@/assets/t33/images/menuDrawer/dark/icon-download-dark.svg";
-import logoutIconDark from "@/assets/t33/images/menuDrawer/dark/icon-logout-dark.svg";
+import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
+import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
+import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
+import transferImg from "@/assets/t29/images/account/navItem/icon-transfer.svg";
+import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
+import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
+import affiliateImg from "@/assets/t29/images/account/navItem/icon-affiliate.svg";
+import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
+import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
+import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
+import profileWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-profile.svg";
+import depositWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-deposit.svg";
+import withdrawWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-withdraw.svg";
+import transferWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-transfer.svg";
+import reportWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-report.svg";
+import inboxWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-inbox.svg";
+import affiliateWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-affiliate.svg";
+import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
+import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
+import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
+
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+
+export enum NavCardKey {
+  PROFILE,
+  DEPOSIT,
+  WITHDRAW,
+  TRANSFER,
+  REPORT,
+  INBOX,
+  AFFILIATE,
+  CONTACT_US,
+  APP_DOWNLOAD,
+  VIP,
+  LOGOUT,
+  PROMOTION,
+}
+
+export type NavItem = {
+  key: NavCardKey | string;
+  label: string | any;
+  iconUrl: string;
+  iconActiveUrl?: string;
+  iconSecondaryUrl?: string;
+  isHide?: boolean;
+} & (
+  | {
+      navType: "route";
+      routePath: string;
+    }
+  | {
+      navType: "action";
+      callback: () => void;
+    }
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
   const { handleChangeGameType } = useHomeGameContext();
-  const { handleLogout } = useAuth();
 
   const history = useHistory();
 
@@ -61,8 +90,8 @@ export function useGetNavItemList() {
     navItemList.push({
       key: NavCardKey.VIP,
       label: "VIP",
-      iconUrl: vipIcon,
-      iconActiveUrl: vipIconDark,
+      iconUrl: vipImg,
+      iconActiveUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
       callback: () => {
@@ -73,7 +102,7 @@ export function useGetNavItemList() {
     navItemList.push({
       key: NavCardKey.PROMOTION,
       label: i18n.t("common.promotion"),
-      iconUrl: promotionIcon,
+      iconUrl: "",
       navType: "action",
       gameType: GameTypeEnum.NONE,
       callback: () => {
@@ -90,92 +119,82 @@ export function useGetNavItemList() {
       {
         key: NavCardKey.PROFILE,
         label: i18n.t("wap.main.my"),
-        iconUrl: accountIcon,
-        iconActiveUrl: accountIconDark,
+        iconUrl: profileImg,
+        iconSecondaryUrl: profileWhiteImg,
         navType: "route",
         routePath: "/profile",
       },
       {
         key: NavCardKey.DEPOSIT,
         label: i18n.t("common.deposit"),
-        iconUrl: depositIcon,
-        iconActiveUrl: depositIconDark,
+        iconUrl: depositImg,
+        iconSecondaryUrl: depositWhiteImg,
         navType: "route",
         routePath: "/deposit",
       },
       {
         key: NavCardKey.WITHDRAW,
         label: i18n.t("common.withdrawal"),
-        iconUrl: withdrawIcon,
-        iconActiveUrl: withdrawIconDark,
+        iconUrl: withdrawImg,
+        iconSecondaryUrl: withdrawWhiteImg,
         navType: "route",
         routePath: "/withdrawal",
       },
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),
-        iconUrl: transferIcon,
-        iconActiveUrl: transferIconDark,
+        iconUrl: transferImg,
+        iconSecondaryUrl: transferWhiteImg,
         navType: "route",
         routePath: "/transfer",
       },
       {
         key: NavCardKey.REPORT,
         label: i18n.t("report.title"),
-        iconUrl: reportIcon,
-        iconActiveUrl: reportIconDark,
+        iconUrl: reportImg,
+        iconSecondaryUrl: reportWhiteImg,
         navType: "route",
         routePath: "/report",
       },
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),
-        iconUrl: inboxIcon,
-        iconActiveUrl: inboxIconDark,
+        iconUrl: inboxImg,
+        iconSecondaryUrl: inboxWhiteImg,
         navType: "route",
         routePath: "/inbox",
       },
       {
         key: NavCardKey.AFFILIATE,
         label: i18n.t("wap.main.account.affiliate"),
-        iconUrl: affiliateIcon,
-        iconActiveUrl: affiliateIconDark,
+        iconUrl: affiliateImg,
+        iconSecondaryUrl: affiliateWhiteImg,
         navType: "route",
         routePath: "/affiliate",
       },
       {
         key: NavCardKey.VIP,
         label: "VIP",
-        iconUrl: vipIcon,
-        iconActiveUrl: vipIconDark,
+        iconUrl: vipImg,
+        iconSecondaryUrl: vipWhiteImg,
         navType: "route",
         routePath: "/vip",
       },
       {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),
-        iconUrl: contactIcon,
-        iconActiveUrl: contactIconDark,
+        iconUrl: contactImg,
+        iconSecondaryUrl: contactWhiteImg,
         navType: "route",
         routePath: "/support",
       },
       {
         key: NavCardKey.APP_DOWNLOAD,
         label: i18n.t("wap.main.account.appDownload"),
-        iconUrl: downloadIcon,
-        iconActiveUrl: downloadIconDark,
+        iconUrl: downloadImg,
+        iconSecondaryUrl: downloadWhiteImg,
         navType: "route",
         routePath: "/appDownload",
-      },
-      {
-        key: NavCardKey.LOGOUT,
-        label: i18n.t("wap.main.account.signout"),
-        iconUrl: logoutIcon,
-        iconActiveUrl: logoutIconDark,
-        navType: "action",
-        callback: () => {
-          handleLogout();
-        },
       },
     ] as NavItem[];
   }, []);

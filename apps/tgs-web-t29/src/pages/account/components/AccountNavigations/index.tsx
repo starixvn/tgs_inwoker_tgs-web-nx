@@ -5,15 +5,11 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth } from "@tgs-web-nx/core/features";
 import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
-import { NavCardKey, NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
+import { NavCardKey, NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const AccountNavsContainer = styled.div`
   padding: 12px 14px;
   background: ${({ theme }) => theme.white};
-
-  & > div {
-    margin-bottom: 20px;
-  }
 `;
 
 const AccountNavCardsContainer = styled.div`
@@ -27,7 +23,7 @@ const LogoutRegion = styled.div`
   font-size: 1.25rem;
   padding: 15px;
   text-align: center;
-  margin: 9px 0 50px;
+  margin: 9px 0 0;
   cursor: pointer;
 `;
 
@@ -39,7 +35,7 @@ const hideInDesktopDictionary = {
 
 const AccountNavigations = () => {
   const history = useHistory();
-  const { navItemList } = useAccountNavigations();
+  const { accountNavItemList } = useGetNavItemList();
   const { handleLogout } = useAuth();
   const { isDesktopSize } = useRwd();
 
@@ -59,7 +55,7 @@ const AccountNavigations = () => {
       <AccountNavsContainer>
         <AccountNavCardsContainer>
           {/* Cards */}
-          {navItemList.map((navItem) => {
+          {accountNavItemList.map((navItem) => {
             if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
 
             return <NavRow key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;

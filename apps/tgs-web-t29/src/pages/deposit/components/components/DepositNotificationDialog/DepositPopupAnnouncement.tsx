@@ -12,9 +12,8 @@ const StyledDialog = styled(MuiDialog)`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-radius: 30px;
 
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.gray50};
     background-attachment: fixed;
     background-position: center;
     padding: 20px;
