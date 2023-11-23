@@ -15,6 +15,7 @@ const Wrapper = styled.div<{
   user-select: none;
   background-color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.mainBackground)};
   padding: 4px;
+  border: 1px solid${({ theme }) => theme.blue40};
 
   &:hover {
     cursor: pointer;
@@ -24,10 +25,11 @@ const Wrapper = styled.div<{
 const Text = styled.div<{
   $isActive: boolean;
 }>`
-  color: ${({ theme, $isActive }) => ($isActive ? theme.black : theme.gray)};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.black : theme.gray50)};
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 0.875rem;
+  text-align: center;
 `;
 
 type Props = {
