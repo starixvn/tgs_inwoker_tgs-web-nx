@@ -11,8 +11,6 @@ import {
   walletAction,
   WalletService,
 } from "@tgs-web-nx/core";
-import Details from "./Details";
-import DetailsManual from "./DetailsManual";
 import Main from "./Main";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -38,7 +36,6 @@ class DepositPrev extends Component {
       depositPromotion: this.props.match.params.promotionid,
       amount: "",
       exchangeRate: { buyprice: 0, sellprice: 0 },
-      step: 1,
       upload: "",
 
       isMaintenance: false,
@@ -70,7 +67,6 @@ class DepositPrev extends Component {
         WalletService.PerformGetManualDepositDetail(this.state.paymentId).then((e) => {
           if (e.IsSuccess) {
             this.setState({
-              step: 5,
               depositDetail: e.data,
               amount: e.data.amount,
               channelname: e.data.bankname,
@@ -134,7 +130,6 @@ class DepositPrev extends Component {
         if (config.features.Deposit_DualPage) {
           this.setState({
             ...this.state,
-            step: payment.paymentcode.toUpperCase() === "MANUAL" ? 2 : 3,
             loading: false,
             showTabContainer: false,
           });
@@ -159,7 +154,6 @@ class DepositPrev extends Component {
               }
               this.setState({
                 ...this.state,
-                step: 3,
                 showTabContainer: false,
               });
             }
@@ -168,14 +162,12 @@ class DepositPrev extends Component {
               this.setState({
                 ...this.state,
                 openPopup: true,
-                step: 3,
                 url: config.baseUrl.replace("/api/", "") + response.data.paymenturl,
                 showTabContainer: false,
               });
             } else {
               this.setState({
                 ...this.state,
-                step: 3,
                 showTabContainer: false,
               });
             }
@@ -483,16 +475,15 @@ class DepositPrev extends Component {
   };
 
   handlePaymentChange = (e, value) => {
-    if (this.state.step === 1) {
-      this.setState({
-        ...this.state,
-        selectedMethodIndex: 0,
+    this.setState({
+      ...this.state,
+      selectedMethodIndex: 0,
 
-        selectedChannelIndex: 0,
-        selectedPaymentIndex: value,
-      });
-    }
+      selectedChannelIndex: 0,
+      selectedPaymentIndex: value,
+    });
   };
+
   performUploadImage = (file) => {
     this.props.doUploadDepositProof(
       this.props.wallet.depositResult ? this.props.wallet.depositResult.data : this.state.paymentId,
@@ -623,119 +614,6 @@ class DepositPrev extends Component {
     });
   };
 
-  switchView = (view) => {
-    switch (view) {
-      case 1:
-        return (
-          <Main
-            name={this.state.name}
-            handleNameChange={this.handleNameChange}
-            handleMethodChange={this.handleMethodChange}
-            handleChannelChange={this.handleChannelChange}
-            handleAccountChange={this.handleAccountChange}
-            handlePromotionChange={this.handlePromotionChange}
-            handleAmountChange={this.handleAmountChange}
-            handleDepositClick={this.handleDepositClick}
-            handleSelectAccountChange={this.handleSelectAccountChange}
-            selectedPaymentIndex={this.state.selectedPaymentIndex}
-            selectedMethodIndex={this.state.selectedMethodIndex}
-            selectedChannelIndex={this.state.selectedChannelIndex}
-            depositPromotion={this.state.depositPromotion}
-            account={this.state.account}
-            amount={this.state.amount}
-            exchangeRate={this.state.exchangeRate}
-            step={this.state.step}
-            disabled={this.state.disabled}
-            handleFileChange={this.handleFileChange}
-            key={this.state.fileInput}
-            files={this.state.files}
-            handleClosePopup={this.handleClosePopup}
-            openPopup={this.state.openPopup}
-            handleOpenPopupUrl={this.handleOpenPopupUrl}
-            alert={this.props.alert}
-            playerNote={this.state.playerNote}
-            handlePlayerNoteChange={this.handlePlayerNoteChange}
-            selectedBankCard={this.state.selectedBankCard}
-            handleBankCardChange={this.handleBankCardChange}
-            bankCardList={
-              config.features.Deposit_AddCard
-                ? this.props.wallet.bankCardList.sort((a, b) => b.default - a.default)
-                : this.props.wallet.bankCardList
-            }
-          ></Main>
-        );
-
-      case 2:
-      case 3:
-        return (
-          <Details
-            alert={this.props.alert}
-            performUploadImage={this.performUploadImage}
-            amount={this.state.amount}
-            depositResult={this.props.wallet.depositResult}
-            methodcode={
-              this.props.wallet.depositTypeList[this.state.selectedPaymentIndex].method[
-                this.state.selectedMethodIndex
-              ].methodcode
-            }
-            channel={
-              this.props.wallet.depositTypeList[this.state.selectedPaymentIndex].method[
-                this.state.selectedMethodIndex
-              ].channel[this.state.selectedChannelIndex]
-            }
-            handleRestartClick={this.handleRestartClick}
-            isManual={
-              (config.features.Deposit_SplitUsdt &&
-                this.props.wallet.depositTypeList[this.state.selectedPaymentIndex]
-                  .alteredpaymentcode &&
-                this.props.wallet.depositTypeList[
-                  this.state.selectedPaymentIndex
-                ].alteredpaymentcode.toUpperCase() === "MANUAL") ||
-              this.props.wallet.depositTypeList[
-                this.state.selectedPaymentIndex
-              ].paymentcode.toUpperCase() === "MANUAL"
-            }
-            isCrypto={
-              this.props.wallet.depositTypeList[this.state.selectedPaymentIndex].method[
-                this.state.selectedMethodIndex
-              ].methodcode === "Crypto"
-            }
-            depositType={
-              this.props.wallet.depositTypeList[this.state.selectedPaymentIndex].paymentcode
-            }
-            extended={
-              this.props.wallet.depositTypeList[this.state.selectedPaymentIndex].method[
-                this.state.selectedMethodIndex
-              ].channel[this.state.selectedChannelIndex].extended
-            }
-          />
-        );
-      case 5:
-        return (
-          <DetailsManual
-            methodcode={this.state.methodcode}
-            channelname={this.state.channelname}
-            depositDetail={this.state.depositDetail}
-            bankaccount={this.state.bankaccount}
-            paymentId={this.state.paymentId}
-            depositResult={this.props.wallet.depositResult}
-            isManual={true}
-            amount={this.state.amount}
-            alert={this.props.alert}
-            performUploadImage={this.performUploadImage}
-            handleRestartClick={this.handleRestartClick}
-            extended={
-              this.props.wallet.depositTypeList[this.state.selectedPaymentIndex].method[
-                this.state.selectedMethodIndex
-              ].channel[this.state.selectedChannelIndex].extended
-            }
-          ></DetailsManual>
-        );
-      default:
-        return "";
-    }
-  };
-
   render() {
     const isLoading = this.props.wallet.loading || this.props.wallet.depositLoading;
     return (
@@ -748,17 +626,47 @@ class DepositPrev extends Component {
           }
           return (
             <>
-              {config.features.Deposit_AddCard ? (
-                this.state.showTabContainer && <DepositAddCard />
-              ) : (
-                <PaymentTabsHeader
-                  selectedPaymentIndex={this.state.selectedPaymentIndex}
-                  handlePaymentChange={this.handlePaymentChange}
-                />
-              )}
-              {(() => {
-                return this.switchView(this.state.step);
-              })()}
+              {config.features.Deposit_AddCard && <DepositAddCard />}
+              <PaymentTabsHeader
+                selectedPaymentIndex={this.state.selectedPaymentIndex}
+                handlePaymentChange={this.handlePaymentChange}
+              />
+
+              <Main
+                name={this.state.name}
+                handleNameChange={this.handleNameChange}
+                handleMethodChange={this.handleMethodChange}
+                handleChannelChange={this.handleChannelChange}
+                handleAccountChange={this.handleAccountChange}
+                handlePromotionChange={this.handlePromotionChange}
+                handleAmountChange={this.handleAmountChange}
+                handleDepositClick={this.handleDepositClick}
+                handleSelectAccountChange={this.handleSelectAccountChange}
+                selectedPaymentIndex={this.state.selectedPaymentIndex}
+                selectedMethodIndex={this.state.selectedMethodIndex}
+                selectedChannelIndex={this.state.selectedChannelIndex}
+                depositPromotion={this.state.depositPromotion}
+                account={this.state.account}
+                amount={this.state.amount}
+                exchangeRate={this.state.exchangeRate}
+                disabled={this.state.disabled}
+                handleFileChange={this.handleFileChange}
+                key={this.state.fileInput}
+                files={this.state.files}
+                handleClosePopup={this.handleClosePopup}
+                openPopup={this.state.openPopup}
+                handleOpenPopupUrl={this.handleOpenPopupUrl}
+                alert={this.props.alert}
+                playerNote={this.state.playerNote}
+                handlePlayerNoteChange={this.handlePlayerNoteChange}
+                selectedBankCard={this.state.selectedBankCard}
+                handleBankCardChange={this.handleBankCardChange}
+                bankCardList={
+                  config.features.Deposit_AddCard
+                    ? this.props.wallet.bankCardList.sort((a, b) => b.default - a.default)
+                    : this.props.wallet.bankCardList
+                }
+              />
             </>
           );
         })()}

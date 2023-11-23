@@ -312,24 +312,6 @@ const routes: Route[] = [
     layout: DialogLayout,
   },
   {
-    path: "/deposit/payment/:id/:bank/:amount/:bonus?",
-    component: DepositPayment,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/details",
-    component: DepositDetailsPage,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/manual",
-    component: DepositManualPage,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
     path: "/card",
     component: CardPage,
     category: RouteCategoryEnum.MINE,

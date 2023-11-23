@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled, { DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
@@ -106,6 +106,7 @@ const UserWalletInfo = () => {
       .filter((item) => item.status === 0 && item.transferwallet === true)
       .filter((item) => item.gpcode !== "NTTF" && item.gpcode !== "RTTF")
       .map((a) => {
+        console.log("1111");
         return getGameBalance(a.gpcode);
       });
 
@@ -128,12 +129,16 @@ const UserWalletInfo = () => {
     }
   };
 
-  let ingame = 0;
-  game.providerList.map((provider) => {
-    if (provider.transferwallet)
-      ingame +=
-        typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
-  });
+  const ingame = useMemo(() => {
+    let transferWalletBalance = 0;
+    game.providerList.map((provider) => {
+      if (provider.transferwallet)
+        transferWalletBalance +=
+          typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
+    });
+
+    return transferWalletBalance;
+  }, [game.providerList]);
 
   return (
     <Container>

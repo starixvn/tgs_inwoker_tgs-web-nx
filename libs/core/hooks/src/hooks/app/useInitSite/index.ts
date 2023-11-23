@@ -2,7 +2,6 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { useLanguageDetect } from "./useLanguageDetect";
 import { useHandleMaintenance } from "./useHandleMaintenance";
-import { useUpdateProviderBalance } from "./useUpdateProviderBalance";
 import { useCheckRegisterProcess } from "./useCheckRegisterProcess";
 import { useInitSiteApiData } from "./useInitSiteApiData";
 
@@ -11,7 +10,6 @@ export function useInitSite() {
 
   useLanguageDetect();
   useHandleMaintenance();
-  useUpdateProviderBalance();
   useCheckRegisterProcess();
 
   const { isInitSiteLoading } = useInitSiteApiData();
