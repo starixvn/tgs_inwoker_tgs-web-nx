@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 const AppFlag = () => {
   const history = useHistory();
   const handleClickpPatform = () => {
-    history.push("/download");
+    history.push("/appDownload");
   };
   return (
     <Wrapper>

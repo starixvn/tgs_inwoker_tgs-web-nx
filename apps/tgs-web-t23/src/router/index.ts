@@ -394,7 +394,7 @@ const routes: Route[] = [
   //   navigate: true,
   // },
   {
-    path: "/download",
+    path: "/appDownload",
     component: AppDownloadPage,
     category: RouteCategoryEnum.MINE,
     layout: DefaultLayout,

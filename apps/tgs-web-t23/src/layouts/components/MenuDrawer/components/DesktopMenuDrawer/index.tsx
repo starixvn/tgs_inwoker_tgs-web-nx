@@ -134,7 +134,7 @@ const DesktopMenuDrawer = () => {
   };
 
   const handleClickDownload = () => {
-    history.push("/download");
+    history.push("/appDownload");
     handleDrawerClose();
   };
 
