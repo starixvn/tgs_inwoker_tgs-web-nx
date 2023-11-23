@@ -82,9 +82,7 @@ const GameCardBg = styled.div`
   border-radius: 10px;
 
   ${media.sm} {
-    width: calc(14.29% - 11.4px);
-    min-width: 160px;
-    aspect-ratio: 160 / 160;
+    width: calc(16.67% - 5px);
 
     &:hover {
       ${CardHoverBg} {

@@ -34,6 +34,7 @@ const CategoryContentWrapper = styled.div`
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
+border: 1px solid red;
   width: 100%;
   flex: 1;
   flex-shrink: 0;
@@ -46,6 +47,10 @@ const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  width: 100%;
+  row-gap: 10px;
+  column-gap: 9px;
+  align-self: stretch;
 `;
 
 const LobbyCategory = () => {

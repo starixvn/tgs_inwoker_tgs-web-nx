@@ -3,6 +3,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { isMobile } from "react-device-detect";
 import searchIcon from "@/assets/t29/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
@@ -11,6 +12,7 @@ import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,6 +20,12 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   gap: 6px;
+
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    padding: 15px 0px;
+  }
 `;
 
 const CategoryContentWrapper = styled.div`
@@ -36,6 +44,15 @@ const FilterSection = styled.div`
   flex-direction: column;
   gap: 8px;
   margin-bottom: 10px;
+`;
+
+const DesktopCategoryContentWrapper = styled.div`
+  width: 100%;
+  gap: 10px 6px;
+  flex: 1 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 `;
 
 const CategoryContent = styled.div`
@@ -81,11 +98,40 @@ const NonLobbyCategory = () => {
 
   return (
     <Wrapper>
-      <GameTypeTab />
+      {isMobile && <>
+        <GameTypeTab />
+        <CategoryContentWrapper>
+          <FilterSection>
+            <GameFilterTag />
+            <SearchInputWrapper>
+              <SearchInput
+                placeholder={i18n.t("slot.search")}
+                imageUrl={searchIcon}
+                handleChange={handleChangeSearch}
+                value={searchString}
+              />
+            </SearchInputWrapper>
+          </FilterSection>
+          <CategoryContent>
+            {hasMappingData &&
+              gameList.map((gameItem) => (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
+                />
+              ))}
+            {!hasMappingData && !isLoading && <div>No data</div>}
+          </CategoryContent>
+        </CategoryContentWrapper>
+      </>}
 
-      {isDesktopSize && (
-        <FilterWrapper>
-          <GameFilterTag />
+      {isDesktopSize && <>
+        {/* <FilterSection>
+          <HomeGameFilterTag />
           <SearchInputWrapper>
             <SearchInput
               placeholder={i18n.t("slot.search")}
@@ -94,22 +140,9 @@ const NonLobbyCategory = () => {
               value={searchString}
             />
           </SearchInputWrapper>
-        </FilterWrapper>
-      )}
+        </FilterSection> */}
 
-      <CategoryContentWrapper>
-        <FilterSection>
-          <GameFilterTag />
-          <SearchInputWrapper>
-            <SearchInput
-              placeholder={i18n.t("slot.search")}
-              imageUrl={searchIcon}
-              handleChange={handleChangeSearch}
-              value={searchString}
-            />
-          </SearchInputWrapper>
-        </FilterSection>
-        <CategoryContent>
+        <DesktopCategoryContentWrapper>
           {hasMappingData &&
             gameList.map((gameItem) => (
               <GameCard
@@ -122,9 +155,8 @@ const NonLobbyCategory = () => {
               />
             ))}
           {!hasMappingData && !isLoading && <div>No data</div>}
-        </CategoryContent>
-      </CategoryContentWrapper>
-
+        </DesktopCategoryContentWrapper>
+      </>}
       <Loading show={isLoading} />
     </Wrapper>
   );

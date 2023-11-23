@@ -29,6 +29,8 @@ const MainWrapper = styled.div`
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
+    height: unset;
+    padding: 0px 0px 0px 0px;
   }
 `;
 
@@ -36,10 +38,10 @@ const SliderWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
 
-  ${media.sm} {
+  /* ${media.sm} {
     height: 100%;
     max-height: 450px;
-  }
+  } */
   /* to-do: 最大高度限制問題 */
 `;
 
@@ -67,7 +69,7 @@ const MainContentWrapper = styled.div`
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 100%;
+  height: 450px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
@@ -80,6 +82,14 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
 
+  const isNonLobbyList: number[] = [
+    GameTypeEnum.SLOT,
+    GameTypeEnum.FISH,
+    GameTypeEnum.TABLEGAME,
+  ];
+
+  const isNonLobby = isNonLobbyList.includes(activeGameType)
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -88,21 +98,21 @@ const HomePage = () => {
     });
   }, [activeGameType]);
 
+  console.log("activeGameType", activeGameType, "isNonLobby", isNonLobby, "isDesktopSize", isDesktopSize);
+
   return (
     <MainWrapper>
-      {}
       {!!general.banner.length && (
         <SliderWrapper>
           {isMobileSize && <Slider settings={{}} />}
-          {(isDesktopSize && !!activeGameType)
-            ? <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-            : <Banner />}
+          {(isDesktopSize && activeGameType && !isNonLobby) && <GameTypeBanner
+            $imageUrl={
+              activeGameTypeKey
+                ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                : ""
+            }
+          />}
+          {isDesktopSize && !activeGameType && <Banner />}
         </SliderWrapper>
       )}
       {isMobileSize && <CardPrompt />}

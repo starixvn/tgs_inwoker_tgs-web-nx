@@ -11,7 +11,7 @@ import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } fr
 const HomeLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.white};
-  height: 100vh;
+  /* height: 100vh; */
 `;
 
 const DashboardContainer = styled.div`
@@ -23,6 +23,7 @@ const DashboardContainer = styled.div`
     margin-top: ${DESKTOP_HEADER_HEIGHT};
     min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
     margin-bottom: unset;
+    height: unset;
   }
 `;
 
@@ -37,6 +38,7 @@ const ChildrenWrapper = styled.div`
 
   ${media.sm} {
     padding-bottom: 0;
+    height: unset;
   }
 `;
 
