@@ -21,7 +21,6 @@ const Wrapper = styled.div<{
   background-color: ${({ theme, $hasBackground }) =>
     $hasBackground ? theme.primary : theme.mainBackground};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
-  /* padding: ${({ $isShowIcon }) => ($isShowIcon ? "0px" : "0px 6px")}; */
 
   ${media.sm} {
     cursor: pointer;

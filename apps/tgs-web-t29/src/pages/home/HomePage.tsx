@@ -98,8 +98,6 @@ const HomePage = () => {
     });
   }, [activeGameType]);
 
-  console.log("activeGameType", activeGameType, "isNonLobby", isNonLobby, "isDesktopSize", isDesktopSize);
-
   return (
     <MainWrapper>
       {!!general.banner.length && (

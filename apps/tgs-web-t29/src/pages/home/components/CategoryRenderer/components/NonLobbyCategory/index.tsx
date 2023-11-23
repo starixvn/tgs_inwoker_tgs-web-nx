@@ -4,11 +4,9 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { isMobile } from "react-device-detect";
-import searchIcon from "@/assets/t29/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
-import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -39,7 +37,6 @@ const CategoryContentWrapper = styled.div`
 const FilterSection = styled.div`
   width: 100%;
   flex-shrink: 0;
-  background-color: ${({ theme }) => theme.mainBackground};
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -49,7 +46,6 @@ const FilterSection = styled.div`
 const DesktopCategoryContentWrapper = styled.div`
   width: 100%;
   gap: 10px 6px;
-  flex: 1 0 0;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -70,29 +66,16 @@ const CategoryContent = styled.div`
   }
 `;
 
-const SearchInputWrapper = styled.div`
+const DesktopWrapper = styled.div`
   width: 100%;
-  height: 37px;
-
-  ${media.sm} {
-    width: 300px;
-    height: 100%;
-    margin-left: 8px;
-  }
-`;
-
-const FilterWrapper = styled.div`
-  width: 100%;
-  height: 50px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 6px;
 `;
 
 const NonLobbyCategory = () => {
   const { isDesktopSize } = useRwd();
-  const { searchString, handleChangeSearch } = useHomeGameContext();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
 
@@ -129,19 +112,8 @@ const NonLobbyCategory = () => {
         </CategoryContentWrapper>
       </>}
 
-      {isDesktopSize && <>
-        {/* <FilterSection>
-          <HomeGameFilterTag />
-          <SearchInputWrapper>
-            <SearchInput
-              placeholder={i18n.t("slot.search")}
-              imageUrl={searchIcon}
-              handleChange={handleChangeSearch}
-              value={searchString}
-            />
-          </SearchInputWrapper>
-        </FilterSection> */}
-
+      {isDesktopSize && <DesktopWrapper>
+        <HomeGameFilterTag />
         <DesktopCategoryContentWrapper>
           {hasMappingData &&
             gameList.map((gameItem) => (
@@ -156,7 +128,7 @@ const NonLobbyCategory = () => {
             ))}
           {!hasMappingData && !isLoading && <div>No data</div>}
         </DesktopCategoryContentWrapper>
-      </>}
+      </DesktopWrapper>}
       <Loading show={isLoading} />
     </Wrapper>
   );
