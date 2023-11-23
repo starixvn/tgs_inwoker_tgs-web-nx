@@ -8,7 +8,7 @@ type BadgeContainerProps = {
   theme: typeof theme;
 };
 const BadgeContainer = styled.div<BadgeContainerProps>`
-  width: calc((100% - 6px * 3) / 4);
+  width: calc((100% - 8px * 3) / 4);
   height: fit-content;
   cursor: pointer;
   padding: 13px 8px;
