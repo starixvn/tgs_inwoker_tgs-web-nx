@@ -9,10 +9,11 @@ import { media } from "@/theme/breakpoints";
 
 const Container = styled.div`
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.mainBackground};
 `;
 
 const ContentContainer = styled.div`
+  background: ${({ theme }) => theme.blue20};
   ${media.sm} {
     padding: 40px;
   }
@@ -75,7 +76,6 @@ const Download = () => {
               color: theme.white,
               padding: "12px, 20px, 12px, 20px",
               borderRadius: "6px",
-              
             }}
           >
             <>Download</>

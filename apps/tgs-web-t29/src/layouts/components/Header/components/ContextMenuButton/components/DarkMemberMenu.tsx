@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useAuth } from "@tgs-web-nx/core/features";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -40,6 +41,7 @@ type Props = {
 
 const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
+  const { handleLogout } = useAuth();
   const history = useHistory();
 
   const handleClick = (navItem: NavItem) => {
@@ -75,6 +77,7 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
           margin: " 15px 10px 0",
           width: "180px",
         }}
+        onClick={handleLogout}
       >
         <Icon iconUrl={iconLogout} width={"24px"} height={"24px"} style={{ marginRight: "10px" }} />
         {i18n.t("web.header.logout")}
