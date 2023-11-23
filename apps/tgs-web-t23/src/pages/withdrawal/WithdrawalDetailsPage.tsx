@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications } from "@tgs-web-nx/core/features";
+import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Details from "@/components/account/WithdrawalPrev/Details";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
@@ -11,6 +11,8 @@ import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 const WithdrawalDetails = () => {
+  useUpdatePageName(i18n.t("common.withdrawal"));
+
   const history = useHistory();
   const { alert } = useNotifications();
   const location = useLocation<{ order?: string }>();

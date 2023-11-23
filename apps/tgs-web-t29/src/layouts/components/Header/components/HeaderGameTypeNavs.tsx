@@ -8,12 +8,11 @@ const HeaderGameTypesContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
-  //gap: 10px;
-  height: 40px;
+  height: 100%;
   overflow-x: scroll;
 
   &::-webkit-scrollbar {
-    height: 10px;
+    //height: 10px;
   }
 
   &::-webkit-scrollbar-track {
@@ -40,7 +39,7 @@ const GameTypeNav = styled.div`
   display: flex;
   align-items: center;
   padding: 5px;
-  border-radius: 5px;
+  //border-radius: 5px;
   color: ${({ theme }) => theme.gray50};
 
   &:hover {
