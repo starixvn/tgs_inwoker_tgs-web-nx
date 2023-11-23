@@ -1,0 +1,104 @@
+import { useEffect, useRef } from "react";
+import styled from "styled-components";
+import { providerStatus } from "@tgs-web-nx/constants";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import TextButton from "../TextButton";
+import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
+import { media } from "@/theme/breakpoints";
+import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+
+type Props = {
+  bgUrl: string;
+  imageUrl: string;
+  gameName?: string;
+  venderName: string;
+  venderLogoUrl: string;
+  launchGame: () => void;
+  status: number;
+};
+
+const GameIcon = styled.div<{ $imageUrl: string }>`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 115px;
+  height: 135px;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: cover;
+  flex-shrink: 0;
+`;
+
+const VendorCardBg = styled.div<{ $bgUrl: string }>`
+  position: relative;
+  width: 20%;
+  max-width: 200px;
+  position: relative;
+  aspect-ratio: 200/135;
+`;
+
+const VenderNameInfo = styled.div`
+  width: calc(100% - 115px);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+`;
+
+const VenderName = styled.div`
+  color: #333;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: flex-start;
+`;
+
+const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
+  display: inline-flex;
+  width: 100%;
+  max-width: 85px;
+  min-height: 38px;
+  background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
+  background-size: contain;
+  background-repeat: no-repeat;
+`;
+
+const MaintenanceBg = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(0 0 0 / 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const MaintenanceIcon = styled.img`
+  width: 57px;
+  height: 57px;
+`;
+
+const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
+  return (
+    <VendorCardBg $bgUrl={bgUrl} onClick={launchGame}>
+      <GameIcon $imageUrl={imageUrl}></GameIcon>
+      <VenderNameInfo>
+        <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
+        <VenderName>{venderName}</VenderName>
+      </VenderNameInfo>
+      {status === providerStatus.Maintenance && (
+        <MaintenanceBg>
+          <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+        </MaintenanceBg>
+      )}
+    </VendorCardBg>
+  );
+};
+
+export default DesktopVendorCard;

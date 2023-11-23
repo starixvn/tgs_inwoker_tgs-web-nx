@@ -1,18 +1,23 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const TabContainer = styled.div`
-  width: 100%;
-  overflow-x: auto;
-  white-space: nowrap;
+  overflow-y: scroll;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 72px;
+  max-height: 862px; //826/926
+  overflow-y: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  flex-shrink: 0;
+  gap: 3px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -40,7 +45,6 @@ const TabContainer = styled.div`
 const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { isMobileSize, isDesktopSize } = useRwd();
   const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
 
   const allTag = {
@@ -58,7 +62,7 @@ const GameTypeTab = () => {
   return (
     <TabContainer>
       {gameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType } = gameTypeItem;
+        const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
 
         return (
           <Tab
@@ -66,6 +70,7 @@ const GameTypeTab = () => {
             imageUrl={iconUrl}
             text={text}
             isActive={gameType === activeGameType}
+            fontSize={fontSize}
             onClick={() => switchGameType(gameType)}
           />
         );

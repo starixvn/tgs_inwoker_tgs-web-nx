@@ -14,9 +14,10 @@ const TagContainer = styled.div`
   white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  background-color: ${({ theme }) => theme.gray40};
   padding: 0px 6px 0px 14px;
   border-radius: 100px;
+  border: 1px solid ${({ theme }) => theme.blue40};
+  align-self: stretch;
 
   ${media.sm} {
     &::-webkit-scrollbar {
@@ -104,7 +105,7 @@ const GameFilterTag = () => {
             {tagCmp &&
               tagCmp.iconComponent &&
               React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.gray20,
+                $color: isActive ? theme.primary : theme.gray50,
               })}
           </Tag>
         );
@@ -136,7 +137,7 @@ const GameFilterTag = () => {
             {tagCmp &&
               tagCmp.iconComponent &&
               React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.gray20,
+                $color: isActive ? theme.primary : theme.gray50,
               })}
           </Tag>
         );

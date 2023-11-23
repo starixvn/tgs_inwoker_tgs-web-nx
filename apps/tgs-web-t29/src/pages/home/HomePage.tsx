@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGameType, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { isDesktop } from "react-device-detect";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import AppFlag from "@/pages/home/components/AppFlag";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
+import bg from "@/assets/t29/images/home/home_bg.png";
 
 const MainWrapper = styled.div`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -23,23 +23,72 @@ const MainWrapper = styled.div`
   padding: 0px 8px 12px 8px;
   gap: 6px;
   flex-shrink: 0;
+  flex: 1;
+  
+  ${media.sm} {
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    gap: unset;
+    height: unset;
+    padding: 0px 0px 0px 0px;
+  }
+`;
+
+const SliderWrapper = styled.div`
+  flex-shrink: 0;
+  width: 100%;
+
+  /* ${media.sm} {
+    height: 100%;
+    max-height: 450px;
+  } */
+  /* to-do: 最大高度限制問題 */
+`;
+
+const MainContentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: ${({ theme }) => theme.mainBackground};
+  color: ${({ theme }) => theme.white};
+  gap: 6px;
+  flex-shrink: 0;
+  flex: 1;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
+    background-image: url(${bg});
+    background-size: cover;
+    background-repeat: repeat;
   }
 `;
 
-const SliderWrapper = styled.div`
+const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  /* to-do: 最大高度限制問題 */
+  height: 450px;
+  margin: 0 auto;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType } = useHomeGameContext();
+  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+
+  const isNonLobbyList: number[] = [
+    GameTypeEnum.SLOT,
+    GameTypeEnum.FISH,
+    GameTypeEnum.TABLEGAME,
+  ];
+
+  const isNonLobby = isNonLobbyList.includes(activeGameType)
 
   useEffect(() => {
     window.scrollTo({
@@ -49,17 +98,29 @@ const HomePage = () => {
     });
   }, [activeGameType]);
 
+  console.log("activeGameType", activeGameType, "isNonLobby", isNonLobby, "isDesktopSize", isDesktopSize);
+
   return (
     <MainWrapper>
       {!!general.banner.length && (
         <SliderWrapper>
           {isMobileSize && <Slider settings={{}} />}
-          {isDesktopSize && <Banner />}
+          {(isDesktopSize && activeGameType && !isNonLobby) && <GameTypeBanner
+            $imageUrl={
+              activeGameTypeKey
+                ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                : ""
+            }
+          />}
+          {isDesktopSize && !activeGameType && <Banner />}
         </SliderWrapper>
       )}
-      {!activeGameType && isMobileSize && <CardPrompt />}
-      {isMobileSize && <GameTypeTab />}
-      {isDesktopSize && <CategoryRenderer />}
+      {isMobileSize && <CardPrompt />}
+
+      <MainContentWrapper>
+        <CategoryRenderer />
+      </MainContentWrapper>
+
     </MainWrapper>
   );
 };

@@ -1,16 +1,27 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useEffect } from "react";
 import HomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory";
 import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
 import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/components/NonLobbyCategory";
 
 const CategoryRenderer = () => {
-  const { activeGameType } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { isDesktopSize } = useRwd();
+
+  useEffect(() => {
+    handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SPORTS);
+  }, [isDesktopSize]);
+
+  if (isDesktopSize) {
+    switch (activeGameType) {
+      case GameTypeEnum.NONE:
+        return <HomeCategory />;
+    }
+  }
 
   switch (activeGameType) {
-    case GameTypeEnum.NONE:
-      return <HomeCategory />;
-
     case GameTypeEnum.SLOT:
     case GameTypeEnum.FISH:
     case GameTypeEnum.TABLEGAME:
