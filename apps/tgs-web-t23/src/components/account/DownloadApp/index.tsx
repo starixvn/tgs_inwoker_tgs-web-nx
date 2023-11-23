@@ -9,7 +9,7 @@ import { media } from "@/theme/breakpoints";
 
 const DownloadAppContainer = styled.div`
   padding: 0 205px;
-  }
+  
   ${media.xs} {
     padding: 0 24px;
   }

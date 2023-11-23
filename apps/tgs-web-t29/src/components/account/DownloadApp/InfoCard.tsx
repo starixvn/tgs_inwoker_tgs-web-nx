@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const IntroCardContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.primaryLight};
+  background: ${({ theme }) => theme.blue20};
   border-radius: 10px;
   padding: 22px 38px;
   display: flex;
@@ -21,17 +21,23 @@ const IntroCardContainer = styled.div`
   }
 
   & .title {
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.153rem;
-    color: #f4bd29;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: ${({ theme }) => theme.blue70};
   }
 
   & .content {
+    font-family: Arial;
+    font-size: 15px;
     font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.153rem;
-    color: ${({ theme }) => theme.white};
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: ${({ theme }) => theme.gray50};
   }
 `;
 

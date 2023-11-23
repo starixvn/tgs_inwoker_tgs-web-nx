@@ -19,11 +19,25 @@ const GirlImage = styled.div`
 `;
 
 const IntroductionContainer = styled.div`
-  color: ${({ theme }) => theme.white};
+  display: flex;
+  flex-direction: column;
+  padding: 16px 34px 24px 16px;
+  color: ${({ theme }) => theme.gray50};
+  font-family: Arial;
+  font-size: 18px;
   font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.318rem;
-  margin-bottom: 10px;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+  gap: 12px;
+  & span {
+    font-family: Arial;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
 `;
 
 const InfoCardListContainer = styled.div`
@@ -31,6 +45,7 @@ const InfoCardListContainer = styled.div`
   flex-direction: column;
   gap: 10px;
   margin-bottom: 10px;
+  padding: 0 16px;
 `;
 
 const infoCardItemList: InfoCardItem[] = [
@@ -64,7 +79,7 @@ const DownloadApp = () => {
       </GirlImage>
 
       <IntroductionContainer>
-        <p>Introduction</p>
+        <span>Introduction</span>
         <p>
           The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
           available for IOS and Android that features a multitude of entertaining games.

@@ -30,6 +30,7 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import ProfileLayout from "@/layouts/ProfileLayout";
+import AppDownloadPage from "@/pages/download/DownloadPage"
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -398,6 +399,12 @@ const routes: Route[] = [
     category: RouteCategoryEnum.MINE,
     layout: DialogLayout,
     isAnonymousAllowed: true,
+  },
+  {
+    path: "/download",
+    component: AppDownloadPage,
+    category: RouteCategoryEnum.MINE,
+    layout: DefaultLayout,
   },
   {
     path: "/joingame/:gameId/:gpCode",
