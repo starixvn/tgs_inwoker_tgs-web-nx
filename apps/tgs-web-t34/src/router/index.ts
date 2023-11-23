@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MemoExoticComponent, NamedExoticComponent } from "react";
 import config from "@tgs-web-nx/config";
 import CardPage from "@/pages/card/CardPage";
 import AddCardPage from "@/pages/card/AddCardPage";
@@ -6,9 +6,6 @@ import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import DepositDetailsPage from "@/pages/deposit/DepositDetailsPage";
-import DepositManualPage from "@/pages/deposit/DepositManualPage";
-import DepositPayment from "@/pages/deposit/DepositPaymentPage";
 import InboxPage from "@/pages/inbox/InboxPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";

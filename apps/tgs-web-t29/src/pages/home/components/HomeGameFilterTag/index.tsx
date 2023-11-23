@@ -38,7 +38,7 @@ const ProviderTagContainer = styled.div`
   flex-shrink: 0;
 `;
 
-const SearchInputWrapper = styled.div`
+export const SearchInputWrapper = styled.div`
   width: 100%;
   height: 37px;
 
@@ -65,7 +65,7 @@ const HomeGameFilterTag = () => {
     activeFilterTag,
     activeProviderFilterTag,
     searchString,
-    handleChangeSearch
+    handleChangeSearch,
   } = useHomeGameContext();
 
   const onChangeFilterTag = (newFilterTag: FilterTag) => {

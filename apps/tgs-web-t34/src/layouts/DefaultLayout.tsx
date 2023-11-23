@@ -65,4 +65,4 @@ const DefaultLayout = ({ children }: Props) => {
   );
 };
 
-export default React.memo(DefaultLayout);
+export default DefaultLayout;

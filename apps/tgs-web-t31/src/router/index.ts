@@ -6,9 +6,6 @@ import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import DepositDetailsPage from "@/pages/deposit/DepositDetailsPage";
-import DepositManualPage from "@/pages/deposit/DepositManualPage";
-import DepositPayment from "@/pages/deposit/DepositPaymentPage";
 import InboxPage from "@/pages/inbox/InboxPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
@@ -26,10 +23,8 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
 import DialogLayout from "@/layouts/DialogLayout";
 import { ProfilePathEnum } from "@/components/account/Profile/profilePageDictionary";
-import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
-import VipLayout from "@/layouts/VipLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
