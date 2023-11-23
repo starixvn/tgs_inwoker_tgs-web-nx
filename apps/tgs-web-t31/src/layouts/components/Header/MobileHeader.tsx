@@ -1,16 +1,16 @@
 import React, { useCallback } from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
-import { useHomeGameContext, useAuth } from "@tgs-web-nx/core/features";
+import { useAccountStore } from "@tgs-web-nx/core";
+import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
 
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import userAvatar from "@/assets/t31/images/header/contextMenu/Member.png";
 import logOutIcon from "@/assets/t31/images/header/contextMenu/Log out.png";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/index";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -33,15 +33,6 @@ const HeaderWrapper = styled.div`
   z-index: 2;
 `;
 
-const LogoImgContainer = styled.div`
-  height: 27px;
-  padding: 0 10px;
-
-  & > img {
-    height: 100%;
-  }
-`;
-
 const HeaderContentContainer = styled.div`
   display: flex;
   align-items: center;
@@ -60,7 +51,6 @@ const LogOut = styled.img`
 
 const Header = () => {
   const history = useHistory();
-  const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { handleChangeGameType } = useHomeGameContext();
@@ -75,13 +65,10 @@ const Header = () => {
       <HeaderWrapper>
         <MenuButton width="40px" height="40px" />
         <Link to={""}>
-          <LogoImgContainer>
-            <img
-              src={general.brand && general.brand.loadingUrl}
-              alt={"logo"}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-            />
-          </LogoImgContainer>
+          <BrandLogo
+            style={{ height: "27px" }}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
         </Link>
         <HeaderContentContainer>
           <UserAvatar src={userAvatar} onClick={toggleLogin} />
