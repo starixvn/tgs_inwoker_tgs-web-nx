@@ -45,8 +45,8 @@ const ChildrenWrapper = styled.div`
   display: flex;
   justify-content: center;
   ${media.sm} {
-    padding-bottom: 0;
-    margin-top: 20px;
+    padding-bottom: 15px;
+    margin-top: 15px;
   }
 `;
 
