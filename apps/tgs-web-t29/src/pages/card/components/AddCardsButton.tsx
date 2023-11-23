@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import AddCardIcon from "@/assets/t33/images/card/add-card.svg";
+import AddCardIcon from "@/assets/t29/images/card/add-card.svg";
 
 const CardContainer = styled.div`
   padding: 13px 20px;
-  background: ${({ theme }) => theme.gray40};
+  background: ${({ theme }) => theme.blue20};
+  border: 1px solid ${({ theme }) => theme.main};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,12 +18,12 @@ const CardContainer = styled.div`
 const EmptyCardTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
 `;
 
 const EmptyCardDesc = styled.div`
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
 `;
 
 const IconContainer = styled.div`
@@ -37,6 +38,7 @@ const IconContainer = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
