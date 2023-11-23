@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHeader } from "@tgs-web-nx/core/features";
@@ -7,6 +7,7 @@ import contactIcon from "@/assets/t29/images/bottomAppBar/icon-contact.svg";
 import transferIcon from "@/assets/t29/images/bottomAppBar/icon-transfer.svg";
 import reportIcon from "@/assets/t29/images/bottomAppBar/icon-report.svg";
 import accountIcon from "@/assets/t29/images/bottomAppBar/icon-account.svg";
+import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 
 export enum NavTypeEnum {
   ITEM,
@@ -17,13 +18,14 @@ export enum NavTypeEnum {
 export type BottomNavItem = {
   navType: NavTypeEnum;
   key: string;
-  label: any;
+  label: string | any;
   iconUrl: string;
   handleClick: () => void;
 };
 
 export function useGetBottomNavItemList() {
   const history = useHistory();
+  const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
     return [
@@ -51,8 +53,7 @@ export function useGetBottomNavItemList() {
         label: i18n.t("common.transfer"),
         iconUrl: transferIcon,
         handleClick: () => {
-          console.log("OPEN");
-          // history.push("/deposit");
+          handleTransferDrawerToggle();
         },
       },
       {
@@ -76,14 +77,13 @@ export function useGetBottomNavItemList() {
     ];
   }, []);
 
-  const { handleToggleMenu } = useHeader();
-
+  // const { handleToggleMenu } = useHeader();
   const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    switch (appBarItem.key) {
-      case "menu":
-        handleToggleMenu(true);
-
-        break;
+    switch (appBarItem.navType) {
+      // case NavTypeEnum.MENU :
+      //   handleToggleMenu(true);
+      //
+      //   break;
 
       default:
         appBarItem.handleClick();
@@ -94,5 +94,7 @@ export function useGetBottomNavItemList() {
   return {
     bottomNavItemList,
     handleClickBottomNavItem,
+    isTransferDrawerOpen,
+    handleTransferDrawerToggle,
   };
 }

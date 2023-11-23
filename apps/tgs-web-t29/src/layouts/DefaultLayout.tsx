@@ -59,8 +59,6 @@ const DefaultLayout = ({ children }: Props) => {
       <Header />
 
       <DashboardContainer>
-        <MenuDrawer />
-
         <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
