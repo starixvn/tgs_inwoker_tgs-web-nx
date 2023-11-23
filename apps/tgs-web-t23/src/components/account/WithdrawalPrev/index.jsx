@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { ListItem, ListItemText, styled as muiStyled } from "@mui/material";
-import Modal from "@mui/material/Modal";
-import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { RESET_WALLETRESULT, walletAction } from "@tgs-web-nx/core";
@@ -21,59 +18,14 @@ import {
 import { Button } from "@/components/UI/Button";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
-
-const StyledModalBank = muiStyled(Modal)(({ theme }) => ({
-  "& .MuiModal-paper": {
-    color: "#666666",
-    padding: "0 30px",
-    width: "750px",
-    maxWidth: "750px",
-    margin: 0,
-    display: "block",
-    position: "absolute",
-    bottom: 0,
-    height: "calc(100% - 580px)",
-  },
-}));
-
-const StyledListItem = muiStyled(ListItem)(({ theme }) => ({
-  borderBottom: "1px solid rgba(0, 0, 0, 0.2)",
-  padding: "10px",
-}));
-
-const StyledListItemText = muiStyled(ListItemText)(({ theme }) => ({
-  textAlign: "center",
-  paddingRight: "50px",
-  "& .MuiTypography-root": {
-    fontSize: "28px",
-  },
-}));
-
-const LeftText = styled(StyledListItemText)`
-  text-align: left;
-`;
-const RightText = styled(StyledListItemText)`
-  text-align: right;
-`;
-
-const StyledModalPopup = muiStyled(Modal)(({ theme }) => ({
-  "& .MuiModal-paper": {
-    borderRadius: "50px",
-    fontSize: "28px",
-    color: "#666666",
-    padding: "30px",
-    width: "600px",
-    maxWidth: "690px",
-    display: "block",
-  },
-}));
-
-const ManageBankCardButtonContainer = styled.div`
-  display: flex;
-  justify-content: end;
-  max-width: 450px;
-  align-self: flex-start;
-`;
+import {
+  LeftText,
+  ManageBankCardButtonContainer,
+  RightText,
+  StyledListItem,
+  StyledModalBank,
+  StyledModalPopup,
+} from "@/components/styled-component/Withdraw";
 
 class WithdrawalPrev extends Component {
   constructor(props) {
@@ -368,9 +320,9 @@ class WithdrawalPrev extends Component {
               placeholder={
                 this.state.selectedBankCardIndex
                   ? i18n.t("withdrawal.enterAmount") +
-                    ` (${Common.formatNumberWithThousand(
-                      this.state.min,
-                    )} - ${Common.formatNumberWithThousand(this.state.max)})`
+                  ` (${Common.formatNumberWithThousand(
+                    this.state.min,
+                  )} - ${Common.formatNumberWithThousand(this.state.max)})`
                   : i18n.t("withdrawal.enterAmount")
               }
             />
@@ -378,11 +330,11 @@ class WithdrawalPrev extends Component {
         </ItemContainer>
         {/*金额 USDT*/}
         {this.handleFilterCardList(this.props.wallet.bankCardList)[
-          this.state.selectedBankCardIndex
-        ] &&
+            this.state.selectedBankCardIndex
+            ] &&
           this.handleFilterCardList(this.props.wallet.bankCardList)[
             this.state.selectedBankCardIndex
-          ].banktype === "Usdt" && (
+            ].banktype === "Usdt" && (
             <ItemContainer>
               <LabelContainer>{i18n.t("withdrawal.usdtAmount")}</LabelContainer>
               <TextField
@@ -401,16 +353,16 @@ class WithdrawalPrev extends Component {
         {config.features.Deposit_Withdrawal_PlayerNote &&
           this.handleFilterCardList(this.props.wallet.bankCardList)[
             this.state.selectedBankCardIndex
-          ] &&
+            ] &&
           (this.handleFilterCardList(this.props.wallet.bankCardList)[
-            this.state.selectedBankCardIndex
-          ].banktype.toUpperCase() === "BANK" ||
+              this.state.selectedBankCardIndex
+              ].banktype.toUpperCase() === "BANK" ||
             this.handleFilterCardList(this.props.wallet.bankCardList)[
               this.state.selectedBankCardIndex
-            ].banktype.toUpperCase() === "EWALLET" ||
+              ].banktype.toUpperCase() === "EWALLET" ||
             this.handleFilterCardList(this.props.wallet.bankCardList)[
               this.state.selectedBankCardIndex
-            ].banktype.toUpperCase() === "PULSA") && (
+              ].banktype.toUpperCase() === "PULSA") && (
             <ItemContainer>
               <LabelContainer>{i18n.t("withdrawal.playerNote")}</LabelContainer>
               <FormControl>
@@ -437,7 +389,7 @@ class WithdrawalPrev extends Component {
             this.state.disabled === true
           }
         >
-         {i18n.t("common.submit")}
+          {i18n.t("common.submit")}
         </SubmitButton>
         <StyledModalBank
           onClose={() => this.setState({ ...this.state, bankOpen: false })}

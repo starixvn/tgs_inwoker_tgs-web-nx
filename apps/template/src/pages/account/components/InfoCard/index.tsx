@@ -13,7 +13,7 @@ const InfoCardContainer = styled.div`
   height: 248px;
   margin-left: 29px;
   padding: 46px 28px 21px;
-  color: white;
+  color: ${({ theme }) => theme.white};
 
   display: flex;
   flex-direction: column;

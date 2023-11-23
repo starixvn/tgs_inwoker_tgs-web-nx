@@ -1,7 +1,5 @@
 import { Close as CloseIcon } from "@mui/icons-material";
-import { ReactElement, useCallback } from "react";
-import { useLocation } from "react-router";
-import { useHistory } from "react-router-dom";
+import { ReactElement } from "react";
 import styled from "styled-components";
 import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
 import { HEADER_HEIGHT } from "@/theme/constants";
