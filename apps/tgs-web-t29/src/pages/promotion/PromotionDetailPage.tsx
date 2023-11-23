@@ -8,7 +8,7 @@ import Loading from "@/components/UI/Loading";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
-  padding: 22px 22px 100px 22px;
+  padding: 12px;
   color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@ const TextArea = styled.div`
   /* margin-bottom: 40px; */
 `;
 const Title = styled.h2`
-  color: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.blue50};
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -51,7 +51,7 @@ const Title = styled.h2`
   }
 `;
 const Description = styled.p`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
   font-size: 0.875rem;
   font-weight: 500;
   ${media.sm} {
