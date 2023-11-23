@@ -36,8 +36,8 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
       <BottomNavContainer onClick={onClick}>
         <Icon
           iconUrl={iconUrl}
-          width={"64px"}
-          height={"64px"}
+          width={"47px"}
+          height={"47px"}
           style={{
             marginBottom: "13px",
           }}

@@ -15,12 +15,11 @@ export const PageContainer = styled.div`
 `;
 
 export const TransferPageContainer = styled.div`
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.mainBackground};
   padding: 20px;
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
-  background: gold;
 
   ${media.sm} {
     padding: 10px;

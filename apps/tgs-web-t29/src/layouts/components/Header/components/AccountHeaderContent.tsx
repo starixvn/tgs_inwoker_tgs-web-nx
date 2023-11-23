@@ -49,7 +49,7 @@ const AccountHeaderContent = () => {
   const { account } = useAccountStore();
   const { wallet } = useWalletStore();
   const { handleLogout } = useAuth();
-  const { isLargeDesktopSize, isDesktopSize } = useRwd();
+  const { isDesktopSize } = useRwd();
 
   const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
   const username = account.info.member_username;
