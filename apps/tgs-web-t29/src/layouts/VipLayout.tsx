@@ -1,6 +1,8 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useCallback } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
@@ -12,6 +14,8 @@ import {
 } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import bg from "@/assets/t29/images/bg.png";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -49,7 +53,7 @@ const ChildrenWrapper = styled.div`
   justify-content: center;
 
   ${media.sm} {
-    padding-bottom: 0;
+    padding-bottom: 0px;
   }
 `;
 
@@ -57,13 +61,21 @@ type Props = {
   children: ReactElement;
 };
 const VipLayout = ({ children }: Props) => {
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
+  const { pageName } = usePageName();
+  const history = useHistory();
+
+  const handleCloseDialog = useCallback(() => {
+    history.goBack();
+  }, [history]);
+
 
   return (
     <DefaultLayoutContainer>
       <Header />
 
       <DashboardContainer>
+        {isMobileSize && <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />}
         <ContentWrapper>
           <ChildrenWrapper>
             {isDesktopSize &&
@@ -80,6 +92,7 @@ const VipLayout = ({ children }: Props) => {
         </ContentWrapper>
       </DashboardContainer>
       <Footer />
+      {isMobileSize && <BottomAppBar />}
     </DefaultLayoutContainer>
   );
 };

@@ -22,7 +22,7 @@ const ScrollableContainer = styled.div`
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-      background: ${(props) => props.theme.gray50};
+      background: ${(props) => props.theme.gray10};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -64,7 +64,7 @@ const LevelTableHeader = styled.div`
   ${media.sm} {
     height: 86px;
     padding: 20px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray20};
+    border-bottom: 1px solid ${(props) => props.theme.gray10};
   }
 `;
 
@@ -87,6 +87,7 @@ const HeaderItem = styled.div`
     max-width: 136px;
     font-size: 1.125rem;
     margin: unset;
+    color: #23507D;
   }
 `;
 
@@ -141,6 +142,7 @@ const RowItem = styled.div`
     min-height: 67px;
     width: 166px;
     font-size: 1rem;
+    color: #23507D;
   }
 `;
 

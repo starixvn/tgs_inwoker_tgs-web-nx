@@ -20,8 +20,9 @@ const VipWrapper = styled.div`
   ${media.sm} {
     max-width: 800px;
     margin: 0 auto;
-    gap: 20px;
+    gap: 10px;
     padding: 10px;
+    background-color: ${({ theme }) => theme.blue20};
   }
 `;
 

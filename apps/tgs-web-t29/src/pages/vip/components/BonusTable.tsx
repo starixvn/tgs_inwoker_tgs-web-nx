@@ -23,7 +23,7 @@ const ScrollableContainer = styled.div`
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-      background: ${(props) => props.theme.gray50};
+      background: ${(props) => props.theme.gray10};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -67,7 +67,7 @@ const BonusTableHeader = styled.div`
     height: 97px;
     padding: 20px 0;
     border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray20};
+    border-bottom: 1px solid ${(props) => props.theme.gray10};
   }
 `;
 
@@ -87,6 +87,7 @@ const HeaderItem = styled.div`
     max-width: 115px;
     font-size: 1rem;
     margin: 0px 6px;
+    color: #23507D;
   }
 `;
 
@@ -98,10 +99,6 @@ const BonusTableBody = styled.div`
 
   ${media.sm} {
     background: ${(props) => props.theme.mainBackground};
-    
-    > div:nth-child(even) {
-      background: rgba(255, 255, 255, 0.10);
-    }
   }
 `;
 
@@ -114,6 +111,7 @@ const BonusTableRowWrapper = styled.div`
 
   ${media.sm} {
     border-bottom: unset;
+    color: #23507D;
   }
 `;
 
@@ -137,6 +135,7 @@ const RowItem = styled.div`
     min-height: 106px;
     width: 128px;
     font-size: 1rem;
+    color: #23507D;
   }
 `;
 
