@@ -32,3 +32,16 @@ export const TransferPageContainer = styled.div`
     margin: auto !important;
   }
 `;
+
+export const DownloadPageContainer = styled.div`
+  background: ${({ theme }) => theme.mainBackground};
+  padding: 12px;
+  max-width: calc(961px + 20px * 2);
+  flex: 1;
+  margin: 0 auto;
+
+  ${media.sm} {
+    padding: 10px;
+    background: ${({ theme }) => theme.blue20};
+  }
+`;

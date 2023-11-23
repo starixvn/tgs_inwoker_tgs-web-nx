@@ -4,7 +4,7 @@ import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import DownloadApp from "@/components/account/DownloadApp";
 
 const AppDownloadPage = () => {
-  useUpdatePageName(i18n.t("main.account.appDownload"));
+  useUpdatePageName(i18n.t("download.title"));
 
   return <DownloadApp />;
 };

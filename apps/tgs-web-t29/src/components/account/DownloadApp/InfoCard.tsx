@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 const IntroCardContainer = styled.div`
   width: 100%;
@@ -8,6 +9,10 @@ const IntroCardContainer = styled.div`
   padding: 22px 38px;
   display: flex;
   align-items: center;
+
+  ${media.sm} {
+    width: calc((100% - 10px * 1) / 2);
+  }
 
   & .logo {
     width: 48px;
