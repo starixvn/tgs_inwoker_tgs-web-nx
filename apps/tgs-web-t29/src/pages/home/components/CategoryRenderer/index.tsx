@@ -11,17 +11,13 @@ const CategoryRenderer = () => {
   const { isDesktopSize } = useRwd();
 
   useEffect(() => {
-    if (!isDesktopSize) {
-      handleChangeGameType(GameTypeEnum.SPORTS);
-    }
+    handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SPORTS);
   }, [isDesktopSize]);
 
   if (isDesktopSize) {
     switch (activeGameType) {
       case GameTypeEnum.NONE:
         return <HomeCategory />;
-      default:
-        return null;
     }
   }
 

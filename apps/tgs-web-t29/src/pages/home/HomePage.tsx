@@ -10,6 +10,7 @@ import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
+import bg from "@/assets/t29/images/home/home_bg.png";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -34,6 +35,11 @@ const MainWrapper = styled.div`
 const SliderWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
+
+  ${media.sm} {
+    height: 100%;
+    max-height: 450px;
+  }
   /* to-do: 最大高度限制問題 */
 `;
 
@@ -48,18 +54,31 @@ const MainContentWrapper = styled.div`
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
-  
+
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
+    background-image: url(${bg});
+    background-size: cover;
+    background-repeat: repeat;
   }
+`;
+
+const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType } = useHomeGameContext();
+  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
 
   useEffect(() => {
     window.scrollTo({
@@ -71,10 +90,19 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
+      {}
       {!!general.banner.length && (
         <SliderWrapper>
           {isMobileSize && <Slider settings={{}} />}
-          {isDesktopSize && <Banner />}
+          {(isDesktopSize && !!activeGameType)
+            ? <GameTypeBanner
+              $imageUrl={
+                activeGameTypeKey
+                  ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  : ""
+              }
+            />
+            : <Banner />}
         </SliderWrapper>
       )}
       {isMobileSize && <CardPrompt />}
