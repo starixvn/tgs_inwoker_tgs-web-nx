@@ -21,7 +21,7 @@ const PromotionCardListContainer = styled.div`
 const TitleText = styled.h1`
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
 `;
 
 const PromotionPage = () => {

@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 const IntroCardContainer = styled.div`
+  ${media.sm} {
+    width: calc((100% - 12px) / 2);
+  }
   width: 100%;
-  background: ${({ theme }) => theme.primaryLight};
+  background: #2e3237;
   border-radius: 10px;
   padding: 22px 38px;
   display: flex;

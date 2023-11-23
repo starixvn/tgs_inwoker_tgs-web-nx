@@ -3,34 +3,44 @@ import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compati
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
-import downloadGirlImg from "@/assets/t18/images/account/girl/download.png";
 import DownloadButtonGroup from "@/components/account/DownloadApp/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/components/account/DownloadApp/InfoCard";
+import { media } from "@/theme/breakpoints";
 
-const DownloadAppContainer = styled.div``;
-
-const GirlImage = styled.div`
-  width: 100%;
-  margin-bottom: 10px;
-
-  img {
-    width: 100%;
+const DownloadAppContainer = styled.div`
+  padding: 0 205px;
+  
+  ${media.xs} {
+    padding: 0 24px;
   }
 `;
 
 const IntroductionContainer = styled.div`
   color: ${({ theme }) => theme.white};
+  font-family: Gill Sans MT;
+  font-size: 20px;
+  font-style: normal;
   font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.318rem;
-  margin-bottom: 10px;
+  line-height: normal;
+  background: #2e3237;
+  padding: 40px 20px;
+`;
+
+const Text = styled.div`
+  padding-top: 10px;
+  font-family: Gill Sans MT;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 const InfoCardListContainer = styled.div`
+  padding-top: 10px;
+  width: 100%;
+  gap: 12px;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
+  flex-wrap: wrap;
 `;
 
 const infoCardItemList: InfoCardItem[] = [
@@ -59,16 +69,12 @@ const infoCardItemList: InfoCardItem[] = [
 const DownloadApp = () => {
   return (
     <DownloadAppContainer>
-      <GirlImage>
-        <img src={downloadGirlImg} alt={"download"} />
-      </GirlImage>
-
       <IntroductionContainer>
         <p>Introduction</p>
-        <p>
+        <Text>
           The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
-          available for IOS and Android that features a multitude of entertaining games.
-        </p>
+          available for lOS and Android that features a multitude of entertaining games.
+        </Text>
       </IntroductionContainer>
 
       <InfoCardListContainer>
@@ -76,7 +82,7 @@ const DownloadApp = () => {
           return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
         })}
       </InfoCardListContainer>
-
+      
       <DownloadButtonGroup />
     </DownloadAppContainer>
   );

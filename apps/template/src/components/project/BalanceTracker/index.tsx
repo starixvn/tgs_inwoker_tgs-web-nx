@@ -17,7 +17,7 @@ const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
   background: ${({ theme }: BalanceTrackerContainerProps) => theme.mainLightBackground};
   border: ${({ $size, theme }: BalanceTrackerContainerProps) =>
     $size !== "small" ? `1px solid ${theme.gray}` : "none"};
-  color: white;
+  color: ${({ theme }) => theme.white};
   border-radius: 50px;
   padding: 8px 15px;
   display: flex;

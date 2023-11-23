@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-import { ListItem, ListItemText, Modal, styled as muiStyled } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { accountAction, RESET_WALLETRESULT, walletAction } from "@tgs-web-nx/core";
@@ -14,51 +12,14 @@ import {
   LabelContainer,
 } from "@/components/styled-component/ProfileForms";
 import { Button } from "@/components/UI/Button";
-
-const Container = styled.div`
-  width: 100%;
-  padding: 20px 17px;
-`;
-
-const SubTitle = styled.div`
-  font-size: 1.5rem;
-  line-height: 1.758rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.white};
-  margin-bottom: 12px;
-`;
-
-const BottomInfo = styled.div`
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.0025rem;
-  text-align: center;
-  color: ${({ theme }) => theme.white};
-  margin-bottom: 20px;
-`;
-const StyledModalBank = muiStyled(Modal)(({ theme }) => ({
-  paper: {
-    color: "#666666",
-    padding: "0 30px",
-    margin: 0,
-    display: "block",
-    position: "absolute",
-    bottom: 0,
-    height: "calc(100% - 580px)",
-  },
-}));
-
-const StyledListItem = muiStyled(ListItem)(({ theme }) => ({
-  borderBottom: "1px solid rgba(0,0,0,0.2)",
-  padding: "10px",
-}));
-const StyledListItemText = muiStyled(ListItemText)(({ theme }) => ({
-  textAlign: "center",
-  paddingRight: "50px",
-  "& .MuiTypography-root": {
-    fontSize: "28px",
-  },
-}));
+import {
+  AddCardContainer,
+  BottomInfo,
+  StyledListItem,
+  StyledListItemText,
+  StyledModalBank,
+  SubTitle,
+} from "@/components/styled-component/AddCard";
 
 class AddCardPrev extends Component {
   state = {
@@ -500,7 +461,7 @@ class AddCardPrev extends Component {
     const eWalletCustom = selectedBankType("EWallet") && config.features.AddCard_EWalletCustoms;
 
     return (
-      <Container>
+      <AddCardContainer>
         <SubTitle>{i18n.t("card.addCard.title")}</SubTitle>
         {!config.features.AddCard_HideCertainField && (
           <ItemContainer>
@@ -912,7 +873,7 @@ class AddCardPrev extends Component {
           onClick={() => this.handleCloseDialog()}
         />
         <Loading show={this.state.loading || this.props.wallet.loading} />
-      </Container>
+      </AddCardContainer>
     );
   }
 }
