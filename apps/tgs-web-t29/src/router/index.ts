@@ -401,7 +401,7 @@ const routes: Route[] = [
     isAnonymousAllowed: true,
   },
   {
-    path: "/download",
+    path: "/appDownload",
     component: AppDownloadPage,
     category: RouteCategoryEnum.MINE,
     layout: DefaultLayout,
