@@ -9,7 +9,7 @@ const Wrapper = styled.div<{ $alignment: string }>`
 
 const Text = styled.div`
   color: ${({ theme }) => theme.white};
-  font-family: Roboto sens-serif;
+  font-family: Arial sens-serif;
   font-size: 0.9375rem;
   font-weight: 400;
   margin-top: 19px;

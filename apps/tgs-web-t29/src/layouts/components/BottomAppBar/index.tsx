@@ -30,7 +30,6 @@ const BottomAppBar = () => {
           <BottomNav
             key={bottomNavItem.label}
             bottomNavItem={bottomNavItem}
-            isSelected={false}
             onClick={() => handleClickBottomNavItem(bottomNavItem)}
           />
         );

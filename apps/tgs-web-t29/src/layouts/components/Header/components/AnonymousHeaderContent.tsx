@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
-import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 import iconLogin from "@/assets/t29/images/header/icon-login.svg";
 import Icon from "@/components/project/Icon";
@@ -52,7 +52,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
 
   return (
     <ButtonContainer>
-      <HeaderButton
+      <RoundHeaderButton
         onClick={toggleLoginDialog}
         style={{
           color: theme.white,
@@ -61,9 +61,9 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       >
         <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.login")}
-      </HeaderButton>
+      </RoundHeaderButton>
 
-      <HeaderButton
+      <RoundHeaderButton
         color={"primary"}
         onClick={toggleRegisterDialog}
         style={{
@@ -73,7 +73,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       >
         <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.register")}
-      </HeaderButton>
+      </RoundHeaderButton>
     </ButtonContainer>
   );
 };
