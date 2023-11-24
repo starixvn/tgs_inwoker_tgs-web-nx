@@ -54,7 +54,7 @@ const WalletsWrapper = styled.div`
 `;
 
 const MainWalletContainer = styled.div`
-  width: 128px;
+  //width: 128px;
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`

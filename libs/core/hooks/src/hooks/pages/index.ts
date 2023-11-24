@@ -7,3 +7,4 @@ export * from "./joinGame/useJoinGamePage";
 export * from "./joinLobbyGame/useJoinLobbyGamePage";
 export * from "./header";
 export * from "./deposit/useDepositPage";
+export * from "./withdrawal/useWithdrawalPage";
