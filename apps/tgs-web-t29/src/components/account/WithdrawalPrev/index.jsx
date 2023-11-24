@@ -239,7 +239,6 @@ class WithdrawalPrev extends Component {
       .filter((item) => item.status === 0 && item.transferwallet === true)
       .filter((item) => item.abbreviation !== "NTTF" && item.abbreviation !== "RTTF")
       .map((a) => {
-        console.log(2222);
         this.props.getGameBalance(a.gpcode).then((e) => {
           if (e.IsSuccess) {
           }
