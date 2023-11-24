@@ -678,7 +678,7 @@ class Main extends Component {
               this.props.amount === "" ||
               (this.props.files === null &&
                 config.features.Deposit_UploadRequired &&
-                methodCode("MANUAL"))
+                paymentCode("manual"))
             );
           })()}
         >

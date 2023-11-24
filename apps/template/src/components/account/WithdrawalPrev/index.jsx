@@ -247,6 +247,7 @@ class WithdrawalPrev extends Component {
       .filter((item) => item.status === 0 && item.transferwallet === true)
       .filter((item) => item.abbreviation !== "NTTF" && item.abbreviation !== "RTTF")
       .map((a) => {
+        console.log(2222);
         this.props.getGameBalance(a.gpcode).then((e) => {
           if (e.IsSuccess) {
           }
@@ -320,9 +321,9 @@ class WithdrawalPrev extends Component {
               placeholder={
                 this.state.selectedBankCardIndex
                   ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatNumberWithThousand(
-                    this.state.min,
-                  )} - ${Common.formatNumberWithThousand(this.state.max)})`
+                    ` (${Common.formatNumberWithThousand(
+                      this.state.min,
+                    )} - ${Common.formatNumberWithThousand(this.state.max)})`
                   : i18n.t("withdrawal.enterAmount")
               }
             />
@@ -330,11 +331,11 @@ class WithdrawalPrev extends Component {
         </ItemContainer>
         {/*金额 USDT*/}
         {this.handleFilterCardList(this.props.wallet.bankCardList)[
-            this.state.selectedBankCardIndex
-            ] &&
+          this.state.selectedBankCardIndex
+        ] &&
           this.handleFilterCardList(this.props.wallet.bankCardList)[
             this.state.selectedBankCardIndex
-            ].banktype === "Usdt" && (
+          ].banktype === "Usdt" && (
             <ItemContainer>
               <LabelContainer>{i18n.t("withdrawal.usdtAmount")}</LabelContainer>
               <TextField
@@ -353,16 +354,16 @@ class WithdrawalPrev extends Component {
         {config.features.Deposit_Withdrawal_PlayerNote &&
           this.handleFilterCardList(this.props.wallet.bankCardList)[
             this.state.selectedBankCardIndex
-            ] &&
+          ] &&
           (this.handleFilterCardList(this.props.wallet.bankCardList)[
-              this.state.selectedBankCardIndex
-              ].banktype.toUpperCase() === "BANK" ||
+            this.state.selectedBankCardIndex
+          ].banktype.toUpperCase() === "BANK" ||
             this.handleFilterCardList(this.props.wallet.bankCardList)[
               this.state.selectedBankCardIndex
-              ].banktype.toUpperCase() === "EWALLET" ||
+            ].banktype.toUpperCase() === "EWALLET" ||
             this.handleFilterCardList(this.props.wallet.bankCardList)[
               this.state.selectedBankCardIndex
-              ].banktype.toUpperCase() === "PULSA") && (
+            ].banktype.toUpperCase() === "PULSA") && (
             <ItemContainer>
               <LabelContainer>{i18n.t("withdrawal.playerNote")}</LabelContainer>
               <FormControl>
