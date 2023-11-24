@@ -38,10 +38,10 @@ const SliderWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
 
-  /* ${media.sm} {
+  ${media.sm} {
     height: 100%;
     max-height: 450px;
-  } */
+  }
   /* to-do: 最大高度限制問題 */
 `;
 

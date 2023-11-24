@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import GameTypeNavPopup from "./GameTypeNavPopup";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const HeaderGameTypesContainer = styled.div`
-border: 2px solid blue;
   margin-right: auto;
   display: flex;
   flex-wrap: nowrap;
@@ -32,11 +33,13 @@ border: 2px solid blue;
   }
 `;
 
-const DropdownContent = styled.div`
-  display: none;
-  position: absolute;
-  top: 0;
+const DropdownContent = styled.div<{ $isHovered: boolean }>`
+  display: ${($isHovered) => ($isHovered ? "block" : "none")};
+  position: absolute
+  top: 100%;
   left: 0;
+  background: ${({ theme }) => theme.gray10};
+  z-index: 1;
 `;
 
 const GameTypeNav = styled.div`
@@ -55,13 +58,6 @@ const GameTypeNav = styled.div`
     background: ${({ theme }) => theme.gray10};
   }
 
-  &:hover ${DropdownContent} {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
   ${media.lg} {
     font-size: 1rem;
   }
@@ -69,6 +65,17 @@ const GameTypeNav = styled.div`
 
 const HeaderGameTypeNavs = () => {
   const { sideNavItemList } = useGetNavItemList();
+  const [isHovered, setIsHovered] = useState(false);
+  const { activeGameType, handleChangeGameType } = useHomeGameContext();
+
+  const handleMouseEnter = (gameType: GameTypeEnum) => {
+    setIsHovered(true);
+    handleChangeGameType(gameType);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const handleClickNav = (navItem: NavItem) => {
     if (navItem.navType !== "action") return;
@@ -80,14 +87,19 @@ const HeaderGameTypeNavs = () => {
     <HeaderGameTypesContainer>
       {sideNavItemList.map((navItem) => {
         return (
-          <GameTypeNav key={navItem.key} onClick={() => handleClickNav(navItem)}>
+          <GameTypeNav key={navItem.key} onClick={() => handleClickNav(navItem)}
+            onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+            onMouseLeave={handleMouseLeave}
+          >
             {navItem.label}
+            {isHovered && (
+              <DropdownContent $isHovered={isHovered}>
+                <GameTypeNavPopup />
+              </DropdownContent>
+            )}
           </GameTypeNav>
         );
       })}
-      <DropdownContent>
-        <GameTypeNavPopup />
-      </DropdownContent>
     </HeaderGameTypesContainer>
   );
 };
