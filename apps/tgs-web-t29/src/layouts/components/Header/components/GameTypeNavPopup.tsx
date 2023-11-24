@@ -37,9 +37,7 @@ const GameTypeNavPopup = () => {
   return (
     <PopupBg>
       <PopupBody>
-        {/* <PopupBox> */}
         <GameTypeNavPopupContent />
-        {/* </PopupBox> */}
       </PopupBody>
     </PopupBg>
   );

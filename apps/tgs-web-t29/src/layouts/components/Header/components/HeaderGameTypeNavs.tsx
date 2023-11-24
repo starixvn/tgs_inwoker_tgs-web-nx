@@ -66,11 +66,11 @@ const GameTypeNav = styled.div`
 const HeaderGameTypeNavs = () => {
   const { sideNavItemList } = useGetNavItemList();
   const [isHovered, setIsHovered] = useState(false);
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { handleChangeNavPopupGameType } = useHomeGameContext();
 
   const handleMouseEnter = (gameType: GameTypeEnum) => {
     setIsHovered(true);
-    handleChangeGameType(gameType);
+    handleChangeNavPopupGameType(gameType);
   };
 
   const handleMouseLeave = () => {
