@@ -29,7 +29,7 @@ export const InterceptorService = {
           }
         }
 
-        config.headers["Content-Type"] = "application/json";
+        config.headers["Content-Type"] = config.headers["Content-Type"] ?? "application/json";
         config.headers["Accept-Language"] = localStorage.getItem("i18nextLng");
 
         if (config.url && config.url.toUpperCase().includes("/GAMEPROVIDER/LIST")) {
