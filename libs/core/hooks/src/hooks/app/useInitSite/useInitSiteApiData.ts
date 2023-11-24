@@ -96,9 +96,10 @@ export function useInitSiteApiData() {
     getBrandCommunication();
     getLiveChatURL();
     getPromotion();
-    getDepositMethod();
-    getWithdrawalChannel();
     getAffiliateStatus();
+
+    // TODO: these fetch method can move to single page
+    // getWithdrawalChannel();
   };
 
   const handleGoto = () => {
@@ -178,13 +179,13 @@ export function useInitSiteApiData() {
     }
 
     getBalanceList();
-    // handleUpdateProviderBalance();
     getMessages(i18n.language, 1, 99);
-    getBankCardList();
-    getAutoTransferStatus();
-    getDepositMethod();
-    getWithdrawalChannel();
     getPromotionRouletteCount();
+
+    //NOTE: no need to fetch these api in here
+    // handleUpdateProviderBalance();
+    // getAutoTransferStatus();
+    // getWithdrawalChannel();
   };
 
   const onFocus = () => {

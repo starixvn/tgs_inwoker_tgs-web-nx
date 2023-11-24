@@ -61,8 +61,6 @@ class DepositPrev extends Component {
 
   async componentDidMount() {
     if (this.props.token != null) {
-      await this.props.getDepositMethod();
-      this.props.getPromotion();
       if (this.state.paymentId) {
         WalletService.PerformGetManualDepositDetail(this.state.paymentId).then((e) => {
           if (e.IsSuccess) {
@@ -87,12 +85,6 @@ class DepositPrev extends Component {
           this.handleBankCardChange({ target: { value: defaultCard[0].id } });
         }
       }
-      this.countDownInterval = setInterval(
-        () => {
-          this.props.getDepositMethod(); // call api every 30 mins
-        },
-        30 * 60 * 1000,
-      );
     } else {
       this.props.appHistory.replace("/login");
     }
@@ -266,10 +258,6 @@ class DepositPrev extends Component {
         this.handleBankCardChange({ target: { value: defaultCard[0].id } });
       }
     }
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.countDownInterval);
   }
 
   handleRestartClick = async (e) => {

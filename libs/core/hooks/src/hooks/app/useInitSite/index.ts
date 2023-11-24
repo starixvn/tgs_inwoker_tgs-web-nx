@@ -4,12 +4,14 @@ import { useLanguageDetect } from "./useLanguageDetect";
 import { useHandleMaintenance } from "./useHandleMaintenance";
 import { useCheckRegisterProcess } from "./useCheckRegisterProcess";
 import { useInitSiteApiData } from "./useInitSiteApiData";
+import { useUpdateProviderBalance } from "./useUpdateProviderBalance";
 
 export function useInitSite() {
   const { general } = useGeneralStore();
 
   useLanguageDetect();
   useHandleMaintenance();
+  // useUpdateProviderBalance();
   useCheckRegisterProcess();
 
   const { isInitSiteLoading } = useInitSiteApiData();
