@@ -31,6 +31,7 @@ import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
+import VipLayout from "@/layouts/VipLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -385,7 +386,7 @@ const routes: Route[] = [
     path: "/vip",
     component: VIPPage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
 import { media } from "@/theme/breakpoints";
 import { vipBonusList } from "@/constants/vip";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const ScrollableContainer = styled.div`
   width: 100%;
@@ -24,7 +23,7 @@ const ScrollableContainer = styled.div`
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-      background: ${(props) => props.theme.tertiaryDark};
+      background: ${(props) => props.theme.gray10};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -60,14 +59,15 @@ const BonusTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 10.5px 0;
-  background-color: ${({ theme }) => theme.subBackground};
-  border-bottom: 1px solid #98A7B5;
+  background-color: ${({ theme }) => theme.mainBackground};
+  border-bottom: 1px solid #23507D;
+  border-radius: 6px 0px 0px 0px;
 
   ${media.sm} {
     height: 97px;
     padding: 20px 0;
     border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray20};
+    border-bottom: 1px solid ${(props) => props.theme.gray10};
   }
 `;
 
@@ -75,7 +75,7 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.gray50};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.5rem;
@@ -87,6 +87,7 @@ const HeaderItem = styled.div`
     max-width: 115px;
     font-size: 1rem;
     margin: 0px 6px;
+    color: #23507D;
   }
 `;
 
@@ -97,11 +98,7 @@ const BonusTableBody = styled.div`
   align-self: stretch;
 
   ${media.sm} {
-    background: ${(props) => props.theme.subBackground};
-    
-    > div:nth-child(even) {
-      background: rgba(255, 255, 255, 0.10);
-    }
+    background: ${(props) => props.theme.mainBackground};
   }
 `;
 
@@ -110,10 +107,11 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #67707B;
+  border-bottom: 1px solid#23507D;
 
   ${media.sm} {
     border-bottom: unset;
+    color: #23507D;
   }
 `;
 
@@ -125,7 +123,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: #98A7B5;
+  color: ${(props) => props.theme.black};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -137,6 +135,7 @@ const RowItem = styled.div`
     min-height: 106px;
     width: 128px;
     font-size: 1rem;
+    color: #23507D;
   }
 `;
 
