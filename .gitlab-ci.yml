@@ -76,7 +76,7 @@ deploy-domain-staging:
         echo "No Deployment Brand and Domain"
       fi
   only: 
-    - relase/current
+    - release/current
     
 deploy-domain-prod:
   stage: deploy-domain
