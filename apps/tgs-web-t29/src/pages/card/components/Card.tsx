@@ -13,7 +13,7 @@ const CardContainer = styled.div`
   border-radius: 4px;
 
   ${media.sm} {
-    background: ${({ theme }) => theme.gray50};
+    width: calc((100% - 14px * 1) / 2);
   }
 `;
 
