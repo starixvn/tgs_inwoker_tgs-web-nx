@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import GameTypeNavPopup from "./GameTypeNavPopup";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const HeaderGameTypesContainer = styled.div`
+border: 2px solid blue;
   margin-right: auto;
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
   height: 100%;
   overflow-x: scroll;
+  position: relative;
 
   &::-webkit-scrollbar {
     //height: 10px;
@@ -29,21 +32,34 @@ const HeaderGameTypesContainer = styled.div`
   }
 `;
 
+const DropdownContent = styled.div`
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
 const GameTypeNav = styled.div`
   flex-shrink: 0;
   font-size: 0.875rem;
   font-weight: 700;
   white-space: nowrap;
-  cursor: pointer;
-  //height: 100%;
   display: flex;
   align-items: center;
   padding: 5px;
-  //border-radius: 5px;
   color: ${({ theme }) => theme.gray50};
+  cursor: pointer;
+  position: relative;
 
   &:hover {
     background: ${({ theme }) => theme.gray10};
+  }
+
+  &:hover ${DropdownContent} {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   ${media.lg} {
@@ -60,6 +76,7 @@ const HeaderGameTypeNavs = () => {
   };
 
   return (
+
     <HeaderGameTypesContainer>
       {sideNavItemList.map((navItem) => {
         return (
@@ -68,6 +85,9 @@ const HeaderGameTypeNavs = () => {
           </GameTypeNav>
         );
       })}
+      <DropdownContent>
+        <GameTypeNavPopup />
+      </DropdownContent>
     </HeaderGameTypesContainer>
   );
 };
