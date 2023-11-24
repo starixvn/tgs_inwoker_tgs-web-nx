@@ -5,9 +5,10 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
+import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.tertiary};
+  background: ${({ theme }) => theme.grey00};
   color: ${({ theme }) => theme.white};
   padding: 12px 15px;
   border-radius: 10px;
@@ -34,17 +35,6 @@ const RowContainer = styled.div`
 const ColContainer = styled.div`
   width: 50%;
 `;
-
-const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  borderRadius: "30px",
-  border: `1px solid white`,
-  width: "100%",
-  fontSize: "0.937rem",
-  padding: "2px 15px",
-  "& fieldset": {
-    border: "none",
-  },
-}));
 
 const Spacing = styled.div`
   margin-bottom: 10px;
@@ -158,8 +148,14 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              border: "1px solid white",
-              borderRadius: "30px",
+              borderRadius: "6px",
+              background: theme.maskWhite20,
+              "& input": {
+                color: theme.white,
+              },
+              "& input::placeholder": {
+                color: theme.grey03,
+              },
             }}
           />
         </ColContainer>

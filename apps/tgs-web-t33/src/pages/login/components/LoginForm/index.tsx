@@ -2,27 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import FormikForm from "@/components/project/FormikForm";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
-import { media } from "@/theme/breakpoints";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
-
-const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
-  font-weight: 700;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-  white-space: nowrap;
-
-  ${media.sm} {
-    display: none;
-  }
-`;
+import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
+import BrandLogo from "@/components/project/BrandLogo";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const FormSubContainer = styled.div`
   width: 100%;
@@ -36,17 +23,23 @@ const RememberMeContainer = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.white};
-  font-size: 1.062rem;
+  font-size: 0.875rem;
   cursor: pointer;
   //margin: 8px 0;
 `;
 
 const ForgotPasswordContainer = styled.span`
   color: ${({ theme }) => theme.primary};
-  font-size: 1.062rem;
+  font-size: 0.875rem;
   font-weight: 400;
   white-space: nowrap;
   cursor: pointer;
+`;
+
+const TitleWrapper = styled.div``;
+const ContentWrapper = styled.div``;
+const LanguageWrapper = styled.div`
+  flex: 1;
 `;
 
 const LoginForm = () => {
@@ -59,36 +52,43 @@ const LoginForm = () => {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   } = useLoginForm();
+  const { isDesktopSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      <TitleContainer>{i18n.t("common.login")}</TitleContainer>
+      <TitleWrapper>
+        {/*{isDesktopSize && <BrandLogo style={{ marginBottom: "4px" }} />}*/}
+        <TitleContainer>{i18n.t("common.login")}</TitleContainer>
+      </TitleWrapper>
 
-      <FormikForm
-        formInputList={formInputConfigList}
-        formik={formik}
-        isLoading={isLoading}
-        error={loginError}
-        buttonText={i18n.t("common.login")}
-      >
-        <FormSubContainer>
-          <RememberMeContainer onClick={handleClickNeedToRemember}>
-            <Checkbox
-              checked={needToRemember}
-              style={{
-                padding: "0px 5px 0px",
-              }}
-            />
-            {i18n.t("wap.login.rememberMe")}
-          </RememberMeContainer>
+      <ContentWrapper>
+        <FormikForm
+          formInputList={formInputConfigList}
+          formik={formik}
+          isLoading={isLoading}
+          error={loginError}
+          buttonText={i18n.t("common.login")}
+        >
+          <FormSubContainer>
+            <RememberMeContainer onClick={handleClickNeedToRemember}>
+              <Checkbox
+                checked={needToRemember}
+                style={{
+                  padding: "0px 5px 0px",
+                }}
+              />
+              {i18n.t("wap.login.rememberMe")}
+            </RememberMeContainer>
 
-          <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-            {i18n.t("forgotPassword.title")}?
-          </ForgotPasswordContainer>
-        </FormSubContainer>
-      </FormikForm>
+            <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+              {i18n.t("forgotPassword.title")}?
+            </ForgotPasswordContainer>
+          </FormSubContainer>
+        </FormikForm>
+        <RedirectToRegisterHint />
+      </ContentWrapper>
 
-      <RedirectToRegisterHint />
+      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );
 };

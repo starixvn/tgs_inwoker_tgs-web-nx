@@ -1,31 +1,22 @@
-import {createTheme, ThemeOptions} from "@mui/material";
-import {i18n} from "@tgs-web-nx/utils";
-import {breakpoints} from "@/theme/breakpoints";
-import {fontFamily} from "@/theme/fontFamily";
-import {theme} from "@/theme";
+import { createTheme, ThemeOptions } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import { breakpoints } from "@/theme/breakpoints";
+import { fontFamily } from "@/theme/fontFamily";
+import { theme } from "@/theme";
 
 //@ts-ignore
 theme.lang = i18n.language;
 
-declare module "@mui/material/styles" {
+declare module "@mui/material/styles/createPalette" {
   interface Palette {
-    white: Palette["primary"];
-    yellow: Palette["primary"];
-    tertiary: Palette["primary"];
-    mainGradient: Palette["primary"];
-    mainBackground: Palette["primary"];
-    mainDarkBackground: Palette["primary"];
-    mainLightBackground: Palette["primary"];
-  }
-
-  interface PaletteOptions {
-    white?: PaletteOptions["primary"];
-    yellow?: PaletteOptions["primary"];
-    tertiary?: PaletteOptions["primary"];
-    mainGradient?: PaletteOptions["primary"];
-    mainBackground?: PaletteOptions["primary"];
-    mainDarkBackground?: PaletteOptions["primary"];
-    mainLightBackground?: PaletteOptions["primary"];
+    white: string;
+    black: string;
+    yellow: string;
+    tertiary: string;
+    mainGradient: string;
+    mainBackground: string;
+    mainDarkBackground: string;
+    mainLightBackground: string;
   }
 }
 
@@ -53,29 +44,17 @@ const muiTheme = createTheme({
       disabledBackground: theme.gray,
       disabled: theme.white,
     },
-    white: {
-      main: theme.white,
-    },
-    yellow: {
-      main: "#f4bd29",
-    },
-
     text: {
       primary: theme.white,
       secondary: theme.gray,
     },
-    mainGradient: {
-      main: theme.secondaryGradient,
-    },
-    mainBackground: {
-      main: theme.mainBackground,
-    },
-    mainDarkBackground: {
-      main: theme.mainDarkBackground,
-    },
-    mainLightBackground: {
-      main: theme.mainLightBackground,
-    },
+    white: theme.white,
+    yellow: "#f4bd29",
+    black: theme.black,
+    mainGradient: theme.secondaryGradient,
+    mainBackground: theme.mainBackground,
+    mainDarkBackground: theme.mainDarkBackground,
+    mainLightBackground: theme.mainLightBackground,
   },
   typography: {
     fontFamily: fontFamily,

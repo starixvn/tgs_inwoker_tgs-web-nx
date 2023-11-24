@@ -3,16 +3,17 @@ import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import HomePromotionCard from "./components/HomePromotionCard";
-import ImageCard from "./components/ImageCard";
+import { isDesktop } from "react-device-detect";
+import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import AppFlag from "@/pages/home/components/AppFlag";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-
-import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
-import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import Introduction from "@/pages/home/components/Introduction";
+import SocialMedia from "@/components/project/SocialMedia";
+import vendorsIcon from "@/assets/t33/images/home/vendors.png";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -23,58 +24,70 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
 
   ${media.sm} {
-    max-width: 1200px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 20px 0px;
-    gap: 20px;
   }
 `;
 
 const SliderWrapper = styled.div`
   width: 100%;
-  height: 160px;
-
-  ${media.sm} {
-    height: 375px;
-    border-radius: 10px;
-  }
-`;
-
-const GameTypeBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-
-  ${media.sm} {
-    max-width: 1200px;
-    height: 375px;
-    border-radius: 10px;
-    background-image: url(${({ $imageUrl }) => $imageUrl});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
+  /* to-do: 最大高度限制問題 */
 `;
 
 const MainContentWrapper = styled.div`
   width: 100%;
-  padding: 22px;
+  margin: 0 auto;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.primaryDark};
+  background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 10px;
-  flex-shrink: 0;
+  gap: 6px;
 
   ${media.sm} {
-    gap: 20px;
-    padding: unset;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    padding: 10px 10px 50px 10px;
+  }
+`;
+
+const AppFlagWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 30px;
+`;
+
+const VendorIconContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const VendorIcon = styled.div`
+  width: 392px;
+  height: 296px;
+  background-image: url(${vendorsIcon});
+  background-size: cover;
+`;
+
+const GameTypeTabWrapper = styled.div`
+  ${media.sm} {
+    width: 100%;
+    margin: 0 auto;
+    background-color: ${({ theme }) => theme.gray40};
+    display: flex;
+    align-items: center;
+    justify-content: center
   }
 `;
 
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const { activeGameType } = useHomeGameContext();
 
   useEffect(() => {
     window.scrollTo({
@@ -86,48 +99,29 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && (
+      {!!general.banner.length && (
         <SliderWrapper>
           <Slider />
         </SliderWrapper>
       )}
-      {!!activeGameType && (
-        <GameTypeBanner
-          $imageUrl={
-            activeGameTypeKey
-              ? `${import.meta.env.BASE_URL}assets/images/home/gp_banner/${activeGameTypeKey}.png`
-              : ""
-          }
-        />
-      )}
+      {!!activeGameType && isDesktopSize &&
+        <GameTypeTabWrapper>
+          <GameTypeTab />
+        </GameTypeTabWrapper>
+      }
+
+      {!!activeGameType && isMobileSize && <GameTypeTab />}
 
       <MainContentWrapper>
-        {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
-        {isMobileSize && <GameTypeTab />}
-
+        {!activeGameType && <CardPrompt />}
         <CategoryRenderer />
-
-        {!activeGameType && (
-          <>
-            <HomePromotionCard />
-            {isMobileSize &&
-              footerCategoriesList.length &&
-              footerCategoriesList.map((category, index) => (
-                <HomeCategoryFolder key={index} title={category.title} size={category.size!}>
-                  {category.content ? (
-                    category.content
-                  ) : (
-                    <ImageCard
-                      imageUrl={category.imageUrl}
-                      text={category.text}
-                      alignment={category.alignment}
-                    />
-                  )}
-                </HomeCategoryFolder>
-              ))}
-
-            {/* <TabPanel /> */}
-          </>
+        <AppFlagWrapper><AppFlag /></AppFlagWrapper>
+        <Introduction />
+        {isMobileSize && <SocialMedia />}
+        {isMobileSize && (
+          <VendorIconContainer>
+            <VendorIcon />
+          </VendorIconContainer>
         )}
       </MainContentWrapper>
     </MainWrapper>

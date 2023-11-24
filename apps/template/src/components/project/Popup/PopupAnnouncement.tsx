@@ -45,7 +45,7 @@ const Title = styled.div`
 
 const Content = styled.div`
   font-size: 1rem;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   margin-top: 1rem;
   line-height: 1.2rem;
 

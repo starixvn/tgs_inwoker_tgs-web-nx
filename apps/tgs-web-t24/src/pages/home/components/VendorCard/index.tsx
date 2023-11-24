@@ -20,7 +20,7 @@ type Props = {
 const VendorCardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 81%;
+  height: 77%;
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
@@ -40,8 +40,8 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   border-radius: 5px;
 
   ${media.sm} {
-    padding-top: 63.33%;
-    border-radius: 15px;
+    padding-top: 89.24%;
+    border-radius: unset;
   }
 `;
 
@@ -56,8 +56,8 @@ const GradientBg = styled.div`
   border-radius: 5px;
 
   ${media.sm} {
-    padding-top: 63.33%;
-    border-radius: 15px;
+    padding-top: 89.24%;
+    border-radius: unset;
   }
 `;
 
@@ -75,6 +75,7 @@ const VendorCardBg = styled.div`
   ${media.sm} {
     width: calc(16.67% - 20.67px);
     min-width: 158px;
+    aspect-ratio: 158 / 206;
 
     &:hover {
       ${VendorCardHoverBg} {

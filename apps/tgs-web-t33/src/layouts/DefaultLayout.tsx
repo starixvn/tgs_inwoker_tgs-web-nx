@@ -1,19 +1,12 @@
 import { ReactElement } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader } from "@tgs-web-nx/core/features";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { media } from "@/theme/breakpoints";
-import {
-  BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_DRAWER_WIDTH,
-  DRAWER_SHRINK_WIDTH,
-  HEADER_HEIGHT,
-  TABLET_DRAWER_WIDTH,
-} from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -32,26 +25,10 @@ const DashboardContainer = styled.div`
   }
 `;
 
-type ContentWrapperProps = {
-  $isOpen: boolean;
-  $isDesktop: boolean;
-};
-
-const ContentWrapper = styled.div<ContentWrapperProps>`
+const ContentWrapper = styled.div`
   position: relative;
   flex-grow: 1;
-  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
   transition: all ease-in-out 0.2s;
-
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
 `;
 
 const ChildrenWrapper = styled.div`
@@ -66,8 +43,7 @@ type Props = {
   children: ReactElement;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
-  const { isMenuOpen } = useHeader();
+  const { isMobileSize } = useRwd();
 
   return (
     <DefaultLayoutContainer>
@@ -76,7 +52,7 @@ const DefaultLayout = ({ children }: Props) => {
       <DashboardContainer>
         <MenuDrawer />
 
-        <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
+        <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />

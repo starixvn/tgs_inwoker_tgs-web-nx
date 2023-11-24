@@ -9,7 +9,7 @@ import Loading from "@/components/UI/Loading";
 const PromotionDetailContainer = styled.div`
   width: 100%;
   padding: 22px 22px 100px 22px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -51,7 +51,7 @@ const Title = styled.h2`
   }
 `;
 const Description = styled.p`
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   font-weight: 500;
   ${media.sm} {

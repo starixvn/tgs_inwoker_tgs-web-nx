@@ -8,18 +8,12 @@ import { AccountService } from "@tgs-web-nx/core";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-import { media } from "@/theme/breakpoints";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 15px;
-
-  ${media.sm} {
-    padding: 42px 42px;
-  }
 `;
 
 const PhoneContainer = styled.div`
@@ -136,7 +130,7 @@ class ForgotPasswordPrev extends Component {
           <>
             {/* 手機驗證 */}
             <PhoneContainer>
-              <GrayInputWrapper style={{ width: "20%" }}>
+              <GrayInputWrapper style={{ width: "30%" }}>
                 <Select
                   style={{ width: "100%" }}
                   native
@@ -153,7 +147,7 @@ class ForgotPasswordPrev extends Component {
                 </Select>
               </GrayInputWrapper>
 
-              <GrayInputWrapper style={{ width: "80%" }}>
+              <GrayInputWrapper style={{ width: "70%" }}>
                 <TextField
                   value={this.state.phone}
                   onChange={this.handlePhoneChange}

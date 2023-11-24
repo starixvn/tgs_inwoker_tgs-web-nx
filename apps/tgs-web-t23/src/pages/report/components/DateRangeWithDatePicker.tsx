@@ -23,7 +23,7 @@ const FlatStraightLine = styled.div`
 const DateSpliter = styled.div`
   font-size: 22px;
   font-weight: 600;
-  color: white;
+  color: ${({ theme }) => theme.white};
   width: 48px;
   text-align: center;
 `;
@@ -80,9 +80,6 @@ const DateRangeWithDatePicker = ({
             format="yyyy/MM/dd"
             value={dateFrom}
             onChange={handleDateFromChange}
-            sx={{
-              background: "gold",
-            }}
           />
         </DateInner>
 

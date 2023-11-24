@@ -1,6 +1,9 @@
 import styled from "styled-components";
-import { Button as MuiButton, FormControl as MuiFormControl } from "@mui/material";
-import { styled as muiStyled } from "@mui/system";
+import {
+  Button as MuiButton,
+  FormControl as MuiFormControl,
+  styled as muiStyled,
+} from "@mui/material";
 import { media } from "@/theme/breakpoints";
 
 export const Remark = styled.div`
@@ -20,24 +23,19 @@ export const ItemContainer = styled.div`
 `;
 
 export const LabelContainer = styled.div`
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
   color: ${({ theme }) => theme.white};
   float: left;
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  borderRadius: "30px",
-  background: theme.palette.mainLightBackground.main,
+  background: theme.palette.gray30,
 
   width: "100%",
-  fontSize: "0.937rem",
+  fontSize: "0.875rem",
   "& fieldset": {
     border: "none",
-  },
-
-  [theme.breakpoints.up("sm")]: {
-    border: `1px solid ${theme.palette.tertiary.main}`,
   },
 })) as typeof MuiFormControl;
 
@@ -51,11 +49,11 @@ export const InfoContainer = styled.div`
 `;
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
-  fontSize: "0.937rem",
+  fontSize: "0.875rem",
   height: "50px",
   borderRadius: "30px",
   color: "#828282",
-  background: theme.palette.mainLightBackground.main,
+  background: theme.palette.mainBackground,
   border: "none",
 })) as typeof MuiButton;
 
@@ -71,13 +69,17 @@ export const UploadFileTag = styled.span`
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   whiteSpace: "nowrap",
-  borderRadius: "30px",
-  padding: "12px 20px",
-  fontSize: "1.562rem",
-  lineHeight: "1.812rem",
+  borderRadius: "50px",
+  padding: "11.5px 20px",
+  fontSize: "1.25rem",
+  lineHeight: 1,
   fontWeight: 400,
-  color: "black",
-  background: "linear-gradient(90deg, #FACE27 53.76%, #F3AF16 54.17%)",
+  color: theme.palette.white,
+  background: theme.palette.secondary.main,
+
+  "&:hover": {
+    background: theme.palette.gray30,
+  },
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,

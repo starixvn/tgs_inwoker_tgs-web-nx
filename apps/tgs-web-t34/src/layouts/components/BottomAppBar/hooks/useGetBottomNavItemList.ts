@@ -1,18 +1,29 @@
 import { useEffect, useMemo, useState } from "react";
-import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRoute } from "@tgs-web-nx/core/features";
 import { RouteCategoryEnum } from "@/router";
-import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
-import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
-import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
-import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
-import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
-import iconWithdrawal from "@/assets/t23/images/bottomNavBar/icon-withdrawal.svg";
-import { useRoute } from "@/hooks/useRoute";
+import iconPromo from "@/assets/t34/images/bottomNavBar/icon-promotion.svg";
+import iconHome from "@/assets/t34/images/bottomNavBar/icon-home.svg";
+import iconDeposit from "@/assets/t34/images/bottomNavBar/icon-deposit.svg";
+import iconWithdrawal from "@/assets/t34/images/bottomNavBar/icon-withdraw.svg";
+
+export enum NavTypeEnum {
+  ITEM,
+  BIG_ITEM,
+  MENU,
+}
+
+export type BottomNavItem = {
+  navType: NavTypeEnum;
+  label: string;
+  iconUrl: string;
+  iconActiveUrl: string;
+  routePath: string;
+  routeCategory: RouteCategoryEnum;
+};
 
 export function useGetBottomNavItemList() {
-  const location = useLocation();
   const history = useHistory();
 
   const bottomNavItemList = useMemo(() => {
@@ -25,17 +36,8 @@ export function useGetBottomNavItemList() {
         routePath: "/",
         routeCategory: RouteCategoryEnum.HOME,
       },
-
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("common.promotion"),
-        iconUrl: iconPromo,
-        iconActiveUrl: iconPromo,
-        routePath: "/promotion-list",
-        routeCategory: RouteCategoryEnum.PROMOTION,
-      },
-      {
-        navType: NavTypeEnum.BIG_ITEM,
         label: i18n.t("common.deposit"),
         iconUrl: iconDeposit,
         iconActiveUrl: iconDeposit,
@@ -52,11 +54,11 @@ export function useGetBottomNavItemList() {
       },
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("web.account.profile"),
-        iconUrl: iconProfile,
-        iconActiveUrl: iconProfile,
-        routePath: "/account",
-        routeCategory: RouteCategoryEnum.MINE,
+        label: i18n.t("common.promotion"),
+        iconUrl: iconPromo,
+        iconActiveUrl: iconPromo,
+        routePath: "/promotion-list",
+        routeCategory: RouteCategoryEnum.PROMOTION,
       },
     ] as BottomNavItem[];
   }, []);
@@ -65,13 +67,9 @@ export function useGetBottomNavItemList() {
   const { route } = useRoute();
 
   useEffect(() => {
-    const matchNavItem =
-      bottomNavItemList.find((bottomNavItem) => {
-        return bottomNavItem.routeCategory === route?.category;
-      }) || null;
+    const matchNavItem = null;
 
     if (!matchNavItem) {
-      console.log(location.pathname);
       return;
     }
 

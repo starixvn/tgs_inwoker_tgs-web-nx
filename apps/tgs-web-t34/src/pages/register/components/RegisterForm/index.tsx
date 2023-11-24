@@ -5,28 +5,13 @@ import { useRegisterForm } from "@tgs-web-nx/core/features";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import FormikForm from "@/components/project/FormikForm";
-import { media } from "@/theme/breakpoints";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
-
-const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
-  font-weight: 700;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-
-  ${media.sm} {
-    display: none;
-  }
-`;
+import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
-  color: white;
-  font-size: 0.937rem;
+  color: ${({ theme }) => theme.black};
+  font-size: 1rem;
   margin: 24px 0 0;
   display: flex;
   align-items: start;
@@ -44,8 +29,6 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      <TitleContainer>{i18n.t("common.register")}</TitleContainer>
-
       <FormikForm
         formInputList={formInputConfigList}
         formik={formik}

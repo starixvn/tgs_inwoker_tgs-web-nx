@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MemoExoticComponent, NamedExoticComponent } from "react";
 import config from "@tgs-web-nx/config";
 import CardPage from "@/pages/card/CardPage";
 import AddCardPage from "@/pages/card/AddCardPage";
@@ -6,9 +6,6 @@ import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import DepositDetailsPage from "@/pages/deposit/DepositDetailsPage";
-import DepositManualPage from "@/pages/deposit/DepositManualPage";
-import DepositPayment from "@/pages/deposit/DepositPaymentPage";
 import InboxPage from "@/pages/inbox/InboxPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
@@ -29,6 +26,7 @@ import { ProfilePathEnum } from "@/components/account/Profile/profilePageDiction
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
+import VipLayout from "@/layouts/VipLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -264,7 +262,7 @@ const routes: Route[] = [
     path: "/promotion-list",
     component: PromotionPage,
     category: RouteCategoryEnum.PROMOTION,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
@@ -311,24 +309,6 @@ const routes: Route[] = [
   {
     path: "/manual/:paymentId?",
     component: DepositPage,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/payment/:id/:bank/:amount/:bonus?",
-    component: DepositPayment,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/details",
-    component: DepositDetailsPage,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/manual",
-    component: DepositManualPage,
     category: RouteCategoryEnum.MINE,
     layout: DialogLayout,
   },
@@ -383,7 +363,7 @@ const routes: Route[] = [
     path: "/vip",
     component: VIPPage,
     category: RouteCategoryEnum.MINE,
-    layout: DefaultLayout,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",

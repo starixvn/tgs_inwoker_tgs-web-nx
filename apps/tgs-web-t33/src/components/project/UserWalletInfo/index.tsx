@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled, { DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useGameStore, useWalletStore } from "@tgs-web-nx/core";
-import refreshIcon from "@/assets/t23/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t33/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -24,6 +24,8 @@ const Container = styled.div`
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
+  background: ${({ theme }) => theme.gray60};
+  margin-bottom: 20px;
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -34,9 +36,8 @@ const PlayerInfoContainer = styled.div`
 `;
 
 const PlayerName = styled.div`
-  font-size: 2.812rem;
-  line-height: 3.261rem;
-  font-weight: 400;
+  font-size: 2rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.white};
 `;
 
@@ -53,14 +54,15 @@ const WalletsWrapper = styled.div`
 `;
 
 const MainWalletContainer = styled.div`
-  width: 128px;
+  //width: 128px;
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.245rem;
   color: ${({ theme }) => theme.white};
+  white-space: nowrap;
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
@@ -85,15 +87,13 @@ const RefreshButton = styled(Icon)`
 `;
 
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => {
-    return theme.useBackgroundColor ? theme.useBackgroundColor : theme.primary;
-  }};
+  color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
   margin-top: 11px;
-  font-weight: 400;
+  font-weight: 700;
 `;
 
-const UserWalletInfo = ({}) => {
+const UserWalletInfo = () => {
   const { game } = useGameStore();
   const { wallet, updateBalanceList, getGameBalance } = useWalletStore();
   const { account } = useAccountStore();
@@ -127,12 +127,16 @@ const UserWalletInfo = ({}) => {
     }
   };
 
-  let ingame = 0;
-  game.providerList.map((provider) => {
-    if (provider.transferwallet)
-      ingame +=
-        typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
-  });
+  const ingame = useMemo(() => {
+    let transferWalletBalance = 0;
+    game.providerList.map((provider) => {
+      if (provider.transferwallet)
+        transferWalletBalance +=
+          typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
+    });
+
+    return transferWalletBalance;
+  }, [game.providerList]);
 
   return (
     <Container>

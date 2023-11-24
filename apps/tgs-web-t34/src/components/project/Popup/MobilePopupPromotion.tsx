@@ -10,22 +10,21 @@ import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
-import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 import PromotionBanner from "@/components/project/Popup/components/PromotionBanner";
+import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 
 const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
-    max-width: 370px;
-    width: 100%;
-    height: auto;
     background: ${({ theme }) => theme.mainBackground};
-    border-radius: 10px;
+    width: calc(100vw - 8px);
+    height: auto;
+    margin: 4px;
 
     ${media.sm} {
-      width: 688px;
+      max-width: 1018px;
     }
   }
 `;
@@ -35,7 +34,7 @@ const ChildContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  padding: 36px 24px 18px;
+  padding: 16px;
 `;
 
 const ContentContainer = styled.div`
@@ -70,6 +69,8 @@ const MobilePopupPromotion = () => {
       TransitionComponent={UpTransition}
       onClose={handleCloseDialog}
     >
+      <PopupHeader title={i18n.t("web.header.promotion")} handleClose={handleCloseDialog} />
+
       <ChildContainer>
         <Carousel>
           {displayPromotionList.map((promotionData: Promotion) => (
@@ -100,8 +101,6 @@ const MobilePopupPromotion = () => {
           </Button>
         </ContentContainer>
       </ChildContainer>
-
-      <CloseIcon onClick={handleCloseDialog} />
     </StyledDialog>
   );
 };

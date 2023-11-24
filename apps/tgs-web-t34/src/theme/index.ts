@@ -1,26 +1,20 @@
-export const colorListT23 = {
-  primary: "#FACE27",
-  secondary: "#7135F3",
+export const theme = {
+  primary: "#ED1D23",
+  secondary: "#01B402",
   white: "#FFFFFF",
-  yellow: "#FFD723",
-  gray: "#828282",
-  lighterGray: "#BFBFBF",
-  darkGray: "#E0E0E0",
-  lightGray: "#BDBDBD",
   black: "#000000",
-  mainBackground: "#24262B", //BG-black
-  mainDarkBackground: "#1C1E22",
-  mainLightBackground: "#2E3237",
-  primaryGradient: "linear-gradient(90deg, rgba(255, 210, 40, 0.96) 0%, #24262B 49.27%)",
-  secondaryGradient:
-    "linear-gradient(180deg, rgba(57, 22, 164, 0.00) 8.88%, #3916A4 50.07%, rgba(57, 22, 164, 0.50) 89.25%)",
-  primaryMix: "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)",
-  secondaryMix: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
-  tagColor: "#161616",
+  green: "#4CCA51",
+  red: "#E50100",
+  yellow: "#FFC700",
+  mask: "linear-gradient(180deg, rgba(0, 0, 0, 0) 0.73%, #000000 87.29%)",
+  grey00: "#161616",
+  grey01: "#464647",
+  grey02: "#666666",
+  grey03: "#F5F5F5",
+  maskPopupBG: "#00000099",
+  maskBlack50: "#00000080",
+  maskBlack20: "#00000033",
+  maskWhite50: "#FFFFFF80",
+  maskWhite20: "#FFFFFF33",
+  mainBackground: "#ffffff",
 };
-
-export const themeList = {
-  colorListT23,
-};
-
-export const theme = themeList["colorListT23"];

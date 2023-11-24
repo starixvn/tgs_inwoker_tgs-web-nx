@@ -1,35 +1,23 @@
-import {createTheme, ThemeOptions} from "@mui/material";
-import {i18n} from "@tgs-web-nx/utils";
-import {breakpoints} from "@/theme/breakpoints";
-import {fontFamily} from "@/theme/fontFamily";
-import {theme} from "@/theme";
+import { createTheme, ThemeOptions } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import { breakpoints } from "@/theme/breakpoints";
+import { fontFamily } from "@/theme/fontFamily";
+import { theme } from "@/theme";
 
 //@ts-ignore
 theme.lang = i18n.language;
 
-declare module "@mui/material/styles" {
+declare module "@mui/material/styles/createPalette" {
   interface Palette {
-    white: Palette["primary"];
-    yellow: Palette["primary"];
-    mainBackground: Palette["primary"];
-    gray5: Palette["primary"];
-    gray10: Palette["primary"];
-    gray40: Palette["primary"];
-    gray70: Palette["primary"];
-    gray90: Palette["primary"];
-    gray95: Palette["primary"];
-  }
-
-  interface PaletteOptions {
-    white?: PaletteOptions["primary"];
-    yellow?: PaletteOptions["primary"];
-    mainBackground?: PaletteOptions["primary"];
-    gray5?: PaletteOptions["primary"];
-    gray10?: PaletteOptions["primary"];
-    gray40?: PaletteOptions["primary"];
-    gray70?: PaletteOptions["primary"];
-    gray90?: PaletteOptions["primary"];
-    gray95?: PaletteOptions["primary"];
+    white: string;
+    yellow: string;
+    mainBackground: string
+    gray5: string
+    gray10: string
+    gray40: string
+    gray70: string
+    gray90: string
+    gray95: string
   }
 }
 

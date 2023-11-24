@@ -8,18 +8,18 @@ type BadgeContainerProps = {
   theme: typeof theme;
 };
 const BadgeContainer = styled.div<BadgeContainerProps>`
-  width: calc((100% - 6px * 3) / 4);
+  width: calc((100% - 8px * 3) / 4);
   height: fit-content;
   cursor: pointer;
   padding: 13px 8px;
   text-align: center;
-  color: white;
-  border: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? `1px solid ${theme.primary}` : `1px solid ${theme.white}`};
+  color: ${({ theme }) => theme.white};
+  background: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? theme.gradient : theme.gray30};
 
-  font-size: 0.75rem;
+  font-size: 0.812rem;
   font-weight: 400;
-  border-radius: 6px;
+  border-radius: 4px;
 
   ${media.md} {
     width: auto;

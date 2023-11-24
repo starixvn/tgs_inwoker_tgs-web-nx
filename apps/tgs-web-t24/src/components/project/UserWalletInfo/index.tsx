@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled, { DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
@@ -55,7 +55,7 @@ const WalletsWrapper = styled.div`
 `;
 
 const MainWalletContainer = styled.div`
-  width: 128px;
+  //width: 128px;
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
@@ -127,12 +127,16 @@ const UserWalletInfo = ({}) => {
     }
   };
 
-  let ingame = 0;
-  game.providerList.map((provider) => {
-    if (provider.transferwallet)
-      ingame +=
-        typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
-  });
+  const ingame = useMemo(() => {
+    let transferWalletBalance = 0;
+    game.providerList.map((provider) => {
+      if (provider.transferwallet)
+        transferWalletBalance +=
+          typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
+    });
+
+    return transferWalletBalance;
+  }, [game.providerList]);
 
   return (
     <Container>

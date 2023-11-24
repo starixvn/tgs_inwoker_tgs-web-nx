@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled, { DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
@@ -24,6 +24,7 @@ const Container = styled.div`
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
+  border-bottom: 1px solid ${({ theme }) => theme.maskBlack20};
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -37,7 +38,7 @@ const PlayerName = styled.div`
   font-size: 2.812rem;
   line-height: 3.261rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
 `;
 
 const WalletsWrapper = styled.div`
@@ -53,19 +54,19 @@ const WalletsWrapper = styled.div`
 `;
 
 const MainWalletContainer = styled.div`
-  width: 128px;
+  //width: 128px;
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
   font-weight: 400;
   line-height: 1.245rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   font-size: 2.125rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -85,11 +86,9 @@ const RefreshButton = styled(Icon)`
 `;
 
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => {
-    return theme.useBackgroundColor ? theme.useBackgroundColor : theme.primary;
-  }};
+  color: ${({ theme }) => theme.secondary};
   font-size: 1.625rem;
-  margin-top: 11px;
+  margin-top: 6px;
   font-weight: 400;
 `;
 
@@ -127,12 +126,16 @@ const UserWalletInfo = ({}) => {
     }
   };
 
-  let ingame = 0;
-  game.providerList.map((provider) => {
-    if (provider.transferwallet)
-      ingame +=
-        typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
-  });
+  const ingame = useMemo(() => {
+    let transferWalletBalance = 0;
+    game.providerList.map((provider) => {
+      if (provider.transferwallet)
+        transferWalletBalance +=
+          typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
+    });
+
+    return transferWalletBalance;
+  }, [game.providerList]);
 
   return (
     <Container>

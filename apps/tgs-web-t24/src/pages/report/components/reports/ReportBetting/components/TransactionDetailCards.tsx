@@ -27,7 +27,7 @@ const TransactionDetailCards = ({ transactionDetails }: Props) => {
         return (
           <ReportCard key={index}>
             <ReportCardRow>
-              <>{i18n.t("report.betid")}</>: <ReportCardCol>{row.id}</ReportCardCol>
+              {i18n.t("report.betid")}: <ReportCardCol>{row.id}</ReportCardCol>
             </ReportCardRow>
 
             <ReportCardRow>

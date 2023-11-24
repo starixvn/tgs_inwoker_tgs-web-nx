@@ -230,7 +230,7 @@ class ResetResetWithdrawalPassword extends Component {
             </ItemContainer>
 
             <Button fullWidth onClick={this.handleSubmitClicked}>
-              <>{i18n.t("common.submit")}</>
+             {i18n.t("common.submit")}
             </Button>
             <Button fullWidth onClick={this.handleBackClick}>
               {i18n.t("common.back")}

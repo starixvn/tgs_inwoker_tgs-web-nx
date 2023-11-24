@@ -44,8 +44,6 @@ const ContextMenuButton = () => {
       <Modal open={isOpen} onClose={handleClick}>
         <ContextMenu />
       </Modal>
-
-      <Loading show={logoutState.isLoading} noShrink={true} />
     </>
   );
 };

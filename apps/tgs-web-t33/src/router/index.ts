@@ -6,9 +6,6 @@ import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import DepositDetailsPage from "@/pages/deposit/DepositDetailsPage";
-import DepositManualPage from "@/pages/deposit/DepositManualPage";
-import DepositPayment from "@/pages/deposit/DepositPaymentPage";
 import InboxPage from "@/pages/inbox/InboxPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
@@ -29,6 +26,7 @@ import { ProfilePathEnum } from "@/components/account/Profile/profilePageDiction
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
+import ProfileLayout from "@/layouts/ProfileLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -155,103 +153,103 @@ const routes: Route[] = [
     path: ProfilePathEnum.NAME,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.WECHAT,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.BIRTHDATE,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.QQ,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.FB,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.TELEGRAM,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.LINE,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.VIBER,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.WHATSAPP,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.EMAIL,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_EMAIL,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PHONE,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.PHONE,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PASSWORD,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.WIDHDRAWAL_PASSWORD,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.RESET_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
     category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
+    layout: ProfileLayout,
   },
 
   // {
@@ -264,14 +262,14 @@ const routes: Route[] = [
     path: "/promotion-list",
     component: PromotionPage,
     category: RouteCategoryEnum.PROMOTION,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
     category: RouteCategoryEnum.PROMOTION,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   //
@@ -311,24 +309,6 @@ const routes: Route[] = [
   {
     path: "/manual/:paymentId?",
     component: DepositPage,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/payment/:id/:bank/:amount/:bonus?",
-    component: DepositPayment,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/details",
-    component: DepositDetailsPage,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/manual",
-    component: DepositManualPage,
     category: RouteCategoryEnum.MINE,
     layout: DialogLayout,
   },
@@ -383,7 +363,7 @@ const routes: Route[] = [
     path: "/vip",
     component: VIPPage,
     category: RouteCategoryEnum.MINE,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/sports/:platform",

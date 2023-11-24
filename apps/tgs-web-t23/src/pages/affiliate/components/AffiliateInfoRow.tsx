@@ -70,7 +70,7 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         variant={isCopied ? "outlined" : "contained"}
         sx={{
           width: "66px",
-          color: "black",
+          color: theme.black,
           background: theme.primary,
         }}
       >

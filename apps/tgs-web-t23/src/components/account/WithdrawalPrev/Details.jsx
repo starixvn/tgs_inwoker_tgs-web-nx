@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-import { Modal, Slide, styled as muiStyled } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { RESET_WALLETRESULT, walletAction } from "@tgs-web-nx/core";
 import Loading from "@/components/UI/Loading";
@@ -10,99 +8,23 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Button } from "@/components/UI/Button";
+import {
+  Container,
+  Transition,
+  ContentBg,
+  BalanceLabel,
+  DepositAmount,
+  SplitLine,
+  LeftLabel,
+  RightLabel,
+  SplitBoth,
+  StyledModalPopup,
+  DialoTitle,
+  OTPContainer,
+  OTPTextBox,
+} from "@/components/styled-component/WithdrawalDetails";
 
-const Container = styled.div``;
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-const ContentBg = styled.div`
-  background: #fff;
-  width: 100%;
-
-  padding: 60px 60px 30px 60px;
-  margin-bottom: 30px;
-`;
-const BalanceLabel = styled.div`
-  font-size: 30px;
-
-  color: #979797;
-`;
-const DepositAmount = styled.div`
-  font-size: 80px;
-  font-weight: bold;
-
-  color: ${({ theme }) => theme.secondary};
-`;
-const SplitLine = styled.div`
-  height: 2px;
-  background-color: #f1f1f1;
-  margin: 50px 0;
-`;
-const LeftLabel = styled.div`
-  font-size: 24px;
-  color: #979797;
-  float: left;
-`;
-const RightLabel = styled.div`
-  font-size: 24px;
-  color: #333333;
-  float: right;
-  font-weight: bold;
-`;
-const SplitBoth = styled.div`
-  clear: both;
-  margin: 30px 0;
-`;
-
-const StyledModalPopup = muiStyled(Modal)(({ theme }) => ({
-  paper: {
-    borderRadius: "50px",
-    fontSize: "28px",
-    color: "#666666",
-    padding: "30px",
-    width: "600px",
-    maxWidth: "690px",
-    display: "block",
-  },
-}));
-const DialoTitle = styled.div`
-  font-size: 36px;
-  font-weight: 600;
-  margin: 0 auto;
-  display: table;
-  color: #4a4a4a;
-`;
-
-const OTPContainer = styled.div`
-  position: relative;
-  text-align: center;
-  margin: 50px 0;
-  &:after {
-    content: "___   ___   ___   ___   ___   ___";
-    display: block;
-    position: absolute;
-    top: 28px;
-    left: 64px;
-    white-space: pre;
-  }
-`;
-const OTPTextBox = styled.input`
-  position: relative;
-  font-size: 50px;
-  z-index: 2;
-  border: none;
-  background: transparent;
-  width: 500px;
-  text-indent: 9px;
-  padding-left: 64px;
-  color: ${({ theme }) => theme.secondary};
-  -webkit-letter-spacing: 25.6px;
-  -moz-letter-spacing: 25.6px;
-  -ms-letter-spacing: 25.6px;
-  letter-spacing: 42.6px;
-  font-family: Courier;
-`;
-class Details extends Component {
+class WithdrawalDetails extends Component {
   state = {
     loading: false,
     openPopup: false,
@@ -144,7 +66,7 @@ class Details extends Component {
     this.props.doWithdrawal(
       this.props.wallet.addBillingResult.data.amount,
       this.state.password,
-      this.props.order.id
+      this.props.order.id,
     );
   };
   handlePasswordChange = (e) => {
@@ -265,4 +187,4 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(walletAction.doWithdrawal(amount, password, user_account_id)),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Details));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(WithdrawalDetails));

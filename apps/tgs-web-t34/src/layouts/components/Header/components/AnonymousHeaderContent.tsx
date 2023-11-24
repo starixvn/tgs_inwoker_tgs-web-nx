@@ -5,11 +5,12 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 `;
 
 type Props = {
@@ -33,7 +34,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
     }
 
     history.push("/login");
-  }, []);
+  }, [handleToggleLoginDialog, handleToggleMenu, history, isDesktopSize]);
 
   const toggleRegisterDialog = useCallback(() => {
     if (!isDesktopSize) {
@@ -45,29 +46,37 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       return;
     }
     history.push("/register");
-  }, []);
+  }, [handleToggleMenu, handleToggleRegisterDialog, history, isDesktopSize]);
 
   return (
     <ButtonContainer>
       <HeaderButton
         onClick={toggleLoginDialog}
-        style={{
-          background: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
-          width: buttonWidth ?? "92px",
+        sx={{
+          width: buttonWidth ?? "77px",
+          background: {
+            sm: "#0A79B0",
+          },
         }}
       >
-        <>{i18n.t("common.login")}</>
+        {i18n.t("common.login")}
       </HeaderButton>
 
       <HeaderButton
         color={"primary"}
         onClick={toggleRegisterDialog}
-        style={{
-          background: "linear-gradient(90deg, #FACE27 53.32%, #F3AF16 53.95%)",
-          width: buttonWidth ?? "92px",
+        sx={{
+          width: buttonWidth ?? "77px",
+          color: {
+            xs: theme.secondary,
+            sm: theme.white,
+          },
+          background: {
+            sm: "#01B402",
+          },
         }}
       >
-        <>{i18n.t("common.register")}</>
+        {i18n.t("common.register")}
       </HeaderButton>
     </ButtonContainer>
   );

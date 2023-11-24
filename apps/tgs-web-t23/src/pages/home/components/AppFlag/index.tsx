@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import android from "@/assets/t23/images/home/android.svg";
 import ios from "@/assets/t23/images/home/ios.svg";
 
@@ -10,10 +11,26 @@ const Wrapper = styled.div`
 `;
 
 const AppFlag = () => {
+  const history = useHistory();
+  const handleClickpPatform = () => {
+    history.push("/appDownload");
+  };
   return (
     <Wrapper>
-      <img src={android} alt="android" />
-      <img src={ios} alt="ios" />
+      <img
+        onClick={() => {
+          handleClickpPatform();
+        }}
+        src={android}
+        alt="android"
+      />
+      <img
+        onClick={() => {
+          handleClickpPatform();
+        }}
+        src={ios}
+        alt="ios"
+      />
     </Wrapper>
   );
 };

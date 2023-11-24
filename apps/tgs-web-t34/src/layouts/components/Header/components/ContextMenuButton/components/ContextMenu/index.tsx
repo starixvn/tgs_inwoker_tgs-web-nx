@@ -13,7 +13,7 @@ import { Button } from "@/components/UI/Button";
 const ContextMenuContainer = styled.div`
   padding: 15px;
   background: ${({ theme }) => theme.secondary};
-  border-radius: 20px;
+  border-radius: 4px;
   position: fixed;
   top: 45px;
   right: 5px;
@@ -24,7 +24,7 @@ const ContextMenuItemWrapper = styled.div`
   gap: 10px;
 `;
 const VersionTagContainer = styled.div`
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   text-align: center;
   font-size: 0.75rem;
   margin-top: 10px;
@@ -78,38 +78,38 @@ const ContextMenu = () => {
 
   return (
     <ContextMenuContainer>
-        <ContextMenuItemWrapper>
-          {contextMenuList.map((contextMenuItem) => {
-            const { label, iconUrl, routePath } = contextMenuItem;
+      <ContextMenuItemWrapper>
+        {contextMenuList.map((contextMenuItem) => {
+          const { label, iconUrl, routePath } = contextMenuItem;
 
-            if (routePath === "/logout") return null;
+          if (routePath === "/logout") return null;
 
-            return (
-              <ContextMenuItem
-                key={label}
-                label={label}
-                iconUrl={iconUrl}
-                onClick={() => handleClick(routePath)}
-              />
-            );
-          })}
+          return (
+            <ContextMenuItem
+              key={label}
+              label={label}
+              iconUrl={iconUrl}
+              onClick={() => handleClick(routePath)}
+            />
+          );
+        })}
 
-          <Button
-            variant={"contained"}
-            onClick={handleLogout}
-            fullWidth
-            sx={{
-              color: "white",
-              background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
-              fontSize: "1.125rem",
-              height: "44px",
-            }}
-          >
-            <>{i18n.t("web.header.logout")}</>
-          </Button>
-        </ContextMenuItemWrapper>
-        <VersionTagContainer>V1.1.3795703</VersionTagContainer>
-      </ContextMenuContainer>
+        <Button
+          variant={"contained"}
+          onClick={handleLogout}
+          fullWidth
+          sx={{
+            color: "white",
+            background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
+            fontSize: "1.125rem",
+            height: "44px",
+          }}
+        >
+          {i18n.t("web.header.logout")}
+        </Button>
+      </ContextMenuItemWrapper>
+      <VersionTagContainer>V1.1.3795703</VersionTagContainer>
+    </ContextMenuContainer>
   );
 };
 

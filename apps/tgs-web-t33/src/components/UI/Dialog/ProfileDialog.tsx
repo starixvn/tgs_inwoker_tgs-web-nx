@@ -20,8 +20,8 @@ const StyledDialog = styled(MuiDialog)`
 const CloseIconContainer = styled.div`
   cursor: pointer;
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 12px;
+  right: 12px;
   display: flex;
   align-items: center;
 `;
@@ -43,6 +43,11 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
 
   return (
     <StyledDialog
+      sx={{
+        "& .MuiBackdrop-root": {
+          backgroundColor: "rgba(0,0,0,0.8)",
+        },
+      }}
       fullScreen={!isDesktopSize}
       open={open}
       TransitionComponent={UpTransition}

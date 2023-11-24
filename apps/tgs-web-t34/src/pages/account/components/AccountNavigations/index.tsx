@@ -12,8 +12,6 @@ import { NavCardKey, NavItem, useAccountNavigations } from "@/hooks/account/useA
 import { media } from "@/theme/breakpoints";
 
 const AccountNavsContainer = styled.div`
-  padding: 12px 14px;
-
   ${media.sm} {
     & > div {
       margin-bottom: 20px;
@@ -44,8 +42,8 @@ const hideInDesktopDictionary = {
 
 const AccountNavigations = () => {
   const history = useHistory();
-  const { navItemList, navItemDictionary } = useAccountNavigations();
-  const { handleLogout, logoutState } = useAuth();
+  const { navItemList } = useAccountNavigations();
+  const { handleLogout } = useAuth();
   const { isDesktopSize } = useRwd();
 
   const handleClickNav = useCallback((navItem: NavItem) => {
@@ -71,29 +69,29 @@ const AccountNavigations = () => {
           })}
         </AccountNavCardsContainer>
 
-        {isDesktopSize && (
-          <AccountNavCardsSubContainer>
-            <AppDownloadButton
-              navItem={navItemDictionary[NavCardKey.APP_DOWNLOAD]}
-              handleClick={() => handleClickNav(navItemDictionary[NavCardKey.APP_DOWNLOAD])}
-            />
+        {/*{isDesktopSize && (*/}
+        {/*  <AccountNavCardsSubContainer>*/}
+        {/*    <AppDownloadButton*/}
+        {/*      navItem={navItemDictionary[NavCardKey.APP_DOWNLOAD]}*/}
+        {/*      handleClick={() => handleClickNav(navItemDictionary[NavCardKey.APP_DOWNLOAD])}*/}
+        {/*    />*/}
 
-            <LanguageSwitch />
+        {/*    <LanguageSwitch />*/}
 
-            <Button
-              variant={"contained"}
-              onClick={handleLogout}
-              sx={{
-                color: "white",
-                background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
-                fontSize: "1.125rem",
-                height: "44px",
-              }}
-            >
-              <>{i18n.t("web.header.logout")}</>
-            </Button>
-          </AccountNavCardsSubContainer>
-        )}
+        {/*    <Button*/}
+        {/*      variant={"contained"}*/}
+        {/*      onClick={handleLogout}*/}
+        {/*      sx={{*/}
+        {/*        color: "white",*/}
+        {/*        background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",*/}
+        {/*        fontSize: "1.125rem",*/}
+        {/*        height: "44px",*/}
+        {/*      }}*/}
+        {/*    >*/}
+        {/*      {i18n.t("web.header.logout")}*/}
+        {/*    </Button>*/}
+        {/*  </AccountNavCardsSubContainer>*/}
+        {/*)}*/}
       </AccountNavsContainer>
 
       {/*<Loading show={logoutState.isLoading} />*/}

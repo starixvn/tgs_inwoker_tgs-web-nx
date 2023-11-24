@@ -1,35 +1,31 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import ForgotPasswordPrev from "@/components/account/authentication/ForgotPasswordPrev";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
-
-const TitleContainer = styled.div`
-  font-size: 3rem;
-  line-height: 3.478rem;
-  font-weight: 700;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 24px;
-`;
+import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
+import BrandLogo from "@/components/project/BrandLogo";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const ForgotPasswordPage = () => {
   useUpdatePageName(i18n.t("forgotPassword.title"));
 
   const { alert } = useNotifications();
   const history = useHistory();
+  const { isDesktopSize } = useRwd();
 
   return (
     <AuthFormContainer>
+      {isDesktopSize && <BrandLogo style={{ marginBottom: "4px" }} />}
       <TitleContainer>{i18n.t("forgotPassword.title")}</TitleContainer>
       {/*@ts-ignore*/}
       <ForgotPasswordPrev alert={alert} history={history} />
       <RedirectToLoginHint style={{ marginTop: "20px" }} />
+
+      <LanguageSwitch style={{ width: "129px", margin: "20px auto 0" }} />
     </AuthFormContainer>
   );
 };

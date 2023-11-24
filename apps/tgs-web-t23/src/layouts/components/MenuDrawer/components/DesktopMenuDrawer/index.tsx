@@ -5,6 +5,8 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
+import downloadIcon from "@/assets/t23/images/account/navItem/icon-download.svg";
+import iconVip from "@/assets/t23/images/account/navItem/icon-vip.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
@@ -84,13 +86,10 @@ const PromotionCard = styled.div<PromotionCardProps>`
   font-size: 1.375rem;
   line-height: 1.611rem;
   font-weight: 700;
-
-  & > .icon {
-    margin-right: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "0" : "10px")};
-  }
-
   transition: all 0.2s ease-in-out;
 `;
+
+const DownLoadCard = styled(PromotionCard)``;
 
 const LogoImgContainer = styled.div`
   max-width: 100px;
@@ -103,6 +102,10 @@ const LogoImgContainer = styled.div`
     width: 100%;
     object-fit: contain;
   }
+`;
+
+const IconText = styled.div`
+  margin-left: 10px;
 `;
 
 const DesktopMenuDrawer = () => {
@@ -120,8 +123,18 @@ const DesktopMenuDrawer = () => {
     handleToggleMenu(false);
   };
 
+  const handleClickVip = () => {
+    history.push("/vip");
+    handleDrawerClose();
+  };
+
   const handleClickPromotion = () => {
     history.push("/promotion-list");
+    handleDrawerClose();
+  };
+
+  const handleClickDownload = () => {
+    history.push("/appDownload");
     handleDrawerClose();
   };
 
@@ -141,12 +154,20 @@ const DesktopMenuDrawer = () => {
 
       <HeaderContentContainer>
         <MenuGameTypeList />
+        <PromotionCard $isShrink={isShrink} onClick={handleClickVip}>
+          <Icon className={"vip"} iconUrl={iconVip} width={"31px"} height={"31px"} />
+          <IconText>{!isShrink && "VIP"}</IconText>
+        </PromotionCard>
 
         <PromotionCard $isShrink={isShrink} onClick={handleClickPromotion}>
-          <Icon className={"icon"} iconUrl={iconPromotion} width={"31px"} height={"31px"} />
-
-          {!isShrink && i18n.t("common.promotion")}
+          <Icon className={"promotion"} iconUrl={iconPromotion} width={"31px"} height={"31px"} />
+          <IconText>{!isShrink && i18n.t("common.promotion")}</IconText>
         </PromotionCard>
+
+        <DownLoadCard $isShrink={isShrink} onClick={handleClickDownload}>
+          <Icon className={"icon"} iconUrl={downloadIcon} width={"31px"} height={"31px"} />
+          {!isShrink && i18n.t("common.download")}
+        </DownLoadCard>
 
         <MenuLanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
       </HeaderContentContainer>

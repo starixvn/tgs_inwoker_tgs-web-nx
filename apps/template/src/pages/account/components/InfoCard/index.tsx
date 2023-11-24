@@ -13,7 +13,7 @@ const InfoCardContainer = styled.div`
   height: 248px;
   margin-left: 29px;
   padding: 46px 28px 21px;
-  color: white;
+  color: ${({ theme }) => theme.white};
 
   display: flex;
   flex-direction: column;
@@ -55,7 +55,7 @@ const BalanceContainer = styled.div`
   }
 `;
 
-const InfoCard = (props: any) => {
+const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
   const { wallet } = useWalletStore();
   const { account } = useAccountStore();
   const username = account.info.member_username;
@@ -64,6 +64,7 @@ const InfoCard = (props: any) => {
     wallet.mainBalance,
   )}`;
   return (
+    //@ts-ignore
     <InfoCardContainer {...props}>
       <InfoWrapper>
         <VipMedal vipLevel={accountLevel} />

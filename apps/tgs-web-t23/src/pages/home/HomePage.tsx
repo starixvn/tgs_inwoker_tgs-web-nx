@@ -5,12 +5,13 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import HomePromotionCard from "./components/HomePromotionCard";
 import ImageCard from "./components/ImageCard";
+import WinnerCard from "./components/WinnerCard";
+import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-
 import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
 
@@ -71,10 +72,24 @@ const MainContentWrapper = styled.div`
   }
 `;
 
+const HomeAdContainer = styled.div`
+  width: 100%;
+
+  ${media.sm} {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    height: 100%;
+  }
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const { leaderboard } = useBettingHistory();
 
   useEffect(() => {
     window.scrollTo({
@@ -109,7 +124,11 @@ const HomePage = () => {
 
         {!activeGameType && (
           <>
-            <HomePromotionCard />
+            <HomeAdContainer>
+              <HomePromotionCard />
+              <WinnerCard leaderboard={leaderboard} />
+            </HomeAdContainer>
+
             {isMobileSize &&
               footerCategoriesList.length &&
               footerCategoriesList.map((category, index) => (
@@ -125,8 +144,6 @@ const HomePage = () => {
                   )}
                 </HomeCategoryFolder>
               ))}
-
-            {/* <TabPanel /> */}
           </>
         )}
       </MainContentWrapper>

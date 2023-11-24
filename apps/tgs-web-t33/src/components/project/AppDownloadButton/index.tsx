@@ -11,7 +11,7 @@ const AppDownloadButtonContainer = styled.button`
   justify-content: center;
   border-radius: 30px;
   padding: 20px;
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   border: none;
   cursor: pointer;

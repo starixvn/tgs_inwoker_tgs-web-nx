@@ -5,17 +5,27 @@ import { useRegisterForm } from "@tgs-web-nx/core/features";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import FormikForm from "@/components/project/FormikForm";
-import BrandLogo from "@/components/BrandLogo";
+import BrandLogo from "@/components/project/BrandLogo";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
+import { media } from "@/theme/breakpoints";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
-  color: white;
+  color: ${({ theme }) => theme.white};
   font-size: 0.75rem;
   font-weight: 700;
   margin: 24px 0 0;
   display: flex;
   align-items: start;
+`;
+
+const BrandLogoContainer = styled.div`
+  margin-bottom: 50px;
+
+  ${media.sm} {
+    margin-bottom: 30px;
+  }
 `;
 
 const RegisterForm = () => {
@@ -30,7 +40,9 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      <BrandLogo />
+      <BrandLogoContainer>
+        <BrandLogo />
+      </BrandLogoContainer>
 
       <FormikForm
         formInputList={formInputConfigList}
@@ -46,6 +58,7 @@ const RegisterForm = () => {
       </FormikForm>
 
       <RedirectToLoginHint />
+      <LanguageSwitch style={{ width: "129px", margin: "20px auto 20px" }} />
     </AuthFormContainer>
   );
 };

@@ -13,7 +13,7 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   cursor: pointer;
   padding: 12px 12.35px;
   text-align: center;
-  color: white;
+  color: ${({ theme }) => theme.white};
   border: ${({ $isActive, theme }: BadgeContainerProps) =>
     $isActive ? "none" : `1px solid ${theme.gray70}`};
   background: ${({ $isActive, theme }: BadgeContainerProps) =>

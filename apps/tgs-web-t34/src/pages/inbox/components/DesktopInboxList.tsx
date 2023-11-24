@@ -26,14 +26,15 @@ const StyledTable = muiStyled(Table)(({ theme }) => ({
     fontSize: "1.375rem",
     lineHeight: "1.611rem",
     fontWeight: 400,
+    color: theme.palette.black,
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
     fontSize: "1.125rem",
     fontWeight: 400,
     lineHeight: "1.318rem",
-    color: theme.palette.common.white,
-    borderBottom: `1px solid ${theme.palette.common.white}`,
+    color: theme.palette.black,
+    borderBottom: `1px solid ${theme.palette.grey01}`,
     padding: "26px 0 10px",
   },
 }));
@@ -46,7 +47,7 @@ type Props = {
   handleItemClick: (id: string) => void;
   totalCount: number;
 };
-const MobileInboxList = ({
+const DesktopInboxList = ({
   inboxMessageList,
   selectedIds,
   isEdit,
@@ -122,4 +123,4 @@ const MobileInboxList = ({
   );
 };
 
-export default MobileInboxList;
+export default DesktopInboxList;

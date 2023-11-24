@@ -20,7 +20,7 @@ const StyledSelect = styled(MuiSelect)`
   height: 56px;
   width: 250px;
   overflow: visible;
-  background: ${({ theme }) => theme.mainDarkBackground};
+  background: ${({ theme }) => theme.mainBackground};
   &:hover {
     border: 0;
   }
@@ -103,7 +103,7 @@ const MenuLanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainLightBackground,
+            background: theme.mainBackground,
 
             "& .MuiMenuItem-root": {
               padding: 2,

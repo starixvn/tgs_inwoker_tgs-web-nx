@@ -5,13 +5,12 @@ import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRo
 
 const ProfileCard = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainLightBackground};
-  border-radius: 30px;
-  padding: 36px 30px;
-  margin-bottom: 15px;
+  background: ${({ theme }) => theme.gray30};
+  padding: 20px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
-  gap: 43px;
+  gap: 42px;
 
   &:last-child {
     margin-bottom: 0;

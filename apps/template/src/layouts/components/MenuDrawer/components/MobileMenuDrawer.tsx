@@ -147,7 +147,7 @@ const MobileMenuDrawer = () => {
             background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
           }}
         >
-          <>{i18n.t("web.header.logout")}</>
+         {i18n.t("web.header.logout")}
         </Button>
       </ContentWrapper>
     </MobileMenuDrawerContainer>

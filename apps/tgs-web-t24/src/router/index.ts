@@ -5,9 +5,6 @@ import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import DepositDetailsPage from "@/pages/deposit/DepositDetailsPage";
-import DepositManualPage from "@/pages/deposit/DepositManualPage";
-import DepositPayment from "@/pages/deposit/DepositPaymentPage";
 import InboxPage from "@/pages/inbox/InboxPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
@@ -312,24 +309,6 @@ const routes: Route[] = [
     layout: DialogLayout,
   },
   {
-    path: "/deposit/payment/:id/:bank/:amount/:bonus?",
-    component: DepositPayment,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/details",
-    component: DepositDetailsPage,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
-    path: "/deposit/manual",
-    component: DepositManualPage,
-    category: RouteCategoryEnum.MINE,
-    layout: DialogLayout,
-  },
-  {
     path: "/card",
     component: CardPage,
     category: RouteCategoryEnum.MINE,
@@ -380,7 +359,7 @@ const routes: Route[] = [
     path: "/vip",
     component: VIPPage,
     category: RouteCategoryEnum.MINE,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/sports/:platform",

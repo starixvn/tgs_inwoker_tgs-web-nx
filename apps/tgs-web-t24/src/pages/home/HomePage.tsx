@@ -113,9 +113,6 @@ const HomePage = () => {
           <CardPrompt />
         )}
 
-        {/* GameTypeTab - left side menu */}
-        {/* {isMobileSize && !activeGameType && <GameTypeTab />} */}
-
         {isDesktopSize && !activeGameType && (
           <HomePromotionBanner>
             <HomePromotionCard />
@@ -131,37 +128,7 @@ const HomePage = () => {
             </SliderWrapper>
           </HomePromotionWrapper>
         )}
-
-        {/* Promotion card - Casino & Sports */}
-
-        {/* {activeGameType > 0 &&
-          <CategoryLabel
-            imageUrl={back}
-            text={"sports"}
-          />
-        } */}
-
         <CategoryRenderer />
-
-        {/* {!activeGameType && (
-          <>
-            {isMobileSize &&
-              footerCategoriesList.length &&
-              footerCategoriesList.map((category, index) => (
-                <HomeCategoryFolder key={index} title={category.title} size={category.size!}>
-                  {category.content ? (
-                    category.content
-                  ) : (
-                    <ImageCard
-                      imageUrl={category.imageUrl}
-                      text={category.text}
-                      alignment={category.alignment}
-                    />
-                  )}
-                </HomeCategoryFolder>
-              ))}
-          </>
-        )} */}
       </MainContentWrapper>
     </MainWrapper>
   );

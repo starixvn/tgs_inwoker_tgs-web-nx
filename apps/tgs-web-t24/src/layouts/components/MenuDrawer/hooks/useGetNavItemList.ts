@@ -34,6 +34,7 @@ export function useGetNavItemList() {
         },
       };
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameTypeList]);
 
   const accountNavItemList: NavItem[] = useMemo(() => {

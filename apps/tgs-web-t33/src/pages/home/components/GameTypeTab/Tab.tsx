@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 type Props = {
   imageUrl: string;
@@ -13,23 +14,36 @@ const Wrapper = styled.div<{
   $isActive: boolean;
 }>`
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme, $isActive }) =>
-    $isActive ? "linear-gradient(270deg,#34363f,#48452c 80%,#5a5817)" : "transparent"};
-  margin-right: 5px;
+  min-width: 66px;
+  height: 77px;
+  padding: 5px 0px;
+  gap: 6px;
+  user-select: none;
+  border-bottom: 2px solid ${({ theme, $isActive }) => ($isActive ? theme.primary : "transparent")};
+
+  ${media.sm} {
+    min-width: 90px;
+    height: 74px;
+    cursor: pointer;
+    & :hover {
+      color: ${({ theme }) => theme.primary};
+    }
+  }
 `;
 
 const GameIcon = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
 `;
 
 const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.white)};
-  font-size: 0.6rem;
-  font-weight: 700;
+  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.white)};
+  font-size: 0.875rem;
+  font-weight: 400;
 `;
 
 const Tab = ({ imageUrl, text, isActive, onClick }: Props) => {

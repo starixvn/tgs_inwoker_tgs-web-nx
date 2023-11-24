@@ -8,16 +8,17 @@ const StyledTable = styled(Table)`
 `;
 
 const StyledTableHead = styled(TableHead)`
-  background: ${({ theme }) => theme.primaryLight};
+  background: ${({ theme }) => theme.grey00};
   & * {
-    color: ${({ theme }) => theme.tertiaryLight};
+    color: ${({ theme }) => theme.white};
   }
 `;
 
 const StyledTableBody = styled(TableBody)`
-  background: ${({ theme }) => theme.tertiaryDark};
+  background: ${({ theme }) => theme.maskBlack20};
   & * {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black} !important;
+    font-size: 0.875rem;
   }
 `;
 

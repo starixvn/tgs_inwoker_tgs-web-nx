@@ -9,32 +9,21 @@ import { media } from "@/theme/breakpoints";
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 17px;
   flex-shrink: 0;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
-
-  ${media.sm} {
-    background-color: transparent;
-    padding: 20px 0px;
-  }
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
+  align-content: center;
   width: 100%;
-  row-gap: 12px;
+  row-gap: 15px;
   column-gap: 8px;
   align-self: stretch;
 
   ${media.sm} {
-    row-gap: 36px;
-    column-gap: 40px;
+    gap: 20px;
   }
 `;
 

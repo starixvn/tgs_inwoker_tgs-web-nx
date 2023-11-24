@@ -1,28 +1,22 @@
 export const colorListT33 = {
   primary: "#79C000",
   secondary: "#0055FE",
+  gradient: "linear-gradient(180deg, #0587F5 0%, #0057A0 100%);",
+  red: "#FF2546",
   white: "#FFFFFF",
-  gradient: "linear-gradient(180deg, #0587F5 0%, #0057A0 100%)",
-  red: "#ff2546",
-  yellow: "#FFD723",
-  gray: "#828282",
-  lighterGray: "#BFBFBF",
-  darkGray: "#E0E0E0",
-  lightGray: "#BDBDBD",
   black: "#000000",
-  mainBackground: "#24262B", //BG-black
-  mainDarkBackground: "#1C1E22",
-  mainLightBackground: "#2E3237",
-  primaryGradient: "linear-gradient(90deg, rgba(255, 210, 40, 0.96) 0%, #24262B 49.27%)",
-  secondaryGradient:
-    "linear-gradient(180deg, rgba(57, 22, 164, 0.00) 8.88%, #3916A4 50.07%, rgba(57, 22, 164, 0.50) 89.25%)",
-  primaryMix: "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)",
-  secondaryMix: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
-  tagColor: "#161616",
+  gray10: "#E3E3E3a1",
+  gray20: "#c8c8c8",
+  gray30: "#333f48",
+  gray40: "#26363f",
+  gray50: "#252a30",
+  gray60: "#29333a",
+  mainBackground: "#252a30",
+  subBackground: "#31343C",
 };
 
 export const themeList = {
-  colorListT23: colorListT33,
+  colorListT33: colorListT33,
 };
 
-export const theme = themeList["colorListT23"];
+export const theme = themeList["colorListT33"];

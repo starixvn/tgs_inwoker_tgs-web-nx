@@ -1276,6 +1276,7 @@ export function useWalletStore() {
 
       return response;
     } catch (error: any) {
+      console.log(error);
       dispatch({
         type: GETGAMEBALANCE_FAIL,
         payload: error.status,

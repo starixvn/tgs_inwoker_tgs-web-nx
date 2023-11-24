@@ -1,18 +1,28 @@
 import { useEffect, useMemo, useState } from "react";
-import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRoute } from "@tgs-web-nx/core/features";
 import { RouteCategoryEnum } from "@/router";
-import { BottomNavItem, NavTypeEnum } from "@/layouts/components/BottomAppBar/BottomNav";
 import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
 import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
-import iconProfile from "@/assets/t23/images/bottomNavBar/icon-profile.svg";
 import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
-import iconWithdrawal from "@/assets/t23/images/bottomNavBar/icon-withdrawal.svg";
-import { useRoute } from "@/hooks/useRoute";
+
+export enum NavTypeEnum {
+  ITEM,
+  BIG_ITEM,
+  MENU,
+}
+
+export type BottomNavItem = {
+  navType: NavTypeEnum;
+  label: string;
+  routePath: string;
+  routeCategory: RouteCategoryEnum;
+  iconUrl: string;
+  iconActiveUrl: string;
+};
 
 export function useGetBottomNavItemList() {
-  const location = useLocation();
   const history = useHistory();
 
   const bottomNavItemList = useMemo(() => {
@@ -42,22 +52,6 @@ export function useGetBottomNavItemList() {
         routePath: "/deposit",
         routeCategory: RouteCategoryEnum.REFER,
       },
-      {
-        navType: NavTypeEnum.ITEM,
-        label: i18n.t("common.withdrawal"),
-        iconUrl: iconWithdrawal,
-        iconActiveUrl: iconWithdrawal,
-        routePath: "/withdrawal",
-        routeCategory: RouteCategoryEnum.INBOX,
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        label: i18n.t("web.account.profile"),
-        iconUrl: iconProfile,
-        iconActiveUrl: iconProfile,
-        routePath: "/account",
-        routeCategory: RouteCategoryEnum.MINE,
-      },
     ] as BottomNavItem[];
   }, []);
 
@@ -65,13 +59,9 @@ export function useGetBottomNavItemList() {
   const { route } = useRoute();
 
   useEffect(() => {
-    const matchNavItem =
-      bottomNavItemList.find((bottomNavItem) => {
-        return bottomNavItem.routeCategory === route?.category;
-      }) || null;
+    const matchNavItem = null;
 
     if (!matchNavItem) {
-      console.log(location.pathname);
       return;
     }
 

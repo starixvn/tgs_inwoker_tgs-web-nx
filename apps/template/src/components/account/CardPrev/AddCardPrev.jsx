@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-import { ListItem, ListItemText, Modal, styled as muiStyled } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { accountAction, RESET_WALLETRESULT, walletAction } from "@tgs-web-nx/core";
@@ -14,51 +12,8 @@ import {
   LabelContainer,
 } from "@/components/styled-component/ProfileForms";
 import { Button } from "@/components/UI/Button";
-
-const Container = styled.div`
-  width: 100%;
-  padding: 20px 17px;
-`;
-
-const SubTitle = styled.div`
-  font-size: 1.5rem;
-  line-height: 1.758rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.white};
-  margin-bottom: 12px;
-`;
-
-const BottomInfo = styled.div`
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.0025rem;
-  text-align: center;
-  color: ${({ theme }) => theme.white};
-  margin-bottom: 20px;
-`;
-const StyledModalBank = muiStyled(Modal)(({ theme }) => ({
-  paper: {
-    color: "#666666",
-    padding: "0 30px",
-    margin: 0,
-    display: "block",
-    position: "absolute",
-    bottom: 0,
-    height: "calc(100% - 580px)",
-  },
-}));
-
-const StyledListItem = muiStyled(ListItem)(({ theme }) => ({
-  borderBottom: "1px solid rgba(0,0,0,0.2)",
-  padding: "10px",
-}));
-const StyledListItemText = muiStyled(ListItemText)(({ theme }) => ({
-  textAlign: "center",
-  paddingRight: "50px",
-  "& .MuiTypography-root": {
-    fontSize: "28px",
-  },
-}));
+import { AddCardContainer, BottomInfo, SubTitle } from "@/components/styled-component/AddCard";
+import { Select } from "@/components/UI/Select";
 
 class AddCardPrev extends Component {
   state = {
@@ -499,29 +454,32 @@ class AddCardPrev extends Component {
 
     const eWalletCustom = selectedBankType("EWallet") && config.features.AddCard_EWalletCustoms;
 
+    const withdrawalList = this.props.wallet.withdrawalList || [];
+
     return (
-      <Container>
+      <AddCardContainer>
         <SubTitle>{i18n.t("card.addCard.title")}</SubTitle>
         {!config.features.AddCard_HideCertainField && (
           <ItemContainer>
             <LabelContainer>{i18n.t("common.withdrawalBankType")}</LabelContainer>
             <FormControl variant="outlined">
-              <TextField
-                value={
-                  !this.state.isDeposit && this.props.wallet.withdrawalList.length > 0
-                    ? this.props.wallet.withdrawalList[this.state.selectedBankTypeIndex].banktype
-                    : this.state.isDeposit && this.props.wallet.depositList.length > 0
-                    ? this.props.wallet.depositList[this.state.selectedBankTypeIndex].banktype
-                    : ""
-                }
-                onClick={() => this.setState({ ...this.state, bankTypeOpen: true })}
-                type={"text"}
-                disabled={true}
-              />
+              <Select
+                native
+                id="customSelect"
+                value={this.props.selectedMethodIndex}
+                onChange={(e) => this.handleBankTypeClick(e.target.value)}
+              >
+                {withdrawalList.map((item, index) => {
+                  return (
+                    <option key={index} value={index}>
+                      {item.banktype}
+                    </option>
+                  );
+                })}
+              </Select>
             </FormControl>
           </ItemContainer>
         )}
-
         {!config.features.AddCard_HideChannel && (
           <ItemContainer>
             <LabelContainer>
@@ -538,20 +496,27 @@ class AddCardPrev extends Component {
                 : i18n.t("common.withdrawalChannel")}
             </LabelContainer>
             <FormControl variant="outlined">
-              <TextField
+              <Select
+                native
+                id="customSelect"
                 value={
                   this.state.channelList.length > 0
                     ? i18n.t(this.state.channelList[this.state.selectedChannelIndex].channelname)
                     : ""
                 }
-                onClick={() => this.setState({ ...this.state, channelOpen: true })}
-                type={"text"}
-                disabled={true}
-              />
+                onChange={(e) => this.handleChannelClick(e.target.value)}
+              >
+                {this.state.channelList.map((item, index) => {
+                  return (
+                    <option key={index} value={index}>
+                      {item.channelname}
+                    </option>
+                  );
+                })}
+              </Select>
             </FormControl>
           </ItemContainer>
         )}
-
         {(() => {
           if (
             (!this.state.isDeposit &&
@@ -578,22 +543,23 @@ class AddCardPrev extends Component {
                           : i18n.t("card.addCard.BankName")}
                       </LabelContainer>
                       <FormControl variant="outlined">
-                        <TextField
+                        <Select
+                          native
+                          id="customSelect"
                           value={this.state.bankName}
-                          onChange={this.handleBankNameChange}
-                          type={"text"}
-                          disabled={
-                            config.features.AddCard_BankDropdown || this.state.disabledBankNameInput
-                          }
-                          onClick={() => this.setState({ ...this.state, bankNameOpen: true })}
-                          placeholder={
-                            config.features.AddCard_DisplayFPS
-                              ? i18n.t("hk28.card.addCard.msgEnterBankName")
-                              : i18n.t("card.addCard.msgEnterBankName")
-                          }
-                        />
+                          onChange={(e) => this.handleBankNameClick(e.target.value)}
+                        >
+                          {bankList.map((item, index) => {
+                            return (
+                              <option key={index} value={item}>
+                                {i18n.t(item)}
+                              </option>
+                            );
+                          })}
+                        </Select>
                       </FormControl>
                     </ItemContainer>
+
                     {(() => {
                       if (config.features.AddCard_BankBranch) {
                         return (
@@ -613,7 +579,6 @@ class AddCardPrev extends Component {
                     })()}
                   </>
                 )}
-
                 <ItemContainer>
                   <LabelContainer>
                     {eWalletCustom
@@ -844,67 +809,6 @@ class AddCardPrev extends Component {
           </div>
         )}
 
-        <StyledModalBank
-          onClose={() => this.setState({ ...this.state, bankTypeOpen: false })}
-          open={this.state.bankTypeOpen}
-        >
-          <>
-            {!this.state.isDeposit
-              ? this.props.wallet.withdrawalList.length > 0 &&
-                this.props.wallet.withdrawalList.map((item, index) => {
-                  return (
-                    <StyledListItem
-                      button
-                      key={index}
-                      onClick={() => this.handleBankTypeClick(index)}
-                    >
-                      <StyledListItemText primary={item.banktype} />
-                    </StyledListItem>
-                  );
-                })
-              : this.props.wallet.depositList.length > 0 &&
-                this.props.wallet.depositList.map((item, index) => {
-                  return (
-                    <StyledListItem
-                      button
-                      key={index}
-                      onClick={() => this.handleBankTypeClick(index)}
-                    >
-                      <StyledListItemText primary={item.banktype} />
-                    </StyledListItem>
-                  );
-                })}
-          </>
-        </StyledModalBank>
-        <StyledModalBank
-          onClose={() => this.setState({ ...this.state, channelOpen: false })}
-          open={this.state.channelOpen}
-        >
-          <>
-            {this.state.channelList.map((item, index) => {
-              return (
-                <StyledListItem button key={index} onClick={() => this.handleChannelClick(index)}>
-                  <StyledListItemText primary={i18n.t(item.channelname)} />
-                </StyledListItem>
-              );
-            })}
-          </>
-        </StyledModalBank>
-        <StyledModalBank
-          onClose={() => this.setState({ ...this.state, bankNameOpen: false })}
-          open={config.features.AddCard_BankDropdown && this.state.bankNameOpen}
-        >
-          <>
-            {bankList.map((item, index) => {
-              return (
-                <StyledListItem button key={index} onClick={() => this.handleBankNameClick(item)}>
-                  <StyledListItemText primary={i18n.t(item)} />
-                </StyledListItem>
-              );
-            })}
-          </>
-        </StyledModalBank>
-
         <MessageDialog
           onClose={() => this.handleCloseDialog()}
           open={this.state.showDialog}
@@ -912,7 +816,7 @@ class AddCardPrev extends Component {
           onClick={() => this.handleCloseDialog()}
         />
         <Loading show={this.state.loading || this.props.wallet.loading} />
-      </Container>
+      </AddCardContainer>
     );
   }
 }

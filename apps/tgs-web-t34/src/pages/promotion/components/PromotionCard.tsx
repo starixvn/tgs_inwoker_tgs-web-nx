@@ -2,17 +2,21 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Promotion } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 import iconMore from "@/assets/t23/images/promotion/iconMore.svg";
+import { Button } from "@/components/UI/Button";
 
 type PromotionCardContainerProps = {
   onClick: (event: Event) => void;
 };
 const PromotionCardContainer = styled.div<PromotionCardContainerProps>`
   width: 100%;
-  border-radius: 10px;
+  border-radius: 4px;
+  background: ${({ theme }) => theme.grey00};
+  padding: 12px;
   gap: 8px;
   display: flex;
   flex-direction: column;
@@ -22,7 +26,7 @@ const PromotionCardContainer = styled.div<PromotionCardContainerProps>`
   cursor: pointer;
 
   ${media.sm} {
-    width: calc((100% - 40px) / 2);
+    width: calc((100% - 20px * 1) / 2);
   }
 `;
 const BannerWrapper = styled.div`
@@ -34,24 +38,15 @@ const BannerWrapper = styled.div`
 const PromotionTextContainer = styled.div`
   width: 100%;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 17.5px 11px;
-  gap: 20.84px;
+  margin-top: auto;
 `;
 
 const TitleWrapper = styled.div`
-  font-size: 1.062rem;
+  font-size: 1rem;
   font-weight: 400;
-  color: white;
+  color: ${({ theme }) => theme.primary};
   text-overflow: ellipsis;
-`;
-
-const ClickMoreContainer = styled.div`
-  flex-shrink: 0;
-  width: 28px;
-  margin-left: auto;
+  margin-bottom: 8px;
 `;
 
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
@@ -74,9 +69,7 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
       <PromotionTextContainer>
         <TitleWrapper>{promotionData.name}</TitleWrapper>
 
-        <ClickMoreContainer>
-          <Icon iconUrl={iconMore} width={"28px"} height={"28px"} />
-        </ClickMoreContainer>
+        <Button fullWidth>{i18n.t("common.more")}</Button>
       </PromotionTextContainer>
     </PromotionCardContainer>
   );

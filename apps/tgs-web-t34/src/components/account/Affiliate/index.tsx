@@ -42,10 +42,11 @@ const AffiliateTitle = styled.h2`
   padding: 0;
   margin-block: 0;
   margin-inline: 0;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 400;
   line-height: 1.758rem;
   margin-bottom: 14px;
+  color: ${({ theme }) => theme.black};
 `;
 
 const QRCodeContainer = styled.div`

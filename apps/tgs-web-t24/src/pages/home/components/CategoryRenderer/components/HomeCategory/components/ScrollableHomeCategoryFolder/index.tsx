@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
+import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import Loading from "@/components/UI/Loading";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
@@ -16,20 +18,18 @@ const HomeCategorySection = styled.div`
 `;
 
 const CategoryTab = styled.div`
-  width: 100%;
-  height: 32px;
-  border-left: 3px solid ${({ theme }) => theme.primary};
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  width: 184px;
+  height: 48px;
+  background-image: url(${tabBg});
+  background-size: contain;
+  padding: 15.5px 15px;
 `;
 
 const CategoryTitle = styled.div`
   color: ${({ theme }) => theme.white};
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.131px;
-  margin-left: 14px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 0.875rem;
 `;
 
 const CategoryContent = styled.div`
@@ -83,6 +83,8 @@ type Props = {
 };
 
 const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => {
+  const { handleChangeGameType } = useHomeGameContext();
+
   const hasMappingData = !!dataList.length;
 
   return (
@@ -100,14 +102,14 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
                 />
               ))}
-          {dataList.length > SHOW_CATEGORY_AMOUNT && <AllCard />}
+          {dataList.length > SHOW_CATEGORY_AMOUNT && (
+            <AllCard onClick={() => handleChangeGameType(GameTypeEnum.SLOT)} />
+          )}
         </CategoryContent>
       </HomeCategorySection>
 

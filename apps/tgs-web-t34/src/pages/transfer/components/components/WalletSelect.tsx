@@ -5,6 +5,7 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { TransferWallet } from "@/pages/transfer/components/components/TransferCard";
 import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
 type Props = {
   value: string;
@@ -23,7 +24,19 @@ const WalletSelect = ({ value, handleChange, walletBalance, mainAccountId }: Pro
   };
 
   return (
-    <Select native value={value} onChange={(e) => handleChange(e as ChangeEvent)}>
+    <Select
+      native
+      value={value}
+      onChange={(e) => handleChange(e as ChangeEvent)}
+      sx={{
+        "& select": {
+          color: theme.white,
+        },
+        "& svg": {
+          color: `${theme.white} !important`,
+        },
+      }}
+    >
       <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
       {game.providerList
         .filter((provider) => provider.status === 0 && provider.transferwallet)

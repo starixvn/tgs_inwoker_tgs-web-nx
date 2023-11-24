@@ -1,6 +1,5 @@
-import { styled as muiStyled } from "@mui/system";
-import { Button as MuiButton } from "@mui/material";
+import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 
 export const QRCodeButton = muiStyled(MuiButton)(({ theme }) => ({
-  color: "black",
+  color: theme.palette.black,
 })) as typeof MuiButton;

@@ -1,11 +1,8 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { Common } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
-import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
-import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
-import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
 
 type BalanceTrackerContainerProps = {
@@ -14,9 +11,6 @@ type BalanceTrackerContainerProps = {
 };
 const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
   height: 36px;
-  background: ${({ theme }: BalanceTrackerContainerProps) => theme.mainLightBackground};
-  border: ${({ $size, theme }: BalanceTrackerContainerProps) =>
-    $size !== "small" ? `1px solid ${theme.gray}` : "none"};
   color: white;
   border-radius: 50px;
   padding: 8px 15px;
@@ -30,10 +24,11 @@ const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
 `;
 
 const BalanceContainer = styled.div`
+  cursor: pointer;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   gap: 10px;
 
   & span {
@@ -48,26 +43,17 @@ const BalanceTracker = ({ size, ...others }: Props) => {
   const { wallet, getBalanceList } = useWalletStore();
   const history = useHistory();
 
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const currentBalance = `$ ${Common.formatNumberWithThousand(wallet.mainBalance)}`;
 
   const handleClick = useCallback(() => {
     history.push("/deposit");
   }, [history]);
 
-  const handleRefreshBalance = useCallback(async () => {
-    await getBalanceList();
-  }, [getBalanceList]);
-
-  const isShow = size !== "small";
   return (
     //@ts-ignore
     <BalanceTrackerContainer $size={size} {...others}>
-      {isShow && <span>{i18n.t("wap.main.account.totalFund")}</span>}
-
       <BalanceContainer>
-        <Icon iconUrl={iconMoney} width={"20px"} height={"20px"} />
         <span onClick={handleClick}>{currentBalance}</span>
-        <RefreshButton handleClick={handleRefreshBalance} />
       </BalanceContainer>
     </BalanceTrackerContainer>
   );
