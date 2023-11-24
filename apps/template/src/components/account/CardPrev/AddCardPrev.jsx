@@ -507,7 +507,7 @@ class AddCardPrev extends Component {
                 }
                 onClick={() => this.setState({ ...this.state, channelOpen: true })}
                 type={"text"}
-                disabled={true}
+                // disabled={true}
               />
             </FormControl>
           </ItemContainer>

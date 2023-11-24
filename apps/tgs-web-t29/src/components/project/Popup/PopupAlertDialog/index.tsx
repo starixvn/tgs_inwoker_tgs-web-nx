@@ -42,7 +42,6 @@ const ModalButtons = ({ handleClose, message, action }: ModalButtonsProps) => {
 
 const PopupAlertDialog = () => {
   const { isOpen, title, message, action, closeAlertPopup } = useNotifications();
-
   return (
     <DialogPopup open={isOpen} onClose={closeAlertPopup}>
       <AlertContainer>

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { Common, i18n, utility } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
 import {
@@ -18,59 +17,17 @@ import {
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
-
-const LimitLabel = styled.span`
-  color: ${({ theme }) => theme.tertiary};
-`;
-
-const LimitAmount = styled.span`
-  color: ${({ theme }) => theme.white};
-`;
-
-const TransferLabel = styled.div``;
-const TransferValue = styled.div``;
-
-const ExchangeRateContainer = styled.div`
-  margin: 20px auto;
-  font-size: 0.937rem;
-  font-weight: 400;
-`;
-
-const QRCodeImg = styled.img`
-  display: block;
-  margin-top: 10px;
-  width: 200px;
-  height: 200px;
-`;
-
-const HintText = styled.div`
-  color: ${({ theme }) => theme.primary};
-`;
-
-const InputWrapper = styled.div`
-  background: #fff;
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-  padding-right: 100px;
-  border-radius: 16px;
-  width: 100%;
-`;
-
-const AmountHint = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-size: 0.937rem;
-  font-weight: 400;
-  margin-top: 9px;
-  text-align: center;
-`;
-
-const FeeSpot = styled.div`
-  margin-bottom: 17px;
-  span {
-    font-weight: bold;
-  }
-`;
+import {
+  AmountHint,
+  ExchangeRateContainer,
+  FeeSpot,
+  HintText,
+  LimitAmount,
+  LimitLabel,
+  QRCodeImg,
+  TransferLabel,
+  TransferValue,
+} from "@/components/styled-component/Deposit";
 
 class Main extends Component {
   render() {
@@ -96,12 +53,6 @@ class Main extends Component {
           this.props.selectedPaymentIndex
         ].paymentcode.toUpperCase() === payment.toUpperCase()
       );
-    };
-
-    const performCopy = (content) => {
-      this.props.alert("", i18n.t("affiliate.copied"));
-
-      utility.copy(content);
     };
 
     const formatBankCardDetail = (data) => {
@@ -395,7 +346,7 @@ class Main extends Component {
                               value={this.props.selectedBankCard}
                               onChange={(e) => this.props.handleSelectAccountChange(e)}
                             >
-                              <option value="">
+                              <option value="" disabled>
                                 {config.features.Deposit_OriginAccount
                                   ? i18n.t("idr1.pleaseEnterAccountName")
                                   : i18n.t("common.pleaseEnterAccountName")}
@@ -707,11 +658,6 @@ class Main extends Component {
               // label={i18n.t("deposit.playerNote")}
             />
           )}
-        <ResultPopupDialog
-          isDialogOpen={this.props.openPopup}
-          handleClose={this.props.handleClosePopup}
-          handleOpenPopupUrl={this.props.handleOpenPopupUrl}
-        />
 
         {/*提交*/}
         <SubmitButton
@@ -732,12 +678,18 @@ class Main extends Component {
               this.props.amount === "" ||
               (this.props.files === null &&
                 config.features.Deposit_UploadRequired &&
-                methodCode("MANUAL"))
+                 paymentCode("manual"))
             );
           })()}
         >
-         {i18n.t("common.submit")}
+          {i18n.t("common.submit")}
         </SubmitButton>
+
+        <ResultPopupDialog
+          isDialogOpen={this.props.openPopup}
+          handleClose={this.props.handleClosePopup}
+          handleOpenPopupUrl={this.props.handleOpenPopupUrl}
+        />
       </>
     );
   }

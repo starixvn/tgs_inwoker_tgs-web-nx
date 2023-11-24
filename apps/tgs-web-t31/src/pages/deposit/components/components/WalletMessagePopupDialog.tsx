@@ -16,7 +16,6 @@ const WalletMessagePopupDialog = () => {
   }, []);
 
   const isOpen = wallet.message !== "";
-
   return (
     <DialogPopup open={isOpen} onClose={handleClose}>
       <>
