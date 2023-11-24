@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useGameType, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import CardPrompt from "@/pages/home/components/CardPrompt";
@@ -38,10 +38,10 @@ const SliderWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
 
-  /* ${media.sm} {
+  ${media.sm} {
     height: 100%;
     max-height: 450px;
-  } */
+  }
   /* to-do: 最大高度限制問題 */
 `;
 

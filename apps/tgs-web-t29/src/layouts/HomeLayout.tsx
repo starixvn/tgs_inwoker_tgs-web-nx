@@ -53,7 +53,6 @@ const HomeLayout = ({ children }: Props) => {
       <Header />
 
       <DashboardContainer>
-        <MenuDrawer />
 
         <ContentWrapper>
           <>
