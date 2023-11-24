@@ -97,9 +97,6 @@ export function useInitSiteApiData() {
     getLiveChatURL();
     getPromotion();
     getAffiliateStatus();
-
-    // TODO: these fetch method can move to single page
-    // getWithdrawalChannel();
   };
 
   const handleGoto = () => {
@@ -185,7 +182,6 @@ export function useInitSiteApiData() {
     //NOTE: no need to fetch these api in here
     // handleUpdateProviderBalance();
     // getAutoTransferStatus();
-    // getWithdrawalChannel();
   };
 
   const onFocus = () => {

@@ -79,12 +79,6 @@ class WithdrawalPrev extends Component {
         });
       }
       // this.GetWithdrawalDetails();
-      this.countDownInterval = setInterval(
-        () => {
-          this.props.getWithdrawalChannel(); // call api every 30 mins
-        },
-        30 * 60 * 1000,
-      );
     } else {
       this.props.appHistory.replace("/login");
     }
@@ -129,9 +123,7 @@ class WithdrawalPrev extends Component {
       }
     }
   }
-  componentWillUnmount() {
-    clearInterval(this.countDownInterval);
-  }
+
   handleBackClick = () => {
     this.props.appHistory.goBack();
   };
