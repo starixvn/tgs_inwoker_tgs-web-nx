@@ -35,7 +35,7 @@ const HeaderGameTypesContainer = styled.div`
 
 const DropdownContent = styled.div<{ $isHovered: boolean }>`
   display: ${($isHovered) => ($isHovered ? "block" : "none")};
-  position: absolute
+  position: absolute;
   top: 100%;
   left: 0;
   background: ${({ theme }) => theme.gray10};
@@ -67,6 +67,7 @@ const HeaderGameTypeNavs = () => {
   const { sideNavItemList } = useGetNavItemList();
   const [isHovered, setIsHovered] = useState(false);
   const { handleChangeNavPopupGameType } = useHomeGameContext();
+  const { activeNavPopupGameType } = useHomeGameContext();
 
   const handleMouseEnter = (gameType: GameTypeEnum) => {
     setIsHovered(true);
@@ -92,7 +93,7 @@ const HeaderGameTypeNavs = () => {
             onMouseLeave={handleMouseLeave}
           >
             {navItem.label}
-            {isHovered && (
+            {isHovered && !!activeNavPopupGameType && (
               <DropdownContent $isHovered={isHovered}>
                 <GameTypeNavPopup />
               </DropdownContent>

@@ -39,7 +39,7 @@ const DesktopCategoryContentWrapper = styled.div`
   flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: flex-start;
 `;
 
 const CategoryContent = styled.div`

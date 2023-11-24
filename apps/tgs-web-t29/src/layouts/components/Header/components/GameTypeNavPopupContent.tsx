@@ -1,7 +1,6 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import NavCategory from "@/pages/home/components/CategoryRenderer/components/NavCategory";
-import HomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory";
 
 const GameTypeNavPopupContent = () => {
   const { activeNavPopupGameType } = useHomeGameContext();
@@ -13,11 +12,13 @@ const GameTypeNavPopupContent = () => {
     case GameTypeEnum.COCKFIGHT:
     case GameTypeEnum.ESPORTS:
     case GameTypeEnum.QIPAILOBBY:
+    case GameTypeEnum.SLOT:
+    case GameTypeEnum.FISH:
+    case GameTypeEnum.TABLEGAME:
       return <NavCategory />;
 
-    // default:
-    // case GameTypeEnum.NONE:
-    //   return <HomeCategory />;
+    default:
+      return null;
   }
 };
 
