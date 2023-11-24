@@ -10,6 +10,7 @@ import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -61,13 +62,10 @@ const Header = () => {
       <HeaderWrapper>
         {!isLargeDesktopSize && <MenuButton />}
         <Link to={""}>
-          <LogoImgContainer>
-            <img
-              src={general.brand && general.brand.loadingUrl}
-              alt={"logo"}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-            />
-          </LogoImgContainer>
+          <BrandLogo
+            style={{ height: "27px" }}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
         </Link>
 
         <HeaderContentContainer>

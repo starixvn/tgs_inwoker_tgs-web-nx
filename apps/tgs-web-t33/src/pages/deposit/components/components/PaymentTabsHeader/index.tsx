@@ -13,7 +13,7 @@ const BadgeContainer = styled.div`
 
   ${media.sm} {
     margin-bottom: 40px;
-    gap: 10px;
+    //gap: 10px;
   }
 `;
 

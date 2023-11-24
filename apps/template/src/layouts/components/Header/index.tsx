@@ -2,10 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader } from "@tgs-web-nx/core/features";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import ContactButton from "./components/ContactButton";
@@ -19,6 +18,7 @@ import {
 import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import CurrentTime from "@/components/project/CurrentTime";
 import { media } from "@/theme/breakpoints";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -39,16 +39,6 @@ const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: start;
   z-index: 2;
-`;
-
-const LogoImgContainer = styled.div`
-  height: 27px;
-  justify-self: start;
-  padding: 0 10px;
-
-  & > img {
-    height: 100%;
-  }
 `;
 
 const HeaderContentContainer = styled.div`
@@ -86,7 +76,6 @@ const OnlineUserContainer = styled.div`
 `;
 
 const Header = () => {
-  const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize, isLargeDesktopSize, isMobileSize } = useRwd();
@@ -98,13 +87,10 @@ const Header = () => {
     <HeaderContainer>
       <HeaderWrapper>
         <Link to={""}>
-          <LogoImgContainer>
-            <img
-              src={general.brand && general.brand.loadingUrl}
-              alt={"logo"}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-            />
-          </LogoImgContainer>
+          <BrandLogo
+            style={{ height: "27px" }}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
         </Link>
         {!isMobileSize && (
           <SystemInfoContainer $isOpen={isDesktopSize && isMenuOpen}>

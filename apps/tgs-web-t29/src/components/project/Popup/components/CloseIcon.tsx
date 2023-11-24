@@ -13,7 +13,6 @@ const CloseIconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.primary};
   cursor: pointer;
   z-index: 3;
 
@@ -21,7 +20,6 @@ const CloseIconContainer = styled.div`
     width: 36px;
     height: 36px;
     transform: scale(1.5);
-    background: ${({ theme }) => theme.mainBackground};
     border-radius: 36px;
   }
 `;
@@ -36,7 +34,7 @@ const CloseIcon = ({ onClick, style, ...others }: Props) => {
       <Close
         onClick={onClick}
         style={{
-          color: "white",
+          color: "black",
         }}
       />
     </CloseIconContainer>

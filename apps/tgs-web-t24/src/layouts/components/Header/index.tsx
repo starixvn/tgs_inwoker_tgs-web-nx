@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -31,16 +34,6 @@ const HeaderWrapper = styled.div`
   z-index: 2;
 `;
 
-const LogoImgContainer = styled.div`
-  height: 27px;
-  justify-self: start;
-  padding: 0 10px;
-
-  & > img {
-    height: 100%;
-  }
-`;
-
 const HeaderContentContainer = styled.div`
   flex-grow: 1;
   display: flex;
@@ -49,12 +42,10 @@ const HeaderContentContainer = styled.div`
 `;
 
 const Header = () => {
-  const {
-    general: { brand },
-  } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize } = useRwd();
+  const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <HeaderContainer>
@@ -62,9 +53,10 @@ const Header = () => {
         {isDesktopSize && <MenuButton />}
 
         <Link to={"/"}>
-          <LogoImgContainer>
-            <img src={brand && brand.loadingUrl} alt={"logo"} />
-          </LogoImgContainer>
+          <BrandLogo
+            style={{ height: "27px" }}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
         </Link>
 
         <HeaderContentContainer>

@@ -96,9 +96,10 @@ export function useInitSiteApiData() {
     getBrandCommunication();
     getLiveChatURL();
     getPromotion();
-    getDepositMethod();
-    getWithdrawalChannel();
     getAffiliateStatus();
+
+    // TODO: these fetch method can move to single page
+    // getWithdrawalChannel();
   };
 
   const handleGoto = () => {
@@ -144,11 +145,10 @@ export function useInitSiteApiData() {
   const handleAccountInfoFetching = async () => {
     const localStorageToken = localStorage.getItem("token1") || localStorage.getItem("token0");
 
-    const isNeedToRestoreAccountData = !!localStorageToken && !account.token && !account.info.token;
+    const isNeedToRestoreAccountData = !!localStorageToken;
     if (!isNeedToRestoreAccountData) return;
 
     const getMemberInfoRes = await getAccountProfile(true);
-
     if (!getMemberInfoRes) return;
     const bankInfoAuthentication = getMemberInfoRes.data.bankinfoauthentication;
     const isPhoneNull = !getMemberInfoRes.data.phone;
@@ -179,13 +179,13 @@ export function useInitSiteApiData() {
     }
 
     getBalanceList();
-    // handleUpdateProviderBalance();
     getMessages(i18n.language, 1, 99);
-    getBankCardList();
-    getAutoTransferStatus();
-    getDepositMethod();
-    getWithdrawalChannel();
     getPromotionRouletteCount();
+
+    //NOTE: no need to fetch these api in here
+    // handleUpdateProviderBalance();
+    // getAutoTransferStatus();
+    // getWithdrawalChannel();
   };
 
   const onFocus = () => {

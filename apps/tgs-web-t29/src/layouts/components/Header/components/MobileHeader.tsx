@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./AccountHeaderContent";
@@ -10,6 +10,7 @@ import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -36,16 +37,6 @@ const HeaderWrapper = styled.div`
   z-index: 2;
 `;
 
-const LogoImgContainer = styled.div`
-  height: 27px;
-  justify-self: start;
-  padding: 0 10px;
-
-  & > img {
-    height: 100%;
-  }
-`;
-
 const HeaderContentContainer = styled.div`
   flex-grow: 1;
   display: flex;
@@ -54,7 +45,6 @@ const HeaderContentContainer = styled.div`
 `;
 
 const MobileHeader = () => {
-  const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isLargeDesktopSize } = useRwd();
@@ -64,13 +54,10 @@ const MobileHeader = () => {
     <HeaderContainer>
       <HeaderWrapper>
         <Link to={""}>
-          <LogoImgContainer>
-            <img
-              src={general.brand && general.brand.loadingUrl}
-              alt={"logo"}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-            />
-          </LogoImgContainer>
+          <BrandLogo
+            style={{ height: "27px" }}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
         </Link>
 
         <HeaderContentContainer>

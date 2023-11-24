@@ -16,6 +16,7 @@ const ChildContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: scroll;
+  padding-top: 20px;
 `;
 
 type Props = {
@@ -27,9 +28,9 @@ type Props = {
 const DialogPopup = ({ open, onClose, children }: Props) => {
   return (
     <StyledDialog open={open} TransitionComponent={UpTransition}>
-        <ChildContainer>{children}</ChildContainer>
-        <CloseIcon onClick={onClose} />
-      </StyledDialog>
+      <ChildContainer>{children}</ChildContainer>
+      <CloseIcon onClick={onClose} />
+    </StyledDialog>
   );
 };
 

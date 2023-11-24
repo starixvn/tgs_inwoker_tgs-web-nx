@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { accountAction, RESET_WALLETRESULT, walletAction } from "@tgs-web-nx/core";
@@ -8,15 +7,7 @@ import MessageDialog from "@/pages/card/components/MessageDialog";
 import Loading from "@/components/UI/Loading";
 import AddCardsButton from "@/pages/card/components/AddCardsButton";
 import Card from "@/pages/card/components/Card";
-
-const Container = styled.div`
-  width: 100%;
-  padding: 20px 28px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-`;
+import { CardContainer } from "@/components/styled-component/Card";
 
 class CardPrev extends Component {
   state = {
@@ -74,7 +65,7 @@ class CardPrev extends Component {
   };
   render() {
     return (
-      <Container>
+      <CardContainer>
         {this.props.wallet.bankCardList.map((row) => {
           return (
             <Card
@@ -116,7 +107,7 @@ class CardPrev extends Component {
         />
 
         <Loading show={this.state.loading || this.props.wallet.loading} />
-      </Container>
+      </CardContainer>
     );
   }
 }
