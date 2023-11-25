@@ -4,10 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
@@ -24,15 +21,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const CategoryContentWrapper = styled.div`
-  overflow-y: scroll;
-  height: 100%;
-  width: calc(100% - 78px);
-  flex-shrink: 0;
-  gap: 6px;
-  background-color: ${({ theme }) => theme.mainBackground};
-`;
-
 const DesktopCategoryContentWrapper = styled.div`
   width: 100%;
   flex: 1;
@@ -40,16 +28,6 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-`;
-
-const CategoryContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  width: 100%;
-  row-gap: 10px;
-  column-gap: 9px;
-  align-self: stretch;
 `;
 
 const NoDataText = styled.div`

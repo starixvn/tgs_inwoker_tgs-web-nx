@@ -62,7 +62,7 @@ const MainContentWrapper = styled.div`
     margin: 0 auto;
     gap: unset;
     background-image: url(${bg});
-    background-size: cover;
+    background-size: unset;
     background-repeat: repeat;
   }
 `;
@@ -103,13 +103,14 @@ const HomePage = () => {
       {!!general.banner.length && (
         <SliderWrapper>
           {isMobileSize && <Slider settings={{}} />}
-          {(isDesktopSize && activeGameType && !isNonLobby) && <GameTypeBanner
-            $imageUrl={
-              activeGameTypeKey
-                ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                : ""
-            }
-          />}
+          {(isDesktopSize && !!activeGameType && !isNonLobby) &&
+            <GameTypeBanner
+              $imageUrl={
+                activeGameTypeKey
+                  ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  : ""
+              }
+            />}
           {isDesktopSize && !activeGameType && <Banner />}
         </SliderWrapper>
       )}
