@@ -42,7 +42,6 @@ const SliderWrapper = styled.div`
     height: 100%;
     max-height: 450px;
   }
-  /* to-do: 最大高度限制問題 */
 `;
 
 const MainContentWrapper = styled.div`
@@ -102,7 +101,7 @@ const HomePage = () => {
     <MainWrapper>
       {!!general.banner.length && (
         <SliderWrapper>
-          {isMobileSize && <Slider settings={{}} />}
+          {isMobileSize && <Slider />}
           {(isDesktopSize && !!activeGameType && !isNonLobby) &&
             <GameTypeBanner
               $imageUrl={
