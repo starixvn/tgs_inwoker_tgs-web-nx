@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import GameTypeNavPopup from "./GameTypeNavPopup";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
@@ -33,15 +32,6 @@ const HeaderGameTypesContainer = styled.div`
   }
 `;
 
-const DropdownContent = styled.div<{ $isHovered: boolean }>`
-  display: ${($isHovered) => ($isHovered ? "block" : "none")};
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: ${({ theme }) => theme.gray10};
-  z-index: 1;
-`;
-
 const GameTypeNav = styled.div`
   flex-shrink: 0;
   font-size: 0.875rem;
@@ -65,9 +55,7 @@ const GameTypeNav = styled.div`
 
 const HeaderGameTypeNavs = () => {
   const { sideNavItemList } = useGetNavItemList();
-  const [isHovered, setIsHovered] = useState(false);
-  const { handleChangeNavPopupGameType } = useHomeGameContext();
-  const { activeNavPopupGameType } = useHomeGameContext();
+  const { handleChangeNavPopupGameType, activeNavPopupGameType, isHovered, setIsHovered } = useHomeGameContext();
 
   const handleMouseEnter = (gameType: GameTypeEnum) => {
     setIsHovered(true);
@@ -84,7 +72,6 @@ const HeaderGameTypeNavs = () => {
   };
 
   return (
-
     <HeaderGameTypesContainer>
       {sideNavItemList.map((navItem) => {
         return (
@@ -93,11 +80,6 @@ const HeaderGameTypeNavs = () => {
             onMouseLeave={handleMouseLeave}
           >
             {navItem.label}
-            {isHovered && !!activeNavPopupGameType && (
-              <DropdownContent $isHovered={isHovered}>
-                <GameTypeNavPopup />
-              </DropdownContent>
-            )}
           </GameTypeNav>
         );
       })}

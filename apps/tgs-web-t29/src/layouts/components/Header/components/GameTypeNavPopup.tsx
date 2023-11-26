@@ -1,8 +1,11 @@
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import GameTypeNavPopupContent from "@/layouts/components/Header/components/GameTypeNavPopupContent";
 
-export const PopupBg = styled.div`
+export const PopupBg = styled.div<{ $isHovered: boolean }>`
+  display: ${($isHovered) => ($isHovered ? "block" : "none")};
   width: 100%;
   position: fixed;
   top: ${DESKTOP_HEADER_HEIGHT};
@@ -12,6 +15,9 @@ export const PopupBg = styled.div`
   background: rgba(245, 245, 245, 0.274);
   z-index: 1;
   height: 45vh;
+
+  border: 1px solid red;
+
 `;
 
 export const PopupBody = styled.div`
@@ -24,16 +30,19 @@ export const PopupBody = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border: 1px solid blue;
+
 `;
 
-const GameTypeNavPopup = () => {
+const GameTypeNavPopup = ({ isHovered }: Props) => {
   return (
-    <PopupBg>
+    <PopupBg $isHovered={isHovered}>
       <PopupBody>
         <GameTypeNavPopupContent />
       </PopupBody>
     </PopupBg>
   );
-}
+};
 
 export default GameTypeNavPopup;

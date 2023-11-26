@@ -34,6 +34,8 @@ const VendorCardBg = styled.div<{ $bgUrl: string }>`
   max-width: 200px;
   position: relative;
   aspect-ratio: 200/135;
+  cursor: pointer;
+  transition: transform 0.6s ease 0s;
 `;
 
 const VenderNameInfo = styled.div`

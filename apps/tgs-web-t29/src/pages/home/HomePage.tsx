@@ -11,6 +11,7 @@ import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t29/images/home/home_bg.png";
+import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -80,6 +81,7 @@ const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const { activeNavPopupGameType } = useHomeGameContext();
 
   const isNonLobbyList: number[] = [
     GameTypeEnum.SLOT,
@@ -99,6 +101,7 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
+      {!activeGameType && !!activeNavPopupGameType && <GameTypeNavPopup />}
       {!!general.banner.length && (
         <SliderWrapper>
           {isMobileSize && <Slider />}
