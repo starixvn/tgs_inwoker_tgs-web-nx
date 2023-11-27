@@ -17,7 +17,6 @@ const ForgotPasswordPage = () => {
 
   const { alert } = useNotifications();
   const history = useHistory();
-  const { isDesktopSize } = useRwd();
 
   return (
     <AuthFormContainer>
@@ -28,7 +27,6 @@ const ForgotPasswordPage = () => {
       {/*@ts-ignore*/}
       <ForgotPasswordPrev alert={alert} history={history} />
       <RedirectToLoginHint style={{ marginTop: "20px" }} />
-
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );

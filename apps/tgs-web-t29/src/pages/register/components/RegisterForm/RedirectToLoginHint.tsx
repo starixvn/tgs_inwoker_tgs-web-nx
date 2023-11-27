@@ -1,9 +1,7 @@
-import React, { useCallback } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuthDialog } from "@tgs-web-nx/core/features";
+import { useRedirectToLoginHint } from "@tgs-web-nx/core/features";
 
 const CreateAccountContainer = styled.div`
   width: 100%;
@@ -24,23 +22,8 @@ const CreateAccountContainer = styled.div`
   }
 `;
 
-type Props = React.HTMLProps<HTMLDivElement>;
-
-const RedirectToLoginHint = (props: Props) => {
-  const { isDesktopSize } = useRwd();
-  const { handleToggleRegisterDialog, handleToggleLoginDialog, handleToggleForgotPasswordDialog } =
-    useAuthDialog();
-  const history = useHistory();
-
-  const handleRedirect = useCallback(() => {
-    if (!isDesktopSize) {
-      return history.push("/login");
-    }
-
-    handleToggleRegisterDialog(false);
-    handleToggleForgotPasswordDialog(false);
-    handleToggleLoginDialog(true);
-  }, []);
+const RedirectToLoginHint = (props: React.HTMLProps<HTMLDivElement>) => {
+  const { handleRedirect } = useRedirectToLoginHint();
 
   return (
     //@ts-ignore
