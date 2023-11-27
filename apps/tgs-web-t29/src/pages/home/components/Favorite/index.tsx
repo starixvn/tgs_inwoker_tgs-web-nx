@@ -14,11 +14,6 @@ const LikeIcon = styled.div<{ $imageUrl: string }>`
   top: 5px;
   right: 4.7px;
   z-index: 2;
-
-  ${media.sm} {
-    width: 30px;
-    height: 24px;
-  }
 `;
 
 type FavoriteProps = {
