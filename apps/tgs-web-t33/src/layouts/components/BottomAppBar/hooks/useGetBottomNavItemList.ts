@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRoute } from "@tgs-web-nx/core/features";
-import { RouteCategoryEnum } from "@/router";
+import { RouteCategoryEnum } from "@tgs-web-nx/types";
 import iconPromo from "@/assets/t23/images/bottomNavBar/icon-promo.svg";
 import iconHome from "@/assets/t23/images/bottomNavBar/icon-home.svg";
 import iconDeposit from "@/assets/t23/images/bottomNavBar/icon-deposit.svg";
