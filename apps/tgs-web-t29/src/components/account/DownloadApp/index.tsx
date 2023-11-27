@@ -3,7 +3,8 @@ import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compati
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
-import downloadGirlImg from "@/assets/t18/images/account/girl/download.png";
+import downloadGirlImg from "@/assets/t29/images/account/download-girl.png";
+
 import DownloadButtonGroup from "@/components/account/DownloadApp/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/components/account/DownloadApp/InfoCard";
 import { media } from "@/theme/breakpoints";
@@ -67,7 +68,7 @@ const InfoCardListContainer = styled.div`
 const infoCardItemList: InfoCardItem[] = [
   {
     title: "COMPATIBLE",
-    content: "app supports any ios and android devices.",
+    content: "App supports any ios and android devices.",
     logo: logoCompatibleImg,
   },
   {
