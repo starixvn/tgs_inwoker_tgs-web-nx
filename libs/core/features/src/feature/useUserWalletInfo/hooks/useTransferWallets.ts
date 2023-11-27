@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { Provider } from "@tgs-web-nx/types";
+import { useAuth } from "../../useAuth/index";
 
 export interface TransferWallet {
   abbreviation: string;
@@ -12,6 +13,7 @@ export function useTransferWallets() {
   const { getGameBalance } = useWalletStore();
   const [isLoading, setIsLoading] = useState(false);
   const [transferWallets, setTransferWallets] = useState<TransferWallet[]>([]);
+  const { isLogin } = useAuth();
 
   const fetchTransferWallets = useCallback(
     async (providerList: Provider[]): Promise<TransferWallet[]> => {
@@ -52,6 +54,7 @@ export function useTransferWallets() {
   );
 
   const fetchTransferWalletBalance = useCallback(async () => {
+    if (!isLogin) return;
     if (!game.providerList.length) return;
 
     try {
