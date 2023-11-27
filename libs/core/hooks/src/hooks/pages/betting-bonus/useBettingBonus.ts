@@ -1,15 +1,16 @@
 import { VipData as TypeVipData } from "@tgs-web-nx/types";
 import { useAccountStore } from "@tgs-web-nx/core";
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { useVipStore } from "@tgs-web-nx/core/hooks";
 
 const productColumnNameMap: {
   [key: string]: string;
 } = {
   "Live Dealer": "liveDealerRebate",
-  "Sports book": "sportsRebate",
-  "E-Game": "egameRebate",
+  "Sportsbook": "sportsRebate",
+  "E-Game": "slotRebate",
   "Card Game": "cardGameRebate",
-  Lottery: "lotteryRebate",
+  "Lottery": "lotteryRebate",
   "Virtual Sports": "virtualSportsRebate",
 };
 
