@@ -8,12 +8,10 @@ const popupStyles = css`
   width: 100%;
   position: fixed;
   top: ${DESKTOP_HEADER_HEIGHT};
-  bottom: 0;
   left: 0;
-  right: 0;
   background: rgba(255, 255, 255, 0.90);
   z-index: 1;
-  height: 45vh;
+  padding: 0 20px 20px 20px;
 `;
 
 export const PopupBg = styled.div`
@@ -25,13 +23,9 @@ export const PopupBody = styled.div`
 
   width: 100%;
   min-width: 1000px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 const GameTypeNavPopup = () => {
@@ -45,7 +39,7 @@ const GameTypeNavPopup = () => {
     setIsHovered(false);
   };
 
-  console.log("isHovered", isHovered);
+  // console.log("isHovered", isHovered);
 
   return (
     <PopupBg

@@ -3,13 +3,12 @@ import styled from "styled-components";
 const Wrapper = styled.div<{
   $isActive: boolean;
 }>`
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
   min-width: 60px;
   max-width: none;
-  height: 100%;
+  height: 42px;
   border-radius: 20px;
   box-sizing: border-box;
   user-select: none;

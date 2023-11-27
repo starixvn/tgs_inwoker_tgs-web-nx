@@ -1,4 +1,4 @@
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";

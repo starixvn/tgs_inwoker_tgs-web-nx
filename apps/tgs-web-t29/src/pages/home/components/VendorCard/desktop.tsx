@@ -54,9 +54,9 @@ const VenderNameInfo = styled.div`
 
 const VenderName = styled.div`
   color: #333;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  text-align: flex-start;
+  text-align: start;
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
