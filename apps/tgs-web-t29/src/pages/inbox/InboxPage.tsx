@@ -4,7 +4,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import Inbox from "@/components/account/Inbox";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconInbox from "@/assets/t23/images/badge/icon-inbox.svg";
+import iconInbox from "@/assets/t29/images/account/navItem/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
