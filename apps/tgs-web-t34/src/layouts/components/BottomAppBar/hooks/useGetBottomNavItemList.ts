@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRoute } from "@tgs-web-nx/core/features";
-import { RouteCategoryEnum } from "@/router";
+import { RouteCategoryEnum } from "@tgs-web-nx/types";
 import iconPromo from "@/assets/t34/images/bottomNavBar/icon-promotion.svg";
 import iconHome from "@/assets/t34/images/bottomNavBar/icon-home.svg";
 import iconDeposit from "@/assets/t34/images/bottomNavBar/icon-deposit.svg";
@@ -50,7 +50,7 @@ export function useGetBottomNavItemList() {
         iconUrl: iconWithdrawal,
         iconActiveUrl: iconWithdrawal,
         routePath: "/withdrawal",
-        routeCategory: RouteCategoryEnum.INBOX,
+        routeCategory: RouteCategoryEnum.MESSAGE_CENTER,
       },
       {
         navType: NavTypeEnum.ITEM,

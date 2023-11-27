@@ -80,7 +80,11 @@ const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
-const RefreshButton = styled(Icon)`
+type RefreshButtonProps = {
+  $isLoading: boolean;
+};
+
+const RefreshButton = styled(Icon)<RefreshButtonProps>`
   &:hover {
     cursor: pointer;
     animation: ${rotateKeyFrame} 1s linear 0s infinite;
