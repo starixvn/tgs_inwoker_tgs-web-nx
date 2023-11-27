@@ -76,14 +76,14 @@ deploy-domain-staging:
         echo "No Deployment Brand and Domain"
       fi
   only: 
-    - relase/current
+    - release/current
     
 deploy-domain-prod:
   stage: deploy-domain
   variables:
     tgs_env: prod
   before_script:
-    - export KUBECONFIG=$kubeconfig_staging
+    - export KUBECONFIG=$kubeconfig_prod
   script:
     - |
       echo "domain=$domain"

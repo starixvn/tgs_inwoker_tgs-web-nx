@@ -11,6 +11,7 @@ import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t29/images/home/home_bg.png";
+import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -42,7 +43,6 @@ const SliderWrapper = styled.div`
     height: 100%;
     max-height: 450px;
   }
-  /* to-do: 最大高度限制問題 */
 `;
 
 const MainContentWrapper = styled.div`
@@ -62,7 +62,7 @@ const MainContentWrapper = styled.div`
     margin: 0 auto;
     gap: unset;
     background-image: url(${bg});
-    background-size: cover;
+    background-size: unset;
     background-repeat: repeat;
   }
 `;
@@ -81,6 +81,7 @@ const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const { activeNavPopupGameType } = useHomeGameContext();
 
   const isNonLobbyList: number[] = [
     GameTypeEnum.SLOT,
@@ -100,16 +101,18 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
+      {!activeGameType && !!activeNavPopupGameType && <GameTypeNavPopup />}
       {!!general.banner.length && (
         <SliderWrapper>
-          {isMobileSize && <Slider settings={{}} />}
-          {(isDesktopSize && activeGameType && !isNonLobby) && <GameTypeBanner
-            $imageUrl={
-              activeGameTypeKey
-                ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                : ""
-            }
-          />}
+          {isMobileSize && <Slider />}
+          {(isDesktopSize && !!activeGameType && !isNonLobby) &&
+            <GameTypeBanner
+              $imageUrl={
+                activeGameTypeKey
+                  ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  : ""
+              }
+            />}
           {isDesktopSize && !activeGameType && <Banner />}
         </SliderWrapper>
       )}
