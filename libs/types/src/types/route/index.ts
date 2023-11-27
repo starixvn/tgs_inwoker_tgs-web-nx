@@ -2,7 +2,7 @@ export enum RouteCategoryEnum {
   HOME,
   REFER,
   PROMOTION,
-  INBOX,
+  MESSAGE_CENTER,
   MINE,
 }
 

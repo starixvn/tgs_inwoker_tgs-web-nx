@@ -9,7 +9,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
 import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
 
-import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import Icon from "@/components/project/Icon";
 
@@ -141,7 +141,7 @@ const MobileMenuDrawer = () => {
   }, []);
 
   const handleClickNav = useCallback((navItem: GameTypeItem) => {
-    history.push('/')
+    history.push("/");
     handleToggleMenu(false);
     handleChangeGameType(navItem.gameType);
   }, []);

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
 import SideNavItem from "./SideNavItem";
-import { NavCardKey, NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const TabContainer = styled.div`
   width: 100%;

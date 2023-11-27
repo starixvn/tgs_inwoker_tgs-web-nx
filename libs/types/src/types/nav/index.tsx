@@ -1,0 +1,15 @@
+export enum NavCardKey {
+  HOME,
+  PROFILE,
+  DEPOSIT,
+  WITHDRAW,
+  TRANSFER,
+  REPORT,
+  INBOX,
+  AFFILIATE,
+  CONTACT_US,
+  APP_DOWNLOAD,
+  VIP,
+  LOGOUT,
+  PROMOTION,
+}
