@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import gc from "@/assets/t23/images/home/gc.png";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
-import AppFlag from "@/pages/home/components/AppFlag";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const FooterContainer = styled.div`
   display: none;
@@ -24,7 +23,7 @@ const FooterContainer = styled.div`
 const FooterGroups = styled.div`
   width: 100%;
   display: flex;
-  max-width: 1200px;
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
   gap: 20px;
   margin-bottom: 20px;
 `;
@@ -35,7 +34,6 @@ const FooterGroup = styled.div`
 
 const GroupTitle = styled.h6`
   font-size: 1.25rem;
-  line-height: 0.875rem;
   font-weight: 500;
   margin-bottom: 20px;
 `;
@@ -64,20 +62,6 @@ const ParnterBadge = styled.div`
   }
 `;
 
-const SocialMediaTitle = styled.h6`
-  font-size: 1.25rem;
-  line-height: 0.875rem;
-  font-weight: 500;
-`;
-
-const LogoImgContainer = styled.div`
-  height: 117px;
-  & > img {
-    height: 100%;
-    display: block;
-  }
-`;
-
 const PartnerList = [
   "Red Tiger",
   "EVOLUTION",
@@ -89,6 +73,17 @@ const PartnerList = [
   "KY",
 ];
 
+const LogoWrapper = styled.div`
+  width: 200px;
+  height: 90px;
+`;
+
+const LogoImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit:scale-down;
+`;
+
 const Footer = () => {
   const { general } = useGeneralStore();
   const {
@@ -97,14 +92,12 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterGroups>
-        {/*<FooterGroup>*/}
-        {/*  <LogoImg src={general.brand && general.brand.loadingUrl} />*/}
-        {/*</FooterGroup>*/}
-
         <FooterGroup>
           <GroupTitle>Gaming License</GroupTitle>
           <GroupContent>
-            <img src={gc} alt="gc" />
+            <LogoWrapper>
+              <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} />
+            </LogoWrapper>
           </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
           <GroupContent>Co.Group</GroupContent>
