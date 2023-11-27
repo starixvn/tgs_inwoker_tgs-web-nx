@@ -1,15 +1,16 @@
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { useRwd, useWithdrawalPage } from "@tgs-web-nx/core/hooks";
+import WithdrawalPrev from "@/components/account/WithdrawalPrev";
+import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
-import UserWalletInfo from "@/components/project/UserWalletInfo";
-import WithdrawalPrev from "@/components/account/WithdrawalPrev";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
-const Withdrawal = () => {
-  useUpdatePageName(i18n.t("common.withdrawal"));
+const WithdrawalPage = () => {
+  useWithdrawalPage();
 
   const history = useHistory();
   const { alert } = useNotifications();
@@ -26,4 +27,4 @@ const Withdrawal = () => {
   );
 };
 
-export default Withdrawal;
+export default WithdrawalPage;

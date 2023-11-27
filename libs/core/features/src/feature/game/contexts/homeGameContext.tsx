@@ -9,6 +9,7 @@ import { useGameType } from "../hooks/useGameType";
 import { useGpCode } from "../hooks/useGpCode";
 import { useProvider } from "../hooks/useProvider";
 import { FilterTag, FilterTagTypeEnum } from "../types";
+import { useNavPopupGameType } from "../hooks/useNavPopupGameType";
 
 export type GameTypeItem = {
   key: string;
@@ -25,6 +26,10 @@ const initialState: {
   activeGameType: GameTypeEnum;
   handleChangeGameType: (newGameType: GameTypeEnum) => void;
   activeGameTypeKey: string;
+  // navGameType
+  activeNavPopupGameType: GameTypeEnum;
+  handleChangeNavPopupGameType: (newGameType: GameTypeEnum) => void;
+  activeNavPopupGameTypeKey: string;
   // provider
   gpCode: string;
   handleChangeGpCode: (newGpCode: string) => void;
@@ -50,6 +55,10 @@ const initialState: {
   activeGameType: GameTypeEnum.NONE,
   handleChangeGameType: () => {},
   activeGameTypeKey: "",
+  // navgameType
+  activeNavPopupGameType: GameTypeEnum.NONE,
+  handleChangeNavPopupGameType: () => {},
+  activeNavPopupGameTypeKey: "",
   // provider
   gpCode: "",
   updateGpCodeList: () => {},
@@ -82,6 +91,7 @@ type ProviderProps = {
 export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProps) => {
   const { providerList } = useProvider();
   const { activeGameType, handleChangeGameType } = useGameType();
+  const { activeNavPopupGameType, handleChangeNavPopupGameType } = useNavPopupGameType();
   const { gpCode, handleChangeGpCode } = useGpCode();
 
   const { filterTagList, activeFilterTag, handleChangeActiveFilterTag } = useTagFilter();
@@ -96,6 +106,7 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
   const { searchString, handleChangeSearch } = useGameSearch();
 
   const activeGameTypeKey = gameTypeList.find((item) => item.gameType === activeGameType)?.key;
+  const activeNavPopupGameTypeKey = gameTypeList.find((item) => item.gameType === activeNavPopupGameType)?.key;
 
   return (
     <HomeGameContext.Provider
@@ -105,7 +116,11 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         // gameType
         activeGameType,
         activeGameTypeKey: activeGameTypeKey ?? "",
+        activeNavPopupGameTypeKey: activeNavPopupGameTypeKey ?? "",
         handleChangeGameType,
+        // navGameType
+        activeNavPopupGameType,
+        handleChangeNavPopupGameType,
         // provider
         gpCode,
         handleChangeGpCode,

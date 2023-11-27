@@ -54,7 +54,7 @@ const WalletsWrapper = styled.div`
 `;
 
 const MainWalletContainer = styled.div`
-  width: 128px;
+  //width: 128px;
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
@@ -106,7 +106,6 @@ const UserWalletInfo = () => {
       .filter((item) => item.status === 0 && item.transferwallet === true)
       .filter((item) => item.gpcode !== "NTTF" && item.gpcode !== "RTTF")
       .map((a) => {
-        console.log("1111");
         return getGameBalance(a.gpcode);
       });
 

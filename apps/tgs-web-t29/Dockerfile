@@ -11,4 +11,4 @@ RUN yarn nx build tgs-web-t29
 
 FROM caddy:2.1.1-alpine AS runner
 COPY --from=builder /app/caddy/Caddyfile /etc/caddy/Caddyfile
-COPY --from=builder /app/dist/apps/tgs-web-t33 /usr/share/caddy
+COPY --from=builder /app/dist/apps/tgs-web-t29 /usr/share/caddy

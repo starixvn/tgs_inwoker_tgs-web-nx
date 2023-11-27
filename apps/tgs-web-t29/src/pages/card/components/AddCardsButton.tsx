@@ -4,6 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import AddCardIcon from "@/assets/t29/images/card/add-card.svg";
 
 const CardContainer = styled.div`
+  width: 100%;
   padding: 13px 20px;
   background: ${({ theme }) => theme.blue20};
   border: 1px solid ${({ theme }) => theme.main};

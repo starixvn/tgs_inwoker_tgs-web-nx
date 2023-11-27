@@ -79,12 +79,6 @@ class WithdrawalPrev extends Component {
         });
       }
       // this.GetWithdrawalDetails();
-      this.countDownInterval = setInterval(
-        () => {
-          this.props.getWithdrawalChannel(); // call api every 30 mins
-        },
-        30 * 60 * 1000,
-      );
     } else {
       this.props.appHistory.replace("/login");
     }
@@ -129,9 +123,7 @@ class WithdrawalPrev extends Component {
       }
     }
   }
-  componentWillUnmount() {
-    clearInterval(this.countDownInterval);
-  }
+
   handleBackClick = () => {
     this.props.appHistory.goBack();
   };
@@ -247,7 +239,6 @@ class WithdrawalPrev extends Component {
       .filter((item) => item.status === 0 && item.transferwallet === true)
       .filter((item) => item.abbreviation !== "NTTF" && item.abbreviation !== "RTTF")
       .map((a) => {
-        console.log(2222);
         this.props.getGameBalance(a.gpcode).then((e) => {
           if (e.IsSuccess) {
           }
