@@ -3,6 +3,7 @@ import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { AccountInfo } from "@tgs-web-nx/types";
 import { TransferWallet, useTransferWallets } from "../hooks/useTransferWallets";
 import { useMainWallet } from "../hooks/useMainWallet";
+import { useAuth } from "../../useAuth";
 
 const initialState: {
   mainWalletBalance: number;
@@ -98,6 +99,7 @@ type ProviderProps = {
 
 export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
   const { game } = useGameStore();
+  const { isLogin } = useAuth();
   const {
     account: { info },
   } = useAccountStore();
@@ -115,9 +117,10 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
   } = useTransferWallets();
 
   useEffect(() => {
-    fetchTransferWalletBalance();
+    if (!isLogin) return;
+    fetchBalance();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game.providerList.length]);
+  }, [game.providerList.length, isLogin]);
 
   const fetchBalance = async () => {
     const promiseList = [fetchMainWalletBalance(), fetchTransferWalletBalance()];
