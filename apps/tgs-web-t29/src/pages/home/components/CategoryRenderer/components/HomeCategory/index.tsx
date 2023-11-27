@@ -10,23 +10,28 @@ import sport from "@/assets/t29/images/home/home_sport.png";
 import live_casino from "@/assets/t29/images/home/home_live_casino.png";
 import slot from "@/assets/t29/images/home/home_slot.png";
 import lottery from "@/assets/t29/images/home/home_lottery.png";
+import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const DesktopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 314px;
+  height: 314px;
   margin: 0 auto;
-  background-image: url(${bg});
-  background-size: cover;
-  background-repeat: repeat;
   padding: 15px 0px;
+
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+  }
 `;
 
 const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 24px;
   padding: 8px 0px 34px 0px;
   width: 100%;
