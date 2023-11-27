@@ -11,7 +11,7 @@ const HeaderGameTypesContainer = styled.div`
   flex-wrap: nowrap;
   align-items: stretch;
   height: 100%;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
   position: relative;
 
   &::-webkit-scrollbar {
@@ -55,7 +55,7 @@ const GameTypeNav = styled.div`
 
 const HeaderGameTypeNavs = () => {
   const { sideNavItemList } = useGetNavItemList();
-  const { handleChangeNavPopupGameType, activeNavPopupGameType, isHovered, setIsHovered } = useHomeGameContext();
+  const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
 
   const handleMouseEnter = (gameType: GameTypeEnum) => {
     setIsHovered(true);
