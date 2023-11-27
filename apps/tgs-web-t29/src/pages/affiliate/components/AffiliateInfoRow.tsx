@@ -73,7 +73,6 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
           width: "66px",
           color: theme.white,
           background: theme.secondary,
-          borderRadius: "50px !important",
           fontSize: "0.75rem",
         }}
       >
