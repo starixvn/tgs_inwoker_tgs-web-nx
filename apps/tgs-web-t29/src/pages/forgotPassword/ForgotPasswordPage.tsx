@@ -22,7 +22,7 @@ const ForgotPasswordPage = () => {
   return (
     <AuthFormContainer>
       <TitleWrapper>
-        <BrandLogo style={{ marginBottom: "72px" }} />
+        <BrandLogo/>
       </TitleWrapper>
 
       {/*@ts-ignore*/}

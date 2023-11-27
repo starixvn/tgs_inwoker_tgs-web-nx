@@ -7,7 +7,6 @@ import { Button } from "@/components/UI/Button";
 const CustomText = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   overflow: visible;
   & .MuiInputAdornment-root {
@@ -17,9 +16,11 @@ const CustomText = styled.div`
 `;
 
 const ButtonContainer = styled.div`
+  flex-shrink: 0;
   & > button {
     height: 40px;
     font-size: 0.75rem;
+    border-radius: 50px;
     padding: 8px;
     background: ${({ theme }) => theme.secondary};
   }
@@ -41,7 +42,7 @@ const TextFieldWithButton = (
         onChange={props.onChange}
         disabled={props.disabled || false}
         placeholder={props.placeholder || ""}
-        fullWidth={false}
+        fullWidth={true}
         inputProps={{
           autoComplete: "off",
         }}
