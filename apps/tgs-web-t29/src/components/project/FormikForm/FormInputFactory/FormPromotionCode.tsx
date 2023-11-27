@@ -8,6 +8,7 @@ import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 import { Select } from "@/components/UI/Select";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { theme } from "@/theme";
 
 const FormPromotionCodeContainer = styled.div`
   position: relative;
@@ -63,6 +64,16 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             value={formik.values["userType"]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            style={{ color: theme.gray50 }}
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  "& .MuiMenuItem-root": {
+                    color: theme.gray50,
+                  },
+                },
+              },
+            }}
           >
             <MenuItem value={UserTypeEnum.AGENT}>
               <>{i18n.t("usertype.agent")}</>
