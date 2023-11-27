@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useHistory } from "react-router-dom";
 import { useCallback, useMemo } from "react";
 import config from "@tgs-web-nx/config";

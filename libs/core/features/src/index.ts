@@ -8,3 +8,4 @@ export * from "./feature/usePageName";
 export * from "./feature/usePopup";
 export * from "./feature/useRoute";
 export * from "./feature/authGuard";
+export * from "./feature/useUserWalletInfo";
