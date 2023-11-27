@@ -179,9 +179,7 @@ export function useInitSiteApiData() {
     getMessages(i18n.language, 1, 99);
     getPromotionRouletteCount();
 
-    //NOTE: no need to fetch these api in here
-    // handleUpdateProviderBalance();
-    // getAutoTransferStatus();
+    getAutoTransferStatus();
   };
 
   const onFocus = () => {
