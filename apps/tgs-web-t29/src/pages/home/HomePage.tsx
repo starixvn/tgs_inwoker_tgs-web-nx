@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import CardPrompt from "@/pages/home/components/CardPrompt";
@@ -82,6 +82,8 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { activeNavPopupGameType } = useHomeGameContext();
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
+  const hasNavData = !!navPopupCategoryList.length;
 
   const isNonLobbyList: number[] = [
     GameTypeEnum.SLOT,
@@ -101,7 +103,7 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {!activeGameType && !!activeNavPopupGameType && <GameTypeNavPopup />}
+      {!activeGameType && !!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {!!general.banner.length && (
         <SliderWrapper>
           {isMobileSize && <Slider />}

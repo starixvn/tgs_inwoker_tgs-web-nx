@@ -124,8 +124,6 @@ const HomeCategory = () => {
     };
   }, []);
 
-  console.log("history", history.location.pathname);
-
   if (isDesktopSize) {
     return (
       <DesktopContainer>
