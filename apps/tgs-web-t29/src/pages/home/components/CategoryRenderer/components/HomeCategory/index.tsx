@@ -4,7 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import bg from "@/assets/t29/images/home/home_bg.png";
 import sport from "@/assets/t29/images/home/home_sport.png";
 import live_casino from "@/assets/t29/images/home/home_live_casino.png";
@@ -107,11 +107,24 @@ const HomeCategory = () => {
 
   const handleClick = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);
-
     if (history.location.pathname !== "/") {
       history.push("/");
     }
   };
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      history.push("/");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  console.log("history", history.location.pathname);
 
   if (isDesktopSize) {
     return (

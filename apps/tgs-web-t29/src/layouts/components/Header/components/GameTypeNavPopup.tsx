@@ -45,7 +45,7 @@ const GameTypeNavPopup = () => {
     setIsHovered(false);
   };
 
-  console.log("isHovered", isHovered);
+  // console.log("isHovered", isHovered);
 
   return (
     <PopupBg
