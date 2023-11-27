@@ -18,10 +18,10 @@ const StyledDialog = styled(MuiDialog)`
 
 const ChildContainer = styled.div`
   width: 100%;
-  height: calc(100vh - 40px);
   max-height: 910px;
   background: ${({ theme }) => theme.mainBackground};
   z-index: 2;
+  overflow: scroll;
 `;
 
 type Props = {
