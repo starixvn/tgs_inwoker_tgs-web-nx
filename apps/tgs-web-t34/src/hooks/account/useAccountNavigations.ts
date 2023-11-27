@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
 import profileImg from "@/assets/t34/images/account/navItem/icon-account.svg";
 import depositImg from "@/assets/t34/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t34/images/account/navItem/icon-withdraw.svg";
@@ -12,22 +13,6 @@ import downloadImg from "@/assets/t34/images/account/navItem/icon-download.svg";
 import contactImg from "@/assets/t34/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t34/images/account/navItem/icon-vip.svg";
 import logoutImg from "@/assets/t34/images/account/navItem/icon-logout.svg";
-
-export enum NavCardKey {
-  PROFILE,
-  DEPOSIT,
-  WITHDRAW,
-  TRANSFER,
-  REPORT,
-  INBOX,
-  AFFILIATE,
-  CONTACT_US,
-  APP_DOWNLOAD,
-  VIP,
-  LOGOUT,
-  PROMOTION,
-  HOME,
-}
 
 export type NavItem = {
   key: NavCardKey | string;

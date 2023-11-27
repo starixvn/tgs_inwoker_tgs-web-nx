@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 
 const HeaderRedRegionContainer = styled.div`
   background: ${({ theme }) => theme.primary};

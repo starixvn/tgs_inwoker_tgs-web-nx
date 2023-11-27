@@ -4,12 +4,13 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth, useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { NavCardKey } from "@tgs-web-nx/types";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
 import AnonymousHeaderContent from "@/layouts/components/Header/components/AnonymousHeaderContent";
 import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
-import { NavCardKey, NavItem } from "@/hooks/account/useAccountNavigations";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 import profileImg from "@/assets/t23/images/header/sideMenuItem/icon-account.svg";
 import transferImg from "@/assets/t23/images/header/sideMenuItem/icon-transfer.svg";
 import reportImg from "@/assets/t23/images/header/sideMenuItem/icon-report.svg";
@@ -147,7 +148,7 @@ const MobileMenuDrawer = () => {
             background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
           }}
         >
-         {i18n.t("web.header.logout")}
+          {i18n.t("web.header.logout")}
         </Button>
       </ContentWrapper>
     </MobileMenuDrawerContainer>
