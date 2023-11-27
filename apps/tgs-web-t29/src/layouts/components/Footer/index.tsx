@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { useProvider } from "@tgs-web-nx/core/features";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -10,7 +11,7 @@ const FooterContainer = styled.div`
 
   ${media.sm} {
     width: 100%;
-    background: ${({ theme }) => theme.gray40};
+    background: ${({ theme }) => theme.gray80};
     color: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
@@ -62,17 +63,6 @@ const ParnterBadge = styled.div`
   }
 `;
 
-const PartnerList = [
-  "Red Tiger",
-  "EVOLUTION",
-  "SV388",
-  "Saba Sports",
-  "BTi",
-  "365 Cards",
-  "PG Soft",
-  "KY",
-];
-
 const LogoWrapper = styled.div`
   width: 200px;
   height: 90px;
@@ -86,9 +76,13 @@ const LogoImg = styled.img`
 
 const Footer = () => {
   const { general } = useGeneralStore();
-  const {
-    general: { brand },
-  } = useGeneralStore();
+  const { providerList } = useProvider();
+
+  const partnerList = providerList.map((provider) => {
+    return provider.name;
+  });
+
+  const brand = config.brand;
   return (
     <FooterContainer>
       <FooterGroups>
@@ -119,7 +113,7 @@ const Footer = () => {
         <FooterGroup>
           <GroupTitle>Partners</GroupTitle>
           <PartnersContainer>
-            {PartnerList.map((partner) => {
+            {partnerList.map((partner) => {
               return <ParnterBadge key={partner}>{partner}</ParnterBadge>;
             })}
             <LogoImgContainer>
