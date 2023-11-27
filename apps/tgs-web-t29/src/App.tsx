@@ -14,6 +14,7 @@ import {
   PageNameContextProvider,
   PopupContextProvider,
   RouteContextProvider,
+  UserWalletInfoContextProvider,
 } from "@tgs-web-nx/core/features";
 import ForcedVerification from "./components/project/ForcedVerification";
 import LiveChat from "./components/tools/LiveChat";
@@ -49,64 +50,68 @@ const App: React.FC = () => {
             <HeaderContextProvider>
               <PopupContextProvider>
                 <AuthDialogContextProvider>
-                  <HomeGameContextProvider gameTypeList={gameTypeList}>
-                    <ScrollToTop />
-                    <Switch>
-                      {routes.map((route, index) => {
-                        return (
-                          <Route
-                            exact
-                            key={index}
-                            path={route.path}
-                            render={(props) => {
-                              return (
-                                <LayoutProvider route={route}>
-                                  <AuthGuard route={route}>
-                                    <Suspense
-                                      fallback={<Loading show={true} opacity={1} noShrink={true} />}
-                                    >
-                                      <route.component route={route} />
-                                    </Suspense>
-                                  </AuthGuard>
-                                </LayoutProvider>
-                              );
-                            }}
-                          />
-                        );
-                      })}
-                      <Redirect to="/" />
-                    </Switch>
+                  <UserWalletInfoContextProvider>
+                    <HomeGameContextProvider gameTypeList={gameTypeList}>
+                      <ScrollToTop />
+                      <Switch>
+                        {routes.map((route, index) => {
+                          return (
+                            <Route
+                              exact
+                              key={index}
+                              path={route.path}
+                              render={(props) => {
+                                return (
+                                  <LayoutProvider route={route}>
+                                    <AuthGuard route={route}>
+                                      <Suspense
+                                        fallback={
+                                          <Loading show={true} opacity={1} noShrink={true} />
+                                        }
+                                      >
+                                        <route.component route={route} />
+                                      </Suspense>
+                                    </AuthGuard>
+                                  </LayoutProvider>
+                                );
+                              }}
+                            />
+                          );
+                        })}
+                        <Redirect to="/" />
+                      </Switch>
 
-                    <LiveChat
-                      license={config.features.LiveChatVendor.license}
-                      vendor={config.features.LiveChatVendor.brand}
-                      group={
-                        config.features.LiveChatVendor.group
-                          ? config.features.LiveChatVendor.group
-                          : "0"
-                      }
-                    />
+                      <LiveChat
+                        license={config.features.LiveChatVendor.license}
+                        vendor={config.features.LiveChatVendor.brand}
+                        group={
+                          config.features.LiveChatVendor.group
+                            ? config.features.LiveChatVendor.group
+                            : "0"
+                        }
+                      />
 
-                    {config.features.SMSVerification &&
-                      account.registercompleted === false &&
-                      config.features.ForcedVerification && (
-                        <ForcedVerification forceVerify={true} />
-                      )}
+                      {config.features.SMSVerification &&
+                        account.registercompleted === false &&
+                        config.features.ForcedVerification && (
+                          <ForcedVerification forceVerify={true} />
+                        )}
 
-                    <PopupAnnouncement />
+                      <PopupAnnouncement />
 
-                    <PopupPromotion />
+                      <PopupPromotion />
 
-                    <PopupAlertModal />
-                    <FloatingToolIcons />
-                    <LoginDialog />
-                    <RegisterDialog />
-                    <ForgotPasswordDialog />
+                      <PopupAlertModal />
+                      <FloatingToolIcons />
+                      <LoginDialog />
+                      <RegisterDialog />
+                      <ForgotPasswordDialog />
 
-                    <AuthContextConsumer>
-                      {(authState) => <Loading show={authState.isAuthLoading} noShrink={true} />}
-                    </AuthContextConsumer>
-                  </HomeGameContextProvider>
+                      <AuthContextConsumer>
+                        {(authState) => <Loading show={authState.isAuthLoading} noShrink={true} />}
+                      </AuthContextConsumer>
+                    </HomeGameContextProvider>
+                  </UserWalletInfoContextProvider>
                 </AuthDialogContextProvider>
               </PopupContextProvider>
             </HeaderContextProvider>

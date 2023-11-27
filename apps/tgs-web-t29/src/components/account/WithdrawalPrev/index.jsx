@@ -57,6 +57,10 @@ class WithdrawalPrev extends Component {
   }
 
   componentDidMount() {
+    if (this.props.token == null) {
+      return this.props.appHistory.replace("/login");
+    }
+
     if (
       config.features.Deposit_AddCard &&
       this.handleFilterCardList(this.props.wallet.bankCardList).length > 0
@@ -70,17 +74,12 @@ class WithdrawalPrev extends Component {
       );
     }
 
-    if (this.props.token != null) {
-      if (this.props.wallet.bankCardList.length === 0) this.props.getBankCardList();
-      if (config.features.Withdrawal_WalletTransfer) {
-        this.props.performWithdrawFromEveryBrand().then((e) => {
-          this.props.getBalanceList();
-          this.getAllGameBalance();
-        });
-      }
-      // this.GetWithdrawalDetails();
-    } else {
-      this.props.appHistory.replace("/login");
+    if (this.props.wallet.bankCardList.length === 0) this.props.getBankCardList();
+    if (config.features.Withdrawal_WalletTransfer) {
+      this.props.performWithdrawFromEveryBrand().then((e) => {
+        this.props.getBalanceList();
+        this.getAllGameBalance();
+      });
     }
   }
   componentDidUpdate(preProps) {

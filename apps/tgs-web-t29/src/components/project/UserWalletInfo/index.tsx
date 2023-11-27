@@ -1,9 +1,10 @@
-import React, { useMemo, useState } from "react";
-import styled, { DefaultTheme, keyframes } from "styled-components";
+import React from "react";
+import styled, { css, DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useAccountStore, useGameStore, useWalletStore } from "@tgs-web-nx/core";
+import { useGameStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
@@ -80,9 +81,21 @@ const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
-const RefreshButton = styled(Icon)`
+type RefreshButtonProps = {
+  $isLoading: boolean;
+};
+
+const RefreshButton = styled(Icon)<RefreshButtonProps>`
+  cursor: pointer;
+
+  animation: ${({ $isLoading }: RefreshButtonProps) =>
+    $isLoading
+      ? css`
+          ${rotateKeyFrame} 1s linear 0s infinite
+        `
+      : "none"};
+
   &:hover {
-    cursor: pointer;
     animation: ${rotateKeyFrame} 1s linear 0s infinite;
   }
 `;
@@ -96,48 +109,17 @@ const VIPLabel = styled.div<{ theme: DefaultTheme }>`
 
 const UserWalletInfo = () => {
   const { game } = useGameStore();
-  const { wallet, updateBalanceList, getGameBalance } = useWalletStore();
-  const { account } = useAccountStore();
-  const info = account.info;
-  const [isLoading, setIsLoading] = useState(false);
-
-  const getAllGameBalance = async () => {
-    const promiseList = game.providerList
-      .filter((item) => item.status === 0 && item.transferwallet === true)
-      .filter((item) => item.gpcode !== "NTTF" && item.gpcode !== "RTTF")
-      .map((a) => {
-        return getGameBalance(a.gpcode);
-      });
-
-    await Promise.all(promiseList);
-  };
-
-  const handleRefreshClick = async () => {
-    if (config.features.ForceRedirectAddCard && !account.info.bankInfoAuthentication) {
-      return;
-    }
-
-    try {
-      setIsLoading(true);
-      await updateBalanceList();
-      await getAllGameBalance();
-    } catch (error: any) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const ingame = useMemo(() => {
-    let transferWalletBalance = 0;
-    game.providerList.map((provider) => {
-      if (provider.transferwallet)
-        transferWalletBalance +=
-          typeof provider.balance === "number" ? provider.balance : parseFloat(provider.balance);
-    });
-
-    return transferWalletBalance;
-  }, [game.providerList]);
+  const {
+    mainSymbol,
+    mainWalletBalance,
+    transferWalletBalance,
+    fetchMainWalletBalance,
+    fetchTransferWalletBalance,
+    fetchBalance,
+    isMainWalletLoading,
+    isTransferWalletLoading,
+    info,
+  } = useUserWalletInfoContext();
 
   return (
     <Container>
@@ -155,18 +137,19 @@ const UserWalletInfo = () => {
         <MainWalletContainer>
           <MainAccountLabel>{i18n.t("web.account.header.mainWallet")}</MainAccountLabel>
           <AmountContainer>
-            {isLoading ? (
+            {isMainWalletLoading ? (
               <span>-</span>
             ) : (
               <DynamicFont
-                content={wallet.mainSymbol + Common.formatNumberWithThousand(wallet.mainBalance)}
+                content={mainSymbol + Common.formatNumberWithThousand(mainWalletBalance)}
               />
             )}
             <RefreshButton
               width={"44px"}
               height={"44px"}
               iconUrl={refreshIcon}
-              onClick={handleRefreshClick}
+              onClick={fetchMainWalletBalance}
+              $isLoading={isMainWalletLoading}
             />
           </AmountContainer>
         </MainWalletContainer>
@@ -174,16 +157,17 @@ const UserWalletInfo = () => {
           <MainWalletContainer>
             <MainAccountLabel>{i18n.t("web.account.header.allGameWallet")}</MainAccountLabel>
             <AmountContainer>
-              {isLoading ? (
+              {isTransferWalletLoading ? (
                 <span>-</span>
               ) : (
-                <DynamicFont content={wallet.mainSymbol + ingame.toFixed(2)} />
+                <DynamicFont content={mainSymbol + transferWalletBalance.toFixed(2)} />
               )}
               <RefreshButton
                 width={"44px"}
                 height={"44px"}
                 iconUrl={refreshIcon}
-                onClick={handleRefreshClick}
+                onClick={fetchTransferWalletBalance}
+                $isLoading={isTransferWalletLoading}
               />
             </AmountContainer>
           </MainWalletContainer>
@@ -191,12 +175,13 @@ const UserWalletInfo = () => {
         <MainWalletContainer>
           <MainAccountLabel>{i18n.t("web.account.header.total")}</MainAccountLabel>
           <AmountContainer>
-            {isLoading ? (
+            {isMainWalletLoading && isTransferWalletLoading ? (
               <span>-</span>
             ) : (
               <DynamicFont
                 content={
-                  wallet.mainSymbol + Common.formatNumberWithThousand(wallet.mainBalance + ingame)
+                  mainSymbol +
+                  Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance)
                 }
               />
             )}
@@ -204,7 +189,8 @@ const UserWalletInfo = () => {
               width={"44px"}
               height={"44px"}
               iconUrl={refreshIcon}
-              onClick={handleRefreshClick}
+              onClick={fetchBalance}
+              $isLoading={isMainWalletLoading && isTransferWalletLoading}
             />
           </AmountContainer>
         </MainWalletContainer>

@@ -10,69 +10,72 @@ export interface InboxMessage {
   subject: string;
 }
 
+export type AccountInfo = {
+  balance: number;
+  member_card_no: string | null;
+  member_id: number;
+  member_level_id: number;
+  member_name: null | string;
+  member_username: string;
+  member_birthday: string;
+  member_email: null | string;
+  member_phone: null | string;
+  member_safe_password: string;
+  member_address: string;
+  member_address_surename: string;
+  member_address_phone: string;
+  member_question: string;
+  member_qq: null | string;
+  member_wechat: null | string;
+  member_fb: null | string;
+  member_telegram: null | string;
+  member_line: null | string;
+  member_viber: null | string;
+  member_whatsapp: null | string;
+  can_withdrawal: string;
+  bonus_num: string;
+  message_num: number;
+  check_pass_account: boolean;
+  check_pass_email: boolean;
+  check_pass_phone: boolean;
+  promote_code: string;
+  promote_url: string;
+  month_vip: {
+    id: number;
+    curr_title: string;
+    curr_owned_point: string;
+    next_title: string;
+    next_point: string;
+    require_point: string;
+    vip_progress_bar: number;
+  };
+  year_vip: {
+    id: number;
+    curr_title: string;
+    curr_owned_point: string;
+    next_title: string;
+    next_point: string;
+    require_point: string;
+    vip_progress_bar: number;
+  };
+  token: string;
+  logintime: string;
+  member_last_login: string;
+  member_birthdate: string | null;
+  playercode: string;
+  identityformstatus: number;
+  identityformid: string;
+  bankInfoAuthentication: boolean;
+};
+// | {
+//     [key in string]: string;
+//   };
+
 export interface AccountState {
   pending: boolean;
   updateCardResult: null | any;
   registercompleted: boolean | string;
-  info: {
-    balance: number;
-    member_card_no: string | null;
-    member_id: number;
-    member_level_id: number;
-    member_name: null | string;
-    member_username: string;
-    member_birthday: string;
-    member_email: null | string;
-    member_phone: null | string;
-    member_safe_password: string;
-    member_address: string;
-    member_address_surename: string;
-    member_address_phone: string;
-    member_question: string;
-    member_qq: null | string;
-    member_wechat: null | string;
-    member_fb: null | string;
-    member_telegram: null | string;
-    member_line: null | string;
-    member_viber: null | string;
-    member_whatsapp: null | string;
-    can_withdrawal: string;
-    bonus_num: string;
-    message_num: number;
-    check_pass_account: boolean;
-    check_pass_email: boolean;
-    check_pass_phone: boolean;
-    promote_code: string;
-    promote_url: string;
-    month_vip: {
-      id: number;
-      curr_title: string;
-      curr_owned_point: string;
-      next_title: string;
-      next_point: string;
-      require_point: string;
-      vip_progress_bar: number;
-    };
-    year_vip: {
-      id: number;
-      curr_title: string;
-      curr_owned_point: string;
-      next_title: string;
-      next_point: string;
-      require_point: string;
-      vip_progress_bar: number;
-    };
-    token: string;
-    logintime: string;
-    member_last_login: string;
-    member_birthdate: string | null;
-    playercode: string;
-    identityformstatus: number;
-    identityformid: string;
-    bankInfoAuthentication: boolean;
-  } & {
-    [key in string]: string;
-  };
+  info: AccountInfo;
   vip: {
     member: string;
     next_vip_title: string;
