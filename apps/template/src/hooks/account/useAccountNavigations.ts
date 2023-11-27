@@ -100,7 +100,7 @@ export function useAccountNavigations() {
         label: i18n.t("wap.main.account.inbox"),
         iconUrl: inboxImg,
         iconSecondaryUrl: inboxSecondaryImg,
-        routePath: "/inbox",
+        routePath: "/message-center",
       },
       {
         key: NavCardKey.AFFILIATE,

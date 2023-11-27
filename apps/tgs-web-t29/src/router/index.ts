@@ -1,12 +1,13 @@
 import React from "react";
 import config from "@tgs-web-nx/config";
+import { RouteCategoryEnum } from "@tgs-web-nx/types";
 import CardPage from "@/pages/card/CardPage";
 import AddCardPage from "@/pages/card/AddCardPage";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import InboxPage from "@/pages/inbox/InboxPage";
+import MessageCenterPage from "@/pages/messageCenter/MessageCenterPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
 import MaintenancePage from "@/pages/MaintenancePage";
@@ -31,14 +32,6 @@ import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
-
-export enum RouteCategoryEnum {
-  HOME,
-  REFER,
-  PROMOTION,
-  INBOX,
-  MINE,
-}
 
 export interface Route {
   path: string;
@@ -276,9 +269,9 @@ const routes: Route[] = [
   },
   //
   {
-    path: "/inbox",
-    component: InboxPage,
-    category: RouteCategoryEnum.INBOX,
+    path: "/message-center",
+    component: MessageCenterPage,
+    category: RouteCategoryEnum.MESSAGE_CENTER,
     layout: DialogLayout,
   },
   // {
