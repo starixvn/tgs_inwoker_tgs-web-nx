@@ -112,7 +112,7 @@ const TransferCard = ({
       <RowContainer>
         <ColContainer>{i18n.t("transfer.mainAccount")}</ColContainer>
 
-        <ColContainer>{Common.formatNumberWithCommas(wallet.mainBalance)}</ColContainer>
+        <ColContainer>{Common.formatNumberWithCommas(mainWalletBalance)}</ColContainer>
       </RowContainer>
 
       <RowContainer>
