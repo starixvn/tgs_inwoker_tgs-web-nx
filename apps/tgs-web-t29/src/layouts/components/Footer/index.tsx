@@ -4,6 +4,7 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import gc from "@/assets/t23/images/home/gc.png";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
+import AppFlag from "@/pages/home/components/AppFlag";
 
 const FooterContainer = styled.div`
   display: none;
@@ -69,6 +70,14 @@ const SocialMediaTitle = styled.h6`
   font-weight: 500;
 `;
 
+const LogoImgContainer = styled.div`
+  height: 117px;
+  & > img {
+    height: 100%;
+    display: block;
+  }
+`;
+
 const PartnerList = [
   "Red Tiger",
   "EVOLUTION",
@@ -82,8 +91,9 @@ const PartnerList = [
 
 const Footer = () => {
   const { general } = useGeneralStore();
-
-  const brand = config.brand;
+  const {
+    general: { brand },
+  } = useGeneralStore();
   return (
     <FooterContainer>
       <FooterGroups>
@@ -119,6 +129,10 @@ const Footer = () => {
             {PartnerList.map((partner) => {
               return <ParnterBadge key={partner}>{partner}</ParnterBadge>;
             })}
+            <LogoImgContainer>
+              <img src={brand.loadingUrl} alt={"logo"} />
+            </LogoImgContainer>
+            <AppFlag />
           </PartnersContainer>
         </FooterGroup>
       </FooterGroups>
