@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
-import { Route, routes } from "@/router";
+import { RouteType, routes } from "@/router";
 
 function compareRoutePathAndCurrentPathIsEqual(routePath: string, currentPath: string) {
   //ex:
@@ -31,7 +31,7 @@ export function useRoute() {
   const location = useLocation();
 
   const [currentRoute, setCurrentRoute] = useState<Route | null>(
-    getCurrentRoute(location.pathname)
+    getCurrentRoute(location.pathname),
   );
 
   useEffect(() => {

@@ -3,14 +3,12 @@ import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { ValueOf } from "@tgs-web-nx/types";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import {
-  profilePageDictionary,
-  ProfilePathEnum,
-} from "@/components/account/Profile/profilePageDictionary";
-import UserWalletInfo from "@/components/project/UserWalletInfo";
-import ProfileMenu from "@/pages/profile/components/ProfileMenu";
+import { ProfilePathEnum } from "@tgs-web-nx/core";
+import { profilePageDictionary } from "@/components/account/Profile/profilePageDictionary";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import UserWalletInfo from "@/components/project/UserWalletInfo";
+import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 
 const ProfilePage = () => {
   const { isDesktopSize } = useRwd();

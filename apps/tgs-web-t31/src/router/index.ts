@@ -1,6 +1,7 @@
 import React from "react";
 import config from "@tgs-web-nx/config";
-import { Route } from "@tgs-web-nx/types";
+import { RouteType } from "@tgs-web-nx/types";
+import { ProfilePathEnum } from "@tgs-web-nx/core";
 import CardPage from "@/pages/card/CardPage";
 import AddCardPage from "@/pages/card/AddCardPage";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
@@ -23,13 +24,12 @@ import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
 import DialogLayout from "@/layouts/DialogLayout";
-import { ProfilePathEnum } from "@/components/account/Profile/profilePageDictionary";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
-const routes: Route[] = [
+const routes: RouteType[] = [
   {
     path: "/",
     component: MainPage,

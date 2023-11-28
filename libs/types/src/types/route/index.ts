@@ -1,4 +1,4 @@
-export interface Route {
+export interface RouteType {
   path: string;
   component: any;
   layout?: ({ children }: any) => JSX.Element;
