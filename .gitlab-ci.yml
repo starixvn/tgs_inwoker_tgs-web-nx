@@ -214,9 +214,7 @@ deploy-dev:
 
           kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
           echo "Deployment $lobb successful"
-      done;
-      
-     
+      done;   
   environment:
     name: dev
   only: 
@@ -233,20 +231,13 @@ deploy-staging:
     - export KUBECONFIG=$kubeconfig_staging
   script:
     - | 
-      kubectl config get-contexts
-      export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-      export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-      echo "image=$image"
-      echo "tag=$tag"
-        
-      lobbies="${tgs_env}_${app//-/_}"
-      
-      IFS=', ' read -ra array <<< "${!lobbies}"
+      for image in $(cat image.txt); do
+          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          lobby="lobby-$lobby"
 
-      for lobby in "${array[@]}"; do
-          kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n ${tgs_env}
-      done
-      echo "Deployment successful"
+          kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          echo "Deployment $lobb successful"
+      done;
   environment:
     name: staging
   only: 
@@ -263,20 +254,13 @@ deploy-prod:
     - export KUBECONFIG=$kubeconfig_prod
   script:
     - | 
-      kubectl config get-contexts
-      export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-      export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-      echo "image=$image"
-      echo "tag=$tag"
-        
-      lobbies="${tgs_env}_${app//-/_}"
-      
-      IFS=', ' read -ra array <<< "${!lobbies}"
+      for image in $(cat image.txt); do
+          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          lobby="lobby-$lobby"
 
-      for lobby in "${array[@]}"; do
-          kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n  ${tgs_env}
-      done
-      echo "Deployment successful"
+          kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          echo "Deployment $lobb successful"
+      done;
   environment:
     name: prod
   only: 
