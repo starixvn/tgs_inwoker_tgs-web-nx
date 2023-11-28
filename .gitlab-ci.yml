@@ -22,9 +22,9 @@ docker-build:
     - yarn docker-build:single $app
     - docker image ls
     - docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
-    - cp $kubeconfig_dev > kubeconfig_dev
-    - cp $kubeconfig_staging > kubeconfig_staging
-    - cp $kubeconfig_prod > kubeconfig_prod
+    - cp $kubeconfig_dev ./kubeconfig_dev
+    - cp $kubeconfig_staging ./kubeconfig_staging
+    - cp $kubeconfig_prod ./kubeconfig_prod
   artifacts:
     paths:
       - ./dist
