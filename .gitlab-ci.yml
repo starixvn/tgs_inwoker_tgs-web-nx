@@ -11,7 +11,7 @@ stages:
 docker-build-dev:
   stage: docker-build
   before_script:
-    - docker image prune -a -f
+    - #docker image prune -a -f
   script:
     - |
       git submodule init
@@ -29,7 +29,16 @@ docker-build-dev:
       image_count=$(docker image ls | wc  -l)
       
       if [[  $image_count != "1" ]]; then
-          docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+          image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+          
+          IFS='\n' read -ra array <<< "${image_list}"
+
+          for image in "${array[@]}"; do
+              echo "image=$image"
+          done
+      
+      
+          #docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
       fi 
   only: 
     - develop
@@ -37,7 +46,7 @@ docker-build-dev:
 docker-build-staging:
   stage: docker-build
   before_script:
-    - docker image prune -a -f
+    - #docker image prune -a -f
   script:
     - |
       git submodule init
@@ -63,7 +72,7 @@ docker-build-staging:
 docker-build-prod:
   stage: docker-build
   before_script:
-    - docker image prune -a -f
+    - #docker image prune -a -f
   script:
     - |
       git submodule init
