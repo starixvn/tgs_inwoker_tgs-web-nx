@@ -7,6 +7,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import QRcodeUrl from "@/assets/t29/images/home/QRcode.svg";
+import android from "@/assets/t29/images/home/android.svg";
+import ios from "@/assets/t29/images/home/ios.svg";
 
 const FooterContainer = styled.div`
   display: none;
@@ -80,6 +83,14 @@ const Link = styled.div`
   width: max-content;
   cursor: pointer;
 `;
+const DownLoadText = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  margin: 20px 0;
+  padding: 5px 0;
+`;
 
 const Footer = () => {
   const { general } = useGeneralStore();
@@ -111,25 +122,31 @@ const Footer = () => {
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
+          <GroupTitle>Follow Us</GroupTitle>
+          <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>
           <GroupTitle>Quick Links</GroupTitle>
           <GroupContent>24/7 Customer Service</GroupContent>
-          <GroupContent><Link onClick={() => navigateTo("faq")}>
-            {i18n.t("T13.quickLink.faq")}
-          </Link></GroupContent>
-          <GroupContent><Link onClick={() => navigateTo("privacypolicy")}>
-            {i18n.t("T13.quickLink.privacy")}
-          </Link></GroupContent>
-          <GroupContent><Link onClick={() => navigateTo("terms")}>
-            {i18n.t("T13.quickLink.tnc")}
-          </Link></GroupContent>
-          <GroupContent><Link onClick={() => navigateTo("responsiblegaming")}>
-            {i18n.t("T13.quickLink.reponsible")}
-          </Link></GroupContent>
-          <GroupTitle>Follow Us</GroupTitle>
-          <SocialMedia />
+          <GroupContent>
+            <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
+          </GroupContent>
+          <GroupContent>
+            <Link onClick={() => navigateTo("privacypolicy")}>
+              {i18n.t("T13.quickLink.privacy")}
+            </Link>
+          </GroupContent>
+          <GroupContent>
+            <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
+          </GroupContent>
+          <GroupContent>
+            <Link onClick={() => navigateTo("responsiblegaming")}>
+              {i18n.t("T13.quickLink.reponsible")}
+            </Link>
+          </GroupContent>
+          <DownLoadText>Download App</DownLoadText>
+          <img src={QRcodeUrl} width={117} alt="QRcode" />
         </FooterGroup>
 
         <FooterGroup>
