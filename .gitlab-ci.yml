@@ -26,8 +26,11 @@ docker-build-dev:
           yarn docker-build:dev  
       fi
      
-      docker image ls
-      docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+      image_count=$(docker image ls | wc  -l)
+      
+      if [[  $image_count != "1" ]]; then
+          docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+      fi 
   only: 
     - develop
 
@@ -49,8 +52,11 @@ docker-build-staging:
           yarn docker-build:staging  
       fi
      
-      docker image ls
-      docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+      image_count=$(docker image ls | wc  -l)
+      
+      if [[  $image_count != "1" ]]; then
+          docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+      fi
   only: 
     - release/current
     
@@ -72,8 +78,11 @@ docker-build-prod:
           yarn docker-build:prod  
       fi
      
-      docker image ls
-      docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+      image_count=$(docker image ls | wc  -l)
+      
+      if [[  $image_count != "1" ]]; then
+          docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+      fi
   only: 
     - master  
     
