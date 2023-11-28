@@ -30,10 +30,8 @@ docker-build-dev:
       
       if [[  $image_count != "1" ]]; then
           image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
-          
-          IFS='\n' read -ra array <<< "${image_list}"
 
-          for image in "${array[@]}"; do
+          for image in $image_list; do
               echo "image=$image"
           done
       
