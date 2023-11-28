@@ -10,8 +10,6 @@ stages:
 
 docker-build-dev:
   stage: docker-build
-  before_script:
-    - #docker image prune -a -f
   script:
     - |
       git submodule init
@@ -45,8 +43,6 @@ docker-build-dev:
 
 docker-build-staging:
   stage: docker-build
-  before_script:
-    - #docker image prune -a -f
   script:
     - |
       git submodule init
@@ -71,8 +67,6 @@ docker-build-staging:
     
 docker-build-prod:
   stage: docker-build
-  before_script:
-    - #docker image prune -a -f
   script:
     - |
       git submodule init
