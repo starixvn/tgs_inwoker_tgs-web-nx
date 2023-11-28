@@ -1,8 +1,8 @@
 variables:
-  app: tgs-web-t23
-  dev_tgs_web_t23: lobby-t23
-  staging_tgs_web_t23: lobby-t23
-  prod_tgs_web_t23: lobby-t23
+  app: tgs-web-t29
+  dev_tgs_web_t23: lobby-t29
+  staging_tgs_web_t23: lobby-t29
+  prod_tgs_web_t23: lobby-t29
   
 stages:
   - docker-build
@@ -22,17 +22,29 @@ docker-build:
     - yarn docker-build:single $app
     - docker image ls
     - docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+    - cp $kubeconfig_dev ./kubeconfig_dev
+    - cp $kubeconfig_staging ./kubeconfig_staging
+    - cp $kubeconfig_prod ./kubeconfig_prod
+  artifacts:
+    paths:
+      - ./dist
+      - kubeconfig_dev
+      - kubeconfig_staging
+      - kubeconfig_prod
   only: 
     - develop
     - release/current
     - master  
-
+  
 deploy-domain-dev:
   stage: deploy-domain
   variables:
     tgs_env: dev
   before_script:
     - export KUBECONFIG=$kubeconfig_dev
+  needs:
+  - job: docker-build
+    artifacts: true
   script:
     - |
       echo "domain=$domain"
@@ -50,6 +62,9 @@ deploy-domain-dev:
       else 
         echo "No Deployment Brand and Domain"
       fi
+  artifacts:
+    paths:
+      - ./dist
   only: 
     - develop
  
@@ -59,6 +74,9 @@ deploy-domain-staging:
     tgs_env: staging
   before_script:
     - export KUBECONFIG=$kubeconfig_staging
+  needs:
+  - job: docker-build
+    artifacts: true
   script:
     - |
       echo "domain=$domain"
@@ -75,6 +93,9 @@ deploy-domain-staging:
       else 
         echo "No Deployment Brand and Domain"
       fi
+  artifacts:
+    paths:
+      - ./dist
   only: 
     - release/current
     
@@ -84,6 +105,9 @@ deploy-domain-prod:
     tgs_env: prod
   before_script:
     - export KUBECONFIG=$kubeconfig_prod
+  needs:
+  - job: docker-build
+    artifacts: true
   script:
     - |
       echo "domain=$domain"
@@ -100,6 +124,9 @@ deploy-domain-prod:
       else 
         echo "No Deployment Brand and Domain"
       fi
+  artifacts:
+    paths:
+      - ./dist
   only: 
     - master
     
@@ -107,6 +134,7 @@ deploy-dev:
   stage: deploy
   needs:
     - job: docker-build
+      artifacts: true
   variables:
     tgs_env: dev
   before_script:
@@ -131,6 +159,9 @@ deploy-dev:
       echo "Deployment successful"
   environment:
     name: dev
+  artifacts:
+    paths:
+      - ./dist
   only: 
     - develop
     
@@ -138,6 +169,7 @@ deploy-staging:
   stage: deploy
   needs:
     - job: docker-build
+      artifacts: true
   variables:
     tgs_env: staging
   before_script:
@@ -160,6 +192,9 @@ deploy-staging:
       echo "Deployment successful"
   environment:
     name: staging
+  artifacts:
+    paths:
+      - ./dist
   only: 
     - release/current
     
@@ -167,6 +202,7 @@ deploy-prod:
   stage: deploy
   needs:
     - job: docker-build
+      artifacts: true
   variables:
     tgs_env: prod
   before_script:
@@ -189,6 +225,9 @@ deploy-prod:
       echo "Deployment successful"
   environment:
     name: prod
+  artifacts:
+    paths:
+      - ./dist
   only: 
     - master
   when: manual
