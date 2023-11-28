@@ -100,7 +100,7 @@ const HomeCategory = () => {
         name: "LOTTERY",
         imgUrl: lottery,
         text: i18n.t("common.lottery"),
-        gameType: GameTypeEnum.LOTTERYLOBBY
+        gameType: GameTypeEnum.LOTTERYLOBBY,
       },
     ];
   }, []);
@@ -112,29 +112,21 @@ const HomeCategory = () => {
     }
   };
 
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      history.push("/");
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
-
   if (isDesktopSize) {
     return (
       <DesktopContainer>
         {homeCategotyList.map((item) => {
           return (
             <CategoryWrapper key={item.key}>
-              <CategoryImage $imageUrl={item.imgUrl} onClick={() => handleClick(item)}></CategoryImage>
+              <CategoryImage
+                $imageUrl={item.imgUrl}
+                onClick={() => handleClick(item)}
+              ></CategoryImage>
               <CategoryName>{item.name}</CategoryName>
             </CategoryWrapper>
           );
-        })};
+        })}
+        ;
       </DesktopContainer>
     );
   }
