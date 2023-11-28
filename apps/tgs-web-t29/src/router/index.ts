@@ -31,6 +31,7 @@ import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
 import Faq from "@/pages/Faq";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -393,6 +394,12 @@ const routes: Route[] = [
   {
     path: "/faq",
     component: Faq,
+    category: RouteCategoryEnum.HOME,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/privacypolicy",
+    component: PrivacyPolicy,
     category: RouteCategoryEnum.HOME,
     isAnonymousAllowed: true,
   },

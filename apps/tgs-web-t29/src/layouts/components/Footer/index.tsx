@@ -119,7 +119,9 @@ const Footer = () => {
           <GroupContent><Link onClick={() => navigateTo("faq")}>
             {i18n.t("T13.quickLink.faq")}
           </Link></GroupContent>
-          <GroupContent>Privacy Policy</GroupContent>
+          <GroupContent><Link onClick={() => navigateTo("privacypolicy")}>
+            {i18n.t("T13.quickLink.privacy")}
+          </Link></GroupContent>
           <GroupContent>Terms and Conditions</GroupContent>
           <GroupContent>Responsible Gaming</GroupContent>
           <GroupTitle>Follow Us</GroupTitle>
