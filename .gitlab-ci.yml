@@ -162,7 +162,7 @@ deploy-domain-prod:
 deploy-dev:
   stage: deploy
   needs:
-    - job: docker-build
+    - job: docker-build-dev
   variables:
     tgs_env: dev
   before_script:
@@ -193,7 +193,7 @@ deploy-dev:
 deploy-staging:
   stage: deploy
   needs:
-    - job: docker-build
+    - job: docker-build-staging
   variables:
     tgs_env: staging
   before_script:
@@ -222,7 +222,7 @@ deploy-staging:
 deploy-prod:
   stage: deploy
   needs:
-    - job: docker-build
+    - job: docker-build-prod
   variables:
     tgs_env: prod
   before_script:
