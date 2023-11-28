@@ -30,6 +30,10 @@ import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
+import Faq from "@/pages/Faq";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsAndConditions from "@/pages/TermsAndConditions";
+import Responsiblegaming from "@/pages/Responsiblegaming";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -389,6 +393,30 @@ const routes: Route[] = [
     component: JoinLobbyGamePage,
     category: RouteCategoryEnum.HOME,
   },
+  {
+    path: "/faq",
+    component: Faq,
+    category: RouteCategoryEnum.HOME,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/privacypolicy",
+    component: PrivacyPolicy,
+    category: RouteCategoryEnum.HOME,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/terms",
+    component: TermsAndConditions,
+    category: RouteCategoryEnum.HOME,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/responsiblegaming",
+    component: Responsiblegaming,
+    category: RouteCategoryEnum.HOME,
+    isAnonymousAllowed: true,
+  }
 ];
 
 if (!config.features.NewTransferUI) {

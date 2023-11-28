@@ -17,7 +17,6 @@ const Wrapper = styled.div`
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 15px 0px;
   }
 `;
 
