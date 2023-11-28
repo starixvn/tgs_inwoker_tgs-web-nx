@@ -33,6 +33,11 @@ deploy-domain-dev:
     tgs_env: dev
   before_script:
     - export KUBECONFIG=$kubeconfig_dev
+    - export KUBECONFIG_STAGING=$kubeconfig_staging
+    - export KUBECONFIG_PROD=$kubeconfig_prod
+    - echo "KUBECONFIG=$KUBECONFIG"
+    - echo "KUBECONFIG_STAGING=$KUBECONFIG_STAGING"
+    - echo "KUBECONFIG_PROD=$KUBECONFIG_PROD"
   script:
     - |
       echo "domain=$domain"
