@@ -4,9 +4,9 @@ import { useAccountStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
 import BalanceWithRefresh from "../BalanceWithRefresh/index";
 
-import { NavCardKey } from "@/hooks/account/useAccountNavigations";
 import closeImg from "@/assets/t31/images/account/Close.png";
 import VipMedal from "@/components/project/VipMedal";
 import Icon from "@/components/project/Icon";
@@ -193,11 +193,11 @@ const AccountNavigations = () => {
         routePath: "/report",
       },
       {
-        key: NavCardKey.INBOX,
+        key: NavCardKey.MESSAGE_CENTER,
         navType: "route",
         label: i18n.t("wap.main.account.inbox"),
         iconUrl: inboxImg,
-        routePath: "/inbox",
+        routePath: "/message-center",
       },
       {
         key: NavCardKey.AFFILIATE,

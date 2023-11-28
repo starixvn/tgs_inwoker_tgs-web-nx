@@ -5,7 +5,7 @@ export enum NavCardKey {
   WITHDRAW,
   TRANSFER,
   REPORT,
-  INBOX,
+  MESSAGE_CENTER,
   AFFILIATE,
   CONTACT_US,
   APP_DOWNLOAD,
