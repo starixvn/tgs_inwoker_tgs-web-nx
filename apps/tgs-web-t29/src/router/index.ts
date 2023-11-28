@@ -30,6 +30,7 @@ import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
+import InboxPage from "@/pages/inbox/InboxPage";
 import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
@@ -233,6 +234,11 @@ const routes: RouteType[] = [
   {
     path: "/message-center",
     component: MessageCenterPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/inbox",
+    component: InboxPage,
     layout: DialogLayout,
   },
   // {

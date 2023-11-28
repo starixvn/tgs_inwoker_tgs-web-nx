@@ -12,4 +12,5 @@ export enum NavCardKey {
   VIP,
   LOGOUT,
   PROMOTION,
+  INBOX,
 }

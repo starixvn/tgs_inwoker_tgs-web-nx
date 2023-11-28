@@ -5,8 +5,8 @@ import { useAccountStore, useInboxStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth } from "@tgs-web-nx/core/features";
 import Loading from "@/components/UI/Loading";
-import MobileInboxList from "@/pages/inbox/components/MobileInboxList";
-import DesktopInboxList from "@/pages/inbox/components/DesktopInboxList";
+import MobileInboxList from "@/pages/messageCenter/components/MobileInboxList";
+import DesktopInboxList from "@/pages/messageCenter/components/DesktopInboxList";
 
 const MessageCenter = () => {
   const { isLogin } = useAuth();

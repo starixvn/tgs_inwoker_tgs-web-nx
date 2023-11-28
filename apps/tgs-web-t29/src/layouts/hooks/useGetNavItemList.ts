@@ -144,11 +144,19 @@ export function useGetNavItemList() {
       },
       {
         key: NavCardKey.MESSAGE_CENTER,
-        label: i18n.t("wap.main.account.inbox"),
+        label: i18n.t("inbox.title"),
         iconUrl: inboxImg,
         iconSecondaryUrl: inboxWhiteImg,
         navType: "route",
         routePath: "/message-center",
+      },
+      {
+        key: NavCardKey.INBOX,
+        label: i18n.t("wap.main.account.inbox"),
+        iconUrl: inboxImg,
+        iconSecondaryUrl: inboxWhiteImg,
+        navType: "route",
+        routePath: "/inbox",
       },
       {
         key: NavCardKey.AFFILIATE,
