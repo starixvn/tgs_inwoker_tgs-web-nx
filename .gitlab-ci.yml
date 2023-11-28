@@ -126,7 +126,6 @@ deploy-dev:
       IFS=', ' read -ra array <<< "${!lobbies}"
 
       for lobby in "${array[@]}"; do
-          echo "$element"
           kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n ${tgs_env}
       done
       echo "Deployment successful"
@@ -156,7 +155,6 @@ deploy-staging:
       IFS=', ' read -ra array <<< "${!lobbies}"
 
       for lobby in "${array[@]}"; do
-          echo "$element"
           kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n ${tgs_env}
       done
       echo "Deployment successful"
@@ -186,7 +184,6 @@ deploy-prod:
       IFS=', ' read -ra array <<< "${!lobbies}"
 
       for lobby in "${array[@]}"; do
-          echo "$element"
           kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n  ${tgs_env}
       done
       echo "Deployment successful"
