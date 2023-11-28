@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { InboxCategoryTab } from "@/pages/inbox/hooks/useInboxCategoryTabs";
+import { theme } from "@/theme";
 
 const InboxCategoryTabsContainer = styled.div`
   display: flex;
@@ -10,6 +11,7 @@ const InboxCategoryTabsContainer = styled.div`
 
 type CategoryTabProps = {
   $isActive: boolean;
+  theme: typeof theme;
 };
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1;
