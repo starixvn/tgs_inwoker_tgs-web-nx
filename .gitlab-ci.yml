@@ -200,26 +200,23 @@ deploy-dev:
     - export KUBECONFIG=$kubeconfig_dev
   script:
     - | 
-      kubectl config get-contexts
-      export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-      export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-      echo "image=$image"
-      echo "tag=$tag"
-      
       for image in $(cat image.txt); do
-        echo "image:$image"
+          #lobbies="${tgs_env}_${app//-/_}"
+          #echo "lobbies=${!lobbies}"    
+          #IFS=', ' read -ra array <<< "${!lobbies}"
+
+          #for lobby in "${array[@]}"; do
+          #    kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          #done
+          
+          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          lobby="lobby-$lobby"
+
+          kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          echo "Deployment $lobb successful"
       done;
       
-      lobbies="${tgs_env}_${app//-/_}"
-      
-      echo "lobbies=${!lobbies}"
-      
-      IFS=', ' read -ra array <<< "${!lobbies}"
-
-      for lobby in "${array[@]}"; do
-          kubectl set image deployment/$lobby $lobby=${image}:$tag --record -n ${tgs_env}
-      done
-      echo "Deployment successful"
+     
   environment:
     name: dev
   only: 
