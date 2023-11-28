@@ -18,26 +18,7 @@ import ProfileWithdrawalPasswordPage from "@/components/account/Profile/ProfileW
 import ProfileWeChatPage from "@/components/account/Profile/ProfileWeChat";
 import ProfileWhatsappPage from "@/components/account/Profile/ProfileWhatsapp";
 
-export const ProfilePathEnum = {
-  PROFILE: "/profile",
-  NAME: "/profile/name",
-  WECHAT: "/profile/wechat",
-  BIRTHDATE: "/profile/birthdate",
-  QQ: "/profile/qq",
-  FB: "/profile/fb",
-  TELEGRAM: "/profile/telegram",
-  LINE: "/profile/line",
-  VIBER: "/profile/viber",
-  WHATSAPP: "/profile/whatsapp",
-  EMAIL: "/profile/email",
-  CHANGE_EMAIL: "/profile/changeemail",
-  CHANGE_PHONE: "/profile/changephone",
-  PHONE: "/profile/phone",
-  CHANGE_PASSWORD: "/profile/changepassword",
-  WIDHDRAWAL_PASSWORD: "/profile/withdrawalpassword",
-  RESET_WITHDRAWAL_PASSWORD: "/profile/resetwithdrawalpassword",
-  CHANGE_WITHDRAWAL_PASSWORD: "/profile/changewithdrawalpassword",
-};
+
 
 export const profilePageDictionary: {
   [key in ValueOf<typeof ProfilePathEnum>]: any; // TODO: determine its type

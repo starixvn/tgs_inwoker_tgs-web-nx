@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Route } from "@tgs-web-nx/types";
+import { RouteType } from "@tgs-web-nx/types";
 import { Loading } from "@tgs-web-nx/core";
 import { useParams } from "react-router";
 import { useAuth } from "../useAuth";
 
 interface AuthGuardProps {
   children: React.ReactNode;
-  route: Route;
+  route: RouteType;
 }
 
 export const AuthGuard = (props: AuthGuardProps) => {

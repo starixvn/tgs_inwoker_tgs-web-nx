@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "@tgs-web-nx/core/features";
-import { Route } from "@/router";
+import { RouteType } from "@/router";
 import Loading from "@/components/UI/Loading";
 
 interface AuthGuard {

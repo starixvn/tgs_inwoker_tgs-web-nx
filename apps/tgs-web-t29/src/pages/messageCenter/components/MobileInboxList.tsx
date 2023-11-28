@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { InboxMessage } from "@tgs-web-nx/types";
-import InboxItem from "@/pages/inbox/components/InboxItem";
+import InboxItem from "@/pages/messageCenter/components/InboxItem";
 
 const InboxListContainer = styled.div`
   & > div {
