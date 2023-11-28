@@ -32,6 +32,7 @@ import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
 import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsAndConditions from "@/pages/TermsAndConditions";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -400,6 +401,12 @@ const routes: Route[] = [
   {
     path: "/privacypolicy",
     component: PrivacyPolicy,
+    category: RouteCategoryEnum.HOME,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/terms",
+    component: TermsAndConditions,
     category: RouteCategoryEnum.HOME,
     isAnonymousAllowed: true,
   },
