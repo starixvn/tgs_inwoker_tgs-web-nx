@@ -125,7 +125,9 @@ const Footer = () => {
           <GroupContent><Link onClick={() => navigateTo("terms")}>
             {i18n.t("T13.quickLink.tnc")}
           </Link></GroupContent>
-          <GroupContent>Responsible Gaming</GroupContent>
+          <GroupContent><Link onClick={() => navigateTo("responsiblegaming")}>
+            {i18n.t("T13.quickLink.reponsible")}
+          </Link></GroupContent>
           <GroupTitle>Follow Us</GroupTitle>
           <SocialMedia />
         </FooterGroup>
