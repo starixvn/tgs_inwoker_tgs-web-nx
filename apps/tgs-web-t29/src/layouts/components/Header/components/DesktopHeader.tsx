@@ -5,6 +5,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import BrandLogo from "../../../../../../tgs-web-t23/src/components/project/BrandLogo";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import {
@@ -96,13 +97,10 @@ const DesktopHeader = () => {
       <WhiteHeaderRowContainer>
         <ContentWrapper>
           <Link to={""}>
-            <LogoImgContainer>
-              <img
-                src={general.brand && general.brand.loadingUrl}
-                alt={"logo"}
-                onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-              />
-            </LogoImgContainer>
+            <BrandLogo
+              style={{ height: "27px" }}
+              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+            />
           </Link>
 
           {isDesktopSize && <HeaderGameTypes />}

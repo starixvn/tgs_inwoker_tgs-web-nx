@@ -18,6 +18,7 @@ export const imageMap: { [key in string]: string } = {
   "th-TH": import.meta.env.BASE_URL + `assets/images/language/th-TH.png`,
   "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.png`,
   "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
+  "tgl-PH": import.meta.env.BASE_URL + `assets/images/language/tgl-PH.png`,
 };
 
 const StyledSelect = styled(MuiSelect)`
@@ -63,7 +64,6 @@ const StyledMenuItem = styled(MuiMenuItem)`
 const FlagContainer = styled.div`
   width: 24px;
   height: 24px;
-  border-radius: 50%;
   margin-right: 10px;
 
   & > img {
@@ -74,8 +74,8 @@ const FlagContainer = styled.div`
 `;
 
 const NameContainer = styled.div`
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 400;
+  font-size: 15px;
 `;
 
 const LanguageSwitch = (props: SelectProps) => {

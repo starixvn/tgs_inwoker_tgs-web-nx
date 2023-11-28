@@ -83,7 +83,7 @@ deploy-domain-prod:
   variables:
     tgs_env: prod
   before_script:
-    - export KUBECONFIG=$kubeconfig_staging
+    - export KUBECONFIG=$kubeconfig_prod
   script:
     - |
       echo "domain=$domain"

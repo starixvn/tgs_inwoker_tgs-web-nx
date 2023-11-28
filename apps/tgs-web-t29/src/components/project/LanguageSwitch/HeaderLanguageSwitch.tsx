@@ -9,16 +9,8 @@ import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { imageMap } from "@/components/project/LanguageSwitch/index";
 import { theme } from "@/theme";
-
-export const imageMap: { [key in string]: string } = {
-  "zh-CN": import.meta.env.BASE_URL + `assets/images/language/zh-CN.png`,
-  "zh-TW": import.meta.env.BASE_URL + `assets/images/language/zh-TW.png`,
-  "en-US": import.meta.env.BASE_URL + `assets/images/language/en-US.png`,
-  "th-TH": import.meta.env.BASE_URL + `assets/images/language/th-TH.png`,
-  "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.png`,
-  "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
-};
 
 const StyledSelect = styled(MuiSelect)`
   min-width: 130px;

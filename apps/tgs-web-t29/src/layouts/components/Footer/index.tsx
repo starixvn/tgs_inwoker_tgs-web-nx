@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import gc from "@/assets/t23/images/home/gc.png";
+import { useProvider } from "@tgs-web-nx/core/features";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const FooterContainer = styled.div`
   display: none;
 
   ${media.sm} {
     width: 100%;
-    background: ${({ theme }) => theme.gray40};
+    background: ${({ theme }) => theme.gray80};
     color: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
@@ -23,7 +24,7 @@ const FooterContainer = styled.div`
 const FooterGroups = styled.div`
   width: 100%;
   display: flex;
-  max-width: 1200px;
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
   gap: 20px;
   margin-bottom: 20px;
 `;
@@ -34,7 +35,6 @@ const FooterGroup = styled.div`
 
 const GroupTitle = styled.h6`
   font-size: 1.25rem;
-  line-height: 0.875rem;
   font-weight: 500;
   margin-bottom: 20px;
 `;
@@ -63,38 +63,35 @@ const ParnterBadge = styled.div`
   }
 `;
 
-const SocialMediaTitle = styled.h6`
-  font-size: 1.25rem;
-  line-height: 0.875rem;
-  font-weight: 500;
+const LogoWrapper = styled.div`
+  width: 200px;
+  height: 90px;
 `;
 
-const PartnerList = [
-  "Red Tiger",
-  "EVOLUTION",
-  "SV388",
-  "Saba Sports",
-  "BTi",
-  "365 Cards",
-  "PG Soft",
-  "KY",
-];
+const LogoImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+`;
 
 const Footer = () => {
   const { general } = useGeneralStore();
+  const { providerList } = useProvider();
+
+  const partnerList = providerList.map((provider) => {
+    return provider.name;
+  });
 
   const brand = config.brand;
   return (
     <FooterContainer>
       <FooterGroups>
-        {/*<FooterGroup>*/}
-        {/*  <LogoImg src={general.brand && general.brand.loadingUrl} />*/}
-        {/*</FooterGroup>*/}
-
         <FooterGroup>
           <GroupTitle>Gaming License</GroupTitle>
           <GroupContent>
-            <img src={gc} alt="gc" />
+            <LogoWrapper>
+              <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} />
+            </LogoWrapper>
           </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
           <GroupContent>Co.Group</GroupContent>
@@ -116,7 +113,7 @@ const Footer = () => {
         <FooterGroup>
           <GroupTitle>Partners</GroupTitle>
           <PartnersContainer>
-            {PartnerList.map((partner) => {
+            {partnerList.map((partner) => {
               return <ParnterBadge key={partner}>{partner}</ParnterBadge>;
             })}
           </PartnersContainer>

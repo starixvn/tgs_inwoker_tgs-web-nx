@@ -4,29 +4,34 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import bg from "@/assets/t29/images/home/home_bg.png";
 import sport from "@/assets/t29/images/home/home_sport.png";
 import live_casino from "@/assets/t29/images/home/home_live_casino.png";
 import slot from "@/assets/t29/images/home/home_slot.png";
 import lottery from "@/assets/t29/images/home/home_lottery.png";
+import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const DesktopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 314px;
+  height: 314px;
   margin: 0 auto;
-  background-image: url(${bg});
-  background-size: cover;
-  background-repeat: repeat;
   padding: 15px 0px;
+
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+  }
 `;
 
 const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 24px;
   padding: 8px 0px 34px 0px;
   width: 100%;
@@ -95,14 +100,13 @@ const HomeCategory = () => {
         name: "LOTTERY",
         imgUrl: lottery,
         text: i18n.t("common.lottery"),
-        gameType: GameTypeEnum.LOTTERYLOBBY
+        gameType: GameTypeEnum.LOTTERYLOBBY,
       },
     ];
   }, []);
 
   const handleClick = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);
-
     if (history.location.pathname !== "/") {
       history.push("/");
     }
@@ -114,11 +118,15 @@ const HomeCategory = () => {
         {homeCategotyList.map((item) => {
           return (
             <CategoryWrapper key={item.key}>
-              <CategoryImage $imageUrl={item.imgUrl} onClick={() => handleClick(item)}></CategoryImage>
+              <CategoryImage
+                $imageUrl={item.imgUrl}
+                onClick={() => handleClick(item)}
+              ></CategoryImage>
               <CategoryName>{item.name}</CategoryName>
             </CategoryWrapper>
           );
-        })};
+        })}
+        ;
       </DesktopContainer>
     );
   }

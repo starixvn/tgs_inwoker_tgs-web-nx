@@ -6,6 +6,7 @@ import { theme } from "@/theme";
 import android from "@/assets/t29/images/home/android.svg";
 import ios from "@/assets/t29/images/home/ios.svg";
 import { media } from "@/theme/breakpoints";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const Container = styled.div`
   color: ${({ theme }) => theme.white};
@@ -29,12 +30,6 @@ const QRCodeContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
-const QRCode = styled.div`
-  width: 129px;
-  height: 129px;
-  border: 1px solid;
-  margin-bottom: 10px;
-`;
 
 const AppContainer = styled.div`
   display: flex;
@@ -42,7 +37,7 @@ const AppContainer = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${({ theme }) => theme.blue70};
+  color: ${({ theme }) => theme.blue40};
   font-family: Arial;
   font-size: 16px;
   font-weight: 700;
@@ -65,21 +60,7 @@ const Download = () => {
     <Container>
       <ContentContainer>
         <QRCodeContainer>
-          <QRCode></QRCode>
-          <Button
-            color={"primary"}
-            onClick={() => {}}
-            style={{
-              width: "145px",
-              height: "37px",
-              background: theme.primary,
-              color: theme.white,
-              padding: "12px, 20px, 12px, 20px",
-              borderRadius: "6px",
-            }}
-          >
-            <>Download</>
-          </Button>
+          <BrandLogo />
         </QRCodeContainer>
         <AppContainer>
           <Text>Download App</Text>

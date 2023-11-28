@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { NavCardKey } from "@tgs-web-nx/types";
 import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
@@ -25,21 +26,6 @@ import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-
-export enum NavCardKey {
-  PROFILE,
-  DEPOSIT,
-  WITHDRAW,
-  TRANSFER,
-  REPORT,
-  INBOX,
-  AFFILIATE,
-  CONTACT_US,
-  APP_DOWNLOAD,
-  VIP,
-  LOGOUT,
-  PROMOTION,
-}
 
 export type NavItem = {
   key: NavCardKey | string;

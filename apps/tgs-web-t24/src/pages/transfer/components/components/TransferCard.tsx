@@ -1,8 +1,7 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
-import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
 import { theme } from "@/theme";
@@ -65,47 +64,7 @@ const TransferCard = ({
   mainAccountId,
   children,
 }: Props) => {
-  const { wallet, getGameBalance } = useWalletStore();
-  const { game } = useGameStore();
-  const [transferWallets, setTransferWallets] = useState<TransferWallet[]>([]);
-
-  const getAllGameBalance = useCallback(async () => {
-    if (!game.providerList.length) return;
-
-    const newWalletBalance: TransferWallet[] = [];
-    const promiseList = game.providerList
-      .filter((provider) => provider.status === 0 && provider.transferwallet === true)
-      .filter((provider) => provider.gpcode !== "NTTF" && provider.gpcode !== "RTTF")
-      .map((provider) => {
-        return getGameBalance(provider.gpcode).then((response) => {
-          if (!response) {
-            console.log(provider.gpcode);
-          } else {
-            if (response.IsSuccess) {
-              newWalletBalance.push({
-                abbreviation: provider.abbreviation,
-                balance: response.data.balance,
-              });
-            }
-          }
-        });
-      });
-
-    await Promise.all(promiseList);
-    setTransferWallets(newWalletBalance);
-  }, [JSON.stringify(game.providerList)]);
-
-  useEffect(() => {
-    if (!game.providerList.length) return;
-
-    getAllGameBalance().then();
-  }, [game.providerList.length]);
-
-  useEffect(() => {
-    if (!wallet.transferResult?.IsSuccess) return;
-
-    getAllGameBalance().then();
-  }, [wallet.transferResult]);
+  const { transferWallets } = useUserWalletInfoContext();
 
   return (
     <TransferCardContainer>

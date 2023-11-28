@@ -5,10 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import styled from "styled-components";
 
-const SlickWrapper = styled.div`
-  margin: 0 auto;
+const SlickWrapper = styled(Slick) <{ $maxHeight?: string }>`
+  max-height: ${(props) => props.$maxHeight};
   width: 100%;
-  overflow: hidden;
+  margin: 0 auto;
 `;
 
 const SlickImage = styled.img`
@@ -54,7 +54,7 @@ const baseSettings = {
   },
 };
 
-type Props = {
+type bannerProps = {
   desktopurl: string;
   id: string;
   mobileurl: string;
@@ -63,26 +63,28 @@ type Props = {
   title: string;
 };
 
+type Props = {
+  settings?: { [key: string]: any };
+  maxHeight?: string;
+};
+
 const Slider = ({
-  settings
-}: {
-  settings: { [key: string]: any };
-}) => {
+  settings,
+  maxHeight
+}: Props) => {
   const { general } = useGeneralStore();
   const { isMobileSize } = useRwd();
   const sliderSettings = { ...baseSettings, ...settings };
   return (
-    <SlickWrapper>
-      <Slick {...sliderSettings}>
-        {general.banner.map((item: Props) => (
-          <a href={item.navurl} key={item.id} target="_blank" rel="noreferrer">
-            <SlickImage
-              src={isMobileSize ? item.mobileurl : item.desktopurl}
-              alt={item.alt}
-            ></SlickImage>
-          </a>
-        ))}
-      </Slick>
+    <SlickWrapper {...sliderSettings} $maxHeight={maxHeight}>
+      {general.banner.map((item: bannerProps) => (
+        <a href={item.navurl} key={item.id} target="_blank" rel="noreferrer">
+          <SlickImage
+            src={isMobileSize ? item.mobileurl : item.desktopurl}
+            alt={item.alt}
+          ></SlickImage>
+        </a>
+      ))}
     </SlickWrapper>
   );
 };

@@ -30,6 +30,8 @@ const initialState: {
   activeNavPopupGameType: GameTypeEnum;
   handleChangeNavPopupGameType: (newGameType: GameTypeEnum) => void;
   activeNavPopupGameTypeKey: string;
+  isHovered: boolean;
+  setIsHovered: (isHovered: boolean) => void;
   // provider
   gpCode: string;
   handleChangeGpCode: (newGpCode: string) => void;
@@ -59,6 +61,8 @@ const initialState: {
   activeNavPopupGameType: GameTypeEnum.NONE,
   handleChangeNavPopupGameType: () => {},
   activeNavPopupGameTypeKey: "",
+  isHovered: false,
+  setIsHovered: () => {},
   // provider
   gpCode: "",
   updateGpCodeList: () => {},
@@ -91,7 +95,7 @@ type ProviderProps = {
 export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProps) => {
   const { providerList } = useProvider();
   const { activeGameType, handleChangeGameType } = useGameType();
-  const { activeNavPopupGameType, handleChangeNavPopupGameType } = useNavPopupGameType();
+  const { activeNavPopupGameType, handleChangeNavPopupGameType, isHovered, setIsHovered } = useNavPopupGameType();
   const { gpCode, handleChangeGpCode } = useGpCode();
 
   const { filterTagList, activeFilterTag, handleChangeActiveFilterTag } = useTagFilter();
@@ -121,6 +125,8 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         // navGameType
         activeNavPopupGameType,
         handleChangeNavPopupGameType,
+        isHovered,
+        setIsHovered,
         // provider
         gpCode,
         handleChangeGpCode,

@@ -15,7 +15,7 @@ const ScrollableContainer = styled.div`
   ${media.sm} {
     margin: 0 auto;
     scroll-snap-type: unset;
-
+    overflow-x: hidden;
     &::-webkit-scrollbar {
       height: 10px;
     }

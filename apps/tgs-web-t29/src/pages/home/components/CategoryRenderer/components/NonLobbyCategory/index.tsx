@@ -77,23 +77,17 @@ const DesktopWrapper = styled.div`
 `;
 
 const NonLobbyCategory = () => {
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
   const {
-    filterTagList,
-    providerFilterTagList,
-    handleChangeActiveFilterTag,
-    handleChangeActiveProviderFilterTag,
-    activeFilterTag,
-    activeProviderFilterTag,
     searchString,
     handleChangeSearch,
   } = useHomeGameContext();
 
   return (
     <Wrapper>
-      {isMobile && (
+      {isMobileSize && (
         <>
           <GameTypeTab />
           <CategoryContentWrapper>
@@ -115,11 +109,9 @@ const NonLobbyCategory = () => {
                     key={gameItem.id}
                     gameItem={gameItem}
                     isActive={gameItem.isactive}
-                    imageUrl={`${
-                      config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                      gameItem.code
-                    }.jpg`}
+                    imageUrl={`${config.sourceUrl
+                      }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                      }.jpg`}
                   />
                 ))}
               {!hasMappingData && !isLoading && <div>No data</div>}
@@ -138,11 +130,9 @@ const NonLobbyCategory = () => {
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
                 />
               ))}
             {!hasMappingData && !isLoading && <div>No data</div>}

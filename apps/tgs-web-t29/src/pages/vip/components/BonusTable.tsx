@@ -14,6 +14,7 @@ const ScrollableContainer = styled.div`
   gap: 12px;
   
   ${media.sm} {
+    overflow-x: hidden;
     margin: 0 auto;
     scroll-snap-type: unset;
 
@@ -134,7 +135,7 @@ const RowItem = styled.div`
   ${media.sm} {
     min-height: 106px;
     width: 128px;
-    font-size: 1rem;
+    font-size: 0.75rem;
     color: #23507D;
   }
 `;

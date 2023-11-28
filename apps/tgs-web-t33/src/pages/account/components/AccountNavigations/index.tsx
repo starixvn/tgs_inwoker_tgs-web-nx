@@ -4,11 +4,12 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
 import NavCard from "@/pages/account/components/AccountNavigations/NavCard";
 import AppDownloadButton from "@/components/project/AppDownloadButton";
-import { NavCardKey, NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
+import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
 import { media } from "@/theme/breakpoints";
 
 const AccountNavsContainer = styled.div`

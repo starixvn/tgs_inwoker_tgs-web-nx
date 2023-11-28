@@ -2,10 +2,34 @@ import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
 import Slider from "@/pages/home/components/Slider";
 import notification from "@/assets/t29/images/home/notify.svg";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { media } from "@/theme/breakpoints";
 
 const BannerContainer = styled.div`
   position: relative;
   width: 100%;
+  height: 100%;
+`;
+
+const SlickWrapper = styled(Slider)`
+  max-height: 450px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const SlickDot = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+`;
+
+const SlickDotWrapper = styled.div`
+margin-bottom: 80px;
+
+  & ul li.slick-active ${SlickDot} {
+    background: #F1C137 !important;
+  }
 `;
 
 const NewsContainer = styled.div`
@@ -18,7 +42,7 @@ const NewsContainer = styled.div`
 
 const NewsContent = styled.div`
   height: 100%;
-  max-width: 1200px;
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -32,13 +56,6 @@ const NewsContent = styled.div`
 const MarqueesBackground = styled.div`
   display: inline;
   overflow: visible;
-`;
-
-const SlickDot = styled.div`
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #fff;
 `;
 
 const Banner = () => {
@@ -61,13 +78,10 @@ const Banner = () => {
     autoplay: true,
 
     appendDots: (dots: any) => (
-      <div
-        style={{
-          marginBottom: "80px",
-        }}
+      <SlickDotWrapper
       >
         <ul>{dots}</ul>
-      </div>
+      </SlickDotWrapper>
     ),
     customPaging: (i: number) => {
       return (
@@ -78,7 +92,7 @@ const Banner = () => {
 
   return (
     <BannerContainer>
-      <Slider settings={settings} />
+      <Slider settings={settings} maxHeight={"450px"} />
       <NewsContainer>
         <NewsContent>
           <img src={notification} alt="marquee" />

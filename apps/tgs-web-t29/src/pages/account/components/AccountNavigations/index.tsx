@@ -4,8 +4,9 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
 import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
-import { NavCardKey, NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const AccountNavsContainer = styled.div`
   padding: 12px 14px;

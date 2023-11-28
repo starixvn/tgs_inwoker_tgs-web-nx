@@ -5,7 +5,7 @@ import { socialMediaIconList } from "@/constants/socialMedia";
 const SocialMediaContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
 `;
@@ -16,7 +16,7 @@ const SocialMediaIcon = styled.div<{ $imageUrl: string }>`
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-repeat: no-repeat;
   background-size: contain;
-  margin: 3px;
+  margin-right: 5px;
 `;
 
 const SocialMedia = () => {

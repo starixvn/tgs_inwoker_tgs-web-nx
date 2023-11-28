@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import GameTypeNavPopup from "./GameTypeNavPopup";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
@@ -12,7 +11,7 @@ const HeaderGameTypesContainer = styled.div`
   flex-wrap: nowrap;
   align-items: stretch;
   height: 100%;
-  overflow-x: scroll;
+  /* overflow-x: scroll; */
   position: relative;
 
   &::-webkit-scrollbar {
@@ -31,15 +30,6 @@ const HeaderGameTypesContainer = styled.div`
   &::-webkit-scrollbar-track-piece {
     background: transparent;
   }
-`;
-
-const DropdownContent = styled.div<{ $isHovered: boolean }>`
-  display: ${($isHovered) => ($isHovered ? "block" : "none")};
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: ${({ theme }) => theme.gray10};
-  z-index: 1;
 `;
 
 const GameTypeNav = styled.div`
@@ -65,9 +55,7 @@ const GameTypeNav = styled.div`
 
 const HeaderGameTypeNavs = () => {
   const { sideNavItemList } = useGetNavItemList();
-  const [isHovered, setIsHovered] = useState(false);
-  const { handleChangeNavPopupGameType } = useHomeGameContext();
-  const { activeNavPopupGameType } = useHomeGameContext();
+  const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
 
   const handleMouseEnter = (gameType: GameTypeEnum) => {
     setIsHovered(true);
@@ -84,7 +72,6 @@ const HeaderGameTypeNavs = () => {
   };
 
   return (
-
     <HeaderGameTypesContainer>
       {sideNavItemList.map((navItem) => {
         return (
@@ -93,11 +80,6 @@ const HeaderGameTypeNavs = () => {
             onMouseLeave={handleMouseLeave}
           >
             {navItem.label}
-            {isHovered && !!activeNavPopupGameType && (
-              <DropdownContent $isHovered={isHovered}>
-                <GameTypeNavPopup />
-              </DropdownContent>
-            )}
           </GameTypeNav>
         );
       })}

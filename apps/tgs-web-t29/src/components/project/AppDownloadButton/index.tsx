@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { NavCardKey } from "@tgs-web-nx/types";
 import Icon from "@/components/project/Icon";
-import { NavCardKey, NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const AppDownloadButtonContainer = styled.button`
   width: 100%;

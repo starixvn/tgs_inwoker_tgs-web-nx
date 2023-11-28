@@ -30,7 +30,7 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      <BrandLogo style={{ marginBottom: "72px" }} />
+      <BrandLogo style={{ marginBottom: "62px" }} />
 
       <FormikForm
         formInputList={formInputConfigList}
@@ -45,7 +45,7 @@ const RegisterForm = () => {
         </VerifyAgeContainer>
       </FormikForm>
 
-      <RedirectToLoginHint />
+      <RedirectToLoginHint style={{ marginBottom: "20px" }} />
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );

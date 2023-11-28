@@ -5,7 +5,7 @@ import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd, useWithdrawalPage } from "@tgs-web-nx/core/hooks";
 import WithdrawalPrev from "@/components/account/WithdrawalPrev";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
+import iconWithdrawal from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 

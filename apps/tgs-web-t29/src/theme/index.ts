@@ -18,5 +18,7 @@ export const theme = {
   gray40: "#8C9099",
   gray50: "#535867",
   gray60: "#333333",
+  gray70: "#484848",
+  gray80: "#777777",
   mainBackground: "#FFFFFF",
 };
