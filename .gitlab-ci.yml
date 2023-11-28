@@ -126,7 +126,8 @@ deploy-dev:
       echo "tag=$tag"
         
       lobbies="${tgs_env}_${app//-/_}"
-      
+
+      echo "app=${app}"
       echo "lobbies=${!lobbies}"
       
       IFS=', ' read -ra array <<< "${!lobbies}"
@@ -158,6 +159,8 @@ deploy-staging:
         
       lobbies="${tgs_env}_${app//-/_}"
       
+      echo "lobbies=${!lobbies}"
+
       IFS=', ' read -ra array <<< "${!lobbies}"
 
       for lobby in "${array[@]}"; do
