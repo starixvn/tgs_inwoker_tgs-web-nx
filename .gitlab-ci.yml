@@ -1,8 +1,8 @@
 variables:
-  app: tgs-web-t23
-  dev_tgs_web_t23: lobby-t23
-  staging_tgs_web_t23: lobby-t23
-  prod_tgs_web_t23: lobby-t23
+  app: tgs-web-t29
+  dev_tgs_web_t23: lobby-t29
+  staging_tgs_web_t23: lobby-t29
+  prod_tgs_web_t23: lobby-t29
   
 stages:
   - docker-build
