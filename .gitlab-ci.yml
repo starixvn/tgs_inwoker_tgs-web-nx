@@ -1,5 +1,4 @@
 variables:
-  app: tgs-web-t29
   dev_tgs_web_t29: lobby-t29
   staging_tgs_web_t29: lobby-t29
   prod_tgs_web_t29: lobby-t29
@@ -9,24 +8,75 @@ stages:
   - deploy-domain
   - deploy
 
-docker-build:
+docker-build-dev:
   stage: docker-build
   before_script:
     - docker image prune -a -f
   script:
-    - git submodule init
-    - git submodule sync
-    - git submodule update --remote
-    - git status
-    - yarn add -D @nx/react
-    - yarn docker-build:single $app
-    - docker image ls
-    - docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+    -|
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      yarn add -D @nx/react
+      
+      if [[ $app != "" ]]; then 
+          yarn docker-build:single $app
+      else 
+          yarn docker-build:dev  
+      fi
+     
+      docker image ls
+      docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
   only: 
     - develop
+
+docker-build-staging:
+  stage: docker-build
+  before_script:
+    - docker image prune -a -f
+  script:
+    -|
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      yarn add -D @nx/react
+      
+      if [[ $app != "" ]]; then 
+          yarn docker-build:single $app
+      else 
+          yarn docker-build:staging  
+      fi
+     
+      docker image ls
+      docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+  only: 
     - release/current
+    
+docker-build-prod:
+  stage: docker-build
+  before_script:
+    - docker image prune -a -f
+  script:
+    -|
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      yarn add -D @nx/react
+      
+      if [[ $app != "" ]]; then 
+          yarn docker-build:single $app
+      else 
+          yarn docker-build:prod  
+      fi
+     
+      docker image ls
+      docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+  only: 
     - master  
-  
+    
 deploy-domain-dev:
   stage: deploy-domain
   variables:
