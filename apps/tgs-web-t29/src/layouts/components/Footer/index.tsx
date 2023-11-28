@@ -77,12 +77,13 @@ const LogoImg = styled.img`
   object-fit: scale-down;
 `;
 
-const DownloadWrapper = styled.div`
-  margin-top: 10px;
-  width: 117px;
-  display: flex;
-  flex-direction: column;
-  gap: 19px;
+const DownLoadText = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  margin: 20px 0;
+  padding: 5px 0;
 `;
 
 const Footer = () => {
@@ -119,11 +120,8 @@ const Footer = () => {
           <GroupContent>Privacy Policy</GroupContent>
           <GroupContent>Terms and Conditions</GroupContent>
           <GroupContent>Responsible Gaming</GroupContent>
+          <DownLoadText>Download App</DownLoadText>
           <img src={QRcodeUrl} width={117} alt="QRcode" />
-          <DownloadWrapper>
-            <img src={android} alt="android" />
-            <img src={ios} alt="ios" />
-          </DownloadWrapper>
         </FooterGroup>
 
         <FooterGroup>
