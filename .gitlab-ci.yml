@@ -27,15 +27,17 @@ docker-build-dev:
       image_count=$(docker image ls | wc  -l)
       
       if [[  $image_count != "1" ]]; then
+          docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
           image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
 
           for image in $image_list; do
               echo "image=$image"
+              docker push $image
           done
-      
-      
-          #docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
       fi 
+  artifacts:
+    paths:
+    - image.txt
   only: 
     - develop
 
@@ -58,8 +60,17 @@ docker-build-staging:
       image_count=$(docker image ls | wc  -l)
       
       if [[  $image_count != "1" ]]; then
-          docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
-      fi
+          docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
+          image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+
+          for image in $image_list; do
+              echo "image=$image"
+              docker push $image
+          done
+      fi 
+  artifacts:
+    paths:
+    - image.txt
   only: 
     - release/current
     
@@ -82,8 +93,17 @@ docker-build-prod:
       image_count=$(docker image ls | wc  -l)
       
       if [[  $image_count != "1" ]]; then
-          docker push $(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
-      fi
+          docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
+          image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+
+          for image in $image_list; do
+              echo "image=$image"
+              docker push $image
+          done
+      fi 
+  artifacts:
+    paths:
+    - image.txt
   only: 
     - master  
     
@@ -173,6 +193,7 @@ deploy-dev:
   stage: deploy
   needs:
     - job: docker-build-dev
+      artifacts: true
   variables:
     tgs_env: dev
   before_script:
@@ -184,7 +205,11 @@ deploy-dev:
       export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
       echo "image=$image"
       echo "tag=$tag"
-        
+      
+      for image in $(cat image.txt); do
+        echo "image:$image"
+      done;
+      
       lobbies="${tgs_env}_${app//-/_}"
       
       echo "lobbies=${!lobbies}"
@@ -204,6 +229,7 @@ deploy-staging:
   stage: deploy
   needs:
     - job: docker-build-staging
+      artifacts: true
   variables:
     tgs_env: staging
   before_script:
@@ -233,6 +259,7 @@ deploy-prod:
   stage: deploy
   needs:
     - job: docker-build-prod
+      artifacts: true
   variables:
     tgs_env: prod
   before_script:
