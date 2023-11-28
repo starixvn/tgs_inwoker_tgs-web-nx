@@ -346,27 +346,23 @@ const routes: RouteType[] = [
   {
     path: "/faq",
     component: Faq,
-    category: RouteCategoryEnum.HOME,
     isAnonymousAllowed: true,
   },
   {
     path: "/privacypolicy",
     component: PrivacyPolicy,
-    category: RouteCategoryEnum.HOME,
     isAnonymousAllowed: true,
   },
   {
     path: "/terms",
     component: TermsAndConditions,
-    category: RouteCategoryEnum.HOME,
     isAnonymousAllowed: true,
   },
   {
     path: "/responsiblegaming",
     component: Responsiblegaming,
-    category: RouteCategoryEnum.HOME,
     isAnonymousAllowed: true,
-  }
+  },
 ];
 
 if (!config.features.NewTransferUI) {
