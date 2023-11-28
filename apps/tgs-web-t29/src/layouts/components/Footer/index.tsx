@@ -5,6 +5,9 @@ import { useProvider } from "@tgs-web-nx/core/features";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import QRcodeUrl from "@/assets/t29/images/home/QRcode.svg";
+import android from "@/assets/t29/images/home/android.svg";
+import ios from "@/assets/t29/images/home/ios.svg";
 
 const FooterContainer = styled.div`
   display: none;
@@ -74,6 +77,14 @@ const LogoImg = styled.img`
   object-fit: scale-down;
 `;
 
+const DownloadWrapper = styled.div`
+  margin-top: 10px;
+  width: 117px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+`;
+
 const Footer = () => {
   const { general } = useGeneralStore();
   const { providerList } = useProvider();
@@ -97,6 +108,8 @@ const Footer = () => {
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
+          <GroupTitle>Follow Us</GroupTitle>
+          <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>
@@ -106,8 +119,11 @@ const Footer = () => {
           <GroupContent>Privacy Policy</GroupContent>
           <GroupContent>Terms and Conditions</GroupContent>
           <GroupContent>Responsible Gaming</GroupContent>
-          <GroupTitle>Follow Us</GroupTitle>
-          <SocialMedia />
+          <img src={QRcodeUrl} width={117} alt="QRcode" />
+          <DownloadWrapper>
+            <img src={android} alt="android" />
+            <img src={ios} alt="ios" />
+          </DownloadWrapper>
         </FooterGroup>
 
         <FooterGroup>
