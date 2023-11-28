@@ -2,6 +2,8 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProvider } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -74,15 +76,27 @@ const LogoImg = styled.img`
   object-fit: scale-down;
 `;
 
+const Link = styled.div`
+  width: max-content;
+  cursor: pointer;
+`;
+
 const Footer = () => {
   const { general } = useGeneralStore();
   const { providerList } = useProvider();
+  const history = useHistory();
 
   const partnerList = providerList.map((provider) => {
     return provider.name;
   });
 
   const brand = config.brand;
+
+  const navigateTo = (pageName: string) => {
+    history.push("/" + pageName);
+    window.scroll({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <FooterContainer>
       <FooterGroups>
@@ -102,7 +116,9 @@ const Footer = () => {
         <FooterGroup>
           <GroupTitle>Quick Links</GroupTitle>
           <GroupContent>24/7 Customer Service</GroupContent>
-          <GroupContent>FAQs</GroupContent>
+          <GroupContent><Link onClick={() => navigateTo("faq")}>
+            {i18n.t("T13.quickLink.faq")}
+          </Link></GroupContent>
           <GroupContent>Privacy Policy</GroupContent>
           <GroupContent>Terms and Conditions</GroupContent>
           <GroupContent>Responsible Gaming</GroupContent>

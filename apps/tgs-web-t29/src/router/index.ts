@@ -30,6 +30,7 @@ import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
+import Faq from "@/pages/Faq";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -388,6 +389,12 @@ const routes: Route[] = [
     path: "/joinlobbygame/:gameType/:gpCode",
     component: JoinLobbyGamePage,
     category: RouteCategoryEnum.HOME,
+  },
+  {
+    path: "/faq",
+    component: Faq,
+    category: RouteCategoryEnum.HOME,
+    isAnonymousAllowed: true,
   },
 ];
 
