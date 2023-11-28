@@ -4,12 +4,16 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProvider } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useState } from "react";
+import ChatQRcodePopup from "./ChatQRcodePopup";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import QRcodeUrl from "@/assets/t29/images/home/QRcode.svg";
-import android from "@/assets/t29/images/home/android.svg";
-import ios from "@/assets/t29/images/home/ios.svg";
+import qrcode_skype from "@/assets/t29/images/qrcode/qrcode_skype.png";
+import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
+import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
+import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
 
 const FooterContainer = styled.div`
   display: none;
@@ -96,6 +100,7 @@ const Footer = () => {
   const { general } = useGeneralStore();
   const { providerList } = useProvider();
   const history = useHistory();
+  const [isOpenChatQRcode, setIsOpenChatQRcode] = useState(false);
 
   const partnerList = providerList.map((provider) => {
     return provider.name;
@@ -107,6 +112,25 @@ const Footer = () => {
     history.push("/" + pageName);
     window.scroll({ top: 0, behavior: "smooth" });
   };
+
+  const chatQRcodeList = [
+    {
+      name: "Skype",
+      url: qrcode_skype,
+    },
+    {
+      name: "WhatsApp",
+      url: qrcode_whatsapp,
+    },
+    {
+      name: "Telegram",
+      url: qrcode_telegram,
+    },
+    {
+      name: "WeChat",
+      url: qrcode_wechat,
+    }
+  ];
 
   return (
     <FooterContainer>
@@ -128,7 +152,9 @@ const Footer = () => {
 
         <FooterGroup>
           <GroupTitle>Quick Links</GroupTitle>
-          <GroupContent>24/7 Customer Service</GroupContent>
+          <GroupContent><Link onClick={() => setIsOpenChatQRcode(true)}>
+            {i18n.t("T13.quickLink.247")}
+          </Link></GroupContent>
           <GroupContent>
             <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
           </GroupContent>
@@ -158,6 +184,8 @@ const Footer = () => {
           </PartnersContainer>
         </FooterGroup>
       </FooterGroups>
+
+      {isOpenChatQRcode && <ChatQRcodePopup setIsOpenChatQRcode={setIsOpenChatQRcode} chatQRcodeList={chatQRcodeList} />}
     </FooterContainer>
   );
 };
