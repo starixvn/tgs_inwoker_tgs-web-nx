@@ -46,7 +46,7 @@ const GameTypeNav = styled.div<{
   cursor: pointer;
   position: relative;
   border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
-
+  color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
   &:hover {
     background: ${({ theme }) => theme.gray10};
   }
@@ -62,6 +62,10 @@ const GameTypeGrid = styled.div`
   display: flex;
   border: 1px solid #cccccc;
   margin: 0 5px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
 `;
 
 const HeaderGameTypeNavs = () => {
@@ -88,10 +92,9 @@ const HeaderGameTypeNavs = () => {
     <HeaderGameTypesContainer>
       {sideNavItemList.map((navItem, index) => {
         return (
-          <>
+          <Wrapper key={navItem.key}>
             <GameTypeNav
               $isActive={navItem.key === activeGameTypeKey}
-              key={navItem.key}
               onClick={() => handleClickNav(navItem)}
               onMouseEnter={() => handleMouseEnter(navItem.gameType)}
               onMouseLeave={handleMouseLeave}
@@ -99,7 +102,7 @@ const HeaderGameTypeNavs = () => {
               {navItem.label}
             </GameTypeNav>
             {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
-          </>
+          </Wrapper>
         );
       })}
     </HeaderGameTypesContainer>
