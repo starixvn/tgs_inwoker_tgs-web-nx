@@ -93,6 +93,7 @@ class Transfer extends Component {
         this.props.doTransfer(transferTo, transferAmount);
       else this.props.doWithdrawalFromGame(transferFrom, transferAmount);
     }
+
     setTimeout(() => {
       this.setState({ ...this.state, disabled: false });
     }, 1000);

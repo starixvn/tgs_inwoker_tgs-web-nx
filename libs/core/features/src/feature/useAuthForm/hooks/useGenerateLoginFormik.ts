@@ -12,11 +12,14 @@ type Props = {
 export function useGenerateLoginFormik({ handleClickSubmit }: Props) {
   // ===== init form input config =====
   const formInputConfigList = useMemo<FormikFormInput[]>(() => {
+    const username = localStorage.getItem("username");
+    const remember = localStorage.getItem("remember");
+
     return [
       {
         label: i18n.t("common.username"),
         name: "username",
-        initialValue: "",
+        initialValue: remember === "true" ? username : "",
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string().required("Username is required"),
       },

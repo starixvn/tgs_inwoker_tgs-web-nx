@@ -2,7 +2,7 @@ import React from "react";
 import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/material";
 
 const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
-  color: "white",
+  color: theme.palette.text,
   fontSize: "0.937rem",
   fontWeight: 400,
   border: "none",
