@@ -4,6 +4,7 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router-dom";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
@@ -12,6 +13,7 @@ import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t29/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -80,10 +82,11 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
-  const { activeNavPopupGameType } = useHomeGameContext();
+  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const hasNavData = !!navPopupCategoryList.length;
+  const history = useHistory();
+  const gameTypeList = useGameTypeList();
 
   const isNonLobbyList: number[] = [
     GameTypeEnum.SLOT,
@@ -93,6 +96,11 @@ const HomePage = () => {
 
   const isNonLobby = isNonLobbyList.includes(activeGameType)
 
+  const getGameTypeFromKey = (key: string) => {
+    const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
+    return matchingGameType ? matchingGameType.gameType : null;
+  };
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -100,6 +108,24 @@ const HomePage = () => {
       behavior: "instant",
     });
   }, [activeGameType]);
+
+
+  useEffect(() => {
+    const unlisten = history.listen((location) => {
+      const parts = location.pathname.split('/');
+      const afterFirstSlash = parts[1];
+      const gameType = getGameTypeFromKey(afterFirstSlash);
+      if (gameType) {
+        handleChangeGameType(gameType);
+      } else {
+        history.push("/");
+      }
+    });
+
+    return () => {
+      unlisten();
+    };
+  }, [history]);
 
   return (
     <MainWrapper>

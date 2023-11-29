@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
@@ -71,7 +72,6 @@ const Wrapper = styled.div`
 const HeaderGameTypeNavs = () => {
   const { activeGameTypeKey } = useHomeGameContext();
   const { sideNavItemList } = useGetNavItemList();
-
   const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
 
   const handleMouseEnter = (gameType: GameTypeEnum) => {
