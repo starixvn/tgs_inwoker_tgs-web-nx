@@ -32,12 +32,19 @@ const InboxListTable = ({ inboxList, handleItemClick }: Props) => {
 
       <TableBody>
         {inboxList.map((inboxItem) => {
-          const { id, subject, sentOn } = inboxItem;
+          const { id, subject, sentOn, haveRead } = inboxItem;
+
           const date = moment(sentOn).format("YYYY-MM-DD");
 
           return (
             <TableRow key={id} onClick={() => handleItemClick(inboxItem.id)}>
-              <TableSubjectCell>{subject}</TableSubjectCell>
+              <TableSubjectCell
+                sx={{
+                  fontWeight: haveRead ? 400 : 700,
+                }}
+              >
+                {subject}
+              </TableSubjectCell>
               <TableDateCell align={"right"}>{date}</TableDateCell>
             </TableRow>
           );

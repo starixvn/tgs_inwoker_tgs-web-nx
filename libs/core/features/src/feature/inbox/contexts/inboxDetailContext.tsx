@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useState } from "react";
-import { GetInboxItemDetailReqDto, InboxItemDetail } from "@tgs-web-nx/types";
+import { GetInboxItemDetailReqDto, InboxItemDetail, ReadInboxItemReqDto } from "@tgs-web-nx/types";
 import { GeneralService } from "@tgs-web-nx/core";
 
 const initialState: {
@@ -88,6 +88,10 @@ export const InboxDetailContextProvider = ({ children }: ProviderProps) => {
     [inboxItemDetailState.inboxItemDetail?.id],
   );
 
+  const markInboxDetailAsRead = useCallback(async (readInboxItemReqDto: ReadInboxItemReqDto) => {
+    await GeneralService.ReadInboxItem(readInboxItemReqDto);
+  }, []);
+
   // dialog actions
   const [isDetailDialogOpen, setIsDetailDialogOpen] = useState(false);
 
@@ -95,6 +99,7 @@ export const InboxDetailContextProvider = ({ children }: ProviderProps) => {
     async (id: string) => {
       setIsDetailDialogOpen(true);
       await fetchInboxDetail({ letterId: id });
+      await markInboxDetailAsRead({ letterId: id });
     },
     [fetchInboxDetail],
   );
