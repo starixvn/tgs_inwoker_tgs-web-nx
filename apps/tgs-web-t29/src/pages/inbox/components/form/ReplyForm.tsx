@@ -2,9 +2,11 @@ import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { InboxItemDetail, ReplyInboxItemReqDto } from "@tgs-web-nx/types";
+import { useConfirmDialog } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
+import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
 
 const InboxComposeFormContainer = styled.div`
   padding: 16px;
@@ -34,9 +36,13 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
     setMessage(event.target.value);
   };
 
-  const handleClickSubmit = useCallback(async () => {
+  // Submit
+  const submitCallback = useCallback(async () => {
     await handleSubmitReply({ letterId: inboxItemDetail.id, content: message });
   }, [handleSubmitReply, inboxItemDetail.id, message]);
+
+  const { isSubmitted, isConfirmDialogOpen, handleSubmit, handleConfirm, handleCancel } =
+    useConfirmDialog(submitCallback);
 
   return (
     <InboxComposeFormContainer>
@@ -69,9 +75,21 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
         <TextArea value={content} disabled={true} />
       </InputWrapper>
 
-      <SubmitButton onClick={handleClickSubmit} variant={"contained"} color={"primary"} fullWidth>
+      <SubmitButton
+        onClick={handleSubmit}
+        variant={"contained"}
+        color={"primary"}
+        fullWidth
+        disabled={isSubmitted}
+      >
         {i18n.t("common.submit")}
       </SubmitButton>
+
+      <ConfirmDialog
+        isDialogOpen={isConfirmDialogOpen}
+        handleConfirm={handleConfirm}
+        handleCancel={handleCancel}
+      />
     </InboxComposeFormContainer>
   );
 };
