@@ -73,7 +73,6 @@ const NameContainer = styled.div`
 const HeaderLanguageSwitch = (props: SelectProps) => {
   const { general } = useGeneralStore();
   const languageList = general.brandLanguage;
-
   const [currentLanguage, setCurrentLanguage] = useState<BrandLanguage>({
     culturecode: i18n.language,
   });

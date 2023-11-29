@@ -19,6 +19,8 @@ export const imageMap: { [key in string]: string } = {
   "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.png`,
   "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
   "tgl-PH": import.meta.env.BASE_URL + `assets/images/language/tgl-PH.png`,
+  "hi-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
+  "ta-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
 };
 
 const StyledSelect = styled(MuiSelect)`
