@@ -10,6 +10,7 @@ import sport from "@/assets/t29/images/home/home_sport.png";
 import live_casino from "@/assets/t29/images/home/home_live_casino.png";
 import slot from "@/assets/t29/images/home/home_slot.png";
 import lottery from "@/assets/t29/images/home/home_lottery.png";
+import fishing from "@/assets/t29/images/home/home_fishing.png";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
@@ -96,11 +97,11 @@ const HomeCategory = () => {
         gameType: GameTypeEnum.SLOT,
       },
       {
-        key: "lottery",
-        name: "LOTTERY",
-        imgUrl: lottery,
-        text: i18n.t("common.lottery"),
-        gameType: GameTypeEnum.LOTTERYLOBBY,
+        key: "fishing",
+        name: "FISHING",
+        imgUrl: fishing,
+        text: i18n.t("common.fishing"),
+        gameType: GameTypeEnum.FISH,
       },
     ];
   }, []);

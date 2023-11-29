@@ -2,7 +2,7 @@ import React, { createContext } from "react";
 
 export interface Route {
   path: string;
-  component: React.ReactElement;
+  component: React.ReactNode;
   layout?: ({ children }: any) => JSX.Element;
   isAnonymousAllowed?: boolean;
 }

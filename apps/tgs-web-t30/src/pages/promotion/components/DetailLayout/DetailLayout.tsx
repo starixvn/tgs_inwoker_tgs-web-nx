@@ -28,7 +28,7 @@ const JoinPromotionButtonWrapper = styled.div`
 
 type Props = {
   promotionData: Promotion;
-  children: React.ReactElement;
+  children: React.ReactNode;
 };
 const DetailLayout = ({ promotionData, children }: Props) => {
   const targetPromotionType = promotionData?.promotionType?.toUpperCase?.() || "";

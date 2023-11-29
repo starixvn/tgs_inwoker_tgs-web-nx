@@ -45,13 +45,13 @@ export const useGameTypeList = () => {
         fontSize: "smaller",
         gameType: GameTypeEnum.LIVELOBBY,
       },
-      {
-        key: "sabong",
-        iconUrl: sabong,
-        text: i18n.t("common.cockfight"),
-        fontSize: "smaller",
-        gameType: GameTypeEnum.COCKFIGHT,
-      },
+      // {
+      //   key: "sabong",
+      //   iconUrl: sabong,
+      //   text: i18n.t("common.cockfight"),
+      //   fontSize: "smaller",
+      //   gameType: GameTypeEnum.COCKFIGHT,
+      // },
       {
         key: "egame",
         iconUrl: egame,

@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
@@ -58,7 +58,7 @@ const ChildrenWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const VipLayout = ({ children }: Props) => {
   const { isDesktopSize, isMobileSize } = useRwd();
@@ -69,16 +69,17 @@ const VipLayout = ({ children }: Props) => {
     history.goBack();
   }, [history]);
 
-
   return (
     <DefaultLayoutContainer>
       <Header />
 
       <DashboardContainer>
-        {isMobileSize && <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />}
+        {isMobileSize && (
+          <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
+        )}
         <ContentWrapper>
           <ChildrenWrapper>
-            {isDesktopSize &&
+            {isDesktopSize && (
               <DarkMemberMenu
                 handleCloseContextMenu={() => {}}
                 style={{
@@ -86,7 +87,7 @@ const VipLayout = ({ children }: Props) => {
                   flexShrink: 0,
                 }}
               />
-            }
+            )}
             {children}
           </ChildrenWrapper>
         </ContentWrapper>

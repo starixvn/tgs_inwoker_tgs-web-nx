@@ -19,7 +19,7 @@ const Icon = styled.img`
   margin-right: 12px;
 `;
 type Props = {
-  children: React.ReactElement;
+  children: React.ReactNode;
 };
 
 const notistackRef = React.createRef<any>();

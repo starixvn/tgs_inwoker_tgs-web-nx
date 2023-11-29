@@ -51,7 +51,7 @@ type Props = {
   transferAmount: string;
   handleChangeTransferAmount: (e: ChangeEvent) => void;
   mainAccountId: string; // "0",
-  children: React.ReactElement;
+  children: React.ReactNode;
 };
 const TransferCard = ({
   fromWallet,

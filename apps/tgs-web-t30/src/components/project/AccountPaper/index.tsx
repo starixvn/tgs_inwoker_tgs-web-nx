@@ -16,7 +16,7 @@ const AccountPaperContainer = styled.div`
 type Props = {
   pageName: string;
   iconUrl: string;
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactNode | React.ReactNode[];
 };
 const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
   const { isDesktopSize } = useRwd();

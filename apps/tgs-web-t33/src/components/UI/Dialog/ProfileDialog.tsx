@@ -35,7 +35,7 @@ const ChildContainer = styled.div`
 type Props = {
   open: boolean;
   onClose: () => void;
-  children: React.ReactElement;
+  children: React.ReactNode;
   dialogHeaderTitle?: string;
 } & DialogProps;
 const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {

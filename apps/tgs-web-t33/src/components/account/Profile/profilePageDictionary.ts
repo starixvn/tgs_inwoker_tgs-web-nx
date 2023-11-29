@@ -1,4 +1,5 @@
 import { ValueOf } from "@tgs-web-nx/types";
+import { ProfilePathEnum } from "@tgs-web-nx/core";
 import ProfileMenuMobile from "@/pages/profile/components/ProfileMenu/ProfileMenuMobile";
 import ProfileBirthDatePage from "@/components/account/Profile/ProfileBirthDate";
 import ProfileChangeEmail from "@/components/account/Profile/ProfileChangeEmail";
@@ -17,8 +18,6 @@ import ProfileViberPage from "@/components/account/Profile/ProfileViber";
 import ProfileWithdrawalPasswordPage from "@/components/account/Profile/ProfileWIthdrawalPassword";
 import ProfileWeChatPage from "@/components/account/Profile/ProfileWeChat";
 import ProfileWhatsappPage from "@/components/account/Profile/ProfileWhatsapp";
-
-
 
 export const profilePageDictionary: {
   [key in ValueOf<typeof ProfilePathEnum>]: any; // TODO: determine its type
