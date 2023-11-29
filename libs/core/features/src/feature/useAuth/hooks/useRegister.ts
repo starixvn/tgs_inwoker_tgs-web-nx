@@ -71,8 +71,17 @@ export function useRegister() {
     }
   }, []);
 
+  const clearRegisterError = useCallback(() => {
+    setRegisterState({
+      isLoading: false,
+      data: null,
+      error: null,
+    });
+  }, []);
+
   return {
     registerState,
     handleRegister,
+    clearRegisterError,
   };
 }

@@ -14,6 +14,8 @@ const initialState: {
   handleRegister: (registerReqDto: RegisterReqDto) => Promise<void>;
   isLogin: boolean;
   isAuthLoading: boolean;
+  clearLoginError: () => void;
+  clearRegisterError: () => void;
 } = {
   loginState: {
     data: null,
@@ -35,6 +37,8 @@ const initialState: {
   handleRegister: () => Promise.resolve(),
   isAuthLoading: false,
   isLogin: false,
+  clearLoginError: () => {},
+  clearRegisterError: () => {},
 };
 
 export const AuthContext = createContext({
@@ -46,9 +50,9 @@ type ProviderProps = {
 };
 
 export const AuthContextProvider = ({ children }: ProviderProps) => {
-  const { loginState, handleLogin } = useLogin();
+  const { loginState, handleLogin, clearLoginError } = useLogin();
   const { logoutState, handleLogout } = useLogout();
-  const { registerState, handleRegister } = useRegister();
+  const { registerState, handleRegister, clearRegisterError } = useRegister();
   const { account } = useAccountStore();
 
   const isLogin = !!account.token;
@@ -65,6 +69,8 @@ export const AuthContextProvider = ({ children }: ProviderProps) => {
         handleRegister,
         isLogin,
         isAuthLoading,
+        clearLoginError,
+        clearRegisterError,
       }}
     >
       {children}

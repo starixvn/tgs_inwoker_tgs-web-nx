@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
@@ -123,8 +123,17 @@ export function useLogin() {
     }
   };
 
+  const clearLoginError = useCallback(() => {
+    setLoginState({
+      isLoading: false,
+      data: null,
+      error: null,
+    });
+  }, []);
+
   return {
     loginState,
     handleLogin,
+    clearLoginError,
   };
 }

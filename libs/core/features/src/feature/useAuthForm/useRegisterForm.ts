@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FormikValues } from "formik";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -13,7 +13,7 @@ export enum UserTypeEnum {
   PLAYER = "p",
 }
 export function useRegisterForm() {
-  const { registerState, handleRegister } = useAuth();
+  const { registerState, handleRegister, clearRegisterError } = useAuth();
   const { promotionData } = usePromotionCode();
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
   const { handleToggleRegisterDialog } = useAuthDialog();
@@ -55,6 +55,12 @@ export function useRegisterForm() {
   const { formInputConfigList, formik } = useGenerateRegisterFormik({
     handleClickSubmit: handleClickRegister,
   });
+
+  useEffect(() => {
+    return () => {
+      clearRegisterError();
+    };
+  }, []);
 
   return {
     formInputConfigList,
