@@ -6,13 +6,13 @@ const initialState: {
   handleOpenReplyDialog: (newInboxItemDetail: InboxItemDetail) => void;
   handleCloseReplyDialog: () => void;
   inboxItemDetail: InboxItemDetail | null;
-  handleSubmitReply: () => void;
+  handleSubmitReply: () => Promise<void>;
 } = {
   isReplyDialogOpen: false,
   handleOpenReplyDialog: () => {},
   handleCloseReplyDialog: () => {},
   inboxItemDetail: null,
-  handleSubmitReply: () => {},
+  handleSubmitReply: () => Promise.resolve(),
 };
 
 export const InboxReplyContext = createContext({

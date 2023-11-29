@@ -1,6 +1,6 @@
 import { INBOX_TABLE_ROW_COUNT } from "../constants";
-import { usePagination } from "./usePagination";
-import { useGetInboxList } from "./useGetInboxList";
+import { usePagination } from "./tools/usePagination";
+import { useGetInboxList } from "./tools/useGetInboxList";
 
 export function useInboxList() {
   // fetch api with pagination
