@@ -2,10 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import BrandLogo from "../../../../../../tgs-web-t23/src/components/project/BrandLogo";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import {
@@ -18,6 +17,7 @@ import { media } from "@/theme/breakpoints";
 import bg from "@/assets/t29/images/header/bg.png";
 import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -62,18 +62,7 @@ const WhiteHeaderRowContainer = styled.div`
   height: 65px;
 `;
 
-const LogoImgContainer = styled.div`
-  height: 27px;
-  justify-self: start;
-  padding: 0 10px;
-
-  & > img {
-    height: 100%;
-  }
-`;
-
 const DesktopHeader = () => {
-  const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isLargeDesktopSize, isDesktopSize } = useRwd();
