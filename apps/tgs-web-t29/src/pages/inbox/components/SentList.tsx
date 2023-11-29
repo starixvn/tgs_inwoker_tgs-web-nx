@@ -1,11 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import { useSendDetailContext, useSendList } from "@tgs-web-nx/core/features";
+import {
+  INBOX_TABLE_ROW_COUNT,
+  useSendDetailContext,
+  useSendList,
+} from "@tgs-web-nx/core/features";
+import { TablePagination } from "@mui/material";
 import LoadingBlock from "@/components/project/LoadingBlock";
 import SendListTable from "@/pages/inbox/components/table/SendListTable";
 import SendItemDetailDialog from "@/pages/inbox/components/dialog/SendItemDetailDialog";
+import { theme } from "@/theme";
 
-const SentTableContainer = styled.div``;
+const SentTableContainer = styled.div`
+  min-height: 50vh;
+`;
 
 const SentList = () => {
   const {
@@ -26,6 +34,20 @@ const SentList = () => {
 
   return (
     <SentTableContainer>
+      <TablePagination
+        component={"div"}
+        count={totalCount}
+        rowsPerPage={INBOX_TABLE_ROW_COUNT}
+        page={page > 0 ? page - 1 : 0}
+        onPageChange={handleChangePage}
+        rowsPerPageOptions={[]}
+        sx={{
+          width: "100%",
+          color: theme.text,
+          "& button": {},
+        }}
+      />
+
       {isLoading ? (
         <LoadingBlock size={30} style={{ marginTop: "90px" }} />
       ) : (
