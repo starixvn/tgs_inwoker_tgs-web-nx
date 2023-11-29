@@ -12,7 +12,7 @@ const ProfileItemContainer = styled.div`
   cursor: pointer;
 
   & .label {
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
     font-size: 1.25rem;
     font-weight: 400;
   }

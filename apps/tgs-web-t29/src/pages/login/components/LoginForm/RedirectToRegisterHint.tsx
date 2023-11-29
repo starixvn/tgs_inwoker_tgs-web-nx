@@ -5,7 +5,7 @@ import { useRedirectToRegisterHint } from "@tgs-web-nx/core/features";
 
 const CreateAccountContainer = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.245;

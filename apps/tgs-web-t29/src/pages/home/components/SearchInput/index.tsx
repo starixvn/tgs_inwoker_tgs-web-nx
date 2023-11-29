@@ -8,36 +8,36 @@ type Props = {
 };
 
 const InputWrapper = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
-    border-radius: 50px;
-    background-color: ${({ theme }) => theme.white};
-    border: 1px solid${({ theme }) => theme.blue40};
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 50px;
+  background-color: ${({ theme }) => theme.white};
+  border: 1px solid ${({ theme }) => theme.blue40};
 `;
 
 const InputTextfield = styled.input`
-    display: flex;
-    align-items: flex-start;
-    outline: none;
-    border: 0;
-    background-color: transparent;
-    outline: none;
-    width: 100%;
-    font-size: 0.875rem;
-    color: ${(props) => props.theme.gray50};
-    margin-left: 5px;
-    &::placeholder {
-        color: ${(props) => props.theme.gray50};
-        font-weight: 700;
-        line-height: 0.875rem;
-    }
+  display: flex;
+  align-items: flex-start;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 0.875rem;
+  color: ${(props) => props.theme.text};
+  margin-left: 5px;
+  &::placeholder {
+    color: ${(props) => props.theme.text};
+    font-weight: 700;
+    line-height: 0.875rem;
+  }
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 `;
 
 const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
@@ -52,7 +52,6 @@ const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
           handleChange(event.target.value);
         }}
       />
-
     </InputWrapper>
   );
 };

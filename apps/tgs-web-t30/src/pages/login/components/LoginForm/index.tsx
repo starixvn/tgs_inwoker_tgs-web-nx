@@ -2,13 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import FormikForm from "@/components/project/FormikForm";
-import Checkbox from "@/components/UI/Checkbox";
+import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
-import BrandLogo from "@/components/project/BrandLogo";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { theme } from "@/theme";
 

@@ -5,7 +5,7 @@ import Dialog from "@/components/UI/Dialog/Dialog";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const Hint = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   text-align: center;
   margin-bottom: 20px;
 `;

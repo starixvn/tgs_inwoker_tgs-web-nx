@@ -36,7 +36,7 @@ type MsgTitleProps = {
 const MsgTitle = styled.div<MsgTitleProps>`
   font-size: 1.25rem;
   font-weight: ${({ $isRead }: MsgTitleProps) => ($isRead ? "400" : "600")};
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   white-space: nowrap;
   margin-bottom: 5px;
 `;
@@ -72,7 +72,7 @@ const CheckboxCircle = styled.div<CheckboxCircleProps>`
 
 const LetterContent = styled.div`
   font-size: 1rem;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   padding: 20px 0;
 `;
 

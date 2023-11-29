@@ -9,7 +9,7 @@ const SendItemDetailDialog = () => {
     useSendDetailContext();
 
   return (
-    <Dialog open={isDetailDialogOpen} onClose={handleCloseDetailDialog} fullWidth maxWidth={"md"}>
+    <Dialog open={isDetailDialogOpen} onClose={handleCloseDetailDialog} fullWidth maxWidth={"sm"}>
       {isLoading && <LoadingBlock size={30} />}
 
       {!isLoading && !!sendItemDetail && !error && (

@@ -46,7 +46,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                style={{ color: theme.gray50 }}
+                style={{ color: theme.text }}
               >
                 {isShowPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>

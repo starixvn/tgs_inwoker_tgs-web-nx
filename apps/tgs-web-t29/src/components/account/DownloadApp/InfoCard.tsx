@@ -42,7 +42,7 @@ const IntroCardContainer = styled.div`
     line-height: 17px;
     letter-spacing: 0em;
     text-align: left;
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
   }
 `;
 

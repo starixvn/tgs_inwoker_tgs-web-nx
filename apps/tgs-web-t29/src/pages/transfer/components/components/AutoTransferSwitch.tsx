@@ -15,7 +15,7 @@ const CustomSwitchContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: normal;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 
   & > :first-child {
     margin-right: 10px;

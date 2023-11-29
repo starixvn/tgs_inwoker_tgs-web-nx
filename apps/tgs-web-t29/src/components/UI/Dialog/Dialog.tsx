@@ -36,7 +36,7 @@ const ChildContainer = styled.div`
 type Props = {
   open: boolean;
   onClose: () => void;
-  children: React.ReactNode
+  children: React.ReactNode;
   dialogHeaderTitle?: string;
 } & DialogProps;
 
@@ -47,7 +47,7 @@ const Dialog = ({ open, onClose, children, ...others }: Props) => {
         <CloseIcon
           onClick={onClose}
           style={{
-            color: theme.gray50,
+            color: theme.text,
           }}
         />
       </CloseIconContainer>
