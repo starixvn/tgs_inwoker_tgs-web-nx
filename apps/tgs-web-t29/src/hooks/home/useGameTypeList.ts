@@ -73,13 +73,13 @@ export const useGameTypeList = () => {
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
       },
-      {
-        key: "lottery",
-        iconUrl: lottery,
-        text: i18n.t("common.lottery"),
-        fontSize: "small",
-        gameType: GameTypeEnum.LOTTERYLOBBY,
-      },
+      // {
+      //   key: "lottery",
+      //   iconUrl: lottery,
+      //   text: i18n.t("common.lottery"),
+      //   fontSize: "small",
+      //   gameType: GameTypeEnum.LOTTERYLOBBY,
+      // },
       {
         key: "esports",
         iconUrl: esports,
