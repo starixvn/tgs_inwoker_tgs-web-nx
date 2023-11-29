@@ -13,7 +13,7 @@ const SupportCardContainer = styled.div`
   align-items: center;
   padding: 15px 20px;
   background: ${({ theme }) => theme.blue20};
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.098rem;

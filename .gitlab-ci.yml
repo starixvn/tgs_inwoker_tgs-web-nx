@@ -217,7 +217,7 @@ deploy-dev:
           
           lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
           lobby="lobby-$lobby"
-          count=$(kubectl get deploy -n staging | grep $lobby | wc -l)
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
           if [[ $count != "0" ]]; then
               kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
           fi    
@@ -242,7 +242,7 @@ deploy-staging:
           lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
           lobby="lobby-$lobby"
 
-          count=$(kubectl get deploy -n staging | grep $lobby | wc -l)
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
           if [[ $count != "0" ]]; then
               kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
           fi  
@@ -267,7 +267,7 @@ deploy-prod:
           lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
           lobby="lobby-$lobby"
 
-          count=$(kubectl get deploy -n staging | grep $lobby | wc -l)
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
           if [[ $count != "0" ]]; then
               kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
           fi

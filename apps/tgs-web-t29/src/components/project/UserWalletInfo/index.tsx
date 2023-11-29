@@ -62,7 +62,7 @@ const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
   font-weight: 700;
   line-height: 1.245rem;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   white-space: nowrap;
 `;
 

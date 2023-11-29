@@ -15,7 +15,7 @@ export const BottomInfo = styled.div`
   font-weight: 400;
   line-height: 1.0025rem;
   text-align: center;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 20px;
 `;
 export const StyledModalBank = muiStyled(Modal)(({ theme }) => ({

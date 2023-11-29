@@ -15,7 +15,7 @@ const Container = styled.div`
   word-break: keep-all;
   font-size: 0.875rem;
   padding: 4px 10px;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
 
 const Background = styled.div`
@@ -40,9 +40,10 @@ const Marquee = () => {
         <marquee>
           {marquees.map((item, index) => {
             const content = `
-              *${item.localization !== null && item.localization.content
-                ? item.localization.content
-                : item.content
+              *${
+                item.localization !== null && item.localization.content
+                  ? item.localization.content
+                  : item.content
               }
               `;
             return <Background key={index}>{content}</Background>;

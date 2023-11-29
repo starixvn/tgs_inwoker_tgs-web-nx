@@ -26,6 +26,7 @@ import DialogLayout from "@/layouts/DialogLayout";
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
+import InboxPage from "@/pages/inbox/InboxPage";
 
 const routes: RouteType[] = [
   {
@@ -222,8 +223,13 @@ const routes: RouteType[] = [
   },
   //
   {
-    path: "/inbox",
+    path: "/message-center",
     component: MessageCenterPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/inbox",
+    component: InboxPage,
     layout: DialogLayout,
   },
   // {

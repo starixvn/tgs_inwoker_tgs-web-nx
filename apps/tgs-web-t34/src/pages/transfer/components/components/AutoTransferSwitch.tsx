@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { useWalletStore } from "@tgs-web-nx/core";
+import { useAutoTransferSwitch } from "@tgs-web-nx/core/features";
 import { Switch } from "@/components/UI/Switch";
 import Loading from "@/components/UI/Loading";
 
@@ -22,19 +22,7 @@ const CustomSwitchContainer = styled.div`
 `;
 
 const AutoTransferSwitch = () => {
-  const { wallet, updateAutoTransferStatus } = useWalletStore();
-  const [isChecked, setIsChecked] = useState(!!wallet.autotransfer);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSwitchAutoTransfer = async () => {
-    setIsLoading(true);
-    await updateAutoTransferStatus();
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    setIsChecked(!!wallet.autotransfer);
-  }, [wallet.autotransfer]);
+  const { isChecked, isLoading, handleSwitchAutoTransfer } = useAutoTransferSwitch();
 
   return (
     <>
@@ -44,7 +32,7 @@ const AutoTransferSwitch = () => {
           <div>
             {isLoading}
             {i18n.t("transfer.autoTransfer")} (
-            {wallet.autotransfer ? i18n.t("transfer.on") : i18n.t("transfer.off")})
+            {isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")})
           </div>
         </CustomSwitchContainer>
       </AutoTransferContainer>

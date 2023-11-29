@@ -27,7 +27,7 @@ const Label = styled.div`
   color: ${({ theme }) => theme.blue50};
 `;
 const Value = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
 
 const WithdrawInfoCard = () => {

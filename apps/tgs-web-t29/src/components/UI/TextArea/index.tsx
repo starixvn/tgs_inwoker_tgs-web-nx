@@ -5,7 +5,7 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
   textarea: {
     padding: "10px",
-    color: theme.palette.gray50,
+    color: theme.palette.text,
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
@@ -13,7 +13,7 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
     minHeight: "100px",
 
     "&:-webkit-autofill": {
-      WebkitTextFillColor: `${theme.palette.gray50} !important`,
+      WebkitTextFillColor: `${theme.palette.text} !important`,
     },
   },
   "& .MuiInputBase-root": {

@@ -9,7 +9,7 @@ const Content = styled.div`
   font-weight: 400;
   line-height: 1.0025rem;
   text-align: center;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
 
 const LabelLink = styled(Link)`

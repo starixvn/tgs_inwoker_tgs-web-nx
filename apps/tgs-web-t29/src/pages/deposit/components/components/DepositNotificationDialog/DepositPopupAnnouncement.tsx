@@ -13,7 +13,7 @@ const StyledDialog = styled(MuiDialog)`
     flex-direction: column;
     justify-content: center;
 
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
     background-attachment: fixed;
     background-position: center;
     padding: 20px;

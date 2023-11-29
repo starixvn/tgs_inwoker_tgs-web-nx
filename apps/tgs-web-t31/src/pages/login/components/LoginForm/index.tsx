@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import FormikForm from "@/components/project/FormikForm";
-import Checkbox from "@/components/UI/Checkbox";
+import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
 import { media } from "@/theme/breakpoints";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
@@ -91,7 +91,7 @@ const LoginForm = () => {
         </ForgotPasswordContainer>
         <RedirectToRegisterHint />
       </RegisterContainer>
-       {/* todo switch language component */}
+      {/* todo switch language component */}
     </AuthFormContainer>
   );
 };

@@ -33,7 +33,7 @@ const Wrapper = styled.div<{
 const Text = styled.div<{
   $isActive: boolean;
 }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.gray50)};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.text)};
   font-size: 1rem;
   font-weight: 700;
 `;

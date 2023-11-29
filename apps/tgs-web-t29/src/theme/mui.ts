@@ -68,7 +68,7 @@ const muiTheme = createTheme({
     gray40: theme.gray40,
     gray50: theme.gray50,
     text: {
-      primary: theme.white,
+      primary: theme.text,
       secondary: theme.gray20,
     },
   },

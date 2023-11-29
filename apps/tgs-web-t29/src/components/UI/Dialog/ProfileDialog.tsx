@@ -61,7 +61,7 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
         <CloseIcon
           onClick={onClose}
           style={{
-            color: theme.gray50,
+            color: theme.text,
             width: "20px",
             height: "20px",
           }}

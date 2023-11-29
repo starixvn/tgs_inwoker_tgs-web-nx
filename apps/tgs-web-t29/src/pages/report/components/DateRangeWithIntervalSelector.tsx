@@ -23,7 +23,7 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
     return $isSelected ? theme.blue50 : theme.blue20;
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.white : theme.gray50;
+    return $isSelected ? theme.white : theme.text;
   }};
   padding: 6.5px 22px;
   font-size: 0.812rem;

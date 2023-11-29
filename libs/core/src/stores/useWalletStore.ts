@@ -15,7 +15,6 @@ import {
   PerformManualThirdPartyDepositResDto,
   PerformPulsaDepositResDto,
   PerformUsdtDepositResDto,
-  UpdateAutoTransferStatusResDto,
   WalletState,
 } from "@tgs-web-nx/types";
 import {
@@ -70,9 +69,6 @@ import {
   DOWITHDRAWALALL_BEGIN,
   DOWITHDRAWALALL_FAIL,
   DOWITHDRAWALALL_SUCCESS,
-  GETAUTOTRANSFER_BEGIN,
-  GETAUTOTRANSFER_FAIL,
-  GETAUTOTRANSFER_SUCCESS,
   GETBALANCELIST_BEGIN,
   GETBALANCELIST_FAIL,
   GETBALANCELIST_SUCCESS,
@@ -91,9 +87,6 @@ import {
   GETWITHDRAWALCHANNEL_BEGIN,
   GETWITHDRAWALCHANNEL_FAILED,
   GETWITHDRAWALCHANNEL_SUCCESS,
-  UPDATEAUTOTRANSFER_BEGIN,
-  UPDATEAUTOTRANSFER_FAIL,
-  UPDATEAUTOTRANSFER_SUCCESS,
   UPDATEBALANCELIST_BEGIN,
   UPDATEBALANCELIST_FAIL,
   UPDATEBALANCELIST_SUCCESS,
@@ -1460,71 +1453,6 @@ export function useWalletStore() {
     [],
   );
 
-  const getAutoTransferStatus = useCallback(() => {
-    dispatch({
-      type: GETAUTOTRANSFER_BEGIN,
-      loading: true,
-    });
-    const result = WalletService.GetAutoTransferStatus()
-      .then((response) => {
-        if (response?.IsSuccess) {
-          dispatch({
-            type: GETAUTOTRANSFER_SUCCESS,
-            payload: response,
-            loading: false,
-          });
-        } else {
-          dispatch({
-            type: GETAUTOTRANSFER_FAIL,
-            payload: response,
-            loading: false,
-          });
-        }
-        return response;
-      })
-      .catch((e) => {
-        dispatch({
-          type: GETAUTOTRANSFER_FAIL,
-          payload: e.status,
-          loading: false,
-        });
-      });
-
-    return result;
-  }, []);
-
-  const updateAutoTransferStatus = useCallback(async () => {
-    try {
-      dispatch({
-        type: UPDATEAUTOTRANSFER_BEGIN,
-        loading: true,
-      });
-      const response =
-        (await WalletService.UpdateAutoTransferStatus()) as unknown as UpdateAutoTransferStatusResDto;
-      if (response.IsSuccess) {
-        dispatch({
-          type: UPDATEAUTOTRANSFER_SUCCESS,
-          payload: response,
-          loading: true,
-        });
-      } else {
-        dispatch({
-          type: UPDATEAUTOTRANSFER_FAIL,
-          payload: response,
-          loading: false,
-        });
-      }
-
-      return response;
-    } catch (error: any) {
-      dispatch({
-        type: UPDATEAUTOTRANSFER_FAIL,
-        payload: error,
-        loading: false,
-      });
-    }
-  }, []);
-
   const doBankDepositWithDetail = useCallback(
     (
       name: string,
@@ -1706,8 +1634,6 @@ export function useWalletStore() {
     getGameBalance,
     addBilling,
     doWithdraw,
-    getAutoTransferStatus,
-    updateAutoTransferStatus,
     doUmPayCryptoDeposit,
     doUmPayBankDeposit,
     doFPSDeposit,

@@ -33,7 +33,7 @@ const IntroductionContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-family: Arial;
   font-size: 18px;
   font-weight: 400;

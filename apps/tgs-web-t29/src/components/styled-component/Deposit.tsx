@@ -5,7 +5,7 @@ export const LimitLabel = styled.span`
 `;
 
 export const LimitAmount = styled.span`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const TransferLabel = styled.div``;
@@ -29,7 +29,7 @@ export const HintText = styled.div`
 `;
 
 export const AmountHint = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 0.937rem;
   font-weight: 400;
   margin-top: 9px;

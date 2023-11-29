@@ -51,7 +51,7 @@ const Title = styled.div`
 
 const Content = styled.div`
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   margin-top: 1rem;
 
   ${media.sm} {

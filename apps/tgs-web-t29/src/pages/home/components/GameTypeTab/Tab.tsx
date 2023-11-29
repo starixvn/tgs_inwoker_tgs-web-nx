@@ -26,7 +26,7 @@ const Wrapper = styled.div<{
   gap: 6px;
   user-select: none;
   border-radius: 6px;
-  border: 1px solid ${({ theme, $isActive }) => $isActive ? theme.blue40 : "transparent"};
+  border: 1px solid ${({ theme, $isActive }) => ($isActive ? theme.blue40 : "transparent")};
   background: ${({ theme }) => theme.blue20};
 
   ${media.sm} {
@@ -34,7 +34,7 @@ const Wrapper = styled.div<{
     height: 74px;
     cursor: pointer;
     & :hover {
-      color: ${({ theme }) => theme.gray50};
+      color: ${({ theme }) => theme.text};
     }
   }
 `;
@@ -45,7 +45,7 @@ const GameIcon = styled.img`
 `;
 
 const Text = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -55,11 +55,7 @@ const Text = styled.div`
 
 const Tab = ({ imageUrl, text, isActive, onClick }: Props) => {
   return (
-    <Wrapper
-      $isActive={isActive}
-      $imageUrl={imageUrl}
-      $text={text}
-      onClick={onClick}>
+    <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
       <GameIcon src={imageUrl} alt={text} />
       <Text>{text}</Text>
     </Wrapper>
