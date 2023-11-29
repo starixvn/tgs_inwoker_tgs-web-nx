@@ -13,6 +13,7 @@ export const colorListT33 = {
   gray60: "#29333a",
   mainBackground: "#252a30",
   subBackground: "#31343C",
+  text: "#FFFFFF",
 };
 
 export const themeList = {

@@ -5,7 +5,7 @@ export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 21px 22px;
   max-width: calc(1200px + 22px * 2);
-  margin: auto;
+  margin: 0 auto;
 
   & > div {
     margin-bottom: 15px;
@@ -21,7 +21,7 @@ export const PageContainer = styled.div`
 export const TransferPageContainer = styled.div`
   padding: 21px 22px;
   max-width: calc(1200px + 22px * 2);
-  margin: auto;
+  margin: 0 auto;
 
   & .MuiButton-fullWidth {
     max-width: 242px !important;
