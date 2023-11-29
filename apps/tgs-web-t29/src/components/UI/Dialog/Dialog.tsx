@@ -38,6 +38,7 @@ type Props = {
   children: React.ReactElement;
   dialogHeaderTitle?: string;
 } & DialogProps;
+
 const Dialog = ({ open, onClose, children, ...others }: Props) => {
   const { isDesktopSize } = useRwd();
 
@@ -64,4 +65,4 @@ const Dialog = ({ open, onClose, children, ...others }: Props) => {
   );
 };
 
-export default React.memo(Dialog);
+export default Dialog;

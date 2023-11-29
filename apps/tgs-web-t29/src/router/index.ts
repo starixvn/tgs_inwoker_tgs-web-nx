@@ -242,12 +242,6 @@ const routes: RouteType[] = [
     layout: DialogLayout,
   },
   // {
-  //   path: "/memo",
-  //   component: memo,
-  //   alert: true,
-  //   navigate: true,
-  // },
-  // {
   //   path: "/inbox/details/:id",
   //   component: InboxDetails,
   //   alert: true,

@@ -1,15 +1,46 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useUpdatePageName } from "@tgs-web-nx/core/features";
+import { InboxCategoryKeyEnum, useInboxPage, useRwd } from "@tgs-web-nx/core/hooks";
+import {
+  InboxDetailContextProvider,
+  InboxReplyContextProvider,
+  SendDetailContextProvider,
+} from "@tgs-web-nx/core/features";
+import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconInbox from "@/assets/t29/images/account/navItem/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
-import Inbox from "@/pages/inbox/components/Inbox";
+import ComposeForm from "@/pages/inbox/components/ComposeForm";
+import InboxList from "@/pages/inbox/components/InboxList";
+import SentList from "@/pages/inbox/components/SentList";
+import InboxCategoryTabs from "@/pages/inbox/components/InboxCategoryTabs";
+
+const InboxContainer = styled.div``;
+
+const InboxComponentDictionary = {
+  [InboxCategoryKeyEnum.COMPOSE]: ComposeForm,
+  [InboxCategoryKeyEnum.INBOX]: () => {
+    return (
+      <InboxDetailContextProvider>
+        <InboxReplyContextProvider>
+          <InboxList />
+        </InboxReplyContextProvider>
+      </InboxDetailContextProvider>
+    );
+  },
+  [InboxCategoryKeyEnum.SENT]: () => {
+    return (
+      <SendDetailContextProvider>
+        <SentList />
+      </SendDetailContextProvider>
+    );
+  },
+};
 
 const MessageCenterPage = () => {
-  useUpdatePageName(i18n.t("wap.main.account.inbox"));
+  const { tabList, handleClickTab, selectedTab, InboxComponent } =
+    useInboxPage(InboxComponentDictionary);
 
   const { isDesktopSize } = useRwd();
 
@@ -18,7 +49,14 @@ const MessageCenterPage = () => {
       {isDesktopSize && <UserWalletInfo />}
 
       <AccountPaper pageName={i18n.t("wap.main.account.inbox")} iconUrl={iconInbox}>
-        <Inbox />
+        <InboxContainer>
+          <InboxCategoryTabs
+            tabList={tabList}
+            selectedTab={selectedTab}
+            handleClickTab={handleClickTab}
+          />
+          <InboxComponent />
+        </InboxContainer>
       </AccountPaper>
     </PageContainer>
   );

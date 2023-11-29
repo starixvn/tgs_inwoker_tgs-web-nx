@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { InboxCategoryTab } from "@/pages/inbox/hooks/useInboxCategoryTabs";
+import { InboxCategoryTab } from "@tgs-web-nx/core/hooks";
 import { theme } from "@/theme";
 
 const InboxCategoryTabsContainer = styled.div`
