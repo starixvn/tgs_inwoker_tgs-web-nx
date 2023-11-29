@@ -3,6 +3,7 @@ import { SendItemDetail } from "@tgs-web-nx/types";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useDialogContent } from "@tgs-web-nx/core/features";
+import { useAccountStore } from "@tgs-web-nx/core";
 
 const SendDialogContentContainer = styled.div``;
 const Title = styled.div`
@@ -38,4 +39,4 @@ const SendDialogContent = ({ sendItemDetail }: Props) => {
   );
 };
 
-export default SendDialogContent;
+export default React.memo(SendDialogContent);

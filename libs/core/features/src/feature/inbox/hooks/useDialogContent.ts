@@ -1,9 +1,12 @@
 import { InboxItemDetail, SendItemDetail } from "@tgs-web-nx/types";
 import moment from "moment/moment";
 import { useMemo } from "react";
+import { useAccountStore } from "@tgs-web-nx/core";
 
 export function useDialogContent(detailitem: InboxItemDetail | SendItemDetail) {
   const { subject, sender, sentOn, content } = detailitem;
+  const { account } = useAccountStore();
+  const username = account.info.member_username;
 
   const date = moment(sentOn).format("YYYY-MM-DD");
 
@@ -17,7 +20,7 @@ export function useDialogContent(detailitem: InboxItemDetail | SendItemDetail) {
 
   return {
     subject,
-    sender,
+    sender: username,
     date,
     agoTome,
     content,

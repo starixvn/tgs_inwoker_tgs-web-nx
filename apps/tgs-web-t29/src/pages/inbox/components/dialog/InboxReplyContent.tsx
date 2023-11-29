@@ -1,5 +1,5 @@
 import React from "react";
-import { InboxItemDetail } from "@tgs-web-nx/types";
+import { InboxItemDetail, ReplyInboxItemReqDto } from "@tgs-web-nx/types";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import ReplyForm from "@/pages/inbox/components/form/ReplyForm";
@@ -15,16 +15,14 @@ const Title = styled.div`
 
 type Props = {
   inboxItemDetail: InboxItemDetail;
-  handleSubmit: () => Promise<void>;
+  handleSubmitReply: (replyInboxItemReqDto: ReplyInboxItemReqDto) => Promise<void>;
 };
 
-const InboxDialogContent = ({ inboxItemDetail, handleSubmit }: Props) => {
+const InboxDialogContent = ({ inboxItemDetail, handleSubmitReply }: Props) => {
   return (
     <InboxDialogContentContainer>
       <Title>{i18n.t("reply")}</Title>
-      {/*<Info>{`${i18n.t("sentBy")} ${sender} ${sentOn}`}</Info>*/}
-      {/*<Content>{content}</Content>*/}
-      <ReplyForm inboxItemDetail={inboxItemDetail} handleSubmit={handleSubmit} />
+      <ReplyForm inboxItemDetail={inboxItemDetail} handleSubmitReply={handleSubmitReply} />
     </InboxDialogContentContainer>
   );
 };

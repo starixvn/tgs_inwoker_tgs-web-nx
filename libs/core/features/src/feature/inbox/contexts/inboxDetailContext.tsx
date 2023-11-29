@@ -101,7 +101,7 @@ export const InboxDetailContextProvider = ({ children }: ProviderProps) => {
       await fetchInboxDetail({ letterId: id });
       await markInboxDetailAsRead({ letterId: id });
     },
-    [fetchInboxDetail],
+    [fetchInboxDetail, markInboxDetailAsRead],
   );
 
   const handleCloseDetailDialog = useCallback(() => {

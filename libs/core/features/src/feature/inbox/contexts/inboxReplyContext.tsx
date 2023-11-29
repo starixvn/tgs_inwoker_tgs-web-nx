@@ -1,12 +1,13 @@
 import React, { createContext, useCallback, useState } from "react";
-import { InboxItemDetail } from "@tgs-web-nx/types";
+import { InboxItemDetail, ReplyInboxItemReqDto } from "@tgs-web-nx/types";
+import { GeneralService } from "@tgs-web-nx/core";
 
 const initialState: {
   isReplyDialogOpen: boolean;
   handleOpenReplyDialog: (newInboxItemDetail: InboxItemDetail) => void;
   handleCloseReplyDialog: () => void;
   inboxItemDetail: InboxItemDetail | null;
-  handleSubmitReply: () => Promise<void>;
+  handleSubmitReply: (replyInboxItemReqDto: ReplyInboxItemReqDto) => Promise<void>;
 } = {
   isReplyDialogOpen: false,
   handleOpenReplyDialog: () => {},
@@ -37,9 +38,9 @@ export const InboxReplyContextProvider = ({ children }: ProviderProps) => {
     setIsReplyDialogOpen(false);
   }, []);
 
-  const handleSubmitReply = useCallback(async () => {
+  const handleSubmitReply = useCallback(async (replyInboxItemReqDto: ReplyInboxItemReqDto) => {
     setIsReplyDialogOpen(false);
-    console.log("reply");
+    await GeneralService.ReplyInboxItem(replyInboxItemReqDto);
   }, []);
 
   return (

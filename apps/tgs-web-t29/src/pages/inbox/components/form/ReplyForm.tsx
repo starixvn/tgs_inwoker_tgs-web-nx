@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { InboxItemDetail } from "@tgs-web-nx/types";
+import { InboxItemDetail, ReplyInboxItemReqDto } from "@tgs-web-nx/types";
 import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
@@ -22,10 +22,10 @@ const Label = styled.h6`
 
 type Props = {
   inboxItemDetail: InboxItemDetail;
-  handleSubmit: () => Promise<void>;
+  handleSubmitReply: (replyInboxItemReqDto: ReplyInboxItemReqDto) => Promise<void>;
 };
 
-const ReplyForm = ({ inboxItemDetail, handleSubmit }: Props) => {
+const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
   const { subject, content } = inboxItemDetail;
   const displayedSubject = `Re: ${subject}`;
   const [message, setMessage] = useState("");
@@ -34,9 +34,9 @@ const ReplyForm = ({ inboxItemDetail, handleSubmit }: Props) => {
     setMessage(event.target.value);
   };
 
-  const handleClickSubmit = useCallback(() => {
-    handleSubmit();
-  }, [handleSubmit]);
+  const handleClickSubmit = useCallback(async () => {
+    await handleSubmitReply({ letterId: inboxItemDetail.id, content: message });
+  }, [handleSubmitReply, inboxItemDetail.id, message]);
 
   return (
     <InboxComposeFormContainer>

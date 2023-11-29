@@ -9,7 +9,10 @@ const InboxDetailDialog = () => {
   return (
     <Dialog open={isReplyDialogOpen} onClose={handleCloseReplyDialog} fullWidth maxWidth={"sm"}>
       {inboxItemDetail && (
-        <InboxReplyContent inboxItemDetail={inboxItemDetail} handleSubmit={handleSubmitReply} />
+        <InboxReplyContent
+          inboxItemDetail={inboxItemDetail}
+          handleSubmitReply={handleSubmitReply}
+        />
       )}
     </Dialog>
   );
