@@ -8,6 +8,10 @@ export const AuthFormContainer = styled.div`
   padding: 70px 36px 30px;
   overflow: scroll;
 
+  ::-webkit-scrollbar {
+    visibility: hidden;
+  }
+
   & > * {
     flex-shrink: 0;
   }

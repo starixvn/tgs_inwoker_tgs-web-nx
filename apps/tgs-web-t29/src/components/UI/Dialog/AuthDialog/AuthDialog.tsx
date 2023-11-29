@@ -22,6 +22,10 @@ const ChildContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   z-index: 2;
   overflow: scroll;
+
+  ::-webkit-scrollbar {
+    visibility: hidden;
+  }
 `;
 
 type Props = {
