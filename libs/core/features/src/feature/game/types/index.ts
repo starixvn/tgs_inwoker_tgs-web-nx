@@ -11,4 +11,6 @@ export interface FilterTag {
   name: string;
   tagType: FilterTagTypeEnum;
   gpCode?: string;
+  iconUrl?:string;
+  activedUrl?:string
 }
