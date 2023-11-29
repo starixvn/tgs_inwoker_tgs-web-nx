@@ -8,7 +8,7 @@ import { useGenerateLoginFormik } from "./hooks/useGenerateLoginFormik";
 
 export function useLoginForm() {
   const { loginState, handleLogin, clearLoginError } = useAuth();
-  const [needToRemember, setNeedToRemember] = useState(false);
+  const [needToRemember, setNeedToRemember] = useState<boolean>(getNeedToRememberInitValue());
   const { handleToggleLoginDialog, handleToggleForgotPasswordDialog } = useAuthDialog();
   const { isDesktopSize } = useRwd();
   const handleClickNeedToRemember = () => {
@@ -62,4 +62,10 @@ export function useLoginForm() {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   };
+}
+
+function getNeedToRememberInitValue(): boolean {
+  const remember = localStorage.getItem("remember");
+
+  return remember === "true";
 }
