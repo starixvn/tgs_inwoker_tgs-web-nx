@@ -1,11 +1,24 @@
 import styled from "styled-components";
-import { FilterTag, filterTagAll, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTag,
+  FilterTagTypeEnum,
+  filterTagAll,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import CommonTag from "./CommonTag";
 import Tag from "./ProviderTag";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t29/images/home/search.svg";
 import { media } from "@/theme/breakpoints";
+import hotIcon from "@/assets/t29/images/home/hot.svg";
+import activedHotIcon from "@/assets/t29/images/home/actived-hot.svg";
+
+import recommendIcon from "@/assets/t29/images/home/recommend.svg";
+import activedRecommendIcon from "@/assets/t29/images/home/actived-recommend.svg";
+
+import favoriteIcon from "@/assets/t29/images/home/favorite.svg";
+import activedFavoriteIcon from "@/assets/t29/images/home/actived-favorite.svg";
 
 const FilterTagWrapper = styled.div`
   width: 100%;
@@ -17,25 +30,19 @@ const FilterTagWrapper = styled.div`
 `;
 
 const CommonTagContainer = styled.div`
-  height: 50px;
-  padding: 4px 0px;
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: 1px solid ${({ theme }) => theme.blue40};
+  gap: 12px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 5px;
 `;
 
-const ProviderTagContainer = styled.div`
-  width: 100%;
-  height: 50px;
+const ProviderTagContainer = styled.div``;
+
+const ProviderTagContent = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 5px;
-  row-gap: 8px;
-  flex-shrink: 0;
+  margin-bottom: 20px;
 `;
 
 export const SearchInputWrapper = styled.div`
@@ -56,9 +63,28 @@ const CommonSearchWrapper = styled.div`
   align-items: center;
 `;
 
+const AllText = styled.div<{
+  $isActive: boolean;
+}>`
+  display: flex;
+  width: 100px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.gray70};
+  border-bottom: ${({ $isActive, theme }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
+  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
+  margin-right: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const HomeGameFilterTag = () => {
   const {
-    filterTagList,
     providerFilterTagList,
     handleChangeActiveFilterTag,
     handleChangeActiveProviderFilterTag,
@@ -68,28 +94,68 @@ const HomeGameFilterTag = () => {
     handleChangeSearch,
   } = useHomeGameContext();
 
-  const onChangeFilterTag = (newFilterTag: FilterTag) => {
+  const handleClickFilterTag = (newFilterTag: FilterTag) => {
+    if (newFilterTag.tagType === activeFilterTag.tagType) {
+      handleChangeActiveFilterTag(filterTagAll);
+      return;
+    }
     handleChangeActiveFilterTag(newFilterTag);
-    handleChangeActiveProviderFilterTag(filterTagAll);
   };
 
   const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
     handleChangeActiveProviderFilterTag(newFilterTag);
   };
 
+  const filterTagList: FilterTag[] = [
+    {
+      name: "favorite",
+      tagType: FilterTagTypeEnum.FAVORITE,
+      iconUrl: favoriteIcon,
+      activedUrl: activedFavoriteIcon,
+    },
+    {
+      name: "hot",
+      tagType: FilterTagTypeEnum.HOT,
+      iconUrl: hotIcon,
+      activedUrl: activedHotIcon,
+    },
+    {
+      name: "recommend",
+      tagType: FilterTagTypeEnum.RECOMMEND,
+      iconUrl: recommendIcon,
+      activedUrl: activedRecommendIcon,
+    },
+  ];
+
   return (
     <FilterTagWrapper>
       <ProviderTagContainer>
-        {providerFilterTagList.map((filterTag) => {
-          return (
-            <Tag
-              key={filterTag.name}
-              text={filterTag.name}
-              isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
-              onClick={() => onChangeProviderFilterTag(filterTag)}
-            />
-          );
-        })}
+        <ProviderTagContent>
+          <AllText
+            onClick={() =>
+              onChangeProviderFilterTag({
+                name: FilterTagTypeEnum.ALL,
+                tagType: FilterTagTypeEnum.ALL,
+              })
+            }
+            $isActive={activeProviderFilterTag.tagType === FilterTagTypeEnum.ALL}
+          >
+            ALL
+          </AllText>
+          <div>
+            {providerFilterTagList.map((filterTag) => {
+              return (
+                <Tag
+                  key={filterTag.name}
+                  text={filterTag.name}
+                  gpCode={filterTag.gpCode}
+                  isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
+                  onClick={() => onChangeProviderFilterTag(filterTag)}
+                />
+              );
+            })}
+          </div>
+        </ProviderTagContent>
       </ProviderTagContainer>
 
       <CommonSearchWrapper>
@@ -99,8 +165,10 @@ const HomeGameFilterTag = () => {
               <CommonTag
                 key={filterTag.name}
                 text={filterTag.name}
+                iconUrl={filterTag.iconUrl}
+                activedUrl={filterTag.activedUrl}
                 isActive={filterTag.tagType === activeFilterTag.tagType}
-                onClick={() => onChangeFilterTag(filterTag)}
+                onClick={() => handleClickFilterTag(filterTag)}
               />
             );
           })}

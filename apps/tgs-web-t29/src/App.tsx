@@ -16,9 +16,10 @@ import {
   RouteContextProvider,
   UserWalletInfoContextProvider,
 } from "@tgs-web-nx/core/features";
+import { RouteType } from "@tgs-web-nx/types";
 import ForcedVerification from "./components/project/ForcedVerification";
 import LiveChat from "./components/tools/LiveChat";
-import { Route as RouteType, routes } from "@/router";
+import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
 import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";
 import PopupPromotion from "@/components/project/Popup/PopupPromotion";

@@ -1,5 +1,5 @@
 import { Close as CloseIcon } from "@mui/icons-material";
-import { ReactElement } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
 import { HEADER_HEIGHT } from "@/theme/constants";
@@ -29,7 +29,7 @@ const CloseIconContainer = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const AuthDialogLayout = ({ children }: Props) => {
   const { handleCloseDialog } = useAuthDialogLayout();

@@ -4,7 +4,7 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 
 type Props = {
   route: Route;
-  children: React.ReactElement;
+  children: React.ReactNode;
 };
 const LayoutProvider = ({ children, route }: Props) => {
   const LayoutComponent = route?.layout;

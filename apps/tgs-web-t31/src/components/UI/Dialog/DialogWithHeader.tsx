@@ -32,11 +32,11 @@ const ChildContainer = styled.div`
 type Props = {
   open: boolean;
   onClose: () => void;
-  children: React.ReactElement;
+  children: React.ReactNode;
   dialogHeaderTitle?: string;
   style?: CSSProperties;
   transitionComponent?: ForwardRefExoticComponent<
-    PropsWithoutRef<TransitionProps & { children?: React.ReactElement }> & RefAttributes<unknown>
+    PropsWithoutRef<TransitionProps & { children?: React.ReactNode }> & RefAttributes<unknown>
   >;
 } & DialogProps;
 

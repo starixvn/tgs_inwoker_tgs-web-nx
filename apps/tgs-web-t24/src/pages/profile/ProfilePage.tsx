@@ -3,12 +3,10 @@ import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { ValueOf } from "@tgs-web-nx/types";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { ProfilePathEnum } from "@tgs-web-nx/core";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
-import {
-  profilePageDictionary,
-  ProfilePathEnum,
-} from "@/components/account/Profile/profilePageDictionary";
+import { profilePageDictionary } from "@/components/account/Profile/profilePageDictionary";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

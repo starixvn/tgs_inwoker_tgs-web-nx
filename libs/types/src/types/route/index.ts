@@ -1,15 +1,6 @@
-export enum RouteCategoryEnum {
-  HOME,
-  REFER,
-  PROMOTION,
-  MESSAGE_CENTER,
-  MINE,
-}
-
-export interface Route {
+export interface RouteType {
   path: string;
   component: any;
-  category: RouteCategoryEnum;
   layout?: ({ children }: any) => JSX.Element;
   isAnonymousAllowed?: boolean;
 }

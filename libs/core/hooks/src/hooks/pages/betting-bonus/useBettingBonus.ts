@@ -6,12 +6,12 @@ import { useVipStore } from "@tgs-web-nx/core/hooks";
 const productColumnNameMap: {
   [key: string]: string;
 } = {
-  "Live Dealer": "liveDealerRebate",
-  "Sportsbook": "sportsRebate",
-  "E-Game": "slotRebate",
+  "Live Casino": "liveDealerRebate",
+  "E-game": "slotRebate",
   "Card Game": "cardGameRebate",
-  "Lottery": "lotteryRebate",
+  "Sports": "sportsRebate",
   "Virtual Sports": "virtualSportsRebate",
+  "Lottery": "lotteryRebate",
 };
 
 export interface TypeProductRebateByLevel {

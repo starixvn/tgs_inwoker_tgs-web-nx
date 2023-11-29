@@ -1,4 +1,4 @@
-import { ReactElement, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -20,7 +20,7 @@ const ContentWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 
 const VipLayout = ({ children }: Props) => {
@@ -28,7 +28,7 @@ const VipLayout = ({ children }: Props) => {
   const { isDesktopSize } = useRwd();
 
   const handleCloseDialog = useCallback(() => {
-    history.push("/")
+    history.push("/");
   }, []);
 
   if (isDesktopSize) {
@@ -37,10 +37,7 @@ const VipLayout = ({ children }: Props) => {
 
   return (
     <VipLayoutContainer>
-      <DialogHeader
-        handleClose={handleCloseDialog}
-        dialogHeaderTitle={"VIP"}
-      />
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={"VIP"} />
       <ContentWrapper>{children}</ContentWrapper>
       <BottomAppBar />
     </VipLayoutContainer>

@@ -1,4 +1,4 @@
-import { ReactElement, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const ProfileLayout = ({ children }: Props) => {
   const history = useHistory();

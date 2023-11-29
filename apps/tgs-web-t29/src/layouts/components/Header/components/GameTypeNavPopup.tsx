@@ -10,7 +10,7 @@ const popupStyles = css`
   top: ${DESKTOP_HEADER_HEIGHT};
   left: 0;
   background: rgba(255, 255, 255, 0.90);
-  z-index: 1;
+  z-index: 3;
   padding: 0 20px 20px 20px;
 `;
 
@@ -38,8 +38,6 @@ const GameTypeNavPopup = () => {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-
-  // console.log("isHovered", isHovered);
 
   return (
     <PopupBg

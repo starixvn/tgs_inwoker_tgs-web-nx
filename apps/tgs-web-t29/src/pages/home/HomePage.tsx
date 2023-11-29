@@ -103,7 +103,7 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {!activeGameType && !!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
+      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {!!general.banner.length && (
         <SliderWrapper>
           {isMobileSize && <Slider />}

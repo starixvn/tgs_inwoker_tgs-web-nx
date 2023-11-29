@@ -1,12 +1,15 @@
-import { ReactElement } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT, DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
+import {
+  BOTTOM_APP_BAR_HEIGHT,
+  DESKTOP_HEADER_HEIGHT,
+  MOBILE_HEADER_HEIGHT,
+} from "@/theme/constants";
 
 const HomeLayoutContainer = styled.div`
   position: relative;
@@ -43,7 +46,7 @@ const ChildrenWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const HomeLayout = ({ children }: Props) => {
   const { isMobileSize } = useRwd();
@@ -53,7 +56,6 @@ const HomeLayout = ({ children }: Props) => {
       <Header />
 
       <DashboardContainer>
-
         <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>

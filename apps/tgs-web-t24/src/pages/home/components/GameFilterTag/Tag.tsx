@@ -45,7 +45,7 @@ type Props = {
   text: string;
   isActive: boolean;
   isShowIcon: boolean;
-  icon: React.ReactElement | null;
+  icon: React.ReactNode | null;
   onClick: () => void;
 };
 

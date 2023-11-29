@@ -95,12 +95,12 @@ export function useAccountNavigations() {
         routePath: "/report",
       },
       {
-        key: NavCardKey.INBOX,
+        key: NavCardKey.MESSAGE_CENTER,
         navType: "route",
         label: i18n.t("wap.main.account.inbox"),
         iconUrl: inboxImg,
         iconSecondaryUrl: inboxSecondaryImg,
-        routePath: "/inbox",
+        routePath: "/message-center",
       },
       {
         key: NavCardKey.AFFILIATE,

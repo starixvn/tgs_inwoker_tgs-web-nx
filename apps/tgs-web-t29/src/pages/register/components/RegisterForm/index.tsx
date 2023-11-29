@@ -6,7 +6,6 @@ import Checkbox from "@/components/UI/Checkbox";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import FormikForm from "@/components/project/FormikForm";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
-import BrandLogo from "@/components/project/BrandLogo";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const VerifyAgeContainer = styled.div`
@@ -17,6 +16,17 @@ const VerifyAgeContainer = styled.div`
   display: flex;
   align-items: start;
 `;
+
+const LoginTitle = styled.div`
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 55px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 50px;
+  color: ${({ theme }) => theme.primary};
+`;
+
 
 const RegisterForm = () => {
   const {
@@ -30,7 +40,7 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      <BrandLogo style={{ marginBottom: "62px" }} />
+      <LoginTitle>{i18n.t("common.register")}</LoginTitle>
 
       <FormikForm
         formInputList={formInputConfigList}
