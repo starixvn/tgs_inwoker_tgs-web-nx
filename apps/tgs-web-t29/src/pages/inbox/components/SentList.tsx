@@ -51,13 +51,7 @@ const SentList = () => {
       {isLoading ? (
         <LoadingBlock size={30} style={{ marginTop: "90px" }} />
       ) : (
-        <SendListTable
-          sendList={sendList}
-          handleItemClick={handleSelectInboxItem}
-          page={page}
-          handleChangePage={handleChangePage}
-          totalCount={totalCount}
-        />
+        <SendListTable sendList={sendList} handleItemClick={handleSelectInboxItem} />
       )}
 
       <SendItemDetailDialog />

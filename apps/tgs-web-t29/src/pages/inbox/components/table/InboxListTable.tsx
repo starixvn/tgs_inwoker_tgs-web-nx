@@ -15,9 +15,6 @@ import {
 type Props = {
   inboxList: InboxItem[];
   handleItemClick: (id: string) => void;
-  page: number;
-  handleChangePage: (newPage: number) => void;
-  totalCount: number;
 };
 
 const InboxListTable = ({ inboxList, handleItemClick }: Props) => {

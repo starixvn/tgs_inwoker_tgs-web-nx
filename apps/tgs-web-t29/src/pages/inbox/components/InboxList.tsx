@@ -52,13 +52,7 @@ const InboxList = () => {
       {isLoading ? (
         <LoadingBlock size={30} style={{ marginTop: "90px" }} />
       ) : (
-        <InboxListTable
-          inboxList={inboxList}
-          handleItemClick={handleSelectInboxItem}
-          page={page}
-          handleChangePage={handleChangePage}
-          totalCount={totalCount}
-        />
+        <InboxListTable inboxList={inboxList} handleItemClick={handleSelectInboxItem} />
       )}
 
       <InboxItemDetailDialog />

@@ -13,7 +13,7 @@ import { media } from "@/theme/breakpoints";
 import { QRCodeButton } from "@/pages/affiliate/components/QRCodeButton";
 
 const AffiliateContainer = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,7 +54,7 @@ const QRCodeContainer = styled.div`
   padding: 16px;
   border-radius: 10px;
   margin-bottom: 18px;
-  border:1px solid ${({ theme }) => theme.blue10};
+  border: 1px solid ${({ theme }) => theme.blue10};
 `;
 const ActionButtonContainer = styled.div`
   width: 288px;

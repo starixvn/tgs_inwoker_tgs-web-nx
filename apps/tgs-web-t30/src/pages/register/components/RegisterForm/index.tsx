@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRegisterForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import Checkbox from "@/components/UI/Checkbox";
+import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import FormikForm from "@/components/project/FormikForm";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";

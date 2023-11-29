@@ -11,7 +11,7 @@ const ScrollableContainer = styled.div`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   gap: 12px;
-  
+
   ${media.sm} {
     margin: 0 auto;
     scroll-snap-type: unset;
@@ -21,7 +21,7 @@ const ScrollableContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
       background: ${(props) => props.theme.gray10};
     }
 
@@ -59,7 +59,7 @@ const LevelTableHeader = styled.div`
   height: 48px;
   padding: 12px 15px 12px 15px;
   background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507D;
+  border-bottom: 1px solid #23507d;
 
   ${media.sm} {
     height: 86px;
@@ -75,7 +75,7 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.gray50};
+  color: ${(props) => props.theme.text};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.6875rem;
@@ -87,7 +87,7 @@ const HeaderItem = styled.div`
     max-width: 136px;
     font-size: 1.125rem;
     margin: unset;
-    color: #23507D;
+    color: #23507d;
   }
 `;
 
@@ -101,9 +101,9 @@ const LevelTableBody = styled.div`
 
   ${media.sm} {
     background: ${(props) => props.theme.mainBackground};
-    
+
     > div:nth-child(even) {
-      background: rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.1);
     }
   }
 `;
@@ -114,7 +114,7 @@ const LevelTableRowWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507D;
+  border-bottom: 1px solid #23507d;
 
   ${media.sm} {
     border-bottom: unset;
@@ -142,7 +142,7 @@ const RowItem = styled.div`
     min-height: 67px;
     width: 166px;
     font-size: 1rem;
-    color: #23507D;
+    color: #23507d;
   }
 `;
 

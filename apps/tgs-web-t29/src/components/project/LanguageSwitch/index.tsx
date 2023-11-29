@@ -37,7 +37,7 @@ const StyledSelect = styled(MuiSelect)`
   & .MuiSelect-select {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.gray50} !important;
+    color: ${({ theme }) => theme.text} !important;
 
     & > img {
       margin-right: 10px;
@@ -114,7 +114,7 @@ const LanguageSwitch = (props: SelectProps) => {
 
             "& .MuiMenuItem-root": {
               padding: 2,
-              color: theme.gray50,
+              color: theme.text,
             },
           },
         },

@@ -87,7 +87,7 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
 
   .MuiInputBase-input {
     background: none;
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
     text-align: left;
   }
 
@@ -117,7 +117,7 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
 
   .MuiInputBase-input {
     background: ${({ theme }) => theme.mainBackground};
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
   }
 
   .MuiInput-underline:before,

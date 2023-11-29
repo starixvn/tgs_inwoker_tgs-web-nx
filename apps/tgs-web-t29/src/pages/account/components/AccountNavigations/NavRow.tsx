@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 import { NavItem } from "@/layouts/hooks/useGetNavItemList";
@@ -11,7 +10,7 @@ const NavCardContainer = styled.div`
   align-items: center;
   gap: 10px;
   padding: 10px 20px;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   font-weight: 400;
   cursor: pointer;
