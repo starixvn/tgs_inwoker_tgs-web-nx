@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import { GeneralService } from "@tgs-web-nx/core";
 import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
@@ -21,19 +22,18 @@ const Label = styled.h6`
 
 const ComposeForm = () => {
   const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
+  const [content, setContent] = useState("");
 
   const updateSubject = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setSubject(event.target.value);
   };
 
   const updateMessage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-    setMessage(event.target.value);
+    setContent(event.target.value);
   };
 
-  const handleSubmit = () => {
-    console.log(message);
-    console.log(subject);
+  const handleSubmit = async () => {
+    await GeneralService.ComposeInboxItem({ subject, content });
   };
 
   return (
@@ -57,7 +57,7 @@ const ComposeForm = () => {
       <InputWrapper>
         <Label>{i18n.t("yourmessage")}</Label>
         <TextArea
-          value={message}
+          value={content}
           onChange={updateMessage}
           placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("yourmessage")}`.toLowerCase()}`}
         />
