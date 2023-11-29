@@ -1,6 +1,7 @@
 export interface InboxItem {
   id: string;
   sender: string;
+  sentOn: string;
   subject: string;
   haveRead: boolean;
   replied: boolean;

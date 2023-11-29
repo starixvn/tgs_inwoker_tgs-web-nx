@@ -1,5 +1,5 @@
 import React from "react";
-import { InboxItem } from "@tgs-web-nx/types";
+import { InboxItemDetail } from "@tgs-web-nx/types";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
@@ -23,7 +23,7 @@ const Content = styled.div`
 `;
 
 type Props = {
-  inboxItemDetail: InboxItem;
+  inboxItemDetail: InboxItemDetail;
   handleSubmit: () => void;
 };
 

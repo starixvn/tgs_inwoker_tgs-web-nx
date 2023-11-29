@@ -1,4 +1,4 @@
-import { ReactElement, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { usePageName } from "@tgs-web-nx/core/features";
@@ -16,7 +16,7 @@ const ContentWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const DialogLayout = ({ children }: Props) => {
   const history = useHistory();

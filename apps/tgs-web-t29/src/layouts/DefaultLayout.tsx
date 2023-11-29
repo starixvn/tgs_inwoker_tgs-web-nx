@@ -1,10 +1,9 @@
-import { ReactElement } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { media } from "@/theme/breakpoints";
 import {
   BOTTOM_APP_BAR_HEIGHT,
@@ -49,7 +48,7 @@ const ChildrenWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const DefaultLayout = ({ children }: Props) => {
   const { isMobileSize } = useRwd();

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import DefaultLayout from "@/layouts/DefaultLayout";
@@ -19,7 +19,7 @@ const ContentWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const AuthDialogLayout = ({ children }: Props) => {
   const { isDesktopSize } = useRwd();

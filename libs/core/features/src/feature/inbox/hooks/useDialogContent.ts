@@ -8,10 +8,10 @@ export function useDialogContent(detailitem: InboxItemDetail | SendItemDetail) {
   const date = moment(sentOn).format("YYYY-MM-DD");
 
   const agoTome = useMemo(() => {
-    const currentDate = new Date();
-    const sentDate = new Date(sentOn);
+    const currentDate: Date = new Date();
+    const sentDate: Date = new Date(sentOn);
 
-    const timeDifference = currentDate - sentDate;
+    const timeDifference: number = currentDate.getTime() - sentDate.getTime();
     return Math.floor(timeDifference / (1000 * 60 * 60 * 24));
   }, [sentOn]);
 
