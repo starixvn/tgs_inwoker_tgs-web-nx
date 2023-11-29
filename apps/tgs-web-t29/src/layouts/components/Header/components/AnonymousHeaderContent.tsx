@@ -75,7 +75,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.register")}
       </RoundHeaderButton>
-      <HeaderLanguageSwitch />
+      {isDesktopSize && <HeaderLanguageSwitch />}
     </ButtonContainer>
   );
 };
