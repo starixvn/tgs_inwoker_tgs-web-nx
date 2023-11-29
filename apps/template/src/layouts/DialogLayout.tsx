@@ -1,4 +1,4 @@
-import { ReactElement, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -22,7 +22,7 @@ const ContentWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const DialogLayout = ({ children }: Props) => {
   const history = useHistory();

@@ -27,7 +27,7 @@ type Props = {
   isLoading: boolean;
   error: Error | null;
   buttonText: string;
-  children: React.ReactElement;
+  children: React.ReactNode;
   showErrorOn?: "bottom" | "input";
 };
 

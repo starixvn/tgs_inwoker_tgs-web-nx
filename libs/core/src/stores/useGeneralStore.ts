@@ -14,7 +14,6 @@ import {
   GetDepositAccumulateRouletteResultResDto,
   GetInvitationCodeResDto,
   GetLiveChatUrlResDto,
-  GetMemoV2ResDto,
   GetPlayerPromotionListResDto,
   GetPromotionDto,
   GetPromotionListResDto,
@@ -52,9 +51,6 @@ import {
   GETLIVECHATURL_BEGIN,
   GETLIVECHATURL_FAIL,
   GETLIVECHATURL_SUCCESS,
-  GETMEMOV2_BEGIN,
-  GETMEMOV2_FAIL,
-  GETMEMOV2_SUCCESS,
   GETPLAYERPROMOLIST_BEGIN,
   GETPLAYERPROMOLIST_FAILURE,
   GETPLAYERPROMOLIST_SUCCESS,
@@ -618,38 +614,6 @@ export function useGeneralStore() {
     } catch (error: any) {}
   }, []);
 
-  const getMemoV2 = useCallback(async () => {
-    dispatch({
-      type: GETMEMOV2_BEGIN,
-      loading: true,
-    });
-
-    try {
-      //  @ts-ignore
-      const response = (await GeneralService.GetMemoV2("", 0, 0)) as unknown as GetMemoV2ResDto;
-      if (response.IsSuccess) {
-        dispatch({
-          type: GETMEMOV2_SUCCESS,
-          payload: response,
-          loading: false,
-        });
-      } else {
-        dispatch({
-          type: GETMEMOV2_FAIL,
-          payload: response,
-          loading: false,
-        });
-      }
-      return response;
-    } catch (error: any) {
-      dispatch({
-        type: GETMEMOV2_FAIL,
-        payload: error,
-        loading: false,
-      });
-    }
-  }, []);
-
   const replyMemo = useCallback(async (id: string, message: string) => {
     dispatch({
       type: REPLYMEMO_BEGIN,
@@ -793,7 +757,6 @@ export function useGeneralStore() {
     getDepositAccumulateRouletteHistory,
     getBrandAllAgent,
     getAffiliateStatus,
-    getMemoV2,
     replyMemo,
     composeMemo,
     readMemo,

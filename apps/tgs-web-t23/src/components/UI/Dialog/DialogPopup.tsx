@@ -21,7 +21,7 @@ const ChildContainer = styled.div`
 type Props = {
   open: boolean;
   onClose: () => void;
-  children: React.ReactElement;
+  children: React.ReactNode;
 };
 
 const DialogPopup = ({ open, onClose, children }: Props) => {

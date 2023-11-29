@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import styled from "styled-components";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
@@ -41,7 +41,7 @@ const ChildrenWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const AccountDesktopLayout = ({ children }: Props) => {
   return (

@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
@@ -25,7 +25,7 @@ const ContentWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const DialogLayout = ({ children }: Props) => {
   const { isDesktopSize } = useRwd();

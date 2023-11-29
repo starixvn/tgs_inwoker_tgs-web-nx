@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
@@ -40,7 +40,7 @@ const ChildrenWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const DefaultLayout = ({ children }: Props) => {
   const { isDesktopSize } = useRwd();
