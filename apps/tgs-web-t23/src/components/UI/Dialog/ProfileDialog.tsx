@@ -57,6 +57,8 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
           style={{
             color: "white",
             transform: "scale(1.6)",
+            width: "20px",
+            height: "20px",
           }}
         />
       </CloseIconContainer>

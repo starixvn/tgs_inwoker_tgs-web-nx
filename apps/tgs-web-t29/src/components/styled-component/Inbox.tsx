@@ -30,18 +30,18 @@ export const TableBody = muiStyled(MuiTableBody)(({ theme }) => ({
 
 export const TableRow = muiStyled(MuiTableRow)(({ theme }) => ({})) as typeof MuiTableRow;
 
-export const TableCell = muiStyled(MuiTableCell)(({ theme }) => ({
-  borderBottom: `1px solid ${theme.palette.gray30}`,
-})) as typeof MuiTableCell;
+export const TableCell = muiStyled(MuiTableCell)(({ theme }) => ({})) as typeof MuiTableCell;
 
 export const TableSubjectCell = muiStyled(MuiTableCell)(({ theme }) => ({
   fontSize: "0.937rem",
   lineHeight: "1.078rem",
   fontWeight: 700,
+  borderBottom: `1px solid ${theme.palette.gray30}`,
 })) as typeof MuiTableCell;
 
 export const TableDateCell = muiStyled(MuiTableCell)(({ theme }) => ({
   fontSize: "0.937rem",
   lineHeight: "1.078rem",
   fontWeight: 400,
+  borderBottom: `1px solid ${theme.palette.gray30}`,
 })) as typeof MuiTableCell;

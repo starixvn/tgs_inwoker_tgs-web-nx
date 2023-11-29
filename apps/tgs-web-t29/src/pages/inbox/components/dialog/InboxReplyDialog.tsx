@@ -7,7 +7,13 @@ const InboxDetailDialog = () => {
   const { isReplyDialogOpen, handleCloseReplyDialog, inboxItemDetail, handleSubmitReply } =
     useInboxReplyContext();
   return (
-    <Dialog open={isReplyDialogOpen} onClose={handleCloseReplyDialog} fullWidth maxWidth={"sm"}>
+    <Dialog
+      open={isReplyDialogOpen}
+      onClose={handleCloseReplyDialog}
+      fullWidth
+      maxWidth={"sm"}
+      fullscreenOnMobile={false}
+    >
       {inboxItemDetail && (
         <InboxReplyContent
           inboxItemDetail={inboxItemDetail}
