@@ -12,7 +12,7 @@ export const TitleContainer = styled.div`
   white-space: nowrap;
 
   ${media.sm} {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.primary};
     margin-bottom: 26px;
   }
 `;

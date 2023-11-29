@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRegisterForm } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Checkbox from "@/components/UI/Checkbox";
 import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
 import FormikForm from "@/components/project/FormikForm";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
@@ -27,7 +29,6 @@ const LoginTitle = styled.div`
   color: ${({ theme }) => theme.primary};
 `;
 
-
 const RegisterForm = () => {
   const {
     formInputConfigList,
@@ -37,11 +38,15 @@ const RegisterForm = () => {
     isConfirmedAdult,
     handleClickConfirmAdult,
   } = useRegisterForm();
+  const { isMobileSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      <LoginTitle>{i18n.t("common.register")}</LoginTitle>
-
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "64px" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.register")}</LoginTitle>
+      )}
       <FormikForm
         formInputList={formInputConfigList}
         formik={formik}
