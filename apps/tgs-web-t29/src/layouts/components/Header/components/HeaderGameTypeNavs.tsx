@@ -32,7 +32,9 @@ const HeaderGameTypesContainer = styled.div`
   }
 `;
 
-const GameTypeNav = styled.div`
+const GameTypeNav = styled.div<{
+  $isActive: boolean;
+}>`
   flex-shrink: 0;
   font-size: 0.875rem;
   font-weight: 700;
@@ -43,6 +45,7 @@ const GameTypeNav = styled.div`
   color: ${({ theme }) => theme.gray50};
   cursor: pointer;
   position: relative;
+  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
 
   &:hover {
     background: ${({ theme }) => theme.gray10};
@@ -53,8 +56,18 @@ const GameTypeNav = styled.div`
   }
 `;
 
+const GameTypeGrid = styled.div`
+  align-self: center;
+  height: 18px;
+  display: flex;
+  border: 1px solid #cccccc;
+  margin: 0 5px;
+`;
+
 const HeaderGameTypeNavs = () => {
+  const { activeGameTypeKey } = useHomeGameContext();
   const { sideNavItemList } = useGetNavItemList();
+
   const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
 
   const handleMouseEnter = (gameType: GameTypeEnum) => {
@@ -73,14 +86,20 @@ const HeaderGameTypeNavs = () => {
 
   return (
     <HeaderGameTypesContainer>
-      {sideNavItemList.map((navItem) => {
+      {sideNavItemList.map((navItem, index) => {
         return (
-          <GameTypeNav key={navItem.key} onClick={() => handleClickNav(navItem)}
-            onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-            onMouseLeave={handleMouseLeave}
-          >
-            {navItem.label}
-          </GameTypeNav>
+          <>
+            <GameTypeNav
+              $isActive={navItem.key === activeGameTypeKey}
+              key={navItem.key}
+              onClick={() => handleClickNav(navItem)}
+              onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+              onMouseLeave={handleMouseLeave}
+            >
+              {navItem.label}
+            </GameTypeNav>
+            {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
+          </>
         );
       })}
     </HeaderGameTypesContainer>
