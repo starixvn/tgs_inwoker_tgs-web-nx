@@ -112,8 +112,6 @@ const HomePage = () => {
     const gameType = getGameTypeFromKey(urlGameType);
     if (gameType) {
       handleChangeGameType(gameType);
-    } else {
-      history.push("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
