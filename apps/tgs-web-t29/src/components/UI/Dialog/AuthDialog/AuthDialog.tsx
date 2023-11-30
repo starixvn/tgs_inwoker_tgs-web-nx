@@ -21,7 +21,11 @@ const ChildContainer = styled.div`
   max-height: 910px;
   background: ${({ theme }) => theme.mainBackground};
   z-index: 2;
-  overflow: scroll;
+  overflow: auto;
+
+  ::-webkit-scrollbar {
+    visibility: hidden;
+  }
 `;
 
 type Props = {

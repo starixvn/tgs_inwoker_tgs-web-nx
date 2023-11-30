@@ -19,7 +19,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.318rem;
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
   }
 
   & .value {

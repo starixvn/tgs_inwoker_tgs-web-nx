@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import FormikForm from "@/components/project/FormikForm";
-import Checkbox from "@/components/UI/Checkbox";
+import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/pages/login/components/LoginForm/RedirectToRegisterHint";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const FormSubContainer = styled.div`
   width: 100%;
@@ -19,7 +21,7 @@ const RememberMeContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   cursor: pointer;
   //margin: 8px 0;
@@ -53,10 +55,15 @@ const LoginForm = () => {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   } = useLoginForm();
+  const { isMobileSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      <LoginTitle>{i18n.t("common.login")}</LoginTitle>
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "72px" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.login")}</LoginTitle>
+      )}
       <FormikForm
         formInputList={formInputConfigList}
         formik={formik}

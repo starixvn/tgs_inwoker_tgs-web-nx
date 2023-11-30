@@ -25,7 +25,7 @@ const DialogContainer = styled(MuiDialog)`
 const ChildContainer = styled.div`
   width: 100%;
   height: auto;
-  overflow: scroll;
+  overflow: auto;
   padding: 21px 22px;
 `;
 

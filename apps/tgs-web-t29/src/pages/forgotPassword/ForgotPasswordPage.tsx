@@ -10,7 +10,7 @@ import RedirectToLoginHint from "@/pages/register/components/RegisterForm/Redire
 import BrandLogo from "@/components/project/BrandLogo";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 
-const TitleWrapper = styled.div``;
+
 
 const ForgotPasswordPage = () => {
   useUpdatePageName(i18n.t("forgotPassword.title"));
@@ -20,9 +20,7 @@ const ForgotPasswordPage = () => {
 
   return (
     <AuthFormContainer>
-      <TitleWrapper>
-        <BrandLogo/>
-      </TitleWrapper>
+      <BrandLogo style={{ marginBottom: "64px" }} />
 
       {/*@ts-ignore*/}
       <ForgotPasswordPrev alert={alert} history={history} />

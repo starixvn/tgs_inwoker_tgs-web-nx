@@ -12,11 +12,18 @@ declare module "@mui/material/styles/createPalette" {
     white: string;
     black: string;
     yellow: string;
+    gray: string;
+    lighterGray: string;
+    lightGray: string;
     tertiary: string;
-    mainGradient: string;
     mainBackground: string;
     mainDarkBackground: string;
     mainLightBackground: string;
+    primaryGradient: string;
+    secondaryGradient: string;
+    primaryMix: string;
+    secondaryMix: string;
+    tagColor: string;
   }
 }
 
@@ -45,16 +52,23 @@ const muiTheme = createTheme({
       disabled: theme.white,
     },
     text: {
-      primary: theme.white,
+      primary: theme.text,
       secondary: theme.gray,
     },
     white: theme.white,
-    yellow: "#f4bd29",
     black: theme.black,
-    mainGradient: theme.secondaryGradient,
+    yellow: theme.yellow,
+    gray: theme.gray,
+    lighterGray: theme.lighterGray,
+    darkGray: theme.darkGray,
+    lightGray: theme.lightGray,
     mainBackground: theme.mainBackground,
     mainDarkBackground: theme.mainDarkBackground,
-    mainLightBackground: theme.mainLightBackground,
+    primaryGradient: theme.primaryGradient,
+    secondaryGradient: theme.secondaryGradient,
+    primaryMix: theme.primaryMix,
+    secondaryMix: theme.secondaryMix,
+    tagColor: theme.tagColor,
   },
   typography: {
     fontFamily: fontFamily,

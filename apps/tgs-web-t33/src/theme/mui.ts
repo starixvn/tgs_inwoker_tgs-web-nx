@@ -55,8 +55,9 @@ const muiTheme = createTheme({
     gray50: theme.gray50,
     gray60: theme.gray60,
     text: {
-      primary: theme.white,
+      primary: theme.text,
       secondary: theme.gray20,
+      disabled: theme.gray20,
     },
   },
   typography: {

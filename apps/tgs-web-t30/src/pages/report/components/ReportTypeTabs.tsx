@@ -34,7 +34,7 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
             onClick={() => handleButtonClick(index)}
             sx={{
               color: theme.white,
-              background: isSelected ? theme.gradient : theme.gray40,
+              background: isSelected ? theme.greenGradient : theme.mainLightBackground,
               whiteSpace: {
                 sx: "wrap",
                 sm: "no-wrap",

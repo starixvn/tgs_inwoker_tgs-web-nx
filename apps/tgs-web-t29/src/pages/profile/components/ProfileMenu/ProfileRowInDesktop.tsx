@@ -23,7 +23,7 @@ const ProfileRowLabel = styled.div`
   font-weight: 400;
 `;
 const ProfileStatus = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 0.937rem;
   font-weight: 400;
 `;
@@ -50,7 +50,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         variant={isVerified ? "contained" : "outlined"}
         sx={{
           fontSize: "0.875rem",
-          color: isVerified ? theme.white : theme.gray50,
+          color: isVerified ? theme.white : theme.text,
           background: isVerified ? theme.primary : theme.blue20,
           border: "none",
           width: "150px",

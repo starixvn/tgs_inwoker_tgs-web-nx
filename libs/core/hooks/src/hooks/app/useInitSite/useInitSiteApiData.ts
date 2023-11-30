@@ -24,13 +24,7 @@ export function useInitSiteApiData() {
     getAffiliateStatus,
     getPromotionRouletteCount,
   } = useGeneralStore();
-  const {
-    getDepositMethod,
-    getWithdrawalChannel,
-    getBalanceList,
-    getBankCardList,
-    getAutoTransferStatus,
-  } = useWalletStore();
+  const { getBalanceList } = useWalletStore();
   const { account, checkTokenIsValid, getAccountProfile } = useAccountStore();
   const { getMarquee, getAnnouncement } = useUiStore();
   const { getMessages } = useInboxStore();
@@ -178,8 +172,6 @@ export function useInitSiteApiData() {
     getBalanceList();
     getMessages(i18n.language, 1, 99);
     getPromotionRouletteCount();
-
-    getAutoTransferStatus();
   };
 
   const onFocus = () => {

@@ -19,6 +19,8 @@ export const imageMap: { [key in string]: string } = {
   "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.png`,
   "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
   "tgl-PH": import.meta.env.BASE_URL + `assets/images/language/tgl-PH.png`,
+  "hi-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
+  "ta-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
 };
 
 const StyledSelect = styled(MuiSelect)`
@@ -37,7 +39,7 @@ const StyledSelect = styled(MuiSelect)`
   & .MuiSelect-select {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.gray50} !important;
+    color: ${({ theme }) => theme.text} !important;
 
     & > img {
       margin-right: 10px;
@@ -114,7 +116,7 @@ const LanguageSwitch = (props: SelectProps) => {
 
             "& .MuiMenuItem-root": {
               padding: 2,
-              color: theme.gray50,
+              color: theme.text,
             },
           },
         },

@@ -8,7 +8,7 @@ import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import InboxPage from "@/pages/messageCenter/InboxPage";
+import MessageCenterPage from "@/pages/messageCenter/MessageCenterPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
 import MaintenancePage from "@/pages/MaintenancePage";
@@ -29,6 +29,7 @@ import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
 import VipLayout from "@/layouts/VipLayout";
+import InboxPage from "@/pages/inbox/InboxPage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -227,6 +228,11 @@ const routes: RouteType[] = [
   //
   {
     path: "/message-center",
+    component: MessageCenterPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/inbox",
     component: InboxPage,
     layout: DialogLayout,
   },

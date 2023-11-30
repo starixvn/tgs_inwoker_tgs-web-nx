@@ -11,13 +11,13 @@ declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
     yellow: string;
-    mainBackground: string
-    gray5: string
-    gray10: string
-    gray40: string
-    gray70: string
-    gray90: string
-    gray95: string
+    mainBackground: string;
+    gray5: string;
+    gray10: string;
+    gray40: string;
+    gray70: string;
+    gray90: string;
+    gray95: string;
   }
 }
 
@@ -43,7 +43,7 @@ const muiTheme = createTheme({
       disabled: theme.white,
     },
     text: {
-      primary: theme.white,
+      primary: theme.text,
       secondary: theme.gray5,
     },
     white: theme.white,

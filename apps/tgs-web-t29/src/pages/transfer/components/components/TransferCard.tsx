@@ -8,7 +8,7 @@ import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
   background: ${({ theme }) => theme.blue20};
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   padding: 12px 15px;
   border-radius: 10px;
 

@@ -20,10 +20,10 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   height: 28px;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.gradient : theme.gray40;
+    return $isSelected ? theme.greenGradient : theme.mainLightBackground;
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.white : theme.gray20;
+    return $isSelected ? theme.white : theme.dae3;
   }};
   padding: 6.5px;
   border-radius: 4px;

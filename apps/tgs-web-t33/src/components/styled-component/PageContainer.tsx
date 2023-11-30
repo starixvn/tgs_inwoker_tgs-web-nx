@@ -5,14 +5,14 @@ export const PageContainer = styled.div`
   padding: 22px;
   max-width: calc(961px + 22px * 2);
   flex: 1;
-  margin: auto;
+  margin: 0 auto;
 `;
 
 export const TransferPageContainer = styled.div`
   padding: 22px;
   max-width: calc(961px + 22px * 2);
   flex: 1;
-  margin: auto;
+  margin: 0 auto;
 
   & .MuiButton-fullWidth {
     max-width: 242px !important;

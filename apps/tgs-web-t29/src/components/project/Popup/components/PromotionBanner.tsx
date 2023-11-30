@@ -49,11 +49,11 @@ const Title = styled.h2`
 `;
 
 const Description = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem !important;
   font-weight: 400;
   max-height: 100px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   ${media.sm} {
     font-size: 1.5rem;

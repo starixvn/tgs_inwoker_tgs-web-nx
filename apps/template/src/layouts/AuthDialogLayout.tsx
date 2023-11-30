@@ -9,7 +9,7 @@ const DialogLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const ContentWrapper = styled.div`
@@ -47,6 +47,8 @@ const AuthDialogLayout = ({ children }: Props) => {
           style={{
             color: "white",
             transform: "scale(1.6)",
+            width: "22px",
+            height: "22px",
           }}
         />
       </CloseIconContainer>

@@ -2,6 +2,7 @@ export const colorListT33 = {
   primary: "#79C000",
   secondary: "#0055FE",
   gradient: "linear-gradient(180deg, #0587F5 0%, #0057A0 100%);",
+  text: "#FFFFFF",
   red: "#FF2546",
   white: "#FFFFFF",
   black: "#000000",

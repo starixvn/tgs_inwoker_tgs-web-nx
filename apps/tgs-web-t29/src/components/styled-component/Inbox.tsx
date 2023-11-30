@@ -16,32 +16,32 @@ export const TableHead = muiStyled(MuiTableHead)(({ theme }) => ({
   "& .MuiTableCell-root": {
     fontSize: "0.812rem",
     lineHeight: "0.934rem",
-    color: `${theme.palette.gray50} !important`,
+    color: `${theme.palette.text.primary} !important`,
     borderBottom: "none",
   },
 })) as typeof MuiTableHead;
 
 export const TableBody = muiStyled(MuiTableBody)(({ theme }) => ({
   "& .MuiTableCell-root": {
-    color: `${theme.palette.gray50} !important`,
+    color: `${theme.palette.text.primary} !important`,
     cursor: "pointer",
   },
 })) as typeof MuiTableBody;
 
 export const TableRow = muiStyled(MuiTableRow)(({ theme }) => ({})) as typeof MuiTableRow;
 
-export const TableCell = muiStyled(MuiTableCell)(({ theme }) => ({
-  borderBottom: `1px solid ${theme.palette.gray30}`,
-})) as typeof MuiTableCell;
+export const TableCell = muiStyled(MuiTableCell)(({ theme }) => ({})) as typeof MuiTableCell;
 
 export const TableSubjectCell = muiStyled(MuiTableCell)(({ theme }) => ({
   fontSize: "0.937rem",
   lineHeight: "1.078rem",
   fontWeight: 700,
+  borderBottom: `1px solid ${theme.palette.gray30}`,
 })) as typeof MuiTableCell;
 
 export const TableDateCell = muiStyled(MuiTableCell)(({ theme }) => ({
   fontSize: "0.937rem",
   lineHeight: "1.078rem",
   fontWeight: 400,
+  borderBottom: `1px solid ${theme.palette.gray30}`,
 })) as typeof MuiTableCell;

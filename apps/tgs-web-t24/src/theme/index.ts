@@ -15,6 +15,7 @@ export const gray = {
 export const colorListT24 = {
   primary: "#F12C4C",
   secondary: "#7135F3",
+  text: "#FFFFFF",
   white: "#FFFFFF",
   yellow: "#FFD723",
   black: "#000000",

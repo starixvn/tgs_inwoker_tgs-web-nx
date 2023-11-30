@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FormikValues } from "formik";
 import { useHistory } from "react-router-dom";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -7,8 +7,8 @@ import { useAuthDialog } from "../useAuthDialog";
 import { useGenerateLoginFormik } from "./hooks/useGenerateLoginFormik";
 
 export function useLoginForm() {
-  const { loginState, handleLogin } = useAuth();
-  const [needToRemember, setNeedToRemember] = useState(false);
+  const { loginState, handleLogin, clearLoginError } = useAuth();
+  const [needToRemember, setNeedToRemember] = useState<boolean>(getNeedToRememberInitValue());
   const { handleToggleLoginDialog, handleToggleForgotPasswordDialog } = useAuthDialog();
   const { isDesktopSize } = useRwd();
   const handleClickNeedToRemember = () => {
@@ -47,6 +47,12 @@ export function useLoginForm() {
     history.push("/forgot-password");
   };
 
+  useEffect(() => {
+    return () => {
+      clearLoginError();
+    };
+  }, []);
+
   return {
     formInputConfigList,
     formik,
@@ -56,4 +62,10 @@ export function useLoginForm() {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   };
+}
+
+function getNeedToRememberInitValue(): boolean {
+  const remember = localStorage.getItem("remember");
+
+  return remember === "true";
 }

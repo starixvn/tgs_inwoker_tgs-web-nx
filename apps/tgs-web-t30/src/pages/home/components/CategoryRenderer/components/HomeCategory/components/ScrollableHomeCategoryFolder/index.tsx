@@ -35,7 +35,7 @@ const CategoryContent = styled.div`
   width: 100%;
   max-height: 150px;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   box-sizing: border-box;
   display: flex;
@@ -51,7 +51,7 @@ const CategoryContent = styled.div`
     scroll-snap-type: unset;
     height: 20.9%;
     padding-bottom: 5px;
-    
+
     &::-webkit-scrollbar {
       height: 12px;
       background-color: ${({ theme }) => theme.gray30};

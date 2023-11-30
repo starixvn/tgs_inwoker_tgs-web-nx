@@ -105,7 +105,7 @@ const GameFilterTag = () => {
             {tagCmp &&
               tagCmp.iconComponent &&
               React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.gray50,
+                $color: isActive ? theme.primary : theme.text,
               })}
           </Tag>
         );
@@ -137,7 +137,7 @@ const GameFilterTag = () => {
             {tagCmp &&
               tagCmp.iconComponent &&
               React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.gray50,
+                $color: isActive ? theme.primary : theme.text,
               })}
           </Tag>
         );

@@ -38,6 +38,8 @@ const SideMenuHeader = () => {
           style={{
             color: "white",
             transform: "scale(1.6)",
+            width: "20px",
+            height: "20px",
           }}
         />
       </CloseIconContainer>

@@ -23,7 +23,7 @@ const ButtonContainer = styled.div`
 const UsernameContainer = styled.div`
   font-size: 0.875rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 
   ${media.sm} {
     color: ${({ theme }) => theme.white};

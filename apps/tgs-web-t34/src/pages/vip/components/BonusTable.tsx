@@ -8,7 +8,7 @@ const ScrollableContainer = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -16,7 +16,7 @@ const ScrollableContainer = styled.div`
   color: ${(props) => props.theme.white};
   box-sizing: border-box;
   gap: 12px;
-  
+
   ${media.sm} {
     margin: 0 auto;
     scroll-snap-type: unset;

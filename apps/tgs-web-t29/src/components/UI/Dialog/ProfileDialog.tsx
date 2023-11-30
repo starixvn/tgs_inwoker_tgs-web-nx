@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePageName } from "@tgs-web-nx/core/features";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { theme } from "@/theme";
 
@@ -30,7 +31,15 @@ const CloseIconContainer = styled.div`
 const ChildContainer = styled.div`
   width: 100%;
   height: auto;
-  overflow: scroll;
+  overflow: auto;
+  padding: 12px 24px;
+`;
+
+const ProfileDialogTitle = styled.div`
+  margin: 0 auto 18px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.blue50};
 `;
 
 type Props = {
@@ -41,10 +50,15 @@ type Props = {
 } & DialogProps;
 const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
   const { isDesktopSize } = useRwd();
+  const { pageName } = usePageName();
 
   return (
     <StyledDialog
       sx={{
+        "& .MuiPaper-root": {
+          padding: "28px 61px",
+          maxWidth: "550px",
+        },
         "& .MuiBackdrop-root": {
           backgroundColor: "rgba(0,0,0,0.8)",
         },
@@ -61,12 +75,13 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
         <CloseIcon
           onClick={onClose}
           style={{
-            color: theme.gray50,
+            color: theme.text,
             width: "20px",
             height: "20px",
           }}
         />
       </CloseIconContainer>
+      <ProfileDialogTitle>{pageName}</ProfileDialogTitle>
 
       <ChildContainer>{children}</ChildContainer>
     </StyledDialog>

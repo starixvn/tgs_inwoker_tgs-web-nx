@@ -19,12 +19,12 @@ const CardContainer = styled.div`
 const EmptyCardTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
 
 const EmptyCardDesc = styled.div`
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
 
 const IconContainer = styled.div`

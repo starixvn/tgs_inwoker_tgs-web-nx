@@ -73,7 +73,6 @@ const NameContainer = styled.div`
 const HeaderLanguageSwitch = (props: SelectProps) => {
   const { general } = useGeneralStore();
   const languageList = general.brandLanguage;
-
   const [currentLanguage, setCurrentLanguage] = useState<BrandLanguage>({
     culturecode: i18n.language,
   });
@@ -106,7 +105,7 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
 
             "& .MuiMenuItem-root": {
               padding: 2,
-              color: theme.gray50,
+              color: theme.text,
             },
           },
         },

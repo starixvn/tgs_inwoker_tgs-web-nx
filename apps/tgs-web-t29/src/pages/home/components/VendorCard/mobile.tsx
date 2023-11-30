@@ -51,7 +51,7 @@ const VenderNameInfo = styled.div`
 `;
 
 const VenderName = styled.div`
-  color: ${(props) => props.theme.gray50};
+  color: ${(props) => props.theme.text};
   font-size: 1rem;
   font-weight: 700;
   text-align: flex-start;
@@ -84,7 +84,14 @@ const MaintenanceIcon = styled.img`
   height: 57px;
 `;
 
-const MobileVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
+const MobileVendorCard = ({
+  bgUrl,
+  imageUrl,
+  venderName,
+  venderLogoUrl,
+  launchGame,
+  status,
+}: Props) => {
   return (
     <VendorCardBg $bgUrl={bgUrl} onClick={launchGame}>
       <VenderNameInfo>

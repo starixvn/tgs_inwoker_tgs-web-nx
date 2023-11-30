@@ -8,6 +8,7 @@ import { RoundHeaderButton } from "@/layouts/components/Header/components/Header
 import { theme } from "@/theme";
 import iconLogin from "@/assets/t29/images/header/icon-login.svg";
 import Icon from "@/components/project/Icon";
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -74,6 +75,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.register")}
       </RoundHeaderButton>
+      {isDesktopSize && <HeaderLanguageSwitch />}
     </ButtonContainer>
   );
 };

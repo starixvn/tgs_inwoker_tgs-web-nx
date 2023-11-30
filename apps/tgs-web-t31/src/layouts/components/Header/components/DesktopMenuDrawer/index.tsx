@@ -37,7 +37,7 @@ const HeaderContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-bottom: 20px;
 
   &::-webkit-scrollbar {

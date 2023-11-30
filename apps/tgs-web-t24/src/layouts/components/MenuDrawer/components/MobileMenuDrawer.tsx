@@ -23,7 +23,7 @@ const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   width: 100%;
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const ContentWrapper = styled.div`

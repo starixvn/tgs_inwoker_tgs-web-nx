@@ -1,10 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Common } from "@tgs-web-nx/utils";
-import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
-import cardBackground from "@/assets/t23/images/account/infoCard/card-background.png";
-import VipMedal from "@/components/project/VipMedal";
-import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
+import { useAccountStore } from "@tgs-web-nx/core";
 import BalanceTracker from "@/components/project/BalanceTracker";
 
 const InfoCardContainer = styled.div`
@@ -12,7 +8,7 @@ const InfoCardContainer = styled.div`
   width: 100%;
   height: 105px;
   padding: 15.5px;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 
   display: flex;
   align-items: center;

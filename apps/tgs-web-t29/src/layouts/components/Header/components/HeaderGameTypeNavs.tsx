@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
@@ -11,7 +12,7 @@ const HeaderGameTypesContainer = styled.div`
   flex-wrap: nowrap;
   align-items: stretch;
   height: 100%;
-  /* overflow-x: scroll; */
+  /* overflow-x: auto; */
   position: relative;
 
   &::-webkit-scrollbar {
@@ -42,11 +43,11 @@ const GameTypeNav = styled.div<{
   display: flex;
   align-items: center;
   padding: 5px;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   cursor: pointer;
   position: relative;
   border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
-
+  color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
   &:hover {
     background: ${({ theme }) => theme.gray10};
   }
@@ -64,10 +65,13 @@ const GameTypeGrid = styled.div`
   margin: 0 5px;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+`;
+
 const HeaderGameTypeNavs = () => {
   const { activeGameTypeKey } = useHomeGameContext();
   const { sideNavItemList } = useGetNavItemList();
-
   const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
 
   const handleMouseEnter = (gameType: GameTypeEnum) => {
@@ -88,10 +92,9 @@ const HeaderGameTypeNavs = () => {
     <HeaderGameTypesContainer>
       {sideNavItemList.map((navItem, index) => {
         return (
-          <>
+          <Wrapper key={navItem.key}>
             <GameTypeNav
               $isActive={navItem.key === activeGameTypeKey}
-              key={navItem.key}
               onClick={() => handleClickNav(navItem)}
               onMouseEnter={() => handleMouseEnter(navItem.gameType)}
               onMouseLeave={handleMouseLeave}
@@ -99,7 +102,7 @@ const HeaderGameTypeNavs = () => {
               {navItem.label}
             </GameTypeNav>
             {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
-          </>
+          </Wrapper>
         );
       })}
     </HeaderGameTypesContainer>

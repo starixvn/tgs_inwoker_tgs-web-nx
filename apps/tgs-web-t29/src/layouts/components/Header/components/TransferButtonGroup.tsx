@@ -14,7 +14,7 @@ const TransferButtonGroup = () => {
   const history = useHistory();
 
   const handleGotoTransfer = useCallback(() => {
-    history.push("/withdrawal");
+    history.push("/transfer");
   }, []);
 
   const handleGotoWithdrawal = useCallback(() => {

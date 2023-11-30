@@ -29,6 +29,7 @@ import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import ProfileLayout from "@/layouts/ProfileLayout";
 import PromotionLayout from "@/layouts/PromotionLayout";
+import InboxPage from "@/pages/inbox/InboxPage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -226,8 +227,13 @@ const routes: RouteType[] = [
   },
   //
   {
-    path: "/inbox",
+    path: "/message-center",
     component: MessageCenterPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/inbox",
+    component: InboxPage,
     layout: DialogLayout,
   },
   // {

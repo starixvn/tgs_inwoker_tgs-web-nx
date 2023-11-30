@@ -1,6 +1,7 @@
 export const colorListT31 = {
   primary: "#052819",
   secondary: "#E5D82D",
+  text: "#FFFFFF",
   primaryGradient:
     "linear-gradient(135deg, #048E6A 0%, #0A8A64 9.09%, #0E865E 18.18%, #128259 27.27%, #157E53 36.36%, #1E8653 45.45%, #288D52 54.55%, #339551 63.64%, #4AAA53 72.73%, #64BF54 81.82%, #80D452 90.91%, #9EE84F 100%)",
   secondaryGradient:

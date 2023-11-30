@@ -18,8 +18,14 @@ const InboxItemDetailDialog = () => {
   };
 
   return (
-    <Dialog open={isDetailDialogOpen} onClose={handleCloseDetailDialog} fullWidth maxWidth={"sm"}>
-      {isLoading && <LoadingBlock size={30} />}
+    <Dialog
+      open={isDetailDialogOpen}
+      onClose={handleCloseDetailDialog}
+      fullWidth
+      maxWidth={"sm"}
+      fullscreenOnMobile={false}
+    >
+      {isLoading && <LoadingBlock size={30} style={{ minHeight: "160px" }} />}
 
       {!isLoading && !!inboxItemDetail && !error && (
         <InboxDialogContent

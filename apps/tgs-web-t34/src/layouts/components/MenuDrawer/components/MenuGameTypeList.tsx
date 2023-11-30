@@ -7,7 +7,7 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 const TabContainer = styled.div`
   background: ${({ theme }) => theme.black};
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
   display: flex;
   gap: 5px;
 `;

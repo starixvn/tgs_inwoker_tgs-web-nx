@@ -35,6 +35,7 @@ import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
+import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -52,11 +53,17 @@ const routes: RouteType[] = [
     isAnonymousAllowed: true,
   },
   {
-    path: "/main/:page",
+    path: "/main/:gameType",
     component: MainPage,
     layout: HomeLayout,
     isAnonymousAllowed: true,
   },
+  // {
+  //   path: "/main/:page",
+  //   component: MainPage,
+  //   layout: HomeLayout,
+  //   isAnonymousAllowed: true,
+  // },
   {
     path: "/account",
     component: AccountPage,

@@ -9,7 +9,7 @@ import VipSingleItem, { VipCardItem } from "@/pages/vip/components/VipSingleItem
 const VipScrollableContainer = styled.div`
   width: 100%;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 20px;
   margin: 0 20px;

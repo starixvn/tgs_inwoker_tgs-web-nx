@@ -18,7 +18,7 @@ const CardContainer = styled.div`
 `;
 
 const CardTitle = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   padding-bottom: 10px;
   font-size: 1.25rem;

@@ -2,6 +2,8 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { SendItem } from "@tgs-web-nx/types";
 import moment from "moment";
+import { Pagination, TablePagination } from "@mui/material";
+import { INBOX_TABLE_ROW_COUNT } from "@tgs-web-nx/core/features";
 import {
   Table,
   TableBody,
@@ -15,9 +17,6 @@ import {
 type Props = {
   sendList: SendItem[];
   handleItemClick: (id: string) => void;
-  page: number;
-  handleChangePage: (newPage: number) => void;
-  totalCount: number;
 };
 
 const SendListTable = ({ sendList, handleItemClick }: Props) => {

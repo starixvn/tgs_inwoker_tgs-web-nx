@@ -28,7 +28,7 @@ const CloseIconContainer = styled.div`
 const ChildContainer = styled.div`
   width: 100%;
   height: auto;
-  overflow: scroll;
+  overflow: auto;
   padding: 21px 22px;
 `;
 
@@ -37,13 +37,15 @@ type Props = {
   onClose: () => void;
   children: React.ReactNode;
   dialogHeaderTitle?: string;
+  fullscreenOnMobile?: boolean;
 } & DialogProps;
-const Dialog = ({ open, onClose, children, ...others }: Props) => {
+
+const Dialog = ({ open, onClose, children, fullscreenOnMobile = true, ...others }: Props) => {
   const { isDesktopSize } = useRwd();
 
   return (
     <StyledDialog
-      fullScreen={!isDesktopSize}
+      fullScreen={!isDesktopSize && !!fullscreenOnMobile}
       open={open}
       TransitionComponent={UpTransition}
       onClose={onClose}
@@ -55,6 +57,8 @@ const Dialog = ({ open, onClose, children, ...others }: Props) => {
           style={{
             color: "white",
             transform: "scale(1.6)",
+            width: "20px",
+            height: "20px",
           }}
         />
       </CloseIconContainer>

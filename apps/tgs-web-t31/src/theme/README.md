@@ -43,7 +43,7 @@ export const Button = muiStyled(MuiButton)(({ theme }) => ({
   fontWeight: 500,
   "&:disabled": {
     background: theme.palette.tertiary.dark,
-    color: theme.palette.common.white,
+    color: theme.palette.white,
   },
 
   // HERE!!!!!!!!!

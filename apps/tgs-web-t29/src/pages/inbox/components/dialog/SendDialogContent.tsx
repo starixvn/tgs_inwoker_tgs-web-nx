@@ -14,12 +14,12 @@ const Title = styled.div`
 `;
 const Info = styled.div`
   font-size: 0.812rem;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 18px;
 `;
 const Content = styled.div`
   font-size: 1rem;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 18px;
 `;
 
