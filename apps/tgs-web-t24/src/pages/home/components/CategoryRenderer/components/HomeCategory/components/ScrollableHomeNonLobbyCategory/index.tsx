@@ -32,7 +32,7 @@ const CategoryTitle = styled.div`
 const CategoryContent = styled.div`
   width: 100%;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   box-sizing: border-box;
   padding: 12px 0px 12px 20px;

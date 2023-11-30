@@ -52,7 +52,7 @@ const Description = styled.div`
   font-size: 0.875rem !important;
   font-weight: 500;
   max-height: 100px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   ${media.sm} {
     font-size: 1.5rem;

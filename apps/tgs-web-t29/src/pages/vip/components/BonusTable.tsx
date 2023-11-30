@@ -7,7 +7,7 @@ const ScrollableContainer = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;

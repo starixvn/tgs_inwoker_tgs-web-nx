@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   width: calc(100% - 78px);
   flex-shrink: 0;

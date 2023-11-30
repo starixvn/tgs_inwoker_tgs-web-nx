@@ -7,7 +7,7 @@ import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const TabContainer = styled.div`
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
