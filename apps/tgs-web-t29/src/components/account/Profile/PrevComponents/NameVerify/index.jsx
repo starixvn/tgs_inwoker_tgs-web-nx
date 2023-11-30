@@ -1,9 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
-import { accountAction, RESET_ACCOUNTRESULT, UPDATE_INFO } from "@tgs-web-nx/core";
+import { accountAction, AccountService, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
 import BaseProfile from "../BaseProfile";
 import Default from "./default";
 import Approved from "./approved";
@@ -138,12 +137,11 @@ class NameVerify extends BaseProfile {
 
     this.showLoading(true);
     try {
-      // const response = await AccountService.UpdateMemberNameAndIC(
-      //   memberName,
-      //   memberCard,
-      //   config.features.ICVerificationUpload ? icUpload[0] : "",
-      // );
-      const response = { IsSuccess: true };
+      const response = await AccountService.UpdateMemberNameAndIC(
+        memberName,
+        memberCard,
+        config.features.ICVerificationUpload ? icUpload[0] : "",
+      );
       if (response.IsSuccess) {
         this.updateInfo({
           member_name: memberName,
@@ -215,7 +213,6 @@ class NameVerify extends BaseProfile {
   };
 
   sceneSwitcher = (scene) => {
-    console.log(scene);
     switch (scene) {
       case "waiting-verification":
         return <WaitingVerification {...this.commonprops} />;
@@ -288,12 +285,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: RESET_ACCOUNTRESULT,
       }),
-    storeUpdateInfo: (payload) => {
-      dispatch({
-        type: UPDATE_INFO,
-        payload,
-      });
-    },
   };
 };
 
