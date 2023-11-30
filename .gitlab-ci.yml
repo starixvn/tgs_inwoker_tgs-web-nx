@@ -85,28 +85,22 @@ docker-build-prod:
       else 
         echo "No Deployment Brand and Domain"
       fi
-  rules:
-    - exists:
-        - $app
         
 deploy-domain-dev:
   <<: *deploy-domain-template
-  rules:
-    - exists:
-        - $app
+  only: 
+    - dev
 
 deploy-domain-staging:
   <<: *deploy-domain-template
-  rules:
-    - exists:
-        - $app
+  only: 
+    - staging
 
 deploy-domain-prod:
   <<: *deploy-domain-template
-  rules:
-    - exists:
-        - $app
-  
+  only: 
+    - master
+    
 deploy-dev:
   stage: deploy
   needs:
