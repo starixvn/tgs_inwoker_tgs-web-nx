@@ -1,0 +1,279 @@
+variables:
+  dev_tgs_web_t29: lobby-t29
+  staging_tgs_web_t29: lobby-t29
+  prod_tgs_web_t29: lobby-t29
+  
+stages:
+  - docker-build
+  - deploy-domain
+  - deploy
+
+docker-build-dev:
+  stage: docker-build
+  before_script:
+    - docker image prune -a -f
+  script:
+    - |
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      yarn add -D @nx/react
+      
+      if [[ $app != "" ]]; then 
+          yarn docker-build:single $app
+      else 
+          yarn docker-build:dev  
+      fi
+     
+      image_count=$(docker image ls | wc  -l)
+      
+      if [[  $image_count != "1" ]]; then
+          docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
+          image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+
+          for image in $image_list; do
+              echo "image=$image"
+              docker push $image
+          done
+      fi 
+  artifacts:
+    paths:
+    - image.txt
+  only: 
+    - develop
+
+docker-build-staging:
+  stage: docker-build
+  before_script:
+    - docker image prune -a -f
+  script:
+    - |
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      yarn add -D @nx/react
+      
+      if [[ $app != "" ]]; then 
+          yarn docker-build:single $app
+      else 
+          yarn docker-build:staging  
+      fi
+     
+      image_count=$(docker image ls | wc  -l)
+      
+      if [[  $image_count != "1" ]]; then
+          docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
+          image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+
+          for image in $image_list; do
+              echo "image=$image"
+              docker push $image
+          done
+      fi 
+  artifacts:
+    paths:
+    - image.txt
+  only: 
+    - release/current
+    
+docker-build-prod:
+  stage: docker-build
+  before_script:
+    - docker image prune -a -f
+  script:
+    - |
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      yarn add -D @nx/react
+      
+      if [[ $app != "" ]]; then 
+          yarn docker-build:single $app
+      else 
+          yarn docker-build:prod  
+      fi
+     
+      image_count=$(docker image ls | wc  -l)
+      
+      if [[  $image_count != "1" ]]; then
+          docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
+          image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+
+          for image in $image_list; do
+              echo "image=$image"
+              docker push $image
+          done
+      fi 
+  artifacts:
+    paths:
+    - image.txt
+  only: 
+    - master  
+    
+deploy-domain-dev:
+  stage: deploy-domain
+  variables:
+    tgs_env: dev
+  before_script:
+    - export KUBECONFIG=$kubeconfig_dev
+  needs:
+  - job: docker-build-dev
+  script:
+    - |
+      echo "domain=$domain"
+      echo "brand=$brand"
+      echo "tgs_env=$tgs_env"
+      
+      if [[ $domain != "" && $brand != "" ]]; then 
+        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+        echo "image=$image"
+        echo "tag=$tag"
+        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n ${tgs_env}
+        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
+      else 
+        echo "No Deployment Brand and Domain"
+      fi
+  only: 
+    - develop
+ 
+deploy-domain-staging:
+  stage: deploy-domain
+  variables:
+    tgs_env: staging
+  before_script:
+    - export KUBECONFIG=$kubeconfig_staging
+  needs:
+  - job: docker-build-staging
+  script:
+    - |
+      echo "domain=$domain"
+      echo "brand=$brand"
+      
+      if [[ $domain != "" && $brand != "" ]]; then 
+        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+        echo "image=$image"
+        echo "tag=$tag"
+        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n ${tgs_env}
+        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
+      else 
+        echo "No Deployment Brand and Domain"
+      fi
+  only: 
+    - release/current
+    
+deploy-domain-prod:
+  stage: deploy-domain
+  variables:
+    tgs_env: prod
+  before_script:
+    - export KUBECONFIG=$kubeconfig_prod
+  needs:
+  - job: docker-build-prod
+  script:
+    - |
+      echo "domain=$domain"
+      echo "brand=$brand"
+      
+      if [[ $domain != "" && $brand != "" ]]; then 
+        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+        echo "image=$image"
+        echo "tag=$tag"
+        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n ${tgs_env} 
+        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
+      else 
+        echo "No Deployment Brand and Domain"
+      fi
+  only: 
+    - master
+    
+deploy-dev:
+  stage: deploy
+  needs:
+    - job: docker-build-dev
+      artifacts: true
+  variables:
+    tgs_env: dev
+  before_script:
+    - export KUBECONFIG=$kubeconfig_dev
+  script:
+    - | 
+      for image in $(cat image.txt); do
+          #lobbies="${tgs_env}_${app//-/_}"
+          #echo "lobbies=${!lobbies}"    
+          #IFS=', ' read -ra array <<< "${!lobbies}"
+
+          #for lobby in "${array[@]}"; do
+          #    kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          #done
+          
+          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          lobby="lobby-$lobby"
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
+          if [[ $count != "0" ]]; then
+              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          fi    
+      done;   
+  environment:
+    name: dev
+  only: 
+    - develop
+    
+deploy-staging:
+  stage: deploy
+  needs:
+    - job: docker-build-staging
+      artifacts: true
+  variables:
+    tgs_env: staging
+  before_script:
+    - export KUBECONFIG=$kubeconfig_staging
+  script:
+    - | 
+      for image in $(cat image.txt); do
+          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          lobby="lobby-$lobby"
+
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
+          if [[ $count != "0" ]]; then
+              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          fi  
+      done;
+  environment:
+    name: staging
+  only: 
+    - release/current
+    
+deploy-prod:
+  stage: deploy
+  needs:
+    - job: docker-build-prod
+      artifacts: true
+  variables:
+    tgs_env: prod
+  before_script:
+    - export KUBECONFIG=$kubeconfig_prod
+  script:
+    - | 
+      for image in $(cat image.txt); do
+          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          lobby="lobby-$lobby"
+
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
+          if [[ $count != "0" ]]; then
+              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          fi
+      done;
+  environment:
+    name: prod
+  only: 
+    - master
+  when: manual

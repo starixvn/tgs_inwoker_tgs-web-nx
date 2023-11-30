@@ -34,6 +34,7 @@ export type NavItem = {
   iconActiveUrl?: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
+  router?: string;
 } & (
   | {
       navType: "route";
@@ -63,6 +64,7 @@ export function useGetNavItemList() {
         iconUrl: gameTypeItem.iconUrl,
         navType: "action",
         gameType: gameTypeItem.gameType,
+        router: gameTypeItem.key as string,
         callback: () => {
           handleChangeGameType(gameTypeItem.gameType);
           history.push(`/main/${gameTypeItem.key}`);
@@ -77,6 +79,7 @@ export function useGetNavItemList() {
       iconActiveUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
+      router: "vip",
       callback: () => {
         history.push("/vip");
       },
@@ -88,6 +91,7 @@ export function useGetNavItemList() {
       iconUrl: "",
       navType: "action",
       gameType: GameTypeEnum.NONE,
+      router: "promotion-list",
       callback: () => {
         history.push("/promotion-list");
       },
