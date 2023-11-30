@@ -9,7 +9,6 @@ const ProfileNamePage = () => {
 
   const { alert } = useNotifications();
   const history = useHistory();
-
   return <NameVerify alert={alert} appHistory={history} />;
 };
 

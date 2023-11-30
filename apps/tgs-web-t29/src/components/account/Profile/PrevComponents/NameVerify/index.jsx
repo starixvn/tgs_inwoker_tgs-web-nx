@@ -240,6 +240,7 @@ class NameVerify extends BaseProfile {
   };
 
   render() {
+    console.log(this.state.scene);
     return this.setupContent(
       i18n.t("profile.nameVerify.title"),
       this.sceneSwitcher(this.state.scene),
