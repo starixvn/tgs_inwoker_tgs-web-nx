@@ -222,24 +222,25 @@ class NameVerify extends BaseProfile {
           ></BottomNote>
         );
       case "waiting-submit":
-        return <BottomNote empty></BottomNote>;
+        return <BottomNote empty />;
       // case "reject":
       //   return <Default {...this.commonprops} />;
 
       case "approved":
-        return <BottomNote text1={""} empty text2={""}></BottomNote>;
+        return <BottomNote text1={""} empty text2={""} />;
       default:
         return (
           <BottomNote
             text1={i18n.t("profile.nameVerify.toEdit")}
             link={"../chat"}
             text2={i18n.t("profile.nameVerify.editHere")}
-          ></BottomNote>
+          />
         );
     }
   };
 
   render() {
+    console.log(this.state.scene);
     return this.setupContent(
       i18n.t("profile.nameVerify.title"),
       this.sceneSwitcher(this.state.scene),
