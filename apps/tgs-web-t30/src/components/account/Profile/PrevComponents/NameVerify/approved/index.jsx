@@ -30,7 +30,6 @@ class Approved extends BaseProfile {
             }
             disabled={true}
             maxLength={256}
-            isCustomProfileStyle={config.brand === "WGHK"}
           />
         </FormControl>
       </ItemContainer>
