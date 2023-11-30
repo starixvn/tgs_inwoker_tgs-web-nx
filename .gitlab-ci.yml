@@ -85,7 +85,10 @@ docker-build-prod:
       else 
         echo "No Deployment Brand and Domain"
       fi
-
+  rules:
+    - exists:
+        - $app
+        
 deploy-domain-dev:
   <<: *deploy-domain-template
   rules:
