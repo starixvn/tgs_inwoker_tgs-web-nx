@@ -22,7 +22,7 @@ const ForgotPasswordDialog = () => {
       onClose={() => handleToggleForgotPasswordDialog(false)}
     >
       <AuthFormContainer>
-        <TitleContainer>{i18n.t("forgotPassword.title")}</TitleContainer>
+        <TitleContainer>{i18n.t("forgotPassword.title").toUpperCase()}</TitleContainer>
         {/*@ts-ignore*/}
         <ForgotPasswordPrev alert={alert} history={history} />
         <RedirectToLoginHint style={{ margin: "20px auto" }} />
