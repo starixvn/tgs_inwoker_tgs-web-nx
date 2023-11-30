@@ -263,6 +263,7 @@ deploy-prod:
     - export KUBECONFIG=$kubeconfig_prod
   script:
     - | 
+      cat image.txt
       for image in $(cat image.txt); do
           lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
           lobby="lobby-$lobby"
