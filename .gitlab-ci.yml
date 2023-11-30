@@ -88,12 +88,18 @@ docker-build-prod:
 
 deploy-domain-dev:
   <<: *deploy-domain-template
+  rules:
+    - if: $app != ""
 
 deploy-domain-staging:
   <<: *deploy-domain-template
+  rules:
+    - if: $app != ""
 
 deploy-domain-prod:
   <<: *deploy-domain-template
+  rules:
+    - if: $app != ""
   
 deploy-dev:
   stage: deploy
