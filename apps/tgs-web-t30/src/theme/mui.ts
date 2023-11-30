@@ -50,11 +50,12 @@ const muiTheme = createTheme({
       disabledBackground: theme["515c"],
       disabled: theme.white,
     },
+    text: {
+      primary: theme.text,
+    },
     white: theme.white,
     black: theme.black,
-    error: {
-      main: theme.error,
-    },
+    error: theme.error,
     darkBlue: theme.darkBlue,
     bg: theme.bg,
     "515c": theme["515c"],

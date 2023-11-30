@@ -15,14 +15,14 @@ export const TableHead = muiStyled(MuiTableHead)(({ theme }) => ({
   "& .MuiTableCell-root": {
     fontSize: "1rem",
     lineHeight: "1.171rem",
-    color: `${theme.palette.text} !important`,
+    color: `${theme.palette.text.primary} !important`,
     borderBottom: "none",
   },
 })) as typeof MuiTableHead;
 
 export const TableBody = muiStyled(MuiTableBody)(({ theme }) => ({
   "& .MuiTableCell-root": {
-    color: `${theme.palette.text} !important`,
+    color: `${theme.palette.text.primary} !important`,
     cursor: "pointer",
   },
 })) as typeof MuiTableBody;

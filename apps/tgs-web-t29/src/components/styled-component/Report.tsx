@@ -64,7 +64,7 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontSize: "0.812rem",
     fontWeight: 400,
     lineHeight: "0.951rem",
-    color: theme.palette.text,
+    color: theme.palette.text.primary,
     borderBottom: `1px solid ${theme.palette.gray10}`,
     padding: "26px 5px 10px",
   },

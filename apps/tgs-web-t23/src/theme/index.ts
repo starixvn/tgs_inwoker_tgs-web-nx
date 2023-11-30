@@ -1,6 +1,7 @@
 export const colorListT23 = {
   primary: "#FACE27",
   secondary: "#7135F3",
+  text: "#FFFFFF",
   white: "#FFFFFF",
   yellow: "#FFD723",
   gray: "#828282",
