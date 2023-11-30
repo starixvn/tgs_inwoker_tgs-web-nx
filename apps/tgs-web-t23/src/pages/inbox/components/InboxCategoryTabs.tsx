@@ -16,7 +16,7 @@ type CategoryTabProps = {
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1;
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? theme.blue40 : theme.blue20};
+    $isActive ? "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)" : theme.mainBackground};
   color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.text)};
   padding: 12px;
   text-align: center;
