@@ -8,6 +8,57 @@ stages:
   - deploy-domain
   - deploy
 
+.docker-build-template: &docker-build-template
+  stage: docker-build
+  before_script:
+    - docker image prune -a -f
+    - source get_tgs-env.sh
+    - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+    - echo "tgs_env=$tgs_env"
+  script:
+    - |
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      yarn add -D @nx/react
+
+      if [[ $app != "" ]]; then 
+          yarn docker-build:single $app
+      else 
+          yarn docker-build:${tgs_env}
+      fi
+
+      image_count=$(docker image ls | wc  -l)
+
+      if [[ $image_count != "1" ]]; then
+          docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
+          image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+
+          for image in $image_list; do
+              echo "image=$image"
+              docker push $image
+          done
+      fi
+  artifacts:
+    paths:
+      - image.txt
+
+docker-build-dev:
+  <<: *docker-build-template
+  only: 
+    - develop
+
+docker-build-staging:
+  <<: *docker-build-template
+  only: 
+    - release/current
+
+docker-build-prod:
+  <<: *docker-build-template
+  only: 
+    - master
+    
 docker-build-dev:
   stage: docker-build
   before_script:
