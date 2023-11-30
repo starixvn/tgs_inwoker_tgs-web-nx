@@ -8,7 +8,7 @@ const DialogLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const ContentWrapper = styled.div`

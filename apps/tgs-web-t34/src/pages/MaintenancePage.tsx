@@ -48,7 +48,7 @@ const TextContainer = styled.div`
   letter-spacing: 0em;
   text-align: left;
   max-height: 300px;
-  overflow: scroll;
+  overflow: auto;
 `;
 const ButtonGroupContainer = styled.div`
   display: flex;

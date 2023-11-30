@@ -10,7 +10,7 @@ import { theme } from "@/theme";
 export const MenuDrawerListContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-right: 1px solid ${({ theme }) => theme.gray80};
 
   &::-webkit-scrollbar {

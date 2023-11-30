@@ -29,7 +29,7 @@ const CloseIconContainer = styled.div`
 const ChildContainer = styled.div`
   width: 100%;
   height: auto;
-  overflow: scroll;
+  overflow: auto;
   padding: 36px 24px;
 `;
 

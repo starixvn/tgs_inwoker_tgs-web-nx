@@ -36,7 +36,7 @@ const CategoryContent = styled.div`
   width: 100%;
   max-height: 302px;
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   box-sizing: border-box;
   padding: 12px;

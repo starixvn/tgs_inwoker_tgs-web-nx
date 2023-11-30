@@ -7,12 +7,12 @@ const ScrollableContainer = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   gap: 12px;
-  
+
   ${media.sm} {
     margin: 0 auto;
     scroll-snap-type: unset;
@@ -101,7 +101,7 @@ const LevelTableBody = styled.div`
 
   ${media.sm} {
     background: ${(props) => props.theme.subBackground};
-    
+
     > div:nth-child(even) {
       background: rgba(255, 255, 255, 0.10);
     }

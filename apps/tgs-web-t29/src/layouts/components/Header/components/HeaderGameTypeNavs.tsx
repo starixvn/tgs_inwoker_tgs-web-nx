@@ -12,7 +12,7 @@ const HeaderGameTypesContainer = styled.div`
   flex-wrap: nowrap;
   align-items: stretch;
   height: 100%;
-  /* overflow-x: scroll; */
+  /* overflow-x: auto; */
   position: relative;
 
   &::-webkit-scrollbar {

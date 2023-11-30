@@ -6,7 +6,7 @@ export const AuthFormContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 70px 36px 30px;
-  overflow: scroll;
+  overflow: auto;
 
   ::-webkit-scrollbar {
     visibility: hidden;
