@@ -28,7 +28,9 @@ stages:
       else 
           yarn docker-build:${tgs_env}
       fi
-
+      
+      docker image ls
+      
       image_count=$(docker image ls | wc  -l)
 
       if [[ $image_count != "1" ]]; then
