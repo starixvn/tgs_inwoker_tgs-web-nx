@@ -42,7 +42,7 @@ const ProfilePage = () => {
 
       {isDesktopSize && (
         <ProfileDialog open={isDialogOpen} onClose={handleCloseDialog}>
-          <ProfilePageComponent />
+          <ProfilePageComponent handleCloseDialog={handleCloseDialog} />
         </ProfileDialog>
       )}
     </PageContainer>

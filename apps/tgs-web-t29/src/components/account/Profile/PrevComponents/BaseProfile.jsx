@@ -29,6 +29,11 @@ class BaseProfile extends Component {
   };
 
   updateInfo(payload) {
+    console.log(this.store);
+    console.log(this.dispatch);
+    console.log(this.props);
+    console.log(this.props.store);
+    console.log(this.props.dispatch);
     this.props.dispatch({
       type: UPDATE_INFO,
       payload: payload,
