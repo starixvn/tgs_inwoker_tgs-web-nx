@@ -45,14 +45,14 @@ const RegisterForm = () => {
       {isMobileSize ? (
         <BrandLogo style={{ marginBottom: "64px" }} />
       ) : (
-        <LoginTitle>{i18n.t("common.register")}</LoginTitle>
+        <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
       )}
       <FormikForm
         formInputList={formInputConfigList}
         formik={formik}
         isLoading={isLoading}
         error={registerError}
-        buttonText={i18n.t("common.register")}
+        buttonText={i18n.t("createaccount")}
       >
         <VerifyAgeContainer>
           <Checkbox value={isConfirmedAdult} onClick={handleClickConfirmAdult} />
