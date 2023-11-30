@@ -83,8 +83,6 @@ docker-build-prod:
       else 
         echo "No Deployment Brand and Domain"
       fi
-  only: 
-    - $CI_COMMIT_REF_NAME
 
 deploy-domain-dev:
   <<: *deploy-domain-template
