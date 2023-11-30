@@ -3,10 +3,14 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import Birthdate from "@/components/account/Profile/PrevComponents/BirthDate";
 
-const ProfileBirthDatePage = () => {
+type Props = {
+  handleCloseDialog: () => void;
+};
+
+const ProfileBirthDatePage = ({ handleCloseDialog }: Props) => {
   useUpdatePageName(i18n.t("profile.birthdate.title"));
 
-  return <Birthdate />;
+  return <Birthdate handleCloseDialog={handleCloseDialog} />;
 };
 
 export default ProfileBirthDatePage;
