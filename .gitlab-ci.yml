@@ -89,12 +89,12 @@ docker-build-prod:
 deploy-domain-dev:
   <<: *deploy-domain-template
   only: 
-    - dev
+    - develop
 
 deploy-domain-staging:
   <<: *deploy-domain-template
   only: 
-    - staging
+    - release/current
 
 deploy-domain-prod:
   <<: *deploy-domain-template
