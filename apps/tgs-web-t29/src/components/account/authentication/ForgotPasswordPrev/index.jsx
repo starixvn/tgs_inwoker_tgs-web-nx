@@ -236,7 +236,7 @@ class ForgotPasswordPrev extends Component {
           }
           onClick={this.handleNextClick}
         >
-          {i18n.t("common.confirm")}
+          {i18n.t("common.submit")}
         </SubmitButton>
       </Wrapper>
     );

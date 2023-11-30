@@ -62,7 +62,7 @@ const LoginForm = () => {
       {isMobileSize ? (
         <BrandLogo style={{ marginBottom: "72px" }} />
       ) : (
-        <LoginTitle>{i18n.t("common.login")}</LoginTitle>
+        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
       )}
       <FormikForm
         formInputList={formInputConfigList}
