@@ -4,14 +4,18 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import WeChat from "@/components/account/Profile/PrevComponents/WeChat";
 
-const ProfileWeChatPage = () => {
+type Props = {
+  handleCloseDialog: () => void;
+};
+
+const ProfileWeChatPage = ({ handleCloseDialog }: Props) => {
   useUpdatePageName(i18n.t("common.wechatNumber"));
 
   const { alert } = useNotifications();
   const history = useHistory();
 
   //@ts-ignore
-  return <WeChat alert={alert} appHistory={history} />;
+  return <WeChat alert={alert} appHistory={history} handleCloseDialog={handleCloseDialog} />;
 };
 
 export default ProfileWeChatPage;
