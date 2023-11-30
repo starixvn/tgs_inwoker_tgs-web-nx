@@ -58,89 +58,43 @@ docker-build-prod:
   <<: *docker-build-template
   only: 
     - master
-    
+
+.deploy-domain-template: &deploy-domain-template
+  stage: deploy-domain
+  before_script:
+    - source get_tgs-env.sh
+    - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+    - echo "tgs_env=$tgs_env"
+    - export KUBECONFIG=$kubeconfig_${tgs_env}
+    - export KUBECONFIG=${!KUBECONFIG}
+  script:
+    - |
+      echo "domain=$domain"
+      echo "brand=$brand"
+
+      if [[ $domain != "" && $brand != "" ]]; then 
+        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+        echo "image=$image"
+        echo "tag=$tag"
+        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n ${tgs_env}
+        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
+      else 
+        echo "No Deployment Brand and Domain"
+      fi
+  only: 
+    - $CI_COMMIT_REF_NAME
+
 deploy-domain-dev:
-  stage: deploy-domain
-  variables:
-    tgs_env: dev
-  before_script:
-    - export KUBECONFIG=$kubeconfig_dev
-  needs:
-  - job: docker-build-dev
-  script:
-    - |
-      echo "domain=$domain"
-      echo "brand=$brand"
-      echo "tgs_env=$tgs_env"
-      
-      if [[ $domain != "" && $brand != "" ]]; then 
-        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-        echo "image=$image"
-        echo "tag=$tag"
-        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
-        helm template $brand deployment -f values.yaml -n ${tgs_env}
-        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
-      else 
-        echo "No Deployment Brand and Domain"
-      fi
-  only: 
-    - develop
- 
+  <<: *deploy-domain-template
+
 deploy-domain-staging:
-  stage: deploy-domain
-  variables:
-    tgs_env: staging
-  before_script:
-    - export KUBECONFIG=$kubeconfig_staging
-  needs:
-  - job: docker-build-staging
-  script:
-    - |
-      echo "domain=$domain"
-      echo "brand=$brand"
-      
-      if [[ $domain != "" && $brand != "" ]]; then 
-        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-        echo "image=$image"
-        echo "tag=$tag"
-        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
-        helm template $brand deployment -f values.yaml -n ${tgs_env}
-        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
-      else 
-        echo "No Deployment Brand and Domain"
-      fi
-  only: 
-    - release/current
-    
+  <<: *deploy-domain-template
+
 deploy-domain-prod:
-  stage: deploy-domain
-  variables:
-    tgs_env: prod
-  before_script:
-    - export KUBECONFIG=$kubeconfig_prod
-  needs:
-  - job: docker-build-prod
-  script:
-    - |
-      echo "domain=$domain"
-      echo "brand=$brand"
-      
-      if [[ $domain != "" && $brand != "" ]]; then 
-        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
-        echo "image=$image"
-        echo "tag=$tag"
-        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
-        helm template $brand deployment -f values.yaml -n ${tgs_env} 
-        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
-      else 
-        echo "No Deployment Brand and Domain"
-      fi
-  only: 
-    - master
-    
+  <<: *deploy-domain-template
+  
 deploy-dev:
   stage: deploy
   needs:
