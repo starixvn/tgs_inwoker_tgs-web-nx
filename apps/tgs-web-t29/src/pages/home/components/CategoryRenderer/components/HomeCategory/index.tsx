@@ -108,7 +108,7 @@ const HomeCategory = () => {
 
   const handleClick = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);
-    history.push(`/${gameTypeItem.key}`);
+    history.push(`/main/${gameTypeItem.key}`);
   };
 
   if (isDesktopSize) {

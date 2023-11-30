@@ -35,15 +35,15 @@ export type NavItem = {
   iconSecondaryUrl?: string;
   isHide?: boolean;
 } & (
-    | {
+  | {
       navType: "route";
       routePath: string;
     }
-    | {
+  | {
       navType: "action";
       callback: () => void;
     }
-  );
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -65,10 +65,7 @@ export function useGetNavItemList() {
         gameType: gameTypeItem.gameType,
         callback: () => {
           handleChangeGameType(gameTypeItem.gameType);
-          history.push(`/${gameTypeItem.key}`);
-          // if (history.location.pathname !== "/") {
-          //   history.push("/");
-          // }
+          history.push(`/main/${gameTypeItem.key}`);
         },
       });
     }

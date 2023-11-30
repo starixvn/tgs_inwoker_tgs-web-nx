@@ -47,23 +47,23 @@ const routes: RouteType[] = [
     isAnonymousAllowed: true,
   },
   {
-    path: "/:gameType",
-    component: MainPage,
-    layout: HomeLayout,
-    isAnonymousAllowed: true,
-  },
-  {
     path: "/main",
     component: MainPage,
     layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
-    path: "/main/:page",
+    path: "/main/:gameType",
     component: MainPage,
     layout: HomeLayout,
     isAnonymousAllowed: true,
   },
+  // {
+  //   path: "/main/:page",
+  //   component: MainPage,
+  //   layout: HomeLayout,
+  //   isAnonymousAllowed: true,
+  // },
   {
     path: "/account",
     component: AccountPage,

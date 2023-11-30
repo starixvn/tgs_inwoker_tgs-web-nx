@@ -4,7 +4,7 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
@@ -27,7 +27,7 @@ const MainWrapper = styled.div`
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
-  
+
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
@@ -82,19 +82,18 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
+  const { gameType: urlGameType } = useParams<{ gameType: string }>();
+
+  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
+    useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const hasNavData = !!navPopupCategoryList.length;
   const history = useHistory();
   const gameTypeList = useGameTypeList();
 
-  const isNonLobbyList: number[] = [
-    GameTypeEnum.SLOT,
-    GameTypeEnum.FISH,
-    GameTypeEnum.TABLEGAME,
-  ];
+  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
 
-  const isNonLobby = isNonLobbyList.includes(activeGameType)
+  const isNonLobby = isNonLobbyList.includes(activeGameType);
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -109,23 +108,15 @@ const HomePage = () => {
     });
   }, [activeGameType]);
 
-
   useEffect(() => {
-    const unlisten = history.listen((location) => {
-      const parts = location.pathname.split('/');
-      const afterFirstSlash = parts[1];
-      const gameType = getGameTypeFromKey(afterFirstSlash);
-      if (gameType) {
-        handleChangeGameType(gameType);
-      } else {
-        history.push("/");
-      }
-    });
-
-    return () => {
-      unlisten();
-    };
-  }, [history]);
+    const gameType = getGameTypeFromKey(urlGameType);
+    if (gameType) {
+      handleChangeGameType(gameType);
+    } else {
+      history.push("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlGameType]);
 
   return (
     <MainWrapper>
@@ -133,14 +124,17 @@ const HomePage = () => {
       {!!general.banner.length && (
         <SliderWrapper>
           {isMobileSize && <Slider />}
-          {(isDesktopSize && !!activeGameType && !isNonLobby) &&
+          {isDesktopSize && !!activeGameType && !isNonLobby && (
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
-                  ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  ? `${
+                      import.meta.env.BASE_URL
+                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
                   : ""
               }
-            />}
+            />
+          )}
           {isDesktopSize && !activeGameType && <Banner />}
         </SliderWrapper>
       )}
@@ -149,7 +143,6 @@ const HomePage = () => {
       <MainContentWrapper>
         <CategoryRenderer />
       </MainContentWrapper>
-
     </MainWrapper>
   );
 };
