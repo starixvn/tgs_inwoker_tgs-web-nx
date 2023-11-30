@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useLocation } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
@@ -93,7 +93,7 @@ const HeaderGameTypeNavs = () => {
 
   return (
     <HeaderGameTypesContainer>
-      {sideNavItemList.map((navItem, index) => {
+      {sideNavItemList && sideNavItemList.map((navItem, index) => {
         return (
           <Wrapper key={navItem.key}>
             <GameTypeNav

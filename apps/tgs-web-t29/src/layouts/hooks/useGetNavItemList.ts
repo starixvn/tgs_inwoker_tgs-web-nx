@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
@@ -36,27 +36,34 @@ export type NavItem = {
   isHide?: boolean;
   router?: string;
 } & (
-  | {
+    | {
       navType: "route";
       routePath: string;
     }
-  | {
+    | {
       navType: "action";
       callback: () => void;
     }
-);
+  );
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
   const { handleChangeGameType } = useHomeGameContext();
-
+  const { providerList } = useHomeGameContext();
   const history = useHistory();
 
-  const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] = useMemo(() => {
+  const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
     for (const gameTypeItem of gameTypeList) {
       if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
+
+      if (providerList.length) {
+        const hasData = providerList.filter((provider) => {
+          return provider.gametypes.includes(gameTypeItem.gameType);
+        });
+        if (hasData.length === 0) continue;
+      }
 
       navItemList.push({
         key: gameTypeItem.key,
@@ -99,7 +106,7 @@ export function useGetNavItemList() {
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameTypeList]);
+  }, [gameTypeList, providerList]);
 
   const accountNavItemList: NavItem[] = useMemo(() => {
     return [
