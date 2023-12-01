@@ -48,6 +48,7 @@ class ForgotPasswordPrev extends Component {
   handleGetCodeClick = (e) => {
     if (this.state.countdownToken > 0) return;
 
+    // SMS
     if (config.features.SMSVerification) {
       if (this.state.phone.length < 8 || this.state.phone.length > 10) {
         this.props.alert(
@@ -58,11 +59,13 @@ class ForgotPasswordPrev extends Component {
         );
         return;
       }
+
       AccountService.VerifyForgotPassword("", this.state.areaCode, this.state.phone).then(
         (response) => {
           this.getCodeResponse(response);
         },
       );
+      // Email
     } else {
       if (this.state.email.length > 0) {
         AccountService.VerifyForgotPassword(this.state.email).then((response) => {
@@ -88,7 +91,12 @@ class ForgotPasswordPrev extends Component {
         ...this.state,
         securityKey: response.data,
         loading: true,
+        countdownToken: 60,
       });
+
+      setTimeout(() => {
+        this.checkCountdown();
+      }, 1000);
     } else {
       this.props.alert("", response.info);
     }
@@ -122,6 +130,10 @@ class ForgotPasswordPrev extends Component {
       }, 1000);
     }
   };
+
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
 
   render() {
     return (
@@ -160,7 +172,12 @@ class ForgotPasswordPrev extends Component {
             {/* 發送驗證碼 */}
             <GrayInputWrapper style={{ marginBottom: "20px" }}>
               <TextFieldWithButton
-                buttonLabel={i18n.t("common.msgSendToken")}
+                buttonLabel={
+                  this.state.countdownToken <= 0
+                    ? i18n.t("common.msgSendToken")
+                    : i18n.t("common.btnTokenResendLabel") + "(" + this.state.countdownToken + "s)"
+                }
+                buttonDisabled={this.state.countdownToken > 0}
                 value={this.state.code}
                 onChange={this.handleCodeChange}
                 placeholder={i18n.t("common.msgEnterCode")}
@@ -186,11 +203,15 @@ class ForgotPasswordPrev extends Component {
 
             <GrayInputWrapper style={{ marginBottom: "20px" }}>
               <TextFieldWithButton
-                buttonLabel={i18n.t("common.msgSendToken")}
+                buttonLabel={
+                  this.state.countdownToken <= 0
+                    ? i18n.t("common.msgSendToken")
+                    : i18n.t("common.btnTokenResendLabel") + "(" + this.state.countdownToken + "s)"
+                }
+                buttonDisabled={this.state.countdownToken > 0}
                 style={{ margin: "20px auto 20px auto" }}
                 value={this.state.code}
                 onChange={this.handleCodeChange}
-                // label={i18n.t("common.msgEnterCodeEmail")}
                 placeholder={i18n.t("common.token")}
                 onClick={this.handleGetCodeClick}
                 type={"text"}

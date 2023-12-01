@@ -25,6 +25,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   };
 
   const inputType = isShowPassword ? "text" : "password";
+
   return (
     <GrayInputWrapper key={name} style={{ marginBottom: "21px" }}>
       <TextField

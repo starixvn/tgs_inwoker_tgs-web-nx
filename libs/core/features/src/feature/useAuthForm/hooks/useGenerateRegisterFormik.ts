@@ -3,8 +3,8 @@ import * as Yup from "yup";
 import { FormikValues, useFormik } from "formik";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { UserTypeEnum } from "@tgs-web-nx/core/features";
 import { FormInputTypeEnum } from "../types";
+import { UserTypeEnum } from "../types";
 import { FormikFormInput, useFormikInitValue } from "./useFormikInitValue";
 import { usePromotionCode } from "./usePromotionCode";
 

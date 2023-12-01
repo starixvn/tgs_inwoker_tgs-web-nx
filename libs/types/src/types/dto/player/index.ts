@@ -11,3 +11,5 @@ export * from "./UpdateAutoTransferStatusResDto";
 export * from "./UpdateIMResDto";
 export * from "./UpdateMemberNameAndICResDto";
 export * from "./UpdatePhoneResDto";
+export * from "./RegisterV2ResDto";
+export * from "./RegisterV2CreatePlayerReqDto";
