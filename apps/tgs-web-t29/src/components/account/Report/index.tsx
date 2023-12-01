@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 import Loading from "@/components/UI/Loading";
 import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
 import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
@@ -14,6 +16,12 @@ import ReportBalanceChange from "@/pages/report/components/reports/ReportBalance
 import ReportPlatform from "@/pages/report/components/reports/ReportPlatform";
 import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
+
+const Title = styled.div`
+  color: ${({ theme }) => theme.blue50};
+  font-size: 1.25rem;
+  font-weight: 700;
+`;
 
 const Report = () => {
   // TODO: tab function
@@ -45,6 +53,7 @@ const Report = () => {
       />
 
       <DateRangeSelector>
+        <Title>{i18n.t("report.date")}</Title>
         <DateRangeWithDatePicker
           dateFrom={dateRangeInfo.dateFrom}
           dateTo={dateRangeInfo.dateTo}

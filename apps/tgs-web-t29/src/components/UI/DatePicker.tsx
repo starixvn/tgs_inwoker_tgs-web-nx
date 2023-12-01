@@ -13,6 +13,7 @@ import styled from "styled-components";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
+import calendar from "@/assets/t29/images/profile/calendar.svg";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -113,16 +114,35 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  border: 1px solid ${({ theme }) => theme.gray10};
+  border-bottom: 1px solid ${({ theme }) => theme.gray10};
+  position: relative;
 
   .MuiInputBase-input {
     background: ${({ theme }) => theme.mainBackground};
     color: ${({ theme }) => theme.text};
+    padding: 10px 10px;
+    text-align: left;
+    cursor: pointer;
   }
 
   .MuiInput-underline:before,
   .MuiInput-underline:after {
     border-bottom: 0px;
+  }
+`;
+
+const Wrapper = styled.div`
+  position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 27px;
+    height: 27px;
+    pointer-events: none;
+
+  & > img {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -134,6 +154,9 @@ export const DatePickerForReport = ({ disabled, ...others }: DatePickerForReport
   return (
     <ReportDatePickerContainer $disabled={!!disabled}>
       <DatePicker {...others} />
+      <Wrapper>
+        <img src={calendar} alt="calendar" />
+      </Wrapper>
     </ReportDatePickerContainer>
   );
 };
