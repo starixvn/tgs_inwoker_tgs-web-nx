@@ -74,7 +74,7 @@ stages:
 .deploy-template: &deploy-template
   stage: deploy
   needs:
-    - job: docker-build
+    - job: docker-build-$tgs_env
       artifacts: true
   before_script:
     - source get_tgs-env.sh
