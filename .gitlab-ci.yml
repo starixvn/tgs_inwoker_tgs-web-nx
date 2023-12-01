@@ -42,8 +42,6 @@ stages:
               docker push $image
           done
       fi
-  environment:
-    name: ${tgs_env}
   artifacts:
     paths:
       - image.txt
@@ -87,8 +85,6 @@ docker-build-prod:
       else 
         echo "No Deployment Brand and Domain"
       fi
-  environment:
-    name: ${tgs_env}
         
 deploy-domain-dev:
   <<: *deploy-domain-template
@@ -136,7 +132,6 @@ deploy-domain-prod:
       done;   
   environment:
     name: ${tgs_env}
-  only: 
 
 deploy-dev:
   <<: *deploy-template
