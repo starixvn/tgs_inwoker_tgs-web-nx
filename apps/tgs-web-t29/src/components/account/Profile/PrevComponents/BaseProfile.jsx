@@ -70,7 +70,10 @@ class BaseProfile extends Component {
     this.setState({ message: message });
   }
   showLoading(loading) {
-    this.setState({ ...this.state, loading: loading });
+    this.setState((prevState) => ({
+      ...prevState,
+      loading,
+    }));
   }
   setupContent(title, body, buttonTitle = i18n.t("common.submit"), bottomNode, noBack) {
     return (
