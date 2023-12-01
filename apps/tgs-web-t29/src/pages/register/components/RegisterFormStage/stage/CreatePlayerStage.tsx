@@ -35,9 +35,17 @@ const CreatePlayerStage = ({ updateStage }: Props) => {
       return;
     }
 
-    console.log(createPlayerReqDto);
-    // const response = await registerV2CreatePlayer(createPlayerReqDto);
-    updateStage("InitPhone");
+    try {
+      setIsLoading(true);
+      console.log(createPlayerReqDto);
+      const response = await registerV2CreatePlayer(createPlayerReqDto);
+      console.log(response);
+      updateStage("InitPhone");
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const { formInputConfigList, formik } = useGenerateRegisterFormik({

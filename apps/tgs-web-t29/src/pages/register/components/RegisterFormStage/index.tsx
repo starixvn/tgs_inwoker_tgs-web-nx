@@ -1,6 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
 import { ValueOf } from "@tgs-web-nx/types";
-import { useAuth } from "@tgs-web-nx/core/features";
 import { registerStageFactory } from "@/pages/register/components/RegisterFormStage/stage/registerStageFactory";
 import { RegisterStageEnum } from "@/pages/register/components/RegisterFormStage/types";
 
