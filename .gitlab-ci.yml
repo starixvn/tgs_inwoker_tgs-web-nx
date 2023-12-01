@@ -77,6 +77,7 @@ stages:
     - source get_tgs-env.sh
     - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
     - echo "tgs_env=$tgs_env"
+    - echo "KUBECONFIG1=$kubeconfig_dev"
     - export KUBECONFIG=$kubeconfig_${tgs_env}
     - export KUBECONFIG=${!KUBECONFIG}
     - echo "KUBECONFIG=$KUBECONFIG"
