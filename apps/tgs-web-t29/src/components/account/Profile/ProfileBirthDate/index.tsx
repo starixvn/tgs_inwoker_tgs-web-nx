@@ -10,6 +10,7 @@ type Props = {
 const ProfileBirthDatePage = ({ handleCloseDialog }: Props) => {
   useUpdatePageName(i18n.t("profile.birthdate.title"));
 
+  //@ts-ignore
   return <Birthdate handleCloseDialog={handleCloseDialog} />;
 };
 
