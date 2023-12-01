@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { RegisterReqDto } from "@tgs-web-nx/types";
+import { RegisterReqDto, RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
 
@@ -22,7 +22,7 @@ export function useRegister() {
 
   const handleRegister = useCallback(async (registerReqDto: RegisterReqDto) => {
     try {
-      setRegisterState((prevState) => ({ ...prevState, isLoading: true }));
+      setRegisterState((prevState) => ({ ...prevState, isLoading: true, error: null }));
 
       const registerResDto = await accountStore.registerAccount(registerReqDto);
 

@@ -44,7 +44,6 @@ const FormikForm = ({
     if (showErrorOn !== "bottom") return "";
 
     let errorMsg = "";
-    // console.log(formik.errors);
     for (const formInput of formInputList) {
       if (!(formik.touched[formInput.name] && formik.errors[formInput.name])) continue;
 
@@ -54,6 +53,8 @@ const FormikForm = ({
 
     return errorMsg;
   };
+
+  const bottomFormErrorMsg = showErrorOn === "bottom" && getBottomErrorMessage();
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -65,9 +66,9 @@ const FormikForm = ({
       })}
       {children}
 
-      {error?.message && (
+      {(error?.message || bottomFormErrorMsg) && (
         <ErrorMessageContainer>
-          {showErrorOn === "bottom" && getBottomErrorMessage()}
+          {bottomFormErrorMsg}
           {error?.message || null}
         </ErrorMessageContainer>
       )}

@@ -47,6 +47,7 @@ const RegisterForm = () => {
       ) : (
         <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
       )}
+
       <FormikForm
         formInputList={formInputConfigList}
         formik={formik}

@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { RegisterReqDto } from "@tgs-web-nx/types";
+import { RegisterReqDto, RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { LoginState, useLogin } from "../hooks/useLogin";
 import { LogoutState, useLogout } from "../hooks/useLogout";
