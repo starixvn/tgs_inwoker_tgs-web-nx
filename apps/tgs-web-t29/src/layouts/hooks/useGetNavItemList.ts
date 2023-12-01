@@ -35,6 +35,7 @@ export type NavItem = {
   iconSecondaryUrl?: string;
   isHide?: boolean;
   router?: string;
+  routePath?: string;
 } & (
   | {
       navType: "route";
