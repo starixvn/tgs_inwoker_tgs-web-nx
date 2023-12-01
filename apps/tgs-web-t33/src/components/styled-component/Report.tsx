@@ -68,3 +68,18 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     padding: "26px 5px 10px",
   },
 }));
+export const ReportMainContainer = styled.div`
+  width: 100%;
+`;
+export const DateRangeSelector = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  ${media.sm} {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+`;

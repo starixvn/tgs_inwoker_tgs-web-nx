@@ -46,21 +46,6 @@ stages:
     paths:
       - image.txt
 
-docker-build-dev:
-  <<: *docker-build-template
-  only: 
-    - develop
-
-docker-build-staging:
-  <<: *docker-build-template
-  only: 
-    - release/current
-
-docker-build-prod:
-  <<: *docker-build-template
-  only: 
-    - master
-
 .deploy-domain-template: &deploy-domain-template
   stage: deploy-domain
   before_script:
@@ -85,31 +70,18 @@ docker-build-prod:
       else 
         echo "No Deployment Brand and Domain"
       fi
-        
-deploy-domain-dev:
-  <<: *deploy-domain-template
-  only: 
-    - develop
-
-deploy-domain-staging:
-  <<: *deploy-domain-template
-  only: 
-    - release/current
-
-deploy-domain-prod:
-  <<: *deploy-domain-template
-  only: 
-    - master
     
-deploy-dev:
+.deploy-template: &deploy-template
   stage: deploy
   needs:
     - job: docker-build-dev
       artifacts: true
-  variables:
-    tgs_env: dev
   before_script:
-    - export KUBECONFIG=$kubeconfig_dev
+    - source get_tgs-env.sh
+    - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+    - echo "tgs_env=$tgs_env"
+    - export KUBECONFIG=$kubeconfig_${tgs_env}
+    - export KUBECONFIG=${!KUBECONFIG}
   script:
     - | 
       for image in $(cat image.txt); do
@@ -128,58 +100,49 @@ deploy-dev:
               kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
           fi    
       done;   
-  environment:
-    name: dev
+
+docker-build-dev:
+  <<: *docker-build-template
   only: 
     - develop
-    
-deploy-staging:
-  stage: deploy
-  needs:
-    - job: docker-build-staging
-      artifacts: true
-  variables:
-    tgs_env: staging
-  before_script:
-    - export KUBECONFIG=$kubeconfig_staging
-  script:
-    - | 
-      for image in $(cat image.txt); do
-          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
-          lobby="lobby-$lobby"
 
-          count=$(kubectl get deploy -n staging | grep $lobby | wc -l)
-          if [[ $count != "0" ]]; then
-              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
-          fi  
-      done;
-  environment:
-    name: staging
+docker-build-staging:
+  <<: *docker-build-template
   only: 
     - release/current
-    
-deploy-prod:
-  stage: deploy
-  needs:
-    - job: docker-build-prod
-      artifacts: true
-  variables:
-    tgs_env: prod
-  before_script:
-    - export KUBECONFIG=$kubeconfig_prod
-  script:
-    - | 
-      for image in $(cat image.txt); do
-          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
-          lobby="lobby-$lobby"
 
-          count=$(kubectl get deploy -n staging | grep $lobby | wc -l)
-          if [[ $count != "0" ]]; then
-              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
-          fi
-      done;
-  environment:
-    name: prod
+docker-build-prod:
+  <<: *docker-build-template
   only: 
     - master
-  when: manual
+
+deploy-domain-dev:
+  <<: *deploy-domain-template
+  only: 
+    - develop
+
+deploy-domain-staging:
+  <<: *deploy-domain-template
+  only: 
+    - release/current
+
+deploy-domain-prod:
+  <<: *deploy-domain-template
+  only: 
+    - master
+    
+deploy-dev:
+  <<: *deploy-template
+  only: 
+    - develop
+
+deploy-staging:
+  <<: *deploy-template
+  only: 
+    - release/current
+
+deploy-prod:
+  <<: *deploy-template
+  only: 
+    - master
+  when: manual  

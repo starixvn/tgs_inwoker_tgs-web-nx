@@ -190,7 +190,7 @@ const LevelTable = ({
     <ScrollableContainer>
       <LevelTableWrapper>
         <LevelTableHeader>
-          <HeaderItem>VIP rebate</HeaderItem>
+          <HeaderItem>VIP Rebate</HeaderItem>
           {gameList.map((game) => (
             <HeaderItem key={game}>{game}</HeaderItem>
           ))}

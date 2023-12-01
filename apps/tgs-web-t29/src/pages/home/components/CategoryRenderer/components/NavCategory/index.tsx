@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -37,44 +37,20 @@ const NoDataText = styled.div`
 `;
 
 const NavCategory = () => {
-  const { activeNavPopupGameType, activeNavPopupGameTypeKey } = useHomeGameContext();
-  const { account } = useAccountStore();
+  const { activeNavPopupGameType, activeNavPopupGameTypeKey, handleChangeGameType, handleChangeActiveProviderFilterTag } = useHomeGameContext();
   const history = useHistory();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
 
-  const launchLobbyGame = (gpcode: string) => {
-    if (!account.token) {
-      history.push("/login");
-      return;
-    }
+  const enterVendorFilter = (gpcode: string) => {
+    handleChangeGameType(activeNavPopupGameType);
+    const filterTag = {
+      tagType: FilterTagTypeEnum.PROVIDER,
+      name: "",
+      gpCode: gpcode,
+    };
+    handleChangeActiveProviderFilterTag(filterTag);
 
-    if (activeNavPopupGameType === GameTypeEnum.COCKFIGHT) {
-      // 以後SM01不會開,多新增AWC_COCKFIGHT(缺對應api)
-      if (gpcode === "SM01") {
-        const gameWindow = window.open("", "Cockfight");
-        if (gameWindow) {
-          GameService.GetCockfight()
-            .then((res) => {
-              gameWindow.document.write(res?.data);
-              gameWindow.document.close();
-              gameWindow.focus();
-            })
-            .catch(() => {
-              gameWindow.close();
-            });
-        }
-      } else {
-        Common.closePreviousPopup();
-        Common.PopupCenter(`/joinlobbygame/${GameTypeEnum.SPORTS}/${gpcode}`, "gamewindow");
-      }
-    } else {
-      const audioElement = document.getElementById("audio") as HTMLAudioElement | null;
-      if (audioElement) {
-        audioElement.volume = 0;
-      }
-      Common.closePreviousPopup();
-      Common.PopupCenter(`/joinlobbygame/${activeNavPopupGameType}/${gpcode}`, "gamewindow");
-    }
+    history.push(`/main/${activeNavPopupGameTypeKey}`);
   };
 
   const hasMappingData = !!navPopupCategoryList.length;
@@ -98,7 +74,7 @@ const NavCategory = () => {
                   }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
                 venderLogoUrl={`${import.meta.env.BASE_URL
                   }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-                launchGame={() => launchLobbyGame(gpCode)}
+                launchGame={() => enterVendorFilter(gpCode)}
                 status={status}
                 venderName={name}
               />

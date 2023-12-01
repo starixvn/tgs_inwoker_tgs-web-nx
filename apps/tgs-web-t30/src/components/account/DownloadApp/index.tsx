@@ -1,37 +1,16 @@
-import styled from "styled-components";
 import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compatible.svg";
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
 import downloadGirlImg from "@/assets/t18/images/account/girl/download.png";
-import DownloadButtonGroup from "@/components/account/DownloadApp/DownloadButtonGroup";
-import InfoCard, { InfoCardItem } from "@/components/account/DownloadApp/InfoCard";
-
-const DownloadAppContainer = styled.div``;
-
-const GirlImage = styled.div`
-  width: 100%;
-  margin-bottom: 10px;
-
-  img {
-    width: 100%;
-  }
-`;
-
-const IntroductionContainer = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-weight: 400;
-  font-size: 1.125rem;
-  line-height: 1.318rem;
-  margin-bottom: 10px;
-`;
-
-const InfoCardListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 10px;
-`;
+import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
+import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
+import {
+  DownloadAppContainer,
+  GirlImage,
+  InfoCardListContainer,
+  IntroductionContainer,
+} from "@/components/styled-component/Download";
 
 const infoCardItemList: InfoCardItem[] = [
   {

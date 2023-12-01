@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import Loading from "@/components/UI/Loading";
 import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
 import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
@@ -14,24 +13,7 @@ import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion
 import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
 import ReportPlatform from "@/pages/report/components/reports/ReportPlatform";
 import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
-import { media } from "@/theme/breakpoints";
-
-const Container = styled.div`
-  width: 100%;
-`;
-
-const DateRangeSelector = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-
-  ${media.sm} {
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
-`;
+import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
 
 const Report = () => {
   // TODO: tab function
@@ -55,7 +37,7 @@ const Report = () => {
   };
 
   return (
-    <Container>
+    <ReportMainContainer>
       <ReportTypeTabs
         selectedType={selectedType}
         handleChangeTab={handleChangeTab}
@@ -100,7 +82,7 @@ const Report = () => {
       })()}
 
       <Loading show={false /* Replace with loading state */} />
-    </Container>
+    </ReportMainContainer>
   );
 };
 
