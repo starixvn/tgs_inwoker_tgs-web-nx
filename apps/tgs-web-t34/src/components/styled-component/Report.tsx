@@ -70,3 +70,31 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     padding: "26px 5px 10px",
   },
 }));
+export const ReportMainContainer = styled.div`
+  width: 100%;
+`;
+export const DateRangeSelector = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  ${media.sm} {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+`;
+export const DateTitle = styled.div`
+  align-self: flex-start;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.465rem;
+  color: ${({ theme }) => theme.black};
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  ${media.sm} {
+    align-self: center;
+  }
+`;
