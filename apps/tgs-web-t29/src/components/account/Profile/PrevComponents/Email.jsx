@@ -141,6 +141,7 @@ class Email extends BaseProfile {
   };
 
   handleSubmitClicked = async () => {
+    console.log(this.props.account.registercompleted);
     try {
       this.showLoading(true);
 
@@ -163,6 +164,9 @@ class Email extends BaseProfile {
 
           if (validMailResponse.IsSuccess) {
             await this.props.getAccountProfile();
+            this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
+              variant: "success",
+            });
 
             if (!this.props.account.registercompleted) {
               this.props.history.replace("/card/add");
@@ -181,6 +185,10 @@ class Email extends BaseProfile {
 
         if (updateEmailResponse.IsSuccess) {
           await this.props.getAccountProfile();
+          this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
+            variant: "success",
+          });
+
           this.setState({
             code: "",
             securityKey: "",
