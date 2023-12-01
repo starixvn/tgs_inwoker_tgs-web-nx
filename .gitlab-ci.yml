@@ -80,9 +80,6 @@ stages:
     - export KUBECONFIG=$kubeconfig_${tgs_env}
     - export KUBECONFIG=${!KUBECONFIG}
     - echo $KUBECONFIG
-  needs:
-    - job: docker-build-$tgs_env
-      artifacts: true
   script:
     - | 
       for image in $(cat image.txt); do
@@ -134,16 +131,25 @@ deploy-domain-prod:
     
 deploy-dev:
   <<: *deploy-template
+  needs:
+    - job: docker-build-dev
+      artifacts: true
   only: 
     - develop
 
 deploy-staging:
   <<: *deploy-template
+  needs:
+    - job: docker-build-staging
+      artifacts: true
   only: 
     - release/current
 
 deploy-prod:
   <<: *deploy-template
+  needs:
+    - job: docker-build-prod
+      artifacts: true
   only: 
     - master
   when: manual  
