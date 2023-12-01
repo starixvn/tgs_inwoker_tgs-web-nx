@@ -5,8 +5,8 @@ import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensiv
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
 import downloadGirlImg from "@/assets/t29/images/account/download-girl.png";
 
-import DownloadButtonGroup from "@/components/account/DownloadApp/DownloadButtonGroup";
-import InfoCard, { InfoCardItem } from "@/components/account/DownloadApp/InfoCard";
+import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
+import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
 import { media } from "@/theme/breakpoints";
 
 const DownloadAppContainer = styled.div``;

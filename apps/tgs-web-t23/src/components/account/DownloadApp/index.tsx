@@ -3,13 +3,13 @@ import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compati
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
-import DownloadButtonGroup from "@/components/account/DownloadApp/DownloadButtonGroup";
-import InfoCard, { InfoCardItem } from "@/components/account/DownloadApp/InfoCard";
+import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
+import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
 import { media } from "@/theme/breakpoints";
 
 const DownloadAppContainer = styled.div`
   padding: 0 205px;
-  
+
   ${media.xs} {
     padding: 0 24px;
   }
@@ -82,7 +82,7 @@ const DownloadApp = () => {
           return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
         })}
       </InfoCardListContainer>
-      
+
       <DownloadButtonGroup />
     </DownloadAppContainer>
   );
