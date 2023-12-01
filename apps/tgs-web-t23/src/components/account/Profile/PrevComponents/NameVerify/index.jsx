@@ -1,13 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
+import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { accountAction, AccountService, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
 import BaseProfile from "../BaseProfile";
 import Default from "./default";
 import Approved from "./approved";
 import BottomNote from "@/components/UI/BottomNote";
+import WaitingVerification from "@/components/account/Profile/PrevComponents/NameVerify/waiting-verification";
 
 class NameVerify extends BaseProfile {
   constructor(props) {
@@ -26,37 +26,31 @@ class NameVerify extends BaseProfile {
     };
   }
 
-  currentFormStatus = this.props.account.info.identityformstatus;
-  hasSubmitted = this.props.account.info.identityformid ? true : false;
-
   componentDidMount() {
-    if (this.currentFormStatus === 0 && this.hasSubmitted === false) {
+    const currentFormStatus = this.props.account.info.identityformstatus;
+    const hasSubmitted = this.props.account.info.identityformid ? true : false;
+
+    if (currentFormStatus === 0 && hasSubmitted === false) {
       //api沒給表單id ，表示可以上傳
       this.setState({
         ...this.state,
         scene: "waiting-submit",
       });
     }
-    if (
-      (this.currentFormStatus === 1 && this.hasSubmitted === true) ||
-      this.currentFormStatus === 1
-    ) {
+    if ((currentFormStatus === 1 && hasSubmitted === true) || currentFormStatus === 1) {
       this.setState({
         ...this.state,
         scene: "approved",
       });
     }
-    if (
-      (this.currentFormStatus === 2 && this.hasSubmitted === true) ||
-      this.currentFormStatus === 2
-    ) {
+    if ((currentFormStatus === 2 && hasSubmitted === true) || currentFormStatus === 2) {
       //有給表單id但是狀態是拒絕，也可以上傳
       this.setState({
         ...this.state,
         scene: "rejected",
       });
     }
-    if (this.currentFormStatus === 0 && this.hasSubmitted === true) {
+    if (currentFormStatus === 0 && hasSubmitted === true) {
       //有給表單id但狀態沒驗證，不能上傳
       this.setState({
         ...this.state,
@@ -70,18 +64,12 @@ class NameVerify extends BaseProfile {
       const isConfigured = this.checkisConfigure();
       this.setState({ ...this.state, ic: ic, isConfigured: isConfigured });
     }
+
     if (
       preProps.account.updateCardResult !== this.props.account.updateCardResult &&
       this.props.account.updateCardResult !== null
     ) {
       if (this.props.account.updateCardResult.IsSuccess) {
-        if (config.features.ICVerificationUpload) {
-          AccountService.UploadIC(this.state.icUpload[0]).then((response) => {
-            if (!response.IsSuccess) {
-              this.props.alert("", response.info);
-            }
-          });
-        }
         if (
           preProps.account.info.identityformstatus !== this.props.account.info.identityformstatus
         ) {
@@ -131,16 +119,44 @@ class NameVerify extends BaseProfile {
     this.setState({ ...this.state, ic: e.target.value });
     this.onTextChanged();
   };
-  handleSubmitClicked = () => {
-    if (config.features.ICVerificationUpload && this.state.icUpload === "") {
+  handleSubmitClicked = async () => {
+    const memberName = this.state.name || "";
+    const memberCard = this.state.ic || "";
+    const icUpload = this.state.icUpload || "";
+
+    if (!memberName) {
+      return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterName"));
+    }
+    if (!memberCard) {
+      return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterICNum"));
+    }
+
+    if (config.features.ICVerificationUpload && icUpload === "") {
       return this.props.alert("", i18n.t("deposit.msgPlsSelectFile"));
     }
-    const name = this.state.name || "";
-    const ic = this.state.ic || "";
-    this.showLoading(true);
-    this.props.updateMemberCardNo(name, ic);
 
-    this.showLoading(false);
+    this.showLoading(true);
+    try {
+      const response = await AccountService.UpdateMemberNameAndIC(
+        memberName,
+        memberCard,
+        config.features.ICVerificationUpload ? icUpload[0] : "",
+      );
+      if (response.IsSuccess) {
+        this.updateInfo({
+          member_name: memberName,
+          identityformstatus: 0,
+          identityformid: "confirm not empty",
+        });
+      } else {
+        this.props.alert("", ErrorSwitcher.getTranslation(response.info));
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.props.handleCloseDialog();
+      this.showLoading(false);
+    }
   };
 
   isDisableButton = () => {
@@ -199,7 +215,7 @@ class NameVerify extends BaseProfile {
   sceneSwitcher = (scene) => {
     switch (scene) {
       case "waiting-verification":
-        return <Approved {...this.commonprops} />;
+        return <WaitingVerification {...this.commonprops} />;
       case "approved":
         return <Approved {...this.commonprops} />;
       // case "waiting-submit":
@@ -219,15 +235,15 @@ class NameVerify extends BaseProfile {
             text1={i18n.t("profile.nameVerify.toEdit")}
             toEdit={this.handleGoEdit}
             text2={i18n.t("profile.nameVerify.editHere")}
-          ></BottomNote>
+          />
         );
       case "waiting-submit":
-        return <BottomNote empty />;
+        return <BottomNote empty></BottomNote>;
       // case "reject":
       //   return <Default {...this.commonprops} />;
 
       case "approved":
-        return <BottomNote text1={""} empty text2={""} />;
+        return <BottomNote text1={""} empty text2={""}></BottomNote>;
       default:
         return (
           <BottomNote
@@ -247,7 +263,7 @@ class NameVerify extends BaseProfile {
         config.features.ICVerification &&
         this.state.scene !== "waiting-submit"
         ? i18n.t("common.configured")
-        : i18n.t("common.complete"),
+        : i18n.t("common.submit"),
       config.features.Profile_DisplayEditNameButton
         ? this.bottomNoteSwitcher(this.state.scene)
         : null,
@@ -272,4 +288,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NameVerify));
+export default connect(mapStateToProps, mapDispatchToProps)(NameVerify);
