@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { AccountService } from "@tgs-web-nx/core";
+import { accountAction, AccountService } from "@tgs-web-nx/core";
 import BaseProfile from "./BaseProfile";
 import BottomNote from "@/components/UI/BottomNote";
 
@@ -16,14 +16,18 @@ import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
 
 class Email extends BaseProfile {
-  state = {
-    countdownToken: 0,
-    email: "",
-    code: "",
-    isConfigured: false,
-    isNew: false,
-    securityKey: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      countdownToken: 0,
+      email: "",
+      code: "",
+      isConfigured: false,
+      isNew: false,
+      securityKey: "",
+    };
+  }
+
   componentDidMount() {
     var isConfigured = false;
     if (this.props.account.info.check_pass_email) isConfigured = true;
@@ -47,6 +51,7 @@ class Email extends BaseProfile {
     this.setState({ ...this.state, code: e.target.value });
     this.onTextChanged();
   };
+
   checkCountdownToken = () => {
     if (this.state.countdownToken > 0) {
       this.setState({
@@ -63,50 +68,56 @@ class Email extends BaseProfile {
       });
     }
   };
-  handleGetCodeClick = (e) => {
+  handleGetCodeClicka = async () => {
     if (this.state.countdownToken > 0) return;
     if (!this.state.email) return this.showErrorMessage(i18n.t("common.msgEnterEmail"));
-    this.showLoading(true);
-    AccountService.VerifyEmail(this.state.email)
-      .then((response) => {
-        if (response.IsSuccess) {
-          this.setState({
-            ...this.state,
-            securityKey: response.data,
-            countdownToken: 60,
-          });
-          this.showInfoMessage(i18n.t("common.msgTokenSent"));
-          setTimeout(() => {
-            this.checkCountdownToken();
-          }, 1000);
-        } else {
-          this.showErrorMessage(response.info);
-          // if (response.code === 402) {
-          //   this.showErrorMessage(i18n.t('common.msgInvalidEmail'))
-          // } else {
-          //   this.showErrorMessage(response.info)
-          // }
-        }
-        this.showLoading(false);
-      })
-      .catch((err) => {
-        this.showErrorMessage(err);
+    // this.showLoading(true);
+    this.setState((prevState) => ({
+      ...prevState,
+      loading: false,
+    }));
+    this.setState((prevState) => ({
+      ...prevState,
+      securityKey: "123",
+      countdownToken: 60,
+    }));
 
-        // if (
-        //   err.Result.RemainingSec != null &&
-        //   isNaN(err.Result.RemainingSec) === false
-        // ) {
-        //   this.setState({
-        //     ...this.state,
-        //     countdownToken: err.Result.RemainingSec
-        //   });
-        //   setTimeout(() => {
-        //     this.checkCountdownToken();
-        //   }, 1000);
-        // }
+    this.setState((prevState) => ({
+      ...prevState,
+      loading: false,
+    }));
 
-        this.showLoading(false);
-      });
+    // this.showLoading(false);
+  };
+  handleGetCodeClick = async (e) => {
+    if (this.state.countdownToken > 0) return;
+    if (!this.state.email) return this.showErrorMessage(i18n.t("common.msgEnterEmail"));
+
+    try {
+      this.showLoading(true);
+      const response = await AccountService.VerifyEmail(this.state.email);
+      if (response.IsSuccess) {
+        const securityKey = response.data;
+
+        this.setState((prevState) => ({
+          ...prevState,
+          securityKey,
+          countdownToken: 60,
+        }));
+
+        this.showInfoMessage(i18n.t("common.msgTokenSent"));
+
+        setTimeout(() => {
+          this.checkCountdownToken();
+        }, 1000);
+      } else {
+        this.showErrorMessage(response.info);
+      }
+    } catch (err) {
+      this.showErrorMessage(err);
+    } finally {
+      this.showLoading(false);
+    }
   };
 
   isDisableButton = () => {
@@ -128,82 +139,64 @@ class Email extends BaseProfile {
     //   key: "info"
     // });
   };
-  handleSubmitClicked = () => {
-    this.showLoading(true);
-    if (config.features.Register_CustomFlow_IDR && !this.props.account.registercompleted) {
-      this.props
-        .newRegister("InitMail", {
-          input: "Init",
-          data: {
-            email: this.state.email,
-          },
-        })
-        .then(async (response) => {
-          if (response.IsSuccess) {
-            this.props
-              .newRegister("InitMail", {
-                input: "Valid",
-                data: {
-                  securitykey: response.data.stepResponse,
-                  validatecode: "123456",
-                },
-              })
-              .then(async (response) => {
-                if (response.IsSuccess) {
-                  this.props.getAccountProfile().then((responseUpdate) => {
-                    if (responseUpdate.IsSuccess) {
-                      if (!responseUpdate.data.registercompleted) {
-                        this.props.history.replace("/card/add");
-                      }
-                      this.showLoading(false);
-                    }
-                  });
-                } else {
-                  this.showErrorMessage(response.info);
-                  this.showLoading(false);
-                }
-              });
+
+  handleSubmitClicked = async () => {
+    try {
+      this.showLoading(true);
+
+      const isCustomFlowIDR =
+        config.features.Register_CustomFlow_IDR && !this.props.account.registercompleted;
+      const newRegisterInput = {
+        input: isCustomFlowIDR ? "Init" : "Valid",
+        data: {
+          email: this.state.email,
+          securitykey: this.state.securityKey,
+          validatecode: this.state.code,
+        },
+      };
+
+      if (isCustomFlowIDR) {
+        const initMailResponse = await this.props.newRegister("InitMail", newRegisterInput);
+
+        if (initMailResponse.IsSuccess) {
+          const validMailResponse = await this.props.newRegister("InitMail", newRegisterInput);
+
+          if (validMailResponse.IsSuccess) {
+            await this.props.getAccountProfile();
+
+            if (!this.props.account.registercompleted) {
+              this.props.history.replace("/card/add");
+            }
           } else {
-            this.showErrorMessage(response.info);
+            this.showErrorMessage(validMailResponse.info);
           }
-          this.showLoading(false);
-        });
-    } else {
-      AccountService.UpdateEmail(this.state.securityKey, this.state.code)
-        .then((response) => {
-          if (response.IsSuccess) {
-            this.props.getAccountProfile().then((responseUpdate) => {
-              if (responseUpdate.IsSuccess) {
-                this.setState({
-                  ...this.state,
-                  code: "",
-                  securityKey: "",
-                  isConfigured: true,
-                  countdownToken: 0,
-                  isNew: false,
-                });
-              }
-              this.showLoading(false);
-            });
-          } else {
-            this.showErrorMessage(response.info);
-            // if (response.code === 405) {
-            //   this.showErrorMessage(
-            //     i18n.t('common.msgInvalidPhoneCode')
-            //   )
-            // } else if (response.code === 900) {
-            //   this.setState({ ...this.state, countdownToken: 0 })
-            //   this.showErrorMessage(i18n.t('common.msgEmailExist'))
-            // } else {
-            //   this.showErrorMessage(response.info)
-            // }
-            this.showLoading(false);
-          }
-        })
-        .catch((err) => {
-          this.showLoading(false);
-          this.showErrorMessage(err);
-        });
+        } else {
+          this.showErrorMessage(initMailResponse.info);
+        }
+      } else {
+        const updateEmailResponse = await AccountService.UpdateEmail(
+          this.state.securityKey,
+          this.state.code,
+        );
+
+        if (updateEmailResponse.IsSuccess) {
+          await this.props.getAccountProfile();
+          this.setState({
+            code: "",
+            securityKey: "",
+            isConfigured: true,
+            countdownToken: 0,
+            isNew: false,
+          });
+        } else {
+          this.showErrorMessage(updateEmailResponse.info);
+        }
+      }
+    } catch (err) {
+      this.showErrorMessage(err);
+    } finally {
+      this.showLoading(false);
+      this.props.handleCloseDialog();
     }
   };
 
@@ -246,6 +239,7 @@ class Email extends BaseProfile {
                           this.state.countdownToken +
                           "s)"
                     }
+                    buttonDisabled={this.state.countdownToken > 0}
                     style={{ margin: "20px auto 20px auto" }}
                     value={this.state.code}
                     onChange={this.handleChangeCode}
