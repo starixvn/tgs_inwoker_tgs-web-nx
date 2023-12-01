@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import { connect } from "react-redux";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
@@ -28,9 +29,19 @@ import {
   TransferLabel,
   TransferValue,
 } from "@/components/styled-component/Deposit";
+import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
+
+const BadgeContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+`;
+
 
 class Main extends Component {
   render() {
+    console.log(this.props)
     const methodCode = (method) => {
       return (
         this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
@@ -93,32 +104,29 @@ class Main extends Component {
             {/*1. 请选择支付方式 */}
             <ItemContainer>
               <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer>
-              <FormControl variant="outlined">
-                <Select
-                  native
-                  id="customSelect"
-                  value={this.props.selectedMethodIndex}
-                  onChange={(e) => this.props.handleMethodChange(e)}
-                >
-                  <option value={""} disabled>
-                    {i18n.t("deposit.msgPlsSelectPayment")}
-                  </option>
-                  {this.props.wallet.depositTypeList.length > 0 &&
-                    this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method.map(
-                      (item, index) => {
-                        return (
-                          <option key={index} value={index}>
-                            {config.features.CustomKING8Deposit &&
+              <BadgeContainer>
+                {this.props.wallet.depositTypeList.length > 0 &&
+                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method.map(
+                    (item, index) => {
+                      return (
+
+                        <Badge
+                          key={item.methodid}
+                          text={
+                            config.features.CustomKING8Deposit &&
                             (paymentCode("manual") || alteredPaymentCode("manual")) &&
                             i18n.exists(`king8.${item.methodcode}`)
                               ? i18n.t(`king8.${item.methodcode}`)
-                              : i18n.t(item.methodcode)}
-                          </option>
-                        );
-                      },
-                    )}
-                </Select>
-              </FormControl>
+                              : i18n.t(item.methodcode)
+                          }
+                          isActive={index === this.props.selectedMethodIndex}
+                          handleClick={() => this.props.handleMethodChange(index)}
+                        />
+                      );
+                    },
+                  )}
+
+              </BadgeContainer>
             </ItemContainer>
           </>
         ) : (
