@@ -3,9 +3,9 @@ import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compati
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
+import { media } from "@/theme/breakpoints";
 import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
-import { media } from "@/theme/breakpoints";
 
 const DownloadAppContainer = styled.div`
   padding: 0 205px;
