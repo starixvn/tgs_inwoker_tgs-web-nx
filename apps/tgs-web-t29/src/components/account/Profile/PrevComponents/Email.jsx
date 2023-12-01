@@ -141,7 +141,6 @@ class Email extends BaseProfile {
   };
 
   handleSubmitClicked = async () => {
-    console.log(this.props.account.registercompleted);
     try {
       this.showLoading(true);
 

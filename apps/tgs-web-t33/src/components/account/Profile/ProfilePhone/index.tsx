@@ -2,16 +2,29 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
+import { useSnackbar } from "notistack";
 import Phone from "@/components/account/Profile/PrevComponents/Phone";
 
-const ProfilePhonePage = () => {
+type Props = {
+  handleCloseDialog: () => void;
+};
+
+const ProfilePhonePage = ({ handleCloseDialog }: Props) => {
   useUpdatePageName(i18n.t("common.phoneNumber"));
 
   const { alert } = useNotifications();
   const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
 
   //@ts-ignore
-  return <Phone alert={alert} appHistory={history} />;
+  return (
+    <Phone
+      alert={alert}
+      appHistory={history}
+      handleCloseDialog={handleCloseDialog}
+      enqueueSnackbar={enqueueSnackbar}
+    />
+  );
 };
 
 export default ProfilePhonePage;
