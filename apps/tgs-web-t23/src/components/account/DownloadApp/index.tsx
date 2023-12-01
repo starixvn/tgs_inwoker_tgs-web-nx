@@ -1,47 +1,15 @@
-import styled from "styled-components";
 import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compatible.svg";
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
-import { media } from "@/theme/breakpoints";
 import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
-
-const DownloadAppContainer = styled.div`
-  padding: 0 205px;
-
-  ${media.xs} {
-    padding: 0 24px;
-  }
-`;
-
-const IntroductionContainer = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-family: Gill Sans MT;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  background: #2e3237;
-  padding: 40px 20px;
-`;
-
-const Text = styled.div`
-  padding-top: 10px;
-  font-family: Gill Sans MT;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
-const InfoCardListContainer = styled.div`
-  padding-top: 10px;
-  width: 100%;
-  gap: 12px;
-  display: flex;
-  flex-wrap: wrap;
-`;
+import {
+  DownloadAppContainer,
+  InfoCardListContainer,
+  IntroductionContainer,
+  Text,
+} from "@/components/styled-component/Download";
 
 const infoCardItemList: InfoCardItem[] = [
   {
