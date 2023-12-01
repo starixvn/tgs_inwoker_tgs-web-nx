@@ -4,6 +4,7 @@ import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
+import { EnqueueSnackbar } from "notistack";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import { TextField } from "@/components/UI/TextField";
@@ -14,7 +15,12 @@ import {
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 
-const QQ = () => {
+type Props = {
+  handleCloseDialog: () => void;
+  enqueueSnackbar: EnqueueSnackbar;
+};
+
+const QQ = (prop: Props) => {
   const { account, getAccountProfile } = useAccountStore();
   const { alert } = useNotifications();
 
@@ -123,7 +129,7 @@ const QQ = () => {
             disabled={checkButtonState() || isLoading}
             style={{ marginBottom: "20px" }}
           >
-           {i18n.t("common.submit")}
+            {i18n.t("common.submit")}
           </SubmitButton>
 
           <BottomNote
