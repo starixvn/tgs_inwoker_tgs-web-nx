@@ -61,34 +61,9 @@ class Email extends BaseProfile {
       setTimeout(() => {
         this.checkCountdownToken();
       }, 1000);
-    } else {
-      this.setState({
-        ...this.state,
-        countdownToken: this.state.countdownToken - 1,
-      });
     }
   };
-  handleGetCodeClicka = async () => {
-    if (this.state.countdownToken > 0) return;
-    if (!this.state.email) return this.showErrorMessage(i18n.t("common.msgEnterEmail"));
-    // this.showLoading(true);
-    this.setState((prevState) => ({
-      ...prevState,
-      loading: false,
-    }));
-    this.setState((prevState) => ({
-      ...prevState,
-      securityKey: "123",
-      countdownToken: 60,
-    }));
 
-    this.setState((prevState) => ({
-      ...prevState,
-      loading: false,
-    }));
-
-    // this.showLoading(false);
-  };
   handleGetCodeClick = async (e) => {
     if (this.state.countdownToken > 0) return;
     if (!this.state.email) return this.showErrorMessage(i18n.t("common.msgEnterEmail"));
