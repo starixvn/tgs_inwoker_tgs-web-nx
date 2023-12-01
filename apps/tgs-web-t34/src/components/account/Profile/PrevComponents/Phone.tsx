@@ -29,6 +29,7 @@ type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
 };
+
 function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const history = useHistory();
