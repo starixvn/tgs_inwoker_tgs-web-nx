@@ -73,9 +73,6 @@ stages:
     
 .deploy-template: &deploy-template
   stage: deploy
-  needs:
-    - job: docker-build-$tgs_env
-      artifacts: true
   before_script:
     - source get_tgs-env.sh
     - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
@@ -83,6 +80,9 @@ stages:
     - export KUBECONFIG=$kubeconfig_${tgs_env}
     - export KUBECONFIG=${!KUBECONFIG}
     - echo $KUBECONFIG
+  needs:
+    - job: docker-build-$tgs_env
+      artifacts: true
   script:
     - | 
       for image in $(cat image.txt); do
