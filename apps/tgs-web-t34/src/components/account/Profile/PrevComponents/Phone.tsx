@@ -5,6 +5,7 @@ import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
+import { EnqueueSnackbar } from "notistack";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
@@ -12,6 +13,7 @@ import {
   FormControl,
   ItemContainer,
   LabelContainer,
+  SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
@@ -21,13 +23,19 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
-function Phone() {
+const AREA_CODE = config.features.PhonePrefix;
+
+type Props = {
+  handleCloseDialog: () => void;
+  enqueueSnackbar: EnqueueSnackbar;
+};
+function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const history = useHistory();
   const { alert } = useNotifications();
 
   const [countdownToken, setCountdownToken] = useState(0);
-  const [areacode, setAreacode] = useState(config.features.PhonePrefix);
+  const [areacode, setAreacode] = useState(AREA_CODE);
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
   const [isNew, setIsNew] = useState(false);
@@ -62,17 +70,9 @@ function Phone() {
     onTextChanged();
   };
 
-  const checkCountdownToken = () => {
-    if (countdownToken > 0) {
-      setCountdownToken(countdownToken - 1);
-      setTimeout(() => {
-        checkCountdownToken();
-      }, 1000);
-    }
-  };
-
   const handleGetCodeClick = async () => {
     if (countdownToken > 0) return;
+
     if (!phone) return showErrorMessage(i18n.t("common.msgEnterPhone"));
     if (phone.length < 8 || phone.length > (config.features.MAX_PHONE_LENGTH || 10)) {
       alert(
@@ -85,7 +85,6 @@ function Phone() {
     }
 
     setIsLoading(true);
-
     try {
       const response = await newRegister("InitPhone", {
         input: "Init",
@@ -99,11 +98,8 @@ function Phone() {
       if (response.IsSuccess) {
         setCountdownToken(60);
         //@ts-ignore
-        setSecurityKey(response.data);
+        setSecurityKey(response.data.stepResponse);
         showInfoMessage(i18n.t("common.msgTokenSent"));
-        setTimeout(() => {
-          checkCountdownToken();
-        }, 1000);
       } else {
         //@ts-ignore
         showErrorMessage(response.info);
@@ -115,12 +111,15 @@ function Phone() {
     }
   };
 
-  const isDisableButton = () => {
-    return (
-      (config.features.Register_CustomFlow_IDR && !account.registercompleted && !phone) ||
-      !(code && phone)
-    );
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (countdownToken > 0) {
+        setCountdownToken((prev) => prev - 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [countdownToken]);
 
   const onTextChanged = () => {
     if (message != null && message.length > 0) {
@@ -136,104 +135,35 @@ function Phone() {
     alert("", msg || "");
   };
 
+  const isDisableButton =
+    (config.features.Register_CustomFlow_IDR && !account.registercompleted && !phone) ||
+    !(code && phone);
+
+  const handleSubmitSucceed = () => {
+    enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
+      variant: "success",
+    });
+    handleCloseDialog();
+  };
+
   const handleSubmitClicked = async () => {
     setIsLoading(true);
 
     try {
-      if (
-        (config.features.Register_CustomFlow_IDR && !account.registercompleted) ||
-        config.features.InitPhone_WithoutVerify
-      ) {
+      console.log(shouldHandlePhoneSubmission());
+      if (shouldHandlePhoneSubmission()) {
         const response = await getRegisterStatus();
 
         if (response?.IsSuccess) {
           const currentStepKey = response.data;
           if (currentStepKey === "SetPhoneDontCareDuplicate") {
-            const responseSetPhone = await newRegister("SetPhoneDontCareDuplicate", {
-              areacode: areacode,
-              phone: phone,
-            });
-
-            if (responseSetPhone?.IsSuccess) {
-              const responseUpdate = await getAccountInfo();
-
-              if (responseUpdate?.IsSuccess) {
-                if (responseUpdate.data.email === null && !responseUpdate.data.registercompleted) {
-                  history.push({
-                    pathname: "/profile/email",
-                    state: { forced: true },
-                  });
-                } else {
-                  setCode("");
-                  setSecurityKey("");
-                  setCountdownToken(0);
-                  setIsNew(false);
-                  setIsConfigured(true);
-                }
-              }
-            } else {
-              showErrorMessage(responseSetPhone?.info || "");
-            }
+            await handleSetPhoneDontCareDuplicate();
           }
         } else {
-          const responseInitPhone = await newRegister("InitPhone", {
-            input: "Init",
-            data: {
-              areacode: areacode,
-              phone: phone,
-            },
-          });
-
-          if (responseInitPhone?.IsSuccess) {
-            const responseValid = await newRegister("InitPhone", {
-              input: "Valid",
-              data: {
-                securitykey: responseInitPhone.data.stepResponse,
-                validatecode: "123456", // You might need to replace this
-              },
-            });
-
-            if (responseValid?.IsSuccess) {
-              const responseUpdate = await getAccountInfo();
-
-              if (responseUpdate?.IsSuccess) {
-                if (responseUpdate.data.email === null && !responseUpdate.data.registercompleted) {
-                  history.push({
-                    pathname: "/profile/email",
-                    state: { forced: true },
-                  });
-                } else {
-                  setCode("");
-                  setSecurityKey("");
-                  setCountdownToken(0);
-                  setIsNew(false);
-                  setIsConfigured(true);
-                }
-              }
-            } else {
-              showErrorMessage(responseValid?.info);
-            }
-          } else {
-            showErrorMessage(responseInitPhone?.info);
-          }
+          await handleInitPhoneSubmission();
         }
       } else {
-        const response = await AccountService.UpdatePhone(securityKey, code);
-
-        //@ts-ignore
-        if (response?.IsSuccess) {
-          const responseUpdate = await getAccountInfo();
-
-          if (responseUpdate?.IsSuccess) {
-            setCode("");
-            setSecurityKey("");
-            setCountdownToken(0);
-            setIsNew(false);
-            setIsConfigured(true);
-          }
-        } else {
-          showErrorMessage(response?.info);
-        }
+        await handleUpdatePhone();
       }
     } catch (error: any) {
       showErrorMessage(error?.message);
@@ -242,6 +172,85 @@ function Phone() {
     }
   };
 
+  const shouldHandlePhoneSubmission = () => {
+    return (
+      (config.features.Register_CustomFlow_IDR && !account.registercompleted) ||
+      config.features.InitPhone_WithoutVerify
+    );
+  };
+
+  const handleSetPhoneDontCareDuplicate = async () => {
+    const responseSetPhone = await newRegister("SetPhoneDontCareDuplicate", {
+      areacode: areacode,
+      phone: phone,
+    });
+
+    if (responseSetPhone?.IsSuccess) {
+      await handleGetAccountInfo();
+      handleSubmitSucceed();
+    } else {
+      showErrorMessage(responseSetPhone?.info || "");
+    }
+  };
+
+  const handleInitPhoneSubmission = async () => {
+    const responseInitPhone = await newRegister("InitPhone", {
+      input: "Init",
+      data: {
+        areacode: areacode,
+        phone: phone,
+      },
+    });
+
+    if (responseInitPhone?.IsSuccess) {
+      const responseValid = await newRegister("InitPhone", {
+        input: "Valid",
+        data: {
+          securitykey: responseInitPhone.data.stepResponse,
+          validatecode: "123456", // You might need to replace this
+        },
+      });
+
+      if (responseValid?.IsSuccess) {
+        await handleGetAccountInfo();
+        handleSubmitSucceed();
+      } else {
+        showErrorMessage(responseValid?.info);
+      }
+    } else {
+      showErrorMessage(responseInitPhone?.info);
+    }
+  };
+
+  const handleUpdatePhone = async () => {
+    const response = await AccountService.UpdatePhone(securityKey, code);
+
+    if (response?.IsSuccess) {
+      await handleGetAccountInfo();
+      handleSubmitSucceed();
+    } else {
+      showErrorMessage(response?.info);
+    }
+  };
+
+  const handleGetAccountInfo = async () => {
+    const responseUpdate = await getAccountInfo();
+
+    if (responseUpdate?.IsSuccess) {
+      if (responseUpdate.data.email === null && !responseUpdate.data.registercompleted) {
+        history.push({
+          pathname: "/profile/email",
+          state: { forced: true },
+        });
+      } else {
+        setCode("");
+        setSecurityKey("");
+        setCountdownToken(0);
+        setIsNew(false);
+        setIsConfigured(true);
+      }
+    }
+  };
   const cannotAccessOther =
     //@ts-ignore
     history.location.state && history.location.state.forced ? true : "";
@@ -265,7 +274,7 @@ function Phone() {
                   !config.features.InitPhone_WithoutVerify)
               }
             >
-              <option value={config.features.PhonePrefix}>{config.features.PhonePrefix}</option>
+              <option value={AREA_CODE}>{AREA_CODE}</option>
             </Select>
           </FormControl>
 
@@ -304,6 +313,7 @@ function Phone() {
                     onChange={handleChangeCode}
                     placeholder={i18n.t("common.msgEnterPhoneCode")}
                     onClick={handleGetCodeClick}
+                    buttonDisabled={countdownToken > 0}
                   />
                 </FormControl>
               </ItemContainer>
@@ -311,6 +321,15 @@ function Phone() {
           );
         }
       })()}
+
+      <SubmitButton
+        fullWidth
+        disabled={isDisableButton}
+        onClick={handleSubmitClicked}
+        style={{ marginBottom: "20px" }}
+      >
+        {i18n.t("common.submit")}
+      </SubmitButton>
 
       {isConfigured || config.features.InitPhone_WithoutVerify ? (
         config.features.Profile_DisableEditPhone ? (
