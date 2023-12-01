@@ -46,21 +46,6 @@ stages:
     paths:
       - image.txt
 
-docker-build-dev:
-  <<: *docker-build-template
-  only: 
-    - develop
-
-docker-build-staging:
-  <<: *docker-build-template
-  only: 
-    - release/current
-
-docker-build-prod:
-  <<: *docker-build-template
-  only: 
-    - master
-
 .deploy-domain-template: &deploy-domain-template
   stage: deploy-domain
   before_script:
@@ -85,21 +70,6 @@ docker-build-prod:
       else 
         echo "No Deployment Brand and Domain"
       fi
-        
-deploy-domain-dev:
-  <<: *deploy-domain-template
-  only: 
-    - develop
-
-deploy-domain-staging:
-  <<: *deploy-domain-template
-  only: 
-    - release/current
-
-deploy-domain-prod:
-  <<: *deploy-domain-template
-  only: 
-    - master
     
 .deploy-template: &deploy-template
   stage: deploy
@@ -131,6 +101,36 @@ deploy-domain-prod:
           fi    
       done;   
 
+docker-build-dev:
+  <<: *docker-build-template
+  only: 
+    - develop
+
+docker-build-staging:
+  <<: *docker-build-template
+  only: 
+    - release/current
+
+docker-build-prod:
+  <<: *docker-build-template
+  only: 
+    - master
+
+deploy-domain-dev:
+  <<: *deploy-domain-template
+  only: 
+    - develop
+
+deploy-domain-staging:
+  <<: *deploy-domain-template
+  only: 
+    - release/current
+
+deploy-domain-prod:
+  <<: *deploy-domain-template
+  only: 
+    - master
+    
 deploy-dev:
   <<: *deploy-template
   only: 
