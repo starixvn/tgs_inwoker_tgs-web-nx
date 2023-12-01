@@ -38,7 +38,11 @@ const ProfilePage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
-      {isDesktopSize ? <ProfileMenu /> : <ProfilePageComponent />}
+      {isDesktopSize ? (
+        <ProfileMenu />
+      ) : (
+        <ProfilePageComponent handleCloseDialog={handleCloseDialog} />
+      )}
 
       {isDesktopSize && (
         <ProfileDialog open={isDialogOpen} onClose={handleCloseDialog}>
