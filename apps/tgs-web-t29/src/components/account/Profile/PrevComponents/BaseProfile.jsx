@@ -29,11 +29,6 @@ class BaseProfile extends Component {
   };
 
   updateInfo(payload) {
-    console.log(this.store);
-    console.log(this.dispatch);
-    console.log(this.props);
-    console.log(this.props.store);
-    console.log(this.props.dispatch);
     store.dispatch({
       type: UPDATE_INFO,
       payload: payload,
@@ -75,7 +70,10 @@ class BaseProfile extends Component {
     this.setState({ message: message });
   }
   showLoading(loading) {
-    this.setState({ ...this.state, loading: loading });
+    this.setState((prevState) => ({
+      ...prevState,
+      loading,
+    }));
   }
   setupContent(title, body, buttonTitle = i18n.t("common.submit"), bottomNode, noBack) {
     return (
