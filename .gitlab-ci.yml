@@ -79,7 +79,7 @@ stages:
     - echo "tgs_env=$tgs_env"
     - export KUBECONFIG=$kubeconfig_${tgs_env}
     - export KUBECONFIG=${!KUBECONFIG}
-    - echo $KUBECONFIG
+    - echo "KUBECONFIG=$KUBECONFIG"
   script:
     - | 
       for image in $(cat image.txt); do
