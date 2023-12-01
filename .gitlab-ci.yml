@@ -130,8 +130,6 @@ deploy-domain-prod:
               kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
           fi    
       done;   
-  environment:
-    name: ${tgs_env}
 
 deploy-dev:
   <<: *deploy-template
