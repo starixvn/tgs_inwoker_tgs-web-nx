@@ -32,6 +32,7 @@ const TextFieldWithButton = (
     onClick: () => void;
     maxLength?: number;
     buttonLabel?: string;
+    buttonDisabled?: boolean;
   },
 ) => {
   return (
@@ -51,7 +52,9 @@ const TextFieldWithButton = (
       />
 
       <ButtonContainer>
-        <Button onClick={props.onClick}>{props.buttonLabel}</Button>
+        <Button onClick={props.onClick} disabled={!!props.buttonDisabled}>
+          {props.buttonLabel}
+        </Button>
       </ButtonContainer>
     </CustomText>
   );

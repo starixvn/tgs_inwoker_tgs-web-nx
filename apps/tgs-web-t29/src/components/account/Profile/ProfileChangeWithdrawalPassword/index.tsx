@@ -4,13 +4,23 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import ChangeWithdrawalPassword from "@/components/account/Profile/PrevComponents/ChangeWithdrawalPassword";
 
-const ProfileChangeWithdrawalPasswordPage = () => {
+type Props = {
+  handleCloseDialog: () => void;
+};
+
+const ProfileChangeWithdrawalPasswordPage = ({ handleCloseDialog }: Props) => {
   useUpdatePageName(i18n.t("profile.changeWithdrawalPassword.title"));
 
   const { alert } = useNotifications();
   const history = useHistory();
 
-  return <ChangeWithdrawalPassword alert={alert} appHistory={history} />;
+  return (
+    <ChangeWithdrawalPassword
+      alert={alert}
+      appHistory={history}
+      handleCloseDialog={handleCloseDialog}
+    />
+  );
 };
 
 export default ProfileChangeWithdrawalPasswordPage;
