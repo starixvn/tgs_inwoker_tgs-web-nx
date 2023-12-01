@@ -21,7 +21,8 @@ export function useImageActions() {
       const svgElement = document.querySelector(`#${imageId}`).firstElementChild;
       if (!svgElement) return;
 
-      const { width, height } = svgElement.getBBox();
+      const width = svgElement.getAttribute("width");
+      const height = svgElement.getAttribute("height");
       const clonedSvgElement = svgElement.cloneNode(true);
       const outerHTML = clonedSvgElement.outerHTML,
         blob = new Blob([outerHTML], { type: "image/svg+xml;charset=utf-8" });
