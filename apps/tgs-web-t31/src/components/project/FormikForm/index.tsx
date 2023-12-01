@@ -55,6 +55,8 @@ const FormikForm = ({
     return errorMsg;
   };
 
+  const bottomFormErrorMsg = showErrorOn === "bottom" && getBottomErrorMessage();
+
   return (
     <form onSubmit={formik.handleSubmit}>
       {formInputList.map((formInput) => {
@@ -65,7 +67,7 @@ const FormikForm = ({
       })}
       {children}
 
-      {error?.message && (
+      {(error?.message || bottomFormErrorMsg) && (
         <ErrorMessageContainer>
           {showErrorOn === "bottom" && getBottomErrorMessage()}
           {error?.message || null}

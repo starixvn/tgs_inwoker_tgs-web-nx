@@ -9,6 +9,7 @@ import {
   LogoutResDto,
   NewRegisterResDto,
   RegisterResDto,
+  RegisterV2CreatePlayerReqDto,
   SetBirthDateResDto,
   UpdateIMResDto,
   UpdateMemberNameAndICResDto,
@@ -247,6 +248,16 @@ function UploadIC(file: File) {
   return ApiService.postFile(`player/identity/upload`, file, {});
 }
 
+// register v2
+function RegisterV2CreatePlayer(createPlayerReqDto: RegisterV2CreatePlayerReqDto) {
+  console.log(createPlayerReqDto);
+
+  return ApiService.post("player/register", {
+    type: "CreatePlayer",
+    input: createPlayerReqDto,
+  }) as unknown as Promise<NewRegisterResDto>;
+}
+
 export const AccountService = {
   CheckUserName,
   Login,
@@ -279,4 +290,5 @@ export const AccountService = {
   UpdateIM,
   GetRegisterStatus,
   UpdateMemberNameAndIC,
+  RegisterV2CreatePlayer,
 };

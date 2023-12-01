@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
@@ -24,9 +24,8 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   align-items: center;
   gap: 10px;
   background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.gray30 : theme.blue50};
-  color: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.primary : theme.white};
+    $isActive ? theme.blue40 : theme.blue50};
+  color: ${({ theme }: MemberMenuItemProps) => theme.white};
   cursor: pointer;
 
   &:hover {
@@ -56,12 +55,19 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
     }
   };
 
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const currentRoute = pathSegments[pathSegments.length - 1];
   return (
     //@ts-ignore
     <MemberMenuContainer {...others}>
-      {accountNavItemList.map((navItem) => {
+      {accountNavItemList.map((navItem: NavItem) => {
         return (
-          <MemberMenuItem key={navItem.key} $isActive={false} onClick={() => handleClick(navItem)}>
+          <MemberMenuItem
+            key={navItem.key}
+            $isActive={currentRoute === navItem.routePath?.replace("/", "")}
+            onClick={() => handleClick(navItem)}
+          >
             <Icon
               iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
               width={"24px"}

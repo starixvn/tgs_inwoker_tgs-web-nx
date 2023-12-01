@@ -3,15 +3,17 @@ import * as Yup from "yup";
 import { FormikValues, useFormik } from "formik";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { UserTypeEnum } from "@tgs-web-nx/core/features";
 import { FormInputTypeEnum } from "../types";
+import { UserTypeEnum } from "../types";
 import { FormikFormInput, useFormikInitValue } from "./useFormikInitValue";
+import { usePromotionCode } from "./usePromotionCode";
 
 type Props = {
   handleClickSubmit: (values: FormikValues) => Promise<void>;
 };
 
 export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
+  const { promotionData } = usePromotionCode();
   // ===== init form input config =====
   const formInputConfigList = useMemo<FormikFormInput[]>(() => {
     return [
@@ -91,7 +93,7 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
       {
         label: i18n.t("wap.register.promoteCode"),
         name: "promoteCode",
-        initialValue: "",
+        initialValue: promotionData.upper,
         type: FormInputTypeEnum.PROMOTION_CODE,
       },
       {

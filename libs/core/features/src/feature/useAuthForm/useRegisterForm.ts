@@ -7,16 +7,13 @@ import { useAuthDialog } from "../useAuthDialog";
 import { useGenerateRegisterFormik } from "./hooks/useGenerateRegisterFormik";
 import { usePromotionCode } from "./hooks/usePromotionCode";
 import { useConfirmAdult } from "./hooks/useConfirmAdult";
+import { UserTypeEnum } from "./types";
 
-export enum UserTypeEnum {
-  AGENT = "a",
-  PLAYER = "p",
-}
 export function useRegisterForm() {
   const { registerState, handleRegister, clearRegisterError } = useAuth();
   const { promotionData } = usePromotionCode();
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
-  const { handleToggleRegisterDialog } = useAuthDialog();
+  const { handleToggleRegisterDialog, handleToggleLoginDialog } = useAuthDialog();
   const { isDesktopSize } = useRwd();
 
   const [otherError, setOtherError] = useState<Error | null>(null);
@@ -29,6 +26,7 @@ export function useRegisterForm() {
         return;
       }
 
+      const username = values.username as string;
       const userType = values.userType as UserTypeEnum;
       try {
         await handleRegister({
@@ -41,6 +39,9 @@ export function useRegisterForm() {
 
         if (isDesktopSize) {
           handleToggleRegisterDialog(false);
+          localStorage.setItem("remember", "true");
+          localStorage.setItem("username", username);
+          handleToggleLoginDialog(true);
         }
         setOtherError(null);
       } catch (error: any) {
