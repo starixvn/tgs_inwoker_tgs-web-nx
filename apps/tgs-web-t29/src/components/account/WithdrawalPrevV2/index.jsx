@@ -379,111 +379,103 @@ class Withdrawal extends Component {
   };
 
   switchDisplayView = () => {
-    if (this.props.account.loading === false) {
-      if (this.props.account.info.member_name === "") {
-        return <NameVerification token={this.props.token}></NameVerification>;
-      } else {
-        if (
-          config.features.AddCard_NotAllowedEditDelete &&
-          !this.state.enableAddCard &&
-          this.props.wallet.bankCardList != null &&
-          this.props.wallet.bankCardList.length === 0
-        ) {
-          return (
-            <DisabledTemplate
-              template={config.accountTemplate}
-              handleCSClick={this.handleCSClick}
-            />
-          );
-        } else {
-          if (
-            this.props.wallet.bankCardList != null &&
-            this.props.wallet.bankCardList.length === 0
-          ) {
-            return (
-              <AddCard
-                name={this.props.account.info.member_name}
-                onhandleNextClick={this.performAddNewCard}
-                withdrawalList={this.props.wallet.withdrawalList}
-                showBack={false}
-                containCard={
-                  this.props.wallet.bankCardList != null &&
-                  this.props.wallet.bankCardList.length === 0
-                }
-                isDeposit={false}
-                appHistory={this.props.appHistory}
-              ></AddCard>
-            );
-          } else {
-            if (this.state.isAddCardSuccess === true) {
-              return (
-                <AddCardSuccessTemplate
-                  template={config.accountTemplate}
-                  onhandleBindCardClick={this.handleBindCardClick}
-                  onhandleGoWithdrawClick={this.handleGoWithdrawClick}
-                  onhandleCSClick={this.handleCSClick}
-                  bankCardList={this.props.wallet.bankCardList}
-                ></AddCardSuccessTemplate>
-              );
-            } else {
-              switch (this.state.displayView) {
-                case 1:
-                  return (
-                    <Main
-                      defaultCard={this.state.defaultCard}
-                      cardList={this.handleFilterCardList(this.props.wallet.bankCardList)}
-                      withdrawalInfo={this.state.withdrawalInfo}
-                      onhandleManageCardClick={this.handleManageCardClick}
-                      onhandleWithdrawalClick={this.handleWithdrawalClick}
-                      onhandleRefreshClick={this.props.onhandleRefreshClick}
-                      account={this.props.account}
-                      withdrawalMinLimit={this.props.wallet.withdrawalMinLimit}
-                      withdrawalMaxLimit={this.props.wallet.withdrawalMaxLimit}
-                      minWithdrawLimit={this.state.minWithdrawLimit}
-                    ></Main>
-                  );
-                case 2:
-                  return (
-                    <AddCard
-                      name={this.props.account.info.member_name}
-                      onhandleNextClick={this.performAddNewCard}
-                      onhandleBackClick={this.handleAddCardBack}
-                      withdrawalList={this.props.wallet.withdrawalList}
-                      showBack={true}
-                      containCard={
-                        this.props.wallet.bankCardList != null &&
-                        this.props.wallet.bankCardList.length === 0
-                      }
-                      isDeposit={false}
-                    ></AddCard>
-                  );
-                case 3:
-                  return (
-                    <CardManageTemplate
-                      template={config.accountTemplate}
-                      bankCardList={this.props.wallet.bankCardList}
-                      onhandleAddCardClick={this.handleAddCardClick}
-                      onhandleBackClick={this.handleCardManageBack}
-                      onhandleDeleteCardClick={this.handleDeleteCardClick}
-                      onhandleReportClick={this.handleReportClick}
-                    ></CardManageTemplate>
-                  );
-                case 4:
-                  return (
-                    <SuccessTemplate
-                      template={config.accountTemplate}
-                      handleVerifyName={this.handleVerifyName}
-                      handleConfirmClick={this.handleSuccessConfirmClick}
-                      verified={this.props.account.info.check_pass_account}
-                    ></SuccessTemplate>
-                  );
-                default:
-                  return null;
-              }
+    if (this.props.account.loading) {
+      return;
+    }
+
+    if (!this.props.account.info.member_name) {
+      return <NameVerification token={this.props.token} />;
+    }
+
+    if (
+      config.features.AddCard_NotAllowedEditDelete &&
+      !this.state.enableAddCard &&
+      this.props.wallet.bankCardList != null &&
+      !this.props.wallet.bankCardList.length
+    ) {
+      return (
+        <DisabledTemplate template={config.accountTemplate} handleCSClick={this.handleCSClick} />
+      );
+    }
+
+    if (this.props.wallet.bankCardList != null && this.props.wallet.bankCardList.length === 0) {
+      return (
+        <AddCard
+          name={this.props.account.info.member_name}
+          onhandleNextClick={this.performAddNewCard}
+          withdrawalList={this.props.wallet.withdrawalList}
+          showBack={false}
+          containCard={this.props.wallet.bankCardList.length === 0}
+          isDeposit={false}
+          appHistory={this.props.appHistory}
+        />
+      );
+    }
+
+    if (this.state.isAddCardSuccess) {
+      return (
+        <AddCardSuccessTemplate
+          template={config.accountTemplate}
+          onhandleBindCardClick={this.handleBindCardClick}
+          onhandleGoWithdrawClick={this.handleGoWithdrawClick}
+          onhandleCSClick={this.handleCSClick}
+          bankCardList={this.props.wallet.bankCardList}
+        />
+      );
+    }
+
+    switch (this.state.displayView) {
+      case 1:
+        return (
+          <Main
+            defaultCard={this.state.defaultCard}
+            cardList={this.handleFilterCardList(this.props.wallet.bankCardList)}
+            withdrawalInfo={this.state.withdrawalInfo}
+            onhandleManageCardClick={this.handleManageCardClick}
+            onhandleWithdrawalClick={this.handleWithdrawalClick}
+            onhandleRefreshClick={this.props.onhandleRefreshClick}
+            account={this.props.account}
+            withdrawalMinLimit={this.props.wallet.withdrawalMinLimit}
+            withdrawalMaxLimit={this.props.wallet.withdrawalMaxLimit}
+            minWithdrawLimit={this.state.minWithdrawLimit}
+          />
+        );
+      case 2:
+        return (
+          <AddCard
+            name={this.props.account.info.member_name}
+            onhandleNextClick={this.performAddNewCard}
+            onhandleBackClick={this.handleAddCardBack}
+            withdrawalList={this.props.wallet.withdrawalList}
+            showBack={true}
+            containCard={
+              this.props.wallet.bankCardList != null && this.props.wallet.bankCardList.length === 0
             }
-          }
-        }
-      }
+            isDeposit={false}
+          />
+        );
+      case 3:
+        return (
+          <CardManageTemplate
+            template={config.accountTemplate}
+            bankCardList={this.props.wallet.bankCardList}
+            onhandleAddCardClick={this.handleAddCardClick}
+            onhandleBackClick={this.handleCardManageBack}
+            onhandleDeleteCardClick={this.handleDeleteCardClick}
+            onhandleReportClick={this.handleReportClick}
+          />
+        );
+      case 4:
+        return (
+          <SuccessTemplate
+            template={config.accountTemplate}
+            handleVerifyName={this.handleVerifyName}
+            handleConfirmClick={this.handleSuccessConfirmClick}
+            verified={this.props.account.info.check_pass_account}
+          />
+        );
+      default:
+        return null;
     }
   };
 

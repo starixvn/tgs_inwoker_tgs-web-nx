@@ -8,35 +8,7 @@ import { MainTemplate } from "./withdrawal";
 import LimitPopupBigPNG from "@/assets/images/limit-popup-big.png";
 import IconEditPNG from "@/assets/images/icon-edit.png";
 import IconBankDisablePNG from "@/assets/images/icon-bank-disable.png";
-
-const SubHeaderContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-const NumberContainer = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 3.2px;
-  background-color: #141933;
-  font-family: Arial;
-  font-size: 14px;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-  padding-top: 2px;
-  float: left;
-`;
-const SubTitle = styled.div`
-  font-size: 16px;
-  float: left;
-  color: #818181;
-  margin: 0 0 0 10px;
-`;
-const SelectionContainer = styled.div`
-  margin: 15px 0 0 30px;
-`;
-
-const BankCardButton = styled(Grid)`
+styled(Grid)`
   width: auto;
   text-align: left;
 
@@ -60,23 +32,19 @@ const BankCardButton = styled(Grid)`
     cursor: pointer;
   }
 `;
-const BankCardButtonIcon = styled(Grid)`
+styled(Grid)`
   width: 40px;
   height: 40px;
   background: url(${IconBankDisablePNG}) no-repeat 15px center;
-`;
-const BankCardButtonLabel = styled.div`
-  width: 86px;
-  display: inline-block;
 `;
 const BankCardButtonCardNo = styled.div`
   float: right;
   margin-right: 2px;
 `;
-const BankCardButtonCardNoHL = styled(BankCardButtonCardNo)`
+styled(BankCardButtonCardNo)`
   font-weight: bold;
 `;
-const ManageCardButton = styled(Grid)`
+styled(Grid)`
   height: 41px;
   width: auto;
   font-size: 14px;
@@ -98,71 +66,11 @@ const ManageCardButton = styled(Grid)`
     cursor: pointer;
   }
 `;
-const ManageCardButtonIcon = styled(Grid)`
+
+styled(Grid)`
   width: 40px;
   height: 40px;
   background: url(${IconEditPNG}) no-repeat 15px center;
-`;
-const SplitLine = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #e1dfdf;
-  margin: 20px 0;
-`;
-
-const LimitPopupContainer = styled.div`
-  background:
-    url(${LimitPopupBigPNG}) no-repeat,
-    linear-gradient(90deg, rgba(2, 0, 36, 0) 9px, rgba(122, 145, 153, 1) 10px);
-  font-size: 14px;
-  color: #ffffff;
-  padding: 10px 10px 10px 25px;
-  border-radius: 4px;
-  display: inline-block;
-  line-height: 25px;
-  margin: 10px 0 0 20px;
-`;
-
-const Turnover = styled.div`
-  span {
-    color: ${({ theme }) => {
-      return theme.primary;
-    }};
-    font-weight: bold;
-  }
-`;
-
-const ButtonWrapper = styled.div`
-  margin: 0 0 0 0;
-  display: flex;
-`;
-
-const GameWalletButton = styled.div`
-  font-size: 12px;
-  background: ${({ theme }) => {
-    return theme.primary;
-  }};
-  width: fit-content;
-
-  text-align: center;
-  padding: 5px;
-
-  margin: 8px 5px 0 0;
-  color: #fff;
-
-  min-width: 79px;
-  height: 28px;
-  border-radius: 5px;
-  border: solid 1px #ffffff;
-
-  &:hover {
-    cursor: pointer;
-    background-blend-mode: screen, normal;
-    ${(props) =>
-      props.disabled
-        ? "   background-image: linear-gradient(to top, #797979, #c3c3c3);"
-        : " box-shadow: inset 1px 1px 9px 0  rgba(255, 255, 255, 0.75);"}
-  }
 `;
 
 const Main = (props) => {
