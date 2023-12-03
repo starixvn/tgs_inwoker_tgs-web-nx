@@ -32,10 +32,12 @@ type Props = {
   step?: number;
   title: string;
   children?: React.ReactNode;
-};
-const StepTitle = ({ step, title, children }: Props) => {
+} & React.HTMLProps<HTMLDivElement>;
+
+const StepTitle = ({ step, title, children, ...others }: Props) => {
   return (
-    <SubHeaderContainer>
+    //@ts-ignore
+    <SubHeaderContainer {...others}>
       {typeof step === "number" && <NumberContainer>{step}</NumberContainer>}
       <SubTitle>{title}</SubTitle>
       {children}

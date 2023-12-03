@@ -1,103 +1,23 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
-import limitBg from "@/assets/t29/images/withdraw/limit-bg.png";
 
-import {
-  FormControl as ProfileFormControl,
-  ItemContainer as ProfileItemContainer,
-  SubmitButton,
-} from "@/components/styled-component/ProfileForms";
+import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import BankCardGroup from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/components/BankCardGroup";
 import StepTitle from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/components/StepTitle";
-import { media } from "@/theme/breakpoints";
-import { MainProps } from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/Main";
-
-const ItemContainer = styled(ProfileItemContainer)`
-  ${media.sm} {
-    max-width: none;
-  }
-`;
-
-const FormControl = styled(ProfileFormControl)`
-  max-width: 500px;
-`;
-
-const SelectionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-
-  & input {
-    padding: 16px 0 !important;
-  }
-`;
-
-const LimitPopupContainer = styled.div`
-  white-space: nowrap;
-  background: url(${limitBg}) no-repeat;
-  background-size: contain;
-  background-position: center;
-  font-size: 0.812rem;
-  color: ${({ theme }) => theme.white};
-  padding: 10px 24px;
-  border-radius: 4px;
-  display: inline-block;
-  line-height: 25px;
-`;
-
-const Turnover = styled.div`
-  color: ${({ theme }) => theme.text};
-  span {
-    margin-left: 5px;
-    color: ${({ theme }) => theme.secondary};
-    font-weight: bold;
-  }
-`;
-
-const ButtonWrapper = styled.div`
-  margin: 0 0 0 0;
-  display: flex;
-`;
-
-const GameWalletButton = styled.div`
-  font-size: 12px;
-  background: ${({ theme }) => {
-    return theme.primary;
-  }};
-  width: fit-content;
-
-  text-align: center;
-  padding: 5px;
-
-  margin: 8px 5px 0 0;
-  color: #fff;
-
-  min-width: 79px;
-  height: 28px;
-  border-radius: 5px;
-  border: solid 1px #ffffff;
-
-  &:hover {
-    cursor: pointer;
-    background-blend-mode: screen, normal;
-    ${(props) =>
-      props.disabled
-        ? "   background-image: linear-gradient(to top, #797979, #c3c3c3);"
-        : " box-shadow: inset 1px 1px 9px 0  rgba(255, 255, 255, 0.75);"}
-  }
-`;
-
-const AmountWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 5px;
-`;
-
-const USDTWrapper = styled.div``;
+import { MainProps } from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/index";
+import {
+  AmountWrapper,
+  ButtonWrapper,
+  FormControl,
+  GameWalletButton,
+  ItemContainer,
+  LimitPopupContainer,
+  SelectionContainer,
+  Turnover,
+  USDTWrapper,
+} from "@/components/styled-component/WithdrawV2/Main";
 
 const MainDesktop = ({
   amount,
@@ -118,6 +38,9 @@ const MainDesktop = ({
   handlePlayerNote,
   handleWithdrawalClick,
 }: MainProps) => {
+  useEffect(() => {
+    getTransferLimit(cardList[selectedCardIndex].paymentchannelid);
+  }, [cardList, getTransferLimit, selectedCardIndex]);
   return (
     <>
       {/* Please choose bank */}
@@ -191,7 +114,10 @@ const MainDesktop = ({
             if (cardList[selectedCardIndex] && cardList[selectedCardIndex].banktype === "Usdt") {
               return (
                 <USDTWrapper>
-                  <StepTitle title={i18n.t("withdrawal.usdtAmount")} />
+                  <StepTitle
+                    title={i18n.t("withdrawal.usdtAmount")}
+                    style={{ marginTop: "16px" }}
+                  />
 
                   <FormControl variant="outlined">
                     <TextField

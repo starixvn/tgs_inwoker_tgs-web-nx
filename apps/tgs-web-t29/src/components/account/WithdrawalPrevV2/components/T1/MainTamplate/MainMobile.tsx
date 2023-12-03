@@ -1,7 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
+import { MainProps } from "./index";
 import {
   FormControl,
   ItemContainer,
@@ -13,45 +13,11 @@ import WithdrawInfoCard from "@/pages/withdrawal/components/WithdrawInfoCard";
 import { ManageBankCardButtonContainer } from "@/components/styled-component/Withdraw";
 import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
 import { Select } from "@/components/UI/Select";
-import { MainProps } from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/Main";
-
-const SubHeaderContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const ButtonWrapper = styled.div`
-  margin: 0 0 0 0;
-  display: flex;
-`;
-
-const GameWalletButton = styled.div`
-  font-size: 12px;
-  background: ${({ theme }) => {
-    return theme.primary;
-  }};
-  width: fit-content;
-
-  text-align: center;
-  padding: 5px;
-
-  margin: 8px 5px 0 0;
-  color: #fff;
-
-  min-width: 79px;
-  height: 28px;
-  border-radius: 5px;
-  border: solid 1px #ffffff;
-
-  &:hover {
-    cursor: pointer;
-    background-blend-mode: screen, normal;
-    ${(props) =>
-      props.disabled
-        ? "   background-image: linear-gradient(to top, #797979, #c3c3c3);"
-        : " box-shadow: inset 1px 1px 9px 0  rgba(255, 255, 255, 0.75);"}
-  }
-`;
+import {
+  ButtonWrapper,
+  GameWalletButton,
+  SubHeaderContainer,
+} from "@/components/styled-component/WithdrawV2/Main";
 
 const MainMobile = ({
   amount,
@@ -84,12 +50,12 @@ const MainMobile = ({
         <LabelContainer>{i18n.t("withdrawal.msgEnterBank")}</LabelContainer>
         <FormControl variant="outlined">
           <Select
-            value={cardList[selectedCardIndex]}
+            value={selectedCardIndex}
             native
             onChange={(e) => {
               const index = e.target.value;
               handleSelectCardChange(index);
-              getTransferLimit(cardList[index].paymentchannelid);
+              // getTransferLimit(cardList[index].paymentchannelid);
             }}
           >
             <option disabled value="">
@@ -137,14 +103,14 @@ const MainMobile = ({
             value={amount}
             onChange={handleAmountChange}
             type={"number"}
-            placeholder={
+            placeholder={`${
               selectedCardIndex != null
                 ? i18n.t("withdrawal.enterAmount") +
                   ` (${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(
                     max,
                   )})`
                 : i18n.t("withdrawal.enterAmount")
-            }
+            }`}
           />
         </FormControl>
       </ItemContainer>
@@ -183,4 +149,4 @@ const MainMobile = ({
   );
 };
 
-export default MainMobile;
+export default React.memo(MainMobile);
