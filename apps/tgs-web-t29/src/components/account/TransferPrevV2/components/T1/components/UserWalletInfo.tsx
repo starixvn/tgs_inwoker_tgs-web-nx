@@ -8,7 +8,6 @@ import TransferMWalletPNG from "@/assets/t29/images/transfer/transfer-mwallet.pn
 import TransferTWalletPNG from "@/assets/t29/images/transfer/transfer-twallet.png";
 import TransferTotalPNG from "@/assets/t29/images/transfer/transfer-total.png";
 import IconRefreshPNG from "@/assets/t29/images/transfer/icon-refresh.png";
-import ArrowRightPNG from "@/assets/t29/images/transfer/arrow-right.png";
 
 const UserWalletInfoContainer = styled.div``;
 
@@ -98,8 +97,6 @@ type Props = {
   getBalanceList: () => Promise<void>;
 };
 const UserWalletInfo = ({ getAllGameBalance, getBalanceList }: Props) => {
-  console.log(getAllGameBalance);
-  console.log(getBalanceList);
   const { game } = useGameStore();
   const { wallet } = useWalletStore();
 

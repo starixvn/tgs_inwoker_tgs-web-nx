@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import TransferCards from "@/components/account/TransferPrevV2/components/T1/components/TransferCards";
 import QuickTransfer from "@/components/account/TransferPrevV2/components/T1/components/QuickTransfer";
 import AutoTransferSwitch from "@/pages/transfer/components/components/AutoTransferSwitch";
+import TransferCard from "@/pages/transfer/components/components/TransferCard";
 
 const Container = styled.div`
   width: 100%;
@@ -37,24 +39,29 @@ const Template1 = ({
   handleTranferClick,
   handleTranferIn,
 }) => {
+  const { isLargeDesktopSize } = useRwd();
   return (
     <Container>
       <InnerWrap>
-        <QuickTransfer
-          transferFrom={transferFrom}
-          handleTransferFromChange={handleTransferFromChange}
-          transferTo={transferTo}
-          handleTransferToChange={handleTransferToChange}
-          mainAccountId={mainAccountId}
-          transferAmount={transferAmount}
-          handleTransferAmountChange={handleTransferAmountChange}
-          disabled={disabled}
-          handleTranferClick={handleTranferClick}
-        />
+        {isLargeDesktopSize ? (
+          <QuickTransfer
+            transferFrom={transferFrom}
+            handleTransferFromChange={handleTransferFromChange}
+            transferTo={transferTo}
+            handleTransferToChange={handleTransferToChange}
+            mainAccountId={mainAccountId}
+            transferAmount={transferAmount}
+            handleTransferAmountChange={handleTransferAmountChange}
+            disabled={disabled}
+            handleTranferClick={handleTranferClick}
+          />
+        ) : (
+          <TransferCard />
+        )}
 
         <SubTitle>{i18n.t("transfer.transferWallet")}</SubTitle>
         <AutoTransferSwitch style={{ marginBottom: "20px" }} />
-        <TransferCards handleTranferIn={handleTranferIn} />
+        {isLargeDesktopSize && <TransferCards handleTranferIn={handleTranferIn} />}
         <Loading show={loading || wallet.transferLoading || wallet.updateBalanceloading}></Loading>
       </InnerWrap>
     </Container>

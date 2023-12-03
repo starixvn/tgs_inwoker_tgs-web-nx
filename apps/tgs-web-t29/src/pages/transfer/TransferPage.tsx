@@ -7,7 +7,6 @@ import {
   useUserWalletInfoContext,
 } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import TransferPrevV2 from "@/components/account/TransferPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconTransfer from "@/assets/t29/images/account/navItem/icon-transfer.svg";
