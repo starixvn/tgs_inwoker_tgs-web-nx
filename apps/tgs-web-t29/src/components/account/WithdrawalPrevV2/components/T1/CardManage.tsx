@@ -8,23 +8,10 @@ import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import Card from "@/pages/withdrawal/components/CardManage/Card";
 import { CardContainer } from "@/components/styled-component/WithdrawV2/CardManage";
 import CardAddCard from "@/pages/withdrawal/components/CardManage/CardAddCard";
-import iconArrow from "@/assets/t29/images/withdraw/icon-arrow.svg";
-import Icon from "@/components/project/Icon";
-import CardAddButton from "@/pages/withdrawal/components/CardManage/CardAddButton";
+import FormTitle from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/components/FormTitle";
 
 const CardManageContainer = styled.div`
   width: 100%;
-`;
-
-const TitleWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 16px;
-`;
-
-const Title = styled.div`
-  color: ${({ theme }) => theme.blue40};
 `;
 
 type Props = {
@@ -58,11 +45,7 @@ const CardManage = ({
   return (
     <CardManageContainer>
       {isDesktopSize && (
-        <TitleWrapper>
-          <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />
-          <Title>{i18n.t("card.title")}</Title>
-          <CardAddButton handleClick={onhandleAddCardClick} />
-        </TitleWrapper>
+        <FormTitle title={i18n.t("card.title")} handleClickAddCard={onhandleAddCardClick} />
       )}
 
       <CardContainer>
