@@ -7,11 +7,11 @@ import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import NameVerification from "../CardPrev/PassSetting";
 import Main from "./components/Main";
 import AddCard from "./components/AddCard";
-import WithdrawalForm from "./components/T1";
 import AddCardSuccess from "./components/T1/AddCardSuccess";
 import CardManage from "./components/T1/CardManage";
 import Success from "./components/T1/Success";
 import Disabled from "./components/T1/Disabled";
+import Loading from "@/components/UI/Loading";
 
 class Withdrawal extends Component {
   constructor(props) {
@@ -34,7 +34,6 @@ class Withdrawal extends Component {
       },
       minWithdrawLimit: 0,
       enableAddCard: false,
-      openAnnouncement: false,
     };
   }
 
@@ -291,16 +290,15 @@ class Withdrawal extends Component {
   };
   handleManageCardClick = () => {
     if (
-      !(
-        config.features.AddCard_NotAllowedEditDelete ||
-        config.features.ChangesNotAllowed ||
-        this.props.wallet.bankCardList.length >= config.features.AddCard_MaximumCardAllowed
-      )
+      config.features.AddCard_NotAllowedEditDelete ||
+      config.features.ChangesNotAllowed ||
+      this.props.wallet.bankCardList.length >= config.features.AddCard_MaximumCardAllowed
     ) {
-      this.setState({ ...this.state, displayView: 3 });
-    } else {
-      this.setState({ ...this.state, openAnnouncement: true });
+      this.props.alert("", i18n.t("card.toEdit"));
+      return;
     }
+
+    this.setState({ ...this.state, displayView: 3 });
   };
 
   handleAddCardClick = () => {
@@ -419,9 +417,7 @@ class Withdrawal extends Component {
       return <Disabled handleCSClick={this.handleCSClick} />;
     }
 
-    console.log(this.props.wallet.bankCardList);
     if (this.props.wallet.bankCardList != null && this.props.wallet.bankCardList.length === 0) {
-      console.log("AUL");
       return (
         <AddCard
           name={this.props.account.info.member_name}
@@ -505,10 +501,6 @@ class Withdrawal extends Component {
     }
   };
 
-  handleCloseAnnouncement = () => {
-    this.setState({ ...this.state, openAnnouncement: false });
-  };
-
   getAllGameBalance = () => {
     this.props.game.providerList
       .filter((item) => item.status === 0 && item.transferwallet === true)
@@ -536,12 +528,10 @@ class Withdrawal extends Component {
 
   render() {
     return (
-      <WithdrawalForm
-        openAnnouncement={this.state.openAnnouncement}
-        loading={this.state.loading}
-        handleCloseAnnouncement={this.handleCloseAnnouncement}
-        switchDisplayView={this.switchDisplayView}
-      />
+      <>
+        {this.switchDisplayView()}
+        <Loading show={this.state.loading} />
+      </>
     );
   }
 }

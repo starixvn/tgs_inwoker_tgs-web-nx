@@ -26,10 +26,10 @@ type Props = {
 
 const DialogPopup = ({ open, onClose, children }: Props) => {
   return (
-    <StyledDialog open={open} TransitionComponent={UpTransition}>
-        <ChildContainer>{children}</ChildContainer>
-        <CloseIcon onClick={onClose} />
-      </StyledDialog>
+    <StyledDialog open={open} onClose={onClose} TransitionComponent={UpTransition}>
+      <ChildContainer>{children}</ChildContainer>
+      <CloseIcon onClick={onClose} />
+    </StyledDialog>
   );
 };
 

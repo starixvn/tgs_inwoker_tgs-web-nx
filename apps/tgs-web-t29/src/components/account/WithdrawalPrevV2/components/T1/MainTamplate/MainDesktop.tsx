@@ -169,12 +169,12 @@ const MainDesktop = ({
       </ItemContainer>
 
       <SubmitButton
-        disabled={
+        disabled={Boolean(
           isNaN(parseFloat(amount)) ||
-          parseFloat(amount) < min ||
-          parseFloat(amount) > max ||
-          disabled
-        }
+            parseFloat(amount) < min ||
+            parseFloat(amount) > max ||
+            disabled,
+        )}
         onClick={handleWithdrawalClick}
         sx={{
           width: "250px",
