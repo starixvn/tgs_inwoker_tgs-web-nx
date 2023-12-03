@@ -66,7 +66,7 @@ const MainDesktop = ({
               <GameWalletButton
                 style={{ marginTop: 0, marginLeft: 10 }}
                 onClick={() => {
-                  performWithdrawFromEveryBrand().then((e) => {
+                  performWithdrawFromEveryBrand().then((e: any) => {
                     if (e.IsSuccess) {
                       onhandleRefreshClick();
                     }
@@ -91,16 +91,12 @@ const MainDesktop = ({
           <AmountWrapper>
             <FormControl variant="outlined">
               <TextField
-                width={250}
-                height={38}
                 placeholder={i18n.t("withdrawal.enterAmount")}
                 onChange={handleAmountChange}
                 variant="outlined"
                 autoComplete="off"
                 value={amount}
-                pattern="[0-9]*"
                 type={"number"}
-                maxLength={12}
               />
             </FormControl>
 
@@ -124,7 +120,6 @@ const MainDesktop = ({
                       variant="outlined"
                       autoComplete="off"
                       value={isNaN(amount) === false ? (amount * exchangeRate).toFixed(2) : 0}
-                      pattern="[0-9]*"
                       type={"number"}
                       disabled={true}
                     />
@@ -160,7 +155,6 @@ const MainDesktop = ({
                     variant="outlined"
                     autoComplete="off"
                     value={playerNote}
-                    maxLength={50}
                   />
                 </FormControl>
               </SelectionContainer>

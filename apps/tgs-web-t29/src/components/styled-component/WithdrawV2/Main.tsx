@@ -123,10 +123,6 @@ export const GameWalletButton = styled.div`
   &:hover {
     cursor: pointer;
     background-blend-mode: screen, normal;
-    ${(props) =>
-      props.disabled
-        ? "   background-image: linear-gradient(to top, #797979, #c3c3c3);"
-        : " box-shadow: inset 1px 1px 9px 0  rgba(255, 255, 255, 0.75);"}
   }
 `;
 export const AmountWrapper = styled.div`

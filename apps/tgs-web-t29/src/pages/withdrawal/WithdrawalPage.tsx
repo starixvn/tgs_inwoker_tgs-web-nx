@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd, useWithdrawalPage } from "@tgs-web-nx/core/hooks";
-// import WithdrawalPrev from "@/components/account/WithdrawalPrev";
 import { useSnackbar } from "notistack";
 import WithdrawalPrevV2 from "@/components/account/WithdrawalPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
@@ -24,6 +23,7 @@ const WithdrawalPage = () => {
       {isDesktopSize && <UserWalletInfo />}
 
       <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
+        {/*@ts-ignore*/}
         <WithdrawalPrevV2 appHistory={history} alert={alert} enqueueSnackbar={enqueueSnackbar} />
       </AccountPaper>
     </TransferPageContainer>

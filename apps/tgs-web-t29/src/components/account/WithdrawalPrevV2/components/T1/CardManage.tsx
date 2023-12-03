@@ -42,6 +42,33 @@ const CardManage = ({
     (bankCardList.length >= AddCard_MaximumCardAllowed && AddCard_DisableCreateUpdateDelete)
   );
 
+  const getCardContent = (item: BankCard): string => {
+    if (item.detail.phone) {
+      return item.detail.phone.substring(item.detail.phone.length - 4);
+    }
+
+    if (item.detail.address) {
+      return item.detail.address.substring(item.detail.address.length - 4);
+    }
+
+    if (
+      item.banktype === "ThirdParty" ||
+      item.banktype === "Coinsph" ||
+      item.banktype === "FPS" ||
+      item.banktype === "Pulsa" ||
+      item.banktype === "EWallet"
+    ) {
+      // For bank types "ThirdParty", "Coinsph", "FPS", "Pulsa", and "EWallet"
+      return "";
+    }
+
+    if (item.detail.bankAccount) {
+      return item.detail.bankAccount.substring(item.detail.bankAccount.length - 4);
+    }
+
+    return "";
+  };
+
   return (
     <CardManageContainer>
       {isDesktopSize && (
@@ -54,54 +81,13 @@ const CardManage = ({
             <Card
               key={item.id}
               title={item.banktype}
-              content={(() => {
-                if (
-                  item.banktype === "ThirdParty" ||
-                  item.banktype === "Coinsph" ||
-                  item.banktype === "FPS"
-                ) {
-                  if (item.detail.phone) {
-                    return item.detail.phone.substring(
-                      item.detail.phone.length - 4,
-                      item.detail.phone.length,
-                    );
-                  } else if (item.detail.address) {
-                    return item.detail.address.substring(
-                      item.detail.address.length - 4,
-                      item.detail.address.length,
-                    );
-                  }
-                } else if (item.banktype === "Pulsa" || item.banktype === "EWallet") {
-                  if (item.detail.phone) {
-                    return item.detail.phone.substring(
-                      item.detail.phone.length - 4,
-                      item.detail.phone.length,
-                    );
-                  } else if (item.detail.address) {
-                    return item.detail.address.substring(
-                      item.detail.address.length - 4,
-                      item.detail.address.length,
-                    );
-                  }
-                } else {
-                  if (item.detail.bankAccount) {
-                    return item.detail.bankAccount.substring(
-                      item.detail.bankAccount.length - 4,
-                      item.detail.bankAccount.length,
-                    );
-                  } else if (item.detail.address) {
-                    return item.detail.address.substring(
-                      item.detail.address.length - 4,
-                      item.detail.address.length,
-                    );
-                  }
-                }
-              })()}
+              content={getCardContent(item)}
               handleDelete={() => onhandleDeleteCardClick(item.id)}
               disable={
                 config.features.AddCard_NotAllowedEditDelete ||
                 config.features.ChangesNotAllowed ||
                 config.features.AddCard_DisableCreateUpdateDelete ||
+                //@ts-ignore
                 config.features.DisableRemoveCard
               }
             />

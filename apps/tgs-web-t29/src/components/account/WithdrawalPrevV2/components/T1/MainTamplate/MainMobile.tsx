@@ -82,7 +82,7 @@ const MainMobile = ({
             <GameWalletButton
               style={{ marginTop: 0, marginLeft: 10 }}
               onClick={() => {
-                performWithdrawFromEveryBrand().then((e) => {
+                performWithdrawFromEveryBrand().then((e: any) => {
                   if (e.IsSuccess) {
                     onhandleRefreshClick();
                   }
