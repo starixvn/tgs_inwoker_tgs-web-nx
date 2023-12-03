@@ -6,17 +6,8 @@ import { Button } from "@/components/UI/Button";
 import IconBankPNG from "@/assets/images/icon-bank.png";
 import IconAddCardPNG from "@/assets/images/icon-addcard.png";
 
-const Container = styled.div`
+const CardManageContainer = styled.div`
   width: 100%;
-`;
-const SubTitle = styled.div`
-  font-size: 22px;
-  font-weight: bold;
-  text-align: center;
-  color: ${({ theme }) => {
-    return theme.darkMode ? "#fff" : " #16242a";
-  }};
-  margin-top: 50px;
 `;
 
 const CardContainer = styled.div`
@@ -88,8 +79,7 @@ const CardManage = ({
   onhandleBackClick,
 }) => {
   return (
-    <Container>
-      <SubTitle>{i18n.t("card.title")}</SubTitle>
+    <CardManageContainer>
       <CardContainer>
         {bankCardList.map((item, key) => {
           return (
@@ -155,16 +145,9 @@ const CardManage = ({
               ) && (
                 <RowContainer>
                   <LeftLabel>{i18n.t("card.removeCard")}</LeftLabel>
-                  <Button
-                    name={i18n.t("card.remove")}
-                    width={89}
-                    height={32}
-                    grayMode={true}
-                    small={true}
-                    marginTop={1}
-                    handleClick={() => onhandleDeleteCardClick(item.id)}
-                    float={"right"}
-                  ></Button>
+                  <Button onClick={() => onhandleDeleteCardClick(item.id)}>
+                    {i18n.t("card.remove")}
+                  </Button>
                 </RowContainer>
               )}
             </CardFrame>
@@ -183,16 +166,8 @@ const CardManage = ({
         )}
       </CardContainer>
 
-      <Button
-        grayMode={true}
-        name={i18n.t("common.back")}
-        width={255}
-        height={46}
-        marginLeft={300}
-        marginTop={100}
-        handleClick={onhandleBackClick}
-      ></Button>
-    </Container>
+      <Button onClick={onhandleBackClick}>{i18n.t("common.back")}</Button>
+    </CardManageContainer>
   );
 };
 

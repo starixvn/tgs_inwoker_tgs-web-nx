@@ -70,7 +70,6 @@ const AddCard = ({
   };
   return (
     <Container>
-      <SubTitle>{i18n.t("card.addCard.title")}</SubTitle>
       {!config.features.AddCard_HideCertainField && (
         <>
           <TextFieldLabel>{i18n.t("common.withdrawalBankType")}</TextFieldLabel>
@@ -199,20 +198,15 @@ const AddCard = ({
                             </FormControl>
                           ) : (
                             <CustomTextField
-                              marginTop={10}
                               placeholder={
                                 config.features.AddCard_DisplayFPS
                                   ? i18n.t("hk28.card.addCard.msgEnterBankName")
                                   : i18n.t("card.addCard.msgEnterBankName")
                               }
-                              width={395}
-                              height={38}
-                              float={"none"}
-                              maxLength={255}
                               disabled={disableBankNameInput}
                               value={bankName}
                               name="bankName"
-                              handleTextFieldChange={handleBankNameChange}
+                              onChange={handleBankNameChange}
                             ></CustomTextField>
                           )}
                         </TextFieldContainer>
@@ -225,14 +219,10 @@ const AddCard = ({
                           <TextFieldLabel>{i18n.t("card.addCard.branch")}</TextFieldLabel>
                           <TextFieldContainer>
                             <CustomTextField
-                              marginTop={10}
                               placeholder={i18n.t("card.addCard.branchPlaceHolder")}
-                              width={395}
-                              height={38}
-                              float={"none"}
                               maxLength={255}
                               name="bankBranch"
-                              handleTextFieldChange={handleBankBranchChange}
+                              onChange={handleBankBranchChange}
                             ></CustomTextField>
                           </TextFieldContainer>
                         </React.Fragment>
@@ -263,11 +253,7 @@ const AddCard = ({
                       ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
                       : i18n.t("card.addCard.msgEnterBankAccountName")
                   }
-                  width={395}
-                  height={38}
-                  float={"none"}
-                  maxLength={255}
-                  handleTextFieldChange={handleBankAccountNameChange}
+                  onChange={handleBankAccountNameChange}
                   name="bankAccountName"
                   value={bankAccountName}
                   disabled={disableBankAccountNameInput}
@@ -297,7 +283,6 @@ const AddCard = ({
           </TextFieldLabel>
           <TextFieldContainer>
             <CustomTextField
-              marginTop={10}
               placeholder={
                 eWalletCustomIDR
                   ? i18n.t("idr1.eWalletAccount")
@@ -307,12 +292,8 @@ const AddCard = ({
                   ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
                   : i18n.t("card.addCard.msgEnterBankAccountName")
               }
-              width={395}
-              height={38}
-              float={"none"}
-              maxLength={255}
               name="bankAccountName"
-              handleTextFieldChange={handleBankAccountNameChange}
+              onChange={handleBankAccountNameChange}
               value={bankAccountName}
               disabled={disableBankAccountNameInput}
             ></CustomTextField>
@@ -337,17 +318,12 @@ const AddCard = ({
           </TextFieldLabel>
           <TextFieldContainer>
             <CustomTextField
-              marginTop={10}
               placeholder={
                 config.features.AddCard_InputAddFPS
                   ? i18n.t("custom.addcard.msgPlsEnterName")
                   : i18n.t("profile.nameVerify.msgPlsEnterName")
               }
-              width={395}
-              height={38}
-              maxLength={50}
-              float={"none"}
-              handleTextFieldChange={handleNameChange}
+              onChange={handleNameChange}
               name="name"
             ></CustomTextField>
           </TextFieldContainer>
@@ -362,7 +338,6 @@ const AddCard = ({
           </TextFieldLabel>
           <TextFieldContainer>
             <CustomTextField
-              marginTop={10}
               placeholder={
                 eWalletCustomIDR
                   ? i18n.t("idr1.phone")
@@ -372,12 +347,9 @@ const AddCard = ({
                   ? i18n.t("bet28.msgEnterPhone")
                   : i18n.t("common.msgEnterPhone")
               }
-              width={395}
-              height={38}
               maxLength={config.features.MAX_PHONE_LENGTH || 10}
-              float={"none"}
               name="phone"
-              handleTextFieldChange={handlePhoneChange}
+              onChange={handlePhoneChange}
             ></CustomTextField>
           </TextFieldContainer>
         </div>
@@ -396,7 +368,6 @@ const AddCard = ({
           </TextFieldLabel>
           <TextFieldContainer>
             <CustomTextField
-              marginTop={10}
               placeholder={
                 eWalletCustomIDR
                   ? i18n.t("idr1.phone")
@@ -408,18 +379,16 @@ const AddCard = ({
                   ? i18n.t("hk28.msgEnterWithdrawalNumber")
                   : i18n.t("common.msgEnterWithdrawalNumber")
               }
-              width={395}
               maxLength={
-                (selectedBankType("ThirdParty") ||
-                  selectedBankType("Coinsph") ||
-                  selectedBankType("Pulsa") ||
-                  selectedBankType("FPS")) &&
-                config.features.MAX_PHONE_LENGTH
+                selectedBankType("ThirdParty") ||
+                selectedBankType("Coinsph") ||
+                selectedBankType("Pulsa") ||
+                selectedBankType("FPS")
+                  ? config.features.MAX_PHONE_LENGTH
+                  : 255
               }
-              height={38}
-              float={"none"}
               name="number"
-              handleTextFieldChange={handleNumberChange}
+              onChange={handleNumberChange}
               value={number}
             ></CustomTextField>
           </TextFieldContainer>
@@ -434,12 +403,9 @@ const AddCard = ({
                 <TextFieldLabel>{i18n.t("ifsc")}</TextFieldLabel>
                 <TextFieldContainer>
                   <CustomTextField
-                    marginTop={10}
                     placeholder={i18n.t("ifsc")}
-                    width={395}
                     maxLength={11}
-                    height={38}
-                    handleTextFieldChange={handleIFSCChange}
+                    onChange={handleIFSCChange}
                     value={ifsc}
                   ></CustomTextField>
                 </TextFieldContainer>
@@ -451,29 +417,17 @@ const AddCard = ({
       <TextFieldContainer>
         {(() => {
           if (showBack === true) {
-            return (
-              <Button
-                grayMode={true}
-                name={i18n.t("common.back")}
-                width={257}
-                marginRight={20}
-                handleClick={onhandleBackClick}
-              ></Button>
-            );
+            return <Button onClick={onhandleBackClick}>{i18n.t("common.back")}</Button>;
           } else {
             return null;
           }
         })()}
 
-        <Button
-          name={
-            config.features.Register_CustomFlow_IDR && !isDeposit
-              ? i18n.t("web.register.btn")
-              : i18n.t("common.nextStep")
-          }
-          width={255}
-          handleClick={handleNextClick}
-        ></Button>
+        <Button width={255} onClick={handleNextClick}>
+          {config.features.Register_CustomFlow_IDR && !isDeposit
+            ? i18n.t("web.register.btn")
+            : i18n.t("common.nextStep")}
+        </Button>
       </TextFieldContainer>
     </Container>
   );

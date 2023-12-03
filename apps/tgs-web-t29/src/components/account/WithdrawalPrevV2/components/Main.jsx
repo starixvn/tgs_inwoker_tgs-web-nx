@@ -1,77 +1,8 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import { Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import config from "@tgs-web-nx/config";
-import { accountAction, walletAction, WalletService, RESET_WALLETRESULT } from "@tgs-web-nx/core";
-import { MainTemplate } from "./withdrawal";
-import LimitPopupBigPNG from "@/assets/images/limit-popup-big.png";
-import IconEditPNG from "@/assets/images/icon-edit.png";
-import IconBankDisablePNG from "@/assets/images/icon-bank-disable.png";
-styled(Grid)`
-  width: auto;
-  text-align: left;
-
-  height: 41px;
-  font-size: 14px;
-  background-color: #f7f7f7;
-  color: #747474;
-  padding-right: 10px;
-  text-align: center;
-
-  float: left;
-  margin-right: 8px;
-  margin-top: 5px;
-  ${(props) =>
-    props.active
-      ? ` border: solid 1px #151a34;
-      `
-      : ` border: solid 1px #e1dfdf;
-     `};
-  &:hover {
-    cursor: pointer;
-  }
-`;
-styled(Grid)`
-  width: 40px;
-  height: 40px;
-  background: url(${IconBankDisablePNG}) no-repeat 15px center;
-`;
-const BankCardButtonCardNo = styled.div`
-  float: right;
-  margin-right: 2px;
-`;
-styled(BankCardButtonCardNo)`
-  font-weight: bold;
-`;
-styled(Grid)`
-  height: 41px;
-  width: auto;
-  font-size: 14px;
-  background-color: #f7f7f7;
-  color: #747474;
-  padding-right: 10px;
-  text-align: center;
-
-  float: left;
-  margin-right: 8px;
-  margin-top: 5px;
-  ${(props) =>
-    props.active
-      ? ` border: solid 1px #151a34;
-      `
-      : ` border: solid 1px #e1dfdf;
-     `};
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-styled(Grid)`
-  width: 40px;
-  height: 40px;
-  background: url(${IconEditPNG}) no-repeat 15px center;
-`;
+import { walletAction } from "@tgs-web-nx/core";
+import MainT1 from "./T1/MainTamplate";
 
 const Main = (props) => {
   const [selectedCardIndex, setSelectedCardIndex] = useState(props.defaultCard);
@@ -86,11 +17,12 @@ const Main = (props) => {
   const [playerNote, setPlayerNote] = useState("");
   var minValue = [];
   var maxValue = [];
+
   useEffect(() => {
     if (config.features.Deposit_AddCard && props.cardList.length > 0) {
       getTransferLimit(props.cardList[props.defaultCard].paymentchannelid);
     }
-  }, [props.defaultCard]);
+  }, [props.cardList, props.defaultCard]);
 
   const handleSelectCardChange = (index) => {
     setSelectedCardIndex(index);
@@ -142,8 +74,7 @@ const Main = (props) => {
   };
 
   return (
-    <MainTemplate
-      template={config.accountTemplate}
+    <MainT1
       amount={amount}
       playerNote={playerNote}
       min={min}

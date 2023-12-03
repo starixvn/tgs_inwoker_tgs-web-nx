@@ -1,20 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { accountAction, walletAction, WalletService, RESET_WALLETRESULT } from "@tgs-web-nx/core";
+import { accountAction, RESET_WALLETRESULT, walletAction, WalletService } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import NameVerification from "../CardPrev/PassSetting";
-
-import AddCard from "../CardPrev/AddCardPrev";
-import {
-  Withdrawal as WithdrawalTemplate,
-  CardManageTemplate,
-  AddCardSuccessTemplate,
-  DisabledTemplate,
-  SuccessTemplate,
-} from "./withdrawal/index";
-import Main from "./Main";
+import Main from "./components/Main";
+import AddCard from "./components/AddCard";
+import WithdrawalForm from "./components/T1";
+import AddCardSuccess from "./components/T1/AddCardSuccess";
+import CardManage from "./components/T1/CardManage";
+import Success from "./components/T1/Success";
+import Disabled from "./components/T1/Disabled";
 
 class Withdrawal extends Component {
   state = {
@@ -393,9 +390,7 @@ class Withdrawal extends Component {
       this.props.wallet.bankCardList != null &&
       !this.props.wallet.bankCardList.length
     ) {
-      return (
-        <DisabledTemplate template={config.accountTemplate} handleCSClick={this.handleCSClick} />
-      );
+      return <Disabled handleCSClick={this.handleCSClick} />;
     }
 
     if (this.props.wallet.bankCardList != null && this.props.wallet.bankCardList.length === 0) {
@@ -414,8 +409,7 @@ class Withdrawal extends Component {
 
     if (this.state.isAddCardSuccess) {
       return (
-        <AddCardSuccessTemplate
-          template={config.accountTemplate}
+        <AddCardSuccess
           onhandleBindCardClick={this.handleBindCardClick}
           onhandleGoWithdrawClick={this.handleGoWithdrawClick}
           onhandleCSClick={this.handleCSClick}
@@ -456,8 +450,7 @@ class Withdrawal extends Component {
         );
       case 3:
         return (
-          <CardManageTemplate
-            template={config.accountTemplate}
+          <CardManage
             bankCardList={this.props.wallet.bankCardList}
             onhandleAddCardClick={this.handleAddCardClick}
             onhandleBackClick={this.handleCardManageBack}
@@ -467,8 +460,7 @@ class Withdrawal extends Component {
         );
       case 4:
         return (
-          <SuccessTemplate
-            template={config.accountTemplate}
+          <Success
             handleVerifyName={this.handleVerifyName}
             handleConfirmClick={this.handleSuccessConfirmClick}
             verified={this.props.account.info.check_pass_account}
@@ -501,8 +493,7 @@ class Withdrawal extends Component {
 
   render() {
     return (
-      <WithdrawalTemplate
-        template={config.accountTemplate}
+      <WithdrawalForm
         openAnnouncement={this.state.openAnnouncement}
         loading={this.state.loading}
         handleCloseAnnouncement={this.handleCloseAnnouncement}
