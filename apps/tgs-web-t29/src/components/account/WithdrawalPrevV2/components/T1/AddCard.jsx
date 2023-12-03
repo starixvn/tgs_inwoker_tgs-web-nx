@@ -55,13 +55,14 @@ const AddCard = ({
 }) => {
   const { isDesktopSize } = useRwd();
 
-  var checkWithdrawalBankType = (type) => {
+  const checkWithdrawalBankType = (type) => {
     return withdrawalList.length > 0 && withdrawalList[selectedBankTypeIndex].banktype === type;
   };
 
-  var checkDepositBankType = (type) => {
+  const checkDepositBankType = (type) => {
     return depositList.length > 0 && depositList[selectedBankTypeIndex].banktype === type;
   };
+
   return (
     <Container>
       {isDesktopSize && <FormTitle title={i18n.t("card.addCard.title")} />}
@@ -294,89 +295,95 @@ const AddCard = ({
         (depositList[selectedBankTypeIndex].banktype === "ThirdParty" ||
           depositList[selectedBankTypeIndex].banktype === "Coinsph" ||
           depositList[selectedBankTypeIndex].banktype === "FPS")) ? (
-        <ItemContainer>
-          <LabelContainer>
-            {config.features.AddCard_InputAddFPS
-              ? i18n.t("custom.addcard.name")
-              : i18n.t("profile.nameVerify.title")}
-          </LabelContainer>
-          <FormControl>
-            <TextField
-              placeholder={
-                config.features.AddCard_InputAddFPS
-                  ? i18n.t("custom.addcard.msgPlsEnterName")
-                  : i18n.t("profile.nameVerify.msgPlsEnterName")
-              }
-              onChange={handleNameChange}
-              name="name"
-            />
-          </FormControl>
+        <>
+          <ItemContainer>
+            <LabelContainer>
+              {config.features.AddCard_InputAddFPS
+                ? i18n.t("custom.addcard.name")
+                : i18n.t("profile.nameVerify.title")}
+            </LabelContainer>
+            <FormControl>
+              <TextField
+                placeholder={
+                  config.features.AddCard_InputAddFPS
+                    ? i18n.t("custom.addcard.msgPlsEnterName")
+                    : i18n.t("profile.nameVerify.msgPlsEnterName")
+                }
+                onChange={handleNameChange}
+                name="name"
+              />
+            </FormControl>
+          </ItemContainer>
 
-          <LabelContainer>
-            {eWalletCustomIDR
-              ? i18n.t("idr1.phone")
-              : config.features.AddCard_InputAddFPS
-              ? i18n.t("custom.addcard.phoneNumber")
-              : config.features.AddCard_DisplayFPS
-              ? i18n.t("bet28.phoneNumber")
-              : i18n.t("common.phoneNumber")}
-          </LabelContainer>
-          <FormControl>
-            <TextField
-              placeholder={
-                eWalletCustomIDR
-                  ? i18n.t("idr1.phone")
-                  : config.features.AddCard_InputAddFPS
-                  ? i18n.t("custom.addcard.msgEnterPhone")
-                  : config.features.AddCard_DisplayFPS
-                  ? i18n.t("bet28.msgEnterPhone")
-                  : i18n.t("common.msgEnterPhone")
-              }
-              maxLength={config.features.MAX_PHONE_LENGTH || 10}
-              name="phone"
-              onChange={handlePhoneChange}
-            />
-          </FormControl>
-        </ItemContainer>
+          <ItemContainer>
+            <LabelContainer>
+              {eWalletCustomIDR
+                ? i18n.t("idr1.phone")
+                : config.features.AddCard_InputAddFPS
+                ? i18n.t("custom.addcard.phoneNumber")
+                : config.features.AddCard_DisplayFPS
+                ? i18n.t("bet28.phoneNumber")
+                : i18n.t("common.phoneNumber")}
+            </LabelContainer>
+            <FormControl>
+              <TextField
+                placeholder={
+                  eWalletCustomIDR
+                    ? i18n.t("idr1.phone")
+                    : config.features.AddCard_InputAddFPS
+                    ? i18n.t("custom.addcard.msgEnterPhone")
+                    : config.features.AddCard_DisplayFPS
+                    ? i18n.t("bet28.msgEnterPhone")
+                    : i18n.t("common.msgEnterPhone")
+                }
+                maxLength={config.features.MAX_PHONE_LENGTH || 10}
+                name="phone"
+                onChange={handlePhoneChange}
+              />
+            </FormControl>
+          </ItemContainer>
+        </>
       ) : (
-        <ItemContainer>
-          <LabelContainer>
-            {eWalletCustomIDR
-              ? i18n.t("idr1.phone")
-              : eWalletCustom || selectedBankType("Pulsa")
-              ? i18n.t("card.addCard.phone")
-              : config.features.AddCard_DisplayGCash
-              ? i18n.t("piso.withdrawalNumber")
-              : config.features.AddCard_DisplayFPS
-              ? i18n.t("hk28.withdrawalNumber")
-              : i18n.t("common.withdrawalNumber")}
-          </LabelContainer>
-          <FormControl>
-            <TextField
-              placeholder={
-                eWalletCustomIDR
-                  ? i18n.t("idr1.phone")
-                  : eWalletCustom || selectedBankType("Pulsa")
-                  ? i18n.t("card.addCard.msgEnterPhone")
-                  : config.features.AddCard_DisplayGCash
-                  ? i18n.t("piso.msgEnterWithdrawalNumber")
-                  : config.features.AddCard_DisplayFPS
-                  ? i18n.t("hk28.msgEnterWithdrawalNumber")
-                  : i18n.t("common.msgEnterWithdrawalNumber")
-              }
-              maxLength={
-                selectedBankType("ThirdParty") ||
-                selectedBankType("Coinsph") ||
-                selectedBankType("Pulsa") ||
-                selectedBankType("FPS")
-                  ? config.features.MAX_PHONE_LENGTH
-                  : 255
-              }
-              name="number"
-              onChange={handleNumberChange}
-              value={number}
-            />
-          </FormControl>
+        <>
+          <ItemContainer>
+            <LabelContainer>
+              {eWalletCustomIDR
+                ? i18n.t("idr1.phone")
+                : eWalletCustom || selectedBankType("Pulsa")
+                ? i18n.t("card.addCard.phone")
+                : config.features.AddCard_DisplayGCash
+                ? i18n.t("piso.withdrawalNumber")
+                : config.features.AddCard_DisplayFPS
+                ? i18n.t("hk28.withdrawalNumber")
+                : i18n.t("common.withdrawalNumber")}
+            </LabelContainer>
+            <FormControl>
+              <TextField
+                placeholder={
+                  eWalletCustomIDR
+                    ? i18n.t("idr1.phone")
+                    : eWalletCustom || selectedBankType("Pulsa")
+                    ? i18n.t("card.addCard.msgEnterPhone")
+                    : config.features.AddCard_DisplayGCash
+                    ? i18n.t("piso.msgEnterWithdrawalNumber")
+                    : config.features.AddCard_DisplayFPS
+                    ? i18n.t("hk28.msgEnterWithdrawalNumber")
+                    : i18n.t("common.msgEnterWithdrawalNumber")
+                }
+                maxLength={
+                  selectedBankType("ThirdParty") ||
+                  selectedBankType("Coinsph") ||
+                  selectedBankType("Pulsa") ||
+                  selectedBankType("FPS")
+                    ? config.features.MAX_PHONE_LENGTH
+                    : 255
+                }
+                name="number"
+                onChange={handleNumberChange}
+                value={number}
+              />
+            </FormControl>
+          </ItemContainer>
 
           {config.currency === "INR" &&
             ((!isDeposit &&
@@ -385,19 +392,18 @@ const AddCard = ({
               (isDeposit &&
                 depositList.length > 0 &&
                 depositList[selectedBankTypeIndex].banktype === "Bank")) && (
-              <>
+              <ItemContainer>
                 <LabelContainer>{i18n.t("ifsc")}</LabelContainer>
                 <FormControl>
                   <TextField
                     placeholder={i18n.t("ifsc")}
-                    maxLength={11}
                     onChange={handleIFSCChange}
                     value={ifsc}
                   />
                 </FormControl>
-              </>
+              </ItemContainer>
             )}
-        </ItemContainer>
+        </>
       )}
 
       <ButtonGroups>

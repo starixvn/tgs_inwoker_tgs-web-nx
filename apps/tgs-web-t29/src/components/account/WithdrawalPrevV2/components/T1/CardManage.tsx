@@ -4,6 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { BankCard } from "@tgs-web-nx/types";
+import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import Card from "@/pages/withdrawal/components/CardManage/Card";
 import { CardContainer } from "@/components/styled-component/WithdrawV2/CardManage";
@@ -28,19 +29,7 @@ const CardManage = ({
   onhandleBackClick,
 }: Props) => {
   const { isDesktopSize } = useRwd();
-
-  const {
-    AddCard_NotAllowedEditDelete,
-    ChangesNotAllowed,
-    AddCard_MaximumCardAllowed,
-    AddCard_DisableCreateUpdateDelete,
-  } = config.features;
-
-  const isShowAddCardButton = !(
-    AddCard_NotAllowedEditDelete ||
-    ChangesNotAllowed ||
-    (bankCardList.length >= AddCard_MaximumCardAllowed && AddCard_DisableCreateUpdateDelete)
-  );
+  const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
 
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
@@ -68,11 +57,14 @@ const CardManage = ({
 
     return "";
   };
-
   return (
     <CardManageContainer>
       {isDesktopSize && (
-        <FormTitle title={i18n.t("card.title")} handleClickAddCard={onhandleAddCardClick} />
+        <FormTitle
+          title={i18n.t("card.title")}
+          isShowAddCardButton={isShowAddCardButton}
+          handleClickAddCard={onhandleAddCardClick}
+        />
       )}
 
       <CardContainer>
