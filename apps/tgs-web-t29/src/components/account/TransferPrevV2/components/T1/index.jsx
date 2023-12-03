@@ -1,0 +1,64 @@
+import React from "react";
+import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
+import Loading from "@/components/UI/Loading";
+import TransferCards from "@/components/account/TransferPrevV2/components/T1/components/TransferCards";
+import QuickTransfer from "@/components/account/TransferPrevV2/components/T1/components/QuickTransfer";
+import AutoTransferSwitch from "@/pages/transfer/components/components/AutoTransferSwitch";
+
+const Container = styled.div`
+  width: 100%;
+`;
+
+const InnerWrap = styled.div``;
+
+const SubTitle = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.blue50};
+  display: inline-block;
+  width: 100%;
+  margin: 25px 0 5px 0;
+  padding-bottom: 8px;
+`;
+
+const Template1 = ({
+  wallet,
+  game,
+  transferFrom,
+  transferTo,
+  transferAmount,
+  mainAccountId,
+  disabled,
+  loading,
+  handleTransferFromChange,
+  handleTransferToChange,
+  handleTransferAmountChange,
+  handleTranferClick,
+  handleTranferIn,
+}) => {
+  return (
+    <Container>
+      <InnerWrap>
+        <QuickTransfer
+          transferFrom={transferFrom}
+          handleTransferFromChange={handleTransferFromChange}
+          transferTo={transferTo}
+          handleTransferToChange={handleTransferToChange}
+          mainAccountId={mainAccountId}
+          transferAmount={transferAmount}
+          handleTransferAmountChange={handleTransferAmountChange}
+          disabled={disabled}
+          handleTranferClick={handleTranferClick}
+        />
+
+        <SubTitle>{i18n.t("transfer.transferWallet")}</SubTitle>
+        <AutoTransferSwitch style={{ marginBottom: "20px" }} />
+        <TransferCards handleTranferIn={handleTranferIn} />
+        <Loading show={loading || wallet.transferLoading || wallet.updateBalanceloading}></Loading>
+      </InnerWrap>
+    </Container>
+  );
+};
+
+export default Template1;

@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAutoTransferSwitch } from "@tgs-web-nx/core/features";
-import { Switch } from "@/components/UI/Switch";
 import Loading from "@/components/UI/Loading";
+import { Button } from "@/components/UI/Button";
 
 const AutoTransferContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
 `;
 
 const CustomSwitchContainer = styled.div`
@@ -22,21 +23,28 @@ const CustomSwitchContainer = styled.div`
 `;
 
 const AutoTransferSwitch = () => {
-  const { isChecked, isLoading, handleSwitchAutoTransfer } = useAutoTransferSwitch();
+  const { isChecked, isLoading, handleSwitchAutoTransfer, performWithdrawFromEveryBrand } =
+    useAutoTransferSwitch();
 
   return (
     <>
       <AutoTransferContainer>
-        <CustomSwitchContainer>
-          <Switch checked={isChecked} onChange={handleSwitchAutoTransfer} />
-          <div>
-            {isLoading}
-            {i18n.t("transfer.autoTransfer")} (
-            {isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")})
-          </div>
-        </CustomSwitchContainer>
-      </AutoTransferContainer>
+        <div>
+          {`${i18n.t("transfer.autoTransfer")} (${
+            isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")
+          })`}
+        </div>
+        <CustomSwitchContainer checked={isChecked} onChange={handleSwitchAutoTransfer} />
 
+        <Button
+          style={{ marginTop: 0, marginLeft: 10 }}
+          onClick={() => {
+            performWithdrawFromEveryBrand();
+          }}
+        >
+          {i18n.t("transfer.oneKeyTransferOut")}
+        </Button>
+      </AutoTransferContainer>
       <Loading show={isLoading} />
     </>
   );
