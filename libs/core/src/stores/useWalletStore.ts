@@ -876,39 +876,38 @@ export function useWalletStore() {
     }
   }, []);
 
-  const getBankCardList = useCallback(() => {
+  const getBankCardList = useCallback(async () => {
     dispatch({
       type: GETBANKCARDLIST_BEGIN,
       loading: true,
     });
 
-    return WalletService.GetBankCardList()
-      .then((response) => {
-        //@ts-ignore
-        if (response?.IsSuccess) {
-          dispatch({
-            type: GETBANKCARDLIST_SUCCESS,
-            //@ts-ignore
-            payload: response.data,
-            loading: false,
-          });
-        } else {
-          dispatch({
-            type: GETBANKCARDLIST_FAIL,
-            payload: response,
-            loading: false,
-          });
-        }
-        return response;
-      })
-      .catch((e) => {
+    try {
+      const response = await WalletService.GetBankCardList();
+
+      if (response?.IsSuccess) {
         dispatch({
-          type: GETBANKCARDLIST_FAIL,
-          payload: e.status,
+          type: GETBANKCARDLIST_SUCCESS,
+          payload: response.data,
           loading: false,
         });
+      } else {
+        dispatch({
+          type: GETBANKCARDLIST_FAIL,
+          payload: response,
+          loading: false,
+        });
+      }
+
+      return response;
+    } catch (e) {
+      dispatch({
+        type: GETBANKCARDLIST_FAIL,
+        payload: e.status,
+        loading: false,
       });
-  }, []);
+    }
+  }, [dispatch]);
 
   const initBankCard = useCallback((channelid: string, bankType: string, address: string) => {
     dispatch({

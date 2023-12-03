@@ -18,7 +18,7 @@ export const ItemContainer = styled.div`
   flex-direction: column;
   margin-bottom: 24px;
   ${media.sm} {
-    max-width: 450px;
+    max-width: 500px;
   }
 `;
 

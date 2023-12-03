@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 import * as Yup from "yup";
-import { FormikValues, useFormik } from "formik";
+import { useFormik } from "formik";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { FormInputTypeEnum } from "../../types";
-import { UserTypeEnum } from "../../types";
+import { RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
+import { FormInputTypeEnum, UserTypeEnum } from "../../types";
 import { FormikFormInput, useFormikInitValue } from "../useFormikInitValue";
 
 type Props = {
-  handleClickSubmit: (values: FormikValues) => Promise<void>;
+  handleClickSubmit: (createPlayerReqDto: RegisterV2CreatePlayerReqDto) => Promise<void>;
 };
 
 export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
@@ -111,7 +111,7 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
     initialValues,
     validationSchema: Yup.object(validationSchemaSpec),
     onSubmit: async (values) => {
-      await handleClickSubmit(values);
+      await handleClickSubmit(values as RegisterV2CreatePlayerReqDto);
     },
   });
 

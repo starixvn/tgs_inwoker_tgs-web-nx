@@ -117,6 +117,7 @@ const PopupAnnouncement = () => {
   const isEmptyData = announcementList.length === 0;
   const disableDialog =
     window.sessionStorage && sessionStorage.getItem(doNotShowAnnouncementDialogKey) === "true";
+
   if (isEmptyData || disableDialog) return null;
 
   return (

@@ -27,9 +27,11 @@ export const TransferPageContainer = styled.div`
   }
 
   & .MuiButton-fullWidth {
-    max-width: 242px !important;
-    display: block !important;
-    margin: auto !important;
+    ${media.sm} {
+      max-width: 242px !important;
+      display: block !important;
+      //margin: auto !important;
+    }
   }
 `;
 

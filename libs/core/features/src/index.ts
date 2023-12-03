@@ -11,3 +11,4 @@ export * from "./feature/authGuard";
 export * from "./feature/useUserWalletInfo";
 export * from "./feature/inbox";
 export * from "./feature/transfer";
+export * from "./feature/withdraw";

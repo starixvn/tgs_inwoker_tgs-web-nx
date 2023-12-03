@@ -1,5 +1,5 @@
-export class UpdateAutoTransferStatusResDto {
-  IsSuccess = true;
-  code = 0;
-  info: string | null = null;
+export interface UpdateAutoTransferStatusResDto {
+  IsSuccess: boolean;
+  code: number;
+  info: string | null;
 }
