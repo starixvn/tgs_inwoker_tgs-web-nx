@@ -4,8 +4,8 @@ import config from "@tgs-web-nx/config";
 
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
-import BankCardGroup from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/components/BankCardGroup";
-import StepTitle from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/components/StepTitle";
+import BankCardGroup from "@/pages/withdrawal/components/Main/BankCardGroup";
+import StepTitle from "@/pages/withdrawal/components/Main/StepTitle";
 import { MainProps } from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/index";
 import {
   AmountWrapper,

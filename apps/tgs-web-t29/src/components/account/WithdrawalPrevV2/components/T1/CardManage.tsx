@@ -8,7 +8,7 @@ import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import Card from "@/pages/withdrawal/components/CardManage/Card";
 import { CardContainer } from "@/components/styled-component/WithdrawV2/CardManage";
 import CardAddCard from "@/pages/withdrawal/components/CardManage/CardAddCard";
-import FormTitle from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/components/FormTitle";
+import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 
 const CardManageContainer = styled.div`
   width: 100%;

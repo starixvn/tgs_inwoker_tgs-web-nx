@@ -3,8 +3,7 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { TextField as CustomTextField } from "@/components/UI/TextField";
-import { Button } from "@/components/UI/Button";
+import { TextField } from "@/components/UI/TextField";
 import { Select as CustomSelect } from "@/components/UI/Select";
 import {
   FormControl,
@@ -12,10 +11,16 @@ import {
   LabelContainer,
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
-import FormTitle from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/components/FormTitle";
+import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 
 const Container = styled.div`
   width: 100%;
+`;
+
+const ButtonGroups = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
 `;
 
 const AddCard = ({
@@ -134,16 +139,13 @@ const AddCard = ({
           </FormControl>
         </ItemContainer>
       )}
-      {(() => {
-        if (
-          (!isDeposit &&
-            withdrawalList.length > 0 &&
-            withdrawalList[selectedBankTypeIndex].banktype === "Bank") ||
-          (isDeposit &&
-            depositList.length > 0 &&
-            depositList[selectedBankTypeIndex].banktype === "Bank")
-        ) {
-          return (
+
+      {(!isDeposit &&
+        withdrawalList.length > 0 &&
+        withdrawalList[selectedBankTypeIndex].banktype === "Bank") ||
+        (isDeposit &&
+          depositList.length > 0 &&
+          depositList[selectedBankTypeIndex].banktype === "Bank" && (
             <ItemContainer>
               {!(
                 config.features.AddCard_HideCertainField || config.features.AddCard_Bank_Custom_IDR
@@ -183,35 +185,36 @@ const AddCard = ({
                             </CustomSelect>
                           </FormControl>
                         ) : (
-                          <CustomTextField
-                            placeholder={
-                              config.features.AddCard_DisplayFPS
-                                ? i18n.t("hk28.card.addCard.msgEnterBankName")
-                                : i18n.t("card.addCard.msgEnterBankName")
-                            }
-                            disabled={disableBankNameInput}
-                            value={bankName}
-                            name="bankName"
-                            onChange={handleBankNameChange}
-                          ></CustomTextField>
+                          <FormControl>
+                            <TextField
+                              placeholder={
+                                config.features.AddCard_DisplayFPS
+                                  ? i18n.t("hk28.card.addCard.msgEnterBankName")
+                                  : i18n.t("card.addCard.msgEnterBankName")
+                              }
+                              disabled={disableBankNameInput}
+                              value={bankName}
+                              name="bankName"
+                              onChange={handleBankNameChange}
+                            />
+                          </FormControl>
                         )}
                       </>
                     )}
-                  {(() => {
-                    if (config.features.AddCard_BankBranch && !eWalletCustom) {
-                      return (
-                        <React.Fragment>
-                          <LabelContainer>{i18n.t("card.addCard.branch")}</LabelContainer>
-                          <CustomTextField
-                            placeholder={i18n.t("card.addCard.branchPlaceHolder")}
-                            maxLength={255}
-                            name="bankBranch"
-                            onChange={handleBankBranchChange}
-                          ></CustomTextField>
-                        </React.Fragment>
-                      );
-                    }
-                  })()}
+
+                  {config.features.AddCard_BankBranch && !eWalletCustom && (
+                    <>
+                      <LabelContainer>{i18n.t("card.addCard.branch")}</LabelContainer>
+                      <FormControl>
+                        <TextField
+                          placeholder={i18n.t("card.addCard.branchPlaceHolder")}
+                          maxLength={255}
+                          name="bankBranch"
+                          onChange={handleBankBranchChange}
+                        />
+                      </FormControl>
+                    </>
+                  )}
                 </>
               )}
 
@@ -224,35 +227,34 @@ const AddCard = ({
                   ? i18n.t("hk28.card.addCard.BankAccountName")
                   : i18n.t("card.addCard.BankAccountName")}
               </LabelContainer>
-              <CustomTextField
-                marginTop={10}
-                placeholder={
-                  eWalletCustomIDR
-                    ? i18n.t("idr1.eWalletAccount")
-                    : eWalletCustom
-                    ? i18n.t("card.addCard.msgEnterEwalletAccount")
-                    : config.features.AddCard_DisplayFPS
-                    ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
-                    : i18n.t("card.addCard.msgEnterBankAccountName")
-                }
-                onChange={handleBankAccountNameChange}
-                name="bankAccountName"
-                value={bankAccountName}
-                disabled={disableBankAccountNameInput}
-              ></CustomTextField>
+              <FormControl>
+                <TextField
+                  marginTop={10}
+                  placeholder={
+                    eWalletCustomIDR
+                      ? i18n.t("idr1.eWalletAccount")
+                      : eWalletCustom
+                      ? i18n.t("card.addCard.msgEnterEwalletAccount")
+                      : config.features.AddCard_DisplayFPS
+                      ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
+                      : i18n.t("card.addCard.msgEnterBankAccountName")
+                  }
+                  onChange={handleBankAccountNameChange}
+                  name="bankAccountName"
+                  value={bankAccountName}
+                  disabled={disableBankAccountNameInput}
+                />
+              </FormControl>
             </ItemContainer>
-          );
-        } else {
-          return null;
-        }
-      })()}
+          ))}
+
       {((!isDeposit &&
         withdrawalList.length > 0 &&
         withdrawalList[selectedBankTypeIndex].banktype === "EWallet") ||
         (isDeposit &&
           depositList.length > 0 &&
           depositList[selectedBankTypeIndex].banktype === "EWallet")) && (
-        <React.Fragment>
+        <ItemContainer>
           <LabelContainer>
             {eWalletCustomIDR
               ? i18n.t("idr1.eWalletAccount")
@@ -262,23 +264,26 @@ const AddCard = ({
               ? i18n.t("hk28.card.addCard.BankAccountName")
               : i18n.t("card.addCard.BankAccountName")}
           </LabelContainer>
-          <CustomTextField
-            placeholder={
-              eWalletCustomIDR
-                ? i18n.t("idr1.eWalletAccount")
-                : eWalletCustom
-                ? i18n.t("card.addCard.msgEnterEwalletAccount")
-                : config.features.AddCard_DisplayFPS
-                ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
-                : i18n.t("card.addCard.msgEnterBankAccountName")
-            }
-            name="bankAccountName"
-            onChange={handleBankAccountNameChange}
-            value={bankAccountName}
-            disabled={disableBankAccountNameInput}
-          ></CustomTextField>
-        </React.Fragment>
+          <FormControl>
+            <TextField
+              placeholder={
+                eWalletCustomIDR
+                  ? i18n.t("idr1.eWalletAccount")
+                  : eWalletCustom
+                  ? i18n.t("card.addCard.msgEnterEwalletAccount")
+                  : config.features.AddCard_DisplayFPS
+                  ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
+                  : i18n.t("card.addCard.msgEnterBankAccountName")
+              }
+              name="bankAccountName"
+              onChange={handleBankAccountNameChange}
+              value={bankAccountName}
+              disabled={disableBankAccountNameInput}
+            />
+          </FormControl>
+        </ItemContainer>
       )}
+
       {(!isDeposit &&
         withdrawalList.length > 0 &&
         (withdrawalList[selectedBankTypeIndex].banktype === "ThirdParty" ||
@@ -289,21 +294,24 @@ const AddCard = ({
         (depositList[selectedBankTypeIndex].banktype === "ThirdParty" ||
           depositList[selectedBankTypeIndex].banktype === "Coinsph" ||
           depositList[selectedBankTypeIndex].banktype === "FPS")) ? (
-        <div>
+        <ItemContainer>
           <LabelContainer>
             {config.features.AddCard_InputAddFPS
               ? i18n.t("custom.addcard.name")
               : i18n.t("profile.nameVerify.title")}
           </LabelContainer>
-          <CustomTextField
-            placeholder={
-              config.features.AddCard_InputAddFPS
-                ? i18n.t("custom.addcard.msgPlsEnterName")
-                : i18n.t("profile.nameVerify.msgPlsEnterName")
-            }
-            onChange={handleNameChange}
-            name="name"
-          ></CustomTextField>
+          <FormControl>
+            <TextField
+              placeholder={
+                config.features.AddCard_InputAddFPS
+                  ? i18n.t("custom.addcard.msgPlsEnterName")
+                  : i18n.t("profile.nameVerify.msgPlsEnterName")
+              }
+              onChange={handleNameChange}
+              name="name"
+            />
+          </FormControl>
+
           <LabelContainer>
             {eWalletCustomIDR
               ? i18n.t("idr1.phone")
@@ -313,23 +321,25 @@ const AddCard = ({
               ? i18n.t("bet28.phoneNumber")
               : i18n.t("common.phoneNumber")}
           </LabelContainer>
-          <CustomTextField
-            placeholder={
-              eWalletCustomIDR
-                ? i18n.t("idr1.phone")
-                : config.features.AddCard_InputAddFPS
-                ? i18n.t("custom.addcard.msgEnterPhone")
-                : config.features.AddCard_DisplayFPS
-                ? i18n.t("bet28.msgEnterPhone")
-                : i18n.t("common.msgEnterPhone")
-            }
-            maxLength={config.features.MAX_PHONE_LENGTH || 10}
-            name="phone"
-            onChange={handlePhoneChange}
-          ></CustomTextField>
-        </div>
+          <FormControl>
+            <TextField
+              placeholder={
+                eWalletCustomIDR
+                  ? i18n.t("idr1.phone")
+                  : config.features.AddCard_InputAddFPS
+                  ? i18n.t("custom.addcard.msgEnterPhone")
+                  : config.features.AddCard_DisplayFPS
+                  ? i18n.t("bet28.msgEnterPhone")
+                  : i18n.t("common.msgEnterPhone")
+              }
+              maxLength={config.features.MAX_PHONE_LENGTH || 10}
+              name="phone"
+              onChange={handlePhoneChange}
+            />
+          </FormControl>
+        </ItemContainer>
       ) : (
-        <div>
+        <ItemContainer>
           <LabelContainer>
             {eWalletCustomIDR
               ? i18n.t("idr1.phone")
@@ -341,30 +351,33 @@ const AddCard = ({
               ? i18n.t("hk28.withdrawalNumber")
               : i18n.t("common.withdrawalNumber")}
           </LabelContainer>
-          <CustomTextField
-            placeholder={
-              eWalletCustomIDR
-                ? i18n.t("idr1.phone")
-                : eWalletCustom || selectedBankType("Pulsa")
-                ? i18n.t("card.addCard.msgEnterPhone")
-                : config.features.AddCard_DisplayGCash
-                ? i18n.t("piso.msgEnterWithdrawalNumber")
-                : config.features.AddCard_DisplayFPS
-                ? i18n.t("hk28.msgEnterWithdrawalNumber")
-                : i18n.t("common.msgEnterWithdrawalNumber")
-            }
-            maxLength={
-              selectedBankType("ThirdParty") ||
-              selectedBankType("Coinsph") ||
-              selectedBankType("Pulsa") ||
-              selectedBankType("FPS")
-                ? config.features.MAX_PHONE_LENGTH
-                : 255
-            }
-            name="number"
-            onChange={handleNumberChange}
-            value={number}
-          ></CustomTextField>
+          <FormControl>
+            <TextField
+              placeholder={
+                eWalletCustomIDR
+                  ? i18n.t("idr1.phone")
+                  : eWalletCustom || selectedBankType("Pulsa")
+                  ? i18n.t("card.addCard.msgEnterPhone")
+                  : config.features.AddCard_DisplayGCash
+                  ? i18n.t("piso.msgEnterWithdrawalNumber")
+                  : config.features.AddCard_DisplayFPS
+                  ? i18n.t("hk28.msgEnterWithdrawalNumber")
+                  : i18n.t("common.msgEnterWithdrawalNumber")
+              }
+              maxLength={
+                selectedBankType("ThirdParty") ||
+                selectedBankType("Coinsph") ||
+                selectedBankType("Pulsa") ||
+                selectedBankType("FPS")
+                  ? config.features.MAX_PHONE_LENGTH
+                  : 255
+              }
+              name="number"
+              onChange={handleNumberChange}
+              value={number}
+            />
+          </FormControl>
+
           {config.currency === "INR" &&
             ((!isDeposit &&
               withdrawalList.length > 0 &&
@@ -374,30 +387,32 @@ const AddCard = ({
                 depositList[selectedBankTypeIndex].banktype === "Bank")) && (
               <>
                 <LabelContainer>{i18n.t("ifsc")}</LabelContainer>
-                <CustomTextField
-                  placeholder={i18n.t("ifsc")}
-                  maxLength={11}
-                  onChange={handleIFSCChange}
-                  value={ifsc}
-                ></CustomTextField>
+                <FormControl>
+                  <TextField
+                    placeholder={i18n.t("ifsc")}
+                    maxLength={11}
+                    onChange={handleIFSCChange}
+                    value={ifsc}
+                  />
+                </FormControl>
               </>
             )}
-        </div>
+        </ItemContainer>
       )}
 
-      {(() => {
-        if (showBack === true) {
-          return <Button onClick={onhandleBackClick}>{i18n.t("common.back")}</Button>;
-        } else {
-          return null;
-        }
-      })()}
+      <ButtonGroups>
+        {showBack && (
+          <SubmitButton fullWidth onClick={onhandleBackClick}>
+            {i18n.t("common.back")}
+          </SubmitButton>
+        )}
 
-      <Button width={255} onClick={handleNextClick}>
-        {config.features.Register_CustomFlow_IDR && !isDeposit
-          ? i18n.t("web.register.btn")
-          : i18n.t("common.nextStep")}
-      </Button>
+        <SubmitButton fullWidth onClick={handleNextClick}>
+          {config.features.Register_CustomFlow_IDR && !isDeposit
+            ? i18n.t("web.register.btn")
+            : i18n.t("common.nextStep")}
+        </SubmitButton>
+      </ButtonGroups>
     </Container>
   );
 };

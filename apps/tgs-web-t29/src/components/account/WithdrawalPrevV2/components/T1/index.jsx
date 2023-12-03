@@ -9,6 +9,7 @@ const WithdrawalForm = ({
   handleCloseAnnouncement,
   switchDisplayView,
 }) => {
+  const DisplayedComponent = switchDisplayView();
   return (
     <>
       {switchDisplayView()}

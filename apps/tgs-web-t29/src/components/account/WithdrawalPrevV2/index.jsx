@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { accountAction, RESET_WALLETRESULT, walletAction, WalletService } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import { useSnackbar } from "notistack";
 import NameVerification from "../CardPrev/PassSetting";
 import Main from "./components/Main";
 import AddCard from "./components/AddCard";
@@ -403,6 +404,7 @@ class Withdrawal extends Component {
           containCard={this.props.wallet.bankCardList.length === 0}
           isDeposit={false}
           appHistory={this.props.appHistory}
+          enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
     }
@@ -414,6 +416,7 @@ class Withdrawal extends Component {
           onhandleGoWithdrawClick={this.handleGoWithdrawClick}
           onhandleCSClick={this.handleCSClick}
           bankCardList={this.props.wallet.bankCardList}
+          enqueueSnackbar={this.props.enqueueSnackbar}
         />
       );
     }
@@ -432,6 +435,7 @@ class Withdrawal extends Component {
             withdrawalMinLimit={this.props.wallet.withdrawalMinLimit}
             withdrawalMaxLimit={this.props.wallet.withdrawalMaxLimit}
             minWithdrawLimit={this.state.minWithdrawLimit}
+            enqueueSnackbar={this.props.enqueueSnackbar}
           />
         );
       case 2:
@@ -446,6 +450,7 @@ class Withdrawal extends Component {
               this.props.wallet.bankCardList != null && this.props.wallet.bankCardList.length === 0
             }
             isDeposit={false}
+            enqueueSnackbar={this.props.enqueueSnackbar}
           />
         );
       case 3:
@@ -456,6 +461,7 @@ class Withdrawal extends Component {
             onhandleBackClick={this.handleCardManageBack}
             onhandleDeleteCardClick={this.handleDeleteCardClick}
             onhandleReportClick={this.handleReportClick}
+            enqueueSnackbar={this.props.enqueueSnackbar}
           />
         );
       case 4:
@@ -464,6 +470,7 @@ class Withdrawal extends Component {
             handleVerifyName={this.handleVerifyName}
             handleConfirmClick={this.handleSuccessConfirmClick}
             verified={this.props.account.info.check_pass_account}
+            enqueueSnackbar={this.props.enqueueSnackbar}
           />
         );
       default:
