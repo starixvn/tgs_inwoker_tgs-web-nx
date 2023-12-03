@@ -10,15 +10,6 @@ import { FormControl } from "@/components/styled-component/ProfileForms";
 const Container = styled.div`
   width: 100%;
 `;
-const SubTitle = styled.div`
-  font-size: 22px;
-  font-weight: bold;
-  text-align: center;
-  color: ${({ theme }) => {
-    return theme.darkMode ? "#fff" : " #16242a";
-  }};
-  margin-top: 0px;
-`;
 
 const TextFieldLabel = styled.div`
   font-size: 16px;

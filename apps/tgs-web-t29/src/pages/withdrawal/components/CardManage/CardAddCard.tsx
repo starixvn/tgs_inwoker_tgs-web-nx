@@ -22,11 +22,6 @@ const EmptyCardTitle = styled.div`
   color: ${({ theme }) => theme.text};
 `;
 
-const EmptyCardDesc = styled.div`
-  font-size: 0.937rem;
-  color: ${({ theme }) => theme.text};
-`;
-
 const IconContainer = styled.div`
   width: 38px;
   height: 38px;
@@ -49,7 +44,7 @@ const Wrapper = styled.div`
 type Props = {
   handleClick: () => void;
 };
-const AddCardsButton = ({ handleClick }: Props) => {
+const CardAddCard = ({ handleClick }: Props) => {
   return (
     <CardContainer onClick={handleClick}>
       <Wrapper>
@@ -59,9 +54,9 @@ const AddCardsButton = ({ handleClick }: Props) => {
         <EmptyCardTitle>{i18n.t("card.msgAddCard")}</EmptyCardTitle>
       </Wrapper>
 
-      <EmptyCardDesc>{i18n.t("card.msgAddCardDesc")}</EmptyCardDesc>
+      {/*<EmptyCardDesc>{i18n.t("card.msgAddCardDesc")}</EmptyCardDesc>*/}
     </CardContainer>
   );
 };
 
-export default AddCardsButton;
+export default CardAddCard;

@@ -1,4 +1,4 @@
-import { DoTransferResDto } from "../dto";
+import { BankCard, DoTransferResDto } from "../dto";
 
 interface TransferChannel {
   channelcode: string;
@@ -48,7 +48,7 @@ export interface WalletState {
   transferResult: null | DoTransferResDto;
   withdrawalAllResult: null;
   balanceList: any[];
-  bankCardList: any[];
+  bankCardList: BankCard[];
   bankList: any[];
   withdrawalList: {
     banktype: string;

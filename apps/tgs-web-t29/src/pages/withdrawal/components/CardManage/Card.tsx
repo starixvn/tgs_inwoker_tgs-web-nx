@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import deleteIcon from "@/assets/t29/images/card/delete.svg";
 import { media } from "@/theme/breakpoints";
+import Icon from "@/components/project/Icon";
 
 const CardContainer = styled.div`
+  width: 100%;
   padding: 16px;
   background: ${({ theme }) => theme.blue20};
   border: 1px solid ${({ theme }) => theme.blue40};
@@ -12,7 +15,7 @@ const CardContainer = styled.div`
   gap: 8px;
   border-radius: 4px;
 
-  ${media.sm} {
+  ${media.md} {
     width: calc((100% - 14px * 1) / 2);
   }
 `;
@@ -28,20 +31,29 @@ const CardTitle = styled.div`
 const CardContent = styled.div`
   color: ${({ theme }) => theme.blue40};
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 `;
 
-const ContentRow = styled.div``;
-const Icon = styled.div`
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+const ContentRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
 
-  & img {
-    width: 100%;
-    object-fit: cover;
+  &:last-child {
+    margin-bottom: 0;
   }
+`;
+
+const EndingInLabel = styled.div`
+  font-size: 1.125rem;
+  color: ${({ theme }) => theme.blue40};
+`;
+const EndingInValue = styled.div`
+  font-size: 1.125rem;
+
+  color: ${({ theme }) => theme.text};
 `;
 
 type Props = {
@@ -55,12 +67,22 @@ const Card = ({ title, content, handleDelete, disable }: Props) => {
     <CardContainer>
       <CardTitle>{title}</CardTitle>
       <CardContent>
-        <ContentRow>{content}</ContentRow>
+        <ContentRow>
+          <EndingInLabel>{i18n.t("card.tail")}</EndingInLabel>
+          <EndingInValue>{content}</EndingInValue>
+        </ContentRow>
         <ContentRow>
           {!disable && (
-            <Icon onClick={handleDelete}>
-              <img src={deleteIcon} alt={"delete"} />
-            </Icon>
+            <Icon
+              onClick={handleDelete}
+              iconUrl={deleteIcon}
+              width={"40px"}
+              height={"40px"}
+              style={{
+                marginLeft: "auto",
+                cursor: "pointer",
+              }}
+            />
           )}
         </ContentRow>
       </CardContent>

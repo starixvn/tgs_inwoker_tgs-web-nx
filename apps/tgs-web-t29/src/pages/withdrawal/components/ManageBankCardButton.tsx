@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
 
