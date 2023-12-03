@@ -1,36 +1,13 @@
 import React from "react";
-
-import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { Button } from "@/components/UI/Button";
-
-const Container = styled.div`
-  width: 100%;
-`;
-const SubTitle = styled.div`
-  font-size: 22px;
-  font-weight: bold;
-  text-align: center;
-  color: #16242a;
-  margin-top: 50px;
-`;
-const SubTitleDesc = styled.div`
-  text-align: center;
-  font-size: 14px;
-  margin-top: 10px;
-  margin-bottom: 40px;
-  color: #818181;
-  text-align: center;
-`;
-
-const ButtonContainer = styled.div`
-  margin: 0 auto;
-  display: table;
-  width: 540px;
-  display: flex;
-  justify-content: space-around;
-`;
+import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import {
+  ButtonContainer,
+  Container,
+  SubTitle,
+  SubTitleDesc,
+} from "@/components/styled-component/WithdrawV2/AddCardSuccess";
 
 const AddCardSuccess = ({
   isDeposit,
@@ -63,17 +40,16 @@ const AddCardSuccess = ({
           config.features.AddCard_NotAllowedEditDelete ||
           bankCardList.length >= config.features.AddCard_MaximumCardAllowed
         ) && (
-          <Button
-            name={i18n.t("card.success.bindBankCard")}
-            width={255}
-            handleClick={onhandleBindCardClick}
-          ></Button>
+          <SubmitButton fullWidth onClick={onhandleBindCardClick}>
+            {i18n.t("card.success.bindBankCard")}
+          </SubmitButton>
         )}
-        <Button
-          name={isDeposit ? i18n.t("card.success.goDeposit") : i18n.t("card.success.goWithdrawal")}
-          width={255}
-          handleClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}
-        ></Button>
+        <SubmitButton
+          fullWidth
+          onClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}
+        >
+          {isDeposit ? i18n.t("card.success.goDeposit") : i18n.t("card.success.goWithdrawal")}
+        </SubmitButton>
       </ButtonContainer>
     </Container>
   );

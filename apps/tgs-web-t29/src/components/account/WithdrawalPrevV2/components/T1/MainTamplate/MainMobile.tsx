@@ -10,7 +10,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import WithdrawInfoCard from "@/pages/withdrawal/components/WithdrawInfoCard";
-import { ManageBankCardButtonContainer } from "@/components/styled-component/Withdraw";
+import { ManageBankCardButtonContainer } from "@/components/styled-component/WithdrawV2/Main";
 import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
 import { Select } from "@/components/UI/Select";
 import {
@@ -41,6 +41,7 @@ const MainMobile = ({
   return (
     <>
       <WithdrawInfoCard />
+
       <ManageBankCardButtonContainer>
         <ManageBankCardButton handleManageCardClick={onhandleManageCardClick} />
       </ManageBankCardButtonContainer>

@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import { accountAction, RESET_WALLETRESULT, walletAction, WalletService } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
-import { useSnackbar } from "notistack";
 import NameVerification from "../CardPrev/PassSetting";
 import Main from "./components/Main";
 import AddCard from "./components/AddCard";
@@ -15,25 +14,29 @@ import Success from "./components/T1/Success";
 import Disabled from "./components/T1/Disabled";
 
 class Withdrawal extends Component {
-  state = {
-    loading: false,
-    bankCardList: [],
-    defaultCard: 0,
-    addCard: {
-      number: "",
-      password: "",
-    },
-    isAddCardSuccess: false,
-    displayView: 1,
-    showMessagebox: false,
-    messageboxText: "",
-    withdrawalInfo: {
-      bonus_limit_list: [],
-    },
-    minWithdrawLimit: 0,
-    enableAddCard: false,
-    openAnnouncement: false,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false,
+      bankCardList: [],
+      defaultCard: 0,
+      addCard: {
+        number: "",
+        password: "",
+      },
+      isAddCardSuccess: false,
+      displayView: 1,
+      showMessagebox: false,
+      messageboxText: "",
+      withdrawalInfo: {
+        bonus_limit_list: [],
+      },
+      minWithdrawLimit: 0,
+      enableAddCard: false,
+      openAnnouncement: false,
+    };
+  }
 
   urlParams = new URLSearchParams(this.props.location.search);
   async componentDidMount() {
@@ -220,43 +223,56 @@ class Withdrawal extends Component {
     }
   };
 
-  performAddNewCard = (channelid, bankType, detail) => {
-    window.history.pushState({}, null, "withdrawal");
-    if (config.features.Register_CustomFlow_IDR) {
-      this.props
-        .newRegister("SetWithdrawBankInfo", {
-          banktype: bankType,
-          paymentchannelid: channelid,
-          detail: detail,
-        })
-        .then((response) => {
-          if (response.IsSuccess) {
-            let setRealName = response.data.nextStepType === "SetRealName";
-            if (setRealName) {
-              this.props
-                .newRegister("SetRealName", {
-                  realname: detail.name || detail.eMoneyName || detail.username,
-                })
-                .then((response) => {
-                  if (response.IsSuccess) {
-                    this.props.getAccountInfo();
-                  } else {
-                    this.props.enqueueSnackbar(ErrorSwitcher.getTranslation(response.info), {
-                      variant: "error",
-                    });
-                  }
-                });
-            } else {
-              this.props.getAccountInfo();
-            }
+  performAddNewCard = async (channelid, bankType, detail) => {
+    if (!config.features.Register_CustomFlow_IDR) {
+      try {
+        this.updateLoadingStatus(true);
+        await this.props.addBankCard(channelid, bankType, detail);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.updateLoadingStatus(false);
+      }
+      return;
+    }
+
+    try {
+      this.updateLoadingStatus(true);
+
+      const responseSetWithdrawBankInfo = await this.props.newRegister("SetWithdrawBankInfo", {
+        banktype: bankType,
+        paymentchannelid: channelid,
+        detail: detail,
+      });
+
+      if (responseSetWithdrawBankInfo.IsSuccess) {
+        let setRealName = responseSetWithdrawBankInfo.data.nextStepType === "SetRealName";
+
+        if (setRealName) {
+          const responseSetRealName = await this.props.newRegister("SetRealName", {
+            realname: detail.name || detail.eMoneyName || detail.username,
+          });
+
+          if (responseSetRealName.IsSuccess) {
+            await this.props.getAccountInfo();
           } else {
-            this.props.enqueueSnackbar(ErrorSwitcher.getTranslation(response.info), {
+            this.props.enqueueSnackbar(ErrorSwitcher.getTranslation(responseSetRealName.info), {
               variant: "error",
             });
           }
+        } else {
+          await this.props.getAccountInfo();
+        }
+      } else {
+        this.props.enqueueSnackbar(ErrorSwitcher.getTranslation(responseSetWithdrawBankInfo.info), {
+          variant: "error",
         });
-    } else {
-      this.props.addBankCard(channelid, bankType, detail);
+      }
+    } catch (error) {
+      // Handle errors here
+      console.error(error);
+    } finally {
+      this.updateLoadingStatus(false);
     }
   };
 
@@ -286,6 +302,7 @@ class Withdrawal extends Component {
       this.setState({ ...this.state, openAnnouncement: true });
     }
   };
+
   handleAddCardClick = () => {
     if (
       !(
@@ -307,13 +324,21 @@ class Withdrawal extends Component {
   handleAddCardBack = () => {
     this.setState({ ...this.state, displayView: 3 });
   };
-  handleDeleteCardClick = (id) => {
+  handleDeleteCardClick = async (id) => {
     if (config.features.ChangesNotAllowed || config.features.AddCard_NotAllowedEditDelete) {
       this.props.enqueueSnackbar(i18n.t("card.toEdit"), {
         variant: "error",
       });
-    } else {
-      this.props.deleteBankCard(id);
+      return;
+    }
+
+    try {
+      this.updateLoadingStatus(true);
+      await this.props.deleteBankCard(id);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.updateLoadingStatus(false);
     }
   };
   handleReportClick = () => {
@@ -394,7 +419,9 @@ class Withdrawal extends Component {
       return <Disabled handleCSClick={this.handleCSClick} />;
     }
 
+    console.log(this.props.wallet.bankCardList);
     if (this.props.wallet.bankCardList != null && this.props.wallet.bankCardList.length === 0) {
+      console.log("AUL");
       return (
         <AddCard
           name={this.props.account.info.member_name}
@@ -496,6 +523,15 @@ class Withdrawal extends Component {
 
   handleVerifyName = () => {
     this.props.history.push("/account/profile/member_name");
+  };
+
+  updateLoadingStatus = (isLoading) => {
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        loading: isLoading,
+      };
+    });
   };
 
   render() {

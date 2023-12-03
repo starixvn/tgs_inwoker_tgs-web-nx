@@ -58,7 +58,6 @@ export const StyledModalPopup = muiStyled(Modal)(({ theme }) => ({
 export const ManageBankCardButtonContainer = styled.div`
   display: flex;
   justify-content: end;
-  max-width: 450px;
   align-self: flex-start;
   margin-top: 10px;
 `;

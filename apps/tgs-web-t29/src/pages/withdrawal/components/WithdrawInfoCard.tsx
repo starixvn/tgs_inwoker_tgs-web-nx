@@ -10,7 +10,6 @@ const CardContainer = styled.div`
   border-radius: 5px;
   font-size: 0.875rem;
   line-height: 1.098rem;
-  max-width: 450px;
   align-self: flex-start;
 `;
 
