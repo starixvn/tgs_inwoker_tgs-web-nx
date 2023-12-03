@@ -10,3 +10,5 @@ export * from "./PerformManualFPSDepositWithNameResDto";
 export * from "./PerformManualThirdPartyDepositResDto";
 export * from "./PerformPulsaDepositResDto";
 export * from "./PerformUsdtDepositResDto";
+export * from "./GetAutoTransferStatusResDto";
+export * from "./GetBankCardListResDto";

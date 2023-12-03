@@ -25,7 +25,7 @@ import {
   StyledListItem,
   StyledModalBank,
   StyledModalPopup,
-} from "@/components/styled-component/Withdraw";
+} from "@/components/styled-component/WithdrawV2/Main";
 
 class WithdrawalPrev extends Component {
   constructor(props) {
