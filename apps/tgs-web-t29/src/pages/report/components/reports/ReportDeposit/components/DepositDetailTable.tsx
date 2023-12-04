@@ -3,6 +3,7 @@ import moment from "moment";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+import ReportTablePagination from "../../ReportTablePagination";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 
@@ -10,7 +11,7 @@ type Props = {
   transferDetails: DepositFormViewModel[];
   totalCount: number;
 };
-const TransactionDetailTable = ({ transferDetails, totalCount }: Props) => {
+const DepositDetailTable = ({ transferDetails, totalCount }: Props) => {
   if (!transferDetails?.length) {
     return <NoRecord />;
   }
@@ -71,17 +72,9 @@ const TransactionDetailTable = ({ transferDetails, totalCount }: Props) => {
         </TableBody>
       </ReportTable>
 
-      {/*<TablePagination*/}
-      {/*  rowsPerPageOptions={[25]}*/}
-      {/*  component="div"*/}
-      {/*  count={totalCount}*/}
-      {/*  rowsPerPage={25}*/}
-      {/*  page={0}*/}
-      {/*  onPageChange={() => {}}*/}
-      {/*  onRowsPerPageChange={() => {}}*/}
-      {/*/>*/}
+      <ReportTablePagination totalCount={totalCount} />
     </ReportCardsContainer>
   );
 };
 
-export default TransactionDetailTable;
+export default DepositDetailTable;

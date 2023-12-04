@@ -51,7 +51,7 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
     fontSize: "0.937rem",
   },
   "& .MuiSvgIcon-root": {
-    color: theme.palette.white,
+    color: theme.palette.primary,
   },
 }));
 

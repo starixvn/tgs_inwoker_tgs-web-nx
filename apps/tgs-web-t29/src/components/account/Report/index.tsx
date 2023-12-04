@@ -69,8 +69,8 @@ const Report = () => {
 
       {(() => {
         switch (selectedType) {
-          case 1:
-            return <ReportPlatform dateRangeInfo={dateRangeInfo} />;
+          // case 1:
+          //   return <ReportPlatform dateRangeInfo={dateRangeInfo} />;
           case 2:
             return <ReportBetting dateRangeInfo={dateRangeInfo} />;
           case 3:
