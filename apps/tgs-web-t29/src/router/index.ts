@@ -32,6 +32,7 @@ import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
+import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -267,6 +268,7 @@ const routes: RouteType[] = [
     path: "/maintenance",
     component: MaintenancePage,
     isAnonymousAllowed: true,
+    layout:MaintenanceLayout
   },
 
   {
