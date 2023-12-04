@@ -36,8 +36,8 @@ const Template1 = ({
   handleTransferFromChange,
   handleTransferToChange,
   handleTransferAmountChange,
-  handleTranferClick,
-  handleTranferIn,
+  handleTransferClick,
+  handleTransferIn,
 }) => {
   const { isLargeDesktopSize } = useRwd();
   return (
@@ -53,7 +53,7 @@ const Template1 = ({
             transferAmount={transferAmount}
             handleTransferAmountChange={handleTransferAmountChange}
             disabled={disabled}
-            handleTranferClick={handleTranferClick}
+            handleTransferClick={handleTransferClick}
           />
         ) : (
           <TransferCard />
@@ -61,7 +61,7 @@ const Template1 = ({
 
         <SubTitle>{i18n.t("transfer.transferWallet")}</SubTitle>
         <AutoTransferSwitch style={{ marginBottom: "20px" }} />
-        {isLargeDesktopSize && <TransferCards handleTranferIn={handleTranferIn} />}
+        {isLargeDesktopSize && <TransferCards handleTransferIn={handleTransferIn} />}
         <Loading show={loading || wallet.transferLoading || wallet.updateBalanceloading}></Loading>
       </InnerWrap>
     </Container>
