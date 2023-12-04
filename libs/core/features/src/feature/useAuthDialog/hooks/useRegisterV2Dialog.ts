@@ -17,7 +17,7 @@ export function useRegisterV2Dialog() {
         setIsRegisterV2InitPhoneDialogOpen(isOpen);
 
         if (isOpen) {
-          updatePageName(i18n.t("register.activation"));
+          updatePageName(i18n.t("web.register.activation"));
         }
       }
     },

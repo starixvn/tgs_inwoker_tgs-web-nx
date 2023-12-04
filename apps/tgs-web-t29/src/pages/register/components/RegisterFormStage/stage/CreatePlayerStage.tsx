@@ -3,7 +3,7 @@ import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import {
   useAuthDialog,
   useConfirmAdult,
-  useGenerateRegisterFormik,
+  useGenerateRegisterCreatePlayerFormik,
   usePromotionCode,
   UserTypeEnum,
 } from "@tgs-web-nx/core/features";
@@ -80,7 +80,7 @@ const CreatePlayerStage = () => {
     }
   };
 
-  const { formInputConfigList, formik } = useGenerateRegisterFormik({
+  const { formInputConfigList, formik } = useGenerateRegisterCreatePlayerFormik({
     handleClickSubmit,
   });
 

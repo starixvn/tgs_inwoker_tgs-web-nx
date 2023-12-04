@@ -151,7 +151,6 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
     setIsLoading(true);
 
     try {
-      console.log(shouldHandlePhoneSubmission());
       if (shouldHandlePhoneSubmission()) {
         const response = await getRegisterStatus();
 
@@ -224,7 +223,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
   };
 
   const handleUpdatePhone = async () => {
-    const response = await AccountService.UpdatePhone(securityKey, code);
+    const response = await AccountService.UpdatePhoneV2(securityKey, code);
 
     if (response?.IsSuccess) {
       await handleGetAccountInfo();
@@ -262,7 +261,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
         <LabelContainer>{i18n.t("common.phoneNumber")}</LabelContainer>
 
         <PhoneContainer>
-          <FormControl variant="outlined" style={{ width: "30%" }}>
+          <FormControl variant="outlined" style={{ width: "40%" }}>
             <Select
               native
               value={areacode}

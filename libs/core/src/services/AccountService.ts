@@ -263,6 +263,16 @@ function RegisterV2GetRegisterStep() {
   return ApiService.get("player/register") as unknown as Promise<RegisterV2GetRegisterStepResDto>;
 }
 
+function UpdatePhoneV2(securitykey: string, validateCode: string) {
+  return ApiService.post("player/register", {
+    type: "InitPhone",
+    input: {
+      securitykey: securitykey,
+      validatecode: validateCode,
+    },
+  }) as unknown as Promise<UpdatePhoneResDto>;
+}
+
 export const AccountService = {
   CheckUserName,
   Login,
@@ -297,4 +307,5 @@ export const AccountService = {
   UpdateMemberNameAndIC,
   RegisterV2CreatePlayer,
   RegisterV2GetRegisterStep,
+  UpdatePhoneV2,
 };

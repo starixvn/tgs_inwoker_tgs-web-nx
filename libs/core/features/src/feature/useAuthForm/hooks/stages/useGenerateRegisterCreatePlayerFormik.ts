@@ -11,7 +11,7 @@ type Props = {
   handleClickSubmit: (values: any) => Promise<void>;
 };
 
-export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
+export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Props) {
   // ===== init form input config =====
   const formInputConfigList = useMemo<FormikFormInput[]>(() => {
     return [

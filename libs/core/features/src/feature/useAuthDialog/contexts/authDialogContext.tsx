@@ -3,6 +3,7 @@ import { RegisterStageEnum, ValueOf } from "@tgs-web-nx/types";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useRegisterV2Dialog } from "../hooks/useRegisterV2Dialog";
 import { useAuthV1Dialog } from "../hooks/useAuthV1Dialog";
+import { useAuth } from "../../useAuth";
 
 const initialState: {
   isLoginDialogOpen: boolean;
@@ -50,6 +51,7 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     handleToggleForgotPasswordDialog,
   } = useAuthV1Dialog();
   const { accountLogin, getAccountInfo } = useAccountStore();
+  const { isLogin } = useAuth();
 
   const [currentStage, setCurrentStage] = useState<ValueOf<typeof RegisterStageEnum>>(
     RegisterStageEnum.CreatePlayer,
@@ -57,6 +59,8 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
 
   useEffect(() => {
     const examineRegisterStatus = async (username: string) => {
+      if (!isLogin) return;
+
       const response = await getAccountInfo();
       if (response.data.registercompleted) return;
 
@@ -66,7 +70,7 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     };
 
     examineRegisterStatus();
-  }, []);
+  }, [getAccountInfo, isLogin]);
 
   const updateStage = (newStage: ValueOf<typeof RegisterStageEnum>) => {
     console.log(newStage);

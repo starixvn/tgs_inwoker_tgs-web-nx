@@ -3,15 +3,14 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
-import { FormInputTypeEnum, UserTypeEnum } from "../../types";
+import { FormInputTypeEnum } from "../../types";
 import { FormikFormInput, useFormikInitValue } from "../useFormikInitValue";
 
 type Props = {
   handleClickSubmit: (values: any) => Promise<void>;
 };
 
-export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
+export function useGenerateRegisterInitPhoneFormik({ handleClickSubmit }: Props) {
   // ===== init form input config =====
   const formInputConfigList = useMemo<FormikFormInput[]>(() => {
     return [

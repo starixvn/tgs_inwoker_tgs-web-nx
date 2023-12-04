@@ -48,6 +48,7 @@ type Props = {
   children: React.ReactNode;
   dialogHeaderTitle?: string;
 } & DialogProps;
+
 const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
   const { isDesktopSize } = useRwd();
   const { pageName } = usePageName();

@@ -31,12 +31,13 @@ type Props = {
   onClose: () => void;
   children: React.ReactNode;
   dialogHeaderTitle?: string;
+  showInMobile?: boolean;
 } & DialogProps;
 
-const AuthDialog = ({ open, onClose, children, ...others }: Props & DialogProps) => {
+const AuthDialog = ({ open, onClose, children, showInMobile, ...others }: Props & DialogProps) => {
   const { isDesktopSize } = useRwd();
 
-  if (!isDesktopSize) return null;
+  if (!(isDesktopSize || showInMobile)) return null;
 
   return (
     <StyledDialog
