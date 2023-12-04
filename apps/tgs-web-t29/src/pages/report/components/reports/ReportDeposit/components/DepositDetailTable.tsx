@@ -1,17 +1,33 @@
-import React from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import ReportTablePagination from "../../ReportTablePagination";
+import { useState } from "react";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   transferDetails: DepositFormViewModel[];
-  totalCount: number;
 };
-const DepositDetailTable = ({ transferDetails, totalCount }: Props) => {
+const DepositDetailTable = ({ transferDetails }: Props) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   if (!transferDetails?.length) {
     return <NoRecord />;
   }
@@ -53,7 +69,7 @@ const DepositDetailTable = ({ transferDetails, totalCount }: Props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {transferDetails.map((depositDetail) => {
+          {transferDetails.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((depositDetail) => {
             const { id, createdon, amount, orderno, status } = depositDetail;
 
             const date = moment(createdon).format("YYYY-MM-DD hh:mm a");
@@ -72,7 +88,20 @@ const DepositDetailTable = ({ transferDetails, totalCount }: Props) => {
         </TableBody>
       </ReportTable>
 
-      <ReportTablePagination totalCount={totalCount} />
+      <TablePagination
+        component="div"
+        rowsPerPageOptions={[]}
+        count={transferDetails.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          width: "100%",
+          color: theme.blue40,
+          "& button": {},
+        }}
+      />
     </ReportCardsContainer>
   );
 };
