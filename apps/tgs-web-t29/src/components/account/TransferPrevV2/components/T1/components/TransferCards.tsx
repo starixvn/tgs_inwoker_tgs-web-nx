@@ -1,63 +1,82 @@
 import React from "react";
 import config from "@tgs-web-nx/config";
 import DynamicFont from "react-dynamic-font";
+import { styled as muiStyled } from "@mui/material/styles";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Button } from "@/components/UI/Button";
 
 const TransferContainer = styled.div`
-  min-height: 91px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
 `;
 
 const GameTranferWallet = styled.div`
-  width: 280px;
-  height: 98px;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
   border-radius: 4px;
-  border: solid 1px ${({ theme }) => {
-    return theme.darkMode ? theme.customProfileBackground50 : "#dddedf";
-  }};
-  background: ${({ theme }) => {
-    return theme.darkMode
-      ? theme.customProfileBackground50
-      : `linear-gradient(to top, #f4f4f4, #ffffff);`;
-  }}
-  margin: 0 10px 10px 0;
-  float: left;
+  border: solid 1px
+    ${({ theme }) => {
+      return theme.darkMode ? theme.customProfileBackground50 : "#dddedf";
+    }};
+  background: ${({ theme }) => theme.blue20};
+  padding: 10px 10px 10px 3px;
+  gap: 10px;
 `;
 const GameTranferLeftWrap = styled.div`
-  width: 100px;
-  padding: 10px 0;
-  float: left;
+  max-width: 70px;
 `;
-const GameIcon = styled.div`
-  height: 50px;
-  width: 50px;
-  background: url(${(props) => props.src}) no-repeat;
-  background-size: contain;
-  background-position: center;
-  margin: 0 auto;
-  display: block;
 
-  transform: scale(1.5);
+const GameTranferRighttWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Logo = styled.img`
+  width: 66px;
+  height: 34px;
+  object-fit: cover;
 `;
 const GameName = styled.div`
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0em;
   text-align: center;
-  color: #aeaeae;
-  margin-top: 5px;
+  color: ${({ theme }) => theme.blue50};
+  margin-top: 7px;
 `;
 const GameWalletAmount = styled.div`
-  font-family: Arial;
-  font-size: 22px;
-  text-align: right;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
   color: ${({ theme }) => {
     return theme.darkMode ? "#fff" : "#000";
   }};
-  margin: 21px 0 0 0px;
-  width: 170px;
+  text-align: center;
   display: inline-block;
+  margin-top: 3px;
 `;
+
+const TransferButton = muiStyled(Button)(({ theme }) => ({
+  fontSize: "12px",
+  fontWeight: "400",
+  lineHeight: "14px",
+  textAlign: "center",
+  padding: "4px",
+  background: theme.palette.blue30,
+  border: "none",
+  "&:hover": {
+    background: theme.palette.primary.main,
+  },
+}));
 
 type Props = {
   handleTranferIn: (gpcode: string) => void;
@@ -106,27 +125,29 @@ const TransferCards = ({ handleTranferIn }: Props) => {
           return (
             <GameTranferWallet key={index}>
               <GameTranferLeftWrap>
-                <GameIcon
+                <Logo
                   src={`/assets/images/provider/${switchAlternateLogo(
                     config.features.UseAlternateLogo || false,
                   )}${displayLogo()}.png`}
-                ></GameIcon>
+                  alt={displayLogo()}
+                />
                 <GameName>
                   <DynamicFont content={item.name} />
                 </GameName>
               </GameTranferLeftWrap>
-
-              <Button
-                disabled={item.maintenance === 1}
-                onClick={() => handleTranferIn(item.gpcode)}
-              >
-                {i18n.t("transfer.oneKeyTransferIn")}
-              </Button>
-              <GameWalletAmount>
-                {item.maintenance === 1
-                  ? i18n.t("transfer.maintenance")
-                  : "$" + Common.formatNumberWithCommas(item.balance)}
-              </GameWalletAmount>
+              <GameTranferRighttWrap>
+                <TransferButton
+                  disabled={item.maintenance === 1}
+                  onClick={() => handleTranferIn(item.gpcode)}
+                >
+                  {i18n.t("transfer.oneKeyTransferIn")}
+                </TransferButton>
+                <GameWalletAmount>
+                  {item.maintenance === 1
+                    ? i18n.t("transfer.maintenance")
+                    : "$" + Common.formatNumberWithCommas(item.balance)}
+                </GameWalletAmount>
+              </GameTranferRighttWrap>
             </GameTranferWallet>
           );
         })}

@@ -1,45 +1,47 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
+import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { SelectChangeEvent } from "@mui/material";
 import { Select } from "@/components/UI/Select";
-import { FormControl } from "@/components/styled-component/ProfileForms";
 import ArrowRightPNG from "@/assets/t29/images/transfer/arrow-right.png";
 import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
 
 const QuickTransferContainer = styled.div`
   display: flex;
 `;
-const QuickTransferArrow = styled.div`
-  width: 23px;
-  height: 18px;
-  float: left;
-  background: url(${ArrowRightPNG}) no-repeat;
-  margin: 10px 10px 0 8px;
-`;
-const QuickTransferLabel = styled.div`
-  float: left;
+const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
+  border: `1px solid ${theme.palette.gray10}`,
+})) as typeof MuiFormControl;
 
-  font-size: 16px;
-  margin: 8px 10px 0 18px;
-  color: #818181;
+const QuickTransferArrow = styled.div`
+  display: flex;
+  width: 23px;
+  height: 23px;
+  align-self: center;
+  margin: 0 10px;
+`;
+
+const AmountInputContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border: ${({ theme }) => `1px solid ${theme.gray10}`};
+  padding: 17px;
+  margin: 0 10px;
+`;
+
+const AmountText = styled.div`
+  color: ${({ theme }) => theme.gray50};
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
-  height: 35px;
-  width: 154px;
-  border-radius: 4px;
-  border: solid 1px #b6b6b6;
-  padding: 0px 10px;
-
+  text-align: right;
+  border: none;
   ::placeholder {
-    color: #818181;
-  }
-
-  :focus {
-    outline: none;
+    color: ${({ theme }) => theme.gray50};
   }
 `;
 
@@ -104,7 +106,9 @@ const QuickTransfer = ({
         </Select>
       </FormControl>
 
-      <QuickTransferArrow />
+      <QuickTransferArrow>
+        <img src={ArrowRightPNG} alt="arrow-right" />
+      </QuickTransferArrow>
       <FormControl>
         <Select
           native
@@ -140,22 +144,28 @@ const QuickTransfer = ({
         </Select>
       </FormControl>
 
-      <QuickTransferLabel>{i18n.t("common.amount")}</QuickTransferLabel>
-      <CurrencyTextFieldReplacement
-        value={transferAmount}
-        placeholder="0.00"
-        onChange={handleTransferAmountChange}
-        autoComplete="off"
-        minimumValue="0"
-        inputProps={{
-          maxLength: 15,
-        }}
-      />
+      <AmountInputContainer>
+        <AmountText>{i18n.t("common.amount")}</AmountText>
+        <div>
+          <CurrencyTextFieldReplacement
+            value={transferAmount}
+            placeholder="0"
+            onChange={handleTransferAmountChange}
+            autoComplete="off"
+            minimumValue="0"
+            inputProps={{
+              maxLength: 15,
+            }}
+          />
+        </div>
+      </AmountInputContainer>
+
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTranferClick()}
+        style={{ color: theme.white, background: theme.primary }}
       >
-        {i18n.t("transfer.transfer")}
+        {i18n.t("common.submit")}
       </Button>
     </QuickTransferContainer>
   );

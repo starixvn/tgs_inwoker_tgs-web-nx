@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { styled as muiStyled } from "@mui/material/styles";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAutoTransferSwitch } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -7,6 +8,21 @@ import Loading from "@/components/UI/Loading";
 import { Button } from "@/components/UI/Button";
 import { Switch } from "@/components/UI/Switch";
 import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
+
+const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
+  "& .MuiSwitch-switchBase": {
+    padding: 2,
+    "&.Mui-checked": {
+      transform: "translateX(32px)",
+      color: "#fff",
+      "& + .MuiSwitch-track": {
+        opacity: 1,
+        backgroundColor: theme.palette.blue40,
+      },
+    },
+  },
+}));
 
 const AutoTransferContainer = styled.div`
   display: flex;
@@ -61,12 +77,13 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
         {`${i18n.t("transfer.autoTransfer")} (${
           isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")
         })`}
-        <Switch checked={isChecked} onChange={handleSwitchAutoTransfer} />
+        <TransferSwitch checked={isChecked} onChange={handleSwitchAutoTransfer} />
       </Group>
 
       {isLargeDesktopSize && (
         <ButtonWrapper>
           <Button
+            style={{ background: theme.secondary }}
             onClick={() => {
               performWithdrawFromEveryBrand();
             }}
