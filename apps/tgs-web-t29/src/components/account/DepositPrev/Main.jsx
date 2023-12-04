@@ -9,7 +9,7 @@ import {
   FormControl,
   InfoContainer,
   ItemContainer,
-  LabelContainer,
+  LabelContainer as ProfileLabelContainer,
   Remark,
   SubmitButton,
   UploadFileButton,
@@ -38,10 +38,24 @@ const BadgeContainer = styled.div`
   margin-bottom: 12px;
 `;
 
+const LabelContainer = styled(ProfileLabelContainer)`
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
+
+const WarningText = styled.div`
+  color: ${({ theme }) => theme.red};
+`;
+
+const TransferHint = styled.div`
+  font-weight: bold;
+`;
 
 class Main extends Component {
   render() {
-    console.log(this.props)
     const methodCode = (method) => {
       return (
         this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
@@ -87,7 +101,18 @@ class Main extends Component {
       }
       return detail;
     };
-
+    const transferFee =
+      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
+        this.props.selectedMethodIndex
+      ].channel[this.props.selectedChannelIndex].fees;
+    const transferLimitFrom =
+      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
+        this.props.selectedMethodIndex
+      ].channel[this.props.selectedChannelIndex].transferlimit.from;
+    const transferLimitTo =
+      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
+        this.props.selectedMethodIndex
+      ].channel[this.props.selectedChannelIndex].transferlimit.to;
     return (
       <>
         {!config.features.Deposit_AddCard ? (
@@ -109,7 +134,6 @@ class Main extends Component {
                   this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method.map(
                     (item, index) => {
                       return (
-
                         <Badge
                           key={item.methodid}
                           text={
@@ -125,7 +149,6 @@ class Main extends Component {
                       );
                     },
                   )}
-
               </BadgeContainer>
             </ItemContainer>
           </>
@@ -374,12 +397,14 @@ class Main extends Component {
                       ) : (
                         <ItemContainer>
                           <LabelContainer>
-                            {config.features.Deposit_OriginAccount
-                              ? i18n.t("idr1.pleaseEnterAccountName")
-                              : i18n.t("common.pleaseEnterAccountName") +
-                                (config.features.Deposit_AddTips
-                                  ? " *" + i18n.t("mgm.accountDepositTips")
-                                  : "")}
+                            {config.features.Deposit_OriginAccount ? (
+                              i18n.t("idr1.pleaseEnterAccountName")
+                            ) : (
+                              <>
+                                <div>{i18n.t("common.pleaseEnterAccountName")}</div>
+                                <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText>
+                              </>
+                            )}
                           </LabelContainer>
                           <FormControl variant="outlined">
                             <TextField
@@ -465,34 +490,17 @@ class Main extends Component {
           </FormControl>
 
           <AmountHint>
-            <FeeSpot>
-              {i18n.t("fees.deposit")}:{" "}
-              <span>
-                {
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].fees
-                }
-                %
-              </span>
-            </FeeSpot>
-
-            <span>
-              {i18n.t("deposit.limitDeposit") +
-                ": " +
-                Common.formatNumberWithThousand(
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.from,
-                ) +
-                "-" +
-                Common.formatNumberWithThousand(
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.to,
-                ) +
-                i18n.t("deposit.dollor")}
-            </span>
+            {transferFee === 0 ? null : (
+              <FeeSpot>
+                {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
+              </FeeSpot>
+            )}
+            <TransferHint>
+              {`${Common.formatNumberWithThousand(
+                transferLimitFrom,
+              )} - ${Common.formatNumberWithThousand(transferLimitTo)}
+                ${i18n.t("deposit.dollor")}`}
+            </TransferHint>
           </AmountHint>
         </ItemContainer>
 
