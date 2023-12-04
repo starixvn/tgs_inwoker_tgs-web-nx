@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core"; // Import the RootState type
+import { useContactCS } from "@tgs-web-nx/core/hooks";
 
 const Content = styled.div`
   font-size: 0.875rem;
@@ -20,6 +21,7 @@ const LabelLink = styled(Link)`
 const LabelNormal = styled.span`
   color: ${({ theme }) => theme.primary};
   text-decoration: none;
+  cursor: pointer;
 `;
 
 type Props = {
@@ -33,6 +35,7 @@ type Props = {
 const BottomNote = ({ empty, text1, toEdit, link, text2 }: Props) => {
   const { account } = useAccountStore();
   const { general } = useGeneralStore();
+  const { handleContactCs } = useContactCS();
 
   const GetSupportUrl = (userid: string, name: string, question: string, email: string) => {
     const newURL = general.livechat
@@ -43,7 +46,7 @@ const BottomNote = ({ empty, text1, toEdit, link, text2 }: Props) => {
       : "";
 
     if (newURL.length) {
-      window.open(newURL, "_blank");
+      handleContactCs();
     } else {
       // Handle the case where newURL is empty
     }
