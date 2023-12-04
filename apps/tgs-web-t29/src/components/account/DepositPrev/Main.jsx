@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import { connect } from "react-redux";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
@@ -8,7 +9,7 @@ import {
   FormControl,
   InfoContainer,
   ItemContainer,
-  LabelContainer,
+  LabelContainer as ProfileLabelContainer,
   Remark,
   SubmitButton,
   UploadFileButton,
@@ -28,6 +29,30 @@ import {
   TransferLabel,
   TransferValue,
 } from "@/components/styled-component/Deposit";
+import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
+
+const BadgeContainer = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+`;
+
+const LabelContainer = styled(ProfileLabelContainer)`
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
+
+const WarningText = styled.div`
+  color: ${({ theme }) => theme.red};
+`;
+
+const TransferHint = styled.div`
+  font-weight: bold;
+`;
 
 class Main extends Component {
   render() {
@@ -76,7 +101,18 @@ class Main extends Component {
       }
       return detail;
     };
-
+    const transferFee =
+      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
+        this.props.selectedMethodIndex
+      ].channel[this.props.selectedChannelIndex].fees;
+    const transferLimitFrom =
+      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
+        this.props.selectedMethodIndex
+      ].channel[this.props.selectedChannelIndex].transferlimit.from;
+    const transferLimitTo =
+      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
+        this.props.selectedMethodIndex
+      ].channel[this.props.selectedChannelIndex].transferlimit.to;
     return (
       <>
         {!config.features.Deposit_AddCard ? (
@@ -93,32 +129,27 @@ class Main extends Component {
             {/*1. 请选择支付方式 */}
             <ItemContainer>
               <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer>
-              <FormControl variant="outlined">
-                <Select
-                  native
-                  id="customSelect"
-                  value={this.props.selectedMethodIndex}
-                  onChange={(e) => this.props.handleMethodChange(e)}
-                >
-                  <option value={""} disabled>
-                    {i18n.t("deposit.msgPlsSelectPayment")}
-                  </option>
-                  {this.props.wallet.depositTypeList.length > 0 &&
-                    this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method.map(
-                      (item, index) => {
-                        return (
-                          <option key={index} value={index}>
-                            {config.features.CustomKING8Deposit &&
+              <BadgeContainer>
+                {this.props.wallet.depositTypeList.length > 0 &&
+                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method.map(
+                    (item, index) => {
+                      return (
+                        <Badge
+                          key={item.methodid}
+                          text={
+                            config.features.CustomKING8Deposit &&
                             (paymentCode("manual") || alteredPaymentCode("manual")) &&
                             i18n.exists(`king8.${item.methodcode}`)
                               ? i18n.t(`king8.${item.methodcode}`)
-                              : i18n.t(item.methodcode)}
-                          </option>
-                        );
-                      },
-                    )}
-                </Select>
-              </FormControl>
+                              : i18n.t(item.methodcode)
+                          }
+                          isActive={index === this.props.selectedMethodIndex}
+                          handleClick={() => this.props.handleMethodChange(index)}
+                        />
+                      );
+                    },
+                  )}
+              </BadgeContainer>
             </ItemContainer>
           </>
         ) : (
@@ -366,12 +397,14 @@ class Main extends Component {
                       ) : (
                         <ItemContainer>
                           <LabelContainer>
-                            {config.features.Deposit_OriginAccount
-                              ? i18n.t("idr1.pleaseEnterAccountName")
-                              : i18n.t("common.pleaseEnterAccountName") +
-                                (config.features.Deposit_AddTips
-                                  ? " *" + i18n.t("mgm.accountDepositTips")
-                                  : "")}
+                            {config.features.Deposit_OriginAccount ? (
+                              i18n.t("idr1.pleaseEnterAccountName")
+                            ) : (
+                              <>
+                                <div>{i18n.t("common.pleaseEnterAccountName")}</div>
+                                <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText>
+                              </>
+                            )}
                           </LabelContainer>
                           <FormControl variant="outlined">
                             <TextField
@@ -457,34 +490,17 @@ class Main extends Component {
           </FormControl>
 
           <AmountHint>
-            <FeeSpot>
-              {i18n.t("fees.deposit")}:{" "}
-              <span>
-                {
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].fees
-                }
-                %
-              </span>
-            </FeeSpot>
-
-            <span>
-              {i18n.t("deposit.limitDeposit") +
-                ": " +
-                Common.formatNumberWithThousand(
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.from,
-                ) +
-                "-" +
-                Common.formatNumberWithThousand(
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.to,
-                ) +
-                i18n.t("deposit.dollor")}
-            </span>
+            {transferFee === 0 ? null : (
+              <FeeSpot>
+                {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
+              </FeeSpot>
+            )}
+            <TransferHint>
+              {`${Common.formatNumberWithThousand(
+                transferLimitFrom,
+              )} - ${Common.formatNumberWithThousand(transferLimitTo)}
+                ${i18n.t("deposit.dollor")}`}
+            </TransferHint>
           </AmountHint>
         </ItemContainer>
 

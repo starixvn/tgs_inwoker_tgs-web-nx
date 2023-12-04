@@ -1,87 +1,87 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { Provider } from "@tgs-web-nx/types";
 import { useAuth } from "../../useAuth/index";
-
-export interface TransferWallet {
-  abbreviation: string;
-  balance: number;
-}
 
 export function useTransferWallets() {
   const { game } = useGameStore();
   const { getGameBalance } = useWalletStore();
   const [isLoading, setIsLoading] = useState(false);
-  const [transferWallets, setTransferWallets] = useState<TransferWallet[]>([]);
+  const [providerList, setProviderList] = useState<Provider[]>(game.providerList || []);
   const { isLogin } = useAuth();
 
-  const fetchTransferWallets = useCallback(
-    async (providerList: Provider[]): Promise<TransferWallet[]> => {
-      if (!providerList.length) {
-        return [];
+  const handleUpdateTransferWallet = (newProvider: Provider) => {
+    setProviderList((prevProviderList) => {
+      const newProviderList: Provider[] = [];
+
+      let isUpdated = false;
+      prevProviderList.forEach((provider) => {
+        if (provider.gpcode === newProvider.gpcode) {
+          isUpdated = true;
+          newProviderList.push(newProvider);
+        } else {
+          newProviderList.push(provider);
+        }
+      });
+
+      if (!isUpdated) {
+        newProviderList.push(newProvider);
       }
 
-      const transferWalletList: (TransferWallet | null)[] = await Promise.all(
-        providerList
-          .filter(
-            (provider) =>
-              provider.status === 0 &&
-              provider.transferwallet &&
-              !["NTTF", "RTTF"].includes(provider.gpcode),
-          )
-          .map(async (provider) => {
-            try {
-              const response = await getGameBalance(provider.gpcode);
-              if (response && response.IsSuccess) {
-                return {
-                  abbreviation: provider.abbreviation,
-                  balance: response.data.balance,
-                };
-              } else {
-                console.log(provider.gpcode);
-                return null;
-              }
-            } catch (error) {
-              console.error(`Error fetching balance for ${provider.gpcode}`, error);
-              return null;
-            }
-          }),
-      );
+      return newProviderList;
+    });
+  };
 
-      return transferWalletList.filter((wallet) => wallet !== null) as TransferWallet[];
-    },
-    [getGameBalance],
-  );
+  const fetchTransferWallets = async (providerList: Provider[]) => {
+    const filteredProviderList = providerList.filter(
+      (provider) =>
+        provider.status === 0 &&
+        provider.transferwallet &&
+        !["NTTF", "RTTF", "BTG", "NLC"].includes(provider.gpcode),
+    );
+
+    for (const provider of filteredProviderList) {
+      try {
+        const response = await getGameBalance(provider.gpcode);
+
+        if (!response || !response.IsSuccess) {
+          console.log(provider.gpcode);
+          continue;
+        }
+
+        handleUpdateTransferWallet({
+          ...provider,
+          balance: response.data.balance,
+        });
+      } catch (error) {
+        console.error(`Error fetching balance for ${provider.gpcode}`, error);
+      }
+    }
+
+    // return transferWalletList.filter((wallet) => wallet !== null) as TransferWallet[];
+  };
 
   const fetchTransferWalletBalance = useCallback(async () => {
     if (!isLogin) return;
     if (!game.providerList.length) return;
 
-    try {
-      setIsLoading(true);
-      const transferWalletList = await fetchTransferWallets(game.providerList);
-      setTransferWallets(transferWalletList);
-    } catch (error: any) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+    fetchTransferWallets(game.providerList);
   }, [fetchTransferWallets, game.providerList.length]);
 
   const transferWalletBalance = useMemo(() => {
     let walletBalance = 0;
-    for (const transferWallet of transferWallets) {
-      const balance = transferWallet.balance || 0;
+    for (const provider of providerList) {
+      const balance = provider.balance || 0;
       walletBalance += balance;
     }
 
     return walletBalance;
-  }, [transferWallets]);
+  }, [providerList]);
 
   return {
     transferWalletBalance,
     fetchTransferWalletBalance,
     isLoading,
-    transferWallets,
+    providerList,
   };
 }

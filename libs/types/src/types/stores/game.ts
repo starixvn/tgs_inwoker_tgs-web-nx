@@ -16,4 +16,5 @@ export interface Provider {
   name: string;
   status: number;
   transferwallet: boolean;
+  maintenance: number;
 }

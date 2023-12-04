@@ -1,7 +1,7 @@
 import React, { createContext, useEffect } from "react";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
-import { AccountInfo } from "@tgs-web-nx/types";
-import { TransferWallet, useTransferWallets } from "../hooks/useTransferWallets";
+import { AccountInfo, Provider } from "@tgs-web-nx/types";
+import { useTransferWallets } from "../hooks/useTransferWallets";
 import { useMainWallet } from "../hooks/useMainWallet";
 import { useAuth } from "../../useAuth";
 
@@ -15,7 +15,7 @@ const initialState: {
   isTransferWalletLoading: boolean;
   mainSymbol: string;
   info: AccountInfo;
-  transferWallets: TransferWallet[];
+  providerList: Provider[];
 } = {
   mainWalletBalance: 0,
   transferWalletBalance: 0,
@@ -86,7 +86,7 @@ const initialState: {
     member: "",
     vip_progress_bar: 0,
   } as AccountInfo,
-  transferWallets: [],
+  providerList: [],
 };
 
 export const UserWalletInfoContext = createContext({
@@ -113,7 +113,7 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
     transferWalletBalance,
     fetchTransferWalletBalance,
     isLoading: isTransferWalletLoading,
-    transferWallets,
+    providerList,
   } = useTransferWallets();
 
   useEffect(() => {
@@ -145,7 +145,7 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
         fetchTransferWalletBalance,
         fetchBalance,
         info,
-        transferWallets,
+        providerList,
         isMainWalletLoading,
         isTransferWalletLoading,
       }}

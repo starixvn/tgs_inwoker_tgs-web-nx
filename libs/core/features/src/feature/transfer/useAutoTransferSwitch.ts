@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { WalletService } from "@tgs-web-nx/core";
+import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 export function useAutoTransferSwitch() {
+  const { performWithdrawFromEveryBrand } = useWalletStore();
+
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -54,5 +56,6 @@ export function useAutoTransferSwitch() {
     isChecked,
     isLoading,
     handleSwitchAutoTransfer,
+    performWithdrawFromEveryBrand,
   };
 }
