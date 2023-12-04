@@ -83,11 +83,11 @@ const PromotionBanner = ({
         <ImgWrapper>
           <BannerImage promotionData={promotionData} />
         </ImgWrapper>
-        <Description
+        {/* <Description
           dangerouslySetInnerHTML={{
             __html: "<div>" + contentToDisplay + "</div>",
           }}
-        />
+        /> */}
       </PromotionBannerWrapper>
     );
   }
@@ -97,11 +97,11 @@ const PromotionBanner = ({
         <BannerImage promotionData={promotionData} />
       </ImgWrapper>
       <Title>{promotionData.name}</Title>
-      <Description
+      {/* <Description
         dangerouslySetInnerHTML={{
           __html: "<div>" + contentToDisplay + "</div>",
         }}
-      />
+      /> */}
     </PromotionBannerWrapper>
   );
 };
