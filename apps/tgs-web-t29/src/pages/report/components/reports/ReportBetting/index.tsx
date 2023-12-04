@@ -96,7 +96,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
       <TotalState roundTotal={roundTotal} />
 
       {isDesktopSize ? (
-        <TransactionDetailTable transactionDetails={transactionDetails} totalCount={totalCount} />
+        <TransactionDetailTable transactionDetails={transactionDetails} />
       ) : (
         <TransactionDetailCards transactionDetails={transactionDetails} />
       )}
