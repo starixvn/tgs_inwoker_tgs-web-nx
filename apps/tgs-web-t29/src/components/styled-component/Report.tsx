@@ -82,5 +82,6 @@ export const DateRangeSelector = styled.div`
   ${media.sm} {
     flex-wrap: wrap;
     flex-direction: row;
+    height: 47px;
   }
 `;

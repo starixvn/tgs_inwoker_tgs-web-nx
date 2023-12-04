@@ -8,6 +8,7 @@ const DateRangContainer = styled.div`
   //align-items: center;
   justify-content: center;
   gap: 13px;
+  height: 47px;
 `;
 
 type DateRangSelectionTypes = {
@@ -17,17 +18,17 @@ type DateRangSelectionTypes = {
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
   text-align: center;
   cursor: pointer;
-  height: 28px;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.blue50 : theme.blue20;
+    return $isSelected ? theme.blue40 : theme.blue20;
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
     return $isSelected ? theme.white : theme.text;
   }};
-  padding: 6.5px 22px;
+  padding: 12px 20px;
   font-size: 0.812rem;
-  line-height: 1;
+  display: flex;
+  align-items: center;
 `;
 
 export enum DateRangeEnum {
