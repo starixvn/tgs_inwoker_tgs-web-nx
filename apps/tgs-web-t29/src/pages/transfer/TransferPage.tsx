@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import {
+  useAuth,
   useNotifications,
   useUpdatePageName,
   useUserWalletInfoContext,
 } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useSnackbar } from "notistack";
+import { useGameStore } from "@tgs-web-nx/core";
 import TransferPrevV2 from "@/components/account/TransferPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconTransfer from "@/assets/t29/images/account/navItem/icon-transfer.svg";
@@ -16,17 +18,24 @@ import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const Transfer = () => {
   useUpdatePageName(i18n.t("transfer.title"));
+  const { game } = useGameStore();
   const { isDesktopSize } = useRwd();
-
   const { alert } = useNotifications();
   const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
+  const { isLogin } = useAuth();
 
-  const { fetchTransferWalletBalance } = useUserWalletInfoContext();
+  const { fetchTransferWalletBalance, fetchBalance } = useUserWalletInfoContext();
 
   const getAllGameBalance = () => {
     fetchTransferWalletBalance();
   };
+
+  useEffect(() => {
+    if (!isLogin) return;
+    fetchBalance();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [game.providerList.length, isLogin]);
 
   return (
     <PageContainer>
