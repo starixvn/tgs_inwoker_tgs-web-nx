@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import {
+  useAuthDialog,
   useConfirmAdult,
   useGenerateRegisterFormik,
   usePromotionCode,
@@ -8,11 +9,10 @@ import {
 } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { RegisterV2CreatePlayerReqDto, ValueOf } from "@tgs-web-nx/types";
+import { RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
-import { RegisterStageEnum } from "@/pages/register/components/RegisterFormStage/types";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
@@ -23,15 +23,12 @@ const VerifyAgeContainer = styled.div`
   align-items: start;
 `;
 
-type Props = {
-  updateStage: (newStage: ValueOf<typeof RegisterStageEnum>) => void;
-};
-
-const CreatePlayerStage = ({ updateStage }: Props) => {
+const CreatePlayerStage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
   const { registerV2CreatePlayer } = useAccountStore();
   const { promotionData } = usePromotionCode();
+  const { handleToggleLoginDialog, handleToggleRegisterDialog, updateStage } = useAuthDialog();
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
 
@@ -44,11 +41,12 @@ const CreatePlayerStage = ({ updateStage }: Props) => {
     try {
       setIsLoading(true);
 
+      const username = values.username as string;
       const userType = values.userType as UserTypeEnum;
       const promoteCode = values.promoteCode as string;
 
       const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
-        username: values.username as string,
+        username,
         pwd: values.pwd as string,
         upper: userType === UserTypeEnum.PLAYER ? promoteCode || promotionData.upper : undefined,
         invitationcode:
@@ -66,6 +64,13 @@ const CreatePlayerStage = ({ updateStage }: Props) => {
         throw new Error(i18n.t("common.msgAlreadyExist"));
       }
 
+      if (newRegisterResDto.data.isCompleted) {
+        localStorage.setItem("remember", "true");
+        localStorage.setItem("username", username);
+        handleToggleRegisterDialog(false);
+        handleToggleLoginDialog(true);
+      }
+
       updateStage(newRegisterResDto.data.nextStepType);
     } catch (error: any) {
       console.error(error);
@@ -80,7 +85,6 @@ const CreatePlayerStage = ({ updateStage }: Props) => {
   });
 
   useEffect(() => {
-    console.log("error updated");
     setRegisterError(null);
   }, [formik.errors]);
 

@@ -7,9 +7,10 @@ import {
   GetRegisterStatusResDto,
   LoginResDto,
   LogoutResDto,
-  NewRegisterResDto,
   RegisterResDto,
   RegisterV2CreatePlayerReqDto,
+  RegisterV2CreatePlayerResDto,
+  RegisterV2GetRegisterStepResDto,
   SetBirthDateResDto,
   UpdateIMResDto,
   UpdateMemberNameAndICResDto,
@@ -236,7 +237,7 @@ function NewRegister(type: string, input: any) {
   return ApiService.post("player/register", {
     type: type,
     input: input,
-  }) as unknown as Promise<NewRegisterResDto>;
+  }) as unknown as Promise<RegisterV2CreatePlayerResDto>;
 }
 
 function GetRegisterStatus() {
@@ -255,7 +256,11 @@ function RegisterV2CreatePlayer(createPlayerReqDto: RegisterV2CreatePlayerReqDto
   return ApiService.post("player/register", {
     type: "CreatePlayer",
     input: createPlayerReqDto,
-  }) as unknown as Promise<NewRegisterResDto>;
+  }) as unknown as Promise<RegisterV2CreatePlayerResDto>;
+}
+
+function RegisterV2GetRegisterStep() {
+  return ApiService.get("player/register") as unknown as Promise<RegisterV2GetRegisterStepResDto>;
 }
 
 export const AccountService = {
@@ -291,4 +296,5 @@ export const AccountService = {
   GetRegisterStatus,
   UpdateMemberNameAndIC,
   RegisterV2CreatePlayer,
+  RegisterV2GetRegisterStep,
 };

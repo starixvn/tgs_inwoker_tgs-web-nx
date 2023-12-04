@@ -1,8 +1,14 @@
 import { useCallback, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAccountStore, useGeneralStore, useInboxStore, useWalletStore } from "@tgs-web-nx/core";
+import {
+  AccountService,
+  useAccountStore,
+  useGeneralStore,
+  useInboxStore,
+  useWalletStore,
+} from "@tgs-web-nx/core";
+import { useAuthDialog } from "../../useAuthDialog";
 
 export type LoginState = {
   data: any | null;
@@ -23,6 +29,7 @@ export function useLogin() {
   const walletStore = useWalletStore();
   const inboxStore = useInboxStore();
   const generalStore = useGeneralStore();
+  const { updateStage } = useAuthDialog();
 
   const handleLogin = async (username: string, password: string, needToRemember?: boolean) => {
     try {
@@ -33,6 +40,17 @@ export function useLogin() {
       if (!result?.IsSuccess) {
         handleLoginFailure(result?.code);
       } else {
+        // validate if register completed
+        const isRegisterStateComplete = await examineRegisterStatus(username);
+        if (!isRegisterStateComplete) {
+          setLoginState({
+            isLoading: false,
+            data: null,
+            error: null,
+          });
+          return;
+        }
+
         await handleLoginSuccess(username, needToRemember);
         setLoginState({
           isLoading: false,
@@ -55,10 +73,6 @@ export function useLogin() {
   };
 
   const handleLoginSuccess = async (username: string, needToRemember?: boolean) => {
-    if (await shouldRedirectToProfile(username)) {
-      return redirectToProfile();
-    }
-
     await fetchData();
     handleLocalStorage(needToRemember || false, username);
 
@@ -72,17 +86,15 @@ export function useLogin() {
     redirectToHome();
   };
 
-  const shouldRedirectToProfile = async (username: string) => {
+  const examineRegisterStatus = async (username: string) => {
     const response = await getAccountInfo();
-    return (
-      config.features.Register_ShowPhone &&
-      config.features.ForcedVerification &&
-      !response?.data?.registercompleted
-    );
-  };
+    if (response.data.registercompleted) return true;
 
-  const redirectToProfile = () => {
-    history.push("/profile/phone", { forced: true });
+    const res = await AccountService.RegisterV2GetRegisterStep();
+    const nextStep = res.data;
+    updateStage(nextStep);
+
+    return false;
   };
 
   const fetchData = async () => {

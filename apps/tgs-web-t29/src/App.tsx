@@ -31,6 +31,8 @@ import LoginDialog from "@/components/project/auth/LoginDialog";
 import RegisterDialog from "@/components/project/auth/RegisterDialog";
 import ForgotPasswordDialog from "@/components/project/auth/ForgotPasswordDialog";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import RegisterV2InitPhoneDialog from "@/components/project/auth/RegisterV2InitPhoneDialog";
+import RegisterV2InitEmailDialog from "@/components/project/auth/RegisterV2InitEmailDialog";
 
 const App: React.FC = () => {
   const { isLoading } = useInitSite();
@@ -43,7 +45,7 @@ const App: React.FC = () => {
   if (isLoading) {
     return <Loading show={true} opacity={1} noShrink={true} />;
   }
-  
+
   return (
     <Router history={AppHistory}>
       <RouteContextProvider route={currentRoute}>
@@ -93,11 +95,11 @@ const App: React.FC = () => {
                         }
                       />
 
-                      {config.features.SMSVerification &&
-                        account.registercompleted === false &&
-                        config.features.ForcedVerification && (
-                          <ForcedVerification forceVerify={true} />
-                        )}
+                      {/*{config.features.SMSVerification &&*/}
+                      {/*  account.registercompleted === false &&*/}
+                      {/*  config.features.ForcedVerification && (*/}
+                      {/*    <ForcedVerification forceVerify={true} />*/}
+                      {/*  )}*/}
 
                       <PopupAnnouncement />
                       <PopupPromotion />
@@ -106,6 +108,8 @@ const App: React.FC = () => {
                       <FloatingToolIcons />
                       <LoginDialog />
                       <RegisterDialog />
+                      <RegisterV2InitPhoneDialog />
+                      <RegisterV2InitEmailDialog />
                       <ForgotPasswordDialog />
 
                       <AuthContextConsumer>

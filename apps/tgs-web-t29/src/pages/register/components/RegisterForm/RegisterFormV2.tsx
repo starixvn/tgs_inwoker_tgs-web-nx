@@ -7,7 +7,6 @@ import { AuthFormContainer } from "@/components/styled-component/AuthFormContain
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 import RegisterFormStage from "@/pages/register/components/RegisterFormStage";
-import { RegisterStageEnum } from "@/pages/register/components/RegisterFormStage/types";
 
 const LoginTitle = styled.div`
   font-size: 48px;
@@ -21,7 +20,6 @@ const LoginTitle = styled.div`
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
-  const initialRegisterStage = RegisterStageEnum.CreatePlayer;
 
   return (
     <AuthFormContainer>
@@ -31,7 +29,7 @@ const RegisterForm = () => {
         <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
       )}
 
-      <RegisterFormStage initialRegisterStage={initialRegisterStage} />
+      <RegisterFormStage />
 
       <RedirectToLoginHint style={{ marginBottom: "20px" }} />
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />

@@ -1,7 +1,8 @@
-import React, { createContext, useCallback, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import { usePageName } from "../../usePageName";
+import React, { createContext, useEffect, useState } from "react";
+import { RegisterStageEnum, ValueOf } from "@tgs-web-nx/types";
+import { AccountService, useAccountStore } from "@tgs-web-nx/core";
+import { useRegisterV2Dialog } from "../hooks/useRegisterV2Dialog";
+import { useAuthV1Dialog } from "../hooks/useAuthV1Dialog";
 
 const initialState: {
   isLoginDialogOpen: boolean;
@@ -10,6 +11,12 @@ const initialState: {
   handleToggleLoginDialog: (isOpen?: boolean) => void;
   handleToggleRegisterDialog: (isOpen?: boolean) => void;
   handleToggleForgotPasswordDialog: (isOpen?: boolean) => void;
+  // register v2
+  updateStage: (newStage: ValueOf<typeof RegisterStageEnum>) => void;
+  isRegisterV2InitPhoneDialogOpen: boolean;
+  handleToggleInitPhoneDialog: (isOpen?: boolean) => void;
+  isRegisterV2InitEmailDialogOpen: boolean;
+  handleToggleInitEmailDialog: (isOpen?: boolean) => void;
 } = {
   isLoginDialogOpen: false,
   isRegisterDialogOpen: false,
@@ -17,6 +24,12 @@ const initialState: {
   handleToggleLoginDialog: () => {},
   handleToggleRegisterDialog: () => {},
   handleToggleForgotPasswordDialog: () => {},
+  // register v2
+  updateStage: () => {},
+  isRegisterV2InitPhoneDialogOpen: false,
+  handleToggleInitPhoneDialog: () => {},
+  isRegisterV2InitEmailDialogOpen: false,
+  handleToggleInitEmailDialog: () => {},
 };
 
 export const AuthDialogContext = createContext({
@@ -28,69 +41,64 @@ type ProviderProps = {
 };
 
 export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
-  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
-  const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
-  const [isForgotPasswordDialogOpen, setIsForgotPasswordDialogOpen] = useState(false);
-  const history = useHistory();
-  const { updatePageName } = usePageName();
-  const location = history.location;
+  const {
+    isLoginDialogOpen,
+    isRegisterDialogOpen,
+    isForgotPasswordDialogOpen,
+    handleToggleLoginDialog,
+    handleToggleRegisterDialog,
+    handleToggleForgotPasswordDialog,
+  } = useAuthV1Dialog();
+  const { accountLogin, getAccountInfo } = useAccountStore();
 
-  const handleToggleLoginDialog = useCallback(
-    (isOpen?: boolean) => {
-      if (typeof isOpen === "undefined") {
-        setIsLoginDialogOpen((prevState) => !prevState);
-      } else {
-        setIsLoginDialogOpen(isOpen);
-
-        if (isOpen) {
-          updatePageName(i18n.t("common.login"));
-        }
-      }
-
-      if (location.pathname === "/login" && !isOpen) {
-        history.push("/");
-      }
-    },
-    [history, location.pathname, updatePageName],
+  const [currentStage, setCurrentStage] = useState<ValueOf<typeof RegisterStageEnum>>(
+    RegisterStageEnum.CreatePlayer,
   );
 
-  const handleToggleRegisterDialog = useCallback(
-    (isOpen?: boolean) => {
-      if (typeof isOpen === "undefined") {
-        setIsRegisterDialogOpen((prevState) => !prevState);
-      } else {
-        setIsRegisterDialogOpen(isOpen);
+  useEffect(() => {
+    const examineRegisterStatus = async (username: string) => {
+      const response = await getAccountInfo();
+      if (response.data.registercompleted) return;
 
-        if (isOpen) {
-          updatePageName(i18n.t("common.register"));
-        }
-      }
+      const res = await AccountService.RegisterV2GetRegisterStep();
+      const nextStep = res.data;
+      updateStage(nextStep);
+    };
 
-      if (location.pathname === "/register" && !isOpen) {
-        history.push("/");
-      }
-    },
-    [history, location.pathname, updatePageName],
-  );
+    examineRegisterStatus();
+  }, []);
 
-  const handleToggleForgotPasswordDialog = useCallback(
-    (isOpen?: boolean) => {
-      if (typeof isOpen === "undefined") {
-        setIsForgotPasswordDialogOpen((prevState) => !prevState);
-      } else {
-        setIsForgotPasswordDialogOpen(isOpen);
+  const updateStage = (newStage: ValueOf<typeof RegisterStageEnum>) => {
+    console.log(newStage);
+    setCurrentStage(newStage);
+    switch (newStage) {
+      case RegisterStageEnum.InitPhone:
+        handleToggleLoginDialog(false);
+        handleToggleRegisterDialog(false);
+        handleToggleInitEmailDialog(false);
 
-        if (isOpen) {
-          updatePageName(i18n.t("forgotPassword.title"));
-        }
-      }
+        handleToggleInitPhoneDialog(true);
+        break;
 
-      if (location.pathname === "/forgot-password" && !isOpen) {
-        history.push("/");
-      }
-    },
-    [history, location.pathname, updatePageName],
-  );
+      case RegisterStageEnum.InitEmail:
+        handleToggleLoginDialog(false);
+        handleToggleRegisterDialog(false);
+        handleToggleInitPhoneDialog(false);
+
+        handleToggleInitEmailDialog(true);
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  const {
+    isRegisterV2InitEmailDialogOpen,
+    isRegisterV2InitPhoneDialogOpen,
+    handleToggleInitEmailDialog,
+    handleToggleInitPhoneDialog,
+  } = useRegisterV2Dialog();
 
   return (
     <AuthDialogContext.Provider
@@ -101,6 +109,12 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         handleToggleLoginDialog,
         handleToggleRegisterDialog,
         handleToggleForgotPasswordDialog,
+        // register v2
+        updateStage,
+        isRegisterV2InitPhoneDialogOpen,
+        handleToggleInitPhoneDialog,
+        isRegisterV2InitEmailDialogOpen,
+        handleToggleInitEmailDialog,
       }}
     >
       {children}

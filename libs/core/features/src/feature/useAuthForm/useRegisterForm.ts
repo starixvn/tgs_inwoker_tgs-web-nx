@@ -3,7 +3,7 @@ import { FormikValues } from "formik";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth } from "../useAuth";
-import { useAuthDialog } from "../useAuthDialog";
+import { useAuthDialog } from "../useAuthDialog/hooks/useAuthDialog";
 import { useGenerateRegisterFormik } from "./hooks/useGenerateRegisterFormik";
 import { usePromotionCode } from "./hooks/usePromotionCode";
 import { useConfirmAdult } from "./hooks/useConfirmAdult";
