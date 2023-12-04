@@ -4,7 +4,10 @@ export interface NewRegisterResDto {
   data: {
     isCompleted: boolean;
     nextStepType: string;
-    stepResponse: string;
+    stepResponse: {
+      uid: string;
+      isnew: boolean;
+    };
   };
   info: string | null;
 }

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { i18n } from "@tgs-web-nx/utils";
+import React, { useEffect, useState } from "react";
+import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import {
   useConfirmAdult,
   useGenerateRegisterFormik,
@@ -34,11 +34,10 @@ const CreatePlayerStage = ({ updateStage }: Props) => {
   const { promotionData } = usePromotionCode();
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
-  const [otherError, setOtherError] = useState<Error | null>(null);
 
   const handleClickSubmit = async (values: any) => {
     if (!isConfirmedAdult) {
-      setOtherError(new Error(i18n.t("common.msgRegisterTermAndCondition")));
+      setRegisterError(new Error(i18n.t("common.msgRegisterTermAndCondition")));
       return;
     }
 
@@ -57,9 +56,17 @@ const CreatePlayerStage = ({ updateStage }: Props) => {
         //@ts-ignore
         testplayer: config.testplayer || false,
       };
-      const response = await registerV2CreatePlayer(createPlayerReqDto);
-      console.log(response);
-      updateStage("InitPhone");
+      const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
+
+      if (!newRegisterResDto.IsSuccess) {
+        throw new Error(ErrorSwitcher.getTranslation(newRegisterResDto.info));
+      }
+
+      if (!newRegisterResDto.data.stepResponse.isnew) {
+        throw new Error(i18n.t("common.msgAlreadyExist"));
+      }
+
+      updateStage(newRegisterResDto.data.nextStepType);
     } catch (error: any) {
       console.error(error);
       setRegisterError(error);
@@ -72,14 +79,17 @@ const CreatePlayerStage = ({ updateStage }: Props) => {
     handleClickSubmit,
   });
 
-  const error = registerError || otherError;
+  useEffect(() => {
+    console.log("error updated");
+    setRegisterError(null);
+  }, [formik.errors]);
 
   return (
     <FormikForm
       formInputList={formInputConfigList}
       formik={formik}
       isLoading={isLoading}
-      error={error}
+      error={registerError}
       buttonText={i18n.t("createaccount")}
     >
       <VerifyAgeContainer>

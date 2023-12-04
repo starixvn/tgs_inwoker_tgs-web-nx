@@ -68,8 +68,7 @@ const FormikForm = ({
 
       {(error?.message || bottomFormErrorMsg) && (
         <ErrorMessageContainer>
-          {bottomFormErrorMsg}
-          {error?.message || null}
+          {bottomFormErrorMsg || error?.message || null}
         </ErrorMessageContainer>
       )}
 
