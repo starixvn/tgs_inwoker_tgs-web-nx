@@ -3,18 +3,17 @@ import { Provider } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
-import { TransferWallet } from "@/pages/transfer/components/components/TransferCard";
 import { Select } from "@/components/UI/Select";
 import { theme } from "@/theme";
 
 type Props = {
   value: string;
   handleChange: (e: ChangeEvent) => void;
-  walletBalance: TransferWallet[];
+  providerList: Provider[];
   mainAccountId: string; // "0"
 };
 
-const WalletSelect = ({ value, handleChange, walletBalance, mainAccountId }: Props) => {
+const WalletSelect = ({ value, handleChange, providerList, mainAccountId }: Props) => {
   const { game } = useGameStore();
 
   const gpNameSwitcher = ({ abbreviation, name }: Provider) => {
@@ -59,7 +58,7 @@ const WalletSelect = ({ value, handleChange, walletBalance, mainAccountId }: Pro
         .map((provider, index) => (
           <option value={provider.gpcode} key={index}>
             {gpNameSwitcher(provider)}
-            {`(${walletBalance
+            {`(${providerList
               .filter((transferWallet) => transferWallet.abbreviation === provider.abbreviation)
               .map((transferWallet) => Common.formatNumberWithThousand(transferWallet.balance))})`}
           </option>

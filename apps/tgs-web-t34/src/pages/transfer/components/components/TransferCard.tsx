@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
+import { Provider } from "@tgs-web-nx/types";
 import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
 import { theme } from "@/theme";
@@ -40,11 +41,6 @@ const Spacing = styled.div`
   margin-bottom: 10px;
 `;
 
-export interface TransferWallet {
-  abbreviation: string;
-  balance: number;
-}
-
 type Props = {
   fromWallet: string;
   handleChangeFromWallet: (e: ChangeEvent) => void;
@@ -67,12 +63,12 @@ const TransferCard = ({
 }: Props) => {
   const { wallet, getGameBalance } = useWalletStore();
   const { game } = useGameStore();
-  const [transferWallets, setTransferWallets] = useState<TransferWallet[]>([]);
+  const [providers, setProviders] = useState<Provider[]>([]);
 
   const getAllGameBalance = useCallback(async () => {
     if (!game.providerList.length) return;
 
-    const newWalletBalance: TransferWallet[] = [];
+    const newWalletBalance: Provider[] = [];
     const promiseList = game.providerList
       .filter((provider) => provider.status === 0 && provider.transferwallet === true)
       .filter((provider) => provider.gpcode !== "NTTF" && provider.gpcode !== "RTTF")
@@ -92,7 +88,7 @@ const TransferCard = ({
       });
 
     await Promise.all(promiseList);
-    setTransferWallets(newWalletBalance);
+    setProviders(newWalletBalance);
   }, [JSON.stringify(game.providerList)]);
 
   useEffect(() => {
@@ -121,7 +117,7 @@ const TransferCard = ({
           <WalletSelect
             value={fromWallet}
             handleChange={handleChangeFromWallet}
-            walletBalance={transferWallets}
+            providerList={providers}
             mainAccountId={mainAccountId}
           />
         </ColContainer>
@@ -133,7 +129,7 @@ const TransferCard = ({
           <WalletSelect
             value={toWallet}
             handleChange={handleChangeToWallet}
-            walletBalance={transferWallets}
+            providerList={providers}
             mainAccountId={mainAccountId}
           />
         </ColContainer>

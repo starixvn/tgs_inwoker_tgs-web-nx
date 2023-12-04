@@ -38,11 +38,6 @@ const Spacing = styled.div`
   height: 14px;
 `;
 
-export interface TransferWallet {
-  abbreviation: string;
-  balance: number;
-}
-
 type Props = {
   fromWallet: string;
   handleChangeFromWallet: (e: ChangeEvent) => void;
@@ -63,7 +58,7 @@ const TransferCard = ({
   mainAccountId,
   children,
 }: Props) => {
-  const { mainWalletBalance, transferWallets } = useUserWalletInfoContext();
+  const { mainWalletBalance, providerList } = useUserWalletInfoContext();
 
   return (
     <TransferCardContainer>
@@ -79,7 +74,7 @@ const TransferCard = ({
           <WalletSelect
             value={fromWallet}
             handleChange={handleChangeFromWallet}
-            walletBalance={transferWallets}
+            providerList={providerList}
             mainAccountId={mainAccountId}
           />
         </ColContainer>
@@ -91,7 +86,7 @@ const TransferCard = ({
           <WalletSelect
             value={toWallet}
             handleChange={handleChangeToWallet}
-            walletBalance={transferWallets}
+            providerList={providerList}
             mainAccountId={mainAccountId}
           />
         </ColContainer>

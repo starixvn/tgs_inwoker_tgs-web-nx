@@ -158,7 +158,7 @@ class Transfer extends Component {
   handleWithdrawAllClick = (e) => {
     this.props.doWithdrawAll();
   };
-  handleTranferIn = (gpcode) => {
+  handleTransferIn = (gpcode) => {
     this.props.doTransfer(gpcode, this.props.wallet.mainBalance);
   };
 
@@ -176,8 +176,8 @@ class Transfer extends Component {
         handleTransferFromChange={this.handleTransferFromChange}
         handleTransferToChange={this.handleTransferToChange}
         handleTransferAmountChange={this.handleTransferAmountChange}
-        handleTranferClick={this.handleTransferClick}
-        handleTranferIn={this.handleTranferIn}
+        handleTransferClick={this.handleTransferClick}
+        handleTransferIn={this.handleTransferIn}
       />
     );
   }

@@ -54,7 +54,7 @@ type Props = {
   transferAmount: number;
   handleTransferAmountChange: (e: SelectChangeEvent<any>) => void;
   disabled: boolean;
-  handleTranferClick: Promise<void>;
+  handleTransferClick: Promise<void>;
 };
 const QuickTransfer = ({
   transferFrom,
@@ -65,7 +65,7 @@ const QuickTransfer = ({
   transferAmount,
   handleTransferAmountChange,
   disabled,
-  handleTranferClick,
+  handleTransferClick,
 }: Props) => {
   const { game } = useGameStore();
 
@@ -162,7 +162,7 @@ const QuickTransfer = ({
 
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
-        onClick={() => handleTranferClick()}
+        onClick={() => handleTransferClick()}
         style={{ color: theme.white, background: theme.primary }}
       >
         {i18n.t("common.submit")}
