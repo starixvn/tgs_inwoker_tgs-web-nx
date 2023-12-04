@@ -403,9 +403,10 @@ class Withdrawal extends Component {
       return;
     }
 
-    if (!this.props.account.info.member_name) {
-      return <NameVerification token={this.props.token} />;
-    }
+    // TODO: Looks like the code below is not yet completed?
+    // if (this.props.account.info.member_name !== "") {
+    //   return <NameVerification token={this.props.token} />;
+    // }
 
     if (
       config.features.AddCard_NotAllowedEditDelete &&
