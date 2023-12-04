@@ -5,6 +5,7 @@ import { styled as muiStyled } from "@mui/material/styles";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { Button } from "@/components/UI/Button";
 
 const TransferContainer = styled.div`
@@ -15,24 +16,21 @@ const TransferContainer = styled.div`
   justify-content: center;
 `;
 
-const GameTranferWallet = styled.div`
+const GameTransferWallet = styled.div`
   display: flex;
   justify-content: space-between;
   width: 200px;
   border-radius: 4px;
-  border: solid 1px
-    ${({ theme }) => {
-      return theme.darkMode ? theme.customProfileBackground50 : "#dddedf";
-    }};
+  border: solid 1px ${({ theme }) => "#dddedf"};
   background: ${({ theme }) => theme.blue20};
   padding: 10px 10px 10px 3px;
   gap: 10px;
 `;
-const GameTranferLeftWrap = styled.div`
+const GameTransferLeftWrap = styled.div`
   max-width: 70px;
 `;
 
-const GameTranferRighttWrap = styled.div`
+const GameTransferRighttWrap = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -79,13 +77,13 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
 }));
 
 type Props = {
-  handleTranferIn: (gpcode: string) => void;
+  handleTransferIn: (gpcode: string) => void;
 };
 
-const TransferCards = ({ handleTranferIn }: Props) => {
-  const { game } = useGameStore();
+const TransferCards = ({ handleTransferIn }: Props) => {
+  const { providerList } = useUserWalletInfoContext();
 
-  const switchAlternateLogo = (condition) => {
+  const switchAlternateLogo = (condition: boolean) => {
     if (condition) {
       return "alternate/";
     } else {
@@ -95,60 +93,45 @@ const TransferCards = ({ handleTranferIn }: Props) => {
 
   return (
     <TransferContainer>
-      {game.providerList
+      {providerList
         .filter((provider) => provider.status === 0 && provider.transferwallet)
-        .filter((provider) => {
-          if (!config.features.MergeEVORTNT) {
-            return provider;
-          }
-
-          if (
-            provider.gpcode === "NTTF" ||
-            provider.gpcode === "RTTF" ||
-            provider.gpcode === "BTG" ||
-            provider.gpcode === "NLC"
-          ) {
-            return false;
-          }
-
-          return provider;
-        })
-        .map((item, index) => {
+        .map((provider, index) => {
           const displayLogo = () => {
-            if (item.gpcode.toLowerCase() === "evotf" && config.features.MergeEVORTNT) {
+            if (provider.gpcode.toLowerCase() === "evotf" && config.features.MergeEVORTNT) {
               return "evontrt";
             } else {
-              return item.abbreviation.toLowerCase();
+              return provider.abbreviation.toLowerCase();
             }
           };
 
           return (
-            <GameTranferWallet key={index}>
-              <GameTranferLeftWrap>
+            <GameTransferWallet key={index}>
+              <GameTransferLeftWrap>
                 <Logo
                   src={`/assets/images/provider/${switchAlternateLogo(
-                    config.features.UseAlternateLogo || false,
+                    //@ts-ignore
+                    (config.features.UseAlternateLogo as boolean) || false,
                   )}${displayLogo()}.png`}
                   alt={displayLogo()}
                 />
                 <GameName>
-                  <DynamicFont content={item.name} />
+                  <DynamicFont content={provider.name} />
                 </GameName>
-              </GameTranferLeftWrap>
-              <GameTranferRighttWrap>
+              </GameTransferLeftWrap>
+              <GameTransferRighttWrap>
                 <TransferButton
-                  disabled={item.maintenance === 1}
-                  onClick={() => handleTranferIn(item.gpcode)}
+                  disabled={provider.maintenance === 1}
+                  onClick={() => handleTransferIn(provider.gpcode)}
                 >
                   {i18n.t("transfer.oneKeyTransferIn")}
                 </TransferButton>
                 <GameWalletAmount>
-                  {item.maintenance === 1
+                  {provider.maintenance === 1
                     ? i18n.t("transfer.maintenance")
-                    : "$" + Common.formatNumberWithCommas(item.balance)}
+                    : "$" + Common.formatNumberWithCommas(provider.balance)}
                 </GameWalletAmount>
-              </GameTranferRighttWrap>
-            </GameTranferWallet>
+              </GameTransferRighttWrap>
+            </GameTransferWallet>
           );
         })}
     </TransferContainer>
