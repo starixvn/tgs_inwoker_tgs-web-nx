@@ -290,9 +290,11 @@ class Withdrawal extends Component {
   };
   handleManageCardClick = () => {
     if (
-      config.features.AddCard_NotAllowedEditDelete ||
-      config.features.ChangesNotAllowed ||
-      this.props.wallet.bankCardList.length >= config.features.AddCard_MaximumCardAllowed
+      !(
+        config.features.AddCard_NotAllowedEditDelete ||
+        config.features.ChangesNotAllowed ||
+        this.props.wallet.bankCardList.length >= config.features.AddCard_MaximumCardAllowed
+      )
     ) {
       this.setState({ ...this.state, displayView: 3 });
     } else {
@@ -404,8 +406,13 @@ class Withdrawal extends Component {
     }
 
     // TODO: Looks like the code below is not yet completed?
-    // if (this.props.account.info.member_name !== "") {
-    //   return <NameVerification token={this.props.token} />;
+    // if (this.props.account.info.member_name === "") {
+    //   // old
+    //   // return <NameVerification token={this.props.token} />;
+    //
+    //   // new
+    //   this.props.appHistory.push("/profile/name");
+    //   return null;
     // }
 
     if (
