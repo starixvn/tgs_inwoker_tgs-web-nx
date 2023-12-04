@@ -21,10 +21,7 @@ const GameTransferWallet = styled.div`
   justify-content: space-between;
   width: 200px;
   border-radius: 4px;
-  border: solid 1px
-    ${({ theme }) => {
-      return theme.darkMode ? theme.customProfileBackground50 : "#dddedf";
-    }};
+  border: solid 1px ${({ theme }) => "#dddedf"};
   background: ${({ theme }) => theme.blue20};
   padding: 10px 10px 10px 3px;
   gap: 10px;
@@ -86,7 +83,7 @@ type Props = {
 const TransferCards = ({ handleTransferIn }: Props) => {
   const { providerList } = useUserWalletInfoContext();
 
-  const switchAlternateLogo = (condition) => {
+  const switchAlternateLogo = (condition: boolean) => {
     if (condition) {
       return "alternate/";
     } else {
@@ -113,7 +110,7 @@ const TransferCards = ({ handleTransferIn }: Props) => {
                 <Logo
                   src={`/assets/images/provider/${switchAlternateLogo(
                     //@ts-ignore
-                    config.features.UseAlternateLogo || false,
+                    (config.features.UseAlternateLogo as boolean) || false,
                   )}${displayLogo()}.png`}
                   alt={displayLogo()}
                 />

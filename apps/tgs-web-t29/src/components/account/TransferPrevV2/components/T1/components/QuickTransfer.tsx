@@ -54,7 +54,7 @@ type Props = {
   transferAmount: number;
   handleTransferAmountChange: (e: SelectChangeEvent<any>) => void;
   disabled: boolean;
-  handleTransferClick: Promise<void>;
+  handleTransferClick: () => Promise<void>;
 };
 const QuickTransfer = ({
   transferFrom,
@@ -152,17 +152,13 @@ const QuickTransfer = ({
             placeholder="0"
             onChange={handleTransferAmountChange}
             autoComplete="off"
-            minimumValue="0"
-            inputProps={{
-              maxLength: 15,
-            }}
           />
         </div>
       </AmountInputContainer>
 
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
-        onClick={() => handleTransferClick()}
+        onClick={() => handleTransferClick().then()}
         style={{ color: theme.white, background: theme.primary }}
       >
         {i18n.t("common.submit")}

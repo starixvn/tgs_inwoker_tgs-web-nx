@@ -32,7 +32,7 @@ export function useTransferWallets() {
     });
   };
 
-  const fetchTransferWallets = async (providerList: Provider[]): Promise<Provider[]> => {
+  const fetchTransferWallets = async (providerList: Provider[]) => {
     const filteredProviderList = providerList.filter(
       (provider) =>
         provider.status === 0 &&
