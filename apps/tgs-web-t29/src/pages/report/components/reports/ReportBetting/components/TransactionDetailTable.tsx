@@ -20,14 +20,14 @@ const TransactionDetailTable = ({ transactionDetails }: Props) => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleChangePage = (
-    event: MouseEvent<HTMLButtonElement> | null,
+    event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
   ) => {
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
