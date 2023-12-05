@@ -1,18 +1,17 @@
 import React, { useMemo } from "react";
-import { RegisterStageEnum, ValueOf } from "@tgs-web-nx/types";
+import { useForgotPasswordFormStage } from "@tgs-web-nx/core/features";
 import { forgotPasswordStageFactory } from "@/components/project/auth/ForgotPasswordForm/ForgotPasswordFormStage/stage/forgotPasswordStageFactory";
 
-type Props = {
-  currentStage: ValueOf<typeof RegisterStageEnum>;
-};
-const ForgotPasswordFormStage = ({ currentStage }: Props) => {
+const ForgotPasswordFormStage = (Props) => {
+  const { currentStage, handleUpdateStage } = useForgotPasswordFormStage();
+
   const StageComponents = useMemo(() => {
     return forgotPasswordStageFactory[currentStage];
   }, [currentStage]);
 
   if (!StageComponents) return null;
 
-  return <StageComponents />;
+  return <StageComponents handleUpdateStage={handleUpdateStage} />;
 };
 
 export default ForgotPasswordFormStage;

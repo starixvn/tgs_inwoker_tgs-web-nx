@@ -37,12 +37,11 @@ export function useRegisterForm() {
           invitationcode: userType === UserTypeEnum.AGENT ? promotionData.promoId : "",
         });
 
-        if (isDesktopSize) {
-          handleToggleRegisterDialog(false);
-          localStorage.setItem("remember", "true");
-          localStorage.setItem("username", username);
-          handleToggleLoginDialog(true);
-        }
+        handleToggleRegisterDialog(false);
+        localStorage.setItem("remember", "true");
+        localStorage.setItem("username", username);
+        handleToggleLoginDialog(true);
+
         setOtherError(null);
       } catch (error: any) {
         console.error(error);

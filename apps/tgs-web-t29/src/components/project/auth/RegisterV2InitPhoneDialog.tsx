@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth, useAuthDialog } from "@tgs-web-nx/core/features";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
-import RegisterFormStage from "@/components/project/auth/RegisterFormStage";
+import RegisterFormStage from "@/components/project/auth/RegisterForm/RegisterFormStage";
 
 const RegisterV2InitPhoneDialog = () => {
   const { isRegisterV2InitPhoneDialogOpen, handleToggleInitPhoneDialog } = useAuthDialog();

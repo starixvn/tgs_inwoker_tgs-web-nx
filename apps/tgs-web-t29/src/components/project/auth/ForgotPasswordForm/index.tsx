@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { ForgotPasswordStageEnum } from "@tgs-web-nx/types";
+import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
+import { ForgotPasswordStageContextProvider } from "@tgs-web-nx/core/features";
 import RedirectToLoginHint from "@/components/project/auth/RegisterForm/RedirectToLoginHint";
 import {
   AuthFormContainer,
@@ -16,20 +17,22 @@ const ForgotPasswordForm = () => {
   const { isMobileSize } = useRwd();
 
   return (
-    <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px" }} />
-      ) : (
-        <LoginTitle>{`${i18n.t("forgotPassword.title")}`.toUpperCase()}</LoginTitle>
-      )}
+    <ForgotPasswordStageContextProvider>
+      <AuthFormContainer>
+        {isMobileSize ? (
+          <BrandLogo style={{ marginBottom: "64px" }} />
+        ) : (
+          <LoginTitle>{`${i18n.t("forgotPassword.title")}`.toUpperCase()}</LoginTitle>
+        )}
 
-      <FormContainer>
-        <ForgotPasswordFormStage currentStage={ForgotPasswordStageEnum.VerifyPhone} />
-      </FormContainer>
+        <FormContainer>
+          <ForgotPasswordFormStage />
+        </FormContainer>
 
-      <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
-    </AuthFormContainer>
+        <RedirectToLoginHint style={{ marginBottom: "20px" }} />
+        <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      </AuthFormContainer>
+    </ForgotPasswordStageContextProvider>
   );
 };
 

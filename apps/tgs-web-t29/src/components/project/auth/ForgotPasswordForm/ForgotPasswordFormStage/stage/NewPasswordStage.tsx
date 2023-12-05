@@ -1,110 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import React, { useState } from "react";
+import { i18n } from "@tgs-web-nx/utils";
 import {
   useAuthDialog,
-  useConfirmAdult,
-  useGenerateRegisterCreatePlayerFormik,
-  usePromotionCode,
-  UserTypeEnum,
+  useForgotPasswordFormStage,
+  useForgotPasswordNewPasswordFormik,
+  useNotifications,
 } from "@tgs-web-nx/core/features";
-import styled from "styled-components";
-import { useAccountStore } from "@tgs-web-nx/core";
-import { RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
+import { AccountService } from "@tgs-web-nx/core";
 import FormikForm from "@/components/project/FormikForm";
-import { Checkbox } from "@/components/UI/Checkbox";
-
-const VerifyAgeContainer = styled.div`
-  width: 100%;
-  color: ${({ theme }) => theme.text};
-  font-size: 0.875rem;
-  margin: 24px 0 0;
-  display: flex;
-  align-items: start;
-`;
 
 const NewPasswordStage = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
-  const { registerV2CreatePlayer } = useAccountStore();
-  const { promotionData } = usePromotionCode();
-  const { handleToggleLoginDialog, handleToggleRegisterDialog, updateStage } = useAuthDialog();
+  const { code, securityKey } = useForgotPasswordFormStage();
 
-  const [registerError, setRegisterError] = useState<Error | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [forgotPasswordError, setForgotPasswordError] = useState<Error | null>(null);
+  const { alert } = useNotifications();
+  const { handleToggleLoginDialog, handleToggleForgotPasswordDialog } = useAuthDialog();
 
   const handleClickSubmit = async (values: any) => {
-    if (!isConfirmedAdult) {
-      setRegisterError(new Error(i18n.t("common.msgRegisterTermAndCondition")));
-      return;
+    const { pwd, confirmPwd } = values;
+    if (pwd !== confirmPwd) {
+      alert("", i18n.t("forgotPassword.invalidConfirmPass"));
     }
-
     try {
       setIsLoading(true);
 
-      const username = values.username as string;
-      const userType = values.userType as UserTypeEnum;
-      const promoteCode = values.promoteCode as string;
+      const resetPasswordResDto = await AccountService.ResetPassword(securityKey, code, pwd);
 
-      const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
-        username,
-        pwd: values.pwd as string,
-        upper: userType === UserTypeEnum.PLAYER ? promoteCode || promotionData.upper : undefined,
-        invitationcode:
-          userType === UserTypeEnum.AGENT ? promoteCode || promotionData.promoId : undefined,
-        //@ts-ignore
-        testplayer: config.testplayer || false,
-      };
-      const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
+      if (resetPasswordResDto.IsSuccess) {
+        alert("", i18n.t("forgotPassword.updateSuccess"));
 
-      if (!newRegisterResDto) {
-        throw new Error("No newRegisterResDto found");
-      }
-
-      if (!newRegisterResDto.IsSuccess) {
-        throw new Error(ErrorSwitcher.getTranslation(newRegisterResDto.info));
-      }
-
-      if (!newRegisterResDto.data.stepResponse.isnew) {
-        throw new Error(i18n.t("common.msgAlreadyExist"));
-      }
-
-      if (newRegisterResDto.data.isCompleted) {
-        localStorage.setItem("remember", "true");
-        localStorage.setItem("username", username);
-        handleToggleRegisterDialog(false);
+        handleToggleForgotPasswordDialog(false);
         handleToggleLoginDialog(true);
+      } else {
+        alert("", resetPasswordResDto.info);
       }
-
-      updateStage(newRegisterResDto.data.nextStepType);
     } catch (error: any) {
       console.error(error);
-      setRegisterError(error);
+      setForgotPasswordError(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const { formInputConfigList, formik } = useGenerateRegisterCreatePlayerFormik({
+  const { formInputConfigList, formik } = useForgotPasswordNewPasswordFormik({
     handleClickSubmit,
   });
-
-  useEffect(() => {
-    setRegisterError(null);
-  }, [formik.errors]);
 
   return (
     <FormikForm
       formInputList={formInputConfigList}
       formik={formik}
       isLoading={isLoading}
-      error={registerError}
-      buttonText={i18n.t("createaccount")}
-    >
-      <VerifyAgeContainer>
-        <Checkbox value={isConfirmedAdult} onClick={handleClickConfirmAdult} />
-        {i18n.t("web.register.contract")}
-      </VerifyAgeContainer>
-    </FormikForm>
+      error={forgotPasswordError}
+      buttonText={i18n.t("common.submit")}
+    />
   );
 };
 

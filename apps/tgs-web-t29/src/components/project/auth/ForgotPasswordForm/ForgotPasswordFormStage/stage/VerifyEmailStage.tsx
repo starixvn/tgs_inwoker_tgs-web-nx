@@ -1,9 +1,12 @@
 import React from "react";
 import { useSnackbar } from "notistack";
-import { useAuthDialog } from "@tgs-web-nx/core/features";
-import Email from "@/components/account/Profile/PrevComponents/Email";
+import { useAuthDialog, useForgotPasswordFormStage } from "@tgs-web-nx/core/features";
+import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
+import VerifyEmail from "@/components/project/auth/VerificationForm/VerifyEmail";
 
 const VerifyEmailStage = () => {
+  const { handleUpdateStage } = useForgotPasswordFormStage();
+
   const { enqueueSnackbar } = useSnackbar();
   const { handleToggleInitEmailDialog } = useAuthDialog();
 
@@ -12,10 +15,10 @@ const VerifyEmailStage = () => {
   };
 
   return (
-    <Email
+    <VerifyEmail
       handleCloseDialog={handleCloseDialog}
       enqueueSnackbar={enqueueSnackbar}
-      isProceedRegisterV2={true}
+      handleUpdateStage={handleUpdateStage}
     />
   );
 };

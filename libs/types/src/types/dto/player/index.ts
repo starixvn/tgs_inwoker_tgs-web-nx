@@ -14,3 +14,5 @@ export * from "./UpdatePhoneResDto";
 export * from "./RegisterV2ResDto";
 export * from "./RegisterV2CreatePlayerReqDto";
 export * from "./RegisterV2GetRegisterStepResDto";
+export * from "./VerifyForgotPasswordResDto";
+export * from "./ResetPasswordResDto";

@@ -1,9 +1,10 @@
 import React from "react";
 import { useSnackbar } from "notistack";
-import { useAuthDialog } from "@tgs-web-nx/core/features";
-import Phone from "@/components/account/Profile/PrevComponents/Phone";
+import { useAuthDialog, useForgotPasswordFormStage } from "@tgs-web-nx/core/features";
+import VerifyPhone from "@/components/project/auth/VerificationForm/VerfifyPhone";
 
 const VerifyPhoneStage = () => {
+  const { handleUpdateStage } = useForgotPasswordFormStage();
   const { enqueueSnackbar } = useSnackbar();
   const { handleToggleInitPhoneDialog } = useAuthDialog();
 
@@ -12,10 +13,10 @@ const VerifyPhoneStage = () => {
   };
 
   return (
-    <Phone
+    <VerifyPhone
       handleCloseDialog={handleCloseDialog}
       enqueueSnackbar={enqueueSnackbar}
-      isProceedRegisterV2={true}
+      handleUpdateStage={handleUpdateStage}
     />
   );
 };

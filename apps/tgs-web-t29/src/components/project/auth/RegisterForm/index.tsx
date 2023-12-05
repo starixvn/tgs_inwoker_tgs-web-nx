@@ -10,7 +10,7 @@ import {
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
-import RegisterFormStage from "@/components/project/auth/RegisterFormStage";
+import RegisterFormStage from "@/components/project/auth/RegisterForm/RegisterFormStage";
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
