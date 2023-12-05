@@ -86,7 +86,7 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
 
       <ReportContainer>
         {isDesktopSize ? (
-          <WithdrawalDetailTable withdrawalDetails={withdrawalDetails} totalCount={totalCount} />
+          <WithdrawalDetailTable withdrawalDetails={withdrawalDetails} />
         ) : (
           <WithdrawalDetailCards withdrawalDetails={withdrawalDetails} />
         )}

@@ -30,7 +30,7 @@ const Report = () => {
     tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2,
   );
 
-  const { dateRangeInfo, handleDateFromChange, handleDateToChange, handleDateRangeChange } =
+  const { dateRangeInfo, handleDateFromChange, handleDateToChange, handleDateRangeChange, isSelectedDateRange } =
     useDateRange();
 
   const changeDateRange = (dateRangeEnum: number) => {
@@ -64,6 +64,7 @@ const Report = () => {
         <DateRangeWithIntervalSelector
           dateRange={dateRangeInfo.dateRange}
           handleDateRangeChange={changeDateRange}
+          isSelectedDateRange={isSelectedDateRange}
         />
       </DateRangeSelector>
 

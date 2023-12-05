@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { TableBody, TableCell, TableHead, TableRow, TablePagination } from "@mui/material";
-import { TransactionDetail } from "@tgs-web-nx/types";
+import { TransactionDetail, RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
@@ -11,11 +11,13 @@ import {
   ReportTable,
 } from "@/components/styled-component/Report";
 import { theme } from "@/theme";
+import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 
 type Props = {
   transactionDetails: TransactionDetail[];
+  roundTotal: RoundTotalDto;
 };
-const TransactionDetailTable = ({ transactionDetails }: Props) => {
+const TransactionDetailTable = ({ transactionDetails, roundTotal }: Props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -89,6 +91,7 @@ const TransactionDetailTable = ({ transactionDetails }: Props) => {
             </TableCell>
           </TableRow>
         </TableHead>
+        <TotalState roundTotal={roundTotal} />
         <TableBody>
           {transactionDetails.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((transactionDetail) => {
             const {
@@ -107,7 +110,15 @@ const TransactionDetailTable = ({ transactionDetails }: Props) => {
             return (
               <TableRow key={id}>
                 <TableCell>{date}</TableCell>
-                <TableCell>{id}</TableCell>
+                <TableCell
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: '136px',
+                    width: '10%',
+                  }}
+                >{id}</TableCell>
                 <TableCell>
                   {gameProviderName
                     ? gameProviderName === "BTI" && config.currency === "PHP"

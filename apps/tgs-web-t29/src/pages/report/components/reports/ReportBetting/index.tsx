@@ -10,7 +10,6 @@ import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import TransactionDetailCards from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailCards";
 import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
-import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 import { ReportContainer } from "@/components/styled-component/Report";
 
 type Props = {
@@ -93,10 +92,8 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
 
   return (
     <ReportContainer>
-      <TotalState roundTotal={roundTotal} />
-
       {isDesktopSize ? (
-        <TransactionDetailTable transactionDetails={transactionDetails} />
+        <TransactionDetailTable transactionDetails={transactionDetails} roundTotal={roundTotal} />
       ) : (
         <TransactionDetailCards transactionDetails={transactionDetails} />
       )}
