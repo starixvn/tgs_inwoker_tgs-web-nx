@@ -110,7 +110,15 @@ const TransactionDetailTable = ({ transactionDetails, roundTotal }: Props) => {
             return (
               <TableRow key={id}>
                 <TableCell>{date}</TableCell>
-                <TableCell>{id}</TableCell>
+                <TableCell
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    maxWidth: '136px',
+                    width: '10%',
+                  }}
+                >{id}</TableCell>
                 <TableCell>
                   {gameProviderName
                     ? gameProviderName === "BTI" && config.currency === "PHP"
