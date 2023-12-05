@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useForgotPasswordFormStage } from "@tgs-web-nx/core/features";
 import { forgotPasswordStageFactory } from "@/components/project/auth/ForgotPasswordForm/ForgotPasswordFormStage/stage/forgotPasswordStageFactory";
 
-const ForgotPasswordFormStage = (Props) => {
+const ForgotPasswordFormStage = () => {
   const { currentStage, handleUpdateStage } = useForgotPasswordFormStage();
 
   const StageComponents = useMemo(() => {
@@ -11,6 +11,7 @@ const ForgotPasswordFormStage = (Props) => {
 
   if (!StageComponents) return null;
 
+  //@ts-ignore
   return <StageComponents handleUpdateStage={handleUpdateStage} />;
 };
 

@@ -33,7 +33,7 @@ const NewPasswordStage = () => {
         handleToggleForgotPasswordDialog(false);
         handleToggleLoginDialog(true);
       } else {
-        alert("", resetPasswordResDto.info);
+        alert("", resetPasswordResDto?.info || "");
       }
     } catch (error: any) {
       console.error(error);
