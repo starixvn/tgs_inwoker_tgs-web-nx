@@ -62,7 +62,7 @@ const WithdrawalDetailTable = ({ withdrawalDetails, totalCount }: Props) => {
                 <TableCell>{date}</TableCell>
                 <TableCell>{orderno}</TableCell>
                 <TableCell>
-                  <>{i18n.t(`report.deposit.status${status}`)}</>
+                  <>{i18n.t(`report.withdrawal.status${status}`)}</>
                 </TableCell>
                 <TableCell align={"right"}>{amount}</TableCell>
               </TableRow>
