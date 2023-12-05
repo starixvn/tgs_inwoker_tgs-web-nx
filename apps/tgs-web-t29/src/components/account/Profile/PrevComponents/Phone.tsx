@@ -28,9 +28,10 @@ const AREA_CODE = config.features.PhonePrefix;
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
+  isProceedRegisterV2?: boolean;
 };
 
-function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
+function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Props) {
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const history = useHistory();
   const { alert } = useNotifications();
@@ -223,7 +224,12 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
   };
 
   const handleUpdatePhone = async () => {
-    const response = await AccountService.UpdatePhoneV2(securityKey, code);
+    let response: unknown;
+    if (isProceedRegisterV2) {
+      response = await AccountService.UpdatePhoneV2(securityKey, code);
+    } else {
+      response = await AccountService.UpdatePhone(securityKey, code);
+    }
 
     if (response?.IsSuccess) {
       await handleGetAccountInfo();
@@ -238,10 +244,10 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
 
     if (responseUpdate?.IsSuccess) {
       if (responseUpdate.data.email === null && !responseUpdate.data.registercompleted) {
-        history.push({
-          pathname: "/profile/email",
-          state: { forced: true },
-        });
+        // history.push({
+        //   pathname: "/profile/email",
+        //   state: { forced: true },
+        // });
       } else {
         setCode("");
         setSecurityKey("");
@@ -251,9 +257,6 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
       }
     }
   };
-  const cannotAccessOther =
-    //@ts-ignore
-    history.location.state && history.location.state.forced ? true : "";
 
   return (
     <>

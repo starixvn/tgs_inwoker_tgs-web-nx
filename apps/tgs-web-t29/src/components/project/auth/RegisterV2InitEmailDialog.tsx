@@ -1,7 +1,8 @@
 import React from "react";
 import { useAuth, useAuthDialog } from "@tgs-web-nx/core/features";
-import InitEmailStage from "@/pages/register/components/RegisterFormStage/stage/InitEmailStage";
+import { RegisterStageEnum } from "@tgs-web-nx/types";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
+import RegisterFormStage from "@/components/project/auth/RegisterFormStage";
 
 const RegisterV2InitEmailDialog = () => {
   const { isRegisterV2InitEmailDialogOpen, handleToggleInitEmailDialog } = useAuthDialog();
@@ -23,7 +24,7 @@ const RegisterV2InitEmailDialog = () => {
         },
       }}
     >
-      <InitEmailStage />
+      <RegisterFormStage currentStage={RegisterStageEnum.InitEmail} />
     </ProfileDialog>
   );
 };

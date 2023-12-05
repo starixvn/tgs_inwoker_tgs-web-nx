@@ -73,7 +73,6 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
   }, [getAccountInfo, isLogin]);
 
   const updateStage = (newStage: ValueOf<typeof RegisterStageEnum>) => {
-    console.log(newStage);
     setCurrentStage(newStage);
     switch (newStage) {
       case RegisterStageEnum.InitPhone:

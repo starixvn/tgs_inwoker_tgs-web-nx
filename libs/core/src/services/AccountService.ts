@@ -267,8 +267,24 @@ function UpdatePhoneV2(securitykey: string, validateCode: string) {
   return ApiService.post("player/register", {
     type: "InitPhone",
     input: {
-      securitykey: securitykey,
-      validatecode: validateCode,
+      input: "Valid",
+      data: {
+        securitykey: securitykey,
+        validatecode: validateCode,
+      },
+    },
+  }) as unknown as Promise<UpdatePhoneResDto>;
+}
+
+function UpdateEmailV2(securitykey: string, code: string) {
+  return ApiService.post("player/register", {
+    type: "InitEmail",
+    input: {
+      input: "Valid",
+      data: {
+        securitykey: securitykey,
+        code: code,
+      },
     },
   }) as unknown as Promise<UpdatePhoneResDto>;
 }
@@ -308,4 +324,5 @@ export const AccountService = {
   RegisterV2CreatePlayer,
   RegisterV2GetRegisterStep,
   UpdatePhoneV2,
+  UpdateEmailV2,
 };

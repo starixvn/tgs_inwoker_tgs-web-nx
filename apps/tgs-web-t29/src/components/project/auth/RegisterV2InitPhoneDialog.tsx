@@ -1,7 +1,8 @@
 import React from "react";
 import { useAuth, useAuthDialog } from "@tgs-web-nx/core/features";
-import InitPhoneStage from "@/pages/register/components/RegisterFormStage/stage/InitPhoneStage";
+import { RegisterStageEnum } from "@tgs-web-nx/types";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
+import RegisterFormStage from "@/components/project/auth/RegisterFormStage";
 
 const RegisterV2InitPhoneDialog = () => {
   const { isRegisterV2InitPhoneDialogOpen, handleToggleInitPhoneDialog } = useAuthDialog();
@@ -23,7 +24,7 @@ const RegisterV2InitPhoneDialog = () => {
         },
       }}
     >
-      <InitPhoneStage />
+      <RegisterFormStage currentStage={RegisterStageEnum.InitPhone} />
     </ProfileDialog>
   );
 };
