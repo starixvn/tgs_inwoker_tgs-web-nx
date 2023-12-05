@@ -6,19 +6,12 @@ import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
-import {
-  ForgotPasswordStageEnum,
-  RegisterStageEnum,
-  UpdatePhoneResDto,
-  ValueOf,
-} from "@tgs-web-nx/types";
-import BottomNote from "@/components/UI/BottomNote";
+import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,
   ItemContainer,
-  LabelContainer,
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";

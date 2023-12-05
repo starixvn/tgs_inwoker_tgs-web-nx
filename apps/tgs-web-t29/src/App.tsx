@@ -26,12 +26,12 @@ import PopupPromotion from "@/components/project/Popup/PopupPromotion";
 import LayoutProvider from "@/layouts/LayoutProvider";
 import FloatingToolIcons from "@/components/project/FloatingToolIcons";
 import Loading from "@/components/UI/Loading";
-import LoginDialog from "@/components/project/auth/LoginDialog";
-import RegisterDialog from "@/components/project/auth/RegisterDialog";
-import ForgotPasswordDialog from "@/components/project/auth/ForgotPasswordDialog";
+import LoginDialog from "@/components/project/auth/Dialogs/LoginDialog";
+import RegisterDialog from "@/components/project/auth/Dialogs/RegisterDialog";
+import ForgotPasswordDialog from "@/components/project/auth/Dialogs/ForgotPasswordDialog";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import RegisterV2InitPhoneDialog from "@/components/project/auth/RegisterV2InitPhoneDialog";
-import RegisterV2InitEmailDialog from "@/components/project/auth/RegisterV2InitEmailDialog";
+import RegisterV2InitPhoneDialog from "@/components/project/auth/Dialogs/RegisterV2InitPhoneDialog";
+import RegisterV2InitEmailDialog from "@/components/project/auth/Dialogs/RegisterV2InitEmailDialog";
 
 const App: React.FC = () => {
   const { isLoading } = useInitSite();

@@ -2,7 +2,8 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
-import RedirectToLoginHint from "@/components/project/auth/RegisterForm/RedirectToLoginHint";
+import RegisterFormStage from "./RegisterFormStage";
+import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
 import {
   AuthFormContainer,
   LoginTitle,
@@ -10,7 +11,6 @@ import {
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
-import RegisterFormStage from "@/components/project/auth/RegisterForm/RegisterFormStage";
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
