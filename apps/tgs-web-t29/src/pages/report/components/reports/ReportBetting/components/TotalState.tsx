@@ -1,41 +1,64 @@
-import React from "react";
 import { RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import { TableBody, TableCell, TableRow } from "@mui/material";
 import {
-  CustomWinLose,
-  ReportSummary,
-  ReportSummaryCol,
-  ReportSummaryRow,
+  CustomWinLose
 } from "@/components/styled-component/Report";
 
 type Props = {
   roundTotal: RoundTotalDto;
 };
+
 const TotalState = ({ roundTotal }: Props) => {
-  const { betAmount, validBetAmount, winLoss, settleAmount } = roundTotal;
+  const { betAmount, validBetAmount, winLoss } = roundTotal;
   return (
-    <>
-      {config.features.Report_ShowRoundsTotal &&
-        roundTotal &&
-        (betAmount || validBetAmount || validBetAmount) && (
-          <ReportSummary>
-            <ReportSummaryRow>
-              <ReportSummaryCol>
-                {roundTotal && i18n.t("report.totalBetAmount") + ": " + betAmount}
-              </ReportSummaryCol>
-              <ReportSummaryCol>
-                {roundTotal && i18n.t("report.totalValidBet") + ": " + validBetAmount}
-              </ReportSummaryCol>
-              <ReportSummaryCol>
-                {i18n.t("report.totalWinLose") + ": "}
-                <CustomWinLose $value={roundTotal && winLoss}>
-                  {roundTotal && winLoss}
-                </CustomWinLose>
-              </ReportSummaryCol>
-            </ReportSummaryRow>
-          </ReportSummary>
-        )}
+    <>{config.features.Report_ShowRoundsTotal &&
+      roundTotal &&
+      <TableBody>
+        <TableRow>
+          <TableCell
+            style={{
+              fontSize: "0.875rem",
+              fontWeight: 500,
+            }}
+          >
+            <>{i18n.t("report.total")}</>
+          </TableCell>
+          <TableCell></TableCell>
+          <TableCell></TableCell>
+          <TableCell
+            align={"right"}
+            style={{
+              fontSize: "0.875rem",
+              fontWeight: 500,
+            }}
+          >
+            <> {betAmount}</>
+          </TableCell>
+          <TableCell
+            align={"right"}
+            style={{
+              fontSize: "0.875rem",
+              fontWeight: 500,
+            }}
+          >
+            <>{validBetAmount}</>
+          </TableCell>
+          <TableCell
+            align={"right"}
+            style={{
+              fontSize: "0.875rem",
+              fontWeight: 500,
+            }}
+          >
+            <CustomWinLose $value={roundTotal && winLoss}>
+              {winLoss}
+            </CustomWinLose>
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    }
     </>
   );
 };
