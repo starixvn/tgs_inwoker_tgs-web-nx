@@ -1,19 +1,16 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
-import { UpdatePhoneResDto } from "@tgs-web-nx/types";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,
   ItemContainer,
-  LabelContainer,
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
@@ -29,12 +26,10 @@ const AREA_CODE = config.features.PhonePrefix;
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
-  isProceedForgotPasswordV2?: boolean;
 };
 
-function InitPhone({ enqueueSnackbar, handleCloseDialog, isProceedForgotPasswordV2 }: Props) {
+function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
-  const history = useHistory();
   const { alert } = useNotifications();
 
   const [countdownToken, setCountdownToken] = useState(0);
