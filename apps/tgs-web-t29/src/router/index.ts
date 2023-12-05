@@ -268,7 +268,7 @@ const routes: RouteType[] = [
     path: "/maintenance",
     component: MaintenancePage,
     isAnonymousAllowed: true,
-    layout:MaintenanceLayout
+    layout: MaintenanceLayout,
   },
 
   {

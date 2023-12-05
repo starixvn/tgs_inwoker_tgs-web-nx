@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { UserTypeEnum } from "@tgs-web-nx/core/features";
+import { UserTypeEnum } from "../types";
 
 export function usePromotionCode() {
   const { promotionid, promotionchannelid } = useParams<{
@@ -21,7 +21,7 @@ export function usePromotionCode() {
     promoId: config.affiliateId !== "" ? config.affiliateId : localStorage.getItem("promotionId"),
     promotionChannelId: localStorage.getItem("promotionChannelId"),
     //TGS-357
-    upper: localStorage.getItem("upper"),
+    upper: localStorage.getItem("upper") || "",
     promoteType:
       localStorage.getItem("invitationtype") === ""
         ? UserTypeEnum.AGENT

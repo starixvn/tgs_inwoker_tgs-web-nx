@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAuthDialog, useRegisterForm } from "@tgs-web-nx/core/features";
 import { useParams } from "react-router";
 import { useRegisterPage, useRwd } from "@tgs-web-nx/core/hooks";
-import RegisterForm from "@/pages/register/components/RegisterForm";
+import RegisterForm from "@/components/project/auth/RegisterForm";
 
 const RegisterPage = () => {
   const { playername } = useParams<{ playername: string }>();

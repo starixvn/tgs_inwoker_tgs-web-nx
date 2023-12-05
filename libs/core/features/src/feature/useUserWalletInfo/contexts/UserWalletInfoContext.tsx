@@ -101,7 +101,7 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
   const { game } = useGameStore();
   const { isLogin } = useAuth();
   const {
-    account: { info },
+    account: { info, registercompleted },
   } = useAccountStore();
   const {
     mainWalletBalance,
@@ -118,9 +118,10 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
 
   useEffect(() => {
     if (!isLogin) return;
+    if (!registercompleted) return;
     fetchBalance();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game.providerList.length, isLogin]);
+  }, [game.providerList.length, isLogin, registercompleted]);
 
   const fetchBalance = async () => {
     const promiseList = [fetchMainWalletBalance(), fetchTransferWalletBalance()];

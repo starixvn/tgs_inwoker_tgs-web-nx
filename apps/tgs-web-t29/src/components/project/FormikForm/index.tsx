@@ -27,7 +27,7 @@ type Props = {
   isLoading: boolean;
   error: Error | null;
   buttonText: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   showErrorOn?: "bottom" | "input";
 };
 
@@ -68,7 +68,7 @@ const FormikForm = ({
 
       {(error?.message || bottomFormErrorMsg) && (
         <ErrorMessageContainer>
-          {bottomFormErrorMsg}
+          {showErrorOn === "bottom" && getBottomErrorMessage()}
           {error?.message || null}
         </ErrorMessageContainer>
       )}
