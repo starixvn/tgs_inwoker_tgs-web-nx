@@ -10,6 +10,7 @@ import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWr
 const PhoneContainer = styled.div`
   display: flex;
   overflow: visible;
+  gap: 14px;
 `;
 
 type Props = {
@@ -23,12 +24,15 @@ const FormPhone = ({ formInput, formik, showErrorOn }: Props) => {
 
   return (
     <PhoneContainer>
-      <GrayInputWrapper key={"areaCode"} style={{ marginBottom: "21px", marginRight: "10px" }}>
+      <GrayInputWrapper
+        key={"areaCode"}
+        style={{ marginBottom: "21px", marginRight: "10px", width: "100px" }}
+      >
         <Select
           type={"string"}
+          fullWidth
           placeholder={formik.values["areaCode"]}
           variant={"outlined"}
-          fullWidth
           name={"areaCode"}
           value={formik.values["areaCode"]}
           onChange={formik.handleChange}
@@ -37,6 +41,7 @@ const FormPhone = ({ formInput, formik, showErrorOn }: Props) => {
           <MenuItem value={config.features.PhonePrefix}>{config.features.PhonePrefix}</MenuItem>
         </Select>
       </GrayInputWrapper>
+
       <GrayInputWrapper key={name} style={{ marginBottom: "21px", flex: 1 }}>
         <TextField
           type={"text"}

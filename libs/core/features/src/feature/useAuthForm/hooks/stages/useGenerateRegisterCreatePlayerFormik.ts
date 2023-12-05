@@ -8,10 +8,10 @@ import { FormInputTypeEnum, UserTypeEnum } from "../../types";
 import { FormikFormInput, useFormikInitValue } from "../useFormikInitValue";
 
 type Props = {
-  handleClickSubmit: (createPlayerReqDto: RegisterV2CreatePlayerReqDto) => Promise<void>;
+  handleClickSubmit: (values: any) => Promise<void>;
 };
 
-export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
+export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Props) {
   // ===== init form input config =====
   const formInputConfigList = useMemo<FormikFormInput[]>(() => {
     return [
@@ -28,7 +28,7 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
       },
       {
         label: i18n.t("common.password"),
-        name: "password",
+        name: "pwd",
         type: FormInputTypeEnum.PASSWORD,
         initialValue: "",
         validationSchema: Yup.string()
@@ -45,7 +45,7 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
         validationSchema: Yup.string()
           .required()
           //@ts-ignore
-          .oneOf([Yup.ref("password"), null], "Passwords must match"),
+          .oneOf([Yup.ref("pwd"), null], "Passwords must match"),
       },
       (() => {
         if (!config.features.Register_ShowPhone) return;
@@ -110,8 +110,8 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
   const formik = useFormik({
     initialValues,
     validationSchema: Yup.object(validationSchemaSpec),
-    onSubmit: async (values) => {
-      await handleClickSubmit(values as RegisterV2CreatePlayerReqDto);
+    onSubmit: async (values: any) => {
+      await handleClickSubmit(values);
     },
   });
 

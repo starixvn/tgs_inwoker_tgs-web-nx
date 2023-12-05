@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import { useCallback } from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuthDialog } from "../index";
+import { useAuthDialog } from "./useAuthDialog";
 
 export function useRedirectToRegisterHint() {
   const { isDesktopSize } = useRwd();

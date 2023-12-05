@@ -12,3 +12,4 @@ export * from "./feature/useUserWalletInfo";
 export * from "./feature/inbox";
 export * from "./feature/transfer";
 export * from "./feature/withdraw";
+export { useAuthDialog } from "./feature/useAuthDialog/hooks/useAuthDialog";

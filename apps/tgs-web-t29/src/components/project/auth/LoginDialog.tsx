@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuthDialog } from "@tgs-web-nx/core/features";
-import LoginForm from "@/pages/login/components/LoginForm";
+import LoginForm from "@/components/project/auth/LoginForm";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 
 const LoginDialog = () => {

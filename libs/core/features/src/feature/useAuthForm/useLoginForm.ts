@@ -3,7 +3,7 @@ import { FormikValues } from "formik";
 import { useHistory } from "react-router-dom";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth } from "../useAuth";
-import { useAuthDialog } from "../useAuthDialog";
+import { useAuthDialog } from "../useAuthDialog/hooks/useAuthDialog";
 import { useGenerateLoginFormik } from "./hooks/useGenerateLoginFormik";
 
 export function useLoginForm() {

@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
+import { RegisterStageEnum } from "@tgs-web-nx/types";
+import RedirectToLoginHint from "@/components/project/auth/RegisterForm/RedirectToLoginHint";
 import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
-import RegisterFormStage from "@/pages/register/components/RegisterFormStage";
-import { RegisterStageEnum } from "@/pages/register/components/RegisterFormStage/types";
+import RegisterFormStage from "@/components/project/auth/RegisterFormStage";
+import CreatePlayerStage from "@/components/project/auth/RegisterFormStage/stage/CreatePlayerStage";
 
 const LoginTitle = styled.div`
   font-size: 48px;
@@ -21,17 +22,16 @@ const LoginTitle = styled.div`
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
-  const initialRegisterStage = RegisterStageEnum.CreatePlayer;
 
   return (
     <AuthFormContainer>
       {isMobileSize ? (
         <BrandLogo style={{ marginBottom: "64px" }} />
       ) : (
-        <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
+        <LoginTitle>{`${i18n.t("common.register")}`.toUpperCase()}</LoginTitle>
       )}
 
-      <RegisterFormStage initialRegisterStage={initialRegisterStage} />
+      <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
 
       <RedirectToLoginHint style={{ marginBottom: "20px" }} />
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TableRow, TablePagination } from "@mui/material";
 import { TransactionDetail } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
@@ -10,12 +10,29 @@ import {
   ReportCardsContainer,
   ReportTable,
 } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   transactionDetails: TransactionDetail[];
-  totalCount: number;
 };
-const TransactionDetailTable = ({ transactionDetails, totalCount }: Props) => {
+const TransactionDetailTable = ({ transactionDetails }: Props) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   if (!transactionDetails?.length) {
     return <NoRecord />;
   }
@@ -73,7 +90,7 @@ const TransactionDetailTable = ({ transactionDetails, totalCount }: Props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactionDetails.map((transactionDetail) => {
+          {transactionDetails.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((transactionDetail) => {
             const {
               id,
               createdOn,
@@ -109,16 +126,20 @@ const TransactionDetailTable = ({ transactionDetails, totalCount }: Props) => {
           })}
         </TableBody>
       </ReportTable>
-
-      {/*<TablePagination*/}
-      {/*  rowsPerPageOptions={[25]}*/}
-      {/*  component="div"*/}
-      {/*  count={totalCount}*/}
-      {/*  rowsPerPage={25}*/}
-      {/*  page={0}*/}
-      {/*  onPageChange={() => {}}*/}
-      {/*  onRowsPerPageChange={() => {}}*/}
-      {/*/>*/}
+      <TablePagination
+        component="div"
+        rowsPerPageOptions={[]}
+        count={transactionDetails.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          width: "100%",
+          color: theme.blue40,
+          "& button": {},
+        }}
+      />
     </ReportCardsContainer>
   );
 };

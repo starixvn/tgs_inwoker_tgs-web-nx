@@ -92,7 +92,7 @@ const PromotionDetail = () => {
   }
 
   return (
-    <>
+    <div>
       <PromotionDetailContainer>
         <BannerWrapper>
           <BannerImage promotionData={promotionData} />
@@ -128,7 +128,7 @@ const PromotionDetail = () => {
           <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />
         </JoinPromotionButtonWrapper>
       )}
-    </>
+    </div>
   );
 };
 

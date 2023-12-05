@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 import iconLogin from "@/assets/t29/images/header/icon-login.svg";
