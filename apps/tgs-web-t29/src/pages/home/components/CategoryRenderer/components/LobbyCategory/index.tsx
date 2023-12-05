@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 78px);
+  width: calc(100% - 72px);
   flex-shrink: 0;
   gap: 6px;
   background-color: ${({ theme }) => theme.mainBackground};
@@ -46,8 +46,9 @@ const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  justify-content: flex-end;
   width: 100%;
-  row-gap: 10px;
+  row-gap: 13px;
   column-gap: 9px;
   align-self: stretch;
 `;
