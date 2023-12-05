@@ -52,12 +52,6 @@ const VenderNameInfo = styled.div`
   white-space: pre-wrap;
 `;
 
-const VenderName = styled.div`
-  color: #333;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-align: start;
-`;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   display: inline-flex;
@@ -67,6 +61,17 @@ const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
+  position: relative;
+`;
+
+const VenderName = styled(VenderNameInfo)`
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
 `;
 
 const MaintenanceBg = styled.div`
@@ -87,12 +92,21 @@ const MaintenanceIcon = styled.img`
 `;
 
 const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
+  const venderNameRef = useRef<HTMLDivElement | null>(null);
+  const { resizeText } = useDynamicFontSize();
+
+  useEffect(() => {
+    if (venderNameRef.current) {
+      resizeText({ container: venderNameRef.current, text: venderNameRef.current });
+    }
+  }, [venderNameRef.current]);
+
   return (
     <VendorCardBg $bgUrl={bgUrl} onClick={launchGame}>
       <GameIcon $imageUrl={imageUrl}></GameIcon>
       <VenderNameInfo>
         <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
-        <VenderName>{venderName}</VenderName>
+        <VenderName ref={venderNameRef}>{venderName}</VenderName>
       </VenderNameInfo>
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>
