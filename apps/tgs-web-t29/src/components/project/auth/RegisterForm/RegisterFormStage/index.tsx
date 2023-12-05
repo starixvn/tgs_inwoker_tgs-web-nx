@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { RegisterStageEnum, ValueOf } from "@tgs-web-nx/types";
-import { registerStageFactory } from "@/components/project/auth/RegisterForm/RegisterFormStage/stage/registerStageFactory";
+import { registerStageFactory } from "./stage/registerStageFactory";
 
 type Props = {
   currentStage: ValueOf<typeof RegisterStageEnum>;

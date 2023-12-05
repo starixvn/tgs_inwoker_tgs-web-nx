@@ -1,11 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
-import RedirectToRegisterHint from "@/components/project/auth/LoginForm/RedirectToRegisterHint";
+import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
 import {
   AuthFormContainer,
   FormContainer,
@@ -13,31 +12,11 @@ import {
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
-
-const FormSubContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const RememberMeContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  color: ${({ theme }) => theme.text};
-  font-size: 0.875rem;
-  cursor: pointer;
-  //margin: 8px 0;
-`;
-
-const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
-  font-size: 0.875rem;
-  font-weight: 400;
-  white-space: nowrap;
-  cursor: pointer;
-`;
+import {
+  ForgotPasswordContainer,
+  FormSubContainer,
+  RememberMeContainer,
+} from "@/components/styled-component/auth/Form";
 
 const LoginForm = () => {
   const {

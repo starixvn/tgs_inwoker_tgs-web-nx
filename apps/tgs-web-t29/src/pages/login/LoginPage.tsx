@@ -4,6 +4,7 @@ import LoginForm from "@/components/project/auth/LoginForm";
 
 const LoginPage = () => {
   useLoginPage();
+
   const { isDesktopSize } = useRwd();
 
   if (isDesktopSize) {
