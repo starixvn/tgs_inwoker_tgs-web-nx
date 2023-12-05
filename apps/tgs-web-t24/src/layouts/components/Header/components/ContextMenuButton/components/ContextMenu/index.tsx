@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHeader } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import ContextMenuItem from "./ContextMenuItem";
 import { useGetNavItemList } from "@/layouts/components/MenuDrawer/hooks/useGetNavItemList";
@@ -25,7 +25,7 @@ const ContextMenuItemWrapper = styled.div`
 `;
 
 const ContextMenu = () => {
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { isMenuOpen, handleToggleMenu } = useHeader();

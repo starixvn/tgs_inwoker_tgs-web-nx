@@ -10,7 +10,6 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import { theme } from "@/theme";
-import { media } from "@/theme/breakpoints";
 import Slider from "@/pages/home/components/Slider";
 
 const SliderWrapper = styled.div`

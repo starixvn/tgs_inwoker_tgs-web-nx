@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import React, { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHeader } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import ContextMenuItem from "./ContextMenuItem";
 import accountImg from "@/assets/t23/images/header/contextMenu/icon_my_account.svg";
@@ -31,7 +31,7 @@ const VersionTagContainer = styled.div`
 `;
 
 const ContextMenu = () => {
-  const { handleLogout, logoutState } = useAuth();
+  const { handleLogout, logoutState } = useAuthContext();
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { isMenuOpen, handleToggleMenu } = useHeader();
@@ -78,38 +78,38 @@ const ContextMenu = () => {
 
   return (
     <ContextMenuContainer>
-        <ContextMenuItemWrapper>
-          {contextMenuList.map((contextMenuItem) => {
-            const { label, iconUrl, routePath } = contextMenuItem;
+      <ContextMenuItemWrapper>
+        {contextMenuList.map((contextMenuItem) => {
+          const { label, iconUrl, routePath } = contextMenuItem;
 
-            if (routePath === "/logout") return null;
+          if (routePath === "/logout") return null;
 
-            return (
-              <ContextMenuItem
-                key={label}
-                label={label}
-                iconUrl={iconUrl}
-                onClick={() => handleClick(routePath)}
-              />
-            );
-          })}
+          return (
+            <ContextMenuItem
+              key={label}
+              label={label}
+              iconUrl={iconUrl}
+              onClick={() => handleClick(routePath)}
+            />
+          );
+        })}
 
-          <Button
-            variant={"contained"}
-            onClick={handleLogout}
-            fullWidth
-            sx={{
-              color: "white",
-              background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
-              fontSize: "1.125rem",
-              height: "44px",
-            }}
-          >
-           {i18n.t("web.header.logout")}
-          </Button>
-        </ContextMenuItemWrapper>
-        <VersionTagContainer>V1.1.3795703</VersionTagContainer>
-      </ContextMenuContainer>
+        <Button
+          variant={"contained"}
+          onClick={handleLogout}
+          fullWidth
+          sx={{
+            color: "white",
+            background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
+            fontSize: "1.125rem",
+            height: "44px",
+          }}
+        >
+          {i18n.t("web.header.logout")}
+        </Button>
+      </ContextMenuItemWrapper>
+      <VersionTagContainer>V1.1.3795703</VersionTagContainer>
+    </ContextMenuContainer>
   );
 };
 

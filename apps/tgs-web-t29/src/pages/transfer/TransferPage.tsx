@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import {
-  useAuth,
+  useAuthContext,
   useNotifications,
   useUpdatePageName,
   useUserWalletInfoContext,
@@ -23,7 +23,7 @@ const Transfer = () => {
   const { alert } = useNotifications();
   const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
-  const { isLogin } = useAuth();
+  const { isLogin } = useAuthContext();
 
   const { fetchTransferWalletBalance, fetchBalance } = useUserWalletInfoContext();
 

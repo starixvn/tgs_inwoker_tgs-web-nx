@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -40,7 +40,7 @@ type Props = {
 
 const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
   const history = useHistory();
 
   const handleClick = (navItem: NavItem) => {

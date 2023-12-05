@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { Provider } from "@tgs-web-nx/types";
-import { useAuth } from "../../useAuth/index";
+import { useAuth, useAuthContext } from "../../useAuth/index";
 
 export function useTransferWallets() {
   const { game } = useGameStore();

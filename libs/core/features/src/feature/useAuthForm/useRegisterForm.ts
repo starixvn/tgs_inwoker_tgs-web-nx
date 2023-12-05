@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { FormikValues } from "formik";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth } from "../useAuth";
+import { useAuthContext } from "../useAuth";
 import { useAuthDialog } from "../useAuthDialog/hooks/useAuthDialog";
 import { useGenerateRegisterFormik } from "./hooks/useGenerateRegisterFormik";
 import { usePromotionCode } from "./hooks/usePromotionCode";
@@ -10,7 +10,7 @@ import { useConfirmAdult } from "./hooks/useConfirmAdult";
 import { UserTypeEnum } from "./types";
 
 export function useRegisterForm() {
-  const { registerState, handleRegister, clearRegisterError } = useAuth();
+  const { registerState, handleRegister, clearRegisterError } = useAuthContext();
   const { promotionData } = usePromotionCode();
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
   const { handleToggleRegisterDialog, handleToggleLoginDialog } = useAuthDialog();
