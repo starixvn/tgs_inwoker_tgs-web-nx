@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common } from "@tgs-web-nx/utils";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuthContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Icon from "@/components/project/Icon";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
@@ -48,7 +48,7 @@ const AccountHeaderContent = () => {
   const history = useHistory();
   const { account } = useAccountStore();
   const { wallet } = useWalletStore();
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
 
   const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;

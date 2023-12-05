@@ -2,12 +2,12 @@ import { useCallback, useEffect, useState } from "react";
 import { FormikValues } from "formik";
 import { useHistory } from "react-router-dom";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth } from "../useAuth";
+import { useAuthContext } from "../useAuth";
 import { useAuthDialog } from "../useAuthDialog/hooks/useAuthDialog";
 import { useGenerateLoginFormik } from "./hooks/useGenerateLoginFormik";
 
 export function useLoginForm() {
-  const { loginState, handleLogin, clearLoginError } = useAuth();
+  const { loginState, handleLogin, clearLoginError } = useAuthContext();
   const [needToRemember, setNeedToRemember] = useState<boolean>(getNeedToRememberInitValue());
   const { handleToggleLoginDialog, handleToggleForgotPasswordDialog } = useAuthDialog();
   const { isDesktopSize } = useRwd();

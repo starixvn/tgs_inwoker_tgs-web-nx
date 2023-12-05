@@ -1,5 +1,5 @@
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuthContext } from "@tgs-web-nx/core/features";
 import { useLanguageDetect } from "./useLanguageDetect";
 import { useHandleMaintenance } from "./useHandleMaintenance";
 import { useCheckRegisterProcess } from "./useCheckRegisterProcess";
@@ -15,7 +15,7 @@ export function useInitSite() {
   useCheckRegisterProcess();
 
   const { isInitSiteLoading } = useInitSiteApiData();
-  const { isAuthLoading } = useAuth();
+  const { isAuthLoading } = useAuthContext();
 
   const isLoading =
     (isInitSiteLoading || !general.token || isAuthLoading) && !general.isMaintenance;

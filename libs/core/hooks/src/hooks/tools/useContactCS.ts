@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
 
 interface ContactCSProps {
   userid: string;

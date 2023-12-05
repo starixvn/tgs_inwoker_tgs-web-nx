@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHeader } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthContext, useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { NavCardKey } from "@tgs-web-nx/types";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
@@ -44,7 +44,7 @@ const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isLogin } = useAuth();
   const history = useHistory();
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
 
   const handleClickLogout = async () => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuthContext } from "@tgs-web-nx/core/features";
 import ContextMenu from "@/layouts/components/Header/components/ContextMenuButton/components/ContextMenu";
 import avatarImg from "@/assets/t24/images/contextButton/icon.svg";
 import Modal from "@/components/UI/Modal";
@@ -29,7 +29,7 @@ const AvatarContainer = styled.div`
 
 const ContextMenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { logoutState } = useAuth();
+  const { logoutState } = useAuthContext();
 
   const handleClick = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);

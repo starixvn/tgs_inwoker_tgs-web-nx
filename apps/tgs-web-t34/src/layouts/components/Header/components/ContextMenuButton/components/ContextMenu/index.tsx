@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import React, { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHeader } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import ContextMenuItem from "./ContextMenuItem";
 import accountImg from "@/assets/t23/images/header/contextMenu/icon_my_account.svg";
@@ -31,7 +31,7 @@ const VersionTagContainer = styled.div`
 `;
 
 const ContextMenu = () => {
-  const { handleLogout, logoutState } = useAuth();
+  const { handleLogout, logoutState } = useAuthContext();
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { isMenuOpen, handleToggleMenu } = useHeader();

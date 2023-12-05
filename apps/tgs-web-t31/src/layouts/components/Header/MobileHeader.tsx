@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 
 import MenuButton from "./components/MenuButton";
 import { HEADER_HEIGHT } from "@/theme/constants";
@@ -54,7 +54,7 @@ const Header = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { handleChangeGameType } = useHomeGameContext();
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
 
   const toggleLogin = useCallback(() => {
     history.push("/login");

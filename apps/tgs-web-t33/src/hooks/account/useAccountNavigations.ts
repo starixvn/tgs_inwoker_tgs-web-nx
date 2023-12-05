@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
 import profileImg from "@/assets/t23/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t23/images/account/navItem/icon-deposit.svg";
@@ -43,7 +43,7 @@ export type NavItem = {
 );
 
 export function useAccountNavigations() {
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
 
   const navItemList: NavItem[] = useMemo(() => {
     return [

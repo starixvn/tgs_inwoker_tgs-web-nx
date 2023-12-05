@@ -4,7 +4,7 @@ import { GameTypeItem } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
 import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";

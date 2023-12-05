@@ -3,3 +3,9 @@ export const RegisterStageEnum = {
   InitPhone: "InitPhone",
   InitEmail: "InitEmail",
 };
+
+export const ForgotPasswordStageEnum = {
+  VerifyPhone: "VerifyPhone",
+  VerifyEmail: "VerifyEmail",
+  NewPassword: "NewPassword",
+};

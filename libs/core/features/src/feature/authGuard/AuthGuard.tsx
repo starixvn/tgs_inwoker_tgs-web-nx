@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { RouteType } from "@tgs-web-nx/types";
 import { Loading } from "@tgs-web-nx/core";
-import { useParams } from "react-router";
 import { useAuth } from "../useAuth";
 
 interface AuthGuardProps {
