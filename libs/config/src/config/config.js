@@ -1,29 +1,18 @@
 import { isMobileOnly } from "react-device-detect";
 import featureList from "./features";
 
-console.log("ENV");
-console.log(import.meta.env);
-console.log(window.env);
-// console.log(process.env);
-
 const config = {
-  baseUrl: window?.env?.apiUrl || (import.meta.env.PROD ? "/api/" : "https://stg-t1.rpgp.cc/api/"),
-  client: window?.env?.client || "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
-  currency: window?.env?.currency || "HKD",
-  brand: window?.env?.brand || import.meta.env.VITE_APP_BRAND || "PGG",
-  brandName: window?.env?.brandName ? window?.env?.brandName : window?.env?.brand || "GPI",
-  theme: window?.env?.theme || "red",
-  sourceUrl: window?.env?.sourceUrl || "https://images.srvptt.com/",
-  defaultLanguage: window?.env?.defaultLanguage
-    ? window?.env?.defaultLanguage === ""
-      ? "zh-CN"
-      : window?.env?.defaultLanguage
-    : "zh-CN",
-  affiliateId: window?.env?.affiliateId || "",
+  baseUrl: import.meta.env.PROD ? "/api/" : "https://stg-t1.rpgp.cc/api/",
+  client: "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
+  currency: "HKD",
+  brand: import.meta.env.VITE_APP_BRAND || "PGG",
+  brandName: import.meta.env.VITE_APP_BRAND || "PGG",
+  sourceUrl: "https://images.srvptt.com/",
+  defaultLanguage: "en-US",
+  affiliateId: "",
   features: featureList["default"],
 };
 
-config.from = isMobileOnly ? "h5" : "h5";
 config.isPC = isMobileOnly ? 1 : 0;
 
 export default config;

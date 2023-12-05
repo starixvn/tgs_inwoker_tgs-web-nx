@@ -7,6 +7,7 @@ import TransferCards from "@/components/account/TransferPrevV2/components/T1/com
 import QuickTransfer from "@/components/account/TransferPrevV2/components/T1/components/QuickTransfer";
 import AutoTransferSwitch from "@/pages/transfer/components/components/AutoTransferSwitch";
 import TransferCard from "@/pages/transfer/components/components/TransferCard";
+import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const Container = styled.div`
   width: 100%;
@@ -56,7 +57,30 @@ const Template1 = ({
             handleTransferClick={handleTransferClick}
           />
         ) : (
-          <TransferCard />
+          <TransferCard
+            fromWallet={transferFrom}
+            handleChangeFromWallet={handleTransferFromChange}
+            toWallet={transferTo}
+            handleChangeToWallet={handleTransferToChange}
+            transferAmount={transferAmount}
+            handleChangeTransferAmount={handleTransferAmountChange}
+            mainAccountId={mainAccountId}
+          >
+            <SubmitButton
+              onClick={handleTransferClick}
+              variant={"contained"}
+              color={"primary"}
+              fullWidth
+              disabled={
+                transferAmount === 0 ||
+                transferAmount === "" ||
+                transferTo === transferFrom ||
+                disabled === true
+              }
+            >
+              {i18n.t("common.confirm")}
+            </SubmitButton>
+          </TransferCard>
         )}
 
         <SubTitle>{i18n.t("transfer.transferWallet")}</SubTitle>

@@ -10,7 +10,6 @@ import { InterceptorService, store } from "@tgs-web-nx/core";
 import { useInitApp } from "@tgs-web-nx/core/hooks";
 import { NotificationContextProvider } from "@tgs-web-nx/core/features";
 import AudioPlayer from "./components/tools/audioplayer";
-import FeatureGetter from "./components/tools/feature-getter";
 import { GlobalStyles } from "./global";
 import { theme } from "./theme";
 import App from "@/App";
@@ -29,7 +28,6 @@ const AppWrapper = () => {
 
   return (
     <NotificationContextProvider>
-      <FeatureGetter />
       {config.features.BackgroundMusic && <AudioPlayer />}
 
       <StylesProvider injectFirst>

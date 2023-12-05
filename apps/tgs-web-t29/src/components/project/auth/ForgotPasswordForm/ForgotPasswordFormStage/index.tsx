@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useForgotPasswordFormStage } from "@tgs-web-nx/core/features";
-import { forgotPasswordStageFactory } from "@/components/project/auth/ForgotPasswordForm/ForgotPasswordFormStage/stage/forgotPasswordStageFactory";
+import { forgotPasswordStageFactory } from "./stage/forgotPasswordStageFactory";
 
 const ForgotPasswordFormStage = () => {
   const { currentStage, handleUpdateStage } = useForgotPasswordFormStage();

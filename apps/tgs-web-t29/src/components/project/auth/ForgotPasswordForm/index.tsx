@@ -1,9 +1,9 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
 import { ForgotPasswordStageContextProvider } from "@tgs-web-nx/core/features";
-import RedirectToLoginHint from "@/components/project/auth/RegisterForm/RedirectToLoginHint";
+import ForgotPasswordFormStage from "./ForgotPasswordFormStage";
+import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
 import {
   AuthFormContainer,
   FormContainer,
@@ -11,7 +11,6 @@ import {
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
-import ForgotPasswordFormStage from "@/components/project/auth/ForgotPasswordForm/ForgotPasswordFormStage";
 
 const ForgotPasswordForm = () => {
   const { isMobileSize } = useRwd();

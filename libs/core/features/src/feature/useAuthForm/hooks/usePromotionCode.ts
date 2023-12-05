@@ -18,8 +18,9 @@ export function usePromotionCode() {
       localStorage.getItem("promotionId") === "" &&
       !localStorage.getItem("promotionId")
     ),
-    promoId: config.affiliateId !== "" ? config.affiliateId : localStorage.getItem("promotionId"),
-    promotionChannelId: localStorage.getItem("promotionChannelId"),
+    promoId:
+      config.affiliateId !== "" ? config.affiliateId : localStorage.getItem("promotionId") || "",
+    promotionChannelId: localStorage.getItem("promotionChannelId") || "",
     //TGS-357
     upper: localStorage.getItem("upper") || "",
     promoteType:

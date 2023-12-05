@@ -1,15 +1,9 @@
 import React from "react";
-import { useSnackbar } from "notistack";
-import { useAuthDialog } from "@tgs-web-nx/core/features";
+import { useInitEmailStage } from "@tgs-web-nx/core/features";
 import Email from "@/components/account/Profile/PrevComponents/Email";
 
 const InitEmailStage = () => {
-  const { enqueueSnackbar } = useSnackbar();
-  const { handleToggleInitEmailDialog } = useAuthDialog();
-
-  const handleCloseDialog = () => {
-    handleToggleInitEmailDialog(false);
-  };
+  const { handleCloseDialog, enqueueSnackbar } = useInitEmailStage();
 
   return (
     <Email

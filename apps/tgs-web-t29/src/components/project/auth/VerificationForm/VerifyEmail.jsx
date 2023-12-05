@@ -7,11 +7,7 @@ import { accountAction, AccountService } from "@tgs-web-nx/core";
 import BaseProfile from "@/components/account/Profile/PrevComponents/BaseProfile";
 import BottomNote from "@/components/UI/BottomNote";
 
-import {
-  FormControl,
-  ItemContainer,
-  LabelContainer,
-} from "@/components/styled-component/ProfileForms";
+import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
 
