@@ -15,7 +15,7 @@ export function useAuth() {
 
   const isLogin = !!account.token;
 
-  const gotoLogin = useCallback(() => {
+  const goToLogin = useCallback(() => {
     if (!isDesktopSize) {
       handleToggleMenu(false);
     }
@@ -28,7 +28,7 @@ export function useAuth() {
     history.push("/login");
   }, [handleToggleLoginDialog, handleToggleMenu, history, isDesktopSize]);
 
-  const gotoRegister = useCallback(() => {
+  const goToRegister = useCallback(() => {
     if (!isDesktopSize) {
       handleToggleMenu(false);
     }
@@ -42,7 +42,7 @@ export function useAuth() {
 
   return {
     isLogin,
-    gotoLogin,
-    gotoRegister,
+    goToLogin,
+    goToRegister,
   };
 }

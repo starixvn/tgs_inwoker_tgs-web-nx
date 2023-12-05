@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 
@@ -18,40 +18,12 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
-  const history = useHistory();
-  const { isDesktopSize } = useRwd();
-  const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
-  const { handleToggleMenu } = useHeader();
-
-  const toggleLoginDialog = useCallback(() => {
-    if (!isDesktopSize) {
-      handleToggleMenu(false);
-    }
-
-    if (isDesktopSize) {
-      handleToggleLoginDialog(true);
-      return;
-    }
-
-    history.push("/login");
-  }, [handleToggleLoginDialog, handleToggleMenu, history, isDesktopSize]);
-
-  const toggleRegisterDialog = useCallback(() => {
-    if (!isDesktopSize) {
-      handleToggleMenu(false);
-    }
-
-    if (isDesktopSize) {
-      handleToggleRegisterDialog(true);
-      return;
-    }
-    history.push("/register");
-  }, [handleToggleMenu, handleToggleRegisterDialog, history, isDesktopSize]);
+  const { goToLogin, goToRegister } = useAuth();
 
   return (
     <ButtonContainer>
       <HeaderButton
-        onClick={toggleLoginDialog}
+        onClick={goToLogin}
         sx={{
           width: buttonWidth ?? "77px",
           background: {
@@ -64,7 +36,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
 
       <HeaderButton
         color={"primary"}
-        onClick={toggleRegisterDialog}
+        onClick={goToRegister}
         sx={{
           width: buttonWidth ?? "77px",
           color: {
