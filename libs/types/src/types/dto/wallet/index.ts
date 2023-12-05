@@ -12,3 +12,4 @@ export * from "./PerformPulsaDepositResDto";
 export * from "./PerformUsdtDepositResDto";
 export * from "./GetAutoTransferStatusResDto";
 export * from "./GetBankCardListResDto";
+export * from "./GetPlayerBucketDto";

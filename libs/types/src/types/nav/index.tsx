@@ -3,6 +3,7 @@ export enum NavCardKey {
   PROFILE,
   DEPOSIT,
   WITHDRAW,
+  WAGERING,
   TRANSFER,
   REPORT,
   MESSAGE_CENTER,
