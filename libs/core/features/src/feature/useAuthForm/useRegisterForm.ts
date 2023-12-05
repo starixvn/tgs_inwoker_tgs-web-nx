@@ -14,7 +14,6 @@ export function useRegisterForm() {
   const { promotionData } = usePromotionCode();
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
   const { handleToggleRegisterDialog, handleToggleLoginDialog } = useAuthDialog();
-  const { isDesktopSize } = useRwd();
 
   const [otherError, setOtherError] = useState<Error | null>(null);
 
