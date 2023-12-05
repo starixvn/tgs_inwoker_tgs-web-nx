@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray50};
 `;
 
 const OnlineUser = () => {
