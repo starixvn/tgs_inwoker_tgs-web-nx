@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAnonymousHeaderContent } from "@tgs-web-nx/core/hooks";
+import { useAuth } from "@tgs-web-nx/core/features";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 
@@ -16,12 +16,12 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
-  const { toggleLoginDialog, toggleRegisterDialog } = useAnonymousHeaderContent();
+  const { goToLogin, goToRegister } = useAuth();
 
   return (
     <ButtonContainer>
       <HeaderButton
-        onClick={toggleLoginDialog}
+        onClick={goToLogin}
         style={{
           // background: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
           width: buttonWidth ?? "105px",
@@ -32,7 +32,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
 
       <HeaderButton
         color={"primary"}
-        onClick={toggleRegisterDialog}
+        onClick={goToRegister}
         style={{
           background: theme.primary,
           width: buttonWidth ?? "105px",

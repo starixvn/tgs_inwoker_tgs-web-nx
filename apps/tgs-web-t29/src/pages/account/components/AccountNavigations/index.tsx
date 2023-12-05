@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
 import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
@@ -37,7 +37,7 @@ const hideInDesktopDictionary = {
 const AccountNavigations = () => {
   const history = useHistory();
   const { accountNavItemList } = useGetNavItemList();
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
 
   const handleClickNav = useCallback((navItem: NavItem) => {

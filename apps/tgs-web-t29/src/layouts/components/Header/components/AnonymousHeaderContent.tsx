@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthContext, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 import iconLogin from "@/assets/t29/images/header/icon-login.svg";
@@ -21,40 +21,13 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
-  const history = useHistory();
   const { isDesktopSize } = useRwd();
-  const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
-  const { handleToggleMenu } = useHeader();
-
-  const toggleLoginDialog = useCallback(() => {
-    if (!isDesktopSize) {
-      handleToggleMenu(false);
-    }
-
-    if (isDesktopSize) {
-      handleToggleLoginDialog(true);
-      return;
-    }
-
-    history.push("/login");
-  }, [handleToggleLoginDialog, handleToggleMenu, history, isDesktopSize]);
-
-  const toggleRegisterDialog = useCallback(() => {
-    if (!isDesktopSize) {
-      handleToggleMenu(false);
-    }
-
-    if (isDesktopSize) {
-      handleToggleRegisterDialog(true);
-      return;
-    }
-    history.push("/register");
-  }, [handleToggleMenu, handleToggleRegisterDialog, history, isDesktopSize]);
+  const { goToLogin, goToRegister } = useAuth();
 
   return (
     <ButtonContainer>
       <RoundHeaderButton
-        onClick={toggleLoginDialog}
+        onClick={goToLogin}
         style={{
           color: theme.white,
           background: theme.primary,
@@ -66,7 +39,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
 
       <RoundHeaderButton
         color={"primary"}
-        onClick={toggleRegisterDialog}
+        onClick={goToRegister}
         style={{
           color: theme.white,
           background: theme.secondary,

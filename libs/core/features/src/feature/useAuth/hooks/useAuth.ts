@@ -1,15 +1,21 @@
-import { useHistory } from "react-router-dom";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { useCallback } from "react";
-import { useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
-import { useRwd } from "../../tools";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useHistory } from "react-router-dom";
+import { useHeader } from "../../useHeader/index";
+import { useAuthDialog } from "../../useAuthDialog";
 
-export function useAnonymousHeaderContent() {
-  const history = useHistory();
-  const { isDesktopSize } = useRwd();
+export function useAuth() {
+  const { account } = useAccountStore();
   const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
   const { handleToggleMenu } = useHeader();
+  const history = useHistory();
 
-  const toggleLoginDialog = useCallback(() => {
+  const { isDesktopSize } = useRwd();
+
+  const isLogin = !!account.token;
+
+  const goToLogin = useCallback(() => {
     if (!isDesktopSize) {
       handleToggleMenu(false);
     }
@@ -22,7 +28,7 @@ export function useAnonymousHeaderContent() {
     history.push("/login");
   }, [handleToggleLoginDialog, handleToggleMenu, history, isDesktopSize]);
 
-  const toggleRegisterDialog = useCallback(() => {
+  const goToRegister = useCallback(() => {
     if (!isDesktopSize) {
       handleToggleMenu(false);
     }
@@ -35,7 +41,8 @@ export function useAnonymousHeaderContent() {
   }, [handleToggleMenu, handleToggleRegisterDialog, history, isDesktopSize]);
 
   return {
-    toggleLoginDialog,
-    toggleRegisterDialog,
+    isLogin,
+    goToLogin,
+    goToRegister,
   };
 }

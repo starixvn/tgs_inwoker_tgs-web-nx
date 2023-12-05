@@ -11,10 +11,12 @@ import {
   RegisterV2CreatePlayerReqDto,
   RegisterV2CreatePlayerResDto,
   RegisterV2GetRegisterStepResDto,
+  ResetPasswordResDto,
   SetBirthDateResDto,
   UpdateIMResDto,
   UpdateMemberNameAndICResDto,
   UpdatePhoneResDto,
+  VerifyForgotPasswordResDto,
 } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { ApiService } from "../api-services/services/ApiService";
@@ -176,7 +178,7 @@ function VerifyForgotPassword(email: string, areaCode: string, phone: string) {
     email: email,
     areaCode: areaCode,
     phone: phone,
-  });
+  }) as unknown as Promise<VerifyForgotPasswordResDto>;
 }
 
 function ResetPassword(securitykey: string, validatecode: string, newpwd: string) {
@@ -184,7 +186,7 @@ function ResetPassword(securitykey: string, validatecode: string, newpwd: string
     securitykey: securitykey,
     validatecode: validatecode,
     newpwd: newpwd,
-  });
+  }) as unknown as Promise<ResetPasswordResDto>;
 }
 
 function GetIDCardNo() {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
 import BalanceWithRefresh from "../BalanceWithRefresh/index";
 
@@ -115,7 +115,7 @@ const NavCardContainer = styled.div`
 
 const AccountNavigations = () => {
   const { account } = useAccountStore();
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
 
   const history = useHistory();
   const accountLevel = account.info.member_level_id;

@@ -4,9 +4,8 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth } from "@tgs-web-nx/core/features";
 import HomePromotionCard from "./components/HomePromotionCard";
 import ImageCard from "./components/ImageCard";
 import WinnerCard from "./components/WinnerCard";
@@ -18,9 +17,6 @@ import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
-import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
-import { theme } from "@/theme";
-import Avatar from "@/components/project/Avatar";
 import MemberInfo from "@/pages/home/components/MemberInfo";
 
 const MainWrapper = styled.div`

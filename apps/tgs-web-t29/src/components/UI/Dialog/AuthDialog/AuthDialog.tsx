@@ -18,6 +18,7 @@ const StyledDialog = styled(MuiDialog)`
 
 const ChildContainer = styled.div`
   width: 100%;
+  margin: auto;
   max-height: 910px;
   background: ${({ theme }) => theme.mainBackground};
   z-index: 2;
@@ -47,7 +48,7 @@ const AuthDialog = ({ open, onClose, children, showInMobile, ...others }: Props 
       open={open}
       TransitionComponent={UpTransition}
       onClose={onClose}
-      maxWidth={"xs"}
+      maxWidth={"sm"}
       {...others}
     >
       <CloseIcon onClick={onClose} />

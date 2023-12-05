@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
@@ -22,7 +22,7 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
   const { handleChangeGameType } = useHomeGameContext();
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
 
   const history = useHistory();
 

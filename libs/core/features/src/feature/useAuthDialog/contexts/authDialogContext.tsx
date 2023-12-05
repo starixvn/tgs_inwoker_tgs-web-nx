@@ -3,7 +3,7 @@ import { RegisterStageEnum, ValueOf } from "@tgs-web-nx/types";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useRegisterV2Dialog } from "../hooks/useRegisterV2Dialog";
 import { useAuthV1Dialog } from "../hooks/useAuthV1Dialog";
-import { useAuth } from "../../useAuth";
+import { useAuth, useAuthContext } from "../../useAuth";
 
 const initialState: {
   isLoginDialogOpen: boolean;

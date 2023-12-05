@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TableRow, TablePagination } from "@mui/material";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   withdrawalDetails: WithdrawFormViewModel[];
-  totalCount: number;
 };
-const WithdrawalDetailTable = ({ withdrawalDetails, totalCount }: Props) => {
+const WithdrawalDetailTable = ({ withdrawalDetails }: Props) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   if (withdrawalDetails.length <= 0) {
     return <NoRecord />;
   }
@@ -62,7 +79,7 @@ const WithdrawalDetailTable = ({ withdrawalDetails, totalCount }: Props) => {
                 <TableCell>{date}</TableCell>
                 <TableCell>{orderno}</TableCell>
                 <TableCell>
-                  <>{i18n.t(`report.deposit.status${status}`)}</>
+                  <>{i18n.t(`report.withdrawal.status${status}`)}</>
                 </TableCell>
                 <TableCell align={"right"}>{amount}</TableCell>
               </TableRow>
@@ -71,15 +88,20 @@ const WithdrawalDetailTable = ({ withdrawalDetails, totalCount }: Props) => {
         </TableBody>
       </ReportTable>
 
-      {/*<TablePagination*/}
-      {/*  rowsPerPageOptions={[25]}*/}
-      {/*  component="div"*/}
-      {/*  count={totalCount}*/}
-      {/*  rowsPerPage={25}*/}
-      {/*  page={0}*/}
-      {/*  onPageChange={() => {}}*/}
-      {/*  onRowsPerPageChange={() => {}}*/}
-      {/*/>*/}
+      <TablePagination
+        component="div"
+        rowsPerPageOptions={[]}
+        count={withdrawalDetails.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          width: "100%",
+          color: theme.blue40,
+          "& button": {},
+        }}
+      />
     </ReportCardsContainer>
   );
 };
