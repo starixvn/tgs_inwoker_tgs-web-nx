@@ -6,7 +6,11 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/LoginForm/RedirectToRegisterHint";
-import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
+import {
+  AuthFormContainer,
+  FormContainer,
+  LoginTitle,
+} from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 
@@ -35,16 +39,6 @@ const ForgotPasswordContainer = styled.span`
   cursor: pointer;
 `;
 
-const LoginTitle = styled.div`
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 55px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin-bottom: 50px;
-  color: ${({ theme }) => theme.primary};
-`;
-
 const LoginForm = () => {
   const {
     formInputConfigList,
@@ -64,29 +58,33 @@ const LoginForm = () => {
       ) : (
         <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
       )}
-      <FormikForm
-        formInputList={formInputConfigList}
-        formik={formik}
-        isLoading={isLoading}
-        error={loginError}
-        buttonText={i18n.t("common.login")}
-      >
-        <FormSubContainer>
-          <RememberMeContainer onClick={handleClickNeedToRemember}>
-            <Checkbox
-              checked={needToRemember}
-              style={{
-                padding: "0px 5px 0px",
-              }}
-            />
-            {i18n.t("wap.login.rememberMe")}
-          </RememberMeContainer>
 
-          <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-            {i18n.t("forgotPassword.title")}?
-          </ForgotPasswordContainer>
-        </FormSubContainer>
-      </FormikForm>
+      <FormContainer>
+        <FormikForm
+          formInputList={formInputConfigList}
+          formik={formik}
+          isLoading={isLoading}
+          error={loginError}
+          buttonText={i18n.t("common.login")}
+        >
+          <FormSubContainer>
+            <RememberMeContainer onClick={handleClickNeedToRemember}>
+              <Checkbox
+                checked={needToRemember}
+                style={{
+                  padding: "0px 5px 0px",
+                }}
+              />
+              {i18n.t("wap.login.rememberMe")}
+            </RememberMeContainer>
+
+            <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+              {i18n.t("forgotPassword.title")}?
+            </ForgotPasswordContainer>
+          </FormSubContainer>
+        </FormikForm>
+      </FormContainer>
+
       <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
 
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />

@@ -10,6 +10,8 @@ const RegisterFormStage = ({ currentStage }: Props) => {
     return registerStageFactory[currentStage];
   }, [currentStage]);
 
+  if (!StageComponents) return null;
+
   return <StageComponents />;
 };
 
