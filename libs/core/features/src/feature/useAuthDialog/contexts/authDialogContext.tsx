@@ -50,19 +50,15 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     handleToggleRegisterDialog,
     handleToggleForgotPasswordDialog,
   } = useAuthV1Dialog();
-  const { accountLogin, getAccountInfo } = useAccountStore();
+  const { getAccountInfo } = useAccountStore();
   const { isLogin } = useAuth();
 
-  const [currentStage, setCurrentStage] = useState<ValueOf<typeof RegisterStageEnum>>(
-    RegisterStageEnum.CreatePlayer,
-  );
-
   useEffect(() => {
-    const examineRegisterStatus = async (username: string) => {
+    const examineRegisterStatus = async () => {
       if (!isLogin) return;
 
       const response = await getAccountInfo();
-      if (response.data.registercompleted) return;
+      if (response?.data?.registercompleted) return;
 
       const res = await AccountService.RegisterV2GetRegisterStep();
       const nextStep = res.data;
@@ -73,7 +69,6 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
   }, [getAccountInfo, isLogin]);
 
   const updateStage = (newStage: ValueOf<typeof RegisterStageEnum>) => {
-    setCurrentStage(newStage);
     switch (newStage) {
       case RegisterStageEnum.InitPhone:
         handleToggleLoginDialog(false);

@@ -88,7 +88,7 @@ export function useLogin() {
 
   const examineRegisterStatus = async (username: string) => {
     const response = await getAccountInfo();
-    if (response.data.registercompleted) return true;
+    if (response?.data?.registercompleted) return true;
 
     const res = await AccountService.RegisterV2GetRegisterStep();
     const nextStep = res.data;

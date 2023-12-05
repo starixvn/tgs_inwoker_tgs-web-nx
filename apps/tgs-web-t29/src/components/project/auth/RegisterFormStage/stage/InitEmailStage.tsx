@@ -8,7 +8,7 @@ const InitEmailStage = () => {
   const { handleToggleInitEmailDialog } = useAuthDialog();
 
   const handleCloseDialog = () => {
-    handleToggleInitEmailDialog(handleToggleInitEmailDialog);
+    handleToggleInitEmailDialog(false);
   };
 
   return (

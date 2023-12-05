@@ -56,6 +56,10 @@ const CreatePlayerStage = () => {
       };
       const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
 
+      if (!newRegisterResDto) {
+        throw new Error("No newRegisterResDto found");
+      }
+
       if (!newRegisterResDto.IsSuccess) {
         throw new Error(ErrorSwitcher.getTranslation(newRegisterResDto.info));
       }

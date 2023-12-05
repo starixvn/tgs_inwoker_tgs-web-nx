@@ -17,7 +17,6 @@ import {
   UserWalletInfoContextProvider,
 } from "@tgs-web-nx/core/features";
 import { RouteType } from "@tgs-web-nx/types";
-import ForcedVerification from "./components/project/ForcedVerification";
 import LiveChat from "./components/tools/LiveChat";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
@@ -94,12 +93,6 @@ const App: React.FC = () => {
                             : "0"
                         }
                       />
-
-                      {/*{config.features.SMSVerification &&*/}
-                      {/*  account.registercompleted === false &&*/}
-                      {/*  config.features.ForcedVerification && (*/}
-                      {/*    <ForcedVerification forceVerify={true} />*/}
-                      {/*  )}*/}
 
                       <PopupAnnouncement />
                       <PopupPromotion />

@@ -6,6 +6,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
+import { UpdatePhoneResDto } from "@tgs-web-nx/types";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
@@ -129,11 +130,11 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
     }
   };
 
-  const showErrorMessage = (msg?: string | null) => {
+  const showErrorMessage = (msg?: string | null | undefined) => {
     alert("", msg || "");
   };
 
-  const showInfoMessage = (msg?: string | null) => {
+  const showInfoMessage = (msg?: string | null | undefined) => {
     alert("", msg || "");
   };
 
@@ -153,10 +154,10 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
 
     try {
       if (shouldHandlePhoneSubmission()) {
-        const response = await getRegisterStatus();
+        const getRegisterStatusResDto = await getRegisterStatus();
 
-        if (response?.IsSuccess) {
-          const currentStepKey = response.data;
+        if (getRegisterStatusResDto?.IsSuccess) {
+          const currentStepKey = getRegisterStatusResDto.data;
           if (currentStepKey === "SetPhoneDontCareDuplicate") {
             await handleSetPhoneDontCareDuplicate();
           }
@@ -224,7 +225,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
   };
 
   const handleUpdatePhone = async () => {
-    let response: unknown;
+    let response: UpdatePhoneResDto;
     if (isProceedRegisterV2) {
       response = await AccountService.UpdatePhoneV2(securityKey, code);
     } else {
