@@ -8,7 +8,9 @@ import {
   useInboxStore,
   useWalletStore,
 } from "@tgs-web-nx/core";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAuthDialog } from "../../useAuthDialog";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 
 export type LoginState = {
   data: any | null;
@@ -30,6 +32,7 @@ export function useLogin() {
   const inboxStore = useInboxStore();
   const generalStore = useGeneralStore();
   const { updateStage } = useAuthDialog();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const handleLogin = async (username: string, password: string, needToRemember?: boolean) => {
     try {
@@ -120,6 +123,7 @@ export function useLogin() {
   };
 
   const redirectToHome = () => {
+    handleChangeGameType(GameTypeEnum.NONE);
     history.push("/");
   };
 

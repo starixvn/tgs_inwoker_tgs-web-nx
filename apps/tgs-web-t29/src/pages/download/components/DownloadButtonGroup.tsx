@@ -25,6 +25,7 @@ const ContentContainer = styled.div`
 `;
 
 const QRCodeContainer = styled.div`
+  max-width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

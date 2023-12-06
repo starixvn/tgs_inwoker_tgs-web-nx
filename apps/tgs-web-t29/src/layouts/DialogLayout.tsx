@@ -48,7 +48,7 @@ const DialogLayout = ({ children }: Props) => {
         {isDesktopSize && (
           <DarkMemberMenu
             handleCloseContextMenu={() => {}}
-            style={{ width: "222px", margin: "22px 0 0 22px", flexShrink: 0 }}
+            style={{ width: "222px", margin: "22px 0 0 22px", flexShrink: 0, minHeight: "800px" }}
           />
         )}
         {children}

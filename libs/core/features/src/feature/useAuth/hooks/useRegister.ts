@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { RegisterReqDto, RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 
 export type RegisterState = {
   data: any | null;
@@ -19,6 +21,7 @@ export function useRegister() {
 
   const history = useHistory();
   const accountStore = useAccountStore();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const handleRegister = useCallback(async (registerReqDto: RegisterReqDto) => {
     try {
@@ -55,6 +58,7 @@ export function useRegister() {
         data: registerResDto.data,
         error: null,
       });
+      handleChangeGameType(GameTypeEnum.NONE);
       history.push("/");
     } catch (error: any) {
       setRegisterState({

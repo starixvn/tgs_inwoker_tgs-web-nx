@@ -13,17 +13,21 @@ const Wrapper = styled.div`
   gap: 6px;
 `;
 
-const Text = styled.div`
-  color: ${({ theme }) => theme.white};
+type Props = {
+  $color: string;
+};
+
+const Text = styled.div<Props>`
+  color: ${({ $color }) => $color};
 `;
 
-const OnlineUser = () => {
+const OnlineUser = (props: { color: string }) => {
   const { onlineUser } = useOnlineUser();
 
   return (
     <Wrapper>
       <img src={member} alt="online member" />
-      <Text>{onlineUser ? onlineUser : ""}</Text>
+      <Text $color={props.color}>{onlineUser ? onlineUser : ""}</Text>
     </Wrapper>
   );
 };
