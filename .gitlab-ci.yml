@@ -16,6 +16,10 @@ stages:
     - source get_tgs-env.sh
     - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
     - echo "tgs_env=$tgs_env"
+    - echo "app=$app"
+    - echo "domain=$domain"
+    - echo "brand=$brand"
+    - echo "token=$token"
   script:
     - |
       git submodule init
