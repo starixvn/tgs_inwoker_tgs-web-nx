@@ -66,6 +66,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
               style={{
                 width: "200px",
                 flexShrink: 0,
+                minHeight: "800px",
               }}
             />
             {children}
