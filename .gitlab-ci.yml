@@ -96,7 +96,7 @@ stages:
           
           echo "lobby=$lobby"
            
-          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
+          count=$(kubectl get deploy -n $tgs_env | grep $lobby | wc -l)
           echo "count=$count"
            
           if [[ $count != "0" ]]; then
