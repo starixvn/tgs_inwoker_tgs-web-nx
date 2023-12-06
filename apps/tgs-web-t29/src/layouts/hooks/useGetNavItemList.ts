@@ -12,6 +12,7 @@ import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
 import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
 import affiliateImg from "@/assets/t29/images/account/navItem/icon-affiliate.svg";
 import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
+import languageImg from "@/assets/t29/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
 import wageringImg from "@/assets/t29/images/account/navItem/icon-wagering.svg";
@@ -209,6 +210,15 @@ export function useGetNavItemList() {
         iconSecondaryUrl: downloadWhiteImg,
         navType: "route",
         routePath: "/appDownload",
+      },
+      {
+        key: NavCardKey.LANGUAGE_SWITCH,
+        label: i18n.t("common.language"),
+        iconUrl: languageImg,
+        iconSecondaryUrl: languageImg,
+        navType: "action",
+        routePath: "/appDownload",
+        callback: () => {},
       },
     ] as NavItem[];
   }, []);

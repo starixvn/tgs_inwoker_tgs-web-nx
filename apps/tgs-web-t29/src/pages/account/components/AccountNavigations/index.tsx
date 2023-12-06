@@ -7,15 +7,18 @@ import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
 import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import NavRowLanguage from "@/pages/account/components/AccountNavigations/NavRowLanguage";
 
 const AccountNavsContainer = styled.div`
   padding: 12px 14px;
   background: ${({ theme }) => theme.white};
+  overflow: visible;
 `;
 
 const AccountNavCardsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: visible;
 `;
 
 const LogoutRegion = styled.div`
@@ -58,6 +61,12 @@ const AccountNavigations = () => {
           {/* Cards */}
           {accountNavItemList.map((navItem) => {
             if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
+
+            if (navItem.key === NavCardKey.LANGUAGE_SWITCH) {
+              return (
+                <NavRowLanguage key={navItem.key} navItem={navItem} handleClick={handleClickNav} />
+              );
+            }
 
             return <NavRow key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
           })}

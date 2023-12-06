@@ -97,7 +97,7 @@ const App: React.FC = () => {
                       <PopupPromotion />
 
                       <PopupAlertModal />
-                      <FloatingToolIcons />
+                      {/*<FloatingToolIcons />*/}
                       <LoginDialog />
                       <RegisterDialog />
                       <RegisterV2InitPhoneDialog />
