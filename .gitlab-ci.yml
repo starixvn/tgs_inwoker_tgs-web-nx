@@ -1,7 +1,5 @@
 variables:
-  dev_tgs_web_t29: lobby-t29
-  staging_tgs_web_t29: lobby-t29
-  prod_tgs_web_t29: lobby-t29
+  prod_tgs_web_t29: lobby-momovn
   config: "kubeconfig"
   token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiR1BJIiwic3ViIjoiNGU4NjcxOWYtMjQzZi00NmY2LWIwMTAtNWM3NThiNzI4NWFmIiwibmJmIjoxNjM3NjM0NTYzLCJleHAiOjE2Mzc2MzgxNjMsImlhdCI6MTYzNzYzNDU2MywiaXNzIjoidGdzIn0.n-VgLks4WpPxFp2-2Au-C3h0jzGiprJiMUmdwmhV5rWYqSbIr01Gi7_KJOPfkZeVR7h-muyT4wTGkd-YQJ1tLERfX4cPma2PNigwOKx_z38j3KayTKbNVk9g1o-VBiEYwOTLZf0i2wFdIsE0_k0ul-Kg2t9As9qRZ6apgBc-ANjABUpvm1ix6sLhgVEk-yl3gKwhqsC81LDaPn9VeAquZgbL193vCW4r7TJTZphP8PxCIMSY-5pj8YS7xQGX9wQiaAImJNKiEs_h2ar03oCV1WPb6767R0PEjK4KJEz5g6cKd2EGftpPCFdiYow-2ww_c8qRl1IuZ3oV6Tj9qexv-g
 stages:
@@ -90,20 +88,23 @@ stages:
     - | 
       cat image.txt
       for image in $(cat image.txt); do
-          #lobbies="${tgs_env}_${app//-/_}"
-          #echo "lobbies=${!lobbies}"    
-          #IFS=', ' read -ra array <<< "${!lobbies}"
-
-          #for lobby in "${array[@]}"; do
-          #    kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
-          #done
+          ## default
+          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          lobby="lobby-$lobby"
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
           
-          #lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
-          #lobby="lobby-$lobby"
-          #count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
-          #if [[ $count != "0" ]]; then
-          kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
-          #fi    
+          if [[ $count != "0" ]]; then
+              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          fi
+          
+          ## prod
+          lobbies="${tgs_env}_${app//-/_}"
+          echo "lobbies=${!lobbies}"    
+          IFS=', ' read -ra array <<< "${!lobbies}"
+
+          for lb in "${array[@]}"; do
+              kubectl set image deployment/$lb $lb=${image} --record -n ${tgs_env}
+          done
       done;   
 
 docker-build-dev:
