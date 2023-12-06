@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuthContext } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -42,7 +42,7 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
   const { handleLogout } = useAuthContext();
   const history = useHistory();
-
+  const { isLogin } = useAuth();
   const handleClick = (navItem: NavItem) => {
     switch (navItem.navType) {
       case "route":
@@ -78,16 +78,23 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
         );
       })}
 
-      <Button
-        sx={{
-          margin: " 15px 10px 0",
-          width: "180px",
-        }}
-        onClick={handleLogout}
-      >
-        <Icon iconUrl={iconLogout} width={"24px"} height={"24px"} style={{ marginRight: "10px" }} />
-        {i18n.t("web.header.logout")}
-      </Button>
+      {isLogin && (
+        <Button
+          sx={{
+            margin: " 15px 10px 0",
+            width: "180px",
+          }}
+          onClick={handleLogout}
+        >
+          <Icon
+            iconUrl={iconLogout}
+            width={"24px"}
+            height={"24px"}
+            style={{ marginRight: "10px" }}
+          />
+          {i18n.t("web.header.logout")}
+        </Button>
+      )}
     </MemberMenuContainer>
   );
 };
