@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import BG from "@/assets/t29/images/loginBG.png";
 
 export const AuthFormContainer = styled.div`
   width: 100%;
@@ -33,4 +34,9 @@ export const LoginTitle = styled.div`
   text-align: center;
   margin-bottom: 50px;
   color: ${({ theme }) => theme.primary};
+`;
+
+export const FormContainerWithBG = styled.div`
+  height: 100%;
+  background: url(${BG}) no-repeat center center;
 `;
