@@ -47,7 +47,6 @@ const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  justify-content: flex-end;
   width: 100%;
   row-gap: 13px;
   column-gap: 9px;
