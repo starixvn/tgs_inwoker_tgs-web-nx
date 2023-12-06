@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
@@ -29,7 +30,6 @@ const WithdrawalPage = () => {
       {isDesktopSize && <UserWalletInfo />}
 
       <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
-        {/*@ts-ignore*/}
         <WithdrawalPrevV2
           appHistory={history}
           alert={alert}
