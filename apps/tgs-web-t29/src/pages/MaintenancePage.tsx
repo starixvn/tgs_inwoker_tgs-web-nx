@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { UiService, useGeneralStore } from "@tgs-web-nx/core";
+import { useLocation } from "react-router";
 import { media } from "@/theme/breakpoints";
 
 const MaintenanceContainer = styled.div`
@@ -85,10 +86,7 @@ const DefaultMaintenance = () => {
   );
 };
 
-type MaintenancePageProps = {
-  isGameMaintenance?: boolean;
-};
-const MaintenancePage = (props: MaintenancePageProps) => {
+const MaintenancePage = () => {
   const history = useHistory();
   const { GetMaintenance } = UiService;
   const {
@@ -114,12 +112,14 @@ const MaintenancePage = (props: MaintenancePageProps) => {
   };
 
   useEffect(() => {
+    const searchParams = new URLSearchParams(history.location.search);
+    const isGameMaintenance = searchParams.get("isGameMaintenance");
     // NOTE: while GeneralService.GetSiteToken encounter error,
     // then general.isMaintenance will set to false
-    // if (!isMaintenance) {
-    //   history.push("/");
-    //   return;
-    // }
+    if (!isMaintenance && !isGameMaintenance) {
+      history.push("/");
+      return;
+    }
 
     const fetchGetMaintenance = async () => {
       const result = await GetMaintenance();
