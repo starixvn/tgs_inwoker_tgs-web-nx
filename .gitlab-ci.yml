@@ -89,6 +89,7 @@ stages:
       cat image.txt
       for image in $(cat image.txt); do
           ## default
+          echo "image=$image"
           lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
           lobby="lobby-$lobby"
           count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
@@ -160,4 +161,4 @@ deploy-prod:
       artifacts: true
   only: 
     - master
-  when: manual  
+  #when: manual  
