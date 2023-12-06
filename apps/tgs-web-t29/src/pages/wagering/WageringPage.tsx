@@ -14,6 +14,20 @@ import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";
 import iconPlay from "@/assets/t29/images/wagering/icon-play.svg";
 import iconPlayActive from "@/assets/t29/images/wagering/icon-play_active.svg";
 
+import LiveDealerIcon from "@/assets/t29/images/wagering/LiveDealer.svg";
+import LiveDealerIconActive from "@/assets/t29/images/wagering/LiveDealerActive.svg";
+
+import SportsbookIcon from "@/assets/t29/images/wagering/Sportsbook.svg";
+import SportsbookIconActive from "@/assets/t29/images/wagering/SportsbookActive.svg";
+import SlotIcon from "@/assets/t29/images/wagering/Slot.svg";
+import SlotIconActive from "@/assets/t29/images/wagering/SlotActive.svg";
+import CardGameIcon from "@/assets/t29/images/wagering/CardGame.svg";
+import CardGameIconActive from "@/assets/t29/images/wagering/CardGameActive.svg";
+import LotteryIcon from "@/assets/t29/images/wagering/Lottery.svg";
+import LotteryIconActive from "@/assets/t29/images/wagering/LotteryActive.svg";
+
+import VirtualSportsIcon from "@/assets/t29/images/wagering/VirtualSports.svg";
+import VirtualSportsIconActive from "@/assets/t29/images/wagering/VirtualSportsActive.svg";
 const WageringContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -118,9 +132,27 @@ const WageringPage = () => {
         return i18n.t("common.virtualsports");
     }
   };
+
+  const getImgUrl = (isActive: boolean, key: string) => {
+    switch (key) {
+      case "LiveDealer":
+        return isActive ? LiveDealerIconActive : LiveDealerIcon;
+      case "Sportsbook":
+        return isActive ? SportsbookIconActive : SportsbookIcon;
+      case "Slot":
+        return isActive ? SportsbookIconActive : SlotIcon;
+      case "CardGame":
+        return isActive ? SportsbookIconActive : CardGameIcon;
+      case "Lottery":
+        return isActive ? SportsbookIconActive : LotteryIcon;
+      case "VirtualSports":
+        return isActive ? SportsbookIconActive : VirtualSportsIcon;
+    }
+  };
   useEffect(() => {
     fetchpPlayerBucket();
   }, [fetchpPlayerBucket]);
+
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
@@ -150,7 +182,10 @@ const WageringPage = () => {
                         <img
                           width={25}
                           height={25}
-                          src={activeType === bucket.key ? bucket.activeIconUrl : bucket.iconUrl}
+                          src={
+                            getImgUrl(activeType === bucket.key, bucket.key)
+                            // activeType === bucket.key ? bucket.activeIconUrl : bucket.iconUrl
+                          }
                           alt={bucket.key}
                         />
                       </div>
@@ -159,9 +194,9 @@ const WageringPage = () => {
                         <CardAmount>{bucket.amount}</CardAmount>
                       </div>
                     </CardContent>
-                    <div>
+                    {/* <div>
                       <img src={activeType === bucket.key ? iconPlayActive : iconPlay} alt="play" />
-                    </div>
+                    </div> */}
                   </GameCard>
                 );
               }
