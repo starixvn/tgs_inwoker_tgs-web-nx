@@ -3,9 +3,13 @@ import {
   FilterTag,
   FilterTagTypeEnum,
   filterTagAll,
+  useAuth,
   useHomeGameContext,
 } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
+import { useAccountStore } from "@tgs-web-nx/core";
+import { useHistory } from "react-router-dom";
+import { useCallback } from "react";
 import CommonTag from "./CommonTag";
 import Tag from "./ProviderTag";
 import SearchInput from "@/pages/home/components/SearchInput";
@@ -36,6 +40,7 @@ const CommonTagContainer = styled.div`
   gap: 12px;
   display: flex;
   align-items: center;
+  height: 37px;
 `;
 
 const ProviderTagContainer = styled.div``;
@@ -84,6 +89,8 @@ const AllText = styled.div<{
 `;
 
 const HomeGameFilterTag = () => {
+  const { isLogin } = useAuth();
+  const history = useHistory();
   const {
     providerFilterTagList,
     handleChangeActiveFilterTag,
@@ -94,13 +101,18 @@ const HomeGameFilterTag = () => {
     handleChangeSearch,
   } = useHomeGameContext();
 
-  const handleClickFilterTag = (newFilterTag: FilterTag) => {
+  const onChangeCommonFilterTag = (newFilterTag: FilterTag) => {
+    if (!isLogin && newFilterTag.tagType === FilterTagTypeEnum.FAVORITE) {
+      history.push("/login");
+    }
+
     if (newFilterTag.tagType === activeFilterTag.tagType) {
       handleChangeActiveFilterTag(filterTagAll);
       return;
     }
     handleChangeActiveFilterTag(newFilterTag);
   };
+
 
   const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
     handleChangeActiveProviderFilterTag(newFilterTag);
@@ -132,6 +144,8 @@ const HomeGameFilterTag = () => {
       activedUrl: activedRecommendIcon,
     },
   ];
+
+  const validFilterTagList: FilterTag[] = filterTagList.filter((tag): tag is FilterTag => tag !== null);
 
   return (
     <FilterTagWrapper>
@@ -166,7 +180,7 @@ const HomeGameFilterTag = () => {
 
       <CommonSearchWrapper>
         <CommonTagContainer>
-          {filterTagList.map((filterTag) => {
+          {validFilterTagList.map((filterTag) => {
             return (
               <CommonTag
                 key={filterTag.name}
@@ -174,7 +188,7 @@ const HomeGameFilterTag = () => {
                 iconUrl={filterTag.iconUrl}
                 activedUrl={filterTag.activedUrl}
                 isActive={filterTag.tagType === activeFilterTag.tagType}
-                onClick={() => handleClickFilterTag(filterTag)}
+                onClick={() => onChangeCommonFilterTag(filterTag)}
               />
             );
           })}
