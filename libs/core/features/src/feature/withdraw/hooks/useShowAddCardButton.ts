@@ -9,16 +9,16 @@ export function useShowAddCardButton(bankCardList: BankCard[]) {
     AddCard_DisableCreateUpdateDelete,
   } = config.features;
 
-  const isDisableManageCardButton = !(
-    AddCard_NotAllowedEditDelete ||
-    ChangesNotAllowed ||
-    (bankCardList.length >= AddCard_MaximumCardAllowed && AddCard_DisableCreateUpdateDelete)
-  );
-
   const isShowAddCardButton = bankCardList.length < AddCard_MaximumCardAllowed;
 
+  const isManageCardButtonAvailable = !(
+    ChangesNotAllowed ||
+    AddCard_NotAllowedEditDelete ||
+    AddCard_DisableCreateUpdateDelete
+  );
+
   return {
-    isDisableManageCardButton,
     isShowAddCardButton,
+    isManageCardButtonAvailable,
   };
 }

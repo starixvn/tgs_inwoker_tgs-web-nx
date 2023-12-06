@@ -45,7 +45,7 @@ const featureList = {
     Deposit_RemoveAccount: false,
     Deposit_AutofillFirstCard: true,
     HomePage_Animated: false,
-    AddCard_MaximumCardAllowed: 99,
+    AddCard_MaximumCardAllowed: 10,
     AddCard_DisableCreateUpdateDelete: false, //different than AddCard_NotAllowedEditDelete, as it disable addcard if they forgot to add card initially.
     Register_HideInvitation: false,
     PopupPromotion: true,

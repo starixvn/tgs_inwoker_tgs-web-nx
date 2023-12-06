@@ -14,6 +14,7 @@ import affiliateImg from "@/assets/t29/images/account/navItem/icon-affiliate.svg
 import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
 import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
+import wageringImg from "@/assets/t29/images/account/navItem/icon-wagering.svg";
 import profileWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-profile.svg";
 import depositWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-deposit.svg";
 import withdrawWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-withdraw.svg";
@@ -24,6 +25,7 @@ import affiliateWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-aff
 import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
 import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
+import wagerWhiteingImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -37,15 +39,15 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-    | {
+  | {
       navType: "route";
       routePath: string;
     }
-    | {
+  | {
       navType: "action";
       callback: () => void;
     }
-  );
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -134,6 +136,15 @@ export function useGetNavItemList() {
         iconSecondaryUrl: withdrawWhiteImg,
         navType: "route",
         routePath: "/withdrawal",
+      },
+      {
+        key: NavCardKey.WAGERING,
+        //todo: 新增 Wagering t18 翻譯
+        label: "Wagering",
+        iconUrl: wageringImg,
+        iconSecondaryUrl: wagerWhiteingImg,
+        navType: "route",
+        routePath: "/wagering",
       },
       {
         key: NavCardKey.TRANSFER,

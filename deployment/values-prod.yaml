@@ -1,6 +1,6 @@
 autoscaling:
   enabled: false
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: ${image}
@@ -34,7 +34,16 @@ tolerations:
   operator: Equal
   value: frontend
 
-affinity: {}
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+        - key: app.kubernetes.io/instance
+          operator: In
+          values:
+          - ${brand}
+      topologyKey: kubernetes.io/hostname
 
 resources:
   limits:
