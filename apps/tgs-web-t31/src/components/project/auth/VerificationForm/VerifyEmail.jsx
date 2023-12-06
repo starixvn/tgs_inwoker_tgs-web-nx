@@ -2,7 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
+<<<<<<< develop
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+=======
+import { i18n } from "@tgs-web-nx/utils";
+>>>>>>> checkpoint
 import { accountAction, AccountService } from "@tgs-web-nx/core";
 import BaseProfile from "@/components/account/Profile/PrevComponents/BaseProfile";
 import BottomNote from "@/components/UI/BottomNote";
@@ -82,11 +86,15 @@ class VerifyEmail extends BaseProfile {
           this.checkCountdownToken();
         }, 1000);
       } else {
+<<<<<<< develop
         let errorCode = response.info;
         if (errorCode === "Player is not found in the system.") {
           errorCode = "error.ERR201";
         }
         this.showErrorMessage(i18n.t(errorCode));
+=======
+        this.showErrorMessage(response.info);
+>>>>>>> checkpoint
       }
     } catch (err) {
       this.showErrorMessage(err);

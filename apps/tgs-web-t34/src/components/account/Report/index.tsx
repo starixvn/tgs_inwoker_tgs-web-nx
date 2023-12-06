@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 import Loading from "@/components/UI/Loading";
 import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
 import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
@@ -14,11 +15,13 @@ import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion
 import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
 import ReportPlatform from "@/pages/report/components/reports/ReportPlatform";
 import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
-import {
-  DateRangeSelector,
-  DateTitle,
-  ReportMainContainer,
-} from "@/components/styled-component/Report";
+import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
+
+const Title = styled.div`
+  color: ${({ theme }) => theme.blue50};
+  font-size: 1.25rem;
+  font-weight: 700;
+`;
 
 const Report = () => {
   // TODO: tab function
@@ -27,7 +30,7 @@ const Report = () => {
     tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2,
   );
 
-  const { dateRangeInfo, handleDateFromChange, handleDateToChange, handleDateRangeChange } =
+  const { dateRangeInfo, handleDateFromChange, handleDateToChange, handleDateRangeChange, isSelectedDateRange } =
     useDateRange();
 
   const changeDateRange = (dateRangeEnum: number) => {
@@ -50,8 +53,7 @@ const Report = () => {
       />
 
       <DateRangeSelector>
-        <DateTitle>{i18n.t("report.date")}</DateTitle>
-
+        <Title>{i18n.t("report.date")}</Title>
         <DateRangeWithDatePicker
           dateFrom={dateRangeInfo.dateFrom}
           dateTo={dateRangeInfo.dateTo}
@@ -62,13 +64,14 @@ const Report = () => {
         <DateRangeWithIntervalSelector
           dateRange={dateRangeInfo.dateRange}
           handleDateRangeChange={changeDateRange}
+          isSelectedDateRange={isSelectedDateRange}
         />
       </DateRangeSelector>
 
       {(() => {
         switch (selectedType) {
-          case 1:
-            return <ReportPlatform dateRangeInfo={dateRangeInfo} />;
+          // case 1:
+          //   return <ReportPlatform dateRangeInfo={dateRangeInfo} />;
           case 2:
             return <ReportBetting dateRangeInfo={dateRangeInfo} />;
           case 3:

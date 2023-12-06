@@ -15,20 +15,24 @@ export function useDateRange() {
   today.setSeconds(0);
   today.setMilliseconds(0);
 
+  const [isSelectedDateRange, setIsSelectedDateRange] = useState(false);
+
   const [dateRangeInfo, setDateRangeInfo] = useState<DateRangeInfo>({
     dateFrom: today,
     dateTo: today,
-    dateRange: 0,
+    dateRange: -1
   });
 
   const handleDateFromChange = (e?: Date) => {
     if (!e) return;
     setDateRangeInfo({ ...dateRangeInfo, dateFrom: e });
+    setIsSelectedDateRange(true);
   };
 
   const handleDateToChange = (e?: Date) => {
     if (!e) return;
     setDateRangeInfo({ ...dateRangeInfo, dateTo: e });
+    setIsSelectedDateRange(true);
   };
 
   const handleDateRangeChange = (dateRangeEnum: number) => {
@@ -50,6 +54,7 @@ export function useDateRange() {
         newDateFrom = addMonths(today, -1);
         break;
     }
+    setIsSelectedDateRange(false);
 
     setDateRangeInfo({
       dateFrom: newDateFrom,
@@ -63,5 +68,6 @@ export function useDateRange() {
     handleDateFromChange,
     handleDateToChange,
     handleDateRangeChange,
+    isSelectedDateRange
   };
 }

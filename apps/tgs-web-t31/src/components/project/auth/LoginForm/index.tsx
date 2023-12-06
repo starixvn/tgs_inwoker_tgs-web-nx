@@ -2,7 +2,10 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+<<<<<<< develop
 import styled from "styled-components";
+=======
+>>>>>>> checkpoint
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
@@ -18,12 +21,15 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+<<<<<<< develop
 import { theme } from "@/theme";
 
 const RegisterContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+=======
+>>>>>>> checkpoint
 
 const LoginForm = () => {
   const {
@@ -39,7 +45,15 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
+<<<<<<< develop
       <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+=======
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "72px" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+      )}
+>>>>>>> checkpoint
 
       <FormContainer>
         <FormikForm
@@ -59,10 +73,18 @@ const LoginForm = () => {
               />
               {i18n.t("wap.login.rememberMe")}
             </RememberMeContainer>
+<<<<<<< develop
+=======
+
+            <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+              {i18n.t("forgotPassword.title")}?
+            </ForgotPasswordContainer>
+>>>>>>> checkpoint
           </FormSubContainer>
         </FormikForm>
       </FormContainer>
 
+<<<<<<< develop
       <RegisterContainer>
         <ForgotPasswordContainer onClick={handleClickForgotPassword}>
           {i18n.t("forgotPassword.title")}?
@@ -71,6 +93,11 @@ const LoginForm = () => {
       </RegisterContainer>
 
       <LanguageSwitch style={{ width: "100%", margin: "24px 0", border: `1px solid ${theme.white30}` }} />
+=======
+      <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+
+      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+>>>>>>> checkpoint
     </AuthFormContainer>
   );
 };

@@ -2,19 +2,22 @@ import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compati
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
-import DownloadButtonGroup from "@/components/account/DownloadApp/DownloadButtonGroup";
-import InfoCard, { InfoCardItem } from "@/components/account/DownloadApp/InfoCard";
+import downloadGirlImg from "@/assets/t29/images/account/download-girl.png";
+
+import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
+import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
 import {
   DownloadAppContainer,
+  GirlImage,
   InfoCardListContainer,
   IntroductionContainer,
-  Text,
+  Paper,
 } from "@/components/styled-component/Download";
 
 const infoCardItemList: InfoCardItem[] = [
   {
     title: "COMPATIBLE",
-    content: "app supports any ios and android devices.",
+    content: "App supports any ios and android devices.",
     logo: logoCompatibleImg,
   },
   {
@@ -37,21 +40,27 @@ const infoCardItemList: InfoCardItem[] = [
 const DownloadApp = () => {
   return (
     <DownloadAppContainer>
-      <IntroductionContainer>
-        <p>Introduction</p>
-        <Text>
-          The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
-          available for lOS and Android that features a multitude of entertaining games.
-        </Text>
-      </IntroductionContainer>
+      <GirlImage>
+        <img src={downloadGirlImg} alt={"download"} />
+      </GirlImage>
 
-      <InfoCardListContainer>
-        {infoCardItemList.map((infoCardItem) => {
-          return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
-        })}
-      </InfoCardListContainer>
+      <Paper>
+        <IntroductionContainer>
+          <span>Introduction</span>
+          <p>
+            The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
+            available for IOS and Android that features a multitude of entertaining games.
+          </p>
+        </IntroductionContainer>
 
-      <DownloadButtonGroup />
+        <InfoCardListContainer>
+          {infoCardItemList.map((infoCardItem) => {
+            return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
+          })}
+        </InfoCardListContainer>
+
+        <DownloadButtonGroup />
+      </Paper>
     </DownloadAppContainer>
   );
 };

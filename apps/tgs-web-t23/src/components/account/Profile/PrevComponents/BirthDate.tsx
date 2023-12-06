@@ -102,7 +102,6 @@ const Birthdate = () => {
         {isConfigured && config.features.Profile_SetUpBirthdateOnce ? (
           <BottomNote
             text1={i18n.t("profile.birthdate.toEdit")}
-            link={"../chat"}
             text2={i18n.t(
               config.features.Profile_SetUpBirthdateOnce
                 ? "common.customerService"
@@ -117,13 +116,15 @@ const Birthdate = () => {
         {message}
       </ItemContainer>
 
-      <SubmitButton
-        fullWidth
-        disabled={isDisableButton() || isLoading}
-        onClick={handleSubmitClicked}
-      >
-       {i18n.t("common.submit")}
-      </SubmitButton>
+      {isConfigured && config.features.Profile_SetUpBirthdateOnce ? null : (
+        <SubmitButton
+          fullWidth
+          disabled={isDisableButton() || isLoading}
+          onClick={handleSubmitClicked}
+        >
+          {i18n.t("common.submit")}
+        </SubmitButton>
+      )}
 
       <Loading show={isLoading} />
     </Container>

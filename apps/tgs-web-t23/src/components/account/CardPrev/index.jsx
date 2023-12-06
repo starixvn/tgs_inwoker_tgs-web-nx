@@ -5,9 +5,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { accountAction, RESET_WALLETRESULT, walletAction } from "@tgs-web-nx/core";
 import MessageDialog from "@/pages/card/components/MessageDialog";
 import Loading from "@/components/UI/Loading";
-import AddCardsButton from "@/pages/card/components/AddCardsButton";
-import Card from "@/pages/card/components/Card";
-import { CardContainer } from "@/components/styled-component/Card";
+import AddCardsButton from "@/pages/withdrawal/components/CardManage/AddCardsButton";
+import Card from "@/pages/withdrawal/components/CardManage/Card";
+import { CardContainer } from "@/components/styled-component/WithdrawV2/Card";
 
 class CardPrev extends Component {
   state = {
