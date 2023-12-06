@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuthContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import BalanceWithRefresh from "../BalanceWithRefresh/index";
 
 import closeImg from "@/assets/t31/images/account/Close.png";
@@ -116,6 +117,7 @@ const NavCardContainer = styled.div`
 const AccountNavigations = () => {
   const { account } = useAccountStore();
   const { handleLogout } = useAuthContext();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const history = useHistory();
   const accountLevel = account.info.member_level_id;
@@ -239,6 +241,7 @@ const AccountNavigations = () => {
           alt="close"
           src={closeImg}
           onClick={() => {
+            handleChangeGameType(GameTypeEnum.NONE);
             history.push("/");
           }}
         ></img>

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { UiService, useGeneralStore } from "@tgs-web-nx/core";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { media } from "@/theme/breakpoints";
 
 const MaintenanceContainer = styled.div`
@@ -91,6 +93,7 @@ const MaintenancePage = () => {
   const {
     general: { livechat, brandsSupport, isMaintenance },
   } = useGeneralStore();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const [beginTime, setBeginTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -116,6 +119,7 @@ const MaintenancePage = () => {
     // NOTE: while GeneralService.GetSiteToken encounter error,
     // then general.isMaintenance will set to false
     if (!isMaintenance && !isGameMaintenance) {
+      handleChangeGameType(GameTypeEnum.NONE);
       history.push("/");
       return;
     }

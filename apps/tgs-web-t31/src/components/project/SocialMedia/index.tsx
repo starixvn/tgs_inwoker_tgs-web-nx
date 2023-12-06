@@ -1,5 +1,7 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { socialMediaIconList } from "@/constants/socialMedia";
 
 const SocialMediaContainer = styled.div`
@@ -21,7 +23,10 @@ const SocialMediaIcon = styled.div<{ $imageUrl: string }>`
 
 const SocialMedia = () => {
   const history = useHistory();
+  const { handleChangeGameType } = useHomeGameContext();
+
   const navigateToHomePage = () => {
+    handleChangeGameType(GameTypeEnum.NONE);
     history.push("/");
   };
 

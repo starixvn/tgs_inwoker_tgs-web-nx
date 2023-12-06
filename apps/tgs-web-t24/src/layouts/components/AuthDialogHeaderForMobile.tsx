@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { theme } from "@/theme";
 import AuthTabs from "@/layouts/components/AuthTabs";
 
@@ -24,6 +26,7 @@ const AuthDialogHeaderForMobile = () => {
   const history = useHistory();
   const location = useLocation();
   const pathname = location.pathname;
+  const { handleChangeGameType } = useHomeGameContext();
 
   const handleCloseDialog = useCallback(() => {
     const profileRegex = /\/profile\//;
@@ -35,6 +38,7 @@ const AuthDialogHeaderForMobile = () => {
       return history.push("/account");
     }
 
+    handleChangeGameType(GameTypeEnum.NONE);
     history.push("/");
   }, [pathname]);
 
