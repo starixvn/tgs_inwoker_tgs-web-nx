@@ -1,10 +1,10 @@
 import React from "react";
 import { ClassNameMap, CombinedClassKey, SnackbarProvider } from "notistack";
+import styled from "styled-components";
+import { makeStyles } from "@mui/styles";
 import SuccessPNG from "@/assets/t18/images/success.png";
 import DangerPNG from "@/assets/t18/images/warning.png";
 import InfoPNG from "@/assets/t18/images/info.png";
-import styled from "styled-components";
-import { makeStyles } from "@mui/styles";
 
 const Dismiss = styled.a`
   margin-right: 12px;
@@ -19,7 +19,7 @@ const Icon = styled.img`
   margin-right: 12px;
 `;
 type Props = {
-  children: React.ReactElement;
+  children: React.ReactNode;
 };
 
 const notistackRef = React.createRef<any>();

@@ -1,22 +1,20 @@
-import DefaultLayout from "@/layouts/DefaultLayout";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { HEADER_HEIGHT } from "@/theme/constants";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { ReactElement, useCallback } from "react";
-import { useLocation } from "react-router";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
+import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
+import { HEADER_HEIGHT } from "@/theme/constants";
+import DefaultLayout from "@/layouts/DefaultLayout";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
   height: 100vh;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 const ContentWrapper = styled.div`
   // min-height: calc(100vh - ${HEADER_HEIGHT}); // 80px:Header, 82px: BottomAppBar
-  margin: 80px 0 0;
+  margin: ${HEADER_HEIGHT} 0 0;
   position: relative;
   z-index: 1;
 `;
@@ -31,26 +29,12 @@ const CloseIconContainer = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const AuthDialogLayout = ({ children }: Props) => {
-  const history = useHistory();
-  const location = useLocation();
+  const { handleCloseDialog } = useAuthDialogLayout();
+
   const { isDesktopSize } = useRwd();
-
-  const pathname = location.pathname;
-  const handleCloseDialog = useCallback(() => {
-    const profileRegex = /\/profile\//;
-    if (profileRegex.test(pathname)) {
-      return history.push("/profile");
-    }
-
-    if (pathname === "/profile") {
-      return history.push("/account");
-    }
-
-    history.push("/");
-  }, [pathname]);
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;
@@ -63,6 +47,8 @@ const AuthDialogLayout = ({ children }: Props) => {
           style={{
             color: "white",
             transform: "scale(1.6)",
+            width: "20px",
+            height: "20px",
           }}
         />
       </CloseIconContainer>

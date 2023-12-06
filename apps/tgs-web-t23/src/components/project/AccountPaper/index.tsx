@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 import { media } from "@/theme/breakpoints";
-import { useRwd } from "@/core/hooks/tools/useRwd";
 
 const AccountPaperContainer = styled.div`
   padding: 20px 0;
@@ -17,7 +17,7 @@ const AccountPaperContainer = styled.div`
 type Props = {
   pageName: string;
   iconUrl: string;
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactNode | React.ReactNode[];
 };
 const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
   const { isDesktopSize } = useRwd();

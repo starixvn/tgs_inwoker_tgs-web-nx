@@ -1,8 +1,7 @@
 import React from "react";
-import authImage from "@/assets/t23/images/auth/login-header-img 1.png";
 import styled from "styled-components";
-import { useGeneralStore } from "@/core/stores/useGeneralStore";
-import { usePageName } from "@/core/feature/usePageName";
+import { usePageName } from "@tgs-web-nx/core/features";
+import authImage from "@/assets/t23/images/auth/login-header-img 1.png";
 
 const AuthDialogImageContainer = styled.div`
   position: relative;
@@ -12,7 +11,7 @@ const AuthDialogImageContainer = styled.div`
   background: #6401d5;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 33px 60px 0 27px;
 
   & > .bg {
@@ -23,14 +22,18 @@ const AuthDialogImageContainer = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  white-space: nowrap;
+  line-height: 2.899rem;
   overflow: visible;
+  position: absolute;
+  max-width: 300px;
+  top: 50%;
+  left: 27px;
+  transform: translateY(-50%);
 `;
 
-type Props = {};
-const AuthDialogImage = (props: Props) => {
+const AuthDialogImage = () => {
   const { pageName } = usePageName();
 
   return (

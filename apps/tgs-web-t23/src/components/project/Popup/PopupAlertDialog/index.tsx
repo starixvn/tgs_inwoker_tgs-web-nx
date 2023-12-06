@@ -1,10 +1,10 @@
 import React from "react";
-import i18n from "@/utils/i18n";
-import { useNotifications } from "@/core/feature/useNotifications";
-import DialogPopup from "@/components/UI/Dialog/DialogPopup";
-import { ButtonConfirm, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
-import { Button } from "@/components/UI/Button";
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import DialogPopup from "@/components/UI/Dialog/DialogPopup";
+import { DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
+import { Button } from "@/components/UI/Button";
 
 const AlertContainer = styled.div`
   padding: 20px;

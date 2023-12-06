@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { TextField } from "@/components/UI/TextField";
+import { FormikFormInput } from "@/components/project/FormikForm";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 
 type Props = {
@@ -19,9 +19,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
     setIsShowPassword((prevState) => !prevState);
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
@@ -37,14 +35,8 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
         value={formik.values[name]}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        helperText={
-          showErrorOn === "input" && formik.touched[name] && formik.errors[name]
-        }
-        error={
-          showErrorOn === "input" &&
-          !!formik.touched[name] &&
-          !!formik.errors[name]
-        }
+        helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
+        error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
         InputProps={{
           autoComplete: "new-password",
           endAdornment: (

@@ -1,0 +1,16 @@
+{
+  "name": "core-hooks",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/core/hooks/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/core/hooks/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  }
+}

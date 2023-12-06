@@ -1,4 +1,3 @@
-import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { Dialog as MuiDialog, DialogProps } from "@mui/material";
 import React, {
   CSSProperties,
@@ -7,8 +6,9 @@ import React, {
   RefAttributes,
 } from "react";
 import styled from "styled-components";
-import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import { TransitionProps } from "@mui/material/transitions";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
+import { UpTransition } from "@/components/UI/Dialog/Transition";
 
 const DialogContainer = styled(MuiDialog)`
   z-index: 999 !important; // can't overlap footer(which z-index is 1000)
@@ -25,18 +25,18 @@ const DialogContainer = styled(MuiDialog)`
 const ChildContainer = styled.div`
   width: 100%;
   height: auto;
-  overflow: scroll;
+  overflow: auto;
   padding: 21px 22px;
 `;
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  children: React.ReactElement;
+  children: React.ReactNode;
   dialogHeaderTitle?: string;
   style?: CSSProperties;
   transitionComponent?: ForwardRefExoticComponent<
-    PropsWithoutRef<TransitionProps & { children?: React.ReactElement }> & RefAttributes<unknown>
+    PropsWithoutRef<TransitionProps & { children?: React.ReactNode }> & RefAttributes<unknown>
   >;
 } & DialogProps;
 

@@ -1,0 +1,56 @@
+import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
+import { useHeader } from "@tgs-web-nx/core/features";
+import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+`;
+
+type Props = {
+  buttonWidth?: string;
+};
+const TransferButtonGroup = ({ buttonWidth }: Props) => {
+  const history = useHistory();
+  const { handleToggleMenu } = useHeader();
+
+  const handleGotoWithdrawal = useCallback(() => {
+    handleToggleMenu(false);
+    history.push("/withdrawal");
+  }, []);
+
+  const handleGotoDeposit = useCallback(() => {
+    handleToggleMenu(false);
+    history.push("/deposit");
+  }, []);
+  return (
+    <ButtonContainer>
+      <HeaderButton
+        onClick={handleGotoWithdrawal}
+        style={{
+          background: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
+          width: buttonWidth ?? "92px",
+        }}
+      >
+        <>{i18n.t("common.withdrawal")}</>
+      </HeaderButton>
+
+      <HeaderButton
+        color={"primary"}
+        onClick={handleGotoDeposit}
+        style={{
+          background: "linear-gradient(90deg, #FACE27 53.32%, #F3AF16 53.95%)",
+          width: buttonWidth ?? "92px",
+        }}
+      >
+        <>{i18n.t("common.deposit")}</>
+      </HeaderButton>
+    </ButtonContainer>
+  );
+};
+
+export default TransferButtonGroup;

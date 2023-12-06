@@ -551,3 +551,7 @@ div[class*=" SnackbarItem-variantInfo-"]:before {
 .fix-text-cut.MuiSelect-outlined.MuiSelect-outlined {
     height: 25px;
 }
+
+.custom-slider-class {
+    overflow: visible;
+}

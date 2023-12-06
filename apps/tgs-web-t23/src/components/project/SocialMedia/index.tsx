@@ -1,6 +1,6 @@
-import { socialMediaIconList } from "@/core/constants/socialMedia";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { socialMediaIconList } from "@/constants/socialMedia";
 
 const SocialMediaContainer = styled.div`
   width: 100%;

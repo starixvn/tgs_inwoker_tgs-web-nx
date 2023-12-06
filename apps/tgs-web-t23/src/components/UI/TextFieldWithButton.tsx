@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { TextFieldProps } from "@mui/material";
 import { TextField } from "@/components/UI/TextField";
 import { Button } from "@/components/UI/Button";
-import { InputAdornment, TextFieldProps } from "@mui/material";
 
 const CustomText = styled.div`
   width: 100%;
@@ -33,7 +33,8 @@ const TextFieldWithButton = (
     onClick: () => void;
     maxLength?: number;
     buttonLabel?: string;
-  }
+    buttonDisabled?: boolean;
+  },
 ) => {
   return (
     <CustomText>
@@ -52,7 +53,9 @@ const TextFieldWithButton = (
       />
 
       <ButtonContainer>
-        <Button onClick={props.onClick}>{props.buttonLabel}</Button>
+        <Button onClick={props.onClick} disabled={!!props.buttonDisabled}>
+          {props.buttonLabel}
+        </Button>
       </ButtonContainer>
     </CustomText>
   );

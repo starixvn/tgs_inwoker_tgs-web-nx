@@ -1,0 +1,157 @@
+variables:
+  dev_tgs_web_t29: lobby-t29
+  staging_tgs_web_t29: lobby-t29
+  prod_tgs_web_t29: lobby-t29
+  config: "kubeconfig"
+  token: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiR1BJIiwic3ViIjoiNGU4NjcxOWYtMjQzZi00NmY2LWIwMTAtNWM3NThiNzI4NWFmIiwibmJmIjoxNjM3NjM0NTYzLCJleHAiOjE2Mzc2MzgxNjMsImlhdCI6MTYzNzYzNDU2MywiaXNzIjoidGdzIn0.n-VgLks4WpPxFp2-2Au-C3h0jzGiprJiMUmdwmhV5rWYqSbIr01Gi7_KJOPfkZeVR7h-muyT4wTGkd-YQJ1tLERfX4cPma2PNigwOKx_z38j3KayTKbNVk9g1o-VBiEYwOTLZf0i2wFdIsE0_k0ul-Kg2t9As9qRZ6apgBc-ANjABUpvm1ix6sLhgVEk-yl3gKwhqsC81LDaPn9VeAquZgbL193vCW4r7TJTZphP8PxCIMSY-5pj8YS7xQGX9wQiaAImJNKiEs_h2ar03oCV1WPb6767R0PEjK4KJEz5g6cKd2EGftpPCFdiYow-2ww_c8qRl1IuZ3oV6Tj9qexv-g
+stages:
+  - docker-build
+  - deploy-domain
+  - deploy
+
+.docker-build-template: &docker-build-template
+  stage: docker-build
+  before_script:
+    - docker image prune -a -f
+    - source get_tgs-env.sh
+    - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+    - echo "tgs_env=$tgs_env"
+  script:
+    - |
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      yarn add -D @nx/react
+
+      if [[ $app != "" ]]; then 
+          yarn docker-build:single $app
+      else 
+          yarn docker-build:${tgs_env}
+      fi
+      
+      docker image ls
+      
+      image_count=$(docker image ls | wc  -l)
+
+      if [[ $image_count != "1" ]]; then
+          docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
+          image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
+
+          for image in $image_list; do
+              echo "image=$image"
+              docker push $image
+          done
+      fi
+  artifacts:
+    paths:
+      - image.txt
+
+.deploy-domain-template: &deploy-domain-template
+  stage: deploy-domain
+  before_script:
+    - source get_tgs-env.sh
+    - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+    - echo "tgs_env=$tgs_env"
+    - export KUBECONFIG=$kubeconfig_${tgs_env}
+    - export KUBECONFIG=${!KUBECONFIG}
+  script:
+    - |
+      echo "domain=$domain"
+      echo "brand=$brand"
+
+      if [[ $domain != "" && $brand != "" ]]; then 
+        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
+        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+        echo "image=$image"
+        echo "tag=$tag"
+        envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
+        helm template $brand deployment -f values.yaml -n ${tgs_env}
+        helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
+      else 
+        echo "No Deployment Brand and Domain"
+      fi
+    
+.deploy-template: &deploy-template
+  stage: deploy
+  before_script:
+    - source get_tgs-env.sh
+    - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+    - echo "tgs_env=$tgs_env"
+    - echo "KUBECONFIG1=$kubeconfig_dev"
+    - export KUBECONFIG_TEMP="${config}_${tgs_env}"
+    - export KUBECONFIG=${!KUBECONFIG_TEMP}
+    - echo "KUBECONFIG=$KUBECONFIG"
+  script:
+    - | 
+      for image in $(cat image.txt); do
+          #lobbies="${tgs_env}_${app//-/_}"
+          #echo "lobbies=${!lobbies}"    
+          #IFS=', ' read -ra array <<< "${!lobbies}"
+
+          #for lobby in "${array[@]}"; do
+          #    kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          #done
+          
+          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          lobby="lobby-$lobby"
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
+          if [[ $count != "0" ]]; then
+              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          fi    
+      done;   
+
+docker-build-dev:
+  <<: *docker-build-template
+  only: 
+    - develop
+
+docker-build-staging:
+  <<: *docker-build-template
+  only: 
+    - release/current
+
+docker-build-prod:
+  <<: *docker-build-template
+  only: 
+    - master
+
+deploy-domain-dev:
+  <<: *deploy-domain-template
+  only: 
+    - develop
+
+deploy-domain-staging:
+  <<: *deploy-domain-template
+  only: 
+    - release/current
+
+deploy-domain-prod:
+  <<: *deploy-domain-template
+  only: 
+    - master
+    
+deploy-dev:
+  <<: *deploy-template
+  needs:
+    - job: docker-build-dev
+      artifacts: true
+  only: 
+    - develop
+
+deploy-staging:
+  <<: *deploy-template
+  needs:
+    - job: docker-build-staging
+      artifacts: true
+  only: 
+    - release/current
+
+deploy-prod:
+  <<: *deploy-template
+  needs:
+    - job: docker-build-prod
+      artifacts: true
+  only: 
+    - master
+  when: manual  

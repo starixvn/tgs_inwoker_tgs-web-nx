@@ -1,14 +1,19 @@
-import BottomAppBar from "@/components/layouts/BottomAppBar";
-import Footer from "@/components/layouts/Footer";
-import Header from "@/components/layouts/Header";
-import MenuDrawer from "@/components/layouts/Header/components/MenuDrawer";
-import { useHeader } from "@/core/feature/useHeader";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, DRAWER_SHRINK_WIDTH, DRAWER_WIDTH, HEADER_HEIGHT } from "@/theme/constants";
-import { styled as muiStyled } from "@mui/material";
-import { ReactElement } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useHeader } from "@tgs-web-nx/core/features";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
+import Footer from "@/layouts/components/Footer";
+import Header from "@/layouts/components/Header";
+import MenuDrawer from "@/layouts/components/MenuDrawer";
+import { media } from "@/theme/breakpoints";
+import {
+  BOTTOM_APP_BAR_HEIGHT,
+  DESKTOP_DRAWER_WIDTH,
+  DRAWER_SHRINK_WIDTH,
+  HEADER_HEIGHT,
+  TABLET_DRAWER_WIDTH,
+} from "@/theme/constants";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -32,27 +37,22 @@ type ContentWrapperProps = {
   $isDesktop: boolean;
 };
 
-const ContentWrapper = muiStyled("div", {
-  shouldForwardProp: (prop) => prop !== "$isOpen" && prop !== "$isDesktop",
-})<ContentWrapperProps>(({ theme, $isOpen, $isDesktop }) => {
-  return {
-    position: "relative",
-    flexGrow: 1,
-    transition: theme.transitions.create("all", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: $isDesktop ? DRAWER_SHRINK_WIDTH : 0,
+const ContentWrapper = styled.div<ContentWrapperProps>`
+  position: relative;
+  flex-grow: 1;
+  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
+  transition: all ease-in-out 0.2s;
 
-    ...($isOpen && {
-      transition: theme.transitions.create("all", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: DRAWER_WIDTH,
-    }),
-  };
-});
+  ${media.md} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
+      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+  }
+
+  ${media.lg} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
+      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+  }
+`;
 
 const ChildrenWrapper = styled.div`
   padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
@@ -63,7 +63,7 @@ const ChildrenWrapper = styled.div`
 `;
 
 type Props = {
-  children: ReactElement;
+  children: React.ReactNode;
 };
 const DefaultLayout = ({ children }: Props) => {
   const { isDesktopSize, isMobileSize } = useRwd();

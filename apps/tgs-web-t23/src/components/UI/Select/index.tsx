@@ -2,7 +2,7 @@ import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/mate
 import React from "react";
 
 export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
-  color: "#828282",
+  color: theme.palette.white,
   fontSize: "0.937rem",
   fontWeight: 400,
   border: "none",
@@ -13,7 +13,7 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     background: "none",
   },
   select: {
-    color: "#828282",
+    color: theme.palette.white,
     padding: "14px",
     "&:focus": {
       background: "none",
@@ -26,7 +26,7 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
   "& .MuiSvgIcon-root": {
-    color: "#828282",
+    color: theme.palette.white,
   },
 
   "& .MuiOutlinedInput-notchedOutline": {

@@ -1,7 +1,7 @@
-import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { Dialog as MuiDialog } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
+import { UpTransition } from "@/components/UI/Dialog/Transition";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 
 const StyledDialog = styled(MuiDialog)`
@@ -15,23 +15,21 @@ const StyledDialog = styled(MuiDialog)`
 const ChildContainer = styled.div`
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  children: React.ReactElement;
+  children: React.ReactNode;
 };
 
 const DialogPopup = ({ open, onClose, children }: Props) => {
   return (
-    <>
-      <StyledDialog open={open} TransitionComponent={UpTransition}>
-        <ChildContainer>{children}</ChildContainer>
-        <CloseIcon onClick={onClose} />
-      </StyledDialog>
-    </>
+    <StyledDialog open={open} onClose={onClose} TransitionComponent={UpTransition}>
+      <ChildContainer>{children}</ChildContainer>
+      <CloseIcon onClick={onClose} />
+    </StyledDialog>
   );
 };
 

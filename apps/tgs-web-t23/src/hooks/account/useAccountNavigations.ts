@@ -1,4 +1,7 @@
 import { useMemo } from "react";
+import { i18n } from "@tgs-web-nx/utils";
+import { useAuthContext } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
 import profileImg from "@/assets/t23/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t23/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t23/images/account/navItem/icon-withdraw.svg";
@@ -20,27 +23,10 @@ import downloadSecondaryImg from "@/assets/t23/images/account/navItem/mobile/ico
 import contactSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-contact.svg";
 import vipSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-vip.svg";
 import logoutSecondaryImg from "@/assets/t23/images/account/navItem/mobile/icon-logout.svg";
-import i18n from "@/utils/i18n";
-import { useRwd } from "@/core/hooks/tools/useRwd";
-import { useAuth } from "@/core/feature/useAuth";
-
-export enum NavCardKey {
-  PROFILE,
-  DEPOSIT,
-  WITHDRAW,
-  TRANSFER,
-  REPORT,
-  INBOX,
-  AFFILIATE,
-  CONTACT_US,
-  APP_DOWNLOAD,
-  VIP,
-  LOGOUT,
-}
 
 export type NavItem = {
   key: NavCardKey;
-  label: string;
+  label: string | any;
   iconUrl: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
@@ -56,7 +42,7 @@ export type NavItem = {
 );
 
 export function useAccountNavigations() {
-  const { handleLogout } = useAuth();
+  const { handleLogout } = useAuthContext();
 
   const navItemList: NavItem[] = useMemo(() => {
     return [
@@ -98,7 +84,7 @@ export function useAccountNavigations() {
         label: "VIP",
         iconUrl: vipSecondaryImg,
         iconSecondaryUrl: vipSecondaryImg,
-        routePath: "/transfer",
+        routePath: "/vip",
       },
       {
         key: NavCardKey.REPORT,
@@ -109,12 +95,12 @@ export function useAccountNavigations() {
         routePath: "/report",
       },
       {
-        key: NavCardKey.INBOX,
+        key: NavCardKey.MESSAGE_CENTER,
         navType: "route",
         label: i18n.t("wap.main.account.inbox"),
         iconUrl: inboxImg,
         iconSecondaryUrl: inboxSecondaryImg,
-        routePath: "/inbox",
+        routePath: "/message-center",
       },
       {
         key: NavCardKey.AFFILIATE,

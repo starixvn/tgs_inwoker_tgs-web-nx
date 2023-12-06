@@ -1,11 +1,8 @@
 import React from "react";
-import { Button } from "@/components/UI/Button";
 import * as Yup from "yup";
 import styled from "styled-components";
-import {
-  FormInputFactory,
-  FormInputTypeEnum,
-} from "@/components/project/FormikForm/FormInputFactory";
+import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
+import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const ErrorMessageContainer = styled.div`
@@ -30,7 +27,7 @@ type Props = {
   isLoading: boolean;
   error: Error | null;
   buttonText: string;
-  children: React.ReactElement;
+  children?: React.ReactNode;
   showErrorOn?: "bottom" | "input";
 };
 
@@ -58,6 +55,8 @@ const FormikForm = ({
     return errorMsg;
   };
 
+  const bottomFormErrorMsg = showErrorOn === "bottom" && getBottomErrorMessage();
+
   return (
     <form onSubmit={formik.handleSubmit}>
       {formInputList.map((formInput) => {
@@ -68,7 +67,7 @@ const FormikForm = ({
       })}
       {children}
 
-      {error?.message && (
+      {(error?.message || bottomFormErrorMsg) && (
         <ErrorMessageContainer>
           {showErrorOn === "bottom" && getBottomErrorMessage()}
           {error?.message || null}

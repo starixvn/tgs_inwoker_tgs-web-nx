@@ -1,11 +1,29 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
+  "ignorePatterns": ["**/*", "*/api-services/**/*"],
   "plugins": ["@nx"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
+        "import/order": [
+          "error",
+          {
+            "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+            "pathGroups": [
+              {
+                "pattern": "@tgs-web-nx/**",
+                "group": "external",
+                "position": "after"
+              },
+              {
+                "pattern": "src/**",
+                "group": "internal",
+                "position": "after"
+              }
+            ]
+          }
+        ],
         "@nx/enforce-module-boundaries": [
           "error",
           {
@@ -24,7 +42,10 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": ["off"],
+        "@typescript-eslint/no-empty-function": ["off"]
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
