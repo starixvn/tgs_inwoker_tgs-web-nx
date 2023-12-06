@@ -93,8 +93,12 @@ stages:
           echo "image=$image"
           lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
           lobby="lobby-$lobby"
-          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
           
+          echo "lobby=$lobby"
+           
+          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
+          echo "count=$count"
+           
           if [[ $count != "0" ]]; then
               kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
           fi
