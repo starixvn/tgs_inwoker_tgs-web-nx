@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GameService } from "@tgs-web-nx/core";
 
@@ -6,6 +6,7 @@ export function useJoinGamePage() {
   const { gameId, gpCode } = useParams<{ gameId: string; gpCode: string }>();
   const [isLoading, setIsLoading] = useState(true);
   const [isMaintenance, setIsMaintenance] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     const joinGame = async () => {
@@ -26,8 +27,11 @@ export function useJoinGamePage() {
     setIsLoading(false);
   };
 
+  if (isMaintenance) {
+    history.push("/maintenance?isGameMaintenance=true");
+  }
+
   return {
     isLoading,
-    isMaintenance,
   };
 }
