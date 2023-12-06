@@ -140,13 +140,13 @@ const WageringPage = () => {
       case "Sportsbook":
         return isActive ? SportsbookIconActive : SportsbookIcon;
       case "Slot":
-        return isActive ? SportsbookIconActive : SlotIcon;
+        return isActive ? SlotIconActive : SlotIcon;
       case "CardGame":
-        return isActive ? SportsbookIconActive : CardGameIcon;
+        return isActive ? CardGameIconActive : CardGameIcon;
       case "Lottery":
-        return isActive ? SportsbookIconActive : LotteryIcon;
+        return isActive ? LotteryIconActive : LotteryIcon;
       case "VirtualSports":
-        return isActive ? SportsbookIconActive : VirtualSportsIcon;
+        return isActive ? VirtualSportsIconActive : VirtualSportsIcon;
     }
   };
   useEffect(() => {
