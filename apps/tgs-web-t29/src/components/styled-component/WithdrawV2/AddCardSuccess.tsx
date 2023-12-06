@@ -5,16 +5,15 @@ export const Container = styled.div`
   width: 100%;
 `;
 export const SubTitle = styled.div`
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
   color: ${({ theme }) => theme.blue50};
-  margin-top: 50px;
   text-align: center;
 `;
 export const SubTitleDesc = styled.div`
-  font-size: 14px;
-  margin-top: 10px;
-  margin-bottom: 40px;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
   color: ${({ theme }) => theme.text};
   text-align: center;
 `;
@@ -22,7 +21,7 @@ export const ButtonContainer = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   gap: 16px;
 
   ${media.sm} {
