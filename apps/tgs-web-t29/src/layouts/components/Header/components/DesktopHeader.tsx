@@ -52,7 +52,7 @@ const ContentGroup = styled.div`
 `;
 
 const BlueHeaderRowContainer = styled.div`
-  background: url(${bg});
+  background: #3158ff;
   background-size: cover;
   height: 40px;
 `;
