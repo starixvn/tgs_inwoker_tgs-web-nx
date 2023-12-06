@@ -83,7 +83,6 @@ stages:
     - source get_tgs-env.sh
     - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
     - echo "tgs_env=$tgs_env"
-    - echo "KUBECONFIG1=$kubeconfig_dev"
     - export KUBECONFIG_TEMP="${config}_${tgs_env}"
     - export KUBECONFIG=${!KUBECONFIG_TEMP}
     - echo "KUBECONFIG=$KUBECONFIG"
@@ -98,12 +97,12 @@ stages:
           #    kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
           #done
           
-          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
-          lobby="lobby-$lobby"
-          count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
-          if [[ $count != "0" ]]; then
-              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
-          fi    
+          #lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+          #lobby="lobby-$lobby"
+          #count=$(kubectl get deploy -n ${tgs_env} | grep $lobby | wc -l)
+          #if [[ $count != "0" ]]; then
+          kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+          #fi    
       done;   
 
 docker-build-dev:
