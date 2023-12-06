@@ -115,13 +115,17 @@ const MaintenanceBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 50%);
+  background: rgb(0 0 0 / 70%);
   padding: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   z-index: 3;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 `;
 
 const MaintenanceIcon = styled.img`
@@ -157,6 +161,12 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const isFavorite = favoriteList.includes(gameItem.id);
   const isLogin = !!account.token;
 
+  const launchGameHandler = () => {
+    if (!isActive) {
+      return;
+    }
+    launchGame();
+  }
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");
@@ -186,7 +196,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <GameCardBg onClick={launchGame}>
+    <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
@@ -207,7 +217,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       )}
 
       {isDesktopSize && (
-        <CardHoverBg onClick={launchGame}>
+        <CardHoverBg onClick={launchGameHandler}>
           {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
           <PlayIcon src={playIcon} alt={"play"} />
         </CardHoverBg>

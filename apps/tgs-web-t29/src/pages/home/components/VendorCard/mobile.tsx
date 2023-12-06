@@ -73,10 +73,14 @@ const MaintenanceBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 50%);
+  background: rgb(0 0 0 / 70%);
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 `;
 
 const MaintenanceIcon = styled.img`
@@ -92,8 +96,16 @@ const MobileVendorCard = ({
   launchGame,
   status,
 }: Props) => {
+
+  const launchGameHandler = () => {
+    if (status === providerStatus.Maintenance) {
+      return;
+    }
+    launchGame();
+  }
+
   return (
-    <VendorCardBg $bgUrl={bgUrl} onClick={launchGame}>
+    <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
       <VenderNameInfo>
         <VenderName>{venderName}</VenderName>
         <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
