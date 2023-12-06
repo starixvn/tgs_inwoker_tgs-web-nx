@@ -28,6 +28,8 @@ import LotteryIconActive from "@/assets/t29/images/wagering/LotteryActive.svg";
 
 import VirtualSportsIcon from "@/assets/t29/images/wagering/VirtualSports.svg";
 import VirtualSportsIconActive from "@/assets/t29/images/wagering/VirtualSportsActive.svg";
+import { media } from "@/theme/breakpoints";
+
 const WageringContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -78,11 +80,15 @@ const GameCard = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 230px;
+  width: 100%;
   height: 62px;
   padding: 12px 20px;
   gap: 10px;
   background-color: ${({ theme }) => theme.blue20};
+
+  ${media.sm} {
+    width: 230px;
+  }
 
   &:hover {
     color: ${({ theme }) => theme.white};
@@ -112,8 +118,6 @@ const CardAmount = styled.div`
 const WageringPage = () => {
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
     useWageringPage();
-  //   const history = useHistory();
-  //   const { alert } = useNotifications();
   const { isDesktopSize } = useRwd();
 
   const gett18Translation = (type: string) => {
