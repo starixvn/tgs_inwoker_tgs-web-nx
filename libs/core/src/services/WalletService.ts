@@ -2,6 +2,7 @@ import {
   GetAutoTransferStatusResDto,
   GetBankCardListResDto,
   UpdateAutoTransferStatusResDto,
+  GetPlayerBucketDto
 } from "@tgs-web-nx/types";
 import { WalletService as PrevWalletService } from "../api-services/services/WalletService";
 import { ApiService } from "../api-services/services/ApiService";
@@ -11,6 +12,7 @@ export const WalletService = {
   GetAutoTransferStatus,
   UpdateAutoTransferStatus,
   GetBankCardList,
+  GetPlayerBucket
 };
 
 function GetAutoTransferStatus() {
@@ -28,4 +30,8 @@ function UpdateAutoTransferStatus() {
 
 function GetBankCardList() {
   return ApiService.get("bankinfo") as unknown as Promise<GetBankCardListResDto>;
+}
+
+function GetPlayerBucket() {
+  return ApiService.get("player/bucket/type/amount") as unknown as Promise<GetPlayerBucketDto>;
 }
