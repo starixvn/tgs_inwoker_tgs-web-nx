@@ -3,7 +3,6 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { isMobile } from "react-device-detect";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
@@ -77,10 +76,10 @@ const DesktopWrapper = styled.div`
 `;
 
 const Text = styled.div`
-width: 100%;
+  width: 100%;
   text-align: center;
   padding: 40px 0;
-  color:${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.gray50};
   font-size: 18px;
   font-weight: 700;
 `;
@@ -89,10 +88,7 @@ const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
-  const {
-    searchString,
-    handleChangeSearch,
-  } = useHomeGameContext();
+  const { searchString, handleChangeSearch } = useHomeGameContext();
 
   return (
     <Wrapper>
@@ -118,9 +114,11 @@ const NonLobbyCategory = () => {
                     key={gameItem.id}
                     gameItem={gameItem}
                     isActive={gameItem.isactive}
-                    imageUrl={`${config.sourceUrl
-                      }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                      }.jpg`}
+                    imageUrl={`${
+                      config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                      gameItem.code
+                    }.jpg`}
                   />
                 ))}
               {!hasMappingData && !isLoading && <div>No data</div>}
@@ -139,9 +137,11 @@ const NonLobbyCategory = () => {
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                    }.jpg`}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
               ))}
             {!hasMappingData && !isLoading && <Text>No data</Text>}

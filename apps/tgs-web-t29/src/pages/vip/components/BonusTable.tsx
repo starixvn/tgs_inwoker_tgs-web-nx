@@ -79,7 +79,7 @@ const HeaderItem = styled.div`
   color: ${(props) => props.theme.text};
   word-wrap: break-word;
   white-space: pre-wrap;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
   margin: 0px 8px;

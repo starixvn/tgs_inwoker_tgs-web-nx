@@ -3,6 +3,7 @@ import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
 import SideNavItem from "./SideNavItem";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const TabContainer = styled.div`
   width: 100%;
