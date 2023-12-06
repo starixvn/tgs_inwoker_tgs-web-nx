@@ -12,6 +12,7 @@ import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";
 import iconPlay from "@/assets/t29/images/wagering/icon-play.svg";
+import iconPlayActive from "@/assets/t29/images/wagering/icon-play_active.svg";
 
 const WageringContainer = styled.div`
   display: flex;
@@ -74,14 +75,49 @@ const GameCard = styled.div`
     background-color: ${({ theme }) => theme.blue40};
   }
 `;
+const CardContent = styled.div`
+  display: flex;
+  gap: 40px;
+`;
+const CaradText = styled.div`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
+
+const CardAmount = styled.div`
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
 
 const WageringPage = () => {
-  const { playerBuckets, fetchpPlayerBucket } = useWageringPage();
-  console.log(playerBuckets)
+  const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
+    useWageringPage();
   //   const history = useHistory();
   //   const { alert } = useNotifications();
   const { isDesktopSize } = useRwd();
 
+  const gett18Translation = (type: string) => {
+    switch (type) {
+      case "LiveDealer":
+        return i18n.t("common.live");
+      case "Sportsbook":
+        return i18n.t("common.sports");
+      case "Slot":
+        return i18n.t("common.slot");
+      case "CardGame":
+        return i18n.t("common.chess");
+      case "Lottery":
+        return i18n.t("common.lottery");
+      case "VirtualSports":
+        return i18n.t("common.virtualsports");
+    }
+  };
   useEffect(() => {
     fetchpPlayerBucket();
   }, [fetchpPlayerBucket]);
@@ -89,32 +125,47 @@ const WageringPage = () => {
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
       {/* todo: add t18 Wagering Requirement  */}
-      <AccountPaper pageName={i18n.t("common.Wagering Requirement")} iconUrl={iconWagering}>
+      <AccountPaper pageName={"Wagering Requirement"} iconUrl={iconWagering}>
         <WageringContainer>
           <Requirement>
             <img src={iconCard} alt="" />
-            <TitleItem> {i18n.t("common.Wagering Requirement")}</TitleItem>
-            <TitleAmountText>123456.78</TitleAmountText>
+            <TitleItem> {"Wagering Requirement"}</TitleItem>
+            <TitleAmountText>{wageringRequirement}</TitleAmountText>
           </Requirement>
           <GameWageringContainer>
-            {/* {playerBuckets.map((bucket) => {
-              if (bucket.gameType) {
+            {playerBuckets.map((bucket) => {
+              if (bucket.key) {
                 return (
-                  <GameCard key={bucket.gameType}>
+                  <GameCard
+                    key={bucket.key}
+                    onMouseEnter={() => {
+                      setActiveType(bucket.key);
+                    }}
+                    onMouseLeave={() => {
+                      setActiveType("");
+                    }}
+                  >
+                    <CardContent>
+                      <div>
+                        <img
+                          width={25}
+                          height={25}
+                          src={activeType === bucket.key ? bucket.activeIconUrl : bucket.iconUrl}
+                          alt={bucket.key}
+                        />
+                      </div>
+                      <div style={{ flexShrink: 0 }}>
+                        <CaradText>{gett18Translation(bucket.key)}</CaradText>
+                        <CardAmount>{bucket.amount}</CardAmount>
+                      </div>
+                    </CardContent>
                     <div>
-                      <img width={25} height={25} src={bucket.iconUrl} />
-                    </div>
-                    <div>
-                      <div>{bucket.gameType}</div>
-                      <div>{bucket.amount}</div>
-                    </div>
-                    <div>
-                      <img src={iconPlay} alt="play" />
+                      <img src={activeType === bucket.key ? iconPlayActive : iconPlay} alt="play" />
                     </div>
                   </GameCard>
                 );
               }
-            })} */}
+            })}
           </GameWageringContainer>
         </WageringContainer>
       </AccountPaper>
