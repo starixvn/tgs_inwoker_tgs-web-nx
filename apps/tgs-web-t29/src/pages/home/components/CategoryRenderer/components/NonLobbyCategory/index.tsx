@@ -76,6 +76,15 @@ const DesktopWrapper = styled.div`
   align-items: center;
 `;
 
+const Text = styled.div`
+width: 100%;
+  text-align: center;
+  padding: 40px 0;
+  color:${({ theme }) => theme.gray50};
+  font-size: 18px;
+  font-weight: 700;
+`;
+
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
@@ -135,7 +144,7 @@ const NonLobbyCategory = () => {
                     }.jpg`}
                 />
               ))}
-            {!hasMappingData && !isLoading && <div>No data</div>}
+            {!hasMappingData && !isLoading && <Text>No data</Text>}
           </DesktopCategoryContentWrapper>
         </DesktopWrapper>
       )}
