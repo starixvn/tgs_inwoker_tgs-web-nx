@@ -66,7 +66,6 @@ const AddCard = ({
   return (
     <Container>
       {isDesktopSize && <FormTitle title={i18n.t("card.addCard.title")} />}
-
       {!config.features.AddCard_HideCertainField && (
         <ItemContainer>
           <LabelContainer>{i18n.t("common.withdrawalBankType")}</LabelContainer>
@@ -97,7 +96,6 @@ const AddCard = ({
           </FormControl>
         </ItemContainer>
       )}
-
       {!config.features.AddCard_HideChannel && (
         <ItemContainer>
           <LabelContainer>
@@ -140,115 +138,112 @@ const AddCard = ({
           </FormControl>
         </ItemContainer>
       )}
-
-      {(!isDeposit &&
+      {((!isDeposit &&
         withdrawalList.length > 0 &&
         withdrawalList[selectedBankTypeIndex].banktype === "Bank") ||
         (isDeposit &&
           depositList.length > 0 &&
-          depositList[selectedBankTypeIndex].banktype === "Bank" && (
-            <ItemContainer>
-              {!(
-                config.features.AddCard_HideCertainField || config.features.AddCard_Bank_Custom_IDR
-              ) && (
-                <>
-                  {!eWalletCustom &&
-                    !(config.features.HideBankNameIfFilled && disableBankNameInput) && (
-                      <>
-                        <LabelContainer>
-                          {config.features.AddCard_DisplayFPS
-                            ? i18n.t("hk28.card.addCard.BankName")
-                            : i18n.t("card.addCard.BankName")}
-                        </LabelContainer>
-                        {config.features.AddCard_BankDropdown ? (
-                          <FormControl>
-                            <CustomSelect
-                              native
-                              variant="outlined"
-                              displayEmpty
-                              value={bankName}
-                              name="bankName"
-                              onChange={handleBankNameChange}
-                            >
-                              <option value="" selected disabled>
-                                {config.features.AddCard_DisplayFPS
-                                  ? i18n.t("hk28.card.addCard.msgEnterBankName")
-                                  : i18n.t("card.addCard.msgEnterBankName")}
-                              </option>
-                              {bankList.length > 0 &&
-                                bankList.map((item, index) => {
-                                  return (
-                                    <option value={item} key={index}>
-                                      {item}
-                                    </option>
-                                  );
-                                })}
-                            </CustomSelect>
-                          </FormControl>
-                        ) : (
-                          <FormControl>
-                            <TextField
-                              placeholder={
-                                config.features.AddCard_DisplayFPS
-                                  ? i18n.t("hk28.card.addCard.msgEnterBankName")
-                                  : i18n.t("card.addCard.msgEnterBankName")
-                              }
-                              disabled={disableBankNameInput}
-                              value={bankName}
-                              name="bankName"
-                              onChange={handleBankNameChange}
-                            />
-                          </FormControl>
-                        )}
-                      </>
-                    )}
-
-                  {config.features.AddCard_BankBranch && !eWalletCustom && (
-                    <>
-                      <LabelContainer>{i18n.t("card.addCard.branch")}</LabelContainer>
+          depositList[selectedBankTypeIndex].banktype === "Bank")) && (
+        <>
+          {!(
+            config.features.AddCard_HideCertainField || config.features.AddCard_Bank_Custom_IDR
+          ) && (
+            <>
+              {!eWalletCustom &&
+                !(config.features.HideBankNameIfFilled && disableBankNameInput) && (
+                  <ItemContainer>
+                    <LabelContainer>
+                      {config.features.AddCard_DisplayFPS
+                        ? i18n.t("hk28.card.addCard.BankName")
+                        : i18n.t("card.addCard.BankName")}
+                    </LabelContainer>
+                    {config.features.AddCard_BankDropdown ? (
+                      <FormControl>
+                        <CustomSelect
+                          native
+                          variant="outlined"
+                          displayEmpty
+                          value={bankName}
+                          name="bankName"
+                          onChange={handleBankNameChange}
+                        >
+                          <option value="" selected disabled>
+                            {config.features.AddCard_DisplayFPS
+                              ? i18n.t("hk28.card.addCard.msgEnterBankName")
+                              : i18n.t("card.addCard.msgEnterBankName")}
+                          </option>
+                          {bankList.length > 0 &&
+                            bankList.map((item, index) => {
+                              return (
+                                <option value={item} key={index}>
+                                  {item}
+                                </option>
+                              );
+                            })}
+                        </CustomSelect>
+                      </FormControl>
+                    ) : (
                       <FormControl>
                         <TextField
-                          placeholder={i18n.t("card.addCard.branchPlaceHolder")}
-                          maxLength={255}
-                          name="bankBranch"
-                          onChange={handleBankBranchChange}
+                          placeholder={
+                            config.features.AddCard_DisplayFPS
+                              ? i18n.t("hk28.card.addCard.msgEnterBankName")
+                              : i18n.t("card.addCard.msgEnterBankName")
+                          }
+                          disabled={disableBankNameInput}
+                          value={bankName}
+                          name="bankName"
+                          onChange={handleBankNameChange}
                         />
                       </FormControl>
-                    </>
-                  )}
-                </>
+                    )}
+                  </ItemContainer>
+                )}
+              {config.features.AddCard_BankBranch && !eWalletCustom && (
+                <ItemContainer>
+                  <LabelContainer>{i18n.t("card.addCard.branch")}</LabelContainer>
+                  <FormControl>
+                    <TextField
+                      placeholder={i18n.t("card.addCard.branchPlaceHolder")}
+                      maxLength={255}
+                      name="bankBranch"
+                      onChange={handleBankBranchChange}
+                    />
+                  </FormControl>
+                </ItemContainer>
               )}
-
-              <LabelContainer>
-                {eWalletCustomIDR
-                  ? i18n.t("idr1.eWalletAccount")
-                  : eWalletCustom
-                  ? i18n.t("card.addCard.eWalletAccount")
-                  : config.features.AddCard_DisplayFPS
-                  ? i18n.t("hk28.card.addCard.BankAccountName")
-                  : i18n.t("card.addCard.BankAccountName")}
-              </LabelContainer>
-              <FormControl>
-                <TextField
-                  marginTop={10}
-                  placeholder={
-                    eWalletCustomIDR
-                      ? i18n.t("idr1.eWalletAccount")
-                      : eWalletCustom
-                      ? i18n.t("card.addCard.msgEnterEwalletAccount")
-                      : config.features.AddCard_DisplayFPS
-                      ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
-                      : i18n.t("card.addCard.msgEnterBankAccountName")
-                  }
-                  onChange={handleBankAccountNameChange}
-                  name="bankAccountName"
-                  value={bankAccountName}
-                  disabled={disableBankAccountNameInput}
-                />
-              </FormControl>
-            </ItemContainer>
-          ))}
-
+            </>
+          )}
+          <ItemContainer>
+            <LabelContainer>
+              {eWalletCustomIDR
+                ? i18n.t("idr1.eWalletAccount")
+                : eWalletCustom
+                ? i18n.t("card.addCard.eWalletAccount")
+                : config.features.AddCard_DisplayFPS
+                ? i18n.t("hk28.card.addCard.BankAccountName")
+                : i18n.t("card.addCard.BankAccountName")}
+            </LabelContainer>
+            <FormControl>
+              <TextField
+                placeholder={
+                  eWalletCustomIDR
+                    ? i18n.t("idr1.eWalletAccount")
+                    : eWalletCustom
+                    ? i18n.t("card.addCard.msgEnterEwalletAccount")
+                    : config.features.AddCard_DisplayFPS
+                    ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
+                    : i18n.t("card.addCard.msgEnterBankAccountName")
+                }
+                onChange={handleBankAccountNameChange}
+                name="bankAccountName"
+                value={bankAccountName}
+                disabled={disableBankAccountNameInput}
+              />
+            </FormControl>
+          </ItemContainer>
+        </>
+      )}
       {((!isDeposit &&
         withdrawalList.length > 0 &&
         withdrawalList[selectedBankTypeIndex].banktype === "EWallet") ||
@@ -284,7 +279,6 @@ const AddCard = ({
           </FormControl>
         </ItemContainer>
       )}
-
       {(!isDeposit &&
         withdrawalList.length > 0 &&
         (withdrawalList[selectedBankTypeIndex].banktype === "ThirdParty" ||
@@ -314,7 +308,6 @@ const AddCard = ({
               />
             </FormControl>
           </ItemContainer>
-
           <ItemContainer>
             <LabelContainer>
               {eWalletCustomIDR
@@ -384,7 +377,6 @@ const AddCard = ({
               />
             </FormControl>
           </ItemContainer>
-
           {config.currency === "INR" &&
             ((!isDeposit &&
               withdrawalList.length > 0 &&
@@ -405,7 +397,6 @@ const AddCard = ({
             )}
         </>
       )}
-
       <ButtonGroups>
         {showBack && (
           <SubmitButton fullWidth onClick={onhandleBackClick}>
