@@ -100,7 +100,7 @@ stages:
           ## prod
           lobbies="${tgs_env}_${app//-/_}"
           echo "lobbies=${!lobbies}"    
-          IFS=', ' read -ra array <<< "${!lobbies}"
+          IFS=',' read -ra array <<< "${!lobbies}"
 
           for lb in "${array[@]}"; do
               kubectl set image deployment/$lb $lb=${image} --record -n ${tgs_env}
