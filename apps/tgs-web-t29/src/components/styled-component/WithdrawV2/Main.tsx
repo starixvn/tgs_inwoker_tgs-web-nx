@@ -91,6 +91,7 @@ export const LimitPopupContainer = styled.div`
   line-height: 25px;
 `;
 export const Turnover = styled.div`
+  display: flex;
   color: ${({ theme }) => theme.text};
   span {
     margin-left: 5px;
@@ -135,4 +136,27 @@ export const USDTWrapper = styled.div``;
 export const SubHeaderContainer = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const TurnoverTextWrapper = styled.div`
+  display: flex;
+`;
+export const DetailText = styled.div`
+  margin-left: 5px;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  color: ${({ theme }) => theme.gray50};
+  cursor: pointer;
+`;
+
+export const Hint = styled.div`
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  margin: 10px 0;
+  color: ${({ theme }) => theme.gray50};
 `;
