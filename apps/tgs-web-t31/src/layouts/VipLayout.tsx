@@ -2,6 +2,8 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DialogHeader from "@/components/UI/Dialog/VipDialogHeader";
 import DefaultLayout from "@/layouts/DefaultLayout";
@@ -26,8 +28,10 @@ type Props = {
 const VipLayout = ({ children }: Props) => {
   const history = useHistory();
   const { isDesktopSize } = useRwd();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const handleCloseDialog = useCallback(() => {
+    handleChangeGameType(GameTypeEnum.NONE);
     history.push("/");
   }, []);
 

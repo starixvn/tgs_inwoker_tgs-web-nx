@@ -4,10 +4,12 @@ import { i18n } from "@tgs-web-nx/utils";
 import {
   useAuth,
   useAuthDialog,
+  useHomeGameContext,
   useRegisterForm,
   useUpdatePageName,
 } from "@tgs-web-nx/core/features";
 import { useParams } from "react-router";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useRwd } from "../../tools";
 
 export function useRegisterPage() {
@@ -19,9 +21,11 @@ export function useRegisterPage() {
   const { playername } = useParams<{ playername: string }>();
   const { handleToggleRegisterDialog } = useAuthDialog();
   const { handleClickConfirmAdult } = useRegisterForm();
+  const { handleChangeGameType } = useHomeGameContext();
 
   useEffect(() => {
     if (isLogin) {
+      handleChangeGameType(GameTypeEnum.NONE);
       history.push("/");
     }
 

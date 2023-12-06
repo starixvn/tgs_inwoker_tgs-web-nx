@@ -30,7 +30,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 const VendorCardBg = styled.div<{ $bgUrl: string }>`
   position: relative;
   width: calc(50% - 6px);
-  max-width: 161px;
+  //max-width: 161px;
   position: relative;
   aspect-ratio: 161 / 154;
   border-radius: 10px;

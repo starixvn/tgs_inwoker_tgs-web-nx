@@ -75,7 +75,6 @@ const GameCardContent = styled.div`
 
 const GameCardBg = styled.div`
   width: calc(50% - 6px);
-  max-width: 161px;
   position: relative;
   cursor: pointer;
   aspect-ratio: 161 / 161;
@@ -199,11 +198,13 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         )}
       </GameCardContent>
 
-      {isLogin && <Favorite
-        isFavorite={isFavorite}
-        handleToggleFavorite={handleToggleFavorite}
-        gameItemId={gameItem.id}
-      />}
+      {isLogin && (
+        <Favorite
+          isFavorite={isFavorite}
+          handleToggleFavorite={handleToggleFavorite}
+          gameItemId={gameItem.id}
+        />
+      )}
 
       {isDesktopSize && (
         <CardHoverBg onClick={launchGame}>

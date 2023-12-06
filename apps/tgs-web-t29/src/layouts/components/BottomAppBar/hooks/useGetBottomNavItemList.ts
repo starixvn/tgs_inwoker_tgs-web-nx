@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHeader } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import giftIcon from "@/assets/t29/images/bottomAppBar/icon-gift.svg";
 import contactIcon from "@/assets/t29/images/bottomAppBar/icon-contact.svg";
 import transferIcon from "@/assets/t29/images/bottomAppBar/icon-transfer.svg";
@@ -26,31 +27,33 @@ export type BottomNavItem = {
 export function useGetBottomNavItemList() {
   const history = useHistory();
   const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
     return [
       {
         navType: NavTypeEnum.ITEM,
-        key: "vip",
-        label: "Vip",
-        iconUrl: giftIcon,
+        key: "home",
+        label: i18n.t("common.home"),
+        iconUrl: contactIcon,
         handleClick: () => {
-          history.push("/vip");
+          handleChangeGameType(GameTypeEnum.NONE);
+          history.push("/");
         },
       },
       {
         navType: NavTypeEnum.ITEM,
-        key: "contact",
-        label: i18n.t("common.contact"),
-        iconUrl: contactIcon,
+        key: "promotion",
+        label: i18n.t("common.promotion"),
+        iconUrl: giftIcon,
         handleClick: () => {
-          history.push("/support");
+          history.push("/promotion-list");
         },
       },
       {
         navType: NavTypeEnum.BIG_ITEM,
         key: "vip",
-        label: i18n.t("common.transfer"),
+        label: i18n.t("common.bank"),
         iconUrl: transferIcon,
         handleClick: () => {
           handleTransferDrawerToggle();

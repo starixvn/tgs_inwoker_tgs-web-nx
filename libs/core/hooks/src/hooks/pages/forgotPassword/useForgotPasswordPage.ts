@@ -1,8 +1,14 @@
 import { useEffect } from "react";
-import { useAuth, useAuthDialog, useUpdatePageName } from "@tgs-web-nx/core/features";
+import {
+  useAuth,
+  useAuthDialog,
+  useHomeGameContext,
+  useUpdatePageName,
+} from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 export function useForgotPasswordPage() {
   useUpdatePageName(i18n.t("forgotPassword.title"));
@@ -11,9 +17,11 @@ export function useForgotPasswordPage() {
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { handleToggleForgotPasswordDialog } = useAuthDialog();
+  const { handleChangeGameType } = useHomeGameContext();
 
   useEffect(() => {
     if (isLogin) {
+      handleChangeGameType(GameTypeEnum.NONE);
       history.push("/");
     }
 
