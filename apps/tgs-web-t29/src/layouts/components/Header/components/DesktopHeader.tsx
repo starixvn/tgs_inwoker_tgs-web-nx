@@ -14,10 +14,10 @@ import {
 } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
-import bg from "@/assets/t29/images/header/bg.png";
 import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
 import BrandLogo from "@/components/project/BrandLogo";
+import { theme } from "@/theme";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -74,7 +74,7 @@ const DesktopHeader = () => {
         <ContentWrapper>
           <ContentGroup>
             {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser />}
+            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
           </ContentGroup>
 
           <ContentGroup>

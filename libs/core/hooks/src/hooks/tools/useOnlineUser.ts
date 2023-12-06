@@ -21,6 +21,10 @@ export const useOnlineUser = () => {
   };
 
   useEffect(() => {
+    refreshOnlineUser();
+  }, []);
+
+  useEffect(() => {
     if (onlineUser === null) {
       setTimeout(() => {
         const nextOnlineUser = refreshOnlineUser();
