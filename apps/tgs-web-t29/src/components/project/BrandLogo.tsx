@@ -11,6 +11,8 @@ const LogoImgContainer = styled.div`
 
   & > img {
     height: 100%;
+    width: 100%;
+    object-fit: contain;
     display: block;
     margin: auto;
   }
