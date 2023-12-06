@@ -8,6 +8,7 @@ import {
   SubTitle,
   SubTitleDesc,
 } from "@/components/styled-component/WithdrawV2/AddCardSuccess";
+import { theme } from "@/theme";
 
 const AddCardSuccess = ({
   isDeposit,
@@ -47,6 +48,9 @@ const AddCardSuccess = ({
         <SubmitButton
           fullWidth
           onClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}
+          style={{
+            background: theme.blue30,
+          }}
         >
           {isDeposit ? i18n.t("card.success.goDeposit") : i18n.t("card.success.goWithdrawal")}
         </SubmitButton>

@@ -88,8 +88,11 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
         fullWidth
         sx={{
           color: theme.white,
-          background: theme.secondary,
+          background: theme.primary,
           padding: "6px",
+          "&:hover": {
+            background: theme.secondary,
+          },
         }}
       >
         {i18n.t("common.contact")}
