@@ -12,9 +12,7 @@ const SubTitle = styled.div`
   font-size: 22px;
   font-weight: bold;
   text-align: center;
-  color: ${({ theme }) => {
-    return theme.darkMode ? "#fff" : " #16242a";
-  }};
+  color: ${({ theme }) => theme.text};
   margin-top: 50px;
 `;
 const SubTitleDesc = styled.div`
@@ -22,7 +20,7 @@ const SubTitleDesc = styled.div`
   font-size: 14px;
   margin-top: 10px;
   margin-bottom: 40px;
-  color: #818181;
+  color: ${({ theme }) => theme.text};
   text-align: center;
 `;
 
@@ -42,7 +40,9 @@ const Disabled = ({ handleCSClick }) => {
 
       <ButtonContainer>
         {(!config.features.ChangesNotAllowed || config.features.AddCard_NotAllowedEditDelete) && (
-          <Button name={i18n.t("support.online")} width={255} handleClick={handleCSClick}></Button>
+          <Button width={255} handleClick={handleCSClick}>
+            {i18n.t("support.online")}
+          </Button>
         )}
       </ButtonContainer>
     </Container>

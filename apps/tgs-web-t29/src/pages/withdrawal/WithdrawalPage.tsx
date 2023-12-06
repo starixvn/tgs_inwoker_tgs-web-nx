@@ -1,9 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications } from "@tgs-web-nx/core/features";
+import { useNotifications, useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { useRwd, useWithdrawalPage } from "@tgs-web-nx/core/hooks";
 import { useSnackbar } from "notistack";
+import { useWalletStore } from "@tgs-web-nx/core";
 import WithdrawalPrevV2 from "@/components/account/WithdrawalPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconWithdrawal from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
@@ -17,6 +18,11 @@ const WithdrawalPage = () => {
   const { alert } = useNotifications();
   const { isDesktopSize } = useRwd();
   const { enqueueSnackbar } = useSnackbar();
+  const {
+    wallet: { bankCardList },
+  } = useWalletStore();
+
+  const { isManageCardButtonAvailable, isShowAddCardButton } = useShowAddCardButton(bankCardList);
 
   return (
     <TransferPageContainer>
@@ -24,7 +30,13 @@ const WithdrawalPage = () => {
 
       <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
         {/*@ts-ignore*/}
-        <WithdrawalPrevV2 appHistory={history} alert={alert} enqueueSnackbar={enqueueSnackbar} />
+        <WithdrawalPrevV2
+          appHistory={history}
+          alert={alert}
+          enqueueSnackbar={enqueueSnackbar}
+          isManageCardButtonAvailable={isManageCardButtonAvailable}
+          isAddCardAvailable={isShowAddCardButton}
+        />
       </AccountPaper>
     </TransferPageContainer>
   );

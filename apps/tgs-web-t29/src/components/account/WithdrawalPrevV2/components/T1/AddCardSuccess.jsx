@@ -1,6 +1,7 @@
 import React from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import {
   ButtonContainer,
@@ -18,14 +19,12 @@ const AddCardSuccess = ({
   onhandleGoDepositClick,
   onhandleCSClick,
 }) => {
+  const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
+
   return (
     <Container>
       <SubTitle>{i18n.t("card.success.title")}</SubTitle>
-      {!(
-        config.features.ChangesNotAllowed ||
-        config.features.AddCard_NotAllowedEditDelete ||
-        bankCardList.length >= config.features.AddCard_MaximumCardAllowed
-      ) ? (
+      {isShowAddCardButton ? (
         <SubTitleDesc>
           {i18n.t("card.success.successDesc")}
           <br></br>
