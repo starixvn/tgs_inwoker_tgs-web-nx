@@ -10,7 +10,7 @@ const popupStyles = css`
   top: ${DESKTOP_HEADER_HEIGHT};
   left: 0;
   background: rgba(255, 255, 255, 0.90);
-  z-index: 3;
+  z-index: 5;
   padding: 0 20px 20px 20px;
 `;
 
