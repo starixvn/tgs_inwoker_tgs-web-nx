@@ -14,7 +14,7 @@ const BottomAppBarContainer = styled.div`
   background: ${({ theme }) => theme.white};
   display: flex;
   align-items: flex-end;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 0 20px;
   z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
