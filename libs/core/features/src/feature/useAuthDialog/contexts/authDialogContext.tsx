@@ -65,7 +65,7 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
       updateStage(nextStep);
     };
 
-    examineRegisterStatus();
+    // examineRegisterStatus();
   }, [getAccountInfo, isLogin]);
 
   const updateStage = (newStage: ValueOf<typeof RegisterStageEnum>) => {

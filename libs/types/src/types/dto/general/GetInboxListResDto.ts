@@ -12,7 +12,7 @@ export interface GetInboxListResDto {
   code: number;
   info: string | null;
   data: {
-    items: InboxItem[];
+    items: InboxItem[] | null;
     totalcount: number;
   };
 }

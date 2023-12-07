@@ -31,7 +31,7 @@ export function useGetInboxList(getInboxListReqDto: GetInboxListReqDto) {
       const { items, totalcount } = getInboxListResDto.data;
 
       setInboxListState((prevState) => ({
-        inboxList: items,
+        inboxList: items || [],
         totalCount: totalcount,
         isLoading: false,
         error: null,
