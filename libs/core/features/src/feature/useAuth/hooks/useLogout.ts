@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "../../game/useHomeGameContext";
 
 export type LogoutState = {
   data: any | null;

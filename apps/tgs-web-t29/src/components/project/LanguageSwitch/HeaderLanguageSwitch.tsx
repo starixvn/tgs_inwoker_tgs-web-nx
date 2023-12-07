@@ -86,6 +86,7 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
 
     setCurrentLanguage(selectedLanguage);
     i18n.changeLanguage(selectedLanguage.culturecode);
+    console.log("HeaderLanguageSwitch cause reload");
     window.location.reload();
   };
 

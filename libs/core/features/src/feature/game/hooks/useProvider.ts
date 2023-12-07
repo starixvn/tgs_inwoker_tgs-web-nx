@@ -25,7 +25,6 @@ export function useProvider() {
           error: null,
         });
         const response = await GameService.GetProviderList();
-
         const formattedProviderList = getFormattedProviderList(response.data);
 
         setProviderState({
@@ -75,7 +74,7 @@ function getFormattedProviderList(providerList: ProviderDto[]): ProviderDto[] {
       if (provider.code === "PPTF" && provider.name === "PragmaticPlay") {
         return {
           ...provider,
-          gametypes: [GameTypeEnum.SPORTS],
+          gametypes: [GameTypeEnum.SPORTS, GameTypeEnum.RNGSPORTS, GameTypeEnum.LIVELOBBY, GameTypeEnum.SLOT, GameTypeEnum.TABLEGAME],
         };
       }
 

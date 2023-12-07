@@ -35,7 +35,7 @@ const FilterTagWrapper = styled.div`
 `;
 
 const CommonTagContainer = styled.div`
-  padding: 5px 14px;
+  padding: 0px 14px;
   border-radius: 100px;
   border: 1px solid ${({ theme }) => theme.blue40};
   gap: 12px;

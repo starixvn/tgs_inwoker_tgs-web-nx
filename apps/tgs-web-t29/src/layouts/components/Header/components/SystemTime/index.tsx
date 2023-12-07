@@ -14,17 +14,19 @@ const Wrapper = styled.div`
 `;
 
 const SystemTime = () => {
-  const [systemTime, setSystemTime] = useState(moment().format("YYYY-MM-DD HH:mm:ss"));
+  const [systemTime, setSystemTime] = useState(
+    moment().utcOffset("+07:00").format("YYYY-MM-DD HH:mm:ss"),
+  );
   const [tickCount, setTickCount] = useState(0);
   useEffect(() => {
     const timer = setTimeout(() => {
       setTickCount(tickCount + 1);
-      setSystemTime(moment().format("YYYY-MM-DD HH:mm:ss"));
+      setSystemTime(moment().utcOffset("+07:00").format("YYYY-MM-DD HH:mm:ss"));
     }, 1000);
     return () => clearTimeout(timer);
   }, [tickCount]);
 
-  return <Wrapper>{systemTime}</Wrapper>;
+  return <Wrapper>{`GMT+7 ${systemTime}`}</Wrapper>;
 };
 
 export default SystemTime;

@@ -26,7 +26,8 @@ import affiliateWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-aff
 import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
 import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
-import wagerWhiteingImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
+import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
+import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -143,7 +144,7 @@ export function useGetNavItemList() {
         //todo: 新增 Wagering t18 翻譯
         label: "Wagering",
         iconUrl: wageringImg,
-        iconSecondaryUrl: wagerWhiteingImg,
+        iconSecondaryUrl: wageringWhiteImg,
         navType: "route",
         routePath: "/wagering",
       },
@@ -215,9 +216,9 @@ export function useGetNavItemList() {
         key: NavCardKey.LANGUAGE_SWITCH,
         label: i18n.t("common.language"),
         iconUrl: languageImg,
-        iconSecondaryUrl: languageImg,
+        iconSecondaryUrl: languageWhiteImg,
         navType: "action",
-        routePath: "/appDownload",
+        routePath: null,
         callback: () => {},
       },
     ] as NavItem[];
