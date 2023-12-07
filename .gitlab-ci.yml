@@ -1,5 +1,4 @@
 variables:
-  app: tgs-web-t29
   dev_tgs_web_t29: lobby-t29
   staging_tgs_web_t29: lobby-t29
   prod_tgs_web_t29: lobby-momovn
