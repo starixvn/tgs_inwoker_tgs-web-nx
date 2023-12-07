@@ -29,12 +29,12 @@ type Props = {
 };
 
 const InboxDialogContent = ({ inboxItemDetail, handleReply }: Props) => {
-  const { subject, sender, date, agoTome, content } = useDialogContent(inboxItemDetail);
+  const { subject, sender, date, agoTime, content } = useDialogContent(inboxItemDetail);
 
   return (
     <InboxDialogContentContainer>
       <Title>{subject}</Title>
-      <Info>{`${i18n.t("sentBy")} {${sender}} ${date} - ${agoTome} ${i18n.t("daysago")}`}</Info>
+      <Info>{`${i18n.t("sentBy")} ${sender} ${date} - ${agoTime} ${i18n.t("daysago")}`}</Info>
       <Content>{content}</Content>
 
       <SubmitButton fullWidth onClick={handleReply}>

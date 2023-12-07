@@ -28,12 +28,12 @@ type Props = {
 };
 
 const SendDialogContent = ({ sendItemDetail }: Props) => {
-  const { subject, sender, date, agoTome, content } = useDialogContent(sendItemDetail);
+  const { subject, date, agoTime, content, username } = useDialogContent(sendItemDetail);
 
   return (
     <SendDialogContentContainer>
       <Title>{subject}</Title>
-      <Info>{`${i18n.t("sentBy")} {${sender}} ${date} - ${agoTome} ${i18n.t("daysago")}`}</Info>
+      <Info>{`${i18n.t("sentBy")} ${username} ${date} - ${agoTime} ${i18n.t("daysago")}`}</Info>
       <Content>{content}</Content>
     </SendDialogContentContainer>
   );
