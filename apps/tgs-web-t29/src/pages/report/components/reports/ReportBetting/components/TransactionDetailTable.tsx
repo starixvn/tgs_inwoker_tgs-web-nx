@@ -17,12 +17,19 @@ type Props = {
   transactionDetails: TransactionDetail[];
   roundTotal: RoundTotalDto;
   totalCount: number;
+  onPageChange: (newPage: number) => void;
 };
-const TransactionDetailTable = ({ transactionDetails, roundTotal, totalCount }: Props) => {
+const TransactionDetailTable = ({
+  transactionDetails,
+  roundTotal,
+  totalCount,
+  onPageChange,
+}: Props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    onPageChange(newPage);
     setPage(newPage);
   };
 
@@ -36,7 +43,6 @@ const TransactionDetailTable = ({ transactionDetails, roundTotal, totalCount }: 
   if (!transactionDetails?.length) {
     return <NoRecord />;
   }
-
   return (
     <ReportCardsContainer>
       <ReportTable aria-label="simple table">
@@ -92,7 +98,7 @@ const TransactionDetailTable = ({ transactionDetails, roundTotal, totalCount }: 
         <TotalState roundTotal={roundTotal} />
         <TableBody>
           {transactionDetails
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((transactionDetail) => {
               const {
                 id,
