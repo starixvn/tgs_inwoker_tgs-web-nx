@@ -88,8 +88,8 @@ stages:
     - echo "KUBECONFIG=$KUBECONFIG"
   script:
     - | 
-      cat image.txt
       if [[ -e image.txt ]]; then 
+          cat image.txt
           for image in $(cat image.txt); do
               ## default
               echo "image=$image"
