@@ -48,7 +48,7 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
     );
   }
 
-  if (bottomNavItem.key === "vip") {
+  if (["promotion"].includes(bottomNavItem.key)) {
     return (
       <BottomNavContainer onClick={onClick}>
         <Icon

@@ -1,5 +1,7 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
+import { providerStatus } from "@tgs-web-nx/constants";
+import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
 
 const Wrapper = styled.div<{
   $isActive: boolean;
@@ -14,7 +16,8 @@ const Wrapper = styled.div<{
   background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
   padding: 4px;
   border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
-  
+  position: relative;
+
   & > img {
     width: 100px;
     &:hover {
@@ -23,25 +26,52 @@ const Wrapper = styled.div<{
   }
 `;
 
+const MaintenanceBg = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(0 0 0 / 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: not-allowed;
+  }
+`;
+
+const MaintenanceIcon = styled.img`
+  width: 50%;
+  height: 50%;
+`;
+
 type Props = {
   text: string;
   gpCode?: string;
   isActive: boolean;
   onClick: () => void;
+  status: number;
 };
 
-const ProviderTag = ({ text, gpCode, isActive, onClick }: Props) => {
+const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
   const { activeGameTypeKey } = useHomeGameContext();
+
   if (text !== "All") {
     return (
       <Wrapper $isActive={isActive}>
         <img
           onClick={onClick}
-          src={`${
-            import.meta.env.BASE_URL
-          }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+          src={`${import.meta.env.BASE_URL
+            }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
           alt={text}
         />
+        {status === providerStatus.Maintenance && (
+          <MaintenanceBg>
+            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+          </MaintenanceBg>
+        )}
       </Wrapper>
     );
   }

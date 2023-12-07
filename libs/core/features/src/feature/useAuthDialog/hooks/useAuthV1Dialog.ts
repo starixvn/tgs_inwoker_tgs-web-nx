@@ -1,12 +1,15 @@
 import { useHistory } from "react-router-dom";
 import { useCallback, useState } from "react";
 import { i18n } from "@tgs-web-nx/utils";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { usePageName } from "../../usePageName/index";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 
 export function useAuthV1Dialog() {
   const history = useHistory();
   const { updatePageName } = usePageName();
   const location = history.location;
+  const { handleChangeGameType } = useHomeGameContext();
 
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
@@ -25,6 +28,7 @@ export function useAuthV1Dialog() {
       }
 
       if (location.pathname === "/login" && !isOpen) {
+        handleChangeGameType(GameTypeEnum.NONE);
         history.push("/");
       }
     },
@@ -44,6 +48,7 @@ export function useAuthV1Dialog() {
       }
 
       if (location.pathname === "/register" && !isOpen) {
+        handleChangeGameType(GameTypeEnum.NONE);
         history.push("/");
       }
     },
@@ -63,6 +68,7 @@ export function useAuthV1Dialog() {
       }
 
       if (location.pathname === "/forgot-password" && !isOpen) {
+        handleChangeGameType(GameTypeEnum.NONE);
         history.push("/");
       }
     },

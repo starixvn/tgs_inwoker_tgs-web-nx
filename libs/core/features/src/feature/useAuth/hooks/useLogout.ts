@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "../../game/useHomeGameContext";
 
 export type LogoutState = {
   data: any | null;
@@ -17,6 +19,7 @@ export function useLogout() {
 
   const history = useHistory();
   const { account, accountLogout } = useAccountStore();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const handleLogout = useCallback(async () => {
     try {
@@ -30,6 +33,7 @@ export function useLogout() {
 
       const result = await accountLogout(token);
       setLogoutState({ isLoading: false, data: result.data, error: null });
+      handleChangeGameType(GameTypeEnum.NONE);
       history.push("/");
     } catch (error: any) {
       console.log(error);

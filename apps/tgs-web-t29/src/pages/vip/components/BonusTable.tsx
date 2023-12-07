@@ -14,7 +14,7 @@ const ScrollableContainer = styled.div`
   gap: 12px;
 
   ${media.sm} {
-    overflow-x: hidden;
+    //overflow-x: hidden; // this will cause tablet display issue
     margin: 0 auto;
     scroll-snap-type: unset;
 
@@ -43,7 +43,7 @@ const BonusTableWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 670px;
+  min-width: 670px;
   height: 100%;
 
   ${media.sm} {
@@ -79,7 +79,7 @@ const HeaderItem = styled.div`
   color: ${(props) => props.theme.text};
   word-wrap: break-word;
   white-space: pre-wrap;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
   margin: 0px 8px;
@@ -135,7 +135,7 @@ const RowItem = styled.div`
   ${media.sm} {
     min-height: 106px;
     width: 128px;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: #23507d;
   }
 `;

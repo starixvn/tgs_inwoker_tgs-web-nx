@@ -12,6 +12,7 @@ import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
 import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
 import affiliateImg from "@/assets/t29/images/account/navItem/icon-affiliate.svg";
 import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
+import languageImg from "@/assets/t29/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
 import wageringImg from "@/assets/t29/images/account/navItem/icon-wagering.svg";
@@ -25,7 +26,8 @@ import affiliateWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-aff
 import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
 import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
-import wagerWhiteingImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
+import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
+import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -142,7 +144,7 @@ export function useGetNavItemList() {
         //todo: 新增 Wagering t18 翻譯
         label: "Wagering",
         iconUrl: wageringImg,
-        iconSecondaryUrl: wagerWhiteingImg,
+        iconSecondaryUrl: wageringWhiteImg,
         navType: "route",
         routePath: "/wagering",
       },
@@ -209,6 +211,15 @@ export function useGetNavItemList() {
         iconSecondaryUrl: downloadWhiteImg,
         navType: "route",
         routePath: "/appDownload",
+      },
+      {
+        key: NavCardKey.LANGUAGE_SWITCH,
+        label: i18n.t("common.language"),
+        iconUrl: languageImg,
+        iconSecondaryUrl: languageWhiteImg,
+        navType: "action",
+        routePath: null,
+        callback: () => {},
       },
     ] as NavItem[];
   }, []);

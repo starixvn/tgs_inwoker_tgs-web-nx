@@ -20,6 +20,8 @@ export function useLanguageDetect() {
 
     const newLanguage = brandLanguage[0].culturecode;
     i18n.changeLanguage(newLanguage);
+
+    console.log("checkIfLanguageIsInBrand cause reload");
     window.location.reload();
   };
 

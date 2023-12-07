@@ -16,15 +16,20 @@ import TotalState from "@/pages/report/components/reports/ReportBetting/componen
 type Props = {
   transactionDetails: TransactionDetail[];
   roundTotal: RoundTotalDto;
+  totalCount: number;
+  onPageChange: (newPage: number) => void;
 };
-const TransactionDetailTable = ({ transactionDetails, roundTotal }: Props) => {
+const TransactionDetailTable = ({
+  transactionDetails,
+  roundTotal,
+  totalCount,
+  onPageChange,
+}: Props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    onPageChange(newPage);
     setPage(newPage);
   };
 
@@ -38,7 +43,6 @@ const TransactionDetailTable = ({ transactionDetails, roundTotal }: Props) => {
   if (!transactionDetails?.length) {
     return <NoRecord />;
   }
-
   return (
     <ReportCardsContainer>
       <ReportTable aria-label="simple table">
@@ -93,54 +97,58 @@ const TransactionDetailTable = ({ transactionDetails, roundTotal }: Props) => {
         </TableHead>
         <TotalState roundTotal={roundTotal} />
         <TableBody>
-          {transactionDetails.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((transactionDetail) => {
-            const {
-              id,
-              createdOn,
-              betAmount,
-              validBetAmount,
-              winLoss,
-              subGameProviderName,
-              gameProviderName,
-              gameName,
-            } = transactionDetail;
+          {transactionDetails
+            // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((transactionDetail) => {
+              const {
+                id,
+                createdOn,
+                betAmount,
+                validBetAmount,
+                winLoss,
+                subGameProviderName,
+                gameProviderName,
+                gameName,
+              } = transactionDetail;
 
-            const date = moment(createdOn).format("YYYY-MM-DD hh:mm a");
+              const date = moment(createdOn).format("YYYY-MM-DD hh:mm a");
 
-            return (
-              <TableRow key={id}>
-                <TableCell>{date}</TableCell>
-                <TableCell
-                  style={{
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    maxWidth: '136px',
-                    width: '10%',
-                  }}
-                >{id}</TableCell>
-                <TableCell>
-                  {gameProviderName
-                    ? gameProviderName === "BTI" && config.currency === "PHP"
-                      ? "PHSB"
-                      : gameProviderName
-                    : ""}
-                  - {gameName}
-                </TableCell>
-                <TableCell align={"right"}>{betAmount}</TableCell>
-                <TableCell align={"right"}>{validBetAmount}</TableCell>
-                <TableCell align={"right"}>
-                  <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
-                </TableCell>
-              </TableRow>
-            );
-          })}
+              return (
+                <TableRow key={id}>
+                  <TableCell>{date}</TableCell>
+                  <TableCell
+                    style={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxWidth: "136px",
+                      width: "10%",
+                    }}
+                  >
+                    {id}
+                  </TableCell>
+                  <TableCell>
+                    {gameProviderName
+                      ? gameProviderName === "BTI" && config.currency === "PHP"
+                        ? "PHSB"
+                        : gameProviderName
+                      : ""}
+                    - {gameName}
+                  </TableCell>
+                  <TableCell align={"right"}>{betAmount}</TableCell>
+                  <TableCell align={"right"}>{validBetAmount}</TableCell>
+                  <TableCell align={"right"}>
+                    <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
         </TableBody>
       </ReportTable>
       <TablePagination
         component="div"
         rowsPerPageOptions={[]}
-        count={transactionDetails.length}
+        count={totalCount}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

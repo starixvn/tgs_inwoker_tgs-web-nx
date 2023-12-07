@@ -80,10 +80,14 @@ const MaintenanceBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 50%);
+  background: rgb(0 0 0 / 70%);
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 `;
 
 const MaintenanceIcon = styled.img`
@@ -95,6 +99,13 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
+  const launchGameHandler = () => {
+    if (status === providerStatus.Maintenance) {
+      return;
+    }
+    launchGame();
+  }
+
   useEffect(() => {
     if (venderNameRef.current) {
       resizeText({ container: venderNameRef.current, text: venderNameRef.current });
@@ -102,7 +113,7 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
   }, [venderNameRef.current]);
 
   return (
-    <VendorCardBg $bgUrl={bgUrl} onClick={launchGame}>
+    <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
       <GameIcon $imageUrl={imageUrl}></GameIcon>
       <VenderNameInfo>
         <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>

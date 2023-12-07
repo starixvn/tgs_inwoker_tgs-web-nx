@@ -4,6 +4,7 @@ import {
   FilterTagTypeEnum,
   filterTagAll,
   useAuth,
+  useGetLobbyCategoryList,
   useHomeGameContext,
 } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
@@ -34,7 +35,7 @@ const FilterTagWrapper = styled.div`
 `;
 
 const CommonTagContainer = styled.div`
-  padding: 5px 14px;
+  padding: 0px 14px;
   border-radius: 100px;
   border: 1px solid ${({ theme }) => theme.blue40};
   gap: 12px;
@@ -100,6 +101,7 @@ const HomeGameFilterTag = () => {
     searchString,
     handleChangeSearch,
   } = useHomeGameContext();
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
 
   const onChangeCommonFilterTag = (newFilterTag: FilterTag) => {
     if (!isLogin && newFilterTag.tagType === FilterTagTypeEnum.FAVORITE) {
@@ -112,7 +114,6 @@ const HomeGameFilterTag = () => {
     }
     handleChangeActiveFilterTag(newFilterTag);
   };
-
 
   const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
     handleChangeActiveProviderFilterTag(newFilterTag);
@@ -164,6 +165,9 @@ const HomeGameFilterTag = () => {
           </AllText>
           <div>
             {providerFilterTagList.map((filterTag) => {
+              const matchedProvider = navPopupCategoryList.find(provider => provider.code === filterTag.gpCode);
+              const status = matchedProvider ? matchedProvider.status : -1;
+
               return (
                 <Tag
                   key={filterTag.name}
@@ -171,6 +175,7 @@ const HomeGameFilterTag = () => {
                   gpCode={filterTag.gpCode}
                   isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
                   onClick={() => onChangeProviderFilterTag(filterTag)}
+                  status={status}
                 />
               );
             })}

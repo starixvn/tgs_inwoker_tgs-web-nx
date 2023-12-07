@@ -75,14 +75,13 @@ const GameCardContent = styled.div`
 
 const GameCardBg = styled.div`
   width: calc(50% - 6px);
-  max-width: 161px;
   position: relative;
   cursor: pointer;
   aspect-ratio: 161 / 161;
   border-radius: 10px;
 
   ${media.sm} {
-    width: calc(16.67% - 5px);
+    width: calc(16.67% - 6px);
 
     &:hover {
       ${CardHoverBg} {
@@ -116,13 +115,17 @@ const MaintenanceBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 50%);
+  background: rgb(0 0 0 / 70%);
   padding: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   z-index: 3;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 `;
 
 const MaintenanceIcon = styled.img`
@@ -158,6 +161,12 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const isFavorite = favoriteList.includes(gameItem.id);
   const isLogin = !!account.token;
 
+  const launchGameHandler = () => {
+    if (!isActive) {
+      return;
+    }
+    launchGame();
+  }
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");
@@ -187,7 +196,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <GameCardBg onClick={launchGame}>
+    <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
@@ -199,14 +208,16 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         )}
       </GameCardContent>
 
-      {isLogin && <Favorite
-        isFavorite={isFavorite}
-        handleToggleFavorite={handleToggleFavorite}
-        gameItemId={gameItem.id}
-      />}
+      {isLogin && (
+        <Favorite
+          isFavorite={isFavorite}
+          handleToggleFavorite={handleToggleFavorite}
+          gameItemId={gameItem.id}
+        />
+      )}
 
       {isDesktopSize && (
-        <CardHoverBg onClick={launchGame}>
+        <CardHoverBg onClick={launchGameHandler}>
           {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
           <PlayIcon src={playIcon} alt={"play"} />
         </CardHoverBg>
