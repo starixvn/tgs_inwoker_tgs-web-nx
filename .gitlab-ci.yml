@@ -89,28 +89,30 @@ stages:
   script:
     - | 
       cat image.txt
-      for image in $(cat image.txt); do
-          ## default
-          echo "image=$image"
-          lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
-          lobby="lobby-$lobby"
-          echo "lobby=$lobby"
-        
-          count=$(kubectl get deploy -n $tgs_env | grep $lobby | wc -l)
-          echo "count=$count"
-           
-          if [[ $count -gt 0 ]]; then
-              kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
-          fi         
-          ## prod
-          lobbies="${tgs_env}_${app//-/_}"
-          echo "lobbies=${!lobbies}"    
-          IFS=',' read -ra array <<< "${!lobbies}"
+      if [[ -e image.txt ]]; then 
+          for image in $(cat image.txt); do
+              ## default
+              echo "image=$image"
+              lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
+              lobby="lobby-$lobby"
+              echo "lobby=$lobby"
+            
+              count=$(kubectl get deploy -n $tgs_env | grep $lobby | wc -l)
+              echo "count=$count"
+               
+              if [[ $count -gt 0 ]]; then
+                  kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
+              fi         
+              ## prod
+              lobbies="${tgs_env}_${app//-/_}"
+              echo "lobbies=${!lobbies}"    
+              IFS=',' read -ra array <<< "${!lobbies}"
 
-          for lb in "${array[@]}"; do
-              kubectl set image deployment/$lb $lb=${image} --record -n ${tgs_env}
-          done
-      done;   
+              for lb in "${array[@]}"; do
+                  kubectl set image deployment/$lb $lb=${image} --record -n ${tgs_env}
+              done
+          done; 
+      fi
 
 docker-build-dev:
   <<: *docker-build-template
