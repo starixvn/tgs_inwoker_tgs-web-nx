@@ -1,5 +1,6 @@
 import React, { HTMLProps } from "react";
 import styled from "styled-components";
+import { useJackpot } from "@tgs-web-nx/core/features";
 
 const JackpotContainer = styled.div`
   height: 100%;
@@ -43,7 +44,7 @@ const Amount = styled.div`
 type Props = HTMLProps<HTMLDivElement>;
 
 const Jackpot = ({ ...others }: Props) => {
-  const amount = 5135679.6;
+  const { jackpotAmount } = useJackpot();
 
   const formatAmount = (amount: number, locales = "en-US") => {
     return amount.toLocaleString(locales, {
@@ -59,7 +60,7 @@ const Jackpot = ({ ...others }: Props) => {
 
       <JackpotContent>
         <Title>Jackpot</Title>
-        <Amount>{formatAmount(amount, "vi-VN")}</Amount>
+        <Amount>{formatAmount(jackpotAmount, "vi-VN")}</Amount>
       </JackpotContent>
     </JackpotContainer>
   );
