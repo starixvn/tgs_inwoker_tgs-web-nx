@@ -81,7 +81,7 @@ const GameCardBg = styled.div`
   border-radius: 10px;
 
   ${media.sm} {
-    width: calc(16.67% - 5px);
+    width: calc(16.67% - 6px);
 
     &:hover {
       ${CardHoverBg} {
