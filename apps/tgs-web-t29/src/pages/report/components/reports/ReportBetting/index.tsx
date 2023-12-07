@@ -16,7 +16,7 @@ type Props = {
   dateRangeInfo: DateRangeInfo;
 };
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const ReportBetting = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     winLoss: null,
     settleAmount: null,
   });
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   const fetchReports = async (page: number) => {
     setIsLoading(true);
@@ -90,6 +90,26 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     await fetchReports(nextPage);
   };
 
+  const handlePageChange = async (page: number) => {
+    setIsLoading(true);
+    const getTransactionDetailsRes = await ReportService.GetTransactionDetails(
+      moment(dateRangeInfo.dateFrom).utc().format(),
+      moment(dateRangeInfo.dateTo).utc().add(1, "days").format(),
+      page + 1,
+      PAGE_SIZE,
+      true,
+      "",
+      false,
+    );
+    if (getTransactionDetailsRes.IsSuccess) {
+      setIsLoading(false);
+      setTransactionDetails(getTransactionDetailsRes.data.items);
+    } else {
+      alert("", getTransactionDetailsRes?.info || JSON.stringify(getTransactionDetailsRes));
+      setIsLoading(false);
+    }
+  };
+
   return (
     <ReportContainer>
       {isDesktopSize ? (
@@ -97,13 +117,18 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
           transactionDetails={transactionDetails}
           roundTotal={roundTotal}
           totalCount={totalCount}
+          onPageChange={(page: number) => handlePageChange(page)}
         />
       ) : (
         <TransactionDetailCards transactionDetails={transactionDetails} />
       )}
       <Loading show={isLoading} />
       {/*@ts-ignore*/}
-      <BottomScrollListener onBottom={handleLoadMore} />
+      <BottomScrollListener
+        onBottom={() => {
+          isMobileSize && handleLoadMore();
+        }}
+      />
     </ReportContainer>
   );
 };
