@@ -218,7 +218,7 @@ export function useGetNavItemList() {
         iconUrl: languageImg,
         iconSecondaryUrl: languageWhiteImg,
         navType: "action",
-        routePath: "/appDownload",
+        routePath: null,
         callback: () => {},
       },
     ] as NavItem[];
