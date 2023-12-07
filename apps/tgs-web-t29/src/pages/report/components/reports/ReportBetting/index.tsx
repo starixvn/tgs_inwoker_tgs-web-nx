@@ -93,7 +93,11 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
   return (
     <ReportContainer>
       {isDesktopSize ? (
-        <TransactionDetailTable transactionDetails={transactionDetails} roundTotal={roundTotal} />
+        <TransactionDetailTable
+          transactionDetails={transactionDetails}
+          roundTotal={roundTotal}
+          totalCount={totalCount}
+        />
       ) : (
         <TransactionDetailCards transactionDetails={transactionDetails} />
       )}
