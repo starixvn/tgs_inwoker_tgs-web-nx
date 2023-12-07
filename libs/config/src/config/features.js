@@ -2,7 +2,6 @@ const featureList = {
   default: {
     SMSVerification: false,
     PhonePrefix: "+852",
-    EmailVerification: true,
     ICVerification: true,
     QQWeChat: true,
     SportsHideLogo: false,
