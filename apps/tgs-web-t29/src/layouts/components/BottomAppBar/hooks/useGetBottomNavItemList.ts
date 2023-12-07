@@ -1,13 +1,13 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import giftIcon from "@/assets/t29/images/bottomAppBar/icon-gift.svg";
-import contactIcon from "@/assets/t29/images/bottomAppBar/icon-contact.svg";
 import transferIcon from "@/assets/t29/images/bottomAppBar/icon-transfer.svg";
 import reportIcon from "@/assets/t29/images/bottomAppBar/icon-report.svg";
 import accountIcon from "@/assets/t29/images/bottomAppBar/icon-account.svg";
+import homeIcon from "@/assets/t29/images/bottomAppBar/icon-home.svg";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 
 export enum NavTypeEnum {
@@ -35,7 +35,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "home",
         label: i18n.t("common.home"),
-        iconUrl: contactIcon,
+        iconUrl: homeIcon,
         handleClick: () => {
           handleChangeGameType(GameTypeEnum.NONE);
           history.push("/");

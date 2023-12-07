@@ -88,6 +88,7 @@ const MenuLanguageSwitch = (props: SelectProps) => {
 
     setCurrentLanguage(selectedLanguage);
     i18n.changeLanguage(selectedLanguage.culturecode);
+    console.log("MenuLanguageSwitch cause reload");
     window.location.reload();
   };
 

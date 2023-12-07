@@ -15,7 +15,7 @@ const ScrollableContainer = styled.div`
   ${media.sm} {
     margin: 0 auto;
     scroll-snap-type: unset;
-    overflow-x: hidden;
+    //overflow-x: hidden; // this will cause tablet display issue
     &::-webkit-scrollbar {
       height: 10px;
     }
@@ -78,14 +78,14 @@ const HeaderItem = styled.div`
   color: ${(props) => props.theme.text};
   word-wrap: break-word;
   white-space: pre-wrap;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
   margin: 0px 8px;
 
   ${media.sm} {
     max-width: 136px;
-    font-size: 1.125rem;
+    font-size: 1rem;
     margin: unset;
     color: #23507d;
   }
