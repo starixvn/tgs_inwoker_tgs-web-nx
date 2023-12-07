@@ -10,7 +10,7 @@ export function useDialogContent(detailitem: InboxItemDetail | SendItemDetail) {
 
   const date = moment(sentOn).format("YYYY-MM-DD");
 
-  const agoTome = useMemo(() => {
+  const agoTime = useMemo(() => {
     const currentDate: Date = new Date();
     const sentDate: Date = new Date(sentOn);
 
@@ -20,9 +20,10 @@ export function useDialogContent(detailitem: InboxItemDetail | SendItemDetail) {
 
   return {
     subject,
-    sender: username,
+    sender,
     date,
-    agoTome,
+    agoTime,
     content,
+    username,
   };
 }
