@@ -4,7 +4,7 @@ import config from "@tgs-web-nx/config";
 const min = config.features.Home_OnlineUsers.min;
 const max = config.features.Home_OnlineUsers.max;
 
-const refreshTimeout = 5 * 1000;
+const refreshTimeout = 3 * 1000;
 
 const randomNumberGenerator = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min) as number;
