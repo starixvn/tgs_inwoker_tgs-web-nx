@@ -14,4 +14,5 @@ export * from "./feature/transfer";
 export * from "./feature/withdraw";
 export * from "./feature/useForgotPasswordFormStage";
 export * from "./feature/auth";
+export * from "./feature/useJackpot";
 export { useAuthDialog } from "./feature/useAuthDialog/hooks/useAuthDialog";
