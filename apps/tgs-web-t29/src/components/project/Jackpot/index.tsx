@@ -53,8 +53,8 @@ const Jackpot = ({ ...others }: Props) => {
       useGrouping: true,
     });
   };
-  //@ts-ignore
   return (
+    //@ts-ignore
     <JackpotContainer {...others}>
       <Background />
 

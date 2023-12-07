@@ -3,7 +3,6 @@ import { useUiStore } from "@tgs-web-nx/core";
 import Slider from "@/pages/home/components/Slider";
 import notification from "@/assets/t29/images/home/notify.svg";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import { media } from "@/theme/breakpoints";
 import Jackpot from "@/components/project/Jackpot";
 
 const BannerContainer = styled.div`
