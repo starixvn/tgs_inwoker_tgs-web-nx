@@ -4,6 +4,7 @@ import Slider from "@/pages/home/components/Slider";
 import notification from "@/assets/t29/images/home/notify.svg";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
+import Jackpot from "@/components/project/Jackpot";
 
 const BannerContainer = styled.div`
   position: relative;
@@ -25,10 +26,10 @@ const SlickDot = styled.div`
 `;
 
 const SlickDotWrapper = styled.div`
-margin-bottom: 80px;
+  margin-bottom: 80px;
 
   & ul li.slick-active ${SlickDot} {
-    background: #F1C137 !important;
+    background: #f1c137 !important;
   }
 `;
 
@@ -36,11 +37,13 @@ const NewsContainer = styled.div`
   width: 100%;
   height: 50px;
   position: absolute;
-  bottom: 0px;
-  background-color: rgba(0, 0, 0, 0.70);
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
 `;
 
 const NewsContent = styled.div`
+  position: relative;
+  overflow: visible;
   height: 100%;
   max-width: ${SUB_CONTENT_MAX_WIDTH};
   margin: 0 auto;
@@ -63,7 +66,7 @@ const Banner = () => {
     ui: { marquees },
   } = useUiStore();
 
-  const hasData = marquees && marquees.length > 0
+  const hasData = marquees && marquees.length > 0;
 
   const settings = {
     dots: true,
@@ -78,15 +81,12 @@ const Banner = () => {
     autoplay: true,
 
     appendDots: (dots: any) => (
-      <SlickDotWrapper
-      >
+      <SlickDotWrapper>
         <ul>{dots}</ul>
       </SlickDotWrapper>
     ),
     customPaging: (i: number) => {
-      return (
-        <SlickDot key={i} />
-      );
+      return <SlickDot key={i} />;
     },
   };
 
@@ -103,16 +103,25 @@ const Banner = () => {
             <marquee>
               {marquees.map((item, index) => {
                 const content = `
-      *${item.localization !== null && item.localization.content
-                    ? item.localization.content
-                    : item.content
-                  }
+      *${
+        item.localization !== null && item.localization.content
+          ? item.localization.content
+          : item.content
+      }
       `;
                 return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
               })}
               {/*@ts-ignore*/}
             </marquee>
           )}
+
+          <Jackpot
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+            }}
+          />
         </NewsContent>
       </NewsContainer>
     </BannerContainer>
