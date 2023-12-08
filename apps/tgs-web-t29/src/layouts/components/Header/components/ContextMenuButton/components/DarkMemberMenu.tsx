@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -62,6 +63,8 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
     //@ts-ignore
     <MemberMenuContainer {...others}>
       {accountNavItemList.map((navItem: NavItem) => {
+        if (navItem.key === NavCardKey.LANGUAGE_SWITCH) return null;
+
         return (
           <MemberMenuItem
             key={navItem.key}
