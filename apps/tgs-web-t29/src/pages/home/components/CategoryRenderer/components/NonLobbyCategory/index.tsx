@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   width: 100%;
+  gap: 6px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -113,9 +114,11 @@ const NonLobbyCategory = () => {
                     key={gameItem.id}
                     gameItem={gameItem}
                     isActive={gameItem.isactive}
-                    imageUrl={`${config.sourceUrl
-                      }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                      }.jpg`}
+                    imageUrl={`${
+                      config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                      gameItem.code
+                    }.jpg`}
                   />
                 ))}
               {!hasMappingData && !isLoading && <div>No data</div>}
@@ -134,9 +137,11 @@ const NonLobbyCategory = () => {
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                    }.jpg`}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
               ))}
             {!hasMappingData && !isLoading && <Text>No data</Text>}
