@@ -19,7 +19,7 @@ const PromotionDetailContainer = styled.div`
   ${media.sm} {
     max-width: 870px;
     margin: 0 auto;
-    padding: 22px 22px 100px 22px;
+    padding: 22px;
   }
 `;
 const BannerWrapper = styled.div`
@@ -36,6 +36,7 @@ const ContentContainer = styled.div`
   align-items: flex-start;
   gap: 40px;
   align-self: stretch;
+  padding-bottom: 73px;
 `;
 const TextArea = styled.div`
   /* margin-bottom: 40px; */
@@ -60,7 +61,6 @@ const Description = styled.p`
 `;
 
 const TermsAndConditions = styled(Description)`
-  padding-left: 16px;
   ${media.sm} {
     padding-left: 30px;
   }
@@ -68,13 +68,14 @@ const TermsAndConditions = styled(Description)`
 
 const JoinPromotionButtonWrapper = styled.div`
   position: fixed;
-  bottom: 67px;
+  bottom: 63px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 22px 40px 22px;
+  padding: 10px;
   background: ${({ theme }) => theme.mainBackground};
+
   ${media.sm} {
     position: relative;
     background: transparent;
