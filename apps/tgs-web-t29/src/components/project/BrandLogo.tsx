@@ -4,6 +4,7 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 
 const LogoImgContainer = styled.div`
   height: 48px;
+  max-width: 100px;
   flex-shrink: 0;
   justify-self: start;
   padding: 0 10px;
@@ -23,12 +24,14 @@ const BrandLogo = (props: React.HTMLProps<HTMLDivElement>) => {
     general: { brand },
   } = useGeneralStore();
 
-  if (!brand.loadingUrl) return null;
+  const logoUrl = brand.loadingUrl;
+  // const logoUrl = "https://images.srvptt.com/Brand%20Logo/MOMOVN.png";
+  if (!logoUrl) return null;
 
   return (
     //@ts-ignore
     <LogoImgContainer {...props}>
-      <img src={brand.loadingUrl} alt={"logo"} />
+      <img src={logoUrl} alt={"logo"} />
     </LogoImgContainer>
   );
 };

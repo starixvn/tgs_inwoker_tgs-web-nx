@@ -17,10 +17,11 @@ const BottomNavContainer = styled.div`
 `;
 
 const NavLabel = styled.h6`
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   font-weight: 400;
   line-height: 0.625rem;
   text-transform: uppercase;
+  white-space: nowrap;
 `;
 
 type Props = {
