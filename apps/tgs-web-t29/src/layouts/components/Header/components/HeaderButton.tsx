@@ -4,6 +4,7 @@ export const RoundHeaderButton = muiStyled(MuiButton)(({ theme }) => ({
   color: theme.palette.gray30,
   padding: "4px 12px 4px 6px",
   width: "auto",
+  minWidth: "104px",
   whiteSpace: "nowrap",
   fontSize: "0.715rem",
   lineHeight: "0.715rem",

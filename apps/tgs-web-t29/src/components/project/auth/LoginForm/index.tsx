@@ -33,7 +33,7 @@ const LoginForm = () => {
   return (
     <AuthFormContainer>
       {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "72px" }} />
+        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
       ) : (
         <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
       )}

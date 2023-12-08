@@ -42,7 +42,7 @@ export const useGameTypeList = () => {
         key: "liveCasino",
         iconUrl: live,
         text: i18n.t("common.live"),
-        fontSize: "smaller",
+        fontSize: "small",
         gameType: GameTypeEnum.LIVELOBBY,
       },
       {
@@ -63,7 +63,7 @@ export const useGameTypeList = () => {
         key: "fishing",
         iconUrl: fishing,
         text: i18n.t("common.fish"),
-        fontSize: "small",
+        fontSize: "smaller",
         gameType: GameTypeEnum.FISH,
       },
       {

@@ -11,6 +11,7 @@ import {
   useUiStore,
   useWalletStore,
 } from "@tgs-web-nx/core";
+import { useAuth } from "@tgs-web-nx/core/features";
 
 export function useInitSiteApiData() {
   const {
@@ -30,6 +31,7 @@ export function useInitSiteApiData() {
   const { getMessages } = useInboxStore();
   const { getProviderList } = useGameStore();
   const history = useHistory();
+  const { isLogin } = useAuth();
 
   const [isInitSiteLoading, setIsInitSiteLoading] = useState(true);
 
@@ -175,7 +177,7 @@ export function useInitSiteApiData() {
   };
 
   const onFocus = () => {
-    if (!account.token) return;
+    if (!isLogin) return;
 
     getBalanceList();
   };
