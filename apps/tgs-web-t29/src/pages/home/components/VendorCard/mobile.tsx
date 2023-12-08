@@ -21,8 +21,8 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 111px;
-  height: 102px;
+  width: 68.9%; //111:161
+  height: 66.2%; //102:154
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
 `;
