@@ -4,6 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
 import emphasizedLine from "@/assets/t33/images/home/emphasized-line.svg";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const Wrapper = styled.div`
   display: flex;
@@ -161,6 +162,7 @@ const RegisterBtn = styled.div`
 const Introduction = () => {
   const { handleChangeGameType } = useHomeGameContext();
   const history = useHistory();
+  const goToHomePage = useGoToHomePage();
 
   const linkTextList = [
     "Soccer",
@@ -175,8 +177,7 @@ const Introduction = () => {
     handleChangeGameType(GameTypeEnum.SPORTS);
 
     if (history.location.pathname !== "/") {
-      handleChangeGameType(GameTypeEnum.NONE);
-      history.push("/");
+      goToHomePage();
     }
   };
 

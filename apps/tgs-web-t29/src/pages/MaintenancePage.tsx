@@ -7,6 +7,7 @@ import { useLocation } from "react-router";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { media } from "@/theme/breakpoints";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const MaintenanceContainer = styled.div`
   display: flex;
@@ -94,7 +95,7 @@ const MaintenancePage = () => {
   const {
     general: { livechat, brandsSupport, isMaintenance },
   } = useGeneralStore();
-  const { handleChangeGameType } = useHomeGameContext();
+  const goToHomePage = useGoToHomePage();
 
   const [beginTime, setBeginTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -120,8 +121,7 @@ const MaintenancePage = () => {
     // NOTE: while GeneralService.GetSiteToken encounter error,
     // then general.isMaintenance will set to false
     if (!isMaintenance && !isGameMaintenance) {
-      handleChangeGameType(GameTypeEnum.NONE);
-      history.push("/");
+      goToHomePage();
       return;
     }
 

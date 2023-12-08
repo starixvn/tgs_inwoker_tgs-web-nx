@@ -3,12 +3,14 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import giftIcon from "@/assets/t29/images/bottomAppBar/icon-gift.svg";
 import transferIcon from "@/assets/t29/images/bottomAppBar/icon-transfer.svg";
 import reportIcon from "@/assets/t29/images/bottomAppBar/icon-report.svg";
 import accountIcon from "@/assets/t29/images/bottomAppBar/icon-account.svg";
 import homeIcon from "@/assets/t29/images/bottomAppBar/icon-home.svg";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 export enum NavTypeEnum {
   ITEM,
@@ -27,7 +29,7 @@ export type BottomNavItem = {
 export function useGetBottomNavItemList() {
   const history = useHistory();
   const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
-  const { handleChangeGameType } = useHomeGameContext();
+  const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
     return [
@@ -37,8 +39,7 @@ export function useGetBottomNavItemList() {
         label: i18n.t("common.home"),
         iconUrl: homeIcon,
         handleClick: () => {
-          handleChangeGameType(GameTypeEnum.NONE);
-          history.push("/");
+          goToHomePage();
         },
       },
       {
