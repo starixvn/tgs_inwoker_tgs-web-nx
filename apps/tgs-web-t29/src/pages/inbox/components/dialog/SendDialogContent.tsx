@@ -21,6 +21,7 @@ const Content = styled.div`
   font-size: 1rem;
   color: ${({ theme }) => theme.text};
   margin-bottom: 18px;
+  white-space: pre-line;
 `;
 
 type Props = {
