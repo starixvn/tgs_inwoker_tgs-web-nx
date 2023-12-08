@@ -21,6 +21,7 @@ const NavLabel = styled.h6`
   font-weight: 400;
   line-height: 0.625rem;
   text-transform: uppercase;
+  white-space: nowrap;
 `;
 
 type Props = {
