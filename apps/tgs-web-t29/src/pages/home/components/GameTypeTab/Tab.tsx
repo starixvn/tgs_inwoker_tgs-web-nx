@@ -44,20 +44,21 @@ const GameIcon = styled.img`
   height: 20px;
 `;
 
-const Text = styled.div`
+const Text = styled.div<{ $fontSize: string }>`
   color: ${({ theme }) => theme.text};
-  font-size: 11px;
+  font-size: ${({ $fontSize }) =>
+    $fontSize === "small" ? "0.625rem" : "0.5rem"};
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
   line-height: 10px;
 `;
 
-const Tab = ({ imageUrl, text, isActive, onClick }: Props) => {
+const Tab = ({ imageUrl, text, isActive, fontSize, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
       <GameIcon src={imageUrl} alt={text} />
-      <Text>{text}</Text>
+      <Text $fontSize={fontSize}>{text}</Text>
     </Wrapper>
   );
 };
