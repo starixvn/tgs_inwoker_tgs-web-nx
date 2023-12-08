@@ -91,7 +91,7 @@ stages:
           for image in $(cat image.txt); do
               echo "image=$image"
               ## default
-              if [[ ${tgs_env} != "prod" ]]; then 
+              if [[ "${tgs_env}" != "prod" ]]; then 
                   lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
                   lobby="lobby-$lobby"
                   echo "lobby=$lobby"
@@ -104,6 +104,7 @@ stages:
                   fi 
               fi                  
               ## prod
+              app=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1)
               lobbies="${tgs_env}_${app//-/_}"
               echo "lobbies=${!lobbies}"    
               IFS=',' read -ra array <<< "${!lobbies}"
