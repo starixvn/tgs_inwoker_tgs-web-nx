@@ -21,8 +21,8 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 111px;
-  height: 102px;
+  width: 68.9%; //111:161
+  height: 66.2%; //102:154
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
 `;
@@ -40,6 +40,7 @@ const VendorCardBg = styled.div<{ $bgUrl: string }>`
 
 const VenderNameInfo = styled.div`
   width: 100%;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
@@ -58,10 +59,8 @@ const VenderName = styled.div`
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
-  display: inline-flex;
-  width: 100%;
-  max-width: 58px;
-  min-height: 29px;
+  width: 46%;
+  height: 25%;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
