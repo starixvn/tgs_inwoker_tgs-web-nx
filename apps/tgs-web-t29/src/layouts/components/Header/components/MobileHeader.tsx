@@ -1,16 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -48,17 +46,12 @@ const MobileHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isLargeDesktopSize } = useRwd();
-  const { handleChangeGameType } = useHomeGameContext();
+  const goToHomePage = useGoToHomePage();
 
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <Link to={""}>
-          <BrandLogo
-            style={{ height: "27px" }}
-            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-          />
-        </Link>
+        <BrandLogo style={{ height: "27px", cursor: "pointer" }} onClick={() => goToHomePage()} />
 
         <HeaderContentContainer>
           {isLargeDesktopSize && <HeaderGameTypes />}
