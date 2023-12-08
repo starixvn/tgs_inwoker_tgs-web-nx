@@ -6,6 +6,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
+import { UpdatePhoneResDto } from "@tgs-web-nx/types";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
@@ -23,14 +24,14 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
-const AREA_CODE = config.features.PhonePrefix;
-
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
+  isProceedRegisterV2?: boolean;
 };
 
-function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
+function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Props) {
+  const AREA_CODE = config.features.PhonePrefix;
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const history = useHistory();
   const { alert } = useNotifications();
@@ -128,11 +129,11 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
     }
   };
 
-  const showErrorMessage = (msg?: string | null) => {
+  const showErrorMessage = (msg?: string | null | undefined) => {
     alert("", msg || "");
   };
 
-  const showInfoMessage = (msg?: string | null) => {
+  const showInfoMessage = (msg?: string | null | undefined) => {
     alert("", msg || "");
   };
 
@@ -151,12 +152,11 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
     setIsLoading(true);
 
     try {
-      console.log(shouldHandlePhoneSubmission());
       if (shouldHandlePhoneSubmission()) {
-        const response = await getRegisterStatus();
+        const getRegisterStatusResDto = await getRegisterStatus();
 
-        if (response?.IsSuccess) {
-          const currentStepKey = response.data;
+        if (getRegisterStatusResDto?.IsSuccess) {
+          const currentStepKey = getRegisterStatusResDto.data;
           if (currentStepKey === "SetPhoneDontCareDuplicate") {
             await handleSetPhoneDontCareDuplicate();
           }
@@ -224,7 +224,12 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
   };
 
   const handleUpdatePhone = async () => {
-    const response = await AccountService.UpdatePhone(securityKey, code);
+    let response: UpdatePhoneResDto;
+    if (isProceedRegisterV2) {
+      response = await AccountService.UpdatePhoneV2(securityKey, code);
+    } else {
+      response = await AccountService.UpdatePhone(securityKey, code);
+    }
 
     if (response?.IsSuccess) {
       await handleGetAccountInfo();
@@ -239,10 +244,10 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
 
     if (responseUpdate?.IsSuccess) {
       if (responseUpdate.data.email === null && !responseUpdate.data.registercompleted) {
-        history.push({
-          pathname: "/profile/email",
-          state: { forced: true },
-        });
+        // history.push({
+        //   pathname: "/profile/email",
+        //   state: { forced: true },
+        // });
       } else {
         setCode("");
         setSecurityKey("");
@@ -252,9 +257,6 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
       }
     }
   };
-  const cannotAccessOther =
-    //@ts-ignore
-    history.location.state && history.location.state.forced ? true : "";
 
   return (
     <>
@@ -262,7 +264,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog }: Props) {
         <LabelContainer>{i18n.t("common.phoneNumber")}</LabelContainer>
 
         <PhoneContainer>
-          <FormControl variant="outlined" style={{ width: "30%" }}>
+          <FormControl variant="outlined" style={{ width: "40%" }}>
             <Select
               native
               value={areacode}
