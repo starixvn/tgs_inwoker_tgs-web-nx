@@ -18,7 +18,7 @@ const RegisterForm = () => {
   return (
     <AuthFormContainer>
       {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px" }} />
+        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
       ) : (
         <LoginTitle>{`${i18n.t("common.register")}`.toUpperCase()}</LoginTitle>
       )}
