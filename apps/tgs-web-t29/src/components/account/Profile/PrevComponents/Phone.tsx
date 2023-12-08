@@ -24,8 +24,6 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
-const AREA_CODE = config.features.PhonePrefix;
-
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
@@ -33,6 +31,7 @@ type Props = {
 };
 
 function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Props) {
+  const AREA_CODE = config.features.PhonePrefix;
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const history = useHistory();
   const { alert } = useNotifications();
