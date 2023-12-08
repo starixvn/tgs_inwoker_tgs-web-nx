@@ -40,6 +40,7 @@ const VendorCardBg = styled.div<{ $bgUrl: string }>`
 
 const VenderNameInfo = styled.div`
   width: 100%;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
@@ -58,10 +59,8 @@ const VenderName = styled.div`
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
-  display: inline-flex;
-  width: 100%;
-  max-width: 58px;
-  min-height: 29px;
+  width: 46%;
+  height: 25%;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
