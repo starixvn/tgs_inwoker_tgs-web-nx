@@ -2,7 +2,7 @@ import React, { Suspense, useRef } from "react";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { ScrollToTop } from "@tgs-web-nx/utils";
-import { AppHistory, useAccountStore } from "@tgs-web-nx/core";
+import { AppHistory } from "@tgs-web-nx/core";
 import { useInitSite } from "@tgs-web-nx/core/hooks";
 import {
   AuthContextConsumer,
@@ -24,7 +24,6 @@ import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";
 import PopupPromotion from "@/components/project/Popup/PopupPromotion";
 
 import LayoutProvider from "@/layouts/LayoutProvider";
-import FloatingToolIcons from "@/components/project/FloatingToolIcons";
 import Loading from "@/components/UI/Loading";
 import LoginDialog from "@/components/project/auth/Dialogs/LoginDialog";
 import RegisterDialog from "@/components/project/auth/Dialogs/RegisterDialog";
