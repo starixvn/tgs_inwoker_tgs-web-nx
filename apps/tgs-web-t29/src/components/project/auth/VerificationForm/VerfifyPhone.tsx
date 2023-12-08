@@ -81,7 +81,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         setSecurityKey(verifyForgotPasswordResDto.data);
         showInfoMessage(i18n.t("common.msgTokenSent"));
       } else {
-        let errorCode = verifyForgotPasswordResDto.info;
+        let errorCode = verifyForgotPasswordResDto.info || "";
         if (errorCode === "Player is not found in the system.") {
           errorCode = "error.ERR201";
         }
