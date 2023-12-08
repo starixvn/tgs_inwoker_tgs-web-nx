@@ -21,7 +21,9 @@ export function useFeatureToggle() {
       const res = (await axios.get(`${apiUrl}brand`)) as GetBrandResDto;
       const branId = res.data.brandId;
       const brandName = res.data.code;
-      const jsonData = await getJsonData(brandName || "");
+      const getJsonRes = await getJsonData(brandName || "");
+      const jsonData = getJsonRes.data;
+
       const newConfig = {
         ...config,
         baseUrl: apiUrl,
