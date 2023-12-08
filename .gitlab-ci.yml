@@ -95,9 +95,8 @@ stages:
               lobby="lobby-$lobby"
               echo "lobby=$lobby"
               
-              kubectl get deploy -n $tgs_env
-              kubectl get deploy -n $tgs_env | grep "$lobby"
-              kubectl get deploy -n $tgs_env | grep "$lobby" | wc -l
+              kubectl get deploy -n $tgs_env | grep lobby-t29
+              kubectl get deploy -n $tgs_env | grep lobby-t29 | wc -l
 
               count=$(kubectl get deploy -n $tgs_env | grep $lobby | wc -l)
               echo "count=$count"
