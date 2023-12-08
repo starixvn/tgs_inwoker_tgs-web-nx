@@ -94,7 +94,11 @@ stages:
               lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
               lobby="lobby-$lobby"
               echo "lobby=$lobby"
-            
+              
+              kubectl get deploy -n $tgs_env
+              kubectl get deploy -n $tgs_env | grep $lobby
+              kubectl get deploy -n $tgs_env | grep $lobby | wc -l
+
               count=$(kubectl get deploy -n $tgs_env | grep $lobby | wc -l)
               echo "count=$count"
                
