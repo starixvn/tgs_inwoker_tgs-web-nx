@@ -33,6 +33,7 @@ const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: start;
   z-index: 2;
+  flex-shrink: 1;
 `;
 
 const HeaderContentContainer = styled.div`

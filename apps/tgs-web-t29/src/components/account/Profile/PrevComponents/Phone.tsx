@@ -88,19 +88,13 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
 
     setIsLoading(true);
     try {
-      const response = await newRegister("InitPhone", {
-        input: "Init",
-        data: {
-          areacode: areacode,
-          phone: phone,
-        },
-      });
+      const response = await AccountService.VerifyPhone(phone, areacode);
 
       //@ts-ignore
       if (response.IsSuccess) {
         setCountdownToken(60);
         //@ts-ignore
-        setSecurityKey(response.data.stepResponse);
+        setSecurityKey(response.data);
         showInfoMessage(i18n.t("common.msgTokenSent"));
       } else {
         //@ts-ignore

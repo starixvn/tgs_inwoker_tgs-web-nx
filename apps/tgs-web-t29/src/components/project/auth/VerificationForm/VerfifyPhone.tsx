@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
+import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
@@ -81,7 +81,11 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         setSecurityKey(verifyForgotPasswordResDto.data);
         showInfoMessage(i18n.t("common.msgTokenSent"));
       } else {
-        showErrorMessage(verifyForgotPasswordResDto.info);
+        let errorCode = verifyForgotPasswordResDto.info;
+        if (errorCode === "Player is not found in the system.") {
+          errorCode = "error.ERR201";
+        }
+        showErrorMessage(i18n.t(errorCode));
       }
     } catch (error: any) {
       showErrorMessage(error.message);
