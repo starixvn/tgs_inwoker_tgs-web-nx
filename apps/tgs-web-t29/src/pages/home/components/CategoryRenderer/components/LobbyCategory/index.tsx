@@ -28,9 +28,8 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 72px);
+  width: calc(100% - 78px);
   flex-shrink: 0;
-  gap: 6px;
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
@@ -136,15 +135,12 @@ const LobbyCategory = () => {
               return (
                 <DesktopVendorCard
                   key={gpCode}
-                  bgUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  bgUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+                  imageUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}
