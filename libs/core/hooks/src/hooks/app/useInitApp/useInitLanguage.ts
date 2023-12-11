@@ -30,7 +30,10 @@ export function useInitLanguage(isConfigFetched: boolean) {
 
   const getSupportLanguageList = async (): Promise<BrandLanguage[]> => {
     const res = await getBrandLanguage();
-    return res?.data || [];
+    if (res) {
+      return res.data;
+    }
+    return [];
   };
 
   return {
