@@ -149,6 +149,8 @@ deploy-dev:
   needs:
     - job: docker-build-dev
       artifacts: true
+  environment:
+    name: dev
   only: 
     - develop
 
@@ -157,6 +159,8 @@ deploy-staging:
   needs:
     - job: docker-build-staging
       artifacts: true
+  environment:
+    name: staging
   only: 
     - release/current
 
@@ -165,6 +169,8 @@ deploy-prod:
   needs:
     - job: docker-build-prod
       artifacts: true
+  environment:
+    name: prod
   only: 
     - master
   #when: manual  
