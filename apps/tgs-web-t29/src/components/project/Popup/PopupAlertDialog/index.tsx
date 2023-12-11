@@ -1,18 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
-import { DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
+import { DialogContainer, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
 import { Button } from "@/components/UI/Button";
-
-const AlertContainer = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-`;
 
 type ModalButtonsProps = {
   handleClose: () => void;
@@ -45,12 +36,12 @@ const PopupAlertDialog = () => {
 
   return (
     <DialogPopup open={isOpen} onClose={closeAlertPopup}>
-      <AlertContainer>
+      <DialogContainer>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>{message}</DialogContent>
 
         <ModalButtons handleClose={closeAlertPopup} message={message} action={action} />
-      </AlertContainer>
+      </DialogContainer>
     </DialogPopup>
   );
 };
