@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/tgs-web-t19"
@@ -56,9 +54,7 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": [
-        "{options.reportsDirectory}"
-      ],
+      "outputs": ["{options.reportsDirectory}"],
       "options": {
         "passWithNoTests": true,
         "reportsDirectory": "../coverage/tgs-web-t19"
@@ -66,22 +62,16 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "tgs-web-t19/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["tgs-web-t19/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "docker-build": {
       "executor": "nx:run-commands",
       "defaultConfiguration": "production",
       "options": {
-        "commands": [
-          "docker build -f {args.AppPath}/Dockerfile . -t {args.DockerContainerRegistry}{args.ImageName}:`date +%Y-%m%d-%H%M`"
-        ],
+        "commands": [],
         "parallel": false
       },
       "configurations": {
