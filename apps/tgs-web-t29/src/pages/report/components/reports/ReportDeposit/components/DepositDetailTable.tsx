@@ -2,30 +2,26 @@ import moment from "moment";
 import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { useState } from "react";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import { theme } from "@/theme";
 
 type Props = {
   transferDetails: DepositFormViewModel[];
+  totalCount: number;
+  page: number;
+  onPageChange: (newPage: number) => void;
+  pageSize: number;
 };
-const DepositDetailTable = ({ transferDetails }: Props) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+const DepositDetailTable = ({
+  transferDetails,
+  totalCount,
+  page,
+  pageSize,
+  onPageChange,
+}: Props) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    onPageChange(newPage);
   };
 
   if (!transferDetails?.length) {
@@ -69,33 +65,34 @@ const DepositDetailTable = ({ transferDetails }: Props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {transferDetails.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((depositDetail) => {
-            const { id, createdon, amount, orderno, status } = depositDetail;
+          {transferDetails
+            // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((depositDetail) => {
+              const { id, createdon, amount, orderno, status } = depositDetail;
 
-            const date = moment(createdon).format("YYYY-MM-DD hh:mm a");
+              const date = moment(createdon).format("YYYY-MM-DD hh:mm a");
 
-            return (
-              <TableRow key={id}>
-                <TableCell>{date}</TableCell>
-                <TableCell>{orderno}</TableCell>
-                <TableCell>
-                  <>{i18n.t(`report.deposit.status${status}`)}</>
-                </TableCell>
-                <TableCell align={"right"}>{amount}</TableCell>
-              </TableRow>
-            );
-          })}
+              return (
+                <TableRow key={id}>
+                  <TableCell>{date}</TableCell>
+                  <TableCell>{orderno}</TableCell>
+                  <TableCell>
+                    <>{i18n.t(`report.deposit.status${status}`)}</>
+                  </TableCell>
+                  <TableCell align={"right"}>{amount}</TableCell>
+                </TableRow>
+              );
+            })}
         </TableBody>
       </ReportTable>
 
       <TablePagination
         component="div"
         rowsPerPageOptions={[]}
-        count={transferDetails.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
+        count={totalCount}
+        rowsPerPage={pageSize}
+        page={page - 1}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
           width: "100%",
           color: theme.blue40,
