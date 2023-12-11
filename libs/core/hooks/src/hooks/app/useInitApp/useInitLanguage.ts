@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { i18n, updateHtmlTitleDescription } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { BrandLanguage } from "@tgs-web-nx/types";
@@ -7,8 +7,14 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 const language: string | null = localStorage.getItem("i18nextLng");
 
 export function useInitLanguage(isConfigFetched: boolean) {
-  const [isLanguageReady, setIsLanguageReady] = React.useState(false);
+  const [isLanguageReady, setIsLanguageReady] = useState(false);
   const { getBrandLanguage } = useGeneralStore();
+
+  useEffect(() => {
+    if (!isConfigFetched) return;
+
+    initI18n();
+  }, [isConfigFetched]);
 
   const initI18n = async () => {
     const brandLanguageList = await getSupportLanguageList();
@@ -21,12 +27,6 @@ export function useInitLanguage(isConfigFetched: boolean) {
       updateHtmlTitleDescription();
     });
   };
-
-  useEffect(() => {
-    if (!isConfigFetched) return;
-
-    initI18n();
-  }, [isConfigFetched]);
 
   const getSupportLanguageList = async (): Promise<BrandLanguage[]> => {
     const res = await getBrandLanguage();
