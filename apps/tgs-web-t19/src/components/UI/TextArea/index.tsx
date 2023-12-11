@@ -18,7 +18,7 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   },
   "& .MuiInputBase-root": {
     padding: 0,
-    border: `1px solid ${theme.palette.gray10}`,
+    border: `1px solid ${theme.palette.gray}`,
   },
   label: {
     color: "rgba(255,255,255,0.3)",

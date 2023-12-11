@@ -18,7 +18,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.gray,
       },
     },
   },
@@ -74,9 +74,8 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
         </Button>
       )}
       <Group>
-        {`${i18n.t("transfer.autoTransfer")} (${
-          isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")
-        })`}
+        {`${i18n.t("transfer.autoTransfer")} (${isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")
+          })`}
         <TransferSwitch checked={isChecked} onChange={handleSwitchAutoTransfer} />
       </Group>
 

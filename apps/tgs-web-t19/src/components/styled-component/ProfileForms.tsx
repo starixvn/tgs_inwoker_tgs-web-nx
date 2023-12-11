@@ -33,7 +33,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   height: "48px",
   width: "100%",
   fontSize: "0.875rem",
-  borderBottom: `1px solid ${theme.palette.gray10}`,
+  borderBottom: `1px solid ${theme.palette.gray}`,
   "& fieldset": {
     border: "none",
   },
@@ -57,7 +57,7 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   color: "#828282",
   background: theme.palette.mainBackground,
-  border: `1px solid ${theme.palette.gray10}`,
+  border: `1px solid ${theme.palette.gray}`,
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`
@@ -81,7 +81,7 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   boxShadow: "none",
 
   "&:hover": {
-    background: theme.palette.gray30,
+    background: theme.palette.gray,
   },
 
   "&:disabled": {
