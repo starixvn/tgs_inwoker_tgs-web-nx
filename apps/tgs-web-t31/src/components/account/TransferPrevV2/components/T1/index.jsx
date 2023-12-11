@@ -5,8 +5,8 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import TransferCards from "@/components/account/TransferPrevV2/components/T1/components/TransferCards";
 import QuickTransfer from "@/components/account/TransferPrevV2/components/T1/components/QuickTransfer";
-import AutoTransferSwitch from "@/pages/transfer/components/components/AutoTransferSwitch";
-import TransferCard from "@/pages/transfer/components/components/TransferCard";
+import AutoTransferSwitch from "@/pages/transfer/components/AutoTransferSwitch";
+import TransferCard from "@/pages/transfer/components/TransferCard";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const Container = styled.div`

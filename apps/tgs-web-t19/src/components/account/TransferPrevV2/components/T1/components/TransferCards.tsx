@@ -22,7 +22,7 @@ const GameTransferWallet = styled.div`
   width: 200px;
   border-radius: 4px;
   border: solid 1px ${({ theme }) => "#dddedf"};
-  background: ${({ theme }) => theme.gray};
+  background: ${({ theme }) => theme.blue20};
   padding: 10px 10px 10px 3px;
   gap: 10px;
 `;
@@ -69,7 +69,7 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   lineHeight: "14px",
   textAlign: "center",
   padding: "4px",
-  background: theme.palette.gray,
+  background: theme.palette.blue30,
   border: "none",
   "&:hover": {
     background: theme.palette.primary.main,

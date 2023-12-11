@@ -117,8 +117,11 @@ class DepositPrev extends Component {
       this.props.wallet.depositResult !== null
     ) {
       if (this.props.wallet.depositResult.IsSuccess) {
+        //===========================
         const response = this.props.wallet.depositResult;
         var payment = this.props.wallet.depositTypeList[this.state.selectedPaymentIndex];
+        let url = "";
+
         if (config.features.Deposit_DualPage) {
           this.setState({
             ...this.state,
@@ -163,11 +166,25 @@ class DepositPrev extends Component {
                 showTabContainer: false,
               });
             }
+
+            if (payment.paymentcode.toUpperCase() === "HELP2PAY") {
+              url = config.baseUrl.replace("/api/", "") + response.data.paymenturl;
+            }
+            if (response.data.paymenturl) {
+              url = response.data.paymenturl;
+            }
+            if (url !== "") {
+              window.open(url, "_blank");
+            }
+
+            this.props.alert("", i18n.t("deposit.completeDeposit"));
           }
         }
+        //===========================
       } else {
         this.props.alert("", this.props.wallet.depositResult.info);
         this.setState({ ...this.state, loading: false });
+
         if (
           this.props.wallet.depositTypeList[
             this.state.selectedPaymentIndex
@@ -179,6 +196,7 @@ class DepositPrev extends Component {
         }
       }
     }
+
     if (
       preProps.wallet.depositUploadResult !== this.props.wallet.depositUploadResult &&
       this.props.wallet.depositUploadResult !== null
@@ -194,6 +212,7 @@ class DepositPrev extends Component {
         this.setState({ ...this.state, loading: false });
       }
     }
+
     if (
       preState.selectedPaymentIndex !== this.state.selectedPaymentIndex ||
       preState.selectedMethodIndex !== this.state.selectedMethodIndex ||

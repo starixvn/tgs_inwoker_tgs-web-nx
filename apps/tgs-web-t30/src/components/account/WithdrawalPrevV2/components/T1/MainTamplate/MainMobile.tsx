@@ -1,4 +1,5 @@
 import React from "react";
+import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { MainProps } from "./index";
@@ -10,13 +11,19 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import WithdrawInfoCard from "@/pages/withdrawal/components/WithdrawInfoCard";
-import { ManageBankCardButtonContainer } from "@/components/styled-component/WithdrawV2/Main";
+import {
+  DetailText,
+  ManageBankCardButtonContainer,
+  Turnover,
+  TurnoverTextWrapper,
+} from "@/components/styled-component/WithdrawV2/Main";
 import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
 import { Select } from "@/components/UI/Select";
 import {
   ButtonWrapper,
   GameWalletButton,
   SubHeaderContainer,
+  Hint,
 } from "@/components/styled-component/WithdrawV2/Main";
 
 const MainMobile = ({
@@ -38,6 +45,8 @@ const MainMobile = ({
   handlePlayerNote,
   handleWithdrawalClick,
 }: MainProps) => {
+  const history = useHistory();
+
   return (
     <>
       <WithdrawInfoCard />
@@ -133,6 +142,19 @@ const MainMobile = ({
             </FormControl>
           </ItemContainer>
         )}
+      <Turnover>
+        {i18n.t("withdrawal.turnover")}
+        <TurnoverTextWrapper>
+          <span>{Common.formatNumberWithThousand(minWithdrawLimit)}</span>
+          <DetailText
+            onClick={() => {
+              history.push("/wagering");
+            }}
+          >{`(${i18n.t("withdrawal.checkDetails")})`}</DetailText>
+        </TurnoverTextWrapper>
+      </Turnover>
+
+      <Hint>{i18n.t("withdrawal.notice")}</Hint>
 
       <SubmitButton
         fullWidth

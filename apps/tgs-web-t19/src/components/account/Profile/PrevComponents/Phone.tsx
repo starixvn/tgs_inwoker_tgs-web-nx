@@ -24,8 +24,6 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
-const AREA_CODE = config.features.PhonePrefix;
-
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
@@ -33,6 +31,7 @@ type Props = {
 };
 
 function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Props) {
+  const AREA_CODE = config.features.PhonePrefix;
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const history = useHistory();
   const { alert } = useNotifications();
@@ -89,19 +88,13 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
 
     setIsLoading(true);
     try {
-      const response = await newRegister("InitPhone", {
-        input: "Init",
-        data: {
-          areacode: areacode,
-          phone: phone,
-        },
-      });
+      const response = await AccountService.VerifyPhone(phone, areacode);
 
       //@ts-ignore
       if (response.IsSuccess) {
         setCountdownToken(60);
         //@ts-ignore
-        setSecurityKey(response.data.stepResponse);
+        setSecurityKey(response.data);
         showInfoMessage(i18n.t("common.msgTokenSent"));
       } else {
         //@ts-ignore

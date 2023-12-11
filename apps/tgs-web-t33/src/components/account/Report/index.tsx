@@ -30,8 +30,13 @@ const Report = () => {
     tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2,
   );
 
-  const { dateRangeInfo, handleDateFromChange, handleDateToChange, handleDateRangeChange, isSelectedDateRange } =
-    useDateRange();
+  const {
+    dateRangeInfo,
+    handleDateFromChange,
+    handleDateToChange,
+    handleDateRangeChange,
+    isSelectedDateRange,
+  } = useDateRange();
 
   const changeDateRange = (dateRangeEnum: number) => {
     handleDateRangeChange(dateRangeEnum);
@@ -78,8 +83,8 @@ const Report = () => {
             return <ReportWithdraw dateRangeInfo={dateRangeInfo} />;
           case 4:
             return <ReportDeposit dateRangeInfo={dateRangeInfo} />;
-          case 5:
-            return <ReportRebate dateRangeInfo={dateRangeInfo} />;
+          // case 5:
+          //   return <ReportRebate dateRangeInfo={dateRangeInfo} />;
           case 6:
             return <Index dateRangeInfo={dateRangeInfo} />;
           case 7:

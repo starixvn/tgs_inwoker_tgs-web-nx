@@ -56,32 +56,25 @@ const TransferHint = styled.div`
 
 class Main extends Component {
   render() {
+    const selectedDepositType = this.props.wallet.depositTypeList[this.props.selectedPaymentIndex];
+    const selectedPaymentMethod = selectedDepositType.method[this.props.selectedMethodIndex];
+
     const methodCode = (method) => {
-      return (
-        this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-          this.props.selectedMethodIndex
-        ].methodcode.toUpperCase() === method.toUpperCase()
-      );
+      return selectedPaymentMethod.methodcode.toUpperCase() === method.toUpperCase();
     };
 
     const alteredPaymentCode = (payment) => {
-      return this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].alteredpaymentcode
-        ? this.props.wallet.depositTypeList[
-            this.props.selectedPaymentIndex
-          ].alteredpaymentcode.toUpperCase() === payment.toUpperCase()
+      return selectedDepositType.alteredpaymentcode
+        ? selectedDepositType.alteredpaymentcode.toUpperCase() === payment.toUpperCase()
         : false;
     };
 
     const paymentCode = (payment) => {
-      return (
-        this.props.wallet.depositTypeList[
-          this.props.selectedPaymentIndex
-        ].paymentcode.toUpperCase() === payment.toUpperCase()
-      );
+      return selectedDepositType.paymentcode.toUpperCase() === payment.toUpperCase();
     };
 
     const formatBankCardDetail = (data) => {
-      var detail = "";
+      let detail = "";
       switch (data.banktype.toUpperCase()) {
         case "BANK":
           detail = `${data.detail.bankName || ""} - ${data.detail.name || ""} - ${
@@ -101,24 +94,17 @@ class Main extends Component {
       }
       return detail;
     };
-    const transferFee =
-      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-        this.props.selectedMethodIndex
-      ].channel[this.props.selectedChannelIndex].fees;
+    const transferFee = selectedPaymentMethod.channel[this.props.selectedChannelIndex].fees;
     const transferLimitFrom =
-      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-        this.props.selectedMethodIndex
-      ].channel[this.props.selectedChannelIndex].transferlimit.from;
+      selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.from;
     const transferLimitTo =
-      this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-        this.props.selectedMethodIndex
-      ].channel[this.props.selectedChannelIndex].transferlimit.to;
+      selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.to;
+
     return (
       <>
         {!config.features.Deposit_AddCard ? (
           <>
-            {this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].paymentcode ===
-              "ZeroNineNinePay" && (
+            {selectedDepositType.paymentcode === "ZeroNineNinePay" && (
               <ItemContainer>
                 <LabelContainer>
                   <HintText>{i18n.t("hint._099")}</HintText>
@@ -131,24 +117,22 @@ class Main extends Component {
               <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer>
               <BadgeContainer>
                 {this.props.wallet.depositTypeList.length > 0 &&
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method.map(
-                    (item, index) => {
-                      return (
-                        <Badge
-                          key={item.methodid}
-                          text={
-                            config.features.CustomKING8Deposit &&
-                            (paymentCode("manual") || alteredPaymentCode("manual")) &&
-                            i18n.exists(`king8.${item.methodcode}`)
-                              ? i18n.t(`king8.${item.methodcode}`)
-                              : i18n.t(item.methodcode)
-                          }
-                          isActive={index === this.props.selectedMethodIndex}
-                          handleClick={() => this.props.handleMethodChange(index)}
-                        />
-                      );
-                    },
-                  )}
+                  selectedDepositType.method.map((item, index) => {
+                    return (
+                      <Badge
+                        key={item.methodid}
+                        text={
+                          config.features.CustomKING8Deposit &&
+                          (paymentCode("manual") || alteredPaymentCode("manual")) &&
+                          i18n.exists(`king8.${item.methodcode}`)
+                            ? i18n.t(`king8.${item.methodcode}`)
+                            : i18n.t(item.methodcode)
+                        }
+                        isActive={index === this.props.selectedMethodIndex}
+                        handleClick={() => this.props.handleMethodChange(index)}
+                      />
+                    );
+                  })}
               </BadgeContainer>
             </ItemContainer>
           </>
@@ -190,9 +174,7 @@ class Main extends Component {
                 onChange={(e) => this.props.handleChannelChange(e)}
               >
                 {this.props.wallet.depositTypeList.length > 0 &&
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel.map((item, index) => {
+                  selectedPaymentMethod.channel.map((item, index) => {
                     return (
                       <option key={index} value={index}>
                         {item.channelname}
@@ -207,16 +189,11 @@ class Main extends Component {
         {/*轉帳賬戶*/}
         {(() => {
           if (config.features.Deposit_AddCard && this.props.selectedBankCard !== "") {
-            var channel =
-              this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                this.props.selectedMethodIndex
-              ].channel[this.props.selectedChannelIndex];
-            var channelExtend =
-              this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                this.props.selectedMethodIndex
-              ].channel[this.props.selectedChannelIndex].extended;
+            const channel = selectedPaymentMethod.channel[this.props.selectedChannelIndex];
+            const channelExtend =
+              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended;
             if (!methodCode("BANKTRANSFER") && !methodCode("EWALLET") && !methodCode("PULSA")) {
-              return <></>;
+              return null;
             }
 
             return (
@@ -287,7 +264,7 @@ class Main extends Component {
 
         {(() => {
           const generateDisplayContent = (content) => {
-            var displaysequence = ["name", "address", "bankAccount", "eMoneyName", "phone"];
+            const displaysequence = ["name", "address", "bankAccount", "eMoneyName", "phone"];
 
             return Object.keys(content)
               .sort((a, b) => {
@@ -327,10 +304,8 @@ class Main extends Component {
               alteredPaymentCode("manual")) &&
             !config.features.Deposit_AddCard
           ) {
-            var channelExtend =
-              this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                this.props.selectedMethodIndex
-              ].channel[this.props.selectedChannelIndex].extended;
+            const channelExtend =
+              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended;
 
             if (methodCode("THIRDPARTY")) {
               return (
@@ -383,7 +358,7 @@ class Main extends Component {
                                   : i18n.t("common.pleaseEnterAccountName")}
                               </option>
                               {this.props.wallet.bankCardList.map((item, index) => {
-                                var detail = item.detail;
+                                const detail = item.detail;
                                 return (
                                   <option value={item.id} key={index}>
                                     {detail.bankAccount || detail.address || detail.phone} (
@@ -474,15 +449,11 @@ class Main extends Component {
               placeholder={
                 i18n.t("deposit.msgPleaseEnter") +
                 Common.formatNumberWithThousand(
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.from,
+                  selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.from,
                 ) +
                 "-" +
                 Common.formatNumberWithThousand(
-                  this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                    this.props.selectedMethodIndex
-                  ].channel[this.props.selectedChannelIndex].transferlimit.to,
+                  selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.to,
                 ) +
                 i18n.t("deposit.dollor")
               }
@@ -508,14 +479,11 @@ class Main extends Component {
         {(() => {
           if (
             methodCode("usdt") &&
-            this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-              this.props.selectedMethodIndex
-            ].channel[this.props.selectedChannelIndex].extended.rate !== undefined
+            selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended.rate !==
+              undefined
           ) {
-            var usdtRate =
-              this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                this.props.selectedMethodIndex
-              ].channel[this.props.selectedChannelIndex].extended.rate;
+            const usdtRate =
+              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended.rate;
             if (
               paymentCode("manual") ||
               paymentCode("usdt") ||
@@ -683,9 +651,7 @@ class Main extends Component {
           fullWidth
           disabled={(() => {
             const transferlimit =
-              this.props.wallet.depositTypeList[this.props.selectedPaymentIndex].method[
-                this.props.selectedMethodIndex
-              ].channel[this.props.selectedChannelIndex].transferlimit;
+              selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit;
 
             return (
               !!this.props.disabled ||

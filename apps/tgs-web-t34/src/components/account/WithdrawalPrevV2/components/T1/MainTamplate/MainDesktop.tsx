@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
+import { useHistory } from "react-router";
 
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
@@ -17,6 +18,8 @@ import {
   SelectionContainer,
   Turnover,
   USDTWrapper,
+  DetailText,
+  TurnoverTextWrapper,
 } from "@/components/styled-component/WithdrawV2/Main";
 
 const MainDesktop = ({
@@ -41,6 +44,7 @@ const MainDesktop = ({
   useEffect(() => {
     getTransferLimit(cardList[selectedCardIndex].paymentchannelid);
   }, [cardList, getTransferLimit, selectedCardIndex]);
+  const history = useHistory();
   return (
     <>
       {/* Please choose bank */}
@@ -130,7 +134,14 @@ const MainDesktop = ({
           })()}
           <Turnover>
             {i18n.t("withdrawal.turnover")}
-            <span>{Common.formatNumberWithThousand(minWithdrawLimit)}</span>
+            <TurnoverTextWrapper>
+              <span>{Common.formatNumberWithThousand(minWithdrawLimit)}</span>
+              <DetailText
+                onClick={() => {
+                  history.push("/wagering");
+                }}
+              >{`(${i18n.t("withdrawal.checkDetails")})`}</DetailText>
+            </TurnoverTextWrapper>
           </Turnover>
         </SelectionContainer>
       </ItemContainer>
