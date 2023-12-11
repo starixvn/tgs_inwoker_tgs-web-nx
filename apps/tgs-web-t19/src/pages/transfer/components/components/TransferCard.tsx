@@ -7,8 +7,8 @@ import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
 import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.blue20};
-  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.pageLabelBackground};
+  color: ${({ theme }) => theme.primary};
   padding: 12px 15px;
   border-radius: 10px;
 

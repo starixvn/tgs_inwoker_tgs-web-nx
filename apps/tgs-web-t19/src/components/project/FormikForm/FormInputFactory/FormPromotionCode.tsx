@@ -64,12 +64,12 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             value={formik.values["userType"]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            style={{ color: theme.text }}
+            style={{ color: theme.primary }}
             MenuProps={{
               PaperProps: {
                 sx: {
                   "& .MuiMenuItem-root": {
-                    color: theme.text,
+                    color: theme.white,
                   },
                 },
               },

@@ -17,7 +17,7 @@ import { Checkbox } from "@/components/UI/Checkbox";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.primary};
   font-size: 0.875rem;
   margin: 24px 0 0;
   display: flex;

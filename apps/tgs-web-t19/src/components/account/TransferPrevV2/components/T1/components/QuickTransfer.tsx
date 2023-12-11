@@ -14,7 +14,7 @@ const QuickTransferContainer = styled.div`
   display: flex;
 `;
 const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  border: `1px solid ${theme.palette.gray10}`,
+  border: `1px solid ${theme.palette.primary}`,
 })) as typeof MuiFormControl;
 
 const QuickTransferArrow = styled.div`
@@ -28,20 +28,20 @@ const QuickTransferArrow = styled.div`
 const AmountInputContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  border: ${({ theme }) => `1px solid ${theme.gray10}`};
+  border: ${({ theme }) => `1px solid ${theme.gray}`};
   padding: 17px;
   margin: 0 10px;
 `;
 
 const AmountText = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.gray};
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
   text-align: right;
   border: none;
   ::placeholder {
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.gray};
   }
 `;
 
