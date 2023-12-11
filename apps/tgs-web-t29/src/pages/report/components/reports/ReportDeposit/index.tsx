@@ -16,16 +16,19 @@ type Props = {
   dateRangeInfo: DateRangeInfo;
 };
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const ReportDeposit = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const [depositDetails, setDepositDetails] = useState<DepositFormViewModel[]>([]);
+  const [depositDetailsForMobile, setDepositDetailsForMobile] = useState<DepositFormViewModel[]>(
+    [],
+  );
   const [totalCount, setTotalCount] = useState(0);
   const [isMaxPage, setIsMaxPage] = useState(false);
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   const { statusDictionary, status, handleStatusChange } = useDepositStatus();
 
@@ -47,10 +50,11 @@ const ReportDeposit = ({ dateRangeInfo }: Props) => {
     if (getDepositDetailsRes.IsSuccess) {
       const newDepositDetails =
         page > 1
-          ? depositDetails.concat(getDepositDetailsRes.data.items)
+          ? depositDetailsForMobile.concat(getDepositDetailsRes.data.items)
           : getDepositDetailsRes.data.items;
 
-      setDepositDetails(newDepositDetails);
+      setDepositDetails(getDepositDetailsRes.data.items);
+      setDepositDetailsForMobile(newDepositDetails);
       setTotalCount(getDepositDetailsRes.data.totalCount || 0);
       setIsMaxPage(getDepositDetailsRes.data.totalCount == newDepositDetails.length);
     } else {
@@ -76,6 +80,10 @@ const ReportDeposit = ({ dateRangeInfo }: Props) => {
     await fetchReports(nextPage);
   };
 
+  const handlePageChange = async (page: number) => {
+    fetchReports(page + 1);
+    setPage(page + 1);
+  };
   return (
     <>
       <StatusSelect
@@ -85,14 +93,24 @@ const ReportDeposit = ({ dateRangeInfo }: Props) => {
       />
 
       {isDesktopSize ? (
-        <DepositDetailTable transferDetails={depositDetails} />
+        <DepositDetailTable
+          transferDetails={depositDetails}
+          totalCount={totalCount}
+          page={page}
+          pageSize={PAGE_SIZE}
+          onPageChange={(page: number) => handlePageChange(page)}
+        />
       ) : (
-        <DepositDetailCards transferDetails={depositDetails} />
+        <DepositDetailCards transferDetails={depositDetailsForMobile} />
       )}
 
       <Loading show={isLoading} />
       {/*@ts-ignore*/}
-      <BottomScrollListener onBottom={handleLoadMore} />
+      <BottomScrollListener
+        onBottom={() => {
+          isMobileSize && handleLoadMore();
+        }}
+      />
     </>
   );
 };

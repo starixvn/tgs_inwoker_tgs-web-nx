@@ -17,13 +17,16 @@ type Props = {
   dateRangeInfo: DateRangeInfo;
 };
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const ReportWithdraw = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const [withdrawalDetails, setWithdrawalDetails] = useState<WithdrawFormViewModel[]>([]);
+  const [withdrawalDetailsForMobile, setWithdrawalDetailsForMobile] = useState<
+    WithdrawFormViewModel[]
+  >([]);
   const [totalCount, setTotalCount] = useState(0);
   const [isMaxPage, setIsMaxPage] = useState(false);
   const { isDesktopSize } = useRwd();
@@ -48,9 +51,10 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
     if (getWithdrawalDetailsRes.IsSuccess) {
       const newWithdrawalDetails =
         page > 1
-          ? withdrawalDetails.concat(getWithdrawalDetailsRes.data.items)
+          ? withdrawalDetailsForMobile.concat(getWithdrawalDetailsRes.data.items)
           : getWithdrawalDetailsRes.data.items;
-      setWithdrawalDetails(newWithdrawalDetails);
+      setWithdrawalDetails(getWithdrawalDetailsRes.data.items);
+      setWithdrawalDetailsForMobile(newWithdrawalDetails);
       setTotalCount(getWithdrawalDetailsRes.data.totalCount || 0);
       setIsMaxPage(getWithdrawalDetailsRes.data.totalCount == newWithdrawalDetails.length);
     } else {
@@ -76,6 +80,11 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
     await fetchReports(nextPage);
   };
 
+  const handlePageChange = async (page: number) => {
+    fetchReports(page + 1);
+    setPage(page + 1);
+  };
+
   return (
     <>
       <StatusSelect
@@ -86,7 +95,13 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
 
       <ReportContainer>
         {isDesktopSize ? (
-          <WithdrawalDetailTable withdrawalDetails={withdrawalDetails} />
+          <WithdrawalDetailTable
+            withdrawalDetails={withdrawalDetails}
+            totalCount={totalCount}
+            page={page}
+            pageSize={PAGE_SIZE}
+            onPageChange={(page: number) => handlePageChange(page)}
+          />
         ) : (
           <WithdrawalDetailCards withdrawalDetails={withdrawalDetails} />
         )}
