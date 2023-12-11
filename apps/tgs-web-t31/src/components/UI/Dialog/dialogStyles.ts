@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const DialogContainer = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+`;
+
 export const DialogTitle = styled.div`
   font-size: 1.5rem;
   font-weight: 700;

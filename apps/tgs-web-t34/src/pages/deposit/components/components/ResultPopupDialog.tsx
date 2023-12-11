@@ -1,7 +1,8 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
-import { ButtonConfirm, DialogContent } from "@/components/UI/Dialog/dialogStyles";
+import { DialogContent } from "@/components/UI/Dialog/dialogStyles";
+import { Button } from "@/components/UI/Button";
 
 type Props = {
   isDialogOpen: boolean;
@@ -15,12 +16,12 @@ const ResultPopupDialog = ({ isDialogOpen, handleClose, handleOpenPopupUrl }: Pr
       <>
         <DialogContent>{i18n.t("deposit.msgDialog")}</DialogContent>
 
-        <ButtonConfirm onClick={handleOpenPopupUrl} style={{ float: "left" }}>
-          <>{i18n.t("common.confirm")}</>
-        </ButtonConfirm>
-        <ButtonConfirm onClick={handleClose} style={{ float: "right" }}>
-          <>{i18n.t("common.cancel")}</>
-        </ButtonConfirm>
+        <Button onClick={handleOpenPopupUrl} style={{ float: "left" }}>
+          {i18n.t("common.confirm")}
+        </Button>
+        <Button onClick={handleClose} style={{ float: "right" }}>
+          {i18n.t("common.cancel")}
+        </Button>
       </>
     </DialogPopup>
   );

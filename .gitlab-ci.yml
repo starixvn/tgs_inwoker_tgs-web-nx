@@ -69,9 +69,51 @@ stages:
         envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
         helm template $brand deployment -f values.yaml -n ${tgs_env}
         helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
+        
+        ## insert variable
+        ## https://docs.gitlab.com/ee/api/project_level_variables.html
+        echo "project id=$CI_PROJECT_ID"
+        app=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1)
+        key="${tgs_env}_${app//-/_}"
+        echo "key=${key}"
+        
+        _value=$(curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key" | jq -r ".value")
+        echo "value=$_value"
+        
+        if [[  -z $_value  ]]; then
+            url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${key}&value=${brand}&environment_scope=${tgs_env}&protected=true"
+            echo "url=$url"
+            echo "gitlab_token=$gitlab_token"
+            curl --request POST --header "PRIVATE-TOKEN: $gitlab_token" "$url" 
+            echo "variable $key created"
+        elif [[ ! ${_value} == *"$brand"* ]]; then 
+            new_value="${_value},${brand}"
+            url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/${key}?value=${new_value}"
+            curl --request PUT --header "PRIVATE-TOKEN: $gitlab_token" "$url" 
+            echo "variable $key updated"
+        fi
       else 
         echo "No Deployment Brand and Domain"
       fi
+  after_script:
+    - |
+      curl --location --request POST $Telegram_Bot_Url \
+        --header 'Content-Type: application/json' \
+        --data-binary @- << EOF
+      {
+        "chat_id": $Telegram_Chat_Id,
+        "text": "
+      專案: $CI_PROJECT_NAME
+      服務: $brand
+      分支: $CI_COMMIT_BRANCH
+      URL: "https://$domain"
+      Pipeline: $CI_PIPELINE_URL
+      Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
+      作者: $GITLAB_USER_LOGIN",
+        "parse_mode": "HTML"
+      }
+      EOF
+
     
 .deploy-template: &deploy-template
   stage: deploy
@@ -98,6 +140,23 @@ stages:
               done
           done; 
       fi
+  after_script:
+    - |
+      curl --location --request POST $Telegram_Bot_Url \
+        --header 'Content-Type: application/json' \
+        --data-binary @- << EOF
+      {
+        "chat_id": $Telegram_Chat_Id,
+        "text": "
+      專案: $CI_PROJECT_NAME
+      分支: $CI_COMMIT_BRANCH
+      更新lobby: $lobbies
+      Pipeline: $CI_PIPELINE_URL
+      Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
+      作者: $GITLAB_USER_LOGIN",
+        "parse_mode": "HTML"
+      }
+      EOF
 
 docker-build-dev:
   <<: *docker-build-template

@@ -16,7 +16,7 @@ const ChildContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  padding-top: 20px;
+  padding-top: 36px;
 `;
 
 type Props = {
