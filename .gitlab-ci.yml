@@ -70,9 +70,12 @@ stages:
         helm template $brand deployment -f values.yaml -n ${tgs_env}
         helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
         
+        ##insert variable
         echo "project id=$CI_PROJECT_ID"
         app_="${tgs_env}_${image//-/_}"
-        url = "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${app}&value=${brand}&environment_scope=${tgs_env}&protected=true"
+        echo "app=${app_}"
+        url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${app_}&value=${brand}&environment_scope=${tgs_env}&protected=true"
+        echo "url=$url"
         curl --request POST $url --header 'PRIVATE-TOKEN: $gitlab_token'
 
       else 
