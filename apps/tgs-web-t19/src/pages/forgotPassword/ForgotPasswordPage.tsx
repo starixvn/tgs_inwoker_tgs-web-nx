@@ -1,7 +1,7 @@
 import React from "react";
 import { useForgotPasswordPage, useRwd } from "@tgs-web-nx/core/hooks";
+import { FormContainer } from "@/components/styled-component/AuthFormContainer";
 import ForgotPasswordForm from "@/components/project/auth/ForgotPasswordForm";
-import { FormContainerWithBG } from "@/components/styled-component/AuthFormContainer";
 
 const ForgotPasswordPage = () => {
   useForgotPasswordPage();
@@ -13,9 +13,9 @@ const ForgotPasswordPage = () => {
   }
 
   return (
-    <FormContainerWithBG>
+    <FormContainer>
       <ForgotPasswordForm />
-    </FormContainerWithBG>
+    </FormContainer>
   );
 };
 

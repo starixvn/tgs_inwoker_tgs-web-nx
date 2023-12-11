@@ -1,25 +1,21 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
-import ForgotPasswordPrev from "@/components/account/authentication/ForgotPasswordPrev";
-import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
-import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
-import { TitleContainer } from "@/components/styled-component/auth/AuthDialog";
+import { useForgotPasswordPage, useRwd } from "@tgs-web-nx/core/hooks";
+import { FormContainer } from "@/components/styled-component/AuthFormContainer";
+import ForgotPasswordForm from "@/components/project/auth/ForgotPasswordForm";
 
 const ForgotPasswordPage = () => {
-  useUpdatePageName(i18n.t("forgotPassword.title"));
+  useForgotPasswordPage();
 
-  const { alert } = useNotifications();
-  const history = useHistory();
+  const { isDesktopSize } = useRwd();
+
+  if (isDesktopSize) {
+    return null;
+  }
 
   return (
-    <AuthFormContainer>
-      <TitleContainer>{i18n.t("forgotPassword.title")}</TitleContainer>
-      {/*@ts-ignore*/}
-      <ForgotPasswordPrev alert={alert} history={history} />
-      <RedirectToLoginHint style={{ marginTop: "20px" }} />
-    </AuthFormContainer>
+    <FormContainer>
+      <ForgotPasswordForm />
+    </FormContainer>
   );
 };
 
