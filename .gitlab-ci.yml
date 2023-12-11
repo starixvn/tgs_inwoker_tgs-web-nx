@@ -31,11 +31,10 @@ stages:
           yarn docker-build:${tgs_env}
       fi
       
-      docker image ls
-      
+      docker image ls  
       image_count=$(docker image ls | wc  -l)
 
-      if [[ $image_count != "1" ]]; then
+      if [[ $image_count -gt 0 ]]; then
           docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
           image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
 
@@ -89,20 +88,6 @@ stages:
           cat image.txt
           for image in $(cat image.txt); do
               echo "image=$image"
-              ## default
-              if [[ "${tgs_env}" != "prod" ]]; then 
-                  lobby=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1 | cut -d'-' -f3)
-                  lobby="lobby-$lobby"
-                  echo "lobby=$lobby"
-
-                  count=$(kubectl get deploy -n $tgs_env | grep $lobby | wc -l)
-                  echo "count=$count"
-                   
-                  if [[ $count -gt 0 ]]; then
-                      kubectl set image deployment/$lobby $lobby=${image} --record -n ${tgs_env}
-                  fi 
-              fi                  
-              ## prod
               app=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1)
               lobbies="${tgs_env}_${app//-/_}"
               echo "lobbies=${!lobbies}"    
