@@ -102,13 +102,12 @@ stages:
              -H "Content-Type: application/json" | jq -r '.result | .[] | select(.name == "$domain").id ')
              
             if [[ "${responseId}" == "" ]]; then
-                
                 result=$(curl -X POST "${url}" \
                    -H "Authorization: Bearer $cf_token" \
                    -H "Content-Type: application/json" \
                  --data '{"type":"CNAME","name":"'$domain'","content":"'${tgs_env}'-entry.rpgp.cc","proxied":true}')
                  
-              echo "create result:${result}"
+                echo "create result:${result}"
             fi    
         fi
       else 
