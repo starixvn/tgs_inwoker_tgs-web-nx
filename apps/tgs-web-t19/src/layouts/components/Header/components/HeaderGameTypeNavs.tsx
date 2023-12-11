@@ -43,11 +43,10 @@ const GameTypeNav = styled.div<{
   display: flex;
   align-items: center;
   padding: 5px;
-  color: ${({ theme }) => theme.text};
   cursor: pointer;
   position: relative;
   border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
-  color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)};
   &:hover {
     background: ${({ theme }) => theme.gray10};
   }

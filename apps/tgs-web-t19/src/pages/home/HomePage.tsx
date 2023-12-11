@@ -11,7 +11,7 @@ import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import bg from "@/assets/t29/images/home/home_bg.png";
+import bg from "@/assets/t19/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -59,14 +59,14 @@ const MainContentWrapper = styled.div`
   flex-shrink: 0;
   flex: 1;
 
-  ${media.sm} {
+  /* ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
     background-image: url(${bg});
-    background-size: unset;
-    background-repeat: repeat;
-  }
+    background-size: contain;
+    background-repeat: no-repeat;
+  } */
 `;
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
@@ -126,9 +126,8 @@ const HomePage = () => {
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  ? `${import.meta.env.BASE_URL
+                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
                   : ""
               }
             />

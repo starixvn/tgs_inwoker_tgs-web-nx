@@ -23,7 +23,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.subBackground};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -52,14 +52,14 @@ const ContentGroup = styled.div`
 `;
 
 const BlueHeaderRowContainer = styled.div`
-  background: #3158ff;
+  background: ${({ theme }) => theme.subBackground};
   background-size: cover;
-  height: 40px;
+  height: 84px;
 `;
 
 const WhiteHeaderRowContainer = styled.div`
   margin: auto;
-  height: 65px;
+  height: 72px;
 `;
 
 const DesktopHeader = () => {

@@ -11,7 +11,7 @@ const BottomNavContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.darkPrimary};
   padding: 6px 0;
   cursor: pointer;
 `;

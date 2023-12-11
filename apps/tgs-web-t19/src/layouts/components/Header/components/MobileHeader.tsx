@@ -16,7 +16,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background:linear-gradient(180deg, #212121 0%, #080808 100%);
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;

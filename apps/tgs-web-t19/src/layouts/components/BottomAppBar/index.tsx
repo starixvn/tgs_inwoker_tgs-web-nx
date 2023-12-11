@@ -11,14 +11,13 @@ const BottomAppBarContainer = styled.div`
   top: auto;
   bottom: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: linear-gradient(180deg, #515151 0%, #313131 13.84%);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   padding: 0 20px;
   z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
-  border-top: 1px solid ${({ theme }) => theme.gray30};
 `;
 
 const BottomAppBar = () => {
