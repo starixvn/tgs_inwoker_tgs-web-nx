@@ -87,11 +87,13 @@ stages:
             new_value="${_value},${brand}"
             url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/${key}?value=${new_value}"
             curl --request PUT --header "PRIVATE-TOKEN: $gitlab_token"
+            echo "variable $key updated"
         else 
             url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${key}&value=${brand}&environment_scope=${tgs_env}&protected=true"
             echo "url=$url"
             echo "gitlab_token=$gitlab_token"
             curl --request --header "PRIVATE-TOKEN: $gitlab_token" POST "$url" 
+            echo "variable $key created"
         fi
       else 
         echo "No Deployment Brand and Domain"
