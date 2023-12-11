@@ -70,11 +70,21 @@ stages:
         helm template $brand deployment -f values.yaml -n ${tgs_env}
         helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
         
-        ##insert variable
+        ## insert variable
+        ## https://docs.gitlab.com/ee/api/project_level_variables.html
         echo "project id=$CI_PROJECT_ID"
-        app_="${tgs_env}_${image//-/_}"
-        echo "app=${app_}"
-        url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${app_}&value=${brand}&environment_scope=${tgs_env}&protected=true"
+        key="${tgs_env}_${image//-/_}"
+        echo "key=${key}"
+        
+        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.example.com/api/v4/projects/1/variables/$key"
+        
+        echo "jq"
+        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.example.com/api/v4/projects/1/variables/$key" | jq
+        echo "jq length"
+        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.example.com/api/v4/projects/1/variables/$key" | jq length
+
+        
+        url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${key}&value=${brand}&environment_scope=${tgs_env}&protected=true"
         echo "url=$url"
         curl --request POST $url --header 'PRIVATE-TOKEN: $gitlab_token'
 
