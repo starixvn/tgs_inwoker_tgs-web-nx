@@ -92,9 +92,27 @@ stages:
             curl --request PUT --header "PRIVATE-TOKEN: $gitlab_token" "$url" 
             echo "variable $key updated"
         fi
-      else 
-        echo "No Deployment Brand and Domain"
-      fi
+        
+        ## insert domain    
+        if [[ ! "${tgs_env}" == "prod" ]]; then       
+            url='https://api.cloudflare.com/client/v4/zones/c6c8be8e9c04948f486101b1b994c09c/dns_records'
+            
+            responseId=$(curl -X GET "${url}?name=$domain" \
+                 -H "Authorization: Bearer $cf_token" \
+             -H "Content-Type: application/json" | jq -r '.result | .[] | select(.name == "$domain").id ')
+             
+            if [[ "${responseId}" == "" ]]; then
+                
+                result=$(curl -X POST "${url}" \
+                   -H "Authorization: Bearer $cf_token" \
+                   -H "Content-Type: application/json" \
+                 --data '{"type":"CNAME","name":"'$domain'","content":"'${tgs_env}'-entry.rpgp.cc","proxied":true}')
+                 
+              echo "create result:${result}"
+            fi    
+        else 
+            echo "No Deployment Brand and Domain"
+        fi
   after_script:
     - |
       if [[ $domain != "" && $brand != "" ]]; then 
@@ -115,7 +133,6 @@ stages:
           }
           EOF
       fi
-
     
 .deploy-template: &deploy-template
   stage: deploy
