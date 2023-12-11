@@ -15,14 +15,17 @@ type Props = {
   dateRangeInfo: DateRangeInfo;
 };
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const Index = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   const [transferDetails, setTransferDetails] = useState<GameBalanceInfosViewModel[]>([]);
+  const [transferDetailsForMobile, setTransferDetailsForMobile] = useState<
+    GameBalanceInfosViewModel[]
+  >([]);
   const [totalCount, setTotalCount] = useState(0);
   const [isMaxPage, setIsMaxPage] = useState(false);
 
@@ -43,10 +46,11 @@ const Index = ({ dateRangeInfo }: Props) => {
     if (getTransferReportRes.IsSuccess) {
       const newTransferDetails =
         page > 1
-          ? transferDetails.concat(getTransferReportRes.data.items)
+          ? transferDetailsForMobile.concat(getTransferReportRes.data.items)
           : getTransferReportRes.data.items;
 
-      setTransferDetails(newTransferDetails);
+      setTransferDetails(getTransferReportRes.data.items);
+      setTransferDetailsForMobile(newTransferDetails);
       setTotalCount(getTransferReportRes.data.totalCount || 0);
       setIsMaxPage(getTransferReportRes.data.totalCount == newTransferDetails.length);
     } else {
@@ -71,16 +75,31 @@ const Index = ({ dateRangeInfo }: Props) => {
     await fetchReports(nextPage);
   };
 
+  const handlePageChange = async (page: number) => {
+    fetchReports(page + 1);
+    setPage(page + 1);
+  };
+
   return (
     <ReportContainer>
       {isDesktopSize ? (
-        <TransferDetailTable transferDetails={transferDetails} totalCount={totalCount} />
+        <TransferDetailTable
+          transferDetails={transferDetails}
+          totalCount={totalCount}
+          page={page}
+          pageSize={PAGE_SIZE}
+          onPageChange={(page: number) => handlePageChange(page)}
+        />
       ) : (
-        <TransferDetailCard transferDetails={transferDetails} />
+        <TransferDetailCard transferDetails={transferDetailsForMobile} />
       )}
       <Loading show={isLoading} />
       {/*@ts-ignore*/}
-      <BottomScrollListener onBottom={handleLoadMore} />
+      <BottomScrollListener
+        onBottom={() => {
+          isMobileSize && handleLoadMore();
+        }}
+      />
     </ReportContainer>
   );
 };
