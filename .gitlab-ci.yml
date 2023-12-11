@@ -69,6 +69,12 @@ stages:
         envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
         helm template $brand deployment -f values.yaml -n ${tgs_env}
         helm template $brand deployment -f values.yaml -n ${tgs_env} | kubectl apply -f -
+        
+        echo "project id=$CI_PROJECT_ID"
+        app_="${tgs_env}_${image//-/_}"
+        url = "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${app}&value=${brand}&environment_scope=${tgs_env}&protected=true"
+        curl --request POST $url --header 'PRIVATE-TOKEN: $gitlab_token'
+
       else 
         echo "No Deployment Brand and Domain"
       fi
