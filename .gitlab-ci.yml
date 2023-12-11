@@ -110,9 +110,10 @@ stages:
                  
               echo "create result:${result}"
             fi    
-        else 
-            echo "No Deployment Brand and Domain"
         fi
+      else 
+          echo "No Deployment Brand and Domain"
+      fi
   after_script:
     - |
       if [[ $domain != "" && $brand != "" ]]; then 
