@@ -93,6 +93,7 @@ stages:
       fi
   after_script:
     - |
+      tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
       curl --location --request POST $Telegram_Bot_Url \
         --header 'Content-Type: application/json' \
         --data-binary @- << EOF
@@ -102,7 +103,7 @@ stages:
       專案: $CI_PROJECT_NAME
       服務: $brand
       分支: $CI_COMMIT_BRANCH
-      環境: $(get_environment "$CI_COMMIT_REF_NAME")
+      環境: $tgs_env
       Pipeline: $CI_PIPELINE_URL
       Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
       作者: $GITLAB_USER_LOGIN",
