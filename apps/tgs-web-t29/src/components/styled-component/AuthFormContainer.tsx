@@ -7,7 +7,7 @@ export const AuthFormContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 70px 36px 30px;
+  padding: 70px 20px 30px;
   overflow: auto;
 
   ::-webkit-scrollbar {

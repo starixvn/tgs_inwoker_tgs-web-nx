@@ -11,8 +11,9 @@ const BottomNavContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align : center;
   color: ${({ theme }) => theme.black};
-  padding: 6px 0;
+  padding: 10px 0;
   cursor: pointer;
 `;
 
@@ -54,12 +55,8 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
       <BottomNavContainer onClick={onClick}>
         <Icon
           iconUrl={iconUrl}
-          width={"64px"}
-          height={"64px"}
-          style={{
-            marginBottom: "-4px",
-            marginLeft: "5px",
-          }}
+          width={"60px"}
+          height={"44px"}
         />
 
         <NavLabel>{label}</NavLabel>
@@ -74,7 +71,7 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
         width={"24px"}
         height={"24px"}
         style={{
-          marginBottom: "13px",
+          marginBottom: "5px",
         }}
       />
 
