@@ -89,13 +89,11 @@ stages:
             echo "gitlab_token=$gitlab_token"
             curl --request POST --header "PRIVATE-TOKEN: $gitlab_token" "$url" 
             echo "variable $key created"
-        else 
-            if [[ ${_value} != "*$brand*" ]]; then 
-                new_value="${_value},${brand}"
-                url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/${key}?value=${new_value}"
-                curl --request PUT --header "PRIVATE-TOKEN: $gitlab_token" "$url" 
-                echo "variable $key updated"
-            fi 
+        elif [[ ! ${_value} == *"$brand"* ]]; then 
+            new_value="${_value},${brand}"
+            url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/${key}?value=${new_value}"
+            curl --request PUT --header "PRIVATE-TOKEN: $gitlab_token" "$url" 
+            echo "variable $key updated"
         fi
       else 
         echo "No Deployment Brand and Domain"
