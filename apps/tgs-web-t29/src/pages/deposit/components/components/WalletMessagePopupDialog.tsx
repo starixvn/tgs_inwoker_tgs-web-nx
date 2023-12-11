@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WALLET_HIDEMESSAGE } from "@tgs-web-nx/core";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
-import { ButtonConfirm, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
+import { DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
+import { Button } from "@/components/UI/Button";
 
 const WalletMessagePopupDialog = () => {
   const { wallet } = useWalletStore();
@@ -18,14 +19,14 @@ const WalletMessagePopupDialog = () => {
   const isOpen = wallet.message !== "";
   return (
     <DialogPopup open={isOpen} onClose={handleClose}>
-      <>
+      <DialogContent>
         <DialogTitle>{i18n.t("common.info")}</DialogTitle>
         <DialogContent>{wallet.message}</DialogContent>
 
-        <ButtonConfirm onClick={handleClose}>
-          <>{i18n.t("common.confirm")}</>
-        </ButtonConfirm>
-      </>
+        <Button fullWidth onClick={handleClose}>
+          {i18n.t("common.confirm")}
+        </Button>
+      </DialogContent>
     </DialogPopup>
   );
 };
