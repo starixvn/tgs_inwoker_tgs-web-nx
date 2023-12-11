@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
 import { i18n, updateHtmlTitleDescription } from "@tgs-web-nx/utils";
-import { useGeneralStore } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
-const language = localStorage.getItem("i18nextLng");
+import { BrandLanguage } from "@tgs-web-nx/types";
+import { useGeneralStore } from "@tgs-web-nx/core";
+
+const language: string | null = localStorage.getItem("i18nextLng");
 
 export function useInitLanguage(isConfigFetched: boolean) {
   const [isLanguageReady, setIsLanguageReady] = React.useState(false);
   const { getBrandLanguage } = useGeneralStore();
 
   const initI18n = async () => {
-    await setDefaultLanguage();
-    await fetchSupportLanguageList();
+    const brandLanguageList = await getSupportLanguageList();
+    await setDefaultLanguage(brandLanguageList);
+    updateHtmlTitleDescription();
+
     setIsLanguageReady(true);
 
     i18n.on("languageChanged", (lng) => {
@@ -24,17 +28,36 @@ export function useInitLanguage(isConfigFetched: boolean) {
     initI18n();
   }, [isConfigFetched]);
 
-  const setDefaultLanguage = async () => {
-    const selectedLanguage = language || config.defaultLanguage || "en-US";
-    await i18n.changeLanguage(selectedLanguage);
-    updateHtmlTitleDescription();
-  };
-
-  const fetchSupportLanguageList = async () => {
-    await getBrandLanguage();
+  const getSupportLanguageList = async (): Promise<BrandLanguage[]> => {
+    const res = await getBrandLanguage();
+    return res.data;
   };
 
   return {
     isLanguageReady,
   };
+}
+
+async function setDefaultLanguage(brandLanguageList: BrandLanguage[]) {
+  const selectedLanguage =
+    language && checkIfLanguageValid(language, brandLanguageList)
+      ? language
+      : getDefaultLanguage(brandLanguageList);
+
+  await i18n.changeLanguage(selectedLanguage);
+}
+
+function getDefaultLanguage(brandLanguageList: BrandLanguage[]) {
+  if (checkIfLanguageValid(config.defaultLanguage, brandLanguageList)) {
+    return config.defaultLanguage;
+  }
+
+  return brandLanguageList[0].culturecode || "en-US";
+}
+
+function checkIfLanguageValid(language: string | null, brandLanguageList: BrandLanguage[]) {
+  if (!language) return false;
+
+  const stringList = brandLanguageList.map((brandLanguage) => brandLanguage.culturecode);
+  return stringList.includes(language);
 }
