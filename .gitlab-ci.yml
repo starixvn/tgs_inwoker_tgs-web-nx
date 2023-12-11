@@ -80,17 +80,13 @@ stages:
         key="${tgs_env}_${app//-/_}"
         echo "key=${key}"
         
-        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key"
-        echo "jq"
-        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key" | jq
-        echo "jq length"
-        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key" | jq length
+        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key" | jq -r ".value"
+        echo "jq value"
 
-        
         url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${key}&value=${brand}&environment_scope=${tgs_env}&protected=true"
         echo "url=$url"
         echo "gitlab_token=$gitlab_token"
-        curl --request POST $url --header 'PRIVATE-TOKEN: $gitlab_token'
+        curl --request POST "$url" --header 'PRIVATE-TOKEN: $gitlab_token'
 
       else 
         echo "No Deployment Brand and Domain"
@@ -106,7 +102,7 @@ stages:
       專案: $CI_PROJECT_NAME
       服務: $brand
       分支: $CI_COMMIT_BRANCH
-      環境: $tgs_env
+      環境: $(get_environment "$CI_COMMIT_REF_NAME")
       Pipeline: $CI_PIPELINE_URL
       Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
       作者: $GITLAB_USER_LOGIN",
