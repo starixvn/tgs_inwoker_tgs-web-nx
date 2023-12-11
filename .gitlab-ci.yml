@@ -80,11 +80,11 @@ stages:
         key="${tgs_env}_${app//-/_}"
         echo "key=${key}"
         
-        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/1/variables/$key"
+        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key"
         echo "jq"
-        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/1/variables/$key" | jq
+        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key" | jq
         echo "jq length"
-        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/1/variables/$key" | jq length
+        curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key" | jq length
 
         
         url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${key}&value=${brand}&environment_scope=${tgs_env}&protected=true"
