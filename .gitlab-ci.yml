@@ -132,7 +132,8 @@ stages:
               echo "image=$image"
               app=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1)
               lobbies="${tgs_env}_${app//-/_}"
-              echo "lobbies=${!lobbies}"    
+              echo "lobbies=${!lobbies}"  
+              echo ${!lobbies} > lobby.txt
               IFS=',' read -ra array <<< "${!lobbies}"
 
               for lb in "${array[@]}"; do
@@ -142,6 +143,7 @@ stages:
       fi
   after_script:
     - |
+      lobby=$(cat lobby.txt)
       curl --location --request POST $Telegram_Bot_Url \
         --header 'Content-Type: application/json' \
         --data-binary @- << EOF
@@ -150,7 +152,7 @@ stages:
         "text": "
       專案: $CI_PROJECT_NAME
       分支: $CI_COMMIT_BRANCH
-      更新lobby: $lobbies
+      更新lobby: $lobby
       Pipeline: $CI_PIPELINE_URL
       Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
       作者: $GITLAB_USER_LOGIN",
