@@ -180,14 +180,14 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/inbox",
       },
-      {
-        key: NavCardKey.AFFILIATE,
-        label: i18n.t("wap.main.account.affiliate"),
-        iconUrl: affiliateImg,
-        iconSecondaryUrl: affiliateWhiteImg,
-        navType: "route",
-        routePath: "/affiliate",
-      },
+      // {
+      //   key: NavCardKey.AFFILIATE,
+      //   label: i18n.t("wap.main.account.affiliate"),
+      //   iconUrl: affiliateImg,
+      //   iconSecondaryUrl: affiliateWhiteImg,
+      //   navType: "route",
+      //   routePath: "/affiliate",
+      // },
       {
         key: NavCardKey.VIP,
         label: "VIP",
