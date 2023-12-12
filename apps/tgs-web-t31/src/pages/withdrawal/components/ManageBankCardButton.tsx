@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import iconImg from "@/assets/t31/images/account/Add.png";
+import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
 
 const ButtonContainer = styled.div`
   cursor: pointer;
   font-weight: 400;
-  font-size: 0.937rem;
-  line-height: 1.098rem;
-  background: ${({ theme }) => theme.priBTNOutline};
-  padding: 10px;
-  border-radius: 100px;
-  color: ${({ theme }) => theme.black};
+  font-size: 1rem;
+  line-height: 1.15rem;
+  color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
+  background: ${({ theme }) => theme.primary};
+  padding: 10px 22px;
 `;
 
 const IconContainer = styled.div`
@@ -23,15 +21,15 @@ const IconContainer = styled.div`
   margin-right: 7.5px;
 `;
 
-const ManageBankCardButton = () => {
-  const history = useHistory();
-  const handleClick = () => {
-    history.push("/card");
-  };
+type Props = {
+  handleManageCardClick: () => void;
+};
+
+const ManageBankCardButton = ({ handleManageCardClick }: Props) => {
   return (
-    <ButtonContainer onClick={handleClick}>
+    <ButtonContainer onClick={handleManageCardClick}>
       <IconContainer>
-        <img width={24} src={iconImg} alt={"manage-card"} />
+        <img src={iconImg} alt={"manage-card"} />
       </IconContainer>
 
       {i18n.t("withdrawal.manageBank")}

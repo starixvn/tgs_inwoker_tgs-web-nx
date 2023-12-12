@@ -4,16 +4,16 @@ import Icon from "@/components/project/Icon";
 
 const PageBadgeContainer = styled.div`
   padding: 10px 20px;
-  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.blue60};
   width: fit-content;
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.437rem;
+  border-left: 5px solid ${({ theme }) => theme.primary};
 `;
 
 type Props = {

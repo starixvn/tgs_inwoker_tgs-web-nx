@@ -4,15 +4,10 @@ import { ListItem, ListItemText, Modal } from "@mui/material";
 
 export const AddCardContainer = styled.div`
   width: 100%;
-  padding: 20px 17px;
 `;
 
 export const SubTitle = styled.div`
-  font-size: 1.5rem;
-  line-height: 1.758rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.white};
-  margin-bottom: 12px;
+  display: none;
 `;
 
 export const BottomInfo = styled.div`
@@ -20,7 +15,7 @@ export const BottomInfo = styled.div`
   font-weight: 400;
   line-height: 1.0025rem;
   text-align: center;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 20px;
 `;
 export const StyledModalBank = muiStyled(Modal)(({ theme }) => ({

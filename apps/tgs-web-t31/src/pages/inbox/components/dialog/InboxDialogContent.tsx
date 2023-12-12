@@ -21,6 +21,7 @@ const Content = styled.div`
   font-size: 1rem;
   color: ${({ theme }) => theme.text};
   margin-bottom: 18px;
+  white-space: pre-line;
 `;
 
 type Props = {
@@ -34,7 +35,7 @@ const InboxDialogContent = ({ inboxItemDetail, handleReply }: Props) => {
   return (
     <InboxDialogContentContainer>
       <Title>{subject}</Title>
-      <Info>{`${i18n.t("sentBy")} {${sender}} ${date} - ${agoTime} ${i18n.t("daysago")}`}</Info>
+      <Info>{`${i18n.t("sentBy")} ${sender} ${date} - ${agoTime} ${i18n.t("daysago")}`}</Info>
       <Content>{content}</Content>
 
       <SubmitButton fullWidth onClick={handleReply}>

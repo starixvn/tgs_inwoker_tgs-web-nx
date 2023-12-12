@@ -9,19 +9,12 @@ import { PageContainer } from "@/components/styled-component/PageContainer";
 const PromotionCardListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px 18px;
-  margin: 30px 0;
+  gap: 8px;
 
   ${media.sm} {
     flex-direction: row;
     flex-wrap: wrap;
   }
-`;
-
-const TitleText = styled.h1`
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
 `;
 
 const PromotionPage = () => {
@@ -32,7 +25,6 @@ const PromotionPage = () => {
   }
   return (
     <PageContainer>
-      <TitleText>{i18n.t("common.promotion")}</TitleText>
       <PromotionCardListContainer>
         {promotionList
           .sort((a, b) => a.order - b.order)

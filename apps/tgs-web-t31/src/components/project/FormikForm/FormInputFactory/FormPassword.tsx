@@ -4,6 +4,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { theme } from "@/theme";
 
 type Props = {
   formInput: FormikFormInput;
@@ -24,6 +25,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   };
 
   const inputType = isShowPassword ? "text" : "password";
+
   return (
     <GrayInputWrapper key={name} style={{ marginBottom: "21px" }}>
       <TextField
@@ -40,14 +42,16 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
         InputProps={{
           autoComplete: "new-password",
           endAdornment: (
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-              style={{ color: "white" }}
-            >
-              {isShowPassword ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
+            <InputAdornment position="end" style={{ height: "20px" }}>
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                style={{ color: theme.text }}
+              >
+                {isShowPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
           ),
         }}
       />

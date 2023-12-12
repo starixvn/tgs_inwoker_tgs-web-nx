@@ -1,4 +1,4 @@
-export const colorListT31 = {
+export const theme = {
   primary: "#052819",
   secondary: "#E5D82D",
   text: "#FFFFFF",
@@ -24,6 +24,7 @@ export const colorListT31 = {
   accountBGC: "#FEFBF7",
   black60: "#00000099",
   black30: " #0000004D",
+  neutralBlack:"#161616",
   supplierMask: "linear-gradient(180deg, rgba(0, 0, 0, 0) 72.13%, rgba(0, 0, 0, 0.3) 100%)",
   white30: "#FFFFFF4D",
   white50: "#FFFFFF80",
@@ -34,9 +35,3 @@ export const colorListT31 = {
   red: "#E50100",
   yellow: "#FFC700",
 };
-
-export const themeList = {
-  colorListT31,
-};
-
-export const theme = themeList["colorListT31"];

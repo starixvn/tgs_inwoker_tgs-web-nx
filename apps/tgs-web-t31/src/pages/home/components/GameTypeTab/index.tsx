@@ -7,6 +7,7 @@ import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import HomeUrl from "@/assets/t31/images/home/Home.png";
+
 const TabContainer = styled.div`
   width: 100%;
   overflow-x: auto;

@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth } from "@tgs-web-nx/core/features";
-import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuth, useAuthContext, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
+import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { theme } from "@/theme";
+import iconLogin from "@/assets/t29/images/header/icon-login.svg";
+import Icon from "@/components/project/Icon";
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 `;
 
 type Props = {
@@ -15,30 +21,34 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
+  const { isDesktopSize } = useRwd();
   const { goToLogin, goToRegister } = useAuth();
 
   return (
     <ButtonContainer>
-      <HeaderButton
+      <RoundHeaderButton
         onClick={goToLogin}
         style={{
-          background: "linear-gradient(90deg, #7135F3 50.07%, #5E20CF 50.54%)",
-          width: buttonWidth ?? "92px",
+          color: theme.white,
+          background: theme.primary,
         }}
       >
+        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.login")}
-      </HeaderButton>
+      </RoundHeaderButton>
 
-      <HeaderButton
+      <RoundHeaderButton
         color={"primary"}
         onClick={goToRegister}
         style={{
-          background: "linear-gradient(90deg, #FACE27 53.32%, #F3AF16 53.95%)",
-          width: buttonWidth ?? "92px",
+          color: theme.white,
+          background: theme.secondary,
         }}
       >
+        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.register")}
-      </HeaderButton>
+      </RoundHeaderButton>
+      {isDesktopSize && <HeaderLanguageSwitch />}
     </ButtonContainer>
   );
 };

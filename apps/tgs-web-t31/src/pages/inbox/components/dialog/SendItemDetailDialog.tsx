@@ -16,7 +16,7 @@ const SendItemDetailDialog = () => {
       maxWidth={"sm"}
       fullscreenOnMobile={false}
     >
-      {isLoading && <LoadingBlock size={30} />}
+      {isLoading && <LoadingBlock size={30} style={{ minHeight: "160px" }} />}
 
       {!isLoading && !!sendItemDetail && !error && (
         <SendDialogContent sendItemDetail={sendItemDetail} />

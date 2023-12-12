@@ -2,8 +2,6 @@ import React from "react";
 import config from "@tgs-web-nx/config";
 import { RouteType } from "@tgs-web-nx/types";
 import { ProfilePathEnum } from "@tgs-web-nx/core";
-import CardPage from "@/pages/card/CardPage";
-import AddCardPage from "@/pages/card/AddCardPage";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
@@ -19,14 +17,23 @@ import ReportPage from "@/pages/report/ReportPage";
 import TransferPage from "@/pages/transfer/TransferPage";
 import VIPPage from "@/pages/vip/VipPage";
 import WithdrawalPage from "@/pages/withdrawal/WithdrawalPage";
-import WithdrawalDetailsPage from "@/pages/withdrawal/WithdrawalDetailsPage";
+import WageringPage from "@/pages/wagering/WageringPage";
 import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
 import DialogLayout from "@/layouts/DialogLayout";
+import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
+import AppDownloadPage from "@/pages/download/DownloadPage";
+import HomeLayout from "@/layouts/HomeLayout";
+import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
+import Faq from "@/pages/Faq";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsAndConditions from "@/pages/TermsAndConditions";
+import Responsiblegaming from "@/pages/Responsiblegaming";
+import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -34,21 +41,27 @@ const routes: RouteType[] = [
   {
     path: "/",
     component: MainPage,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main",
     component: MainPage,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
-    path: "/main/:page",
+    path: "/main/:gameType",
     component: MainPage,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
+  // {
+  //   path: "/main/:page",
+  //   component: MainPage,
+  //   layout: HomeLayout,
+  //   isAnonymousAllowed: true,
+  // },
   {
     path: "/account",
     component: AccountPage,
@@ -62,6 +75,11 @@ const routes: RouteType[] = [
   {
     path: "/withdrawal",
     component: WithdrawalPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/wagering",
+    component: WageringPage,
     layout: DialogLayout,
   },
   {
@@ -234,12 +252,6 @@ const routes: RouteType[] = [
     layout: DialogLayout,
   },
   // {
-  //   path: "/memo",
-  //   component: memo,
-  //   alert: true,
-  //   navigate: true,
-  // },
-  // {
   //   path: "/inbox/details/:id",
   //   component: InboxDetails,
   //   alert: true,
@@ -247,12 +259,7 @@ const routes: RouteType[] = [
   //   screenHeight: true,
   // },
   //
-  // TODO:it looks like /withdrawal/details is not used?
-  {
-    path: "/withdrawal/details",
-    component: WithdrawalDetailsPage,
-    layout: DialogLayout,
-  },
+
   {
     path: "/deposit/:promotionid?",
     component: DepositPage,
@@ -264,19 +271,10 @@ const routes: RouteType[] = [
     layout: DialogLayout,
   },
   {
-    path: "/card",
-    component: CardPage,
-    layout: DialogLayout,
-  },
-  {
-    path: "/card/add",
-    component: AddCardPage,
-    layout: DialogLayout,
-  },
-  {
     path: "/maintenance",
     component: MaintenancePage,
     isAnonymousAllowed: true,
+    layout: MaintenanceLayout,
   },
 
   {
@@ -308,7 +306,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: DialogLayout,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",
@@ -323,12 +321,37 @@ const routes: RouteType[] = [
     isAnonymousAllowed: true,
   },
   {
+    path: "/appDownload",
+    component: AppDownloadPage,
+    layout: DialogLayout,
+  },
+  {
     path: "/joingame/:gameId/:gpCode",
     component: JoinGamePage,
   },
   {
     path: "/joinlobbygame/:gameType/:gpCode",
     component: JoinLobbyGamePage,
+  },
+  {
+    path: "/faq",
+    component: Faq,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/privacypolicy",
+    component: PrivacyPolicy,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/terms",
+    component: TermsAndConditions,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/responsiblegaming",
+    component: Responsiblegaming,
+    isAnonymousAllowed: true,
   },
 ];
 

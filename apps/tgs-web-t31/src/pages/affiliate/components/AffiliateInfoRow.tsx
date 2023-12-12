@@ -6,12 +6,12 @@ import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainLightBackground};
-  border-radius: 30px;
-  padding: 14px 16px;
+  background: ${({ theme }) => theme.mainBackground};
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  border-bottom: 1px solid ${({ theme }) => theme.gray10};
 
   & .label {
     min-width: 110px;
@@ -19,7 +19,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.318rem;
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.text};
   }
 
   & .value {
@@ -30,6 +30,7 @@ const AffiliateInfoRowContainer = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-right: 6px;
+    color: ${({ theme }) => theme.black};
   }
 
   & .button {
@@ -37,7 +38,7 @@ const AffiliateInfoRowContainer = styled.div`
     margin-left: auto;
     font-size: 0.75rem;
     font-weight: 400;
-    padding: 8px 19px;
+    padding: 8px 15px;
     border-radius: 5px;
   }
 `;
@@ -71,7 +72,8 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         sx={{
           width: "66px",
           color: theme.white,
-          background: theme.priBTNOutline,
+          background: theme.secondary,
+          fontSize: "0.75rem",
         }}
       >
         {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}

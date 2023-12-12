@@ -5,7 +5,7 @@ import { media } from "@/theme/breakpoints";
 export const ReportContainer = styled.div``;
 export const ReportSummary = styled.div`
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   border-radius: 5px;
   margin-bottom: 5px;
 
@@ -21,15 +21,15 @@ export const ReportSummaryRow = styled.div`
 export const ReportSummaryCol = styled.div``;
 export const ReportCardsContainer = styled.div`
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   border-radius: 5px;
   margin-bottom: 5px;
 `;
 export const ReportCard = styled.div`
-  padding: 9px 16px;
+  padding: 16px;
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.mainLightBackground};
+  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.gray20};
   border-radius: 5px;
   margin-bottom: 10px;
 `;
@@ -52,19 +52,18 @@ export const CustomWinLose = styled.span<CustomWinLoseProps>`
 `;
 export const ReportTable = muiStyled(Table)(({ theme }) => ({
   "& .MuiTableHead-root .MuiTableCell-root": {
-    fontSize: "0.937rem",
-    lineHeight: "1.098rem",
-    fontWeight: 400,
+    fontSize: "0.875rem",
+    fontWeight: 500,
     whiteSpace: "nowrap",
     padding: "0 5px",
+    color: theme.palette.black,
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
-    fontSize: "0.812rem",
+    fontSize: "0.857rem",
     fontWeight: 400,
-    lineHeight: "0.951rem",
-    color: theme.palette.white,
-    borderBottom: `1px solid ${theme.palette.white}`,
+    color: theme.palette.text.primary,
+    borderBottom: `1px solid ${theme.palette.gray10}`,
     padding: "26px 5px 10px",
   },
 }));
@@ -81,18 +80,6 @@ export const DateRangeSelector = styled.div`
   ${media.sm} {
     flex-wrap: wrap;
     flex-direction: row;
-  }
-`;
-export const DateTitle = styled.div`
-  align-self: flex-start;
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.465rem;
-  color: ${({ theme }) => theme.white};
-  white-space: nowrap;
-  flex-shrink: 0;
-
-  ${media.sm} {
-    align-self: center;
+    height: 47px;
   }
 `;

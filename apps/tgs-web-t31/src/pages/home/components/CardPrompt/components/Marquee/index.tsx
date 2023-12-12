@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import notification from "@/assets/t31/images/home/notifications.svg";
+import notificationDesktop from "@/assets/t29/images/home/notifications.svg";
 
 const Container = styled.div`
   display: flex;
@@ -13,8 +15,9 @@ const Container = styled.div`
   height: 100%;
   white-space: nowrap;
   word-break: keep-all;
-  border-radius: 5px;
   font-size: 0.875rem;
+  padding: 4px 10px;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Background = styled.div`
@@ -28,10 +31,11 @@ const Marquee = () => {
   } = useUiStore();
 
   const hasData = marquees && marquees.length > 0;
+  const { isDesktopSize } = useRwd();
 
   return (
     <Container>
-      <img src={notification} alt="marquee" />
+      <img src={isDesktopSize ? notificationDesktop : notification} alt="marquee" />
       {hasData && (
         // Disable TypeScript check for unknown HTML elements
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

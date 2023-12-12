@@ -478,11 +478,11 @@ class DepositPrev extends Component {
       file,
     );
   };
-  handleMethodChange = (e) => {
+  handleMethodChange = (targetIndex) => {
     this.setState({
       ...this.state,
       selectedChannelIndex: 0,
-      selectedMethodIndex: e.target.value,
+      selectedMethodIndex: targetIndex,
     });
   };
   handleChannelChange = (e) => {

@@ -4,8 +4,6 @@ import { useHistory } from "react-router-dom";
 import { Promotion } from "@tgs-web-nx/types";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";
-import Icon from "@/components/project/Icon";
-import iconMore from "@/assets/t23/images/promotion/iconMore.svg";
 
 type PromotionCardContainerProps = {
   onClick: (event: Event) => void;
@@ -18,7 +16,6 @@ const PromotionCardContainer = styled.div<PromotionCardContainerProps>`
   flex-direction: column;
   align-items: stretch;
   overflow: hidden;
-  border: 1px solid #4f4f4f;
   cursor: pointer;
 
   ${media.sm} {
@@ -44,7 +41,7 @@ const PromotionTextContainer = styled.div`
 const TitleWrapper = styled.div`
   font-size: 1.062rem;
   font-weight: 400;
-  color: white;
+  color: ${({ theme }) => theme.white};
   text-overflow: ellipsis;
 `;
 
@@ -70,14 +67,6 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
       <BannerWrapper>
         <BannerImage promotionData={promotionData} />
       </BannerWrapper>
-
-      <PromotionTextContainer>
-        <TitleWrapper>{promotionData.name}</TitleWrapper>
-
-        <ClickMoreContainer>
-          <Icon iconUrl={iconMore} width={"28px"} height={"28px"} />
-        </ClickMoreContainer>
-      </PromotionTextContainer>
     </PromotionCardContainer>
   );
 };

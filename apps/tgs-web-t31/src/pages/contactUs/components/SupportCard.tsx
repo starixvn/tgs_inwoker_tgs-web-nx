@@ -8,13 +8,12 @@ import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 
 const SupportCardContainer = styled.div`
-  border-radius: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: ${({ theme }) => theme.iconLable};
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.blue20};
+  color: ${({ theme }) => theme.text};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.098rem;
@@ -62,29 +61,6 @@ const iconSwitcher = (icon: string) => {
   }
 };
 
-const IconContainer = styled.div`
-  width: 55px;
-  height: 55px;
-  border-radius: 28px;
-  background: ${({ theme }) => theme.white60};
-  border: 11px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ContactButton = styled.div`
-  width: 100%;
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.primary};
-  padding: 6px;
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 0.878rem;
-  border-radius: 5px;
-`;
-
 type Props = {
   brandsSupport: BrandsSupport;
   handleClick: (brandsSupport: BrandsSupport) => void;
@@ -98,34 +74,25 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
 
   return (
     <SupportCardContainer onClick={handleClickCard}>
-      <IconContainer>
-        <Icon
-          iconUrl={`${import.meta.env.BASE_URL}assets/images/support/${iconSwitcher(
-            brandsSupport.type,
-          )}`}
-          width={"40px"}
-          height={"40px"}
-          style={{
-            display: "block",
-            overflow: "hidden",
-          }}
-        />
-      </IconContainer>
+      <Icon
+        iconUrl={`${import.meta.env.BASE_URL}assets/images/support/${iconSwitcher(
+          brandsSupport.type,
+        )}`}
+        width={"55px"}
+        height={"55px"}
+      />
 
       <span>{type}</span>
 
       <Button
         fullWidth
         sx={{
-          height: "30px",
           color: theme.white,
-          borderRadius: "4px",
-          fontFamily: "SF Pro",
-          fontSize: "12px",
-          fontWeight: "400",
-          lineHeight: "14px",
-          letterSpacing: "0em",
-          textAlign: "center",
+          background: theme.primary,
+          padding: "6px",
+          "&:hover": {
+            background: theme.secondary,
+          },
         }}
       >
         {i18n.t("common.contact")}

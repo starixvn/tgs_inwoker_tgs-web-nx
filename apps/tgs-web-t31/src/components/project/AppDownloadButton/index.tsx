@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { NavCardKey } from "@tgs-web-nx/types";
-import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
 import Icon from "@/components/project/Icon";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const AppDownloadButtonContainer = styled.button`
   width: 100%;
@@ -12,7 +12,7 @@ const AppDownloadButtonContainer = styled.button`
   justify-content: center;
   border-radius: 30px;
   padding: 20px;
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   border: none;
   cursor: pointer;
@@ -27,12 +27,16 @@ type Props = {
 
 const AppDownloadButton = ({ handleClick }: Props) => {
   const history = useHistory();
-  const { navItemList, navItemDictionary } = useAccountNavigations();
+  const { accountNavItemList } = useGetNavItemList();
 
-  const navItem = navItemDictionary[NavCardKey.APP_DOWNLOAD];
-  if (navItem.navType !== "route") return null;
+  const downloadNavItem = accountNavItemList.find(
+    (navItem) => navItem.key === NavCardKey.APP_DOWNLOAD && navItem.navType === "route",
+  );
 
-  const { label, iconUrl, routePath } = navItem;
+  if (!downloadNavItem) return null;
+  if (downloadNavItem.navType !== "route") return null;
+
+  const { label, iconUrl, routePath } = downloadNavItem;
   return (
     <AppDownloadButtonContainer onClick={() => history.push(routePath)}>
       <Icon

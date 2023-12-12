@@ -1,50 +1,101 @@
 import React, { useCallback } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
+import Footer from "@/layouts/components/Footer";
+import Header from "@/layouts/components/Header";
+import { media } from "@/theme/breakpoints";
+import {
+  BOTTOM_APP_BAR_HEIGHT,
+  DESKTOP_HEADER_HEIGHT,
+  MOBILE_HEADER_HEIGHT,
+  SUB_CONTENT_MAX_WIDTH,
+} from "@/theme/constants";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
+import bg from "@/assets/t29/images/bg.png";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
-import DialogHeader from "@/components/UI/Dialog/VipDialogHeader";
-import DefaultLayout from "@/layouts/DefaultLayout";
-import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
-const VipLayoutContainer = styled.div`
+const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.primaryDark};
+  background: ${({ theme }) => theme.white};
+
+  ${media.sm} {
+    background: url(${bg});
+  }
+`;
+
+const DashboardContainer = styled.div`
+  display: flex;
+  margin-top: ${MOBILE_HEADER_HEIGHT};
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+
+  ${media.sm} {
+    margin-top: ${DESKTOP_HEADER_HEIGHT};
+    min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
+    margin-bottom: unset;
+    padding: 15px 0px;
+  }
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${HEADER_HEIGHT} 0 ${BOTTOM_APP_BAR_HEIGHT};
   position: relative;
-  z-index: 1;
+  flex-grow: 1;
+  transition: all ease-in-out 0.2s;
+`;
+
+const ChildrenWrapper = styled.div`
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  margin: auto;
+  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
+  display: flex;
+  justify-content: center;
+
+  ${media.sm} {
+    padding-bottom: 0px;
+  }
 `;
 
 type Props = {
   children: React.ReactNode;
 };
-
 const VipLayout = ({ children }: Props) => {
+  const { isDesktopSize, isMobileSize } = useRwd();
+  const { pageName } = usePageName();
   const history = useHistory();
-  const { isDesktopSize } = useRwd();
-  const { handleChangeGameType } = useHomeGameContext();
 
   const handleCloseDialog = useCallback(() => {
-    handleChangeGameType(GameTypeEnum.NONE);
-    history.push("/");
-  }, []);
-
-  if (isDesktopSize) {
-    return <DefaultLayout>{children}</DefaultLayout>;
-  }
+    history.goBack();
+  }, [history]);
 
   return (
-    <VipLayoutContainer>
-      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={"VIP"} />
-      <ContentWrapper>{children}</ContentWrapper>
-      <BottomAppBar />
-    </VipLayoutContainer>
+    <DefaultLayoutContainer>
+      <Header />
+
+      <DashboardContainer>
+        {isMobileSize && (
+          <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
+        )}
+        <ContentWrapper>
+          <ChildrenWrapper>
+            {isDesktopSize && (
+              <DarkMemberMenu
+                handleCloseContextMenu={() => {}}
+                style={{
+                  width: "200px",
+                  flexShrink: 0,
+                  minHeight:"800px"
+                }}
+              />
+            )}
+            {children}
+          </ChildrenWrapper>
+        </ContentWrapper>
+      </DashboardContainer>
+      <Footer />
+      {isMobileSize && <BottomAppBar />}
+    </DefaultLayoutContainer>
   );
 };
 

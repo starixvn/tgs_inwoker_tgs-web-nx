@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import CarouselArrow from "@/assets/t23/images/promotion/icon_arrow.svg";
-import CarouselArrowYellow from "@/assets/t23/images/promotion/icon_arrow_yellow.svg";
+import CarouselArrowNext from "@/assets/t31/images/dialog/Arrow_next.svg";
+import CarouselArrowPre from "@/assets/t31/images/dialog/Arrow_pre.svg";
+
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Carousel from "@/components/account/Carousel";
@@ -13,13 +14,13 @@ const NextArrowContainer = styled.div`
   z-index: 99;
   width: 22px;
   height: 44px;
-  background: url(${CarouselArrowYellow}) no-repeat center center;
+  background: url(${CarouselArrowNext}) no-repeat center center;
 `;
 
 const PrevArrowContainer = styled(NextArrowContainer)`
   left: -23px;
   right: auto;
-  background: url(${CarouselArrow}) no-repeat center center;
+  background: url(${CarouselArrowPre}) no-repeat center center;
 `;
 
 function SampleNextArrow({ onClick }: { onClick: () => void }) {
