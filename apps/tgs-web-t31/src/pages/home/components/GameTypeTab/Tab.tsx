@@ -3,6 +3,7 @@ import { media } from "@/theme/breakpoints";
 
 type Props = {
   imageUrl: string;
+  activeUrl: string;
   text: string;
   isActive: boolean;
   onClick: () => void;
@@ -25,8 +26,9 @@ const Wrapper = styled.div<{
   gap: 6px;
   user-select: none;
   border-radius: 6px;
-  border: 1px solid ${({ theme, $isActive }) => ($isActive ? theme.blue40 : "transparent")};
-  background: ${({ theme }) => theme.blue20};
+  border: 1px solid ${({ theme, $isActive }) => ($isActive ? theme.green : "transparent")};
+
+  /* background: ${({ theme }) => theme.blue20}; */
 
   ${media.sm} {
     min-width: 90px;
@@ -43,20 +45,25 @@ const GameIcon = styled.img`
   height: 20px;
 `;
 
-const Text = styled.div`
-  color: ${({ theme }) => theme.text};
+const Text = styled.div<{
+  $isActive: boolean;
+}>`
+  background-image: ${({ theme, $isActive }) => ($isActive ? theme.primaryGradient : theme.white)};
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: ${({ theme, $isActive }) => ($isActive ? "transparent" : theme.white)};
   font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 590;
+  line-height: 14px;
+  letter-spacing: 0em;
   text-align: center;
-  line-height: 10px;
 `;
 
-const Tab = ({ imageUrl, text, isActive, onClick }: Props) => {
+const Tab = ({ imageUrl, activeUrl, text, isActive, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
-      <GameIcon src={imageUrl} alt={text} />
-      <Text>{text}</Text>
+      <GameIcon src={isActive ? activeUrl : imageUrl} alt={text} />
+      <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );
 };
