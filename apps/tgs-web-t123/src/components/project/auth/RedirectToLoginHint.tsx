@@ -1,19 +1,38 @@
 import React from "react";
+import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRedirectToLoginHint } from "@tgs-web-nx/core/features";
-import { RedirectContainer } from "@/components/styled-component/auth/Form";
+
+const CreateAccountContainer = styled.div`
+  width: 100%;
+  color: white;
+  font-size: 1.062rem;
+  font-weight: 400;
+  line-height: 1.245;
+  align-self: baseline;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .link {
+    color: ${({ theme }) => theme.primary};
+    margin-left: 8px;
+    cursor: pointer;
+  }
+`;
+
+const LinkText = styled.div`
+  text-decoration: underline;
+`;
 
 const RedirectToLoginHint = (props: React.HTMLProps<HTMLDivElement>) => {
   const { handleRedirect } = useRedirectToLoginHint();
 
   return (
     //@ts-ignore
-    <RedirectContainer {...props}>
-      <span>{i18n.t("T13.proceedLogin")}</span>
-      <span onClick={handleRedirect} className={"link"}>
-        {i18n.t("common.login")}
-      </span>
-    </RedirectContainer>
+    <CreateAccountContainer {...props}>
+      <LinkText onClick={handleRedirect}>{i18n.t("common.login")}</LinkText>
+    </CreateAccountContainer>
   );
 };
 

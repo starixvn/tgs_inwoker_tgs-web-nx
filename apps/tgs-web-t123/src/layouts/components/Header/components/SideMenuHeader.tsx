@@ -4,7 +4,7 @@ import { Close as CloseIcon } from "@mui/icons-material";
 import { useHeader } from "@tgs-web-nx/core/features";
 
 const SideMenuHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.gray30};
+  background: ${({ theme }) => theme.sideMenu};
   position: relative;
   flex-shrink: 0;
   width: 100%;
@@ -18,7 +18,7 @@ const SideMenuHeaderContainer = styled.div`
 const CloseIconContainer = styled.div`
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
   display: flex;
   align-items: center;
   cursor: pointer;

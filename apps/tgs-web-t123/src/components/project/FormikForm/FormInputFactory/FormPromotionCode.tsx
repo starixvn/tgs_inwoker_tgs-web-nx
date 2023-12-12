@@ -68,6 +68,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             MenuProps={{
               PaperProps: {
                 sx: {
+                  background:theme.black,
                   "& .MuiMenuItem-root": {
                     color: theme.text,
                   },

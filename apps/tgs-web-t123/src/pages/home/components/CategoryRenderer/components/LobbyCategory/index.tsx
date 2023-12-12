@@ -100,7 +100,7 @@ const LobbyCategory = () => {
     <Wrapper>
       {isMobileSize && (
         <>
-          <GameTypeTab />
+          {/* <GameTypeTab /> */}
           <CategoryContentWrapper>
             <CategoryContent>
               {hasMappingData &&

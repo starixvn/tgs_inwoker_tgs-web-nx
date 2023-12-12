@@ -97,8 +97,8 @@ const App: React.FC = () => {
 
                       <PopupAlertModal />
                       {/*<FloatingToolIcons />*/}
-                      <LoginDialog />
-                      <RegisterDialog />
+                      {/* <LoginDialog />
+                      <RegisterDialog /> */}
                       <RegisterV2InitPhoneDialog />
                       <RegisterV2InitEmailDialog />
                       <ForgotPasswordDialog />

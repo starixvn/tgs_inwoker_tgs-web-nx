@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { useOnlineUser } from "@tgs-web-nx/core/hooks";
-import member from "@/assets/t29/images/home/member.svg";
+import { useOnlineUser, useRwd } from "@tgs-web-nx/core/hooks";
+import member from "@/assets/t31/images/home/member.svg";
+import memberDesktop from "@/assets/t31/images/home/member_desktop.png";
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,10 +24,11 @@ const Text = styled.div<Props>`
 
 const OnlineUser = (props: { color: string }) => {
   const { onlineUser } = useOnlineUser();
+  const { isDesktopSize } = useRwd();
 
   return (
     <Wrapper>
-      <img src={member} alt="online member" />
+      <img src={isDesktopSize ? memberDesktop : member} alt="online member" />
       <Text $color={props.color}>{onlineUser ? onlineUser : ""}</Text>
     </Wrapper>
   );

@@ -12,11 +12,7 @@ const RegisterPage = () => {
     return null;
   }
 
-  return (
-    <FormContainerWithBG>
-      <RegisterForm />
-    </FormContainerWithBG>
-  );
+  return <RegisterForm />;
 };
 
 export default RegisterPage;

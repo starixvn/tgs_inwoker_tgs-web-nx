@@ -24,6 +24,7 @@ export const theme = {
   accountBGC: "#FEFBF7",
   black60: "#00000099",
   black30: " #0000004D",
+  neutralBlack:"#161616",
   supplierMask: "linear-gradient(180deg, rgba(0, 0, 0, 0) 72.13%, rgba(0, 0, 0, 0.3) 100%)",
   white30: "#FFFFFF4D",
   white50: "#FFFFFF80",

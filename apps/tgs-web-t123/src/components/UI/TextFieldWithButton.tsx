@@ -26,6 +26,11 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const SendButton = styled(Button)`
+  background-color: ${({ theme }) => `${theme.accountLableText} !important`};
+  border-radius: 4px !important;
+`;
+
 const TextFieldWithButton = (
   props: TextFieldProps & {
     label?: string;
@@ -52,9 +57,9 @@ const TextFieldWithButton = (
       />
 
       <ButtonContainer>
-        <Button onClick={props.onClick} disabled={!!props.buttonDisabled}>
+        <SendButton onClick={props.onClick} disabled={!!props.buttonDisabled}>
           {props.buttonLabel}
-        </Button>
+        </SendButton>
       </ButtonContainer>
     </CustomText>
   );

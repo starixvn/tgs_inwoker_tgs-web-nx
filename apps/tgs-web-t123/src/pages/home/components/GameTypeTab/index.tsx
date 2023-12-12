@@ -1,34 +1,31 @@
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import HomeUrl from "@/assets/t31/images/home/Home.png";
 
 const TabContainer = styled.div`
-  overflow-y: auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  width: 72px;
-  max-height: 862px; //826/926
-  overflow-y: auto;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  flex-shrink: 0;
-  gap: 3px;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin-top: 20px;
+    padding-bottom: 5px;
 
     &::-webkit-scrollbar {
       height: 10px;
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-      background: ${(props) => props.theme.tertiaryDark};
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background: ${(props) => props.theme.mainDarkBackground};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -45,7 +42,8 @@ const TabContainer = styled.div`
 const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
+  const { isMobileSize } = useRwd();
+  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
@@ -59,21 +57,20 @@ const GameTypeTab = () => {
     handleChangeActiveFilterTag(allTag);
   };
 
-  const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
-    if (providerList.length) {
-      const hasData = providerList.some((provider) => {
-        return provider.gametypes.includes(gameTypeItem.gameType);
-      });
-      return hasData;
-    }
-    return true;
-  });
-
-
   return (
     <TabContainer>
-      {filteredGameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
+      <Tab
+        imageUrl={HomeUrl}
+        text={i18n.t("common.home")}
+        isActive={false}
+        onClick={() => switchGameType(GameTypeEnum.NONE)}
+      />
+      {gameTypeList.map((gameTypeItem) => {
+        const { key, iconUrl, text, gameType } = gameTypeItem;
+
+        if (isMobileSize && gameType === GameTypeEnum.NONE) {
+          return null;
+        }
 
         return (
           <Tab
@@ -81,7 +78,6 @@ const GameTypeTab = () => {
             imageUrl={iconUrl}
             text={text}
             isActive={gameType === activeGameType}
-            fontSize={fontSize}
             onClick={() => switchGameType(gameType)}
           />
         );

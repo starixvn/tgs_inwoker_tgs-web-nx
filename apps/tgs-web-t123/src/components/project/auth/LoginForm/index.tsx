@@ -2,6 +2,7 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import styled from "styled-components";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
@@ -17,6 +18,12 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+import { theme } from "@/theme";
+
+const RegisterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const LoginForm = () => {
   const {
@@ -32,11 +39,7 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
-      ) : (
-        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
-      )}
+      <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
 
       <FormContainer>
         <FormikForm
@@ -56,17 +59,18 @@ const LoginForm = () => {
               />
               {i18n.t("wap.login.rememberMe")}
             </RememberMeContainer>
-
-            <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-              {i18n.t("forgotPassword.title")}?
-            </ForgotPasswordContainer>
           </FormSubContainer>
         </FormikForm>
       </FormContainer>
 
-      <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+      <RegisterContainer>
+        <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+          {i18n.t("forgotPassword.title")}?
+        </ForgotPasswordContainer>
+        <RedirectToRegisterHint />
+      </RegisterContainer>
 
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      <LanguageSwitch style={{ width: "100%", margin: "24px 0", border: `1px solid ${theme.white30}` }} />
     </AuthFormContainer>
   );
 };

@@ -16,6 +16,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -157,6 +158,10 @@ function VerifyPhone({ handleUpdateStage }: Props) {
                 (config.features.Profile_DisableVerifyPhone &&
                   !config.features.InitPhone_WithoutVerify)
               }
+              sx={{
+                border:`1px solid ${theme.white30}`,
+                background:theme.black
+              }}
             >
               <option value={AREA_CODE}>{AREA_CODE}</option>
             </Select>
@@ -171,6 +176,9 @@ function VerifyPhone({ handleUpdateStage }: Props) {
                 (isConfigured ? isConfigured : false) || config.features.Profile_DisableVerifyPhone
               }
               onChange={handleChangePhone}
+              sx={{
+                border:`1px solid ${theme.white30}`,
+              }}
             />
           </FormControl>
         </PhoneContainer>

@@ -26,7 +26,6 @@ const BottomAppBar = () => {
     useGetBottomNavItemList();
   const { handleChangeGameType } = useHomeGameContext();
   const history = useHistory();
-  const { handleChangeGameType } = useHomeGameContext();
 
   const handleClick = (bottomNavItem: BottomNavItem) => {
     if (bottomNavItem.routePath === "/") {

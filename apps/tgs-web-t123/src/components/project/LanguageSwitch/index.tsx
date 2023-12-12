@@ -27,7 +27,7 @@ const StyledSelect = styled(MuiSelect)`
   //width: 140px;
   //margin-right: 10px;
   overflow: visible;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.black30};
   font-weight: 400 !important;
   font-size: 0.937rem !important;
   border: 1px solid ${({ theme }) => theme.gray10};
@@ -51,7 +51,7 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.gray30};
+    color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -113,7 +113,7 @@ const LanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainBackground,
+            background: theme.black30,
 
             "& .MuiMenuItem-root": {
               padding: 2,

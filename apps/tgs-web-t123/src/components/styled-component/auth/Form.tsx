@@ -16,22 +16,16 @@ export const RememberMeContainer = styled.div`
   //margin: 8px 0;
 `;
 export const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
-  font-size: 0.875rem;
+  color: ${({ theme }) => theme.white};
+  font-size: 1.062rem;
   font-weight: 400;
   white-space: nowrap;
   cursor: pointer;
+  text-decoration: underline;
 `;
 export const RedirectContainer = styled.div`
-  width: 100%;
-  color: ${({ theme }) => theme.text};
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 1.245;
-  align-self: baseline;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   .link {
     color: ${({ theme }) => theme.primary};

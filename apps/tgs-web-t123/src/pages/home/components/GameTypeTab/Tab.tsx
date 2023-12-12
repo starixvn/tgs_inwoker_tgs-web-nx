@@ -4,7 +4,6 @@ import { media } from "@/theme/breakpoints";
 type Props = {
   imageUrl: string;
   text: string;
-  fontSize: "small" | "smaller" | string;
   isActive: boolean;
   onClick: () => void;
 };
@@ -44,21 +43,20 @@ const GameIcon = styled.img`
   height: 20px;
 `;
 
-const Text = styled.div<{ $fontSize: string }>`
+const Text = styled.div`
   color: ${({ theme }) => theme.text};
-  font-size: ${({ $fontSize }) =>
-    $fontSize === "small" ? "0.625rem" : "0.5rem"};
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
   line-height: 10px;
 `;
 
-const Tab = ({ imageUrl, text, isActive, fontSize, onClick }: Props) => {
+const Tab = ({ imageUrl, text, isActive, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
       <GameIcon src={imageUrl} alt={text} />
-      <Text $fontSize={fontSize}>{text}</Text>
+      <Text>{text}</Text>
     </Wrapper>
   );
 };

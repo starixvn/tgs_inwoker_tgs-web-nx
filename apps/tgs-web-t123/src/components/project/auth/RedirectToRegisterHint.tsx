@@ -1,19 +1,48 @@
-import React from "react";
+import React, { useCallback } from "react";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRedirectToRegisterHint } from "@tgs-web-nx/core/features";
-import { RedirectContainer } from "@/components/styled-component/auth/Form";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuthDialog } from "@tgs-web-nx/core/features";
 
-const RedirectToRegisterHint = (props: React.HTMLProps<HTMLDivElement>) => {
-  const { handleRedirect } = useRedirectToRegisterHint();
+const CreateAccountContainer = styled.div`
+  width: 100%;
+  color: white;
+  font-size: 1.062rem;
+  font-weight: 400;
+  line-height: 1.245;
+  align-self: baseline;
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: end;
+  text-decoration: underline;
+
+  .link {
+    color: ${({ theme }) => theme.primary};
+    margin-left: 8px;
+    cursor: pointer;
+  }
+`;
+
+const RedirectToRegisterHint = () => {
+  const { isDesktopSize } = useRwd();
+  const { handleToggleRegisterDialog, handleToggleLoginDialog } = useAuthDialog();
+  const history = useHistory();
+
+  const handleRedirect = useCallback(() => {
+    if (!isDesktopSize) {
+      return history.push("/register");
+    }
+
+    handleToggleLoginDialog(false);
+    handleToggleRegisterDialog(true);
+  }, []);
 
   return (
-    //@ts-ignore
-    <RedirectContainer {...props}>
-      <span>{i18n.t("T13.proceedRegister")}</span>
-      <span onClick={handleRedirect} className="link">
-        {i18n.t("common.register")}
-      </span>
-    </RedirectContainer>
+    <CreateAccountContainer>
+      <div onClick={handleRedirect}>{i18n.t("common.register")}</div>
+    </CreateAccountContainer>
   );
 };
 
