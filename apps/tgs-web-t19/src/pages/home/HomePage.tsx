@@ -23,10 +23,8 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  padding: 0px 8px 12px 8px;
-  gap: 6px;
-  flex-shrink: 0;
-  flex: 1;
+  /* flex-shrink: 0;
+  flex: 1; */
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -43,7 +41,6 @@ const SliderWrapper = styled.div`
 
   ${media.sm} {
     height: 100%;
-    max-height: 450px;
   }
 `;
 
@@ -55,9 +52,9 @@ const MainContentWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 6px;
   flex-shrink: 0;
   flex: 1;
+  padding: 16px 12px 0px 12px;
 
   /* ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -119,10 +116,15 @@ const HomePage = () => {
   return (
     <MainWrapper>
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
-      {!!general.banner.length && (
+      {!!general.banner.length && isMobileSize && (
         <SliderWrapper>
-          {isMobileSize && <Slider />}
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
+          <Slider maxHeight={"134px"} />
+        </SliderWrapper>
+      )}
+      {!!general.banner.length && isDesktopSize && (
+        <SliderWrapper>
+          <Slider maxHeight={"600px"} />
+          {!!activeGameType && !isNonLobby && (
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
@@ -132,10 +134,10 @@ const HomePage = () => {
               }
             />
           )}
-          {isDesktopSize && !activeGameType && <Banner />}
         </SliderWrapper>
       )}
-      {isMobileSize && <CardPrompt />}
+
+      {/* {isMobileSize && <CardPrompt />} */}
 
       <MainContentWrapper>
         <CategoryRenderer />

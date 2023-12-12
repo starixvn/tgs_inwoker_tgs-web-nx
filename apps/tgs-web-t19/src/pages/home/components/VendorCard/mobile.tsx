@@ -28,6 +28,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 `;
 
 const VendorCardBg = styled.div<{ $bgUrl: string }>`
+border: 1px solid  #B78316;
   position: relative;
   width: calc(50% - 6px);
   //max-width: 161px;

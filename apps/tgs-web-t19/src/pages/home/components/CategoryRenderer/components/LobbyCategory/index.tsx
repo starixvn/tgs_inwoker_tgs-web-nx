@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  gap: 6px;
+  gap: 16px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -28,9 +28,13 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 72px);
+  width: calc(100% - 62px);
   flex-shrink: 0;
-  gap: 6px;
+  gap: 12px;
+  padding: 12px 0px;
+  border-radius: 20px;
+  border: 2.5px solid  #B78316;
+
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
@@ -48,8 +52,7 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   align-content: center;
   width: 100%;
-  row-gap: 13px;
-  column-gap: 9px;
+  gap: 8px;
   align-self: stretch;
 `;
 
@@ -136,15 +139,12 @@ const LobbyCategory = () => {
               return (
                 <DesktopVendorCard
                   key={gpCode}
-                  bgUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  bgUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+                  imageUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}
