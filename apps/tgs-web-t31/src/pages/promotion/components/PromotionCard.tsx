@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Promotion } from "@tgs-web-nx/types";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";
 
@@ -53,13 +54,15 @@ const ClickMoreContainer = styled.div`
 
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
   const history = useHistory();
-
+  const { isDesktopSize } = useRwd();
   const handleEnterDetail: React.MouseEventHandler<HTMLDivElement> & ((event: Event) => void) = (
     event,
   ) => {
-    event.preventDefault();
-
     history.push("/promotion/" + promotionData.id);
+    // event.preventDefault();
+    // if (isDesktopSize) {
+    //   return history.push("/promotion/" + promotionData.id);
+    // }
   };
 
   return (

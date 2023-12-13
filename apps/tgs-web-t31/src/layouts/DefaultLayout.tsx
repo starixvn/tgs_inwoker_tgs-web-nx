@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import MenuDrawer from "./components/MenuDrawer";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
@@ -59,6 +60,7 @@ const DefaultLayout = ({ children }: Props) => {
 
       <DashboardContainer>
         <ContentWrapper>
+          <MenuDrawer />
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />
