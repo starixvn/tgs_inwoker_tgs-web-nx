@@ -42,7 +42,6 @@ const App: React.FC = () => {
   if (isLoading) {
     return <Loading show={true} opacity={1} noShrink={true} />;
   }
-
   return (
     <Router history={AppHistory}>
       <RouteContextProvider route={currentRoute}>
@@ -96,15 +95,9 @@ const App: React.FC = () => {
                       <PopupPromotion />
 
                       <PopupAlertModal />
-<<<<<<< develop
                       {/*<FloatingToolIcons />*/}
-                      {/* <LoginDialog />
-                      <RegisterDialog /> */}
-=======
-                      <FloatingToolIcons />
                       <LoginDialog />
                       <RegisterDialog />
->>>>>>> checkpoint
                       <RegisterV2InitPhoneDialog />
                       <RegisterV2InitEmailDialog />
                       <ForgotPasswordDialog />

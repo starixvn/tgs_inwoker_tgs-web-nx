@@ -16,18 +16,6 @@ export const RememberMeContainer = styled.div`
   //margin: 8px 0;
 `;
 export const ForgotPasswordContainer = styled.span`
-<<<<<<< develop
-  color: ${({ theme }) => theme.white};
-  font-size: 1.062rem;
-  font-weight: 400;
-  white-space: nowrap;
-  cursor: pointer;
-  text-decoration: underline;
-`;
-export const RedirectContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-=======
   color: ${({ theme }) => theme.primary};
   font-size: 0.875rem;
   font-weight: 400;
@@ -44,7 +32,6 @@ export const RedirectContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
->>>>>>> checkpoint
 
   .link {
     color: ${({ theme }) => theme.primary};
