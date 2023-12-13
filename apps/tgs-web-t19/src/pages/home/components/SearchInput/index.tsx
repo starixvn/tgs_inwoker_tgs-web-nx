@@ -13,9 +13,9 @@ const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  border-radius: 100px;
-  border: 2.5px solid #B78316;
-  background-color:${({ theme }) => theme.cmpBackground};
+  border-radius: 12px;
+  border: 1px solid var(--Light-Gold, #D8BD80);
+  background: var(--Default-Nav, #846A21);
 `;
 
 const InputTextfield = styled.input`
@@ -43,6 +43,7 @@ const InputTextfield = styled.input`
 const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
   return (
     <InputWrapper>
+      {imageUrl && <img src={imageUrl} alt={"Search"} />}
       <InputTextfield
         type="text"
         placeholder={placeholder}
@@ -51,7 +52,6 @@ const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
           handleChange(event.target.value);
         }}
       />
-      {imageUrl && <img src={imageUrl} alt={"Search"} />}
     </InputWrapper>
   );
 };
