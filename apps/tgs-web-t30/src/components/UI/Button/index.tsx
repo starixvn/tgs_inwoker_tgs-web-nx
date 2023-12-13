@@ -12,7 +12,7 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   background: theme.palette.primary,
   borderRadius: 0,
   borderBottom: `4px solid ${theme.palette.greenBorder}`,
-  boxShadow: "none",
+  boxShadow: "none !important",
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
