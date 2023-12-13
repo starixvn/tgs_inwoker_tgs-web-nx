@@ -86,9 +86,7 @@ const CardManage = ({
           );
         })}
 
-        {!isDesktopSize && isShowAddCardButton && (
-          <CardAddCard handleClick={onhandleAddCardClick} />
-        )}
+        {isShowAddCardButton && <CardAddCard handleClick={onhandleAddCardClick} />}
       </CardContainer>
 
       <SubmitButton fullWidth onClick={onhandleBackClick}>

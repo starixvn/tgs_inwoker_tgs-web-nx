@@ -30,6 +30,7 @@ const ChildContainer = styled.div`
   width: 100%;
   height: auto;
   overflow: auto;
+  padding: 12px 24px;
 `;
 
 type Props = {
@@ -43,6 +44,15 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
 
   return (
     <StyledDialog
+      sx={{
+        "& .MuiPaper-root": {
+          padding: "28px 61px",
+          maxWidth: "550px",
+        },
+        "& .MuiBackdrop-root": {
+          backgroundColor: "rgba(0,0,0,0.8)",
+        },
+      }}
       fullScreen={!isDesktopSize}
       open={open}
       TransitionComponent={UpTransition}
@@ -55,7 +65,7 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
         <CloseIcon
           onClick={onClose}
           style={{
-            color: "white",
+            color: "black",
             transform: "scale(1.6)",
             width: "20px",
             height: "20px",

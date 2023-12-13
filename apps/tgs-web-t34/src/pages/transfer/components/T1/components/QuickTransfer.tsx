@@ -5,11 +5,12 @@ import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t33/images/transfer/arrow-right.png";
+import ArrowRight from "@/assets/t34/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { media } from "@/theme/breakpoints";
+import Icon from "@/components/project/Icon";
 
 const QuickTransferContainer = styled.div`
   display: flex;
@@ -24,15 +25,6 @@ const QuickTransferContainer = styled.div`
   ${media.lg} {
     flex-wrap: nowrap;
   }
-`;
-
-const QuickTransferArrow = styled.div`
-  flex-shrink: 0;
-  display: flex;
-  width: 23px;
-  height: 23px;
-  align-self: center;
-  margin: 0 10px;
 `;
 
 const AmountWrapper = styled.div`
@@ -117,9 +109,7 @@ const QuickTransfer = ({
         </Select>
       </GrayInputWrapper>
 
-      <QuickTransferArrow>
-        <img src={ArrowRightPNG} alt="arrow-right" />
-      </QuickTransferArrow>
+      <Icon iconUrl={ArrowRight} width={"14px"} height={"14px"} />
 
       <GrayInputWrapper>
         <Select
@@ -176,8 +166,6 @@ const QuickTransfer = ({
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
         style={{
-          color: theme.white,
-          background: theme.primary,
           height: "50px",
           minWidth: "212px",
           padding: "13px",

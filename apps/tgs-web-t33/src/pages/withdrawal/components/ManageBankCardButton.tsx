@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import Icon from "../../../../../tgs-web-t34/src/components/project/Icon";
 import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
 
 const ButtonContainer = styled.div`
@@ -30,10 +31,7 @@ type Props = {
 const ManageBankCardButton = ({ handleManageCardClick }: Props) => {
   return (
     <ButtonContainer onClick={handleManageCardClick}>
-      <IconContainer>
-        <img src={iconImg} alt={"manage-card"} />
-      </IconContainer>
-
+      <Icon iconUrl={iconImg} width={"24px"} height={"24px"} />
       {i18n.t("withdrawal.manageBank")}
     </ButtonContainer>
   );

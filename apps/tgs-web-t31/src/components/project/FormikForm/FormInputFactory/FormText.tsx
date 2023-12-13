@@ -14,7 +14,7 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
 
   return (
-    <GrayInputWrapper key={name} style={{ marginBottom: "21px" }}>
+    <GrayInputWrapper key={name}>
       <TextField
         type={getFormInputType(type)}
         placeholder={label}

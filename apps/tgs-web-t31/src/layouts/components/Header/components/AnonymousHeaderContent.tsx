@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useAuth } from "@tgs-web-nx/core/features";
 import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 
@@ -15,6 +16,8 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
+  const { goToLogin, goToRegister } = useAuth();
+
   const history = useHistory();
   const loginStyle = {
     color: theme.neutralBlack,
@@ -37,22 +40,11 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
   };
   return (
     <ButtonContainer>
-      <RoundHeaderButton
-        onClick={() => {
-          history.push("/login");
-        }}
-        style={loginStyle}
-      >
+      <RoundHeaderButton onClick={goToLogin} style={loginStyle}>
         {i18n.t("common.login").toLocaleUpperCase()}
       </RoundHeaderButton>
 
-      <RoundHeaderButton
-        color={"primary"}
-        onClick={() => {
-          history.push("/register");
-        }}
-        style={registerStyle}
-      >
+      <RoundHeaderButton color={"primary"} onClick={goToRegister} style={registerStyle}>
         {i18n.t("common.register").toLocaleUpperCase()}
       </RoundHeaderButton>
     </ButtonContainer>

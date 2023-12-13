@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
+import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
 
 const CardContainer = styled.div`
   background: ${({ theme }) => theme.grey00};
@@ -11,8 +12,9 @@ const CardContainer = styled.div`
   border-radius: 5px;
   font-size: 0.937rem;
   line-height: 1.098rem;
-  max-width: 450px;
   align-self: flex-start;
+  position: relative;
+  margin-bottom: 20px;
 `;
 const RowContainer = styled.div`
   border-left: 6px solid ${({ theme }) => theme.maskWhite50};
@@ -28,7 +30,20 @@ const Label = styled.div`
 `;
 const Value = styled.div``;
 
-const WithdrawInfoCard = () => {
+export const ManageBankCardButtonContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  align-self: flex-start;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+`;
+
+type Props = {
+  onhandleManageCardClick: any;
+};
+const WithdrawInfoCard = ({ onhandleManageCardClick }: Props) => {
   const [minWithdrawLimit, setMinWithdrawLimit] = useState(0);
 
   const getMinWithdrawLimit = useCallback(async () => {
@@ -66,6 +81,10 @@ const WithdrawInfoCard = () => {
           {Common.formatNumberWithThousand(minWithdrawLimit)}
         </Value>
       </RowContainer>
+
+      <ManageBankCardButtonContainer>
+        <ManageBankCardButton handleManageCardClick={onhandleManageCardClick} />
+      </ManageBankCardButtonContainer>
     </CardContainer>
   );
 };

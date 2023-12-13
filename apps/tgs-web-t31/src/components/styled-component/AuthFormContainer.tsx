@@ -22,8 +22,7 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  max-width: 400px;
-  margin: auto;
+  margin: 0 auto 20px;
 `;
 
 export const LoginTitle = styled.div`

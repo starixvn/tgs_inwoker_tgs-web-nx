@@ -32,7 +32,6 @@ export const LabelContainer = styled.div`
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   borderRadius: "30px",
   background: theme.palette.mainLightBackground,
-
   width: "100%",
   fontSize: "0.937rem",
   "& fieldset": {

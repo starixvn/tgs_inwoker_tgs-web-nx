@@ -24,10 +24,7 @@ const FormPhone = ({ formInput, formik, showErrorOn }: Props) => {
 
   return (
     <PhoneContainer>
-      <GrayInputWrapper
-        key={"areaCode"}
-        style={{ marginBottom: "21px", marginRight: "10px", width: "100px" }}
-      >
+      <GrayInputWrapper key={"areaCode"} style={{ marginRight: "10px", width: "100px" }}>
         <Select
           type={"string"}
           fullWidth
@@ -42,7 +39,7 @@ const FormPhone = ({ formInput, formik, showErrorOn }: Props) => {
         </Select>
       </GrayInputWrapper>
 
-      <GrayInputWrapper key={name} style={{ marginBottom: "21px", flex: 1 }}>
+      <GrayInputWrapper key={name} style={{ flex: 1 }}>
         <TextField
           type={"text"}
           placeholder={label}
