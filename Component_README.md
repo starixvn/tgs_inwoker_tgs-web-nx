@@ -7,3 +7,8 @@ Find available components based on development requirement.
 1. max-height
 2. dots style with normal or active state (adjust .slick-active css)
 3. props settings object for customization
+
+# Favorite
+
+1. change icon.svg
+2. adjust m/d position
