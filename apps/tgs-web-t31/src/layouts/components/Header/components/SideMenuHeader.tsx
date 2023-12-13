@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHeader } from "@tgs-web-nx/core/features";
 
 const SideMenuHeaderContainer = styled.div`
+  background: ${({ theme }) => theme.sideMenu};
   position: relative;
   flex-shrink: 0;
   width: 100%;
-  height: 45px;
+  height: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.sideMenu};
 `;
 
 const CloseIconContainer = styled.div`
@@ -26,9 +25,6 @@ const CloseIconContainer = styled.div`
 `;
 
 const SideMenuHeader = () => {
-  const {
-    general: { brand },
-  } = useGeneralStore();
   const { handleToggleMenu } = useHeader();
 
   return (
@@ -37,7 +33,6 @@ const SideMenuHeader = () => {
         <CloseIcon
           style={{
             color: "white",
-            transform: "scale(1.6)",
             width: "20px",
             height: "20px",
           }}

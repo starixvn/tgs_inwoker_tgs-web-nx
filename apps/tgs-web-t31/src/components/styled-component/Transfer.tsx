@@ -5,6 +5,6 @@ export const Container = styled.div`
   overflow: hidden;
 
   & > * {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 `;

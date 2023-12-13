@@ -8,22 +8,25 @@ import { media } from "@/theme/breakpoints";
 
 const TagContainer = styled.div`
   width: 100%;
+  height: 50px;
+  line-height: 50px;
   overflow-x: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  padding: 0px 6px 0px 14px;
+  border-radius: 100px;
+  border: 1px solid ${({ theme }) => theme.blue40};
+  align-self: stretch;
 
   ${media.sm} {
-    margin-top: 20px;
-    padding-bottom: 5px;
-
     &::-webkit-scrollbar {
       height: 10px;
     }
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.mainDarkBackground};
+      background: ${(props) => props.theme.mainBackground};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -102,7 +105,7 @@ const GameFilterTag = () => {
             {tagCmp &&
               tagCmp.iconComponent &&
               React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.lighterGray,
+                $color: isActive ? theme.primary : theme.text,
               })}
           </Tag>
         );
@@ -134,7 +137,7 @@ const GameFilterTag = () => {
             {tagCmp &&
               tagCmp.iconComponent &&
               React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.lighterGray,
+                $color: isActive ? theme.primary : theme.text,
               })}
           </Tag>
         );

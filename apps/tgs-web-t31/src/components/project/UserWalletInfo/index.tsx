@@ -1,11 +1,11 @@
 import React from "react";
-import styled, { DefaultTheme, keyframes } from "styled-components";
+import styled, { css, DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import refreshIcon from "@/assets/t23/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -25,6 +25,8 @@ const Container = styled.div`
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
+  background: ${({ theme }) => theme.mainBackground};
+  margin-bottom: 20px;
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -35,10 +37,9 @@ const PlayerInfoContainer = styled.div`
 `;
 
 const PlayerName = styled.div`
-  font-size: 2.812rem;
-  line-height: 3.261rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.white};
+  font-size: 2rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.blue60};
 `;
 
 const WalletsWrapper = styled.div`
@@ -59,14 +60,16 @@ const MainWalletContainer = styled.div`
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.245rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
+  white-space: nowrap;
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
-  font-size: 2.125rem;
-  color: ${({ theme }) => theme.white};
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.blue60};
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -83,19 +86,25 @@ type RefreshButtonProps = {
 };
 
 const RefreshButton = styled(Icon)<RefreshButtonProps>`
+  cursor: pointer;
+
+  animation: ${({ $isLoading }: RefreshButtonProps) =>
+    $isLoading
+      ? css`
+          ${rotateKeyFrame} 1s linear 0s infinite
+        `
+      : "none"};
+
   &:hover {
-    cursor: pointer;
     animation: ${rotateKeyFrame} 1s linear 0s infinite;
   }
 `;
 
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => {
-    return theme.useBackgroundColor ? theme.useBackgroundColor : theme.primary;
-  }};
+  color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
   margin-top: 11px;
-  font-weight: 400;
+  font-weight: 700;
 `;
 
 const UserWalletInfo = () => {

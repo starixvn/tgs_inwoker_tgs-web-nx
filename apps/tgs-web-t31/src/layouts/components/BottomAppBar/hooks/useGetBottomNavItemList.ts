@@ -1,13 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
-import { useLocation } from "react-router";
+import { useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import iconPromo from "@/assets/t31/images/bottomNavBar/icon-promo.png";
 import iconHome from "@/assets/t31/images/bottomNavBar/icon-home.png";
 import iconProfile from "@/assets/t31/images/bottomNavBar/icon-profile.png";
 import iconDeposit from "@/assets/t31/images/bottomNavBar/icon-deposit.png";
 import iconWithdrawal from "@/assets/t31/images/bottomNavBar/icon-withdrawal.png";
-import { useRoute } from "@/hooks/useRoute";
+import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 export enum NavTypeEnum {
   ITEM,
@@ -17,21 +20,25 @@ export enum NavTypeEnum {
 
 export type BottomNavItem = {
   navType: NavTypeEnum;
-  label: string;
+  key: string;
+  label: string | any;
   iconUrl: string;
   iconActiveUrl: string;
   routePath: string;
+  handleClick: () => void;
 };
 
 export function useGetBottomNavItemList() {
-  const location = useLocation();
   const history = useHistory();
+  const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
+  const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
+  const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo(() => {
     return [
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("web.account.profile"),
+        label: i18n.t("deposit.details.account"),
         iconUrl: iconProfile,
         iconActiveUrl: iconProfile,
         routePath: "/account",
@@ -67,31 +74,28 @@ export function useGetBottomNavItemList() {
     ] as BottomNavItem[];
   }, []);
 
-  const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
-  const { route } = useRoute();
-
-  useEffect(() => {
-    const matchNavItem =
-      bottomNavItemList.find((bottomNavItem) => {
-        return bottomNavItem.routeCategory === route?.category;
-      }) || null;
-
-    if (!matchNavItem) {
-      console.log(location.pathname);
-      return;
-    }
-
-    setSelectedBottomNavItem(matchNavItem);
-  }, [route]);
-
+  // const { handleToggleMenu } = useHeader();
   const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    setSelectedBottomNavItem(appBarItem);
-    history.push(appBarItem.routePath);
+    switch (appBarItem.navType) {
+      case NavTypeEnum.MENU:
+        //todo:expand account menu
+        break;
+      case NavTypeEnum.ITEM:
+        setSelectedBottomNavItem(appBarItem);
+        history.push(appBarItem.routePath);
+        break;
+
+      default:
+        appBarItem.handleClick();
+        break;
+    }
   };
 
   return {
-    bottomNavItemList,
     selectedBottomNavItem,
+    bottomNavItemList,
     handleClickBottomNavItem,
+    isTransferDrawerOpen,
+    handleTransferDrawerToggle,
   };
 }

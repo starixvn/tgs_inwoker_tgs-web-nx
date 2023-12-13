@@ -37,10 +37,14 @@ const ComposeForm = () => {
   // Submit
   const submitCallback = async () => {
     await GeneralService.ComposeInboxItem({ subject, content });
+    setSubject("");
+    setContent("");
   };
 
   const { isSubmitted, isConfirmDialogOpen, handleSubmit, handleConfirm, handleCancel } =
     useConfirmDialog(submitCallback);
+
+  const isSubmitButtonDisabled = isSubmitted || !subject || !content;
 
   return (
     <InboxComposeFormContainer>
@@ -53,7 +57,7 @@ const ComposeForm = () => {
             placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("subject")}`.toLowerCase()}`}
             sx={{
               input: {
-                padding: "17px 10px",
+                padding: "17px 0",
               },
             }}
           />
@@ -74,7 +78,7 @@ const ComposeForm = () => {
         variant={"contained"}
         color={"primary"}
         fullWidth
-        disabled={isSubmitted}
+        disabled={isSubmitButtonDisabled}
       >
         {i18n.t("common.submit")}
       </SubmitButton>

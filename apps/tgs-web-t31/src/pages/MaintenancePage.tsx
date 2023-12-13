@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { UiService, useGeneralStore } from "@tgs-web-nx/core";
+import { useLocation } from "react-router";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { media } from "@/theme/breakpoints";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const MaintenanceContainer = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ const MaintenanceContainer = styled.div`
   width: 100%;
   //height: calc(100vh - 80px - 82px);
   height: 100vh;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   background: black;
 `;
 const MaintenanceBg = styled.div`
@@ -65,29 +67,17 @@ const Button = styled.button`
   font-size: 1rem;
   border: none;
   border-radius: 4px;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   font-weight: 500;
 `;
 const CSButton = styled(Button)`
   cursor: pointer;
-  background: ${({ theme }) => theme.secondaryGradient};
-  color: ${({ theme }) => theme.mainBackground};
-  font-family: SF Pro;
-  font-size: 16px;
-  font-weight: 590;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: center;
+  background: linear-gradient(0deg, #e7415a, #e7415a),
+    linear-gradient(0deg, rgba(231, 65, 90, 0.6), rgba(231, 65, 90, 0.6));
 `;
 const IMButton = styled(Button)`
-  background: ${({ theme }) => theme.primaryGradient};
+  background: ${({ theme }) => theme.primary};
   cursor: pointer;
-  font-family: SF Pro;
-  font-size: 16px;
-  font-weight: 590;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: center;
 `;
 
 const DefaultMaintenance = () => {
@@ -105,7 +95,7 @@ const MaintenancePage = () => {
   const {
     general: { livechat, brandsSupport, isMaintenance },
   } = useGeneralStore();
-  const { handleChangeGameType } = useHomeGameContext();
+  const goToHomePage = useGoToHomePage();
 
   const [beginTime, setBeginTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -131,8 +121,7 @@ const MaintenancePage = () => {
     // NOTE: while GeneralService.GetSiteToken encounter error,
     // then general.isMaintenance will set to false
     if (!isMaintenance && !isGameMaintenance) {
-      handleChangeGameType(GameTypeEnum.NONE);
-      history.push("/");
+      goToHomePage();
       return;
     }
 

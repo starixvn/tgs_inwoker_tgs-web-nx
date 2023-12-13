@@ -12,10 +12,10 @@ const HomeCategorySection = styled.div`
 const CategoryTab = styled.div<{ $size?: string }>`
   width: 100%;
   height: 50px;
-  background-image: url(${({ $size }) => $size === "big" ? bigTabBg : tabBg});
+  background-image: url(${({ $size }) => ($size === "big" ? bigTabBg : tabBg)});
   background-size: contain;
   background-repeat: no-repeat;
-  padding:15px;
+  padding: 15px;
 `;
 
 const CategoryTitle = styled.div`
@@ -32,7 +32,7 @@ const CategoryContent = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   border-radius: 0px 20px 20px 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 type Props = {
@@ -41,11 +41,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const HomeCategoryFolder = ({
-  title,
-  size,
-  children,
-}: Props) => {
+const HomeCategoryFolder = ({ title, size, children }: Props) => {
   return (
     <HomeCategorySection>
       <CategoryTab $size={size}>

@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import contactGirlImg from "@/assets/t31/images/contact/contact.png";
+import contactGirlImg from "@/assets/t29/images/contact/contact.png";
 
 const HeaderImageContainer = styled.div`
   width: 100%;
-  margin-bottom: 20px;
 
   img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 `;
 

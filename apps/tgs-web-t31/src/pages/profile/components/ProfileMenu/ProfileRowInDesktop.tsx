@@ -6,20 +6,25 @@ import { theme } from "@/theme";
 
 const ProfileItemContainer = styled.div`
   width: 100%;
-  padding: 21px 0;
+  //padding: 9.5px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 33px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const ProfileRowLabel = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.blue50};
   font-size: 1.25rem;
   font-weight: 400;
 `;
 const ProfileStatus = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-size: 0.93rem;
+  color: ${({ theme }) => theme.text};
+  font-size: 0.937rem;
   font-weight: 400;
 `;
 
@@ -31,8 +36,7 @@ type Props = {
 const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
   if (!profileItem) return null;
 
-  const { label, isVerified, status, buttonText } = profileItem;
-
+  const { label, status, buttonText, isVerified } = profileItem;
   return (
     <ProfileItemContainer>
       <ProfileRowLabel className={"label"} style={{ width: "33%" }}>
@@ -45,14 +49,12 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
       <Button
         variant={isVerified ? "contained" : "outlined"}
         sx={{
-          fontSize: "1.25rem",
-          color: isVerified ? theme.black : theme.white,
-          background: isVerified
-            ? "linear-gradient(90deg, #FACE27 49.23%, #F3AF16 49.42%)"
-            : "none",
-          border: isVerified ? "none" : "1px solid white",
-          width: "160px",
-          borderRadius: "30px",
+          fontSize: "0.875rem",
+          color: isVerified ? theme.white : theme.text,
+          background: isVerified ? theme.primary : theme.blue20,
+          border: "none",
+          width: "150px",
+          height: "42px",
         }}
         onClick={() => {
           if (!profileItem) return;

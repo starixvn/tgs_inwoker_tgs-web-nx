@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
-import HomeUrl from "@/assets/t31/images/home/Home.png";
+
 const TabContainer = styled.div`
   width: 100%;
   overflow-x: auto;
@@ -58,23 +57,24 @@ const GameTypeTab = () => {
 
   return (
     <TabContainer>
-      <Tab
+      {/* <Tab
         imageUrl={HomeUrl}
         text={i18n.t("common.home")}
         isActive={false}
         onClick={() => switchGameType(GameTypeEnum.NONE)}
-      />
+      /> */}
       {gameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType } = gameTypeItem;
+        const { key, iconUrl, activeUrl, text, gameType } = gameTypeItem;
 
-        if (isMobileSize && gameType === GameTypeEnum.NONE) {
-          return null;
-        }
+        // if (isMobileSize && gameType === GameTypeEnum.NONE) {
+        //   return null;
+        // }
 
         return (
           <Tab
             key={key}
             imageUrl={iconUrl}
+            activeUrl={activeUrl}
             text={text}
             isActive={gameType === activeGameType}
             onClick={() => switchGameType(gameType)}

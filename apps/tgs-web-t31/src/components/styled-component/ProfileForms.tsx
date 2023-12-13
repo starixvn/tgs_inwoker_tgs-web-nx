@@ -9,7 +9,7 @@ import { media } from "@/theme/breakpoints";
 export const Remark = styled.div`
   font-size: 0.937rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 24px;
 `;
 
@@ -18,56 +18,52 @@ export const ItemContainer = styled.div`
   flex-direction: column;
   margin-bottom: 24px;
   ${media.sm} {
-    max-width: 450px;
+    max-width: 500px;
   }
 `;
 
 export const LabelContainer = styled.div`
-  margin: 10px;
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.blue50};
   float: left;
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  margin:"10px",
-  borderRadius: "30px",
-  background: theme.palette.mainLightBackground,
-
+  height: "48px",
   width: "100%",
-  fontSize: "0.937rem",
+  fontSize: "0.875rem",
+  borderBottom: `1px solid ${theme.palette.gray10}`,
   "& fieldset": {
     border: "none",
   },
 
-  [theme.breakpoints.up("sm")]: {
-    border: `1px solid ${theme.palette.tertiary}`,
+  "& input": {
+    padding: "10px 0",
   },
 })) as typeof MuiFormControl;
 
 export const InfoContainer = styled.div`
   width: 100%;
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
 
   display: flex;
   align-items: center;
 `;
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
-  fontSize: "0.937rem",
+  fontSize: "0.875rem",
   height: "50px",
-  borderRadius: "30px",
-  color: theme.palette.white60,
-  background: theme.palette.black30,
-  border: `1px solid ${theme.palette.white30}`,
+  color: "#828282",
+  background: theme.palette.mainBackground,
+  border: `1px solid ${theme.palette.gray10}`,
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`
   width: 100%;
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
 
   display: flex;
   align-items: center;

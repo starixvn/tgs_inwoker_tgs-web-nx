@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory } from "react-router-dom";
 import BottomNav from "./BottomNav";
-import { BottomNavItem, useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
+import { useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
+import TransferMenuDrawer from "@/layouts/components/TransferMenuDrawer";
 
 const BottomAppBarContainer = styled.div`
   position: fixed;
@@ -22,34 +20,34 @@ const BottomAppBarContainer = styled.div`
 `;
 
 const BottomAppBar = () => {
-  const { bottomNavItemList, selectedBottomNavItem, handleClickBottomNavItem } =
-    useGetBottomNavItemList();
-  const { handleChangeGameType } = useHomeGameContext();
-  const history = useHistory();
-  const { handleChangeGameType } = useHomeGameContext();
-
-  const handleClick = (bottomNavItem: BottomNavItem) => {
-    if (bottomNavItem.routePath === "/") {
-      handleChangeGameType(GameTypeEnum.NONE);
-      history.push("/");
-      return;
-    }
-    handleClickBottomNavItem(bottomNavItem);
-  };
+  const {
+    bottomNavItemList,
+    handleClickBottomNavItem,
+    isTransferDrawerOpen,
+    handleTransferDrawerToggle,
+    selectedBottomNavItem,
+  } = useGetBottomNavItemList();
 
   return (
-    <BottomAppBarContainer>
-      {bottomNavItemList.map((bottomNavItem) => {
-        return (
-          <BottomNav
-            key={bottomNavItem.label}
-            bottomNavItem={bottomNavItem}
-            onClick={() => handleClick(bottomNavItem)}
-            isSelected={selectedBottomNavItem?.label === bottomNavItem.label}
-          />
-        );
-      })}
-    </BottomAppBarContainer>
+    <>
+      <BottomAppBarContainer>
+        {bottomNavItemList.map((bottomNavItem) => {
+          return (
+            <BottomNav
+              key={bottomNavItem.label}
+              bottomNavItem={bottomNavItem}
+              isSelected={selectedBottomNavItem === bottomNavItem}
+              onClick={() => handleClickBottomNavItem(bottomNavItem)}
+            />
+          );
+        })}
+      </BottomAppBarContainer>
+
+      {/* <TransferMenuDrawer
+        isOpen={isTransferDrawerOpen}
+        handleDrawerToggle={handleTransferDrawerToggle}
+      /> */}
+    </>
   );
 };
 

@@ -7,23 +7,22 @@ import LevelTable from "./components/LevelTable";
 import { media } from "@/theme/breakpoints";
 import BonusTable from "@/pages/vip/components/BonusTable";
 import Loading from "@/components/UI/Loading";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const VipWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.subBackground};
-  padding: 10px;
+  background-color: ${({ theme }) => theme.mainBackground};
+  padding: 12px;
   gap: 16px;
 
   ${media.sm} {
-    max-width: 958px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: unset;
-    gap: 20px;
+    gap: 10px;
+    padding: 10px;
+    background-color: ${({ theme }) => theme.blue20};
   }
 `;
 
@@ -37,8 +36,8 @@ const VipBanner = styled.div<{ $imageUrl: string }>`
   background-position: center;
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
-    height: 299px;
+    max-width: 780px;
+    height: 250px;
   }
 `;
 
@@ -62,13 +61,11 @@ const VIP = () => {
   if (isLoading) return <Loading show={true} />;
 
   return (
-    <PageContainer>
-      <VipWrapper>
-        <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.png`} />
-        <BonusTable vipSortingData={vipSortingData} />
-        <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
-      </VipWrapper>
-    </PageContainer>
+    <VipWrapper>
+      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} />
+      <BonusTable vipSortingData={vipSortingData} />
+      <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
+    </VipWrapper>
   );
 };
 

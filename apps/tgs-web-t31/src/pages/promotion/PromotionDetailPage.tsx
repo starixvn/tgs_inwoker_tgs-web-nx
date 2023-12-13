@@ -8,8 +8,8 @@ import Loading from "@/components/UI/Loading";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
-  padding: 22px 22px 100px 22px;
-  color: #ffffff;
+  padding: 12px;
+  color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -19,7 +19,7 @@ const PromotionDetailContainer = styled.div`
   ${media.sm} {
     max-width: 870px;
     margin: 0 auto;
-    padding: 22px 22px 100px 22px;
+    padding: 22px;
   }
 `;
 const BannerWrapper = styled.div`
@@ -36,12 +36,13 @@ const ContentContainer = styled.div`
   align-items: flex-start;
   gap: 40px;
   align-self: stretch;
+  padding-bottom: 73px;
 `;
 const TextArea = styled.div`
   /* margin-bottom: 40px; */
 `;
 const Title = styled.h2`
-  color: ${({ theme }) => theme.yellow};
+  color: ${({ theme }) => theme.blue50};
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -51,7 +52,7 @@ const Title = styled.h2`
   }
 `;
 const Description = styled.p`
-  color: #ffffff;
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   font-weight: 500;
   ${media.sm} {
@@ -60,7 +61,6 @@ const Description = styled.p`
 `;
 
 const TermsAndConditions = styled(Description)`
-  padding-left: 16px;
   ${media.sm} {
     padding-left: 30px;
   }
@@ -68,13 +68,14 @@ const TermsAndConditions = styled(Description)`
 
 const JoinPromotionButtonWrapper = styled.div`
   position: fixed;
-  bottom: 67px;
+  bottom: 63px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 22px 40px 22px;
+  padding: 10px;
   background: ${({ theme }) => theme.mainBackground};
+
   ${media.sm} {
     position: relative;
     background: transparent;
@@ -92,7 +93,7 @@ const PromotionDetail = () => {
   }
 
   return (
-    <>
+    <div>
       <PromotionDetailContainer>
         <BannerWrapper>
           <BannerImage promotionData={promotionData} />
@@ -128,7 +129,7 @@ const PromotionDetail = () => {
           <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />
         </JoinPromotionButtonWrapper>
       )}
-    </>
+    </div>
   );
 };
 

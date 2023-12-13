@@ -32,6 +32,7 @@ declare module "@mui/material/styles/createPalette" {
     accountBGC: string;
     black60: string;
     black30: string;
+    neutralBlack: string;
     supplierMask: string;
     white30: string;
     white50: string;

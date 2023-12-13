@@ -1,58 +1,42 @@
 import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader } from "@tgs-web-nx/core/features";
-import DeskTopHeader from "./components/Header/DesktopHeader";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
-import MobileHeader from "@/layouts/components/Header/MobileHeader";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
+import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
 import {
   BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_DRAWER_WIDTH,
-  DRAWER_SHRINK_WIDTH,
-  HEADER_HEIGHT,
-  TABLET_DRAWER_WIDTH,
+  DESKTOP_HEADER_HEIGHT,
+  MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
+import bg from "@/assets/t29/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
+
+  ${media.sm} {
+    background: url(${bg});
+  }
 `;
 
 const DashboardContainer = styled.div`
   display: flex;
-  margin-top: ${HEADER_HEIGHT};
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin-top: ${MOBILE_HEADER_HEIGHT};
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
 
   ${media.sm} {
-    margin-top: ${HEADER_HEIGHT};
-    min-height: calc(100vh - ${HEADER_HEIGHT});
+    margin-top: ${DESKTOP_HEADER_HEIGHT};
+    min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
     margin-bottom: unset;
   }
 `;
 
-type ContentWrapperProps = {
-  $isOpen: boolean;
-  $isDesktop: boolean;
-};
-
-const ContentWrapper = styled.div<ContentWrapperProps>`
+const ContentWrapper = styled.div`
   position: relative;
   flex-grow: 1;
-  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
   transition: all ease-in-out 0.2s;
-
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
 `;
 
 const ChildrenWrapper = styled.div`
@@ -67,17 +51,14 @@ type Props = {
   children: React.ReactNode;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
-  const { isMenuOpen } = useHeader();
+  const { isMobileSize } = useRwd();
 
   return (
     <DefaultLayoutContainer>
-      {isDesktopSize ? <DeskTopHeader /> : <MobileHeader />}
+      <Header />
 
       <DashboardContainer>
-        <MenuDrawer />
-
-        <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
+        <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />
