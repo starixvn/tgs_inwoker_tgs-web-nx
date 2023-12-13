@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
@@ -10,41 +10,47 @@ import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import playIcon from "@/assets/t29/images/home/play.svg";
 import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 81%;
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
-  border-radius: 10px;
+  border-radius: 15px;
   display: none;
   white-space: pre-line;
 `;
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
-  position: absolute;
+  position: relative;
   width: 100%;
   padding-top: 100%;
   left: 0;
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 10px;
+  border-radius: 15px;
+  background-color: ${({ theme }) => theme.black};;
+
+  ${media.sm} {
+    padding-top: 62.96%;
+  }
 `;
 
 const NewTag = styled.div`
   position: absolute;
-  top: 5px;
-  left: 3px;
-  width: 53px;
-  height: 26px;
-  padding: 4px 10px;
-  border-radius: 50px;
-  background: ${(props) => props.theme.red};
-  color: ${(props) => props.theme.white};
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 22px;
+  padding: 10px;
+  border-radius: 12px;
+  background: ${(props) => props.theme.goldGradient};
+  color: ${(props) => props.theme.black};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +60,7 @@ const NewTag = styled.div`
 
 const HotTag = styled.div`
   position: absolute;
-  bottom: 7px;
+  top: 3px;
   left: 0;
   width: 53px;
   height: 26px;
@@ -74,25 +80,48 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(50% - 6px);
+  width: calc(33.33% - 8px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 161 / 161;
-  border-radius: 10px;
+  aspect-ratio: 94 / 127;
 
   ${media.sm} {
-    width: calc(16.67% - 6px);
+    width: calc(25% - 40px);
+    min-width: 270px;
+    aspect-ratio: 270 / 210;
 
     &:hover {
       ${CardHoverBg} {
         z-index: 1;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
       }
     }
   }
+`;
+
+const MaintenanceBg = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 74%;
+  left: 0;
+  top: 0;
+  background: rgb(0 0 0 / 50%);
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+
+  ${media.sm} {
+    height: 81%;
+  }
+`;
+
+const MaintenanceIcon = styled.img`
+  width: 90px;
+  height: 63px;
 `;
 
 const GameName = styled.div`
@@ -107,30 +136,6 @@ const GameName = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%; //利用最大寬度來限制文字長度
-`;
-
-const MaintenanceBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgb(0 0 0 / 70%);
-  padding: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  z-index: 3;
-
-  &:hover {
-    cursor: not-allowed;
-  }
-`;
-
-const MaintenanceIcon = styled.img`
-  width: 118px;
-  height: 83px;
 `;
 
 type GameCardProps = {
@@ -160,6 +165,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
   const isLogin = !!account.token;
+  const gameNameRef = useRef<HTMLDivElement | null>(null);
+  const { resizeText } = useDynamicFontSize();
 
   const launchGameHandler = () => {
     if (!isActive) {
@@ -195,12 +202,19 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     }
   };
 
+  useEffect(() => {
+    if (gameNameRef.current) {
+      resizeText({ container: gameNameRef.current, text: gameNameRef.current });
+    }
+  }, [resizeText, gameNameRef.current]);
+
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
         {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+        {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
         {!isActive && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
@@ -216,12 +230,12 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         />
       )}
 
-      {isDesktopSize && (
+      {/* {isDesktopSize && (
         <CardHoverBg onClick={launchGameHandler}>
           {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
           <PlayIcon src={playIcon} alt={"play"} />
         </CardHoverBg>
-      )}
+      )} */}
     </GameCardBg>
   );
 };

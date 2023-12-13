@@ -5,7 +5,7 @@ import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
-import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
+import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -30,8 +30,8 @@ const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
   width: calc(100% - 78px);
-  flex-shrink: 0;
-  background-color: ${({ theme }) => theme.mainBackground};
+  gap: 12px;
+  padding: 12px 0px;
 `;
 
 const FilterSection = styled.div`
@@ -56,9 +56,12 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   align-content: center;
   width: 100%;
-  row-gap: 10px;
-  column-gap: 9px;
+  gap: 8px;
+  padding: 14px 0px 18px 14px;
   align-self: stretch;
+  border-radius: 20px;
+  border: 2.5px solid #B78316;
+  background-color: #332915;
 
   ${media.sm} {
     row-gap: 5px;
@@ -83,6 +86,20 @@ const Text = styled.div`
   font-weight: 700;
 `;
 
+const SearchInputWrapper = styled.div`
+  width: 100%;
+  height: 37px;
+  border-radius: 100px;
+  border: 2.5px solid #B78316;
+  background: #161513;
+
+  ${media.sm} {
+    width: 300px;
+    height: 100%;
+    margin-left: 8px;
+  }
+`;
+
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
@@ -95,17 +112,19 @@ const NonLobbyCategory = () => {
         <>
           <GameTypeTab />
           <CategoryContentWrapper>
+            <SearchInputWrapper>
+              <SearchInput
+                placeholder={i18n.t("slot.search")}
+                imageUrl={searchIcon}
+                handleChange={handleChangeSearch}
+                value={searchString}
+              />
+            </SearchInputWrapper>
+
             <FilterSection>
               <GameFilterTag />
-              <SearchInputWrapper>
-                <SearchInput
-                  placeholder={i18n.t("slot.search")}
-                  imageUrl={searchIcon}
-                  handleChange={handleChangeSearch}
-                  value={searchString}
-                />
-              </SearchInputWrapper>
             </FilterSection>
+
             <CategoryContent>
               {hasMappingData &&
                 gameList.map((gameItem) => (

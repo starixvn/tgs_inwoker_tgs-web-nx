@@ -153,7 +153,6 @@ const VendorCard = ({
   }
 
   useEffect(() => {
-
     if (venderNameRef.current) {
       resizeText({ container: venderNameRef.current, text: venderNameRef.current });
     }

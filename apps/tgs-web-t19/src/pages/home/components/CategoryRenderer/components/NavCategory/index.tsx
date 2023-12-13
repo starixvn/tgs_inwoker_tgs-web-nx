@@ -6,6 +6,7 @@ import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import VendorCard from "@/pages/home/components/VendorCard";
 
 const Wrapper = styled.div`
   display: flex;
@@ -65,7 +66,7 @@ const NavCategory = () => {
 
             if (gpCode === "BC") return null;
             return (
-              <DesktopVendorCard
+              <VendorCard
                 key={gpCode}
                 bgUrl={`${import.meta.env.BASE_URL
                   }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
