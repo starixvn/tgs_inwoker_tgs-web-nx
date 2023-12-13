@@ -44,6 +44,21 @@ const SliderWrapper = styled.div`
   }
 `;
 
+const SlickDot = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+`;
+
+const SlickDotWrapper = styled.div`
+  margin-bottom: 30px;
+
+  & ul li.slick-active ${SlickDot} {
+    background: #F1C137 !important;
+  }
+`;
+
 const MainContentWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -68,7 +83,7 @@ const MainContentWrapper = styled.div`
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 450px;
+  height: 520px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
@@ -97,6 +112,17 @@ const HomePage = () => {
     return matchingGameType ? matchingGameType.gameType : null;
   };
 
+  const settings = {
+    appendDots: (dots: any) => (
+      <SlickDotWrapper>
+        <ul>{dots}</ul>
+      </SlickDotWrapper>
+    ),
+    customPaging: (i: number) => {
+      return <SlickDot key={i} />;
+    },
+  };
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -118,22 +144,24 @@ const HomePage = () => {
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {!!general.banner.length && isMobileSize && (
         <SliderWrapper>
-          <Slider maxHeight={"134px"} />
+          <Slider settings={settings} />
         </SliderWrapper>
       )}
-      {!!general.banner.length && isDesktopSize && (
+      {!!general.banner.length && isDesktopSize && !activeGameType && (
         <SliderWrapper>
-          <Slider maxHeight={"600px"} />
-          {!!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${import.meta.env.BASE_URL
-                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
+          <Slider maxHeight={"600px"} settings={settings} />
+        </SliderWrapper>
+      )}
+      {!!general.banner.length && isDesktopSize && !!activeGameType && (
+        <SliderWrapper>
+          <GameTypeBanner
+            $imageUrl={
+              activeGameTypeKey
+                ? `${import.meta.env.BASE_URL
+                }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                : ""
+            }
+          />
         </SliderWrapper>
       )}
 
