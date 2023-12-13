@@ -2,7 +2,8 @@ import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compati
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
-import downloadGirlImg from "@/assets/t18/images/account/girl/download.png";
+import downloadGirlImg from "@/assets/t33/images/account/download-girl.png";
+
 import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
 import {
@@ -10,12 +11,13 @@ import {
   GirlImage,
   InfoCardListContainer,
   IntroductionContainer,
+  Paper,
 } from "@/components/styled-component/Download";
 
 const infoCardItemList: InfoCardItem[] = [
   {
     title: "COMPATIBLE",
-    content: "app supports any ios and android devices.",
+    content: "App supports any ios and android devices.",
     logo: logoCompatibleImg,
   },
   {
@@ -42,21 +44,23 @@ const DownloadApp = () => {
         <img src={downloadGirlImg} alt={"download"} />
       </GirlImage>
 
-      <IntroductionContainer>
-        <p>Introduction</p>
-        <p>
-          The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
-          available for IOS and Android that features a multitude of entertaining games.
-        </p>
-      </IntroductionContainer>
+      <Paper>
+        <IntroductionContainer>
+          <span>Introduction</span>
+          <p>
+            The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
+            available for IOS and Android that features a multitude of entertaining games.
+          </p>
+        </IntroductionContainer>
 
-      <InfoCardListContainer>
-        {infoCardItemList.map((infoCardItem) => {
-          return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
-        })}
-      </InfoCardListContainer>
+        <InfoCardListContainer>
+          {infoCardItemList.map((infoCardItem) => {
+            return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
+          })}
+        </InfoCardListContainer>
 
-      <DownloadButtonGroup />
+        <DownloadButtonGroup />
+      </Paper>
     </DownloadAppContainer>
   );
 };

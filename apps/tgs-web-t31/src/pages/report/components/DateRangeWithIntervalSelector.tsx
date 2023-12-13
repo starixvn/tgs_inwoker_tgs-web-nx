@@ -4,9 +4,11 @@ import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
 
 const DateRangContainer = styled.div`
-  width: 100%;
   display: flex;
+  //align-items: center;
+  justify-content: center;
   gap: 13px;
+  height: 47px;
 `;
 
 type DateRangSelectionTypes = {
@@ -14,24 +16,19 @@ type DateRangSelectionTypes = {
   theme: typeof theme;
 };
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
-  flex-grow:1;
   text-align: center;
   cursor: pointer;
-  height: 40px;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.priBTNOutline : "none";
+    return $isSelected ? theme.blue40 : theme.blue20;
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.white : theme.white50;
+    return $isSelected ? theme.white : theme.text;
   }};
-  padding: 11px 20px;
-  border: ${({ $isSelected }: DateRangSelectionTypes) => {
-    return $isSelected ? "none" : `1px solid ${theme.white50}`;
-  }};
-  border-radius: 4px;
-  font-size: 0.937rem;
-  line-height: 1;
+  padding: 12px 20px;
+  font-size: 0.812rem;
+  display: flex;
+  align-items: center;
 `;
 
 export enum DateRangeEnum {
@@ -43,25 +40,26 @@ export enum DateRangeEnum {
 type Props = {
   dateRange: DateRangeEnum;
   handleDateRangeChange: (dateRange: DateRangeEnum) => void;
+  isSelectedDateRange: boolean;
 };
-const DateRangeWithIntervalSelector = ({ dateRange, handleDateRangeChange }: Props) => {
+const DateRangeWithIntervalSelector = ({ dateRange, handleDateRangeChange, isSelectedDateRange }: Props) => {
   return (
     <DateRangContainer>
       <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.TODAY)}
-        $isSelected={dateRange === DateRangeEnum.TODAY}
+        $isSelected={dateRange === DateRangeEnum.TODAY && !isSelectedDateRange}
       >
         {i18n.t("report.today")}
       </DateRangSelection>
       <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.WEEKLY)}
-        $isSelected={dateRange === DateRangeEnum.WEEKLY}
+        $isSelected={dateRange === DateRangeEnum.WEEKLY && !isSelectedDateRange}
       >
         {i18n.t("report.oneWeek")}
       </DateRangSelection>
       <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.MONTHLY)}
-        $isSelected={dateRange === DateRangeEnum.MONTHLY}
+        $isSelected={dateRange === DateRangeEnum.MONTHLY && !isSelectedDateRange}
       >
         {i18n.t("report.oneMonth")}
       </DateRangSelection>

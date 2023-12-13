@@ -6,7 +6,7 @@ import { i18n } from "@tgs-web-nx/utils";
 const languageSwitcher = (language) => {
   switch (language) {
     case "en-US":
-      return `Gill Sans MT, sans-serif`;
+      return `Arial, sans-serif`;
     // case "zh-CN":
     //     return `'Roboto', 'Noto Sans SC', Microsoft Yahei, '微软雅黑', STXihei, '华文细黑'`;
     // case "zh-TW":
@@ -14,7 +14,7 @@ const languageSwitcher = (language) => {
     // case "th-TH":
     //     return ``;
     default:
-      return `Gill Sans MT, sans-serif`;
+      return `Arial, sans-serif`;
   }
 };
 export const GlobalStyles = createGlobalStyle`

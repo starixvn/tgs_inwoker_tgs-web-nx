@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { RESET_WALLETRESULT, walletAction } from "@tgs-web-nx/core";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
-import Template1 from "./components/T1";
+import Template1 from "../../../pages/transfer/components/T1";
 
 class Transfer extends Component {
   state = {

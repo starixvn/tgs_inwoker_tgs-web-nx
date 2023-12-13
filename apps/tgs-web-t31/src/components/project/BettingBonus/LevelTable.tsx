@@ -1,58 +1,56 @@
 import styled from "styled-components";
 import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
+import LevelIcon from "@/components/UI/LevelIcon";
 
-const LevelTableContainer = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
+const LevelTableContainer = styled.table`
   width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 10px;
-  gap: 36px;
-  background: ${(props) => props.theme.mainLightBackground};
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-top: 20px;
+  border-collapse: separate;
+  border-spacing: 0 10px;
 `;
-
-const LevelTableHeader = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  align-self: stretch;
+const Header = styled.thead``;
+const HeaderRow = styled.tr`
+  height: 32px;
+`;
+const HeaderItem = styled.th`
+  color: #6a768b;
+  font-size: 0.875rem;
+`;
+const LevelHeaderItem = styled(HeaderItem)`
+  width: 70px;
+`;
+const Row = styled.tr`
+  color: #b2c3ec;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  position: relative;
   width: 100%;
-`;
+  height: 67px;
+  background-color: #181f2b;
 
-const HeaderItem = styled.div`
+  td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+`;
+const LevelIconWrapper = styled.div`
+  margin: 0 10px;
+  overflow: visible;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
-  color: ${(props) => props.theme.white};
-  font-size: 1.125rem;
-  font-weight: 400;
 `;
-
-const LevelTableBody = styled.div`
-  display: flex;
-  flex-flow: column;
-  width: 100%;
+const IconCell = styled.td`
+  width: 90px;
 `;
-
-const LevelTableRowContainer = styled.div`
-  display: flex;
-  padding: 24px 0px;
-  align-items: center;
-  align-self: stretch;
-  border-bottom: 1px solid #434343;
-`;
-
-const RowItem = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  color: ${(props) => props.theme.white};
-  font-size: 1rem;
-  font-weight: 400;
-`;
+const Cell = styled.td``;
 
 export const LevelTableRow = ({
   level,
@@ -64,17 +62,16 @@ export const LevelTableRow = ({
   bonusList: number[];
 }) => {
   return (
-    <LevelTableRowContainer>
-      {/* <IconCell>
+    <Row>
+      <IconCell>
         <LevelIconWrapper>
           <LevelIcon isCurrentLevel={isCurrentLevel} level={level} width={"57px"} />
         </LevelIconWrapper>
-      </IconCell> */}
-      <RowItem>{level}</RowItem>
+      </IconCell>
       {bonusList.map((bonus, index) => {
-        return <RowItem key={index}>{bonus}%</RowItem>;
+        return <Cell key={index}>{bonus}%</Cell>;
       })}
-    </LevelTableRowContainer>
+    </Row>
   );
 };
 
@@ -102,14 +99,15 @@ const LevelTable = ({
 
   return (
     <LevelTableContainer>
-      <LevelTableHeader>
-        <HeaderItem>VIP rebate</HeaderItem>
-        {gameList.map((game) => (
-          <HeaderItem key={game}>{game}</HeaderItem>
-        ))}
-      </LevelTableHeader>
-
-      <LevelTableBody>
+      <Header>
+        <HeaderRow>
+          <LevelHeaderItem>Level</LevelHeaderItem>
+          {gameList.map((game) => (
+            <HeaderItem key={game}>{game}</HeaderItem>
+          ))}
+        </HeaderRow>
+      </Header>
+      <tbody>
         {levelList.map((level) => {
           return (
             <LevelTableRow
@@ -120,7 +118,7 @@ const LevelTable = ({
             />
           );
         })}
-      </LevelTableBody>
+      </tbody>
     </LevelTableContainer>
   );
 };

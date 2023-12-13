@@ -142,9 +142,10 @@ class Email extends BaseProfile {
               variant: "success",
             });
 
-            if (!this.props.account.registercompleted) {
-              this.props.history.replace("/card/add");
-            }
+            // DEPRECATED
+            // if (!this.props.account.registercompleted) {
+            //   this.props.history.replace("/card/add");
+            // }
           } else {
             this.showErrorMessage(validMailResponse.info);
           }
@@ -152,12 +153,14 @@ class Email extends BaseProfile {
           this.showErrorMessage(initMailResponse.info);
         }
       } else {
-        const updateEmailResponse = await AccountService.UpdateEmail(
-          this.state.securityKey,
-          this.state.code,
-        );
+        let response;
+        if (this.props.isProceedRegisterV2) {
+          response = await AccountService.UpdateEmailV2(this.state.securityKey, this.state.code);
+        } else {
+          response = await AccountService.UpdateEmail(this.state.securityKey, this.state.code);
+        }
 
-        if (updateEmailResponse.IsSuccess) {
+        if (response.IsSuccess) {
           await this.props.getAccountProfile();
           this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
             variant: "success",
@@ -171,7 +174,7 @@ class Email extends BaseProfile {
             isNew: false,
           });
         } else {
-          this.showErrorMessage(updateEmailResponse.info);
+          this.showErrorMessage(response.info);
         }
       }
     } catch (err) {

@@ -5,14 +5,14 @@ import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const CustomLabel = styled.div`
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 1.125rem;
+  font-weight: 700;
   margin-left: 3px;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.blue50};
 `;
 
 const ButtonWrapper = styled.div`
-  margin: 15px 0 0 0;
+  margin: 16px 0 0 0;
   display: flex;
 `;
 

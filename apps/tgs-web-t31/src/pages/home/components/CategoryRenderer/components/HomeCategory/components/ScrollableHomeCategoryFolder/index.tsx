@@ -4,7 +4,6 @@ import config from "@tgs-web-nx/config";
 import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import tabBg from "@/assets/t23/images/home/tabBg.svg";
 import Loading from "@/components/UI/Loading";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
@@ -14,64 +13,60 @@ const HomeCategorySection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 13px;
-`;
-
-const CategoryTab = styled.div`
-  width: 184px;
-  height: 48px;
-  background-image: url(${tabBg});
-  background-size: contain;
-  padding: 15.5px 15px;
+  margin-bottom: 6px;
 `;
 
 const CategoryTitle = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-size: 1.125rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0px;
+  gap: 10px;
+  align-self: stretch;
+  color: ${({ theme }) => theme.primary};
+  font-size: 1.78rem;
   font-weight: 700;
-  line-height: 0.875rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 `;
 
 const CategoryContent = styled.div`
   width: 100%;
-  max-height: 302px;
+  max-height: 150px;
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   box-sizing: border-box;
-  padding: 12px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 33%; //302/926
+  height: 16.2%; //max-height: 150 /figma mobile height:926
   gap: 8px;
-  border-radius: 0px 0px 0px 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    height: 56%;
-    gap: 30px;
-    max-width: 1200px;
-    max-height: 600px;
-    padding: 40px 20px;
-    margin: 0 auto;
+    max-height: 270px;
+    gap: 25px;
     scroll-snap-type: unset;
+    height: 20.9%;
+    padding-bottom: 5px;
 
     &::-webkit-scrollbar {
       height: 12px;
-      background-color: #1d1d1d40;
+      background-color: ${({ theme }) => theme.gray30};
     }
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
       border-radius: 8px;
-      background: ${(props) => props.theme.mainDarkBackground};
+      background: ${(props) => props.theme.subBackground};
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
-      background-color: ${(props) => props.theme.mainLightBackground};
+      -webkit-box-shadow: inset 0 0 6px ${({ theme }) => theme.gray10};
+      background-color: ${(props) => props.theme.mainBackground};
     }
   }
 `;
@@ -90,9 +85,7 @@ const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => 
   return (
     <>
       <HomeCategorySection>
-        <CategoryTab>
-          <CategoryTitle>{title}</CategoryTitle>
-        </CategoryTab>
+        <CategoryTitle>{title}</CategoryTitle>
         <CategoryContent>
           {hasMappingData &&
             dataList

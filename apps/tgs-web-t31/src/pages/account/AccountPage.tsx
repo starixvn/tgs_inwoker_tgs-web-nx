@@ -1,21 +1,26 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { Drawer } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth, useUpdatePageName } from "@tgs-web-nx/core/features";
-import AccountMenu from "./components/AccountMenu";
+import styled from "styled-components";
+import AccountNavigations from "./components/AccountNavigations";
+import InfoCard from "@/pages/account/components/InfoCard";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import { PageContainer } from "@/components/styled-component/PageContainer";
-import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
-import { theme } from "@/theme";
-import Slider from "@/pages/home/components/Slider";
+import { media } from "@/theme/breakpoints";
 
-const SliderWrapper = styled.div`
-  width: 100%;
-  height: 160px;
+const AccountPageContainer = styled.div`
+  background: ${({ theme }) => theme.gray20};
+  max-width: calc(961px + 22px * 2);
+  flex: 1;
+  margin: 0 auto;
+  padding-bottom: 50px;
+
+  ${media.sm} {
+    padding-bottom: 0;
+  }
 `;
+
 const AccountPage = () => {
   useUpdatePageName(i18n.t("TIGER.my"));
 
@@ -30,42 +35,10 @@ const AccountPage = () => {
   }, [history, isLogin]);
 
   return (
-    <PageContainer>
-      {isDesktopSize ? (
-        <UserWalletInfo />
-      ) : (
-        <>
-          <SliderWrapper>
-            <Slider />
-          </SliderWrapper>
-          <Drawer
-            variant={"temporary"}
-            anchor={"bottom"}
-            open={true}
-            onClose={() => {}}
-            sx={{
-              flexShrink: 0,
-              height: `calc(100vh - ${BOTTOM_APP_BAR_HEIGHT})`,
-              zIndex: "999",
-              "& .MuiBackdrop-root": {
-                height: `calc(100vh - ${BOTTOM_APP_BAR_HEIGHT})`,
-                marginBottom: BOTTOM_APP_BAR_HEIGHT,
-              },
-              "& .MuiDrawer-paper": {
-                marginBottom: BOTTOM_APP_BAR_HEIGHT,
-                transition: "all ease-in-out 0.2s",
-                border: "none",
-                background: theme.mainBackground,
-              },
-            }}
-          >
-            <AccountMenu />
-          </Drawer>
-        </>
-      )}
-      {/* {!isDesktopSize && <MemberCenterBorder />} */}
-      {/* <AccountNavigations /> */}
-    </PageContainer>
+    <AccountPageContainer>
+      {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "10px" }} />}
+      <AccountNavigations />
+    </AccountPageContainer>
   );
 };
 

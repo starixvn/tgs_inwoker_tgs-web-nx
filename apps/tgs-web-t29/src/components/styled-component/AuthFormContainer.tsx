@@ -12,6 +12,7 @@ export const AuthFormContainer = styled.div`
 
   ::-webkit-scrollbar {
     visibility: hidden;
+    width: 0;
   }
 
   & > * {

@@ -6,7 +6,7 @@ import { FormInputFactory } from "@/components/project/FormikForm/FormInputFacto
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const ErrorMessageContainer = styled.div`
-  color: ${({ theme }) => "red"};
+  color: ${({ theme }) => theme.red};
   font-size: 0.875rem;
   font-weight: 400;
   text-align: center;
@@ -44,7 +44,6 @@ const FormikForm = ({
     if (showErrorOn !== "bottom") return "";
 
     let errorMsg = "";
-    // console.log(formik.errors);
     for (const formInput of formInputList) {
       if (!(formik.touched[formInput.name] && formik.errors[formInput.name])) continue;
 
@@ -76,7 +75,7 @@ const FormikForm = ({
 
       <SubmitButton
         fullWidth={true}
-        style={{ marginTop: "24px" }}
+        style={{ margin: "24px 0" }}
         type={"submit"}
         disabled={isLoading}
       >

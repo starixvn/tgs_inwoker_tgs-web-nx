@@ -12,14 +12,16 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { theme } from "@/theme";
+import { imageMap } from "@/components/project/LanguageSwitch/index";
 
 const StyledSelect = styled(MuiSelect)`
-  border: ${({ theme }) => ` 1px solid ${theme.white}`};
-  height: 30px;
-  overflow: visible;
-  background: ${({ theme }) => theme.mainDarkBackground};
-  &:hover {
-    border: 0;
+  & .MuiOutlinedInput-notchedOutline {
+    border: none;
+  }
+
+  .MuiOutlinedInput-input {
+    /* padding: 0px 30px 0px 30px !important; */
+    padding-left: 0px;
   }
 
   & .MuiSelect-select {
@@ -38,6 +40,19 @@ const StyledSelect = styled(MuiSelect)`
 const StyledMenuItem = styled(MuiMenuItem)`
   & > img {
     margin-right: 10px;
+  }
+`;
+
+const FlagContainer = styled.div`
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 10px;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -68,6 +83,7 @@ const MenuLanguageSwitch = (props: SelectProps) => {
 
     setCurrentLanguage(selectedLanguage);
     i18n.changeLanguage(selectedLanguage.culturecode);
+    console.log("MenuLanguageSwitch cause reload");
     window.location.reload();
   };
 
@@ -96,6 +112,10 @@ const MenuLanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
+              <FlagContainer>
+                <img src={imageMap[culturecode] || ""} alt={culturecode} />
+              </FlagContainer>
+
               {!isShrink && <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>}
             </StyledMenuItem>
           );

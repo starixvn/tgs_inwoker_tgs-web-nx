@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
+import { theme } from "@/theme";
 
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
@@ -19,8 +20,8 @@ const StyledDialog = styled(MuiDialog)`
 const CloseIconContainer = styled.div`
   cursor: pointer;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 8px;
+  right: 8px;
   display: flex;
   align-items: center;
 `;
@@ -29,7 +30,7 @@ const ChildContainer = styled.div`
   width: 100%;
   height: auto;
   overflow: auto;
-  padding: 21px 22px;
+  padding: 36px 24px;
 `;
 
 type Props = {
@@ -55,10 +56,7 @@ const Dialog = ({ open, onClose, children, fullscreenOnMobile = true, ...others 
         <CloseIcon
           onClick={onClose}
           style={{
-            color: "white",
-            transform: "scale(1.6)",
-            width: "20px",
-            height: "20px",
+            color: theme.text,
           }}
         />
       </CloseIconContainer>
@@ -68,4 +66,4 @@ const Dialog = ({ open, onClose, children, fullscreenOnMobile = true, ...others 
   );
 };
 
-export default React.memo(Dialog);
+export default Dialog;

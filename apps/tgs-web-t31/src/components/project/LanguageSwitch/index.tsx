@@ -18,25 +18,29 @@ export const imageMap: { [key in string]: string } = {
   "th-TH": import.meta.env.BASE_URL + `assets/images/language/th-TH.png`,
   "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.png`,
   "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
+  "tgl-PH": import.meta.env.BASE_URL + `assets/images/language/tgl-PH.png`,
+  "hi-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
+  "ta-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
 };
 
 const StyledSelect = styled(MuiSelect)`
-  border-radius: 4px !important;
-  border: 1px solid ${({ theme }) => theme.gray80};
-
   //width: 140px;
   //margin-right: 10px;
   overflow: visible;
-  background: ${({ theme }) => theme.gray95};
-  font-weight: 700 !important;
-  font-size: 1rem !important;
+  background: ${({ theme }) => theme.black30};
+  font-weight: 400 !important;
+  font-size: 0.937rem !important;
+  border: 1px solid ${({ theme }) => theme.gray10};
+  border-radius: 1px;
 
   .MuiOutlinedInput-input {
-    padding: 0!important;
+    padding: 12px !important;
   }
   & .MuiSelect-select {
     display: flex;
     align-items: center;
+    color: ${({ theme }) => theme.text} !important;
+
     & > img {
       margin-right: 10px;
     }
@@ -47,12 +51,12 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    display: none;
     color: ${({ theme }) => theme.white};
   }
 `;
 
 const StyledMenuItem = styled(MuiMenuItem)`
+  //border-radius: 8px;
 
   & > img {
     margin-right: 10px;
@@ -60,9 +64,9 @@ const StyledMenuItem = styled(MuiMenuItem)`
 `;
 
 const FlagContainer = styled.div`
-  width: 33px;
-  height: 33px;
-  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
 
   & > img {
     width: 100%;
@@ -71,10 +75,10 @@ const FlagContainer = styled.div`
   }
 `;
 
-// const NameContainer = styled.div`
-//   font-weight: 700;
-//   font-size: 1rem;
-// `;
+const NameContainer = styled.div`
+  font-weight: 400;
+  font-size: 15px;
+`;
 
 const LanguageSwitch = (props: SelectProps) => {
   const { general } = useGeneralStore();
@@ -93,6 +97,7 @@ const LanguageSwitch = (props: SelectProps) => {
 
     setCurrentLanguage(selectedLanguage);
     i18n.changeLanguage(selectedLanguage.culturecode);
+    console.log("LanguageSwitch cause reload");
     window.location.reload();
   };
 
@@ -102,17 +107,17 @@ const LanguageSwitch = (props: SelectProps) => {
   return (
     <StyledSelect
       {...props}
-      style={{border:"none"}}
       type={"string"}
       value={culturecode}
       onChange={handleChange}
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.accountLableText,
+            background: theme.black30,
+
             "& .MuiMenuItem-root": {
-              display:"flex",
-              justifyContent:"center"
+              padding: 2,
+              color: theme.text,
             },
           },
         },
@@ -126,7 +131,7 @@ const LanguageSwitch = (props: SelectProps) => {
               <FlagContainer>
                 <img src={imageMap[culturecode] || ""} alt={culturecode} />
               </FlagContainer>
-              {/* <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer> */}
+              <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
           );
         })}

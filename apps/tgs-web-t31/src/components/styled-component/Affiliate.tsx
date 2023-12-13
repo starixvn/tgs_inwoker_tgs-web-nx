@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
 
 export const AffiliateContainer = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,6 +35,7 @@ export const AffiliateTitle = styled.h2`
   font-weight: 700;
   line-height: 1.758rem;
   margin-bottom: 14px;
+  color: ${({ theme }) => theme.blue40};
 `;
 
 export const QRCodeContainer = styled.div`
@@ -42,6 +43,7 @@ export const QRCodeContainer = styled.div`
   padding: 16px;
   border-radius: 10px;
   margin-bottom: 18px;
+  border: 1px solid ${({ theme }) => theme.blue10};
 `;
 export const ActionButtonContainer = styled.div`
   width: 288px;

@@ -23,7 +23,7 @@ const FormPhone = ({ formInput, formik, showErrorOn }: Props) => {
 
   return (
     <PhoneContainer>
-      <GrayInputWrapper key={"areaCode"} style={{ marginBottom: "21px", marginRight: "10px" }}>
+      <GrayInputWrapper key={"areaCode"} style={{ marginRight: "10px" }}>
         <Select
           type={"string"}
           placeholder={formik.values["areaCode"]}

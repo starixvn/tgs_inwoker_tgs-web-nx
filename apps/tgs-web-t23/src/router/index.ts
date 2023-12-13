@@ -2,8 +2,6 @@ import React from "react";
 import config from "@tgs-web-nx/config";
 import { RouteType } from "@tgs-web-nx/types";
 import { ProfilePathEnum } from "@tgs-web-nx/core";
-import CardPage from "@/pages/card/CardPage";
-import AddCardPage from "@/pages/card/AddCardPage";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
@@ -19,7 +17,6 @@ import ReportPage from "@/pages/report/ReportPage";
 import TransferPage from "@/pages/transfer/TransferPage";
 import VIPPage from "@/pages/vip/VipPage";
 import WithdrawalPage from "@/pages/withdrawal/WithdrawalPage";
-import WithdrawalDetailsPage from "@/pages/withdrawal/WithdrawalDetailsPage";
 import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
@@ -250,12 +247,7 @@ const routes: RouteType[] = [
   //   screenHeight: true,
   // },
   //
-  // TODO:it looks like /withdrawal/details is not used?
-  {
-    path: "/withdrawal/details",
-    component: WithdrawalDetailsPage,
-    layout: DialogLayout,
-  },
+
   {
     path: "/deposit/:promotionid?",
     component: DepositPage,
@@ -264,16 +256,6 @@ const routes: RouteType[] = [
   {
     path: "/manual/:paymentId?",
     component: DepositPage,
-    layout: DialogLayout,
-  },
-  {
-    path: "/card",
-    component: CardPage,
-    layout: DialogLayout,
-  },
-  {
-    path: "/card/add",
-    component: AddCardPage,
     layout: DialogLayout,
   },
   {

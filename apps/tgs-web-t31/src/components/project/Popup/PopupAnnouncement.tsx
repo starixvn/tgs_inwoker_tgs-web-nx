@@ -10,18 +10,19 @@ import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import CloseIcon from "@/components/project/Popup/components/CloseIcon";
+import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
-    background: ${({ theme }) => theme.mainBackground};
-    width: 321px;
+    background: ${({ theme }) => theme.neutralBlack};
+    width: calc(100vw - 10px * 2);
     height: auto;
-    border-radius: 10px;
+    margin: 4px;
+    overflow: visible;
 
     ${media.sm} {
-      width: 652px;
+      max-width: 478px;
     }
   }
 `;
@@ -31,36 +32,47 @@ const ChildContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 36px 24px 18px;
+  padding: 0 20px 20px;
 
   ${media.sm} {
-    padding: 60px 50px 30px;
+    padding: 0 40px 40px;
   }
 `;
 
 const Title = styled.div`
-  font-size: 1.2rem;
-  color: ${({ theme }) => theme.yellow};
-`;
-
-const Content = styled.div`
-  font-size: 1rem;
-  color: #ffffff;
-  margin-top: 1rem;
-  line-height: 1.2rem;
+  color: ${({ theme }) => theme.white};
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
 
   ${media.sm} {
     font-size: 1.5rem;
-    line-height: 1.75rem;
+  }
+`;
+
+const Content = styled.div`
+  color: ${({ theme }) => theme.text};
+  margin-top: 1rem;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+
+  ${media.sm} {
+    font-size: 1rem;
   }
 `;
 
 const AnnouncementCardContainer = styled.div`
-  min-height: 120px;
+  margin-top: 17px;
+  //min-height: 120px;
   height: auto;
 
   ${media.sm} {
-    min-height: 150px;
+    //min-height: 150px;
   }
 `;
 
@@ -113,6 +125,7 @@ const PopupAnnouncement = () => {
   const isEmptyData = announcementList.length === 0;
   const disableDialog =
     window.sessionStorage && sessionStorage.getItem(doNotShowAnnouncementDialogKey) === "true";
+
   if (isEmptyData || disableDialog) return null;
 
   return (
@@ -121,6 +134,8 @@ const PopupAnnouncement = () => {
       onClose={handleCloseDialog}
       TransitionComponent={UpTransition}
     >
+      <PopupHeader title={i18n.t("web.header.announcement")} handleClose={handleCloseDialog} />
+
       <ChildContainer>
         <Carousel>
           {announcementList
@@ -132,21 +147,12 @@ const PopupAnnouncement = () => {
             })}
         </Carousel>
 
-        {!isDesktopSize && (
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              marginBottom: "18px",
-            }}
-          />
-        )}
+        <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
 
         <ButtonWrapper>
           <Button
             onClick={handleCloseDialog}
             style={{
-              margin: isDesktopSize ? "20px 0 10px 0" : "0 auto",
               width: isDesktopSize ? "242px" : "100%",
               textAlign: "center",
             }}
@@ -154,20 +160,7 @@ const PopupAnnouncement = () => {
             <>{i18n.t("common.close")}</>
           </Button>
         </ButtonWrapper>
-
-        {isDesktopSize && (
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              margin: "0 auto",
-              justifyContent: "center",
-            }}
-          />
-        )}
       </ChildContainer>
-
-      <CloseIcon onClick={handleCloseDialog} />
     </StyledDialog>
   );
 };

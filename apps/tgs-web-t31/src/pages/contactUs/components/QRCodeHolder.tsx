@@ -12,8 +12,8 @@ const QRCodeContainer = styled.div`
 `;
 
 const QRCodeImage = styled.img`
-  height: 350px;
-  width: 350px;
+  height: 175px;
+  width: 175px;
 `;
 
 const QRCodeText = styled.div`

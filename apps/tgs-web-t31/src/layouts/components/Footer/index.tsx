@@ -1,16 +1,26 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import gc from "@/assets/t23/images/home/gc.png";
+import { useProvider } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
+import { i18n } from "@tgs-web-nx/utils";
+import { useState } from "react";
+import ChatQRcodePopup from "./ChatQRcodePopup";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import QRcodeUrl from "@/assets/t29/images/home/QRcode.svg";
+import qrcode_skype from "@/assets/t29/images/qrcode/qrcode_skype.png";
+import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
+import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
+import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
 
 const FooterContainer = styled.div`
   display: none;
 
   ${media.sm} {
     width: 100%;
-    background: ${({ theme }) => theme.mainDarkBackground};
+    background: ${({ theme }) => theme.gray80};
     color: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
@@ -23,7 +33,7 @@ const FooterContainer = styled.div`
 const FooterGroups = styled.div`
   width: 100%;
   display: flex;
-  max-width: 1200px;
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
   gap: 20px;
   margin-bottom: 20px;
 `;
@@ -34,7 +44,6 @@ const FooterGroup = styled.div`
 
 const GroupTitle = styled.h6`
   font-size: 1.25rem;
-  line-height: 0.875rem;
   font-weight: 500;
   margin-bottom: 20px;
 `;
@@ -63,65 +72,120 @@ const ParnterBadge = styled.div`
   }
 `;
 
-const SocialMediaTitle = styled.h6`
-  font-size: 1.25rem;
-  line-height: 0.875rem;
-  font-weight: 500;
+const LogoWrapper = styled.div`
+  width: 200px;
+  height: 90px;
 `;
 
-const PartnerList = [
-  "Red Tiger",
-  "EVOLUTION",
-  "SV388",
-  "Saba Sports",
-  "BTi",
-  "365 Cards",
-  "PG Soft",
-  "KY",
-];
+const LogoImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+`;
+
+const Link = styled.div`
+  width: max-content;
+  cursor: pointer;
+`;
+const DownLoadText = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  margin: 20px 0;
+  padding: 5px 0;
+`;
 
 const Footer = () => {
   const { general } = useGeneralStore();
+  const { providerList } = useProvider();
+  const history = useHistory();
+  const [isOpenChatQRcode, setIsOpenChatQRcode] = useState(false);
+
+  const partnerList = providerList.map((provider) => {
+    return provider.name;
+  });
 
   const brand = config.brand;
+
+  const navigateTo = (pageName: string) => {
+    history.push("/" + pageName);
+    window.scroll({ top: 0, behavior: "smooth" });
+  };
+
+  const chatQRcodeList = [
+    {
+      name: "Skype",
+      url: qrcode_skype,
+    },
+    {
+      name: "WhatsApp",
+      url: qrcode_whatsapp,
+    },
+    {
+      name: "Telegram",
+      url: qrcode_telegram,
+    },
+    {
+      name: "WeChat",
+      url: qrcode_wechat,
+    }
+  ];
+
   return (
     <FooterContainer>
       <FooterGroups>
-        {/*<FooterGroup>*/}
-        {/*  <LogoImg src={general.brand && general.brand.loadingUrl} />*/}
-        {/*</FooterGroup>*/}
-
         <FooterGroup>
           <GroupTitle>Gaming License</GroupTitle>
           <GroupContent>
-            <img src={gc} alt="gc" />
+            <LogoWrapper>
+              <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} />
+            </LogoWrapper>
           </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
-        </FooterGroup>
-
-        <FooterGroup>
-          <GroupTitle>Quick Links</GroupTitle>
-          <GroupContent>24/7 Customer Service</GroupContent>
-          <GroupContent>FAQs</GroupContent>
-          <GroupContent>Privacy Policy</GroupContent>
-          <GroupContent>Terms and Conditions</GroupContent>
-          <GroupContent>Responsible Gaming</GroupContent>
           <GroupTitle>Follow Us</GroupTitle>
           <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>
+          <GroupTitle>Quick Links</GroupTitle>
+          <GroupContent><Link onClick={() => setIsOpenChatQRcode(true)}>
+            {i18n.t("T13.quickLink.247")}
+          </Link></GroupContent>
+          <GroupContent>
+            <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
+          </GroupContent>
+          <GroupContent>
+            <Link onClick={() => navigateTo("privacypolicy")}>
+              {i18n.t("T13.quickLink.privacy")}
+            </Link>
+          </GroupContent>
+          <GroupContent>
+            <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
+          </GroupContent>
+          <GroupContent>
+            <Link onClick={() => navigateTo("responsiblegaming")}>
+              {i18n.t("T13.quickLink.reponsible")}
+            </Link>
+          </GroupContent>
+          <DownLoadText>Download App</DownLoadText>
+          <img src={QRcodeUrl} width={117} alt="QRcode" />
+        </FooterGroup>
+
+        <FooterGroup>
           <GroupTitle>Partners</GroupTitle>
           <PartnersContainer>
-            {PartnerList.map((partner) => {
+            {partnerList.map((partner) => {
               return <ParnterBadge key={partner}>{partner}</ParnterBadge>;
             })}
           </PartnersContainer>
         </FooterGroup>
       </FooterGroups>
+
+      {isOpenChatQRcode && <ChatQRcodePopup setIsOpenChatQRcode={setIsOpenChatQRcode} chatQRcodeList={chatQRcodeList} />}
     </FooterContainer>
   );
 };

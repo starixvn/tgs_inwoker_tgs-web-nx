@@ -1,40 +1,38 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
-import ForgotPasswordPrev from "@/components/account/authentication/ForgotPasswordPrev";
-import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
-import RedirectToLoginHint from "@/pages/register/components/RegisterForm/RedirectToLoginHint";
-
-const TitleContainer = styled.div`
-  font-family: SF Pro;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: center;
-  color: ${({ theme }) => theme.white};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-`;
+import { useForgotPasswordPage, useRwd } from "@tgs-web-nx/core/hooks";
+<<<<<<< develop
+<<<<<<< develop
+import ForgotPasswordForm from "@/components/project/auth/ForgotPasswordForm";
+import { FormContainerWithBG } from "@/components/styled-component/AuthFormContainer";
+=======
+import { FormContainer } from "@/components/styled-component/AuthFormContainer";
+=======
+>>>>>>> feat: update auth style in t33
+import ForgotPasswordForm from "@/components/project/auth/ForgotPasswordForm";
+>>>>>>> refactor: update auth structure
 
 const ForgotPasswordPage = () => {
-  useUpdatePageName(i18n.t("forgotPassword.title"));
+  useForgotPasswordPage();
 
-  const { alert } = useNotifications();
-  const history = useHistory();
+  const { isDesktopSize } = useRwd();
 
+  if (isDesktopSize) {
+    return null;
+  }
+
+<<<<<<< develop
+<<<<<<< develop
+  return <ForgotPasswordForm />;
+=======
   return (
-    <AuthFormContainer>
-      <TitleContainer>{i18n.t("forgotPassword.title")}</TitleContainer>
-      {/*@ts-ignore*/}
-      <ForgotPasswordPrev alert={alert} history={history} />
-      <RedirectToLoginHint style={{ marginTop: "20px" }} />
-    </AuthFormContainer>
+    <FormContainer>
+      <ForgotPasswordForm />
+    </FormContainer>
   );
+>>>>>>> refactor: update auth structure
+=======
+  return <ForgotPasswordForm />;
+>>>>>>> feat: update auth style in t33
 };
 
 export default ForgotPasswordPage;

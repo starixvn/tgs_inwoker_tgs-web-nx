@@ -4,8 +4,7 @@ export const GrayInputWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  border-radius: 30px;
-  border: none;
-  background: ${({ theme }) => theme.mainLightBackground};
+  background: ${({ theme }) => theme.white};
+  border-bottom: 1px solid ${({ theme }) => theme.gray10};
   overflow: visible;
 `;

@@ -1,8 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
@@ -12,7 +11,7 @@ import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,
   ItemContainer,
-  SubmitButton,
+  VerifySubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
@@ -30,7 +29,6 @@ type Props = {
 
 function VerifyPhone({ handleUpdateStage }: Props) {
   const { account } = useAccountStore();
-  const history = useHistory();
   const { alert } = useNotifications();
 
   const [countdownToken, setCountdownToken] = useState(0);
@@ -193,14 +191,9 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         </FormControl>
       </ItemContainer>
 
-      <SubmitButton
-        fullWidth
-        disabled={isDisableButton}
-        onClick={handleSubmitClicked}
-        style={{ marginBottom: "20px" }}
-      >
+      <VerifySubmitButton fullWidth disabled={isDisableButton} onClick={handleSubmitClicked}>
         {i18n.t("common.submit")}
-      </SubmitButton>
+      </VerifySubmitButton>
 
       <Loading show={isLoading} />
     </>

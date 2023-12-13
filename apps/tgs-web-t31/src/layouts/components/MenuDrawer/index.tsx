@@ -2,14 +2,14 @@ import { Drawer } from "@mui/material";
 import { useMemo } from "react";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import MobileMenuDrawer from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer";
+import MenuDrawerList from "@/layouts/components/MenuDrawer/components/MenuDrawerList/MenuDrawerList";
+import { theme } from "@/theme";
 import {
   DESKTOP_DRAWER_WIDTH,
   DRAWER_SHRINK_WIDTH,
   MOBILE_DRAWER_WIDTH,
   TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
-
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isLargeDesktopSize, isXlSize } = useRwd();
@@ -28,7 +28,7 @@ const MenuDrawer = () => {
 
   return (
     <Drawer
-      variant={"temporary"}
+      variant={isLargeDesktopSize ? "persistent" : "temporary"}
       anchor={"left"}
       open={isLargeDesktopSize ? false : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
@@ -41,7 +41,7 @@ const MenuDrawer = () => {
         },
       }}
     >
-      <MobileMenuDrawer />
+      {isLargeDesktopSize ? null : <MenuDrawerList />}
     </Drawer>
   );
 };

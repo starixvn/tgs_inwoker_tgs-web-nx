@@ -1,5 +1,4 @@
 import QRCode from "react-qr-code";
-import styled from "styled-components";
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
@@ -9,8 +8,15 @@ import RebateTable from "@/pages/affiliate/components/RebateTable";
 import { useRebateTable } from "@/components/account/Affiliate/hooks/useRebateTable";
 import { Select } from "@/components/UI/Select";
 import { FormControl } from "@/components/styled-component/ProfileForms";
-import { media } from "@/theme/breakpoints";
 import { QRCodeButton } from "@/pages/affiliate/components/QRCodeButton";
+import {
+  ActionButtonContainer,
+  AffiliateContainer,
+  AffiliateInfoRowContainer,
+  AffiliateTitle,
+  FlexContainer,
+  QRCodeContainer,
+} from "@/components/styled-component/Affiliate";
 
 const Affiliate = () => {
   const { account } = useAccountStore();

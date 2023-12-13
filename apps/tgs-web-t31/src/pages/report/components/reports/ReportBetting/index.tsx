@@ -10,14 +10,13 @@ import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import TransactionDetailCards from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailCards";
 import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
-import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 import { ReportContainer } from "@/components/styled-component/Report";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
 };
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const ReportBetting = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +31,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     winLoss: null,
     settleAmount: null,
   });
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   const fetchReports = async (page: number) => {
     setIsLoading(true);
@@ -91,18 +90,45 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     await fetchReports(nextPage);
   };
 
+  const handlePageChange = async (page: number) => {
+    setIsLoading(true);
+    const getTransactionDetailsRes = await ReportService.GetTransactionDetails(
+      moment(dateRangeInfo.dateFrom).utc().format(),
+      moment(dateRangeInfo.dateTo).utc().add(1, "days").format(),
+      page + 1,
+      PAGE_SIZE,
+      true,
+      "",
+      false,
+    );
+    if (getTransactionDetailsRes.IsSuccess) {
+      setIsLoading(false);
+      setTransactionDetails(getTransactionDetailsRes.data.items);
+    } else {
+      alert("", getTransactionDetailsRes?.info || JSON.stringify(getTransactionDetailsRes));
+      setIsLoading(false);
+    }
+  };
+
   return (
     <ReportContainer>
-      <TotalState roundTotal={roundTotal} />
-
       {isDesktopSize ? (
-        <TransactionDetailTable transactionDetails={transactionDetails} totalCount={totalCount} />
+        <TransactionDetailTable
+          transactionDetails={transactionDetails}
+          roundTotal={roundTotal}
+          totalCount={totalCount}
+          onPageChange={(page: number) => handlePageChange(page)}
+        />
       ) : (
         <TransactionDetailCards transactionDetails={transactionDetails} />
       )}
       <Loading show={isLoading} />
       {/*@ts-ignore*/}
-      <BottomScrollListener onBottom={handleLoadMore} />
+      <BottomScrollListener
+        onBottom={() => {
+          isMobileSize && handleLoadMore();
+        }}
+      />
     </ReportContainer>
   );
 };

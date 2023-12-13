@@ -14,27 +14,26 @@ const exceptionName = (text: string | null) => {
 
 const adjustFontSize = (container: HTMLElement, text: HTMLElement) => {
   if (container && text) {
-    // 替換下底線為空格
+    // Replace underscores with spaces
     if (text.textContent) {
       text.textContent = utility.replaceUnderscoresWithSpace(text.textContent);
       text.textContent = exceptionName(text.textContent);
     }
 
-    const containerWidth = container.clientWidth;
-    const textWidth = text.scrollWidth;
+    // Use requestAnimationFrame to wait for the next frame
+    requestAnimationFrame(() => {
+      const containerWidth = container.clientWidth;
+      const textWidth = text.scrollWidth;
 
-    // 先轉成大寫再計算字體大小
-    const originalText = text.textContent || "";
-    const upperCaseText = originalText.toUpperCase();
-    text.textContent = upperCaseText;
+      const computedStyles = window.getComputedStyle(text);
+      const fontSize = parseFloat(computedStyles.fontSize);
 
-    const computedStyles = window.getComputedStyle(text);
-    const fontSize = parseInt(computedStyles.fontSize);
-
-    if (textWidth > containerWidth) {
-      const newFontSize = fontSize * (containerWidth / textWidth) * 0.9;
-      text.style.fontSize = newFontSize + "px";
-    }
+      if (textWidth > containerWidth) {
+        const newFontSize = fontSize * (containerWidth / textWidth) * 0.9;
+        text.style.fontSize = `${newFontSize}px`;
+        text.style.fontWeight = "650";
+      }
+    });
   }
 };
 

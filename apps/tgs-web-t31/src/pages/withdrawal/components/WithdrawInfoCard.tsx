@@ -3,20 +3,18 @@ import styled from "styled-components";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
-import ManageBankCardButton from "./ManageBankCardButton";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.iconLable};
-  color: ${({ theme }) => theme.white};
-  padding: 25px 37px;
+  background: ${({ theme }) => theme.blue20};
+  padding: 12px;
   border-radius: 5px;
-  font-size: 0.937rem;
+  font-size: 0.875rem;
   line-height: 1.098rem;
-  max-width: 450px;
   align-self: flex-start;
 `;
+
 const RowContainer = styled.div`
-  border-left: 6px solid ${({ theme }) => theme.tertiary};
+  border-left: 6px solid ${({ theme }) => theme.blue50};
   padding-left: 10px;
 
   &:first-child {
@@ -25,15 +23,10 @@ const RowContainer = styled.div`
 `;
 
 const Label = styled.div`
-  margin-bottom: 8px;
+  color: ${({ theme }) => theme.blue50};
 `;
-const Value = styled.div``;
-
-const ManageBankCardButtonContainer = styled.div`
-  display: flex;
-  justify-content: end;
-  max-width: 450px;
-  align-self: flex-end;
+const Value = styled.div`
+  color: ${({ theme }) => theme.text};
 `;
 
 const WithdrawInfoCard = () => {
@@ -74,9 +67,6 @@ const WithdrawInfoCard = () => {
           {Common.formatNumberWithThousand(minWithdrawLimit)}
         </Value>
       </RowContainer>
-      <ManageBankCardButtonContainer>
-        <ManageBankCardButton />
-      </ManageBankCardButtonContainer>
     </CardContainer>
   );
 };

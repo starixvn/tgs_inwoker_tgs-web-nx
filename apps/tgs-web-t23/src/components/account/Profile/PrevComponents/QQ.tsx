@@ -132,14 +132,14 @@ const QQ = (prop: Props) => {
             {i18n.t("common.submit")}
           </SubmitButton>
 
-          <BottomNote
-            text1={i18n.t("profile.qq.toEdit")}
-            link={
-              config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly
-                ? "../chat"
-                : "profile.qq.here"
-            }
-          />
+          {/*<BottomNote*/}
+          {/*  text1={i18n.t("profile.qq.toEdit")}*/}
+          {/*  link={*/}
+          {/*    config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly*/}
+          {/*      ? "../chat"*/}
+          {/*      : "profile.qq.here"*/}
+          {/*  }*/}
+          {/*/>*/}
         </>
       )}
 

@@ -22,6 +22,19 @@ const Label = styled.h6`
   margin-bottom: 16px;
 `;
 
+const OriginalMessage = styled.div`
+  max-height: 120px;
+  padding: 10px;
+  white-space: pre-line;
+  border: ${({ theme }) => `1px solid ${theme.gray10}`};
+  color: ${({ theme }) => theme.text};
+  overflow: auto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+`;
+
 type Props = {
   inboxItemDetail: InboxItemDetail;
   handleSubmitReply: (replyInboxItemReqDto: ReplyInboxItemReqDto) => Promise<void>;
@@ -49,7 +62,15 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
       <InputWrapper>
         <Label>{i18n.t("subject")}</Label>
         <FormControl variant="outlined">
-          <TextField value={displayedSubject} disabled={true} />
+          <TextField
+            value={displayedSubject}
+            sx={{
+              input: {
+                padding: "17px 0",
+              },
+            }}
+            disabled={true}
+          />
         </FormControl>
       </InputWrapper>
 
@@ -64,7 +85,7 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
 
       <InputWrapper>
         <Label>{i18n.t("originalmessage")}</Label>
-        <TextArea value={content} disabled={true} />
+        <OriginalMessage>{content}</OriginalMessage>
       </InputWrapper>
 
       <SubmitButton
