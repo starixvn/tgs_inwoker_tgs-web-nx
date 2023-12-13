@@ -5,7 +5,7 @@ import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
+import VendorCard from "@/pages/home/components/VendorCard/index";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
@@ -113,7 +113,7 @@ const LobbyCategory = () => {
 
                   if (gpCode === "BC") return null;
                   return (
-                    <MobileVendorCard
+                    <VendorCard
                       key={gpCode}
                       bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/bg.png`}
                       imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
