@@ -1,23 +1,33 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
-import { SelectChangeEvent } from "@mui/material";
 import { Select } from "@/components/UI/Select";
 import ArrowRightPNG from "@/assets/t33/images/transfer/arrow-right.png";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
+import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { media } from "@/theme/breakpoints";
 
 const QuickTransferContainer = styled.div`
   display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  & > * {
+    height: 50px;
+    max-width: 200px;
+  }
+
+  ${media.lg} {
+    flex-wrap: nowrap;
+  }
 `;
-const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  border: `1px solid ${theme.palette.gray10}`,
-})) as typeof MuiFormControl;
 
 const QuickTransferArrow = styled.div`
+  flex-shrink: 0;
   display: flex;
   width: 23px;
   height: 23px;
@@ -25,23 +35,23 @@ const QuickTransferArrow = styled.div`
   margin: 0 10px;
 `;
 
-const AmountInputContainer = styled.div`
+const AmountWrapper = styled.div`
+  padding: 17px 10px;
   display: flex;
-  justify-content: space-between;
-  border: ${({ theme }) => `1px solid ${theme.gray10}`};
-  padding: 17px;
-  margin: 0 10px;
 `;
 
 const AmountText = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  flex-shrink: 0;
+  color: ${({ theme }) => theme.text};
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
+  background: none;
   text-align: right;
   border: none;
+  color: ${({ theme }) => theme.text};
   ::placeholder {
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
   }
 `;
 
@@ -71,9 +81,10 @@ const QuickTransfer = ({
 
   return (
     <QuickTransferContainer>
-      <FormControl>
+      <GrayInputWrapper>
         <Select
           native
+          fullWidth
           variant="outlined"
           value={transferFrom}
           displayEmpty
@@ -104,14 +115,16 @@ const QuickTransfer = ({
               </option>
             ))}
         </Select>
-      </FormControl>
+      </GrayInputWrapper>
 
       <QuickTransferArrow>
         <img src={ArrowRightPNG} alt="arrow-right" />
       </QuickTransferArrow>
-      <FormControl>
+
+      <GrayInputWrapper>
         <Select
           native
+          fullWidth
           variant="outlined"
           value={transferTo}
           displayEmpty
@@ -142,24 +155,33 @@ const QuickTransfer = ({
               </option>
             ))}
         </Select>
-      </FormControl>
+      </GrayInputWrapper>
 
-      <AmountInputContainer>
-        <AmountText>{i18n.t("common.amount")}</AmountText>
-        <div>
-          <CurrencyTextFieldReplacement
-            value={transferAmount}
-            placeholder="0"
-            onChange={handleTransferAmountChange}
-            autoComplete="off"
-          />
-        </div>
-      </AmountInputContainer>
+      <GrayInputWrapper>
+        <AmountWrapper>
+          <AmountText>{i18n.t("common.amount")}</AmountText>
+          <div>
+            <CurrencyTextFieldReplacement
+              value={transferAmount}
+              placeholder="0"
+              onChange={handleTransferAmountChange}
+              autoComplete="off"
+              type={"number"}
+            />
+          </div>
+        </AmountWrapper>
+      </GrayInputWrapper>
 
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
-        style={{ color: theme.white, background: theme.primary }}
+        style={{
+          color: theme.white,
+          background: theme.primary,
+          height: "50px",
+          minWidth: "212px",
+          padding: "13px",
+        }}
       >
         {i18n.t("common.submit")}
       </Button>
