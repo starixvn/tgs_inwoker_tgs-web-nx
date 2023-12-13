@@ -1,8 +1,8 @@
 import React from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { BankCard } from "@tgs-web-nx/types";
-import MainDesktop from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/MainDesktop";
-import MainMobile from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/MainMobile";
+import MainDesktop from "./MainDesktop";
+import MainMobile from "./MainMobile";
 
 export type MainProps = {
   cardList: BankCard[];

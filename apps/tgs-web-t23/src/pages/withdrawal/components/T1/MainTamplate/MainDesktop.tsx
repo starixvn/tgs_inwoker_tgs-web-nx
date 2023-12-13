@@ -7,7 +7,7 @@ import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import BankCardGroup from "@/pages/withdrawal/components/Main/BankCardGroup";
 import StepTitle from "@/pages/withdrawal/components/Main/StepTitle";
-import { MainProps } from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/index";
+import { MainProps } from "@/pages/withdrawal/components/T1/MainTamplate/index";
 import {
   AmountWrapper,
   ButtonWrapper,

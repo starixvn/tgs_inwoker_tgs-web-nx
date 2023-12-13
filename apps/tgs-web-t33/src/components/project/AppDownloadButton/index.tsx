@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { NavCardKey } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 import Icon from "@/components/project/Icon";
 import downloadImg from "@/assets/t33/images/menuDrawer/icon-download.svg";
 
