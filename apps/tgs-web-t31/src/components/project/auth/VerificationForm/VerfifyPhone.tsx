@@ -1,11 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-<<<<<<< develop
-import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
-=======
 import { i18n } from "@tgs-web-nx/utils";
->>>>>>> checkpoint
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
@@ -19,24 +15,12 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-<<<<<<< develop
-import { theme } from "@/theme";
-=======
->>>>>>> checkpoint
 
 const PhoneContainer = styled.div`
   display: flex;
   gap: 8px;
 `;
 
-<<<<<<< develop
-<<<<<<< develop
-=======
-const AREA_CODE = config.features.PhonePrefix;
-
->>>>>>> checkpoint
-=======
->>>>>>> feat: update auth style in t33
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
@@ -48,14 +32,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
   const { alert } = useNotifications();
 
   const [countdownToken, setCountdownToken] = useState(0);
-<<<<<<< develop
-<<<<<<< develop
   const AREA_CODE = config.features.PhonePrefix;
-=======
->>>>>>> checkpoint
-=======
-  const AREA_CODE = config.features.PhonePrefix;
->>>>>>> feat: update auth style in t33
   const [areacode, setAreacode] = useState(AREA_CODE);
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
@@ -102,21 +79,11 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         setSecurityKey(verifyForgotPasswordResDto.data);
         showInfoMessage(i18n.t("common.msgTokenSent"));
       } else {
-<<<<<<< develop
-<<<<<<< develop
-=======
->>>>>>> feat: update auth style in t33
         let errorCode = verifyForgotPasswordResDto.info || "";
         if (errorCode === "Player is not found in the system.") {
           errorCode = "error.ERR201";
         }
         showErrorMessage(i18n.t(errorCode));
-<<<<<<< develop
-=======
-        showErrorMessage(verifyForgotPasswordResDto.info);
->>>>>>> checkpoint
-=======
->>>>>>> feat: update auth style in t33
       }
     } catch (error: any) {
       showErrorMessage(error.message);
@@ -188,13 +155,6 @@ function VerifyPhone({ handleUpdateStage }: Props) {
                 (config.features.Profile_DisableVerifyPhone &&
                   !config.features.InitPhone_WithoutVerify)
               }
-<<<<<<< develop
-              sx={{
-                border:`1px solid ${theme.white30}`,
-                background:theme.black
-              }}
-=======
->>>>>>> checkpoint
             >
               <option value={AREA_CODE}>{AREA_CODE}</option>
             </Select>
@@ -209,12 +169,6 @@ function VerifyPhone({ handleUpdateStage }: Props) {
                 (isConfigured ? isConfigured : false) || config.features.Profile_DisableVerifyPhone
               }
               onChange={handleChangePhone}
-<<<<<<< develop
-              sx={{
-                border:`1px solid ${theme.white30}`,
-              }}
-=======
->>>>>>> checkpoint
             />
           </FormControl>
         </PhoneContainer>

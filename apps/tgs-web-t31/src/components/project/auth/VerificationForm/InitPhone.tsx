@@ -21,21 +21,13 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
-<<<<<<< develop
-=======
-const AREA_CODE = config.features.PhonePrefix;
-
->>>>>>> checkpoint
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
 };
 
 function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
-<<<<<<< develop
   const AREA_CODE = config.features.PhonePrefix;
-=======
->>>>>>> checkpoint
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const { alert } = useNotifications();
 
