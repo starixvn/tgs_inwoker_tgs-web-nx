@@ -11,7 +11,6 @@ import {
   LoginTitle,
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
-import BrandLogo from "@/components/project/BrandLogo";
 import {
   ForgotPasswordContainer,
   FormSubContainer,
@@ -32,11 +31,7 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
-      ) : (
-        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
-      )}
+      {isMobileSize && <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>}
 
       <FormContainer>
         <FormikForm
@@ -66,7 +61,7 @@ const LoginForm = () => {
 
       <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
 
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      <LanguageSwitch style={{ width: "150px", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );
 };

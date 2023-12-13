@@ -19,7 +19,6 @@ const VerifyAgeContainer = styled.div`
   width: 100%;
   color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
-  margin: 24px 0 0;
   display: flex;
   align-items: start;
 `;

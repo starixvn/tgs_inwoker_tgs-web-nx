@@ -8,6 +8,22 @@ export const DownloadAppContainer = styled.div`
     padding: 0 24px;
   }
 `;
+export const GirlImage = styled.div`
+  width: 100%;
+  margin-bottom: 10px;
+
+  img {
+    width: 100%;
+  }
+`;
+export const Paper = styled.div`
+  padding: 0;
+  background: ${({ theme }) => theme.mainBackground};
+
+  ${media.sm} {
+    padding: 10px;
+  }
+`;
 export const IntroductionContainer = styled.div`
   color: ${({ theme }) => theme.white};
   font-family: Gill Sans MT;

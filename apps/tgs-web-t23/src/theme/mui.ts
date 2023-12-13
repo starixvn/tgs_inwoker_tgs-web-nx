@@ -64,6 +64,7 @@ const muiTheme = createTheme({
     lightGray: theme.lightGray,
     mainBackground: theme.mainBackground,
     mainDarkBackground: theme.mainDarkBackground,
+    mainLightBackground: theme.mainLightBackground,
     primaryGradient: theme.primaryGradient,
     secondaryGradient: theme.secondaryGradient,
     primaryMix: theme.primaryMix,

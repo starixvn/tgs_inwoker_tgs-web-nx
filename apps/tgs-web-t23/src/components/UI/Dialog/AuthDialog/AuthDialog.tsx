@@ -24,6 +24,7 @@ const ChildContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   border-radius: 20px;
   z-index: 2;
+  overflow: auto;
 `;
 
 type Props = {
@@ -45,7 +46,12 @@ const AuthDialog = ({ open, onClose, children, showInMobile, ...others }: Props 
       open={open}
       TransitionComponent={UpTransition}
       onClose={onClose}
-      maxWidth={"xs"}
+      maxWidth={"md"}
+      sx={{
+        "& .MuiPaper-root": {
+          maxWidth: "490px",
+        },
+      }}
       {...others}
     >
       <CloseIcon onClick={onClose} />
