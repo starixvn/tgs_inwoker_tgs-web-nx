@@ -71,16 +71,14 @@
       "executor": "nx:run-commands",
       "defaultConfiguration": "production",
       "options": {
-        "commands": [
-          "docker build -f {args.AppPath}/Dockerfile . -t {args.DockerContainerRegistry}{args.ImageName}:`date +%Y-%m%d-%H%M`"
-        ],
+        "commands": [],
         "parallel": false
       },
       "configurations": {
         "production": {
           "DockerContainerRegistry": "pgtgs/",
-          "AppPath": "./apps/tgs-web-template",
-          "ImageName": "tgs-web-template"
+          "AppPath": "./apps/tgs-web-t31",
+          "ImageName": "tgs-web-t31"
         }
       }
     }
