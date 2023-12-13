@@ -25,7 +25,6 @@ const BottomAppBar = () => {
     handleClickBottomNavItem,
     isTransferDrawerOpen,
     handleTransferDrawerToggle,
-    selectedBottomNavItem,
   } = useGetBottomNavItemList();
 
   return (
@@ -36,7 +35,6 @@ const BottomAppBar = () => {
             <BottomNav
               key={bottomNavItem.label}
               bottomNavItem={bottomNavItem}
-              isSelected={selectedBottomNavItem === bottomNavItem}
               onClick={() => handleClickBottomNavItem(bottomNavItem)}
             />
           );
