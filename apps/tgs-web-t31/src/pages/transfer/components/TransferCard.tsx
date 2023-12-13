@@ -3,17 +3,18 @@ import styled from "styled-components";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
-import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
+import WalletSelect from "@/pages/transfer/components/WalletSelect";
+import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.tertiary};
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.blue20};
+  color: ${({ theme }) => theme.text};
   padding: 12px 15px;
   border-radius: 10px;
 
   & > div {
     font-size: 0.875rem !important;
-    margin-bottom: 20px;
+    margin-bottom: 6px;
   }
 
   input,
@@ -35,7 +36,7 @@ const ColContainer = styled.div`
 `;
 
 const Spacing = styled.div`
-  margin-bottom: 10px;
+  height: 14px;
 `;
 
 type Props = {
@@ -101,8 +102,8 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              border: "1px solid white",
-              borderRadius: "30px",
+              background: theme.blue10,
+              border: "4px",
             }}
           />
         </ColContainer>

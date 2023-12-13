@@ -1,20 +1,22 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
+import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
+import { Provider } from "@tgs-web-nx/types";
 import { TextField } from "@/components/UI/TextField";
-import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
+import WalletSelect from "@/pages/transfer/components/WalletSelect";
 import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.blue20};
-  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.grey00};
+  color: ${({ theme }) => theme.white};
   padding: 12px 15px;
   border-radius: 10px;
 
   & > div {
     font-size: 0.875rem !important;
-    margin-bottom: 6px;
+    margin-bottom: 20px;
   }
 
   input,
@@ -36,7 +38,7 @@ const ColContainer = styled.div`
 `;
 
 const Spacing = styled.div`
-  height: 14px;
+  margin-bottom: 10px;
 `;
 
 type Props = {
@@ -59,7 +61,47 @@ const TransferCard = ({
   mainAccountId,
   children,
 }: Props) => {
-  const { mainWalletBalance, providerList } = useUserWalletInfoContext();
+  const { wallet, getGameBalance } = useWalletStore();
+  const { game } = useGameStore();
+  const [providers, setProviders] = useState<Provider[]>([]);
+
+  const getAllGameBalance = useCallback(async () => {
+    if (!game.providerList.length) return;
+
+    const newWalletBalance: Provider[] = [];
+    const promiseList = game.providerList
+      .filter((provider) => provider.status === 0 && provider.transferwallet === true)
+      .filter((provider) => provider.gpcode !== "NTTF" && provider.gpcode !== "RTTF")
+      .map((provider) => {
+        return getGameBalance(provider.gpcode).then((response) => {
+          if (!response) {
+            console.log(provider.gpcode);
+          } else {
+            if (response.IsSuccess) {
+              newWalletBalance.push({
+                abbreviation: provider.abbreviation,
+                balance: response.data.balance,
+              });
+            }
+          }
+        });
+      });
+
+    await Promise.all(promiseList);
+    setProviders(newWalletBalance);
+  }, [JSON.stringify(game.providerList)]);
+
+  useEffect(() => {
+    if (!game.providerList.length) return;
+
+    getAllGameBalance().then();
+  }, [game.providerList.length]);
+
+  useEffect(() => {
+    if (!wallet.transferResult?.IsSuccess) return;
+
+    getAllGameBalance().then();
+  }, [wallet.transferResult]);
 
   return (
     <TransferCardContainer>
@@ -75,7 +117,7 @@ const TransferCard = ({
           <WalletSelect
             value={fromWallet}
             handleChange={handleChangeFromWallet}
-            providerList={providerList}
+            providerList={providers}
             mainAccountId={mainAccountId}
           />
         </ColContainer>
@@ -87,7 +129,7 @@ const TransferCard = ({
           <WalletSelect
             value={toWallet}
             handleChange={handleChangeToWallet}
-            providerList={providerList}
+            providerList={providers}
             mainAccountId={mainAccountId}
           />
         </ColContainer>
@@ -102,8 +144,14 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              background: theme.blue10,
-              border: "4px",
+              borderRadius: "6px",
+              background: theme.maskWhite20,
+              "& input": {
+                color: theme.white,
+              },
+              "& input::placeholder": {
+                color: theme.grey03,
+              },
             }}
           />
         </ColContainer>

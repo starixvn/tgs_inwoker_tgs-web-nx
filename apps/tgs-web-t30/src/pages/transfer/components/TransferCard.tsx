@@ -3,12 +3,11 @@ import styled from "styled-components";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
-import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
-import { theme } from "@/theme";
+import WalletSelect from "@/pages/transfer/components/WalletSelect";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.pageLabelBackground};
-  color: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.gray40};
+  color: ${({ theme }) => theme.white};
   padding: 12px 15px;
   border-radius: 10px;
 
@@ -102,8 +101,7 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              background: theme.blue10,
-              border: "4px",
+              background: "#1A1C20",
             }}
           />
         </ColContainer>
