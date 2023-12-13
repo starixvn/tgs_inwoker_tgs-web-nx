@@ -5,7 +5,7 @@ import { useNavigation, useRwd } from "@tgs-web-nx/core/hooks";
 import { useNotifications, useUpdatePageName } from "@tgs-web-nx/core/features";
 import CardPrev from "@/components/account/CardPrev";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWithdrawal from "@/assets/t23/images/badge/icon-withdrawal.svg";
+import iconWithdrawal from "@/assets/t33/images/menuDrawer/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

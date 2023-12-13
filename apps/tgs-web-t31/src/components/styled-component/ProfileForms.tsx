@@ -30,7 +30,14 @@ export const LabelContainer = styled.div`
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
+<<<<<<< develop
   height: "48px",
+=======
+  margin: "10px",
+  borderRadius: "30px",
+  background: theme.palette.mainLightBackground,
+
+>>>>>>> feat: update auth style in t33
   width: "100%",
   fontSize: "0.875rem",
   borderBottom: `1px solid ${theme.palette.gray10}`,
@@ -87,3 +94,8 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
     color: theme.palette.white60,
   },
 })) as typeof MuiButton;
+
+export const VerifySubmitButton = styled(SubmitButton)`
+  margin-bottom: 20px !important;
+  margin-top: auto !important;
+`;

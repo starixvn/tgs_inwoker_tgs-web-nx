@@ -87,3 +87,8 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
     color: "black",
   },
 })) as typeof MuiButton;
+
+export const VerifySubmitButton = styled(SubmitButton)`
+  margin-bottom: 20px !important;
+  margin-top: auto !important;
+`;

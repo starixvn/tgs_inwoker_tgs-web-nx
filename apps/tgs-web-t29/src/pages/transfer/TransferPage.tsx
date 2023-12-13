@@ -12,9 +12,9 @@ import { useSnackbar } from "notistack";
 import { useGameStore } from "@tgs-web-nx/core";
 import TransferPrevV2 from "@/components/account/TransferPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconTransfer from "@/assets/t29/images/account/navItem/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import iconTransfer from "@/assets/t29/images/account/navItem/icon-transfer.svg";
 
 const Transfer = () => {
   useUpdatePageName(i18n.t("transfer.title"));

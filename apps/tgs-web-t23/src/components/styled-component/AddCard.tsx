@@ -11,7 +11,7 @@ export const SubTitle = styled.div`
   font-size: 1.5rem;
   line-height: 1.758rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 12px;
 `;
 

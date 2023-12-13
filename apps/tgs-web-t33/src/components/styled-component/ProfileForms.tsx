@@ -31,9 +31,10 @@ export const LabelContainer = styled.div`
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   background: theme.palette.gray30,
-
   width: "100%",
   fontSize: "0.875rem",
+  justifyContent: "center",
+
   "& fieldset": {
     border: "none",
   },
@@ -50,10 +51,9 @@ export const InfoContainer = styled.div`
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "0.875rem",
-  height: "50px",
-  borderRadius: "30px",
-  color: "#828282",
-  background: theme.palette.mainBackground,
+  height: "48px",
+  color: theme.palette.text.primary,
+  background: theme.palette.gray30,
   border: "none",
 })) as typeof MuiButton;
 
@@ -86,3 +86,8 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
     color: "black",
   },
 })) as typeof MuiButton;
+
+export const VerifySubmitButton = styled(SubmitButton)`
+  margin-bottom: 20px !important;
+  margin-top: auto !important;
+`;

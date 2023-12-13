@@ -1,22 +1,24 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
-  padding: 22px;
-  max-width: calc(961px + 22px * 2);
+  padding: 20px;
+  max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
 `;
 
 export const TransferPageContainer = styled.div`
-  padding: 22px;
-  max-width: calc(961px + 22px * 2);
+  padding: 20px 16px;
+  max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
 
-  & .MuiButton-fullWidth {
-    max-width: 242px !important;
-    display: block !important;
-    margin: auto !important;
+  ${media.sm} {
+    & .MuiButton-fullWidth {
+      max-width: 250px !important;
+      display: block !important;
+    }
   }
 `;

@@ -8,7 +8,7 @@ export const SubTitle = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 16px;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   text-align: center;
 `;
 export const SubTitleDesc = styled.div`
