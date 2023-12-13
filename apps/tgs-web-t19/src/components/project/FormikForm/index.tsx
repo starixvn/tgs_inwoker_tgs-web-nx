@@ -80,12 +80,7 @@ const FormikForm = ({
         </ErrorMessageContainer>
       )}
 
-      <SubmitButton
-        fullWidth={true}
-        style={{ margin: "24px 0" }}
-        type={"submit"}
-        disabled={isLoading}
-      >
+      <SubmitButton fullWidth={true} type={"submit"} disabled={isLoading}>
         {buttonText}
       </SubmitButton>
     </Form>

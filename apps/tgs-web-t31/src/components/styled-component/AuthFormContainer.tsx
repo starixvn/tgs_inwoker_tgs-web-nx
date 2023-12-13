@@ -22,7 +22,7 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  margin: auto;
+  margin: 0 auto 20px;
 `;
 
 export const LoginTitle = styled.div`
