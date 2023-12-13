@@ -1,10 +1,7 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
-import {
-  BottomNavItem,
-  useGetBottomNavItemList,
-} from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
+import { BottomNavItem } from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
 
 const BottomNavContainer = styled.div`
   flex: 1;
@@ -27,16 +24,15 @@ const NavLabel = styled.h6`
 
 type Props = {
   bottomNavItem: BottomNavItem;
-  isSelected: boolean;
   onClick: MouseEventHandler<HTMLDivElement>;
 };
-const BottomNav = ({ bottomNavItem, isSelected, onClick }: Props) => {
-  const { label, iconUrl } = bottomNavItem;
 
+const BottomNav = ({ bottomNavItem, onClick }: Props) => {
+  const { label, iconUrl } = bottomNavItem;
   return (
     <BottomNavContainer onClick={onClick}>
       <Icon
-        iconUrl={isSelected ? iconUrl : "test"}
+        iconUrl={iconUrl}
         width={"24px"}
         height={"24px"}
         style={{

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
@@ -31,7 +31,6 @@ export type BottomNavItem = {
 export function useGetBottomNavItemList() {
   const history = useHistory();
   const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
-  const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
   const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo(() => {
@@ -81,7 +80,6 @@ export function useGetBottomNavItemList() {
         //todo:expand account menu
         break;
       case NavTypeEnum.ITEM:
-        setSelectedBottomNavItem(appBarItem);
         history.push(appBarItem.routePath);
         break;
 
@@ -92,7 +90,6 @@ export function useGetBottomNavItemList() {
   };
 
   return {
-    selectedBottomNavItem,
     bottomNavItemList,
     handleClickBottomNavItem,
     isTransferDrawerOpen,
