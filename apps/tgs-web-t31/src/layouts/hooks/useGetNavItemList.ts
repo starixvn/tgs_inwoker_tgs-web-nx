@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
@@ -28,11 +28,15 @@ import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
+//desktop header icon
+import headerVipImg from "@/assets/t31/images/home/gameType/desktop/VIP.svg";
+import headerPromotionImg from "@/assets/t31/images/home/gameType/desktop/Promotion.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
   key: NavCardKey | string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   label: string | any;
   iconUrl: string;
   iconActiveUrl?: string;
@@ -73,7 +77,7 @@ export function useGetNavItemList() {
       navItemList.push({
         key: gameTypeItem.key,
         label: gameTypeItem.text as string,
-        iconUrl: gameTypeItem.iconUrl,
+        iconUrl: gameTypeItem.headerIconUrl,
         navType: "action",
         gameType: gameTypeItem.gameType,
         router: gameTypeItem.key as string,
@@ -85,27 +89,27 @@ export function useGetNavItemList() {
     }
 
     navItemList.push({
+      key: NavCardKey.PROMOTION,
+      label: i18n.t("common.promotion"),
+      iconUrl: headerPromotionImg,
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "promotion-list",
+      callback: () => {
+        history.push("/promotion-list");
+      },
+    });
+
+    navItemList.push({
       key: NavCardKey.VIP,
       label: "VIP",
-      iconUrl: vipImg,
+      iconUrl: headerVipImg,
       iconActiveUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "vip",
       callback: () => {
         history.push("/vip");
-      },
-    });
-
-    navItemList.push({
-      key: NavCardKey.PROMOTION,
-      label: i18n.t("common.promotion"),
-      iconUrl: "",
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "promotion-list",
-      callback: () => {
-        history.push("/promotion-list");
       },
     });
 
