@@ -13,9 +13,9 @@ const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  border-radius: 50px;
-  background-color: ${({ theme }) => theme.white};
-  border: 1px solid ${({ theme }) => theme.blue40};
+  border-radius: 100px;
+  border: 2.5px solid #B78316;
+  background-color:${({ theme }) => theme.cmpBackground};
 `;
 
 const InputTextfield = styled.input`
@@ -27,10 +27,10 @@ const InputTextfield = styled.input`
   outline: none;
   width: 100%;
   font-size: 0.875rem;
-  color: ${(props) => props.theme.text};
+  color: #999;
   margin-left: 5px;
   &::placeholder {
-    color: ${(props) => props.theme.text};
+    color: #999;
     font-weight: 700;
     line-height: 0.875rem;
   }
@@ -43,7 +43,6 @@ const InputTextfield = styled.input`
 const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
   return (
     <InputWrapper>
-      {imageUrl && <img src={imageUrl} alt={"Search"} />}
       <InputTextfield
         type="text"
         placeholder={placeholder}
@@ -52,6 +51,7 @@ const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
           handleChange(event.target.value);
         }}
       />
+      {imageUrl && <img src={imageUrl} alt={"Search"} />}
     </InputWrapper>
   );
 };

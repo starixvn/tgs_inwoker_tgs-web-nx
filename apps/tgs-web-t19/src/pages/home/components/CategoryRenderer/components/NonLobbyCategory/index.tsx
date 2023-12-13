@@ -11,13 +11,14 @@ import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t29/images/home/search.svg";
+import searchIcon from "@/assets/t19/images/home/search.svg";
 
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   width: 100%;
+  gap: 16px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -81,17 +82,15 @@ const Text = styled.div`
   width: 100%;
   text-align: center;
   padding: 40px 0;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.gray};
   font-size: 18px;
   font-weight: 700;
 `;
 
 const SearchInputWrapper = styled.div`
   width: 100%;
-  height: 37px;
-  border-radius: 100px;
-  border: 2.5px solid #B78316;
-  background: #161513;
+  height: 40px;
+  margin: 12px 0 ;
 
   ${media.sm} {
     width: 300px;
@@ -121,11 +120,8 @@ const NonLobbyCategory = () => {
               />
             </SearchInputWrapper>
 
-            <FilterSection>
-              <GameFilterTag />
-            </FilterSection>
-
             <CategoryContent>
+              <GameFilterTag />
               {hasMappingData &&
                 gameList.map((gameItem) => (
                   <GameCard

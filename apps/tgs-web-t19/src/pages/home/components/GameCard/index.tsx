@@ -41,6 +41,20 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   }
 `;
 
+const TagBg = styled.div`
+  position: absolute;
+  width: 100%;
+  padding-top: 100%;
+  left: 0;
+  top: 0;
+  background: ${({ theme }) => theme.picMask};
+  border-radius: 15px;
+
+  ${media.sm} {
+    padding-top: 80.95%;
+  }
+`;
+
 const NewTag = styled.div`
   position: absolute;
   left: 0;
@@ -63,10 +77,10 @@ const HotTag = styled.div`
   top: 3px;
   left: 0;
   width: 53px;
-  height: 26px;
-  padding: 4px 10px;
+  height: 22px;
+  padding: 10px;
   border-radius: 50px;
-  background: ${(props) => props.theme.green};
+  background: ${(props) => props.theme.red};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
@@ -212,8 +226,10 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        {gameItem.tag.new && <NewTag>New</NewTag>}
-        {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+        <TagBg>
+          {gameItem.tag.new && <NewTag>New</NewTag>}
+          {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+        </TagBg>
         {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
         {!isActive && (
           <MaintenanceBg>
