@@ -19,15 +19,13 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
     setIsShowPassword((prevState) => !prevState);
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
   const inputType = isShowPassword ? "text" : "password";
   return (
-    <GrayInputWrapper key={name} style={{ marginBottom: "21px" }}>
+    <GrayInputWrapper key={name}>
       <TextField
         type={inputType}
         placeholder={label}
@@ -37,14 +35,8 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
         value={formik.values[name]}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        helperText={
-          showErrorOn === "input" && formik.touched[name] && formik.errors[name]
-        }
-        error={
-          showErrorOn === "input" &&
-          !!formik.touched[name] &&
-          !!formik.errors[name]
-        }
+        helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
+        error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
         InputProps={{
           autoComplete: "new-password",
           endAdornment: (

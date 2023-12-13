@@ -6,7 +6,7 @@ export const AuthFormContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 70px 20px 30px;
+  padding: 20px;
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -21,8 +21,11 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
+
+  & button {
+    margin-bottom: 0 !important;
+  }
 `;
 
 export const LoginTitle = styled.div`

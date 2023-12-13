@@ -10,7 +10,6 @@ const ErrorMessageContainer = styled.div`
   font-size: 0.875rem;
   font-weight: 400;
   text-align: center;
-  margin-bottom: 8px;
 `;
 
 const Form = styled.form`
@@ -23,10 +22,6 @@ const Form = styled.form`
 
 const BottomContent = styled.div`
   margin-top: auto;
-`;
-
-const ChildContainer = styled.div`
-  margin-bottom: 14px;
 `;
 
 export interface FormikFormInput {

@@ -21,7 +21,6 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  max-width: 408px;
   margin: 0 auto 14px;
   flex-shrink: 0;
   flex-grow: 1;

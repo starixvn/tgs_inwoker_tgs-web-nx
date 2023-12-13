@@ -10,7 +10,14 @@ const ErrorMessageContainer = styled.div`
   font-size: 0.875rem;
   font-weight: 400;
   text-align: center;
-  margin-top: 24px;
+`;
+
+const Form = styled.form`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0;
 `;
 
 export interface FormikFormInput {
@@ -58,7 +65,7 @@ const FormikForm = ({
   const bottomFormErrorMsg = showErrorOn === "bottom" && getBottomErrorMessage();
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}>
       {formInputList.map((formInput) => {
         const FormInput = FormInputFactory[formInput.type];
         if (!FormInput) return null;
@@ -82,7 +89,7 @@ const FormikForm = ({
       >
         {buttonText}
       </SubmitButton>
-    </form>
+    </Form>
   );
 };
 

@@ -22,7 +22,6 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  max-width: 400px;
   margin: auto;
 `;
 
