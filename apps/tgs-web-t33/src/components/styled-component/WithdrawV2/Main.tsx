@@ -2,7 +2,7 @@ import { styled as muiStyled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
 import { ListItem, ListItemText } from "@mui/material";
 import styled from "styled-components";
-import limitBg from "@/assets/t29/images/withdraw/limit-bg.png";
+import limitBg from "@/assets/t33/images/withdraw/limit-bg.png";
 import {
   FormControl as ProfileFormControl,
   ItemContainer as ProfileItemContainer,
@@ -81,7 +81,7 @@ export const SelectionContainer = styled.div`
 export const LimitPopupContainer = styled.div`
   white-space: nowrap;
   background: url(${limitBg}) no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   font-size: 0.812rem;
   color: ${({ theme }) => theme.white};
@@ -95,7 +95,7 @@ export const Turnover = styled.div`
   color: ${({ theme }) => theme.text};
   span {
     margin-left: 5px;
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.primary};
     font-weight: bold;
   }
 `;

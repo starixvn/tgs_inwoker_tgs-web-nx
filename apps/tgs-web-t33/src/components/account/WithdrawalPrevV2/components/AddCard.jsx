@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
-import AddCardT1 from "@/components/account/WithdrawalPrevV2/components/T1/AddCard";
+import AddCardT1 from "@/pages/withdrawal/components/T1/AddCard";
 
 class AddCard extends Component {
   constructor(props) {

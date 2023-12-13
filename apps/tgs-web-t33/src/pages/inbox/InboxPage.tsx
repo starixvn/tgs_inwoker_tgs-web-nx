@@ -14,7 +14,7 @@ import ComposeForm from "@/pages/inbox/components/form/ComposeForm";
 import InboxList from "@/pages/inbox/components/InboxList";
 import SentList from "@/pages/inbox/components/SentList";
 import InboxCategoryTabs from "@/pages/inbox/components/InboxCategoryTabs";
-import iconInbox from "@/assets/t23/images/badge/icon-inbox.svg";
+import iconInbox from "@/assets/t33/images/menuDrawer/icon-inbox.svg";
 
 const InboxContainer = styled.div``;
 

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { SelectChangeEvent } from "@mui/material";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t29/images/transfer/arrow-right.png";
+import ArrowRightPNG from "@/assets/t33/images/transfer/arrow-right.png";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 

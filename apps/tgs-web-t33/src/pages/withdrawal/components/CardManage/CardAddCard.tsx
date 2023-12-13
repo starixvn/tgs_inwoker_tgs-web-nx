@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import AddCardIcon from "@/assets/t29/images/card/add-card.svg";
+import AddCardIcon from "@/assets/t33/images/card/add-card.svg";
 
 const CardContainer = styled.div`
   width: 100%;
   padding: 13px 20px;
-  background: ${({ theme }) => theme.blue20};
-  border: 1px solid ${({ theme }) => theme.main};
+  background: ${({ theme }) => theme.gray40};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,11 +33,10 @@ const IconContainer = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 10px;
+  padding: 31.5px;
 `;
 
 type Props = {

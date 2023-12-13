@@ -8,23 +8,23 @@ const SubHeaderContainer = styled.div`
   margin-bottom: 16px;
 `;
 const NumberContainer = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 3.2px;
-  background-color: ${({ theme }) => theme.blue40};
+  width: 25px;
+  height: 25px;
+  border-radius: 50px;
+  background-color: ${({ theme }) => theme.secondary};
   font-family: Arial;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 400;
   color: ${({ theme }) => theme.white};
-  text-align: center;
-  padding-top: 2px;
-  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const SubTitle = styled.div`
   font-size: 0.875rem;
   font-weight: 700;
   float: left;
-  color: #23507d;
+  color: ${({ theme }) => theme.text};
   white-space: nowrap;
 `;
 

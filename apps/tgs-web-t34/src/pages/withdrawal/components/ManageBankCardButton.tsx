@@ -25,13 +25,13 @@ const IconContainer = styled.div`
   margin-right: 7.5px;
 `;
 
-const ManageBankCardButton = () => {
-  const history = useHistory();
-  const handleClick = () => {
-    history.push("/card");
-  };
+type Props = {
+  handleManageCardClick: () => void;
+};
+
+const ManageBankCardButton = ({ handleManageCardClick }: Props) => {
   return (
-    <ButtonContainer onClick={handleClick}>
+    <ButtonContainer onClick={handleManageCardClick}>
       <IconContainer>
         <img src={iconImg} alt={"manage-card"} />
       </IconContainer>

@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Icon from "@/components/project/Icon";
-import iconArrow from "@/assets/t29/images/withdraw/icon-arrow.svg";
 import CardAddButton from "@/pages/withdrawal/components/CardManage/CardAddButton";
+import { media } from "@/theme/breakpoints";
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -13,7 +12,13 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.white};
+  font-weight: 700;
+  font-size: 1.125rem;
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.primary};
+  }
 `;
 
 type Props = {
@@ -24,7 +29,6 @@ type Props = {
 const FormTitle = ({ title, isShowAddCardButton, handleClickAddCard }: Props) => {
   return (
     <TitleWrapper>
-      <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />
       <Title>{title}</Title>
 
       {isShowAddCardButton && handleClickAddCard && (

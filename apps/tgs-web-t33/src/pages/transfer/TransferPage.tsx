@@ -12,7 +12,7 @@ import { useSnackbar } from "notistack";
 import { useGameStore } from "@tgs-web-nx/core";
 import TransferPrevV2 from "@/components/account/TransferPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconTransfer from "@/assets/t23/images/badge/icon-transfer.svg";
+import iconTransfer from "@/assets/t33/images/menuDrawer/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
