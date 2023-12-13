@@ -22,11 +22,21 @@ import lotteryActive from "@/assets/t31/images/home/gameType/mobile/Lottery_acti
 import sabongActive from "@/assets/t31/images/home/gameType/mobile/Sabong_active.svg";
 import slotActive from "@/assets/t31/images/home/gameType/mobile/Slot_active.svg";
 import sportsActive from "@/assets/t31/images/home/gameType/mobile/Sports_active.svg";
+// side menu icon
+import sideMenuCardgame from "@/assets/t31/images/home/gameType/SideMenu/Card.svg";
+import sideMenuEgame from "@/assets/t31/images/home/gameType/SideMenu/Egame.svg";
+import sideMenuFishing from "@/assets/t31/images/home/gameType/SideMenu/Fish.svg";
+import sideMenuLive from "@/assets/t31/images/home/gameType/SideMenu/Live.svg";
+import sideMenuLottery from "@/assets/t31/images/home/gameType/SideMenu/Lottery.svg";
+import sideMenuSabong from "@/assets/t31/images/home/gameType/SideMenu/Sabong.svg";
+import sideMenuSlot from "@/assets/t31/images/home/gameType/SideMenu/Slot.svg";
+import sideMenuSports from "@/assets/t31/images/home/gameType/SideMenu/Sports.svg";
 
 type GameTypeItem = {
   key: string;
   iconUrl: string;
   activeUrl: string;
+  sideMenuIconUrl: string;
   text: string | any;
   fontSize: string;
   gameType: GameTypeEnum;
@@ -41,6 +51,7 @@ export const useGameTypeList = () => {
         key: "Home",
         iconUrl: home,
         activeUrl: homeActive,
+        sideMenuIconUrl: "",
         text: i18n.t("common.home"),
         fontSize: "small",
         gameType: GameTypeEnum.NONE,
@@ -49,6 +60,7 @@ export const useGameTypeList = () => {
         key: "sports",
         iconUrl: sports,
         activeUrl: sportsActive,
+        sideMenuIconUrl: sideMenuSports,
         text: i18n.t("common.sports"),
         fontSize: "small",
         gameType: GameTypeEnum.SPORTS,
@@ -57,6 +69,7 @@ export const useGameTypeList = () => {
         key: "slots",
         iconUrl: slot,
         activeUrl: slotActive,
+        sideMenuIconUrl: sideMenuSlot,
         text: i18n.t("common.slot"),
         fontSize: "small",
         gameType: GameTypeEnum.SLOT,
@@ -65,6 +78,7 @@ export const useGameTypeList = () => {
         key: "liveCasino",
         iconUrl: live,
         activeUrl: liveActive,
+        sideMenuIconUrl: sideMenuLive,
         text: i18n.t("common.live"),
         fontSize: "small",
         gameType: GameTypeEnum.LIVELOBBY,
@@ -73,6 +87,7 @@ export const useGameTypeList = () => {
         key: "sabong",
         iconUrl: sabong,
         activeUrl: sabongActive,
+        sideMenuIconUrl: sideMenuSabong,
         text: i18n.t("common.cockfight"),
         fontSize: "smaller",
         gameType: GameTypeEnum.COCKFIGHT,
@@ -81,6 +96,7 @@ export const useGameTypeList = () => {
         key: "egame",
         iconUrl: egame,
         activeUrl: egameActive,
+        sideMenuIconUrl: sideMenuEgame,
         text: i18n.t("common.egame"),
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
@@ -89,6 +105,7 @@ export const useGameTypeList = () => {
         key: "fishing",
         iconUrl: fishing,
         activeUrl: fishingActive,
+        sideMenuIconUrl: sideMenuFishing,
         text: i18n.t("common.fish"),
         fontSize: "smaller",
         gameType: GameTypeEnum.FISH,
@@ -97,6 +114,7 @@ export const useGameTypeList = () => {
         key: "cardGame",
         iconUrl: cardgame,
         activeUrl: cardgameActive,
+        sideMenuIconUrl: sideMenuCardgame,
         text: i18n.t("common.chess"),
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
@@ -105,6 +123,7 @@ export const useGameTypeList = () => {
         key: "lottery",
         iconUrl: lottery,
         activeUrl: lotteryActive,
+        sideMenuIconUrl: sideMenuLottery,
         text: i18n.t("common.lottery"),
         fontSize: "small",
         gameType: GameTypeEnum.LOTTERYLOBBY,
@@ -113,6 +132,7 @@ export const useGameTypeList = () => {
         key: "esports",
         iconUrl: esports,
         activeUrl: esportsActive,
+        sideMenuIconUrl: sideMenuSports,
         text: i18n.t("common.esports"),
         fontSize: "smaller",
         gameType: GameTypeEnum.ESPORTS,
