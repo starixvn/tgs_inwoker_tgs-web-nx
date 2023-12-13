@@ -20,7 +20,8 @@ const FooterContainer = styled.div`
 
   ${media.sm} {
     width: 100%;
-    background: ${({ theme }) => theme.gray80};
+    //todo: 在figma拿不到footer的BG,拿到後替換
+    background: ${({ theme }) => theme.header};
     color: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
