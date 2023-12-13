@@ -18,12 +18,12 @@ const TransferContainer = styled.div`
 
 const GameTransferWallet = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 200px;
   border-radius: 4px;
-  border: solid 1px ${({ theme }) => "#dddedf"};
-  background: ${({ theme }) => theme.blue20};
-  padding: 10px 10px 10px 3px;
+  background: ${({ theme }) => theme.gray30};
+  padding: 10px;
   gap: 10px;
 `;
 const GameTransferLeftWrap = styled.div`
@@ -33,6 +33,7 @@ const GameTransferLeftWrap = styled.div`
 const GameTransferRighttWrap = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 9px;
 `;
 
 const Logo = styled.img`
@@ -46,7 +47,7 @@ const GameName = styled.div`
   line-height: 13px;
   letter-spacing: 0em;
   text-align: center;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   margin-top: 7px;
 `;
 const GameWalletAmount = styled.div`
@@ -55,9 +56,7 @@ const GameWalletAmount = styled.div`
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
-  color: ${({ theme }) => {
-    return theme.darkMode ? "#fff" : "#000";
-  }};
+  color: ${({ theme }) => theme.text};
   text-align: center;
   display: inline-block;
   margin-top: 3px;
@@ -68,7 +67,7 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   fontWeight: "400",
   lineHeight: "14px",
   textAlign: "center",
-  padding: "4px",
+  padding: "4px 10px",
   background: theme.palette.blue30,
   border: "none",
   "&:hover": {

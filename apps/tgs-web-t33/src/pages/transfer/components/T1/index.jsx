@@ -16,9 +16,9 @@ const Container = styled.div`
 const InnerWrap = styled.div``;
 
 const SubTitle = styled.div`
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   display: inline-block;
   width: 100%;
   margin: 25px 0 5px 0;

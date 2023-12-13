@@ -9,7 +9,7 @@ const TransferCardContainer = styled.div`
   background: ${({ theme }) => theme.gray40};
   color: ${({ theme }) => theme.white};
   padding: 12px 15px;
-  border-radius: 10px;
+  border-radius: 6px;
 
   & > div {
     font-size: 0.875rem !important;
