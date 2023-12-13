@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useLocation } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
@@ -33,21 +30,18 @@ const HeaderGameTypesContainer = styled.div`
   }
 `;
 
-const GameTypeNav = styled.div<{
-  $isActive: boolean;
-}>`
+const GameTypeNav = styled.div`
   flex-shrink: 0;
   font-size: 0.875rem;
   font-weight: 700;
   white-space: nowrap;
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 6px 8px;
+  gap: 4px;
   color: ${({ theme }) => theme.text};
   cursor: pointer;
   position: relative;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
-  color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
   &:hover {
     background: ${({ theme }) => theme.gray10};
   }
@@ -57,56 +51,45 @@ const GameTypeNav = styled.div<{
   }
 `;
 
-const GameTypeGrid = styled.div`
-  align-self: center;
-  height: 18px;
-  display: flex;
-  border: 1px solid #cccccc;
-  margin: 0 5px;
-`;
-
 const Wrapper = styled.div`
   display: flex;
 `;
 
 const HeaderGameTypeNavs = () => {
   const { sideNavItemList } = useGetNavItemList();
-  const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
+  // const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
 
-  const handleMouseEnter = (gameType: GameTypeEnum) => {
-    setIsHovered(true);
-    handleChangeNavPopupGameType(gameType);
-  };
+  // const handleMouseEnter = (gameType: GameTypeEnum) => {
+  //   setIsHovered(true);
+  //   handleChangeNavPopupGameType(gameType);
+  // };
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+  // const handleMouseLeave = () => {
+  //   setIsHovered(false);
+  // };
 
   const handleClickNav = (navItem: NavItem) => {
     if (navItem.navType !== "action") return;
     navItem.callback();
   };
 
-  const location = useLocation();
-  const pathSegments = location.pathname.split("/");
-  const currentRoute = pathSegments[pathSegments.length - 1];
-
   return (
     <HeaderGameTypesContainer>
-      {sideNavItemList && sideNavItemList.map((navItem, index) => {
-        return (
-          <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
-            <GameTypeNav
-              $isActive={navItem.router === currentRoute}
-              onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {navItem.label}
-            </GameTypeNav>
-            {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
-          </Wrapper>
-        );
-      })}
+      {sideNavItemList &&
+        sideNavItemList.map((navItem, index) => {
+          return (
+            <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
+              <GameTypeNav
+              // $isActive={navItem.router === currentRoute}
+              // onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+              // onMouseLeave={handleMouseLeave}
+              >
+                <img src={navItem.iconUrl} alt={navItem.label} />
+                <div>{navItem.label}</div>
+              </GameTypeNav>
+            </Wrapper>
+          );
+        })}
     </HeaderGameTypesContainer>
   );
 };
