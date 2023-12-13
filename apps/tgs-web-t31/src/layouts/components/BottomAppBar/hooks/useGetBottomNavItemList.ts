@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
@@ -31,13 +31,14 @@ export type BottomNavItem = {
 export function useGetBottomNavItemList() {
   const history = useHistory();
   const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
+  const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
   const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo(() => {
     return [
       {
         navType: NavTypeEnum.ITEM,
-        label: i18n.t("web.account.profile"),
+        label: i18n.t("deposit.details.account"),
         iconUrl: iconProfile,
         iconActiveUrl: iconProfile,
         routePath: "/account",
@@ -76,10 +77,13 @@ export function useGetBottomNavItemList() {
   // const { handleToggleMenu } = useHeader();
   const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
     switch (appBarItem.navType) {
-      // case NavTypeEnum.MENU :
-      //   handleToggleMenu(true);
-      //
-      //   break;
+      case NavTypeEnum.MENU:
+        //todo:expand account menu
+        break;
+      case NavTypeEnum.ITEM:
+        setSelectedBottomNavItem(appBarItem);
+        history.push(appBarItem.routePath);
+        break;
 
       default:
         appBarItem.handleClick();
@@ -88,6 +92,7 @@ export function useGetBottomNavItemList() {
   };
 
   return {
+    selectedBottomNavItem,
     bottomNavItemList,
     handleClickBottomNavItem,
     isTransferDrawerOpen,

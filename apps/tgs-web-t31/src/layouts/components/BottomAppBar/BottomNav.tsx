@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 import {
   BottomNavItem,
-  NavTypeEnum,
+  useGetBottomNavItemList,
 } from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
 
 const BottomNavContainer = styled.div`
@@ -27,43 +27,16 @@ const NavLabel = styled.h6`
 
 type Props = {
   bottomNavItem: BottomNavItem;
+  isSelected: boolean;
   onClick: MouseEventHandler<HTMLDivElement>;
 };
-
-const BottomNav = ({ bottomNavItem, onClick }: Props) => {
+const BottomNav = ({ bottomNavItem, isSelected, onClick }: Props) => {
   const { label, iconUrl } = bottomNavItem;
-
-  if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
-    return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon
-          iconUrl={iconUrl}
-          width={"47px"}
-          height={"47px"}
-          style={{
-            marginBottom: "13px",
-          }}
-        />
-
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
-
-  if (["promotion"].includes(bottomNavItem.key)) {
-    return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon iconUrl={iconUrl} width={"60px"} height={"44px"} />
-
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
 
   return (
     <BottomNavContainer onClick={onClick}>
       <Icon
-        iconUrl={iconUrl}
+        iconUrl={isSelected ? iconUrl : "test"}
         width={"24px"}
         height={"24px"}
         style={{
@@ -74,6 +47,16 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
       <NavLabel>{label}</NavLabel>
     </BottomNavContainer>
   );
+
+  // if (["promotion"].includes(bottomNavItem.key)) {
+  //   return (
+  //     <BottomNavContainer onClick={onClick}>
+  //       <Icon iconUrl={iconUrl} width={"60px"} height={"44px"} />
+
+  //       <NavLabel>{label}</NavLabel>
+  //     </BottomNavContainer>
+  //   );
+  // }
 };
 
 export default BottomNav;
