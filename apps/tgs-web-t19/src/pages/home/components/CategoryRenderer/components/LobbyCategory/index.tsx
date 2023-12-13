@@ -6,7 +6,6 @@ import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import VendorCard from "@/pages/home/components/VendorCard/index";
-import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -43,6 +42,7 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  gap: 36px;
 `;
 
 const CategoryContent = styled.div`
@@ -136,7 +136,7 @@ const LobbyCategory = () => {
 
               if (gpCode === "BC") return null;
               return (
-                <DesktopVendorCard
+                <VendorCard
                   key={gpCode}
                   bgUrl={`${import.meta.env.BASE_URL
                     }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}

@@ -41,8 +41,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-color: ${({ theme }) => theme.black};;
 
   ${media.sm} {
-    padding-top: 63.33%;
-    border-radius: 15px;
+    padding-top: 62.96%;
   }
 `;
 
@@ -56,8 +55,7 @@ const GradientBg = styled.div`
   border-radius: 15px;
 
   ${media.sm} {
-    padding-top: 63.33%;
-    border-radius: 15px;
+    padding-top: 80.95%;
   }
 `;
 
@@ -72,9 +70,9 @@ const VendorCardBg = styled.div`
   aspect-ratio: 94 / 127;
 
   ${media.sm} {
-    width: calc(25% - 30px);
+    width: calc(25% - 40px);
     min-width: 270px;
-    aspect-ratio: 270 / 211;
+    aspect-ratio: 270 / 210;
 
     &:hover {
       ${VendorCardHoverBg} {
@@ -143,7 +141,7 @@ const VendorCard = ({
   launchGame,
   status,
 }: Props) => {
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
@@ -165,9 +163,11 @@ const VendorCard = ({
     <VendorCardBg onClick={launchGameHandler}>
       <VendorCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        <GradientBg>
-          {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
-        </GradientBg>
+        {isMobileSize &&
+          <GradientBg>
+            {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+          </GradientBg>
+        }
         {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
         {status === providerStatus.Maintenance && (
           <MaintenanceBg>
