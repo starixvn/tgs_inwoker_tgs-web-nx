@@ -31,7 +31,8 @@ const FilterTagWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  border: 1px solid red;
 `;
 
 const CommonTagContainer = styled.div`
@@ -44,7 +45,16 @@ const CommonTagContainer = styled.div`
   height: 37px;
 `;
 
-const ProviderTagContainer = styled.div``;
+const ProviderTagContainer = styled.div`
+display: flex;
+height: 110px;
+padding: 0px 4px;
+align-items: center;
+gap: 4px;
+width: 100%;
+border-radius: 12px;
+background: ${({ theme }) => theme.grayGradient};
+`;
 
 const ProviderTagContent = styled.div`
   display: flex;
@@ -73,16 +83,15 @@ const AllText = styled.div<{
   $isActive: boolean;
 }>`
   display: flex;
-  width: 100px;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 14px;
-  letter-spacing: 0em;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.gray70};
-  border-bottom: ${({ $isActive, theme }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
-  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
+  width: 156px;
+  height: 100px;  
+  font-size: 20px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.black};
+  border-radius: 10px;
+  background: ${({ theme, $isActive }) => ($isActive ? theme.goldGradient : "none")};
   margin-right: 10px;
   &:hover {
     cursor: pointer;

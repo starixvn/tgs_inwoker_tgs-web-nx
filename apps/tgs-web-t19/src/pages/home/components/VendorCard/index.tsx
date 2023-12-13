@@ -17,6 +17,7 @@ type Props = {
   status: number;
 };
 
+// -------- hover effect for desktop--------------
 const VendorCardHoverBg = styled.div`
   position: absolute;
   width: 100%;
@@ -133,6 +134,25 @@ const MaintenanceIcon = styled.img`
   height: 63px;
 `;
 
+const PlayBtn = styled.div`
+  min-width: 108px;
+  padding: 8px 30px;
+  color: ${(props) => props.theme.black};
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50px;
+  background: var(--Gold-Gridient, linear-gradient(180deg, #EFD068 0%, #FEDFA1 28.13%, #D4B34F 65.1%, #B77E18 100%));
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  
+  &:hover {
+    box-shadow: 0 -5px 15px 0 rgba(236,166,61,.501);
+    }
+`;
+
 const VendorCard = ({
   bgUrl,
   imageUrl,
@@ -174,12 +194,11 @@ const VendorCard = ({
           </MaintenanceBg>
         )}
       </VendorCardContent>
-      {/* 
       {isDesktopSize && (
-        <VendorCardHoverBg>
-          <TextButton text={"Go"} onClick={launchGame} />
+        <VendorCardHoverBg onClick={launchGameHandler}>
+          <PlayBtn>Play</PlayBtn>
         </VendorCardHoverBg>
-      )} */}
+      )}
     </VendorCardBg>
   );
 };

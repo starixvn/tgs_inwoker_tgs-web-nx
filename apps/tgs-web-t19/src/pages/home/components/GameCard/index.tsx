@@ -8,7 +8,6 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t29/images/home/play.svg";
 import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 
@@ -35,10 +34,6 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-size: cover;
   border-radius: 15px;
   background-color: ${({ theme }) => theme.black};;
-
-  ${media.sm} {
-    padding-top: 62.96%;
-  }
 `;
 
 const TagBg = styled.div`
@@ -47,12 +42,7 @@ const TagBg = styled.div`
   padding-top: 100%;
   left: 0;
   top: 0;
-  background: ${({ theme }) => theme.picMask};
   border-radius: 15px;
-
-  ${media.sm} {
-    padding-top: 80.95%;
-  }
 `;
 
 const NewTag = styled.div`
@@ -74,12 +64,12 @@ const NewTag = styled.div`
 
 const HotTag = styled.div`
   position: absolute;
-  top: 3px;
+  top: 0;
   left: 0;
   width: 53px;
   height: 22px;
   padding: 10px;
-  border-radius: 50px;
+  border-radius: 12px;
   background: ${(props) => props.theme.red};
   color: ${(props) => props.theme.white};
   display: flex;
@@ -100,9 +90,9 @@ const GameCardBg = styled.div`
   aspect-ratio: 94 / 127;
 
   ${media.sm} {
-    width: calc(25% - 40px);
-    min-width: 270px;
-    aspect-ratio: 270 / 210;
+    width: calc(16.67% - 36px);
+    min-width: 170px;
+    aspect-ratio: 170 / 210;
 
     &:hover {
       ${CardHoverBg} {
@@ -139,6 +129,7 @@ const MaintenanceIcon = styled.img`
 `;
 
 const GameName = styled.div`
+width: 100%;
   position: absolute;
   bottom: 0;
   color: ${(props) => props.theme.white};
@@ -152,23 +143,30 @@ const GameName = styled.div`
   max-width: 100%; //利用最大寬度來限制文字長度
 `;
 
+const PlayBtn = styled.div`
+  min-width: 108px;
+  padding: 8px 30px;
+  color: ${(props) => props.theme.black};
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50px;
+  background: var(--Gold-Gridient, linear-gradient(180deg, #EFD068 0%, #FEDFA1 28.13%, #D4B34F 65.1%, #B77E18 100%));
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  
+  &:hover {
+    box-shadow: 0 -5px 15px 0 rgba(236,166,61,.501);
+    }
+`;
+
 type GameCardProps = {
   gameItem: GameItem;
   isActive: boolean;
   imageUrl: string;
 };
-
-const HoverGameName = styled(GameCardContent)`
-  color: ${(props) => props.theme.white};
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 16px;
-`;
-
-const PlayIcon = styled.img`
-  width: 65px;
-  height: 65px;
-`;
 
 const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
@@ -245,13 +243,11 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
           gameItemId={gameItem.id}
         />
       )}
-
-      {/* {isDesktopSize && (
+      {isDesktopSize && (
         <CardHoverBg onClick={launchGameHandler}>
-          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
-          <PlayIcon src={playIcon} alt={"play"} />
+          <PlayBtn>Play</PlayBtn>
         </CardHoverBg>
-      )} */}
+      )}
     </GameCardBg>
   );
 };

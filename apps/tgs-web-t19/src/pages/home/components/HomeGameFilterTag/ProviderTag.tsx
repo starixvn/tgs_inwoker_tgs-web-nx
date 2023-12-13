@@ -9,17 +9,17 @@ const Wrapper = styled.div<{
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 60px;
+  min-width: 156px;
   max-width: none;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
-  padding: 4px;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
+  background-color: ${({ theme, $isActive }) => ($isActive ? theme.goldGradient : "none")};
+  padding: 10px;
   position: relative;
 
   & > img {
-    width: 100px;
+    width: 117px;
+
     &:hover {
       cursor: pointer;
     }
@@ -67,6 +67,7 @@ const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
             }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
           alt={text}
         />
+        {text}
         {status === providerStatus.Maintenance && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />

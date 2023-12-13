@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 15px 0px;
+    padding: 20px 0px 32px 0px;
   }
 `;
 
@@ -35,18 +35,10 @@ const CategoryContentWrapper = styled.div`
   padding: 12px 0px;
 `;
 
-const FilterSection = styled.div`
-  width: 100%;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 10px;
-`;
-
 const DesktopCategoryContentWrapper = styled.div`
   width: 100%;
-  gap: 10px 6px;
+  row-gap: 15px;
+  column-gap: 35px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -63,11 +55,6 @@ const CategoryContent = styled.div`
   border-radius: 20px;
   border: 2.5px solid #B78316;
   background-color: #332915;
-
-  ${media.sm} {
-    row-gap: 5px;
-    column-gap: 9px;
-  }
 `;
 
 const DesktopWrapper = styled.div`
