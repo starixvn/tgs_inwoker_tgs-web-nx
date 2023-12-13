@@ -7,6 +7,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
+import UserInfo from "./UserInfo";
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
@@ -18,12 +19,13 @@ import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
 import BrandLogo from "@/components/project/BrandLogo";
 import { theme } from "@/theme";
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 
 const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.header};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -51,8 +53,7 @@ const ContentGroup = styled.div`
   align-items: center;
 `;
 
-const BlueHeaderRowContainer = styled.div`
-  background: #3158ff;
+const UserActionHeaderRowContainer = styled.div`
   background-size: cover;
   height: 40px;
 `;
@@ -70,18 +71,18 @@ const DesktopHeader = () => {
 
   return (
     <HeaderContainer>
-      <BlueHeaderRowContainer>
+      <UserActionHeaderRowContainer>
         <ContentWrapper>
-          <ContentGroup>
-            {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
-          </ContentGroup>
+          <ContentGroup>{isLargeDesktopSize && <SystemTime />}</ContentGroup>
 
           <ContentGroup>
+            {!noLoginAccount && <UserInfo />}
+            <HeaderLanguageSwitch />
+
             {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
           </ContentGroup>
         </ContentWrapper>
-      </BlueHeaderRowContainer>
+      </UserActionHeaderRowContainer>
 
       <WhiteHeaderRowContainer>
         <ContentWrapper>

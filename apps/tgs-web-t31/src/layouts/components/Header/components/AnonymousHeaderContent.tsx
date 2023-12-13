@@ -1,14 +1,8 @@
-import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth, useAuthContext, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
-import iconLogin from "@/assets/t29/images/header/icon-login.svg";
-import Icon from "@/components/project/Icon";
-import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -21,34 +15,46 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
-  const { isDesktopSize } = useRwd();
-  const { goToLogin, goToRegister } = useAuth();
+  const history = useHistory();
+  const loginStyle = {
+    color: theme.neutralBlack,
+    background: theme.tertiaryGradient,
+    width: "140px",
+    height: "30px",
+    padding: "6px 12px",
+    borderRadius: "4px",
+    gap: "4px",
+    fontSize: "14px",
+    fontWeight: 700,
+    lineHeight: "16px",
+    letterSpacing: "0em",
+    justifyContent: "center",
+  };
 
+  const registerStyle = {
+    ...loginStyle,
+    background: theme.secondaryGradient,
+  };
   return (
     <ButtonContainer>
       <RoundHeaderButton
-        onClick={goToLogin}
-        style={{
-          color: theme.white,
-          background: theme.primary,
+        onClick={() => {
+          history.push("/login");
         }}
+        style={loginStyle}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
-        {i18n.t("common.login")}
+        {i18n.t("common.login").toLocaleUpperCase()}
       </RoundHeaderButton>
 
       <RoundHeaderButton
         color={"primary"}
-        onClick={goToRegister}
-        style={{
-          color: theme.white,
-          background: theme.secondary,
+        onClick={() => {
+          history.push("/register");
         }}
+        style={registerStyle}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
-        {i18n.t("common.register")}
+        {i18n.t("common.register").toLocaleUpperCase()}
       </RoundHeaderButton>
-      {isDesktopSize && <HeaderLanguageSwitch />}
     </ButtonContainer>
   );
 };

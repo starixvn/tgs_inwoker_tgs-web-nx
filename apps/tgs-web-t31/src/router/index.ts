@@ -34,6 +34,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
+import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
