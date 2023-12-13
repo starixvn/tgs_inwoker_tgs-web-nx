@@ -27,15 +27,13 @@ const Wrapper = styled.div`
 
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
-  height: 100%;
-  width: calc(100% - 62px);
+  width: calc(100% - 78px);
   flex-shrink: 0;
   gap: 12px;
   padding: 12px 0px;
   border-radius: 20px;
-  border: 2.5px solid  #B78316;
-
-  background-color: ${({ theme }) => theme.mainBackground};
+  border: 2.5px solid #B78316;
+  background-color: #332915;
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
@@ -53,6 +51,7 @@ const CategoryContent = styled.div`
   align-content: center;
   width: 100%;
   gap: 8px;
+  padding: 14px 0px 18px 14px;
   align-self: stretch;
 `;
 
