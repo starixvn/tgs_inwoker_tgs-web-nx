@@ -19,6 +19,7 @@ export const AuthFormContainer = styled.div`
 
   ::-webkit-scrollbar {
     visibility: hidden;
+    width: 0;
   }
 
   & > * {
@@ -29,7 +30,7 @@ export const AuthFormContainer = styled.div`
 export const FormContainer = styled.div`
   width: 100%;
   max-width: 400px;
-  margin: auto;
+  margin: 0 auto;
 `;
 
 export const LoginTitle = styled.div`

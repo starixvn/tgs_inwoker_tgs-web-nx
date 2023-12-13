@@ -31,9 +31,10 @@ export const LabelContainer = styled.div`
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   background: theme.palette.gray30,
-
   width: "100%",
   fontSize: "0.875rem",
+  justifyContent: "center",
+
   "& fieldset": {
     border: "none",
   },
@@ -86,3 +87,8 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
     color: "black",
   },
 })) as typeof MuiButton;
+
+export const VerifySubmitButton = styled(SubmitButton)`
+  margin-bottom: 20px !important;
+  margin-top: auto !important;
+`;

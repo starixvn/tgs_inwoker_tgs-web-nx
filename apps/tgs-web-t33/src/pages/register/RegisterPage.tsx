@@ -1,7 +1,6 @@
 import React from "react";
 import { useRegisterPage, useRwd } from "@tgs-web-nx/core/hooks";
 import RegisterForm from "@/components/project/auth/RegisterForm";
-import { FormContainer } from "@/components/styled-component/AuthFormContainer";
 
 const RegisterPage = () => {
   useRegisterPage();
@@ -11,11 +10,7 @@ const RegisterPage = () => {
     return null;
   }
 
-  return (
-    <FormContainer>
-      <RegisterForm />
-    </FormContainer>
-  );
+  return <RegisterForm />;
 };
 
 export default RegisterPage;

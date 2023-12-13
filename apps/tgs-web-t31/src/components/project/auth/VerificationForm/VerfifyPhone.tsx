@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 <<<<<<< develop
@@ -16,7 +15,7 @@ import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,
   ItemContainer,
-  SubmitButton,
+  VerifySubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
@@ -31,10 +30,13 @@ const PhoneContainer = styled.div`
 `;
 
 <<<<<<< develop
+<<<<<<< develop
 =======
 const AREA_CODE = config.features.PhonePrefix;
 
 >>>>>>> checkpoint
+=======
+>>>>>>> feat: update auth style in t33
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
@@ -43,14 +45,17 @@ type Props = {
 
 function VerifyPhone({ handleUpdateStage }: Props) {
   const { account } = useAccountStore();
-  const history = useHistory();
   const { alert } = useNotifications();
 
   const [countdownToken, setCountdownToken] = useState(0);
 <<<<<<< develop
+<<<<<<< develop
   const AREA_CODE = config.features.PhonePrefix;
 =======
 >>>>>>> checkpoint
+=======
+  const AREA_CODE = config.features.PhonePrefix;
+>>>>>>> feat: update auth style in t33
   const [areacode, setAreacode] = useState(AREA_CODE);
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
@@ -98,14 +103,20 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         showInfoMessage(i18n.t("common.msgTokenSent"));
       } else {
 <<<<<<< develop
+<<<<<<< develop
+=======
+>>>>>>> feat: update auth style in t33
         let errorCode = verifyForgotPasswordResDto.info || "";
         if (errorCode === "Player is not found in the system.") {
           errorCode = "error.ERR201";
         }
         showErrorMessage(i18n.t(errorCode));
+<<<<<<< develop
 =======
         showErrorMessage(verifyForgotPasswordResDto.info);
 >>>>>>> checkpoint
+=======
+>>>>>>> feat: update auth style in t33
       }
     } catch (error: any) {
       showErrorMessage(error.message);
@@ -226,14 +237,9 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         </FormControl>
       </ItemContainer>
 
-      <SubmitButton
-        fullWidth
-        disabled={isDisableButton}
-        onClick={handleSubmitClicked}
-        style={{ marginBottom: "20px" }}
-      >
+      <VerifySubmitButton fullWidth disabled={isDisableButton} onClick={handleSubmitClicked}>
         {i18n.t("common.submit")}
-      </SubmitButton>
+      </VerifySubmitButton>
 
       <Loading show={isLoading} />
     </>

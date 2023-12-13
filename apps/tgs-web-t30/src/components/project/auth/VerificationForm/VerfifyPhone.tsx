@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
@@ -12,7 +11,7 @@ import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,
   ItemContainer,
-  SubmitButton,
+  VerifySubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
@@ -22,8 +21,6 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
-const AREA_CODE = config.features.PhonePrefix;
-
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
@@ -32,10 +29,10 @@ type Props = {
 
 function VerifyPhone({ handleUpdateStage }: Props) {
   const { account } = useAccountStore();
-  const history = useHistory();
   const { alert } = useNotifications();
 
   const [countdownToken, setCountdownToken] = useState(0);
+  const AREA_CODE = config.features.PhonePrefix;
   const [areacode, setAreacode] = useState(AREA_CODE);
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
@@ -82,7 +79,11 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         setSecurityKey(verifyForgotPasswordResDto.data);
         showInfoMessage(i18n.t("common.msgTokenSent"));
       } else {
-        showErrorMessage(verifyForgotPasswordResDto.info);
+        let errorCode = verifyForgotPasswordResDto.info || "";
+        if (errorCode === "Player is not found in the system.") {
+          errorCode = "error.ERR201";
+        }
+        showErrorMessage(i18n.t(errorCode));
       }
     } catch (error: any) {
       showErrorMessage(error.message);
@@ -190,14 +191,9 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         </FormControl>
       </ItemContainer>
 
-      <SubmitButton
-        fullWidth
-        disabled={isDisableButton}
-        onClick={handleSubmitClicked}
-        style={{ marginBottom: "20px" }}
-      >
+      <VerifySubmitButton fullWidth disabled={isDisableButton} onClick={handleSubmitClicked}>
         {i18n.t("common.submit")}
-      </SubmitButton>
+      </VerifySubmitButton>
 
       <Loading show={isLoading} />
     </>

@@ -6,11 +6,27 @@ import { FormInputFactory } from "@/components/project/FormikForm/FormInputFacto
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const ErrorMessageContainer = styled.div`
-  color: ${({ theme }) => "red"};
+  color: ${({ theme }) => theme.red};
   font-size: 0.875rem;
   font-weight: 400;
   text-align: center;
-  margin-top: 24px;
+  margin-bottom: 8px;
+`;
+
+const Form = styled.form`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-shrink: 0;
+`;
+
+const BottomContent = styled.div`
+  margin-top: auto;
+`;
+
+const ChildContainer = styled.div`
+  margin-bottom: 14px;
 `;
 
 export interface FormikFormInput {
@@ -58,31 +74,29 @@ const FormikForm = ({
   const bottomFormErrorMsg = showErrorOn === "bottom" && getBottomErrorMessage();
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}>
       {formInputList.map((formInput) => {
         const FormInput = FormInputFactory[formInput.type];
         if (!FormInput) return null;
 
         return <FormInput key={formInput.name} formInput={formInput} formik={formik} />;
       })}
+
       {children}
 
-      {(error?.message || bottomFormErrorMsg) && (
-        <ErrorMessageContainer>
-          {showErrorOn === "bottom" && getBottomErrorMessage()}
-          {error?.message || null}
-        </ErrorMessageContainer>
-      )}
+      <BottomContent>
+        {(error?.message || bottomFormErrorMsg) && (
+          <ErrorMessageContainer>
+            {showErrorOn === "bottom" && getBottomErrorMessage()}
+            {error?.message || null}
+          </ErrorMessageContainer>
+        )}
 
-      <SubmitButton
-        fullWidth={true}
-        style={{ margin: "24px 0" }}
-        type={"submit"}
-        disabled={isLoading}
-      >
-        {buttonText}
-      </SubmitButton>
-    </form>
+        <SubmitButton fullWidth={true} type={"submit"} disabled={isLoading}>
+          {buttonText}
+        </SubmitButton>
+      </BottomContent>
+    </Form>
   );
 };
 

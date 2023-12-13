@@ -22,7 +22,6 @@ const RegisterForm = () => {
       ) : (
         <LoginTitle>{`${i18n.t("common.register")}`.toUpperCase()}</LoginTitle>
       )}
-
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>

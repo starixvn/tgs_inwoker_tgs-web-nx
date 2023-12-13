@@ -6,11 +6,12 @@ export const AuthFormContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 70px 20px 30px;
+  padding: 76px 10px 30px;
   overflow: auto;
 
   ::-webkit-scrollbar {
     visibility: hidden;
+    width: 0;
   }
 
   & > * {
@@ -20,8 +21,12 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  max-width: 400px;
-  margin: auto;
+  max-width: 408px;
+  margin: 0 auto 14px;
+  flex-shrink: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const LoginTitle = styled.div`
