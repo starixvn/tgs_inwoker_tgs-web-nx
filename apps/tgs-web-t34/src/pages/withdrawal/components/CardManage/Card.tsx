@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import deleteIcon from "@/assets/t33/images/card/delete.svg";
+import deleteIcon from "@/assets/t34/images/withdraw/delete.svg";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 
 const CardContainer = styled.div`
   width: 100%;
   padding: 16px;
-  background: ${({ theme }) => theme.gray40};
+  background: ${({ theme }) => theme.grey00};
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -16,15 +16,20 @@ const CardContainer = styled.div`
 
   ${media.md} {
     width: calc((100% - 14px * 1) / 2);
-    background: ${({ theme }) => theme.gray50};
+    background: ${({ theme }) => theme.grey04};
   }
 `;
 
 const CardTitle = styled.div`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   padding-bottom: 10px;
   font-size: 1.25rem;
   font-weight: 700;
+
+  border-bottom: 1px solid #ffffff33;
+  ${media.md} {
+    color: ${({ theme }) => theme.black};
+  }
 `;
 
 const CardContent = styled.div`
@@ -46,12 +51,19 @@ const ContentRow = styled.div`
 
 const EndingInLabel = styled.div`
   font-size: 1.125rem;
-  color: ${({ theme }) => theme.gray20};
+  color: ${({ theme }) => theme.white};
+
+  ${media.md} {
+    color: #00000080;
+  }
 `;
 const EndingInValue = styled.div`
   font-size: 1.125rem;
+  color: ${({ theme }) => theme.white};
 
-  color: ${({ theme }) => theme.gray20};
+  ${media.md} {
+    color: #00000080;
+  }
 `;
 
 type Props = {

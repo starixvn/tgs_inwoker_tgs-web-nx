@@ -17,7 +17,7 @@ const Title = styled.div`
   font-size: 1.125rem;
 
   ${media.sm} {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.black};
   }
 `;
 
@@ -31,7 +31,7 @@ const FormTitle = ({ title, isShowAddCardButton, handleClickAddCard }: Props) =>
     <TitleWrapper>
       <Title>{title}</Title>
 
-      {isShowAddCardButton && handleClickAddCard && (
+      {false && isShowAddCardButton && handleClickAddCard && (
         <CardAddButton handleClick={handleClickAddCard} />
       )}
     </TitleWrapper>

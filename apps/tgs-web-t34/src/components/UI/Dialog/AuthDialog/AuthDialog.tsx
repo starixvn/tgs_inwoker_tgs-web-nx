@@ -39,7 +39,7 @@ const AuthDialog = ({ open, onClose, children, showInMobile, ...others }: Props 
   const { isDesktopSize } = useRwd();
   const { pageName } = usePageName();
 
-  if (!(isDesktopSize || showInMobile)) return null;
+  if (!isDesktopSize && !showInMobile) return null;
 
   return (
     <StyledDialog

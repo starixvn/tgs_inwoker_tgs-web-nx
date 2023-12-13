@@ -8,20 +8,20 @@ const SubHeaderContainer = styled.div`
   margin-bottom: 16px;
 `;
 const NumberContainer = styled.div`
-  width: 25px;
-  height: 25px;
-  border-radius: 50px;
-  background-color: ${({ theme }) => theme.secondary};
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.yellow};
   font-family: Arial;
   font-size: 0.75rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 const SubTitle = styled.div`
-  font-size: 0.875rem;
+  font-size: 1.25rem;
   font-weight: 700;
   float: left;
   color: ${({ theme }) => theme.text};

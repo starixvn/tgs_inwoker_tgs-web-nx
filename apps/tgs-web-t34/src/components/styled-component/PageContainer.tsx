@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -15,9 +16,10 @@ export const TransferPageContainer = styled.div`
   flex: 1;
   margin: 0 auto;
 
-  & .MuiButton-fullWidth {
-    max-width: 242px !important;
-    display: block !important;
-    margin: auto !important;
+  ${media.sm} {
+    & .MuiButton-fullWidth {
+      max-width: 217px !important;
+      display: block !important;
+    }
   }
 `;
