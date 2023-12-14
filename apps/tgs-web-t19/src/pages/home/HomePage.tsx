@@ -5,12 +5,11 @@ import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
-import CardPrompt from "@/pages/home/components/CardPrompt";
+import CardPromptDesktop from "@/pages/home/components/CardPromptDesktop";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import Banner from "@/pages/home/components/Banner";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import bg from "@/assets/t19/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
@@ -23,8 +22,6 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  /* flex-shrink: 0;
-  flex: 1; */
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -33,6 +30,18 @@ const MainWrapper = styled.div`
     height: unset;
     padding: 0px 0px 0px 0px;
   }
+`;
+
+const DesktopBg = styled.div`
+  width: 100%;
+  min-height: 100%;
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
+  margin: 0 auto;
+  padding: 0px 0px 0px 0px;
+  background-image: url(${bg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 `;
 
 const SliderWrapper = styled.div`
@@ -48,7 +57,7 @@ const SlickDot = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #fff;
+  background: ${({ theme }) => theme.white};
 `;
 
 const SlickDotWrapper = styled.div`
@@ -57,6 +66,11 @@ const SlickDotWrapper = styled.div`
   & ul li.slick-active ${SlickDot} {
     background: #F1C137 !important;
   }
+`;
+
+const NotificationWrapper = styled.div`
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  margin: 30px auto 14px;
 `;
 
 const MainContentWrapper = styled.div`
@@ -71,14 +85,11 @@ const MainContentWrapper = styled.div`
   flex: 1;
   padding: 16px 12px 0px 12px;
 
-  /* ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    gap: unset;
-    background-image: url(${bg});
-    background-size: contain;
-    background-repeat: no-repeat;
-  } */
+    background-color: transparent;
+  }
 `;
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
@@ -165,11 +176,19 @@ const HomePage = () => {
         </SliderWrapper>
       )}
 
-      {/* {isMobileSize && <CardPrompt />} */}
+      {isDesktopSize && !activeGameType &&
+        <DesktopBg>
+          <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>
+          <MainContentWrapper>
+            <CategoryRenderer />
+          </MainContentWrapper>
+        </DesktopBg>}
 
-      <MainContentWrapper>
-        <CategoryRenderer />
-      </MainContentWrapper>
+      {(isMobileSize && !!activeGameType) || (isDesktopSize && !!activeGameType) && (
+        <MainContentWrapper>
+          <CategoryRenderer />
+        </MainContentWrapper>
+      )}
     </MainWrapper>
   );
 };

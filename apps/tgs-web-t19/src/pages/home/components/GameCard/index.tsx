@@ -8,7 +8,7 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t19/images/home/maintenance.svg";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 
 // -------- hover effect for desktop--------------
@@ -243,7 +243,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
           gameItemId={gameItem.id}
         />
       )}
-      {isDesktopSize && (
+      {isDesktopSize && isActive && (
         <CardHoverBg onClick={launchGameHandler}>
           <PlayBtn>Play</PlayBtn>
         </CardHoverBg>

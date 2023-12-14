@@ -9,6 +9,7 @@ import VendorCard from "@/pages/home/components/VendorCard/index";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import CardPrompt from "@/pages/home/components/CardPrompt";
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,15 +25,23 @@ const Wrapper = styled.div`
   }
 `;
 
-const CategoryContentWrapper = styled.div`
+const MainContentWrapper = styled.div`
   overflow-y: auto;
   width: calc(100% - 78px);
+  display: flex;
+  flex-direction: column;
+`;
+
+const CategoryContentWrapper = styled.div`
+  overflow-y: auto;
+  width: 100%;
   flex-shrink: 0;
   gap: 12px;
   padding: 12px 0px;
   border-radius: 20px;
   border: 2.5px solid #B78316;
   background-color: #332915;
+  margin-top: 12px;
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
@@ -42,7 +51,7 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  gap: 36px;
+  gap: 32px;
 `;
 
 const CategoryContent = styled.div`
@@ -104,28 +113,31 @@ const LobbyCategory = () => {
       {isMobileSize && (
         <>
           <GameTypeTab />
-          <CategoryContentWrapper>
-            <CategoryContent>
-              {hasMappingData &&
-                lobbyCategoryList.map((provider) => {
-                  const { code: gpCode, status, name } = provider;
+          <MainContentWrapper>
+            <CardPrompt />
+            <CategoryContentWrapper>
+              <CategoryContent>
+                {hasMappingData &&
+                  lobbyCategoryList.map((provider) => {
+                    const { code: gpCode, status, name } = provider;
 
-                  if (gpCode === "BC") return null;
-                  return (
-                    <VendorCard
-                      key={gpCode}
-                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/bg.png`}
-                      imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                      venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                      launchGame={() => launchLobbyGame(gpCode)}
-                      status={status}
-                      venderName={name}
-                    />
-                  );
-                })}
-              {!hasMappingData && <div>No data</div>}
-            </CategoryContent>
-          </CategoryContentWrapper>
+                    if (gpCode === "BC") return null;
+                    return (
+                      <VendorCard
+                        key={gpCode}
+                        bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/bg.png`}
+                        imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                        venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                        launchGame={() => launchLobbyGame(gpCode)}
+                        status={status}
+                        venderName={name}
+                      />
+                    );
+                  })}
+                {!hasMappingData && <div>No data</div>}
+              </CategoryContent>
+            </CategoryContentWrapper>
+          </MainContentWrapper>
         </>
       )}
       {isDesktopSize && (

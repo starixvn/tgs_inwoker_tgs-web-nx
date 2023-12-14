@@ -8,14 +8,14 @@ type Props = {
 };
 
 const InputWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 160px;
+  height: 36px;
+  padding: 10px;
   display: flex;
   align-items: center;
-  padding: 5px 10px;
-  border-radius: 100px;
-  border: 2.5px solid #B78316;
-  background-color:${({ theme }) => theme.cmpBackground};
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.lightGold};
+  background: ${({ theme }) => theme.darkPrimary};;
 `;
 
 const InputTextfield = styled.input`
@@ -27,12 +27,12 @@ const InputTextfield = styled.input`
   outline: none;
   width: 100%;
   font-size: 0.875rem;
-  color: #999;
+  color: ${({ theme }) => theme.lightGold};
   margin-left: 5px;
+
   &::placeholder {
-    color: #999;
-    font-weight: 700;
-    line-height: 0.875rem;
+    color:${({ theme }) => theme.lightGold};
+    font-weight: 400;
   }
 
   &:focus {
@@ -43,6 +43,7 @@ const InputTextfield = styled.input`
 const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
   return (
     <InputWrapper>
+      {imageUrl && <img src={imageUrl} alt={"Search"} />}
       <InputTextfield
         type="text"
         placeholder={placeholder}
@@ -51,7 +52,6 @@ const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
           handleChange(event.target.value);
         }}
       />
-      {imageUrl && <img src={imageUrl} alt={"Search"} />}
     </InputWrapper>
   );
 };

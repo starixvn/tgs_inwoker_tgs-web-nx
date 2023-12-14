@@ -5,8 +5,8 @@ import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import VendorCard from "@/pages/home/components/VendorCard";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants"
+import NavVendorCard from "@/layouts/components/Header/components/NavVendorCard";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   width: 100%;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    max-width: 1250px;
     margin: 0 auto;
   }
 `;
@@ -27,10 +27,11 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  gap: 10px;
 `;
 
 const NoDataText = styled.div`
-  color: #333;
+  color: ${(props) => props.theme.white};
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
@@ -66,14 +67,10 @@ const NavCategory = () => {
 
             if (gpCode === "BC") return null;
             return (
-              <VendorCard
+              <NavVendorCard
                 key={gpCode}
-                bgUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
                 imageUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
+                  }assets/images/home/desktop_nav/${activeNavPopupGameTypeKey}/${gpCode}.png`}
                 launchGame={() => enterVendorFilter(gpCode)}
                 status={status}
                 venderName={name}
