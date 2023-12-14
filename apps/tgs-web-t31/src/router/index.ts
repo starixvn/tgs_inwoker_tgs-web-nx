@@ -71,7 +71,7 @@ const routes: RouteType[] = [
   {
     path: "/deposit",
     component: DepositPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/withdrawal",
@@ -135,7 +135,7 @@ const routes: RouteType[] = [
   {
     path: ProfilePathEnum.PROFILE,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.NAME,

@@ -39,7 +39,7 @@ const PlayerInfoContainer = styled.div`
 const PlayerName = styled.div`
   font-size: 2rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.white};
 `;
 
 const WalletsWrapper = styled.div`
@@ -100,8 +100,12 @@ const RefreshButton = styled(Icon)<RefreshButtonProps>`
   }
 `;
 
+const AmountText = styled.div`
+  color: ${({ theme }) => theme.white};
+`;
+
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.activeNav};
   font-size: 1.625rem;
   margin-top: 11px;
   font-weight: 700;
@@ -140,9 +144,11 @@ const UserWalletInfo = () => {
             {isMainWalletLoading ? (
               <span>-</span>
             ) : (
-              <DynamicFont
-                content={mainSymbol + Common.formatNumberWithThousand(mainWalletBalance)}
-              />
+              <AmountText>
+                <DynamicFont
+                  content={mainSymbol + Common.formatNumberWithThousand(mainWalletBalance)}
+                />
+              </AmountText>
             )}
             <RefreshButton
               width={"44px"}
@@ -160,7 +166,9 @@ const UserWalletInfo = () => {
               {isTransferWalletLoading ? (
                 <span>-</span>
               ) : (
-                <DynamicFont content={mainSymbol + transferWalletBalance.toFixed(2)} />
+                <AmountText>
+                  <DynamicFont content={mainSymbol + transferWalletBalance.toFixed(2)} />
+                </AmountText>
               )}
               <RefreshButton
                 width={"44px"}
@@ -178,12 +186,14 @@ const UserWalletInfo = () => {
             {isMainWalletLoading && isTransferWalletLoading ? (
               <span>-</span>
             ) : (
-              <DynamicFont
-                content={
-                  mainSymbol +
-                  Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance)
-                }
-              />
+              <AmountText>
+                <DynamicFont
+                  content={
+                    mainSymbol +
+                    Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance)
+                  }
+                />
+              </AmountText>
             )}
             <RefreshButton
               width={"44px"}
