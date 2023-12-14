@@ -93,7 +93,7 @@ const TransferCard = ({
           <TextField
             type={"number"}
             placeholder={i18n.t("transfer.msgEnterAmount")}
-            value={transferAmount}
+            value={transferAmount || 0}
             onChange={handleChangeTransferAmount}
             sx={{
               borderRadius: "6px",

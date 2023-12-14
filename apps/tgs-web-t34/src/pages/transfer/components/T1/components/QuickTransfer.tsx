@@ -152,7 +152,7 @@ const QuickTransfer = ({
           <AmountText>{i18n.t("common.amount")}</AmountText>
           <div>
             <CurrencyTextFieldReplacement
-              value={transferAmount}
+              value={transferAmount || 0}
               placeholder="0"
               onChange={handleTransferAmountChange}
               autoComplete="off"

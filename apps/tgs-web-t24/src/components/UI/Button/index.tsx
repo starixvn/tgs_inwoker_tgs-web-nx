@@ -3,9 +3,9 @@ import { Button as MuiButton, ButtonProps, styled as muiStyled } from "@mui/mate
 
 export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   whiteSpace: "nowrap",
-  borderRadius: "3px",
+  borderRadius: "5px",
   padding: "10px 6px",
-  fontSize: "0.637rem",
+  fontSize: "1.25rem",
   fontWeight: 400,
   color: theme.palette.white,
   background: theme.palette.primary.main,

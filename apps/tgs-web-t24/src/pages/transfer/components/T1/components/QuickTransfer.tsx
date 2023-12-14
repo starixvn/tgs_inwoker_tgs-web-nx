@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t33/images/transfer/arrow-right.png";
+import ArrowRightPNG from "@/assets/t24/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -162,8 +162,7 @@ const QuickTransfer = ({
           <AmountText>{i18n.t("common.amount")}</AmountText>
           <div>
             <CurrencyTextFieldReplacement
-              value={transferAmount}
-              placeholder="0"
+              value={transferAmount || 0}
               onChange={handleTransferAmountChange}
               autoComplete="off"
               type={"number"}

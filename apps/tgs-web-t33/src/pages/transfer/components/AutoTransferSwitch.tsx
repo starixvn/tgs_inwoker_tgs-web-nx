@@ -85,7 +85,6 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
         <ButtonWrapper>
           <Button
             style={{
-              background: theme.secondary,
               height: "50px",
               minWidth: "212px",
               padding: "13px",

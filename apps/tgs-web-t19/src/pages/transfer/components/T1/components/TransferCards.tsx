@@ -55,9 +55,7 @@ const GameWalletAmount = styled.div`
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
-  color: ${({ theme }) => {
-    return theme.darkMode ? "#fff" : "#000";
-  }};
+  color: ${({ theme }) => theme.text};
   text-align: center;
   display: inline-block;
   margin-top: 3px;
