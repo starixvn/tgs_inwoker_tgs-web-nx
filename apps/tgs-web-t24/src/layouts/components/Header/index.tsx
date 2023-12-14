@@ -18,7 +18,7 @@ const HeaderContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   height: ${HEADER_HEIGHT};
   width: 100%;
-  z-index: 10;
+  z-index: 1301;
   border-bottom: 1px solid ${({ theme }) => theme.gray80};
 `;
 

@@ -66,10 +66,7 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   lineHeight: "14px",
   textAlign: "center",
   padding: "4px 10px",
-  background: theme.palette.blue30,
-  "&:hover": {
-    background: theme.palette.primary.main,
-  },
+  background: theme.palette.primary.main,
 }));
 
 type Props = {

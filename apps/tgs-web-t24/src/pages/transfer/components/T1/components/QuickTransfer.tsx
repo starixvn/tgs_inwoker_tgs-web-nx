@@ -175,8 +175,6 @@ const QuickTransfer = ({
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
         style={{
-          color: theme.white,
-          background: theme.primary,
           height: "50px",
           minWidth: "212px",
           padding: "13px",
