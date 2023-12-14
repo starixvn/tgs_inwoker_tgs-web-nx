@@ -3,16 +3,12 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
-import {
-  AuthFormContainer,
-  FormContainer,
-  LoginTitle,
-} from "@/components/styled-component/AuthFormContainer";
+import { AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
-import BrandLogo from "@/components/project/BrandLogo";
 import {
   ForgotPasswordContainer,
   FormSubContainer,
@@ -33,10 +29,13 @@ const LoginForm = () => {
     loginError,
     needToRemember,
     handleClickNeedToRemember,
-    handleClickForgotPassword,
   } = useLoginForm();
-  const { isMobileSize } = useRwd();
+  const history = useHistory();
 
+  const { isMobileSize } = useRwd();
+  const handleClickForgetPassword = () => {
+    history.push("/forgot-password");
+  };
   return (
     <AuthFormContainer>
       <FormContainer>
@@ -64,7 +63,7 @@ const LoginForm = () => {
       </FormContainer>
       {isMobileSize ? (
         <HintContainer>
-          <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+          <ForgotPasswordContainer onClick={() => handleClickForgetPassword()}>
             {i18n.t("forgotPassword.title")}
           </ForgotPasswordContainer>
           <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
@@ -72,7 +71,7 @@ const LoginForm = () => {
       ) : (
         <HintContainer>
           <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
-          <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+          <ForgotPasswordContainer onClick={() => handleClickForgetPassword()}>
             {i18n.t("forgotPassword.title")}
           </ForgotPasswordContainer>
         </HintContainer>
