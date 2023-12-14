@@ -12,19 +12,15 @@ import {
 import { TextField } from "@/components/UI/TextField";
 import WithdrawInfoCard from "@/pages/withdrawal/components/WithdrawInfoCard";
 import {
+  ButtonWrapper,
   DetailText,
-  ManageBankCardButtonContainer,
+  GameWalletButton,
+  Hint,
+  SubHeaderContainer,
   Turnover,
   TurnoverTextWrapper,
 } from "@/components/styled-component/WithdrawV2/Main";
-import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
 import { Select } from "@/components/UI/Select";
-import {
-  ButtonWrapper,
-  GameWalletButton,
-  SubHeaderContainer,
-  Hint,
-} from "@/components/styled-component/WithdrawV2/Main";
 
 const MainMobile = ({
   amount,

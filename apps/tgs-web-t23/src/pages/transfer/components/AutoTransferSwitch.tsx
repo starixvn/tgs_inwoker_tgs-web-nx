@@ -19,7 +19,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.primary,
       },
     },
   },
@@ -46,14 +46,6 @@ const Group = styled.div`
   ${media.md} {
     flex-direction: row;
     flex-wrap: nowrap;
-  }
-`;
-
-const ButtonWrapper = styled.div`
-  flex-shrink: 0;
-
-  ${media.md} {
-    margin-left: auto;
   }
 `;
 
