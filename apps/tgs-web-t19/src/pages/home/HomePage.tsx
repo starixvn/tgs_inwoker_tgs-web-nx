@@ -5,11 +5,11 @@ import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
-import CardPrompt from "@/pages/home/components/CardPrompt";
+import CardPromptDesktop from "@/pages/home/components/CardPromptDesktop";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t19/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
@@ -57,6 +57,11 @@ const SlickDotWrapper = styled.div`
   }
 `;
 
+const NotificationWrapper = styled.div`
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  margin: 30px auto 14px;
+`;
+
 const MainContentWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -69,14 +74,14 @@ const MainContentWrapper = styled.div`
   flex: 1;
   padding: 16px 12px 0px 12px;
 
-  /* ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    gap: unset;
+    /* gap: unset;
     background-image: url(${bg});
     background-size: contain;
-    background-repeat: no-repeat;
-  } */
+    background-repeat: no-repeat; */
+  }
 `;
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
@@ -162,6 +167,9 @@ const HomePage = () => {
           />
         </SliderWrapper>
       )}
+
+      {isDesktopSize && !activeGameType && <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>}
+
       <MainContentWrapper>
         <CategoryRenderer />
       </MainContentWrapper>
