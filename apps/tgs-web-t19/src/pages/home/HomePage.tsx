@@ -23,7 +23,7 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  
+
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
@@ -162,9 +162,6 @@ const HomePage = () => {
           />
         </SliderWrapper>
       )}
-
-      {/* {isMobileSize && <CardPrompt />} */}
-
       <MainContentWrapper>
         <CategoryRenderer />
       </MainContentWrapper>
