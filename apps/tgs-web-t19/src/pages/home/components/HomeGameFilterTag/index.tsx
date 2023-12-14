@@ -115,25 +115,29 @@ const HomeGameFilterTag = () => {
 
   const filterTagList: FilterTag[] = [
     {
-      name: "new",
+      name: "All",
+      tagType: FilterTagTypeEnum.ALL
+    },
+    {
+      name: "New",
       tagType: FilterTagTypeEnum.NEW,
       iconUrl: newIcon,
       activedUrl: activedNewIcon,
     },
     {
-      name: "favorite",
+      name: "Favorite",
       tagType: FilterTagTypeEnum.FAVORITE,
       iconUrl: favoriteIcon,
       activedUrl: activedFavoriteIcon,
     },
     {
-      name: "hot",
+      name: "Hot",
       tagType: FilterTagTypeEnum.HOT,
       iconUrl: hotIcon,
       activedUrl: activedHotIcon,
     },
     {
-      name: "recommend",
+      name: "Recommend",
       tagType: FilterTagTypeEnum.RECOMMEND,
       iconUrl: recommendIcon,
       activedUrl: activedRecommendIcon,
@@ -169,8 +173,6 @@ const HomeGameFilterTag = () => {
               <CommonTag
                 key={filterTag.name}
                 text={filterTag.name}
-                iconUrl={filterTag.iconUrl}
-                activedUrl={filterTag.activedUrl}
                 isActive={filterTag.tagType === activeFilterTag.tagType}
                 onClick={() => onChangeCommonFilterTag(filterTag)}
               />
