@@ -38,9 +38,9 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
     border: "none",
   },
 
-  // [theme.breakpoints.up("sm")]: {
-  //   border: `1px solid ${theme.palette.white}`,
-  // },
+  [theme.breakpoints.up("sm")]: {
+    background: theme.palette.mainBackground,
+  },
 
   "& input": {
     // background: theme.palette.mainBackground,
@@ -57,11 +57,11 @@ export const InfoContainer = styled.div`
 `;
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
-  fontSize: "0.937rem",
+  fontSize: "0.875rem",
   height: "50px",
   borderRadius: "6px",
-  color: "#828282",
-  background: theme.palette.gray95,
+  color: theme.palette.gray10,
+  background: theme.palette.mainBackground,
   border: "none",
 })) as typeof MuiButton;
 

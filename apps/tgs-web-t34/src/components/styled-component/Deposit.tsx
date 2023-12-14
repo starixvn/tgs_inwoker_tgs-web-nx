@@ -33,6 +33,7 @@ export const AmountHint = styled.div`
   font-size: 0.937rem;
   font-weight: 400;
   margin-top: 9px;
+  max-width: 500px;
 `;
 
 export const FeeSpot = styled.div`
