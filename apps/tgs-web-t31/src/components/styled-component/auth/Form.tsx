@@ -39,7 +39,6 @@ export const RedirectContainer = styled.div`
   align-items: center;
 
   .link {
-    color: ${({ theme }) => theme.text};
     margin-left: 8px;
     cursor: pointer;
   }

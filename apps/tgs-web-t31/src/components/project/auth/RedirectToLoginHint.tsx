@@ -1,18 +1,31 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRedirectToLoginHint } from "@tgs-web-nx/core/features";
+import styled from "styled-components";
+import { useHistory } from "react-router";
 import { RedirectContainer } from "@/components/styled-component/auth/Form";
+import { media } from "@/theme/breakpoints";
+
+const LoginText = styled.span`
+  text-decoration: underline;
+  ${media.sm} {
+    color: ${({ theme }) => theme.yellow};
+  }
+`;
 
 const RedirectToLoginHint = (props: React.HTMLProps<HTMLDivElement>) => {
-  const { handleRedirect } = useRedirectToLoginHint();
+  const history = useHistory();
 
   return (
     //@ts-ignore
     <RedirectContainer {...props}>
-      <span>{i18n.t("T13.proceedLogin")}</span>
-      <span onClick={handleRedirect} className={"link"}>
+      <LoginText
+        onClick={() => {
+          history.push("/login");
+        }}
+        className={"link"}
+      >
         {i18n.t("common.login")}
-      </span>
+      </LoginText>
     </RedirectContainer>
   );
 };
