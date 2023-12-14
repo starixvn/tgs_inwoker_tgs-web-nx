@@ -16,10 +16,9 @@ const StyledButton = styled.button<{ size: string }>`
   padding: 6px 10px;
   border: none;
   border-radius: 5px;
-  background: ${(props) => props.theme.primaryLight};
-  color: ${(props) => props.theme.tertiaryMiddle};
-  font-size: ${(props) => (props.size === 'small' ? '0.625rem' : props.size === 'large' ? '1.125rem' : '1rem')};
-  font-weight: ${(props) => (props.size === 'small' ? '700' : props.size === 'large' ? '500' : '600')};
+  color: ${(props) => props.theme.primary};
+  background-color: transparent;
+  font-size: 19px;
 
   ${media.sm} {
     cursor: pointer;

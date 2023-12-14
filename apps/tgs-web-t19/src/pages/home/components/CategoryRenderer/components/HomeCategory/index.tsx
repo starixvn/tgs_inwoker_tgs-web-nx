@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { i18n } from "@tgs-web-nx/utils";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useMemo } from "react";
 import jackpotPic from "@/assets/t19/images/home/jackpotPic.png";
 import recommend_game1 from "@/assets/t19/images/home/recommend_game1.png";
@@ -12,21 +12,36 @@ import recommend_game3 from "@/assets/t19/images/home/recommend_game3.png";
 import recommend_home from "@/assets/t19/images/home/recommend_home.svg";
 import latest_home from "@/assets/t19/images/home/latest_home.svg";
 import game_icon from "@/assets/t19/images/home/game_icon.png";
+import top_home from "@/assets/t19/images/home/top_home.svg";
+import live_home from "@/assets/t19/images/home/live_home.svg";
+import slot_home from "@/assets/t19/images/home/slot_home.svg";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import ButtonText from "@/pages/home/components/ButtonText";
 import CategoryLabel from "./components/CategoryLabel";
+import LobbyVendorCard from "@/pages/home/components/VendorCard/LobbyVendorCard";
+import { GameService, useAccountStore } from "@tgs-web-nx/core";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
-const DesktopContainer = styled.div`
+const HomeCategoryContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 476px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
   }
+`;
+
+const RankingContainer = styled.div`
+  width: 100%;
+  height: 476px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const RecommendContainer = styled.div`
@@ -87,6 +102,27 @@ const LatestWinnerCard = styled.div`
   background: #504C40;
 `;
 
+const CategoryTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const HomeLobbyCategory = styled.div`
+  width: 100%;
+`;
+
+const CategoryContent = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100%;
+  padding: 15px 0px;
+  align-self: stretch;
+  gap: 15px;
+`;
+
 type GameTypeItem = {
   key: string;
   name: string;
@@ -97,9 +133,11 @@ type GameTypeItem = {
 
 const HomeCategory = () => {
   const history = useHistory();
+  const { account } = useAccountStore();
   const { isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
-
+  const { providerList, activeGameType } = useHomeGameContext();
+  const gameTypeList = useGameTypeList();
   const recommendGameList = [
     {
       name: "Game1",
@@ -115,43 +153,117 @@ const HomeCategory = () => {
     }
   ]
 
+  const launchLobbyGame = (gpcode: string) => {
+    if (!account.token) {
+      history.push("/login");
+      return;
+    }
+
+    if (activeGameType === GameTypeEnum.COCKFIGHT) {
+      if (gpcode === "SM01") {
+        const gameWindow = window.open("", "Cockfight");
+        if (gameWindow) {
+          GameService.GetCockfight()
+            .then((res) => {
+              gameWindow.document.write(res?.data);
+              gameWindow.document.close();
+              gameWindow.focus();
+            })
+            .catch(() => {
+              gameWindow.close();
+            });
+        }
+      } else {
+        Common.closePreviousPopup();
+        Common.PopupCenter(`/joinlobbygame/${GameTypeEnum.SPORTS}/${gpcode}`, "gamewindow");
+      }
+    } else {
+      const audioElement = document.getElementById("audio") as HTMLAudioElement | null;
+      if (audioElement) {
+        audioElement.volume = 0;
+      }
+      Common.closePreviousPopup();
+      Common.PopupCenter(`/joinlobbygame/${activeGameType}/${gpcode}`, "gamewindow");
+    }
+  };
+
+  const handleViewAllClick = (gameType: GameTypeEnum) => {
+    handleChangeGameType(gameType);
+    const activeGameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
+    history.push(`/main/${activeGameTypeKey}`);
+  };
+
+  const liveCasinoList = providerList.filter((provider) => {
+    return provider.gametypes.includes(GameTypeEnum.LIVELOBBY);
+  })
+
   return (
-    <DesktopContainer>
-      <RecommendContainer>
-        <CategoryLabel imageUrl={recommend_home} text={"Reocmmend"} />
-        <GameColumnWrapper>
-          {recommendGameList.map((gameItem, index) => (
-            <RecommendGameCard key={index} $imgUrl={gameItem.imgUrl}></RecommendGameCard>
-          ))}
-        </GameColumnWrapper>
-      </RecommendContainer>
-      <JackPotContainer></JackPotContainer>
-      <LatestContainer>
-        <CategoryLabel imageUrl={latest_home} text={"Latest winners"} />
-        <GameColumnWrapper>
-          <LatestWinnerCard>
-            <img src={game_icon} alt={"game_icon"} />
-            <div>First Person Lightning Bacca...</div>
-            <div>₱52,360x</div>
-          </LatestWinnerCard>
-          <LatestWinnerCard>
-            <img src={game_icon} alt={"game_icon"} />
-            <div>First Person Lightning Bacca...</div>
-            <div>₱52,360x</div>
-          </LatestWinnerCard>
-          <LatestWinnerCard>
-            <img src={game_icon} alt={"game_icon"} />
-            <div>First Person Lightning Bacca...</div>
-            <div>₱52,360x</div>
-          </LatestWinnerCard>
-          <LatestWinnerCard>
-            <img src={game_icon} alt={"game_icon"} />
-            <div>First Person Lightning Bacca...</div>
-            <div>₱52,360x</div>
-          </LatestWinnerCard>
-        </GameColumnWrapper>
-      </LatestContainer>
-    </DesktopContainer>
+    <HomeCategoryContainer>
+      <RankingContainer>
+        <RecommendContainer>
+          <CategoryLabel imageUrl={recommend_home} text={"Reocmmend"} />
+          <GameColumnWrapper>
+            {recommendGameList.map((gameItem, index) => (
+              <RecommendGameCard key={index} $imgUrl={gameItem.imgUrl}></RecommendGameCard>
+            ))}
+          </GameColumnWrapper>
+        </RecommendContainer>
+        <JackPotContainer></JackPotContainer>
+        <LatestContainer>
+          <CategoryLabel imageUrl={latest_home} text={"Latest winners"} />
+          <GameColumnWrapper>
+            <LatestWinnerCard>
+              <img src={game_icon} alt={"game_icon"} />
+              <div>First Person Lightning Bacca...</div>
+              <div>₱52,360x</div>
+            </LatestWinnerCard>
+            <LatestWinnerCard>
+              <img src={game_icon} alt={"game_icon"} />
+              <div>First Person Lightning Bacca...</div>
+              <div>₱52,360x</div>
+            </LatestWinnerCard>
+            <LatestWinnerCard>
+              <img src={game_icon} alt={"game_icon"} />
+              <div>First Person Lightning Bacca...</div>
+              <div>₱52,360x</div>
+            </LatestWinnerCard>
+            <LatestWinnerCard>
+              <img src={game_icon} alt={"game_icon"} />
+              <div>First Person Lightning Bacca...</div>
+              <div>₱52,360x</div>
+            </LatestWinnerCard>
+          </GameColumnWrapper>
+        </LatestContainer>
+      </RankingContainer>
+
+      <HomeLobbyCategory>
+        <CategoryTitle><CategoryLabel imageUrl={live_home} text={"Live Casino"} />
+          <ButtonText
+            size="small"
+            text={"More"}
+            onClick={() => handleViewAllClick(GameTypeEnum.LIVELOBBY)}
+          />
+        </CategoryTitle>
+        <CategoryContent>
+          {liveCasinoList.map((provider) => {
+            const { code: gpCode, status, name } = provider;
+
+            if (gpCode === "BC") return null;
+            return (
+              <LobbyVendorCard
+                key={gpCode}
+                bgUrl={`/assets/images/home/desktop/liveCasino/bg.png`}
+                imageUrl={`/assets/images/home/desktop/liveCasino/${gpCode}.png`}
+                venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
+                launchGame={() => launchLobbyGame(gpCode)}
+                status={status}
+                venderName={name}
+              />
+            );
+          })}
+        </CategoryContent>
+      </HomeLobbyCategory>
+    </HomeCategoryContainer>
   );
 };
 
