@@ -76,12 +76,8 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   lineHeight: 1,
   fontWeight: 700,
   color: theme.palette.white,
-  background: theme.palette.primary.main,
+  background: theme.palette.primaryGradient,
   boxShadow: "none",
-
-  "&:hover": {
-    background: theme.palette.gray30,
-  },
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
