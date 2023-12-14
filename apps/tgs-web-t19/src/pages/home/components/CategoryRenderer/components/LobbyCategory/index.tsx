@@ -51,7 +51,7 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  gap: 36px;
+  gap: 32px;
 `;
 
 const CategoryContent = styled.div`

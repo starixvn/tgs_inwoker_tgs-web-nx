@@ -84,14 +84,18 @@ const GameColumnWrapper = styled.div`
   gap: 18px;
 `;
 
-const RecommendGameCard = styled.div<{ $imgUrl: string }>`
+const RecommendGameCard = styled.div`
   position: relative;
-  aspect-ratio: 367 / 114;
   width: 100%;
+  height: 114px;
   border-radius: 10px;
-  background-image: url(${({ $imgUrl }) => $imgUrl});
-  background-size: contain;
-  background-repeat: no-repeat;
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,.49);
+  background-color: #504c40;
+  color: ${({ theme }) => theme.white};
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  cursor: pointer;
 `;
 
 const LatestWinnerCard = styled.div`
@@ -133,6 +137,32 @@ const SlotCategoryContent = styled.div`
   align-content: center;
 `;
 
+const GameName = styled.div`
+ position: absolute;
+  left: 26px;
+  top: 29.5px;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: ${({ theme }) => theme.white};
+`;
+
+const GameTypeTitle = styled.div`
+  position: absolute;
+  left: 26px;
+  bottom: 36px;
+  font-weight: 400;
+  font-size: 12px;
+  color: #A1A1A1;
+`;
+
+const RecommendImg = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
+
 type GameTypeItem = {
   key: string;
   name: string;
@@ -146,21 +176,12 @@ const HomeCategory = () => {
   const { account } = useAccountStore();
   const { handleChangeGameType, providerList, activeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
-  const { allGameList, hotGameList, newGameList, isLoading } = useGetHomeCategoryList();
-  const recommendGameList = [
-    {
-      name: "Game1",
-      imgUrl: recommend_game1,
-    },
-    {
-      name: "Game2",
-      imgUrl: recommend_game2,
-    },
-    {
-      name: "Game3",
-      imgUrl: recommend_game3,
-    }
-  ]
+  const { allGameList, hotGameList, recommendGameList } = useGetHomeCategoryList();
+
+  const topRecommendGameList = recommendGameList.slice(0, 3).map((game, index) => ({
+    ...game,
+    imgUrl: index === 0 ? recommend_game1 : index === 1 ? recommend_game2 : recommend_game3
+  }));
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -212,8 +233,12 @@ const HomeCategory = () => {
         <RecommendContainer>
           <CategoryLabel imageUrl={recommend_home} text={"Reocmmend"} />
           <GameColumnWrapper>
-            {recommendGameList.map((gameItem, index) => (
-              <RecommendGameCard key={index} $imgUrl={gameItem.imgUrl}></RecommendGameCard>
+            {topRecommendGameList.map((gameItem, index) => (
+              <RecommendGameCard key={index}>
+                <RecommendImg src={gameItem.imgUrl} alt={gameItem.name} />
+                <GameName>{gameItem.name}</GameName>
+                <GameTypeTitle>SLOT</GameTypeTitle>
+              </RecommendGameCard>
             ))}
           </GameColumnWrapper>
         </RecommendContainer>
@@ -244,7 +269,29 @@ const HomeCategory = () => {
           </GameColumnWrapper>
         </LatestContainer>
       </RankingContainer>
-
+      <HomeLobbyCategory>
+        <CategoryTitle><CategoryLabel imageUrl={top_home} text={"Top Games"} />
+          <ButtonText
+            size="small"
+            text={"More"}
+            onClick={() => handleViewAllClick(GameTypeEnum.SLOT)}
+          />
+        </CategoryTitle>
+        <SlotCategoryContent>
+          {hotGameList.slice(0, 12).map((gameItem) => {
+            return (
+              <GameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                  }.jpg`}
+              />
+            );
+          })}
+        </SlotCategoryContent>
+      </HomeLobbyCategory>
       <HomeLobbyCategory>
         <CategoryTitle>
           <CategoryLabel imageUrl={live_home} text={"Live Casino"} />

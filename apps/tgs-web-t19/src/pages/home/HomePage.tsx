@@ -176,12 +176,19 @@ const HomePage = () => {
         </SliderWrapper>
       )}
 
-      {isDesktopSize && !activeGameType && <DesktopBg>
-        <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>
+      {isDesktopSize && !activeGameType &&
+        <DesktopBg>
+          <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>
+          <MainContentWrapper>
+            <CategoryRenderer />
+          </MainContentWrapper>
+        </DesktopBg>}
+
+      {(isMobileSize && !!activeGameType) || (isDesktopSize && !!activeGameType) && (
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>
-      </DesktopBg>}
+      )}
     </MainWrapper>
   );
 };
