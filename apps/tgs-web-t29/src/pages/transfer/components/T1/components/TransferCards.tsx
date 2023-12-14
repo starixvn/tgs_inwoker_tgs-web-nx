@@ -69,7 +69,7 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   lineHeight: "14px",
   textAlign: "center",
   padding: "4px",
-  background: theme.palette.blue30,
+  background: theme.palette.primary.main,
   "&:hover": {
     background: theme.palette.primary.main,
   },

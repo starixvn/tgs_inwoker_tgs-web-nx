@@ -172,7 +172,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       </ItemContainer>
 
       <ItemContainer>
-        <GrayInputWrapper variant="outlined">
+        <GrayInputWrapper>
           <TextFieldWithButton
             buttonLabel={
               countdownToken <= 0

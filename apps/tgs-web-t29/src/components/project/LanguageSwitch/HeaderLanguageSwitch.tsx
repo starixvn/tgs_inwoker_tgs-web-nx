@@ -21,8 +21,8 @@ const StyledSelect = styled(MuiSelect)`
   .MuiOutlinedInput-input {
     padding: 0 12px !important;
     border-radius: 0;
-    border-left: 1px solid ${({ theme }) => theme.blue40};
-    border-right: 1px solid ${({ theme }) => theme.blue40};
+    border-left: 1px solid ${({ theme }) => theme.mainBackground};
+    border-right: 1px solid ${({ theme }) => theme.mainBackground};
   }
 
   & .MuiSelect-select {

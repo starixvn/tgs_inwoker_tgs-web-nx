@@ -69,3 +69,8 @@ export const UploadFileTag = styled.span`
 `;
 
 export const SubmitButton = Button;
+
+export const VerifySubmitButton = styled(SubmitButton)`
+  margin-bottom: 20px !important;
+  margin-top: auto !important;
+`;
