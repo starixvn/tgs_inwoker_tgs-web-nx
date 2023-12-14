@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList, useGetLobbyCategoryList, useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useMemo } from "react";
 import jackpotPic from "@/assets/t19/images/home/jackpotPic.png";
@@ -22,6 +22,8 @@ import CategoryLabel from "./components/CategoryLabel";
 import LobbyVendorCard from "@/pages/home/components/VendorCard/LobbyVendorCard";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import GameCard from "@/pages/home/components/GameCard";
+import config from "@tgs-web-nx/config";
 
 const HomeCategoryContainer = styled.div`
   display: flex;
@@ -106,7 +108,7 @@ const CategoryTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 18px 0px;
 `;
 
 const HomeLobbyCategory = styled.div`
@@ -118,9 +120,17 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   align-content: center;
   width: 100%;
-  padding: 15px 0px;
   align-self: stretch;
   gap: 15px;
+`;
+
+const SlotCategoryContent = styled.div`
+  width: 100%;
+  row-gap: 15px;
+  column-gap: 31px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 `;
 
 type GameTypeItem = {
@@ -134,10 +144,9 @@ type GameTypeItem = {
 const HomeCategory = () => {
   const history = useHistory();
   const { account } = useAccountStore();
-  const { isDesktopSize } = useRwd();
-  const { handleChangeGameType } = useHomeGameContext();
-  const { providerList, activeGameType } = useHomeGameContext();
+  const { handleChangeGameType, providerList, activeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
+  const { allGameList, hotGameList, newGameList, isLoading } = useGetHomeCategoryList();
   const recommendGameList = [
     {
       name: "Game1",
@@ -237,7 +246,8 @@ const HomeCategory = () => {
       </RankingContainer>
 
       <HomeLobbyCategory>
-        <CategoryTitle><CategoryLabel imageUrl={live_home} text={"Live Casino"} />
+        <CategoryTitle>
+          <CategoryLabel imageUrl={live_home} text={"Live Casino"} />
           <ButtonText
             size="small"
             text={"More"}
@@ -245,7 +255,7 @@ const HomeCategory = () => {
           />
         </CategoryTitle>
         <CategoryContent>
-          {liveCasinoList.map((provider) => {
+          {liveCasinoList.slice(0, 4).map((provider) => {
             const { code: gpCode, status, name } = provider;
 
             if (gpCode === "BC") return null;
@@ -262,6 +272,29 @@ const HomeCategory = () => {
             );
           })}
         </CategoryContent>
+      </HomeLobbyCategory>
+      <HomeLobbyCategory>
+        <CategoryTitle><CategoryLabel imageUrl={slot_home} text={"Slot Games"} />
+          <ButtonText
+            size="small"
+            text={"More"}
+            onClick={() => handleViewAllClick(GameTypeEnum.SLOT)}
+          />
+        </CategoryTitle>
+        <SlotCategoryContent>
+          {allGameList.slice(0, 18).map((gameItem) => {
+            return (
+              <GameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                  }.jpg`}
+              />
+            );
+          })}
+        </SlotCategoryContent>
       </HomeLobbyCategory>
     </HomeCategoryContainer>
   );
