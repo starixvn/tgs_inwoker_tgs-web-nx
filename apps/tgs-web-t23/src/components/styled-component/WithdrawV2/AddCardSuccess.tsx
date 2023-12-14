@@ -5,14 +5,14 @@ export const Container = styled.div`
   width: 100%;
 `;
 export const SubTitle = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   font-weight: 700;
   margin-bottom: 16px;
   color: ${({ theme }) => theme.text};
   text-align: center;
 `;
 export const SubTitleDesc = styled.div`
-  font-size: 0.875rem;
+  font-size: 1.375rem;
   margin-bottom: 16px;
   color: ${({ theme }) => theme.text};
   text-align: center;

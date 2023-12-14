@@ -6,7 +6,7 @@ import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/WalletSelect";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.tertiary};
+  background: ${({ theme }) => theme.mainLightBackground};
   color: ${({ theme }) => theme.white};
   padding: 12px 15px;
   border-radius: 10px;

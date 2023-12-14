@@ -43,6 +43,7 @@ export const ManageBankCardButtonContainer = styled.div`
 type Props = {
   onhandleManageCardClick: any;
 };
+
 const WithdrawInfoCard = ({ onhandleManageCardClick }: Props) => {
   const [minWithdrawLimit, setMinWithdrawLimit] = useState(0);
 

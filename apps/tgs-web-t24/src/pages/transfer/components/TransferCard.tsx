@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
-import WalletSelect from "@/pages/transfer/components/components/WalletSelect";
+import WalletSelect from "@/pages/transfer/components/WalletSelect";
 import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`

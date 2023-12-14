@@ -18,7 +18,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.primary.main,
       },
     },
   },

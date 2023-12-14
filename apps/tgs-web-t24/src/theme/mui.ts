@@ -14,8 +14,10 @@ declare module "@mui/material/styles/createPalette" {
     mainBackground: string;
     gray5: string;
     gray10: string;
+    gray30: string;
     gray40: string;
     gray70: string;
+    gray85: string;
     gray90: string;
     gray95: string;
   }
@@ -51,8 +53,10 @@ const muiTheme = createTheme({
     mainBackground: theme.mainBackground,
     gray5: theme.gray5,
     gray10: theme.gray10,
+    gray30: theme.gray30,
     gray40: theme.gray40,
     gray70: theme.gray70,
+    gray85: theme.gray85,
     gray90: theme.gray90,
     gray95: theme.gray95,
   },

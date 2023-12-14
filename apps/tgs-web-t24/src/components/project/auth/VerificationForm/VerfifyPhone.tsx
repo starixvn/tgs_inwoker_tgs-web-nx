@@ -8,13 +8,10 @@ import { EnqueueSnackbar } from "notistack";
 import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
-import {
-  FormControl,
-  ItemContainer,
-  VerifySubmitButton,
-} from "@/components/styled-component/ProfileForms";
+import { ItemContainer, VerifySubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
+import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -143,7 +140,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
     <>
       <ItemContainer>
         <PhoneContainer>
-          <FormControl variant="outlined" style={{ width: "40%" }}>
+          <GrayInputWrapper style={{ width: "40%" }}>
             <Select
               native
               value={areacode}
@@ -158,9 +155,9 @@ function VerifyPhone({ handleUpdateStage }: Props) {
             >
               <option value={AREA_CODE}>{AREA_CODE}</option>
             </Select>
-          </FormControl>
+          </GrayInputWrapper>
 
-          <FormControl variant="outlined">
+          <GrayInputWrapper>
             <TextField
               type={"text"}
               value={phone}
@@ -170,12 +167,12 @@ function VerifyPhone({ handleUpdateStage }: Props) {
               }
               onChange={handleChangePhone}
             />
-          </FormControl>
+          </GrayInputWrapper>
         </PhoneContainer>
       </ItemContainer>
 
       <ItemContainer>
-        <FormControl variant="outlined">
+        <GrayInputWrapper>
           <TextFieldWithButton
             buttonLabel={
               countdownToken <= 0
@@ -188,7 +185,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
             onClick={handleGetCodeClick}
             buttonDisabled={countdownToken > 0}
           />
-        </FormControl>
+        </GrayInputWrapper>
       </ItemContainer>
 
       <VerifySubmitButton fullWidth disabled={isDisableButton} onClick={handleSubmitClicked}>

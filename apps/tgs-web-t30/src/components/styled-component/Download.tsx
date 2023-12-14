@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 export const DownloadAppContainer = styled.div``;
 export const GirlImage = styled.div`
@@ -7,6 +8,14 @@ export const GirlImage = styled.div`
 
   img {
     width: 100%;
+  }
+`;
+export const Paper = styled.div`
+  padding: 0;
+  background: ${({ theme }) => theme.mainBackground};
+
+  ${media.sm} {
+    padding: 10px;
   }
 `;
 export const IntroductionContainer = styled.div`

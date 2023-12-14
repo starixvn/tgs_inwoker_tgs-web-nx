@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import Icon from "../../../../../tgs-web-t34/src/components/project/Icon";
+import Icon from "@/components/project/Icon";
 import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
 
 const ButtonContainer = styled.div`
@@ -16,12 +16,7 @@ const ButtonContainer = styled.div`
   background: ${({ theme }) => theme.secondary};
   padding: 10px 22px;
   border-radius: 50px;
-`;
-
-const IconContainer = styled.div`
-  width: 24px;
-  height: 24px;
-  margin-right: 7.5px;
+  gap: 8px;
 `;
 
 type Props = {

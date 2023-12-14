@@ -5,6 +5,7 @@ import { useNotifications } from "@tgs-web-nx/core/features";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
 import { DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
 import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
 
 const AlertContainer = styled.div`
   padding: 20px;
@@ -30,7 +31,7 @@ const ModalButtons = ({ handleClose, message, action }: ModalButtonsProps) => {
   } else {
     return (
       <div>
-        <Button fullWidth onClick={handleClose}>
+        <Button fullWidth onClick={handleClose} style={{ color: theme.black }}>
           <>{i18n.t("common.confirm")}</>
         </Button>
 

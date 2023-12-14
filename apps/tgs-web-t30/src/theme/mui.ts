@@ -11,7 +11,7 @@ declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
     black: string;
-    error: string;
+    errorColor: string;
     darkBlue: string;
     bg: string;
     "515c": string;
@@ -55,7 +55,7 @@ const muiTheme = createTheme({
     },
     white: theme.white,
     black: theme.black,
-    error: theme.error,
+    errorColor: theme.error,
     darkBlue: theme.darkBlue,
     bg: theme.bg,
     "515c": theme["515c"],

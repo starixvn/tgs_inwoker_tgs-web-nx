@@ -33,5 +33,6 @@ export function useJoinGamePage() {
 
   return {
     isLoading,
+    isMaintenance,
   };
 }

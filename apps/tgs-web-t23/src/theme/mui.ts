@@ -44,9 +44,7 @@ const muiTheme = createTheme({
     secondary: {
       main: theme.secondary,
     },
-    tertiary: {
-      main: theme.lighterGray,
-    },
+    tertiary: theme.lighterGray,
     action: {
       disabledBackground: theme.gray,
       disabled: theme.white,
@@ -54,6 +52,7 @@ const muiTheme = createTheme({
     text: {
       primary: theme.text,
       secondary: theme.gray,
+      disabled: theme.gray,
     },
     white: theme.white,
     black: theme.black,
