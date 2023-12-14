@@ -25,7 +25,7 @@ export const ItemContainer = styled.div`
 export const LabelContainer = styled.div`
   font-size: 0.875rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   float: left;
   margin-bottom: 16px;
 `;
@@ -55,8 +55,8 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "0.875rem",
   height: "50px",
   color: "#828282",
-  background: theme.palette.mainBackground,
-  border: `1px solid ${theme.palette.gray10}`,
+  background: theme.palette.black30,
+  border: `1px solid ${theme.palette.white30}`,
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`

@@ -11,7 +11,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontWeight: 400,
 
     "&:-webkit-autofill": {
-      WebkitTextFillColor: `${theme.palette.text.primary} !important`,
+      WebkitTextFillColor: `${theme.palette.red} !important`,
     },
   },
   label: {
@@ -23,6 +23,10 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   placeholder: {
     // color: "red",
   },
+  "& .Mui-disabled": {
+    color: "red",
+    WebkitTextFillColor: theme.palette.white50,
+  },
 
   "& input::placeholder": {
     color: "#828282",
@@ -31,6 +35,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontWeight: 400,
   },
   [theme.breakpoints.up("sm")]: {
+    background: theme.palette.black30,
     input: {
       fontSize: "0.875rem",
     },
