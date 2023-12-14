@@ -9,6 +9,7 @@ import { Button } from "@/components/UI/Button";
 import { Switch } from "@/components/UI/Switch";
 import { media } from "@/theme/breakpoints";
 import { theme } from "@/theme";
+import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
   "& .MuiSwitch-switchBase": {
@@ -27,7 +28,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
 const AutoTransferContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   flex-wrap: wrap;
 
   ${media.md} {
@@ -40,6 +41,7 @@ const Group = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   gap: 8px;
+  color: ${({ theme }) => theme.lighterGray};
 
   ${media.md} {
     flex-direction: row;
@@ -64,14 +66,14 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
     //@ts-ignore
     <AutoTransferContainer {...props}>
       {!isLargeDesktopSize && (
-        <Button
+        <SubmitButton
           fullWidth
           onClick={() => {
             performWithdrawFromEveryBrand();
           }}
         >
           {i18n.t("transfer.oneKeyTransferOut")}
-        </Button>
+        </SubmitButton>
       )}
       <Group>
         {`${i18n.t("transfer.autoTransfer")} (${
@@ -81,16 +83,14 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
       </Group>
 
       {isLargeDesktopSize && (
-        <ButtonWrapper>
-          <Button
-            style={{ background: theme.secondary }}
-            onClick={() => {
-              performWithdrawFromEveryBrand();
-            }}
-          >
-            {i18n.t("transfer.oneKeyTransferOut")}
-          </Button>
-        </ButtonWrapper>
+        <Button
+          style={{ background: theme.mainDarkBackground, minWidth: "143px", fontSize: "0.937rem" }}
+          onClick={() => {
+            performWithdrawFromEveryBrand();
+          }}
+        >
+          {i18n.t("transfer.oneKeyTransferOut")}
+        </Button>
       )}
       <Loading show={isLoading} />
     </AutoTransferContainer>

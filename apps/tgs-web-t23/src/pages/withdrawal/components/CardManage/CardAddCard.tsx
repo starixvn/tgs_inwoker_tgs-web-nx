@@ -17,7 +17,7 @@ const CardContainer = styled.div`
 
   ${media.sm} {
     background: ${({ theme }) => theme.mainBackground};
-    width: calc((100% - 14px * 1) / 2);
+    width: calc((100% - 24px * 2) / 3);
   }
 `;
 
