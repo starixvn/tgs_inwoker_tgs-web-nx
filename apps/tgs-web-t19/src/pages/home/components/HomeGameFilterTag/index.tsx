@@ -12,7 +12,7 @@ import { useHistory } from "react-router-dom";
 import CommonTag from "./CommonTag";
 import ProviderTag from "./ProviderTag";
 import SearchInput from "@/pages/home/components/HomeGameFilterTag/SearchInput";
-import searchIcon from "@/assets/t29/images/home/search.svg";
+import searchIcon from "@/assets/t19/images/home/search.svg";
 import { media } from "@/theme/breakpoints";
 import hotIcon from "@/assets/t29/images/home/hot.svg";
 import newIcon from "@/assets/t29/images/home/new.svg";
@@ -76,16 +76,10 @@ const ProviderTagContainer = styled.div`
   }
 `;
 
-const SearchInputWrapper = styled.div`
-  width: 160px;
-  height: 36px;
-  padding: 10px;
-`;
-
 const CommonSearchWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -184,14 +178,13 @@ const HomeGameFilterTag = () => {
           })}
         </CommonTagContainer>
 
-        <SearchInputWrapper>
-          <SearchInput
-            placeholder={i18n.t("slot.search")}
-            imageUrl={searchIcon}
-            handleChange={handleChangeSearch}
-            value={searchString}
-          />
-        </SearchInputWrapper>
+        <SearchInput
+          placeholder={i18n.t("slot.search")}
+          imageUrl={searchIcon}
+          handleChange={handleChangeSearch}
+          value={searchString}
+        />
+
       </CommonSearchWrapper>
     </FilterTagWrapper>
   );
