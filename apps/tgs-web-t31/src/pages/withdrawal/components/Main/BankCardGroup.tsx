@@ -26,9 +26,9 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   gap: 8px;
   padding: 8px 11px;
   font-size: 14px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
+  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.white50)};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+    $active ? theme.accountLableText : "unset"};
   width: auto !important;
   cursor: pointer;
   float: left;

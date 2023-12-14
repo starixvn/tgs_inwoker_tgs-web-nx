@@ -30,6 +30,7 @@ import {
   TransferValue,
 } from "@/components/styled-component/Deposit";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
+import { theme } from "@/theme";
 
 const BadgeContainer = styled.div`
   display: flex;
@@ -147,12 +148,12 @@ class Main extends Component {
                 value={this.props.selectedBankCard}
                 onChange={(e) => this.props.handleBankCardChange(e)}
               >
-                <option value="" disabled>
+                <option style={{ background: theme.black }} value="" disabled>
                   {i18n.t("idr1.pleaseEnterAccountName")}
                 </option>
                 {this.props.bankCardList.map((item, index) => {
                   return (
-                    <option value={item.id} key={index}>
+                    <option style={{ background: theme.black }} value={item.id} key={index}>
                       {formatBankCardDetail(item)}
                     </option>
                   );
@@ -176,7 +177,7 @@ class Main extends Component {
                 {this.props.wallet.depositTypeList.length > 0 &&
                   selectedPaymentMethod.channel.map((item, index) => {
                     return (
-                      <option key={index} value={index}>
+                      <option style={{ background: theme.black }} key={index} value={index}>
                         {item.channelname}
                       </option>
                     );
@@ -352,7 +353,7 @@ class Main extends Component {
                               value={this.props.selectedBankCard}
                               onChange={(e) => this.props.handleSelectAccountChange(e)}
                             >
-                              <option value="" disabled>
+                              <option style={{ background: theme.black }} value="" disabled>
                                 {config.features.Deposit_OriginAccount
                                   ? i18n.t("idr1.pleaseEnterAccountName")
                                   : i18n.t("common.pleaseEnterAccountName")}
@@ -360,7 +361,7 @@ class Main extends Component {
                               {this.props.wallet.bankCardList.map((item, index) => {
                                 const detail = item.detail;
                                 return (
-                                  <option value={item.id} key={index}>
+                                  <option style={{ background: theme.black }} value={item.id} key={index}>
                                     {detail.bankAccount || detail.address || detail.phone} (
                                     {item.banktype})
                                   </option>
@@ -563,7 +564,7 @@ class Main extends Component {
               value={this.props.depositPromotion}
               onChange={(e) => this.props.handlePromotionChange(e)}
             >
-              <option value="">{i18n.t("deposit.msgPlsSelectPromotion")}</option>
+              <option style={{ background: theme.black }} value="">{i18n.t("deposit.msgPlsSelectPromotion")}</option>
               {this.props.general.promotionList.items
                 .filter(
                   (item) =>
@@ -580,7 +581,7 @@ class Main extends Component {
                 )
                 .map((item, index) => {
                   return (
-                    <option value={item.id} key={index}>
+                    <option style={{ background: theme.black }} value={item.id} key={index}>
                       {item.name}
                     </option>
                   );
