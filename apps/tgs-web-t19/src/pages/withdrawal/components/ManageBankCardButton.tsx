@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
-import Icon from "../../../../../tgs-web-t34/src/components/project/Icon";
+import Icon from "@/components/project/Icon";
 
 const ButtonContainer = styled.div`
   cursor: pointer;
@@ -14,12 +14,7 @@ const ButtonContainer = styled.div`
   align-items: center;
   background: ${({ theme }) => theme.primary};
   padding: 10px 22px;
-`;
-
-const IconContainer = styled.div`
-  width: 24px;
-  height: 24px;
-  margin-right: 7.5px;
+  gap: 8px;
 `;
 
 type Props = {

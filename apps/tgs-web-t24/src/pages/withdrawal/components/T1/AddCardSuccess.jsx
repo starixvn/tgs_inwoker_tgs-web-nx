@@ -11,7 +11,7 @@ import {
 } from "@/components/styled-component/WithdrawV2/AddCardSuccess";
 import { theme } from "@/theme";
 import { ImgSuccess } from "@/components/styled-component/WithdrawV2/Success";
-import SuccessPNG from "@/assets/t29/images/withdraw/icon-check.svg";
+import SuccessPNG from "@/assets/t24/images/withdraw/icon-check.svg";
 
 const AddCardSuccess = ({
   isDeposit,
@@ -44,16 +44,20 @@ const AddCardSuccess = ({
           config.features.AddCard_NotAllowedEditDelete ||
           bankCardList.length >= config.features.AddCard_MaximumCardAllowed
         ) && (
-          <SubmitButton fullWidth onClick={onhandleBindCardClick}>
+          <SubmitButton
+            fullWidth
+            onClick={onhandleBindCardClick}
+            style={{
+              background: theme.yellow,
+              color: theme.black,
+            }}
+          >
             {i18n.t("card.success.bindBankCard")}
           </SubmitButton>
         )}
         <SubmitButton
           fullWidth
           onClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}
-          style={{
-            background: theme.blue30,
-          }}
         >
           {isDeposit ? i18n.t("card.success.goDeposit") : i18n.t("card.success.goWithdrawal")}
         </SubmitButton>
