@@ -1,5 +1,4 @@
-import React from "react";
-import { useRegisterPage, useRwd } from "@tgs-web-nx/core/hooks";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import RegisterForm from "@/components/project/auth/RegisterForm";
@@ -7,6 +6,7 @@ import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import bg from "@/assets/t31/images/auth/BG.svg";
 import registerImg from "@/assets/t31/images/auth/web-login.svg";
+import { useRegisterPage } from "@/hooks/register/useRegisterPage";
 
 const MainWrapper = styled.div`
   padding: 12px;

@@ -1,4 +1,5 @@
-import { useLoginPage, useRwd } from "@tgs-web-nx/core/hooks";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import LoginForm from "@/components/project/auth/LoginForm";
@@ -6,6 +7,7 @@ import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import bg from "@/assets/t31/images/auth/BG.svg";
 import loginImg from "@/assets/t31/images/auth/web-login.svg";
+import { useLoginPage } from "@/hooks/login/useLoginPage";
 
 const MainWrapper = styled.div`
   padding: 12px;
