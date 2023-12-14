@@ -37,7 +37,6 @@ const FilterTagWrapper = styled.div`
 const CommonTagContainer = styled.div`
   padding: 0px 14px;
   border-radius: 100px;
-  border: 1px solid ${({ theme }) => theme.blue40};
   gap: 12px;
   display: flex;
   align-items: center;
@@ -146,7 +145,9 @@ const HomeGameFilterTag = () => {
     },
   ];
 
-  const validFilterTagList: FilterTag[] = filterTagList.filter((tag): tag is FilterTag => tag !== null);
+  const validFilterTagList: FilterTag[] = filterTagList.filter(
+    (tag): tag is FilterTag => tag !== null,
+  );
 
   return (
     <FilterTagWrapper>
@@ -165,7 +166,9 @@ const HomeGameFilterTag = () => {
           </AllText>
           <div>
             {providerFilterTagList.map((filterTag) => {
-              const matchedProvider = navPopupCategoryList.find(provider => provider.code === filterTag.gpCode);
+              const matchedProvider = navPopupCategoryList.find(
+                (provider) => provider.code === filterTag.gpCode,
+              );
               const status = matchedProvider ? matchedProvider.status : -1;
 
               return (

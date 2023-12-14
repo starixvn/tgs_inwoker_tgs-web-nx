@@ -16,7 +16,7 @@ const TagContainer = styled.div`
   -webkit-overflow-scrolling: touch;
   padding: 0px 6px 0px 14px;
   border-radius: 100px;
-  border: 1px solid ${({ theme }) => theme.blue40};
+  border: 1px solid ${({ theme }) => theme.text};
   align-self: stretch;
 
   ${media.sm} {

@@ -8,10 +8,10 @@ const SubHeaderContainer = styled.div`
   margin-bottom: 16px;
 `;
 const NumberContainer = styled.div`
-  width: 25px;
-  height: 25px;
-  border-radius: 50px;
-  background-color: ${({ theme }) => theme.secondary};
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.primary};
   font-family: Arial;
   font-size: 0.75rem;
   font-weight: 400;
@@ -24,7 +24,7 @@ const SubTitle = styled.div`
   font-size: 0.875rem;
   font-weight: 700;
   float: left;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.gray20};
   white-space: nowrap;
 `;
 

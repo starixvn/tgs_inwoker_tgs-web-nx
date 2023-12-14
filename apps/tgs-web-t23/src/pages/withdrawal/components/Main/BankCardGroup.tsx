@@ -3,9 +3,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
-import iconCard from "@/assets/t33/images/withdraw/icon-card.svg";
-import iconCardActive from "@/assets/t33/images/withdraw/icon-card-active.svg";
-import iconManage from "@/assets/t33/images/withdraw/icon-manage.svg";
+import iconCard from "@/assets/t23/images/withdraw/icon-card.svg";
+import iconCardActive from "@/assets/t23/images/withdraw/icon-card-active.svg";
+import iconManage from "@/assets/t23/images/withdraw/icon-manage.svg";
 import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
 
@@ -27,9 +27,11 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   gap: 8px;
   padding: 14px 11px;
   font-size: 15px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray20)};
+  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.black : theme.white)};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? "linear-gradient(180deg, #0587F5 0%, #0057A0 100%)" : theme.gray30};
+    $active ? theme.primary : theme.mainLightBackground};
+  border: 1px solid
+    ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.primary : theme.white)};
   width: auto !important;
   cursor: pointer;
   float: left;
@@ -76,7 +78,7 @@ const BankCardGroup = ({
               getTransferLimit(item.paymentchannelid);
             }}
           >
-            <Icon iconUrl={isActive ? iconCardActive : iconCard} width={"20px"} height={"20px"} />
+            <Icon iconUrl={isActive ? iconCard : iconCardActive} width={"20px"} height={"20px"} />
             <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
             <BankCardButtonCardNoHL>
               {(() => {

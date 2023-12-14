@@ -32,6 +32,7 @@ export const LabelContainer = styled.div`
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   background: theme.palette.gray30,
+  justifyContent: "center",
 
   width: "100%",
   fontSize: "0.875rem",
@@ -68,3 +69,8 @@ export const UploadFileTag = styled.span`
 `;
 
 export const SubmitButton = Button;
+
+export const VerifySubmitButton = styled(SubmitButton)`
+  margin-bottom: 20px !important;
+  margin-top: auto !important;
+`;

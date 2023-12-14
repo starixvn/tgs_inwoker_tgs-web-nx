@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import AddCardIcon from "@/assets/t33/images/card/add-card.svg";
+import AddCardIcon from "@/assets/t24/images/withdraw/icon-plus.svg";
 
 const CardContainer = styled.div`
   width: 100%;
   padding: 13px 20px;
-  background: ${({ theme }) => theme.gray40};
+  background: ${({ theme }) => theme.gray85};
   display: flex;
   flex-direction: column;
   align-items: center;

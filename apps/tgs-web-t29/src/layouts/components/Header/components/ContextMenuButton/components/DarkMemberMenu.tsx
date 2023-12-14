@@ -25,12 +25,12 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   align-items: center;
   gap: 10px;
   background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.blue40 : theme.blue50};
+    $isActive ? theme.mainBackground : theme.mainBackground};
   color: ${({ theme }: MemberMenuItemProps) => theme.white};
   cursor: pointer;
 
   &:hover {
-    background: ${({ theme }) => theme.blue40};
+    background: ${({ theme }) => theme.mainBackground};
     color: ${({ theme }) => theme.white};
   }
 `;

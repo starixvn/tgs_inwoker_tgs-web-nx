@@ -18,11 +18,10 @@ const InnerWrap = styled.div``;
 const SubTitle = styled.div`
   font-size: 18px;
   font-weight: 700;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
   display: inline-block;
   width: 100%;
-  margin: 25px 0 5px 0;
-  padding-bottom: 8px;
+  margin: 25px 0 12px 0;
 `;
 
 const Template1 = ({
@@ -45,17 +44,20 @@ const Template1 = ({
     <Container>
       <InnerWrap>
         {isLargeDesktopSize ? (
-          <QuickTransfer
-            transferFrom={transferFrom}
-            handleTransferFromChange={handleTransferFromChange}
-            transferTo={transferTo}
-            handleTransferToChange={handleTransferToChange}
-            mainAccountId={mainAccountId}
-            transferAmount={transferAmount}
-            handleTransferAmountChange={handleTransferAmountChange}
-            disabled={disabled}
-            handleTransferClick={handleTransferClick}
-          />
+          <>
+            <SubTitle>{i18n.t("transfer.quickTransfer")}</SubTitle>
+            <QuickTransfer
+              transferFrom={transferFrom}
+              handleTransferFromChange={handleTransferFromChange}
+              transferTo={transferTo}
+              handleTransferToChange={handleTransferToChange}
+              mainAccountId={mainAccountId}
+              transferAmount={transferAmount}
+              handleTransferAmountChange={handleTransferAmountChange}
+              disabled={disabled}
+              handleTransferClick={handleTransferClick}
+            />
+          </>
         ) : (
           <TransferCard
             fromWallet={transferFrom}
@@ -83,7 +85,7 @@ const Template1 = ({
           </TransferCard>
         )}
 
-        <SubTitle>{i18n.t("transfer.transferWallet")}</SubTitle>
+        <SubTitle style={{ marginBottom: 0 }}>{i18n.t("transfer.transferWallet")}</SubTitle>
         <AutoTransferSwitch style={{ marginBottom: "20px" }} />
         {isLargeDesktopSize && <TransferCards handleTransferIn={handleTransferIn} />}
         <Loading show={loading || wallet.transferLoading || wallet.updateBalanceloading}></Loading>

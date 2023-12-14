@@ -24,7 +24,8 @@ const StyledSelect = styled(MuiSelect)`
   //width: 140px;
   //margin-right: 10px;
   overflow: visible;
-  background: ${({ theme }) => theme.gray30};
+  background: ${({ theme }) => theme.gray95};
+  border: 1px solid ${({ theme }) => theme.gray80};
   font-weight: 400 !important;
   font-size: 0.937rem !important;
 
@@ -107,7 +108,7 @@ const LanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainBackground,
+            background: theme.gray80,
 
             "& .MuiMenuItem-root": {
               padding: 2,

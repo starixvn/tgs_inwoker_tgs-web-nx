@@ -26,8 +26,7 @@ const Wrapper = styled.div<{
   gap: 6px;
   user-select: none;
   border-radius: 6px;
-  border: 1px solid ${({ theme, $isActive }) => ($isActive ? theme.blue40 : "transparent")};
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     min-width: 90px;
@@ -46,8 +45,7 @@ const GameIcon = styled.img`
 
 const Text = styled.div<{ $fontSize: string }>`
   color: ${({ theme }) => theme.text};
-  font-size: ${({ $fontSize }) =>
-    $fontSize === "small" ? "0.625rem" : "0.5rem"};
+  font-size: ${({ $fontSize }) => ($fontSize === "small" ? "0.625rem" : "0.5rem")};
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
