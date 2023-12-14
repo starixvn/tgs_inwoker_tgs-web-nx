@@ -18,38 +18,19 @@ const PromotionCardContainer = styled.div<PromotionCardContainerProps>`
   align-items: stretch;
   overflow: hidden;
   cursor: pointer;
-
-  ${media.sm} {
-    width: calc((100% - 40px) / 2);
-  }
 `;
 const BannerWrapper = styled.div`
   pointer-events: none;
   width: 100%;
-  //padding: 34.37% 0 0 0;
 `;
 
-const PromotionTextContainer = styled.div`
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 17.5px 11px;
-  gap: 20.84px;
-`;
-
-const TitleWrapper = styled.div`
-  font-size: 1.062rem;
-  font-weight: 400;
+const SubSubject = styled.div`
   color: ${({ theme }) => theme.white};
-  text-overflow: ellipsis;
-`;
-
-const ClickMoreContainer = styled.div`
-  flex-shrink: 0;
-  width: 28px;
-  margin-left: auto;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
 `;
 
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
@@ -58,17 +39,17 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
   const handleEnterDetail: React.MouseEventHandler<HTMLDivElement> & ((event: Event) => void) = (
     event,
   ) => {
-    history.push("/promotion/" + promotionData.id);
-    // event.preventDefault();
-    // if (isDesktopSize) {
-    //   return history.push("/promotion/" + promotionData.id);
-    // }
+    event.preventDefault();
+    if (isDesktopSize) {
+      return history.push("/promotion/" + promotionData.id);
+    }
   };
 
   return (
     <PromotionCardContainer onClick={handleEnterDetail}>
       <BannerWrapper>
         <BannerImage promotionData={promotionData} />
+        <SubSubject>{promotionData.subSubject}</SubSubject>
       </BannerWrapper>
     </PromotionCardContainer>
   );

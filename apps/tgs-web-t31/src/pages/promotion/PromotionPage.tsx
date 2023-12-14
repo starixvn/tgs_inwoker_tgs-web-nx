@@ -2,22 +2,18 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { usePromotionPage, useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory, useParams } from "react-router";
-import { useAuth, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
-import { Button as MuiButton, styled as muiStyled } from "@mui/material";
-import { useState } from "react";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { Dialog, Button as MuiButton, styled as muiStyled } from "@mui/material";
+import { useHistory } from "react-router";
+import PromotionDetail from "./PromotionDetailPage";
 import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { media } from "@/theme/breakpoints";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import useBanner from "@/hooks/home/useBanner";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import MobileSlider from "@/pages/home/components/Slider";
 import Banner from "@/pages/home/components/Banner";
-import { theme } from "@/theme";
-
 const PromotionCardListContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,6 +22,7 @@ const PromotionCardListContainer = styled.div`
   ${media.sm} {
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
   }
 `;
 
@@ -52,6 +49,9 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
 const PromotionCardContaner = styled.div`
   padding: 12px;
   background: ${({ theme }) => theme.iconLable};
+  ${media.sm} {
+    width: calc((100% - 300px) / 2);
+  }
 `;
 
 const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
@@ -72,7 +72,7 @@ const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
 const PromotionPage = () => {
   const { promotionList, isEmpty } = usePromotionPage();
   const { isMobileSize, isDesktopSize } = useRwd();
-
+  const history = useHistory();
   const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
 
   const { activeGameType, activeGameTypeKey, activeNavPopupGameType } = useHomeGameContext();
@@ -89,7 +89,7 @@ const PromotionPage = () => {
     <PageContainer>
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
-      {hasActiveDesktopBanner() ? (
+      {isMobileSize && hasActiveDesktopBanner() ? (
         <BannerWrapper>
           {isDesktopSize && !!activeGameType && !isNonLobby && (
             <GameTypeBanner
@@ -112,7 +112,13 @@ const PromotionPage = () => {
             <PromotionCardContaner key={promotionData.id}>
               <PromotionCard promotionData={promotionData} />
               {isMobileSize && (
-                <StyledButton>{i18n.t("promotion.details").toLocaleUpperCase()}</StyledButton>
+                <StyledButton
+                  onClick={() => {
+                    history.push("/promotion/" + promotionData.id);
+                  }}
+                >
+                  {i18n.t("promotion.details").toLocaleUpperCase()}
+                </StyledButton>
               )}
             </PromotionCardContaner>
           ))}
