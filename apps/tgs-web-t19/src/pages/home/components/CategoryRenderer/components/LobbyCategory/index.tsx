@@ -5,8 +5,7 @@ import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
-import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
+import VendorCard from "@/pages/home/components/VendorCard/index";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -16,7 +15,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  gap: 6px;
+  gap: 16px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -27,11 +26,13 @@ const Wrapper = styled.div`
 
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
-  height: 100%;
-  width: calc(100% - 72px);
+  width: calc(100% - 78px);
   flex-shrink: 0;
-  gap: 6px;
-  background-color: ${({ theme }) => theme.mainBackground};
+  gap: 12px;
+  padding: 12px 0px;
+  border-radius: 20px;
+  border: 2.5px solid #B78316;
+  background-color: #332915;
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
@@ -41,6 +42,7 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  gap: 36px;
 `;
 
 const CategoryContent = styled.div`
@@ -48,8 +50,8 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   align-content: center;
   width: 100%;
-  row-gap: 13px;
-  column-gap: 9px;
+  gap: 8px;
+  padding: 14px 0px 18px 14px;
   align-self: stretch;
 `;
 
@@ -110,7 +112,7 @@ const LobbyCategory = () => {
 
                   if (gpCode === "BC") return null;
                   return (
-                    <MobileVendorCard
+                    <VendorCard
                       key={gpCode}
                       bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/bg.png`}
                       imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
@@ -134,17 +136,14 @@ const LobbyCategory = () => {
 
               if (gpCode === "BC") return null;
               return (
-                <DesktopVendorCard
+                <VendorCard
                   key={gpCode}
-                  bgUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  bgUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+                  imageUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${import.meta.env.BASE_URL
+                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}

@@ -11,6 +11,8 @@ const CardPromptContainer = styled.div`
   width: 100%;
   gap: 7px;
   background-color: ${({ theme }) => theme.mainBackground};
+
+  border: 1px solid red;
 `;
 
 const CardPrompt = () => {
