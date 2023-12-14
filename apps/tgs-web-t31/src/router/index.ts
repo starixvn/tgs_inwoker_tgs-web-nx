@@ -76,7 +76,7 @@ const routes: RouteType[] = [
   {
     path: "/withdrawal",
     component: WithdrawalPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/wagering",

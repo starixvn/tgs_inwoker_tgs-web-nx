@@ -80,7 +80,7 @@ export const SelectionContainer = styled.div`
 `;
 export const LimitPopupContainer = styled.div`
   white-space: nowrap;
-  background: url(${limitBg}) no-repeat;
+  /* background: url(${limitBg}) no-repeat; */
   background-size: cover;
   background-position: center;
   font-size: 0.812rem;
