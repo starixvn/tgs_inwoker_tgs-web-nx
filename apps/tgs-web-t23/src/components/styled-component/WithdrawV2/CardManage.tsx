@@ -5,7 +5,7 @@ export const CardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 24px;
   margin-bottom: 16px;
 
   ${media.sm} {

@@ -33,6 +33,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   borderRadius: "2px",
   background: theme.palette.white,
   border: `1px solid ${theme.palette.grey02}`,
+  justifyContent: "center",
 
   width: "100%",
   fontSize: "0.875rem",

@@ -12,6 +12,7 @@ const ButtonContainer = styled.div`
   color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
+  gap: 8px;
 `;
 
 const IconContainer = styled.div`

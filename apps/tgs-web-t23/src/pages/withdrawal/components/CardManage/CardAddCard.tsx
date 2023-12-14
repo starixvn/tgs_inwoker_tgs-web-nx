@@ -1,18 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import AddCardIcon from "@/assets/t33/images/card/add-card.svg";
+import AddCardIcon from "@/assets/t23/images/withdraw/icon-plus.svg";
+import { media } from "@/theme/breakpoints";
 
 const CardContainer = styled.div`
   width: 100%;
   padding: 13px 20px;
-  background: ${({ theme }) => theme.gray40};
+  background: ${({ theme }) => theme.mainLightBackground};
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.mainBackground};
+    width: calc((100% - 14px * 1) / 2);
+  }
 `;
 
 const EmptyCardTitle = styled.div`
@@ -33,10 +39,11 @@ const IconContainer = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 31.5px;
+  padding: 16.5px;
 `;
 
 type Props = {
