@@ -11,7 +11,6 @@ import recommend_game2 from "@/assets/t19/images/home/recommend_game2.png";
 import recommend_game3 from "@/assets/t19/images/home/recommend_game3.png";
 import recommend_home from "@/assets/t19/images/home/recommend_home.svg";
 import latest_home from "@/assets/t19/images/home/latest_home.svg";
-import game_icon from "@/assets/t19/images/home/game_icon.png";
 import top_home from "@/assets/t19/images/home/top_home.svg";
 import live_home from "@/assets/t19/images/home/live_home.svg";
 import slot_home from "@/assets/t19/images/home/slot_home.svg";
@@ -24,6 +23,9 @@ import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import config from "@tgs-web-nx/config";
+import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
+import WinnerCard from "@/pages/home/components/WinnerCard";
+import Jackpot from "@/components/project/Jackpot";
 
 const HomeCategoryContainer = styled.div`
   display: flex;
@@ -57,6 +59,7 @@ const RecommendContainer = styled.div`
 `;
 
 const JackPotContainer = styled.div`
+  position: relative;
   aspect-ratio: 460 / 476;
   width: 100%;
   max-width: 460px;
@@ -96,16 +99,6 @@ const RecommendGameCard = styled.div`
   flex-direction: column;
   gap: 3px;
   cursor: pointer;
-`;
-
-const LatestWinnerCard = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 12px;
-  align-items: center;
-  gap: 12px;
-  border-radius: 12px;
-  background: #504C40;
 `;
 
 const CategoryTitle = styled.div`
@@ -177,6 +170,7 @@ const HomeCategory = () => {
   const { handleChangeGameType, providerList, activeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
   const { allGameList, hotGameList, recommendGameList } = useGetHomeCategoryList();
+  const { leaderboard } = useBettingHistory();
 
   const topRecommendGameList = recommendGameList.slice(0, 3).map((game, index) => ({
     ...game,
@@ -242,31 +236,12 @@ const HomeCategory = () => {
             ))}
           </GameColumnWrapper>
         </RecommendContainer>
-        <JackPotContainer></JackPotContainer>
+        <JackPotContainer>
+          <Jackpot />
+        </JackPotContainer>
         <LatestContainer>
           <CategoryLabel imageUrl={latest_home} text={"Latest winners"} />
-          <GameColumnWrapper>
-            <LatestWinnerCard>
-              <img src={game_icon} alt={"game_icon"} />
-              <div>First Person Lightning Bacca...</div>
-              <div>₱52,360x</div>
-            </LatestWinnerCard>
-            <LatestWinnerCard>
-              <img src={game_icon} alt={"game_icon"} />
-              <div>First Person Lightning Bacca...</div>
-              <div>₱52,360x</div>
-            </LatestWinnerCard>
-            <LatestWinnerCard>
-              <img src={game_icon} alt={"game_icon"} />
-              <div>First Person Lightning Bacca...</div>
-              <div>₱52,360x</div>
-            </LatestWinnerCard>
-            <LatestWinnerCard>
-              <img src={game_icon} alt={"game_icon"} />
-              <div>First Person Lightning Bacca...</div>
-              <div>₱52,360x</div>
-            </LatestWinnerCard>
-          </GameColumnWrapper>
+          <WinnerCard leaderboard={leaderboard} />
         </LatestContainer>
       </RankingContainer>
       <HomeLobbyCategory>

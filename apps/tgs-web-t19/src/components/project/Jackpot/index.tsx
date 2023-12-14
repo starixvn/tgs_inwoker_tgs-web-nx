@@ -5,9 +5,8 @@ import { useJackpot } from "@tgs-web-nx/core/features";
 const JackpotContainer = styled.div`
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  padding: 11px 40px;
   overflow: visible;
 `;
 
@@ -17,28 +16,20 @@ const Background = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  transform: skewX(-30deg);
-  background: linear-gradient(180deg, #c93131 0%, #a41616 100%);
   z-index: 1;
 `;
 
 const JackpotContent = styled.div`
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 35px;
-`;
-
-const Title = styled.div`
-  font-size: 1.5rem;
-  font-weight: 700;
+  position: absolute;
+  bottom: 63px;
 `;
 
 const Amount = styled.div`
-  font-size: 1.5rem;
+  font-size: 32px;
   font-weight: 700;
-  font-style: italic;
+  letter-spacing: 3.2px;
+  color: ${({ theme }) => theme.primary};
 `;
 
 type Props = HTMLProps<HTMLDivElement>;
@@ -59,8 +50,7 @@ const Jackpot = ({ ...others }: Props) => {
       <Background />
 
       <JackpotContent>
-        <Title>Jackpot</Title>
-        <Amount>{formatAmount(jackpotAmount, "vi-VN")}</Amount>
+        <Amount>₱{formatAmount(jackpotAmount, "vi-VN")}</Amount>
       </JackpotContent>
     </JackpotContainer>
   );
