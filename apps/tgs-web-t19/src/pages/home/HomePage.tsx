@@ -23,10 +23,8 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  padding: 0px 8px 12px 8px;
-  gap: 6px;
-  flex-shrink: 0;
-  flex: 1;
+  /* flex-shrink: 0;
+  flex: 1; */
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -43,7 +41,21 @@ const SliderWrapper = styled.div`
 
   ${media.sm} {
     height: 100%;
-    max-height: 450px;
+  }
+`;
+
+const SlickDot = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+`;
+
+const SlickDotWrapper = styled.div`
+  margin-bottom: 30px;
+
+  & ul li.slick-active ${SlickDot} {
+    background: #F1C137 !important;
   }
 `;
 
@@ -55,9 +67,9 @@ const MainContentWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 6px;
   flex-shrink: 0;
   flex: 1;
+  padding: 16px 12px 0px 12px;
 
   /* ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -71,7 +83,7 @@ const MainContentWrapper = styled.div`
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 450px;
+  height: 520px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
@@ -100,6 +112,17 @@ const HomePage = () => {
     return matchingGameType ? matchingGameType.gameType : null;
   };
 
+  const settings = {
+    appendDots: (dots: any) => (
+      <SlickDotWrapper>
+        <ul>{dots}</ul>
+      </SlickDotWrapper>
+    ),
+    customPaging: (i: number) => {
+      return <SlickDot key={i} />;
+    },
+  };
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -119,23 +142,30 @@ const HomePage = () => {
   return (
     <MainWrapper>
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
-      {!!general.banner.length && (
+      {!!general.banner.length && isMobileSize && (
         <SliderWrapper>
-          {isMobileSize && <Slider />}
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${import.meta.env.BASE_URL
-                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
-          {isDesktopSize && !activeGameType && <Banner />}
+          <Slider settings={settings} />
         </SliderWrapper>
       )}
-      {isMobileSize && <CardPrompt />}
+      {!!general.banner.length && isDesktopSize && !activeGameType && (
+        <SliderWrapper>
+          <Slider maxHeight={"600px"} settings={settings} />
+        </SliderWrapper>
+      )}
+      {!!general.banner.length && isDesktopSize && !!activeGameType && (
+        <SliderWrapper>
+          <GameTypeBanner
+            $imageUrl={
+              activeGameTypeKey
+                ? `${import.meta.env.BASE_URL
+                }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                : ""
+            }
+          />
+        </SliderWrapper>
+      )}
+
+      {/* {isMobileSize && <CardPrompt />} */}
 
       <MainContentWrapper>
         <CategoryRenderer />

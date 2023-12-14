@@ -18,6 +18,8 @@ export const theme = {
   lightGray: "rgba(255, 255, 255, 0.50)",
   darkGray: "#3D3D3D",
   mask: "rgba(0, 0, 0, 0.60)",
+  picMask: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 29.17%, #181D30 100%)",
+  cmpBackground: "#161513",
 
   // 下面慢慢修樣式拿掉
   blue60: "#0E6399",
