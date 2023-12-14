@@ -10,7 +10,6 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t19/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
@@ -33,6 +32,18 @@ const MainWrapper = styled.div`
   }
 `;
 
+const DesktopBg = styled.div`
+  width: 100%;
+  min-height: 100%;
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
+  margin: 0 auto;
+  padding: 0px 0px 0px 0px;
+  background-image: url(${bg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+`;
+
 const SliderWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
@@ -46,7 +57,7 @@ const SlickDot = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #fff;
+  background: ${({ theme }) => theme.white};
 `;
 
 const SlickDotWrapper = styled.div`
@@ -77,10 +88,7 @@ const MainContentWrapper = styled.div`
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    /* gap: unset;
-    background-image: url(${bg});
-    background-size: contain;
-    background-repeat: no-repeat; */
+    background-color: transparent;
   }
 `;
 
@@ -168,11 +176,12 @@ const HomePage = () => {
         </SliderWrapper>
       )}
 
-      {isDesktopSize && !activeGameType && <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>}
-
-      <MainContentWrapper>
-        <CategoryRenderer />
-      </MainContentWrapper>
+      {isDesktopSize && !activeGameType && <DesktopBg>
+        <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>
+        <MainContentWrapper>
+          <CategoryRenderer />
+        </MainContentWrapper>
+      </DesktopBg>}
     </MainWrapper>
   );
 };

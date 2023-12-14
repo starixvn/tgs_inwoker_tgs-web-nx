@@ -5,23 +5,23 @@ import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useEffect, useMemo } from "react";
-import bg from "@/assets/t29/images/home/home_bg.png";
-import sport from "@/assets/t29/images/home/home_sport.png";
-import live_casino from "@/assets/t29/images/home/home_live_casino.png";
-import slot from "@/assets/t29/images/home/home_slot.png";
-import lottery from "@/assets/t29/images/home/home_lottery.png";
-import fishing from "@/assets/t29/images/home/home_fishing.png";
+import jackpotPic from "@/assets/t19/images/home/jackpotPic.png";
+import recommend_game1 from "@/assets/t19/images/home/recommend_game1.png";
+import recommend_game2 from "@/assets/t19/images/home/recommend_game2.png";
+import recommend_game3 from "@/assets/t19/images/home/recommend_game3.png";
+import recommend_home from "@/assets/t19/images/home/recommend_home.svg";
+import latest_home from "@/assets/t19/images/home/latest_home.svg";
+import game_icon from "@/assets/t19/images/home/game_icon.png";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import CategoryLabel from "./components/CategoryLabel";
 
 const DesktopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 314px;
-  margin: 0 auto;
-  padding: 15px 0px;
+  height: 476px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -29,35 +29,62 @@ const DesktopContainer = styled.div`
   }
 `;
 
-const CategoryWrapper = styled.div`
+const RecommendContainer = styled.div`
+  width: 367px;
+  height: 100%;
+  display: flex;
+  padding-top: 18px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+`;
+
+const JackPotContainer = styled.div`
+  aspect-ratio: 460 / 476;
+  width: 100%;
+  max-width: 460px;
+  background-image: url(${jackpotPic});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+`;
+
+const LatestContainer = styled.div`
+  width: 373px;
+  height: 100%;
+  display: flex;
+  padding-top: 18px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+`;
+
+const GameColumnWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  padding: 8px 0px 34px 0px;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 18px;
 `;
 
-const CategoryImage = styled.div<{ $imageUrl: string }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 250px;
+const RecommendGameCard = styled.div<{ $imgUrl: string }>`
   position: relative;
-  aspect-ratio: 250/200;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
+  aspect-ratio: 367 / 114;
+  width: 100%;
+  border-radius: 10px;
+  background-image: url(${({ $imgUrl }) => $imgUrl});
   background-size: contain;
-  background-repeat: repeat;
-  padding: 15px 0px;
-  cursor: pointer;
+  background-repeat: no-repeat;
 `;
 
-const CategoryName = styled.div`
-  color: #333;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  text-align: center;
+const LatestWinnerCard = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 12px;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  background: #504C40;
 `;
 
 type GameTypeItem = {
@@ -73,62 +100,59 @@ const HomeCategory = () => {
   const { isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
 
-  const homeCategotyList = useMemo<GameTypeItem[]>(() => {
-    return [
-      {
-        key: "sports",
-        name: "SPORTS",
-        imgUrl: sport,
-        text: i18n.t("common.sports"),
-        gameType: GameTypeEnum.SPORTS,
-      },
-      {
-        key: "liveCasino",
-        name: "LIVE CASINO",
-        imgUrl: live_casino,
-        text: i18n.t("common.live"),
-        gameType: GameTypeEnum.LIVELOBBY,
-      },
-      {
-        key: "slots",
-        name: "SLOTS",
-        imgUrl: slot,
-        text: i18n.t("common.slot"),
-        gameType: GameTypeEnum.SLOT,
-      },
-      {
-        key: "fishing",
-        name: "FISHING",
-        imgUrl: fishing,
-        text: i18n.t("common.fishing"),
-        gameType: GameTypeEnum.FISH,
-      },
-    ];
-  }, []);
+  const recommendGameList = [
+    {
+      name: "Game1",
+      imgUrl: recommend_game1,
+    },
+    {
+      name: "Game2",
+      imgUrl: recommend_game2,
+    },
+    {
+      name: "Game3",
+      imgUrl: recommend_game3,
+    }
+  ]
 
-  const handleClick = (gameTypeItem: GameTypeItem) => {
-    handleChangeGameType(gameTypeItem.gameType);
-    history.push(`/main/${gameTypeItem.key}`);
-  };
-
-  if (isDesktopSize) {
-    return (
-      <DesktopContainer>
-        {homeCategotyList.map((item) => {
-          return (
-            <CategoryWrapper key={item.key}>
-              <CategoryImage
-                $imageUrl={item.imgUrl}
-                onClick={() => handleClick(item)}
-              ></CategoryImage>
-              <CategoryName>{item.name}</CategoryName>
-            </CategoryWrapper>
-          );
-        })}
-        ;
-      </DesktopContainer>
-    );
-  }
+  return (
+    <DesktopContainer>
+      <RecommendContainer>
+        <CategoryLabel imageUrl={recommend_home} text={"Reocmmend"} />
+        <GameColumnWrapper>
+          {recommendGameList.map((gameItem, index) => (
+            <RecommendGameCard key={index} $imgUrl={gameItem.imgUrl}></RecommendGameCard>
+          ))}
+        </GameColumnWrapper>
+      </RecommendContainer>
+      <JackPotContainer></JackPotContainer>
+      <LatestContainer>
+        <CategoryLabel imageUrl={latest_home} text={"Latest winners"} />
+        <GameColumnWrapper>
+          <LatestWinnerCard>
+            <img src={game_icon} alt={"game_icon"} />
+            <div>First Person Lightning Bacca...</div>
+            <div>₱52,360x</div>
+          </LatestWinnerCard>
+          <LatestWinnerCard>
+            <img src={game_icon} alt={"game_icon"} />
+            <div>First Person Lightning Bacca...</div>
+            <div>₱52,360x</div>
+          </LatestWinnerCard>
+          <LatestWinnerCard>
+            <img src={game_icon} alt={"game_icon"} />
+            <div>First Person Lightning Bacca...</div>
+            <div>₱52,360x</div>
+          </LatestWinnerCard>
+          <LatestWinnerCard>
+            <img src={game_icon} alt={"game_icon"} />
+            <div>First Person Lightning Bacca...</div>
+            <div>₱52,360x</div>
+          </LatestWinnerCard>
+        </GameColumnWrapper>
+      </LatestContainer>
+    </DesktopContainer>
+  );
 };
 
 export default HomeCategory;
