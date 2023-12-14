@@ -24,9 +24,5 @@ export function useLoginPage() {
       handleChangeGameType(GameTypeEnum.NONE);
       history.push("/");
     }
-
-    if (isDesktopSize) {
-      handleToggleLoginDialog(true);
-    }
   }, []);
 }

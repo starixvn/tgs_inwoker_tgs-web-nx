@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 export const FormSubContainer = styled.div`
   width: 100%;
@@ -15,28 +16,31 @@ export const RememberMeContainer = styled.div`
   cursor: pointer;
   //margin: 8px 0;
 `;
-export const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
-  font-size: 0.875rem;
+export const ForgotPasswordContainer = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-size: 14px;
   font-weight: 400;
-  white-space: nowrap;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
   cursor: pointer;
+  text-decoration: underline;
+  ${media.sm} {
+    color: ${({ theme }) => theme.yellow};
+  }
 `;
 export const RedirectContainer = styled.div`
-  width: 100%;
   color: ${({ theme }) => theme.text};
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.245;
-  align-self: baseline;
-  display: flex;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
   align-items: center;
-  justify-content: center;
 
   .link {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.text};
     margin-left: 8px;
     cursor: pointer;
-    font-weight: 700;
   }
 `;

@@ -2,6 +2,7 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import styled from "styled-components";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
@@ -17,7 +18,13 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+import checkedImg from "@/assets/t31/images/auth/checked.svg";
+import uncheckedImg from "@/assets/t31/images/auth/uncheck.svg";
 
+const HintContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 const LoginForm = () => {
   const {
     formInputConfigList,
@@ -32,12 +39,6 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
-      ) : (
-        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
-      )}
-
       <FormContainer>
         <FormikForm
           formInputList={formInputConfigList}
@@ -49,6 +50,8 @@ const LoginForm = () => {
           <FormSubContainer>
             <RememberMeContainer onClick={handleClickNeedToRemember}>
               <Checkbox
+                icon={<img src={uncheckedImg} alt="uncheck" />}
+                checkedIcon={<img src={checkedImg} alt="checked" />}
                 checked={needToRemember}
                 style={{
                   padding: "0px 5px 0px",
@@ -56,15 +59,24 @@ const LoginForm = () => {
               />
               {i18n.t("wap.login.rememberMe")}
             </RememberMeContainer>
-
-            <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-              {i18n.t("forgotPassword.title")}?
-            </ForgotPasswordContainer>
           </FormSubContainer>
         </FormikForm>
       </FormContainer>
-
-      <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+      {isMobileSize ? (
+        <HintContainer>
+          <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+            {i18n.t("forgotPassword.title")}
+          </ForgotPasswordContainer>
+          <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+        </HintContainer>
+      ) : (
+        <HintContainer>
+          <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+          <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+            {i18n.t("forgotPassword.title")}
+          </ForgotPasswordContainer>
+        </HintContainer>
+      )}
 
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
     </AuthFormContainer>
