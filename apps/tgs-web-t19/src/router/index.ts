@@ -28,7 +28,6 @@ import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
 import HomeDialogLayout from "@/layouts/HomeDialogLayout";
-import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
 import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
@@ -307,7 +306,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: VipLayout,
+    layout: HomeDialogLayout,
   },
   // {
   //   path: "/sports/:platform",
