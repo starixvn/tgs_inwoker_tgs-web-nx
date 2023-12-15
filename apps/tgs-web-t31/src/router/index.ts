@@ -250,7 +250,7 @@ const routes: RouteType[] = [
   {
     path: "/inbox",
     component: InboxPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   // {
   //   path: "/inbox/details/:id",
