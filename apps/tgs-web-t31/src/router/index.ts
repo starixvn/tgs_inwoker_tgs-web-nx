@@ -318,7 +318,7 @@ const routes: RouteType[] = [
   {
     path: "/support",
     component: ContactUsPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
