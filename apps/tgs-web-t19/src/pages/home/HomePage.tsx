@@ -183,8 +183,12 @@ const HomePage = () => {
             <CategoryRenderer />
           </MainContentWrapper>
         </DesktopBg>}
-
-      {(isMobileSize && !!activeGameType) || (isDesktopSize && !!activeGameType) && (
+      {(isDesktopSize && !!activeGameType) && (
+        <MainContentWrapper>
+          <CategoryRenderer />
+        </MainContentWrapper>
+      )}
+      {isMobileSize && (
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>

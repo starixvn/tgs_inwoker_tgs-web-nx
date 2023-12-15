@@ -53,7 +53,6 @@ const BonusTableWrapper = styled.div`
 `;
 
 const BonusTableHeader = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,14 +60,14 @@ const BonusTableHeader = styled.div`
   height: 48px;
   padding: 10.5px 0;
   background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
   border-radius: 6px 0px 0px 0px;
+  background: ${({ theme }) => theme.darkGray};
 
   ${media.sm} {
-    height: 97px;
-    padding: 20px 0;
-    border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
+    height: 86px;
+    padding: 20px;
+    border-radius: 12px;
+    background: ${({ theme }) => theme.grayGradient};
   }
 `;
 
@@ -76,7 +75,7 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.text};
+  color: ${({ theme }) => theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -85,10 +84,9 @@ const HeaderItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
-    max-width: 115px;
+    max-width: 150px;
     font-size: 1rem;
     margin: 0px 6px;
-    color: #23507d;
   }
 `;
 
@@ -99,7 +97,9 @@ const BonusTableBody = styled.div`
   align-self: stretch;
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
+    gap: 36px;
+    border-radius: 10px;
+    background: ${({ theme }) => theme.mask};
   }
 `;
 
@@ -108,12 +108,7 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid#23507D;
-
-  ${media.sm} {
-    border-bottom: unset;
-    color: #23507d;
-  }
+  border-bottom: 1px solid ${({ theme }) => theme.darkGray};
 `;
 
 const RowItem = styled.div`
@@ -124,19 +119,18 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${({ theme }) => theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
-  margin: 0px 8px;
-
+  margin: 8px 0;
+ 
   ${media.sm} {
     min-height: 106px;
     width: 128px;
     font-size: 1rem;
-    color: #23507d;
   }
 `;
 
@@ -170,9 +164,8 @@ const BonusTable = ({ vipSortingData }: Props) => {
                     <img
                       width={"50px"}
                       height={"50px"}
-                      src={`${import.meta.env.BASE_URL}assets/images/vip/level_${
-                        vipData.level
-                      }.png`}
+                      src={`${import.meta.env.BASE_URL}assets/images/vip/level_${vipData.level
+                        }.png`}
                       alt={`level_${vipData.level}`}
                     />
                     <span>VIP{vipData.level}</span>

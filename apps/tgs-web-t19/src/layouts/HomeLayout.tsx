@@ -13,7 +13,7 @@ import {
 
 const HomeLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.mainBackground};
   /* height: 100vh; */
 `;
 
