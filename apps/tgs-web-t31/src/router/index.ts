@@ -292,7 +292,7 @@ const routes: RouteType[] = [
   {
     path: "/affiliate",
     component: AffiliatePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   // {
   //   path: "/setting/language",
