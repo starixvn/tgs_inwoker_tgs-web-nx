@@ -8,9 +8,12 @@ import { PageContainer } from "@/components/styled-component/PageContainer";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const PromotionCardListContainer = styled.div`
+  overflow-y: auto;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 18px 20px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -37,14 +40,14 @@ const PromotionBanner = styled.div<{ $imageUrl: string }>`
 
 const PromotionPage = () => {
   const { promotionList, isEmpty } = usePromotionPage();
-  const { isMobileSize, isDesktopSize } = useRwd();
+  const { isDesktopSize } = useRwd();
 
   if (isEmpty) {
     return <EmptyPage />;
   }
   return (
     <PageContainer>
-      <PromotionBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/promotion/promotion-banner.png`} />
+      {isDesktopSize && <PromotionBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/promotion/promotion-banner.png`} />}
       <PromotionCardListContainer>
         {promotionList
           .sort((a, b) => a.order - b.order)
