@@ -24,7 +24,7 @@ const FlatStraightLine = styled.div`
 const DateSpliter = styled.div`
   font-size: 20px;
   font-weight: 400;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   text-align: center;
   padding: 12px;
 `;

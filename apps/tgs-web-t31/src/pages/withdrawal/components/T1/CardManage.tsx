@@ -85,6 +85,7 @@ const CardManage = ({
             />
           );
         })}
+        
 
         {!isDesktopSize && isShowAddCardButton && (
           <CardAddCard handleClick={onhandleAddCardClick} />

@@ -245,12 +245,12 @@ const routes: RouteType[] = [
   {
     path: "/message-center",
     component: MessageCenterPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/inbox",
     component: InboxPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   // {
   //   path: "/inbox/details/:id",
@@ -281,7 +281,7 @@ const routes: RouteType[] = [
   {
     path: "/report/:tab?",
     component: ReportPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
 
   // {
@@ -292,7 +292,7 @@ const routes: RouteType[] = [
   {
     path: "/affiliate",
     component: AffiliatePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   // {
   //   path: "/setting/language",
@@ -318,13 +318,13 @@ const routes: RouteType[] = [
   {
     path: "/support",
     component: ContactUsPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/appDownload",
     component: AppDownloadPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/joingame/:gameId/:gpCode",
@@ -360,7 +360,7 @@ if (!config.features.NewTransferUI) {
   routes.push({
     path: "/transfer",
     component: TransferPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   });
 }
 

@@ -102,7 +102,7 @@ const TransferCard = ({
             value={transferAmount || 0}
             onChange={handleChangeTransferAmount}
             sx={{
-              background: theme.blue10,
+              background: theme.white30,
               border: "4px",
             }}
           />

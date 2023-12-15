@@ -18,7 +18,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.yellow,
       },
     },
   },
@@ -40,7 +40,7 @@ const Group = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   gap: 8px;
-
+  color: ${({ theme }) => theme.text};
   ${media.md} {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -65,6 +65,7 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
     <AutoTransferContainer {...props}>
       {!isLargeDesktopSize && (
         <Button
+          style={{ background: theme.primaryGradient }}
           fullWidth
           onClick={() => {
             performWithdrawFromEveryBrand();
@@ -83,6 +84,7 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
       {isLargeDesktopSize && (
         <ButtonWrapper>
           <Button
+            style={{ background: theme.priBTNOutline }}
             onClick={() => {
               performWithdrawFromEveryBrand();
             }}

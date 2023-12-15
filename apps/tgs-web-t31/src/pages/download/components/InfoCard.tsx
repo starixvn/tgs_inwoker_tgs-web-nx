@@ -4,7 +4,7 @@ import { media } from "@/theme/breakpoints";
 
 const IntroCardContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.black60};
   border-radius: 10px;
   padding: 22px 38px;
   display: flex;

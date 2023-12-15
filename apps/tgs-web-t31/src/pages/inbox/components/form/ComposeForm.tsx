@@ -7,6 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
+import { theme } from "@/theme";
 
 const InboxComposeFormContainer = styled.div`
   padding-top: 16px;
@@ -16,7 +17,7 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: #23507d;
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 16px;
@@ -57,7 +58,12 @@ const ComposeForm = () => {
             placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("subject")}`.toLowerCase()}`}
             sx={{
               input: {
+                border: `1px solid ${theme.white30}`,
                 padding: "17px 0",
+                color: theme.text,
+                "&::placeholder": {
+                  color: theme.white50,
+                },
               },
             }}
           />
@@ -70,6 +76,15 @@ const ComposeForm = () => {
           value={content}
           onChange={updateMessage}
           placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("yourmessage")}`.toLowerCase()}`}
+          sx={{
+            border: `1px solid ${theme.white30}`,
+            input: {
+              color: theme.text,
+              "&::placeholder": {
+                color: theme.white50,
+              },
+            },
+          }}
         />
       </InputWrapper>
 

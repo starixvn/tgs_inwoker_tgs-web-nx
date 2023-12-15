@@ -6,6 +6,7 @@ import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   transferDetails: GameBalanceInfosViewModel[];
@@ -25,6 +26,7 @@ const TransferDetailTable = ({ transferDetails, totalCount }: Props) => {
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.dateTime")}</>
@@ -32,6 +34,7 @@ const TransferDetailTable = ({ transferDetails, totalCount }: Props) => {
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.transfer.table.from")}</>
@@ -39,6 +42,7 @@ const TransferDetailTable = ({ transferDetails, totalCount }: Props) => {
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.transfer.table.to")}</>
@@ -47,6 +51,7 @@ const TransferDetailTable = ({ transferDetails, totalCount }: Props) => {
               align={"right"}
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.amount")}</>

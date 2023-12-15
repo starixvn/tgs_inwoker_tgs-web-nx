@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import deleteIcon from "@/assets/t29/images/card/delete.svg";
+import deleteIcon from "@/assets/t31/images/card/delete.svg";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 
 const CardContainer = styled.div`
   width: 100%;
   padding: 16px;
-  background: ${({ theme }) => theme.blue20};
-  border: 1px solid ${({ theme }) => theme.blue40};
+  background: ${({ theme }) => theme.iconLable};
+  /* border: 1px solid ${({ theme }) => theme.blue40}; */
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -48,7 +48,7 @@ const ContentRow = styled.div`
 
 const EndingInLabel = styled.div`
   font-size: 1.125rem;
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.text};
 `;
 const EndingInValue = styled.div`
   font-size: 1.125rem;
