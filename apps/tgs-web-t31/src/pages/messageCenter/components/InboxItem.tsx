@@ -8,7 +8,7 @@ const InboxItemContainer = styled.div`
   width: 100%;
   padding: 10px 30px;
   cursor: pointer;
-  background: ${({ theme }) => theme.gray20};
+  background: ${({ theme }) => theme.iconLable};
 `;
 
 type CheckboxContainerProps = {
@@ -50,7 +50,7 @@ const MsgTitleSpan = styled.span`
 
 const MsgDate = styled.div`
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.gray40};
+  color: ${({ theme }) => theme.text};
 `;
 
 type CheckboxCircleProps = {

@@ -245,7 +245,7 @@ const routes: RouteType[] = [
   {
     path: "/message-center",
     component: MessageCenterPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/inbox",
