@@ -15,11 +15,14 @@ const PromotionDetailContainer = styled.div`
   align-items: flex-start;
   gap: 22px;
   flex-shrink: 0;
+  background-color: #1F1F1F;
 
   ${media.sm} {
-    max-width: 870px;
+    width: 1070px;
     margin: 0 auto;
-    padding: 22px 22px 100px 22px;
+    padding: 46px 46px 60px 46px;
+    border-radius: 10px;
+    border: 2px solid #B29224;
   }
 `;
 const BannerWrapper = styled.div`
@@ -34,26 +37,27 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 40px;
+  gap: 32px;
   align-self: stretch;
 `;
 const TextArea = styled.div`
   /* margin-bottom: 40px; */
 `;
 const Title = styled.h2`
-  color: ${({ theme }) => theme.blue50};
-  font-size: 1.125rem;
+  color: ${({ theme }) => theme.primary};
+  font-size: 36px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 53px;
 
   ${media.sm} {
     font-size: 2rem;
   }
 `;
 const Description = styled.p`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 400;
+
   ${media.sm} {
     font-size: 1.5rem;
   }
@@ -68,16 +72,17 @@ const TermsAndConditions = styled(Description)`
 
 const JoinPromotionButtonWrapper = styled.div`
   position: fixed;
-  bottom: 67px;
+  bottom: 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 22px 40px 22px;
   background: ${({ theme }) => theme.mainBackground};
+
   ${media.sm} {
     position: relative;
     background: transparent;
+    margin-top: 53px;
   }
 `;
 
@@ -122,12 +127,12 @@ const PromotionDetail = () => {
             />
           </TextArea>
         </ContentContainer>
+        {showJoinButton && (
+          <JoinPromotionButtonWrapper>
+            <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />
+          </JoinPromotionButtonWrapper>
+        )}
       </PromotionDetailContainer>
-      {showJoinButton && (
-        <JoinPromotionButtonWrapper>
-          <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />
-        </JoinPromotionButtonWrapper>
-      )}
     </div>
   );
 };

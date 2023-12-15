@@ -19,7 +19,8 @@ const PromotionCardContainer = styled.div<PromotionCardContainerProps>`
   cursor: pointer;
 
   ${media.sm} {
-    width: calc((100% - 40px) / 2);
+    width: calc((100% - 80px) / 2);
+    margin: 20px 0;
   }
 `;
 const BannerWrapper = styled.div`
