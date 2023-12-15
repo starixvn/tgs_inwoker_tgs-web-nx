@@ -8,25 +8,25 @@ import { theme } from "@/theme";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isLargeDesktopSize } = useRwd();
+  const { isLargeDesktopSize, isXlSize } = useRwd();
 
   const drawerWidth = useMemo(() => {
     return MOBILE_DRAWER_WIDTH;
-  }, []);
+  }, [isXlSize, isLargeDesktopSize, isMenuOpen]);
 
   return (
     <Drawer
       variant={isLargeDesktopSize ? "persistent" : "temporary"}
-      anchor={"left"}
+      anchor={"right"}
       open={isLargeDesktopSize ? false : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-          transition: "all ease-in-out 0.2s",
+          transition: "all ease-in-out 0.5s",
           border: "none",
-          background: theme.gray30,
+          background: theme.secondary,
         },
       }}
     >

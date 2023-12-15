@@ -41,15 +41,15 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-  | {
+    | {
       navType: "route";
       routePath: string;
     }
-  | {
+    | {
       navType: "action";
       callback: () => void;
     }
-);
+  );
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -115,39 +115,39 @@ export function useGetNavItemList() {
 
   const accountNavItemList: NavItem[] = useMemo(() => {
     return [
-      {
-        key: NavCardKey.PROFILE,
-        label: i18n.t("wap.main.my"),
-        iconUrl: profileImg,
-        iconSecondaryUrl: profileWhiteImg,
-        navType: "route",
-        routePath: "/profile",
-      },
-      {
-        key: NavCardKey.DEPOSIT,
-        label: i18n.t("common.deposit"),
-        iconUrl: depositImg,
-        iconSecondaryUrl: depositWhiteImg,
-        navType: "route",
-        routePath: "/deposit",
-      },
-      {
-        key: NavCardKey.WITHDRAW,
-        label: i18n.t("common.withdrawal"),
-        iconUrl: withdrawImg,
-        iconSecondaryUrl: withdrawWhiteImg,
-        navType: "route",
-        routePath: "/withdrawal",
-      },
-      {
-        key: NavCardKey.WAGERING,
-        //todo: 新增 Wagering t18 翻譯
-        label: "Wagering",
-        iconUrl: wageringImg,
-        iconSecondaryUrl: wageringWhiteImg,
-        navType: "route",
-        routePath: "/wagering",
-      },
+      // {
+      //   key: NavCardKey.PROFILE,
+      //   label: i18n.t("wap.main.my"),
+      //   iconUrl: profileImg,
+      //   iconSecondaryUrl: profileWhiteImg,
+      //   navType: "route",
+      //   routePath: "/profile",
+      // },
+      // {
+      //   key: NavCardKey.DEPOSIT,
+      //   label: i18n.t("common.deposit"),
+      //   iconUrl: depositImg,
+      //   iconSecondaryUrl: depositWhiteImg,
+      //   navType: "route",
+      //   routePath: "/deposit",
+      // },
+      // {
+      //   key: NavCardKey.WITHDRAW,
+      //   label: i18n.t("common.withdrawal"),
+      //   iconUrl: withdrawImg,
+      //   iconSecondaryUrl: withdrawWhiteImg,
+      //   navType: "route",
+      //   routePath: "/withdrawal",
+      // },
+      // {
+      //   key: NavCardKey.WAGERING,
+      //   //todo: 新增 Wagering t18 翻譯
+      //   label: "Wagering",
+      //   iconUrl: wageringImg,
+      //   iconSecondaryUrl: wageringWhiteImg,
+      //   navType: "route",
+      //   routePath: "/wagering",
+      // },
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),
