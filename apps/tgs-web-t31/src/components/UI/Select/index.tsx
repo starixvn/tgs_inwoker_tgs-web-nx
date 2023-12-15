@@ -6,10 +6,6 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   fontSize: "0.937rem",
   fontWeight: 400,
   border: `1px solid ${theme.palette.white30}`,
-  // background: "red",
-  '& .MuiList-root': {
-    backgroundColor: 'lightblue' // 设置菜单项的背景颜色
-  },
   "&:focus": {
     background: "none",
   },

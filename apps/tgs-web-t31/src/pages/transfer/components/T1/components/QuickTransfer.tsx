@@ -1,11 +1,12 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { SelectChangeEvent } from "@mui/material";
+import { Select, SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
-import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t33/images/transfer/arrow-right.png";
+// import { Select } from "@/components/UI/Select";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // 默认图标
+import ArrowRightImg from "@/assets/t31/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -36,6 +37,7 @@ const QuickTransferArrow = styled.div`
 `;
 
 const AmountWrapper = styled.div`
+  background: #12281e;
   padding: 17px 10px;
   display: flex;
 `;
@@ -89,8 +91,17 @@ const QuickTransfer = ({
           value={transferFrom}
           displayEmpty
           onChange={handleTransferFromChange}
+          sx={{
+            color: theme.text,
+            background: "#12281E",
+            ".MuiSvgIcon-root ": {
+              fill: "white !important",
+            },
+          }}
         >
-          <option style={{ background: theme.black }} value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
+          <option style={{ background: theme.black }} value={mainAccountId}>
+            {i18n.t("transfer.mainAccount")}
+          </option>
           {game.providerList
             .filter((provider) => provider.status === 0 && provider.transferwallet === true)
             .filter((provider) => {
@@ -118,7 +129,7 @@ const QuickTransfer = ({
       </GrayInputWrapper>
 
       <QuickTransferArrow>
-        <img src={ArrowRightPNG} alt="arrow-right" />
+        <img src={ArrowRightImg} alt="arrow-right" />
       </QuickTransferArrow>
 
       <GrayInputWrapper>
@@ -129,8 +140,17 @@ const QuickTransfer = ({
           value={transferTo}
           displayEmpty
           onChange={handleTransferToChange}
+          sx={{
+            color: theme.text,
+            background: "#12281E",
+            ".MuiSvgIcon-root ": {
+              fill: "white !important",
+            },
+          }}
         >
-          <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
+          <option style={{ background: theme.black }} value={mainAccountId}>
+            {i18n.t("transfer.mainAccount")}
+          </option>
           {game.providerList
             .filter((item) => item.status === 0 && item.transferwallet === true)
             .filter((e) => {
@@ -150,34 +170,32 @@ const QuickTransfer = ({
               }
             })
             .map((item, index) => (
-              <option value={item.gpcode} key={index}>
+              <option style={{ background: theme.black }} value={item.gpcode} key={index}>
                 {item.name}
               </option>
             ))}
         </Select>
       </GrayInputWrapper>
 
-      <GrayInputWrapper>
-        <AmountWrapper>
-          <AmountText>{i18n.t("common.amount")}</AmountText>
-          <div>
-            <CurrencyTextFieldReplacement
-              value={transferAmount}
-              placeholder="0"
-              onChange={handleTransferAmountChange}
-              autoComplete="off"
-              type={"number"}
-            />
-          </div>
-        </AmountWrapper>
-      </GrayInputWrapper>
+      <AmountWrapper>
+        <AmountText>{i18n.t("common.amount")}</AmountText>
+        <div>
+          <CurrencyTextFieldReplacement
+            value={transferAmount}
+            placeholder="0"
+            onChange={handleTransferAmountChange}
+            autoComplete="off"
+            type={"number"}
+          />
+        </div>
+      </AmountWrapper>
 
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
         style={{
-          color: theme.white,
-          background: theme.primary,
+          color: theme.text,
+          background: theme.primaryGradient,
           height: "50px",
           minWidth: "212px",
           padding: "13px",

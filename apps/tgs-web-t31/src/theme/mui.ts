@@ -109,7 +109,7 @@ const muiTheme = createTheme({
       styleOverrides: {
         actions: {
           "& .MuiButtonBase-root": {
-            color: "#707070",
+            color: theme.text,
             "&:hover": {
               // backgroundColor: "#your_hover_color_here", // 设置鼠标悬停时的背景颜色
             },
