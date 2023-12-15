@@ -37,20 +37,21 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+  gap: 18px;
   align-self: stretch;
+  padding-bottom: 6px;
 `;
 const TextArea = styled.div`
   /* margin-bottom: 40px; */
 `;
 const Title = styled.h2`
   color: ${({ theme }) => theme.primary};
-  font-size: 36px;
+  font-size: 1.125rem;
   font-weight: 700;
-  margin-bottom: 53px;
-
+ 
   ${media.sm} {
     font-size: 2rem;
+    margin-bottom: 53px;
   }
 `;
 const Description = styled.p`
@@ -60,11 +61,10 @@ const Description = styled.p`
 
   ${media.sm} {
     font-size: 1.5rem;
-  }
+  } margin-bottom: 53px;
 `;
 
 const TermsAndConditions = styled(Description)`
-  padding-left: 16px;
   ${media.sm} {
     padding-left: 30px;
   }
@@ -72,17 +72,17 @@ const TermsAndConditions = styled(Description)`
 
 const JoinPromotionButtonWrapper = styled.div`
   position: fixed;
-  bottom: 0;
+  bottom: 68px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     position: relative;
     background: transparent;
-    margin-top: 53px;
   }
 `;
 
@@ -127,12 +127,12 @@ const PromotionDetail = () => {
             />
           </TextArea>
         </ContentContainer>
-        {showJoinButton && (
-          <JoinPromotionButtonWrapper>
-            <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />
-          </JoinPromotionButtonWrapper>
-        )}
       </PromotionDetailContainer>
+      {showJoinButton && (
+        <JoinPromotionButtonWrapper>
+          <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />
+        </JoinPromotionButtonWrapper>
+      )}
     </div>
   );
 };

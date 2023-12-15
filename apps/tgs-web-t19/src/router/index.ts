@@ -27,6 +27,7 @@ import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
+import HomeDialogLayout from "@/layouts/HomeDialogLayout";
 import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
 import Faq from "@/pages/Faq";
@@ -231,13 +232,13 @@ const routes: RouteType[] = [
   {
     path: "/promotion-list",
     component: PromotionPage,
-    layout: HomeLayout,
+    layout: HomeDialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
-    layout: HomeLayout,
+    layout: HomeDialogLayout,
     isAnonymousAllowed: true,
   },
   //

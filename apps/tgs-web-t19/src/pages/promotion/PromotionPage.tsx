@@ -12,7 +12,7 @@ const PromotionCardListContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 18px;
   padding: 18px 20px;
 
   ${media.sm} {
@@ -26,8 +26,7 @@ const PromotionCardListContainer = styled.div`
 
 const PromotionBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 137px;
-  border-radius: 4px;
+  padding-top: 27%;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,6 +35,12 @@ const PromotionBanner = styled.div<{ $imageUrl: string }>`
   ${media.sm} {
     height: 520px;
   }
+`;
+
+const TitleText = styled.h1`
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.white};
 `;
 
 const PromotionPage = () => {

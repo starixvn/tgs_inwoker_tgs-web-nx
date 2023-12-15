@@ -96,7 +96,7 @@ const MobilePopupPromotion = () => {
           }}
         />
 
-        {/* <ButtonWrapper>
+        <ButtonWrapper>
           <Button
             onClick={handleCloseDialog}
             style={{
@@ -106,7 +106,7 @@ const MobilePopupPromotion = () => {
           >
             <>{i18n.t("common.close")}</>
           </Button>
-        </ButtonWrapper> */}
+        </ButtonWrapper>
       </ChildContainer>
     </StyledDialog>
   );

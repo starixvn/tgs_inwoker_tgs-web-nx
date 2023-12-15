@@ -8,12 +8,12 @@ import Icon from "@/components/project/Icon";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import moreIcon from "@/assets/t19/images/home/moreIcon.png";
 
-type MoreBtnProps = {
+type MoreOnclickProps = {
   onClick: (event: Event) => void;
 };
+
 const PromotionCardContainer = styled.div`
   width: 100%;
-  gap: 8px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -22,15 +22,19 @@ const PromotionCardContainer = styled.div`
   background: ${({ theme }) => theme.black};
   flex-shrink: 0;
 
+  &:hover {
+      transform: scale(1.02);
+    }
+
   ${media.sm} {
     width: calc((100% - 80px) / 2);
     margin: 20px 0;
     background: #332915;
   }
 `;
-const BannerWrapper = styled.div`
-  pointer-events: none;
+const BannerWrapper = styled.div<MoreOnclickProps>`
   width: 100%;
+  cursor: pointer;
 `;
 
 const PromotionTextContainer = styled.div`
@@ -58,7 +62,7 @@ const ClickMoreContainer = styled.div`
   }
 `;
 
-const MoreBtn = styled.div<MoreBtnProps>`
+const MoreBtn = styled.div<MoreOnclickProps>`
   padding: 10px;
   height: 30px;
   color: ${(props) => props.theme.black};
@@ -92,7 +96,7 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
 
   return (
     <PromotionCardContainer>
-      <BannerWrapper>
+      <BannerWrapper onClick={handleEnterDetail}>
         <BannerImage promotionData={promotionData} />
       </BannerWrapper>
 
