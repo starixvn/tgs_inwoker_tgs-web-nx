@@ -19,7 +19,8 @@ export const Paper = styled.div`
   }
 `;
 export const IntroductionContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.black60};
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.text};

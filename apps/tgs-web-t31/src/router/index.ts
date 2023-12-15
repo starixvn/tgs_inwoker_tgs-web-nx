@@ -324,7 +324,7 @@ const routes: RouteType[] = [
   {
     path: "/appDownload",
     component: AppDownloadPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/joingame/:gameId/:gpCode",
