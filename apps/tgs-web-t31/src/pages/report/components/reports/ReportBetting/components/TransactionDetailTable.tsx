@@ -50,6 +50,7 @@ const TransactionDetailTable = ({
           <TableRow>
             <TableCell
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -57,6 +58,7 @@ const TransactionDetailTable = ({
             </TableCell>
             <TableCell
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -64,6 +66,7 @@ const TransactionDetailTable = ({
             </TableCell>
             <TableCell
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -72,6 +75,7 @@ const TransactionDetailTable = ({
             <TableCell
               align={"right"}
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -80,6 +84,7 @@ const TransactionDetailTable = ({
             <TableCell
               align={"right"}
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -88,6 +93,7 @@ const TransactionDetailTable = ({
             <TableCell
               align={"right"}
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -155,7 +161,7 @@ const TransactionDetailTable = ({
         onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.text,
           "& button": {},
         }}
       />

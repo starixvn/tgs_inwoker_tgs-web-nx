@@ -55,6 +55,7 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
           sx={{
             "& fieldset": { border: "none" },
             "& input": {
+              border: `1px solid ${theme.white30}`,
               textAlign: "center",
               fontSize: "0.937rem",
               padding: "14px 14px",

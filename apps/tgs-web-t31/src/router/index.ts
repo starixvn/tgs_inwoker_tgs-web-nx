@@ -281,7 +281,7 @@ const routes: RouteType[] = [
   {
     path: "/report/:tab?",
     component: ReportPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
 
   // {
