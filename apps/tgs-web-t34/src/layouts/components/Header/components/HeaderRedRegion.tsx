@@ -38,7 +38,7 @@ const HeaderRedRegion = () => {
   const { handleChangeGameType } = useHomeGameContext();
 
   const handleClickLink = (navItem: NavItem) => {
-    if (!navItem.key === NavCardKey.HOME) return;
+    if (!(navItem.key === NavCardKey.HOME)) return;
 
     handleChangeGameType(GameTypeEnum.NONE);
   };

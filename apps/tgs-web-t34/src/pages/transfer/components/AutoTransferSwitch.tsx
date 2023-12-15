@@ -8,7 +8,6 @@ import Loading from "@/components/UI/Loading";
 import { Button } from "@/components/UI/Button";
 import { Switch } from "@/components/UI/Switch";
 import { media } from "@/theme/breakpoints";
-import { theme } from "@/theme";
 
 const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
   "& .MuiSwitch-switchBase": {
@@ -18,7 +17,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.yellow,
       },
     },
   },

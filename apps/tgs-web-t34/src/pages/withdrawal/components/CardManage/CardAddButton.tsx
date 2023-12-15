@@ -14,12 +14,12 @@ const CardAddButtonContainer = styled.div`
 `;
 
 type Props = {
-  handleClick: () => void;
+  handleClick?: () => void;
 };
 
 const CardAddButton = ({ handleClick }: Props) => {
   return (
-    <CardAddButtonContainer onClick={handleClick}>
+    <CardAddButtonContainer onClick={() => handleClick?.()}>
       {i18n.t("card.msgAddCard")}
     </CardAddButtonContainer>
   );

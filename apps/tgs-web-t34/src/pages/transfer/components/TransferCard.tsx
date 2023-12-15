@@ -4,6 +4,7 @@ import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/materia
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
 import { Provider } from "@tgs-web-nx/types";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/WalletSelect";
 import { theme } from "@/theme";
@@ -61,47 +62,7 @@ const TransferCard = ({
   mainAccountId,
   children,
 }: Props) => {
-  const { wallet, getGameBalance } = useWalletStore();
-  const { game } = useGameStore();
-  const [providers, setProviders] = useState<Provider[]>([]);
-
-  const getAllGameBalance = useCallback(async () => {
-    if (!game.providerList.length) return;
-
-    const newWalletBalance: Provider[] = [];
-    const promiseList = game.providerList
-      .filter((provider) => provider.status === 0 && provider.transferwallet === true)
-      .filter((provider) => provider.gpcode !== "NTTF" && provider.gpcode !== "RTTF")
-      .map((provider) => {
-        return getGameBalance(provider.gpcode).then((response) => {
-          if (!response) {
-            console.log(provider.gpcode);
-          } else {
-            if (response.IsSuccess) {
-              newWalletBalance.push({
-                abbreviation: provider.abbreviation,
-                balance: response.data.balance,
-              });
-            }
-          }
-        });
-      });
-
-    await Promise.all(promiseList);
-    setProviders(newWalletBalance);
-  }, [JSON.stringify(game.providerList)]);
-
-  useEffect(() => {
-    if (!game.providerList.length) return;
-
-    getAllGameBalance().then();
-  }, [game.providerList.length]);
-
-  useEffect(() => {
-    if (!wallet.transferResult?.IsSuccess) return;
-
-    getAllGameBalance().then();
-  }, [wallet.transferResult]);
+  const { mainWalletBalance, providerList } = useUserWalletInfoContext();
 
   return (
     <TransferCardContainer>
@@ -117,7 +78,7 @@ const TransferCard = ({
           <WalletSelect
             value={fromWallet}
             handleChange={handleChangeFromWallet}
-            providerList={providers}
+            providerList={providerList}
             mainAccountId={mainAccountId}
           />
         </ColContainer>
@@ -129,7 +90,7 @@ const TransferCard = ({
           <WalletSelect
             value={toWallet}
             handleChange={handleChangeToWallet}
-            providerList={providers}
+            providerList={providerList}
             mainAccountId={mainAccountId}
           />
         </ColContainer>
@@ -144,13 +105,10 @@ const TransferCard = ({
             value={transferAmount || 0}
             onChange={handleChangeTransferAmount}
             sx={{
-              borderRadius: "6px",
-              background: theme.maskWhite20,
+              background: "#FFFFFF33",
+              border: "4px",
               "& input": {
                 color: theme.white,
-              },
-              "& input::placeholder": {
-                color: theme.grey03,
               },
             }}
           />
