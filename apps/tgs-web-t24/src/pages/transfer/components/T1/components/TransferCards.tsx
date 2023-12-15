@@ -4,7 +4,6 @@ import DynamicFont from "react-dynamic-font";
 import { styled as muiStyled } from "@mui/material/styles";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
-import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { Button } from "@/components/UI/Button";
 
@@ -12,19 +11,18 @@ const TransferContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 17px;
   justify-content: center;
 `;
 
 const GameTransferWallet = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 200px;
   border-radius: 4px;
-  border: solid 1px ${({ theme }) => "#dddedf"};
-  background: ${({ theme }) => theme.blue20};
-  padding: 10px 10px 10px 3px;
-  gap: 10px;
+  border: solid 1px ${({ theme }) => theme.gray70};
+  background: ${({ theme }) => theme.gray90};
+  padding: 10px 20px;
+  gap: 20px;
 `;
 const GameTransferLeftWrap = styled.div`
   max-width: 70px;
@@ -33,6 +31,7 @@ const GameTransferLeftWrap = styled.div`
 const GameTransferRighttWrap = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Logo = styled.img`
@@ -46,7 +45,7 @@ const GameName = styled.div`
   line-height: 13px;
   letter-spacing: 0em;
   text-align: center;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
   margin-top: 7px;
 `;
 const GameWalletAmount = styled.div`
@@ -54,10 +53,8 @@ const GameWalletAmount = styled.div`
   font-weight: 700;
   line-height: 18px;
   letter-spacing: 0em;
-  text-align: left;
-  color: ${({ theme }) => {
-    return theme.darkMode ? "#fff" : "#000";
-  }};
+  color: ${({ theme }) => theme.text};
+
   text-align: center;
   display: inline-block;
   margin-top: 3px;
@@ -68,11 +65,8 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   fontWeight: "400",
   lineHeight: "14px",
   textAlign: "center",
-  padding: "4px",
-  background: theme.palette.blue30,
-  "&:hover": {
-    background: theme.palette.primary.main,
-  },
+  padding: "4px 10px",
+  background: theme.palette.primary.main,
 }));
 
 type Props = {

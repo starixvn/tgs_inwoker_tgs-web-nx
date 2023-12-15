@@ -18,7 +18,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.secondary.main,
       },
     },
   },
@@ -85,7 +85,6 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
         <ButtonWrapper>
           <Button
             style={{
-              background: theme.secondary,
               height: "50px",
               minWidth: "212px",
               padding: "13px",

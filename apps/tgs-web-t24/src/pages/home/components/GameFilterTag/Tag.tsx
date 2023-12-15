@@ -35,8 +35,7 @@ const Wrapper = styled.div<{
 const Text = styled.div<{
   $isActive: boolean;
 }>`
- color: ${({ $isActive, theme }) =>
-    $isActive ? theme.white : theme.tertiary};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.tertiary)};
   font-size: 0.875rem;
   font-weight: 700;
 `;
@@ -45,8 +44,9 @@ type Props = {
   text: string;
   isActive: boolean;
   isShowIcon: boolean;
-  icon: React.ReactNode | null;
+  icon?: React.ReactNode | null;
   onClick: () => void;
+  children: React.ReactNode;
 };
 
 const Tag = ({ text, isActive, isShowIcon, icon, onClick }: Props) => {
@@ -59,10 +59,13 @@ const Tag = ({ text, isActive, isShowIcon, icon, onClick }: Props) => {
       $hasBackground={!isShowIcon && isActive}
       onClick={onClick}
     >
-      {isMobileSize && isShowIcon && icon ? React.cloneElement(icon) : <Text $isActive={isActive}>{text}</Text>}
+      {isMobileSize && isShowIcon && icon ? (
+        React.cloneElement(<>{icon}</>)
+      ) : (
+        <Text $isActive={isActive}>{text}</Text>
+      )}
     </Wrapper>
   );
 };
 
 export default Tag;
-
