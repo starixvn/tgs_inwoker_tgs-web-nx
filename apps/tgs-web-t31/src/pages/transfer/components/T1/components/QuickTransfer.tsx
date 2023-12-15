@@ -90,7 +90,7 @@ const QuickTransfer = ({
           displayEmpty
           onChange={handleTransferFromChange}
         >
-          <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
+          <option style={{ background: theme.black }} value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
           {game.providerList
             .filter((provider) => provider.status === 0 && provider.transferwallet === true)
             .filter((provider) => {
@@ -110,7 +110,7 @@ const QuickTransfer = ({
               }
             })
             .map((item, index) => (
-              <option value={item.gpcode} key={index}>
+              <option style={{ background: theme.black }} value={item.gpcode} key={index}>
                 {item.name}
               </option>
             ))}
