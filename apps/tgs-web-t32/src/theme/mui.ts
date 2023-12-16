@@ -11,21 +11,17 @@ declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
     black: string;
-    mainBackground: string;
     red: string;
-    green: string;
-    gradient: string;
-    blue10: string;
-    blue20: string;
-    blue30: string;
-    blue40: string;
-    blue50: string;
-    blue60: string;
-    gray10: string;
-    gray20: string;
-    gray30: string;
-    gray40: string;
-    gray50: string;
+    yellow: string;
+    mainBackground: string;
+    btnPri: string;
+    btnSec: string;
+    maskPopup: string;
+    maskBlack50: string;
+    maskBlack20: string;
+    maskAccent: string;
+    maskWhite50: string;
+    maskWhite20: string;
   }
 }
 
@@ -47,29 +43,25 @@ const muiTheme = createTheme({
       main: theme.secondary,
     },
     action: {
-      disabledBackground: theme.gray30,
+      disabledBackground: theme.maskBlack20,
       disabled: theme.white,
     },
     white: theme.white,
     black: theme.black,
     mainBackground: theme.mainBackground,
     red: theme.red,
-    green: theme.green,
-    gradient: theme.gradient,
-    blue10: theme.blue10,
-    blue20: theme.blue20,
-    blue30: theme.blue30,
-    blue40: theme.blue40,
-    blue50: theme.blue50,
-    blue60: theme.blue60,
-    gray10: theme.gray10,
-    gray20: theme.gray20,
-    gray30: theme.gray30,
-    gray40: theme.gray40,
-    gray50: theme.gray50,
+    yellow: theme.yellow,
+    btnPri: theme.btnPri,
+    btnSec: theme.btnSec,
+    maskPopup: theme.maskPopup,
+    maskBlack50: theme.maskBlack50,
+    maskBlack20: theme.maskBlack20,
+    maskAccent: theme.maskAccent,
+    maskWhite50: theme.maskWhite50,
+    maskWhite20: theme.maskWhite20,
     text: {
       primary: theme.text,
-      secondary: theme.gray20,
+      secondary: theme.maskBlack20,
     },
   },
   typography: {
