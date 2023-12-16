@@ -10,7 +10,7 @@ import {
 } from "@tgs-web-nx/core";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAuthDialog } from "../../useAuthDialog";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "../../game/useHomeGameContext";
 
 export type LoginState = {
   data: any | null;
@@ -102,14 +102,23 @@ export function useLogin() {
 
   const fetchData = async () => {
     const promiseList = [
-      walletStore.getBalanceList(),
       inboxStore.getMessages(i18n.language, 1, 99),
-      walletStore.getBankCardList(),
       generalStore.getPromotion(),
       generalStore.getPromotionRouletteCount(),
-      walletStore.getWithdrawalChannel(),
     ];
     await Promise.all(promiseList);
+
+    /*
+     * NOTE: requests below took so much time that would cause login progress too slow
+     * so I pull them out from Promise.all()
+     * however, if user enter correspond page(ex: transfer page)
+     * the response will cause page or some component rerender due to store.state changed
+     * it's a dilemma for "login fast" vs "stability in certain page"
+     * */
+
+    walletStore.getWithdrawalChannel();
+    walletStore.getBankCardList();
+    walletStore.getBalanceList();
   };
 
   const handleLocalStorage = (needToRemember: boolean, username: string) => {
