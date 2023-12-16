@@ -29,11 +29,10 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <RoundHeaderButton
         onClick={goToLogin}
         style={{
-          color: theme.white,
           background: theme.primary,
+          border: `1px solid ${theme.white}`,
         }}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.login")}
       </RoundHeaderButton>
 
@@ -42,10 +41,10 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         onClick={goToRegister}
         style={{
           color: theme.white,
-          background: theme.secondary,
+          background: theme.btnPri,
+          border: `1px solid ${theme.btnPri}`,
         }}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.register")}
       </RoundHeaderButton>
       {isDesktopSize && <HeaderLanguageSwitch />}

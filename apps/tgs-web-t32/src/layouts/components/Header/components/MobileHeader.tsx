@@ -9,12 +9,13 @@ import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTy
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
+import MenuButton from "@/layouts/components/Header/components/MenuButton";
 
 const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.primary};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -52,6 +53,7 @@ const MobileHeader = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
+        <MenuButton />
         <BrandLogo style={{ height: "27px", cursor: "pointer" }} onClick={() => goToHomePage()} />
 
         <HeaderContentContainer>

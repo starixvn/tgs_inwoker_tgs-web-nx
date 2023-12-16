@@ -2,26 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useHeader } from "@tgs-web-nx/core/features";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const SideMenuHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.gray30};
+  background: ${({ theme }) => theme.primary};
   position: relative;
   flex-shrink: 0;
   width: 100%;
-  height: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CloseIconContainer = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  height: 44px;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  gap: 12px;
 `;
 
 const SideMenuHeader = () => {
@@ -29,15 +20,16 @@ const SideMenuHeader = () => {
 
   return (
     <SideMenuHeaderContainer>
-      <CloseIconContainer onClick={() => handleToggleMenu(false)}>
-        <CloseIcon
-          style={{
-            color: "white",
-            width: "20px",
-            height: "20px",
-          }}
-        />
-      </CloseIconContainer>
+      <CloseIcon
+        onClick={() => handleToggleMenu(false)}
+        style={{
+          color: "white",
+          width: "20px",
+          height: "20px",
+        }}
+      />
+
+      <BrandLogo style={{ margin: 0 }} />
     </SideMenuHeaderContainer>
   );
 };

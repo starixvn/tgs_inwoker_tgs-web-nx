@@ -26,7 +26,7 @@ const MenuDrawer = () => {
           width: drawerWidth,
           transition: "all ease-in-out 0.2s",
           border: "none",
-          background: theme.gray30,
+          background: theme.primary,
         },
       }}
     >

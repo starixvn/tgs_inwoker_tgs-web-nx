@@ -1,103 +1,72 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
-import { Common } from "@tgs-web-nx/utils";
-import { useAuthContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useWalletStore } from "@tgs-web-nx/core";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import Icon from "@/components/project/Icon";
-import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
 import iconAccount from "@/assets/t32/images/header/icon-account.svg";
-import iconInbox from "@/assets/t32/images/header/icon-inbox.svg";
-import iconInboxBlue from "@/assets/t32/images/header/icon-inbox-blue.svg";
-import iconLogout from "@/assets/t32/images/header/icon-logout.svg";
-import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { media } from "@/theme/breakpoints";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
-const ButtonContainer = styled.div`
+const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
 `;
 
-const UsernameContainer = styled.div`
+const ButtonContainer = styled.div`
   cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.text};
-
-  ${media.sm} {
-    color: ${({ theme }) => theme.white};
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
 `;
 
-const InboxIconContainer = styled.div`
-  cursor: pointer;
+const BalanceValue = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-size: 0.75rem;
+  background: ${({ theme }) => theme.maskBlack20};
+  padding: 3px;
+  min-width: 100px;
+  text-align: center;
+  border-radius: 4px;
 `;
 
-const Balance = styled.div`
-  color: ${({ theme }) => theme.black};
-  font-size: 0.875rem;
-  font-weight: 400;
+const BalanceLabel = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-size: 0.75rem;
+`;
 
-  ${media.sm} {
-    color: ${({ theme }) => theme.white};
-  }
+const AccountLabel = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-size: 0.75rem;
 `;
 
 const AccountHeaderContent = () => {
   const history = useHistory();
-  const { account } = useAccountStore();
   const { wallet } = useWalletStore();
-  const { handleLogout } = useAuthContext();
-  const { isDesktopSize } = useRwd();
-  const goToHomePage = useGoToHomePage();
 
   const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
-  const username = account.info.member_username;
 
   const handleGoToProfile = () => {
     history.push("/profile");
   };
 
-  const handleGoToInbox = () => {
-    history.push("/inbox");
-  };
-  const handleClickLogout = async () => {
-    await handleLogout();
-    goToHomePage();
+  const handleGoToDeposit = () => {
+    history.push("/deposit");
   };
 
   return (
-    <ButtonContainer>
-      <UsernameContainer onClick={() => history.push("/account")}>{username}</UsernameContainer>
-      <Balance>${currentBalance}</Balance>
+    <ContentWrapper>
+      <ButtonContainer onClick={handleGoToDeposit}>
+        <BalanceValue>${currentBalance}</BalanceValue>
 
-      {isDesktopSize && <TransferButtonGroup />}
+        <BalanceLabel>{i18n.t("wap.main.home.profile.mainAccount")}</BalanceLabel>
+      </ButtonContainer>
 
-      {isDesktopSize && <HeaderLanguageSwitch />}
-
-      {isDesktopSize ? (
-        <>
-          <InboxIconContainer onClick={handleGoToProfile}>
-            <Icon iconUrl={iconAccount} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-
-          <InboxIconContainer onClick={handleGoToInbox}>
-            <Icon iconUrl={iconInbox} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-
-          <InboxIconContainer onClick={handleClickLogout}>
-            <Icon iconUrl={iconLogout} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-        </>
-      ) : (
-        <InboxIconContainer onClick={handleGoToInbox}>
-          <Icon iconUrl={iconInboxBlue} width={"24px"} height={"24px"} />
-        </InboxIconContainer>
-      )}
-    </ButtonContainer>
+      <ButtonContainer onClick={handleGoToProfile}>
+        <Icon iconUrl={iconAccount} width={"20px"} height={"20px"} />
+        <AccountLabel>{i18n.t("common.member")}</AccountLabel>
+      </ButtonContainer>
+    </ContentWrapper>
   );
 };
 

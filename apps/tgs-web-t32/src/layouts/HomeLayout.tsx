@@ -10,6 +10,7 @@ import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
+import MenuDrawer from "@/layouts/components/MenuDrawer";
 
 const HomeLayoutContainer = styled.div`
   position: relative;
@@ -56,6 +57,8 @@ const HomeLayout = ({ children }: Props) => {
       <Header />
 
       <DashboardContainer>
+        <MenuDrawer />
+
         <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
