@@ -10,7 +10,7 @@ const StyledTable = styled(Table)`
 const StyledTableHead = styled(TableHead)`
   background: ${({ theme }) => theme.grey00};
   & * {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.white} !important;
   }
 `;
 

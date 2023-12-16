@@ -19,4 +19,5 @@ export const theme = {
   maskWhite50: "#FFFFFF80",
   maskWhite20: "#FFFFFF33",
   mainBackground: "#ffffff",
+  disabled: "#00000033",
 };

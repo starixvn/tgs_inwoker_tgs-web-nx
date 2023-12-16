@@ -14,7 +14,7 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
-    color: "black",
+    color: theme.palette.action.disabled,
   },
 
   "&:hover": {
