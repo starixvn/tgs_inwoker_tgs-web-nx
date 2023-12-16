@@ -39,7 +39,7 @@ const Banner = styled.div`
   height: 32.51%;
   padding: 20px 20px 0px 20px;
   border-radius: 20px 20px 0px 0px;
-  background:  rgba(0, 0, 0, 0.83);
+  background: rgba(0, 0, 0, 0.83);
 
   ${media.sm} {
     display: none;
@@ -65,10 +65,10 @@ const Content = styled.div`
   width: 100%;
   top: 32.51%;
   margin-top: 19px;
-  
+
   ${media.sm} {
     position: relative;
-    top:0;
+    top: 0;
     margin-top: 0px;
   }
 `;
@@ -85,13 +85,20 @@ const WinnerCard = ({ leaderboard }: Props) => {
       <Banner>
         <img src={winnerBanner} alt="latest winner" />
         <Title>
-          <Text color={theme.white}>LATEST</Text>
-          <Text color={theme.secondary}>WINNER</Text>
+          <Text color={theme.text}>LATEST</Text>
+          <Text color={theme.text}>WINNER</Text>
         </Title>
       </Banner>
 
       <Content>
-        <FlipMove style={{ width: "100%", display: "flex", gap: isMobileSize ? "19px" : "28px", flexDirection: "column" }}>
+        <FlipMove
+          style={{
+            width: "100%",
+            display: "flex",
+            gap: isMobileSize ? "19px" : "28px",
+            flexDirection: "column",
+          }}
+        >
           {leaderboard.map((rankItem) => {
             return <WinnerRankRow key={rankItem.key} rankItem={rankItem} />;
           })}
