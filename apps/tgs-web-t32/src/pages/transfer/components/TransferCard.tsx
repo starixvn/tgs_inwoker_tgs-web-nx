@@ -7,10 +7,10 @@ import WalletSelect from "@/pages/transfer/components/WalletSelect";
 import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.blue20};
-  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   padding: 12px 15px;
-  border-radius: 10px;
+  border-radius: 6px;
 
   & > div {
     font-size: 0.875rem !important;
@@ -102,8 +102,11 @@ const TransferCard = ({
             value={transferAmount || 0}
             onChange={handleChangeTransferAmount}
             sx={{
-              background: theme.blue10,
-              border: "4px",
+              background: theme.maskBlack20,
+              border: "6px",
+              "& input": {
+                color: theme.white,
+              },
             }}
           />
         </ColContainer>
