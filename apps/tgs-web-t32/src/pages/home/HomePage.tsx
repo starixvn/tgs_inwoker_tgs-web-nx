@@ -107,7 +107,6 @@ const MarqueesBackground = styled.div`
 `;
 
 const HomePage = () => {
-  const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const {
@@ -116,11 +115,7 @@ const HomePage = () => {
   const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
   const hasData = marquees && marquees.length > 0;
 
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
-    useHomeGameContext();
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
-  const hasNavData = !!navPopupCategoryList.length;
-  const history = useHistory();
+  const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
 
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
@@ -149,7 +144,6 @@ const HomePage = () => {
   }, [urlGameType]);
   return (
     <MainWrapper>
-      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
         <BannerWrapper>

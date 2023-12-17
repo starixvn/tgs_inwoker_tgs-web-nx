@@ -26,6 +26,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
 
   return (
     <ButtonContainer>
+      {isDesktopSize && <HeaderLanguageSwitch />}
       <RoundHeaderButton
         onClick={goToLogin}
         style={{
@@ -47,7 +48,6 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       >
         {i18n.t("common.register")}
       </RoundHeaderButton>
-      {isDesktopSize && <HeaderLanguageSwitch />}
     </ButtonContainer>
   );
 };

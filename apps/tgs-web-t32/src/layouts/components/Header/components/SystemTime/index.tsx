@@ -4,11 +4,9 @@ import moment from "moment";
 
 const Wrapper = styled.div`
   color: ${({ theme }) => theme.white};
-  font-family: Gill Sans MT;
-  font-size: 15px;
+  font-size: 0.812rem;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
   white-space: nowrap;
   flex-shrink: 0;
 `;

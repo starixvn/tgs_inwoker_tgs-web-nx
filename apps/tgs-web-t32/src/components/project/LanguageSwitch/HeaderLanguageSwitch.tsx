@@ -19,10 +19,10 @@ const StyledSelect = styled(MuiSelect)`
   font-size: 0.812rem !important;
 
   .MuiOutlinedInput-input {
-    padding: 0 12px !important;
-    border-radius: 0;
-    border-left: 1px solid ${({ theme }) => theme.mainBackground};
-    border-right: 1px solid ${({ theme }) => theme.mainBackground};
+    padding: 5px 12px !important;
+    border-radius: 3px;
+    border: 1px solid ${({ theme }) => theme.white};
+    background: ${({ theme }) => theme.primary};
   }
 
   & .MuiSelect-select {
@@ -117,9 +117,6 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
-              <FlagContainer>
-                <img src={imageMap[culturecode] || ""} alt={culturecode} />
-              </FlagContainer>
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
           );

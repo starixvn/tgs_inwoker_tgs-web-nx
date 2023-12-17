@@ -12,7 +12,10 @@ export const theme = {
   maskPopup: "#00000099",
   maskBlack50: "#00000080",
   maskBlack20: "#00000033",
+  maskBlack8: "#3097C029",
   maskAccent: "#0496CF29",
   maskWhite50: "#FFFFFF80",
   maskWhite20: "#FFFFFF33",
+  footerBGC: "#219ACA",
+  supplierMask: "linear-gradient(180deg, rgba(0, 0, 0, 0) 53.12%, #000000 100%)",
 };

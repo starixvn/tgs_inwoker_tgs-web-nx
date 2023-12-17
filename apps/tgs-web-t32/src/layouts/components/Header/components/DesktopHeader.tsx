@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import AccountHeaderContent from "./AccountHeaderContent";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import {
   DESKTOP_HEADER_HEIGHT,
@@ -14,10 +13,10 @@ import {
 } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
-import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
 import BrandLogo from "@/components/project/BrandLogo";
-import { theme } from "@/theme";
+import DesktopAccountHeaderContent from "@/layouts/components/Header/components/DesktopAccountHeaderContent";
+import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -51,39 +50,41 @@ const ContentGroup = styled.div`
   align-items: center;
 `;
 
-const BlueHeaderRowContainer = styled.div`
-  background: #3158ff;
+const TopHeaderRowContainer = styled.div`
+  background: ${({ theme }) => theme.footerBGC};
   background-size: cover;
-  height: 40px;
+  height: 48px;
 `;
 
-const WhiteHeaderRowContainer = styled.div`
+const BottomHeaderRowContainer = styled.div`
   margin: auto;
-  height: 65px;
+  height: 69px;
+  background: ${({ theme }) => theme.primary};
 `;
 
 const DesktopHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isLargeDesktopSize, isDesktopSize } = useRwd();
-  const { handleChangeGameType } = useHomeGameContext();
-
+  const { handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
+  const hasNavData = !!navPopupCategoryList.length;
   return (
     <HeaderContainer>
-      <BlueHeaderRowContainer>
+      <TopHeaderRowContainer>
         <ContentWrapper>
           <ContentGroup>
             {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
+            {/*{isLargeDesktopSize && <OnlineUser color={theme.white} />}*/}
           </ContentGroup>
 
           <ContentGroup>
-            {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+            {noLoginAccount ? <AnonymousHeaderContent /> : <DesktopAccountHeaderContent />}
           </ContentGroup>
         </ContentWrapper>
-      </BlueHeaderRowContainer>
+      </TopHeaderRowContainer>
 
-      <WhiteHeaderRowContainer>
+      <BottomHeaderRowContainer>
         <ContentWrapper>
           <Link to={""}>
             <BrandLogo
@@ -94,7 +95,9 @@ const DesktopHeader = () => {
 
           {isDesktopSize && <HeaderGameTypes />}
         </ContentWrapper>
-      </WhiteHeaderRowContainer>
+      </BottomHeaderRowContainer>
+
+      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
     </HeaderContainer>
   );
 };

@@ -22,6 +22,8 @@ declare module "@mui/material/styles/createPalette" {
     maskAccent: string;
     maskWhite50: string;
     maskWhite20: string;
+    footerBGC: string;
+    supplierMask: string;
   }
 }
 
@@ -59,6 +61,8 @@ const muiTheme = createTheme({
     maskAccent: theme.maskAccent,
     maskWhite50: theme.maskWhite50,
     maskWhite20: theme.maskWhite20,
+    footerBGC: theme.footerBGC,
+    supplierMask: theme.supplierMask,
     text: {
       primary: theme.text,
       secondary: theme.maskBlack20,

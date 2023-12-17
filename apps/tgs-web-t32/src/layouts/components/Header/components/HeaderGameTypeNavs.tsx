@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useLocation } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import IconArrow from "@/assets/t32/images/header/icon-arrow-down.svg";
+import Icon from "@/components/project/Icon";
 
 const HeaderGameTypesContainer = styled.div`
-  margin-right: auto;
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
   height: 100%;
-  /* overflow-x: auto; */
+  overflow-x: auto;
   position: relative;
 
   &::-webkit-scrollbar {
@@ -25,7 +26,7 @@ const HeaderGameTypesContainer = styled.div`
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background-color: ${({ theme }) => theme.gray10};
+    background-color: ${({ theme }) => theme.maskBlack20};
   }
 
   &::-webkit-scrollbar-track-piece {
@@ -42,18 +43,15 @@ const GameTypeNav = styled.div<{
   white-space: nowrap;
   display: flex;
   align-items: center;
-  padding: 5px;
-  color: ${({ theme }) => theme.text};
+  padding: 10px 12px;
+  color: ${({ theme }) => theme.white};
   cursor: pointer;
   position: relative;
   border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
   color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
+  gap: 6px;
   &:hover {
-    background: ${({ theme }) => theme.gray10};
-  }
-
-  ${media.lg} {
-    font-size: 1rem;
+    background: ${({ theme }) => theme.footerBGC};
   }
 `;
 
@@ -93,20 +91,21 @@ const HeaderGameTypeNavs = () => {
 
   return (
     <HeaderGameTypesContainer>
-      {sideNavItemList && sideNavItemList.map((navItem, index) => {
-        return (
-          <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
+      {sideNavItemList &&
+        sideNavItemList.map((navItem, index) => {
+          return (
             <GameTypeNav
+              key={navItem.key}
               $isActive={navItem.router === currentRoute}
               onMouseEnter={() => handleMouseEnter(navItem.gameType)}
               onMouseLeave={handleMouseLeave}
+              onClick={() => handleClickNav(navItem)}
             >
               {navItem.label}
+              <Icon iconUrl={IconArrow} width={"10px"} height={"10px"} />
             </GameTypeNav>
-            {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
-          </Wrapper>
-        );
-      })}
+          );
+        })}
     </HeaderGameTypesContainer>
   );
 };

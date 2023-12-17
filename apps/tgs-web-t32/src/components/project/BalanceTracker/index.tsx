@@ -11,13 +11,12 @@ type BalanceTrackerContainerProps = {
 };
 const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
   position: relative;
-  background: rgba(255, 255, 255, 0.2);
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 0.812rem;
+  gap: 4px;
 `;
 
 const BalanceContainer = styled.div`
@@ -25,6 +24,7 @@ const BalanceContainer = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   gap: 10px;
+  color: ${({ theme }) => theme.yellow};
 
   & span {
     white-space: nowrap;
@@ -47,7 +47,7 @@ const BalanceTracker = ({ size, ...others }: Props) => {
   return (
     //@ts-ignore
     <BalanceTrackerContainer $size={size} {...others}>
-      {isShow && <span>{i18n.t("wap.main.account.totalFund")}</span>}
+      {isShow && <span>{i18n.t("wap.main.home.profile.mainAccount")}:</span>}
 
       <BalanceContainer>
         <span>${currentBalance}</span>
