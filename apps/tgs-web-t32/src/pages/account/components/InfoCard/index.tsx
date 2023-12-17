@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
 import BalanceTracker from "@/components/project/BalanceTracker";
+import VipMedal from "@/components/project/VipMedal";
 
 const InfoCardContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.primary};
   width: 100%;
   height: 105px;
   padding: 15.5px;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 
   display: flex;
   align-items: center;
@@ -42,7 +43,8 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
   return (
     //@ts-ignore
     <InfoCardContainer {...props}>
-      <VipLevel>{`V${accountLevel}`}</VipLevel>
+      <VipMedal vipLevel={accountLevel} />
+      {/*<VipLevel>{`V${accountLevel}`}</VipLevel>*/}
 
       <NameContainer>{username}</NameContainer>
 

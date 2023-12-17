@@ -3,7 +3,7 @@ import styled from "styled-components";
 import iconReturn from "@/assets/t32/images/dialog/icon-return.svg";
 import Icon from "@/components/project/Icon";
 
-export const DIALOG_HEADER_HEIGHT = "40px";
+export const DIALOG_HEADER_HEIGHT = "60px";
 
 const DialogHeaderContainer = styled.div`
   position: fixed;
@@ -11,7 +11,7 @@ const DialogHeaderContainer = styled.div`
   left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.blue50};
+  background: ${({ theme }) => theme.primary};
   display: flex;
   align-items: center;
   justify-content: center;
