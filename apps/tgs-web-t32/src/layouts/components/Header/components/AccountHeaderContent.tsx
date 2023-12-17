@@ -46,8 +46,8 @@ const AccountHeaderContent = () => {
 
   const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
 
-  const handleGoToProfile = () => {
-    history.push("/profile");
+  const handleGoToAccount = () => {
+    history.push("/account");
   };
 
   const handleGoToDeposit = () => {
@@ -62,7 +62,7 @@ const AccountHeaderContent = () => {
         <BalanceLabel>{i18n.t("wap.main.home.profile.mainAccount")}</BalanceLabel>
       </ButtonContainer>
 
-      <ButtonContainer onClick={handleGoToProfile}>
+      <ButtonContainer onClick={handleGoToAccount}>
         <Icon iconUrl={iconAccount} width={"20px"} height={"20px"} />
         <AccountLabel>{i18n.t("common.member")}</AccountLabel>
       </ButtonContainer>

@@ -5,20 +5,21 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
-import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
+import NavCard from "@/pages/account/components/AccountNavigations/NavCard";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import NavRowLanguage from "@/pages/account/components/AccountNavigations/NavRowLanguage";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const AccountNavsContainer = styled.div`
-  padding: 12px 14px;
+  padding: 12px 0;
   background: ${({ theme }) => theme.white};
   overflow: visible;
 `;
 
 const AccountNavCardsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  overflow: visible;
+  flex-wrap: wrap;
+  gap: 12px;
 `;
 
 const LogoutRegion = styled.div`
@@ -61,19 +62,14 @@ const AccountNavigations = () => {
           {/* Cards */}
           {accountNavItemList.map((navItem) => {
             if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
+            if (navItem.key === NavCardKey.LANGUAGE_SWITCH) return null;
 
-            if (navItem.key === NavCardKey.LANGUAGE_SWITCH) {
-              return (
-                <NavRowLanguage key={navItem.key} navItem={navItem} handleClick={handleClickNav} />
-              );
-            }
-
-            return <NavRow key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
+            return <NavCard key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
           })}
         </AccountNavCardsContainer>
       </AccountNavsContainer>
 
-      <LogoutRegion onClick={handleLogout}>{i18n.t("web.header.logout")}</LogoutRegion>
+      <LanguageSwitch style={{ width: "100%" }} />
     </>
   );
 };

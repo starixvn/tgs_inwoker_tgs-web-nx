@@ -5,12 +5,15 @@ import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 
 const NavCardContainer = styled.div`
   position: relative;
+  width: calc((100% - 12px * 2) / 3);
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 10px 20px;
-  color: ${({ theme }) => theme.text};
+  padding: 10px 0 0;
+  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.primary};
   font-size: 0.875rem;
   font-weight: 400;
   cursor: pointer;
@@ -18,32 +21,30 @@ const NavCardContainer = styled.div`
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s; /* Safari */
   overflow: visible;
+`;
 
-  &:hover {
-    background: ${({ theme }) => theme.gray20};
-
-    ${media.sm} {
-      background: ${({ theme }) => theme.mainBackground};
-      //width: calc((100% - 7 * 8px) / 8);
-    }
-  }
+const NavCardLabel = styled.div`
+  background: ${({ theme }) => theme.maskWhite20};
+  padding: 6px 0 16px;
+  text-align: center;
+  width: 100%;
 `;
 
 type Props = {
   navItem: NavItem;
   handleClick: (navItem: NavItem) => void;
 };
-const NavRow = ({ navItem, handleClick }: Props) => {
-  const { label, iconUrl } = navItem;
+const NavCard = ({ navItem, handleClick }: Props) => {
+  const { label, iconUrl, iconSecondaryUrl } = navItem;
 
-  const imageUrl = iconUrl;
+  const imageUrl = iconSecondaryUrl || iconUrl;
   return (
     <NavCardContainer onClick={() => handleClick(navItem)}>
-      <Icon iconUrl={imageUrl} width={"24px"} height={"24px"} />
+      <Icon iconUrl={imageUrl} width={"32px"} height={"32px"} />
 
-      <span>{label}</span>
+      <NavCardLabel>{label}</NavCardLabel>
     </NavCardContainer>
   );
 };
 
-export default NavRow;
+export default NavCard;

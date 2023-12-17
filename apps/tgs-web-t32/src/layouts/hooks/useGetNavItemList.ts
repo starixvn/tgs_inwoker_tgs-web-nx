@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import promotionImg from "@/assets/t32/images/header/icon-promotion.svg";
@@ -27,6 +27,7 @@ import contactWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-wagering.svg";
+import logoutWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-logout.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -55,6 +56,7 @@ export function useGetNavItemList() {
   const { handleChangeGameType } = useHomeGameContext();
   const { providerList } = useHomeGameContext();
   const history = useHistory();
+  const { handleLogout } = useAuthContext();
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
@@ -219,6 +221,17 @@ export function useGetNavItemList() {
         navType: "action",
         routePath: null,
         callback: () => {},
+      },
+      {
+        key: NavCardKey.LOGOUT,
+        label: i18n.t("wap.main.account.signout"),
+        iconUrl: logoutWhiteImg,
+        iconSecondaryUrl: logoutWhiteImg,
+        navType: "action",
+        routePath: null,
+        callback: () => {
+          handleLogout();
+        },
       },
     ] as NavItem[];
   }, []);

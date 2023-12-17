@@ -1,54 +1,100 @@
 import React from "react";
 import styled from "styled-components";
-import { useAccountStore } from "@tgs-web-nx/core";
-import BalanceTracker from "@/components/project/BalanceTracker";
+import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useHistory } from "react-router-dom";
 import VipMedal from "@/components/project/VipMedal";
+import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
 
 const InfoCardContainer = styled.div`
   background: ${({ theme }) => theme.primary};
   width: 100%;
-  height: 105px;
-  padding: 15.5px;
+  padding: 10px 20px 20px;
   color: ${({ theme }) => theme.white};
 
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 37px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 `;
 
-const NameContainer = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
-`;
-
-const VipLevel = styled.div`
-  background: #92581a;
-  width: 75px;
-  height: 75px;
+const UserInfo = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.white};
-  font-size: 3rem;
-  font-weight: 500;
-  border-radius: 50%;
+  gap: 10px;
+  padding: 10px;
+  width: 100%;
+  border-bottom: 1px solid ${({ theme }) => theme.maskWhite20};
+`;
+const UserInfoCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const UserLevel = styled.div`
+  font-size: 0.875rem;
+  font-weight: 700;
+`;
+const UserName = styled.div`
+  font-size: 1.125rem;
+  font-weight: 510;
+`;
+
+const BalanceInfo = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & > * {
+    flex: 1;
+  }
+`;
+const BalanceRol = styled.div``;
+const BalanceLabel = styled.div`
+  font-size: 0.875rem;
+`;
+const BalanceValue = styled.div`
+  font-size: 0.875rem;
+  color: ${({ theme }) => theme.yellow};
+  font-weight: 700;
 `;
 
 const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
+  const history = useHistory();
   const { account } = useAccountStore();
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
 
+  const { wallet } = useWalletStore();
+  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+
+  const handleGoToDeposit = () => {
+    history.push("/deposit");
+  };
   return (
     //@ts-ignore
     <InfoCardContainer {...props}>
-      <VipMedal vipLevel={accountLevel} />
-      {/*<VipLevel>{`V${accountLevel}`}</VipLevel>*/}
+      <UserInfo>
+        <VipMedal vipLevel={accountLevel} />
 
-      <NameContainer>{username}</NameContainer>
+        <UserInfoCol>
+          <UserLevel>VIP {accountLevel}</UserLevel>
+          <UserName>{username}</UserName>
+        </UserInfoCol>
+      </UserInfo>
 
-      <BalanceTracker size={"small"} />
+      <BalanceInfo>
+        <BalanceRol>
+          <BalanceLabel>{i18n.t("wap.main.home.profile.mainAccount")}</BalanceLabel>
+          <BalanceValue>{currentBalance}</BalanceValue>
+        </BalanceRol>
+
+        <Button onClick={handleGoToDeposit} style={{ background: theme.btnPri }}>
+          {i18n.t("common.deposit")}
+        </Button>
+      </BalanceInfo>
     </InfoCardContainer>
   );
 };
