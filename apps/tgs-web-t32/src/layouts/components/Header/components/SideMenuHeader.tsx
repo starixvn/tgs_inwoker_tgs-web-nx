@@ -10,6 +10,7 @@ const SideMenuHeaderContainer = styled.div`
   flex-shrink: 0;
   width: 100%;
   height: 44px;
+  padding: 12px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -24,8 +25,8 @@ const SideMenuHeader = () => {
         onClick={() => handleToggleMenu(false)}
         style={{
           color: "white",
-          width: "20px",
-          height: "20px",
+          width: "24px",
+          height: "24px",
         }}
       />
 

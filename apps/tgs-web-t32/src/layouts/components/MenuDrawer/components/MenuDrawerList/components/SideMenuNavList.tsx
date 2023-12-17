@@ -11,6 +11,7 @@ const TabContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
+  background: ${({ theme }) => theme.primary};
 `;
 
 const SideMenuNavList = () => {

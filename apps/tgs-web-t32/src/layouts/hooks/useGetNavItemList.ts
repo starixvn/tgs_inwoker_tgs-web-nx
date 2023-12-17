@@ -1,16 +1,16 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
+import promotionImg from "@/assets/t32/images/header/icon-promotion.svg";
 import profileImg from "@/assets/t32/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t32/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t32/images/account/navItem/icon-withdraw.svg";
 import transferImg from "@/assets/t32/images/account/navItem/icon-transfer.svg";
 import reportImg from "@/assets/t32/images/account/navItem/icon-report.svg";
 import inboxImg from "@/assets/t32/images/account/navItem/icon-inbox.svg";
-import affiliateImg from "@/assets/t32/images/account/navItem/icon-affiliate.svg";
 import downloadImg from "@/assets/t32/images/account/navItem/icon-download.svg";
 import languageImg from "@/assets/t32/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t32/images/account/navItem/icon-contact.svg";
@@ -22,7 +22,6 @@ import withdrawWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-with
 import transferWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-transfer.svg";
 import reportWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-report.svg";
 import inboxWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-inbox.svg";
-import affiliateWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-affiliate.svg";
 import downloadWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-download.svg";
 import contactWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-contact.svg";
 import vipWhiteImg from "@/assets/t32/images/account/navItemWhite/icon-vip.svg";
@@ -84,23 +83,23 @@ export function useGetNavItemList() {
       });
     }
 
-    navItemList.push({
-      key: NavCardKey.VIP,
-      label: "VIP",
-      iconUrl: vipImg,
-      iconActiveUrl: vipImg,
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "vip",
-      callback: () => {
-        history.push("/vip");
-      },
-    });
+    // navItemList.push({
+    //   key: NavCardKey.VIP,
+    //   label: "VIP",
+    //   iconUrl: vipImg,
+    //   iconActiveUrl: vipImg,
+    //   navType: "action",
+    //   gameType: GameTypeEnum.NONE,
+    //   router: "vip",
+    //   callback: () => {
+    //     history.push("/vip");
+    //   },
+    // });
 
     navItemList.push({
       key: NavCardKey.PROMOTION,
       label: i18n.t("common.promotion"),
-      iconUrl: "",
+      iconUrl: promotionImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "promotion-list",
