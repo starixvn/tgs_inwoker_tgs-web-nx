@@ -11,16 +11,15 @@ const BottomNavContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align : center;
-  color: ${({ theme }) => theme.black};
+  text-align: center;
+  color: ${({ theme }) => theme.white};
   padding: 10px 0;
   cursor: pointer;
 `;
 
 const NavLabel = styled.h6`
-  font-size: 0.6rem;
-  font-weight: 400;
-  line-height: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   text-transform: uppercase;
   white-space: nowrap;
 `;
@@ -43,20 +42,6 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
           style={{
             marginBottom: "13px",
           }}
-        />
-
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
-
-  if (["promotion"].includes(bottomNavItem.key)) {
-    return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon
-          iconUrl={iconUrl}
-          width={"60px"}
-          height={"44px"}
         />
 
         <NavLabel>{label}</NavLabel>

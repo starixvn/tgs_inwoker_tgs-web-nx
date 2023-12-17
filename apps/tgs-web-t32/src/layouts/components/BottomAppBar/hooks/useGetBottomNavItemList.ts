@@ -1,14 +1,10 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import giftIcon from "@/assets/t32/images/bottomAppBar/icon-gift.svg";
-import transferIcon from "@/assets/t32/images/bottomAppBar/icon-transfer.svg";
-import reportIcon from "@/assets/t32/images/bottomAppBar/icon-report.svg";
-import accountIcon from "@/assets/t32/images/bottomAppBar/icon-account.svg";
-import homeIcon from "@/assets/t32/images/bottomAppBar/icon-home.svg";
+import depositIcon from "@/assets/t32/images/account/navItemWhite/icon-deposit.svg";
+import withdrawIcon from "@/assets/t32/images/account/navItemWhite/icon-withdraw.svg";
+import promotionIcon from "@/assets/t32/images/account/navItemWhite/icon-promotion.svg";
+import homeIcon from "@/assets/t32/images/account/navItemWhite/icon-home.svg";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
@@ -42,40 +38,32 @@ export function useGetBottomNavItemList() {
           goToHomePage();
         },
       },
+
+      {
+        navType: NavTypeEnum.ITEM,
+        key: "deposit",
+        label: i18n.t("common.deposit"),
+        iconUrl: depositIcon,
+        handleClick: () => {
+          history.push("/deposit");
+        },
+      },
+      {
+        navType: NavTypeEnum.ITEM,
+        key: "withdraw",
+        label: i18n.t("common.withdrawal"),
+        iconUrl: withdrawIcon,
+        handleClick: () => {
+          history.push("/withdrawal");
+        },
+      },
       {
         navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: giftIcon,
+        iconUrl: promotionIcon,
         handleClick: () => {
           history.push("/promotion-list");
-        },
-      },
-      {
-        navType: NavTypeEnum.BIG_ITEM,
-        key: "vip",
-        label: i18n.t("common.bank"),
-        iconUrl: transferIcon,
-        handleClick: () => {
-          handleTransferDrawerToggle();
-        },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "contact",
-        label: i18n.t("report.title"),
-        iconUrl: reportIcon,
-        handleClick: () => {
-          history.push("/report");
-        },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "affiliate",
-        label: i18n.t("deposit.details.account"),
-        iconUrl: accountIcon,
-        handleClick: () => {
-          history.push("/account");
         },
       },
     ];
