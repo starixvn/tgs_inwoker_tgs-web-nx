@@ -11,6 +11,7 @@ import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenu
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
+import vipImg from "@/assets/t19/images/header/sideMenuItem/icon-vip.svg";
 import profileImg from "@/assets/t19/images/header/sideMenuItem/icon-account.svg";
 import transferImg from "@/assets/t19/images/header/sideMenuItem/icon-transfer.svg";
 import reportImg from "@/assets/t19/images/header/sideMenuItem/icon-report.svg";
@@ -40,6 +41,12 @@ const NavsContainer = styled.div`
   height: fit-content;
 `;
 
+const LanguageSwitchWrapper = styled.div`
+  width: 100%;
+  height: 76px;
+  padding: 12px 0 24px 0;
+`;
+
 const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isLogin } = useAuth();
@@ -56,12 +63,19 @@ const MobileMenuDrawer = () => {
 
   const sideNavItemList: NavItem[] = useMemo(() => {
     return [
+      // {
+      //   key: NavCardKey.PROFILE,
+      //   label: i18n.t("wap.main.my"),
+      //   iconUrl: profileImg,
+      //   navType: "route",
+      //   routePath: "/account",
+      // },
       {
-        key: NavCardKey.PROFILE,
-        label: i18n.t("wap.main.my"),
-        iconUrl: profileImg,
+        key: NavCardKey.VIP,
+        label: "vip",
+        iconUrl: vipImg,
         navType: "route",
-        routePath: "/account",
+        routePath: "/vip",
       },
       {
         key: NavCardKey.TRANSFER,
@@ -134,9 +148,11 @@ const MobileMenuDrawer = () => {
           })}
         </NavsContainer>
 
-        <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
+        <LanguageSwitchWrapper>
+          <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
+        </LanguageSwitchWrapper>
 
-        <Button
+        {/* <Button
           fullWidth
           variant={"contained"}
           onClick={handleClickLogout}
@@ -149,7 +165,7 @@ const MobileMenuDrawer = () => {
           }}
         >
           {i18n.t("web.header.logout")}
-        </Button>
+        </Button> */}
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );
