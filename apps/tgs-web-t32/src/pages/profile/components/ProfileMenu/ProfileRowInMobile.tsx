@@ -12,13 +12,13 @@ const ProfileItemContainer = styled.div`
   cursor: pointer;
 
   & .label {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.white};
     font-size: 1.25rem;
     font-weight: 400;
   }
 
   & .status {
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.white};
     font-size: 0.937rem;
     font-weight: 400;
   }

@@ -9,7 +9,6 @@ const Content = styled.div`
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.0025rem;
-  text-align: center;
   color: ${({ theme }) => theme.text};
 `;
 

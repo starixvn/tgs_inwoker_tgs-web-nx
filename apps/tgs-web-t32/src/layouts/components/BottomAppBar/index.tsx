@@ -12,6 +12,7 @@ const BottomAppBarContainer = styled.div`
   bottom: 0;
   left: 0;
   background: ${({ theme }) => theme.primary};
+  border-top: 1px solid ${({ theme }) => theme.white};
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
