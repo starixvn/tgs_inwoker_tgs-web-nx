@@ -9,11 +9,11 @@ type Props = {
 
 const InputWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 44px;
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  border-radius: 50px;
+  border-radius: 4px;
   background-color: ${({ theme }) => theme.white};
   border: 1px solid ${({ theme }) => theme.blue40};
 `;
@@ -27,7 +27,7 @@ const InputTextfield = styled.input`
   outline: none;
   width: 100%;
   font-size: 0.875rem;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.black};
   margin-left: 5px;
   &::placeholder {
     color: ${(props) => props.theme.text};

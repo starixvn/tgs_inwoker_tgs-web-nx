@@ -2,7 +2,6 @@ import config from "@tgs-web-nx/config";
 import { GameItem } from "@tgs-web-nx/types";
 import { Common } from "@tgs-web-nx/utils";
 import styled from "styled-components";
-import notification from "@/assets/t31/images/home/notifications.svg";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -53,12 +52,12 @@ const MonthItem = ({ dataList }: Props) => {
       <Title>{title}</Title>
       <GameContent>
         <GameImg>
-          <img width={170} height={170} src={notification} />
+          <img width={170} height={170} />
         </GameImg>
         <GameList>
           {dataList.map((data: GameItem) => {
             return (
-              <Game>
+              <Game key={data.id}>
                 <div>
                   <img
                     width={30}

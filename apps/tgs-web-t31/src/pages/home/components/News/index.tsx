@@ -4,6 +4,8 @@ import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import NewIcon from "@/assets/t31/images/home/News.svg";
 import sportsIcon from "@/assets/t31/images/home/gameType/desktop/Sports.svg";
 import PromotionIcon from "@/assets/t31/images/home/gameType/desktop/Promotion.svg";
@@ -41,6 +43,7 @@ const NewsButton = muiStyled(StyledButton)(({ theme }) => ({
 
 const News = () => {
   const history = useHistory();
+  const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <MainWrapper>
@@ -51,6 +54,7 @@ const News = () => {
         <StyledButton
           startIcon={<img src={sportsIcon} alt="sport" />}
           onClick={() => {
+            handleChangeGameType(GameTypeEnum.SPORTS);
             history.push("/main/sports");
           }}
         >

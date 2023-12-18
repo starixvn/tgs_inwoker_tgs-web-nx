@@ -9,10 +9,6 @@ import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 import { useUiStore } from "@tgs-web-nx/core";
 import MemberInfo from "./components/MemberInfo";
 import GameTypeTab from "./components/GameTypeTab";
-import OnlineUser from "./components/CardPrompt/components/OnlineUser";
-import MonthItem from "./components/MonthItem";
-import News from "./components/News";
-import DepositProgress from "./components/DepositProgress";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
@@ -21,8 +17,6 @@ import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import useBanner from "@/hooks/home/useBanner";
-import notification from "@/assets/t31/images/home/notifications.svg";
-import { theme } from "@/theme";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -119,19 +113,6 @@ const RegisterButton = styled(Button)`
   background: ${({ theme }) => theme.secondaryGradient} !important;
 `;
 
-const MarqueesBackground = styled.div`
-  display: inline;
-  overflow: visible;
-`;
-
-const MidleContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  height: 960px;
-  gap: 40px;
-`;
-
 const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { isLogin } = useAuth();
@@ -194,7 +175,7 @@ const HomePage = () => {
 
       <MainContentContainer>
         <MainContentWrapper>
-          <CardPrompt />
+          {isMobileSize && <CardPrompt />}
 
           {isMobileSize ? (
             isLogin ? (
@@ -210,12 +191,6 @@ const HomePage = () => {
           ) : null}
           {isMobileSize && <GameTypeTab />}
           <CategoryRenderer />
-          {/* {isDesktopSize && (
-            <MidleContainer>
-              <News />
-              <DepositProgress />
-            </MidleContainer>
-          )} */}
         </MainContentWrapper>
       </MainContentContainer>
     </MainWrapper>
