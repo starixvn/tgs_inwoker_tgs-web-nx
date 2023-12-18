@@ -6,8 +6,13 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
+import { useUiStore } from "@tgs-web-nx/core";
 import MemberInfo from "./components/MemberInfo";
 import GameTypeTab from "./components/GameTypeTab";
+import OnlineUser from "./components/CardPrompt/components/OnlineUser";
+import MonthItem from "./components/MonthItem";
+import News from "./components/News";
+import DepositProgress from "./components/DepositProgress";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
@@ -16,6 +21,8 @@ import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import useBanner from "@/hooks/home/useBanner";
+import notification from "@/assets/t31/images/home/notifications.svg";
+import { theme } from "@/theme";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -51,6 +58,7 @@ const BannerWrapper = styled.div`
 
 const MainContentWrapper = styled.div`
   width: 100%;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -60,9 +68,17 @@ const MainContentWrapper = styled.div`
   flex-shrink: 0;
 
   ${media.sm} {
+    max-width: calc(961px + 20px * 2);
     gap: 20px;
     padding: unset;
   }
+`;
+
+const MainContentContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 `;
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
@@ -103,6 +119,19 @@ const RegisterButton = styled(Button)`
   background: ${({ theme }) => theme.secondaryGradient} !important;
 `;
 
+const MarqueesBackground = styled.div`
+  display: inline;
+  overflow: visible;
+`;
+
+const MidleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 960px;
+  gap: 40px;
+`;
+
 const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { isLogin } = useAuth();
@@ -116,6 +145,11 @@ const HomePage = () => {
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
 
   const isNonLobby = isNonLobbyList.includes(activeGameType);
+  const {
+    ui: { marquees },
+  } = useUiStore();
+
+  const hasData = marquees && marquees.length > 0;
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -158,24 +192,32 @@ const HomePage = () => {
         </BannerWrapper>
       ) : null}
 
-      {isMobileSize && <CardPrompt />}
+      <MainContentContainer>
+        <MainContentWrapper>
+          <CardPrompt />
 
-      <MainContentWrapper>
-        {isMobileSize ? (
-          isLogin ? (
-            <MemberInfo />
-          ) : (
-            <ButtonContainer>
-              <Button onClick={() => history.push("/login")}>{i18n.t("common.login")}</Button>
-              <RegisterButton onClick={() => history.push("/register")}>
-                {i18n.t("common.register")}
-              </RegisterButton>
-            </ButtonContainer>
-          )
-        ) : null}
-        {isMobileSize && <GameTypeTab />}
-        <CategoryRenderer />
-      </MainContentWrapper>
+          {isMobileSize ? (
+            isLogin ? (
+              <MemberInfo />
+            ) : (
+              <ButtonContainer>
+                <Button onClick={() => history.push("/login")}>{i18n.t("common.login")}</Button>
+                <RegisterButton onClick={() => history.push("/register")}>
+                  {i18n.t("common.register")}
+                </RegisterButton>
+              </ButtonContainer>
+            )
+          ) : null}
+          {isMobileSize && <GameTypeTab />}
+          <CategoryRenderer />
+          {/* {isDesktopSize && (
+            <MidleContainer>
+              <News />
+              <DepositProgress />
+            </MidleContainer>
+          )} */}
+        </MainContentWrapper>
+      </MainContentContainer>
     </MainWrapper>
   );
 };

@@ -2,9 +2,12 @@ import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useEffect, useMemo } from "react";
+import MonthItem from "../../../MonthItem";
+import News from "../../../News";
+import DepositProgress from "../../../DepositProgress";
 import bg from "@/assets/t29/images/home/home_bg.png";
 import sport from "@/assets/t29/images/home/home_sport.png";
 import live_casino from "@/assets/t29/images/home/home_live_casino.png";
@@ -19,7 +22,7 @@ const DesktopContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 314px;
+  /* height: 314px; */
   margin: 0 auto;
   padding: 15px 0px;
 
@@ -60,6 +63,11 @@ const CategoryName = styled.div`
   text-align: center;
 `;
 
+const ContentWarpper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 type GameTypeItem = {
   key: string;
   name: string;
@@ -72,39 +80,7 @@ const HomeCategory = () => {
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
-
-  const homeCategotyList = useMemo<GameTypeItem[]>(() => {
-    return [
-      {
-        key: "sports",
-        name: "SPORTS",
-        imgUrl: sport,
-        text: i18n.t("common.sports"),
-        gameType: GameTypeEnum.SPORTS,
-      },
-      {
-        key: "liveCasino",
-        name: "LIVE CASINO",
-        imgUrl: live_casino,
-        text: i18n.t("common.live"),
-        gameType: GameTypeEnum.LIVELOBBY,
-      },
-      {
-        key: "slots",
-        name: "SLOTS",
-        imgUrl: slot,
-        text: i18n.t("common.slot"),
-        gameType: GameTypeEnum.SLOT,
-      },
-      {
-        key: "fishing",
-        name: "FISHING",
-        imgUrl: fishing,
-        text: i18n.t("common.fishing"),
-        gameType: GameTypeEnum.FISH,
-      },
-    ];
-  }, []);
+  const { hotGameList, recommendGameList } = useGetHomeCategoryList();
 
   const handleClick = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);
@@ -114,18 +90,16 @@ const HomeCategory = () => {
   if (isDesktopSize) {
     return (
       <DesktopContainer>
-        {homeCategotyList.map((item) => {
-          return (
-            <CategoryWrapper key={item.key}>
-              <CategoryImage
-                $imageUrl={item.imgUrl}
-                onClick={() => handleClick(item)}
-              ></CategoryImage>
-              <CategoryName>{item.name}</CategoryName>
-            </CategoryWrapper>
-          );
-        })}
-        ;
+        <ContentWarpper>
+          <div style={{ display: "flex" }}>
+            <MonthItem dataList={hotGameList} />
+            <MonthItem dataList={recommendGameList} />
+          </div>
+          <div style={{ display: "flex" }}>
+            <News />
+            <DepositProgress />
+          </div>
+        </ContentWarpper>
       </DesktopContainer>
     );
   }
