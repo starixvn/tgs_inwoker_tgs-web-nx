@@ -13,16 +13,15 @@ import {
   SUB_CONTENT_MAX_WIDTH,
 } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
-import bg from "@/assets/t32/images/bg.png";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    background: url(${bg});
+    background: ${({ theme }) => theme.mainBackground};
   }
 `;
 

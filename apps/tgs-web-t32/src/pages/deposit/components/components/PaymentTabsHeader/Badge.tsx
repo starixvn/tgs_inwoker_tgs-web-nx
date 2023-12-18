@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import { theme } from "@/theme";
 import iconCheck from "@/assets/t32/images/deposit/icon-check.svg";
@@ -29,6 +30,11 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
 
   ${media.md} {
     width: auto;
+    border: 1px solid
+      ${({ $isActive, theme }: BadgeContainerProps) =>
+        $isActive ? theme.primary : theme.maskBlack50};
+    color: ${({ $isActive, theme }: BadgeContainerProps) =>
+      $isActive ? theme.primary : theme.maskBlack50};
   }
 `;
 
@@ -39,11 +45,12 @@ type Props = {
 };
 
 const Badge = ({ text, handleClick, isActive }: Props) => {
+  const { isDesktopSize } = useRwd();
   return (
     <BadgeContainer onClick={handleClick} $isActive={isActive}>
       {text}
 
-      {isActive && (
+      {isActive && !isDesktopSize && (
         <Icon
           iconUrl={iconCheck}
           width={"20px"}

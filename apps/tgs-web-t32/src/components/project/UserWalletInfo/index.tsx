@@ -37,9 +37,9 @@ const PlayerInfoContainer = styled.div`
 `;
 
 const PlayerName = styled.div`
-  font-size: 2rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme.blue60};
+  font-size: 2.81rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.text};
 `;
 
 const WalletsWrapper = styled.div`
@@ -60,20 +60,20 @@ const MainWalletContainer = styled.div`
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.245rem;
   color: ${({ theme }) => theme.text};
   white-space: nowrap;
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.blue60};
+  font-size: 2.125rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.text};
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 9px;
+  gap: 24px;
   padding-top: 19px;
 
   & *:first-child {
@@ -104,7 +104,7 @@ const VIPLabel = styled.div<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
   margin-top: 11px;
-  font-weight: 700;
+  font-weight: 400;
 `;
 
 const UserWalletInfo = () => {

@@ -49,11 +49,7 @@ const MainMobile = ({
 
   return (
     <>
-      <WithdrawInfoCard />
-
-      <ManageBankCardButtonContainer>
-        <ManageBankCardButton handleManageCardClick={onhandleManageCardClick} />
-      </ManageBankCardButtonContainer>
+      <WithdrawInfoCard onhandleManageCardClick={onhandleManageCardClick} />
 
       {/*管理銀行卡*/}
       <ItemContainer>

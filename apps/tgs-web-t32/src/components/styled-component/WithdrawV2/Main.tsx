@@ -59,6 +59,9 @@ export const ManageBankCardButtonContainer = styled.div`
   justify-content: end;
   align-self: flex-start;
   margin-top: 10px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 `;
 export const ItemContainer = styled(ProfileItemContainer)`
   ${media.sm} {

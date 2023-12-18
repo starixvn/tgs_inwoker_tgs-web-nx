@@ -11,7 +11,7 @@ import { Button } from "@/components/UI/Button";
 import iconLogout from "@/assets/t32/images/account/navItemWhite/icon-logout.svg";
 
 const MemberMenuContainer = styled.div`
-  background: ${({ theme }) => theme.blue50};
+  background: ${({ theme }) => theme.mainBackground};
 `;
 
 type MemberMenuItemProps = {
@@ -25,13 +25,14 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   align-items: center;
   gap: 10px;
   background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.mainBackground : theme.mainBackground};
-  color: ${({ theme }: MemberMenuItemProps) => theme.white};
+    $isActive ? `#3097C029` : theme.mainBackground};
+  color: ${({ $isActive, theme }: MemberMenuItemProps) =>
+    $isActive ? theme.primary : theme.maskBlack50};
   cursor: pointer;
 
   &:hover {
-    background: ${({ theme }) => theme.mainBackground};
-    color: ${({ theme }) => theme.white};
+    background: "#3097C029";
+    color: ${({ theme }) => theme.primary};
   }
 `;
 
@@ -71,11 +72,7 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
             $isActive={currentRoute === navItem.routePath?.replace("/", "")}
             onClick={() => handleClick(navItem)}
           >
-            <Icon
-              iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
-              width={"24px"}
-              height={"24px"}
-            />
+            <Icon iconUrl={navItem.iconUrl} width={"24px"} height={"24px"} />
             <span className={"label"}>{navItem.label}</span>
           </MemberMenuItem>
         );

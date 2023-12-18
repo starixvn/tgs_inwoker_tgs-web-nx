@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader } from "@tgs-web-nx/core/features";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
@@ -11,15 +10,14 @@ import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
-import bg from "@/assets/t32/images/bg.png";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    background: url(${bg});
+    background: ${({ theme }) => theme.mainBackground};
   }
 `;
 
