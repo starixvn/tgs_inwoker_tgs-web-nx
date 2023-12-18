@@ -128,9 +128,9 @@ const LanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
-              <FlagContainer>
-                <img src={imageMap[culturecode] || ""} alt={culturecode} />
-              </FlagContainer>
+              {/*<FlagContainer>*/}
+              {/*  <img src={imageMap[culturecode] || ""} alt={culturecode} />*/}
+              {/*</FlagContainer>*/}
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
           );

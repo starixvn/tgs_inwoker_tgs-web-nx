@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import BG from "@/assets/t32/images/loginBG.png";
 
 export const AuthFormContainer = styled.div`
   width: 100%;
@@ -7,7 +6,7 @@ export const AuthFormContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 70px 20px 30px;
+  padding: 24px 22px 30px;
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -22,7 +21,6 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  max-width: 400px;
   margin: 0 auto 20px;
 `;
 
@@ -35,9 +33,4 @@ export const LoginTitle = styled.div`
   text-align: center;
   margin-bottom: 50px;
   color: ${({ theme }) => theme.primary};
-`;
-
-export const FormContainerWithBG = styled.div`
-  height: 100%;
-  background: url(${BG}) no-repeat center center;
 `;

@@ -2,12 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Close } from "@mui/icons-material";
 import { media } from "@/theme/breakpoints";
+import iconCloseWhite from "@/assets/t32/images/dialog/icon-close-white.svg";
+import Icon from "@/components/project/Icon";
 
 const CloseIconContainer = styled.div`
   position: absolute;
-  top: 12.5px;
-  right: 12.5px;
+  top: 50%;
+  right: 22px;
   width: 24px;
+  transform: translateY(-50%) !important;
   height: 24px;
   border-radius: 12px;
   display: flex;
@@ -15,13 +18,6 @@ const CloseIconContainer = styled.div`
   justify-content: center;
   cursor: pointer;
   z-index: 3;
-
-  ${media.sm} {
-    width: 36px;
-    height: 36px;
-    transform: scale(1.5);
-    border-radius: 36px;
-  }
 `;
 
 type Props = {
@@ -31,12 +27,7 @@ type Props = {
 const CloseIcon = ({ onClick, style, ...others }: Props) => {
   return (
     <CloseIconContainer style={style} {...others}>
-      <Close
-        onClick={onClick}
-        style={{
-          color: "black",
-        }}
-      />
+      <Icon iconUrl={iconCloseWhite} width={"24px"} height={"24px"} />
     </CloseIconContainer>
   );
 };
