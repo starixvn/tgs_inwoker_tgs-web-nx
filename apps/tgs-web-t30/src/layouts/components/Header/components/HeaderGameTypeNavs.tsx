@@ -7,6 +7,8 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import iconArrowDown from "@/assets/t30/images/header/icon-arrow-down.svg";
+import Icon from "@/components/project/Icon";
 
 const HeaderGameTypesContainer = styled.div`
   margin-right: auto;
@@ -25,11 +27,17 @@ const GameTypeNav = styled.div`
   //height: 100%;
   display: flex;
   align-items: center;
+  gap: 4px;
   padding: 5px;
   border-radius: 5px;
 
-  &:hover {
-    background: ${({ theme }) => theme.gray10};
+  // &:hover {
+  //   background: ${({ theme }) => theme.gray10};
+  // }
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.white};
+    padding: 18px 10px;
   }
 
   ${media.lg} {
@@ -51,6 +59,7 @@ const HeaderGameTypeNavs = () => {
         return (
           <GameTypeNav key={navItem.key} onClick={() => handleClickNav(navItem)}>
             {navItem.label}
+            <Icon iconUrl={iconArrowDown} width={"10px"} height={"10px"} />
           </GameTypeNav>
         );
       })}

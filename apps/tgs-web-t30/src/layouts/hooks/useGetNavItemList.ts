@@ -16,6 +16,17 @@ import vipIcon from "@/assets/t30/images/menuDrawer/icon-vip.svg";
 import contactIcon from "@/assets/t30/images/menuDrawer/icon-contact.svg";
 import downloadIcon from "@/assets/t30/images/menuDrawer/icon-download.svg";
 import logoutIcon from "@/assets/t30/images/menuDrawer/icon-logout.svg";
+import accountSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-account.svg";
+import depositSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-deposit.svg";
+import withdrawSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-withdraw.svg";
+import transferSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-transfer.svg";
+import reportSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-report.svg";
+import inboxSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-inbox.svg";
+import affiliateSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-affiliate.svg";
+import vipSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-vip.svg";
+import contactSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-contact.svg";
+import downloadSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-download.svg";
+import logoutSecondaryIcon from "@/assets/t30/images/menuDrawer/blue/icon-logout.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -78,6 +89,7 @@ export function useGetNavItemList() {
         key: NavCardKey.PROFILE,
         label: i18n.t("wap.main.my"),
         iconUrl: accountIcon,
+        iconSecondaryUrl: accountSecondaryIcon,
         navType: "route",
         routePath: "/profile",
       },
@@ -85,6 +97,7 @@ export function useGetNavItemList() {
         key: NavCardKey.DEPOSIT,
         label: i18n.t("common.deposit"),
         iconUrl: depositIcon,
+        iconSecondaryUrl: depositSecondaryIcon,
         navType: "route",
         routePath: "/deposit",
       },
@@ -92,6 +105,7 @@ export function useGetNavItemList() {
         key: NavCardKey.WITHDRAW,
         label: i18n.t("common.withdrawal"),
         iconUrl: withdrawIcon,
+        iconSecondaryUrl: withdrawSecondaryIcon,
         navType: "route",
         routePath: "/withdrawal",
       },
@@ -99,6 +113,7 @@ export function useGetNavItemList() {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),
         iconUrl: transferIcon,
+        iconSecondaryUrl: transferSecondaryIcon,
         navType: "route",
         routePath: "/transfer",
       },
@@ -106,6 +121,7 @@ export function useGetNavItemList() {
         key: NavCardKey.REPORT,
         label: i18n.t("report.title"),
         iconUrl: reportIcon,
+        iconSecondaryUrl: reportSecondaryIcon,
         navType: "route",
         routePath: "/report",
       },
@@ -113,6 +129,7 @@ export function useGetNavItemList() {
         key: NavCardKey.MESSAGE_CENTER,
         label: i18n.t("wap.main.account.inbox"),
         iconUrl: inboxIcon,
+        iconSecondaryUrl: inboxSecondaryIcon,
         navType: "route",
         routePath: "/message-center",
       },
@@ -120,6 +137,7 @@ export function useGetNavItemList() {
         key: NavCardKey.AFFILIATE,
         label: i18n.t("wap.main.account.affiliate"),
         iconUrl: affiliateIcon,
+        iconSecondaryUrl: affiliateSecondaryIcon,
         navType: "route",
         routePath: "/affiliate",
       },
@@ -127,6 +145,7 @@ export function useGetNavItemList() {
         key: NavCardKey.VIP,
         label: "VIP",
         iconUrl: vipIcon,
+        iconSecondaryUrl: vipSecondaryIcon,
         navType: "route",
         routePath: "/vip",
       },
@@ -134,6 +153,7 @@ export function useGetNavItemList() {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),
         iconUrl: contactIcon,
+        iconSecondaryUrl: contactSecondaryIcon,
         navType: "route",
         routePath: "/support",
       },
@@ -141,6 +161,7 @@ export function useGetNavItemList() {
         key: NavCardKey.APP_DOWNLOAD,
         label: i18n.t("wap.main.account.appDownload"),
         iconUrl: downloadIcon,
+        iconSecondaryUrl: downloadSecondaryIcon,
         navType: "route",
         routePath: "/appDownload",
       },
@@ -148,6 +169,7 @@ export function useGetNavItemList() {
         key: NavCardKey.LOGOUT,
         label: i18n.t("wap.main.account.signout"),
         iconUrl: logoutIcon,
+        iconSecondaryUrl: logoutIcon,
         navType: "action",
         callback: () => {
           handleLogout();

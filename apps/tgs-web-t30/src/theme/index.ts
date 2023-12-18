@@ -19,4 +19,5 @@ export const theme = {
   greenGradient: "linear-gradient(180deg, #91C538 0%, #648626 100%)",
   mainBackground: "#0F324F",
   mainLightBackground: "#214061",
+  menu: "#1A5684",
 };
