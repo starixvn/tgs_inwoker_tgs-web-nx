@@ -114,7 +114,8 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  border-bottom: 1px solid ${({ theme }) => theme.gray10};
+  border: 1px solid ${({ theme }) => theme.maskBlack20};
+  border-radius: 4px;
   position: relative;
 
   .MuiInputBase-input {

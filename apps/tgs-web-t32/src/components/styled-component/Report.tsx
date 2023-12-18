@@ -52,18 +52,19 @@ export const CustomWinLose = styled.span<CustomWinLoseProps>`
 `;
 export const ReportTable = muiStyled(Table)(({ theme }) => ({
   "& .MuiTableHead-root .MuiTableCell-root": {
-    fontSize: "0.875rem",
+    fontSize: "0.937rem",
     fontWeight: 500,
     whiteSpace: "nowrap",
-    padding: "0 5px",
     color: theme.palette.black,
+    background: theme.palette.maskBlack20,
+    padding: "10px",
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
-    fontSize: "0.857rem",
+    fontSize: "0.875rem",
     fontWeight: 400,
     color: theme.palette.text.primary,
-    borderBottom: `1px solid ${theme.palette.gray10}`,
+    borderBottom: `1px solid ${theme.palette.maskBlack20}`,
     padding: "26px 5px 10px",
   },
 }));

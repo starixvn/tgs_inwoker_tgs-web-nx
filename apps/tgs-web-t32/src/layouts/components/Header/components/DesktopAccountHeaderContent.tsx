@@ -26,6 +26,7 @@ const Divider = styled.div`
 const UserInfo = styled.div`
   font-size: 0.812rem;
   color: ${({ theme }) => theme.yellow};
+  cursor: pointer;
 `;
 
 const DesktopAccountHeaderContent = () => {
@@ -58,7 +59,7 @@ const DesktopAccountHeaderContent = () => {
     <ContentWrapper>
       {isLargeDesktopSize && (
         <>
-          <UserInfo>{username}</UserInfo>
+          <UserInfo onClick={handleGoToProfile}>{username}</UserInfo>
           <Divider />
           <BalanceTracker />
         </>
