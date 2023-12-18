@@ -26,18 +26,22 @@ export const ItemContainer = styled.div`
 export const LabelContainer = styled.div`
   font-size: 1rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   float: left;
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  background: theme.palette.gray30,
+  background: theme.palette.white,
   justifyContent: "center",
 
   width: "100%",
   fontSize: "0.875rem",
   "& fieldset": {
     border: "none",
+  },
+
+  [theme.breakpoints.up("sm")]: {
+    border: `1px solid ${theme.palette.blueBorder}`,
   },
 })) as typeof MuiFormControl;
 

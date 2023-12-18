@@ -5,4 +5,8 @@ export const Checkbox = muiStyled(MuiCheckbox)(({ theme }) => ({
   " &.Mui-checked": {
     color: theme.palette.primary,
   },
+
+  [theme.breakpoints.up("sm")]: {
+    color: theme.palette.text.primary,
+  },
 }));

@@ -20,4 +20,5 @@ export const theme = {
   mainBackground: "#0F324F",
   mainLightBackground: "#214061",
   menu: "#1A5684",
+  blueBorder: "#D6DBDD",
 };

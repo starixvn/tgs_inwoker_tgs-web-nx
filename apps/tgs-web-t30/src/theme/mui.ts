@@ -26,6 +26,7 @@ declare module "@mui/material/styles/createPalette" {
     greenGradient: string;
     mainBackground: string;
     mainLightBackground: string;
+    blueBorder: string;
   }
 }
 
@@ -70,6 +71,7 @@ const muiTheme = createTheme({
     greenGradient: theme.greenGradient,
     mainBackground: theme.mainBackground,
     mainLightBackground: theme.mainLightBackground,
+    blueBorder: theme.blueBorder,
   },
   typography: {
     fontFamily: fontFamily,
