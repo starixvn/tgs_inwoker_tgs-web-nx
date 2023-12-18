@@ -9,6 +9,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconTransfer from "@/assets/t29/images/account/navItem/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import MenuTabs from "@/components/project/MenuTabs";
 
 const TransferPage = () => {
   const { getAllGameBalance } = useTransferPage();
@@ -21,6 +22,8 @@ const TransferPage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
+      {isDesktopSize && <MenuTabs />}
+
       <AccountPaper pageName={i18n.t("common.transfer")} iconUrl={iconTransfer}>
         <TransferPrevV2
           alert={alert}

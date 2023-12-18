@@ -11,6 +11,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconWithdrawal from "@/assets/t31/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import MenuTabs from "@/components/project/MenuTabs";
 
 const WithdrawalPage = () => {
   useWithdrawalPage();
@@ -28,7 +29,7 @@ const WithdrawalPage = () => {
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
-
+      {isDesktopSize && <MenuTabs />}
       <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
         <WithdrawalPrevV2
           appHistory={history}

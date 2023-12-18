@@ -5,6 +5,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Support from "@/components/account/Support";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
+import MenuTabs from "@/components/project/MenuTabs";
 
 const ContactUsPage = () => {
   useUpdatePageName(i18n.t("common.contactus"));
@@ -13,6 +14,7 @@ const ContactUsPage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
+      {isDesktopSize && <MenuTabs />}
 
       <Support />
     </PageContainer>

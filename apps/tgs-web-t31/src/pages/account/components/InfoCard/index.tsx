@@ -22,16 +22,21 @@ const NameContainer = styled.div`
 `;
 
 const VipLevel = styled.div`
-  background: #92581a;
-  width: 75px;
-  height: 75px;
+  /* background: #92581a; */
+  /* width: 75px;
+  height: 75px; */
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.white};
-  font-size: 3rem;
+  justify-content: left;
+  color: ${({ theme }) => theme.yellow};
+  /* font-size: 3rem; */
   font-weight: 500;
-  border-radius: 50%;
+`;
+
+const UserInfo = styled.div`
+  flex-direction: column;
+  display: flex;
+  text-align: left;
 `;
 
 const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
@@ -42,11 +47,13 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
   return (
     //@ts-ignore
     <InfoCardContainer {...props}>
-      <VipLevel>{`V${accountLevel}`}</VipLevel>
+      {/* <VipLevel>{`${accountLevel}`}</VipLevel> */}
+      <UserInfo>
+        <VipLevel>{`VIP ${accountLevel}`}</VipLevel>
+        <NameContainer>{username}</NameContainer>
+      </UserInfo>
 
-      <NameContainer>{username}</NameContainer>
-
-      <BalanceTracker size={"small"} />
+      <BalanceTracker />
     </InfoCardContainer>
   );
 };

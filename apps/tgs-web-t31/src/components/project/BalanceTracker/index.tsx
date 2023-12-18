@@ -11,9 +11,9 @@ type BalanceTrackerContainerProps = {
 };
 const BalanceTrackerContainer = styled.div<BalanceTrackerContainerProps>`
   position: relative;
-  background: rgba(255, 255, 255, 0.2);
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.text};
   display: flex;
+  /* flex-direction: column; */
   align-items: center;
   justify-content: space-between;
   font-size: 1.25rem;
@@ -43,17 +43,19 @@ const BalanceTracker = ({ size, ...others }: Props) => {
     await getBalanceList();
   }, [getBalanceList]);
 
-  const isShow = size !== "small";
+  // const isShow = size !== "small";
   return (
     //@ts-ignore
     <BalanceTrackerContainer $size={size} {...others}>
-      {isShow && <span>{i18n.t("wap.main.account.totalFund")}</span>}
-
-      <BalanceContainer>
-        <span>${currentBalance}</span>
-      </BalanceContainer>
-
-      <RefreshButton handleClick={() => handleRefreshBalance()} />
+      <div>
+        <div>{i18n.t("wap.main.account.totalFund")}</div>
+        <BalanceContainer>
+          <span>${currentBalance}</span>
+        </BalanceContainer>
+      </div>
+      <div>
+        <RefreshButton handleClick={() => handleRefreshBalance()} />
+      </div>
     </BalanceTrackerContainer>
   );
 };
