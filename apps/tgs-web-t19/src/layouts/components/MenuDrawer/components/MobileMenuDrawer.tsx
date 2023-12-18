@@ -18,7 +18,9 @@ import reportImg from "@/assets/t19/images/header/sideMenuItem/icon-report.svg";
 import inboxImg from "@/assets/t19/images/header/sideMenuItem/icon-inbox.svg";
 import affiliateImg from "@/assets/t19/images/header/sideMenuItem/icon-affiliate.svg";
 import downloadImg from "@/assets/t19/images/header/sideMenuItem/icon-download.svg";
+import logoutImg from "@/assets/t19/images/header/sideMenuItem/icon-log-out.svg";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
+import Icon from "@/components/project/Icon";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -29,7 +31,7 @@ const MobileMenuDrawerContainer = styled.div`
 
 const ContentWrapper = styled.div`
   flex-shrink: 0;
-  padding: 30px 25px;
+  padding: 27px 20px;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -45,6 +47,22 @@ const LanguageSwitchWrapper = styled.div`
   width: 100%;
   height: 76px;
   padding: 12px 0 24px 0;
+`;
+
+const LogoutBtnWrapper = styled.div`
+  height: 58px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-top: 1px solid ${({ theme }) => theme.primary};
+`;
+
+const Text = styled.div`
+  color: ${({ theme }) => theme.primary};
+  font-size: 1.125rem;
+  font-weight: 510;
 `;
 
 const MobileMenuDrawer = () => {
@@ -152,20 +170,16 @@ const MobileMenuDrawer = () => {
           <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
         </LanguageSwitchWrapper>
 
-        {/* <Button
-          fullWidth
-          variant={"contained"}
+        <LogoutBtnWrapper
           onClick={handleClickLogout}
-          sx={{
-            fontSize: "1.562rem",
-            padding: "12px 20px",
-            borderRadius: "30px",
-            color: "white",
-            background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
-          }}
         >
-          {i18n.t("web.header.logout")}
-        </Button> */}
+          <Icon
+            iconUrl={logoutImg}
+            width={"18px"}
+            height={"17px"}
+          />
+          <Text>{i18n.t("web.header.logout")}</Text>
+        </LogoutBtnWrapper>
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );

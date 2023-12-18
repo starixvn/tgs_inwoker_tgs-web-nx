@@ -10,12 +10,13 @@ const AvatarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({ theme }) => theme.tertiary};
+  color: ${({ theme }) => theme.white};
+  gap: 6px;
 `;
 
 const NameContainer = styled.div`
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 700;
 `;
 
 const LevelContainer = styled.div`
@@ -33,6 +34,8 @@ const BalanceContainer = styled.div`
 
   & span {
     white-space: nowrap;
+    font-size: 1.125rem;
+    font-weight: 400;
   }
 `;
 
@@ -53,7 +56,7 @@ const Avatar = ({ hideName }: Props) => {
       {!hideName && <NameContainer>{username}</NameContainer>}
       <LevelContainer>{`VIP ${accountLevel}`}</LevelContainer>
       <BalanceContainer>
-        <Icon iconUrl={iconMoney} width={"20px"} height={"20px"} />
+        <Icon iconUrl={iconMoney} width={"18px"} height={"18px"} />
         <span>{currentBalance}</span>
       </BalanceContainer>
     </AvatarContainer>
