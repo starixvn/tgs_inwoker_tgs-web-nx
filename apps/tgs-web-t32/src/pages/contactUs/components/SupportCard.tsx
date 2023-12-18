@@ -12,7 +12,7 @@ const SupportCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.maskAccent};
   color: ${({ theme }) => theme.text};
   font-size: 1rem;
   font-weight: 400;

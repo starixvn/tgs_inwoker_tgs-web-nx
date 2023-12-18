@@ -33,7 +33,7 @@ const StyledTable = muiStyled(Table)(({ theme }) => ({
     fontWeight: 400,
     lineHeight: "1.318rem",
     color: theme.palette.text.primary,
-    borderBottom: `1px solid ${theme.palette.gray10}`,
+    borderBottom: `1px solid ${theme.palette.maskBlack20}`,
     padding: "26px 0 10px",
   },
 }));
@@ -60,7 +60,7 @@ const MobileInboxList = ({
         <TableHead>
           <TableRow>
             <TableCell
-              width="25%"
+              width="30%"
               sx={{
                 border: "none",
               }}
@@ -68,7 +68,7 @@ const MobileInboxList = ({
               <>{i18n.t("inbox.dateTime")}</>
             </TableCell>
             <TableCell
-              width="25%"
+              width="30%"
               sx={{
                 border: "none",
               }}
@@ -89,12 +89,16 @@ const MobileInboxList = ({
             const { id, isread, createon, subject, content, localization } = inboxMessage;
             return (
               <TableRow key={id}>
-                <TableCell width="25%">{moment(createon).format("YYYY-MM-DD hh:mm a")}</TableCell>
-                <TableCell width="25%">
+                <TableCell width="30%">{moment(createon).format("YYYY-MM-DD hh:mm a")}</TableCell>
+                <TableCell width="30%">
                   {localization !== null && localization.subject ? localization.subject : subject}
                 </TableCell>
                 <TableCell>
                   <LetterContent
+                    style={{
+                      maxWidth: "300px",
+                      overflow: "auto",
+                    }}
                     dangerouslySetInnerHTML={{
                       __html:
                         localization !== null && localization.content

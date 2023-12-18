@@ -12,7 +12,6 @@ const NumberContainer = styled.div`
   height: 20px;
   border-radius: 3.2px;
   background-color: ${({ theme }) => theme.blue40};
-  font-family: Arial;
   font-size: 0.875rem;
   font-weight: 400;
   color: ${({ theme }) => theme.white};

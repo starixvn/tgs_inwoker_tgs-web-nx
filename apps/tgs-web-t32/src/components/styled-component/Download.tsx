@@ -23,7 +23,6 @@ export const IntroductionContainer = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.text};
-  font-family: Arial;
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
@@ -32,7 +31,6 @@ export const IntroductionContainer = styled.div`
   gap: 12px;
   margin-bottom: 34px;
   & span {
-    font-family: Arial;
     font-size: 18px;
     font-weight: 700;
     line-height: 21px;

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import AppFlag from "@/pages/home/components/AppFlag";
-import { Button } from "@/components/UI/Button";
-import { theme } from "@/theme";
 import android from "@/assets/t32/images/home/android.svg";
 import ios from "@/assets/t32/images/home/ios.svg";
 import { media } from "@/theme/breakpoints";
@@ -14,7 +12,7 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.maskAccent};
   ${media.sm} {
     padding: 40px;
   }
@@ -39,7 +37,6 @@ const AppContainer = styled.div`
 
 const Text = styled.div`
   color: ${({ theme }) => theme.text};
-  font-family: Arial;
   font-size: 16px;
   font-weight: 700;
   line-height: 18px;
