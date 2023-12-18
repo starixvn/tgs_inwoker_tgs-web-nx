@@ -96,6 +96,10 @@ const DesktopInboxList = ({
                 </TableCell>
                 <TableCell>
                   <LetterContent
+                    style={{
+                      maxWidth: "300px",
+                      overflow: "auto",
+                    }}
                     dangerouslySetInnerHTML={{
                       __html:
                         localization !== null && localization.content
