@@ -8,8 +8,8 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t33/images/home/play.svg";
-import maintenanceIcon from "@/assets/t33/images/home/maintenance.svg";
+import playIcon from "@/assets/t30/images/home/play.svg";
+import maintenanceIcon from "@/assets/t30/images/home/maintenance.svg";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -37,12 +37,12 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 
 const NewTag = styled.div`
   position: absolute;
-  top: 8px;
-  left: 0;
-  width: 52px;
-  height: 27px;
+  top: 5px;
+  left: 3px;
+  width: 53px;
+  height: 26px;
   padding: 4px 10px;
-  border-radius: 0px 50px 50px 0px;
+  border-radius: 50px;
   background: ${(props) => props.theme.red};
   color: ${(props) => props.theme.white};
   display: flex;
@@ -54,13 +54,13 @@ const NewTag = styled.div`
 
 const HotTag = styled.div`
   position: absolute;
-  bottom: 8px;
+  bottom: 7px;
   left: 0;
-  width: 52px;
-  height: 27px;
+  width: 53px;
+  height: 26px;
   padding: 4px 10px;
-  border-radius: 0px 50px 50px 0px;
-  background: ${(props) => props.theme.primary};
+  border-radius: 50px;
+  background: ${(props) => props.theme.green};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
@@ -74,16 +74,14 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 6px);
-  max-width: 130px;
+  width: calc(50% - 6px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 130 / 130;
+  aspect-ratio: 161 / 161;
+  border-radius: 10px;
 
   ${media.sm} {
-    width: calc(14.29% - 11.4px);
-    min-width: 160px;
-    aspect-ratio: 160 / 160;
+    width: calc(16.67% - 6px);
 
     &:hover {
       ${CardHoverBg} {
@@ -117,13 +115,17 @@ const MaintenanceBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 50%);
+  background: rgb(0 0 0 / 70%);
   padding: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
   z-index: 3;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 `;
 
 const MaintenanceIcon = styled.img`
@@ -157,9 +159,16 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
+  const isLogin = !!account.token;
 
+  const launchGameHandler = () => {
+    if (!isActive) {
+      return;
+    }
+    launchGame();
+  };
   const launchGame = () => {
-    if (!account.token) {
+    if (!isLogin) {
       history.push("/login");
     } else {
       Common.closePreviousPopup();
@@ -169,7 +178,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
   const handleToggleFavorite = async (event: MouseEvent, gameId: number) => {
     event.stopPropagation();
-    if (!account.token) {
+    if (!isLogin) {
       history.push("/login");
     } else {
       if (isUpdatingFavorite) return;
@@ -187,7 +196,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <GameCardBg onClick={launchGame}>
+    <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
@@ -198,14 +207,17 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
           </MaintenanceBg>
         )}
       </GameCardContent>
-      <Favorite
-        isFavorite={isFavorite}
-        handleToggleFavorite={handleToggleFavorite}
-        gameItemId={gameItem.id}
-      />
+
+      {isLogin && (
+        <Favorite
+          isFavorite={isFavorite}
+          handleToggleFavorite={handleToggleFavorite}
+          gameItemId={gameItem.id}
+        />
+      )}
 
       {isDesktopSize && (
-        <CardHoverBg onClick={launchGame}>
+        <CardHoverBg onClick={launchGameHandler}>
           {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
           <PlayIcon src={playIcon} alt={"play"} />
         </CardHoverBg>

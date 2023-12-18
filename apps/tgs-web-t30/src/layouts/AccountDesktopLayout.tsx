@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 
 const DefaultLayoutContainer = styled.div`
@@ -13,12 +13,12 @@ const DefaultLayoutContainer = styled.div`
 
 const DashboardContainer = styled.div`
   display: flex;
-  margin-top: ${HEADER_HEIGHT};
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin-top: ${MOBILE_HEADER_HEIGHT};
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
 
   ${media.sm} {
-    margin-top: ${HEADER_HEIGHT};
-    min-height: calc(100vh - ${HEADER_HEIGHT});
+    margin-top: ${MOBILE_HEADER_HEIGHT};
+    min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
     margin-bottom: unset;
   }
 `;

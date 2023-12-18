@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import ContextMenuButton from "@/layouts/components/Header/components/ContextMenuButton";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import promotionIcon from "@/assets/t30/images/header/icon-promotion.svg";
@@ -26,6 +27,7 @@ export const IconButton = styled.div`
 const AccountHeaderContent = () => {
   const history = useHistory();
   const { handleLogout } = useAuthContext();
+  const { isDesktopSize } = useRwd();
 
   const handleDeposit = () => {
     history.push("/deposit");
@@ -50,19 +52,25 @@ const AccountHeaderContent = () => {
         {i18n.t("common.deposit")}
       </HeaderButton>
 
-      <IconButton onClick={handleGoToPromotion}>
-        <Icon iconUrl={promotionIcon} width={"20px"} height={"20px"} />
-      </IconButton>
+      {isDesktopSize && (
+        <IconButton onClick={handleGoToPromotion}>
+          <Icon iconUrl={promotionIcon} width={"20px"} height={"20px"} />
+        </IconButton>
+      )}
 
-      <IconButton onClick={handleGotoInbox}>
-        <Icon iconUrl={inboxIcon} width={"20px"} height={"20px"} />
-      </IconButton>
+      {isDesktopSize && (
+        <IconButton onClick={handleGotoInbox}>
+          <Icon iconUrl={inboxIcon} width={"20px"} height={"20px"} />
+        </IconButton>
+      )}
 
       <ContextMenuButton />
 
-      <IconButton onClick={handleLogout}>
-        <Icon iconUrl={logoutIcon} width={"20px"} height={"20px"} />
-      </IconButton>
+      {isDesktopSize && (
+        <IconButton onClick={handleLogout}>
+          <Icon iconUrl={logoutIcon} width={"20px"} height={"20px"} />
+        </IconButton>
+      )}
     </ButtonContainer>
   );
 };

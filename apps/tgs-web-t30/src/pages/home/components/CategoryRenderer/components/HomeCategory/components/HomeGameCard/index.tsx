@@ -157,9 +157,10 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
+  const isLogin = !!account.token;
 
   const launchGame = () => {
-    if (!account.token) {
+    if (!isLogin) {
       history.push("/login");
     } else {
       Common.closePreviousPopup();
@@ -169,7 +170,7 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
   const handleToggleFavorite = async (event: MouseEvent, gameId: number) => {
     event.stopPropagation();
-    if (!account.token) {
+    if (!isLogin) {
       history.push("/login");
     } else {
       if (isUpdatingFavorite) return;
@@ -199,11 +200,12 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
           </MaintenanceBg>
         )}
       </GameCardContent>
-      <Favorite
+
+      {isLogin && <Favorite
         isFavorite={isFavorite}
         handleToggleFavorite={handleToggleFavorite}
         gameItemId={gameItem.id}
-      />
+      />}
 
       {isDesktopSize && (
         <CardHoverBg onClick={launchGame}>

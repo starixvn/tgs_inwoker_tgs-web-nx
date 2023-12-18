@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import MemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenu";
@@ -13,8 +13,8 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - ${HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`${HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin: ${`${MOBILE_HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
 

@@ -12,7 +12,7 @@ const PromotionContent = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const Banner = styled.div<{ $imageUrl: string }>`
@@ -51,7 +51,7 @@ const PromotionCard = () => {
           text={"Go"}
           width={"105px"}
           height={"34px"}
-          bgColor={theme.secondaryMix}
+          bgColor={theme.mainBackground}
           color={theme.white}
           onClick={() => history.push("/promotion-list")}
         />

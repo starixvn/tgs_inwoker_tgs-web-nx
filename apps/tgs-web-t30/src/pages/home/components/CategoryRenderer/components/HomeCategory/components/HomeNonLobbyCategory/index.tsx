@@ -31,7 +31,7 @@ const CategoryContent = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   border-radius: 0px 20px 20px 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 type Props = {
@@ -39,11 +39,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const HomeNonLobbyCategory = ({
-  title,
-  children
-}: Props) => {
-
+const HomeNonLobbyCategory = ({ title, children }: Props) => {
   return (
     <HomeCategorySection>
       <CategoryTab>

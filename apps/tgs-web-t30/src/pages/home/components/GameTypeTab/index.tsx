@@ -1,26 +1,51 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tab from "./Tab";
-import useHomeGameTypeList from "@/hooks/home/useHomeGameTypeList";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const TabContainer = styled.div`
-  width: 100%;
-  padding: 5px 10px;
+  overflow-y: auto;
+  height: 100%;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainLightBackground};
-  gap: 5px;
+  flex-direction: column;
+  width: 72px;
+  max-height: 862px; //826/926
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  flex-shrink: 0;
+  gap: 3px;
+
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      background: ${(props) => props.theme.tertiaryDark};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #53535375;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
+  }
 `;
 
 const GameTypeTab = () => {
-  const gameTypeList = useHomeGameTypeList();
+  const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { isMobileSize } = useRwd();
-  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
+  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
@@ -34,14 +59,21 @@ const GameTypeTab = () => {
     handleChangeActiveFilterTag(allTag);
   };
 
+  const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
+    if (providerList.length) {
+      const hasData = providerList.some((provider) => {
+        return provider.gametypes.includes(gameTypeItem.gameType);
+      });
+      return hasData;
+    }
+    return true;
+  });
+
+
   return (
     <TabContainer>
-      {gameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType } = gameTypeItem;
-
-        if (isMobileSize && gameType === GameTypeEnum.NONE) {
-          return null;
-        }
+      {filteredGameTypeList.map((gameTypeItem) => {
+        const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
 
         return (
           <Tab
@@ -49,6 +81,7 @@ const GameTypeTab = () => {
             imageUrl={iconUrl}
             text={text}
             isActive={gameType === activeGameType}
+            fontSize={fontSize}
             onClick={() => switchGameType(gameType)}
           />
         );

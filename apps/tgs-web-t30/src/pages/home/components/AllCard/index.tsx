@@ -27,8 +27,8 @@ const AllIcon = styled.div`
   left: 0;
   top: 0;
   border-radius: 10px;
-  border: 1px solid ${(props) => props.theme.lighterGray};
-  background: ${(props) => props.theme.mainDarkBackground};
+  border: 1px solid ${(props) => props.theme.primary};
+  background: ${(props) => props.theme.mainBackground};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +36,7 @@ const AllIcon = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${(props) => props.theme.lighterGray};
+  color: ${(props) => props.theme.black};
   font-size: 1rem;
   font-weight: 400;
   margin-top: 8px;
