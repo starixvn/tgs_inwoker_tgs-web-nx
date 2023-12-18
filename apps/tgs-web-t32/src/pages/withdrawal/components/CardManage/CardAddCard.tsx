@@ -2,24 +2,28 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import AddCardIcon from "@/assets/t32/images/card/add-card.svg";
+import { media } from "@/theme/breakpoints";
 
 const CardContainer = styled.div`
   width: 100%;
-  padding: 13px 20px;
-  background: ${({ theme }) => theme.blue20};
-  border: 1px solid ${({ theme }) => theme.main};
+  padding: 16px;
+  background: ${({ theme }) => theme.primary};
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   gap: 8px;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+
+  ${media.md} {
+    width: calc((100% - 14px * 1) / 2);
+  }
 `;
 
 const EmptyCardTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 `;
 
 const IconContainer = styled.div`
@@ -38,7 +42,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 10px;
 `;
 
 type Props = {

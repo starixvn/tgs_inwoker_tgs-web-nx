@@ -2,7 +2,6 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
-import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import iconCard from "@/assets/t32/images/withdraw/icon-card.svg";
 import iconCardActive from "@/assets/t32/images/withdraw/icon-card-active.svg";
 import iconManage from "@/assets/t32/images/withdraw/icon-manage.svg";
@@ -26,9 +25,12 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   gap: 8px;
   padding: 8px 11px;
   font-size: 14px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
+  color: ${({ $active, theme }: BankCardButtonProps) =>
+    $active ? theme.white : theme.maskBlack50};
+  border: 1px solid
+    ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.maskBlack50)};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+    $active ? theme.btnSec : theme.mainBackground};
   width: auto !important;
   cursor: pointer;
   float: left;

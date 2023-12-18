@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { Button } from "@/components/UI/Button";
+import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const Container = styled.div`
   width: 100%;
@@ -40,9 +40,9 @@ const Disabled = ({ handleCSClick }) => {
 
       <ButtonContainer>
         {(!config.features.ChangesNotAllowed || config.features.AddCard_NotAllowedEditDelete) && (
-          <Button width={255} handleClick={handleCSClick}>
+          <SubmitButton fullWidth onClick={handleCSClick}>
             {i18n.t("support.online")}
-          </Button>
+          </SubmitButton>
         )}
       </ButtonContainer>
     </Container>

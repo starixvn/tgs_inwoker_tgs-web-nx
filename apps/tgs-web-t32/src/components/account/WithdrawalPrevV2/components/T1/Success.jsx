@@ -8,6 +8,7 @@ import {
   SameLine,
   SuccessMessage,
 } from "@/components/styled-component/WithdrawV2/Success";
+import { theme } from "@/theme";
 
 const Success = ({ verified, handleConfirmClick, handleVerifyName }) => {
   return (
@@ -15,9 +16,25 @@ const Success = ({ verified, handleConfirmClick, handleVerifyName }) => {
       <ImgSuccess src={SuccessPNG} />
       <SuccessMessage>{i18n.t("withdrawal.msgSuccess")}</SuccessMessage>
       <SameLine>
-        <CustomButton onClick={handleConfirmClick}>{i18n.t("common.confirm")}</CustomButton>
+        <CustomButton
+          fullWidth
+          onClick={handleConfirmClick}
+          style={{
+            background: theme.primary,
+          }}
+        >
+          {i18n.t("common.confirm")}
+        </CustomButton>
         {!verified && (
-          <CustomButton onClick={handleVerifyName}>{i18n.t("verified.goVerify")}</CustomButton>
+          <CustomButton
+            fullWidth
+            onClick={handleVerifyName}
+            style={{
+              background: theme.btnPri,
+            }}
+          >
+            {i18n.t("verified.goVerify")}
+          </CustomButton>
         )}
       </SameLine>
     </Container>

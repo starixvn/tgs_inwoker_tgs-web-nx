@@ -8,8 +8,7 @@ import Icon from "@/components/project/Icon";
 const CardContainer = styled.div`
   width: 100%;
   padding: 16px;
-  background: ${({ theme }) => theme.blue20};
-  border: 1px solid ${({ theme }) => theme.blue40};
+  background: ${({ theme }) => theme.primary};
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -20,16 +19,16 @@ const CardContainer = styled.div`
   }
 `;
 
-const CardTitle = styled.div`
-  color: ${({ theme }) => theme.text};
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-  padding-bottom: 10px;
+export const CardTitle = styled.div`
+  color: ${({ theme }) => theme.white};
+  border-bottom: 1px solid ${({ theme }) => theme.maskWhite20};
+  padding-bottom: 12px;
   font-size: 1.25rem;
   font-weight: 700;
 `;
 
 const CardContent = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -48,12 +47,12 @@ const ContentRow = styled.div`
 
 const EndingInLabel = styled.div`
   font-size: 1.125rem;
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.white};
 `;
 const EndingInValue = styled.div`
   font-size: 1.125rem;
 
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 `;
 
 type Props = {

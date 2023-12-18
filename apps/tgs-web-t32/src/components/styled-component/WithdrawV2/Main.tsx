@@ -77,7 +77,7 @@ export const SelectionContainer = styled.div`
   gap: 8px;
 
   & input {
-    padding: 16px 0 !important;
+    padding: 13px 20px !important;
   }
 `;
 export const LimitPopupContainer = styled.div`
