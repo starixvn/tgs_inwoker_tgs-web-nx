@@ -11,7 +11,7 @@ export const theme = {
   grayGradient: "linear-gradient(180deg, #787878 0%, #1E1E1E 100%)",
   silverGradient: "linear-gradient(180deg, #666 0%, #C5C5C5 51.19%, #666 100%)",
   goldGradient: "linear-gradient(180deg, #D5B95F 0%, #F4D486 40.36%, #C28D29 100%)",
-  btnGradient: "linear-gradient(90deg, #B78316 0%, #F5D977 50.74%, #B78316 100%)",
+  btnGradient: "linear-gradient(0deg, rgba(255, 255, 255, 0.70) -66.67%, rgba(255, 255, 255, 0.00) 50%), linear-gradient(180deg, rgba(255, 255, 255, 0.90) -41.67%, rgba(255, 255, 255, 0.00) 26.67%), #1D1D1D",
   mainBackground: "#1D1D1D",
   subBackground: "#171717",
   pageLabelBackground: "linear-gradient(180deg, #242424 0%, #080808 100%)",

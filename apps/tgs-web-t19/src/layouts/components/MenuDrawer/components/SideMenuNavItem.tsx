@@ -26,6 +26,7 @@ type Props = {
 };
 const SideMenuNavItem = ({ navItem, handleClick }: Props) => {
   const { label, iconUrl } = navItem;
+
   return (
     <NavCardContainer onClick={() => handleClick(navItem)}>
       <Icon iconUrl={iconUrl} width={"20px"} height={"20px"} />

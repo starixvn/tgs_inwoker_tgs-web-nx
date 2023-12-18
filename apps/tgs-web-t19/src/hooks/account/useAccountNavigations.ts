@@ -13,7 +13,7 @@ import inboxImg from "@/assets/t19/images/header/sideMenuItem/icon-inbox.svg";
 import affiliateImg from "@/assets/t19/images/header/sideMenuItem/icon-affiliate.svg";
 import downloadImg from "@/assets/t19/images/header/sideMenuItem/icon-download.svg";
 import logoutImg from "@/assets/t19/images/header/sideMenuItem/icon-logout.svg";
-import contactImg from "@/assets/t19/images/account/navItem/icon-contact.svg";
+import contactImg from "@/assets/t19/images/header/sideMenuItem/icon-contact.svg";
 
 // mobile  my account
 import profileSecondaryImg from "@/assets/t19/images/account/navItem/icon-profile.svg";
@@ -86,7 +86,7 @@ export function useAccountNavigations() {
         key: NavCardKey.VIP,
         navType: "route",
         label: "VIP",
-        iconUrl: vipSecondaryImg,
+        iconUrl: vipImg,
         iconSecondaryUrl: vipSecondaryImg,
         routePath: "/vip",
       },
@@ -134,7 +134,7 @@ export function useAccountNavigations() {
         key: NavCardKey.LOGOUT,
         navType: "action",
         label: i18n.t("web.header.logout"),
-        iconUrl: logoutSecondaryImg,
+        iconUrl: logoutImg,
         iconSecondaryUrl: logoutSecondaryImg,
         callback: () => {
           handleLogout();

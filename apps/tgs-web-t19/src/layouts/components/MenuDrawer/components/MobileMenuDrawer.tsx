@@ -10,15 +10,8 @@ import AnonymousHeaderContent from "@/layouts/components/Header/components/Anony
 import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
-import { NavItem } from "@/hooks/account/useAccountNavigations";
-import vipImg from "@/assets/t19/images/header/sideMenuItem/icon-vip.svg";
-import profileImg from "@/assets/t19/images/header/sideMenuItem/icon-account.svg";
-import transferImg from "@/assets/t19/images/header/sideMenuItem/icon-transfer.svg";
-import reportImg from "@/assets/t19/images/header/sideMenuItem/icon-report.svg";
-import inboxImg from "@/assets/t19/images/header/sideMenuItem/icon-inbox.svg";
-import affiliateImg from "@/assets/t19/images/header/sideMenuItem/icon-affiliate.svg";
-import downloadImg from "@/assets/t19/images/header/sideMenuItem/icon-download.svg";
-import logoutImg from "@/assets/t19/images/header/sideMenuItem/icon-log-out.svg";
+import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
+import logoutImg from "@/assets/t19/images/header/sideMenuItem/icon-logout.svg";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
 import Icon from "@/components/project/Icon";
 
@@ -71,6 +64,7 @@ const MobileMenuDrawer = () => {
   const history = useHistory();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
+  const { navItemList } = useAccountNavigations();
 
   const handleClickLogout = async () => {
     if (!isDesktopSize && isMenuOpen) {
@@ -79,72 +73,20 @@ const MobileMenuDrawer = () => {
     await handleLogout();
   };
 
-  const sideNavItemList: NavItem[] = useMemo(() => {
-    return [
-      // {
-      //   key: NavCardKey.PROFILE,
-      //   label: i18n.t("wap.main.my"),
-      //   iconUrl: profileImg,
-      //   navType: "route",
-      //   routePath: "/account",
-      // },
-      {
-        key: NavCardKey.VIP,
-        label: "vip",
-        iconUrl: vipImg,
-        navType: "route",
-        routePath: "/vip",
-      },
-      {
-        key: NavCardKey.TRANSFER,
-        label: i18n.t("common.transfer"),
-        iconUrl: transferImg,
-        navType: "route",
-        routePath: "/transfer",
-      },
-      {
-        key: NavCardKey.REPORT,
-        label: i18n.t("report.title"),
-        iconUrl: reportImg,
-        navType: "route",
-        routePath: "/report",
-      },
-      {
-        key: NavCardKey.MESSAGE_CENTER,
-        label: i18n.t("wap.main.account.inbox"),
-        iconUrl: inboxImg,
-        navType: "route",
-        routePath: "/message-center",
-      },
-      {
-        key: NavCardKey.AFFILIATE,
-        label: i18n.t("wap.main.account.affiliate"),
-        iconUrl: affiliateImg,
-        navType: "route",
-        routePath: "/affiliate",
-      },
-      {
-        key: NavCardKey.CONTACT_US,
-        label: i18n.t("common.contact"),
-        iconUrl: profileImg,
-        navType: "route",
-        routePath: "/support",
-      },
-      {
-        key: NavCardKey.APP_DOWNLOAD,
-        label: i18n.t("wap.main.account.appDownload"),
-        iconUrl: downloadImg,
-        navType: "route",
-        routePath: "/appDownload",
-      },
-    ] as NavItem[];
-  }, []);
-
   const handleClickNav = useCallback((navItem: NavItem) => {
     handleToggleMenu(false);
 
-    if (navItem.navType !== "route") return;
-    history.push(navItem.routePath);
+    switch (navItem.navType) {
+      case "route":
+        history.push(navItem.routePath);
+        break;
+
+      case "action":
+        navItem.callback();
+    }
+
+    // if (navItem.navType !== "route") return;
+    // history.push(navItem.routePath);
   }, []);
 
   return (
@@ -159,7 +101,11 @@ const MobileMenuDrawer = () => {
         )}
 
         <NavsContainer>
-          {sideNavItemList.map((navItem) => {
+          {navItemList.map((navItem) => {
+            if (navItem.key === NavCardKey.PROFILE ||
+              navItem.key === NavCardKey.DEPOSIT ||
+              navItem.key === NavCardKey.WITHDRAW ||
+              navItem.key === NavCardKey.LOGOUT) return null;
             return (
               <SideMenuNavItem key={navItem.key} navItem={navItem} handleClick={handleClickNav} />
             );

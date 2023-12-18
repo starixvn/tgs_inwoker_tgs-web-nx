@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import accountIcon from "@/assets/t19/images/header/sideMenuItem/icon-account.svg";
+import accountIcon from "@/assets/t19/images/header/sideMenuItem/icon-profile.svg";
 import depositIcon from "@/assets/t19/images/bottomAppBar/icon-deposit.svg";
 import withdrawIcon from "@/assets/t19/images/bottomAppBar/icon-withdraw.svg";
 import Icon from "@/components/project/Icon";
