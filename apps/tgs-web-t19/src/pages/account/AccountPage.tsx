@@ -7,17 +7,20 @@ import styled from "styled-components";
 import AccountNavigations from "./components/AccountNavigations";
 import InfoCard from "@/pages/account/components/InfoCard";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
+import MemberCenterBorder from "@/pages/account/components/MemberCenterBorder";
+import { PageContainer } from "@/components/styled-component/PageContainer";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
 
-const AccountPageContainer = styled.div`
-  background: ${({ theme }) => theme.gray20};
-  max-width: calc(961px + 22px * 2);
+export const AccountPageContainer = styled.div`
+  background: ${({ theme }) => theme.mainBackground};
+  max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
-  padding-bottom: 50px;
 
   ${media.sm} {
-    padding-bottom: 0;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
   }
 `;
 
@@ -26,7 +29,7 @@ const AccountPage = () => {
 
   const { isLogin } = useAuth();
   const history = useHistory();
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   useEffect(() => {
     if (!isLogin) {
@@ -36,7 +39,8 @@ const AccountPage = () => {
 
   return (
     <AccountPageContainer>
-      {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "10px" }} />}
+      {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "30px" }} />}
+      {isMobileSize && <MemberCenterBorder />}
       <AccountNavigations />
     </AccountPageContainer>
   );
