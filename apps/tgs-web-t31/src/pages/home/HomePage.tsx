@@ -6,6 +6,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
+import { useUiStore } from "@tgs-web-nx/core";
 import MemberInfo from "./components/MemberInfo";
 import GameTypeTab from "./components/GameTypeTab";
 import CardPrompt from "@/pages/home/components/CardPrompt";
@@ -51,6 +52,7 @@ const BannerWrapper = styled.div`
 
 const MainContentWrapper = styled.div`
   width: 100%;
+  justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -60,9 +62,17 @@ const MainContentWrapper = styled.div`
   flex-shrink: 0;
 
   ${media.sm} {
+    max-width: calc(961px + 20px * 2);
     gap: 20px;
     padding: unset;
   }
+`;
+
+const MainContentContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 `;
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
@@ -116,6 +126,11 @@ const HomePage = () => {
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
 
   const isNonLobby = isNonLobbyList.includes(activeGameType);
+  const {
+    ui: { marquees },
+  } = useUiStore();
+
+  const hasData = marquees && marquees.length > 0;
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -158,24 +173,26 @@ const HomePage = () => {
         </BannerWrapper>
       ) : null}
 
-      {isMobileSize && <CardPrompt />}
+      <MainContentContainer>
+        <MainContentWrapper>
+          {isMobileSize && <CardPrompt />}
 
-      <MainContentWrapper>
-        {isMobileSize ? (
-          isLogin ? (
-            <MemberInfo />
-          ) : (
-            <ButtonContainer>
-              <Button onClick={() => history.push("/login")}>{i18n.t("common.login")}</Button>
-              <RegisterButton onClick={() => history.push("/register")}>
-                {i18n.t("common.register")}
-              </RegisterButton>
-            </ButtonContainer>
-          )
-        ) : null}
-        {isMobileSize && <GameTypeTab />}
-        <CategoryRenderer />
-      </MainContentWrapper>
+          {isMobileSize ? (
+            isLogin ? (
+              <MemberInfo />
+            ) : (
+              <ButtonContainer>
+                <Button onClick={() => history.push("/login")}>{i18n.t("common.login")}</Button>
+                <RegisterButton onClick={() => history.push("/register")}>
+                  {i18n.t("common.register")}
+                </RegisterButton>
+              </ButtonContainer>
+            )
+          ) : null}
+          {isMobileSize && <GameTypeTab />}
+          <CategoryRenderer />
+        </MainContentWrapper>
+      </MainContentContainer>
     </MainWrapper>
   );
 };
