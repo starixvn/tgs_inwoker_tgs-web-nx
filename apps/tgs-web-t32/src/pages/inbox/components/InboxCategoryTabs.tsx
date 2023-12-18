@@ -2,11 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { InboxCategoryTab } from "@tgs-web-nx/core/hooks";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const InboxCategoryTabsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 10px;
+
+  ${media.sm} {
+    justify-content: start;
+  }
 `;
 
 type CategoryTabProps = {
@@ -16,13 +21,20 @@ type CategoryTabProps = {
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1;
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? theme.mainBackground : theme.mainBackground};
-  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.text)};
+    $isActive ? theme.primary : theme.mainBackground};
+  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.primary)};
+  border: 1px solid
+    ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.primary : theme.primary)};
   padding: 12px;
   text-align: center;
   font-size: 0.812rem;
   line-height: 0.934rem;
+  font-weight: 600;
   cursor: pointer;
+
+  ${media.sm} {
+    max-width: 140px;
+  }
 `;
 
 type Props = {

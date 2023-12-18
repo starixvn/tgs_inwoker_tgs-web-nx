@@ -37,7 +37,7 @@ const InboxListTable = ({ inboxList, handleItemClick }: Props) => {
             <TableRow key={id} onClick={() => handleItemClick(inboxItem.id)}>
               <TableSubjectCell
                 sx={{
-                  fontWeight: haveRead ? 700 : 400,
+                  fontWeight: haveRead ? 400 : 700,
                 }}
               >
                 {subject}
