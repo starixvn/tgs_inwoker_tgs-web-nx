@@ -5,30 +5,36 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
-import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
-import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import NavRowLanguage from "@/pages/account/components/AccountNavigations/NavRowLanguage";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
+import { Button } from "@/components/UI/Button";
+import NavCard from "@/pages/account/components/AccountNavigations/NavCard";
+import AppDownloadButton from "@/components/project/AppDownloadButton";
+import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
+import { media } from "@/theme/breakpoints";
 
 const AccountNavsContainer = styled.div`
   padding: 12px 14px;
-  background: ${({ theme }) => theme.white};
-  overflow: visible;
+
+  ${media.sm} {
+    & > div {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const AccountNavCardsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  overflow: visible;
+  flex-wrap: wrap;
+  gap: 8px;
 `;
 
-const LogoutRegion = styled.div`
-  background: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.red};
-  font-size: 1.25rem;
-  padding: 15px;
-  text-align: center;
-  margin: 9px 0 0;
-  cursor: pointer;
+const AccountNavCardsSubContainer = styled.div`
+  display: flex;
+  gap: 25px;
+
+  & > * {
+    flex: 1;
+  }
 `;
 
 const hideInDesktopDictionary = {
@@ -39,7 +45,7 @@ const hideInDesktopDictionary = {
 
 const AccountNavigations = () => {
   const history = useHistory();
-  const { accountNavItemList } = useGetNavItemList();
+  const { navItemList, navItemDictionary } = useAccountNavigations();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
 
@@ -58,22 +64,40 @@ const AccountNavigations = () => {
     <>
       <AccountNavsContainer>
         <AccountNavCardsContainer>
-          {/* Cards */}
-          {accountNavItemList.map((navItem) => {
+          {/* mobile Cards */}
+          {navItemList.map((navItem) => {
             if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
 
-            if (navItem.key === NavCardKey.LANGUAGE_SWITCH) {
-              return (
-                <NavRowLanguage key={navItem.key} navItem={navItem} handleClick={handleClickNav} />
-              );
-            }
-
-            return <NavRow key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
+            return <NavCard key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
           })}
         </AccountNavCardsContainer>
+
+        {isDesktopSize && (
+          <AccountNavCardsSubContainer>
+            <AppDownloadButton
+              navItem={navItemDictionary[NavCardKey.APP_DOWNLOAD]}
+              handleClick={() => handleClickNav(navItemDictionary[NavCardKey.APP_DOWNLOAD])}
+            />
+
+            <LanguageSwitch />
+
+            <Button
+              variant={"contained"}
+              onClick={handleLogout}
+              sx={{
+                color: "white",
+                background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
+                fontSize: "1.125rem",
+                height: "44px",
+              }}
+            >
+              {i18n.t("web.header.logout")}
+            </Button>
+          </AccountNavCardsSubContainer>
+        )}
       </AccountNavsContainer>
 
-      <LogoutRegion onClick={handleLogout}>{i18n.t("web.header.logout")}</LogoutRegion>
+      {/*<Loading show={logoutState.isLoading} />*/}
     </>
   );
 };

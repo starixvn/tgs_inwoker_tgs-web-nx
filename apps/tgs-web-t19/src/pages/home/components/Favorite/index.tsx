@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import styled from "styled-components";
-import dislikeIcon from "@/assets/129/images/home/disLike.svg";
+import dislikeIcon from "@/assets/19/images/home/disLike.svg";
 import likeIcon from "@/assets/t19/images/home/like.svg";
 import { media } from "@/theme/breakpoints";
 

@@ -2,13 +2,13 @@ import { Drawer } from "@mui/material";
 import { useMemo } from "react";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import MenuDrawerList from "@/layouts/components/MenuDrawer/components/MenuDrawerList/MenuDrawerList";
-import { MOBILE_DRAWER_WIDTH } from "@/theme/constants";
 import { theme } from "@/theme";
+import MobileMenuDrawer from "@/layouts/components/MenuDrawer/components/MobileMenuDrawer";
+import { MOBILE_DRAWER_WIDTH } from "@/theme/constants";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isLargeDesktopSize } = useRwd();
+  const { isLargeDesktopSize, isXlSize } = useRwd();
 
   const drawerWidth = useMemo(() => {
     return MOBILE_DRAWER_WIDTH;
@@ -17,20 +17,20 @@ const MenuDrawer = () => {
   return (
     <Drawer
       variant={isLargeDesktopSize ? "persistent" : "temporary"}
-      anchor={"left"}
+      anchor={"right"}
       open={isLargeDesktopSize ? false : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-          transition: "all ease-in-out 0.2s",
+          transition: "all ease-in-out 0.5s",
           border: "none",
-          background: theme.gray30,
+          background: theme.secondary,
         },
       }}
     >
-      {isLargeDesktopSize ? null : <MenuDrawerList />}
+      {isLargeDesktopSize ? null : <MobileMenuDrawer />}
     </Drawer>
   );
 };

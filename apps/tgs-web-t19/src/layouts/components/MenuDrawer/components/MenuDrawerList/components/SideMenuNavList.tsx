@@ -11,10 +11,12 @@ const TabContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
+
+  border: 1px solid red;
 `;
 
 const SideMenuNavList = () => {
-  const { sideNavItemList } = useGetNavItemList();
+  const { sideNavItemList, accountNavItemList } = useGetNavItemList();
   const { activeGameType } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
 
@@ -26,7 +28,7 @@ const SideMenuNavList = () => {
 
   return (
     <TabContainer>
-      {sideNavItemList.map((navItem) => {
+      {accountNavItemList.map((navItem) => {
         const { key, iconUrl, label, gameType } = navItem;
 
         if (navItem.key === NavCardKey.VIP) return null;

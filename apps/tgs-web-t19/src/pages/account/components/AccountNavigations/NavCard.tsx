@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
-import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 
 const NavCardContainer = styled.div`
   position: relative;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  color: ${({ theme }) => theme.text};
-  font-size: 0.875rem;
+  width: calc((100% - 3 * 8px) / 4);
+  padding: 28px;
+  color: ${({ theme }) => theme.white};
+  font-size: 1rem;
   font-weight: 400;
   cursor: pointer;
   white-space: nowrap;
@@ -21,7 +22,7 @@ const NavCardContainer = styled.div`
   overflow: visible;
 
   ${media.sm} {
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.mainLightBackground};
     //width: calc((100% - 7 * 8px) / 8);
   }
 }
@@ -31,18 +32,25 @@ type Props = {
   navItem: NavItem;
   handleClick: (navItem: NavItem) => void;
 };
-const LanguageNavRow = ({ navItem, handleClick }: Props) => {
+const NavCard = ({ navItem, handleClick }: Props) => {
   const { label, iconUrl, iconSecondaryUrl } = navItem;
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
-  const imageUrl = !isDesktopSize ? iconSecondaryUrl ?? iconUrl : iconUrl;
+  const imageUrl = isMobileSize ? iconSecondaryUrl ?? iconUrl : iconUrl;
   return (
     <NavCardContainer onClick={() => handleClick(navItem)}>
-      <Icon iconUrl={imageUrl} width={"24px"} height={"24px"} />
+      <Icon
+        iconUrl={imageUrl}
+        width={isDesktopSize ? "40px" : "50px"}
+        height={isDesktopSize ? "40px" : "50px"}
+        style={{
+          marginBottom: "16px",
+        }}
+      />
 
       <span>{label}</span>
     </NavCardContainer>
   );
 };
 
-export default LanguageNavRow;
+export default NavCard;

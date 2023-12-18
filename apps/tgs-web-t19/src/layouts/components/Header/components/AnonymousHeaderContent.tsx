@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth, useAuthContext, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
-import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import MenuButton from "./MenuButton";
+import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 import iconLogin from "@/assets/t29/images/header/icon-login.svg";
 import Icon from "@/components/project/Icon";
@@ -14,6 +15,7 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-right: 10px;
 `;
 
 type Props = {
@@ -21,33 +23,31 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isLargeDesktopSize } = useRwd();
   const { goToLogin, goToRegister } = useAuth();
 
   return (
     <ButtonContainer>
-      <RoundHeaderButton
+      <HeaderButton
         onClick={goToLogin}
         style={{
-          color: theme.white,
-          background: theme.primary,
+          color: theme.black,
+          background: theme.silverGradient,
         }}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.login")}
-      </RoundHeaderButton>
+      </HeaderButton>
 
-      <RoundHeaderButton
+      <HeaderButton
         color={"primary"}
         onClick={goToRegister}
         style={{
-          color: theme.white,
-          background: theme.secondary,
+          color: theme.black,
+          background: theme.goldGradient,
         }}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.register")}
-      </RoundHeaderButton>
+      </HeaderButton>
       {isDesktopSize && <HeaderLanguageSwitch />}
     </ButtonContainer>
   );

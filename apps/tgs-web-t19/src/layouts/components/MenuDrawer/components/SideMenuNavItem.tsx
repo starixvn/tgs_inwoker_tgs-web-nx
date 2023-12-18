@@ -10,10 +10,9 @@ const NavCardContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.lightGold};
   font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.304rem;
+  font-weight: 510;
   padding: 19px 0;
 
   & > div:first-child {
@@ -27,6 +26,7 @@ type Props = {
 };
 const SideMenuNavItem = ({ navItem, handleClick }: Props) => {
   const { label, iconUrl } = navItem;
+
   return (
     <NavCardContainer onClick={() => handleClick(navItem)}>
       <Icon iconUrl={iconUrl} width={"20px"} height={"20px"} />
