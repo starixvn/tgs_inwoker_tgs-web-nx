@@ -5,6 +5,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import DownloadApp from "@/components/account/DownloadApp";
 import { DownloadPageContainer } from "@/components/styled-component/PageContainer";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
+import MenuTabs from "@/components/project/MenuTabs";
 
 const AppDownloadPage = () => {
   useUpdatePageName(i18n.t("download.title"));
@@ -12,6 +13,8 @@ const AppDownloadPage = () => {
   return (
     <DownloadPageContainer>
       {isDesktopSize && <UserWalletInfo />}
+      {isDesktopSize && <MenuTabs />}
+
       <DownloadApp />
     </DownloadPageContainer>
   );
