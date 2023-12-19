@@ -70,9 +70,8 @@
         "{options.outputFile}"
       ],
       "options": {
-        "lintFilePatterns": [
-          "apps/tgs-web-t30/**/*.{ts,tsx,js,jsx}"
-        ]
+        "commands": [],
+        "parallel": false
       }
     },
     "docker-build": {
