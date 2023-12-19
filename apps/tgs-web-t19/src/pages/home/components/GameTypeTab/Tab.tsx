@@ -20,14 +20,7 @@ const Wrapper = styled.div<{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 72px;
-  height: 55px;
-  padding: 4px;
-  gap: 6px;
   user-select: none;
-  border-radius: 6px;
-  border: 1px solid ${({ theme, $isActive }) => ($isActive ? theme.blue40 : "transparent")};
-  background: ${({ theme }) => theme.blue20};
 
   ${media.sm} {
     min-width: 90px;
@@ -40,24 +33,25 @@ const Wrapper = styled.div<{
 `;
 
 const GameIcon = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 62px;
+  height: 62px;
 `;
 
-const Text = styled.div`
-  color: ${({ theme }) => theme.text};
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
+const Text = styled.div<{
+  $isActive: boolean;
+}>`
+  color: ${({ theme, $isActive }) => $isActive ? theme.primary : theme.gray};
+  font-size: 14px;
+  font-weight: 400;
   text-align: center;
-  line-height: 10px;
+  margin-top: 3px;
 `;
 
 const Tab = ({ imageUrl, text, isActive, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
       <GameIcon src={imageUrl} alt={text} />
-      <Text>{text}</Text>
+      <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );
 };

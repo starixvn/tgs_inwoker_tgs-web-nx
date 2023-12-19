@@ -63,8 +63,8 @@ const MainDesktop = ({
       </ItemContainer>
 
       {/* Transfer from all sub wallet to main wallet */}
-      <ItemContainer>
-        {config.features.NewTransferUI && (
+      {config.features.NewTransferUI && (
+        <ItemContainer>
           <StepTitle step={2} title={i18n.t("transfer.msgTransferOutFromGP")}>
             <ButtonWrapper>
               <GameWalletButton
@@ -81,8 +81,8 @@ const MainDesktop = ({
               </GameWalletButton>
             </ButtonWrapper>
           </StepTitle>
-        )}
-      </ItemContainer>
+        </ItemContainer>
+      )}
 
       {/* Please enter the withdrawal amount */}
       <ItemContainer>
@@ -146,32 +146,30 @@ const MainDesktop = ({
         </SelectionContainer>
       </ItemContainer>
 
-      <ItemContainer>
-        {config.features.Deposit_Withdrawal_PlayerNote &&
-          cardList[selectedCardIndex] &&
-          (cardList[selectedCardIndex].banktype.toUpperCase() === "BANK" ||
-            cardList[selectedCardIndex].banktype.toUpperCase() === "EWALLET" ||
-            cardList[selectedCardIndex].banktype.toUpperCase() === "PULSA") && (
-            <>
-              <StepTitle
-                step={config.features.NewTransferUI ? 4 : 3}
-                title={i18n.t("withdrawal.playerNote")}
-              />
+      {config.features.Deposit_Withdrawal_PlayerNote &&
+        cardList[selectedCardIndex] &&
+        (cardList[selectedCardIndex].banktype.toUpperCase() === "BANK" ||
+          cardList[selectedCardIndex].banktype.toUpperCase() === "EWALLET" ||
+          cardList[selectedCardIndex].banktype.toUpperCase() === "PULSA") && (
+          <ItemContainer>
+            <StepTitle
+              step={config.features.NewTransferUI ? 4 : 3}
+              title={i18n.t("withdrawal.playerNote")}
+            />
 
-              <SelectionContainer>
-                <FormControl variant="outlined">
-                  <TextField
-                    placeholder={i18n.t("withdrawal.plsEnterPlayerNote")}
-                    onChange={handlePlayerNote}
-                    variant="outlined"
-                    autoComplete="off"
-                    value={playerNote}
-                  />
-                </FormControl>
-              </SelectionContainer>
-            </>
-          )}
-      </ItemContainer>
+            <SelectionContainer>
+              <FormControl variant="outlined">
+                <TextField
+                  placeholder={i18n.t("withdrawal.plsEnterPlayerNote")}
+                  onChange={handlePlayerNote}
+                  variant="outlined"
+                  autoComplete="off"
+                  value={playerNote}
+                />
+              </FormControl>
+            </SelectionContainer>
+          </ItemContainer>
+        )}
 
       <SubmitButton
         disabled={Boolean(

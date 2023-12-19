@@ -1,101 +1,54 @@
-import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
-import { Common } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import Icon from "@/components/project/Icon";
-import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
-import iconAccount from "@/assets/t29/images/header/icon-account.svg";
-import iconInbox from "@/assets/t29/images/header/icon-inbox.svg";
-import iconInboxBlue from "@/assets/t29/images/header/icon-inbox-blue.svg";
-import iconLogout from "@/assets/t29/images/header/icon-logout.svg";
-import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { media } from "@/theme/breakpoints";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
+import { RoundHeaderButton } from "./HeaderButton";
+import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`;
-
-const UsernameContainer = styled.div`
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.text};
-
-  ${media.sm} {
-    color: ${({ theme }) => theme.white};
-  }
-`;
-
-const InboxIconContainer = styled.div`
-  cursor: pointer;
-`;
-
-const Balance = styled.div`
-  color: ${({ theme }) => theme.black};
-  font-size: 0.875rem;
-  font-weight: 400;
-
-  ${media.sm} {
-    color: ${({ theme }) => theme.white};
-  }
+  margin-left: 12px;
 `;
 
 const AccountHeaderContent = () => {
   const history = useHistory();
-  const { account } = useAccountStore();
-  const { wallet } = useWalletStore();
   const { handleLogout } = useAuthContext();
-  const { isDesktopSize } = useRwd();
-  const goToHomePage = useGoToHomePage();
 
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
-  const username = account.info.member_username;
-
-  const handleGoToProfile = () => {
-    history.push("/profile");
+  const transferStyle = {
+    color: theme.neutralBlack,
+    background: theme.secondaryGradient,
+    width: "140px",
+    height: "30px",
+    padding: "6px 12px",
+    borderRadius: "4px",
+    gap: "4px",
+    fontSize: "14px",
+    fontWeight: 700,
+    lineHeight: "16px",
+    letterSpacing: "0em",
+    justifyContent: "center",
   };
 
-  const handleGoToInbox = () => {
-    history.push("/inbox");
+  const logOutstyle = {
+    ...transferStyle,
+    background: theme.tertiaryGradient,
   };
-  const handleClickLogout = async () => {
-    await handleLogout();
-    goToHomePage();
-  };
-
   return (
     <ButtonContainer>
-      <UsernameContainer>{username}</UsernameContainer>
-      <Balance>${currentBalance}</Balance>
+      <RoundHeaderButton
+        onClick={() => {
+          history.push("/transfer");
+        }}
+        style={transferStyle}
+      >
+        {i18n.t("common.transfer").toLocaleUpperCase()}
+      </RoundHeaderButton>
 
-      {isDesktopSize && <TransferButtonGroup />}
-
-      {isDesktopSize && <HeaderLanguageSwitch />}
-
-      {isDesktopSize ? (
-        <>
-          <InboxIconContainer onClick={handleGoToProfile}>
-            <Icon iconUrl={iconAccount} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-
-          <InboxIconContainer onClick={handleGoToInbox}>
-            <Icon iconUrl={iconInbox} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-
-          <InboxIconContainer onClick={handleClickLogout}>
-            <Icon iconUrl={iconLogout} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-        </>
-      ) : (
-        <InboxIconContainer onClick={handleGoToInbox}>
-          <Icon iconUrl={iconInboxBlue} width={"24px"} height={"24px"} />
-        </InboxIconContainer>
-      )}
+      <RoundHeaderButton color={"primary"} onClick={handleLogout} style={logOutstyle}>
+        {i18n.t("web.header.logout").toLocaleUpperCase()}
+      </RoundHeaderButton>
     </ButtonContainer>
   );
 };

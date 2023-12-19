@@ -28,6 +28,10 @@ const AccountPage = () => {
   const history = useHistory();
   const { isDesktopSize } = useRwd();
 
+  if (isDesktopSize) {
+    history.push("/profile");
+  }
+
   useEffect(() => {
     if (!isLogin) {
       history.push("/login");

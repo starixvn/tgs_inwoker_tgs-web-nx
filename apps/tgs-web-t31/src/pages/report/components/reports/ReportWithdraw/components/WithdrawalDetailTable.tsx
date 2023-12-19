@@ -37,6 +37,7 @@ const WithdrawalDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.RequestDate")}</>
@@ -44,6 +45,7 @@ const WithdrawalDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.NewOrderNumber")}</>
@@ -51,6 +53,7 @@ const WithdrawalDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.status")}</>
@@ -59,6 +62,7 @@ const WithdrawalDetailTable = ({
               align={"right"}
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.amount")}</>
@@ -94,7 +98,7 @@ const WithdrawalDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.text,
           "& button": {},
         }}
       />

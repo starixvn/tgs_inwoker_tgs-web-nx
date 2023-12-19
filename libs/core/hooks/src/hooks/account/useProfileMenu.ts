@@ -48,7 +48,7 @@ export function useProfileMenu() {
     return {
       name: {
         key: "name",
-        label: i18n.t("profile.nameVerify.icNum"),
+        label: i18n.t("common.realName"),
         isVerified: !!account.info.member_name,
         status: account.info.member_name
           ? i18n.t(

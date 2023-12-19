@@ -1,19 +1,24 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import styled from "styled-components";
-import dislikeIcon from "@/assets/t29/images/home/disLike.svg";
-import likeIcon from "@/assets/t29/images/home/like.svg";
+import dislikeIcon from "@/assets/19/images/home/disLike.svg";
+import likeIcon from "@/assets/t19/images/home/like.svg";
 import { media } from "@/theme/breakpoints";
 
 const LikeIcon = styled.div<{ $imageUrl: string }>`
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   box-sizing: border-box;
   position: absolute;
-  top: 5px;
-  right: 4.7px;
+  top: 6px;
+  right: 6px;
   z-index: 2;
+
+  ${media.sm} {
+    top: 10px;
+    right: 10.27px;
+  }
 `;
 
 type FavoriteProps = {

@@ -13,9 +13,9 @@ const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  border-radius: 50px;
-  background-color: ${({ theme }) => theme.white};
-  border: 1px solid ${({ theme }) => theme.blue40};
+  border-radius: 12px;
+  border: 1px solid var(--Light-Gold, #D8BD80);
+  background: var(--Default-Nav, #846A21);
 `;
 
 const InputTextfield = styled.input`
@@ -27,10 +27,10 @@ const InputTextfield = styled.input`
   outline: none;
   width: 100%;
   font-size: 0.875rem;
-  color: ${(props) => props.theme.text};
+  color: #999;
   margin-left: 5px;
   &::placeholder {
-    color: ${(props) => props.theme.text};
+    color: #999;
     font-weight: 700;
     line-height: 0.875rem;
   }

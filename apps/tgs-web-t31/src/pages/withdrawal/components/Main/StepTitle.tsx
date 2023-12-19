@@ -24,7 +24,7 @@ const SubTitle = styled.div`
   font-size: 0.875rem;
   font-weight: 700;
   float: left;
-  color: #23507d;
+  color: ${({ theme }) => theme.white};;
   white-space: nowrap;
 `;
 

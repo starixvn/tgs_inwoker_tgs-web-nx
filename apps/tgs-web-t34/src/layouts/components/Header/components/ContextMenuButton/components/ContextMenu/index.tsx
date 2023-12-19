@@ -93,7 +93,6 @@ const ContextMenu = () => {
             />
           );
         })}
-
         <Button
           variant={"contained"}
           onClick={handleLogout}
@@ -103,6 +102,12 @@ const ContextMenu = () => {
             background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
             fontSize: "1.125rem",
             height: "44px",
+
+            "&:hover": {
+              background: "none",
+              color: "#40434C",
+              border: "1px solid #40434C",
+            },
           }}
         >
           {i18n.t("web.header.logout")}

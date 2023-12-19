@@ -597,27 +597,29 @@ class Main extends Component {
                 <ItemContainer>
                   <LabelContainer>{i18n.t("deposit.uploadReceipt")}</LabelContainer>
 
-                  <UploadFileButton
-                    onClick={() => {
-                      document.getElementById("getFile").click();
-                    }}
-                    variant={"outlined"}
-                  >
-                    {i18n.t("common.upload")}
-                  </UploadFileButton>
+                  <FormControl>
+                    <UploadFileButton
+                      onClick={() => {
+                        document.getElementById("getFile").click();
+                      }}
+                      variant={"outlined"}
+                    >
+                      {i18n.t("common.upload")}
+                    </UploadFileButton>
 
-                  <input
-                    type="file"
-                    id="getFile"
-                    onChange={this.props.handleFileChange}
-                    accept="image/jpg, image/jpeg, image/png, image/tiff"
-                    style={{ display: "none" }}
-                  />
-                  {this.props.files ? (
-                    <UploadFileTag>{this.props.files[0].name}</UploadFileTag>
-                  ) : (
-                    ""
-                  )}
+                    <input
+                      type="file"
+                      id="getFile"
+                      onChange={this.props.handleFileChange}
+                      accept="image/jpg, image/jpeg, image/png, image/tiff"
+                      style={{ display: "none" }}
+                    />
+                    {this.props.files ? (
+                      <UploadFileTag>{this.props.files[0].name}</UploadFileTag>
+                    ) : (
+                      ""
+                    )}
+                  </FormControl>
                 </ItemContainer>
                 <Remark>
                   {i18n.t(

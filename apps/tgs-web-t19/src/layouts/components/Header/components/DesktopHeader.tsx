@@ -74,7 +74,6 @@ const DesktopHeader = () => {
         <ContentWrapper>
           <ContentGroup>
             {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
           </ContentGroup>
 
           <ContentGroup>

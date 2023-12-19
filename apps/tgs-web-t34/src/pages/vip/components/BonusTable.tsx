@@ -12,8 +12,8 @@ const ScrollableContainer = styled.div`
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  background-color: ${(props) => props.theme.primaryDark};
-  color: ${(props) => props.theme.white};
+  background-color: ${({ theme }) => theme.mainBackground};
+  color: ${({ theme }) => theme.color};
   box-sizing: border-box;
   gap: 12px;
 
@@ -26,8 +26,8 @@ const ScrollableContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-      background: ${(props) => props.theme.tertiaryDark};
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background: ${({ theme }) => theme.mainBackground};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -56,19 +56,16 @@ const BonusTableWrapper = styled.div`
 `;
 
 const BonusTableHeader = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 48px;
-  padding: 10.5px 0;
-  background: ${(props) => props.theme.mainDarkBackground};
+  padding: 13px 0;
+  background: ${({ theme }) => theme.black};
 
   ${media.sm} {
-    border-radius: 10px;
-    height: 86px;
-    padding: 20px;
+    padding: 20px 0;
     margin-bottom: 20px;
   }
 `;
@@ -77,7 +74,7 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.white};
+  color: ${({ theme }) => theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.5rem;
@@ -97,10 +94,10 @@ const BonusTableBody = styled.div`
   align-items: flex-start;
   gap: 8px;
   align-self: stretch;
-  background: ${(props) => props.theme.mainBackground};
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainLightBackground};
+    background: ${({ theme }) => theme.mainBackground};
     border-radius: 10px;
   }
 `;
@@ -110,11 +107,7 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid ${(props) => props.theme.mainDarkBackground};
-
-  ${media.sm} {
-    border-bottom: 1px solid #434343;
-  }
+  border-bottom: 1px solid #00000033;
 `;
 
 const RowItem = styled.div`
@@ -126,7 +119,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.white};
+  color: ${({ theme }) => theme.text};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -167,16 +160,22 @@ const BonusTable = ({ vipSortingData }: Props) => {
               <BonusTableRowWrapper key={vipData.level}>
                 <RowItem>
                   <LevelIcon>
-                    <img width={"50px"} height={"50px"} src={`/assets/images/vip/level_${vipData.level}.png`} alt={`level_${vipData.level}`} />VIP{vipData.level}
+                    <img
+                      width={"50px"}
+                      height={"50px"}
+                      src={`/assets/images/vip/level_${vipData.level}.png`}
+                      alt={`level_${vipData.level}`}
+                    />
+                    VIP{vipData.level}
                   </LevelIcon>
                 </RowItem>
-                <RowItem>{(vipData.levelKeepAccumulateBetAmount).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.levelKeepAccumulateDeposit).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.levelUpAccumulateBetAmount).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.levelUpAccumulateDeposit).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.birthBenefit).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.promotionBenefit).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.quarterlyBenefit).toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelKeepAccumulateBetAmount.toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelKeepAccumulateDeposit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelUpAccumulateBetAmount.toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelUpAccumulateDeposit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.birthBenefit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.promotionBenefit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.quarterlyBenefit.toLocaleString()}</RowItem>
               </BonusTableRowWrapper>
             );
           })}

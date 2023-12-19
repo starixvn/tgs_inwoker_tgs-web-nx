@@ -5,6 +5,7 @@ import { TransactionLogViewModel } from "@tgs-web-nx/types";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   balanceChangeDetails: TransactionLogViewModel[];
@@ -23,6 +24,7 @@ const TransactionDetailTable = ({ balanceChangeDetails, totalCount }: Props) => 
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.dateTime")}</>
@@ -30,6 +32,7 @@ const TransactionDetailTable = ({ balanceChangeDetails, totalCount }: Props) => 
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.balanceChanges.type")}</>
@@ -38,6 +41,7 @@ const TransactionDetailTable = ({ balanceChangeDetails, totalCount }: Props) => 
               align={"right"}
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.balanceChanges.amount")}</>

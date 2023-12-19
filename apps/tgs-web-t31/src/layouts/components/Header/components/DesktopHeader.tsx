@@ -7,23 +7,19 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
-import {
-  DESKTOP_HEADER_HEIGHT,
-  MOBILE_HEADER_HEIGHT,
-  SUB_CONTENT_MAX_WIDTH,
-} from "@/theme/constants";
+import UserInfo from "./UserInfo";
+import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
-import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
 import BrandLogo from "@/components/project/BrandLogo";
-import { theme } from "@/theme";
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 
 const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.header};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -38,7 +34,7 @@ const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   z-index: 2;
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  max-width: 1200px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -51,13 +47,12 @@ const ContentGroup = styled.div`
   align-items: center;
 `;
 
-const BlueHeaderRowContainer = styled.div`
-  background: #3158ff;
+const UserActionHeaderRowContainer = styled.div`
   background-size: cover;
   height: 40px;
 `;
 
-const WhiteHeaderRowContainer = styled.div`
+const GameTypeHeaderRowContainer = styled.div`
   margin: auto;
   height: 65px;
 `;
@@ -65,25 +60,25 @@ const WhiteHeaderRowContainer = styled.div`
 const DesktopHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isLargeDesktopSize, isDesktopSize } = useRwd();
+  const { isLargeDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <HeaderContainer>
-      <BlueHeaderRowContainer>
+      <UserActionHeaderRowContainer>
         <ContentWrapper>
-          <ContentGroup>
-            {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
-          </ContentGroup>
+          <ContentGroup>{isLargeDesktopSize && <SystemTime />}</ContentGroup>
 
           <ContentGroup>
+            {!noLoginAccount && <UserInfo />}
+            <HeaderLanguageSwitch />
+
             {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
           </ContentGroup>
         </ContentWrapper>
-      </BlueHeaderRowContainer>
+      </UserActionHeaderRowContainer>
 
-      <WhiteHeaderRowContainer>
+      <GameTypeHeaderRowContainer>
         <ContentWrapper>
           <Link to={""}>
             <BrandLogo
@@ -91,10 +86,9 @@ const DesktopHeader = () => {
               onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
             />
           </Link>
-
-          {isDesktopSize && <HeaderGameTypes />}
+          <HeaderGameTypes />
         </ContentWrapper>
-      </WhiteHeaderRowContainer>
+      </GameTypeHeaderRowContainer>
     </HeaderContainer>
   );
 };

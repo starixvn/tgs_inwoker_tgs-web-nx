@@ -10,15 +10,10 @@ import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
-import bg from "@/assets/t29/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
-
-  ${media.sm} {
-    background: url(${bg});
-  }
+  background: ${({ theme }) => theme.mainBackground};
 `;
 
 const DashboardContainer = styled.div`

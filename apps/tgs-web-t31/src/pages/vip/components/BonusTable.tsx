@@ -60,13 +60,13 @@ const BonusTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 10.5px 0;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
+  background-color: ${({ theme }) => theme.black30};
   border-radius: 6px 0px 0px 0px;
 
   ${media.sm} {
     height: 97px;
     padding: 20px 0;
+    background-color: ${({ theme }) => theme.black60};
     border-radius: 8px 8px 0px 0px;
     border-bottom: 1px solid ${(props) => props.theme.gray10};
   }
@@ -88,7 +88,7 @@ const HeaderItem = styled.div`
     max-width: 115px;
     font-size: 1rem;
     margin: 0px 6px;
-    color: #23507d;
+    color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -99,7 +99,8 @@ const BonusTableBody = styled.div`
   align-self: stretch;
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
+    margin-top: 20px;
+    background: ${({ theme }) => theme.black30};
   }
 `;
 
@@ -108,11 +109,11 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid#23507D;
-
+  border-bottom: ${({ theme }) => `1px solid ${theme.white30}`};
+  
   ${media.sm} {
     border-bottom: unset;
-    color: #23507d;
+    color: ${({ theme }) => theme.text};
   }
 `;
 
@@ -124,7 +125,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${({ theme }) => theme.text};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -136,7 +137,7 @@ const RowItem = styled.div`
     min-height: 106px;
     width: 128px;
     font-size: 1rem;
-    color: #23507d;
+    color: ${({ theme }) => theme.text};
   }
 `;
 

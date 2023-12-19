@@ -9,7 +9,7 @@ import { updateHtmlTitleDescription } from "@tgs-web-nx/utils";
 import { InterceptorService, store } from "@tgs-web-nx/core";
 import { useInitApp } from "@tgs-web-nx/core/hooks";
 import { NotificationContextProvider } from "@tgs-web-nx/core/features";
-import AudioPlayer from "./components/tools/audioplayer";
+import AudioPlayer from "./components/tools/NativeAudioPlayer";
 import { GlobalStyles } from "./global";
 import { theme } from "./theme";
 import App from "@/App";

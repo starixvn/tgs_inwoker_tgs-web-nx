@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t19/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -19,14 +19,13 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  padding: 22px 50px;
+  padding: 40px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
   background: ${({ theme }) => theme.mainBackground};
-  margin-bottom: 20px;
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -37,9 +36,9 @@ const PlayerInfoContainer = styled.div`
 `;
 
 const PlayerName = styled.div`
-  font-size: 2rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme.blue60};
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.white};
 `;
 
 const WalletsWrapper = styled.div`
@@ -60,20 +59,19 @@ const MainWalletContainer = styled.div`
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
-  font-weight: 700;
-  line-height: 1.245rem;
-  color: ${({ theme }) => theme.text};
+  font-weight: 400;
+  color: ${({ theme }) => theme.white};
   white-space: nowrap;
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.blue60};
+  font-size: 2.125rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 9px;
+  gap: 24px;
   padding-top: 19px;
 
   & *:first-child {
@@ -85,7 +83,7 @@ type RefreshButtonProps = {
   $isLoading: boolean;
 };
 
-const RefreshButton = styled(Icon)<RefreshButtonProps>`
+const RefreshButton = styled(Icon) <RefreshButtonProps>`
   cursor: pointer;
 
   animation: ${({ $isLoading }: RefreshButtonProps) =>
@@ -101,10 +99,10 @@ const RefreshButton = styled(Icon)<RefreshButtonProps>`
 `;
 
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.primary};
+  color: #FBAF26;
   font-size: 1.625rem;
-  margin-top: 11px;
-  font-weight: 700;
+  margin-top: 6px;
+  font-weight: 400;
 `;
 
 const UserWalletInfo = () => {

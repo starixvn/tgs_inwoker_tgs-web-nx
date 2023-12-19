@@ -10,10 +10,11 @@ import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
+import MenuDrawer from "@/layouts/components/MenuDrawer";
 
 const HomeLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.mainBackground};
   /* height: 100vh; */
 `;
 
@@ -56,6 +57,7 @@ const HomeLayout = ({ children }: Props) => {
       <Header />
 
       <DashboardContainer>
+        <MenuDrawer />
         <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>

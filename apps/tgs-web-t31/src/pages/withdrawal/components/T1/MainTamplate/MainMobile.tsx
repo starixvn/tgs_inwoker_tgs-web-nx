@@ -25,6 +25,7 @@ import {
   SubHeaderContainer,
   Hint,
 } from "@/components/styled-component/WithdrawV2/Main";
+import { theme } from "@/theme";
 
 const MainMobile = ({
   amount,
@@ -68,12 +69,12 @@ const MainMobile = ({
               // getTransferLimit(cardList[index].paymentchannelid);
             }}
           >
-            <option disabled value="">
+            <option style={{ background: theme.black }} disabled value="">
               {i18n.t("withdrawal.msgEnterBank")}
             </option>
             {cardList.map((item, index) => {
               return (
-                <option key={index} value={index} id={`optionValue-${index}`}>
+                <option style={{ background: theme.black }} key={index} value={index} id={`optionValue-${index}`}>
                   {item.banktype} (
                   {item.detail.address || item.detail.bankAccount || item.detail.phone})
                 </option>

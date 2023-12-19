@@ -12,29 +12,29 @@ const RankingRowWrapper = styled.div`
 `;
 
 const LeftColumn = styled.div`
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   gap: 15px;
-  img{
+  img {
     width: 29px;
     height: 32px;
   }
 `;
 
 const RightColumn = styled.div`
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   gap: 11px;
   min-width: 85px;
 
-  img{
+  img {
     width: 20px;
     height: 20px;
   }
 `;
 
 const Title = styled.div`
-  color: ${(props) => props.theme.white};
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   font-weight: 400;
   display: flex;
@@ -58,25 +58,23 @@ type Props = {
   rankItem: RankItem;
 };
 
-const WinnerRankRow = forwardRef(
-  ({ rankItem }: Props, ref: Ref<HTMLDivElement> | undefined) => {
-    const { gameName, playerName, betAmount } = rankItem;
-    return (
-      <RankingRowWrapper ref={ref as any}>
-        <LeftColumn>
-          <img src={winner} alt="ranking" />
-          <Title>
-            <span>{playerName}</span>
-            <span> {gameName ? gameName : 'Thunder God'}</span>
-          </Title>
-        </LeftColumn>
+const WinnerRankRow = forwardRef(({ rankItem }: Props, ref: Ref<HTMLDivElement> | undefined) => {
+  const { gameName, playerName, betAmount } = rankItem;
+  return (
+    <RankingRowWrapper ref={ref as any}>
+      <LeftColumn>
+        <img src={winner} alt="ranking" />
+        <Title>
+          <span>{playerName}</span>
+          <span> {gameName ? gameName : "Thunder God"}</span>
+        </Title>
+      </LeftColumn>
 
-        <RightColumn>
-          <img src={currency} alt="currency" /> {betAmount}
-        </RightColumn>
-      </RankingRowWrapper>
-    );
-  },
-);
+      <RightColumn>
+        <img src={currency} alt="currency" /> {betAmount}
+      </RightColumn>
+    </RankingRowWrapper>
+  );
+});
 
 export default WinnerRankRow;

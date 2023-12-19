@@ -9,7 +9,7 @@ const NotShowAgainHintContainer = styled.div`
   font-size: 1rem;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   margin: 18px 0;
 `;
 
@@ -23,7 +23,7 @@ const CheckBox = styled.div<CheckBoxProps>`
   background: ${(props: CheckBoxProps) =>
     props.$isCheck ? `url(${IconCheckBox}) no-repeat center center;` : null};
   margin-right: 10px;
-  border: ${(props) => (props.$isCheck ? "0" : "1px")} solid ${({ theme }) => theme.black};
+  border: ${(props) => (props.$isCheck ? "0" : "1px")} solid ${({ theme }) => theme.white};
   border-radius: 5px;
 `;
 

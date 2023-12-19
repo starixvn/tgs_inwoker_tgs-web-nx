@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
-import cardgame from "@/assets/t29/images/home/gameType/cardGame.svg";
-import egame from "@/assets/t29/images/home/gameType/egame.svg";
-import esports from "@/assets/t29/images/home/gameType/esports.svg";
-import fishing from "@/assets/t29/images/home/gameType/fishing.svg";
-import live from "@/assets/t29/images/home/gameType/liveCasino.svg";
-import lottery from "@/assets/t29/images/home/gameType/lottery.svg";
-import sabong from "@/assets/t29/images/home/gameType/sabong.svg";
-import slot from "@/assets/t29/images/home/gameType/slot.svg";
-import sports from "@/assets/t29/images/home/gameType/sports.svg";
+import cardgame from "@/assets/t19/images/home/gameType/cardGame.png";
+import egame from "@/assets/t19/images/home/gameType/egame.png";
+import esports from "@/assets/t19/images/home/gameType/esports.png";
+import fishing from "@/assets/t19/images/home/gameType/fishing.png";
+import live from "@/assets/t19/images/home/gameType/liveCasino.png";
+import lottery from "@/assets/t19/images/home/gameType/lottery.png";
+import sabong from "@/assets/t19/images/home/gameType/sabong.png";
+import slot from "@/assets/t19/images/home/gameType/slot.png";
+import sports from "@/assets/t19/images/home/gameType/sports.png";
+import activeCardgame from "@/assets/t19/images/home/activeGameType/cardGame.png";
+import activeEgame from "@/assets/t19/images/home/activeGameType/egame.png";
+import activeEsports from "@/assets/t19/images/home/activeGameType/esports.png";
+import activeFishing from "@/assets/t19/images/home/activeGameType/fishing.png";
+import activeLive from "@/assets/t19/images/home/activeGameType/liveCasino.png";
+import activeLottery from "@/assets/t19/images/home/activeGameType/lottery.png";
+import activeSabong from "@/assets/t19/images/home/activeGameType/sabong.png";
+import activeSlot from "@/assets/t19/images/home/activeGameType/slot.png";
+import activeSports from "@/assets/t19/images/home/activeGameType/sports.png";
 
 type GameTypeItem = {
   key: string;
   iconUrl: string;
+  activeIconUrl: string;
   text: string | any;
   fontSize: string;
   gameType: GameTypeEnum;
@@ -27,6 +37,7 @@ export const useGameTypeList = () => {
       {
         key: "sports",
         iconUrl: sports,
+        activeIconUrl: activeSports,
         text: i18n.t("common.sports"),
         fontSize: "small",
         gameType: GameTypeEnum.SPORTS,
@@ -34,6 +45,7 @@ export const useGameTypeList = () => {
       {
         key: "slots",
         iconUrl: slot,
+        activeIconUrl: activeSlot,
         text: i18n.t("common.slot"),
         fontSize: "small",
         gameType: GameTypeEnum.SLOT,
@@ -41,6 +53,7 @@ export const useGameTypeList = () => {
       {
         key: "liveCasino",
         iconUrl: live,
+        activeIconUrl: activeLive,
         text: i18n.t("common.live"),
         fontSize: "smaller",
         gameType: GameTypeEnum.LIVELOBBY,
@@ -48,6 +61,7 @@ export const useGameTypeList = () => {
       {
         key: "sabong",
         iconUrl: sabong,
+        activeIconUrl: activeSabong,
         text: i18n.t("common.cockfight"),
         fontSize: "smaller",
         gameType: GameTypeEnum.COCKFIGHT,
@@ -55,6 +69,7 @@ export const useGameTypeList = () => {
       {
         key: "egame",
         iconUrl: egame,
+        activeIconUrl: activeEgame,
         text: i18n.t("common.egame"),
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
@@ -62,6 +77,7 @@ export const useGameTypeList = () => {
       {
         key: "fishing",
         iconUrl: fishing,
+        activeIconUrl: activeFishing,
         text: i18n.t("common.fish"),
         fontSize: "small",
         gameType: GameTypeEnum.FISH,
@@ -69,6 +85,7 @@ export const useGameTypeList = () => {
       {
         key: "cardGame",
         iconUrl: cardgame,
+        activeIconUrl: activeCardgame,
         text: i18n.t("common.chess"),
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
@@ -76,6 +93,7 @@ export const useGameTypeList = () => {
       {
         key: "lottery",
         iconUrl: lottery,
+        activeIconUrl: activeLottery,
         text: i18n.t("common.lottery"),
         fontSize: "small",
         gameType: GameTypeEnum.LOTTERYLOBBY,
@@ -83,6 +101,7 @@ export const useGameTypeList = () => {
       {
         key: "esports",
         iconUrl: esports,
+        activeIconUrl: activeEsports,
         text: i18n.t("common.esports"),
         fontSize: "smaller",
         gameType: GameTypeEnum.ESPORTS,

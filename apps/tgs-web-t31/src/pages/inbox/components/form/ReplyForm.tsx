@@ -7,6 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
+import { theme } from "@/theme";
 
 const InboxComposeFormContainer = styled.div`
   padding: 16px;
@@ -16,7 +17,7 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: #23507d;
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 16px;
@@ -65,8 +66,16 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
           <TextField
             value={displayedSubject}
             sx={{
+              "& .MuiInputBase-input.Mui-disabled": {
+                WebkitTextFillColor: theme.white50,
+              },
               input: {
+                border: `1px solid ${theme.white30}`,
                 padding: "17px 0",
+                color: theme.text,
+                "&::placeholder": {
+                  color: theme.white50,
+                },
               },
             }}
             disabled={true}
@@ -77,6 +86,15 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
       <InputWrapper>
         <Label>{i18n.t("yourmessage")}</Label>
         <TextArea
+          sx={{
+            border: `1px solid ${theme.white30}`,
+            input: {
+              color: theme.text,
+              "&::placeholder": {
+                color: theme.white50,
+              },
+            },
+          }}
           value={message}
           onChange={updateMessage}
           placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("yourmessage")}`.toLowerCase()}`}

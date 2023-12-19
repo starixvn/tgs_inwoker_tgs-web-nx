@@ -33,7 +33,7 @@ const StyledTable = muiStyled(Table)(({ theme }) => ({
     fontWeight: 400,
     lineHeight: "1.318rem",
     color: theme.palette.text.primary,
-    borderBottom: `1px solid ${theme.palette.gray10}`,
+    borderBottom: `1px solid ${theme.palette.black30}`,
     padding: "26px 0 10px",
   },
 }));
@@ -95,6 +95,10 @@ const MobileInboxList = ({
                 </TableCell>
                 <TableCell>
                   <LetterContent
+                    style={{
+                      maxWidth: "300px",
+                      overflow: "auto",
+                    }}
                     dangerouslySetInnerHTML={{
                       __html:
                         localization !== null && localization.content

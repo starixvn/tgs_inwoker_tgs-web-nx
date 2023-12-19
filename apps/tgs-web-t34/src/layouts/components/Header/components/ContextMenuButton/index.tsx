@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ContextMenu from "@/layouts/components/Header/components/ContextMenuButton/components/ContextMenu";
 import avatarImg from "@/assets/t34/images/account/avatar.svg";
 import Modal from "@/components/UI/Modal";
+import { media } from "@/theme/breakpoints";
 
 const ContextMenuButtonContainer = styled.div`
   cursor: pointer;
@@ -13,6 +14,11 @@ const AvatarContainer = styled.div`
   height: 20px;
   background: url(${avatarImg}) no-repeat center center;
   background-size: cover;
+
+  ${media.sm} {
+    width: 33px;
+    height: 33px;
+  }
 `;
 
 const ContextMenuButton = () => {

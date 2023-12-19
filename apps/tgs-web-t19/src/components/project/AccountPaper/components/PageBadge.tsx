@@ -3,17 +3,15 @@ import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 
 const PageBadgeContainer = styled.div`
-  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.white};
   width: fit-content;
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.437rem;
-  border-left: 5px solid ${({ theme }) => theme.primary};
 `;
 
 type Props = {
@@ -29,8 +27,8 @@ const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
     <PageBadgeContainer {...others}>
       <Icon
         iconUrl={iconUrl}
-        width={width || "22px"}
-        height={height || "22px"}
+        width={width || "20px"}
+        height={height || "20px"}
         style={{
           marginRight: "8px",
         }}

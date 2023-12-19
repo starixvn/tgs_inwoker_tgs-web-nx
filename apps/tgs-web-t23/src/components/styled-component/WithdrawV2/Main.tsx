@@ -2,7 +2,7 @@ import { styled as muiStyled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
 import { ListItem, ListItemText } from "@mui/material";
 import styled from "styled-components";
-import limitBg from "@/assets/t29/images/withdraw/limit-bg.png";
+import limitBg from "@/assets/t23/images/withdraw/limit-bg.png";
 import {
   FormControl as ProfileFormControl,
   ItemContainer as ProfileItemContainer,
@@ -55,12 +55,6 @@ export const StyledModalPopup = muiStyled(Modal)(({ theme }) => ({
   },
 }));
 
-export const ManageBankCardButtonContainer = styled.div`
-  display: flex;
-  justify-content: end;
-  align-self: flex-start;
-  margin-top: 10px;
-`;
 export const ItemContainer = styled(ProfileItemContainer)`
   ${media.sm} {
     max-width: none;
@@ -73,10 +67,6 @@ export const SelectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  & input {
-    padding: 16px 0 !important;
-  }
 `;
 export const LimitPopupContainer = styled.div`
   white-space: nowrap;
@@ -95,7 +85,7 @@ export const Turnover = styled.div`
   color: ${({ theme }) => theme.text};
   span {
     margin-left: 5px;
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.primary};
     font-weight: bold;
   }
 `;
@@ -140,6 +130,7 @@ export const SubHeaderContainer = styled.div`
 
 export const TurnoverTextWrapper = styled.div`
   display: flex;
+  align-items: center;
 `;
 export const DetailText = styled.div`
   margin-left: 5px;
@@ -148,7 +139,7 @@ export const DetailText = styled.div`
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 0em;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   cursor: pointer;
 `;
 
@@ -158,5 +149,5 @@ export const Hint = styled.div`
   line-height: 16px;
   letter-spacing: 0em;
   margin: 10px 0;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.lighterGray};
 `;

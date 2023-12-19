@@ -17,10 +17,11 @@ const StyledButton = styled(SubmitButton)`
   gap: 10px;
   font-size: 1.25rem;
   cursor: pointer;
+
   ${media.sm} {
-    height: 75px;
-    font-size: 2rem;
-    max-width: 870px;
+    max-width: 500px;
+    padding: 10px;
+    font-size: 18px;
   }
 `;
 

@@ -16,12 +16,12 @@ const CardAddButtonContainer = styled.div`
 `;
 
 type Props = {
-  handleClick: () => void;
+  handleClick?: () => void;
 };
 
 const CardAddButton = ({ handleClick }: Props) => {
   return (
-    <CardAddButtonContainer onClick={handleClick}>
+    <CardAddButtonContainer onClick={() => handleClick?.()}>
       <Icon iconUrl={iconPlus} width={"20px"} height={"20px"} />
       {i18n.t("card.msgAddCard")}
     </CardAddButtonContainer>

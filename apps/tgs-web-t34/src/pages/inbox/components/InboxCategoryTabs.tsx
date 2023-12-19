@@ -16,7 +16,9 @@ type CategoryTabProps = {
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1;
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? theme.blue40 : theme.blue20};
+    $isActive ? theme.black : theme.white};
+  border: 1px solid
+    ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.black : "#00000033")};
   color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.text)};
   padding: 12px;
   text-align: center;

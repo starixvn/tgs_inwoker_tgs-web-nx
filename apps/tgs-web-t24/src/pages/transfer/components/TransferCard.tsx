@@ -1,0 +1,113 @@
+import React, { ChangeEvent } from "react";
+import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
+import { TextField } from "@/components/UI/TextField";
+import WalletSelect from "@/pages/transfer/components/WalletSelect";
+import { theme } from "@/theme";
+
+const TransferCardContainer = styled.div`
+  background: ${({ theme }) => theme.gray95};
+  color: ${({ theme }) => theme.white};
+  padding: 12px 15px;
+  border-radius: 10px;
+
+  & > div {
+    font-size: 0.875rem !important;
+    margin-bottom: 20px;
+  }
+
+  input,
+  input::placeholder {
+    font-size: 0.875rem !important;
+    padding: 0;
+  }
+`;
+
+const RowContainer = styled.div`
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const ColContainer = styled.div`
+  width: 50%;
+`;
+
+const Spacing = styled.div`
+  margin-bottom: 10px;
+`;
+
+type Props = {
+  fromWallet: string;
+  handleChangeFromWallet: (e: ChangeEvent) => void;
+  toWallet: string;
+  handleChangeToWallet: (e: ChangeEvent) => void;
+  transferAmount: string;
+  handleChangeTransferAmount: (e: ChangeEvent) => void;
+  mainAccountId: string; // "0",
+  children: React.ReactNode;
+};
+const TransferCard = ({
+  fromWallet,
+  handleChangeFromWallet,
+  toWallet,
+  handleChangeToWallet,
+  transferAmount,
+  handleChangeTransferAmount,
+  mainAccountId,
+  children,
+}: Props) => {
+  const { providerList } = useUserWalletInfoContext();
+
+  return (
+    <TransferCardContainer>
+      <RowContainer>
+        <ColContainer>{i18n.t("transfer.transferFromWallet")}</ColContainer>
+        <ColContainer>
+          <WalletSelect
+            value={fromWallet}
+            handleChange={handleChangeFromWallet}
+            providerList={providerList}
+            mainAccountId={mainAccountId}
+          />
+        </ColContainer>
+      </RowContainer>
+
+      <RowContainer>
+        <ColContainer>{i18n.t("transfer.transferToWallet")}</ColContainer>
+        <ColContainer>
+          <WalletSelect
+            value={toWallet}
+            handleChange={handleChangeToWallet}
+            providerList={providerList}
+            mainAccountId={mainAccountId}
+          />
+        </ColContainer>
+      </RowContainer>
+
+      <RowContainer>
+        <ColContainer>{i18n.t("common.amount")}</ColContainer>
+        <ColContainer>
+          <TextField
+            type={"number"}
+            placeholder={i18n.t("transfer.msgEnterAmount")}
+            value={transferAmount || 0}
+            onChange={handleChangeTransferAmount}
+            sx={{
+              borderRadius: "6px",
+              background: theme.gray85,
+            }}
+          />
+        </ColContainer>
+      </RowContainer>
+
+      <Spacing />
+
+      {children}
+    </TransferCardContainer>
+  );
+};
+
+export default React.memo(TransferCard);

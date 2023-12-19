@@ -12,27 +12,27 @@ const TransferContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 24px;
   justify-content: center;
 `;
 
 const GameTransferWallet = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 200px;
-  border-radius: 4px;
-  border: solid 1px ${({ theme }) => "#dddedf"};
-  background: ${({ theme }) => theme.blue20};
-  padding: 10px 10px 10px 3px;
+  width: calc((100% - 24px * 2) / 3);
+  border-radius: 10px;
+  background: ${({ theme }) => theme.mainBackground};
+  padding: 20px 33px;
   gap: 10px;
 `;
 const GameTransferLeftWrap = styled.div`
-  max-width: 70px;
+  max-width: 73px;
 `;
 
 const GameTransferRighttWrap = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Logo = styled.img`
@@ -41,38 +41,32 @@ const Logo = styled.img`
   object-fit: cover;
 `;
 const GameName = styled.div`
-  font-size: 11px;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 13px;
-  letter-spacing: 0em;
   text-align: center;
-  color: ${({ theme }) => theme.blue50};
-  margin-top: 7px;
+  color: ${({ theme }) => theme.white};
+  margin-top: 10px;
 `;
 const GameWalletAmount = styled.div`
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: ${({ theme }) => {
-    return theme.darkMode ? "#fff" : "#000";
-  }};
-  text-align: center;
+  font-size: 1.562rem;
+  font-weight: 400;
+  text-align: right;
+  color: ${({ theme }) => theme.white};
   display: inline-block;
   margin-top: 3px;
 `;
 
 const TransferButton = muiStyled(Button)(({ theme }) => ({
-  fontSize: "12px",
+  fontSize: "0.875rem",
   fontWeight: "400",
-  lineHeight: "14px",
   textAlign: "center",
-  padding: "4px",
-  background: theme.palette.blue30,
-  border: "none",
+  padding: "4px 12px",
+  color: theme.palette.black,
+  background: theme.palette.primary.main,
+  borderRadius: "6px",
   "&:hover": {
-    background: theme.palette.primary.main,
+    color: theme.palette.white,
+    background: theme.palette.mainDarkBackground,
   },
 }));
 

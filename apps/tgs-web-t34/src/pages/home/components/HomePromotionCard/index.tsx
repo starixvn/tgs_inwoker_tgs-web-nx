@@ -14,7 +14,6 @@ const PromotionContent = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
 
   ${media.sm} {
     min-width: 580px;
@@ -73,7 +72,6 @@ const PromotionCard = () => {
           text={"Details"}
           width={isMobileSize ? "105px" : "200px"}
           height={isMobileSize ? "34px" : "40px"}
-          bgColor={theme.secondaryMix}
           color={theme.white}
           onClick={() => history.push("/promotion-list")}
         />

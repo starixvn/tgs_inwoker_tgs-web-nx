@@ -136,6 +136,7 @@ export const SubHeaderContainer = styled.div`
 
 export const TurnoverTextWrapper = styled.div`
   display: flex;
+  align-items: center;
 `;
 export const DetailText = styled.div`
   margin-left: 5px;

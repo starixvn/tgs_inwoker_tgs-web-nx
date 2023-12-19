@@ -4,9 +4,10 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
+import MenuButton from "./MenuButton";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
@@ -30,7 +31,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 1.49px 24px;
+  padding: 10px 12px;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -55,7 +56,7 @@ const MobileHeader = () => {
       <HeaderWrapper>
         <Link to={""}>
           <BrandLogo
-            style={{ height: "27px" }}
+            style={{ height: "28px" }}
             onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
           />
         </Link>
@@ -65,6 +66,8 @@ const MobileHeader = () => {
 
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
         </HeaderContentContainer>
+
+        {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
   );

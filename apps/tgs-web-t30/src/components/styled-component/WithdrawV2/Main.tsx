@@ -2,7 +2,7 @@ import { styled as muiStyled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
 import { ListItem, ListItemText } from "@mui/material";
 import styled from "styled-components";
-import limitBg from "@/assets/t29/images/withdraw/limit-bg.png";
+import limitBg from "@/assets/t30/images/withdraw/limit-bg.png";
 import {
   FormControl as ProfileFormControl,
   ItemContainer as ProfileItemContainer,
@@ -140,6 +140,7 @@ export const SubHeaderContainer = styled.div`
 
 export const TurnoverTextWrapper = styled.div`
   display: flex;
+  align-items: center;
 `;
 export const DetailText = styled.div`
   margin-left: 5px;

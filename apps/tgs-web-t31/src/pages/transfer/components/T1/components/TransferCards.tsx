@@ -46,7 +46,7 @@ const GameName = styled.div`
   line-height: 13px;
   letter-spacing: 0em;
   text-align: center;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   margin-top: 7px;
 `;
 const GameWalletAmount = styled.div`
@@ -55,9 +55,7 @@ const GameWalletAmount = styled.div`
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
-  color: ${({ theme }) => {
-    return theme.darkMode ? "#fff" : "#000";
-  }};
+  color: ${({ theme }) => theme.text};
   text-align: center;
   display: inline-block;
   margin-top: 3px;
@@ -68,11 +66,10 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   fontWeight: "400",
   lineHeight: "14px",
   textAlign: "center",
-  padding: "4px",
-  background: theme.palette.blue30,
-  border: "none",
+  padding: "10px 12px",
+  background: theme.palette.priBTNOutline,
   "&:hover": {
-    background: theme.palette.primary.main,
+    background: theme.palette.priBTNOutline,
   },
 }));
 

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import Icon from "@/components/project/Icon";
 import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
 
 const ButtonContainer = styled.div`
@@ -8,17 +9,13 @@ const ButtonContainer = styled.div`
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.15rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.neutralBlack};
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.priBTNOutline};
   padding: 10px 22px;
-`;
-
-const IconContainer = styled.div`
-  width: 24px;
-  height: 24px;
-  margin-right: 7.5px;
+  gap: 8px;
+  border-radius: 100px;
 `;
 
 type Props = {
@@ -28,10 +25,7 @@ type Props = {
 const ManageBankCardButton = ({ handleManageCardClick }: Props) => {
   return (
     <ButtonContainer onClick={handleManageCardClick}>
-      <IconContainer>
-        <img src={iconImg} alt={"manage-card"} />
-      </IconContainer>
-
+      <Icon iconUrl={iconImg} width={"24px"} height={"24px"} />
       {i18n.t("withdrawal.manageBank")}
     </ButtonContainer>
   );

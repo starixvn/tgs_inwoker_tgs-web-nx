@@ -19,6 +19,7 @@ declare module "@mui/material/styles/createPalette" {
     grey01: string;
     grey02: string;
     grey03: string;
+    grey04: string;
     maskPopupBG: string;
     maskBlack50: string;
     maskBlack20: string;
@@ -47,7 +48,7 @@ const muiTheme = createTheme({
       main: theme.secondary,
     },
     action: {
-      disabledBackground: theme.maskBlack50,
+      disabledBackground: theme.disabled,
       disabled: theme.white,
     },
     text: {
@@ -64,6 +65,7 @@ const muiTheme = createTheme({
     grey01: theme.grey01,
     grey02: theme.grey02,
     grey03: theme.grey03,
+    grey04: theme.grey04,
     maskPopupBG: theme.maskPopupBG,
     maskBlack50: theme.maskBlack50,
     maskBlack20: theme.maskBlack20,

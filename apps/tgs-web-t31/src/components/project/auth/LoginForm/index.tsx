@@ -2,35 +2,25 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-<<<<<<< develop
 import styled from "styled-components";
-=======
->>>>>>> checkpoint
+import { useHistory } from "react-router";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
-import {
-  AuthFormContainer,
-  FormContainer,
-  LoginTitle,
-} from "@/components/styled-component/AuthFormContainer";
+import { AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
-import BrandLogo from "@/components/project/BrandLogo";
 import {
   ForgotPasswordContainer,
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
-<<<<<<< develop
-import { theme } from "@/theme";
+import checkedImg from "@/assets/t31/images/auth/checked.svg";
+import uncheckedImg from "@/assets/t31/images/auth/uncheck.svg";
 
-const RegisterContainer = styled.div`
+const HintContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
-=======
->>>>>>> checkpoint
-
 const LoginForm = () => {
   const {
     formInputConfigList,
@@ -39,22 +29,15 @@ const LoginForm = () => {
     loginError,
     needToRemember,
     handleClickNeedToRemember,
-    handleClickForgotPassword,
   } = useLoginForm();
-  const { isMobileSize } = useRwd();
+  const history = useHistory();
 
+  const { isMobileSize } = useRwd();
+  const handleClickForgetPassword = () => {
+    history.push("/forgot-password");
+  };
   return (
     <AuthFormContainer>
-<<<<<<< develop
-      <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
-=======
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
-      ) : (
-        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
-      )}
->>>>>>> checkpoint
-
       <FormContainer>
         <FormikForm
           formInputList={formInputConfigList}
@@ -66,6 +49,8 @@ const LoginForm = () => {
           <FormSubContainer>
             <RememberMeContainer onClick={handleClickNeedToRemember}>
               <Checkbox
+                icon={<img src={uncheckedImg} alt="uncheck" />}
+                checkedIcon={<img src={checkedImg} alt="checked" />}
                 checked={needToRemember}
                 style={{
                   padding: "0px 5px 0px",
@@ -73,31 +58,26 @@ const LoginForm = () => {
               />
               {i18n.t("wap.login.rememberMe")}
             </RememberMeContainer>
-<<<<<<< develop
-=======
-
-            <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-              {i18n.t("forgotPassword.title")}?
-            </ForgotPasswordContainer>
->>>>>>> checkpoint
           </FormSubContainer>
         </FormikForm>
       </FormContainer>
-
-<<<<<<< develop
-      <RegisterContainer>
-        <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-          {i18n.t("forgotPassword.title")}?
-        </ForgotPasswordContainer>
-        <RedirectToRegisterHint />
-      </RegisterContainer>
-
-      <LanguageSwitch style={{ width: "100%", margin: "24px 0", border: `1px solid ${theme.white30}` }} />
-=======
-      <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+      {isMobileSize ? (
+        <HintContainer>
+          <ForgotPasswordContainer onClick={() => handleClickForgetPassword()}>
+            {i18n.t("forgotPassword.title")}
+          </ForgotPasswordContainer>
+          <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+        </HintContainer>
+      ) : (
+        <HintContainer>
+          <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+          <ForgotPasswordContainer onClick={() => handleClickForgetPassword()}>
+            {i18n.t("forgotPassword.title")}
+          </ForgotPasswordContainer>
+        </HintContainer>
+      )}
 
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
->>>>>>> checkpoint
     </AuthFormContainer>
   );
 };

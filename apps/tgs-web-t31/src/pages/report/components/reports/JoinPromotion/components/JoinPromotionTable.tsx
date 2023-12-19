@@ -5,6 +5,7 @@ import { JoinedPromotionsResponse } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   promotionDetails: JoinedPromotionsResponse[];
@@ -23,6 +24,7 @@ const JoinPromotionTable = ({ promotionDetails, totalCount }: Props) => {
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.dateTime")}</>
@@ -30,6 +32,7 @@ const JoinPromotionTable = ({ promotionDetails, totalCount }: Props) => {
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.joinedPromo.promoName")}</>

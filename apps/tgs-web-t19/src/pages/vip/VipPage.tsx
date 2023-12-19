@@ -1,14 +1,36 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useBettingBonus } from "@tgs-web-nx/core/hooks";
+import { useBettingBonus, useRwd } from "@tgs-web-nx/core/hooks";
 import { VipData } from "@tgs-web-nx/types";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import LevelTable from "./components/LevelTable";
 import { media } from "@/theme/breakpoints";
 import BonusTable from "@/pages/vip/components/BonusTable";
 import Loading from "@/components/UI/Loading";
+import { PageContainer } from "@/components/styled-component/PageContainer";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
-const VipWrapper = styled.div`
+const VipBanner = styled.div<{ $imageUrl: string }>`
+  width: 100%;
+  padding-top: 34.5%;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 6px;
+
+  ${media.sm} {
+    padding-top: 27%;
+  }
+`;
+
+const VipBannerWrapper = styled.div`
+  width: 100%;
+  padding: 12px;
+  background-color: ${({ theme }) => theme.mainBackground};
+`;
+
+const VipContentContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -18,30 +40,15 @@ const VipWrapper = styled.div`
   gap: 16px;
 
   ${media.sm} {
-    max-width: 800px;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    gap: 10px;
+    gap: 40px;
     padding: 10px;
-    background-color: ${({ theme }) => theme.blue20};
-  }
-`;
-
-const VipBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-  height: 137px;
-  border-radius: 4px;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  ${media.sm} {
-    max-width: 780px;
-    height: 250px;
   }
 `;
 
 const VIP = () => {
+  const { isDesktopSize, isMobileSize } = useRwd();
   const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
   const [vipSortingData, setVipSortingData] = useState<VipData[]>([]);
   useUpdatePageName("VIP");
@@ -61,11 +68,14 @@ const VIP = () => {
   if (isLoading) return <Loading show={true} />;
 
   return (
-    <VipWrapper>
-      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} />
-      <BonusTable vipSortingData={vipSortingData} />
-      <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
-    </VipWrapper>
+    <PageContainer>
+      {isDesktopSize && <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.png`} />}
+      {isMobileSize && <VipBannerWrapper><VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} /></VipBannerWrapper>}
+      <VipContentContainer>
+        <BonusTable vipSortingData={vipSortingData} />
+        <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
+      </VipContentContainer>
+    </PageContainer>
   );
 };
 

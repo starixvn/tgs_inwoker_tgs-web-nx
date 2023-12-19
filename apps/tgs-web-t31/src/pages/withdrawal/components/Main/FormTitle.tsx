@@ -10,6 +10,12 @@ const TitleWrapper = styled.div`
   gap: 10px;
   margin-bottom: 16px;
   height: 46px;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Title = styled.div`
@@ -24,7 +30,7 @@ type Props = {
 const FormTitle = ({ title, isShowAddCardButton, handleClickAddCard }: Props) => {
   return (
     <TitleWrapper>
-      <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />
+      {/* <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} /> */}
       <Title>{title}</Title>
 
       {isShowAddCardButton && handleClickAddCard && (

@@ -12,15 +12,20 @@ const BottomNavContainer = styled.div`
   flex-direction: column;
   align-items: center;
   color: ${({ theme }) => theme.darkPrimary};
-  padding: 6px 0;
+  padding: 10px 0;
   cursor: pointer;
 `;
 
 const NavLabel = styled.h6`
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 400;
-  line-height: 0.625rem;
-  text-transform: uppercase;
+  line-height: 0.875rem;
+`;
+
+const ActiveNavLabel = styled.div`
+  color: ${({ theme }) => theme.primary};
+  font-size: 0.875rem;
+  font-weight: 510;
 `;
 
 type Props = {
@@ -36,32 +41,15 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
       <BottomNavContainer onClick={onClick}>
         <Icon
           iconUrl={iconUrl}
-          width={"47px"}
-          height={"47px"}
+          width={"62px"}
+          height={"62px"}
+
           style={{
-            marginBottom: "13px",
+            marginBottom: "10px",
           }}
         />
 
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
-
-  if (["promotion"].includes(bottomNavItem.key)) {
-    return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon
-          iconUrl={iconUrl}
-          width={"64px"}
-          height={"64px"}
-          style={{
-            marginBottom: "-4px",
-            marginLeft: "5px",
-          }}
-        />
-
-        <NavLabel>{label}</NavLabel>
+        <ActiveNavLabel>{label}</ActiveNavLabel>
       </BottomNavContainer>
     );
   }
@@ -70,10 +58,10 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
     <BottomNavContainer onClick={onClick}>
       <Icon
         iconUrl={iconUrl}
-        width={"24px"}
-        height={"24px"}
+        width={"26px"}
+        height={"26px"}
         style={{
-          marginBottom: "13px",
+          marginBottom: "5px",
         }}
       />
 

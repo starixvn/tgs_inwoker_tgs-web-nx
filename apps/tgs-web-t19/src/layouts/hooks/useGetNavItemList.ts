@@ -4,30 +4,30 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
-import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
-import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
-import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
-import transferImg from "@/assets/t29/images/account/navItem/icon-transfer.svg";
-import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
-import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
-import affiliateImg from "@/assets/t29/images/account/navItem/icon-affiliate.svg";
-import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
-import languageImg from "@/assets/t29/images/account/navItem/icon-language.svg";
-import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
-import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
-import wageringImg from "@/assets/t29/images/account/navItem/icon-wagering.svg";
-import profileWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-profile.svg";
-import depositWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-deposit.svg";
-import withdrawWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-withdraw.svg";
-import transferWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-transfer.svg";
-import reportWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-report.svg";
-import inboxWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-inbox.svg";
-import affiliateWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-affiliate.svg";
-import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
-import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
-import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
-import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
-import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
+import profileImg from "@/assets/t19/images/account/navItem/icon-profile.svg";
+import depositImg from "@/assets/t19/images/account/navItem/icon-deposit.svg";
+import withdrawImg from "@/assets/t19/images/account/navItem/icon-withdraw.svg";
+import transferImg from "@/assets/t19/images/account/navItem/icon-transfer.svg";
+import reportImg from "@/assets/t19/images/account/navItem/icon-report.svg";
+import inboxImg from "@/assets/t19/images/account/navItem/icon-inbox.svg";
+import affiliateImg from "@/assets/t19/images/account/navItem/icon-affiliate.svg";
+import downloadImg from "@/assets/t19/images/account/navItem/icon-download.svg";
+import languageImg from "@/assets/t19/images/account/navItem/icon-language.svg";
+import contactImg from "@/assets/t19/images/account/navItem/icon-contact.svg";
+import vipImg from "@/assets/t19/images/account/navItem/icon-vip.svg";
+import wageringImg from "@/assets/t19/images/account/navItem/icon-wagering.svg";
+import profileWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-profile.svg";
+import depositWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-deposit.svg";
+import withdrawWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-withdraw.svg";
+import transferWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-transfer.svg";
+import reportWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-report.svg";
+import inboxWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-inbox.svg";
+import affiliateWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-affiliate.svg";
+import downloadWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-download.svg";
+import contactWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-contact.svg";
+import vipWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-vip.svg";
+import wageringWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-wagering.svg";
+import languageWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-wagering.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -41,15 +41,15 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-  | {
+    | {
       navType: "route";
       routePath: string;
     }
-  | {
+    | {
       navType: "action";
       callback: () => void;
     }
-);
+  );
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -115,39 +115,39 @@ export function useGetNavItemList() {
 
   const accountNavItemList: NavItem[] = useMemo(() => {
     return [
-      {
-        key: NavCardKey.PROFILE,
-        label: i18n.t("wap.main.my"),
-        iconUrl: profileImg,
-        iconSecondaryUrl: profileWhiteImg,
-        navType: "route",
-        routePath: "/profile",
-      },
-      {
-        key: NavCardKey.DEPOSIT,
-        label: i18n.t("common.deposit"),
-        iconUrl: depositImg,
-        iconSecondaryUrl: depositWhiteImg,
-        navType: "route",
-        routePath: "/deposit",
-      },
-      {
-        key: NavCardKey.WITHDRAW,
-        label: i18n.t("common.withdrawal"),
-        iconUrl: withdrawImg,
-        iconSecondaryUrl: withdrawWhiteImg,
-        navType: "route",
-        routePath: "/withdrawal",
-      },
-      {
-        key: NavCardKey.WAGERING,
-        //todo: 新增 Wagering t18 翻譯
-        label: "Wagering",
-        iconUrl: wageringImg,
-        iconSecondaryUrl: wageringWhiteImg,
-        navType: "route",
-        routePath: "/wagering",
-      },
+      // {
+      //   key: NavCardKey.PROFILE,
+      //   label: i18n.t("wap.main.my"),
+      //   iconUrl: profileImg,
+      //   iconSecondaryUrl: profileWhiteImg,
+      //   navType: "route",
+      //   routePath: "/profile",
+      // },
+      // {
+      //   key: NavCardKey.DEPOSIT,
+      //   label: i18n.t("common.deposit"),
+      //   iconUrl: depositImg,
+      //   iconSecondaryUrl: depositWhiteImg,
+      //   navType: "route",
+      //   routePath: "/deposit",
+      // },
+      // {
+      //   key: NavCardKey.WITHDRAW,
+      //   label: i18n.t("common.withdrawal"),
+      //   iconUrl: withdrawImg,
+      //   iconSecondaryUrl: withdrawWhiteImg,
+      //   navType: "route",
+      //   routePath: "/withdrawal",
+      // },
+      // {
+      //   key: NavCardKey.WAGERING,
+      //   //todo: 新增 Wagering t18 翻譯
+      //   label: "Wagering",
+      //   iconUrl: wageringImg,
+      //   iconSecondaryUrl: wageringWhiteImg,
+      //   navType: "route",
+      //   routePath: "/wagering",
+      // },
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),

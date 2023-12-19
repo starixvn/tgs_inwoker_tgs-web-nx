@@ -5,12 +5,11 @@ import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
-import CardPrompt from "@/pages/home/components/CardPrompt";
+import CardPromptDesktop from "@/pages/home/components/CardPromptDesktop";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import Banner from "@/pages/home/components/Banner";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import bg from "@/assets/t19/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
@@ -23,10 +22,6 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  padding: 0px 8px 12px 8px;
-  gap: 6px;
-  flex-shrink: 0;
-  flex: 1;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -37,14 +32,45 @@ const MainWrapper = styled.div`
   }
 `;
 
+const DesktopBg = styled.div`
+  width: 100%;
+  min-height: 100%;
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
+  margin: 0 auto;
+  padding: 0px 0px 0px 0px;
+  background-image: url(${bg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+`;
+
 const SliderWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
 
   ${media.sm} {
     height: 100%;
-    max-height: 450px;
   }
+`;
+
+const SlickDot = styled.div`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: ${({ theme }) => theme.white};
+`;
+
+const SlickDotWrapper = styled.div`
+  margin-bottom: 30px;
+
+  & ul li.slick-active ${SlickDot} {
+    background: #F1C137 !important;
+  }
+`;
+
+const NotificationWrapper = styled.div`
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  margin: 30px auto 14px;
 `;
 
 const MainContentWrapper = styled.div`
@@ -55,23 +81,20 @@ const MainContentWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 6px;
   flex-shrink: 0;
   flex: 1;
+  padding: 16px 12px 0px 12px;
 
-  /* ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    gap: unset;
-    background-image: url(${bg});
-    background-size: contain;
-    background-repeat: no-repeat;
-  } */
+    background-color: transparent;
+  }
 `;
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 450px;
+  height: 520px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
@@ -100,6 +123,17 @@ const HomePage = () => {
     return matchingGameType ? matchingGameType.gameType : null;
   };
 
+  const settings = {
+    appendDots: (dots: any) => (
+      <SlickDotWrapper>
+        <ul>{dots}</ul>
+      </SlickDotWrapper>
+    ),
+    customPaging: (i: number) => {
+      return <SlickDot key={i} />;
+    },
+  };
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -119,27 +153,46 @@ const HomePage = () => {
   return (
     <MainWrapper>
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
-      {!!general.banner.length && (
+      {!!general.banner.length && isMobileSize && (
         <SliderWrapper>
-          {isMobileSize && <Slider />}
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${import.meta.env.BASE_URL
-                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
-          {isDesktopSize && !activeGameType && <Banner />}
+          <Slider settings={settings} />
         </SliderWrapper>
       )}
-      {isMobileSize && <CardPrompt />}
+      {!!general.banner.length && isDesktopSize && !activeGameType && (
+        <SliderWrapper>
+          <Slider maxHeight={"600px"} settings={settings} />
+        </SliderWrapper>
+      )}
+      {!!general.banner.length && isDesktopSize && !!activeGameType && (
+        <SliderWrapper>
+          <GameTypeBanner
+            $imageUrl={
+              activeGameTypeKey
+                ? `${import.meta.env.BASE_URL
+                }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                : ""
+            }
+          />
+        </SliderWrapper>
+      )}
 
-      <MainContentWrapper>
-        <CategoryRenderer />
-      </MainContentWrapper>
+      {isDesktopSize && !activeGameType &&
+        <DesktopBg>
+          <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>
+          <MainContentWrapper>
+            <CategoryRenderer />
+          </MainContentWrapper>
+        </DesktopBg>}
+      {(isDesktopSize && !!activeGameType) && (
+        <MainContentWrapper>
+          <CategoryRenderer />
+        </MainContentWrapper>
+      )}
+      {isMobileSize && (
+        <MainContentWrapper>
+          <CategoryRenderer />
+        </MainContentWrapper>
+      )}
     </MainWrapper>
   );
 };

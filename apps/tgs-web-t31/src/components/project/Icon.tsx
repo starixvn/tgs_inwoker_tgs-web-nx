@@ -20,7 +20,7 @@ const IconContainer = styled.div<IconContainerProps>`
 `;
 
 type Props = {
-  iconUrl: string;
+  iconUrl: string | undefined;
   width: string;
   height: string;
   onClick?: MouseEventHandler<HTMLDivElement>;

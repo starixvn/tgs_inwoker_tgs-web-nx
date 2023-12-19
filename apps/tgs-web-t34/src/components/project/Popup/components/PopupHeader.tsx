@@ -5,6 +5,7 @@ import iconClose from "@/assets/t34/images/dialog/close.svg";
 
 const PopupHeaderContainer = styled.div`
   background: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.white};
   position: relative;
   height: 63px;
   display: flex;
