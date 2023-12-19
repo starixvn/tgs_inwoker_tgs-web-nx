@@ -53,12 +53,13 @@ const muiTheme = createTheme({
       main: theme.secondary,
     },
     action: {
-      disabledBackground: theme.gray30,
+      disabledBackground: theme.gray,
       disabled: theme.white,
     },
     white: theme.white,
     black: theme.black,
     pureBlack: theme.pureBlack,
+    gray: theme.gray,
     mainBackground: theme.mainBackground,
     btnGradient: theme.btnGradient,
     red: theme.red,
@@ -78,8 +79,8 @@ const muiTheme = createTheme({
     gray40: theme.gray40,
     gray50: theme.gray50,
     text: {
-      primary: theme.text,
-      secondary: theme.gray20,
+      primary: theme.white,
+      secondary: theme.gray,
     },
   },
   typography: {

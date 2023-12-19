@@ -12,6 +12,7 @@ import iconBalance from "@/assets/t19/images/header/icon-balance.svg";
 import iconDeposit from "@/assets/t19/images/header/icon-deposit.svg";
 import accountBtn from "@/assets/t19/images/header/account-btn.svg";
 import liveChatBtn from "@/assets/t19/images/header/live-chat-btn.svg";
+import signoutBtn from "@/assets/t19/images/header/sign-out.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { theme } from "@/theme";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
@@ -149,7 +150,7 @@ const AccountHeaderContent = () => {
           </IconContainer>
           <SignoutContainer onClick={handleClickLogout}>
             <Icon
-              iconUrl={iconDeposit}
+              iconUrl={signoutBtn}
               width={"18px"}
               height={"18px"}
             />
