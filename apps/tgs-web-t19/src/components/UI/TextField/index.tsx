@@ -5,10 +5,11 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
   input: {
     padding: "12px 20px",
-    color: theme.palette.text.primary,
+    color: theme.palette.gray,
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
+    background: theme.palette.pureBlack,
 
     "&:-webkit-autofill": {
       WebkitTextFillColor: `${theme.palette.text.primary} !important`,

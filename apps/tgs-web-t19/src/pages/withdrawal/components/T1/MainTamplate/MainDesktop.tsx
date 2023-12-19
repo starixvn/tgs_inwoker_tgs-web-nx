@@ -49,7 +49,7 @@ const MainDesktop = ({
     <>
       {/* Please choose bank */}
       <ItemContainer>
-        <StepTitle step={1} title={i18n.t("withdrawal.msgEnterBank")} />
+        {/* <StepTitle step={1} title={i18n.t("withdrawal.msgEnterBank")} /> */}
 
         <SelectionContainer>
           <BankCardGroup
@@ -174,9 +174,9 @@ const MainDesktop = ({
       <SubmitButton
         disabled={Boolean(
           isNaN(parseFloat(amount)) ||
-            parseFloat(amount) < min ||
-            parseFloat(amount) > max ||
-            disabled,
+          parseFloat(amount) < min ||
+          parseFloat(amount) > max ||
+          disabled,
         )}
         onClick={handleWithdrawalClick}
         sx={{

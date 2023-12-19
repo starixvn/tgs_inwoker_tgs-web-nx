@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
 export const LimitLabel = styled.span`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.white};
 `;
 
 export const LimitAmount = styled.span`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 `;
 
-export const TransferLabel = styled.div``;
-export const TransferValue = styled.div``;
+export const TransferLabel = styled.div`
+color: ${({ theme }) => theme.white}; 
+`;
+
+export const TransferValue = styled.div`
+  color: ${({ theme }) => theme.white}; 
+`;
 
 export const ExchangeRateContainer = styled.div`
   margin: 20px auto;

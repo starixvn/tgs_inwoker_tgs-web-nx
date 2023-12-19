@@ -13,7 +13,7 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.white};
 `;
 
 type Props = {
@@ -24,7 +24,7 @@ type Props = {
 const FormTitle = ({ title, isShowAddCardButton, handleClickAddCard }: Props) => {
   return (
     <TitleWrapper>
-      <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />
+      {/* <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} /> */}
       <Title>{title}</Title>
 
       {isShowAddCardButton && handleClickAddCard && (

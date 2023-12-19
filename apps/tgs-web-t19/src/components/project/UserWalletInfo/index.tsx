@@ -25,7 +25,7 @@ const Container = styled.div`
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.pureBlack};
 `;
 
 const PlayerInfoContainer = styled.div`

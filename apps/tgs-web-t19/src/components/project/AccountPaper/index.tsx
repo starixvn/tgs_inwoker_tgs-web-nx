@@ -6,8 +6,14 @@ import { media } from "@/theme/breakpoints";
 
 const AccountPaperContainer = styled.div`
   ${media.sm} {
-    background: ${({ theme }) => theme.mainBackground};
-    padding: 30px;
+    background: ${({ theme }) => theme.darkGray};
+    border-radius: 10px;
+    display: flex;
+    padding: 24px 40px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    align-self: stretch;
   }
 `;
 

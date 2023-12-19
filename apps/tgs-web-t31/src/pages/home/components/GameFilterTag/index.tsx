@@ -15,8 +15,8 @@ const TagContainer = styled.div`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding: 0px 6px 0px 14px;
-  border-radius: 100px;
-  border: 1px solid ${({ theme }) => theme.blue40};
+  /* border-radius: 100px; */
+  /* border: 1px solid ${({ theme }) => theme.blue40}; */
   align-self: stretch;
 
   ${media.sm} {
@@ -105,15 +105,40 @@ const GameFilterTag = () => {
             {tagCmp &&
               tagCmp.iconComponent &&
               React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.text,
+                $color: isActive ? theme.accountLableText : theme.white50,
               })}
           </Tag>
         );
       })}
 
-      {/* Provider list */}
-
-      {providerFilterTagList.map((filterTag) => {
+      {/* todo: Provider list */}
+      {/* <Select
+        onChange={(e) => {
+          const targetTag = providerFilterTagList.find((tag: FilterTag) => {
+            return tag.gpCode === e.target.value;
+          });
+          handleFilterClick(targetTag);
+        }}
+        value={activeProviderFilterTag.gpCode}
+        sx={{
+          width: "150px",
+          backgroundColor: theme.white,
+          color: theme.black,
+          height: "44px",
+          padding: "0 12px",
+          borderRadius: "4px",
+        }}
+      >
+        {providerFilterTagList.map((filterTag) => {
+          console.log(filterTag)
+          return (
+            <MenuItem key={filterTag.gpCode} value={filterTag.gpCode} sx={{ color: "black" }}>
+              {filterTag.name}
+            </MenuItem>
+          );
+        })}
+      </Select> */}
+      {/* {providerFilterTagList.map((filterTag) => {
         const { name, gpCode } = filterTag;
 
         const isActive =
@@ -141,7 +166,7 @@ const GameFilterTag = () => {
               })}
           </Tag>
         );
-      })}
+      })} */}
     </TagContainer>
   );
 };

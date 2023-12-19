@@ -24,6 +24,35 @@ export function useGetHomeCategoryList() {
 
   const { activeGameType, activeFilterTag } = useHomeGameContext();
 
+  const [slotList, setSlotList] = useState([]);
+  const [tableList, setTableList] = useState([]);
+
+  const fetchSlotList = async () => {
+    try {
+      const response = await GameService.GetGameList("", GameTypeEnum.SLOT);
+      setSlotList(
+        response.data.filter((gameItem: any) => {
+          return gameItem.tag.hot;
+        }),
+      );
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+
+  const fetchTableList = async () => {
+    try {
+      const response = await GameService.GetGameList("", GameTypeEnum.TABLEGAME);
+      setTableList(
+        response.data.filter((gameItem: any) => {
+          return gameItem.tag.hot;
+        }),
+      );
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+
   const getSlotGameList = async () => {
     try {
       setSlotGameListState({
@@ -122,5 +151,9 @@ export function useGetHomeCategoryList() {
     newGameList: gameListDictionary[FilterTagTypeEnum.NEW] || [],
     recommendGameList: gameListDictionary[FilterTagTypeEnum.RECOMMEND] || [],
     providerGameList: gameListDictionary[FilterTagTypeEnum.PROVIDER] || [],
+    fetchSlotList,
+    fetchTableList,
+    slotList,
+    tableList,
   };
 }
