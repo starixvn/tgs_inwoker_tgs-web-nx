@@ -70,14 +70,16 @@
         "{options.outputFile}"
       ],
       "options": {
-        "commands": [],
-        "parallel": false
+        "lintFilePatterns": [
+          "tgs-web-t30/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "docker-build": {
       "executor": "nx:run-commands",
       "defaultConfiguration": "production",
       "options": {
+        "commands": [],
         "parallel": false
       },
       "configurations": {
