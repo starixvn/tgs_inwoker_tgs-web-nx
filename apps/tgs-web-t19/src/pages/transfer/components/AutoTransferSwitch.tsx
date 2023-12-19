@@ -18,7 +18,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.primary,
       },
     },
   },
@@ -40,6 +40,7 @@ const Group = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   gap: 8px;
+  color: ${({ theme }) => theme.white};
 
   ${media.md} {
     flex-direction: row;
@@ -65,6 +66,15 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
     <AutoTransferContainer {...props}>
       {!isLargeDesktopSize && (
         <Button
+          sx={{
+            fontSize: "0.9375rem",
+            color: theme.white,
+            background: theme.pureBlack,
+            border: "none",
+            width: "143px",
+            height: "37px",
+            borderRadius: "6px",
+          }}
           fullWidth
           onClick={() => {
             performWithdrawFromEveryBrand();
@@ -74,9 +84,8 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
         </Button>
       )}
       <Group>
-        {`${i18n.t("transfer.autoTransfer")} (${
-          isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")
-        })`}
+        {`${i18n.t("transfer.autoTransfer")} (${isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")
+          })`}
         <TransferSwitch checked={isChecked} onChange={handleSwitchAutoTransfer} />
       </Group>
 

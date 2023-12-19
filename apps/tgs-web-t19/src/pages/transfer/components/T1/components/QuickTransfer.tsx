@@ -13,13 +13,19 @@ import { media } from "@/theme/breakpoints";
 
 const QuickTransferContainer = styled.div`
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 12px;
   flex-wrap: wrap;
+  height: 40px;
 
-  & > * {
-    height: 50px;
-    max-width: 200px;
+  & > div:nth-child(1),
+  & > div:nth-child(3) {
+    max-width: 240px;
   }
+
+  & > div:nth-child(4) {
+    max-width: 360px;
+  } 
 
   ${media.lg} {
     flex-wrap: nowrap;
@@ -29,29 +35,33 @@ const QuickTransferContainer = styled.div`
 const QuickTransferArrow = styled.div`
   flex-shrink: 0;
   display: flex;
-  width: 23px;
-  height: 23px;
+  width: 14px;
+  height: 9px;
   align-self: center;
   margin: 0 10px;
 `;
 
 const AmountWrapper = styled.div`
-  padding: 17px 10px;
+  padding: 10px 20px;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+ 
 `;
 
 const AmountText = styled.div`
   flex-shrink: 0;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
   background: none;
   text-align: right;
   border: none;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   ::placeholder {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.white};
   }
 `;
 
