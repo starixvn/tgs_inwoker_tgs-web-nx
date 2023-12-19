@@ -93,38 +93,35 @@ const NonLobbyCategory = () => {
   return (
     <Wrapper>
       {isMobileSize && (
-        <>
-          <GameTypeTab />
-          <CategoryContentWrapper>
-            <FilterSection>
-              <GameFilterTag />
-              <SearchInputWrapper>
-                <SearchInput
-                  placeholder={i18n.t("slot.search")}
-                  imageUrl={searchIcon}
-                  handleChange={handleChangeSearch}
-                  value={searchString}
+        <CategoryContentWrapper>
+          <FilterSection>
+            <GameFilterTag />
+            <SearchInputWrapper>
+              <SearchInput
+                placeholder={i18n.t("slot.search")}
+                imageUrl={searchIcon}
+                handleChange={handleChangeSearch}
+                value={searchString}
+              />
+            </SearchInputWrapper>
+          </FilterSection>
+          <CategoryContent>
+            {hasMappingData &&
+              gameList.map((gameItem) => (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
-              </SearchInputWrapper>
-            </FilterSection>
-            <CategoryContent>
-              {hasMappingData &&
-                gameList.map((gameItem) => (
-                  <GameCard
-                    key={gameItem.id}
-                    gameItem={gameItem}
-                    isActive={gameItem.isactive}
-                    imageUrl={`${
-                      config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                      gameItem.code
-                    }.jpg`}
-                  />
-                ))}
-              {!hasMappingData && !isLoading && <div>No data</div>}
-            </CategoryContent>
-          </CategoryContentWrapper>
-        </>
+              ))}
+            {!hasMappingData && !isLoading && <div>No data</div>}
+          </CategoryContent>
+        </CategoryContentWrapper>
       )}
 
       {isDesktopSize && (

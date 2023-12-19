@@ -4,8 +4,8 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import {
+  useGetHomeCategoryList,
   useGetLobbyCategoryList,
-  useGetNonLobbyCategoryList,
   useHomeGameContext,
 } from "@tgs-web-nx/core/features";
 import { useEffect } from "react";
@@ -68,7 +68,7 @@ const HomeCategoryWithMobile = () => {
   const { account } = useAccountStore();
   const history = useHistory();
   const { sportCategoryList, liveCategoryList } = useGetLobbyCategoryList();
-  const { fetchSlotList, fetchTableList, slotList, tableList } = useGetNonLobbyCategoryList();
+  const { fetchSlotList, fetchTableList, slotList, tableList } = useGetHomeCategoryList();
 
   useEffect(() => {
     fetchSlotList();

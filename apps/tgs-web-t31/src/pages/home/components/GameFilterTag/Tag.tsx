@@ -18,8 +18,7 @@ const Wrapper = styled.div<{
   border-radius: 50px;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.primary : theme.mainBackground};
+  background-color: ${({ theme }) => theme.black30};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
 
   ${media.sm} {
