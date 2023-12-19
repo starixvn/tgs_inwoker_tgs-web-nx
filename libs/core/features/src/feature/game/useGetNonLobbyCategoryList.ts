@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { GameItem } from "@tgs-web-nx/types";
 import { GameService } from "@tgs-web-nx/core";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "./useHomeGameContext";
 import { getFilteredGameListByProvider } from "./utils/getFilteredGameListByProvider";
 import { getFilteredGameListByTag } from "./utils/getFilteredGameListByTag";
@@ -18,6 +19,9 @@ export function useGetNonLobbyCategoryList() {
     error: null,
   });
 
+  const [slotList, setSlotList] = useState([]);
+  const [tableList, setTableList] = useState([]);
+
   const {
     activeGameType,
     updateGpCodeList,
@@ -26,6 +30,32 @@ export function useGetNonLobbyCategoryList() {
     activeProviderFilterTag,
     searchString,
   } = useHomeGameContext();
+
+  const fetchSlotList = async () => {
+    try {
+      const response = await GameService.GetGameList("", GameTypeEnum.SLOT);
+      setSlotList(
+        response.data.filter((gameItem: any) => {
+          return gameItem.tag.hot;
+        }),
+      );
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+
+  const fetchTableList = async () => {
+    try {
+      const response = await GameService.GetGameList("", GameTypeEnum.TABLEGAME);
+      setTableList(
+        response.data.filter((gameItem: any) => {
+          return gameItem.tag.hot;
+        }),
+      );
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
 
   const fetchGameList = useCallback(async () => {
     try {
@@ -79,5 +109,9 @@ export function useGetNonLobbyCategoryList() {
     isLoading: gameListState.isLoading,
     gameList: searchedGameList,
     error: gameListState.error,
+    fetchSlotList,
+    fetchTableList,
+    slotList,
+    tableList,
   };
 }

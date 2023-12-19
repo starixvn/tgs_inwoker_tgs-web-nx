@@ -38,8 +38,9 @@ const ContentWrapper = styled.div`
 `;
 
 const ChildrenWrapper = styled.div`
+  background: ${({ theme }) => theme.mainBackground};
   height: 100%;
-
+  overflow: auto;
   ${media.sm} {
     padding-bottom: 0;
     height: unset;
