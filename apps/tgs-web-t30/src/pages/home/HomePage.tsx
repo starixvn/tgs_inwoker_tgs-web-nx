@@ -5,17 +5,13 @@ import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
-import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t30/images/home/home_bg.png";
-import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import notification from "@/assets/t30/images/home/notify.svg";
-import Jackpot from "@/components/project/Jackpot";
 import useBanner from "@/hooks/home/useBanner";
 
 const MainWrapper = styled.div`
@@ -149,8 +145,8 @@ const HomePage = () => {
   }, [urlGameType]);
   return (
     <MainWrapper>
-      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
+
       {hasActiveDesktopBanner() ? (
         <BannerWrapper>
           {isDesktopSize && !!activeGameType && !isNonLobby && (
@@ -168,42 +164,7 @@ const HomePage = () => {
         </BannerWrapper>
       ) : null}
 
-      {/* if uer did't setting baner, still show marquee and jackpot */}
-      {!hasActiveDesktopBanner() && isDesktopSize && (
-        <MarqueeContainer>
-          <MarqueeContent>
-            <img src={notification} alt="marquee" />
-            {hasData && (
-              // Disable TypeScript check for unknown HTML elements
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              <marquee>
-                {marquees.map((item, index) => {
-                  const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
-      `;
-                  return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
-                })}
-                {/*@ts-ignore*/}
-              </marquee>
-            )}
-
-            <Jackpot
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-              }}
-            />
-          </MarqueeContent>
-        </MarqueeContainer>
-      )}
-
-      {isMobileSize && <CardPrompt />}
+      {/*{isMobileSize && <CardPrompt />}*/}
 
       <MainContentWrapper>
         <CategoryRenderer />

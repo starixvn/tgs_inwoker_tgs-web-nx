@@ -10,6 +10,7 @@ export * from "./utils/formatAmount";
 export * from "./utils/regex";
 export * from "./utils/updateHtmlTitleDescription";
 export * from "./utils/utility";
+export * from "./utils/getGameTypeName";
 
 export {
   BlowFishEncryption,

@@ -8,7 +8,6 @@ import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t30/images/home/search.svg";
@@ -30,7 +29,7 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 78px);
+  width: 100%;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
 `;
@@ -85,49 +84,32 @@ const Text = styled.div`
 `;
 
 const NonLobbyCategory = () => {
-  const { isDesktopSize, isMobileSize } = useRwd();
+  const { isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
-  const { searchString, handleChangeSearch } = useHomeGameContext();
 
   return (
     <Wrapper>
-      {isMobileSize && (
-        <>
-          <GameTypeTab />
-          <CategoryContentWrapper>
-            <FilterSection>
-              <GameFilterTag />
-              <SearchInputWrapper>
-                <SearchInput
-                  placeholder={i18n.t("slot.search")}
-                  imageUrl={searchIcon}
-                  handleChange={handleChangeSearch}
-                  value={searchString}
+      {isMobileSize ? (
+        <CategoryContentWrapper>
+          <CategoryContent>
+            {hasMappingData &&
+              gameList.map((gameItem) => (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
-              </SearchInputWrapper>
-            </FilterSection>
-            <CategoryContent>
-              {hasMappingData &&
-                gameList.map((gameItem) => (
-                  <GameCard
-                    key={gameItem.id}
-                    gameItem={gameItem}
-                    isActive={gameItem.isactive}
-                    imageUrl={`${
-                      config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                      gameItem.code
-                    }.jpg`}
-                  />
-                ))}
-              {!hasMappingData && !isLoading && <div>No data</div>}
-            </CategoryContent>
-          </CategoryContentWrapper>
-        </>
-      )}
-
-      {isDesktopSize && (
+              ))}
+            {!hasMappingData && !isLoading && <div>No data</div>}
+          </CategoryContent>
+        </CategoryContentWrapper>
+      ) : (
         <DesktopWrapper>
           <HomeGameFilterTag />
           <DesktopCategoryContentWrapper>
@@ -148,6 +130,7 @@ const NonLobbyCategory = () => {
           </DesktopCategoryContentWrapper>
         </DesktopWrapper>
       )}
+
       <Loading show={isLoading} />
     </Wrapper>
   );

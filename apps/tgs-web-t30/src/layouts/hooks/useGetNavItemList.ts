@@ -48,6 +48,7 @@ export function useGetNavItemList() {
         label: gameTypeItem.text as string,
         iconUrl: gameTypeItem.iconUrl,
         navType: "action",
+        gameType: gameTypeItem.gameType,
         callback: () => {
           handleChangeGameType(gameTypeItem.gameType);
 

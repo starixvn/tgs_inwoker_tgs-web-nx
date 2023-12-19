@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import profileImg from "@/assets/t23/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t23/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t23/images/account/navItem/icon-withdraw.svg";
@@ -31,6 +32,7 @@ export type NavItem = {
   iconActiveUrl?: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
+  gameType?: GameTypeEnum;
 } & (
   | {
       navType: "route";

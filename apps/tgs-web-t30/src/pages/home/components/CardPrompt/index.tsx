@@ -17,7 +17,7 @@ const CardPrompt = () => {
   return (
     <CardPromptContainer>
       <Marquee />
-      <OnlineUser color={theme.gray50} />
+      <OnlineUser color={theme.white} />
     </CardPromptContainer>
   );
 };
