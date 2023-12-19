@@ -17,6 +17,7 @@ import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import useBanner from "@/hooks/home/useBanner";
+import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -153,7 +154,7 @@ const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
   return (
-    <MainWrapper>
+    <PageContainer>
       {/* {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />} */}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
@@ -193,7 +194,7 @@ const HomePage = () => {
           <CategoryRenderer />
         </MainContentWrapper>
       </MainContentContainer>
-    </MainWrapper>
+    </PageContainer>
   );
 };
 

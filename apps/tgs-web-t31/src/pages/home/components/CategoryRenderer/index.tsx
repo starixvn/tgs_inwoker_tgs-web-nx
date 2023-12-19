@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import HomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory";
 import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
 import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/components/NonLobbyCategory";
+import HomeCategoryWithMobile from "@/pages/home/components/CategoryRenderer/components/HomeCategoryWithMobile";
 
 const CategoryRenderer = () => {
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
@@ -14,20 +15,15 @@ const CategoryRenderer = () => {
 
   useEffect(() => {
     if (history.location.pathname === "/") {
-      handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SPORTS);
+      handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.NONE);
     } else {
       handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SPORTS);
     }
   }, [isDesktopSize]);
 
-  if (isDesktopSize) {
-    switch (activeGameType) {
-      case GameTypeEnum.NONE:
-        return <HomeCategory />;
-    }
-  }
-
   switch (activeGameType) {
+    case GameTypeEnum.NONE:
+      return isDesktopSize ? <HomeCategory /> : <HomeCategoryWithMobile />;
     case GameTypeEnum.SLOT:
     case GameTypeEnum.FISH:
     case GameTypeEnum.TABLEGAME:

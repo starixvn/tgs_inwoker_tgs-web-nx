@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { ProviderDto } from "@tgs-web-nx/types";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 export function useGetLobbyCategoryList() {
   const { providerList, activeGameType, activeNavPopupGameType } = useHomeGameContext();
-
   const lobbyCategoryList = useMemo<ProviderDto[]>(() => {
     return providerList.filter((provider) => {
       return provider.gametypes.includes(activeGameType);
@@ -17,5 +17,17 @@ export function useGetLobbyCategoryList() {
     });
   }, [activeNavPopupGameType, JSON.stringify(providerList)]);
 
-  return { lobbyCategoryList, navPopupCategoryList };
+  const sportCategoryList = useMemo<ProviderDto[]>(() => {
+    return providerList.filter((provider) => {
+      return provider.gametypes.includes(GameTypeEnum.SPORTS);
+    });
+  }, [activeGameType, JSON.stringify(providerList)]);
+
+  const liveCategoryList = useMemo<ProviderDto[]>(() => {
+    return providerList.filter((provider) => {
+      return provider.gametypes.includes(GameTypeEnum.LIVE);
+    });
+  }, [activeGameType, JSON.stringify(providerList)]);
+
+  return { lobbyCategoryList, navPopupCategoryList, sportCategoryList, liveCategoryList };
 }
