@@ -16,15 +16,16 @@ const QuickTransferContainer = styled.div`
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  height: 40px;
 
   & > div:nth-child(1),
   & > div:nth-child(3) {
     max-width: 240px;
+    height: 40px;
   }
 
   & > div:nth-child(4) {
     max-width: 360px;
+    height: 40px;
   } 
 
   ${media.lg} {
@@ -47,7 +48,7 @@ const AmountWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
+  height: 40px;
 `;
 
 const AmountText = styled.div`
