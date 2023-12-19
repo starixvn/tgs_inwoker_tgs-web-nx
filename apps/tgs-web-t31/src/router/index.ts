@@ -26,6 +26,8 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
+import NewsPage from "@/pages/News/NewsPage";
+import NewsDetailPage from "@/pages/News/NewsDetailPage";
 import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
@@ -352,6 +354,18 @@ const routes: RouteType[] = [
   {
     path: "/responsiblegaming",
     component: Responsiblegaming,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/news",
+    component: NewsPage,
+    layout: DefaultLayout,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/news/:id?",
+    component: NewsDetailPage,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
 ];
