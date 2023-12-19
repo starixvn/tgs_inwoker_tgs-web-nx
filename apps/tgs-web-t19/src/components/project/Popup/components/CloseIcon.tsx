@@ -34,7 +34,7 @@ const CloseIcon = ({ onClick, style, ...others }: Props) => {
       <Close
         onClick={onClick}
         style={{
-          color: "black",
+          color: "#8C8998",
         }}
       />
     </CloseIconContainer>
