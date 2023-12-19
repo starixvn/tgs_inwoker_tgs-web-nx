@@ -6,6 +6,8 @@ export const AuthFormContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
   padding: 40px;
   overflow: auto;
   gap: 24px;
@@ -21,18 +23,14 @@ export const AuthFormContainer = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  width: 100%;
-  max-width: 580px;
-  margin: 0 auto 20px;
+  width: 500px;
+  height: 489px;
+  /* margin: 0 auto 40px; */
 `;
 
 export const LoginTitle = styled.div`
   font-size: 50px;
   white-space: nowrap;
-  font-weight: 700;
-  line-height: 55px;
-  letter-spacing: 0em;
-  text-align: center;
-  margin-bottom: 50px;
+  font-weight: 400;
   color: ${({ theme }) => theme.white};
 `;

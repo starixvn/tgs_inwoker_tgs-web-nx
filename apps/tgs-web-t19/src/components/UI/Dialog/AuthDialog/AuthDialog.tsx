@@ -18,8 +18,6 @@ const StyledDialog = styled(MuiDialog)`
 
 const ChildContainer = styled.div`
   width: 100%;
-  /* max-width: 580px; */
-  max-height: 760px;
   margin: auto;
   background: ${({ theme }) => theme.mainBackground};
   z-index: 2;

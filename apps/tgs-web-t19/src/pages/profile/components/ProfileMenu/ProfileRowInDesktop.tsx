@@ -10,7 +10,7 @@ const ProfileItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 33px;
+  /* margin-bottom: 33px; */
 
   &:last-child {
     margin-bottom: 0;
@@ -18,12 +18,12 @@ const ProfileItemContainer = styled.div`
 `;
 
 const ProfileRowLabel = styled.div`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
   font-size: 1.25rem;
   font-weight: 400;
 `;
 const ProfileStatus = styled.div`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   font-size: 0.937rem;
   font-weight: 400;
 `;
@@ -50,11 +50,12 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         variant={isVerified ? "contained" : "outlined"}
         sx={{
           fontSize: "0.875rem",
-          color: isVerified ? theme.white : theme.text,
-          background: isVerified ? theme.primary : theme.blue20,
-          border: "none",
+          color: isVerified ? theme.pureBlack : theme.white,
+          background: isVerified ? theme.goldGradient : "transparent",
+          border: isVerified ? "none" : "1px solid #fff",
           width: "150px",
           height: "42px",
+          borderRadius: "6px",
         }}
         onClick={() => {
           if (!profileItem) return;
