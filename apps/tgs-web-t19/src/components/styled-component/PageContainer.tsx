@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -15,15 +15,17 @@ export const PageContainer = styled.div`
 `;
 
 export const TransferPageContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.pureBlack};
   padding: 20px;
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
 
   ${media.sm} {
-    padding: 10px;
-    background: ${({ theme }) => theme.blue20};
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    padding: 40px 16px 16px 16px;
+    border-radius: 0px 5px 5px 0;
   }
 
   & .MuiButton-fullWidth {

@@ -15,7 +15,7 @@ import downloadImg from "@/assets/t19/images/header/sideMenuItem/icon-download.s
 import logoutImg from "@/assets/t19/images/header/sideMenuItem/icon-logout.svg";
 import contactImg from "@/assets/t19/images/header/sideMenuItem/icon-contact.svg";
 
-// mobile  my account
+// mobile my account
 import profileSecondaryImg from "@/assets/t19/images/account/navItem/icon-profile.svg";
 import depositSecondaryImg from "@/assets/t19/images/account/navItem/icon-deposit.svg";
 import withdrawSecondaryImg from "@/assets/t19/images/account/navItem/icon-withdrawal.svg";

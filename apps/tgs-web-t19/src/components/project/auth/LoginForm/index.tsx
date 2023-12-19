@@ -33,9 +33,9 @@ const LoginForm = () => {
   return (
     <AuthFormContainer>
       {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
+        <BrandLogo style={{ maxHeight: "57px" }} />
       ) : (
-        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+        <LoginTitle>{i18n.t("common.login")}</LoginTitle>
       )}
 
       <FormContainer>
@@ -64,9 +64,9 @@ const LoginForm = () => {
         </FormikForm>
       </FormContainer>
 
-      <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
+      <RedirectToRegisterHint />
 
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      {/* <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} /> */}
     </AuthFormContainer>
   );
 };

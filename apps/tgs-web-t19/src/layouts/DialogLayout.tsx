@@ -11,7 +11,7 @@ import BottomAppBar from "@/layouts/components/BottomAppBar";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.black};
 `;
 
 const ContentWrapper = styled.div`
