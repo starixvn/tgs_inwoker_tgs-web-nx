@@ -1,5 +1,4 @@
 import QRCode from "react-qr-code";
-import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { ImageActionEnum, useImageActions } from "@tgs-web-nx/core/hooks";

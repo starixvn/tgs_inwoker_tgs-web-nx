@@ -1,52 +1,87 @@
 import React from "react";
 import styled from "styled-components";
-import { useAccountStore } from "@tgs-web-nx/core";
-import BalanceTracker from "@/components/project/BalanceTracker";
+import { Common } from "@tgs-web-nx/utils";
+import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
+import AccountTransferBtnGroup from "../AccountTransferBtnGroup";
+import cardBackground from "@/assets/t19/images/account/infoCard/card-background.png";
+import VipMedal from "@/components/project/VipMedal";
 
 const InfoCardContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: url(${cardBackground});
+  background-size: cover;
   width: 100%;
-  height: 105px;
-  padding: 15.5px;
-  color: ${({ theme }) => theme.text};
-
+  max-width: 399px;
+  height: 248px;
+  margin-left: 29px;
+  padding: 46px 28px 21px;
+  color: ${({ theme }) => theme.black};
+  border-radius: 10px 0px 0px 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 37px;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const InfoWrapper = styled.div`
+  display: flex;
+`;
+
+const InfoListContainer = styled.div`
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const LevelContainer = styled.div`
+  font-size: 0.875rem;
+  font-weight: 700;
 `;
 
 const NameContainer = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 8.5px;
+  letter-spacing: 0.8px;
 `;
 
-const VipLevel = styled.div`
-  background: #92581a;
-  width: 75px;
-  height: 75px;
+const BalanceContainer = styled.div`
+  font-size: 1.625rem;
+  font-weight: 700;
+
   display: flex;
+  flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.white};
-  font-size: 3rem;
-  font-weight: 500;
-  border-radius: 50%;
+  gap: 10px;
+
+  & span {
+    white-space: nowrap;
+  }
 `;
 
 const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
+  const { wallet } = useWalletStore();
   const { account } = useAccountStore();
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
-
+  const currentBalance = `${wallet.mainSymbol}$ ${Common.formatNumberWithThousand(
+    wallet.mainBalance,
+  )}`;
   return (
     //@ts-ignore
     <InfoCardContainer {...props}>
-      <VipLevel>{`V${accountLevel}`}</VipLevel>
+      <InfoWrapper>
+        <VipMedal vipLevel={accountLevel} />
 
-      <NameContainer>{username}</NameContainer>
+        <InfoListContainer>
+          <LevelContainer>{`VIP ${accountLevel}`}</LevelContainer>
+          <NameContainer>{username}</NameContainer>
 
-      <BalanceTracker size={"small"} />
+          <BalanceContainer>
+            <span>{currentBalance}</span>
+          </BalanceContainer>
+        </InfoListContainer>
+      </InfoWrapper>
+
+      <AccountTransferBtnGroup />
     </InfoCardContainer>
   );
 };

@@ -78,7 +78,7 @@ const OnlineUserContainer = styled.div`
 const Header = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isDesktopSize, isLargeDesktopSize, isMobileSize } = useRwd();
+  const { isDesktopSize, isLargeDesktopSize, isExtraLargeDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
 
   const { handleChangeGameType } = useHomeGameContext();
@@ -92,7 +92,7 @@ const Header = () => {
             onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
           />
         </Link>
-        {!isMobileSize && (
+        {isExtraLargeDesktopSize && (
           <SystemInfoContainer $isOpen={isDesktopSize && isMenuOpen}>
             <OnlineUserContainer>
               <OnlineUser />

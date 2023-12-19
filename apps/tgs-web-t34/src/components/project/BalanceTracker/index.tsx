@@ -37,9 +37,10 @@ const BalanceContainer = styled.div`
 `;
 
 type Props = {
-  size?: "normal" | "small";
-};
-const BalanceTracker = ({ size, ...others }: Props) => {
+  balanceTrackerSize: string;
+} & React.HTMLProps<HTMLDivElement>;
+
+const BalanceTracker = ({ balanceTrackerSize, ...others }: Props) => {
   const { wallet, getBalanceList } = useWalletStore();
   const history = useHistory();
 
@@ -51,7 +52,7 @@ const BalanceTracker = ({ size, ...others }: Props) => {
 
   return (
     //@ts-ignore
-    <BalanceTrackerContainer $size={size} {...others}>
+    <BalanceTrackerContainer $size={balanceTrackerSize || "normal"} {...others}>
       <BalanceContainer>
         <span onClick={handleClick}>{currentBalance}</span>
       </BalanceContainer>

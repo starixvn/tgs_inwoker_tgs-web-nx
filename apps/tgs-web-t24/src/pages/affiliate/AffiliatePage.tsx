@@ -1,7 +1,7 @@
 import { i18n } from "@tgs-web-nx/utils";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import iconAffiliate from "@/assets/t23/images/badge/icon-affiliate.svg";
+import iconAffiliate from "@/assets/t24/images/badge/icon-affiliate.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import Affiliate from "@/components/account/Affiliate";

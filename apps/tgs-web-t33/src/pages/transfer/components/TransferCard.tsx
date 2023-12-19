@@ -9,7 +9,7 @@ const TransferCardContainer = styled.div`
   background: ${({ theme }) => theme.gray40};
   color: ${({ theme }) => theme.white};
   padding: 12px 15px;
-  border-radius: 10px;
+  border-radius: 6px;
 
   & > div {
     font-size: 0.875rem !important;
@@ -98,7 +98,7 @@ const TransferCard = ({
           <TextField
             type={"number"}
             placeholder={i18n.t("transfer.msgEnterAmount")}
-            value={transferAmount}
+            value={transferAmount || 0}
             onChange={handleChangeTransferAmount}
             sx={{
               background: "#1A1C20",

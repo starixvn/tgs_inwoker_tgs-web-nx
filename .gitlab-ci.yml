@@ -60,8 +60,9 @@ stages:
     - |
       echo "domain=$domain"
       echo "brand=$brand"
+      image_count=$(docker image ls | wc  -l)
 
-      if [[ $domain != "" && $brand != "" ]]; then 
+      if [[ $domain != "" && $brand != "" && $image_count -gt 1 ]]; then 
         export image=$(docker image ls | grep pgtgs | awk '{print $1}')
         export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
         echo "image=$image"
@@ -115,7 +116,7 @@ stages:
       fi
   after_script:
     - |
-      if [[ $domain != "" && $brand != "" ]]; then 
+      if [[ $domain != "" && $brand != "" &&  ]]; then 
           curl --location --request POST $Telegram_Bot_Url \
             --header 'Content-Type: application/json' \
             --data-binary @- << EOF
@@ -196,16 +197,25 @@ docker-build-prod:
 
 deploy-domain-dev:
   <<: *deploy-domain-template
+  needs:
+    - job: docker-build-dev
+      artifacts: true
   only: 
     - develop
 
 deploy-domain-staging:
   <<: *deploy-domain-template
+  needs:
+    - job: docker-build-staging
+      artifacts: true
   only: 
     - release/current
 
 deploy-domain-prod:
   <<: *deploy-domain-template
+  needs:
+    - job: docker-build-prod
+      artifacts: true
   only: 
     - master
     

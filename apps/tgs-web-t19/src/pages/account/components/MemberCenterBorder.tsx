@@ -9,12 +9,12 @@ const MemberCenterBorderContainer = styled.div`
 `;
 
 const Label = styled.div`
-  background: linear-gradient(90deg, #7135f3 50.07%, #5e20cf 50.54%);
+  background-color: #E4E4E4;
   font-size: 0.75rem;
   font-weight: 400;
   padding: 3px 15px;
   border-radius: 50px;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   position: absolute;
   top: 0;
   left: 0;

@@ -6,6 +6,7 @@ import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 const CardContainer = styled.div`
   color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.gray95};
   padding: 25px 37px;
   border-radius: 5px;
   font-size: 0.937rem;

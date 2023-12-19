@@ -1,47 +1,49 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
+import { SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
-import { SelectChangeEvent } from "@mui/material";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t29/images/transfer/arrow-right.png";
+import ArrowRightPNG from "@/assets/t23/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
+import { TransferInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { media } from "@/theme/breakpoints";
+import Icon from "@/components/project/Icon";
 
 const QuickTransferContainer = styled.div`
   display: flex;
-`;
-const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  border: `1px solid ${theme.palette.gray10}`,
-})) as typeof MuiFormControl;
+  gap: 24px;
+  flex-wrap: wrap;
 
-const QuickTransferArrow = styled.div`
-  display: flex;
-  width: 23px;
-  height: 23px;
-  align-self: center;
-  margin: 0 10px;
+  & > * {
+    height: 50px;
+    max-width: 250px;
+  }
+
+  ${media.lg} {
+    flex-wrap: nowrap;
+  }
 `;
 
-const AmountInputContainer = styled.div`
+const AmountWrapper = styled.div`
+  padding: 17px 10px;
   display: flex;
-  justify-content: space-between;
-  border: ${({ theme }) => `1px solid ${theme.gray10}`};
-  padding: 17px;
-  margin: 0 10px;
 `;
 
 const AmountText = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  flex-shrink: 0;
+  color: ${({ theme }) => theme.text};
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
+  background: none;
   text-align: right;
   border: none;
+  color: ${({ theme }) => theme.text};
   ::placeholder {
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
   }
 `;
 
@@ -71,9 +73,10 @@ const QuickTransfer = ({
 
   return (
     <QuickTransferContainer>
-      <FormControl>
+      <TransferInputWrapper>
         <Select
           native
+          fullWidth
           variant="outlined"
           value={transferFrom}
           displayEmpty
@@ -104,14 +107,14 @@ const QuickTransfer = ({
               </option>
             ))}
         </Select>
-      </FormControl>
+      </TransferInputWrapper>
 
-      <QuickTransferArrow>
-        <img src={ArrowRightPNG} alt="arrow-right" />
-      </QuickTransferArrow>
-      <FormControl>
+      <Icon iconUrl={ArrowRightPNG} width={"14px"} height={"14px"} />
+
+      <TransferInputWrapper>
         <Select
           native
+          fullWidth
           variant="outlined"
           value={transferTo}
           displayEmpty
@@ -142,24 +145,31 @@ const QuickTransfer = ({
               </option>
             ))}
         </Select>
-      </FormControl>
+      </TransferInputWrapper>
 
-      <AmountInputContainer>
-        <AmountText>{i18n.t("common.amount")}</AmountText>
-        <div>
-          <CurrencyTextFieldReplacement
-            value={transferAmount}
-            placeholder="0"
-            onChange={handleTransferAmountChange}
-            autoComplete="off"
-          />
-        </div>
-      </AmountInputContainer>
+      <TransferInputWrapper>
+        <AmountWrapper>
+          <AmountText>{i18n.t("common.amount")}</AmountText>
+          <div>
+            <CurrencyTextFieldReplacement
+              value={transferAmount || 0}
+              placeholder="0"
+              onChange={handleTransferAmountChange}
+              autoComplete="off"
+              type={"number"}
+            />
+          </div>
+        </AmountWrapper>
+      </TransferInputWrapper>
 
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
-        style={{ color: theme.white, background: theme.primary }}
+        style={{
+          height: "50px",
+          fontSize: "1.25rem",
+          minWidth: "212px",
+        }}
       >
         {i18n.t("common.submit")}
       </Button>

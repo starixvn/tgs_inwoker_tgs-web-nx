@@ -33,6 +33,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   borderRadius: "2px",
   background: theme.palette.white,
   border: `1px solid ${theme.palette.grey02}`,
+  justifyContent: "center",
 
   width: "100%",
   fontSize: "0.875rem",
@@ -55,12 +56,10 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "44px",
   borderRadius: "2px",
   color: "#828282",
-  background: theme.palette.mainLightBackground,
-  border: `1px solid ${theme.palette.grey02}`,
+  background: theme.palette.mainBackground,
   "&:hover": {
     color: theme.palette.white,
     background: theme.palette.secondary.main,
-    border: `1px solid ${theme.palette.grey02}`,
   },
 })) as typeof MuiButton;
 

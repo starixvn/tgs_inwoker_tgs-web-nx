@@ -8,6 +8,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconDeposit from "@/assets/t29/images/account/navItem/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import MenuTabs from "@/components/project/MenuTabs";
 
 const DepositPage = () => {
   useDepositPage();
@@ -18,7 +19,7 @@ const DepositPage = () => {
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
-
+      {isDesktopSize && <MenuTabs />}
       <AccountPaper pageName={i18n.t("common.deposit")} iconUrl={iconDeposit}>
         <DepositPrev appHistory={history} alert={alert} />
       </AccountPaper>

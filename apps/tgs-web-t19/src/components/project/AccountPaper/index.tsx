@@ -26,7 +26,7 @@ const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
           iconUrl={iconUrl}
           text={pageName}
           style={{
-            marginBottom: "20px",
+            marginBottom: "12px",
           }}
         />
       )}

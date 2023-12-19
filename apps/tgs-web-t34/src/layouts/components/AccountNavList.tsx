@@ -10,6 +10,7 @@ const MemberMenuContainer = styled.div``;
 
 type MemberMenuItemProps = {
   $isActive: boolean;
+  theme: typeof theme;
 };
 
 const MemberMenuItem = styled.div<MemberMenuItemProps>`
@@ -23,7 +24,7 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   cursor: pointer;
 
   &:hover {
-    background: ${({ $isActive, theme }: MemberMenuItemProps & { theme: typeof theme }) =>
+    background: ${({ $isActive, theme }: MemberMenuItemProps) =>
       $isActive ? theme.grey02 : theme.black};
     color: ${({ theme }) => theme.white}
 `;

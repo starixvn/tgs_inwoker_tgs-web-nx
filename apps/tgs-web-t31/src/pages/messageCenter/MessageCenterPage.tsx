@@ -7,6 +7,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconInbox from "@/assets/t29/images/account/navItem/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import MenuTabs from "@/components/project/MenuTabs";
 
 const MessageCenterPage = () => {
   useUpdatePageName(i18n.t("inbox.title"));
@@ -16,7 +17,7 @@ const MessageCenterPage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
-
+      {isDesktopSize && <MenuTabs />}
       <AccountPaper pageName={i18n.t("inbox.title")} iconUrl={iconInbox}>
         <MessageCenter />
       </AccountPaper>

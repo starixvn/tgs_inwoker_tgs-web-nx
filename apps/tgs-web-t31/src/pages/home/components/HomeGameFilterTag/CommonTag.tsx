@@ -17,6 +17,12 @@ const Wrapper = styled.div<{
   }
 `;
 
+const Text = styled.div<{
+  $isActive: boolean;
+}>`
+  color: ${({ theme, $isActive }) => ($isActive ? theme.yellow : theme.text)};
+`;
+
 type Props = {
   text: string;
   isActive: boolean;
@@ -29,6 +35,7 @@ const CommonTag = ({ text, isActive, iconUrl, activedUrl, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} onClick={onClick}>
       <img src={isActive ? activedUrl : iconUrl} alt={text} />
+      <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );
 };

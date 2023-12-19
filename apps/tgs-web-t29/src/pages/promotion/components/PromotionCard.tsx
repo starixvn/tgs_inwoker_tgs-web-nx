@@ -28,28 +28,28 @@ const BannerWrapper = styled.div`
   //padding: 34.37% 0 0 0;
 `;
 
-const PromotionTextContainer = styled.div`
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 17.5px 11px;
-  gap: 20.84px;
-`;
+// const PromotionTextContainer = styled.div`
+//   width: 100%;
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   padding: 17.5px 11px;
+//   gap: 20.84px;
+// `;
 
-const TitleWrapper = styled.div`
-  font-size: 1.062rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.white};
-  text-overflow: ellipsis;
-`;
+// const TitleWrapper = styled.div`
+//   font-size: 1.062rem;
+//   font-weight: 400;
+//   color: ${({ theme }) => theme.white};
+//   text-overflow: ellipsis;
+// `;
 
-const ClickMoreContainer = styled.div`
-  flex-shrink: 0;
-  width: 28px;
-  margin-left: auto;
-`;
+// const ClickMoreContainer = styled.div`
+//   flex-shrink: 0;
+//   width: 28px;
+//   margin-left: auto;
+// `;
 
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
   const history = useHistory();

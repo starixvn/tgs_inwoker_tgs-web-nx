@@ -44,25 +44,30 @@ export enum DateRangeEnum {
 type Props = {
   dateRange: DateRangeEnum;
   handleDateRangeChange: (dateRange: DateRangeEnum) => void;
+  isSelectedDateRange: boolean;
 };
-const DateRangeWithIntervalSelector = ({ dateRange, handleDateRangeChange }: Props) => {
+const DateRangeWithIntervalSelector = ({
+  dateRange,
+  handleDateRangeChange,
+  isSelectedDateRange,
+}: Props) => {
   return (
     <DateRangContainer>
       <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.TODAY)}
-        $isSelected={dateRange === DateRangeEnum.TODAY}
+        $isSelected={dateRange === DateRangeEnum.TODAY && !isSelectedDateRange}
       >
         {i18n.t("report.today")}
       </DateRangSelection>
       <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.WEEKLY)}
-        $isSelected={dateRange === DateRangeEnum.WEEKLY}
+        $isSelected={dateRange === DateRangeEnum.WEEKLY && !isSelectedDateRange}
       >
         {i18n.t("report.oneWeek")}
       </DateRangSelection>
       <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.MONTHLY)}
-        $isSelected={dateRange === DateRangeEnum.MONTHLY}
+        $isSelected={dateRange === DateRangeEnum.MONTHLY && !isSelectedDateRange}
       >
         {i18n.t("report.oneMonth")}
       </DateRangSelection>

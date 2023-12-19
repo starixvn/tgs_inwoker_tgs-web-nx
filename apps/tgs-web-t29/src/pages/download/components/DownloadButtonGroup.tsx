@@ -38,7 +38,7 @@ const AppContainer = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.text};
   font-family: Arial;
   font-size: 16px;
   font-weight: 700;

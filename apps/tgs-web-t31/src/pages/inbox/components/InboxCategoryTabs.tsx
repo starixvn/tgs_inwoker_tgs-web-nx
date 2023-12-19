@@ -16,8 +16,10 @@ type CategoryTabProps = {
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1;
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? theme.blue40 : theme.blue20};
-  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.text)};
+    $isActive ? theme.priBTNOutline : "transparent"};
+  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.white50)};
+  border: ${({ $isActive, theme }: CategoryTabProps) =>
+    $isActive ? "unset" : `1px solid ${theme.priBTNOutline}`};
   padding: 12px;
   text-align: center;
   font-size: 0.812rem;

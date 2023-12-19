@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
-import refreshImg from "@/assets/t29/images/account/balanceTracker/refresh.svg";
+import refreshImg from "@/assets/t31/images/account/Refresh.png";
 import Icon from "@/components/project/Icon";
 
 type StyledRefreshButtonProps = {

@@ -26,6 +26,8 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
+import NewsPage from "@/pages/News/NewsPage";
+import NewsDetailPage from "@/pages/News/NewsDetailPage";
 import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
@@ -34,6 +36,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
+import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -70,12 +73,12 @@ const routes: RouteType[] = [
   {
     path: "/deposit",
     component: DepositPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/withdrawal",
     component: WithdrawalPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/wagering",
@@ -134,92 +137,92 @@ const routes: RouteType[] = [
   {
     path: ProfilePathEnum.PROFILE,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.NAME,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.WECHAT,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.BIRTHDATE,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.QQ,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.FB,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.TELEGRAM,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.LINE,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.VIBER,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.WHATSAPP,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.EMAIL,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_EMAIL,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PHONE,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.PHONE,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PASSWORD,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.WIDHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.RESET_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
 
   // {
@@ -231,25 +234,25 @@ const routes: RouteType[] = [
   {
     path: "/promotion-list",
     component: PromotionPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   //
   {
     path: "/message-center",
     component: MessageCenterPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/inbox",
     component: InboxPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   // {
   //   path: "/inbox/details/:id",
@@ -280,7 +283,7 @@ const routes: RouteType[] = [
   {
     path: "/report/:tab?",
     component: ReportPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
 
   // {
@@ -291,7 +294,7 @@ const routes: RouteType[] = [
   {
     path: "/affiliate",
     component: AffiliatePage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   // {
   //   path: "/setting/language",
@@ -306,7 +309,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: VipLayout,
+    layout: DefaultLayout,
   },
   // {
   //   path: "/sports/:platform",
@@ -317,13 +320,13 @@ const routes: RouteType[] = [
   {
     path: "/support",
     component: ContactUsPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/appDownload",
     component: AppDownloadPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/joingame/:gameId/:gpCode",
@@ -353,13 +356,25 @@ const routes: RouteType[] = [
     component: Responsiblegaming,
     isAnonymousAllowed: true,
   },
+  {
+    path: "/news",
+    component: NewsPage,
+    layout: DefaultLayout,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/news/:id?",
+    component: NewsDetailPage,
+    layout: DefaultLayout,
+    isAnonymousAllowed: true,
+  },
 ];
 
 if (!config.features.NewTransferUI) {
   routes.push({
     path: "/transfer",
     component: TransferPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   });
 }
 

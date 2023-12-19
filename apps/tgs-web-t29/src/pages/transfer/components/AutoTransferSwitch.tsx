@@ -18,7 +18,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.primary.main,
       },
     },
   },
@@ -83,7 +83,6 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
       {isLargeDesktopSize && (
         <ButtonWrapper>
           <Button
-            style={{ background: theme.secondary }}
             onClick={() => {
               performWithdrawFromEveryBrand();
             }}

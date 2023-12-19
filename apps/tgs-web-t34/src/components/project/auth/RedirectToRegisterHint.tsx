@@ -2,6 +2,7 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRedirectToRegisterHint } from "@tgs-web-nx/core/features";
 import { RedirectContainer } from "@/components/styled-component/auth/Form";
+import { Button } from "@/components/UI/Button";
 
 const RedirectToRegisterHint = (props: React.HTMLProps<HTMLDivElement>) => {
   const { handleRedirect } = useRedirectToRegisterHint();
@@ -10,9 +11,9 @@ const RedirectToRegisterHint = (props: React.HTMLProps<HTMLDivElement>) => {
     //@ts-ignore
     <RedirectContainer {...props}>
       <span>{i18n.t("T13.proceedRegister")}</span>
-      <span onClick={handleRedirect} className="link">
+      <Button fullWidth onClick={handleRedirect}>
         {i18n.t("common.register")}
-      </span>
+      </Button>
     </RedirectContainer>
   );
 };

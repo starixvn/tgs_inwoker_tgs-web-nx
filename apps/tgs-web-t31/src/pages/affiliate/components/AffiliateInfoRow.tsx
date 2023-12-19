@@ -6,7 +6,7 @@ import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.white};
   padding: 10px;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.318rem;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.black};
   }
 
   & .value {
@@ -34,12 +34,16 @@ const AffiliateInfoRowContainer = styled.div`
   }
 
   & .button {
+    background: ${({ theme }) => theme.priBTNOutline};
     //justify-self: flex-end;
     margin-left: auto;
     font-size: 0.75rem;
     font-weight: 400;
     padding: 8px 15px;
     border-radius: 5px;
+    &:hover {
+      background: "uset";
+    }
   }
 `;
 

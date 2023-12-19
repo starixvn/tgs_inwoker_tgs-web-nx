@@ -12,6 +12,7 @@ import {
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
+import { theme } from "@/theme";
 
 const Container = styled.div`
   width: 100%;
@@ -80,14 +81,14 @@ const AddCard = ({
               {isDeposit
                 ? depositList.map((item, index) => {
                     return (
-                      <option value={index} key={index}>
+                      <option style={{ background: theme.black }} value={index} key={index}>
                         {item.banktype}
                       </option>
                     );
                   })
                 : withdrawalList.map((item, index) => {
                     return (
-                      <option value={index} key={index}>
+                      <option style={{ background: theme.black }} value={index} key={index}>
                         {item.banktype}
                       </option>
                     );
@@ -121,7 +122,7 @@ const AddCard = ({
                 ? depositList.length > 0 &&
                   channelList.map((item, index) => {
                     return (
-                      <option value={index} key={index}>
+                      <option style={{ background: theme.black }} value={index} key={index}>
                         {i18n.t(item.channelname)}
                       </option>
                     );
@@ -129,7 +130,7 @@ const AddCard = ({
                 : withdrawalList.length > 0 &&
                   channelList.map((item, index) => {
                     return (
-                      <option value={index} key={index}>
+                      <option style={{ background: theme.black }} value={index} key={index}>
                         {i18n.t(item.channelname)}
                       </option>
                     );

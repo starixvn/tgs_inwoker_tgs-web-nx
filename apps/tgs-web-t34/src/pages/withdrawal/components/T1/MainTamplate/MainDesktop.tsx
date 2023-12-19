@@ -61,10 +61,9 @@ const MainDesktop = ({
           />
         </SelectionContainer>
       </ItemContainer>
-
       {/* Transfer from all sub wallet to main wallet */}
-      <ItemContainer>
-        {config.features.NewTransferUI && (
+      {config.features.NewTransferUI && (
+        <ItemContainer>
           <StepTitle step={2} title={i18n.t("transfer.msgTransferOutFromGP")}>
             <ButtonWrapper>
               <GameWalletButton
@@ -81,16 +80,14 @@ const MainDesktop = ({
               </GameWalletButton>
             </ButtonWrapper>
           </StepTitle>
-        )}
-      </ItemContainer>
-
+        </ItemContainer>
+      )}
       {/* Please enter the withdrawal amount */}
       <ItemContainer>
         <StepTitle
           step={config.features.NewTransferUI ? 3 : 2}
           title={i18n.t("withdrawal.enterAmount")}
         />
-
         <SelectionContainer>
           <AmountWrapper>
             <FormControl variant="outlined">
@@ -132,6 +129,7 @@ const MainDesktop = ({
               );
             }
           })()}
+
           <Turnover>
             {i18n.t("withdrawal.turnover")}
             <TurnoverTextWrapper>
@@ -145,34 +143,30 @@ const MainDesktop = ({
           </Turnover>
         </SelectionContainer>
       </ItemContainer>
+      {config.features.Deposit_Withdrawal_PlayerNote &&
+        cardList[selectedCardIndex] &&
+        (cardList[selectedCardIndex].banktype.toUpperCase() === "BANK" ||
+          cardList[selectedCardIndex].banktype.toUpperCase() === "EWALLET" ||
+          cardList[selectedCardIndex].banktype.toUpperCase() === "PULSA") && (
+          <ItemContainer>
+            <StepTitle
+              step={config.features.NewTransferUI ? 4 : 3}
+              title={i18n.t("withdrawal.playerNote")}
+            />
 
-      <ItemContainer>
-        {config.features.Deposit_Withdrawal_PlayerNote &&
-          cardList[selectedCardIndex] &&
-          (cardList[selectedCardIndex].banktype.toUpperCase() === "BANK" ||
-            cardList[selectedCardIndex].banktype.toUpperCase() === "EWALLET" ||
-            cardList[selectedCardIndex].banktype.toUpperCase() === "PULSA") && (
-            <>
-              <StepTitle
-                step={config.features.NewTransferUI ? 4 : 3}
-                title={i18n.t("withdrawal.playerNote")}
-              />
-
-              <SelectionContainer>
-                <FormControl variant="outlined">
-                  <TextField
-                    placeholder={i18n.t("withdrawal.plsEnterPlayerNote")}
-                    onChange={handlePlayerNote}
-                    variant="outlined"
-                    autoComplete="off"
-                    value={playerNote}
-                  />
-                </FormControl>
-              </SelectionContainer>
-            </>
-          )}
-      </ItemContainer>
-
+            <SelectionContainer>
+              <FormControl variant="outlined">
+                <TextField
+                  placeholder={i18n.t("withdrawal.plsEnterPlayerNote")}
+                  onChange={handlePlayerNote}
+                  variant="outlined"
+                  autoComplete="off"
+                  value={playerNote}
+                />
+              </FormControl>
+            </SelectionContainer>
+          </ItemContainer>
+        )}
       <SubmitButton
         disabled={Boolean(
           isNaN(parseFloat(amount)) ||

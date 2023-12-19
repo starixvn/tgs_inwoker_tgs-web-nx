@@ -8,10 +8,11 @@ import { NavCardKey } from "@tgs-web-nx/types";
 import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import NavRowLanguage from "@/pages/account/components/AccountNavigations/NavRowLanguage";
+import LogoutImg from "@/assets/t31/images/account/Logout.svg";
 
 const AccountNavsContainer = styled.div`
   padding: 12px 14px;
-  background: ${({ theme }) => theme.white};
+  /* background: ${({ theme }) => theme.white}; */
   overflow: visible;
 `;
 
@@ -53,28 +54,25 @@ const AccountNavigations = () => {
         navItem.callback();
     }
   }, []);
-
+  const logoutItem: NavItem = {
+    key: "Logout",
+    label: i18n.t("web.header.logout"),
+    iconUrl: LogoutImg,
+    iconSecondaryUrl: LogoutImg,
+    navType: "route",
+    routePath: "",
+  };
   return (
-    <>
-      <AccountNavsContainer>
-        <AccountNavCardsContainer>
-          {/* Cards */}
-          {accountNavItemList.map((navItem) => {
-            if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
+    <AccountNavsContainer>
+      <AccountNavCardsContainer>
+        {accountNavItemList.map((navItem) => {
+          if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
 
-            if (navItem.key === NavCardKey.LANGUAGE_SWITCH) {
-              return (
-                <NavRowLanguage key={navItem.key} navItem={navItem} handleClick={handleClickNav} />
-              );
-            }
-
-            return <NavRow key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
-          })}
-        </AccountNavCardsContainer>
-      </AccountNavsContainer>
-
-      <LogoutRegion onClick={handleLogout}>{i18n.t("web.header.logout")}</LogoutRegion>
-    </>
+          return <NavRow key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
+        })}
+        <NavRow navItem={logoutItem} handleClick={handleLogout} />;
+      </AccountNavCardsContainer>
+    </AccountNavsContainer>
   );
 };
 

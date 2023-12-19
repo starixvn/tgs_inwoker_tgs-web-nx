@@ -1,14 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import authImage from "@/assets/t24/images/auth/authBG.png";
+import { media } from "@/theme/breakpoints";
 
 const AuthDialogImageContainer = styled.div`
   position: relative;
-  width: 50%;
+  width: 30%;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ${media.md} {
+    width: 50%;
+  }
 
   & > .bg {
     width: 100%;

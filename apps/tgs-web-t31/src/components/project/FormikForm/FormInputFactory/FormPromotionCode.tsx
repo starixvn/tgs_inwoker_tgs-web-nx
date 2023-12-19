@@ -36,7 +36,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
 
   return (
-    <FormPromotionCodeContainer style={{ marginBottom: "21px" }}>
+    <FormPromotionCodeContainer>
       <GrayInputWrapper key={name}>
         <TextField
           type={getFormInputType(type)}
@@ -68,7 +68,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             MenuProps={{
               PaperProps: {
                 sx: {
-                  background:theme.black,
+                  background: theme.black,
                   "& .MuiMenuItem-root": {
                     color: theme.text,
                   },

@@ -9,9 +9,8 @@ const popupStyles = css`
   position: fixed;
   top: ${DESKTOP_HEADER_HEIGHT};
   left: 0;
-  background: rgba(255, 255, 255, 0.90);
+  background: rgba(255, 255, 255, 0.24);
   z-index: 5;
-  padding: 0 20px 20px 20px;
 `;
 
 export const PopupBg = styled.div`
@@ -22,10 +21,12 @@ export const PopupBody = styled.div`
   ${popupStyles}
 
   width: 100%;
-  min-width: 1000px;
+  min-width: 1250px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  backdrop-filter:  blur(15px);
+  padding-bottom: 40px;
 `;
 
 const GameTypeNavPopup = () => {

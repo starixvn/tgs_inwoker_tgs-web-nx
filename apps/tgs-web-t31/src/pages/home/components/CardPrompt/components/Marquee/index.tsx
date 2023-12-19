@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import notification from "@/assets/t31/images/home/notifications.svg";
-import notificationDesktop from "@/assets/t29/images/home/notifications.svg";
+import notificationDesktop from "@/assets/t31/images/home/notifications_desktop.svg";
 
 const Container = styled.div`
   display: flex;
@@ -40,6 +40,7 @@ const Marquee = () => {
         // Disable TypeScript check for unknown HTML elements
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
+        // eslint-disable-next-line jsx-a11y/no-distracting-elements
         <marquee>
           {marquees.map((item, index) => {
             const content = `

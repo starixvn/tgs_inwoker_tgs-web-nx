@@ -41,7 +41,7 @@ const hideInDesktopDictionary = {
   [NavCardKey.VIP]: true,
   [NavCardKey.APP_DOWNLOAD]: true,
   [NavCardKey.LOGOUT]: true,
-} as { [key in NavCardKey]: boolean };
+} as { [key in NavCardKey | string]: boolean };
 
 const AccountNavigations = () => {
   const history = useHistory();

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import iconImg from "@/assets/t34/images/withdraw/icon-plus.svg";
+import Icon from "@/components/project/Icon";
 
 const ButtonContainer = styled.div`
   cursor: pointer;
@@ -17,12 +17,7 @@ const ButtonContainer = styled.div`
 
   display: flex;
   align-items: center;
-`;
-
-const IconContainer = styled.div`
-  width: 24px;
-  height: 24px;
-  margin-right: 7.5px;
+  gap: 8px;
 `;
 
 type Props = {
@@ -32,10 +27,7 @@ type Props = {
 const ManageBankCardButton = ({ handleManageCardClick }: Props) => {
   return (
     <ButtonContainer onClick={handleManageCardClick}>
-      <IconContainer>
-        <img src={iconImg} alt={"manage-card"} />
-      </IconContainer>
-
+      <Icon iconUrl={iconImg} width={"24px"} height={"24px"} />
       {i18n.t("withdrawal.manageBank")}
     </ButtonContainer>
   );

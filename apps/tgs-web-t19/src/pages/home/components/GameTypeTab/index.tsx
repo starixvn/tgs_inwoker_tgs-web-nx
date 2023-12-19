@@ -11,13 +11,12 @@ const TabContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  width: 72px;
-  max-height: 862px; //826/926
+  width: 62px;
   overflow-y: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   flex-shrink: 0;
-  gap: 3px;
+  gap: 8px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -73,12 +72,12 @@ const GameTypeTab = () => {
   return (
     <TabContainer>
       {filteredGameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
+        const { key, iconUrl, activeIconUrl, text, gameType, fontSize } = gameTypeItem;
 
         return (
           <Tab
             key={key}
-            imageUrl={iconUrl}
+            imageUrl={gameType === activeGameType ? activeIconUrl : iconUrl}
             text={text}
             isActive={gameType === activeGameType}
             fontSize={fontSize}

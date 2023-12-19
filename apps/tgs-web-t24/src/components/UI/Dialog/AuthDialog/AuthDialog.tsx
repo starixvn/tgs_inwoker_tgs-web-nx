@@ -5,6 +5,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import AuthDialogImage from "@/components/UI/Dialog/AuthDialog/components/AuthDialogImage";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
+import { media } from "@/theme/breakpoints";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
@@ -20,9 +21,13 @@ const StyledDialog = styled(MuiDialog)`
 `;
 
 const ChildContainer = styled.div`
-  width: 50%;
+  width: 70%;
   border-radius: 20px;
   z-index: 2;
+
+  ${media.md} {
+    width: 50%;
+  }
 `;
 
 type Props = {

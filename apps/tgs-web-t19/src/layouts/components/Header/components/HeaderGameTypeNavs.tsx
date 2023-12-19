@@ -45,10 +45,10 @@ const GameTypeNav = styled.div<{
   padding: 5px;
   cursor: pointer;
   position: relative;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
   color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)};
+
   &:hover {
-    background: ${({ theme }) => theme.gray10};
+    color: ${({ theme }) => theme.primary};
   }
 
   ${media.lg} {
@@ -60,7 +60,6 @@ const GameTypeGrid = styled.div`
   align-self: center;
   height: 18px;
   display: flex;
-  border: 1px solid #cccccc;
   margin: 0 5px;
 `;
 

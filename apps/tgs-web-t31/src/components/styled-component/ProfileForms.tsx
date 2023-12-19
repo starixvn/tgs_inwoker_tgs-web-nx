@@ -25,22 +25,16 @@ export const ItemContainer = styled.div`
 export const LabelContainer = styled.div`
   font-size: 0.875rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   float: left;
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-<<<<<<< develop
-  height: "48px",
-=======
-  margin: "10px",
-  borderRadius: "30px",
-  background: theme.palette.mainLightBackground,
-
->>>>>>> feat: update auth style in t33
   width: "100%",
   fontSize: "0.875rem",
   borderBottom: `1px solid ${theme.palette.gray10}`,
+  justifyContent: "center",
+
   "& fieldset": {
     border: "none",
   },
@@ -63,8 +57,8 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "0.875rem",
   height: "50px",
   color: "#828282",
-  background: theme.palette.mainBackground,
-  border: `1px solid ${theme.palette.gray10}`,
+  background: theme.palette.black30,
+  border: `1px solid ${theme.palette.white30}`,
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`
@@ -79,23 +73,20 @@ export const UploadFileTag = styled.span`
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   whiteSpace: "nowrap",
-  padding: "10px 12px",
+  padding: "16px",
+  fontSize: "1rem",
+  lineHeight: 1,
+  fontWeight: 700,
   color: theme.palette.white,
   background: theme.palette.primaryGradient,
-  fontFamily: "SF Pro",
-  fontSize: "16px",
-  fontWeight: 590,
-  lineHeight: "19.09px",
-  letterSpacing: "0em",
-  textAlign: "center",
+  boxShadow: "none",
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
-    color: theme.palette.white60,
+    color: theme.palette.action.disabled,
   },
 })) as typeof MuiButton;
 
 export const VerifySubmitButton = styled(SubmitButton)`
   margin-bottom: 20px !important;
-  margin-top: auto !important;
 `;

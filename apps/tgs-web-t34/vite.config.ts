@@ -31,6 +31,7 @@ export default defineConfig({
   //  plugins: [ nxViteTsPaths() ],
   // },
 
+  // @ts-ignore
   test: {
     globals: true,
     cache: {

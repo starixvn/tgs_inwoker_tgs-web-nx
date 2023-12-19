@@ -1,23 +1,34 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
+import { Select, SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
-import { SelectChangeEvent } from "@mui/material";
-import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t29/images/transfer/arrow-right.png";
+// import { Select } from "@/components/UI/Select";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"; // 默认图标
+import ArrowRightImg from "@/assets/t31/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
+import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { media } from "@/theme/breakpoints";
 
 const QuickTransferContainer = styled.div`
   display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  & > * {
+    height: 50px;
+    max-width: 200px;
+  }
+
+  ${media.lg} {
+    flex-wrap: nowrap;
+  }
 `;
-const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  border: `1px solid ${theme.palette.gray10}`,
-})) as typeof MuiFormControl;
 
 const QuickTransferArrow = styled.div`
+  flex-shrink: 0;
   display: flex;
   width: 23px;
   height: 23px;
@@ -25,23 +36,24 @@ const QuickTransferArrow = styled.div`
   margin: 0 10px;
 `;
 
-const AmountInputContainer = styled.div`
+const AmountWrapper = styled.div`
+  background: #12281e;
+  padding: 17px 10px;
   display: flex;
-  justify-content: space-between;
-  border: ${({ theme }) => `1px solid ${theme.gray10}`};
-  padding: 17px;
-  margin: 0 10px;
 `;
 
 const AmountText = styled.div`
-  color: ${({ theme }) => theme.gray50};
+  flex-shrink: 0;
+  color: ${({ theme }) => theme.text};
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
+  background: none;
   text-align: right;
   border: none;
+  color: ${({ theme }) => theme.text};
   ::placeholder {
-    color: ${({ theme }) => theme.gray50};
+    color: ${({ theme }) => theme.text};
   }
 `;
 
@@ -71,15 +83,25 @@ const QuickTransfer = ({
 
   return (
     <QuickTransferContainer>
-      <FormControl>
+      <GrayInputWrapper>
         <Select
           native
+          fullWidth
           variant="outlined"
           value={transferFrom}
           displayEmpty
           onChange={handleTransferFromChange}
+          sx={{
+            color: theme.text,
+            background: "#12281E",
+            ".MuiSvgIcon-root ": {
+              fill: "white !important",
+            },
+          }}
         >
-          <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
+          <option style={{ background: theme.black }} value={mainAccountId}>
+            {i18n.t("transfer.mainAccount")}
+          </option>
           {game.providerList
             .filter((provider) => provider.status === 0 && provider.transferwallet === true)
             .filter((provider) => {
@@ -99,25 +121,36 @@ const QuickTransfer = ({
               }
             })
             .map((item, index) => (
-              <option value={item.gpcode} key={index}>
+              <option style={{ background: theme.black }} value={item.gpcode} key={index}>
                 {item.name}
               </option>
             ))}
         </Select>
-      </FormControl>
+      </GrayInputWrapper>
 
       <QuickTransferArrow>
-        <img src={ArrowRightPNG} alt="arrow-right" />
+        <img src={ArrowRightImg} alt="arrow-right" />
       </QuickTransferArrow>
-      <FormControl>
+
+      <GrayInputWrapper>
         <Select
           native
+          fullWidth
           variant="outlined"
           value={transferTo}
           displayEmpty
           onChange={handleTransferToChange}
+          sx={{
+            color: theme.text,
+            background: "#12281E",
+            ".MuiSvgIcon-root ": {
+              fill: "white !important",
+            },
+          }}
         >
-          <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
+          <option style={{ background: theme.black }} value={mainAccountId}>
+            {i18n.t("transfer.mainAccount")}
+          </option>
           {game.providerList
             .filter((item) => item.status === 0 && item.transferwallet === true)
             .filter((e) => {
@@ -137,14 +170,14 @@ const QuickTransfer = ({
               }
             })
             .map((item, index) => (
-              <option value={item.gpcode} key={index}>
+              <option style={{ background: theme.black }} value={item.gpcode} key={index}>
                 {item.name}
               </option>
             ))}
         </Select>
-      </FormControl>
+      </GrayInputWrapper>
 
-      <AmountInputContainer>
+      <AmountWrapper>
         <AmountText>{i18n.t("common.amount")}</AmountText>
         <div>
           <CurrencyTextFieldReplacement
@@ -152,14 +185,21 @@ const QuickTransfer = ({
             placeholder="0"
             onChange={handleTransferAmountChange}
             autoComplete="off"
+            type={"number"}
           />
         </div>
-      </AmountInputContainer>
+      </AmountWrapper>
 
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
-        style={{ color: theme.white, background: theme.primary }}
+        style={{
+          color: theme.text,
+          background: theme.primaryGradient,
+          height: "50px",
+          minWidth: "212px",
+          padding: "13px",
+        }}
       >
         {i18n.t("common.submit")}
       </Button>

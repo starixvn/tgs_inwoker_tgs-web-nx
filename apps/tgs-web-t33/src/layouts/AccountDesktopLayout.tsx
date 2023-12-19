@@ -30,7 +30,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ChildrenWrapper = styled.div`
-  max-width: 1170px;
+  max-width: 1223px;
   margin: auto;
   padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
   display: flex;

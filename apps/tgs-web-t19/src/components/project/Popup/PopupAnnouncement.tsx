@@ -22,7 +22,9 @@ const StyledDialog = styled(MuiDialog)`
     overflow: visible;
 
     ${media.sm} {
-      max-width: 478px;
+      width: 640px;
+      gap: 18px;
+      border-radius: 10px;
     }
   }
 `;
@@ -42,7 +44,7 @@ const ChildContainer = styled.div`
 const Title = styled.div`
   font-size: 1.062rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.primary};
 
   ${media.sm} {
     font-size: 1.5rem;

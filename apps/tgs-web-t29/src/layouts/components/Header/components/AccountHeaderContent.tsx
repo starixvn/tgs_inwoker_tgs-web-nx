@@ -22,6 +22,7 @@ const ButtonContainer = styled.div`
 `;
 
 const UsernameContainer = styled.div`
+  cursor: pointer;
   font-size: 0.875rem;
   font-weight: 400;
   color: ${({ theme }) => theme.text};
@@ -70,7 +71,7 @@ const AccountHeaderContent = () => {
 
   return (
     <ButtonContainer>
-      <UsernameContainer>{username}</UsernameContainer>
+      <UsernameContainer onClick={() => history.push("/account")}>{username}</UsernameContainer>
       <Balance>${currentBalance}</Balance>
 
       {isDesktopSize && <TransferButtonGroup />}

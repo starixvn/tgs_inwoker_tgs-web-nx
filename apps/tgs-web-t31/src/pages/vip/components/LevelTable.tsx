@@ -58,13 +58,13 @@ const LevelTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 12px 15px 12px 15px;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
+  background-color: ${({ theme }) => theme.black30};
 
   ${media.sm} {
     height: 86px;
     padding: 20px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
+    border-bottom: none;
+    background-color: ${({ theme }) => theme.black30};
   }
 `;
 
@@ -87,7 +87,8 @@ const HeaderItem = styled.div`
     max-width: 136px;
     font-size: 1rem;
     margin: unset;
-    color: #23507d;
+
+    color: ${({ theme }) => theme.text};
   }
 `;
 
@@ -96,15 +97,9 @@ const LevelTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
-  background: ${(props) => props.theme.mainBackground};
-  padding-top: 20px;
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
-
-    > div:nth-child(even) {
-      background: rgba(255, 255, 255, 0.1);
-    }
+    background-color: ${({ theme }) => theme.black30};
   }
 `;
 
@@ -113,11 +108,13 @@ const LevelTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
+  background-color: unset;
+  border-bottom: 1px solid #373939;
 
   ${media.sm} {
     border-bottom: unset;
+    background-color: unset;
+    border-bottom: 1px solid #373939;
   }
 `;
 
@@ -130,7 +127,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${({ theme }) => theme.text};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -142,7 +139,7 @@ const RowItem = styled.div`
     min-height: 67px;
     width: 166px;
     font-size: 1rem;
-    color: #23507d;
+    color: ${({ theme }) => theme.text};
   }
 `;
 

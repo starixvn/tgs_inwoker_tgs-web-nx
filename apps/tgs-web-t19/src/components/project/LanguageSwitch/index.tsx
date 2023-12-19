@@ -24,22 +24,21 @@ export const imageMap: { [key in string]: string } = {
 };
 
 const StyledSelect = styled(MuiSelect)`
-  //width: 140px;
-  //margin-right: 10px;
+  border-radius: 30px !important;
+  min-width: 135px;
+  height: 40px;
   overflow: visible;
-  background: ${({ theme }) => theme.white};
-  font-weight: 400 !important;
-  font-size: 0.937rem !important;
-  border: 1px solid ${({ theme }) => theme.gray10};
-  border-radius: 1px;
+  background: ${({ theme }) => theme.lightGold};
+  font-weight: 700 !important;
+  font-size: 1rem !important;
 
   .MuiOutlinedInput-input {
     padding: 12px !important;
   }
+
   & .MuiSelect-select {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.text} !important;
 
     & > img {
       margin-right: 10px;
@@ -51,13 +50,11 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.gray30};
+    color: ${({ theme }) => theme.white};
   }
 `;
 
 const StyledMenuItem = styled(MuiMenuItem)`
-  //border-radius: 8px;
-
   & > img {
     margin-right: 10px;
   }
@@ -66,6 +63,7 @@ const StyledMenuItem = styled(MuiMenuItem)`
 const FlagContainer = styled.div`
   width: 24px;
   height: 24px;
+  border-radius: 50%;
   margin-right: 10px;
 
   & > img {
@@ -76,8 +74,8 @@ const FlagContainer = styled.div`
 `;
 
 const NameContainer = styled.div`
-  font-weight: 400;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 1rem;
 `;
 
 const LanguageSwitch = (props: SelectProps) => {
@@ -97,7 +95,6 @@ const LanguageSwitch = (props: SelectProps) => {
 
     setCurrentLanguage(selectedLanguage);
     i18n.changeLanguage(selectedLanguage.culturecode);
-    console.log("LanguageSwitch cause reload");
     window.location.reload();
   };
 
@@ -117,7 +114,7 @@ const LanguageSwitch = (props: SelectProps) => {
 
             "& .MuiMenuItem-root": {
               padding: 2,
-              color: theme.text,
+              width: 140,
             },
           },
         },

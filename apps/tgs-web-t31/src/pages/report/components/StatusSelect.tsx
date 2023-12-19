@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FormControl, styled as muiStyled } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
 const StatusSelectWrapper = styled.div`
   display: flex;
@@ -11,11 +12,9 @@ const StatusSelectWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-
 const StatusSelectContainer = styled.div`
-  border: 1px solid #D6DBDD;
+  border: ${({ theme }) => `1px solid ${theme.white30}`};
   height: 47px;
-  background: ${({ theme }) => theme.mainBackground};
   font-size: 0.937rem;
   color: ${({ theme }) => theme.white};
   border-radius: 6px;
@@ -26,7 +25,7 @@ const StatusSelectContainer = styled.div`
 
 const SelectLabel = styled.div`
   margin-right: 5px;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
 
 const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
@@ -72,11 +71,13 @@ const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) =
       <StatusSelectContainer>
         <SelectFormControl variant="outlined">
           <Select native onChange={handleStatusChange} value={status} fullWidth>
-            <option value={""}>{i18n.t("report.all")}</option>
+            <option style={{ background: theme.black }} value={""}>
+              {i18n.t("report.all")}
+            </option>
 
             {Object.keys(statusDictionary).map((key) => {
               return (
-                <option key={key} value={key}>
+                <option style={{ background: theme.black }} key={key} value={key}>
                   {i18n.t(`report.withdrawal.status${key}`)}
                 </option>
               );

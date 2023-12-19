@@ -6,19 +6,20 @@ import { theme } from "@/theme";
 
 const ProfileItemContainer = styled.div`
   width: 100%;
-  //padding: 9.5px 0;
+  padding: 24px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 33px;
+  /* margin-bottom: 33px; */
+  border-bottom: ${({ theme }) => `1px solid ${theme.white50}`};
 
-  &:last-child {
-    margin-bottom: 0;
+  &:first-child {
+    padding-top: 0;
   }
 `;
 
 const ProfileRowLabel = styled.div`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
   font-size: 1.25rem;
   font-weight: 400;
 `;
@@ -40,7 +41,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
   return (
     <ProfileItemContainer>
       <ProfileRowLabel className={"label"} style={{ width: "33%" }}>
-        {label}
+        {label}:
       </ProfileRowLabel>
       <ProfileStatus className={"status"} style={{ width: "33%" }}>
         {status}
@@ -50,9 +51,9 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         variant={isVerified ? "contained" : "outlined"}
         sx={{
           fontSize: "0.875rem",
-          color: isVerified ? theme.white : theme.text,
-          background: isVerified ? theme.primary : theme.blue20,
-          border: "none",
+          color: isVerified ? theme.white : theme.priBTNOutline,
+          background: isVerified ? theme.primaryGradient : "transparent",
+          border: isVerified ? "none" : `1px solid ${theme.priBTNOutline}`,
           width: "150px",
           height: "42px",
         }}
@@ -61,7 +62,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
           handleClick(profileItem);
         }}
       >
-        {buttonText}
+        {buttonText.toLocaleUpperCase()}
       </Button>
     </ProfileItemContainer>
   );

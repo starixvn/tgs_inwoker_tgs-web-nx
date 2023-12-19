@@ -2,7 +2,7 @@ import { styled as muiStyled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
 import { ListItem, ListItemText } from "@mui/material";
 import styled from "styled-components";
-import limitBg from "@/assets/t29/images/withdraw/limit-bg.png";
+import limitBg from "@/assets/t31/images/withdraw/limit-bg.png";
 import {
   FormControl as ProfileFormControl,
   ItemContainer as ProfileItemContainer,
@@ -80,7 +80,7 @@ export const SelectionContainer = styled.div`
 `;
 export const LimitPopupContainer = styled.div`
   white-space: nowrap;
-  background: url(${limitBg}) no-repeat;
+  /* background: url(${limitBg}) no-repeat; */
   background-size: cover;
   background-position: center;
   font-size: 0.812rem;
@@ -140,6 +140,7 @@ export const SubHeaderContainer = styled.div`
 
 export const TurnoverTextWrapper = styled.div`
   display: flex;
+  align-items: center;
 `;
 export const DetailText = styled.div`
   margin-left: 5px;

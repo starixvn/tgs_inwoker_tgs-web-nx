@@ -41,7 +41,7 @@ const LevelTableWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 570px;
+  min-width: 620px;
   height: 100%;
 
   ${media.sm} {
@@ -51,20 +51,17 @@ const LevelTableWrapper = styled.div`
 `;
 
 const LevelTableHeader = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 48px;
-  padding: 12px 15px 12px 15px;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
+  padding: 12px;
+  background: ${({ theme }) => theme.darkGray};
 
   ${media.sm} {
     height: 86px;
-    padding: 20px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
+    background: ${({ theme }) => theme.mask};
   }
 `;
 
@@ -75,19 +72,17 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.text};
+  color: ${({ theme }) => theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
-  margin: 0px 8px;
 
   ${media.sm} {
-    max-width: 136px;
+    min-height: 67px;
+    width: 166px;
     font-size: 1rem;
-    margin: unset;
-    color: #23507d;
   }
 `;
 
@@ -96,15 +91,13 @@ const LevelTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
-  background: ${(props) => props.theme.mainBackground};
-  padding-top: 20px;
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
+    background: ${({ theme }) => theme.mask};
 
-    > div:nth-child(even) {
+    /* > div:nth-child(even) {
       background: rgba(255, 255, 255, 0.1);
-    }
+    } */
   }
 `;
 
@@ -113,8 +106,7 @@ const LevelTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
+  border-bottom: 1px solid ${({ theme }) => theme.darkGray};
 
   ${media.sm} {
     border-bottom: unset;
@@ -130,7 +122,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${({ theme }) => theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -142,7 +134,6 @@ const RowItem = styled.div`
     min-height: 67px;
     width: 166px;
     font-size: 1rem;
-    color: #23507d;
   }
 `;
 

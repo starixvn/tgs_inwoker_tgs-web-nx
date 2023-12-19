@@ -10,25 +10,37 @@ const Wrapper = styled.div<{
   max-width: none;
   height: 100%;
   user-select: none;
-  padding: 4px;
+  min-width: 106px;
+  height: 36px;
+  padding: 10px;
 
   &:hover {
     cursor: pointer;
   }
 `;
 
+const Text = styled.div<{
+  $isActive: boolean;
+}>`
+  font-size: 1rem;
+  font-weight: 700;
+  color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)};
+
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+  }
+`;
+
 type Props = {
   text: string;
   isActive: boolean;
-  iconUrl?: string;
-  activedUrl?: string;
   onClick: () => void;
 };
 
-const CommonTag = ({ text, isActive, iconUrl, activedUrl, onClick }: Props) => {
+const CommonTag = ({ text, isActive, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} onClick={onClick}>
-      <img src={isActive ? activedUrl : iconUrl} alt={text} />
+      <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );
 };

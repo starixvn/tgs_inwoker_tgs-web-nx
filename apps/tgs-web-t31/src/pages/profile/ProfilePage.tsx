@@ -9,6 +9,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import MenuTabs from "@/components/project/MenuTabs";
 
 const ProfilePage = () => {
   const { isDesktopSize } = useRwd();
@@ -24,6 +25,7 @@ const ProfilePage = () => {
     return (
       <PageContainer>
         {isDesktopSize && <UserWalletInfo />}
+        {isDesktopSize && <MenuTabs />}
         <ProfileMenu />
       </PageContainer>
     );
@@ -38,12 +40,12 @@ const ProfilePage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
+
       {isDesktopSize ? (
         <ProfileMenu />
       ) : (
         <ProfilePageComponent handleCloseDialog={handleCloseDialog} />
       )}
-
       {isDesktopSize && (
         <ProfileDialog open={isDialogOpen} onClose={handleCloseDialog}>
           <ProfilePageComponent handleCloseDialog={handleCloseDialog} />

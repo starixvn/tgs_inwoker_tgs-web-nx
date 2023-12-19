@@ -16,7 +16,7 @@ import iconTransfer from "@/assets/t33/images/menuDrawer/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
-const Transfer = () => {
+const TransferPage = () => {
   useUpdatePageName(i18n.t("transfer.title"));
   const { game } = useGameStore();
   const { isDesktopSize } = useRwd();
@@ -52,4 +52,4 @@ const Transfer = () => {
   );
 };
 
-export default Transfer;
+export default TransferPage;
