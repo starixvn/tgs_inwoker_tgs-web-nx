@@ -7,8 +7,8 @@ import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
 import { Button } from "@/components/UI/Button";
-import iconLogout from "@/assets/t29/images/account/navItemWhite/icon-logout.svg";
-
+import iconLogout from "@/assets/t19/images/account/navItemWhite/icon-logout.svg";
+import ArrowRightPNG from "@/assets/t19/images/transfer/arrow-right.svg";
 const MemberMenuContainer = styled.div`
   background: ${({ theme }) => theme.pureBlack};
 `;
@@ -16,10 +16,11 @@ const MemberMenuContainer = styled.div`
 type MemberMenuItemProps = {
   $isActive: boolean;
   theme: typeof theme;
+  $hoverImage?: string;
 };
 
 const MemberMenuItem = styled.div<MemberMenuItemProps>`
-  padding: 10px 24px;
+  padding: 18.5px 16px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -31,6 +32,9 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   &:hover {
     background: ${({ theme }) => theme.darkGray};
     color: ${({ theme }) => theme.primary};
+    img {
+      content: url(${props => props.$hoverImage || ""});
+    }
   }
 `;
 
@@ -67,11 +71,12 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
             key={navItem.key}
             $isActive={currentRoute === navItem.routePath?.replace("/", "")}
             onClick={() => handleClick(navItem)}
+            $hoverImage={navItem.iconPrimaryUrl}
           >
             <Icon
               iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
-              width={"24px"}
-              height={"24px"}
+              width={"20px"}
+              height={"20px"}
             />
             <span className={"label"}>{navItem.label}</span>
           </MemberMenuItem>

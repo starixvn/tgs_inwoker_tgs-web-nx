@@ -28,7 +28,18 @@ import contactWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-wagering.svg";
-
+// desktop left menu active icon
+import vipActiveImg from "@/assets/t19/images/account/navItemActive/icon-vip.svg";
+import profileActiveImg from "@/assets/t19/images/account/navItemActive/icon-profile.svg";
+import depositActiveImg from "@/assets/t19/images/account/navItemActive/icon-deposit.svg";
+import withdrawActiveImg from "@/assets/t19/images/account/navItemActive/icon-withdraw.svg";
+import transferActiveActiveImg from "@/assets/t19/images/account/navItemActive/icon-transfer.svg";
+import reportActiveImg from "@/assets/t19/images/account/navItemActive/icon-report.svg";
+import inboxActiveImg from "@/assets/t19/images/account/navItemActive/icon-inbox.svg";
+import affiliateActiveImg from "@/assets/t19/images/account/navItemActive/icon-affiliate.svg";
+import downloadActiveImg from "@/assets/t19/images/account/navItemActive/icon-download.svg";
+import logoutActiveImg from "@/assets/t19/images/account/navItemActive/icon-logout.svg";
+import contactActiveImg from "@/assets/t19/images/account/navItemActive/icon-contact.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
@@ -37,6 +48,7 @@ export type NavItem = {
   iconUrl: string;
   iconActiveUrl?: string;
   iconSecondaryUrl?: string;
+  iconPrimaryUrl?: string;
   isHide?: boolean;
   router?: string;
   routePath?: string;
@@ -113,38 +125,44 @@ export function useGetNavItemList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameTypeList, providerList]);
 
+  // iconUrl for mobile account page use
+  // iconSecondaryUrl for desktop account menu use
   const accountNavItemList: NavItem[] = useMemo(() => {
     return [
-      // {
-      //   key: NavCardKey.PROFILE,
-      //   label: i18n.t("wap.main.my"),
-      //   iconUrl: profileImg,
-      //   iconSecondaryUrl: profileWhiteImg,
-      //   navType: "route",
-      //   routePath: "/profile",
-      // },
-      // {
-      //   key: NavCardKey.DEPOSIT,
-      //   label: i18n.t("common.deposit"),
-      //   iconUrl: depositImg,
-      //   iconSecondaryUrl: depositWhiteImg,
-      //   navType: "route",
-      //   routePath: "/deposit",
-      // },
-      // {
-      //   key: NavCardKey.WITHDRAW,
-      //   label: i18n.t("common.withdrawal"),
-      //   iconUrl: withdrawImg,
-      //   iconSecondaryUrl: withdrawWhiteImg,
-      //   navType: "route",
-      //   routePath: "/withdrawal",
-      // },
+      {
+        key: NavCardKey.PROFILE,
+        label: i18n.t("wap.main.my"),
+        iconUrl: profileImg,
+        iconSecondaryUrl: profileWhiteImg,
+        iconPrimaryUrl: profileActiveImg,
+        navType: "route",
+        routePath: "/profile",
+      },
+      {
+        key: NavCardKey.DEPOSIT,
+        label: i18n.t("common.deposit"),
+        iconUrl: depositImg,
+        iconSecondaryUrl: depositWhiteImg,
+        iconPrimaryUrl: depositActiveImg,
+        navType: "route",
+        routePath: "/deposit",
+      },
+      {
+        key: NavCardKey.WITHDRAW,
+        label: i18n.t("common.withdrawal"),
+        iconUrl: withdrawImg,
+        iconSecondaryUrl: withdrawWhiteImg,
+        iconPrimaryUrl: withdrawActiveImg,
+        navType: "route",
+        routePath: "/withdrawal",
+      },
       // {
       //   key: NavCardKey.WAGERING,
       //   //todo: 新增 Wagering t18 翻譯
       //   label: "Wagering",
       //   iconUrl: wageringImg,
       //   iconSecondaryUrl: wageringWhiteImg,
+      //   iconPrimaryUrl: wageringActiveImg,
       //   navType: "route",
       //   routePath: "/wagering",
       // },
@@ -153,6 +171,7 @@ export function useGetNavItemList() {
         label: i18n.t("common.transfer"),
         iconUrl: transferImg,
         iconSecondaryUrl: transferWhiteImg,
+        iconPrimaryUrl: transferActiveActiveImg,
         navType: "route",
         routePath: "/transfer",
       },
@@ -161,6 +180,7 @@ export function useGetNavItemList() {
         label: i18n.t("report.title"),
         iconUrl: reportImg,
         iconSecondaryUrl: reportWhiteImg,
+        iconPrimaryUrl: reportActiveImg,
         navType: "route",
         routePath: "/report",
       },
@@ -169,6 +189,7 @@ export function useGetNavItemList() {
         label: i18n.t("inbox.title"),
         iconUrl: inboxImg,
         iconSecondaryUrl: inboxWhiteImg,
+        iconPrimaryUrl: inboxActiveImg,
         navType: "route",
         routePath: "/message-center",
       },
@@ -177,6 +198,7 @@ export function useGetNavItemList() {
         label: i18n.t("wap.main.account.inbox"),
         iconUrl: inboxImg,
         iconSecondaryUrl: inboxWhiteImg,
+        iconPrimaryUrl: inboxActiveImg,
         navType: "route",
         routePath: "/inbox",
       },
@@ -185,22 +207,25 @@ export function useGetNavItemList() {
         label: i18n.t("wap.main.account.affiliate"),
         iconUrl: affiliateImg,
         iconSecondaryUrl: affiliateWhiteImg,
+        iconPrimaryUrl: affiliateActiveImg,
         navType: "route",
         routePath: "/affiliate",
       },
-      {
-        key: NavCardKey.VIP,
-        label: "VIP",
-        iconUrl: vipImg,
-        iconSecondaryUrl: vipWhiteImg,
-        navType: "route",
-        routePath: "/vip",
-      },
+      // {
+      //   key: NavCardKey.VIP,
+      //   label: "VIP",
+      //   iconUrl: vipImg,
+      //   iconSecondaryUrl: vipWhiteImg,
+      //   iconPrimaryUrl: vipActiveImg,
+      //   navType: "route",
+      //   routePath: "/vip",
+      // },
       {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),
         iconUrl: contactImg,
         iconSecondaryUrl: contactWhiteImg,
+        iconPrimaryUrl: contactActiveImg,
         navType: "route",
         routePath: "/support",
       },
@@ -209,18 +234,20 @@ export function useGetNavItemList() {
         label: i18n.t("wap.main.account.appDownload"),
         iconUrl: downloadImg,
         iconSecondaryUrl: downloadWhiteImg,
+        iconPrimaryUrl: downloadActiveImg,
         navType: "route",
         routePath: "/appDownload",
       },
-      {
-        key: NavCardKey.LANGUAGE_SWITCH,
-        label: i18n.t("common.language"),
-        iconUrl: languageImg,
-        iconSecondaryUrl: languageWhiteImg,
-        navType: "action",
-        routePath: null,
-        callback: () => {},
-      },
+      // {
+      //   key: NavCardKey.LANGUAGE_SWITCH,
+      //   label: i18n.t("common.language"),
+      //   iconUrl: languageImg,
+      //   iconSecondaryUrl: languageWhiteImg,
+      //   iconPrimaryUrl: languageWhiteImg,
+      //   navType: "action",
+      //   routePath: null,
+      //   callback: () => {},
+      // },
     ] as NavItem[];
   }, []);
 

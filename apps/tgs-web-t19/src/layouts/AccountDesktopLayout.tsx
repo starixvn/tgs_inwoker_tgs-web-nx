@@ -64,7 +64,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
                 minHeight: "800px",
               }}
             />
-            {/* {children} */}
+            {children}
           </ChildrenWrapper>
         </ContentWrapper>
       </DashboardContainer>

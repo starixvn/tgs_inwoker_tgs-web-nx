@@ -19,7 +19,7 @@ const StyledDialog = styled(MuiDialog)`
 const ChildContainer = styled.div`
   width: 100%;
   margin: auto;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.pureBlack};
   z-index: 2;
   overflow: auto;
 
