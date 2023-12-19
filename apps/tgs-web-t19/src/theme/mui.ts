@@ -19,6 +19,7 @@ declare module "@mui/material/styles/createPalette" {
     primaryGradient: string;
     goldGradient: string;
     gray: string;
+    darkGray: string;
     btnHover: string;
     // 下面慢慢修樣式拿掉
     blue10: string;
@@ -60,6 +61,7 @@ const muiTheme = createTheme({
     black: theme.black,
     pureBlack: theme.pureBlack,
     gray: theme.gray,
+    darkGray: theme.darkGray,
     mainBackground: theme.mainBackground,
     btnGradient: theme.btnGradient,
     red: theme.red,

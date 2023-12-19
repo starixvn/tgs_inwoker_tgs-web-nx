@@ -11,6 +11,7 @@ import iconLogout from "@/assets/t19/images/account/navItemWhite/icon-logout.svg
 import ArrowRightPNG from "@/assets/t19/images/transfer/arrow-right.svg";
 const MemberMenuContainer = styled.div`
   background: ${({ theme }) => theme.pureBlack};
+  border-radius: 5px 0 0 5px;
 `;
 
 type MemberMenuItemProps = {
