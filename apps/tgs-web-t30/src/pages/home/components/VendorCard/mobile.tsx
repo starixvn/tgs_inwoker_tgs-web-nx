@@ -2,12 +2,11 @@ import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t30/images/home/maintenance.svg";
-import cardBg from "@/assets/t30/images/home/card-bg.svg";
 import cardBgShort from "@/assets/t30/images/home/card-bg-short.svg";
 import beBackSoon from "@/assets/t30/images/home/be-back-soon.svg";
 import Icon from "@/components/project/Icon";
 
-const MobileVenderCardContainer = styled.div`
+const MobileVendorCardContainer = styled.div`
   width: calc(50% - 6px);
   position: relative;
 
@@ -21,7 +20,7 @@ const MobileVenderCardContainer = styled.div`
 
 `;
 
-const CardContaienr = styled.div`
+const CardContainer = styled.div`
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -36,7 +35,7 @@ const VendorCardBg = styled.div<{ $bgUrl: string }>`
   background-size: cover;
 `;
 
-const VenderName = styled.div`
+const VendorName = styled.div`
   font-size: 0.875rem;
   padding: 9px 17px;
   border-top: 1px solid ${({ theme }) => theme.mainLightBackground};
@@ -58,13 +57,6 @@ const MaintenanceBg = styled.div`
   &:hover {
     cursor: not-allowed;
   }
-`;
-
-const MaintenanceWording = styled.div`
-  background: linear-gradient(180deg, #91c538 0%, #648626 100%),
-    linear-gradient(0deg, #ffffff, #ffffff);
-  border: 1px solid;
-  border-image-source: linear-gradient(180deg, #91c538 0%, #648626 100%);
 `;
 
 const MaintenanceIcon = styled.img`
@@ -98,11 +90,11 @@ const MobileVendorCard = ({
   };
 
   return (
-    <MobileVenderCardContainer>
-      <CardContaienr onClick={launchGameHandler}>
+    <MobileVendorCardContainer>
+      <CardContainer onClick={launchGameHandler}>
         <VendorCardBg $bgUrl={imageUrl} />
-        <VenderName>{venderName}</VenderName>
-      </CardContaienr>
+        <VendorName>{venderName}</VendorName>
+      </CardContainer>
 
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>
@@ -110,7 +102,7 @@ const MobileVendorCard = ({
           <Icon iconUrl={beBackSoon} width={"134px"} height={"46px"} />
         </MaintenanceBg>
       )}
-    </MobileVenderCardContainer>
+    </MobileVendorCardContainer>
   );
 };
 
