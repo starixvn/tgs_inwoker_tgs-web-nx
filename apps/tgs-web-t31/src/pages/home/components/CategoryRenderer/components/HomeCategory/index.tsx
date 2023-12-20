@@ -126,8 +126,8 @@ const HomeCategory = () => {
         </CardPromptContainer>
         <ContentWarpper>
           <MonthItemContainer>
-            <MonthItem dataList={hotGameList} />
-            <MonthItem dataList={recommendGameList} />
+            <MonthItem dataList={hotGameList} title="HOT GAMES THIS MONTH" />
+            <MonthItem dataList={recommendGameList} title="WINNER OF THE MONTH" />
           </MonthItemContainer>
           <NewsContainer>
             <News />
