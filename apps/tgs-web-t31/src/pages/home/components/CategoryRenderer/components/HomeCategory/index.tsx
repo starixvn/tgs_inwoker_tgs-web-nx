@@ -110,7 +110,8 @@ const HomeCategory = () => {
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
-  const { hotGameList, recommendGameList } = useGetHomeCategoryList();
+  const { hotGameList, recommendGameList, isLoading, isTableGameLoading } =
+    useGetHomeCategoryList();
 
   const handleClick = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);
@@ -126,8 +127,10 @@ const HomeCategory = () => {
         </CardPromptContainer>
         <ContentWarpper>
           <MonthItemContainer>
-            <MonthItem dataList={hotGameList} title="HOT GAMES THIS MONTH" />
-            <MonthItem dataList={recommendGameList} title="WINNER OF THE MONTH" />
+            {!isLoading && <MonthItem dataList={hotGameList} title="HOT GAMES THIS MONTH" />}
+            {!isTableGameLoading && (
+              <MonthItem dataList={recommendGameList} title="WINNER OF THE MONTH" />
+            )}
           </MonthItemContainer>
           <NewsContainer>
             <News />

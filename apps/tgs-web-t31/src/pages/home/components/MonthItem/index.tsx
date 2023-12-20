@@ -62,9 +62,8 @@ const MonthItem = ({ dataList, title }: Props) => {
             height={170}
             src={`${
               config.sourceUrl
-            }${dataList[0].gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-              dataList[0].code
-            }.jpg`}
+            }${dataList[0]?.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${dataList[0]
+              ?.code}.jpg`}
             alt="slot"
           />
         </GameImg>
