@@ -7,6 +7,7 @@ type Props = {
   fontSize: "small" | "smaller" | string;
   isActive: boolean;
   onClick: () => void;
+  children: React.ReactNode;
 };
 
 const Wrapper = styled.div<{
@@ -52,10 +53,10 @@ const Text = styled.div<{ $fontSize: string }>`
   line-height: 10px;
 `;
 
-const Tab = ({ imageUrl, text, isActive, fontSize, onClick }: Props) => {
+const Tab = ({ imageUrl, text, isActive, fontSize, onClick, children }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
-      <GameIcon src={imageUrl} alt={text} />
+      {children}
       <Text $fontSize={fontSize}>{text}</Text>
     </Wrapper>
   );

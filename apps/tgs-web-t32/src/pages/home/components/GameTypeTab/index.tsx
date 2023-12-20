@@ -1,23 +1,21 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import React from "react";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { theme } from "@/theme";
 
 const TabContainer = styled.div`
-  overflow-y: auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  width: 72px;
-  max-height: 862px; //826/926
-  overflow-y: auto;
+border: 1px solid red;
+
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  flex-shrink: 0;
-  gap: 3px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -73,7 +71,7 @@ const GameTypeTab = () => {
   return (
     <TabContainer>
       {filteredGameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
+        const { key, iconUrl, text, gameType, fontSize, iconComponent } = gameTypeItem;
 
         return (
           <Tab
@@ -83,7 +81,12 @@ const GameTypeTab = () => {
             isActive={gameType === activeGameType}
             fontSize={fontSize}
             onClick={() => switchGameType(gameType)}
-          />
+          >
+            {
+              React.createElement(iconComponent, {
+                $color: gameType === activeGameType ? theme.primary : theme.white,
+              })}
+          </Tab>
         );
       })}
     </TabContainer>
