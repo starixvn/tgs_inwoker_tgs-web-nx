@@ -9,11 +9,13 @@ import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/components/account/Support/IMHandler";
 import HeaderImage from "@/pages/contactUs/components/HeaderImage";
 
-const SupportContainer = styled.div``;
+const SupportContainer = styled.div`
+  width: 100%;
+`;
 
 const CardsContainer = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 32px;
   flex-wrap: wrap;
 `;
 
@@ -45,7 +47,7 @@ const Support = () => {
   return (
     <SupportContainer>
       <CardsContainer>
-        <HeaderImage />
+        {/* <HeaderImage /> */}
 
         {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
