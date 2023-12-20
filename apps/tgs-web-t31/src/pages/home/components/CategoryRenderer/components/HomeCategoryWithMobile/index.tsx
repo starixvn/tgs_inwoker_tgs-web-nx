@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 78px);
+  width: 100%;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
 `;

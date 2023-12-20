@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
@@ -15,87 +15,65 @@ type Props = {
   venderLogoUrl: string;
   launchGame: () => void;
   status: number;
-};
+}
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
-  position: absolute;
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
   left: 0;
   top: 0;
-  width: 115px;
-  height: 135px;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  flex-shrink: 0;
 `;
 
-const VendorCardBg = styled.div<{ $bgUrl: string }>`
+const VendorCardContent = styled.div`
+  width: 100%;
+`;
+
+const VendorCardBg = styled.div<{ $isUM: boolean }>`
+  width: calc(16.67% - 36px);
+  min-width: 200px;
+  aspect-ratio: 200 / 225;
   position: relative;
-  width: 20%;
-  max-width: 200px;
-  position: relative;
-  aspect-ratio: 200/135;
   cursor: pointer;
-  transition: transform 0.6s ease 0s;
 `;
 
-const VenderNameInfo = styled.div`
-  width: calc(100% - 115px);
-  height: 100%;
+const VenderName = styled(VendorCardContent)`
   position: absolute;
-  right: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-`;
-
-
-const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
-  display: inline-flex;
-  width: 100%;
-  max-width: 85px;
-  min-height: 38px;
-  background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: relative;
-`;
-
-const VenderName = styled(VenderNameInfo)`
-  position: absolute;
-  top: 50%;
-  width: 100%;
+  bottom: 0;
+  color: ${(props) => props.theme.white};
+  font-size: 18px;
+  font-weight: 700;
   text-align: center;
-  color: #333;
-  font-size: 1rem;
-  font-weight: 600;
 `;
 
 const MaintenanceBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 89%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 70%);
+  background: rgb(0 0 0 / 50%);
+  padding: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  &:hover {
-    cursor: not-allowed;
-  }
 `;
 
 const MaintenanceIcon = styled.img`
-  width: 57px;
-  height: 57px;
+  width: 80%;
+  height: 100%;
 `;
 
-const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
+const DesktopVendorCard = ({
+  bgUrl,
+  imageUrl,
+  venderName,
+  venderLogoUrl,
+  launchGame,
+  status,
+}: Props) => {
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
@@ -104,7 +82,7 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
       return;
     }
     launchGame();
-  }
+  };
 
   useEffect(() => {
     if (venderNameRef.current) {
@@ -113,17 +91,16 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
   }, [venderNameRef.current]);
 
   return (
-    <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
-      <GameIcon $imageUrl={imageUrl}></GameIcon>
-      <VenderNameInfo>
-        <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
-        <VenderName ref={venderNameRef}>{venderName}</VenderName>
-      </VenderNameInfo>
-      {status === providerStatus.Maintenance && (
-        <MaintenanceBg>
-          <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-        </MaintenanceBg>
-      )}
+    <VendorCardBg onClick={launchGameHandler} $isUM={status === providerStatus.Maintenance}>
+      <VendorCardContent>
+        <GameIcon $imageUrl={imageUrl}></GameIcon>
+        {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
+        {status === providerStatus.Maintenance && (
+          <MaintenanceBg>
+            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+          </MaintenanceBg>
+        )}
+      </VendorCardContent>
     </VendorCardBg>
   );
 };

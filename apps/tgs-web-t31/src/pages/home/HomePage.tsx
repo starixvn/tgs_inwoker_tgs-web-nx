@@ -158,20 +158,7 @@ const HomePage = () => {
       {/* {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />} */}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
-        <BannerWrapper>
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
-          {isDesktopSize && !activeGameType && <Banner />}
-        </BannerWrapper>
+        <BannerWrapper>{isDesktopSize && <Banner />}</BannerWrapper>
       ) : null}
 
       <MainContentContainer>
