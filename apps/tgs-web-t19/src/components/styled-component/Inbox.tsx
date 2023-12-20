@@ -18,6 +18,7 @@ export const TableHead = muiStyled(MuiTableHead)(({ theme }) => ({
     lineHeight: "0.934rem",
     color: `${theme.palette.text.primary} !important`,
     borderBottom: "none",
+    borderRadius: "6px",
   },
 })) as typeof MuiTableHead;
 

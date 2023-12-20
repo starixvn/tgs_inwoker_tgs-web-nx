@@ -4,6 +4,7 @@ import contactGirlImg from "@/assets/t29/images/contact/contact.png";
 
 const HeaderImageContainer = styled.div`
   width: 100%;
+  border-radius: 10px;
 
   img {
     width: 100%;

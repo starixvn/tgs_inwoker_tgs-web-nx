@@ -146,7 +146,7 @@ stages:
     - echo "KUBECONFIG=$KUBECONFIG"
   script:
     - | 
-      if [[ -e image.txt ]]; then 
+      if [[ -e image.txt && $domain == "" && $brand == "" ]]; then 
           cat image.txt
           for image in $(cat image.txt); do
               echo "image=$image"
@@ -163,22 +163,24 @@ stages:
       fi
   after_script:
     - |
-      lobby=$(cat lobby.txt)
-      curl --location --request POST $Telegram_Bot_Url \
-        --header 'Content-Type: application/json' \
-        --data-binary @- << EOF
-      {
-        "chat_id": $Telegram_Chat_Id,
-        "text": "
-      專案: $CI_PROJECT_NAME
-      分支: $CI_COMMIT_BRANCH
-      更新lobby: $lobby
-      Pipeline: $CI_PIPELINE_URL
-      Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
-      作者: $GITLAB_USER_LOGIN",
-        "parse_mode": "HTML"
-      }
+      if [[ -e image.txt && $domain == "" && $brand == "" ]]; then 
+        lobby=$(cat lobby.txt)
+        curl --location --request POST $Telegram_Bot_Url \
+          --header 'Content-Type: application/json' \
+          --data-binary @- << EOF
+        {
+          "chat_id": $Telegram_Chat_Id,
+          "text": "
+        專案: $CI_PROJECT_NAME
+        分支: $CI_COMMIT_BRANCH
+        更新lobby: $lobby
+        Pipeline: $CI_PIPELINE_URL
+        Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
+        作者: $GITLAB_USER_LOGIN",
+          "parse_mode": "HTML"
+        }
       EOF
+      fi
 
 docker-build-dev:
   <<: *docker-build-template

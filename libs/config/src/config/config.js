@@ -11,6 +11,7 @@ const config = {
   defaultLanguage: "en-US",
   affiliateId: "",
   features: featureList["default"],
+  brandTitle: "MOMO"
 };
 
 config.isPC = isMobileOnly ? 1 : 0;

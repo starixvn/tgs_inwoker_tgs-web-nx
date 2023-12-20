@@ -5,10 +5,10 @@ import { theme } from "@/theme";
 
 const DateRangContainer = styled.div`
   display: flex;
-  //align-items: center;
+  align-items: center;
   justify-content: center;
-  gap: 13px;
-  height: 47px;
+  gap: 12px;
+  height: 40px;
 `;
 
 type DateRangSelectionTypes = {
@@ -20,12 +20,16 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   cursor: pointer;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.blue40 : theme.blue20;
+    return $isSelected ? theme.primary : "transparent";
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.white : theme.text;
+    return $isSelected ? theme.pureBlack : theme.white;
   }};
-  padding: 12px 20px;
+  border: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+    return $isSelected ? "transparent" : `1px solid ${theme.white}`;
+  }};
+  border-radius: 6px;
+  padding: 11.5px 16px;
   font-size: 0.812rem;
   display: flex;
   align-items: center;
