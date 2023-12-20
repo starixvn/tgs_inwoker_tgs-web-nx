@@ -17,6 +17,7 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import notification from "@/assets/t32/images/home/notify.svg";
 import Jackpot from "@/components/project/Jackpot";
 import useBanner from "@/hooks/home/useBanner";
+import GameTypeTab from "@/pages/home/components/GameTypeTab";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -142,66 +143,16 @@ const HomePage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
+
   return (
     <MainWrapper>
-      {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
-      {hasActiveDesktopBanner() ? (
-        <BannerWrapper>
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
-          {isDesktopSize && !activeGameType && <Banner />}
-        </BannerWrapper>
-      ) : null}
-
-      {/* if uer did't setting baner, still show marquee and jackpot */}
-      {!hasActiveDesktopBanner() && isDesktopSize && (
-        <MarqueeContainer>
-          <MarqueeContent>
-            <img src={notification} alt="marquee" />
-            {hasData && (
-              // Disable TypeScript check for unknown HTML elements
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              <marquee>
-                {marquees.map((item, index) => {
-                  const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
-      `;
-                  return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
-                })}
-                {/*@ts-ignore*/}
-              </marquee>
-            )}
-
-            <Jackpot
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-              }}
-            />
-          </MarqueeContent>
-        </MarqueeContainer>
-      )}
-
       {isMobileSize && <CardPrompt />}
+      {isMobileSize && <MobileSlider />}
+      <GameTypeTab />
 
-      <MainContentWrapper>
+      {/* <MainContentWrapper>
         <CategoryRenderer />
-      </MainContentWrapper>
+      </MainContentWrapper> */}
     </MainWrapper>
   );
 };

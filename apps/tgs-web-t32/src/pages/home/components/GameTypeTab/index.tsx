@@ -6,11 +6,8 @@ import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import { theme } from "@/theme";
 
 const TabContainer = styled.div`
-border: 1px solid red;
-
   width: 100%;
   overflow-x: auto;
   white-space: nowrap;
@@ -67,25 +64,20 @@ const GameTypeTab = () => {
     return true;
   });
 
-
   return (
     <TabContainer>
       {filteredGameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType, fontSize, iconComponent } = gameTypeItem;
+        const { key, text, gameType, fontSize, iconComponent } = gameTypeItem;
 
         return (
           <Tab
             key={key}
-            imageUrl={iconUrl}
             text={text}
             isActive={gameType === activeGameType}
             fontSize={fontSize}
             onClick={() => switchGameType(gameType)}
           >
-            {
-              React.createElement(iconComponent, {
-                $color: gameType === activeGameType ? theme.primary : theme.white,
-              })}
+            {React.createElement(iconComponent)}
           </Tab>
         );
       })}
