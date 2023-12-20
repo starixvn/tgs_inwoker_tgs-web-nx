@@ -16,7 +16,7 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: #23507d;
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 16px;
