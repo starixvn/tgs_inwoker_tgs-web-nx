@@ -24,14 +24,14 @@ export function useGetHomeCategoryList() {
 
   const { activeGameType, activeFilterTag } = useHomeGameContext();
 
-  const [slotList, setSlotList] = useState([]);
-  const [tableList, setTableList] = useState([]);
+  const [slotList, setSlotList] = useState<GameItem[]>([]);
+  const [tableList, setTableList] = useState<GameItem[]>([]);
 
   const fetchSlotList = async () => {
     try {
       const response = await GameService.GetGameList("", GameTypeEnum.SLOT);
       setSlotList(
-        response.data.filter((gameItem: any) => {
+        response.data.filter((gameItem: GameItem) => {
           return gameItem.tag.hot;
         }),
       );
@@ -44,7 +44,7 @@ export function useGetHomeCategoryList() {
     try {
       const response = await GameService.GetGameList("", GameTypeEnum.TABLEGAME);
       setTableList(
-        response.data.filter((gameItem: any) => {
+        response.data.filter((gameItem: GameItem) => {
           return gameItem.tag.hot;
         }),
       );
