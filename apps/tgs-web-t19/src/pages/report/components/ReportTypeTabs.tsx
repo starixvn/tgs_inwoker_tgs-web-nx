@@ -6,7 +6,7 @@ import { theme } from "@/theme";
 
 const ReportTypeTabsContainer = styled.div`
   display: flex;
-  gap: 9px;
+  gap: 12px;
   flex-wrap: wrap;
 `;
 
@@ -33,18 +33,22 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
             key={index}
             onClick={() => handleButtonClick(index)}
             sx={{
-              color: isSelected ? theme.white : theme.text,
-              background: isSelected ? theme.blue40 : theme.blue20,
+              color: isSelected ? theme.pureBlack : theme.white,
+              background: isSelected ? theme.goldGradient : "transparent",
+              border: isSelected ? "transparent" : `1px solid ${theme.white}`,
               "&:hover": {
-                color: isSelected ? theme.white : theme.text,
-                background: isSelected ? theme.blue40 : theme.blue20,
+                color: isSelected ? theme.pureBlack : theme.white,
+                background: isSelected ? theme.goldGradient : "transparent",
               },
               whiteSpace: {
                 sx: "wrap",
                 sm: "no-wrap",
               },
-              padding: "12px",
-              borderRadius: "4px",
+              padding: "0px 24px",
+              borderRadius: "6px",
+              height: "50px",
+              fontSize: "20px",
+              fontWeight: 400,
               width: {
                 xs: "calc((100% - 2 * 9px) / 3)",
                 sm: "auto",

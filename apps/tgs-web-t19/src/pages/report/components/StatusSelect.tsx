@@ -13,9 +13,9 @@ const StatusSelectWrapper = styled.div`
 
 
 const StatusSelectContainer = styled.div`
-  border: 1px solid #D6DBDD;
-  height: 47px;
-  background: ${({ theme }) => theme.mainBackground};
+  border: 1px solid${({ theme }) => theme.white};
+  height: 40px;
+  background: transparent;
   font-size: 0.937rem;
   color: ${({ theme }) => theme.white};
   border-radius: 6px;
@@ -26,7 +26,7 @@ const StatusSelectContainer = styled.div`
 
 const SelectLabel = styled.div`
   margin-right: 5px;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.white};
 `;
 
 const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
