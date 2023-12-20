@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { getIsGameTypeLobbyCategory, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import DrawerButton from "@/layouts/components/CategoryFilter/components/DrawerButton";
 
@@ -22,6 +22,9 @@ const CategoryFilter = () => {
   const { activeGameType } = useHomeGameContext();
 
   if (activeGameType === GameTypeEnum.NONE) return null;
+
+  const isGameTypeLobbyCategory = getIsGameTypeLobbyCategory(activeGameType);
+  if (isGameTypeLobbyCategory) return null;
 
   return (
     <CategoryFilterContainer>
