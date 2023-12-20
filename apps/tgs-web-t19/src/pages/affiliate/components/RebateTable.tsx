@@ -8,7 +8,9 @@ const StyledTable = styled(Table)`
 `;
 
 const StyledTableHead = styled(TableHead)`
-  background: ${({ theme }) => theme.blue10};
+  background: ${({ theme }) => theme.pureBlack};
+  color: ${({ theme }) => theme.white}
+
   & * {
     color: ${({ theme }) => theme.black} !important;
   }
@@ -17,7 +19,7 @@ const StyledTableHead = styled(TableHead)`
 const StyledTableBody = styled(TableBody)`
   background: ${({ theme }) => theme.mainBackground};
   & * {
-    color: ${({ theme }) => theme.gray50} !important;
+    color: ${({ theme }) => theme.white} !important;
   }
 `;
 

@@ -6,12 +6,12 @@ import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.white};
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid ${({ theme }) => theme.gray10};
+  border-radius: 6px;
 
   & .label {
     min-width: 110px;
@@ -70,10 +70,10 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         onClick={handleCopyText}
         variant={isCopied ? "outlined" : "contained"}
         sx={{
-          width: "66px",
-          color: theme.white,
-          background: theme.secondary,
-          fontSize: "0.75rem",
+          color: theme.pureBlack,
+          background: theme.goldGradient,
+          fontSize: "20px",
+          padding: "8px 24px",
         }}
       >
         {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
