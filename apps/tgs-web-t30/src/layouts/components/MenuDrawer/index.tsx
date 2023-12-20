@@ -7,11 +7,11 @@ import { MOBILE_DRAWER_WIDTH } from "@/theme/constants";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isLargeDesktopSize, isXlSize, isExtraLargeDesktopSize } = useRwd();
+  const { isXlSize, isExtraLargeDesktopSize } = useRwd();
 
   const drawerWidth = useMemo(() => {
     return MOBILE_DRAWER_WIDTH;
-  }, [isXlSize, isExtraLargeDesktopSize, isMenuOpen]);
+  }, [isMenuOpen]);
 
   return (
     <Drawer
