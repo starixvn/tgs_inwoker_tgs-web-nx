@@ -44,13 +44,15 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
                 sx: "wrap",
                 sm: "no-wrap",
               },
-              padding: "0px 24px",
+              padding: "0px 12px",
               borderRadius: "6px",
-              height: "50px",
               fontSize: "20px",
               fontWeight: 400,
+              height: {
+                sm: "50px",
+              },
               width: {
-                xs: "calc((100% - 2 * 9px) / 3)",
+                xs: "calc((100% - 2 * 20px) / 3)",
                 sm: "auto",
               },
               minWidth: {
