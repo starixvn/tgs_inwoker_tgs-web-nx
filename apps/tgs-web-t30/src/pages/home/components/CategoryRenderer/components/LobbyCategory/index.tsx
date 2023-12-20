@@ -57,7 +57,7 @@ const LobbyCategory = () => {
   const { account } = useAccountStore();
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
-  const { isMobileSize, isDesktopSize } = useRwd();
+  const { isMobileSize } = useRwd();
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -96,7 +96,6 @@ const LobbyCategory = () => {
 
   const hasMappingData = !!lobbyCategoryList.length;
 
-  console.log(lobbyCategoryList);
   return (
     <Wrapper>
       {isMobileSize ? (

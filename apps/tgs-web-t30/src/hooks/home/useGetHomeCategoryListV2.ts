@@ -1,10 +1,18 @@
-import { useEffect, useMemo } from "react";
-import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useEffect, useMemo, useState } from "react";
+import { gameCacheService, GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameItem } from "@tgs-web-nx/types";
+import { GameService } from "@tgs-web-nx/core";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export function useGetHomeCategoryListV2() {
+  const [gameTypeDictionary, setGameTypeDictionary] = useState<{
+    [key in GameTypeEnum]: GameItem[];
+    // @ts-ignore
+  }>({});
+
   const gameTypeList = useGameTypeList();
-  const { handleChangeGameType, providerList } = useHomeGameContext();
+  const { providerList } = useHomeGameContext();
 
   const filteredGameTypeList = useMemo(() => {
     if (!providerList.length) return [];
@@ -17,18 +25,26 @@ export function useGetHomeCategoryListV2() {
   }, [gameTypeList, providerList]);
 
   const getAllGameList = async (gameTypeItems: GameTypeItem[]) => {
-    console.log(gameTypeItems);
-    // try {
-    //   const response = await GameService.GetGameList("", [
-    //     GameTypeEnum.SLOT,
-    //     GameTypeEnum.FISH,
-    //     GameTypeEnum.TABLEGAME,
-    //   ]);
-    //   console.log(response);
-    //   return response;
-    // } catch (error: any) {
-    //   console.error(error);
-    // }
+    for (const gameTypeItem of gameTypeItems) {
+      const { gameType } = gameTypeItem;
+
+      let gameList: GameItem[] = [];
+
+      if (gameCacheService.hasCache(gameType)) {
+        gameList = await gameCacheService.getCachedGameList(gameType);
+      } else {
+        const response = await GameService.GetGameList("", gameType);
+        gameList = response.data || [];
+        gameCacheService.updateGameCacheDictionary(gameType, gameList);
+      }
+
+      setGameTypeDictionary((prevDictionary) => {
+        return {
+          ...prevDictionary,
+          [gameType]: gameList,
+        };
+      });
+    }
   };
 
   useEffect(() => {
@@ -37,9 +53,8 @@ export function useGetHomeCategoryListV2() {
     getAllGameList(filteredGameTypeList);
   }, [filteredGameTypeList]);
 
-  // filter
-
   return {
     gameTypeItemList: filteredGameTypeList,
+    gameTypeDictionary,
   };
 }

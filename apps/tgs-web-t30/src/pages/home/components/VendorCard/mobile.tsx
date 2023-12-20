@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
+import { HTMLProps } from "react";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t30/images/home/maintenance.svg";
 import cardBgShort from "@/assets/t30/images/home/card-bg-short.svg";
@@ -72,7 +73,7 @@ type Props = {
   venderLogoUrl: string;
   launchGame: () => void;
   status: number;
-};
+} & HTMLProps<HTMLDivElement>;
 
 const MobileVendorCard = ({
   bgUrl,
@@ -81,6 +82,7 @@ const MobileVendorCard = ({
   venderLogoUrl,
   launchGame,
   status,
+  ...others
 }: Props) => {
   const launchGameHandler = () => {
     if (status === providerStatus.Maintenance) {
@@ -90,7 +92,8 @@ const MobileVendorCard = ({
   };
 
   return (
-    <MobileVendorCardContainer>
+    // @ts-ignore
+    <MobileVendorCardContainer {...others}>
       <CardContainer onClick={launchGameHandler}>
         <VendorCardBg $bgUrl={imageUrl} />
         <VendorName>{venderName}</VendorName>

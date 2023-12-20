@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
@@ -78,45 +77,14 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   background-position: center;
 `;
 
-const MarqueeContainer = styled.div`
-  position: relative;
-  overflow: visible;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.875rem;
-  padding: 10px;
-  color: ${({ theme }) => theme.white};
-  background: #000000b2;
-`;
-
-const MarqueeContent = styled.div`
-  display: flex;
-`;
-
-const MarqueesBackground = styled.div`
-  display: inline;
-  overflow: visible;
-`;
-
 const HomePage = () => {
-  const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const {
-    ui: { marquees },
-  } = useUiStore();
   const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
-  const hasData = marquees && marquees.length > 0;
 
   const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
     useHomeGameContext();
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
-  const hasNavData = !!navPopupCategoryList.length;
-  const history = useHistory();
+
   const gameTypeList = useGameTypeList();
 
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
@@ -143,6 +111,7 @@ const HomePage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
+
   return (
     <MainWrapper>
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}

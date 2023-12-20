@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
 import cardgame from "@/assets/t30/images/home/gameType/cardGame.svg";
@@ -20,9 +20,7 @@ type GameTypeItem = {
 };
 
 export const useGameTypeList = () => {
-  const [translatedGameTypeList, setTranslatedGameTypeList] = useState<GameTypeItem[]>([]);
-
-  useEffect(() => {
+  return useMemo(() => {
     const gameTypeList: GameTypeItem[] = [
       {
         key: "sports",
@@ -94,10 +92,8 @@ export const useGameTypeList = () => {
       text: i18n.t(gameItem.text),
     }));
 
-    setTranslatedGameTypeList(translatedList);
+    return translatedList;
   }, []);
-
-  return translatedGameTypeList;
 };
 
 export default useGameTypeList;

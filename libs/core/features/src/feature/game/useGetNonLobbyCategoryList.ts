@@ -5,6 +5,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "./useHomeGameContext";
 import { getFilteredGameListByProvider } from "./utils/getFilteredGameListByProvider";
 import { getFilteredGameListByTag } from "./utils/getFilteredGameListByTag";
+import { gameCacheService } from "./services";
 
 interface GetGameListState {
   isLoading: boolean;
@@ -28,21 +29,37 @@ export function useGetNonLobbyCategoryList() {
     searchString,
   } = useHomeGameContext();
 
-  const fetchGameList = useCallback(async () => {
+  const fetchGameList = async (): Promise<GameItem[] | void> => {
+    if (gameCacheService.hasCache(activeGameType)) {
+      const gameList = await gameCacheService.getCachedGameList(activeGameType);
+
+      setGameListState({
+        isLoading: false,
+        gameList,
+        error: null,
+      });
+
+      return gameList;
+    }
+
     try {
       setGameListState({
         isLoading: true,
         gameList: [],
         error: null,
       });
+
       const response = await GameService.GetGameList("", activeGameType);
+
       setGameListState({
         isLoading: false,
         gameList: response.data,
         error: null,
       });
 
-      return response;
+      gameCacheService.updateGameCacheDictionary(activeGameType, response.data);
+
+      return response.data;
     } catch (error: any) {
       console.error(error);
       setGameListState({
@@ -51,12 +68,12 @@ export function useGetNonLobbyCategoryList() {
         error: error,
       });
     }
-  }, [activeGameType]);
+  };
 
   useEffect(() => {
     fetchGameList().then((response) => {
-      if (!response?.data) return;
-      updateGpCodeList(response.data);
+      if (!response) return;
+      updateGpCodeList(response);
     });
   }, [activeGameType]);
 

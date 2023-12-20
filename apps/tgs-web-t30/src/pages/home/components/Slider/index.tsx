@@ -5,10 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import styled from "styled-components";
 
-const SlickWrapper = styled(Slick) <{ $maxHeight?: string }>`
+const SlickWrapper = styled(Slick)<{ $maxHeight?: string }>`
   max-height: ${(props) => props.$maxHeight};
   width: 100%;
   margin: 0 auto;
+  background: ${({ theme }) => theme.mainLightBackground};
 `;
 
 const SlickImage = styled.img`
@@ -20,10 +21,23 @@ const SlickImage = styled.img`
 `;
 
 const SlickDot = styled.div`
-  width: 5.7px;
-  height: 5.7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: #CBDEED;
+  background: #4d8ab9;
+`;
+
+const DotsContainer = styled.div`
+  padding-bottom: 11px;
+  li {
+    width: 8px;
+    height: 8px;
+  }
+  & .slick-active {
+    & div {
+      background: white;
+    }
+  }
 `;
 
 const baseSettings = {
@@ -39,18 +53,17 @@ const baseSettings = {
   autoplay: true,
 
   appendDots: (dots: any) => (
-    <div
+    <DotsContainer
       style={{
-        marginBottom: "30px",
+        position: "relative",
+        bottom: 0,
       }}
     >
       <ul>{dots}</ul>
-    </div>
+    </DotsContainer>
   ),
   customPaging: (i: number) => {
-    return (
-      <SlickDot key={i} />
-    );
+    return <SlickDot key={i} />;
   },
 };
 
@@ -68,10 +81,7 @@ type Props = {
   maxHeight?: string;
 };
 
-const Slider = ({
-  settings,
-  maxHeight
-}: Props) => {
+const Slider = ({ settings, maxHeight }: Props) => {
   const { general } = useGeneralStore();
   const { isMobileSize } = useRwd();
   const sliderSettings = { ...baseSettings, ...settings };

@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react";
+import React, { HTMLProps, MouseEvent, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
@@ -149,9 +149,9 @@ type GameCardProps = {
   gameItem: GameItem;
   isActive: boolean;
   imageUrl: string;
-};
+} & HTMLProps<HTMLDivElement>;
 
-const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
+const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
   const { account } = useAccountStore();
   const history = useHistory();
@@ -196,7 +196,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <GameCardContainer>
+    // @ts-ignore
+    <GameCardContainer {...others}>
       <GameCardBg onClick={launchGameHandler}>
         <GameCardContent>
           <GameIcon $imageUrl={imageUrl}></GameIcon>
