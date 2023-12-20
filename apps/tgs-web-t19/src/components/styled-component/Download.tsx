@@ -5,6 +5,7 @@ export const DownloadAppContainer = styled.div``;
 export const GirlImage = styled.div`
   width: 100%;
   margin-bottom: 10px;
+  border-radius: 10px;
 
   img {
     width: 100%;

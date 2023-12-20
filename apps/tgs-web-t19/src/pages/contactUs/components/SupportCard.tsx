@@ -27,10 +27,8 @@ const SupportCardContainer = styled.div`
   }
 
   width: calc((100% - 16px * (2 - 1)) / 2);
+  max-width: 188px;
 
-  // ${media.sm} {
-  //   width: calc((100% - 16px * (2 - 1)) / 3);
-  // }
   ${media.md} {
     width: calc((100% - 16px * (4 - 1)) / 4);
     max-width: 248px;
