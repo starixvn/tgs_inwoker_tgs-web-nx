@@ -2,16 +2,13 @@ import logoCompatibleImg from "@/assets/t18/images/account/download/logo_compati
 import logoConvenientImg from "@/assets/t18/images/account/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t18/images/account/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t18/images/account/download/logo_secure.svg";
-import downloadGirlImg from "@/assets/t19/images/download/download-girl.png";
 
 import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
 import {
   DownloadAppContainer,
-  GirlImage,
   InfoCardListContainer,
   IntroductionContainer,
-  Paper,
 } from "@/components/styled-component/Download";
 
 const infoCardItemList: InfoCardItem[] = [
@@ -40,27 +37,21 @@ const infoCardItemList: InfoCardItem[] = [
 const DownloadApp = () => {
   return (
     <DownloadAppContainer>
-      <GirlImage>
-        <img src={downloadGirlImg} alt={"download"} />
-      </GirlImage>
+      <IntroductionContainer>
+        <span>Introduction</span>
+        <p>
+          The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
+          available for IOS and Android that features a multitude of entertaining games.
+        </p>
+      </IntroductionContainer>
 
-      <Paper>
-        <IntroductionContainer>
-          <span>Introduction</span>
-          <p>
-            The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
-            available for IOS and Android that features a multitude of entertaining games.
-          </p>
-        </IntroductionContainer>
+      <InfoCardListContainer>
+        {infoCardItemList.map((infoCardItem) => {
+          return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
+        })}
+      </InfoCardListContainer>
 
-        <InfoCardListContainer>
-          {infoCardItemList.map((infoCardItem) => {
-            return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
-          })}
-        </InfoCardListContainer>
-
-        <DownloadButtonGroup />
-      </Paper>
+      <DownloadButtonGroup />
     </DownloadAppContainer>
   );
 };
