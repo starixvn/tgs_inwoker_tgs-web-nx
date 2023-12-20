@@ -32,15 +32,6 @@ const CategoryContentWrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
-const FilterSection = styled.div`
-  width: 100%;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 10px;
-`;
-
 const DesktopCategoryContentWrapper = styled.div`
   width: 100%;
   gap: 10px 6px;
@@ -76,7 +67,7 @@ const Text = styled.div`
   width: 100%;
   text-align: center;
   padding: 40px 0;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
   font-size: 18px;
   font-weight: 700;
 `;
@@ -86,7 +77,6 @@ const NonLobbyCategory = () => {
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
 
-  console.log(gameList);
   return (
     <Wrapper>
       {isMobileSize ? (

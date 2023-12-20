@@ -10,7 +10,7 @@ import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import playIcon from "@/assets/t30/images/home/play.svg";
 import maintenanceIcon from "@/assets/t30/images/home/maintenance.svg";
-import cardBg from "@/assets/t30/images/home/card-bg.jpg";
+import cardBg from "@/assets/t30/images/home/card-bg.svg";
 
 const GameCardContainer = styled.div`
   width: calc(50% - 6px);
@@ -20,7 +20,7 @@ const GameCardContainer = styled.div`
   background: url(${cardBg});
   background-size: cover;
   background-position: center;
-  border: 1px solid #214061;
+  border: 1px solid ${({ theme }) => theme.mainLightBackground};
 
   ${media.sm} {
     width: calc(16.67% - 6px);
@@ -30,6 +30,7 @@ const GameName = styled.div`
   //background: gold;
   font-size: 0.875rem;
   padding: 9px 17px;
+  border-top: 1px solid ${({ theme }) => theme.mainLightBackground};
 `;
 
 // -------- hover effect for desktop--------------
