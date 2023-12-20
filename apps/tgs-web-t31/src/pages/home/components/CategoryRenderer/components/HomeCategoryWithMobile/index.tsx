@@ -68,12 +68,9 @@ const HomeCategoryWithMobile = () => {
   const { account } = useAccountStore();
   const history = useHistory();
   const { sportCategoryList, liveCategoryList } = useGetLobbyCategoryList();
-  const { fetchSlotList, fetchTableList, slotList, tableList } = useGetHomeCategoryList();
-
+  const { hotGameList, getTableGameList, tableGameListState } = useGetHomeCategoryList();
   useEffect(() => {
-    fetchSlotList();
-    fetchTableList();
-
+    getTableGameList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const launchLobbyGame = (gpcode: string) => {
@@ -113,8 +110,8 @@ const HomeCategoryWithMobile = () => {
 
   const hasMappingData = !!sportCategoryList.length;
   const hasMappingDataWithLive = !!liveCategoryList.length;
-  const hasMappingDataWithSlot = !!slotList.length;
-  const hasMappingDataWithTable = !!tableList.length;
+  const hasMappingDataWithSlot = !!hotGameList.length;
+  const hasMappingDataWithTable = !!tableGameListState.gameList.length;
 
   return (
     <MainWrapper>
@@ -188,7 +185,7 @@ const HomeCategoryWithMobile = () => {
           <CategoryContent>
             {hasMappingDataWithSlot &&
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              slotList.map((gameItem: any) => (
+              hotGameList.map((gameItem: any) => (
                 <GameCard
                   key={gameItem.id}
                   gameItem={gameItem}
@@ -215,7 +212,7 @@ const HomeCategoryWithMobile = () => {
           <CategoryContent>
             {hasMappingDataWithTable &&
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              tableList.map((gameItem: any) => (
+              tableGameListState.gameList.map((gameItem: any) => (
                 <GameCard
                   key={gameItem.id}
                   gameItem={gameItem}

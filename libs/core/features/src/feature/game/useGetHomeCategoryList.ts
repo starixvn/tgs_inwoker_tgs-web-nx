@@ -22,34 +22,39 @@ export function useGetHomeCategoryList() {
     error: null,
   });
 
+  const [tableGameListState, setTableGameListState] = useState<GetGameListState>({
+    isLoading: false,
+    gameList: [],
+    error: null,
+  });
+
   const { activeGameType, activeFilterTag } = useHomeGameContext();
 
-  const [slotList, setSlotList] = useState<GameItem[]>([]);
-  const [tableList, setTableList] = useState<GameItem[]>([]);
-
-  const fetchSlotList = async () => {
+  const getTableGameList = async () => {
     try {
-      const response = await GameService.GetGameList("", GameTypeEnum.SLOT);
-      setSlotList(
-        response.data.filter((gameItem: GameItem) => {
-          return gameItem.tag.hot;
-        }),
-      );
-    } catch (error: any) {
-      console.error(error);
-    }
-  };
-
-  const fetchTableList = async () => {
-    try {
+      setTableGameListState({
+        isLoading: true,
+        gameList: [],
+        error: null,
+      });
       const response = await GameService.GetGameList("", GameTypeEnum.TABLEGAME);
-      setTableList(
-        response.data.filter((gameItem: GameItem) => {
-          return gameItem.tag.hot;
-        }),
-      );
+      const hotTablegameList = response.data.filter((gameItem: GameItem) => {
+        return gameItem.tag.hot;
+      });
+      setTableGameListState({
+        isLoading: false,
+        gameList: hotTablegameList,
+        error: null,
+      });
+
+      return response;
     } catch (error: any) {
       console.error(error);
+      setTableGameListState({
+        isLoading: false,
+        gameList: [],
+        error: error,
+      });
     }
   };
 
@@ -151,9 +156,7 @@ export function useGetHomeCategoryList() {
     newGameList: gameListDictionary[FilterTagTypeEnum.NEW] || [],
     recommendGameList: gameListDictionary[FilterTagTypeEnum.RECOMMEND] || [],
     providerGameList: gameListDictionary[FilterTagTypeEnum.PROVIDER] || [],
-    fetchSlotList,
-    fetchTableList,
-    slotList,
-    tableList,
+    getTableGameList,
+    tableGameListState,
   };
 }
