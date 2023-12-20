@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
@@ -57,16 +59,16 @@ const Wrapper = styled.div`
 
 const HeaderGameTypeNavs = () => {
   const { sideNavItemList } = useGetNavItemList();
-  // const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
+  const { handleChangeNavPopupGameType, setIsHovered } = useHomeGameContext();
 
-  // const handleMouseEnter = (gameType: GameTypeEnum) => {
-  //   setIsHovered(true);
-  //   handleChangeNavPopupGameType(gameType);
-  // };
+  const handleMouseEnter = (gameType: GameTypeEnum) => {
+    setIsHovered(true);
+    handleChangeNavPopupGameType(gameType);
+  };
 
-  // const handleMouseLeave = () => {
-  //   setIsHovered(false);
-  // };
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   const handleClickNav = (navItem: NavItem) => {
     if (navItem.navType !== "action") return;
@@ -80,9 +82,9 @@ const HeaderGameTypeNavs = () => {
           return (
             <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
               <GameTypeNav
-              // $isActive={navItem.router === currentRoute}
-              // onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-              // onMouseLeave={handleMouseLeave}
+                // $isActive={navItem.router === currentRoute}
+                onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+                onMouseLeave={handleMouseLeave}
               >
                 <img src={navItem.iconUrl} alt={navItem.label} />
                 <div>{navItem.label}</div>

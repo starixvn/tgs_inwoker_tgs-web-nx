@@ -2,14 +2,16 @@ import styled, { css } from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import GameTypeNavPopupContent from "@/layouts/components/Header/components/GameTypeNavPopupContent";
+import BG from "@/assets/t31/images/home/navBG.png";
 
 const popupStyles = css`
-  display: ${(props: { $isHovered: any; }) => (props.$isHovered ? "block" : "none")};
+  display: ${(props: { $isHovered: any }) => (props.$isHovered ? "block" : "none")};
   width: 100%;
   position: fixed;
   top: ${DESKTOP_HEADER_HEIGHT};
   left: 0;
-  background: rgba(255, 255, 255, 0.90);
+  background-image: url(${BG});
+  background-size: cover;
   z-index: 5;
   padding: 0 20px 20px 20px;
 `;
@@ -40,11 +42,7 @@ const GameTypeNavPopup = () => {
   };
 
   return (
-    <PopupBg
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      $isHovered={isHovered}
-    >
+    <PopupBg onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} $isHovered={isHovered}>
       <PopupBody $isHovered={isHovered}>
         <GameTypeNavPopupContent />
       </PopupBody>
