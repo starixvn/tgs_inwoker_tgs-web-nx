@@ -36,6 +36,7 @@ export function useFeatureToggle() {
         affiliateId: jsonData.AffiliateId || config.affiliateId || "",
         isPC: isMobileOnly ? 1 : 0,
         features: jsonData,
+        brandTitle: jsonData.BrandTitle || config.brandTitle || "",
       };
 
       config.baseUrl = newConfig.baseUrl;
@@ -47,6 +48,7 @@ export function useFeatureToggle() {
       config.affiliateId = newConfig.affiliateId;
       config.isPC = newConfig.isPC;
       config.features = { ...config.features, ...newConfig.features };
+      config.brandTitle = newConfig.brandTitle;
       setIsFeatureToggleFetched(true);
     }
 
