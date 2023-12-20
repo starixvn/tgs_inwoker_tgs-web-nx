@@ -8,7 +8,7 @@ import {
 } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconInbox from "@/assets/t29/images/account/navItem/icon-inbox.svg";
+import iconInbox from "@/assets/t19/images/account/navItemWhite/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import ComposeForm from "@/pages/inbox/components/form/ComposeForm";
@@ -16,7 +16,9 @@ import InboxList from "@/pages/inbox/components/InboxList";
 import SentList from "@/pages/inbox/components/SentList";
 import InboxCategoryTabs from "@/pages/inbox/components/InboxCategoryTabs";
 
-const InboxContainer = styled.div``;
+const InboxContainer = styled.div`
+  width: 100%;
+`;
 
 const InboxComponentDictionary = {
   [InboxCategoryKeyEnum.COMPOSE]: ComposeForm,
@@ -38,7 +40,7 @@ const InboxComponentDictionary = {
   },
 };
 
-const MessageCenterPage = () => {
+const InboxPage = () => {
   const { tabList, handleClickTab, selectedTab, InboxComponent } =
     useInboxPage(InboxComponentDictionary);
 
@@ -62,4 +64,4 @@ const MessageCenterPage = () => {
   );
 };
 
-export default MessageCenterPage;
+export default InboxPage;
