@@ -10,6 +10,7 @@ const DesktopContainer = styled.div`
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
   }
 `;
 

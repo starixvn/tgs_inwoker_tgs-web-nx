@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { FilterTagTypeEnum, GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
@@ -27,8 +27,8 @@ const TabContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-      background: ${(props) => props.theme.tertiaryDark};
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background: ${(props) => props.theme.mainBackground};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -43,20 +43,24 @@ const TabContainer = styled.div`
 `;
 
 const GameTypeTab = () => {
+  const history = useHistory();
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
+  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } =
+    useHomeGameContext();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
     name: "",
   };
 
-  const switchGameType = (gameType: GameTypeEnum) => {
-    handleChangeGameType(gameType);
+  const switchGameType = (gameTypeItem: GameTypeItem) => {
+    handleChangeGameType(gameTypeItem.gameType);
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
+
+    history.push(`/main/${gameTypeItem.key}`);
   };
 
   const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
@@ -68,7 +72,6 @@ const GameTypeTab = () => {
     }
     return true;
   });
-
 
   return (
     <TabContainer>
@@ -82,7 +85,7 @@ const GameTypeTab = () => {
             text={text}
             isActive={gameType === activeGameType}
             fontSize={fontSize}
-            onClick={() => switchGameType(gameType)}
+            onClick={() => switchGameType(gameTypeItem)}
           />
         );
       })}

@@ -55,7 +55,7 @@ const HomeLayout = ({ children }: Props) => {
 
         <ContentWrapper>
           <>
-            <CategoryHeader />
+            {isMobileSize && <CategoryHeader />}
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />
           </>

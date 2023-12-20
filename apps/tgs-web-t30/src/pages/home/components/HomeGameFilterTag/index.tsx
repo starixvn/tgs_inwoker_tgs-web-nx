@@ -27,6 +27,7 @@ import activedFavoriteIcon from "@/assets/t30/images/home/actived-favorite.svg";
 
 const FilterTagWrapper = styled.div`
   width: 100%;
+  max-width: 338px;
   display: flex;
   flex-direction: column;
   justify-content: center;

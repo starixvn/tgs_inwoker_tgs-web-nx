@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "./useRwd";
 
 export function useGoToHomePage() {
   const { isDesktopSize } = useRwd();

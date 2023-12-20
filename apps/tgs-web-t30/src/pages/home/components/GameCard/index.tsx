@@ -23,7 +23,16 @@ const GameCardContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.mainLightBackground};
 
   ${media.sm} {
-    width: calc(16.67% - 6px);
+    width: calc((100% - 15px * 2) / 3);
+    padding: 0 10px;
+  }
+
+  ${media.sm} {
+    width: calc((100% - 15px * 3) / 4);
+  }
+
+  ${media.lg} {
+    width: calc((100% - 15px * 5) / 6);
   }
 `;
 const GameName = styled.div`

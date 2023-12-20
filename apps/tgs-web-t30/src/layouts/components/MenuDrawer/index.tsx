@@ -7,17 +7,17 @@ import { MOBILE_DRAWER_WIDTH } from "@/theme/constants";
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isLargeDesktopSize, isXlSize } = useRwd();
+  const { isLargeDesktopSize, isXlSize, isExtraLargeDesktopSize } = useRwd();
 
   const drawerWidth = useMemo(() => {
     return MOBILE_DRAWER_WIDTH;
-  }, [isXlSize, isLargeDesktopSize, isMenuOpen]);
+  }, [isXlSize, isExtraLargeDesktopSize, isMenuOpen]);
 
   return (
     <Drawer
-      variant={isLargeDesktopSize ? "persistent" : "temporary"}
+      variant={isExtraLargeDesktopSize ? "persistent" : "temporary"}
       anchor={"right"}
-      open={isLargeDesktopSize ? false : isMenuOpen}
+      open={isExtraLargeDesktopSize ? false : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{
         flexShrink: 0,
@@ -30,7 +30,7 @@ const MenuDrawer = () => {
         },
       }}
     >
-      {isLargeDesktopSize ? null : <MenuDrawerList />}
+      {isExtraLargeDesktopSize ? null : <MenuDrawerList />}
     </Drawer>
   );
 };

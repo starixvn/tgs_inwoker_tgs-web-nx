@@ -4,27 +4,35 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useParams } from "react-router-dom";
+import { getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import bg from "@/assets/t30/images/home/home_bg.png";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import useBanner from "@/hooks/home/useBanner";
+import { theme } from "@/theme";
 
-const MainWrapper = styled.div`
+type MainWrapperProps = {
+  $isDark: boolean;
+  theme: typeof theme;
+};
+
+const MainWrapper = styled.div<MainWrapperProps>`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
+  background: ${({ $isDark, theme }: MainWrapperProps) =>
+    $isDark ? "#141B1F" : theme.mainBackground};
   color: ${({ theme }) => theme.white};
   padding: 0px 8px 12px 8px;
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
+  position: relative;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -36,22 +44,22 @@ const MainWrapper = styled.div`
 `;
 
 const BannerWrapper = styled.div`
+  position: relative;
   flex-shrink: 0;
   width: 100%;
 
   ${media.sm} {
     height: 100%;
-    max-height: 450px;
+    max-height: 350px;
   }
 `;
 
 const MainContentWrapper = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
+  // background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 6px;
   flex-shrink: 0;
@@ -61,20 +69,27 @@ const MainContentWrapper = styled.div`
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
-    background-image: url(${bg});
-    background-size: unset;
-    background-repeat: repeat;
   }
 `;
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 450px;
+  height: 350px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+`;
+
+const BannerTitle = styled.div`
+  font-size: 100px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.white};
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(0%, -50%);
 `;
 
 const HomePage = () => {
@@ -113,12 +128,12 @@ const HomePage = () => {
   }, [urlGameType]);
 
   return (
-    <MainWrapper>
+    <MainWrapper $isDark={!isMobileSize && activeGameType !== GameTypeEnum.NONE}>
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
 
       {hasActiveDesktopBanner() ? (
         <BannerWrapper>
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
+          {isDesktopSize && !!activeGameType && (
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
@@ -129,6 +144,7 @@ const HomePage = () => {
               }
             />
           )}
+          <BannerTitle>{i18n.t(getGameTypeName(activeGameType))}</BannerTitle>
           {isDesktopSize && !activeGameType && <Banner />}
         </BannerWrapper>
       ) : null}
