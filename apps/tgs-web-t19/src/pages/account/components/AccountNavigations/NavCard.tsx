@@ -25,7 +25,6 @@ const NavCardContainer = styled.div`
     background: ${({ theme }) => theme.mainLightBackground};
     //width: calc((100% - 7 * 8px) / 8);
   }
-}
 `;
 
 type Props = {

@@ -6,7 +6,7 @@ import { theme } from "@/theme";
 const InboxCategoryTabsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
 `;
 
 type CategoryTabProps = {
@@ -14,15 +14,18 @@ type CategoryTabProps = {
   theme: typeof theme;
 };
 const CategoryTab = styled.div<CategoryTabProps>`
-  flex: 1;
+  flex: 1 1 0%;
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? theme.blue40 : theme.blue20};
-  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.text)};
-  padding: 12px;
+    $isActive ? theme.goldGradient : "transparent"};
+  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.pureBlack : theme.white)};
+  padding: 10px 24px;
   text-align: center;
-  font-size: 0.812rem;
-  line-height: 0.934rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
   cursor: pointer;
+  border-radius: 6px;
+  border: ${({ $isActive, theme }: CategoryTabProps) =>
+    $isActive ? "transparent" : `1px solid ${theme.gray}`};
 `;
 
 type Props = {

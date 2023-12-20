@@ -11,17 +11,19 @@ import BrandLogo from "@/components/project/BrandLogo";
 const Container = styled.div`
   color: ${({ theme }) => theme.white};
   background: ${({ theme }) => theme.mainBackground};
+  border-radius: 10px;
 `;
 
 const ContentContainer = styled.div`
-  background: ${({ theme }) => theme.blue20};
-  ${media.sm} {
-    padding: 40px;
-  }
+  background: ${({ theme }) => theme.mainBackground};
   padding: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+
+  ${media.sm} {
+    padding: 40px 10px;
+  }
 `;
 
 const QRCodeContainer = styled.div`
@@ -38,7 +40,7 @@ const AppContainer = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.white};
   font-family: Arial;
   font-size: 16px;
   font-weight: 700;
