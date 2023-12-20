@@ -1,16 +1,14 @@
+import React from "react";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { Common } from "@tgs-web-nx/utils";
+import { useGetNonLobbyCategoryList } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
-import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
+import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
-import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t30/images/home/search.svg";
 
 const Wrapper = styled.div`
   display: flex;
@@ -88,6 +86,7 @@ const NonLobbyCategory = () => {
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
 
+  console.log(gameList);
   return (
     <Wrapper>
       {isMobileSize ? (
@@ -136,4 +135,4 @@ const NonLobbyCategory = () => {
   );
 };
 
-export default NonLobbyCategory;
+export default React.memo(NonLobbyCategory);

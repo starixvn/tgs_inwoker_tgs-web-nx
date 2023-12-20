@@ -1,22 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { GameItem } from "@tgs-web-nx/types";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { GameService } from "@tgs-web-nx/core";
-import useGameTypeList from "../../../../../../apps/tgs-web-t30/src/hooks/home/useGameTypeList";
-import { GameTypeItem, useHomeGameContext } from "./useHomeGameContext";
-import { FilterTag, FilterTagTypeEnum } from "./types";
+import { useEffect, useMemo } from "react";
+import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
-interface GetGameListState {
-  isLoading: boolean;
-  gameList: GameItem[];
-  error: Error | null;
-}
-
-type GameListDictionary = {
-  [key in FilterTagTypeEnum]: GameItem[];
-};
-
-export function useGetHomeCategoryList() {
+export function useGetHomeCategoryListV2() {
   const gameTypeList = useGameTypeList();
   const { handleChangeGameType, providerList } = useHomeGameContext();
 

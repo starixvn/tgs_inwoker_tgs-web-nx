@@ -1,4 +1,4 @@
-export * from "./useGetHomeCategoryListV2";
+export * from "./useGetHomeCategoryList";
 export * from "./useGetLobbyCategoryList";
 export * from "./useGetNonLobbyCategoryList";
 export * from "./useHomeGameContext";

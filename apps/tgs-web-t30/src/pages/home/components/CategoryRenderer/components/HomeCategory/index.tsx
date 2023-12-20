@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import React, { useMemo } from "react";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import React from "react";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 import GameTypeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory";
+import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
 
 const DesktopContainer = styled.div`
   width: 100%;
@@ -28,7 +27,7 @@ type GameTypeItem = {
 const HomeCategory = () => {
   const history = useHistory();
   const { handleChangeGameType } = useHomeGameContext();
-  const { gameTypeItemList } = useGetHomeCategoryList();
+  const { gameTypeItemList } = useGetHomeCategoryListV2();
 
   const handleClick = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);

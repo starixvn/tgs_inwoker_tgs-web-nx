@@ -2,7 +2,6 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
-import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import iconCard from "@/assets/t33/images/withdraw/icon-card.svg";
 import iconCardActive from "@/assets/t33/images/withdraw/icon-card-active.svg";
 import iconManage from "@/assets/t33/images/withdraw/icon-manage.svg";
