@@ -175,7 +175,7 @@ const MainMobile = ({
           </RequireWrapper>
           {playerBuckets.map((bucket) => {
             return (
-              <RequireWrapper>
+              <RequireWrapper key={bucket.key}>
                 <span>{gett18Translation(bucket.key)}:</span>
                 <RequireAmount> {bucket.amount}</RequireAmount>
               </RequireWrapper>
