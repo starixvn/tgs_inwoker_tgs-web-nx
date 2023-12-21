@@ -15,7 +15,7 @@ root * /usr/share/caddy
 @static {
     method GET
     path /
-    path *.html 
+    path *.html
     path *.js
     path *.css
     path *.ico
@@ -38,6 +38,12 @@ rewrite @try_files {http.matchers.file.relative}
 
 # Enable the static file server.
 file_server
+mime {
+    .html text/html
+    .js application/javascript
+    .css text/css
+    .ico image/x-icon
+}
 templates
 encode gzip
 
