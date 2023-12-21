@@ -11,45 +11,30 @@ import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+const CategoryContentWrapper = styled.div`
   width: 100%;
-  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 17px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background-color: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
-    margin: 0 auto;
-    padding: 15px 0px;
+    padding: 20px 0px;
   }
-`;
-
-const CategoryContentWrapper = styled.div`
-  overflow-y: auto;
-  height: 100%;
-  width: calc(100% - 78px);
-  flex-shrink: 0;
-  background-color: ${({ theme }) => theme.mainBackground};
-`;
-
-const DesktopCategoryContentWrapper = styled.div`
-  width: 100%;
-  flex: 1;
-  flex-shrink: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
+  border: 1px solid red;
 `;
 
 const CategoryContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  width: 100%;
-  row-gap: 13px;
-  column-gap: 9px;
-  align-self: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    width: 100%;
+    row-gap: 12px;
+    column-gap: 8px;
+    align-self: stretch;
 `;
 
 const LobbyCategory = () => {
@@ -97,60 +82,28 @@ const LobbyCategory = () => {
   const hasMappingData = !!lobbyCategoryList.length;
 
   return (
-    <Wrapper>
-      {isMobileSize && (
-        <>
-          <GameTypeTab />
-          <CategoryContentWrapper>
-            <CategoryContent>
-              {hasMappingData &&
-                lobbyCategoryList.map((provider) => {
-                  const { code: gpCode, status, name } = provider;
+    <CategoryContentWrapper>
+      <CategoryContent>
+        {hasMappingData &&
+          lobbyCategoryList.map((provider) => {
+            const { code: gpCode, status, name } = provider;
 
-                  if (gpCode === "BC") return null;
-                  return (
-                    <MobileVendorCard
-                      key={gpCode}
-                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                      imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                      venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                      launchGame={() => launchLobbyGame(gpCode)}
-                      status={status}
-                      venderName={name}
-                    />
-                  );
-                })}
-              {!hasMappingData && <div>No data</div>}
-            </CategoryContent>
-          </CategoryContentWrapper>
-        </>
-      )}
-      {isDesktopSize && (
-        <DesktopCategoryContentWrapper>
-          {hasMappingData &&
-            lobbyCategoryList.map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              if (gpCode === "BC") return null;
-              return (
-                <DesktopVendorCard
-                  key={gpCode}
-                  bgUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          {!hasMappingData && <div>No data</div>}
-        </DesktopCategoryContentWrapper>
-      )}
-    </Wrapper>
+            if (gpCode === "BC") return null;
+            return (
+              <MobileVendorCard
+                key={gpCode}
+                bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
+                imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                launchGame={() => launchLobbyGame(gpCode)}
+                status={status}
+                venderName={name}
+              />
+            );
+          })}
+        {!hasMappingData && <div>No data</div>}
+      </CategoryContent>
+    </CategoryContentWrapper>
   );
 };
 

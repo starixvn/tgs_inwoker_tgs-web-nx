@@ -12,23 +12,20 @@ const CategoryRenderer = () => {
   const { isDesktopSize } = useRwd();
   const history = useHistory();
 
-  useEffect(() => {
-    if (history.location.pathname === "/") {
-      handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SPORTS);
-    } else {
-      handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SPORTS);
-    }
-  }, [isDesktopSize]);
+  // useEffect(() => {
+  //   if (history.location.pathname === "/") {
+  //     handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SPORTS);
+  //   } else {
+  //     handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SPORTS);
+  //   }
+  // }, [isDesktopSize]);
 
   console.log("activeGameType", activeGameType);
 
-  if (isDesktopSize) {
-    switch (activeGameType) {
-      case GameTypeEnum.NONE:
-        return <HomeCategory />;
-    }
+  switch (activeGameType) {
+    case GameTypeEnum.NONE:
+      return <HomeCategory />;
   }
-
   switch (activeGameType) {
     case GameTypeEnum.SLOT:
     case GameTypeEnum.FISH:

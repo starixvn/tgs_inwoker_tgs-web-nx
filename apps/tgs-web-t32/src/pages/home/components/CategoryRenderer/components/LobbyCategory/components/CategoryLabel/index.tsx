@@ -12,10 +12,11 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.div`
-    color:#9DACD0;
-    margin-left: 5px;
-    font-size: 18px;
+    color:  ${({ theme }) => theme.primary};
+    margin-left: 8px;
+    font-size: 16.719px;
     font-weight: 700;
+    line-height: 28px;
 `;
 
 const CategoryLabel: FC<Props> = ({ imageUrl, text }) => {

@@ -5,10 +5,20 @@ import { useHistory } from "react-router-dom";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useMemo } from "react";
+import { useAccountStore } from "@tgs-web-nx/core";
+import CategoryLabel from "../LobbyCategory/components/CategoryLabel";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
+import productIcon from "@/assets/t32/images/home/product.svg";
+
+const CategoryTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;
 
 const DesktopContainer = styled.div`
   display: flex;
@@ -59,7 +69,6 @@ const CategoryName = styled.div`
 const HomeCategoryWrapper = styled.div`
   border: 1px solid red;
   width: 100%;
-
 `;
 
 const Wrapper = styled.div`
@@ -77,7 +86,7 @@ const Wrapper = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
-  width: 100%
+  width: 100%;
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
@@ -101,45 +110,46 @@ type GameTypeItem = {
 
 const HomeCategory = () => {
   const history = useHistory();
+  const { account } = useAccountStore();
   const { isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
 
-  const launchLobbyGame = (gpcode: string) => {
-    if (!account.token) {
-      history.push("/login");
-      return;
-    }
+  // const launchLobbyGame = (gpcode: string) => {
+  //   if (!account.token) {
+  //     history.push("/login");
+  //     return;
+  //   }
 
-    if (activeGameType === GameTypeEnum.COCKFIGHT) {
-      // 以後SM01不會開,多新增AWC_COCKFIGHT(缺對應api)
-      if (gpcode === "SM01") {
-        const gameWindow = window.open("", "Cockfight");
-        if (gameWindow) {
-          GameService.GetCockfight()
-            .then((res) => {
-              gameWindow.document.write(res?.data);
-              gameWindow.document.close();
-              gameWindow.focus();
-            })
-            .catch(() => {
-              gameWindow.close();
-            });
-        }
-      } else {
-        Common.closePreviousPopup();
-        Common.PopupCenter(`/joinlobbygame/${GameTypeEnum.SPORTS}/${gpcode}`, "gamewindow");
-      }
-    } else {
-      const audioElement = document.getElementById("audio") as HTMLAudioElement | null;
-      if (audioElement) {
-        audioElement.volume = 0;
-      }
-      Common.closePreviousPopup();
-      Common.PopupCenter(`/joinlobbygame/${activeGameType}/${gpcode}`, "gamewindow");
-    }
-  };
+  //   if (activeGameType === GameTypeEnum.COCKFIGHT) {
+  //     // 以後SM01不會開,多新增AWC_COCKFIGHT(缺對應api)
+  //     if (gpcode === "SM01") {
+  //       const gameWindow = window.open("", "Cockfight");
+  //       if (gameWindow) {
+  //         GameService.GetCockfight()
+  //           .then((res) => {
+  //             gameWindow.document.write(res?.data);
+  //             gameWindow.document.close();
+  //             gameWindow.focus();
+  //           })
+  //           .catch(() => {
+  //             gameWindow.close();
+  //           });
+  //       }
+  //     } else {
+  //       Common.closePreviousPopup();
+  //       Common.PopupCenter(`/joinlobbygame/${GameTypeEnum.SPORTS}/${gpcode}`, "gamewindow");
+  //     }
+  //   } else {
+  //     const audioElement = document.getElementById("audio") as HTMLAudioElement | null;
+  //     if (audioElement) {
+  //       audioElement.volume = 0;
+  //     }
+  //     Common.closePreviousPopup();
+  //     Common.PopupCenter(`/joinlobbygame/${activeGameType}/${gpcode}`, "gamewindow");
+  //   }
+  // };
 
   // const handleClick = (gameTypeItem: GameTypeItem) => {
   //   handleChangeGameType(gameTypeItem.gameType);
@@ -150,8 +160,12 @@ const HomeCategory = () => {
 
   return (
     <HomeCategoryWrapper>
+      <CategoryTitle>
+        <CategoryLabel imageUrl={productIcon} text={"Product"} />
+      </CategoryTitle>
       <GameTypeTab />
-      <CategoryContentWrapper>
+
+      {/* <CategoryContentWrapper>
         <CategoryContent>
           {hasMappingData &&
             lobbyCategoryList.map((provider) => {
@@ -172,7 +186,7 @@ const HomeCategory = () => {
             })}
           {!hasMappingData && <div>No data</div>}
         </CategoryContent>
-      </CategoryContentWrapper>
+      </CategoryContentWrapper> */}
     </HomeCategoryWrapper>
   );
 };

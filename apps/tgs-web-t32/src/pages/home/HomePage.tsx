@@ -5,17 +5,18 @@ import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
+import CategoryLabel from "./components/CategoryRenderer/components/LobbyCategory/components/CategoryLabel";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import bg from "@/assets/t32/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Features from "@/pages/home/components/Features";
+import productIcon from "@/assets/t32/images/home/product.svg";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -42,15 +43,6 @@ const MainContentWrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 20px;
-
-  ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
-    margin: 0 auto;
-    gap: unset;
-    background-image: url(${bg});
-    background-size: unset;
-    background-repeat: repeat;
-  }
 `;
 
 const BannerWrapper = styled.div`
@@ -77,6 +69,12 @@ const Division = styled.div`
   width: 100%;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.20);
+`;
+
+const CategoryTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const HomePage = () => {
@@ -111,11 +109,21 @@ const HomePage = () => {
       {isMobileSize && <><CardPrompt /><MobileSlider /></>}
 
       <MainContentWrapper>
-        <Features />
-        <Division />
+        {!activeGameType &&
+          <>
+            <Features />
+            <Division />
+          </>
+        }
 
-        {/* <GameTypeTab /> */}
-        {/* <CategoryRenderer /> */}
+        <CategoryRenderer />
+        <>
+          {/* <CategoryTitle>
+            <CategoryLabel imageUrl={productIcon} text={"Product"} />
+          </CategoryTitle>
+          <GameTypeTab />
+          <CategoryRenderer /> */}
+        </>
       </MainContentWrapper>
     </MainWrapper>
   );
