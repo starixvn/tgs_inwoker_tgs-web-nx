@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { theme } from "@/theme";
-
 type Props = {
   formInput: FormikFormInput;
   formik: any;
@@ -25,7 +25,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   };
 
   const inputType = isShowPassword ? "text" : "password";
-
+  const { isMobileSize } = useRwd();
   return (
     <GrayInputWrapper key={name}>
       <TextField
@@ -47,7 +47,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                style={{ color: theme.text }}
+                style={{ color: isMobileSize ? theme.text : theme.black }}
               >
                 {isShowPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>

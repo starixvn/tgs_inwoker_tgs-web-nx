@@ -21,6 +21,11 @@ const VerifyAgeContainer = styled.div`
   font-size: 0.875rem;
   display: flex;
   align-items: start;
+  align-items: center;
+`;
+
+const RegisterContract = styled.div`
+  max-width: 500px;
 `;
 
 const CreatePlayerStage = () => {
@@ -43,7 +48,7 @@ const CreatePlayerStage = () => {
     >
       <VerifyAgeContainer>
         <Checkbox value={isConfirmedAdult} onClick={handleClickConfirmAdult} />
-        {i18n.t("web.register.contract")}
+        <RegisterContract>{i18n.t("web.register.contract")}</RegisterContract>
       </VerifyAgeContainer>
     </FormikForm>
   );

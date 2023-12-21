@@ -3,15 +3,17 @@ import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
+  background: theme.palette.inputBackground,
+  border: `1px solid ${theme.palette.white30}`,
   input: {
     padding: "12px 20px",
-    color: theme.palette.black,
+    color: theme.palette.text.primary,
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
 
     "&:-webkit-autofill": {
-      WebkitTextFillColor: `${theme.palette.black} !important`,
+      WebkitTextFillColor: `${theme.palette.white} !important`,
     },
   },
   label: {
@@ -31,9 +33,13 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontWeight: 400,
   },
   [theme.breakpoints.up("sm")]: {
+    background: `white`,
     input: {
       color: theme.palette.black,
       fontSize: "0.875rem",
+      "&:-webkit-autofill": {
+        WebkitTextFillColor: `${theme.palette.black} !important`,
+      },
     },
     label: {
       fontSize: "0.875rem",
