@@ -12,10 +12,12 @@ const InputWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 5px 10px;
-  border-radius: 50px;
+  padding: 0px 12px;
+  gap: 8px;
+  flex: 1 0 0;
+  border-radius: 4px;
   background-color: ${({ theme }) => theme.white};
-  border: 1px solid ${({ theme }) => theme.mainBackground};
+  border: 1px solid ${({ theme }) => theme.primary};
 `;
 
 const InputTextfield = styled.input`
@@ -27,10 +29,9 @@ const InputTextfield = styled.input`
   outline: none;
   width: 100%;
   font-size: 0.875rem;
-  color: ${(props) => props.theme.text};
-  margin-left: 5px;
+  
   &::placeholder {
-    color: ${(props) => props.theme.text};
+    color: rgba(0, 0, 0, 0.20);
     font-weight: 700;
     line-height: 0.875rem;
   }

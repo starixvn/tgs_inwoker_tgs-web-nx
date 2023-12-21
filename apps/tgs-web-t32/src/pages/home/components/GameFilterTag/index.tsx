@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
 import Tag from "./Tag";
 import { gameTagList } from "@/constants/gameTag";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
+import SearchInput from "@/pages/home/components/SearchInput";
+import searchIcon from "@/assets/t32/images/home/search.svg";
 
-const TagContainer = styled.div`
+const FilterSection = styled.div`
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const ProvidorTagContainer = styled.div`
+  width: 100%;
+  height: 32px;
   overflow-x: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 0px 6px 0px 14px;
-  border-radius: 100px;
-  border: 1px solid ${({ theme }) => theme.text};
   align-self: stretch;
 
   ${media.sm} {
@@ -40,6 +47,19 @@ const TagContainer = styled.div`
   }
 `;
 
+const CommonContainer = styled.div`
+  width: 100%;
+  height: 32px;
+  display: flex;
+  gap: 8px;
+
+  ${media.sm} {
+    width: 300px;
+    height: 100%;
+    margin-left: 8px;
+  }
+`;
+
 const GameFilterTag = () => {
   const {
     activeFilterTag,
@@ -48,6 +68,8 @@ const GameFilterTag = () => {
     activeProviderFilterTag,
     handleChangeActiveProviderFilterTag,
     providerFilterTagList,
+    searchString,
+    handleChangeSearch,
   } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
 
@@ -81,68 +103,77 @@ const GameFilterTag = () => {
   };
 
   return (
-    <TagContainer>
-      {filterTagList.map((filterTag) => {
-        const { name, tagType } = filterTag;
+    <FilterSection>
+      <ProvidorTagContainer>
+        {providerFilterTagList.map((filterTag) => {
+          const { name, gpCode } = filterTag;
 
-        const isActive =
-          filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType;
+          console.log(filterTag.tagType)
 
-        const tagCmp = gameTagList.find((tag) => tag.text === name);
+          const isActive =
+            filterTag.tagType === FilterTagTypeEnum.ALL ||
+            (filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
+              gpCode === activeProviderFilterTag.gpCode);
 
-        if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          return null;
-        }
+          const tagCmp = gameTagList.find((tag) => tag.text === name);
 
-        return (
-          <Tag
-            key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleFilterClick(filterTag)}
-          >
-            {tagCmp &&
-              tagCmp.iconComponent &&
-              React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.text,
-              })}
-          </Tag>
-        );
-      })}
+          return (
+            <Tag
+              key={name}
+              text={name}
+              isActive={isActive}
+              isShowIcon={gameTagList.some((tag) => tag.text === name)}
+              onClick={() => handleFilterClick(filterTag)}
+            >
+              {tagCmp &&
+                tagCmp.iconComponent &&
+                React.createElement(tagCmp.iconComponent, {
+                  $color: isActive ? theme.primary : theme.text,
+                })}
+            </Tag>
+          );
+        })}
+      </ProvidorTagContainer>
 
-      {/* Provider list */}
+      <CommonContainer>
+        {filterTagList.map((filterTag) => {
+          const { name, tagType } = filterTag;
 
-      {providerFilterTagList.map((filterTag) => {
-        const { name, gpCode } = filterTag;
+          const isActive =
+            filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType;
 
-        const isActive =
-          filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
-          gpCode === activeProviderFilterTag.gpCode;
+          const tagCmp = gameTagList.find((tag) => tag.text === name);
 
-        const tagCmp = gameTagList.find((tag) => tag.text === name);
+          if (filterTag.tagType === FilterTagTypeEnum.ALL) {
+            return null;
+          }
 
-        if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          return null;
-        }
+          return (
+            <Tag
+              key={name}
+              text={name}
+              isActive={isActive}
+              isShowIcon={gameTagList.some((tag) => tag.text === name)}
+              onClick={() => handleFilterClick(filterTag)}
+            >
+              {tagCmp &&
+                tagCmp.iconComponent &&
+                React.createElement(tagCmp.iconComponent, {
+                  $color: isActive ? theme.primary : theme.text,
+                })}
+            </Tag>
+          );
+        })}
 
-        return (
-          <Tag
-            key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleFilterClick(filterTag)}
-          >
-            {tagCmp &&
-              tagCmp.iconComponent &&
-              React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.text,
-              })}
-          </Tag>
-        );
-      })}
-    </TagContainer>
+        <SearchInput
+          placeholder={i18n.t("slot.search")}
+          imageUrl={searchIcon}
+          handleChange={handleChangeSearch}
+          value={searchString}
+        />
+
+      </CommonContainer>
+    </FilterSection>
   );
 };
 

@@ -42,7 +42,7 @@ const MainContentWrapper = styled.div`
   padding: 20px 12px 40px 12px;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 20px;
+  gap: 10px;
 `;
 
 const BannerWrapper = styled.div`
