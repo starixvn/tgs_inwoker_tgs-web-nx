@@ -6,10 +6,11 @@ import { Common } from "@tgs-web-nx/utils";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { Button } from "@mui/material";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t29/images/home/play.svg";
 import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import { theme } from "@/theme";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -166,7 +167,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       return;
     }
     launchGame();
-  }
+  };
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");
@@ -218,8 +219,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg onClick={launchGameHandler}>
-          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
-          <PlayIcon src={playIcon} alt={"play"} />
+          {gameItem.name && <HoverGameName></HoverGameName>}
+          <Button style={{ background: theme.secondaryGradient, color: theme.black }}>PLAY</Button>
         </CardHoverBg>
       )}
     </GameCardBg>

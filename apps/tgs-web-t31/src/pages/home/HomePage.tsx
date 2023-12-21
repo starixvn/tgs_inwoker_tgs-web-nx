@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuth, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
@@ -18,6 +18,7 @@ import Banner from "@/pages/home/components/Banner";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import useBanner from "@/hooks/home/useBanner";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -120,11 +121,15 @@ const HomePage = () => {
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
 
-  const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
+  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
+    useHomeGameContext();
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
+
   const history = useHistory();
   const gameTypeList = useGameTypeList();
 
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
+  const hasNavData = !!navPopupCategoryList.length;
 
   const isNonLobby = isNonLobbyList.includes(activeGameType);
   const {
@@ -155,23 +160,10 @@ const HomePage = () => {
   }, [urlGameType]);
   return (
     <PageContainer>
-      {/* {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />} */}
+      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
-        <BannerWrapper>
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
-          {isDesktopSize && !activeGameType && <Banner />}
-        </BannerWrapper>
+        <BannerWrapper>{isDesktopSize && <Banner />}</BannerWrapper>
       ) : null}
 
       <MainContentContainer>
