@@ -109,7 +109,6 @@ const HomePage = () => {
 
   const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
     useHomeGameContext();
-  console.log(activeNavPopupGameType)
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const hasNavData = !!navPopupCategoryList.length;
   const history = useHistory();
