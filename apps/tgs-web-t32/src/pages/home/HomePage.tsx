@@ -14,30 +14,42 @@ import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t32/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import notification from "@/assets/t32/images/home/notify.svg";
-import Jackpot from "@/components/project/Jackpot";
-import useBanner from "@/hooks/home/useBanner";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import Features from "@/pages/home/components/Features";
 
 const MainWrapper = styled.div`
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  padding: 0px 8px 12px 8px;
-  gap: 6px;
-  flex-shrink: 0;
-  flex: 1;
+  
+  ${media.sm} {
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    gap: unset;
+  }
+`;
+
+const MainContentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 12px 40px 12px;
+  background-color: ${({ theme }) => theme.mainBackground};
+  color: ${({ theme }) => theme.white};
+  gap: 20px;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
-    height: unset;
-    padding: 0px 0px 0px 0px;
+    background-image: url(${bg});
+    background-size: unset;
+    background-repeat: repeat;
   }
 `;
 
@@ -51,28 +63,6 @@ const BannerWrapper = styled.div`
   }
 `;
 
-const MainContentWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
-  color: ${({ theme }) => theme.white};
-  gap: 6px;
-  flex-shrink: 0;
-  flex: 1;
-
-  ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
-    margin: 0 auto;
-    gap: unset;
-    background-image: url(${bg});
-    background-size: unset;
-    background-repeat: repeat;
-  }
-`;
-
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
   height: 450px;
@@ -83,45 +73,17 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   background-position: center;
 `;
 
-const MarqueeContainer = styled.div`
-  position: relative;
-  overflow: visible;
-  height: 100%;
+const Division = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.875rem;
-  padding: 10px;
-  color: ${({ theme }) => theme.white};
-  background: #000000b2;
-`;
-
-const MarqueeContent = styled.div`
-  display: flex;
-`;
-
-const MarqueesBackground = styled.div`
-  display: inline;
-  overflow: visible;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.20);
 `;
 
 const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const {
-    ui: { marquees },
-  } = useUiStore();
-  const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
-  const hasData = marquees && marquees.length > 0;
-
   const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
-
-  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-
-  const isNonLobby = isNonLobbyList.includes(activeGameType);
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -146,13 +108,15 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {isMobileSize && <CardPrompt />}
-      {isMobileSize && <MobileSlider />}
-      <GameTypeTab />
+      {isMobileSize && <><CardPrompt /><MobileSlider /></>}
 
-      {/* <MainContentWrapper>
-        <CategoryRenderer />
-      </MainContentWrapper> */}
+      <MainContentWrapper>
+        <Features />
+        <Division />
+
+        {/* <GameTypeTab /> */}
+        {/* <CategoryRenderer /> */}
+      </MainContentWrapper>
     </MainWrapper>
   );
 };
