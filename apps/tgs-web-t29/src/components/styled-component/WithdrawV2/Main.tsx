@@ -87,13 +87,13 @@ export const LimitPopupContainer = styled.div`
   line-height: 25px;
 `;
 export const Turnover = styled.div`
-  display: flex;
+  /* display: flex; */
   color: ${({ theme }) => theme.text};
-  span {
+  /* span {
     margin-left: 5px;
     color: ${({ theme }) => theme.secondary};
     font-weight: bold;
-  }
+  } */
 `;
 export const ButtonWrapper = styled.div`
   margin: 0 0 0 0;
@@ -135,18 +135,9 @@ export const SubHeaderContainer = styled.div`
 `;
 
 export const TurnoverTextWrapper = styled.div`
-  display: flex;
+  /* display: flex; */
   align-items: center;
-`;
-export const DetailText = styled.div`
-  margin-left: 5px;
-  text-decoration: underline;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: 0em;
-  color: ${({ theme }) => theme.gray50};
-  cursor: pointer;
+  gap: 10px;
 `;
 
 export const Hint = styled.div`
@@ -156,4 +147,13 @@ export const Hint = styled.div`
   letter-spacing: 0em;
   margin: 10px 0;
   color: ${({ theme }) => theme.gray50};
+`;
+
+export const RequireWrapper = styled.div`
+  display: flex;
+  margin: 5px 0;
+`;
+
+export const RequireAmount = styled.div`
+  font-weight: bold;
 `;

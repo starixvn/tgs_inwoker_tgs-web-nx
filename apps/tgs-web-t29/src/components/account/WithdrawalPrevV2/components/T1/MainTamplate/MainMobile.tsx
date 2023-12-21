@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
+import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { MainProps } from "./index";
 import {
   FormControl,
@@ -12,8 +13,9 @@ import {
 import { TextField } from "@/components/UI/TextField";
 import WithdrawInfoCard from "@/pages/withdrawal/components/WithdrawInfoCard";
 import {
-  DetailText,
   ManageBankCardButtonContainer,
+  RequireAmount,
+  RequireWrapper,
   Turnover,
   TurnoverTextWrapper,
 } from "@/components/styled-component/WithdrawV2/Main";
@@ -46,7 +48,29 @@ const MainMobile = ({
   handleWithdrawalClick,
 }: MainProps) => {
   const history = useHistory();
+  const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
+    useWageringPage();
 
+  useEffect(() => {
+    fetchpPlayerBucket();
+  }, []);
+
+  const gett18Translation = (type: string) => {
+    switch (type) {
+      case "LiveDealer":
+        return i18n.t("common.live");
+      case "Sportsbook":
+        return i18n.t("common.sports");
+      case "Slot":
+        return i18n.t("common.slot");
+      case "CardGame":
+        return i18n.t("common.chess");
+      case "Lottery":
+        return i18n.t("common.lottery");
+      case "VirtualSports":
+        return i18n.t("common.virtualsports");
+    }
+  };
   return (
     <>
       <WithdrawInfoCard />
@@ -145,12 +169,18 @@ const MainMobile = ({
       <Turnover>
         {i18n.t("withdrawal.turnover")}
         <TurnoverTextWrapper>
-          <span>{Common.formatNumberWithThousand(minWithdrawLimit)}</span>
-          <DetailText
-            onClick={() => {
-              history.push("/wagering");
-            }}
-          >{`(${i18n.t("withdrawal.checkDetails")})`}</DetailText>
+          <RequireWrapper>
+            <span>Main:</span>
+            <RequireAmount> {wageringRequirement}</RequireAmount>
+          </RequireWrapper>
+          {playerBuckets.map((bucket) => {
+            return (
+              <RequireWrapper>
+                <span>{gett18Translation(bucket.key)}:</span>
+                <RequireAmount> {Common.formatNumberWithThousand(bucket.amount)}</RequireAmount>
+              </RequireWrapper>
+            );
+          })}
         </TurnoverTextWrapper>
       </Turnover>
 
