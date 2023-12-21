@@ -60,6 +60,7 @@ const DesktopWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  gap: 10px;
 `;
 
 const Text = styled.div`

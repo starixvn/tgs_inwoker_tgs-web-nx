@@ -23,12 +23,12 @@ const GameCardContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.mainLightBackground};
 
   ${media.sm} {
-    width: calc((100% - 15px * 2) / 3);
+    width: calc((100% - 15px * 1) / 2);
     padding: 0 10px;
   }
 
-  ${media.sm} {
-    width: calc((100% - 15px * 3) / 4);
+  ${media.md} {
+    width: calc((100% - 15px * 2) / 3);
   }
 
   ${media.lg} {
