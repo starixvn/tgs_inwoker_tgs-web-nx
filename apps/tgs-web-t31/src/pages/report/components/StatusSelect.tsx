@@ -69,7 +69,7 @@ const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) =
     <StatusSelectWrapper>
       <SelectLabel>{i18n.t("report.status")}</SelectLabel>
       <StatusSelectContainer>
-        <SelectFormControl variant="outlined">
+        {/* <SelectFormControl variant="outlined"> */}
           <Select native onChange={handleStatusChange} value={status} fullWidth>
             <option style={{ background: theme.black }} value={""}>
               {i18n.t("report.all")}
@@ -83,7 +83,7 @@ const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) =
               );
             })}
           </Select>
-        </SelectFormControl>
+        {/* </SelectFormControl> */}
       </StatusSelectContainer>
     </StatusSelectWrapper>
   );
