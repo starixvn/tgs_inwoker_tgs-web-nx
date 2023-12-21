@@ -168,7 +168,7 @@ const MainDesktop = ({
                 return (
                   <RequireWrapper>
                     <span>{gett18Translation(bucket.key)}:</span>
-                    <RequireAmount> {Common.formatNumberWithThousand(bucket.amount)}</RequireAmount>
+                    <RequireAmount> {bucket.amount}</RequireAmount>
                   </RequireWrapper>
                 );
               })}

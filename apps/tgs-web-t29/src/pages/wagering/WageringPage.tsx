@@ -39,6 +39,7 @@ const WageringContainer = styled.div`
 
 const Requirement = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.blue20};
   width: 720px;
@@ -54,7 +55,7 @@ const Requirement = styled.div`
 `;
 
 const TitleItem = styled.div`
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 17px;
   letter-spacing: 0em;
@@ -118,7 +119,6 @@ const CardAmount = styled.div`
 const WageringPage = () => {
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
     useWageringPage();
-  console.log(wageringRequirement);
   const { isDesktopSize } = useRwd();
 
   const gett18Translation = (type: string) => {
@@ -166,7 +166,7 @@ const WageringPage = () => {
         <WageringContainer>
           <Requirement>
             <img src={iconCard} alt="" />
-            <TitleItem> {"Main"}</TitleItem>
+            <TitleItem> Main</TitleItem>
             <TitleAmountText>{wageringRequirement}</TitleAmountText>
           </Requirement>
           <GameWageringContainer>
