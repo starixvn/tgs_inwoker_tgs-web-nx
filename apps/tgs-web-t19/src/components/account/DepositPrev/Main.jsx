@@ -77,8 +77,9 @@ class Main extends Component {
       let detail = "";
       switch (data.banktype.toUpperCase()) {
         case "BANK":
-          detail = `${data.detail.bankName || ""} - ${data.detail.name || ""} - ${data.detail.bankAccount || ""
-            }`;
+          detail = `${data.detail.bankName || ""} - ${data.detail.name || ""} - ${
+            data.detail.bankAccount || ""
+          }`;
           break;
         case "EWALLET":
         case "E-WALLET":
@@ -93,11 +94,11 @@ class Main extends Component {
       }
       return detail;
     };
-    const transferFee = selectedPaymentMethod.channel[this.props.selectedChannelIndex].fees;
-    const transferLimitFrom =
-      selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.from;
-    const transferLimitTo =
-      selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.to;
+    const channel = selectedPaymentMethod.channel[this.props.selectedChannelIndex];
+    const transferFee = channel.fees;
+    const transferLimitFrom = channel.transferlimit.from;
+    const transferLimitTo = channel.transferlimit.to;
+    const channelExtend = channel.extended;
 
     return (
       <>
@@ -122,8 +123,8 @@ class Main extends Component {
                         key={item.methodid}
                         text={
                           config.features.CustomKING8Deposit &&
-                            (paymentCode("manual") || alteredPaymentCode("manual")) &&
-                            i18n.exists(`king8.${item.methodcode}`)
+                          (paymentCode("manual") || alteredPaymentCode("manual")) &&
+                          i18n.exists(`king8.${item.methodcode}`)
                             ? i18n.t(`king8.${item.methodcode}`)
                             : i18n.t(item.methodcode)
                         }
@@ -188,9 +189,6 @@ class Main extends Component {
         {/*轉帳賬戶*/}
         {(() => {
           if (config.features.Deposit_AddCard && this.props.selectedBankCard !== "") {
-            const channel = selectedPaymentMethod.channel[this.props.selectedChannelIndex];
-            const channelExtend =
-              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended;
             if (!methodCode("BANKTRANSFER") && !methodCode("EWALLET") && !methodCode("PULSA")) {
               return null;
             }
@@ -303,9 +301,6 @@ class Main extends Component {
               alteredPaymentCode("manual")) &&
             !config.features.Deposit_AddCard
           ) {
-            const channelExtend =
-              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended;
-
             if (methodCode("THIRDPARTY")) {
               return (
                 <ItemContainer>
@@ -335,101 +330,101 @@ class Main extends Component {
                     methodCode("USDT") ||
                     config.features.Deposit_AddCard
                   ) && (
-                      <>
-                        {this.props.wallet.bankCardList.length > 1 &&
-                          !config.features.Deposit_AccountNameManualInput ? (
-                          <ItemContainer>
-                            <LabelContainer>
-                              {config.features.Deposit_OriginAccount
-                                ? i18n.t("idr1.pleaseEnterAccountName")
-                                : i18n.t("common.pleaseEnterAccountName")}
-                            </LabelContainer>
-                            <FormControl variant="outlined">
-                              <Select
-                                native
-                                id="customSelect"
-                                value={this.props.selectedBankCard}
-                                onChange={(e) => this.props.handleSelectAccountChange(e)}
-                              >
-                                <option value="" disabled>
-                                  {config.features.Deposit_OriginAccount
-                                    ? i18n.t("idr1.pleaseEnterAccountName")
-                                    : i18n.t("common.pleaseEnterAccountName")}
-                                </option>
-                                {this.props.wallet.bankCardList.map((item, index) => {
-                                  const detail = item.detail;
-                                  return (
-                                    <option value={item.id} key={index}>
-                                      {detail.bankAccount || detail.address || detail.phone} (
-                                      {item.banktype})
-                                    </option>
-                                  );
-                                })}
-                              </Select>
-                            </FormControl>
-                          </ItemContainer>
-                        ) : (
-                          <ItemContainer>
-                            <LabelContainer>
-                              {config.features.Deposit_OriginAccount ? (
-                                i18n.t("idr1.pleaseEnterAccountName")
-                              ) : (
-                                <>
-                                  <div>{i18n.t("common.pleaseEnterAccountName")}</div>
-                                  <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText>
-                                </>
-                              )}
-                            </LabelContainer>
-                            <FormControl variant="outlined">
-                              <TextField
-                                type={"text"}
-                                placeholder={
-                                  config.features.Deposit_OriginAccount
-                                    ? i18n.t("idr1.pleaseEnterAccountName")
-                                    : i18n.t("common.pleaseEnterAccountName")
-                                }
-                                value={this.props.account}
-                                disabled={
-                                  !config.features.Deposit_AccountNameManualInput &&
-                                  config.features.Deposit_AutofillFirstCard &&
-                                  this.props.wallet.bankCardList.length > 1
-                                }
-                                onChange={(e) => this.props.handleAccountChange(e)}
-                              />
-                            </FormControl>
-                          </ItemContainer>
-                        )}
-                      </>
-                    )}
+                    <>
+                      {this.props.wallet.bankCardList.length > 1 &&
+                      !config.features.Deposit_AccountNameManualInput ? (
+                        <ItemContainer>
+                          <LabelContainer>
+                            {config.features.Deposit_OriginAccount
+                              ? i18n.t("idr1.pleaseEnterAccountName")
+                              : i18n.t("common.pleaseEnterAccountName")}
+                          </LabelContainer>
+                          <FormControl variant="outlined">
+                            <Select
+                              native
+                              id="customSelect"
+                              value={this.props.selectedBankCard}
+                              onChange={(e) => this.props.handleSelectAccountChange(e)}
+                            >
+                              <option value="" disabled>
+                                {config.features.Deposit_OriginAccount
+                                  ? i18n.t("idr1.pleaseEnterAccountName")
+                                  : i18n.t("common.pleaseEnterAccountName")}
+                              </option>
+                              {this.props.wallet.bankCardList.map((item, index) => {
+                                const detail = item.detail;
+                                return (
+                                  <option value={item.id} key={index}>
+                                    {detail.bankAccount || detail.address || detail.phone} (
+                                    {item.banktype})
+                                  </option>
+                                );
+                              })}
+                            </Select>
+                          </FormControl>
+                        </ItemContainer>
+                      ) : (
+                        <ItemContainer>
+                          <LabelContainer>
+                            {config.features.Deposit_OriginAccount ? (
+                              i18n.t("idr1.pleaseEnterAccountName")
+                            ) : (
+                              <>
+                                <div>{i18n.t("common.pleaseEnterAccountName")}</div>
+                                <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText>
+                              </>
+                            )}
+                          </LabelContainer>
+                          <FormControl variant="outlined">
+                            <TextField
+                              type={"text"}
+                              placeholder={
+                                config.features.Deposit_OriginAccount
+                                  ? i18n.t("idr1.pleaseEnterAccountName")
+                                  : i18n.t("common.pleaseEnterAccountName")
+                              }
+                              value={this.props.account}
+                              disabled={
+                                !config.features.Deposit_AccountNameManualInput &&
+                                config.features.Deposit_AutofillFirstCard &&
+                                this.props.wallet.bankCardList.length > 1
+                              }
+                              onChange={(e) => this.props.handleAccountChange(e)}
+                            />
+                          </FormControl>
+                        </ItemContainer>
+                      )}
+                    </>
+                  )}
                   {(!(config.features.Deposit_RemoveName || methodCode("fps")) ||
                     config.features.Deposit_FPSWithName) && (
-                      <>
-                        {/*请输入银行账户名称*/}
-                        <TextField
-                          style={{ margin: "20px auto 20px auto" }}
-                          type={"text"}
-                          placeholder={
-                            config.features.Deposit_CustomBankNameTranslation
-                              ? i18n.t("mgm.msgPlsEnterAccount")
-                              : config.features.Deposit_EnglishName
-                                ? i18n.t("bet28.msgEnterBankAccountName")
-                                : i18n.t("deposit.msgPlsEnterAccount")
-                          }
-                          label={
-                            (config.features.Deposit_CustomBankNameTranslation
-                              ? i18n.t("mgm.msgPlsEnterAccount")
-                              : config.features.Deposit_EnglishName
-                                ? i18n.t("bet28.BankAccountName")
-                                : i18n.t("deposit.msgPlsEnterAccount")) +
-                            (config.features.Deposit_AddTips
-                              ? " *" + i18n.t("mgm.nameDepositTips")
-                              : "")
-                          }
-                          value={this.props.name}
-                          onChange={(e) => this.props.handleNameChange(e)}
-                        />
-                      </>
-                    )}
+                    <>
+                      {/*请输入银行账户名称*/}
+                      <TextField
+                        style={{ margin: "20px auto 20px auto" }}
+                        type={"text"}
+                        placeholder={
+                          config.features.Deposit_CustomBankNameTranslation
+                            ? i18n.t("mgm.msgPlsEnterAccount")
+                            : config.features.Deposit_EnglishName
+                            ? i18n.t("bet28.msgEnterBankAccountName")
+                            : i18n.t("deposit.msgPlsEnterAccount")
+                        }
+                        label={
+                          (config.features.Deposit_CustomBankNameTranslation
+                            ? i18n.t("mgm.msgPlsEnterAccount")
+                            : config.features.Deposit_EnglishName
+                            ? i18n.t("bet28.BankAccountName")
+                            : i18n.t("deposit.msgPlsEnterAccount")) +
+                          (config.features.Deposit_AddTips
+                            ? " *" + i18n.t("mgm.nameDepositTips")
+                            : "")
+                        }
+                        value={this.props.name}
+                        onChange={(e) => this.props.handleNameChange(e)}
+                      />
+                    </>
+                  )}
                 </>
               );
             }
@@ -447,13 +442,9 @@ class Main extends Component {
               type={"number"}
               placeholder={
                 i18n.t("deposit.msgPleaseEnter") +
-                Common.formatNumberWithThousand(
-                  selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.from,
-                ) +
+                Common.formatNumberWithThousand(channel.transferlimit.from) +
                 "-" +
-                Common.formatNumberWithThousand(
-                  selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.to,
-                ) +
+                Common.formatNumberWithThousand(channel.transferlimit.to) +
                 i18n.t("deposit.dollor")
               }
             />
@@ -476,13 +467,8 @@ class Main extends Component {
 
         {paymentCode("umpay") && <Remark>{i18n.t("deposit.ppRemark")}</Remark>}
         {(() => {
-          if (
-            methodCode("usdt") &&
-            selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended.rate !==
-            undefined
-          ) {
-            const usdtRate =
-              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended.rate;
+          if (methodCode("usdt") && channel.extended.rate !== undefined) {
+            const usdtRate = channel.extended.rate;
             if (
               paymentCode("manual") ||
               paymentCode("usdt") ||
@@ -501,10 +487,11 @@ class Main extends Component {
                   {/*上分金额*/}
                   <LimitLabel>{i18n.t("deposit.totalAmount")}</LimitLabel>
                   {" :  "}
-                  <LimitAmount>{` ${isNaN(this.props.amount) === false
+                  <LimitAmount>{` ${
+                    isNaN(this.props.amount) === false
                       ? Common.formatNumberWithCommasNoRounding(this.props.amount / usdtRate)
                       : 0
-                    }`}</LimitAmount>
+                  }`}</LimitAmount>
                 </ExchangeRateContainer>
               );
             }
@@ -520,10 +507,11 @@ class Main extends Component {
                   <LimitLabel style={{ marginLeft: "26px" }}>
                     {i18n.t("deposit.expectedPayment")}
                   </LimitLabel>{" "}
-                  <LimitAmount>{` ${isNaN(this.props.amount) === false
+                  <LimitAmount>{` ${
+                    isNaN(this.props.amount) === false
                       ? (this.props.amount / this.props.exchangeRate.buyprice).toFixed(2)
                       : 0
-                    }`}</LimitAmount>
+                  }`}</LimitAmount>
                 </ExchangeRateContainer>
               );
             } else {
@@ -537,10 +525,11 @@ class Main extends Component {
                       <LimitLabel style={{ marginLeft: "26px" }}>
                         {i18n.t("deposit.expectedPayment")}
                       </LimitLabel>{" "}
-                      <LimitAmount>{` ${isNaN(this.props.amount) === false
+                      <LimitAmount>{` ${
+                        isNaN(this.props.amount) === false
                           ? (this.props.amount / this.props.exchangeRate[key][key2].rate).toFixed(2)
                           : 0
-                        }`}</LimitAmount>
+                      }`}</LimitAmount>
                     </ExchangeRateContainer>
                   );
                 });
@@ -637,7 +626,7 @@ class Main extends Component {
               value={this.props.playerNote}
               onChange={this.props.handlePlayerNoteChange}
               placeholder={i18n.t("deposit.plsEnterPlayerNote")}
-            // label={i18n.t("deposit.playerNote")}
+              // label={i18n.t("deposit.playerNote")}
             />
           )}
 
@@ -648,8 +637,7 @@ class Main extends Component {
           color={"primary"}
           fullWidth
           disabled={(() => {
-            const transferlimit =
-              selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit;
+            const transferlimit = channel.transferlimit;
 
             return (
               !!this.props.disabled ||

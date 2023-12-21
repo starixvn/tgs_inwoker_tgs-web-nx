@@ -30,7 +30,6 @@ import {
   TransferValue,
 } from "@/components/styled-component/Deposit";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
-import { theme } from "@/theme";
 
 const BadgeContainer = styled.div`
   display: flex;
@@ -95,11 +94,11 @@ class Main extends Component {
       }
       return detail;
     };
-    const transferFee = selectedPaymentMethod.channel[this.props.selectedChannelIndex].fees;
-    const transferLimitFrom =
-      selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.from;
-    const transferLimitTo =
-      selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.to;
+    const channel = selectedPaymentMethod.channel[this.props.selectedChannelIndex];
+    const transferFee = channel.fees;
+    const transferLimitFrom = channel.transferlimit.from;
+    const transferLimitTo = channel.transferlimit.to;
+    const channelExtend = channel.extended;
 
     return (
       <>
@@ -148,12 +147,12 @@ class Main extends Component {
                 value={this.props.selectedBankCard}
                 onChange={(e) => this.props.handleBankCardChange(e)}
               >
-                <option style={{ background: theme.black }} value="" disabled>
+                <option value="" disabled>
                   {i18n.t("idr1.pleaseEnterAccountName")}
                 </option>
                 {this.props.bankCardList.map((item, index) => {
                   return (
-                    <option style={{ background: theme.black }} value={item.id} key={index}>
+                    <option value={item.id} key={index}>
                       {formatBankCardDetail(item)}
                     </option>
                   );
@@ -177,7 +176,7 @@ class Main extends Component {
                 {this.props.wallet.depositTypeList.length > 0 &&
                   selectedPaymentMethod.channel.map((item, index) => {
                     return (
-                      <option style={{ background: theme.black }} key={index} value={index}>
+                      <option key={index} value={index}>
                         {item.channelname}
                       </option>
                     );
@@ -190,9 +189,6 @@ class Main extends Component {
         {/*轉帳賬戶*/}
         {(() => {
           if (config.features.Deposit_AddCard && this.props.selectedBankCard !== "") {
-            const channel = selectedPaymentMethod.channel[this.props.selectedChannelIndex];
-            const channelExtend =
-              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended;
             if (!methodCode("BANKTRANSFER") && !methodCode("EWALLET") && !methodCode("PULSA")) {
               return null;
             }
@@ -305,9 +301,6 @@ class Main extends Component {
               alteredPaymentCode("manual")) &&
             !config.features.Deposit_AddCard
           ) {
-            const channelExtend =
-              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended;
-
             if (methodCode("THIRDPARTY")) {
               return (
                 <ItemContainer>
@@ -353,7 +346,7 @@ class Main extends Component {
                               value={this.props.selectedBankCard}
                               onChange={(e) => this.props.handleSelectAccountChange(e)}
                             >
-                              <option style={{ background: theme.black }} value="" disabled>
+                              <option value="" disabled>
                                 {config.features.Deposit_OriginAccount
                                   ? i18n.t("idr1.pleaseEnterAccountName")
                                   : i18n.t("common.pleaseEnterAccountName")}
@@ -361,7 +354,7 @@ class Main extends Component {
                               {this.props.wallet.bankCardList.map((item, index) => {
                                 const detail = item.detail;
                                 return (
-                                  <option style={{ background: theme.black }} value={item.id} key={index}>
+                                  <option value={item.id} key={index}>
                                     {detail.bankAccount || detail.address || detail.phone} (
                                     {item.banktype})
                                   </option>
@@ -449,13 +442,9 @@ class Main extends Component {
               type={"number"}
               placeholder={
                 i18n.t("deposit.msgPleaseEnter") +
-                Common.formatNumberWithThousand(
-                  selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.from,
-                ) +
+                Common.formatNumberWithThousand(channel.transferlimit.from) +
                 "-" +
-                Common.formatNumberWithThousand(
-                  selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit.to,
-                ) +
+                Common.formatNumberWithThousand(channel.transferlimit.to) +
                 i18n.t("deposit.dollor")
               }
             />
@@ -478,13 +467,8 @@ class Main extends Component {
 
         {paymentCode("umpay") && <Remark>{i18n.t("deposit.ppRemark")}</Remark>}
         {(() => {
-          if (
-            methodCode("usdt") &&
-            selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended.rate !==
-              undefined
-          ) {
-            const usdtRate =
-              selectedPaymentMethod.channel[this.props.selectedChannelIndex].extended.rate;
+          if (methodCode("usdt") && channel.extended.rate !== undefined) {
+            const usdtRate = channel.extended.rate;
             if (
               paymentCode("manual") ||
               paymentCode("usdt") ||
@@ -564,7 +548,7 @@ class Main extends Component {
               value={this.props.depositPromotion}
               onChange={(e) => this.props.handlePromotionChange(e)}
             >
-              <option style={{ background: theme.black }} value="">{i18n.t("deposit.msgPlsSelectPromotion")}</option>
+              <option value="">{i18n.t("deposit.msgPlsSelectPromotion")}</option>
               {this.props.general.promotionList.items
                 .filter(
                   (item) =>
@@ -581,7 +565,7 @@ class Main extends Component {
                 )
                 .map((item, index) => {
                   return (
-                    <option style={{ background: theme.black }} value={item.id} key={index}>
+                    <option value={item.id} key={index}>
                       {item.name}
                     </option>
                   );
@@ -653,8 +637,7 @@ class Main extends Component {
           color={"primary"}
           fullWidth
           disabled={(() => {
-            const transferlimit =
-              selectedPaymentMethod.channel[this.props.selectedChannelIndex].transferlimit;
+            const transferlimit = channel.transferlimit;
 
             return (
               !!this.props.disabled ||
