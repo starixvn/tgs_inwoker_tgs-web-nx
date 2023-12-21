@@ -322,6 +322,8 @@ class DepositPrev extends Component {
           return "crypto";
         case "thirdparty":
           return "thirdparty";
+        case "momo":
+          return "momo";
         default:
           return "bank";
       }
