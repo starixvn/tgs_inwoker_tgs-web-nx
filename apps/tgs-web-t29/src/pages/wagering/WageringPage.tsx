@@ -118,6 +118,7 @@ const CardAmount = styled.div`
 const WageringPage = () => {
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
     useWageringPage();
+  console.log(wageringRequirement);
   const { isDesktopSize } = useRwd();
 
   const gett18Translation = (type: string) => {
@@ -165,7 +166,7 @@ const WageringPage = () => {
         <WageringContainer>
           <Requirement>
             <img src={iconCard} alt="" />
-            <TitleItem> {"Wagering Requirement"}</TitleItem>
+            <TitleItem> {"Main"}</TitleItem>
             <TitleAmountText>{wageringRequirement}</TitleAmountText>
           </Requirement>
           <GameWageringContainer>

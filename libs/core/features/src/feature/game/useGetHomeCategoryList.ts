@@ -158,5 +158,6 @@ export function useGetHomeCategoryList() {
     providerGameList: gameListDictionary[FilterTagTypeEnum.PROVIDER] || [],
     getTableGameList,
     tableGameListState,
+    isTableGameLoading: tableGameListState.isLoading,
   };
 }

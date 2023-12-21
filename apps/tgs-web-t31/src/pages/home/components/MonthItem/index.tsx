@@ -29,6 +29,10 @@ const GameImg = styled.div``;
 const GameList = styled.div`
   height: 170px;
   flex-grow: 1;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const Game = styled.div`
   width: 100%;
@@ -44,15 +48,24 @@ const Game = styled.div`
 `;
 type Props = {
   dataList: GameItem[];
+  title: string;
 };
-const MonthItem = ({ dataList }: Props) => {
-  const title = "Hot games this month";
+const MonthItem = ({ dataList, title }: Props) => {
+  // const title = "Hot games this month";
   return (
     <MainWrapper>
       <Title>{title}</Title>
       <GameContent>
         <GameImg>
-          <img width={170} height={170} />
+          <img
+            width={170}
+            height={170}
+            src={`${
+              config.sourceUrl
+            }${dataList[0]?.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${dataList[0]
+              ?.code}.jpg`}
+            alt="slot"
+          />
         </GameImg>
         <GameList>
           {dataList.map((data: GameItem) => {
