@@ -14,6 +14,8 @@ import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t32/images/home/search.svg";
 
 const Wrapper = styled.div`
+border: 1px solid red;
+
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -95,7 +97,7 @@ const NonLobbyCategory = () => {
       {isMobileSize && (
         <>
           <GameTypeTab />
-          <CategoryContentWrapper>
+          {/* <CategoryContentWrapper>
             <FilterSection>
               <GameFilterTag />
               <SearchInputWrapper>
@@ -123,7 +125,7 @@ const NonLobbyCategory = () => {
                 ))}
               {!hasMappingData && !isLoading && <div>No data</div>}
             </CategoryContent>
-          </CategoryContentWrapper>
+          </CategoryContentWrapper> */}
         </>
       )}
 
@@ -137,11 +139,9 @@ const NonLobbyCategory = () => {
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
                 />
               ))}
             {!hasMappingData && !isLoading && <Text>No data</Text>}

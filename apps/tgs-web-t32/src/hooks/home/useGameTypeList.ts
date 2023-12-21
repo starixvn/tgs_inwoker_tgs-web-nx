@@ -27,6 +27,7 @@ type GameTypeItem = {
   fontSize: string;
   gameType: GameTypeEnum;
   iconComponent: React.FC<{ $color: string }>;
+  title: string;
 };
 
 export const useGameTypeList = () => {
@@ -41,6 +42,7 @@ export const useGameTypeList = () => {
         fontSize: "small",
         gameType: GameTypeEnum.SPORTS,
         iconComponent: Sport,
+        title: "Sports",
       },
       {
         key: "slots",
@@ -49,6 +51,7 @@ export const useGameTypeList = () => {
         fontSize: "small",
         gameType: GameTypeEnum.SLOT,
         iconComponent: Slot,
+        title: "Slots",
       },
       {
         key: "liveCasino",
@@ -57,6 +60,7 @@ export const useGameTypeList = () => {
         fontSize: "small",
         gameType: GameTypeEnum.LIVELOBBY,
         iconComponent: LiveCasino,
+        title: "Live Casino",
       },
       {
         key: "sabong",
@@ -65,6 +69,7 @@ export const useGameTypeList = () => {
         fontSize: "smaller",
         gameType: GameTypeEnum.COCKFIGHT,
         iconComponent: Sabong,
+        title: "Sabong",
       },
       {
         key: "egame",
@@ -73,6 +78,7 @@ export const useGameTypeList = () => {
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
         iconComponent: Egame,
+        title: "Egame",
       },
       {
         key: "fishing",
@@ -81,6 +87,7 @@ export const useGameTypeList = () => {
         fontSize: "smaller",
         gameType: GameTypeEnum.FISH,
         iconComponent: Fish,
+        title: "Fishing",
       },
       {
         key: "cardGame",
@@ -89,6 +96,7 @@ export const useGameTypeList = () => {
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
         iconComponent: CardGame,
+        title: "Card Game",
       },
       {
         key: "lottery",
@@ -97,6 +105,7 @@ export const useGameTypeList = () => {
         fontSize: "small",
         gameType: GameTypeEnum.LOTTERYLOBBY,
         iconComponent: Lottery,
+        title: "Lottery",
       },
       {
         key: "esports",
@@ -105,6 +114,7 @@ export const useGameTypeList = () => {
         fontSize: "smaller",
         gameType: GameTypeEnum.ESPORTS,
         iconComponent: Esports,
+        title: "Esports",
       },
     ];
 

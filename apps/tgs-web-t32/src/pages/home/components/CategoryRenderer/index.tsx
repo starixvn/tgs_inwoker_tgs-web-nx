@@ -20,8 +20,6 @@ const CategoryRenderer = () => {
   //   }
   // }, [isDesktopSize]);
 
-  console.log("activeGameType", activeGameType);
-
   switch (activeGameType) {
     case GameTypeEnum.NONE:
       return <HomeCategory />;
