@@ -22,7 +22,6 @@ type Props = {
   width?: string;
   height?: string;
 } & React.HTMLProps<HTMLDivElement>;
-//todo: delete after check
 const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
   return (
     // @ts-ignore
