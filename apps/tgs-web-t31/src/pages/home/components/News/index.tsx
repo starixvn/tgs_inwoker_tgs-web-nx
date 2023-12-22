@@ -1,17 +1,18 @@
-// import config from "@tgs-web-nx/config";
-// import { GameItem } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { hardcodeNews } from "./hardcoded";
+// import { hardcodeNews } from "./hardcoded";
+import { hardcodeNews } from "@/assets/t31/hardcode";
+
 import NewIcon from "@/assets/t31/images/home/News.svg";
 import sportsIcon from "@/assets/t31/images/home/gameType/desktop/Sports.svg";
 import PromotionIcon from "@/assets/t31/images/home/gameType/desktop/Promotion.svg";
 import vipIcon from "@/assets/t31/images/account/navItemWhite/icon-vip.svg";
 import newsImg from "@/assets/t31/images/home/newsBG.svg";
+
 const MainWrapper = styled.div`
   width: 100%;
   flex-grow: 1;
@@ -74,7 +75,7 @@ const NewsText = styled.div`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  -webkit-line-clamp: 2; /* 控制显示的行数 */
+  -webkit-line-clamp: 2;
   text-overflow: ellipsis;
 `;
 

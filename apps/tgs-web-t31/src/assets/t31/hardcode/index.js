@@ -207,3 +207,86 @@ export const hardcodeNews = [
     `,
   },
 ];
+
+export const hardcodeHome = [
+  {
+    title: "INFORMATION",
+    contents: [
+      {
+        subTitle: "Register",
+        text: "Open an {PG} account to participate online in all our online betting promotions play high quality entertaining games at exceptionally good value. We believe that in the reward points section, customers will have the opportunity to receive valuable gifts and incentives when participating in promotions.",
+      },
+      {
+        subTitle: "Affiliate",
+        text: "Become our partner and enjoy attractive commissions every month by referring players to {PG}.",
+      },
+      {
+        subTitle: "Responsible Betting",
+        text: "{PG} strives to provide an entertainment channel for our customers in a positive way. We have key safeguards that promote and ensure responsible betting.",
+      },
+      {
+        subTitle: "Security",
+        text: "With a solid and safe betting system. Your privacy is our top priority so we always strictly adhere to our security policies.",
+      },
+    ],
+  },
+  {
+    title: "PRODUCT",
+    contents: [
+      {
+        subTitle: "Sports Betting and Online Betting",
+        text: "We provide major tournaments such as: English Premier League, Spanish La Liga championship, Italian Serie A, UEFA Championship, French National Championship, Germany, NFL, NBA, NCAA, Women's Basketball, Tennis , F1 Racing We are pleased to bring you more than 4,000 matches every month.",
+      },
+      {
+        subTitle: "Online Gaming",
+        text: "Online games with many chances to win Jackpots in games: Roulette, Blackjack, Poker, Slots. More progressive Jackpot prizes and higher winning chances in {PG}.",
+      },
+      {
+        subTitle: "Live Casino",
+        text: "In addition, we also provide many other types of online games, especially: Online Casino with hot dealers in Baccarat, Sicbo, Dragon/Tiger, Roulette and Online Casino Slots, easy to play.",
+      },
+    ],
+  },
+  {
+    title: "INFORMATION CENTRE",
+    contents: [
+      {
+        subTitle: "Promotion",
+        text: "Bonus promotions for new members. Bonuses on subsequent Money Transfers and refunds for current members.",
+      },
+      {
+        subTitle: "Support center",
+        text: "See also frequently asked questions for sports and other games. Support for account registration, Money Transfer, withdrawal and other technical information..",
+      },
+      {
+        subTitle: "Payment methods",
+        text: "We offer great choices for customers to deposit and withdraw money through 3rd party payment service, Bank transfers, Crypto currencies. We have it all, let's get started with {PG}.",
+      },
+      {
+        subTitle: "Contact",
+        text: "If you need any help or have any questions about online betting or online casino, we are available 24/7 support via Live Chat, Phone and email.",
+      },
+    ],
+  },
+  {
+    title: "BETTING INFORMATION",
+    contents: [
+      {
+        subTitle: "Sports Results",
+        text: "Provides results of all sports matches and tournaments.",
+      },
+      {
+        subTitle: "Betting Statistics",
+        text: "More than 200 diverse tournaments with many sports, competition formats, teams and individual competitions, schedules, lineups, teams, extra time and postponed matches.",
+      },
+      {
+        subTitle: "Sports Betting",
+        text: "All of our Sports Rules are strictly in accordance with the Organizing Committee's Official Rules.",
+      },
+      {
+        subTitle: "Casino Betting",
+        text: "Online Casino fully displays: betting limits, Results and betting history details. All of your betting information is integrated on the screen for your convenience. You can review any bet information at any time.",
+      },
+    ],
+  },
+];

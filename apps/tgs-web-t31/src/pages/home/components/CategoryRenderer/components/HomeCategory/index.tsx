@@ -11,6 +11,7 @@ import OnlineUser from "../../../CardPrompt/components/OnlineUser";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { theme } from "@/theme";
+import { hardcodeHome } from "@/assets/t31/hardcode";
 
 const DesktopContainer = styled.div`
   display: flex;
@@ -59,6 +60,42 @@ const CardPromptContainer = styled.div<Props>`
     $isDesktopSize ? theme.accountLableText : theme.mainBackground};
 `;
 
+const IntroductionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 40px;
+`;
+
+const IntroductionTitle = styled.div`
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${({ theme }) => theme.activeNav};
+`;
+
+const SubWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const IntroductionContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const IntroductionText = styled.div`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${({ theme }) => theme.toggleDefault};
+`;
 const HomeCategory = () => {
   const { isDesktopSize } = useRwd();
   const { hotGameList, recommendGameList, isLoading, isTableGameLoading } =
@@ -107,6 +144,25 @@ const HomeCategory = () => {
             <News />
             <DepositProgress />
           </NewsContainer>
+          {isDesktopSize && (
+            <IntroductionWrapper>
+              {hardcodeHome.map((item: any) => {
+                return (
+                  <SubWrapper key={item.title}>
+                    <IntroductionTitle>{item.title}</IntroductionTitle>
+                    {item.contents.map((subItem: any) => {
+                      return (
+                        <IntroductionContent key={subItem.subTitle}>
+                          <IntroductionTitle>{subItem.subTitle}</IntroductionTitle>
+                          <IntroductionText>{subItem.text}</IntroductionText>
+                        </IntroductionContent>
+                      );
+                    })}
+                  </SubWrapper>
+                );
+              })}
+            </IntroductionWrapper>
+          )}
         </ContentWarpper>
       </DesktopContainer>
     );
