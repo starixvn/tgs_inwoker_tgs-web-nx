@@ -10,6 +10,15 @@ import lottery from "@/assets/t32/images/home/gameType/lottery.svg";
 import sabong from "@/assets/t32/images/home/gameType/sabong.svg";
 import slot from "@/assets/t32/images/home/gameType/slot.svg";
 import sports from "@/assets/t32/images/home/gameType/sports.svg";
+import LiveCasino from "@/pages/home/components/TabSvgIcon/LiveCasino";
+import Egame from "@/pages/home/components/TabSvgIcon/Egame";
+import CardGame from "@/pages/home/components/TabSvgIcon/CardGame";
+import Esports from "@/pages/home/components/TabSvgIcon/Esports";
+import Fish from "@/pages/home/components/TabSvgIcon/Fish";
+import Lottery from "@/pages/home/components/TabSvgIcon/Lottery";
+import Sabong from "@/pages/home/components/TabSvgIcon/Sabong";
+import Slot from "@/pages/home/components/TabSvgIcon/Slot";
+import Sport from "@/pages/home/components/TabSvgIcon/Sport";
 
 type GameTypeItem = {
   key: string;
@@ -17,6 +26,8 @@ type GameTypeItem = {
   text: string | any;
   fontSize: string;
   gameType: GameTypeEnum;
+  iconComponent: React.FC<{ $color: string }>;
+  title: string;
 };
 
 export const useGameTypeList = () => {
@@ -30,6 +41,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.sports"),
         fontSize: "small",
         gameType: GameTypeEnum.SPORTS,
+        iconComponent: Sport,
+        title: "Sports",
       },
       {
         key: "slots",
@@ -37,6 +50,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.slot"),
         fontSize: "small",
         gameType: GameTypeEnum.SLOT,
+        iconComponent: Slot,
+        title: "Slots",
       },
       {
         key: "liveCasino",
@@ -44,6 +59,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.live"),
         fontSize: "small",
         gameType: GameTypeEnum.LIVELOBBY,
+        iconComponent: LiveCasino,
+        title: "Live Casino",
       },
       {
         key: "sabong",
@@ -51,6 +68,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.cockfight"),
         fontSize: "smaller",
         gameType: GameTypeEnum.COCKFIGHT,
+        iconComponent: Sabong,
+        title: "Sabong",
       },
       {
         key: "egame",
@@ -58,6 +77,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.egame"),
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
+        iconComponent: Egame,
+        title: "Egame",
       },
       {
         key: "fishing",
@@ -65,6 +86,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.fish"),
         fontSize: "smaller",
         gameType: GameTypeEnum.FISH,
+        iconComponent: Fish,
+        title: "Fishing",
       },
       {
         key: "cardGame",
@@ -72,6 +95,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.chess"),
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
+        iconComponent: CardGame,
+        title: "Card Game",
       },
       {
         key: "lottery",
@@ -79,6 +104,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.lottery"),
         fontSize: "small",
         gameType: GameTypeEnum.LOTTERYLOBBY,
+        iconComponent: Lottery,
+        title: "Lottery",
       },
       {
         key: "esports",
@@ -86,6 +113,8 @@ export const useGameTypeList = () => {
         text: i18n.t("common.esports"),
         fontSize: "smaller",
         gameType: GameTypeEnum.ESPORTS,
+        iconComponent: Esports,
+        title: "Esports",
       },
     ];
 
