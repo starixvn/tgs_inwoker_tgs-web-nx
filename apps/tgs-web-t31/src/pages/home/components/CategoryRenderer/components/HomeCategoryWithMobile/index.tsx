@@ -119,7 +119,11 @@ const HomeCategoryWithMobile = () => {
         <CategoryContentWrapper>
           <TitleWrapper>
             <Title> {i18n.t("common.sports")}</Title>
-            <Arrow>
+            <Arrow
+              onClick={() => {
+                history.push("/main/sports");
+              }}
+            >
               <img src={arrowImg} alt="arrow" />
             </Arrow>
           </TitleWrapper>
@@ -149,7 +153,11 @@ const HomeCategoryWithMobile = () => {
         <CategoryContentWrapper>
           <TitleWrapper>
             <Title> {i18n.t("common.live")}</Title>
-            <Arrow>
+            <Arrow
+              onClick={() => {
+                history.push("/main/liveCasino");
+              }}
+            >
               <img src={arrowImg} alt="arrow" />
             </Arrow>
           </TitleWrapper>
@@ -178,7 +186,11 @@ const HomeCategoryWithMobile = () => {
         <CategoryContentWrapper>
           <TitleWrapper>
             <Title> {i18n.t("common.slot")}</Title>
-            <Arrow>
+            <Arrow
+              onClick={() => {
+                history.push("/main/slots");
+              }}
+            >
               <img src={arrowImg} alt="arrow" />
             </Arrow>
           </TitleWrapper>
@@ -205,7 +217,11 @@ const HomeCategoryWithMobile = () => {
         <CategoryContentWrapper>
           <TitleWrapper>
             <Title> {i18n.t("common.egame")}</Title>
-            <Arrow>
+            <Arrow
+              onClick={() => {
+                history.push("/main/egame");
+              }}
+            >
               <img src={arrowImg} alt="arrow" />
             </Arrow>
           </TitleWrapper>

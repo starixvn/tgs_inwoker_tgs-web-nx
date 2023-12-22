@@ -85,10 +85,6 @@ const HomeGameFilterTag = () => {
     }
     handleChangeActiveFilterTag(newFilterTag);
   };
-  //todo: handle select
-  // const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
-  //   handleChangeActiveProviderFilterTag(newFilterTag);
-  // };
 
   const filterTagList: FilterTag[] = [
     {

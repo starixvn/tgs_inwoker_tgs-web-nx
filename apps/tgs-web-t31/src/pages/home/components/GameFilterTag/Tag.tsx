@@ -13,9 +13,10 @@ const Wrapper = styled.div<{
   align-items: center;
   width: auto;
   max-width: none;
-  height: 26px;
+  height: 40px;
   margin-right: 10px;
-  border-radius: 50px;
+  /* border-radius: 50px; */
+  padding: 5px;
   box-sizing: border-box;
   user-select: none;
   background-color: ${({ theme }) => theme.black30};

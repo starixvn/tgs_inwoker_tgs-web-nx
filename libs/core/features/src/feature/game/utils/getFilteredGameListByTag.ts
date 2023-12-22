@@ -12,7 +12,6 @@ export function getFilteredGameListByTag(
       return gameList;
 
     case FilterTagTypeEnum.FAVORITE:
-      console.log(gameList)
       return gameList.filter((gameItem) => {
         return favoriteList.includes(gameItem.id);
       });
