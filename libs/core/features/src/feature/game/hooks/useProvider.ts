@@ -74,7 +74,7 @@ function getFormattedProviderList(providerList: ProviderDto[]): ProviderDto[] {
       if (provider.code === "PPTF" && provider.name === "PragmaticPlay") {
         return {
           ...provider,
-          gametypes: [GameTypeEnum.SPORTS, GameTypeEnum.RNGSPORTS, GameTypeEnum.LIVELOBBY, GameTypeEnum.SLOT, GameTypeEnum.TABLEGAME],
+          gametypes: [GameTypeEnum.LIVELOBBY, GameTypeEnum.SLOT, GameTypeEnum.TABLEGAME],
         };
       }
 
