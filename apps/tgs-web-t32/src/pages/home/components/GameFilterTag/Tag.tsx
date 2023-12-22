@@ -18,8 +18,8 @@ const Wrapper = styled.div<{
   margin-right: 8px;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.primary : theme.white};
+  background-color: ${({ theme, $isActive }) =>
+    $isActive ? theme.primary : theme.white};
   color: ${({ theme, $hasBackground }) =>
     $hasBackground ? theme.white : theme.primary};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};

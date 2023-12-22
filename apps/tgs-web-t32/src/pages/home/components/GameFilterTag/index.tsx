@@ -104,7 +104,7 @@ const GameFilterTag = () => {
   return (
     <FilterSection>
       <ProviderTagContainer>
-        {providerFilterTagList.map((filterTag) => {
+        {providerFilterTagList.map((filterTag: FilterTag) => {
           const { name, gpCode } = filterTag;
           const isActive =
             filterTag.tagType === FilterTagTypeEnum.ALL ||
