@@ -2,13 +2,13 @@ import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 
 type Props = {
-  imageUrl: string;
+  imageUrl?: string;
   text: string;
   onClick: () => void;
 };
 
 const Wrapper = styled.div<{
-  $imageUrl: string;
+  $imageUrl?: string;
   $text: string;
 }>`
   width: 100%;
