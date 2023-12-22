@@ -26,7 +26,7 @@ const Wrapper = styled.div<{
   gap: 6px;
   user-select: none;
   border-radius: 6px;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.blue20};
 
   ${media.sm} {
     min-width: 90px;
