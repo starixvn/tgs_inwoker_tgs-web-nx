@@ -1,12 +1,14 @@
 import styled from "styled-components";
-import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeItem, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router";
 import SideNavItem from "./SideNavItem";
 import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 import downloadImg from "@/assets/t31/images/header/sideMenuItem/Download.png";
+import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -21,11 +23,10 @@ const SideMenuNavList = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
-
-  const handleTabClick = (gameType: GameTypeEnum) => {
-    // if (navItem.navType !== "action") return;
-    // navItem.callback();
-    // handleToggleMenu(false);
+  const history = useHistory();
+  const handleTabClick = (gameItem: GameTypeItem) => {
+    history.push(`/main/${gameItem.key}`);
+    handleToggleMenu(false);
   };
 
   return (
@@ -34,7 +35,10 @@ const SideMenuNavList = () => {
         key={"download"}
         imageUrl={downloadImg}
         text={i18n.t("common.download")}
-        onClick={() => {}}
+        onClick={() => {
+          history.push(`/appDownload`);
+          handleToggleMenu(false);
+        }}
       />
       {gameTypeList.map((navItem) => {
         const { key, text, sideMenuIconUrl, gameType } = navItem;
@@ -46,7 +50,7 @@ const SideMenuNavList = () => {
             key={key}
             imageUrl={sideMenuIconUrl}
             text={text}
-            onClick={() => handleTabClick(gameType)}
+            onClick={() => handleTabClick(navItem)}
           />
         );
       })}

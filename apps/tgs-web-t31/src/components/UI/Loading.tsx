@@ -48,7 +48,7 @@ const Loading = ({ show, opacity, noShrink }: Props) => {
       <Inner>
         <LogoImg src={general.brand && general.brand.loadingUrl} />
         <div className="clear" />
-        <CircularProgress size={80} color={"primary"} style={{ margin: "30px 0 0 80px" }} />
+        <CircularProgress size={80} color={"secondary"} style={{ margin: "30px 0 0 80px" }} />
       </Inner>
     </LoadingContainer>
   );

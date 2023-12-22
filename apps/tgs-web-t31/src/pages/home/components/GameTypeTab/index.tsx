@@ -44,8 +44,8 @@ const GameTypeTab = () => {
   const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
 
   const allTag = {
+    name: "All",
     tagType: FilterTagTypeEnum.ALL,
-    name: "",
   };
 
   const switchGameType = (gameType: GameTypeEnum) => {

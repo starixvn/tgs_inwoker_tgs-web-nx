@@ -11,7 +11,7 @@ const DialogHeaderContainer = styled.div`
   left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.blue50};
+  background: ${({ theme }) => theme.sideMenu};
   display: flex;
   align-items: center;
   justify-content: center;

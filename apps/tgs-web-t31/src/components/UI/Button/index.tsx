@@ -8,7 +8,7 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "1rem",
   fontWeight: 700,
   color: theme.palette.white,
-  // background: "linear-gradient(90deg, #FACE27 53.76%, #F3AF16 54.17%)",
+  background: theme.palette.primaryGradient,
   boxShadow: "none !important",
 
   "&:disabled": {
@@ -17,7 +17,7 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   },
 
   "&:hover": {
-    border: `1px solid ${theme.palette.priBTNOutline}`,
+    // border: `1px solid ${theme.palette.priBTNOutline}`,
   },
 }));
 

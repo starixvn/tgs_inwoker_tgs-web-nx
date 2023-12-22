@@ -77,7 +77,7 @@ const LoginForm = () => {
         </HintContainer>
       )}
 
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      <LanguageSwitch />
     </AuthFormContainer>
   );
 };

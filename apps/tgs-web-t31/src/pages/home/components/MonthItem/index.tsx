@@ -1,6 +1,10 @@
 import config from "@tgs-web-nx/config";
+import { useAuth } from "@tgs-web-nx/core/features";
 import { GameItem } from "@tgs-web-nx/types";
 import { Common } from "@tgs-web-nx/utils";
+import { useEffect } from "react";
+import { useBottomScrollListener } from "react-bottom-scroll-listener";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
 const MainWrapper = styled.div`
@@ -30,6 +34,7 @@ const GameList = styled.div`
   height: 170px;
   flex-grow: 1;
   overflow: auto;
+  scroll-behavior: smooth;
   ::-webkit-scrollbar {
     display: none;
   }
@@ -45,13 +50,41 @@ const Game = styled.div`
   text-align: center;
   padding: 4px;
   gap: 8px;
+  cursor: pointer;
 `;
 type Props = {
   dataList: GameItem[];
   title: string;
+  loadMore: () => void;
 };
-const MonthItem = ({ dataList, title }: Props) => {
-  // const title = "Hot games this month";
+const MonthItem = ({ dataList, title, loadMore }: Props) => {
+  const { isLogin } = useAuth();
+  const history = useHistory();
+  const containerRef = useBottomScrollListener(() => {
+    loadMore();
+  });
+
+  useEffect(() => {
+    const list = containerRef.current;
+    const scrollList = () => {
+      if (list) {
+        list.scrollTop = list.scrollTop + 120;
+      }
+    };
+    const interval = setInterval(scrollList, 1500);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const launchGame = (gameItem: GameItem) => {
+    if (!isLogin) {
+      history.push("/login");
+    } else {
+      Common.closePreviousPopup();
+      Common.PopupCenter(`/joingame/${gameItem.id}/${gameItem.gpcode}`, "gamewindow");
+    }
+  };
   return (
     <MainWrapper>
       <Title>{title}</Title>
@@ -67,23 +100,29 @@ const MonthItem = ({ dataList, title }: Props) => {
             alt="slot"
           />
         </GameImg>
-        <GameList>
-          {dataList.map((data: GameItem) => {
+        <GameList
+          //@ts-ignore
+          ref={containerRef}
+        >
+          {dataList.map((gameItem: GameItem, index) => {
             return (
-              <Game key={data.id}>
-                <div>
-                  <img
-                    width={30}
-                    height={30}
-                    src={`${
-                      config.sourceUrl
-                    }${data.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                      data.code
-                    }.jpg`}
-                    alt={data.name}
-                  />
-                </div>
-                <div>{data.name}</div>
+              <Game
+                key={index}
+                onClick={() => {
+                  launchGame(gameItem);
+                }}
+              >
+                <img
+                  width={30}
+                  height={30}
+                  src={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
+                  alt={gameItem.name}
+                />
+                <div>{gameItem.name}</div>
               </Game>
             );
           })}

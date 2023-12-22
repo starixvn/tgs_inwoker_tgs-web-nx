@@ -73,12 +73,12 @@ const routes: RouteType[] = [
   {
     path: "/deposit",
     component: DepositPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: "/withdrawal",
     component: WithdrawalPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: "/wagering",
@@ -93,7 +93,7 @@ const routes: RouteType[] = [
   {
     path: "/login",
     component: LoginPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
     isAnonymousAllowed: true,
   },
   {
@@ -137,92 +137,92 @@ const routes: RouteType[] = [
   {
     path: ProfilePathEnum.PROFILE,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.NAME,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.WECHAT,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.BIRTHDATE,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.QQ,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.FB,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.TELEGRAM,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.LINE,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.VIBER,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.WHATSAPP,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.EMAIL,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_EMAIL,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PHONE,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.PHONE,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PASSWORD,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.WIDHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.RESET_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
 
   // {
@@ -247,12 +247,12 @@ const routes: RouteType[] = [
   {
     path: "/message-center",
     component: MessageCenterPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: "/inbox",
     component: InboxPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/inbox/details/:id",
@@ -283,7 +283,7 @@ const routes: RouteType[] = [
   {
     path: "/report/:tab?",
     component: ReportPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
 
   // {
@@ -294,7 +294,7 @@ const routes: RouteType[] = [
   {
     path: "/affiliate",
     component: AffiliatePage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/setting/language",
@@ -309,7 +309,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/sports/:platform",
@@ -320,13 +320,13 @@ const routes: RouteType[] = [
   {
     path: "/support",
     component: ContactUsPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/appDownload",
     component: AppDownloadPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: "/joingame/:gameId/:gpCode",
@@ -374,7 +374,7 @@ if (!config.features.NewTransferUI) {
   routes.push({
     path: "/transfer",
     component: TransferPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   });
 }
 

@@ -159,5 +159,5 @@ export const Hint = styled.div`
   line-height: 16px;
   letter-spacing: 0em;
   margin: 10px 0;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
