@@ -24,7 +24,6 @@ const NonLobbyCategoryWrapper = styled.div`
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 20px 0px;
   }
 `;
 
@@ -32,6 +31,7 @@ const CategoryContentWrapper = styled.div`
   width: 100%;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
+  padding: 20px 0px;
 `;
 
 const CategoryContent = styled.div`
@@ -44,8 +44,8 @@ const CategoryContent = styled.div`
   align-self: stretch;
 
   ${media.sm} {
-    row-gap: 5px;
-    column-gap: 9px;
+    row-gap: 10px;
+    column-gap: 7px;
   }
 `;
 

@@ -1,34 +1,80 @@
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import React from "react";
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
 
 const Wrapper = styled.div<{
   $isActive: boolean;
+  $isShowIcon: boolean;
+  $hasBackground: boolean;
 }>`
-  display: flex;
+  vertical-align: middle;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
+  width: auto;
   max-width: none;
   height: 100%;
+  box-sizing: border-box;
   user-select: none;
-  padding: 4px;
+  background-color: ${({ theme, $hasBackground }) =>
+    $hasBackground ? theme.primary : theme.white};
+  color: ${({ theme, $hasBackground }) =>
+    $hasBackground ? theme.white : theme.primary};
+  min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
+  border-radius: 4px;
+  border: 1.5px solid ${({ theme }) => theme.primary};
+  padding: 5px 8px;
+  cursor: pointer;
+  flex: 0 0 1;
+`;
 
-  &:hover {
-    cursor: pointer;
+const Text = styled.div<{
+  $isActive: boolean;
+}>`
+  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.primary)};
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 0.75rem;
+
+  ${media.sm} {
+    font-weight: 400;
+    margin-right: 4px;
   }
 `;
 
 type Props = {
   text: string;
   isActive: boolean;
-  iconUrl?: string;
-  activedUrl?: string;
+  isShowIcon: boolean;
+  children: React.ReactNode;
   onClick: () => void;
 };
 
-const CommonTag = ({ text, isActive, iconUrl, activedUrl, onClick }: Props) => {
+type IconComponentProps = {
+  $color: string;
+};
+
+const CommonTag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
+  const cloneChildrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      if (typeof child.type === 'function') {
+        const IconComponent = child.type as React.ComponentType<IconComponentProps>;
+        return <IconComponent $color={isActive ? theme.white : theme.primary} />;
+      }
+    }
+    return child;
+  });
+
   return (
-    <Wrapper $isActive={isActive} onClick={onClick}>
-      <img src={isActive ? activedUrl : iconUrl} alt={text} />
+    <Wrapper
+      $isActive={isActive}
+      $isShowIcon={isShowIcon}
+      $hasBackground={!isShowIcon && isActive}
+      onClick={onClick}
+    >
+      <Text $isActive={isActive}>{text}</Text>
+      {cloneChildrenWithProps}
     </Wrapper>
   );
 };

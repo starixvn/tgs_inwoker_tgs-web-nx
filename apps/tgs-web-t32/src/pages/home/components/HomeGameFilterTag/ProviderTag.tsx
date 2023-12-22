@@ -1,81 +1,81 @@
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import React from "react";
 import styled from "styled-components";
-import { providerStatus } from "@tgs-web-nx/constants";
-import maintenanceIcon from "@/assets/t32/images/home/maintenance.svg";
+import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
 
 const Wrapper = styled.div<{
   $isActive: boolean;
+  $isShowIcon: boolean;
+  $hasBackground: boolean;
 }>`
+  vertical-align: middle;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 60px;
+  width: auto;
   max-width: none;
+  height: 100%;
+  margin-right: 8px;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
-  padding: 4px;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
-  position: relative;
-
-  & > img {
-    width: 100px;
-    &:hover {
-      cursor: pointer;
-    }
-  }
+  background-color: ${({ theme, $hasBackground }) =>
+    $hasBackground ? theme.primary : theme.white};
+  color: ${({ theme, $hasBackground }) =>
+    $hasBackground ? theme.white : theme.primary};
+  min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
+  border-radius: 4px;
+  border: 1.5px solid ${({ theme }) => theme.primary};
+  padding: 5px 8px;
+  cursor: pointer;
 `;
 
-const MaintenanceBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgb(0 0 0 / 70%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const Text = styled.div<{
+  $isActive: boolean;
+}>`
+  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.primary)};
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 0.75rem;
 
-  &:hover {
-    cursor: not-allowed;
+  ${media.sm} {
+    font-weight: 400;
   }
-`;
-
-const MaintenanceIcon = styled.img`
-  width: 50%;
-  height: 50%;
 `;
 
 type Props = {
   text: string;
-  gpCode?: string;
   isActive: boolean;
+  isShowIcon: boolean;
+  children: React.ReactNode;
   onClick: () => void;
-  status: number;
 };
 
-const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
-  const { activeGameTypeKey } = useHomeGameContext();
+type IconComponentProps = {
+  $color: string;
+};
 
-  if (text !== "All") {
-    return (
-      <Wrapper $isActive={isActive}>
-        <img
-          onClick={onClick}
-          src={`${
-            import.meta.env.BASE_URL
-          }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-          alt={text}
-        />
-        {status === providerStatus.Maintenance && (
-          <MaintenanceBg>
-            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-          </MaintenanceBg>
-        )}
-      </Wrapper>
-    );
-  }
+const ProviderTag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
+  const cloneChildrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      if (typeof child.type === 'function') {
+        const IconComponent = child.type as React.ComponentType<IconComponentProps>;
+        return <IconComponent $color={isActive ? theme.white : theme.primary} />;
+      }
+    }
+    return child;
+  });
+
+  return (
+    <Wrapper
+      $isActive={isActive}
+      $isShowIcon={isShowIcon}
+      $hasBackground={!isShowIcon && isActive}
+      onClick={onClick}
+    >
+      {isShowIcon && cloneChildrenWithProps}
+      {!isShowIcon && <Text $isActive={isActive}>{text}</Text>}
+    </Wrapper>
+  );
 };
 
 export default ProviderTag;
