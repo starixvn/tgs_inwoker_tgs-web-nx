@@ -14,6 +14,20 @@ import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
+const NonLobbyCategoryWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    padding: 20px 0px;
+  }
+`;
+
 const CategoryContentWrapper = styled.div`
   width: 100%;
   flex-shrink: 0;
@@ -52,12 +66,13 @@ const NonLobbyCategory = () => {
   const categorytitle = gameTypeList.find((item) => item.key === activeGameTypeKey)?.title;
 
   return (
-    <>
+    <NonLobbyCategoryWrapper>
       <CategoryTitle>
         <CategoryLabel imageUrl={categoryIcon ?? ''} text={categorytitle ?? ''} />
       </CategoryTitle>
 
       {isMobileSize && <GameFilterTag />}
+      {isDesktopSize && <HomeGameFilterTag />}
 
       <CategoryContentWrapper>
         <CategoryContent>
@@ -76,7 +91,7 @@ const NonLobbyCategory = () => {
         </CategoryContent>
       </CategoryContentWrapper>
       <Loading show={isLoading} />
-    </>
+    </NonLobbyCategoryWrapper>
   );
 };
 

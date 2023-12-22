@@ -26,13 +26,13 @@ const CategoryContentWrapper = styled.div`
 `;
 
 const CategoryContent = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    padding: 8px 0px;
-    width: 100%;
-    gap: 10px;
-    align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 8px 0px;
+  width: 100%;
+  gap: 10px;
+  align-self: stretch;
 `;
 
 const CategoryTitle = styled.div`
