@@ -31,6 +31,7 @@ export type NavItem = {
   iconUrl: string;
   iconActiveUrl?: string;
   iconSecondaryUrl?: string;
+  iconGrayUrl?: string;
   isHide?: boolean;
   gameType?: GameTypeEnum;
 } & (

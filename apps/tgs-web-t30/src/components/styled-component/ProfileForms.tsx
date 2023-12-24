@@ -24,9 +24,9 @@ export const ItemContainer = styled.div`
 `;
 
 export const LabelContainer = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.text};
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: ${({ theme }) => theme.dae3};
   float: left;
   margin-bottom: 16px;
 `;

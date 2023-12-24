@@ -30,7 +30,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ChildrenWrapper = styled.div`
-  max-width: 1170px;
+  max-width: 1350px;
   margin: auto;
   padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
   display: flex;
@@ -54,7 +54,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
             <DarkMemberMenu
               handleCloseContextMenu={() => {}}
               style={{
-                width: "222px",
+                width: "258px",
                 margin: "22px 0 0 22px",
                 flexShrink: 0,
               }}

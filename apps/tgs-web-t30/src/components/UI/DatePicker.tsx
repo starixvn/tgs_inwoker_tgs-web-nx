@@ -81,13 +81,12 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  background: ${({ theme }) => theme.gray30};
-  border-radius: 30px;
+  background: ${({ theme }) => theme.white};
   //margin-top: 10px;
 
   .MuiInputBase-input {
     background: none;
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.text};
     text-align: left;
   }
 

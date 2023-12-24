@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
 import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import MemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenu";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
+import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -14,12 +17,12 @@ const DialogLayoutContainer = styled.div`
 
 const ContentWrapper = styled.div`
   min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`${MOBILE_HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
+  margin: ${`calc(${MOBILE_HEADER_HEIGHT} + ${DIALOG_HEADER_HEIGHT}) auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
 
-  display: flex;
-  justify-content: center;
+  //display: flex;
+  //justify-content: center;
 `;
 
 type Props = {
@@ -27,6 +30,16 @@ type Props = {
 };
 const DialogLayout = ({ children }: Props) => {
   const { isDesktopSize } = useRwd();
+  const { pageName } = usePageName();
+  const history = useHistory();
+
+  const handleCloseDialog = useCallback(() => {
+    history.goBack();
+  }, [history]);
+
+  if (isDesktopSize) {
+    return <AccountDesktopLayout>{children}</AccountDesktopLayout>;
+  }
 
   if (isDesktopSize) {
     return <AccountDesktopLayout>{children}</AccountDesktopLayout>;
@@ -35,18 +48,11 @@ const DialogLayout = ({ children }: Props) => {
   return (
     <DialogLayoutContainer>
       <Header />
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
+
       <MenuDrawer />
 
-      <ContentWrapper>
-        {isDesktopSize && (
-          <MemberMenu
-            handleCloseContextMenu={() => {}}
-            hideHeader={true}
-            style={{ width: "222px", margin: "22px 0 0 22px", flexShrink: 0 }}
-          />
-        )}
-        {children}
-      </ContentWrapper>
+      <ContentWrapper>{children}</ContentWrapper>
     </DialogLayoutContainer>
   );
 };

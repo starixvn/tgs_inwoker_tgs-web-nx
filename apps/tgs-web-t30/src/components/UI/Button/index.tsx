@@ -9,8 +9,9 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   lineHeight: "1.172rem",
   fontWeight: 700,
   color: theme.palette.white,
-  background: theme.palette.primary,
+  background: theme.palette.primary.main,
   borderRadius: 0,
+  border: `1px solid transparent`,
   borderBottom: `4px solid ${theme.palette.greenBorder}`,
   boxShadow: "none !important",
 
@@ -23,7 +24,8 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   "&:hover": {
     background: "none",
     color: theme.palette.primary.main,
-    borderBottom: `4px solid transparent`,
+    border: `1px solid ${theme.palette.primary.main}`,
+    borderBottom: `4px solid ${theme.palette.primary.main}`,
   },
 }));
 

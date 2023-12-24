@@ -6,7 +6,7 @@ import AffiliatePage from "@/pages/affiliate/AffiliatePage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import MessageCenterPage from "@/pages/messageCenter/messageCenterPage";
+import MessageCenterPage from "@/pages/messageCenter/MessageCenterPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
 import MaintenancePage from "@/pages/MaintenancePage";
@@ -17,6 +17,7 @@ import ReportPage from "@/pages/report/ReportPage";
 import TransferPage from "@/pages/transfer/TransferPage";
 import VIPPage from "@/pages/vip/VipPage";
 import WithdrawalPage from "@/pages/withdrawal/WithdrawalPage";
+import WageringPage from "@/pages/wagering/WageringPage";
 import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
@@ -24,10 +25,15 @@ import DialogLayout from "@/layouts/DialogLayout";
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
-import ProfileLayout from "@/layouts/ProfileLayout";
-import PromotionLayout from "@/layouts/PromotionLayout";
-import InboxPage from "@/pages/inbox/InboxPage";
+import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
+import VipLayout from "@/layouts/VipLayout";
+import InboxPage from "@/pages/inbox/InboxPage";
+import Faq from "@/pages/Faq";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
+import TermsAndConditions from "@/pages/TermsAndConditions";
+import Responsiblegaming from "@/pages/Responsiblegaming";
+import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -45,11 +51,17 @@ const routes: RouteType[] = [
     isAnonymousAllowed: true,
   },
   {
-    path: "/main/:page",
+    path: "/main/:gameType",
     component: MainPage,
     layout: HomeLayout,
     isAnonymousAllowed: true,
   },
+  // {
+  //   path: "/main/:page",
+  //   component: MainPage,
+  //   layout: HomeLayout,
+  //   isAnonymousAllowed: true,
+  // },
   {
     path: "/account",
     component: AccountPage,
@@ -63,6 +75,11 @@ const routes: RouteType[] = [
   {
     path: "/withdrawal",
     component: WithdrawalPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/wagering",
+    component: WageringPage,
     layout: DialogLayout,
   },
   {
@@ -122,87 +139,87 @@ const routes: RouteType[] = [
   {
     path: ProfilePathEnum.NAME,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.WECHAT,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.BIRTHDATE,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.QQ,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.FB,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.TELEGRAM,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.LINE,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.VIBER,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.WHATSAPP,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.EMAIL,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_EMAIL,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PHONE,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.PHONE,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_PASSWORD,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.WIDHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.RESET_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
   {
     path: ProfilePathEnum.CHANGE_WITHDRAWAL_PASSWORD,
     component: ProfilePage,
-    layout: ProfileLayout,
+    layout: DialogLayout,
   },
 
   // {
@@ -214,13 +231,13 @@ const routes: RouteType[] = [
   {
     path: "/promotion-list",
     component: PromotionPage,
-    layout: PromotionLayout,
+    layout: DialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
-    layout: PromotionLayout,
+    layout: DialogLayout,
     isAnonymousAllowed: true,
   },
   //
@@ -234,12 +251,6 @@ const routes: RouteType[] = [
     component: InboxPage,
     layout: DialogLayout,
   },
-  // {
-  //   path: "/memo",
-  //   component: memo,
-  //   alert: true,
-  //   navigate: true,
-  // },
   // {
   //   path: "/inbox/details/:id",
   //   component: InboxDetails,
@@ -263,6 +274,7 @@ const routes: RouteType[] = [
     path: "/maintenance",
     component: MaintenancePage,
     isAnonymousAllowed: true,
+    layout: MaintenanceLayout,
   },
 
   {
@@ -294,7 +306,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: DefaultLayout,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",
@@ -309,12 +321,37 @@ const routes: RouteType[] = [
     isAnonymousAllowed: true,
   },
   {
+    path: "/appDownload",
+    component: AppDownloadPage,
+    layout: DialogLayout,
+  },
+  {
     path: "/joingame/:gameId/:gpCode",
     component: JoinGamePage,
   },
   {
     path: "/joinlobbygame/:gameType/:gpCode",
     component: JoinLobbyGamePage,
+  },
+  {
+    path: "/faq",
+    component: Faq,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/privacypolicy",
+    component: PrivacyPolicy,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/terms",
+    component: TermsAndConditions,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/responsiblegaming",
+    component: Responsiblegaming,
+    isAnonymousAllowed: true,
   },
 ];
 
