@@ -131,7 +131,7 @@ const HomePage = () => {
     <MainWrapper $isDark={!isMobileSize && activeGameType !== GameTypeEnum.NONE}>
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
 
-      {hasActiveDesktopBanner() ? (
+      {hasActiveDesktopBanner() && activeGameType !== GameTypeEnum.NONE ? (
         <BannerWrapper>
           {isDesktopSize && !!activeGameType && (
             <GameTypeBanner
@@ -144,6 +144,7 @@ const HomePage = () => {
               }
             />
           )}
+
           <BannerTitle>{i18n.t(getGameTypeName(activeGameType))}</BannerTitle>
           {isDesktopSize && !activeGameType && <Banner />}
         </BannerWrapper>

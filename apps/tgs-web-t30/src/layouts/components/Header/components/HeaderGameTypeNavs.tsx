@@ -1,9 +1,5 @@
-import React, { useMemo } from "react";
-import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
@@ -30,10 +26,6 @@ const GameTypeNav = styled.div`
   gap: 4px;
   padding: 5px;
   border-radius: 5px;
-
-  // &:hover {
-  //   background: ${({ theme }) => theme.gray10};
-  // }
 
   ${media.sm} {
     color: ${({ theme }) => theme.white};

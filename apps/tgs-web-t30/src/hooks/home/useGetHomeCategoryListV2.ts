@@ -10,6 +10,7 @@ export function useGetHomeCategoryListV2() {
     [key in GameTypeEnum]: GameItem[];
     // @ts-ignore
   }>({});
+  const [recommendGames, setRecommendGames] = useState<GameItem[]>([]);
 
   const gameTypeList = useGameTypeList();
   const { providerList } = useHomeGameContext();
@@ -44,6 +45,12 @@ export function useGetHomeCategoryListV2() {
           [gameType]: gameList,
         };
       });
+
+      setRecommendGames((prevGames) => {
+        return [...prevGames, ...getRecommandGameItems(gameList)].filter(
+          (gameItem, index) => index < 16,
+        );
+      });
     }
   };
 
@@ -56,5 +63,12 @@ export function useGetHomeCategoryListV2() {
   return {
     gameTypeItemList: filteredGameTypeList,
     gameTypeDictionary,
+    recommendGames,
   };
+}
+
+function getRecommandGameItems(gameItemList: GameItem[]) {
+  return gameItemList.filter((gameItem) => {
+    return gameItem.tag.recommend;
+  });
 }

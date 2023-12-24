@@ -24,7 +24,6 @@ const GameCardContainer = styled.div`
 
   ${media.sm} {
     width: calc((100% - 15px * 1) / 2);
-    padding: 0 10px;
   }
 
   ${media.md} {
@@ -103,6 +102,7 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
+  width: 100%;
   position: relative;
   aspect-ratio: 161 / 161;
 

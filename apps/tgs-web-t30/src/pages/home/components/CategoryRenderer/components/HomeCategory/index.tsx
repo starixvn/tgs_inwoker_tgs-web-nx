@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import React from "react";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import GameTypeCategory from "./GameTypeCategory";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
+import DesktopHomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/DesktopHomeCategory";
 
-const DesktopContainer = styled.div`
+const HomeCategoryContainer = styled.div`
   width: 100%;
 
   ${media.sm} {
@@ -16,19 +18,28 @@ const DesktopContainer = styled.div`
 
 const HomeCategory = () => {
   const { gameTypeItemList, gameTypeDictionary } = useGetHomeCategoryListV2();
+  const { isMobileSize } = useRwd();
+
+  if (isMobileSize) {
+    return (
+      <HomeCategoryContainer>
+        {gameTypeItemList.map((gameTypeItem) => {
+          return (
+            <GameTypeCategory
+              key={gameTypeItem.key}
+              gameTypeItem={gameTypeItem}
+              gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
+            />
+          );
+        })}
+      </HomeCategoryContainer>
+    );
+  }
 
   return (
-    <DesktopContainer>
-      {gameTypeItemList.map((gameTypeItem) => {
-        return (
-          <GameTypeCategory
-            key={gameTypeItem.key}
-            gameTypeItem={gameTypeItem}
-            gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
-          />
-        );
-      })}
-    </DesktopContainer>
+    <HomeCategoryContainer>
+      <DesktopHomeCategory />
+    </HomeCategoryContainer>
   );
 };
 

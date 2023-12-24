@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   min-width: 105px;
   padding: 4px 10px;
   gap: 6px;
+  background: ${({ theme }) => theme.text};
 `;
 
 type Props = {

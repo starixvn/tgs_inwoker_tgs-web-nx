@@ -56,16 +56,16 @@ export function useGetNavItemList() {
       });
     }
 
-    navItemList.push({
-      key: NavCardKey.VIP,
-      label: "VIP",
-      iconUrl: vipIcon,
-      iconActiveUrl: vipIcon,
-      navType: "action",
-      callback: () => {
-        history.push("/vip");
-      },
-    });
+    // navItemList.push({
+    //   key: NavCardKey.VIP,
+    //   label: "VIP",
+    //   iconUrl: vipIcon,
+    //   iconActiveUrl: vipIcon,
+    //   navType: "action",
+    //   callback: () => {
+    //     history.push("/vip");
+    //   },
+    // });
 
     // navItemList.push({
     //   key: NavCardKey.PROMOTION,
