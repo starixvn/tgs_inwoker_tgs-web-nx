@@ -12,9 +12,8 @@ const ButtonContainer = styled.div`
   color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.secondary};
+  background: linear-gradient(180deg, #57a0d8 0%, #417aa6 100%);
   padding: 10px 22px;
-  border-radius: 50px;
   gap: 8px;
 `;
 

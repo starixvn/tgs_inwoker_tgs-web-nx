@@ -25,7 +25,7 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
     background: "none",
     color: theme.palette.primary.main,
     border: `1px solid ${theme.palette.primary.main}`,
-    borderBottom: `4px solid ${theme.palette.primary.main}`,
+    borderBottom: `4px solid ${theme.palette.darkBlue}`,
   },
 }));
 

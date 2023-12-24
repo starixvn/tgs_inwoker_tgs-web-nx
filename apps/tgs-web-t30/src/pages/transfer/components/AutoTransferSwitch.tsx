@@ -18,7 +18,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.main,
       },
     },
   },
@@ -40,6 +40,7 @@ const Group = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   gap: 8px;
+  color: ${({ theme }) => theme.white};
 
   ${media.md} {
     flex-direction: row;

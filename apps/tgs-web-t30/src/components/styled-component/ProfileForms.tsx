@@ -57,9 +57,7 @@ export const InfoContainer = styled.div`
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "0.875rem",
   height: "50px",
-  borderRadius: "30px",
   color: "#828282",
-  background: theme.palette.mainLightBackground,
   border: "none",
 })) as typeof MuiButton;
 
