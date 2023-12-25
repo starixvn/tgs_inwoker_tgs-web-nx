@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const HeaderContainer = styled.div`
   position: fixed;

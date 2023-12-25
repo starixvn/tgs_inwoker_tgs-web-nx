@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { FilterTagTypeEnum, GameTypeItem, useHomeGameContext, useProvider } from "@tgs-web-nx/core/features";
+import { useEffect, useState } from "react";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import LoadingSvg from "@/components/project/LoadingSvg";
 
 const TabContainer = styled.div`
   overflow-y: auto;
@@ -42,10 +44,22 @@ const TabContainer = styled.div`
   }
 `;
 
+const SvgContainer = styled.div`
+  height: 100%;
+  padding: 100px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 72px;
+  flex-shrink: 0;
+`;
+
 const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
+  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
+  const { providerList, isLoading } = useProvider();
+  const [filteredGameTypeList, setFilteredGameTypeList] = useState<GameTypeItem[]>([]);
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
@@ -59,16 +73,24 @@ const GameTypeTab = () => {
     handleChangeActiveFilterTag(allTag);
   };
 
-  const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
-    if (providerList.length) {
-      const hasData = providerList.some((provider) => {
-        return provider.gametypes.includes(gameTypeItem.gameType);
+  useEffect(() => {
+    if (providerList && gameTypeList) {
+      const filteredList = gameTypeList.filter((gameTypeItem) => {
+        if (providerList.length) {
+          const hasData = providerList.some((provider) => {
+            return provider.gametypes.includes(gameTypeItem.gameType);
+          });
+          return hasData;
+        }
+        return true;
       });
-      return hasData;
-    }
-    return true;
-  });
 
+      setFilteredGameTypeList(filteredList);
+    }
+  }, [providerList, gameTypeList]);
+  if (isLoading || !gameTypeList.length || !providerList.length) {
+    return <SvgContainer><LoadingSvg /></SvgContainer>
+  }
 
   return (
     <TabContainer>

@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { MenuItem } from "@mui/material";
+import { MenuItem, Select, styled as muiStyled } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { UserTypeEnum } from "@tgs-web-nx/core/features";
-import { TextField } from "@/components/UI/TextField";
+import { StyledTextField } from "./FormText";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
-import { Select } from "@/components/UI/Select";
+// import { Select } from "@/components/UI/Select";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { theme } from "@/theme";
-
+ 
 const FormPromotionCodeContainer = styled.div`
   position: relative;
   overflow: visible;
@@ -26,6 +26,20 @@ const DropdownContainer = styled.div`
   }
 `;
 
+const StyledSelect = muiStyled(Select)(({ theme }) => ({
+  color: `${theme.palette.text.primary} !important`,
+  minWidth: "100px",
+  ".MuiSelect-icon": {
+    color: theme.palette.white,
+  },
+  [theme.breakpoints.up("sm")]: {
+    color: `${theme.palette.black} !important`,
+    ".MuiSelect-icon": {
+      color: theme.palette.black,
+    },
+  },
+}));
+
 type Props = {
   formInput: FormikFormInput;
   formik: any;
@@ -38,7 +52,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
   return (
     <FormPromotionCodeContainer>
       <GrayInputWrapper key={name}>
-        <TextField
+        <StyledTextField
           type={getFormInputType(type)}
           placeholder={label}
           variant={"outlined"}
@@ -55,7 +69,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
         />
 
         <DropdownContainer>
-          <Select
+          <StyledSelect
             type={"string"}
             label={formik.values["userType"]}
             variant={"outlined"}
@@ -64,11 +78,11 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             value={formik.values["userType"]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            style={{ color: theme.text }}
+            style={{ color: theme.black }}
             MenuProps={{
               PaperProps: {
                 sx: {
-                  background: theme.black,
+                  background: theme.inputBackground,
                   "& .MuiMenuItem-root": {
                     color: theme.text,
                   },
@@ -82,7 +96,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             <MenuItem value={UserTypeEnum.PLAYER}>
               <>{i18n.t("usertype.player")}</>
             </MenuItem>
-          </Select>
+          </StyledSelect>
         </DropdownContainer>
       </GrayInputWrapper>
     </FormPromotionCodeContainer>

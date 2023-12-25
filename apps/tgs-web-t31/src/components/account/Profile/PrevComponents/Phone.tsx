@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { MenuItem, Select, styled as muiStyled } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
@@ -17,7 +18,7 @@ import {
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
-import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -29,6 +30,32 @@ type Props = {
   enqueueSnackbar: EnqueueSnackbar;
   isProceedRegisterV2?: boolean;
 };
+
+const StyledSelect = muiStyled(Select)(({ theme }) => ({
+  color: `${theme.palette.text.primary} !important`,
+  minWidth: "100px",
+  ".MuiSelect-icon": {
+    color: theme.palette.white,
+  },
+  ".MuiOutlinedInput-input": {
+    padding: "12px",
+    border: `1px solid ${theme.palette.white30}`,
+    WebkitTextFillColor: `${theme.palette.text.primary}`,
+    background: "#041C12",
+  },
+  [theme.breakpoints.up("sm")]: {
+    color: `${theme.palette.black} !important`,
+    ".MuiSelect-icon": {
+      color: theme.palette.white,
+    },
+    ".MuiOutlinedInput-input": {
+      padding: "12px",
+      border: `1px solid ${theme.palette.white30}`,
+      background: "#103025",
+      WebkitTextFillColor: `${theme.palette.text.primary}`,
+    },
+  },
+}));
 
 function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Props) {
   const AREA_CODE = config.features.PhonePrefix;
@@ -259,8 +286,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
 
         <PhoneContainer>
           <FormControl variant="outlined" style={{ width: "40%" }}>
-            <Select
-              native
+            <StyledSelect
               value={areacode}
               onChange={(e) => {
                 setAreacode(`${e.target.value}`);
@@ -270,9 +296,19 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
                 (config.features.Profile_DisableVerifyPhone &&
                   !config.features.InitPhone_WithoutVerify)
               }
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    background: theme.inputBackground,
+                    "& .MuiMenuItem-root": {
+                      color: theme.text,
+                    },
+                  },
+                },
+              }}
             >
-              <option value={AREA_CODE}>{AREA_CODE}</option>
-            </Select>
+              <MenuItem value={AREA_CODE}>{AREA_CODE}</MenuItem>
+            </StyledSelect>
           </FormControl>
 
           <FormControl variant="outlined">

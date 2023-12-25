@@ -8,11 +8,12 @@ import { UpTransition } from "@/components/UI/Dialog/Transition";
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     position: relative;
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 0;
   }
 `;
 

@@ -9,7 +9,12 @@ export function useFavoriteList(activeGameType: GameTypeEnum) {
 
   const fetchFavoriteList = useCallback(async () => {
     const getFavoriteResDto = await getFavoriteGame(activeGameType);
-    setFavoriteList(getFavoriteResDto?.data || []);
+
+    if (getFavoriteResDto?.IsSuccess) {
+      setFavoriteList(getFavoriteResDto?.data || []);
+    } else {
+      setFavoriteList([]);
+    }
   }, [activeGameType]);
 
   useEffect(() => {

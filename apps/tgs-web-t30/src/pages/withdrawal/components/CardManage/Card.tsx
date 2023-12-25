@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import deleteIcon from "@/assets/t33/images/card/delete.svg";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import deleteIcon from "@/assets/t30/images/withdraw/icon-delete.svg";
+import deleteDesktopIcon from "@/assets/t30/images/withdraw/icon-delete-desktop.svg";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 
 const CardContainer = styled.div`
   width: 100%;
   padding: 16px;
-  background: ${({ theme }) => theme.gray40};
+  background: ${({ theme }) => theme.darkBlue};
+  border: 1px solid ${({ theme }) => theme.main};
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -16,15 +19,19 @@ const CardContainer = styled.div`
 
   ${media.md} {
     width: calc((100% - 14px * 1) / 2);
-    background: ${({ theme }) => theme.gray50};
+    background: ${({ theme }) => theme.dae3};
   }
 `;
 
 const CardTitle = styled.div`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   padding-bottom: 10px;
   font-size: 1.25rem;
   font-weight: 700;
+
+  ${media.md} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 const CardContent = styled.div`
@@ -46,12 +53,20 @@ const ContentRow = styled.div`
 
 const EndingInLabel = styled.div`
   font-size: 1.125rem;
-  color: ${({ theme }) => theme.gray20};
+  font-weight: 700;
+  color: ${({ theme }) => theme.main};
+
+  ${media.md} {
+    color: ${({ theme }) => theme.main};
+  }
 `;
 const EndingInValue = styled.div`
   font-size: 1.125rem;
 
-  color: ${({ theme }) => theme.gray20};
+  color: ${({ theme }) => theme.white};
+  ${media.md} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 type Props = {
@@ -61,6 +76,8 @@ type Props = {
   disable: boolean;
 };
 const Card = ({ title, content, handleDelete, disable }: Props) => {
+  const { isDesktopSize } = useRwd();
+
   return (
     <CardContainer>
       <CardTitle>{title}</CardTitle>
@@ -73,7 +90,7 @@ const Card = ({ title, content, handleDelete, disable }: Props) => {
           {!disable && (
             <Icon
               onClick={handleDelete}
-              iconUrl={deleteIcon}
+              iconUrl={isDesktopSize ? deleteDesktopIcon : deleteIcon}
               width={"40px"}
               height={"40px"}
               style={{

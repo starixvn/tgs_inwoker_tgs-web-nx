@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { UiService, useGeneralStore } from "@tgs-web-nx/core";
-import { useLocation } from "react-router";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const MaintenanceContainer = styled.div`
   display: flex;

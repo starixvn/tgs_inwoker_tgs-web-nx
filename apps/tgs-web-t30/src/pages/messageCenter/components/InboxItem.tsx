@@ -8,7 +8,6 @@ const InboxItemContainer = styled.div`
   width: 100%;
   padding: 10px 30px;
   cursor: pointer;
-  border-radius: 30px;
 `;
 
 type CheckboxContainerProps = {
@@ -36,7 +35,7 @@ type MsgTitleProps = {
 const MsgTitle = styled.div<MsgTitleProps>`
   font-size: 1.25rem;
   font-weight: ${({ $isRead }: MsgTitleProps) => ($isRead ? "400" : "600")};
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.blue};
   white-space: nowrap;
   margin-bottom: 5px;
 `;
@@ -50,7 +49,7 @@ const MsgTitleSpan = styled.span`
 
 const MsgDate = styled.div`
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.gray10};
+  color: ${({ theme }) => theme.white};
 `;
 
 type CheckboxCircleProps = {
@@ -72,7 +71,7 @@ const CheckboxCircle = styled.div<CheckboxCircleProps>`
 
 const LetterContent = styled.div`
   font-size: 1rem;
-  color: ${({ theme }) => theme.gray10};
+  color: ${({ theme }) => theme.white};
   padding: 20px 0;
 `;
 

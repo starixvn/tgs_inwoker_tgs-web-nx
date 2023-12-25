@@ -85,10 +85,6 @@ const HomeGameFilterTag = () => {
     }
     handleChangeActiveFilterTag(newFilterTag);
   };
-  //todo: handle select
-  // const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
-  //   handleChangeActiveProviderFilterTag(newFilterTag);
-  // };
 
   const filterTagList: FilterTag[] = [
     {
@@ -121,6 +117,13 @@ const HomeGameFilterTag = () => {
     (tag): tag is FilterTag => tag !== null,
   );
 
+  const handleSelectProvider = (providerName: string) => {
+    const newFilterTag: any = providerFilterTagList.find(
+      (tag: FilterTag) => tag.name === providerName,
+    );
+    handleChangeActiveProviderFilterTag(newFilterTag);
+  };
+
   return (
     <FilterTagWrapper>
       <CommonSearchWrapper>
@@ -139,7 +142,8 @@ const HomeGameFilterTag = () => {
           })}
         </CommonTagContainer>
         <Select
-          value={activeProviderFilterTag.tagType}
+          onChange={(e) => handleSelectProvider(e.target.value)}
+          value={activeProviderFilterTag.name}
           sx={{
             width: "200px",
             backgroundColor: theme.white,

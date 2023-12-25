@@ -53,8 +53,7 @@ const MobileHeader = () => {
 
   const handleClickAvatar = useCallback(() => {
     if (isLogin) {
-      console.log("fiasd")
-      //todo: profile page
+      history.push("/account");
     } else {
       history.push("/login");
     }

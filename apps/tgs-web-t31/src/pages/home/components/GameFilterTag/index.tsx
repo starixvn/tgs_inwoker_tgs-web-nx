@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTag,
+  FilterTagTypeEnum,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
+import { MenuItem, Select } from "@mui/material";
+import { providerStatus } from "@tgs-web-nx/constants";
 import Tag from "./Tag";
 import { gameTagList } from "@/constants/gameTag";
 import { theme } from "@/theme";
@@ -14,8 +21,6 @@ const TagContainer = styled.div`
   white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 0px 6px 0px 14px;
-  /* border-radius: 100px; */
   /* border: 1px solid ${({ theme }) => theme.blue40}; */
   align-self: stretch;
 
@@ -50,6 +55,7 @@ const GameFilterTag = () => {
     providerFilterTagList,
   } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
@@ -58,7 +64,6 @@ const GameFilterTag = () => {
 
   const handleFilterClick = (filterTag: FilterTag) => {
     setPrevFilterTag(filterTag);
-
     if (filterTag.tagType === FilterTagTypeEnum.PROVIDER) {
       if (filterTag.gpCode === prevFilterTag?.gpCode) {
         handleChangeActiveProviderFilterTag(allTag);
@@ -71,13 +76,20 @@ const GameFilterTag = () => {
     } else {
       if (filterTag.tagType === prevFilterTag?.tagType) {
         handleChangeActiveFilterTag(allTag);
-        handleChangeActiveProviderFilterTag(allTag);
+        // handleChangeActiveProviderFilterTag(allTag);
         setPrevFilterTag(allTag);
       } else {
         handleChangeActiveFilterTag(filterTag);
-        handleChangeActiveProviderFilterTag(allTag);
+        // handleChangeActiveProviderFilterTag(allTag);
       }
     }
+  };
+
+  const handleSelectProvider = (providerName: string) => {
+    const newFilterTag: any = providerFilterTagList.find(
+      (tag: FilterTag) => tag.name === providerName,
+    );
+    handleChangeActiveProviderFilterTag(newFilterTag);
   };
 
   return (
@@ -110,63 +122,38 @@ const GameFilterTag = () => {
           </Tag>
         );
       })}
-
-      {/* todo: Provider list */}
-      {/* <Select
-        onChange={(e) => {
-          const targetTag = providerFilterTagList.find((tag: FilterTag) => {
-            return tag.gpCode === e.target.value;
-          });
-          handleFilterClick(targetTag);
-        }}
-        value={activeProviderFilterTag.gpCode}
+      <Select
+        onChange={(e) => handleSelectProvider(e.target.value)}
+        value={activeProviderFilterTag.name}
         sx={{
           width: "150px",
-          backgroundColor: theme.white,
-          color: theme.black,
+          backgroundColor: theme.black30,
+          color: theme.text,
           height: "44px",
           padding: "0 12px",
           borderRadius: "4px",
+          ".MuiSvgIcon-root ": {
+            fill: "white !important",
+          },
         }}
       >
         {providerFilterTagList.map((filterTag) => {
-          console.log(filterTag)
+          const matchedProvider = navPopupCategoryList.find(
+            (provider) => provider.code === filterTag.gpCode,
+          );
+          const status = matchedProvider ? matchedProvider.status : -1;
           return (
-            <MenuItem key={filterTag.gpCode} value={filterTag.gpCode} sx={{ color: "black" }}>
+            <MenuItem
+              key={filterTag.name}
+              value={filterTag.name}
+              sx={{ color: "black" }}
+              disabled={status === providerStatus.Maintenance}
+            >
               {filterTag.name}
             </MenuItem>
           );
         })}
-      </Select> */}
-      {/* {providerFilterTagList.map((filterTag) => {
-        const { name, gpCode } = filterTag;
-
-        const isActive =
-          filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
-          gpCode === activeProviderFilterTag.gpCode;
-
-        const tagCmp = gameTagList.find((tag) => tag.text === name);
-
-        if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          return null;
-        }
-
-        return (
-          <Tag
-            key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleFilterClick(filterTag)}
-          >
-            {tagCmp &&
-              tagCmp.iconComponent &&
-              React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.text,
-              })}
-          </Tag>
-        );
-      })} */}
+      </Select>
     </TagContainer>
   );
 };

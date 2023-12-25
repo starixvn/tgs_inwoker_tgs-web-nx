@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 export const GrayInputWrapper = styled.div`
   width: 100%;
@@ -7,4 +8,8 @@ export const GrayInputWrapper = styled.div`
   border: none;
   background: ${({ theme }) => theme.white};
   overflow: visible;
+
+  ${media.sm} {
+    border: 1px solid ${({ theme }) => theme.blueBorder};
+  }
 `;

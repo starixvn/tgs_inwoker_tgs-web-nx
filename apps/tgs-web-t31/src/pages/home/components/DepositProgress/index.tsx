@@ -65,7 +65,7 @@ const DepositProgress = () => {
         </TitleWrapper>
         <LinearProgress
           variant="determinate"
-          value={25}
+          value={40}
           sx={{
             backgroundColor: "#026931",
             "& .MuiLinearProgress-bar": {
@@ -82,7 +82,7 @@ const DepositProgress = () => {
         </TitleWrapper>
         <LinearProgress
           variant="determinate"
-          value={50}
+          value={80}
           sx={{
             backgroundColor: "#026931",
             "& .MuiLinearProgress-bar": {

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import profileImg from "@/assets/t23/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t23/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t23/images/account/navItem/icon-withdraw.svg";
@@ -30,7 +31,9 @@ export type NavItem = {
   iconUrl: string;
   iconActiveUrl?: string;
   iconSecondaryUrl?: string;
+  iconGrayUrl?: string;
   isHide?: boolean;
+  gameType?: GameTypeEnum;
 } & (
   | {
       navType: "route";
@@ -98,10 +101,18 @@ export function useAccountNavigations() {
       {
         key: NavCardKey.MESSAGE_CENTER,
         navType: "route",
-        label: i18n.t("wap.main.account.inbox"),
+        label: i18n.t("inbox.title"),
         iconUrl: inboxImg,
         iconSecondaryUrl: inboxSecondaryImg,
         routePath: "/message-center",
+      },
+      {
+        key: NavCardKey.INBOX,
+        navType: "route",
+        label: i18n.t("wap.main.account.inbox"),
+        iconUrl: inboxImg,
+        iconSecondaryUrl: inboxSecondaryImg,
+        routePath: "/inbox",
       },
       {
         key: NavCardKey.AFFILIATE,

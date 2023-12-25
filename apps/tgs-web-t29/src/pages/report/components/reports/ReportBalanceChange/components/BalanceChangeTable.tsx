@@ -14,7 +14,7 @@ type Props = {
   onPageChange: (newPage: number) => void;
   pageSize: number;
 };
-const TransactionDetailTable = ({
+const BalanceChangeTable = ({
   balanceChangeDetails,
   totalCount,
   page,
@@ -90,4 +90,4 @@ const TransactionDetailTable = ({
   );
 };
 
-export default TransactionDetailTable;
+export default BalanceChangeTable;

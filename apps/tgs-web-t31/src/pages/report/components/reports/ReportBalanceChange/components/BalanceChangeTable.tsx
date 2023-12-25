@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { TransactionLogViewModel } from "@tgs-web-nx/types";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
@@ -10,8 +10,20 @@ import { theme } from "@/theme";
 type Props = {
   balanceChangeDetails: TransactionLogViewModel[];
   totalCount: number;
+  page: number;
+  onPageChange: (newPage: number) => void;
+  pageSize: number;
 };
-const TransactionDetailTable = ({ balanceChangeDetails, totalCount }: Props) => {
+const BalanceChangeTable = ({
+  balanceChangeDetails,
+  totalCount,
+  page,
+  pageSize,
+  onPageChange,
+}: Props) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    onPageChange(newPage);
+  };
   if (!balanceChangeDetails?.length) {
     return <NoRecord />;
   }
@@ -24,7 +36,6 @@ const TransactionDetailTable = ({ balanceChangeDetails, totalCount }: Props) => 
             <TableCell
               sx={{
                 border: "none",
-                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.dateTime")}</>
@@ -32,7 +43,6 @@ const TransactionDetailTable = ({ balanceChangeDetails, totalCount }: Props) => 
             <TableCell
               sx={{
                 border: "none",
-                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.balanceChanges.type")}</>
@@ -41,7 +51,6 @@ const TransactionDetailTable = ({ balanceChangeDetails, totalCount }: Props) => 
               align={"right"}
               sx={{
                 border: "none",
-                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.balanceChanges.amount")}</>
@@ -64,18 +73,21 @@ const TransactionDetailTable = ({ balanceChangeDetails, totalCount }: Props) => 
           })}
         </TableBody>
       </ReportTable>
-
-      {/*<TablePagination*/}
-      {/*  rowsPerPageOptions={[25]}*/}
-      {/*  component="div"*/}
-      {/*  count={totalCount}*/}
-      {/*  rowsPerPage={25}*/}
-      {/*  page={0}*/}
-      {/*  onPageChange={() => {}}*/}
-      {/*  onRowsPerPageChange={() => {}}*/}
-      {/*/>*/}
+      <TablePagination
+        component="div"
+        rowsPerPageOptions={[]}
+        count={totalCount}
+        rowsPerPage={pageSize}
+        page={page - 1}
+        onPageChange={handleChangePage}
+        sx={{
+          width: "100%",
+          color: theme.text,
+          "& button": {},
+        }}
+      />
     </ReportCardsContainer>
   );
 };
 
-export default TransactionDetailTable;
+export default BalanceChangeTable;

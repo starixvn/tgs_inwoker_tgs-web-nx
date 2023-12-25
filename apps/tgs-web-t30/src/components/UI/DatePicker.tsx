@@ -13,6 +13,7 @@ import styled from "styled-components";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -81,19 +82,23 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  background: ${({ theme }) => theme.gray30};
-  border-radius: 30px;
+  background: ${({ theme }) => theme.white};
   //margin-top: 10px;
 
   .MuiInputBase-input {
     background: none;
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.text};
     text-align: left;
   }
 
   .MuiInput-underline:before,
   .MuiInput-underline:after {
     border-bottom: 0px;
+  }
+
+  ${media.sm} {
+    border: 1px solid ${({ theme }) => theme.blueBorder};
+    border-radius: 3px;
   }
 `;
 
@@ -115,8 +120,9 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   }}
 
   .MuiInputBase-input {
-    background: ${({ theme }) => theme.gray30};
-    color: ${({ theme }) => theme.white};
+    background: ${({ theme }) => theme.white};
+    border: 1px solid ${({ theme }) => theme.blueBorder};
+    color: ${({ theme }) => theme.text};
   }
 
   .MuiInput-underline:before,

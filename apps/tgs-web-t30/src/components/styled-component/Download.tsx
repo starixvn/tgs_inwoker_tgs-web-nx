@@ -23,7 +23,7 @@ export const IntroductionContainer = styled.div`
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.318rem;
-  margin-bottom: 10px;
+  margin-bottom: 24px;
 `;
 export const InfoCardListContainer = styled.div`
   display: flex;

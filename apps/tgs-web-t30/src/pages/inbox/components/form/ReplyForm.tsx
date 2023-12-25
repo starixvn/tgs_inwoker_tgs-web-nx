@@ -7,6 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
+import { theme } from "@/theme";
 
 const InboxComposeFormContainer = styled.div`
   padding: 16px;
@@ -20,6 +21,19 @@ const Label = styled.h6`
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 16px;
+`;
+
+const OriginalMessage = styled.div`
+  max-height: 120px;
+  padding: 10px;
+  white-space: pre-line;
+  border: ${({ theme }) => `1px solid ${theme.blueBorder}`};
+  color: ${({ theme }) => theme.text};
+  overflow: auto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
 `;
 
 type Props = {
@@ -48,8 +62,21 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
     <InboxComposeFormContainer>
       <InputWrapper>
         <Label>{i18n.t("subject")}</Label>
-        <FormControl variant="outlined">
-          <TextField value={displayedSubject} disabled={true} />
+        <FormControl
+          variant="outlined"
+          sx={{
+            border: `1px solid ${theme.blueBorder}`,
+          }}
+        >
+          <TextField
+            value={displayedSubject}
+            sx={{
+              input: {
+                padding: "17px 20px",
+              },
+            }}
+            disabled={true}
+          />
         </FormControl>
       </InputWrapper>
 
@@ -64,7 +91,7 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
 
       <InputWrapper>
         <Label>{i18n.t("originalmessage")}</Label>
-        <TextArea value={content} disabled={true} />
+        <OriginalMessage>{content}</OriginalMessage>
       </InputWrapper>
 
       <SubmitButton

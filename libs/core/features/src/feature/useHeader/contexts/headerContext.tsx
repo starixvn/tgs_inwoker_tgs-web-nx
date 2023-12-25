@@ -15,11 +15,12 @@ export const HeaderContext = createContext({
 
 type ProviderProps = {
   children: React.ReactNode;
+  isInitOpen?: boolean;
 };
 
-export const HeaderContextProvider = ({ children }: ProviderProps) => {
+export const HeaderContextProvider = ({ children, isInitOpen }: ProviderProps) => {
   const { isLargeDesktopSize } = useRwd();
-  const initialIsMenuOpen = isLargeDesktopSize;
+  const initialIsMenuOpen = typeof isInitOpen === "boolean" ? isInitOpen : isLargeDesktopSize;
   const [isMenuOpen, setIsMenuOpen] = useState(initialIsMenuOpen);
 
   const handleToggleMenu = (newIsOpen?: boolean) => {

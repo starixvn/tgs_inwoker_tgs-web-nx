@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 
 const Wrapper = styled.div<{
@@ -14,15 +13,14 @@ const Wrapper = styled.div<{
   align-items: center;
   width: auto;
   max-width: none;
-  height: 32px;
-  margin-right: 5px;
-  border-radius: 20px;
+  height: 26px;
+  margin-right: 10px;
+  border-radius: 50px;
   box-sizing: border-box;
   user-select: none;
   background-color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.primary : theme.mainDarkBackground};
+    $hasBackground ? theme.primary : theme.mainBackground};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
-  padding: ${({ $isShowIcon }) => ($isShowIcon ? "0px" : "4px")};
 
   ${media.sm} {
     cursor: pointer;
@@ -35,9 +33,8 @@ const Wrapper = styled.div<{
 const Text = styled.div<{
   $isActive: boolean;
 }>`
- color: ${({ $isActive, theme }) =>
-    $isActive ? theme.white : theme.tertiary};
-  font-size: 0.875rem;
+  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.text)};
+  font-size: 1rem;
   font-weight: 700;
 `;
 
@@ -50,8 +47,6 @@ type Props = {
 };
 
 const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
-  const { isMobileSize } = useRwd();
-
   return (
     <Wrapper
       $isActive={isActive}
@@ -59,15 +54,10 @@ const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
       $hasBackground={!isShowIcon && isActive}
       onClick={onClick}
     >
-      {isMobileSize && isShowIcon && children}
-      {!isShowIcon && (
-        <Text $isActive={isActive}>
-          {text}
-        </Text>
-      )}
+      {isShowIcon && children}
+      {!isShowIcon && <Text $isActive={isActive}>{text}</Text>}
     </Wrapper>
   );
 };
 
 export default Tag;
-

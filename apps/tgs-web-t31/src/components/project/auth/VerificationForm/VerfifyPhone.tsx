@@ -6,6 +6,7 @@ import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
 import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
+import { MenuItem, Select, styled as muiStyled } from "@mui/material";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
@@ -14,12 +15,33 @@ import {
   VerifySubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
-import { Select } from "@/components/UI/Select";
+// import { Select } from "@/components/UI/Select";
 
 const PhoneContainer = styled.div`
   display: flex;
   gap: 8px;
 `;
+
+const StyledSelect = muiStyled(Select)(({ theme }) => ({
+  color: `${theme.palette.text.primary} !important`,
+  border: `1px solid ${theme.palette.white30}`,
+  select: {
+    padding: "10px 20px !important",
+  },
+  ".MuiSelect-icon": {
+    color: theme.palette.white,
+  },
+  [theme.breakpoints.up("sm")]: {
+    background: theme.palette.white,
+    select: {
+      padding: "10px 20px !important",
+    },
+    color: `${theme.palette.black} !important`,
+    ".MuiSelect-icon": {
+      color: theme.palette.black,
+    },
+  },
+}));
 
 type Props = {
   handleCloseDialog: () => void;
@@ -144,7 +166,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       <ItemContainer>
         <PhoneContainer>
           <FormControl variant="outlined" style={{ width: "40%" }}>
-            <Select
+            <StyledSelect
               native
               value={areacode}
               onChange={(e) => {
@@ -157,7 +179,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
               }
             >
               <option value={AREA_CODE}>{AREA_CODE}</option>
-            </Select>
+            </StyledSelect>
           </FormControl>
 
           <FormControl variant="outlined">

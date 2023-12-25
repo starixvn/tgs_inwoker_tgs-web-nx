@@ -14,7 +14,7 @@ type Props = {
   onPageChange: (newPage: number) => void;
   pageSize: number;
 };
-const TransactionDetailTable = ({
+const BalanceChangeTable = ({
   balanceChangeDetails,
   totalCount,
   page,
@@ -82,7 +82,7 @@ const TransactionDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.text,
           "& button": {},
         }}
       />
@@ -90,4 +90,4 @@ const TransactionDetailTable = ({
   );
 };
 
-export default TransactionDetailTable;
+export default BalanceChangeTable;

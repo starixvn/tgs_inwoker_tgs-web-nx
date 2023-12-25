@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 export const AuthFormContainer = styled.div`
   width: 100%;
@@ -25,12 +26,16 @@ export const FormContainer = styled.div`
 `;
 
 export const LoginTitle = styled.div`
-  font-size: 40px;
+  font-size: 3rem;
   white-space: nowrap;
   font-weight: 700;
   line-height: 55px;
   letter-spacing: 0em;
   text-align: center;
   margin-bottom: 50px;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.main};
+  }
 `;

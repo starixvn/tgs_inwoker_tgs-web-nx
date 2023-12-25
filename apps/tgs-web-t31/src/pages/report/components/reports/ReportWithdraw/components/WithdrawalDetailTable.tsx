@@ -37,7 +37,6 @@ const WithdrawalDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
-                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.RequestDate")}</>
@@ -45,7 +44,6 @@ const WithdrawalDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
-                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.NewOrderNumber")}</>
@@ -53,7 +51,6 @@ const WithdrawalDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
-                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.status")}</>
@@ -62,7 +59,6 @@ const WithdrawalDetailTable = ({
               align={"right"}
               sx={{
                 border: "none",
-                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.amount")}</>

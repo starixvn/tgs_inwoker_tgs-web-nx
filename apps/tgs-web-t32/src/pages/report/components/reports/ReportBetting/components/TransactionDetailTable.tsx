@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
-import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
+import { TableBody, TableCell, TableHead, TableRow, TablePagination } from "@mui/material";
+import { TransactionDetail, RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";

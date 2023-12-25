@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 const IntroCardContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.primaryLight};
-  border-radius: 10px;
+  background: ${({ theme }) => theme.darkBlue};
   padding: 22px 38px;
   display: flex;
   align-items: center;

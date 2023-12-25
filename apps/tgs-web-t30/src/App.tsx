@@ -49,7 +49,7 @@ const App: React.FC = () => {
       <RouteContextProvider route={currentRoute}>
         <AuthContextProvider>
           <PageNameContextProvider>
-            <HeaderContextProvider>
+            <HeaderContextProvider isInitOpen={false}>
               <PopupContextProvider>
                 <AuthDialogContextProvider>
                   <UserWalletInfoContextProvider>

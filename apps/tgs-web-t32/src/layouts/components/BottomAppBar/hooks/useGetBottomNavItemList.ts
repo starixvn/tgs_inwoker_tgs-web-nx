@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import depositIcon from "@/assets/t32/images/account/navItemWhite/icon-deposit.svg";
 import withdrawIcon from "@/assets/t32/images/account/navItemWhite/icon-withdraw.svg";
 import promotionIcon from "@/assets/t32/images/account/navItemWhite/icon-promotion.svg";
 import homeIcon from "@/assets/t32/images/account/navItemWhite/icon-home.svg";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 export enum NavTypeEnum {
   ITEM,

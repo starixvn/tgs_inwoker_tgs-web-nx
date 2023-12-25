@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import emphasizedLine from "@/assets/t33/images/home/emphasized-line.svg";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const Wrapper = styled.div`
   display: flex;

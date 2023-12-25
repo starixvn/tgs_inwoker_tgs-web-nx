@@ -12,7 +12,6 @@ const UserInfoContainer = styled.div`
 `;
 
 const GreetingText = styled.div`
-  font-size: 12px;
   font-weight: 400;
   line-height: 29px;
   letter-spacing: 0em;
@@ -24,7 +23,6 @@ const GreetingText = styled.div`
 const BalanceText = styled(GreetingText)``;
 
 const UserName = styled.div`
-  font-size: 12px;
   font-weight: 400;
   line-height: 29px;
   letter-spacing: 0em;
@@ -44,6 +42,7 @@ const MemberContainer = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin: 0 12px;
 `;
 const UserInfo = () => {
   const history = useHistory();
@@ -70,7 +69,7 @@ const UserInfo = () => {
           history.push("/profile");
         }}
       >
-        <img src={memberImg} width={20} height={20} alt="memeber" />
+        <img src={memberImg} width={25} height={25} alt="memeber" />
       </MemberContainer>
     </UserInfoContainer>
   );

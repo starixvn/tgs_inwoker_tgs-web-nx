@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useHistory,useParams } from "react-router";
-import { hardcodeNews } from "@/pages/home/components/News/hardcoded";
+import { useHistory, useParams } from "react-router";
+import { hardcodeNews } from "@/assets/t31/hardcode";
 import newsImg from "@/assets/t31/images/home/newsBG.svg";
 
 const MainWrapper = styled.div`

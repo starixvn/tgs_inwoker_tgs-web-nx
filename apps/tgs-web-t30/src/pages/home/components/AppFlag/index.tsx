@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import android from "@/assets/t33/images/home/android.svg";
-import ios from "@/assets/t33/images/home/ios.svg";
+import android from "@/assets/t30/images/home/android.svg";
+import ios from "@/assets/t30/images/home/ios.svg";
 
 const Wrapper = styled.div`
   display: flex;

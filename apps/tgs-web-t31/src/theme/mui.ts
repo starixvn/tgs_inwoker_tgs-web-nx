@@ -40,6 +40,7 @@ declare module "@mui/material/styles/createPalette" {
     primaryGradient: string;
     secondaryGradient: string;
     tertiaryGradient: string;
+    inputBackground: string;
   }
 }
 
@@ -94,6 +95,7 @@ const muiTheme = createTheme({
     white30: theme.white30,
     white50: theme.white50,
     white60: theme.white60,
+    inputBackground: theme.inputBackground,
   },
   typography: {
     fontFamily: fontFamily,

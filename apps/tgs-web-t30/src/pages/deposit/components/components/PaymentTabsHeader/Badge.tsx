@@ -8,21 +8,31 @@ type BadgeContainerProps = {
   theme: typeof theme;
 };
 const BadgeContainer = styled.div<BadgeContainerProps>`
-  width: calc((100% - 6px * 3) / 4);
+  width: calc((100% - 8px * 3) / 4);
   height: fit-content;
   cursor: pointer;
   padding: 13px 8px;
   text-align: center;
   color: ${({ theme }) => theme.white};
   background: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? theme.gradient : theme.gray30};
+    $isActive ? theme.primary : theme.darkBlue};
+  border: 1px solid
+    ${({ $isActive, theme }: BadgeContainerProps) =>
+      $isActive ? theme.primary : theme.mainLightBackground};
 
   font-size: 0.812rem;
   font-weight: 400;
-  border-radius: 4px;
+  border-radius: 3px;
 
   ${media.md} {
     width: auto;
+
+    color: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? theme.white : theme.text)};
+    background: ${({ $isActive, theme }: BadgeContainerProps) =>
+      $isActive ? theme.secondary : theme.dae3};
+    border: 1px solid
+      ${({ $isActive, theme }: BadgeContainerProps) =>
+        $isActive ? theme.secondary : theme.mainLightBackground};
   }
 `;
 

@@ -8,23 +8,27 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import BalanceChangeCards from "@/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeCards";
-import TransactionDetailTable from "@/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeTable";
+import BalanceChangeTable from "@/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeTable";
 import { ReportContainer } from "@/components/styled-component/Report";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
 };
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const ReportBalanceChange = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const [balanceChangeDetails, setBalanceChangeDetails] = useState<TransactionLogViewModel[]>([]);
+  const [balanceChangeDetailsForMobile, setBalanceChangeDetailsForMobile] = useState<
+    TransactionLogViewModel[]
+  >([]);
+
   const [totalCount, setTotalCount] = useState(0);
   const [isMaxPage, setIsMaxPage] = useState(false);
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   const fetchReports = async (page: number) => {
     setIsLoading(true);
@@ -39,10 +43,11 @@ const ReportBalanceChange = ({ dateRangeInfo }: Props) => {
     if (getBalanceChangeRes.IsSuccess) {
       const newDataList =
         page > 1
-          ? balanceChangeDetails.concat(getBalanceChangeRes.data.items)
+          ? balanceChangeDetailsForMobile.concat(getBalanceChangeRes.data.items)
           : getBalanceChangeRes.data.items;
 
-      setBalanceChangeDetails(newDataList);
+      setBalanceChangeDetails(getBalanceChangeRes.data.items);
+      setBalanceChangeDetailsForMobile(newDataList);
       setTotalCount(getBalanceChangeRes.data.totalcount || 0);
       setIsMaxPage(getBalanceChangeRes.data.totalcount == newDataList.length);
     } else {
@@ -67,19 +72,31 @@ const ReportBalanceChange = ({ dateRangeInfo }: Props) => {
     await fetchReports(nextPage);
   };
 
+  const handlePageChange = async (page: number) => {
+    fetchReports(page + 1);
+    setPage(page + 1);
+  };
+
   return (
     <ReportContainer>
       {isDesktopSize ? (
-        <TransactionDetailTable
+        <BalanceChangeTable
           balanceChangeDetails={balanceChangeDetails}
           totalCount={totalCount}
+          page={page}
+          pageSize={PAGE_SIZE}
+          onPageChange={(page: number) => handlePageChange(page)}
         />
       ) : (
-        <BalanceChangeCards balanceChangeDetails={balanceChangeDetails} />
+        <BalanceChangeCards balanceChangeDetails={balanceChangeDetailsForMobile} />
       )}
       <Loading show={isLoading} />
       {/*@ts-ignore*/}
-      <BottomScrollListener onBottom={handleLoadMore} />
+      <BottomScrollListener
+        onBottom={() => {
+          isMobileSize && handleLoadMore();
+        }}
+      />
     </ReportContainer>
   );
 };

@@ -39,8 +39,7 @@ export const LoginTitle = styled.div`
   margin-bottom: 50px;
   color: ${({ theme }) => theme.primary};
 `;
-//todo: delete after check
-// export const FormContainerWithBG = styled.div`
-//   height: 100%;
-//   background: url(${BG}) no-repeat center center;
-// `;
+export const FormContainerWithBG = styled.div`
+  height: 100%;
+  background: url(${BG}) no-repeat center center;
+`;

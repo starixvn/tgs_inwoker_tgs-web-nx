@@ -79,7 +79,6 @@ const BalanceContainer = styled.div`
   color: ${({ theme }) => theme.primary};
   gap: 10px;
   border-right: 1px solid ${({ theme }) => theme.priBTNOutline};
-  padding-right: 10px;
   & span {
     color: ${({ theme }) => theme.white};
   }

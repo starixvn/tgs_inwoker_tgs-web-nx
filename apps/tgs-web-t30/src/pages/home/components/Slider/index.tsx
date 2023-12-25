@@ -5,10 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import styled from "styled-components";
 
-const SlickWrapper = styled.div`
-  margin: 0 auto;
+const SlickWrapper = styled(Slick)<{ $maxHeight?: string }>`
+  max-height: ${(props) => props.$maxHeight};
   width: 100%;
-  overflow: hidden;
+  margin: 0 auto;
+  background: ${({ theme }) => theme.mainLightBackground};
 `;
 
 const SlickImage = styled.img`
@@ -19,19 +20,54 @@ const SlickImage = styled.img`
   height: auto;
 `;
 
-const settings = {
+const SlickDot = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4d8ab9;
+`;
+
+const DotsContainer = styled.div`
+  padding-bottom: 11px;
+  li {
+    width: 8px;
+    height: 8px;
+  }
+  & .slick-active {
+    & div {
+      background: white;
+    }
+  }
+`;
+
+const baseSettings = {
   dots: true,
   className: "center",
   centerMode: true,
   infinite: true,
   centerPadding: "0",
   slidesToShow: 1,
+  slidesToScroll: 1,
   speed: 500,
   arrows: false,
   autoplay: true,
+
+  appendDots: (dots: any) => (
+    <DotsContainer
+      style={{
+        position: "relative",
+        bottom: 0,
+      }}
+    >
+      <ul>{dots}</ul>
+    </DotsContainer>
+  ),
+  customPaging: (i: number) => {
+    return <SlickDot key={i} />;
+  },
 };
 
-type Props = {
+type bannerProps = {
   desktopurl: string;
   id: string;
   mobileurl: string;
@@ -40,22 +76,25 @@ type Props = {
   title: string;
 };
 
-const Slider = () => {
+type Props = {
+  settings?: { [key: string]: any };
+  maxHeight?: string;
+};
+
+const Slider = ({ settings, maxHeight }: Props) => {
   const { general } = useGeneralStore();
   const { isMobileSize } = useRwd();
-
+  const sliderSettings = { ...baseSettings, ...settings };
   return (
-    <SlickWrapper>
-      <Slick {...settings}>
-        {general.banner.map((item: Props) => (
-          <a href={item.navurl} key={item.id} target="_blank" rel="noreferrer">
-            <SlickImage
-              src={isMobileSize ? item.mobileurl : item.desktopurl}
-              alt={item.alt}
-            ></SlickImage>
-          </a>
-        ))}
-      </Slick>
+    <SlickWrapper {...sliderSettings} $maxHeight={maxHeight}>
+      {general.banner.map((item: bannerProps) => (
+        <a href={item.navurl} key={item.id} target="_blank" rel="noreferrer">
+          <SlickImage
+            src={isMobileSize ? item.mobileurl : item.desktopurl}
+            alt={item.alt}
+          ></SlickImage>
+        </a>
+      ))}
     </SlickWrapper>
   );
 };

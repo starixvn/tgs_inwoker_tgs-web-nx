@@ -24,13 +24,11 @@ export const imageMap: { [key in string]: string } = {
 };
 
 const StyledSelect = styled(MuiSelect)`
-  //width: 140px;
-  //margin-right: 10px;
   overflow: visible;
-  background: ${({ theme }) => theme.black30};
+  background: ${({ theme }) => theme.inputBackground};
   font-weight: 400 !important;
   font-size: 0.937rem !important;
-  border: 1px solid ${({ theme }) => theme.gray10};
+  border: 1px solid ${({ theme }) => theme.white30};
   border-radius: 1px;
 
   .MuiOutlinedInput-input {
@@ -57,7 +55,7 @@ const StyledSelect = styled(MuiSelect)`
 
 const StyledMenuItem = styled(MuiMenuItem)`
   //border-radius: 8px;
-
+  background: ${({ theme }) => theme.inputBackground};
   & > img {
     margin-right: 10px;
   }
@@ -113,8 +111,7 @@ const LanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.black30,
-
+            background: theme.inputBackground,
             "& .MuiMenuItem-root": {
               padding: 2,
               color: theme.text,
@@ -128,9 +125,9 @@ const LanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
-              <FlagContainer>
+              {/* <FlagContainer>
                 <img src={imageMap[culturecode] || ""} alt={culturecode} />
-              </FlagContainer>
+              </FlagContainer> */}
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
           );
