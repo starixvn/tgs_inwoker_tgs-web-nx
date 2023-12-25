@@ -8,7 +8,7 @@ import TransferPrevV2 from "@/components/account/TransferPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
-import iconTransfer from "@/assets/t23/images/badge/icon-transfer.svg";
+import iconTransfer from "@/assets/t30/images/badge/icon-transfer.svg";
 
 const TransferPage = () => {
   const { getAllGameBalance } = useTransferPage();

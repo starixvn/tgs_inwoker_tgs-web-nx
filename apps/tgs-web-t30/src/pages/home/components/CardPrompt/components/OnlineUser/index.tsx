@@ -1,29 +1,34 @@
 import styled from "styled-components";
 import { useOnlineUser } from "@tgs-web-nx/core/hooks";
-import member from "@/assets/t33/images/home/member.svg";
+import member from "@/assets/t30/images/home/member.svg";
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
   min-width: 105px;
   padding: 4px 10px;
   gap: 6px;
+  background: ${({ theme }) => theme.text};
 `;
 
-const Text = styled.div`
-  color: ${({ theme }) => theme.white};
+type Props = {
+  $color: string;
+};
+
+const Text = styled.div<Props>`
+  color: ${({ $color }) => $color};
 `;
 
-const OnlineUser = () => {
+const OnlineUser = (props: { color: string }) => {
   const { onlineUser } = useOnlineUser();
 
   return (
     <Wrapper>
       <img src={member} alt="online member" />
-      <Text>{onlineUser ? onlineUser : ""}</Text>
+      <Text $color={props.color}>{onlineUser ? onlineUser : ""}</Text>
     </Wrapper>
   );
 };

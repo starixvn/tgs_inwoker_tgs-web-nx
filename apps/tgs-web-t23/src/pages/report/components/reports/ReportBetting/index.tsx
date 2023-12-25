@@ -10,20 +10,23 @@ import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import TransactionDetailCards from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailCards";
 import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
-import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 import { ReportContainer } from "@/components/styled-component/Report";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
 };
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const ReportBetting = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const [transactionDetails, setTransactionDetails] = useState<TransactionDetail[]>([]);
+  const [transactionDetailsForMobile, setTransactionDetailsForMobile] = useState<
+    TransactionDetail[]
+  >([]);
+
   const [totalCount, setTotalCount] = useState(0);
   const [isMaxPage, setIsMaxPage] = useState(false);
   const [roundTotal, setRoundTotal] = useState<RoundTotalDto>({
@@ -32,7 +35,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     winLoss: null,
     settleAmount: null,
   });
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   const fetchReports = async (page: number) => {
     setIsLoading(true);
@@ -50,10 +53,11 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     if (getTransactionDetailsRes.IsSuccess) {
       const newDataList =
         page > 1
-          ? transactionDetails.concat(getTransactionDetailsRes.data.items)
+          ? transactionDetailsForMobile.concat(getTransactionDetailsRes.data.items)
           : getTransactionDetailsRes.data.items;
 
-      setTransactionDetails(newDataList);
+      setTransactionDetails(getTransactionDetailsRes.data.items);
+      setTransactionDetailsForMobile(newDataList);
       setIsMaxPage(getTransactionDetailsRes.data.totalcount == newDataList.length);
       setTotalCount(getTransactionDetailsRes.data.totalcount || 0);
     } else {
@@ -91,18 +95,32 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     await fetchReports(nextPage);
   };
 
+  const handlePageChange = async (page: number) => {
+    fetchReports(page + 1);
+    setPage(page + 1);
+  };
+
   return (
     <ReportContainer>
-      <TotalState roundTotal={roundTotal} />
-
       {isDesktopSize ? (
-        <TransactionDetailTable transactionDetails={transactionDetails} totalCount={totalCount} />
+        <TransactionDetailTable
+          transactionDetails={transactionDetails}
+          roundTotal={roundTotal}
+          totalCount={totalCount}
+          page={page}
+          pageSize={PAGE_SIZE}
+          onPageChange={(page: number) => handlePageChange(page)}
+        />
       ) : (
-        <TransactionDetailCards transactionDetails={transactionDetails} />
+        <TransactionDetailCards transactionDetails={transactionDetailsForMobile} />
       )}
       <Loading show={isLoading} />
       {/*@ts-ignore*/}
-      <BottomScrollListener onBottom={handleLoadMore} />
+      <BottomScrollListener
+        onBottom={() => {
+          isMobileSize && handleLoadMore();
+        }}
+      />
     </ReportContainer>
   );
 };

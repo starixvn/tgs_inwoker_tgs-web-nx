@@ -6,7 +6,8 @@ import AddCardIcon from "@/assets/t33/images/card/add-card.svg";
 const CardContainer = styled.div`
   width: 100%;
   padding: 13px 20px;
-  background: ${({ theme }) => theme.gray40};
+  background: ${({ theme }) => theme.darkBlue};
+  border: 1px solid ${({ theme }) => theme.main};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +19,7 @@ const CardContainer = styled.div`
 const EmptyCardTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 `;
 
 const IconContainer = styled.div`
@@ -33,6 +34,7 @@ const IconContainer = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;

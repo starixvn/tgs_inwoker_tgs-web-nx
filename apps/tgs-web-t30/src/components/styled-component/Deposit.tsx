@@ -1,11 +1,19 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 export const LimitLabel = styled.span`
-  color: ${({ theme }) => theme.tertiary};
+  color: ${({ theme }) => theme.white};
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 export const LimitAmount = styled.span`
   color: ${({ theme }) => theme.white};
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 export const TransferLabel = styled.div``;
@@ -35,6 +43,9 @@ export const AmountHint = styled.div`
   margin-top: 9px;
   text-align: center;
   max-width: 500px;
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 export const FeeSpot = styled.div`

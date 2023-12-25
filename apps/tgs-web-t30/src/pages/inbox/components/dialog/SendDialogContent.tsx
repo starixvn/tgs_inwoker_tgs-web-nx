@@ -9,7 +9,7 @@ const SendDialogContentContainer = styled.div``;
 const Title = styled.div`
   font-size: 1.563rem;
   line-height: 1.967rem;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.blue};
   margin-bottom: 5px;
 `;
 const Info = styled.div`
@@ -21,6 +21,7 @@ const Content = styled.div`
   font-size: 1rem;
   color: ${({ theme }) => theme.text};
   margin-bottom: 18px;
+  white-space: pre-line;
 `;
 
 type Props = {

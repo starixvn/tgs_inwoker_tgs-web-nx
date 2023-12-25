@@ -17,27 +17,20 @@ type Props = {
   transactionDetails: TransactionDetail[];
   roundTotal: RoundTotalDto;
   totalCount: number;
+  page: number;
   onPageChange: (newPage: number) => void;
+  pageSize: number;
 };
 const TransactionDetailTable = ({
   transactionDetails,
   roundTotal,
   totalCount,
+  page,
+  pageSize,
   onPageChange,
 }: Props) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     onPageChange(newPage);
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
   };
 
   if (!transactionDetails?.length) {
@@ -50,7 +43,6 @@ const TransactionDetailTable = ({
           <TableRow>
             <TableCell
               sx={{
-                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -58,7 +50,6 @@ const TransactionDetailTable = ({
             </TableCell>
             <TableCell
               sx={{
-                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -66,7 +57,6 @@ const TransactionDetailTable = ({
             </TableCell>
             <TableCell
               sx={{
-                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -75,7 +65,6 @@ const TransactionDetailTable = ({
             <TableCell
               align={"right"}
               sx={{
-                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -84,7 +73,6 @@ const TransactionDetailTable = ({
             <TableCell
               align={"right"}
               sx={{
-                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -93,7 +81,6 @@ const TransactionDetailTable = ({
             <TableCell
               align={"right"}
               sx={{
-                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -155,10 +142,9 @@ const TransactionDetailTable = ({
         component="div"
         rowsPerPageOptions={[]}
         count={totalCount}
-        rowsPerPage={rowsPerPage}
-        page={page}
+        rowsPerPage={pageSize}
+        page={page - 1}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
           width: "100%",
           color: theme.text,

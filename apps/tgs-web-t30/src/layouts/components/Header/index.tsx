@@ -8,18 +8,25 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import MenuButton from "./components/MenuButton";
-import { HEADER_HEIGHT } from "@/theme/constants";
+import { MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import BrandLogo from "@/components/project/BrandLogo";
+import { media } from "@/theme/breakpoints";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
+import { theme } from "@/theme";
 
 const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   background: linear-gradient(180deg, #ffffff 0%, #dbe5ed 100%);
-  height: ${HEADER_HEIGHT};
+  height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.menu};
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -43,7 +50,7 @@ const HeaderContentContainer = styled.div`
 const Header = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isLargeDesktopSize } = useRwd();
+  const { isDesktopSize, isExtraLargeDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
 
   return (
@@ -57,11 +64,21 @@ const Header = () => {
         </Link>
 
         <HeaderContentContainer>
-          {isLargeDesktopSize && <HeaderGameTypes />}
+          {isExtraLargeDesktopSize && <HeaderGameTypes />}
 
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
 
-          {!isLargeDesktopSize && <MenuButton />}
+          {isDesktopSize && (
+            <LanguageSwitch
+              style={{
+                background: theme.menu,
+                border: "none",
+                width: "139px",
+              }}
+            />
+          )}
+
+          {!isExtraLargeDesktopSize && <MenuButton />}
         </HeaderContentContainer>
       </HeaderWrapper>
     </HeaderContainer>

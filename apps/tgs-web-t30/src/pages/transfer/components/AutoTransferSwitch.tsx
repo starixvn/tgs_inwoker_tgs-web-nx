@@ -18,7 +18,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
       color: "#fff",
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.blue40,
+        backgroundColor: theme.palette.main,
       },
     },
   },
@@ -26,7 +26,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
 
 const AutoTransferContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 15px;
   flex-wrap: wrap;
 
@@ -40,6 +40,7 @@ const Group = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   gap: 8px;
+  color: ${({ theme }) => theme["515c"]};
 
   ${media.md} {
     flex-direction: row;
@@ -85,6 +86,11 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
           <Button
             onClick={() => {
               performWithdrawFromEveryBrand();
+            }}
+            style={{
+              padding: "13px",
+              height: "50px",
+              borderBottom: `1px solid ${theme.primary}`,
             }}
           >
             {i18n.t("transfer.oneKeyTransferOut")}

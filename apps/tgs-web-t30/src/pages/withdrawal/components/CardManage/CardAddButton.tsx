@@ -6,8 +6,9 @@ import Icon from "@/components/project/Icon";
 
 const CardAddButtonContainer = styled.div`
   margin-left: auto;
-  background: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.main};
   color: ${({ theme }) => theme.white};
+  border-radius: 5px;
   padding: 12px 37.5px;
   cursor: pointer;
   display: flex;

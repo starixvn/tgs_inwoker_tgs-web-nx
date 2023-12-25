@@ -1,18 +1,32 @@
 import React from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { GameBalanceInfosViewModel } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   transferDetails: GameBalanceInfosViewModel[];
   totalCount: number;
+  page: number;
+  onPageChange: (newPage: number) => void;
+  pageSize: number;
 };
 
-const TransferDetailTable = ({ transferDetails, totalCount }: Props) => {
+const TransferDetailTable = ({
+  transferDetails,
+  totalCount,
+  page,
+  pageSize,
+  onPageChange,
+}: Props) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    onPageChange(newPage);
+  };
+
   if (!transferDetails?.length) {
     return <NoRecord />;
   }
@@ -74,16 +88,19 @@ const TransferDetailTable = ({ transferDetails, totalCount }: Props) => {
           })}
         </TableBody>
       </ReportTable>
-
-      {/*<TablePagination*/}
-      {/*  rowsPerPageOptions={[25]}*/}
-      {/*  component="div"*/}
-      {/*  count={totalCount}*/}
-      {/*  rowsPerPage={25}*/}
-      {/*  page={0}*/}
-      {/*  onPageChange={() => {}}*/}
-      {/*  onRowsPerPageChange={() => {}}*/}
-      {/*/>*/}
+      <TablePagination
+        component="div"
+        rowsPerPageOptions={[]}
+        count={totalCount}
+        rowsPerPage={pageSize}
+        page={page - 1}
+        onPageChange={handleChangePage}
+        sx={{
+          width: "100%",
+          color: theme.text,
+          "& button": {},
+        }}
+      />
     </ReportCardsContainer>
   );
 };

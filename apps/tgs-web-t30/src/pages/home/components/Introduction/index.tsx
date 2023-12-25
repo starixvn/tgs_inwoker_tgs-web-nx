@@ -1,7 +1,10 @@
-
 import styled from "styled-components";
-import emphasizedLine from "@/assets/t33/images/home/emphasized-line.svg";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router-dom";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
+import emphasizedLine from "@/assets/t33/images/home/emphasized-line.svg";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,12 +35,12 @@ const Content = styled.div`
   line-height: 1.5;
 
   & > ol {
-  list-style-position: inside; /* Ensure list items are left-aligned */
+    list-style-position: inside; /* Ensure list items are left-aligned */
 
-  ${media.sm} {
-    font-weight: 400;
+    ${media.sm} {
+      font-weight: 400;
+    }
   }
-}
 `;
 
 const LinkSection = styled.div`
@@ -63,9 +66,10 @@ const LinkText = styled.div`
   font-size: 1.25rem;
   font-weight: 400;
   text-decoration-line: underline;
-  
+
   ${media.sm} {
     width: unset;
+    cursor: pointer;
   }
 `;
 
@@ -85,7 +89,7 @@ const EmphasizeSection = styled.div`
   justify-content: center;
   gap: 14px;
   align-self: stretch;
-    
+
   ${media.sm} {
     padding: 20px 20px 0px 20px;
   }
@@ -145,8 +149,8 @@ const RegisterBtn = styled.div`
   padding: 10px 40px;
   border-radius: 50px;
   border: 1px solid ${(props) => props.theme.white};
-  background: linear-gradient(180deg, #0587F5 0%, #0057A0 100%);
-  box-shadow: 0px 0px 10px 0px${(props) => props.theme.white};
+  background: linear-gradient(180deg, #0587f5 0%, #0057a0 100%);
+  box-shadow: 0px 0px 10px 0px ${(props) => props.theme.white};
   color: ${(props) => props.theme.white};
   font-size: 1.25rem;
 
@@ -156,21 +160,43 @@ const RegisterBtn = styled.div`
 `;
 
 const Introduction = () => {
+  const { handleChangeGameType } = useHomeGameContext();
+  const history = useHistory();
+  const goToHomePage = useGoToHomePage();
+
+  const linkTextList = [
+    "Soccer",
+    "American football",
+    "Basketball",
+    "Baseball",
+    "Hockey",
+    "Boxing",
+  ];
+
+  const handleClick = () => {
+    handleChangeGameType(GameTypeEnum.SPORTS);
+    history.push(`/main/sports`);
+  };
+
   return (
     <Wrapper>
       <Title>The #1 Sports Betting Website in Mexico</Title>
-      <Content>Welcome to the new way of experiencing your favorite sports, our offer is unique in the world of online betting, covering the most popular sports in the world:</Content>
+      <Content>
+        Welcome to the new way of experiencing your favorite sports, our offer is unique in the
+        world of online betting, covering the most popular sports in the world:
+      </Content>
       <LinkSection>
-        <LinkText>Soccer</LinkText>
-        <LinkText>American football</LinkText>
-        <LinkText>Basketball</LinkText>
-        <LinkText>Baseball</LinkText>
-        <LinkText>Hockey</LinkText>
-        <LinkText>Boxing</LinkText>
+        {linkTextList.map((linkText) => (
+          <LinkText key={linkText} onClick={handleClick}>
+            {linkText}
+          </LinkText>
+        ))}
       </LinkSection>
       <ArticleSection>
         <Title>Guide to sports betting</Title>
-        <Content>In PG, we offer different options to place bets on a wide variety of sporting events. Here are some popular sports betting types:
+        <Content>
+          In PG, we offer different options to place bets on a wide variety of sporting events. Here
+          are some popular sports betting types:
           <ol>
             <li>1X2</li>
             <li>double chance</li>
@@ -190,25 +216,42 @@ const Introduction = () => {
       </ArticleSection>
       <ArticleSection>
         <Title>Bet safely with PG and have fun</Title>
-        <Content>The world of betting is a demanding and careful territory, in which we have to be alert so as not to stumble into a bottomless barrel. Here are some strategies you can use to play safe and have fun:
+        <Content>
+          The world of betting is a demanding and careful territory, in which we have to be alert so
+          as not to stumble into a bottomless barrel. Here are some strategies you can use to play
+          safe and have fun:
           <ol>
             <li>Don't think of gambling as a way to make money.</li>
             <li>Always play within your leisure budget.</li>
             <li>Set budget& time limits.</li>
             <li>Don’t try to win back what you’ve lost.</li>
-            <li> Make sure you only play when you feel good and clear-headed.6. Play just for fun. Balance gaming with other activities.7. Take frequent breaks.8. If you’re no longer having fun, stop playing.</li>
+            <li>
+              {" "}
+              Make sure you only play when you feel good and clear-headed.6. Play just for fun.
+              Balance gaming with other activities.7. Take frequent breaks.8. If you’re no longer
+              having fun, stop playing.
+            </li>
           </ol>
         </Content>
       </ArticleSection>
       <ArticleSection>
         <Title>The Best Online Casino is in PG</Title>
         <Content>
-          PG is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic.With irresistible weekly bonus promotions and attractive loyalty and VIP programs, we're sure you'll be sticking around for a while to come. All of our software is developed and maintained by the industry's foremost online gaming software company, Pegasus. Because of this, we are able to offer you the newest cutting-edge games, of the highest quality and ultimate security in a sophisticated, yet engaging atmosphere.
+          PG is the leading destination for all online casino players who are looking for a touch of
+          class and elegance in their gaming environment. Our casino provides you with over 400
+          online casino games – some traditional with modern twists, and some completely new,
+          innovative, and exotic.With irresistible weekly bonus promotions and attractive loyalty
+          and VIP programs, we're sure you'll be sticking around for a while to come. All of our
+          software is developed and maintained by the industry's foremost online gaming software
+          company, Pegasus. Because of this, we are able to offer you the newest cutting-edge games,
+          of the highest quality and ultimate security in a sophisticated, yet engaging atmosphere.
         </Content>
       </ArticleSection>
       <EmphasizeSection>
         <img src={emphasizedLine} alt="notice" />
-        <EmphasizeTitle>GO AHEAD AND DISCOVER ALL THE ADVANTAGES THAT PG OFFERS YOU!</EmphasizeTitle>
+        <EmphasizeTitle>
+          GO AHEAD AND DISCOVER ALL THE ADVANTAGES THAT PG OFFERS YOU!
+        </EmphasizeTitle>
         <img src={emphasizedLine} alt="notice" />
       </EmphasizeSection>
       <PromoSection>

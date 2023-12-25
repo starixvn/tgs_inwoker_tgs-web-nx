@@ -3,7 +3,8 @@ import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import CloseIcon from "@/components/project/Popup/components/CloseIcon";
+import closeImg from "@/assets/t30/images/dialog/icon-close-blue.svg";
+import Icon from "@/components/project/Icon";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
@@ -20,7 +21,7 @@ const ChildContainer = styled.div`
   width: 100%;
   height: calc(100vh - 40px);
   max-height: 910px;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.white};
   z-index: 2;
 `;
 
@@ -46,7 +47,19 @@ const AuthDialog = ({ open, onClose, children, showInMobile, ...others }: Props 
       maxWidth={"xs"}
       {...others}
     >
-      <CloseIcon onClick={onClose} />
+      <Icon
+        iconUrl={closeImg}
+        width={"20px"}
+        height={"20px"}
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          top: "24px",
+          right: "24px",
+          cursor: "pointer",
+          zIndex: 3,
+        }}
+      />
       <ChildContainer>{children}</ChildContainer>
     </StyledDialog>
   );

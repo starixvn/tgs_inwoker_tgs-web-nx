@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { socialMediaIconList } from "@/constants/socialMedia";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const SocialMediaContainer = styled.div`
   width: 100%;

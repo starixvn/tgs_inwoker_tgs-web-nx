@@ -43,7 +43,10 @@ const SentList = () => {
         rowsPerPageOptions={[]}
         sx={{
           width: "100%",
-          color: theme.text,
+          color: {
+            xs: theme.white,
+            sm: theme.text,
+          },
           "& button": {},
         }}
       />

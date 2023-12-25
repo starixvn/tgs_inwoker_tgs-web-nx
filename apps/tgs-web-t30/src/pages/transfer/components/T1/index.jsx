@@ -8,6 +8,7 @@ import QuickTransfer from "@/pages/transfer/components/T1/components/QuickTransf
 import AutoTransferSwitch from "@/pages/transfer/components/AutoTransferSwitch";
 import TransferCard from "@/pages/transfer/components/TransferCard";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { theme } from "@/theme";
 
 const Container = styled.div`
   width: 100%;
@@ -18,10 +19,10 @@ const InnerWrap = styled.div``;
 const SubTitle = styled.div`
   font-size: 18px;
   font-weight: 700;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   display: inline-block;
   width: 100%;
-  margin: 25px 0 5px 0;
+  margin: 25px 0 1px 0;
   padding-bottom: 8px;
 `;
 
@@ -77,6 +78,14 @@ const Template1 = ({
                 transferTo === transferFrom ||
                 disabled === true
               }
+              sx={{
+                background: theme.main,
+                color: theme.white,
+                "&:hover": {
+                  borderColor: theme.main,
+                  color: theme.main,
+                },
+              }}
             >
               {i18n.t("common.confirm")}
             </SubmitButton>

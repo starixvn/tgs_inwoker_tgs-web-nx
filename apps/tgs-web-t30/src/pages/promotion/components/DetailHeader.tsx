@@ -4,7 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import Icon from "@/components/project/Icon";
 import returnIcon from "@/assets/t30/images/promotion/icon-return.svg";
-import { HEADER_HEIGHT } from "@/theme/constants";
+import { MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 
 export const DETAIL_HEADER_HEIGHT = "50px";
 
@@ -14,7 +14,7 @@ const DetailHeaderContainer = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
-  top: ${HEADER_HEIGHT};
+  top: ${MOBILE_HEADER_HEIGHT};
   background: ${({ theme }) => theme.mainLightBackground};
 `;
 

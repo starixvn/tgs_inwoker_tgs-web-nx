@@ -17,6 +17,7 @@ export type GameTypeItem = {
   text: string | any;
   fontSize: string;
   gameType: GameTypeEnum;
+  bgUrl?: string;
 };
 
 const initialState: {
@@ -95,7 +96,8 @@ type ProviderProps = {
 export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProps) => {
   const { providerList } = useProvider();
   const { activeGameType, handleChangeGameType } = useGameType();
-  const { activeNavPopupGameType, handleChangeNavPopupGameType, isHovered, setIsHovered } = useNavPopupGameType();
+  const { activeNavPopupGameType, handleChangeNavPopupGameType, isHovered, setIsHovered } =
+    useNavPopupGameType();
   const { gpCode, handleChangeGpCode } = useGpCode();
 
   const { filterTagList, activeFilterTag, handleChangeActiveFilterTag } = useTagFilter();
@@ -110,7 +112,9 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
   const { searchString, handleChangeSearch } = useGameSearch();
 
   const activeGameTypeKey = gameTypeList.find((item) => item.gameType === activeGameType)?.key;
-  const activeNavPopupGameTypeKey = gameTypeList.find((item) => item.gameType === activeNavPopupGameType)?.key;
+  const activeNavPopupGameTypeKey = gameTypeList.find(
+    (item) => item.gameType === activeNavPopupGameType,
+  )?.key;
 
   return (
     <HomeGameContext.Provider

@@ -8,7 +8,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import BalanceChangeCards from "@/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeCards";
-import TransactionDetailTable from "@/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeTable";
+import BalanceChangeTable from "@/pages/report/components/reports/ReportBalanceChange/components/BalanceChangeTable";
 import { ReportContainer } from "@/components/styled-component/Report";
 
 type Props = {
@@ -80,7 +80,7 @@ const ReportBalanceChange = ({ dateRangeInfo }: Props) => {
   return (
     <ReportContainer>
       {isDesktopSize ? (
-        <TransactionDetailTable
+        <BalanceChangeTable
           balanceChangeDetails={balanceChangeDetails}
           totalCount={totalCount}
           page={page}

@@ -103,7 +103,7 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
             onPageChange={(page: number) => handlePageChange(page)}
           />
         ) : (
-          <WithdrawalDetailCards withdrawalDetails={withdrawalDetails} />
+          <WithdrawalDetailCards withdrawalDetails={withdrawalDetailsForMobile} />
         )}
         <Loading show={isLoading} />
       </ReportContainer>

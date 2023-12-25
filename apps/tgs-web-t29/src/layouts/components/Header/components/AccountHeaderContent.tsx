@@ -5,6 +5,7 @@ import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common } from "@tgs-web-nx/utils";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import Icon from "@/components/project/Icon";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
 import iconAccount from "@/assets/t29/images/header/icon-account.svg";
@@ -13,7 +14,6 @@ import iconInboxBlue from "@/assets/t29/images/header/icon-inbox-blue.svg";
 import iconLogout from "@/assets/t29/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { media } from "@/theme/breakpoints";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const ButtonContainer = styled.div`
   display: flex;

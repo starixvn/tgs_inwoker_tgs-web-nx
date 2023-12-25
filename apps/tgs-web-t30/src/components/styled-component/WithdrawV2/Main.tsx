@@ -75,7 +75,7 @@ export const SelectionContainer = styled.div`
   gap: 8px;
 
   & input {
-    padding: 16px 0 !important;
+    padding: 16px 10px !important;
   }
 `;
 export const LimitPopupContainer = styled.div`
@@ -92,7 +92,7 @@ export const LimitPopupContainer = styled.div`
 `;
 export const Turnover = styled.div`
   display: flex;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   span {
     margin-left: 5px;
     color: ${({ theme }) => theme.secondary};
@@ -149,7 +149,7 @@ export const DetailText = styled.div`
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 0em;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.white};
   cursor: pointer;
 `;
 
@@ -159,5 +159,5 @@ export const Hint = styled.div`
   line-height: 16px;
   letter-spacing: 0em;
   margin: 10px 0;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.white};
 `;

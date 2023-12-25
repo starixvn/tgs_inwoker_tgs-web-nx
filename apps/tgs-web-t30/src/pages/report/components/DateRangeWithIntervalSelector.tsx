@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const DateRangContainer = styled.div`
   display: flex;
@@ -17,18 +18,31 @@ type DateRangSelectionTypes = {
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
   text-align: center;
   cursor: pointer;
-  height: 28px;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.greenGradient : theme.mainLightBackground;
+    return $isSelected ? theme.greenGradient : theme.darkBlue;
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
     return $isSelected ? theme.white : theme.dae3;
   }};
-  padding: 6.5px;
-  border-radius: 4px;
+  border: 1px solid
+    ${({ $isSelected, theme }: DateRangSelectionTypes) =>
+      $isSelected ? "transparent" : theme.mainLightBackground};
+  padding: 6.5px 18px;
   font-size: 0.812rem;
   line-height: 1;
+
+  ${media.sm} {
+    padding: 13px 19px;
+    background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+      return $isSelected ? theme.main : theme["dae3"];
+    }};
+    color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+      return $isSelected ? theme.white : theme.text;
+    }};
+    border: 1px solid
+      ${({ $isSelected, theme }: DateRangSelectionTypes) => ($isSelected ? theme.main : theme.main)};
+  }
 `;
 
 export enum DateRangeEnum {

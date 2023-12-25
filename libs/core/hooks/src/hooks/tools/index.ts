@@ -6,3 +6,4 @@ export * from "./useOnlineUser";
 export * from "./usePromotion";
 export * from "./useRwd";
 export * from "./useVipStore";
+export * from "./useGoToHomePage";

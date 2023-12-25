@@ -5,7 +5,7 @@ import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRo
 
 const ProfileCard = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.gray30};
+  background: ${({ theme }) => theme.font};
   padding: 20px;
   margin-bottom: 12px;
   display: flex;

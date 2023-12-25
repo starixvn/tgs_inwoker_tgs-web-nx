@@ -5,13 +5,11 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.gray40};
+  background: ${({ theme }) => theme.darkBlue};
   color: ${({ theme }) => theme.white};
   padding: 12px;
-  border-radius: 5px;
   font-size: 0.937rem;
   line-height: 1.098rem;
-  max-width: 450px;
   align-self: flex-start;
 `;
 
