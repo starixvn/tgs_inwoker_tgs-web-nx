@@ -33,8 +33,6 @@ const Wrapper = styled.div<{
   margin-right: 8px;
 
   ${media.sm} {
-    min-width: 90px;
-    height: 74px;
     cursor: pointer;
     & :hover {
       color: ${({ theme }) => theme.white};

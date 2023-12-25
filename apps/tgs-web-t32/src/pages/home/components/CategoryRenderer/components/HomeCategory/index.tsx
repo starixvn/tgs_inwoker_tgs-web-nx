@@ -7,10 +7,10 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useMemo } from "react";
 import { useAccountStore } from "@tgs-web-nx/core";
 import CategoryLabel from "../LobbyCategory/components/CategoryLabel";
+import GameTypeTab from "@/pages/home/components/GameTypeTab/mobile";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
+import DesktopGameTypeTab from "@/pages/home/components/GameTypeTab/desktop";
 import productIcon from "@/assets/t32/images/home/product.svg";
 
 const CategoryTitle = styled.div`
@@ -67,7 +67,6 @@ const CategoryName = styled.div`
 `;
 // ------------------------------------------------------
 const HomeCategoryWrapper = styled.div`
-  border: 1px solid red;
   width: 100%;
 `;
 
@@ -87,7 +86,16 @@ const Wrapper = styled.div`
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.mainBackground};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    padding: 20px 0px;
+  }
 `;
 
 const CategoryContent = styled.div`
@@ -163,30 +171,9 @@ const HomeCategory = () => {
       <CategoryTitle>
         <CategoryLabel imageUrl={productIcon} text={"Product"} />
       </CategoryTitle>
-      <GameTypeTab />
+      {isDesktopSize ? <DesktopGameTypeTab /> : <GameTypeTab />}
 
-      {/* <CategoryContentWrapper>
-        <CategoryContent>
-          {hasMappingData &&
-            lobbyCategoryList.map((provider) => {
-              const { code: gpCode, status, name } = provider;
 
-              if (gpCode === "BC") return null;
-              return (
-                <MobileVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                  imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          {!hasMappingData && <div>No data</div>}
-        </CategoryContent>
-      </CategoryContentWrapper> */}
     </HomeCategoryWrapper>
   );
 };

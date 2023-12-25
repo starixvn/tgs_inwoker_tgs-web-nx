@@ -10,11 +10,11 @@ import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import GameTypeTab from "@/pages/home/components/GameTypeTab/mobile";
 import Features from "@/pages/home/components/Features";
 import productIcon from "@/assets/t32/images/home/product.svg";
 
@@ -43,6 +43,12 @@ const MainContentWrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 10px;
+
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    padding: 20px 0px;
+  }
 `;
 
 const BannerWrapper = styled.div`
@@ -117,13 +123,7 @@ const HomePage = () => {
         }
 
         <CategoryRenderer />
-        <>
-          {/* <CategoryTitle>
-            <CategoryLabel imageUrl={productIcon} text={"Product"} />
-          </CategoryTitle>
-          <GameTypeTab />
-          <CategoryRenderer /> */}
-        </>
+        <Division />
       </MainContentWrapper>
     </MainWrapper>
   );

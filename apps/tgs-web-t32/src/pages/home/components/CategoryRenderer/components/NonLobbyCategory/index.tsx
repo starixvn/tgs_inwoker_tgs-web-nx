@@ -9,7 +9,7 @@ import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import GameTypeTab from "@/pages/home/components/GameTypeTab/mobile";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
