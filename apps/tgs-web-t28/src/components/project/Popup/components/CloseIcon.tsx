@@ -17,10 +17,8 @@ const CloseIconContainer = styled.div`
   z-index: 3;
 
   ${media.sm} {
-    width: 36px;
-    height: 36px;
-    transform: scale(1.5);
-    border-radius: 36px;
+    width: 17.5px;
+    height: 17.5px;
   }
 `;
 
@@ -34,7 +32,7 @@ const CloseIcon = ({ onClick, style, ...others }: Props) => {
       <Close
         onClick={onClick}
         style={{
-          color: "black",
+          color: "white",
         }}
       />
     </CloseIconContainer>

@@ -12,11 +12,7 @@ const LoginPage = () => {
     return null;
   }
 
-  return (
-    <FormContainerWithBG>
-      <LoginForm />
-    </FormContainerWithBG>
-  );
+  return <LoginForm />;
 };
 
 export default LoginPage;

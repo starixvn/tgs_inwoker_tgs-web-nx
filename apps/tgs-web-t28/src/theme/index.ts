@@ -22,4 +22,5 @@ export const theme = {
   inputBGC: "#FFFFFF14",
   popupMask: "#000000A8",
   secPopupMask: "#00000040",
+  text: "#FFFFFF",
 };
