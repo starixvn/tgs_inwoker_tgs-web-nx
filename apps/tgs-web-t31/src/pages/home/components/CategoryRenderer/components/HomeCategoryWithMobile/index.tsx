@@ -8,8 +8,9 @@ import {
   useGetLobbyCategoryList,
   useHomeGameContext,
 } from "@tgs-web-nx/core/features";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import config from "@tgs-web-nx/config";
+import { ProviderDto } from "@tgs-web-nx/types";
 import GameCard from "../../../GameCard";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import arrowImg from "@/assets/t31/images/home/arrow.svg";
@@ -64,15 +65,23 @@ const Title = styled.div`
 const Arrow = styled.div``;
 
 const HomeCategoryWithMobile = () => {
-  const { activeGameType } = useHomeGameContext();
+  const { activeGameType, providerList } = useHomeGameContext();
+  const initSportCategoryList: ProviderDto[] = providerList.filter((provider) => {
+    return provider.gametypes.includes(GameTypeEnum.SPORTS);
+  });
+  const initLiveCategoryList: ProviderDto[] = providerList.filter((provider) => {
+    return provider.gametypes.includes(GameTypeEnum.LIVE);
+  });
   const { account } = useAccountStore();
   const history = useHistory();
-  const { sportCategoryList, liveCategoryList } = useGetLobbyCategoryList();
+  const [sportCategoryList, setSportCategoryList] = useState(initSportCategoryList);
+  const [liveCategoryList, setLiveCategoryList] = useState(initLiveCategoryList);
   const { hotGameList, getTableGameList, tableGameListState } = useGetHomeCategoryList();
   useEffect(() => {
     getTableGameList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
       history.push("/login");

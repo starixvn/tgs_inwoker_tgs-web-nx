@@ -17,17 +17,5 @@ export function useGetLobbyCategoryList() {
     });
   }, [activeNavPopupGameType, JSON.stringify(providerList)]);
 
-  const sportCategoryList = useMemo<ProviderDto[]>(() => {
-    return providerList.filter((provider) => {
-      return provider.gametypes.includes(GameTypeEnum.SPORTS);
-    });
-  }, [activeGameType, JSON.stringify(providerList)]);
-
-  const liveCategoryList = useMemo<ProviderDto[]>(() => {
-    return providerList.filter((provider) => {
-      return provider.gametypes.includes(GameTypeEnum.LIVE);
-    });
-  }, [activeGameType, JSON.stringify(providerList)]);
-
-  return { lobbyCategoryList, navPopupCategoryList, sportCategoryList, liveCategoryList };
+  return { lobbyCategoryList, navPopupCategoryList };
 }
