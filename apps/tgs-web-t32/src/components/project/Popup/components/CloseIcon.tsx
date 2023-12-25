@@ -27,7 +27,7 @@ type Props = {
 const CloseIcon = ({ onClick, style, ...others }: Props) => {
   return (
     <CloseIconContainer style={style} {...others}>
-      <Icon iconUrl={iconCloseWhite} width={"24px"} height={"24px"} />
+      <Icon onClick={onClick} iconUrl={iconCloseWhite} width={"24px"} height={"24px"} />
     </CloseIconContainer>
   );
 };

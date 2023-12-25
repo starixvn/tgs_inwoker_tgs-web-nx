@@ -6,7 +6,7 @@ import { theme } from "@/theme";
 const Wrapper = styled.div<{
   $isActive: boolean;
   $isShowIcon: boolean;
-  $hasBackground: boolean;
+  // $hasBackground: boolean;
 }>`
   vertical-align: middle;
   display: inline-flex;
@@ -17,10 +17,10 @@ const Wrapper = styled.div<{
   height: 100%;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.primary : theme.white};
-  color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.white : theme.primary};
+  background-color: ${({ theme, $isActive }) =>
+    $isActive ? theme.primary : theme.white};
+  color: ${({ theme, $isActive }) =>
+    $isActive ? theme.white : theme.primary};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
   border-radius: 4px;
   border: 1.5px solid ${({ theme }) => theme.primary};
@@ -70,7 +70,7 @@ const CommonTag = ({ text, isActive, isShowIcon, children, onClick }: Props) => 
     <Wrapper
       $isActive={isActive}
       $isShowIcon={isShowIcon}
-      $hasBackground={!isShowIcon && isActive}
+      // $hasBackground={!isShowIcon && isActive}
       onClick={onClick}
     >
       <Text $isActive={isActive}>{text}</Text>

@@ -35,7 +35,6 @@ const Text = styled.div<{
   color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.primary)};
   font-size: 0.75rem;
   font-weight: 700;
-  line-height: 0.75rem;
 
   ${media.sm} {
     font-weight: 400;

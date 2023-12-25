@@ -36,6 +36,7 @@ const FilterTagWrapper = styled.div`
   align-items: center;
   margin-top: 10px;
   gap: 12px;
+
 `;
 
 const ProviderTagContainer = styled.div`
@@ -73,6 +74,7 @@ const CommonTagContainer = styled.div`
   height: 100%;
   display: flex;
   padding-bottom: 10px;
+  gap: 12px;
 `;
 
 const SearchInputWrapper = styled.div`

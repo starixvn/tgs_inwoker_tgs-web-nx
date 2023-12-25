@@ -5,6 +5,7 @@ import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 
 const LoginDialog = () => {
   const { isLoginDialogOpen, handleToggleLoginDialog } = useAuthDialog();
+
   return (
     <AuthDialog open={isLoginDialogOpen} onClose={() => handleToggleLoginDialog(false)}>
       <LoginForm />
