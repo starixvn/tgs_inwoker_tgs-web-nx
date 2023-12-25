@@ -11,7 +11,6 @@ const ScrollableContainer = styled.div`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   gap: 12px;
-  border-radius: 8px;
 
   ${media.sm} {
     margin: 0 auto;
@@ -56,7 +55,7 @@ const LevelTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 12px 15px 12px 15px;
-  background: #d6dbdd;
+  background: ${({ theme }) => theme.mainBackground};
   border-bottom: 1px solid #23507d;
 
   ${media.sm} {
@@ -72,13 +71,12 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
-  margin: 0px 8px;
 
   ${media.sm} {
     max-width: 136px;
@@ -93,7 +91,7 @@ const LevelTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
-  background: #d6dbdd;
+  background: ${({ theme }) => theme.mainBackground};
   padding-top: 20px;
 `;
 
@@ -102,7 +100,7 @@ const LevelTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #d6dbdd;
+  background: ${({ theme }) => theme.mainBackground};
   border-bottom: 1px solid #23507d;
 
   ${media.sm} {
@@ -112,14 +110,13 @@ const LevelTableRowWrapper = styled.div`
 
 const RowItem = styled.div`
   display: flex;
-  height: 46px;
   padding: 24px 0px;
   justify-content: center;
   align-items: center;
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;

@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core"; // Import the RootState type
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { media } from "@/theme/breakpoints"; // Import the RootState type
 
 const Content = styled.div`
   font-size: 0.875rem;
@@ -10,6 +11,10 @@ const Content = styled.div`
   line-height: 1.0025rem;
   text-align: center;
   color: ${({ theme }) => theme.white};
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 const LabelLink = styled(Link)`

@@ -6,7 +6,6 @@ export const ReportContainer = styled.div``;
 export const ReportSummary = styled.div`
   font-size: 0.8rem;
   color: ${({ theme }) => theme.white};
-  border-radius: 5px;
   margin-bottom: 5px;
 
   ${media.sm} {
@@ -22,7 +21,6 @@ export const ReportSummaryCol = styled.div``;
 export const ReportCardsContainer = styled.div`
   font-size: 0.8rem;
   color: ${({ theme }) => theme.white};
-  border-radius: 5px;
   margin-bottom: 5px;
 `;
 export const ReportCard = styled.div`
@@ -30,7 +28,6 @@ export const ReportCard = styled.div`
   font-size: 0.8rem;
   color: ${({ theme }) => theme.white};
   background: ${({ theme }) => theme.mainLightBackground};
-  border-radius: 5px;
   margin-bottom: 10px;
 `;
 export const ReportCardGroup = styled.div``;

@@ -11,6 +11,7 @@ import {
   TableRow,
   TableSubjectCell,
 } from "@/components/styled-component/Inbox";
+import { theme } from "@/theme";
 
 type Props = {
   inboxList: InboxItem[];

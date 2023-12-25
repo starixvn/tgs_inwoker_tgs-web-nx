@@ -5,7 +5,7 @@ import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 import { media } from "@/theme/breakpoints";
 
 const AccountPaperContainer = styled.div`
-  padding: 20px 0;
+  padding: 0;
 
   ${media.sm} {
     background: ${({ theme }) => theme.white};

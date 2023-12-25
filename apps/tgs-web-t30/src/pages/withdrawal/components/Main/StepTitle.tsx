@@ -10,8 +10,8 @@ const SubHeaderContainer = styled.div`
 const NumberContainer = styled.div`
   width: 25px;
   height: 25px;
-  border-radius: 50px;
-  background-color: ${({ theme }) => theme.secondary};
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.main};
   font-family: Arial;
   font-size: 0.75rem;
   font-weight: 400;

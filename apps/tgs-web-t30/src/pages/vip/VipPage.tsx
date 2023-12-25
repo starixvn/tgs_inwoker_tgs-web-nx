@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useBettingBonus } from "@tgs-web-nx/core/hooks";
+import { useBettingBonus, useRwd } from "@tgs-web-nx/core/hooks";
 import { VipData } from "@tgs-web-nx/types";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import LevelTable from "./components/LevelTable";
@@ -17,6 +17,7 @@ const VipBanner = styled.div<{ $imageUrl: string }>`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  margin-bottom: 12px;
 
   ${media.sm} {
     max-width: 780px;
@@ -25,6 +26,7 @@ const VipBanner = styled.div<{ $imageUrl: string }>`
 `;
 
 const VIP = () => {
+  const { isDesktopSize } = useRwd();
   const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
   const [vipSortingData, setVipSortingData] = useState<VipData[]>([]);
   useUpdatePageName("VIP");
@@ -45,7 +47,13 @@ const VIP = () => {
 
   return (
     <PageContainer>
-      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.png`} />
+      <VipBanner
+        $imageUrl={
+          isDesktopSize
+            ? `${import.meta.env.BASE_URL}assets/images/vip/vip-banner.png`
+            : `${import.meta.env.BASE_URL}assets/images/vip/vip-banner-mobile.png`
+        }
+      />
       <BonusTable vipSortingData={vipSortingData} />
       <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
     </PageContainer>

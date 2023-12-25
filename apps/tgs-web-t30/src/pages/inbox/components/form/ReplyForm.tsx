@@ -7,6 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
+import { theme } from "@/theme";
 
 const InboxComposeFormContainer = styled.div`
   padding: 16px;
@@ -26,7 +27,7 @@ const OriginalMessage = styled.div`
   max-height: 120px;
   padding: 10px;
   white-space: pre-line;
-  border: ${({ theme }) => `1px solid ${theme.gray10}`};
+  border: ${({ theme }) => `1px solid ${theme.blueBorder}`};
   color: ${({ theme }) => theme.text};
   overflow: auto;
   font-size: 14px;
@@ -61,12 +62,17 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
     <InboxComposeFormContainer>
       <InputWrapper>
         <Label>{i18n.t("subject")}</Label>
-        <FormControl variant="outlined">
+        <FormControl
+          variant="outlined"
+          sx={{
+            border: `1px solid ${theme.blueBorder}`,
+          }}
+        >
           <TextField
             value={displayedSubject}
             sx={{
               input: {
-                padding: "17px 0",
+                padding: "17px 20px",
               },
             }}
             disabled={true}

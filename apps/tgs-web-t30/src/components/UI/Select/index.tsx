@@ -12,7 +12,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     background: "none",
   },
   select: {
-    color: theme.palette.white,
+    color: theme.palette.text,
     padding: "14px",
     "&:focus": {
       background: "none",
@@ -25,7 +25,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
   "& .MuiSvgIcon-root": {
-    color: theme.palette.white,
+    color: theme.palette.text,
   },
 
   "& .MuiOutlinedInput-notchedOutline": {

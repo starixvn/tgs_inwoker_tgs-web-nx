@@ -12,6 +12,10 @@ export const Remark = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.white};
   margin-bottom: 24px;
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 export const ItemContainer = styled.div`
@@ -29,6 +33,10 @@ export const LabelContainer = styled.div`
   color: ${({ theme }) => theme.dae3};
   float: left;
   margin-bottom: 16px;
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   background: theme.palette.white,
@@ -52,6 +60,9 @@ export const InfoContainer = styled.div`
 
   display: flex;
   align-items: center;
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
@@ -59,6 +70,10 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   color: "#828282",
   border: "none",
+
+  [theme.breakpoints.up("sm")]: {
+    border: `1px solid ${theme.palette.blueBorder}`,
+  },
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`
@@ -68,9 +83,17 @@ export const UploadFileTag = styled.span`
 
   display: flex;
   align-items: center;
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
-export const SubmitButton = Button;
+export const SubmitButton = muiStyled(Button)(({ theme }) => ({
+  border: "1px solid transparent ",
+  "&:hover": {
+    border: `1px solid ${theme.palette.primary.main}`,
+  },
+})) as typeof MuiButton;
 
 export const VerifySubmitButton = styled(SubmitButton)`
   margin-bottom: 20px !important;

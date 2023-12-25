@@ -12,7 +12,6 @@ const ScrollableContainer = styled.div`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   gap: 12px;
-  border-radius: 8px;
 
   ${media.sm} {
     //overflow-x: hidden; // this will cause tablet display issue
@@ -57,7 +56,7 @@ const BonusTableHeader = styled.div`
   align-items: center;
   width: 100%;
   padding: 10.5px 0;
-  background: #d6dbdd;
+  background: ${({ theme }) => theme.mainBackground};
   border-bottom: 1px solid #23507d;
   border-radius: 6px 0px 0px 0px;
 
@@ -71,7 +70,7 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -92,7 +91,7 @@ const BonusTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
-  background: #d6dbdd;
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
   }
@@ -103,7 +102,7 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid#23507D;
+  border-bottom: 1px solid #23507d;
 
   ${media.sm} {
     border-bottom: unset;
@@ -119,13 +118,13 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
-  margin: 0px 8px;
+  padding: 12px 8px;
 
   ${media.sm} {
     min-height: 106px;

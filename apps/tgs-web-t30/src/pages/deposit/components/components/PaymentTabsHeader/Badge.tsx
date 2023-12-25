@@ -22,10 +22,17 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
 
   font-size: 0.812rem;
   font-weight: 400;
-  border-radius: 4px;
+  border-radius: 3px;
 
   ${media.md} {
     width: auto;
+
+    color: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? theme.white : theme.text)};
+    background: ${({ $isActive, theme }: BadgeContainerProps) =>
+      $isActive ? theme.secondary : theme.dae3};
+    border: 1px solid
+      ${({ $isActive, theme }: BadgeContainerProps) =>
+        $isActive ? theme.secondary : theme.mainLightBackground};
   }
 `;
 

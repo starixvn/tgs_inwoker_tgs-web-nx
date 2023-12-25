@@ -20,7 +20,7 @@ const DialogHeaderContainer = styled.div`
   font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
-  z-index: 1300;
+  z-index: 10;
   gap: 14px;
 `;
 

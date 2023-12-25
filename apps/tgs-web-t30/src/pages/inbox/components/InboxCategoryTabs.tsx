@@ -15,9 +15,13 @@ type CategoryTabProps = {
 };
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1;
+
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? theme.blue40 : theme.blue20};
-  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.text)};
+    $isActive ? " linear-gradient(180deg, #91C538 0%, #648626 100%)" : theme.darkBlue};
+  border: 1px solid
+    ${({ $isActive, theme }: CategoryTabProps) =>
+      $isActive ? "transparent" : theme.mainLightBackground};
+  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.dae3)};
   padding: 12px;
   text-align: center;
   font-size: 0.812rem;

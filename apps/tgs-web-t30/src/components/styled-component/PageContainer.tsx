@@ -7,7 +7,11 @@ export const PageContainer = styled.div`
   max-width: calc(1072px + 22px * 2);
   flex: 1;
   margin: 0 auto;
-  overflow: visible;
+
+  ${media.sm} {
+    background: none;
+    padding: 20px 10px;
+  }
 `;
 
 export const PromotionPageContainer = styled.div`
@@ -24,7 +28,7 @@ export const PromotionPageContainer = styled.div`
 `;
 
 export const TransferPageContainer = styled.div`
-  padding: 12px 12px;
+  padding: 12px;
   max-width: calc(1072px + 22px * 2);
   flex: 1;
   margin: 0 auto;

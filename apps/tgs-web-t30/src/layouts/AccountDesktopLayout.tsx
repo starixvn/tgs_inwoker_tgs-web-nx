@@ -55,7 +55,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
               handleCloseContextMenu={() => {}}
               style={{
                 width: "258px",
-                margin: "22px 0 0 22px",
+                margin: "20px 0 0 22px",
                 flexShrink: 0,
               }}
             />

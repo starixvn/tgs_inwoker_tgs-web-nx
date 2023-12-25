@@ -13,6 +13,7 @@ import styled from "styled-components";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -94,6 +95,11 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   .MuiInput-underline:after {
     border-bottom: 0px;
   }
+
+  ${media.sm} {
+    border: 1px solid ${({ theme }) => theme.blueBorder};
+    border-radius: 3px;
+  }
 `;
 
 type Props = {
@@ -114,8 +120,9 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   }}
 
   .MuiInputBase-input {
-    background: ${({ theme }) => theme.gray30};
-    color: ${({ theme }) => theme.white};
+    background: ${({ theme }) => theme.white};
+    border: 1px solid #d6dbdd;
+    color: ${({ theme }) => theme.text};
   }
 
   .MuiInput-underline:before,

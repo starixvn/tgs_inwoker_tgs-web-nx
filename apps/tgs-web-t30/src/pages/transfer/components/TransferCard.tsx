@@ -10,7 +10,6 @@ const TransferCardContainer = styled.div`
   background: ${({ theme }) => theme.darkBlue};
   color: ${({ theme }) => theme.blue};
   padding: 12px 15px;
-  border-radius: 10px;
 
   & > div {
     font-size: 0.875rem !important;
@@ -66,7 +65,7 @@ const TransferCard = ({
       <RowContainer>
         <ColContainer>{i18n.t("transfer.mainAccount")}</ColContainer>
 
-        <ColContainer style={{ color: theme.white }}>
+        <ColContainer style={{ color: theme.white, padding: "14px" }}>
           {Common.formatNumberWithCommas(mainWalletBalance)}
         </ColContainer>
       </RowContainer>

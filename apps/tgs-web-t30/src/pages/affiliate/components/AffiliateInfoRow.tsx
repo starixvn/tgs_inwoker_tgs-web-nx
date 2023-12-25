@@ -6,7 +6,8 @@ import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.gray30};
+  background: ${({ theme }) => theme.white};
+  border: 1px solid #d6dbdd;
   padding: 16px 10px;
   display: flex;
   align-items: center;
@@ -15,20 +16,20 @@ const AffiliateInfoRowContainer = styled.div`
   & .label {
     min-width: 110px;
     margin-right: 8px;
-    font-weight: 400;
-    font-size: 1.125rem;
-    line-height: 1.318rem;
-    color: ${({ theme }) => theme.white};
+    font-weight: 700;
+    font-size: 12.3px;
+    line-height: 16px;
+    color: ${({ theme }) => theme.text};
   }
 
   & .value {
     font-weight: 400;
     font-size: 0.937rem;
-    line-height: 1.098rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-right: 6px;
+    color: ${({ theme }) => theme.text};
   }
 
   & .button {
@@ -37,7 +38,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-size: 0.75rem;
     font-weight: 400;
     padding: 8px 19px;
-    border-radius: 5px;
+    border-radius: 0;
   }
 `;
 
@@ -71,7 +72,7 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
           width: "66px",
           color: theme.white,
           background: theme.secondary,
-          borderRadius: "50px !important",
+          border: "none !important",
           fontSize: "0.75rem",
           padding: "4px",
           height: "22px",

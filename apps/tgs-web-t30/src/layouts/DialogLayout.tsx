@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
-import MemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenu";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
 
