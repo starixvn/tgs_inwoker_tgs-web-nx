@@ -51,7 +51,7 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.gray30};
+    color: ${({ theme }) => theme.white};
   }
 `;
 

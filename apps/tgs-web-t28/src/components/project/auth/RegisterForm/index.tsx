@@ -13,22 +13,18 @@ import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 
 const RegisterForm = () => {
-  const { isMobileSize } = useRwd();
+  const { isMobileSize, isDesktopSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
-      ) : (
-        <LoginTitle>{`${i18n.t("common.register")}`.toUpperCase()}</LoginTitle>
-      )}
+      {isDesktopSize && <LoginTitle>{`${i18n.t("common.register")}`}</LoginTitle>}
 
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>
 
       <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      <LanguageSwitch />
     </AuthFormContainer>
   );
 };

@@ -9,9 +9,7 @@ const RegisterDialog = () => {
 
   return (
     <AuthDialog open={isRegisterDialogOpen} onClose={() => handleToggleRegisterDialog(false)}>
-      <DialogContentWithBG>
-        <RegisterForm />
-      </DialogContentWithBG>
+      <RegisterForm />
     </AuthDialog>
   );
 };
