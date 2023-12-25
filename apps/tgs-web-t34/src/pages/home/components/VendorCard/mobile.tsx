@@ -31,7 +31,7 @@ const VendorCardBg = styled.div<{ $bgUrl: string }>`
   position: relative;
   width: 100%;
   position: relative;
-  aspect-ratio: 198 / 119;
+  aspect-ratio: 198 / 316;
   background-image: url(${({ $bgUrl }) => $bgUrl});
   background-size: cover;
 `;
