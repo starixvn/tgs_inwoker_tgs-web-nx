@@ -1,16 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useAccountStore } from "@tgs-web-nx/core";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
+import MenuButton from "./MenuButton";
 import {
+  DESKTOP_DRAWER_WIDTH,
   DESKTOP_HEADER_HEIGHT,
+  DRAWER_SHRINK_WIDTH,
   MOBILE_HEADER_HEIGHT,
   SUB_CONTENT_MAX_WIDTH,
+  TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
@@ -23,7 +27,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.NavBGC};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -33,68 +37,103 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const ContentWrapper = styled.div`
+const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  z-index: 2;
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
-  margin: auto;
+  padding: 10px 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  z-index: 2;
 `;
 
-const ContentGroup = styled.div`
+type ContentWrapperProps = {
+  $isOpen: boolean;
+};
+
+const MenuButonnWrapper = styled.div`
   display: flex;
   align-items: center;
+  ${media.md} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? TABLET_DRAWER_WIDTH : `10px`)};
+  }
+
+  ${media.lg} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? DESKTOP_DRAWER_WIDTH : `10px`)};
+  }
+  position: absolute;
+  left: 0;
 `;
 
-const BlueHeaderRowContainer = styled.div`
-  background: #3158ff;
-  background-size: cover;
-  height: 40px;
+const LogoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  & > img {
+    height: 48px;
+    /* width: 100%; */
+    object-fit: contain;
+    display: block;
+    margin: auto;
+    cursor: pointer;
+  }
 `;
 
-const WhiteHeaderRowContainer = styled.div`
-  margin: auto;
-  height: 65px;
+const HeaderContentContainer = styled.div`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 `;
 
 const DesktopHeader = () => {
   const { account } = useAccountStore();
+  const {
+    general: { brand },
+  } = useGeneralStore();
+  const history = useHistory();
   const noLoginAccount = account.token !== account.info.token;
   const { isLargeDesktopSize, isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
-
+  const { isMenuOpen } = useHeader();
+  const logoUrl = brand.loadingUrl;
+  if (!logoUrl) return null;
   return (
     <HeaderContainer>
-      <BlueHeaderRowContainer>
-        <ContentWrapper>
-          <ContentGroup>
-            {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
-          </ContentGroup>
-
-          <ContentGroup>
-            {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-          </ContentGroup>
-        </ContentWrapper>
-      </BlueHeaderRowContainer>
-
-      <WhiteHeaderRowContainer>
-        <ContentWrapper>
-          <Link to={""}>
-            <BrandLogo
-              style={{ height: "27px" }}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+      <HeaderWrapper>
+        {isDesktopSize ? (
+          <MenuButonnWrapper $isOpen={isDesktopSize && isMenuOpen}>
+            <MenuButton />
+            <LogoWrapper>
+              <img
+                src={logoUrl}
+                alt={"logo"}
+                height={48}
+                onClick={() => {
+                  history.push("/");
+                }}
+              />
+              <SystemTime />
+            </LogoWrapper>
+          </MenuButonnWrapper>
+        ) : (
+          <LogoWrapper>
+            <img
+              src={logoUrl}
+              alt={"logo"}
+              width={94}
+              height={44}
+              onClick={() => {
+                history.push("/");
+              }}
             />
-          </Link>
-
-          {isDesktopSize && <HeaderGameTypes />}
-        </ContentWrapper>
-      </WhiteHeaderRowContainer>
+          </LogoWrapper>
+        )}
+        <HeaderContentContainer>
+          {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+        </HeaderContentContainer>
+      </HeaderWrapper>
     </HeaderContainer>
   );
 };
