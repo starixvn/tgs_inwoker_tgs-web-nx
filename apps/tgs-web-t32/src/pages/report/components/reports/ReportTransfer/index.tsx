@@ -16,7 +16,7 @@ type Props = {
 };
 
 const PAGE_SIZE = 10;
-const Index = ({ dateRangeInfo }: Props) => {
+const ReportTransfer = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -104,4 +104,4 @@ const Index = ({ dateRangeInfo }: Props) => {
   );
 };
 
-export default Index;
+export default ReportTransfer;

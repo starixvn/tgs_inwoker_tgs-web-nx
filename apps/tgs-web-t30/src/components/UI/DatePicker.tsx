@@ -121,7 +121,7 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
 
   .MuiInputBase-input {
     background: ${({ theme }) => theme.white};
-    border: 1px solid #d6dbdd;
+    border: 1px solid ${({ theme }) => theme.blueBorder};
     color: ${({ theme }) => theme.text};
   }
 

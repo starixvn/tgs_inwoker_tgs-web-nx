@@ -23,6 +23,10 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
   const [page, setPage] = useState(1);
 
   const [transactionDetails, setTransactionDetails] = useState<TransactionDetail[]>([]);
+  const [transactionDetailsForMobile, setTransactionDetailsForMobile] = useState<
+    TransactionDetail[]
+  >([]);
+
   const [totalCount, setTotalCount] = useState(0);
   const [isMaxPage, setIsMaxPage] = useState(false);
   const [roundTotal, setRoundTotal] = useState<RoundTotalDto>({
@@ -49,10 +53,11 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     if (getTransactionDetailsRes.IsSuccess) {
       const newDataList =
         page > 1
-          ? transactionDetails.concat(getTransactionDetailsRes.data.items)
+          ? transactionDetailsForMobile.concat(getTransactionDetailsRes.data.items)
           : getTransactionDetailsRes.data.items;
 
-      setTransactionDetails(newDataList);
+      setTransactionDetails(getTransactionDetailsRes.data.items);
+      setTransactionDetailsForMobile(newDataList);
       setIsMaxPage(getTransactionDetailsRes.data.totalcount == newDataList.length);
       setTotalCount(getTransactionDetailsRes.data.totalcount || 0);
     } else {
@@ -91,23 +96,8 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
   };
 
   const handlePageChange = async (page: number) => {
-    setIsLoading(true);
-    const getTransactionDetailsRes = await ReportService.GetTransactionDetails(
-      moment(dateRangeInfo.dateFrom).utc().format(),
-      moment(dateRangeInfo.dateTo).utc().add(1, "days").format(),
-      page + 1,
-      PAGE_SIZE,
-      true,
-      "",
-      false,
-    );
-    if (getTransactionDetailsRes.IsSuccess) {
-      setIsLoading(false);
-      setTransactionDetails(getTransactionDetailsRes.data.items);
-    } else {
-      alert("", getTransactionDetailsRes?.info || JSON.stringify(getTransactionDetailsRes));
-      setIsLoading(false);
-    }
+    fetchReports(page + 1);
+    setPage(page + 1);
   };
 
   return (
@@ -117,10 +107,12 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
           transactionDetails={transactionDetails}
           roundTotal={roundTotal}
           totalCount={totalCount}
+          page={page}
+          pageSize={PAGE_SIZE}
           onPageChange={(page: number) => handlePageChange(page)}
         />
       ) : (
-        <TransactionDetailCards transactionDetails={transactionDetails} />
+        <TransactionDetailCards transactionDetails={transactionDetailsForMobile} />
       )}
       <Loading show={isLoading} />
       {/*@ts-ignore*/}

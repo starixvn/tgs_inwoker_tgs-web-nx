@@ -13,6 +13,7 @@ type Props = {
   onPageChange: (newPage: number) => void;
   pageSize: number;
 };
+
 const DepositDetailTable = ({
   transferDetails,
   totalCount,
@@ -95,7 +96,7 @@ const DepositDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.text,
           "& button": {},
         }}
       />

@@ -11,18 +11,13 @@ import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const VipBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 137px;
   border-radius: 4px;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 12px;
-
-  ${media.sm} {
-    max-width: 780px;
-    height: 250px;
-  }
+  aspect-ratio: 1072 / 335;
 `;
 
 const VIP = () => {

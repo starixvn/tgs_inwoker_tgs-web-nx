@@ -1,66 +1,55 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
-import Footer from "@/layouts/components/Footer";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
+import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
-import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
+import DefaultLayout from "@/layouts/DefaultLayout";
 
-const DefaultLayoutContainer = styled.div`
+const DialogLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
-
-  ${media.sm} {
-    background: #141b1f;
-  }
-`;
-
-const DashboardContainer = styled.div`
-  display: flex;
-  margin-top: ${MOBILE_HEADER_HEIGHT};
-  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-
-  ${media.sm} {
-    margin-top: ${MOBILE_HEADER_HEIGHT};
-    min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
-    margin-bottom: unset;
-  }
 `;
 
 const ContentWrapper = styled.div`
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin: ${`calc(${MOBILE_HEADER_HEIGHT} + ${DIALOG_HEADER_HEIGHT}) auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
-  flex-grow: 1;
-  transition: all ease-in-out 0.2s;
-`;
+  z-index: 1;
 
-const ChildrenWrapper = styled.div`
-  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
-
-  ${media.sm} {
-    padding-bottom: 0;
-  }
+  //display: flex;
+  //justify-content: center;
 `;
 
 type Props = {
   children: React.ReactNode;
 };
-const DefaultLayout = ({ children }: Props) => {
+const PromotionLayout = ({ children }: Props) => {
+  const { isDesktopSize } = useRwd();
+  const { pageName } = usePageName();
+  const history = useHistory();
+
+  const handleCloseDialog = useCallback(() => {
+    history.goBack();
+  }, [history]);
+
+  if (isDesktopSize) {
+    return <DefaultLayout>{children}</DefaultLayout>;
+  }
+
   return (
-    <DefaultLayoutContainer>
+    <DialogLayoutContainer>
       <Header />
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
 
-      <DashboardContainer>
-        <MenuDrawer />
+      <MenuDrawer />
 
-        <ContentWrapper>
-          <>
-            <ChildrenWrapper>{children}</ChildrenWrapper>
-            <Footer />
-          </>
-        </ContentWrapper>
-      </DashboardContainer>
-    </DefaultLayoutContainer>
+      <ContentWrapper>{children}</ContentWrapper>
+    </DialogLayoutContainer>
   );
 };
 
-export default DefaultLayout;
+export default PromotionLayout;

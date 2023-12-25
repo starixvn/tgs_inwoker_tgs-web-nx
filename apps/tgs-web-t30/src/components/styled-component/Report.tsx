@@ -10,6 +10,8 @@ export const ReportSummary = styled.div`
 
   ${media.sm} {
     margin-bottom: 20px;
+    background: ${({ theme }) => theme.main};
+    padding: 10px;
   }
 `;
 export const ReportSummaryRow = styled.div`
@@ -54,14 +56,24 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontWeight: 400,
     whiteSpace: "nowrap",
     padding: "0 5px",
+    color: "#98a7b5",
+    background: theme.palette.main,
+  },
+
+  [theme.breakpoints.up("sm")]: {
+    "& .MuiTableHead-root .MuiTableCell-root": {
+      padding: "10px",
+      color: theme.palette.white,
+      background: theme.palette.main,
+    },
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
     fontSize: "0.812rem",
     fontWeight: 400,
     lineHeight: "0.951rem",
-    color: theme.palette.white,
-    borderBottom: `1px solid ${theme.palette.white}`,
+    color: "#98a7b5",
+    borderBottom: `1px solid ${theme.palette.blueBorder}`,
     padding: "26px 5px 10px",
   },
 }));

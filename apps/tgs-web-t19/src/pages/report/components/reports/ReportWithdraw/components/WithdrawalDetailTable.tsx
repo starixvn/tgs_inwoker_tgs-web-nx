@@ -9,23 +9,20 @@ import { theme } from "@/theme";
 
 type Props = {
   withdrawalDetails: WithdrawFormViewModel[];
+  totalCount: number;
+  page: number;
+  onPageChange: (newPage: number) => void;
+  pageSize: number;
 };
-const WithdrawalDetailTable = ({ withdrawalDetails }: Props) => {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+const WithdrawalDetailTable = ({
+  withdrawalDetails,
+  totalCount,
+  page,
+  pageSize,
+  onPageChange,
+}: Props) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    onPageChange(newPage);
   };
 
   if (withdrawalDetails.length <= 0) {
@@ -91,11 +88,10 @@ const WithdrawalDetailTable = ({ withdrawalDetails }: Props) => {
       <TablePagination
         component="div"
         rowsPerPageOptions={[]}
-        count={withdrawalDetails.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
+        count={totalCount}
+        rowsPerPage={pageSize}
+        page={page - 1}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
         sx={{
           width: "100%",
           color: theme.blue40,

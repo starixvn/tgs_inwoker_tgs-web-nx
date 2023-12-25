@@ -8,6 +8,7 @@ import Loading from "@/components/UI/Loading";
 import { Button } from "@/components/UI/Button";
 import { Switch } from "@/components/UI/Switch";
 import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
 
 const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
   "& .MuiSwitch-switchBase": {
@@ -25,7 +26,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
 
 const AutoTransferContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 15px;
   flex-wrap: wrap;
 
@@ -39,7 +40,7 @@ const Group = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   gap: 8px;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme["515c"]};
 
   ${media.md} {
     flex-direction: row;
@@ -85,6 +86,11 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
           <Button
             onClick={() => {
               performWithdrawFromEveryBrand();
+            }}
+            style={{
+              padding: "13px",
+              height: "50px",
+              borderBottom: `1px solid ${theme.primary}`,
             }}
           >
             {i18n.t("transfer.oneKeyTransferOut")}

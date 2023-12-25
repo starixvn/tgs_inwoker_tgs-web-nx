@@ -58,11 +58,10 @@ const BonusTableHeader = styled.div`
   padding: 10.5px 0;
   background: ${({ theme }) => theme.mainBackground};
   border-bottom: 1px solid #23507d;
-  border-radius: 6px 0px 0px 0px;
 
   ${media.sm} {
     padding: 20px 0;
-    border-radius: 8px 8px 0px 0px;
+    background: ${({ theme }) => theme.white};
   }
 `;
 
@@ -94,6 +93,7 @@ const BonusTableBody = styled.div`
   background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
+    background: ${({ theme }) => theme.white};
   }
 `;
 

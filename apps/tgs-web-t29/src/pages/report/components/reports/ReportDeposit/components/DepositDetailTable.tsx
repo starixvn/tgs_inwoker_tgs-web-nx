@@ -13,6 +13,7 @@ type Props = {
   onPageChange: (newPage: number) => void;
   pageSize: number;
 };
+
 const DepositDetailTable = ({
   transferDetails,
   totalCount,

@@ -5,7 +5,7 @@ import { useNotifications } from "@tgs-web-nx/core/features";
 import { useDepositPage, useRwd } from "@tgs-web-nx/core/hooks";
 import DepositPrev from "@/components/account/DepositPrev";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconDeposit from "@/assets/t23/images/badge/icon-deposit.svg";
+import iconDeposit from "@/assets/t30/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 

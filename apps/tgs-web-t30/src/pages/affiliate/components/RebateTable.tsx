@@ -2,9 +2,14 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import styled from "styled-components";
 import { BrandAllAgent } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+import { media } from "@/theme/breakpoints";
 
 const StyledTable = styled(Table)`
   padding: 20px;
+
+  ${media.sm} {
+    border: 1px solid ${({ theme }) => theme.blueBorder};
+  }
 `;
 
 const StyledTableHead = styled(TableHead)`

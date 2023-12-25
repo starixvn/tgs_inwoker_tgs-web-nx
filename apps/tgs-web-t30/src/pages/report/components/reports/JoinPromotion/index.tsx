@@ -15,16 +15,20 @@ type Props = {
   dateRangeInfo: DateRangeInfo;
 };
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 10;
 const ReportJoinPromotion = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
 
   const [promotionDetails, setPromotionDetails] = useState<JoinedPromotionsResponse[]>([]);
+  const [promotionDetailsForMobile, setPromotionDetailsForMobile] = useState<
+    JoinedPromotionsResponse[]
+  >([]);
+
   const [totalCount, setTotalCount] = useState(0);
   const [isMaxPage, setIsMaxPage] = useState(false);
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   const fetchReports = async (page: number) => {
     setIsLoading(true);
@@ -42,10 +46,11 @@ const ReportJoinPromotion = ({ dateRangeInfo }: Props) => {
     if (getJoinedPromoReportRes.IsSuccess) {
       const newPromotionDetails =
         page > 1
-          ? promotionDetails.concat(getJoinedPromoReportRes.data.items)
+          ? promotionDetailsForMobile.concat(getJoinedPromoReportRes.data.items)
           : getJoinedPromoReportRes.data.items;
 
-      setPromotionDetails(newPromotionDetails);
+      setPromotionDetails(getJoinedPromoReportRes.data.items);
+      setPromotionDetailsForMobile(newPromotionDetails);
       setTotalCount(getJoinedPromoReportRes.data.totalcount || 0);
       setIsMaxPage(getJoinedPromoReportRes.data.totalcount == newPromotionDetails.length);
     } else {
@@ -70,16 +75,31 @@ const ReportJoinPromotion = ({ dateRangeInfo }: Props) => {
     await fetchReports(nextPage);
   };
 
+  const handlePageChange = async (page: number) => {
+    fetchReports(page + 1);
+    setPage(page + 1);
+  };
+
   return (
     <ReportContainer>
       {isDesktopSize ? (
-        <JoinPromotionTable promotionDetails={promotionDetails} totalCount={totalCount} />
+        <JoinPromotionTable
+          promotionDetails={promotionDetails}
+          totalCount={totalCount}
+          page={page}
+          pageSize={PAGE_SIZE}
+          onPageChange={(page: number) => handlePageChange(page)}
+        />
       ) : (
-        <JoinPromotionCards promotionDetails={promotionDetails} />
+        <JoinPromotionCards promotionDetails={promotionDetailsForMobile} />
       )}
       <Loading show={isLoading} />
       {/*@ts-ignore*/}
-      <BottomScrollListener onBottom={handleLoadMore} />
+      <BottomScrollListener
+        onBottom={() => {
+          isMobileSize && handleLoadMore();
+        }}
+      />
     </ReportContainer>
   );
 };

@@ -61,6 +61,7 @@ const LevelTableHeader = styled.div`
   ${media.sm} {
     height: 86px;
     padding: 20px 0px;
+    background: ${({ theme }) => theme.white};
   }
 `;
 
@@ -93,6 +94,10 @@ const LevelTableBody = styled.div`
   align-self: stretch;
   background: ${({ theme }) => theme.mainBackground};
   padding-top: 20px;
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.white};
+  }
 `;
 
 const LevelTableRowWrapper = styled.div`
@@ -105,6 +110,7 @@ const LevelTableRowWrapper = styled.div`
 
   ${media.sm} {
     border-bottom: unset;
+    background: ${({ theme }) => theme.white};
   }
 `;
 

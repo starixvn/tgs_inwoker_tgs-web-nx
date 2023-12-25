@@ -19,10 +19,10 @@ const InnerWrap = styled.div``;
 const SubTitle = styled.div`
   font-size: 18px;
   font-weight: 700;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   display: inline-block;
   width: 100%;
-  margin: 25px 0 5px 0;
+  margin: 25px 0 1px 0;
   padding-bottom: 8px;
 `;
 

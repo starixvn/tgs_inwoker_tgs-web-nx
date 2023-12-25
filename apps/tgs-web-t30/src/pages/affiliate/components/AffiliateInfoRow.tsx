@@ -7,7 +7,7 @@ import { theme } from "@/theme";
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
   background: ${({ theme }) => theme.white};
-  border: 1px solid #d6dbdd;
+  border: 1px solid ${({ theme }) => theme.blueBorder};
   padding: 16px 10px;
   display: flex;
   align-items: center;

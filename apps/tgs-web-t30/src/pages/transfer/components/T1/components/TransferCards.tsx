@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { Button } from "@/components/UI/Button";
+import { media } from "@/theme/breakpoints";
 
 const TransferContainer = styled.div`
   width: 100%;
@@ -19,12 +20,15 @@ const TransferContainer = styled.div`
 const GameTransferWallet = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 200px;
   border-radius: 4px;
-  border: solid 1px ${({ theme }) => "#dddedf"};
-  background: ${({ theme }) => theme.blue20};
+  border: solid 1px ${({ theme }) => "#4D8AB9"};
   padding: 10px 10px 10px 3px;
   gap: 10px;
+  width: calc((100% - 6px * 2) / 3);
+
+  ${media.lg} {
+    width: calc((100% - 6px * 3) / 4);
+  }
 `;
 const GameTransferLeftWrap = styled.div`
   max-width: 70px;
@@ -46,7 +50,7 @@ const GameName = styled.div`
   line-height: 13px;
   letter-spacing: 0em;
   text-align: center;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.blue};
   margin-top: 7px;
 `;
 const GameWalletAmount = styled.div`
@@ -68,9 +72,12 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   lineHeight: "14px",
   textAlign: "center",
   padding: "4px",
-  background: theme.palette.blue30,
+  background: theme.palette.primary.main,
+  borderBottom: `1px solid ${theme.palette.primary.main} !important`,
+  borderRadius: "5px",
   "&:hover": {
-    background: theme.palette.primary.main,
+    color: theme.palette.white,
+    background: "#526E1F",
   },
 }));
 

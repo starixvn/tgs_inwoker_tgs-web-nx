@@ -5,7 +5,6 @@ import { useMemo } from "react";
 import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import BottomNav from "./BottomNav";
-import { useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import live from "@/assets/t33/images/home/gameType/liveCasino.svg";
 import sports from "@/assets/t33/images/home/gameType/sports.svg";
