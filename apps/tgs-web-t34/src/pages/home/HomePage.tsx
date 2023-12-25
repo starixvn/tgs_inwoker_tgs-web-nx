@@ -1,95 +1,115 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import HomePromotionCard from "./components/HomePromotionCard";
-import ImageCard from "./components/ImageCard";
-import WinnerCard from "./components/WinnerCard";
-import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
-import CardPrompt from "@/pages/home/components/CardPrompt";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useParams } from "react-router-dom";
+import { getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import Slider from "@/pages/home/components/Slider";
+import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
-import HomeCategoryFolder from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeCategoryFolder";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import Banner from "@/pages/home/components/Banner";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import useBanner from "@/hooks/home/useBanner";
+import { theme } from "@/theme";
+import GameTypeTab from "@/pages/home/components/GameTypeTab";
 
-const MainWrapper = styled.div`
+type MainWrapperProps = {
+  $isDark: boolean;
+  theme: typeof theme;
+};
+
+const MainWrapper = styled.div<MainWrapperProps>`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
+  background: ${({ $isDark, theme }: MainWrapperProps) =>
+    $isDark ? "#141B1F" : theme.mainBackground};
   color: ${({ theme }) => theme.white};
+  padding: 0px 8px 12px 8px;
+  flex-shrink: 0;
+  flex: 1;
+  position: relative;
 
   ${media.sm} {
-    max-width: 1200px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 20px 0px;
-    gap: 20px;
+    gap: unset;
+    height: unset;
+    padding: 0px 0px 0px 0px;
   }
 `;
 
-const SliderWrapper = styled.div`
-  width: 100%;
-  height: 160px;
-
-  ${media.sm} {
-    height: 375px;
-    border-radius: 10px;
-  }
-`;
-
-const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+const BannerWrapper = styled.div`
+  position: relative;
+  flex-shrink: 0;
   width: 100%;
 
   ${media.sm} {
-    max-width: 1200px;
-    height: 375px;
-    border-radius: 10px;
-    background-image: url(${({ $imageUrl }) => $imageUrl});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    height: 100%;
+    max-height: 350px;
   }
 `;
 
 const MainContentWrapper = styled.div`
   width: 100%;
-  padding: 22px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.primaryDark};
+  // background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 10px;
+  gap: 6px;
   flex-shrink: 0;
+  flex: 1;
 
   ${media.sm} {
-    gap: 20px;
-    padding: unset;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    gap: unset;
   }
 `;
 
-const HomeAdContainer = styled.div`
+const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
+  height: 350px;
+  margin: 0 auto;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
 
-  ${media.sm} {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    height: 100%;
-  }
+const BannerTitle = styled.div`
+  font-size: 100px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.white};
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(0%, -50%);
 `;
 
 const HomePage = () => {
-  const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
-  const { leaderboard } = useBettingHistory();
+  const { gameType: urlGameType } = useParams<{ gameType: string }>();
+  const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
+
+  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
+    useHomeGameContext();
+
+  const gameTypeList = useGameTypeList();
+
+  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
+
+  const isNonLobby = isNonLobbyList.includes(activeGameType);
+
+  const getGameTypeFromKey = (key: string) => {
+    const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
+    return matchingGameType ? matchingGameType.gameType : null;
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -99,53 +119,42 @@ const HomePage = () => {
     });
   }, [activeGameType]);
 
+  useEffect(() => {
+    const gameType = getGameTypeFromKey(urlGameType);
+    if (gameType) {
+      handleChangeGameType(gameType);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlGameType]);
+
   return (
-    <MainWrapper>
-      {(isMobileSize || (isDesktopSize && !activeGameType)) && !!general.banner.length && (
-        <SliderWrapper>
-          <Slider />
-        </SliderWrapper>
-      )}
-      {!!activeGameType && (
-        <GameTypeBanner
-          $imageUrl={
-            activeGameTypeKey
-              ? `${import.meta.env.BASE_URL}assets/images/home/gp_banner/${activeGameTypeKey}.png`
-              : ""
-          }
-        />
-      )}
+    <MainWrapper $isDark={!isMobileSize && activeGameType !== GameTypeEnum.NONE}>
+      {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
+
+      {hasActiveDesktopBanner() && activeGameType !== GameTypeEnum.NONE ? (
+        <BannerWrapper>
+          {isDesktopSize && !!activeGameType && (
+            <GameTypeBanner
+              $imageUrl={
+                activeGameTypeKey
+                  ? `${
+                      import.meta.env.BASE_URL
+                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  : ""
+              }
+            />
+          )}
+
+          <BannerTitle>{i18n.t(getGameTypeName(activeGameType))}</BannerTitle>
+          {isDesktopSize && !activeGameType && <Banner />}
+        </BannerWrapper>
+      ) : null}
+
+      {/*{isMobileSize && <CardPrompt />}*/}
+      <GameTypeTab />
 
       <MainContentWrapper>
-        {(isMobileSize || (isDesktopSize && !activeGameType)) && <CardPrompt />}
-        {isMobileSize && <GameTypeTab />}
-
         <CategoryRenderer />
-
-        {!activeGameType && (
-          <>
-            <HomeAdContainer>
-              <HomePromotionCard />
-              <WinnerCard leaderboard={leaderboard} />
-            </HomeAdContainer>
-
-            {isMobileSize &&
-              footerCategoriesList.length &&
-              footerCategoriesList.map((category, index) => (
-                <HomeCategoryFolder key={index} title={category.title} size={category.size!}>
-                  {category.content ? (
-                    category.content
-                  ) : (
-                    <ImageCard
-                      imageUrl={category.imageUrl}
-                      text={category.text}
-                      alignment={category.alignment}
-                    />
-                  )}
-                </HomeCategoryFolder>
-              ))}
-          </>
-        )}
       </MainContentWrapper>
     </MainWrapper>
   );

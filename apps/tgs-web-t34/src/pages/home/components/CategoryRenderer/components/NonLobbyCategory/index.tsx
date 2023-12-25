@@ -1,115 +1,128 @@
+import React from "react";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { Common } from "@tgs-web-nx/utils";
+import { useGetNonLobbyCategoryList } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import searchIcon from "@/assets/t23/images/home/search.svg";
 import Loading from "@/components/UI/Loading";
-import { useGameTypeList } from "@/hooks/home/useGameTypeList";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
-import SearchInput from "@/pages/home/components/SearchInput";
 import { media } from "@/theme/breakpoints";
-import GameFilterTag from "@/pages/home/components/GameFilterTag";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
-const CategoryContentWrapper = styled.div`
+const Wrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
-  padding: 20px 17px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  gap: 6px;
 
   ${media.sm} {
-    background-color: transparent;
-    padding: 32px 0px;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    padding: 15px 0px;
   }
+`;
+
+const CategoryContentWrapper = styled.div`
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: ${({ theme }) => theme.mainBackground};
+`;
+
+const DesktopCategoryContentWrapper = styled.div`
+  width: 100%;
+  gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 `;
 
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
+  align-content: center;
   width: 100%;
-  row-gap: 12px;
-  column-gap: 8px;
+  row-gap: 10px;
+  column-gap: 9px;
   align-self: stretch;
 
   ${media.sm} {
-    gap: 31px;
+    row-gap: 5px;
+    column-gap: 9px;
   }
 `;
 
-const CategoryLabel = styled.div`
+const DesktopWrapper = styled.div`
   width: 100%;
-  height: 40px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
 `;
 
-const SearchInputWrapper = styled.div`
-  width: 150px;
-  height: 40px;
-`;
-
-const CategoryTitle = styled.div`
-  color: ${(props) => props.theme.white};
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  font-size: 1.125rem;
+const Text = styled.div`
+  width: 100%;
+  text-align: center;
+  padding: 40px 0;
+  color: ${({ theme }) => theme.text};
+  font-size: 18px;
   font-weight: 700;
-  line-height: 14px;
-  padding: 10px 0px;
 `;
 
 const NonLobbyCategory = () => {
-  const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, searchString, handleChangeSearch } = useHomeGameContext();
+  const { isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
-  const categoryTitle = useGameTypeList().find((item) => item.gameType === activeGameType)?.text;
   const hasMappingData = !!gameList.length;
 
   return (
-    <>
-      {isMobileSize && (
-        <>
-          <CategoryLabel>
-            <CategoryTitle>{categoryTitle}</CategoryTitle>
-            <SearchInputWrapper>
-              <SearchInput
-                placeholder={i18n.t("slot.search")}
-                imageUrl={searchIcon}
-                handleChange={handleChangeSearch}
-                value={searchString}
-              />
-            </SearchInputWrapper>
-          </CategoryLabel>
-          <GameFilterTag />
-        </>
+    <Wrapper>
+      {isMobileSize ? (
+        <CategoryContentWrapper>
+          <CategoryContent>
+            {hasMappingData &&
+              gameList.map((gameItem) => (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
+                />
+              ))}
+            {!hasMappingData && !isLoading && <div>No data</div>}
+          </CategoryContent>
+        </CategoryContentWrapper>
+      ) : (
+        <DesktopWrapper>
+          <HomeGameFilterTag />
+          <DesktopCategoryContentWrapper>
+            {hasMappingData &&
+              gameList.map((gameItem) => (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
+                />
+              ))}
+            {!hasMappingData && !isLoading && <Text>No data</Text>}
+          </DesktopCategoryContentWrapper>
+        </DesktopWrapper>
       )}
-      {isDesktopSize && <HomeGameFilterTag />}
-
-      <CategoryContentWrapper>
-        <CategoryContent>
-          {hasMappingData &&
-            gameList.map((gameItem) => (
-              <GameCard
-                key={gameItem.id}
-                gameItem={gameItem}
-                isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
-              />
-            ))}
-          {!hasMappingData && !isLoading && <div>No data</div>}
-        </CategoryContent>
-      </CategoryContentWrapper>
 
       <Loading show={isLoading} />
-    </>
+    </Wrapper>
   );
 };
 
-export default NonLobbyCategory;
+export default React.memo(NonLobbyCategory);

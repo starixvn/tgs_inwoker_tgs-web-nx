@@ -18,7 +18,7 @@ export const RankingTableTitle = styled.div`
   margin: 0 0 20px;
 
   & * {
-    color: ${({ theme }) => theme.text} !important;
+    color: ${(props) => props.theme.tertiary} !important;
   }
 `;
 export const RankTableBody = styled.div`

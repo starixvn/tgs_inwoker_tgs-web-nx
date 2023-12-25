@@ -1,50 +1,39 @@
 import styled from "styled-components";
+import Icon from "@/components/project/Icon";
 
-const Wrapper = styled.div<{
+const CommonTagContainer = styled.div<{
   $isActive: boolean;
 }>`
+  width: calc((100% - 10px) / 2);
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100px;
-  min-width: 60px;
-  max-width: none;
   height: 100%;
-  border-radius: 20px;
-  box-sizing: border-box;
   user-select: none;
-  background-color: transparent;
-  padding: 4px;
-
-  &:hover {
-    cursor: pointer;
-  }
+  color: ${({ $isActive, theme }) => ($isActive ? theme.green : "#999999")};
+  cursor: pointer;
+  gap: 7px;
+  overflow: visible;
 `;
 
-const Text = styled.div<{
-  $isActive: boolean;
-}>`
-  color: ${({ theme, $isActive }) =>
-    $isActive ? theme.primary : theme.white};
+const Label = styled.div`
+  overflow: visible;
 `;
 
 type Props = {
   text: string;
   isActive: boolean;
+  iconUrl?: string;
+  activedUrl?: string;
   onClick: () => void;
 };
 
-const CommonTag = ({ text, isActive, onClick }: Props) => {
-
+const CommonTag = ({ text, isActive, iconUrl, activedUrl, onClick }: Props) => {
   return (
-    <Wrapper
-      $isActive={isActive}
-      onClick={onClick}
-    >
-      <Text $isActive={isActive}>{text}</Text>
-    </Wrapper>
+    <CommonTagContainer $isActive={isActive} onClick={onClick}>
+      <Icon iconUrl={`${isActive ? activedUrl : iconUrl}`} width={"18px"} height={"18px"} />
+      <Label>{text}</Label>
+    </CommonTagContainer>
   );
 };
 
 export default CommonTag;
-

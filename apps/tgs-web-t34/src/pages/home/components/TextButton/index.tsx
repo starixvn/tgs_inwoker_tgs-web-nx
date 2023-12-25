@@ -47,7 +47,7 @@ const TextButton = ({
   width = "76px",
   height = "36px",
   bgColor = theme.mainBackground,
-  color = theme.primary,
+  color = theme.black,
 }: Props) => {
   return (
     <StyledButton
