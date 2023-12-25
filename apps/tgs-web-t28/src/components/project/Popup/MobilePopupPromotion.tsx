@@ -19,7 +19,7 @@ const StyledDialog = styled(MuiDialog)`
   position: relative;
   border-radius: 4px;
   & .MuiPaper-root {
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.secBTNBGC};
     width: calc(100vw - 10px * 2);
     height: auto;
     margin: 4px;
