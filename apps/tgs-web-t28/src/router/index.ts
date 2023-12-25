@@ -41,7 +41,7 @@ const routes: RouteType[] = [
   {
     path: "/",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {

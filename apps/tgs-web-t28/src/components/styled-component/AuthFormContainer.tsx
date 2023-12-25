@@ -7,7 +7,7 @@ export const AuthFormContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 70px 20px 30px;
+  padding: 24px 22px;
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -27,14 +27,13 @@ export const FormContainer = styled.div`
 `;
 
 export const LoginTitle = styled.div`
-  font-size: 40px;
-  white-space: nowrap;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 55px;
+  line-height: 24px;
   letter-spacing: 0em;
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 50px;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
 `;
 
 export const FormContainerWithBG = styled.div`

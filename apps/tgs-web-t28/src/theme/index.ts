@@ -1,5 +1,5 @@
 export const theme = {
-  primary: "#FEBA34",
+  primary: "#5E1CD9",
   secondary: "#FFC700",
   white: "#FFFFFF",
   black: "#000000",
@@ -22,4 +22,5 @@ export const theme = {
   inputBGC: "#FFFFFF14",
   popupMask: "#000000A8",
   secPopupMask: "#00000040",
+  text: "#FFFFFF",
 };

@@ -20,7 +20,7 @@ const ChildContainer = styled.div`
   width: 100%;
   margin: auto;
   max-height: 910px;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.secBTNBGC};
   z-index: 2;
   overflow: auto;
 
