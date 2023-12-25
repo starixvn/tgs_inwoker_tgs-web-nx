@@ -17,9 +17,8 @@ const LogoImgContainer = styled.div`
   justify-content: center;
 `;
 
-const LoginFormContainer = styled.div`
-  width: 388px;
-  height: 600px;
+const ForgetPasswordFormContainer = styled.div`
+  width: 100%;
 `;
 
 const LoginDialog = () => {
@@ -32,9 +31,9 @@ const LoginDialog = () => {
           <BrandLogo />
           <img src={treasureImg} alt="treasure" />
         </LogoImgContainer>
-        <LoginFormContainer>
+        <ForgetPasswordFormContainer>
           <LoginForm />
-        </LoginFormContainer>
+        </ForgetPasswordFormContainer>
       </MainWrapper>
     </AuthDialog>
   );

@@ -12,11 +12,7 @@ const ForgotPasswordPage = () => {
     return null;
   }
 
-  return (
-    <FormContainerWithBG>
-      <ForgotPasswordForm />
-    </FormContainerWithBG>
-  );
+  return <ForgotPasswordForm />;
 };
 
 export default ForgotPasswordPage;
