@@ -9,6 +9,7 @@ import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import GameFilterToolBox from "@/pages/home/GameFilterToolBox";
 
 const Wrapper = styled.div`
   display: flex;
@@ -81,6 +82,7 @@ const NonLobbyCategory = () => {
     <Wrapper>
       {isMobileSize ? (
         <CategoryContentWrapper>
+          <GameFilterToolBox />
           <CategoryContent>
             {hasMappingData &&
               gameList.map((gameItem) => (

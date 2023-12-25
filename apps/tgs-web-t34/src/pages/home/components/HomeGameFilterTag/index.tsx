@@ -65,9 +65,8 @@ const ProviderTagContent = styled.div`
 `;
 
 export const SearchInputWrapper = styled.div`
-  width: 100%;
   padding: 10px;
-  border-bottom: 1px solid ${({ theme }) => theme["515c"]};
+  border-bottom: 1px solid ${({ theme }) => theme.grey00};
 `;
 
 const AllText = styled.div<{
