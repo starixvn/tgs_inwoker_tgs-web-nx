@@ -6,13 +6,14 @@ import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
 import GameCard from "@/pages/home/components/GameCard";
+import { useCardWidth } from "@/hooks/home/useCardWidth";
 
 const PopularGamesContainer = styled.div``;
 
 const GameCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 14px;
   padding: 10px 0;
 
   & > div {
@@ -22,8 +23,7 @@ const GameCardContainer = styled.div`
 
 const PopularGames = () => {
   const { recommendGames } = useGetHomeCategoryListV2();
-  const { handleChangeGameType } = useHomeGameContext();
-  const history = useHistory();
+  const cardWidth = useCardWidth("14px");
 
   return (
     <PopularGamesContainer>
@@ -39,6 +39,9 @@ const PopularGames = () => {
               }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
                 gameItem.code
               }.jpg`}
+              style={{
+                width: cardWidth,
+              }}
             />
           );
         })}

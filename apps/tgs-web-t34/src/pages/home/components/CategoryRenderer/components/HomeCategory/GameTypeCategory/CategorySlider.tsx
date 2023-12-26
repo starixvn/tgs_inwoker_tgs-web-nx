@@ -53,7 +53,7 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
   } = useCategorySlider(gameType, gameList);
   const { isLargeDesktopSize, isDesktopSize } = useRwd();
 
-  const cardWidh = useMemo(() => {
+  const cardWidth = useMemo(() => {
     if (isLargeDesktopSize) return "calc((100% - 14px * 5)/6)";
 
     if (isDesktopSize) return "calc((100% - 14px * 3)/4)";
@@ -82,7 +82,7 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
                 status={status}
                 venderName={name}
                 style={{
-                  width: cardWidh,
+                  width: cardWidth,
                   flexShrink: 0,
                 }}
               />
@@ -107,7 +107,7 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
               gameItem.code
             }.jpg`}
             style={{
-              width: cardWidh,
+              width: cardWidth,
               flexShrink: 0,
             }}
           />

@@ -1,15 +1,17 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import React, { useMemo } from "react";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { useCardWidth } from "@/hooks/home/useCardWidth";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +23,6 @@ const Wrapper = styled.div`
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 15px 0px;
   }
 `;
 
@@ -34,13 +35,11 @@ const CategoryContentWrapper = styled.div`
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
+  overflow-y: auto;
+  height: 100%;
   width: 100%;
-  flex: 1;
   flex-shrink: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  gap: 12.5px;
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CategoryContent = styled.div`
@@ -48,9 +47,15 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   align-content: center;
   width: 100%;
-  row-gap: 13px;
-  column-gap: 9px;
+  gap: 14px;
   align-self: stretch;
+  padding: 20px 0;
+`;
+
+const BannerTitle = styled.div`
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.black};
 `;
 
 const LobbyCategory = () => {
@@ -58,7 +63,7 @@ const LobbyCategory = () => {
   const { account } = useAccountStore();
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
-  const { isMobileSize } = useRwd();
+  const cardWidth = useCardWidth("14px");
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -99,57 +104,34 @@ const LobbyCategory = () => {
 
   return (
     <Wrapper>
-      {isMobileSize ? (
-        <CategoryContentWrapper>
-          <CategoryContent>
-            {hasMappingData &&
-              lobbyCategoryList.map((provider) => {
-                const { code: gpCode, status, name } = provider;
+      <CategoryContentWrapper>
+        <BannerTitle>{i18n.t(getGameTypeName(activeGameType))}</BannerTitle>
 
-                if (gpCode === "BC") return null;
-                return (
-                  <MobileVendorCard
-                    key={gpCode}
-                    bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                    imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                    venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                    launchGame={() => launchLobbyGame(gpCode)}
-                    status={status}
-                    venderName={name}
-                  />
-                );
-              })}
-            {!hasMappingData && <div>No data</div>}
-          </CategoryContent>
-        </CategoryContentWrapper>
-      ) : (
-        <DesktopCategoryContentWrapper>
+        <CategoryContent>
           {hasMappingData &&
             lobbyCategoryList.map((provider) => {
               const { code: gpCode, status, name } = provider;
 
               if (gpCode === "BC") return null;
               return (
-                <DesktopVendorCard
+                <MobileVendorCard
                   key={gpCode}
-                  bgUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
+                  imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}
+                  style={{
+                    width: cardWidth,
+                    flexShrink: 0,
+                  }}
                 />
               );
             })}
           {!hasMappingData && <div>No data</div>}
-        </DesktopCategoryContentWrapper>
-      )}
+        </CategoryContent>
+      </CategoryContentWrapper>
     </Wrapper>
   );
 };

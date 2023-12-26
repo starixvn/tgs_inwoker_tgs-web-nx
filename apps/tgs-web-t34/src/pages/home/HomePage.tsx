@@ -39,18 +39,7 @@ const MainWrapper = styled.div<MainWrapperProps>`
     margin: 0 auto;
     gap: unset;
     height: unset;
-    padding: 0px 0px 0px 0px;
-  }
-`;
-
-const BannerWrapper = styled.div`
-  position: relative;
-  flex-shrink: 0;
-  width: 100%;
-
-  ${media.sm} {
-    height: 100%;
-    max-height: 350px;
+    padding: 0 20px;
   }
 `;
 
@@ -72,39 +61,11 @@ const MainContentWrapper = styled.div`
   }
 `;
 
-const GameTypeBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-  height: 350px;
-  margin: 0 auto;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
-
-const BannerTitle = styled.div`
-  font-size: 100px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.white};
-  position: absolute;
-  top: 50%;
-  left: 15%;
-  transform: translate(0%, -50%);
-`;
-
 const HomePage = () => {
-  const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
-
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
-    useHomeGameContext();
-
+  const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
-
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-
-  const isNonLobby = isNonLobbyList.includes(activeGameType);
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);

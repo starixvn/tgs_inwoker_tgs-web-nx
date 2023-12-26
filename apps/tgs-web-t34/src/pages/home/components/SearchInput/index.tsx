@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 type Props = {
   placeholder?: string;
@@ -12,9 +13,14 @@ const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 4px 10px;
-  border-radius: 1px;
+  border-radius: 4px;
   background-color: ${({ theme }) => theme.white};
   border: 1px solid ${({ theme }) => theme.grey00};
+
+  ${media.sm} {
+    padding: 10px 12px;
+    background-color: ${({ theme }) => theme.grey04};
+  }
 `;
 
 const InputTextfield = styled.input`

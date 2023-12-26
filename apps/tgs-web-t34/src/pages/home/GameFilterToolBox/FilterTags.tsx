@@ -11,6 +11,7 @@ import hotActiveIcon from "@/assets/t34/images/home/filter/icon-hot-active.svg";
 import newActiveIcon from "@/assets/t34/images/home/filter/icon-new-active.svg";
 import recommendActiveIcon from "@/assets/t34/images/home/filter/icon-recommend-active.svg";
 import favoriteActiveIcon from "@/assets/t34/images/home/filter/icon-favorite-active.svg";
+import { media } from "@/theme/breakpoints";
 
 const filterIconDictionary: Record<FilterTagTypeEnum | string, string> = {
   [FilterTagTypeEnum.HOT]: hotIcon,
@@ -28,6 +29,13 @@ const activeFilterIconDictionary: Record<FilterTagTypeEnum | string, string> = {
 const FilterTagsContainer = styled.div`
   display: flex;
   gap: 8px;
+`;
+
+const Label = styled.div`
+  display: none;
+  ${media.lg} {
+    display: block;
+  }
 `;
 
 type FilterTagProps = {
@@ -48,6 +56,16 @@ const FilterTagContainer = styled.div<FilterTagProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${media.sm} {
+    font-size: 0.875rem;
+    width: auto;
+    height: auto;
+    gap: 4px;
+    padding: 12px;
+    background: ${({ $isActive, theme }: FilterTagProps) =>
+      $isActive ? theme.grey00 : theme.grey04};
+  }
 `;
 
 const allTag = {
@@ -77,6 +95,7 @@ const FilterTags = () => {
             $isActive={isActive}
             onClick={() => handleFilterTagClick(filterTag)}
           >
+            <Label>{filterTag.name}</Label>
             <Icon
               iconUrl={
                 isActive

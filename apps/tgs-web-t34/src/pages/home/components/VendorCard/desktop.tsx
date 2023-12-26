@@ -28,19 +28,12 @@ const CardHoverBg = styled.div`
   white-space: pre-line;
 `;
 
-const HoverGameName = styled.div`
-  color: ${(props) => props.theme.white};
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 16px;
-`;
-
 const VendorCardBg = styled.div<{ $bgUrl: string }>`
   position: relative;
   width: 20%;
   max-width: 200px;
   position: relative;
-  aspect-ratio: 257/142;
+  aspect-ratio: 228/366;
   cursor: pointer;
   transition: transform 0.6s ease 0s;
   background-image: url(${({ $bgUrl }) => $bgUrl});
