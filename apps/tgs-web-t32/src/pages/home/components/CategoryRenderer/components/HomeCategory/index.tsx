@@ -118,8 +118,9 @@ type GameTypeItem = {
 
 const HomeCategory = () => {
   const history = useHistory();
+
   const { account } = useAccountStore();
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
@@ -165,6 +166,16 @@ const HomeCategory = () => {
   // };
 
   const hasMappingData = !!lobbyCategoryList.length;
+
+
+  // useEffect(() => {
+  //   if (history.location.pathname === "/") {
+  //     handleChangeGameType(GameTypeEnum.SPORTS);
+  //   }
+  //   else {
+  //     handleChangeGameType(isMobileSize ? activeGameType : GameTypeEnum.SPORTS);
+  //   }
+  // }, [isMobileSize]);
 
   return (
     <HomeCategoryWrapper>
