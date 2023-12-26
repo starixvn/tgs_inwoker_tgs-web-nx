@@ -2,9 +2,7 @@ import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { HTMLProps } from "react";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t30/images/home/maintenance.svg";
-import beBackSoon from "@/assets/t30/images/home/be-back-soon.svg";
-import Icon from "@/components/project/Icon";
+import maintenanceIcon from "@/assets/t34/images/home/maintenance.svg";
 
 const MobileVendorCardContainer = styled.div`
   width: calc(50% - 6px);
@@ -99,7 +97,6 @@ const MobileVendorCard = ({
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>
           <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-          <Icon iconUrl={beBackSoon} width={"134px"} height={"46px"} />
         </MaintenanceBg>
       )}
     </MobileVendorCardContainer>

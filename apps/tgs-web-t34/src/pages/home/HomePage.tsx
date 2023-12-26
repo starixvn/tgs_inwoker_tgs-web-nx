@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useParams } from "react-router-dom";
-import { getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import Banner from "@/pages/home/components/Banner";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import useBanner from "@/hooks/home/useBanner";
 import { theme } from "@/theme";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 

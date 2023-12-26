@@ -4,11 +4,8 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common, getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import React, { useMemo } from "react";
+import React from "react";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
-import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useCardWidth } from "@/hooks/home/useCardWidth";
@@ -49,13 +46,23 @@ const CategoryContent = styled.div`
   width: 100%;
   gap: 14px;
   align-self: stretch;
-  padding: 20px 0;
+
+  ${media.sm} {
+    padding: 20px 0;
+  }
 `;
 
-const BannerTitle = styled.div`
+const CategoryTitle = styled.div`
   font-size: 1.125rem;
   font-weight: 700;
   color: ${({ theme }) => theme.black};
+  margin-bottom: 10px;
+
+  display: none;
+
+  ${media.sm} {
+    display: block;
+  }
 `;
 
 const LobbyCategory = () => {
@@ -105,7 +112,7 @@ const LobbyCategory = () => {
   return (
     <Wrapper>
       <CategoryContentWrapper>
-        <BannerTitle>{i18n.t(getGameTypeName(activeGameType))}</BannerTitle>
+        <CategoryTitle>{i18n.t(getGameTypeName(activeGameType))}</CategoryTitle>
 
         <CategoryContent>
           {hasMappingData &&
