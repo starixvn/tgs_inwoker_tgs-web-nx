@@ -37,21 +37,17 @@ const TabContainer = styled.div`
   }
 `;
 
-const GameTypeTab = () => {
-  const gameTypeList = useGameTypeList();
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
+type GameTypeTabProps = {
+  activeLocalGameType: GameTypeEnum;
+  setActiveLocalGameType: (gameType: GameTypeEnum) => void;
+};
 
-  const allTag = {
-    tagType: FilterTagTypeEnum.ALL,
-    name: "",
-  };
+const GameTypeTab = ({ activeLocalGameType, setActiveLocalGameType }: GameTypeTabProps) => {
+  const gameTypeList = useGameTypeList();
+  const { providerList } = useHomeGameContext();
 
   const switchGameType = (gameType: GameTypeEnum) => {
-    handleChangeGameType(gameType);
-    // 把filter tag的狀態清空
-    handleChangeActiveProviderFilterTag(allTag);
-    handleChangeActiveFilterTag(allTag);
+    setActiveLocalGameType(gameType);
   };
 
   const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
@@ -73,7 +69,7 @@ const GameTypeTab = () => {
           <Tab
             key={key}
             text={text}
-            isActive={gameType === activeGameType}
+            isActive={gameType === activeLocalGameType}
             fontSize={fontSize}
             onClick={() => switchGameType(gameType)}
           >

@@ -42,6 +42,14 @@ const CategoryTitle = styled.div`
   align-items: center;
 `;
 
+const Nodata = styled.div`
+  width: 100%;
+  text-align: center;
+  color: ${({ theme }) => theme.primary};
+  font-weight: 600;
+  margin: 40px;
+`;
+
 const LobbyCategory = () => {
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { account } = useAccountStore();
@@ -112,7 +120,7 @@ const LobbyCategory = () => {
               />
             );
           })}
-        {!hasMappingData && <div>No data</div>}
+        {!hasMappingData && <Nodata>No data</Nodata>}
       </CategoryContent>
     </CategoryContentWrapper>
   );
