@@ -6,7 +6,7 @@ import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useProvider } from "@tgs-web-nx/core/features";
 import { useMemo } from "react";
 import { ProviderDto } from "@tgs-web-nx/types";
-import MobileVendorCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeVendorCard";
+import VendorCard from "./VendorCard";
 import { media } from "@/theme/breakpoints";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -69,56 +69,18 @@ type Props = {
   activeLocalGameType: GameTypeEnum;
 };
 
-const HomeLobbyCategory = ({ activeLocalGameType }: Props) => {
-  const { account } = useAccountStore();
-  const history = useHistory();
+const HomeNonLobbyCategory = ({ activeLocalGameType }: Props) => {
   const { providerList, isLoading } = useProvider();
   const gameTypeList = useGameTypeList();
 
-  const lobbyCategoryList = useMemo<ProviderDto[]>(() => {
+  const nonLobbyCategoryList = useMemo<ProviderDto[]>(() => {
     return providerList.filter((provider: { gametypes: GameTypeEnum[]; }) => {
       return provider.gametypes.includes(activeLocalGameType);
     });
   }, [activeLocalGameType, providerList]);
 
   const localActiveGameTypeKey = gameTypeList.find((item) => item.gameType === activeLocalGameType)?.key;
-
-  const launchLobbyGame = (gpcode: string) => {
-    if (!account.token) {
-      history.push("/login");
-      return;
-    }
-
-    if (activeGameType === GameTypeEnum.COCKFIGHT) {
-      // 以後SM01不會開,多新增AWC_COCKFIGHT(缺對應api)
-      if (gpcode === "SM01") {
-        const gameWindow = window.open("", "Cockfight");
-        if (gameWindow) {
-          GameService.GetCockfight()
-            .then((res) => {
-              gameWindow.document.write(res?.data);
-              gameWindow.document.close();
-              gameWindow.focus();
-            })
-            .catch(() => {
-              gameWindow.close();
-            });
-        }
-      } else {
-        Common.closePreviousPopup();
-        Common.PopupCenter(`/joinlobbygame/${GameTypeEnum.SPORTS}/${gpcode}`, "gamewindow");
-      }
-    } else {
-      const audioElement = document.getElementById("audio") as HTMLAudioElement | null;
-      if (audioElement) {
-        audioElement.volume = 0;
-      }
-      Common.closePreviousPopup();
-      Common.PopupCenter(`/joinlobbygame/${activeGameType}/${gpcode}`, "gamewindow");
-    }
-  };
-
-  const hasMappingData = !!lobbyCategoryList.length;
+  const hasMappingData = !!nonLobbyCategoryList.length;
 
   if (isLoading || !gameTypeList.length || !providerList.length) {
     return <SvgContainer><LoadingSvg /></SvgContainer>
@@ -127,17 +89,14 @@ const HomeLobbyCategory = ({ activeLocalGameType }: Props) => {
   return (
     <CategoryContent>
       {hasMappingData &&
-        lobbyCategoryList.map((provider) => {
+        nonLobbyCategoryList.map((provider) => {
           const { code: gpCode, status, name } = provider;
-
-          if (gpCode === "BC") return null;
           return (
-            <MobileVendorCard
+            <VendorCard
               key={gpCode}
               bgUrl={`/assets/images/home/mobile/${localActiveGameTypeKey}/mbg.png`}
               imageUrl={`/assets/images/home/mobile/${localActiveGameTypeKey}/${gpCode}.png`}
               vendorLogoUrl={`/assets/images/home/provider_logo/${localActiveGameTypeKey}/${gpCode}.png`}
-              launchGame={() => launchLobbyGame(gpCode)}
               status={status}
               vendorName={name}
             />
@@ -148,4 +107,4 @@ const HomeLobbyCategory = ({ activeLocalGameType }: Props) => {
   );
 };
 
-export default HomeLobbyCategory;
+export default HomeNonLobbyCategory;

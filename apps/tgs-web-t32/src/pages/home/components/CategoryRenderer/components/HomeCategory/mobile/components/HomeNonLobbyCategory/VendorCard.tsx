@@ -13,7 +13,6 @@ type Props = {
   gameName?: string;
   vendorName: string;
   vendorLogoUrl: string;
-  launchGame: () => void;
   status: number;
 };
 
@@ -27,6 +26,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  transform: scale(0.8);
 `;
 
 const VendorCardBg = styled.div<{ $bgUrl: string }>`
@@ -128,23 +128,15 @@ const MobileVendorCard = ({
   imageUrl,
   vendorName,
   vendorLogoUrl,
-  launchGame,
   status,
 }: Props) => {
-  const launchGameHandler = () => {
-    if (status === providerStatus.Maintenance) {
-      return;
-    }
-    launchGame();
-  };
 
   return (
-    <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
+    <VendorCardBg $bgUrl={bgUrl}>
       <VendorNameInfo>
         <VendorLogo $vendorLogoUrl={vendorLogoUrl}></VendorLogo>
         <VendorPlay>
           <VendorName>{vendorName}</VendorName>
-          <PlayBtn>Play</PlayBtn>
         </VendorPlay>
       </VendorNameInfo>
       <GameIcon $imageUrl={imageUrl}></GameIcon>

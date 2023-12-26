@@ -7,7 +7,8 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useMemo, useState } from "react";
 import { useAccountStore } from "@tgs-web-nx/core";
 import CategoryLabel from "../LobbyCategory/components/CategoryLabel";
-import HomeLobbyCategory from "./components/HomeLobbyCategory";
+import HomeLobbyCategory from "./mobile/components/HomeLobbyCategory";
+import HomeNonLobbyCategory from "./mobile/components/HomeNonLobbyCategory";
 import GameTypeTab from "@/pages/home/components/GameTypeTab/mobile";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -78,6 +79,11 @@ const HomeCategory = () => {
   const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
 
   const [activeLocalGameType, setActiveLocalGameType] = useState<GameTypeEnum>(GameTypeEnum.SPORTS);
+  const isNonLobbyType = [
+    GameTypeEnum.SLOT,
+    GameTypeEnum.FISH,
+    GameTypeEnum.TABLEGAME,
+  ].includes(activeGameType)
 
   return (
     <HomeCategoryWrapper>
@@ -87,7 +93,10 @@ const HomeCategory = () => {
       {isDesktopSize && <DesktopGameTypeTab />}
       {isMobileSize && <>
         <GameTypeTab activeLocalGameType={activeLocalGameType} setActiveLocalGameType={setActiveLocalGameType} />
-        <HomeLobbyCategory activeLocalGameType={activeLocalGameType} />
+        {isNonLobbyType
+          ? <HomeNonLobbyCategory activeLocalGameType={activeLocalGameType} />
+          : <HomeLobbyCategory activeLocalGameType={activeLocalGameType} />
+        }
       </>}
     </HomeCategoryWrapper>
   );
