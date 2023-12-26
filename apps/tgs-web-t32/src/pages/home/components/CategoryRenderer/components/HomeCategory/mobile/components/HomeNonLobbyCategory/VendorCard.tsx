@@ -1,9 +1,5 @@
-import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import TextButton from "../../../../TextButton";
-import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t32/images/home/maintenance.svg";
 
@@ -13,12 +9,13 @@ type Props = {
   gameName?: string;
   vendorName: string;
   vendorLogoUrl: string;
+  launchGame: () => void;
   status: number;
 };
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
   position: absolute;
-  top: -8%;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -26,7 +23,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  transform: scale(0.8);
+  transform: scale(0.9);
 `;
 
 const VendorCardBg = styled.div<{ $bgUrl: string }>`
@@ -116,6 +113,7 @@ const PlayBtn = styled.div`
   cursor: pointer;
   border-radius: 4px;
   background: ${({ theme }) => theme.btnPri};
+  z-index: 2;
   
   &:hover {
     box-shadow: 0 -5px 15px 0 #34c75cc9;
@@ -123,13 +121,21 @@ const PlayBtn = styled.div`
     }
 `;
 
-const MobileVendorCard = ({
+const VendorCard = ({
   bgUrl,
   imageUrl,
   vendorName,
   vendorLogoUrl,
+  launchGame,
   status,
 }: Props) => {
+  const launchGameHandler = () => {
+    if (status === providerStatus.Maintenance) {
+      return;
+    }
+    launchGame();
+  };
+
 
   return (
     <VendorCardBg $bgUrl={bgUrl}>
@@ -137,6 +143,7 @@ const MobileVendorCard = ({
         <VendorLogo $vendorLogoUrl={vendorLogoUrl}></VendorLogo>
         <VendorPlay>
           <VendorName>{vendorName}</VendorName>
+          <PlayBtn onClick={launchGameHandler}>Play</PlayBtn>
         </VendorPlay>
       </VendorNameInfo>
       <GameIcon $imageUrl={imageUrl}></GameIcon>
@@ -149,4 +156,4 @@ const MobileVendorCard = ({
   );
 };
 
-export default MobileVendorCard;
+export default VendorCard;

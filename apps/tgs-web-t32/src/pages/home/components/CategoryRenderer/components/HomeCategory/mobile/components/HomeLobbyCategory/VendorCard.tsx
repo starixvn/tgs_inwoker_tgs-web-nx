@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import TextButton from "../../../../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t32/images/home/maintenance.svg";
@@ -116,6 +115,7 @@ const PlayBtn = styled.div`
   cursor: pointer;
   border-radius: 4px;
   background: ${({ theme }) => theme.btnPri};
+  z-index: 2;
   
   &:hover {
     box-shadow: 0 -5px 15px 0 #34c75cc9;
@@ -123,7 +123,7 @@ const PlayBtn = styled.div`
     }
 `;
 
-const MobileVendorCard = ({
+const VendorCard = ({
   bgUrl,
   imageUrl,
   vendorName,
@@ -139,7 +139,7 @@ const MobileVendorCard = ({
   };
 
   return (
-    <VendorCardBg $bgUrl={bgUrl}>
+    <VendorCardBg $bgUrl={bgUrl} >
       <VendorNameInfo>
         <VendorLogo $vendorLogoUrl={vendorLogoUrl}></VendorLogo>
         <VendorPlay>
@@ -157,4 +157,4 @@ const MobileVendorCard = ({
   );
 };
 
-export default MobileVendorCard;
+export default VendorCard;

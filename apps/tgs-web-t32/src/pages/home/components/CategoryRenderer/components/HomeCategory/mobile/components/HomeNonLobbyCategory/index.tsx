@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useProvider } from "@tgs-web-nx/core/features";
+import { useHomeGameContext, useProvider } from "@tgs-web-nx/core/features";
 import { useMemo } from "react";
 import { ProviderDto } from "@tgs-web-nx/types";
 import VendorCard from "./VendorCard";
@@ -70,8 +70,11 @@ type Props = {
 };
 
 const HomeNonLobbyCategory = ({ activeLocalGameType }: Props) => {
+  const { account } = useAccountStore();
+  const history = useHistory();
   const { providerList, isLoading } = useProvider();
   const gameTypeList = useGameTypeList();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const nonLobbyCategoryList = useMemo<ProviderDto[]>(() => {
     return providerList.filter((provider: { gametypes: GameTypeEnum[]; }) => {
@@ -81,6 +84,15 @@ const HomeNonLobbyCategory = ({ activeLocalGameType }: Props) => {
 
   const localActiveGameTypeKey = gameTypeList.find((item) => item.gameType === activeLocalGameType)?.key;
   const hasMappingData = !!nonLobbyCategoryList.length;
+
+  const launchNonLobbyGame = () => {
+    if (!account.token) {
+      history.push("/login");
+      return;
+    }
+
+    handleChangeGameType(activeLocalGameType);
+  }
 
   if (isLoading || !gameTypeList.length || !providerList.length) {
     return <SvgContainer><LoadingSvg /></SvgContainer>
@@ -97,6 +109,7 @@ const HomeNonLobbyCategory = ({ activeLocalGameType }: Props) => {
               bgUrl={`/assets/images/home/mobile/${localActiveGameTypeKey}/mbg.png`}
               imageUrl={`/assets/images/home/mobile/${localActiveGameTypeKey}/${gpCode}.png`}
               vendorLogoUrl={`/assets/images/home/provider_logo/${localActiveGameTypeKey}/${gpCode}.png`}
+              launchGame={launchNonLobbyGame}
               status={status}
               vendorName={name}
             />

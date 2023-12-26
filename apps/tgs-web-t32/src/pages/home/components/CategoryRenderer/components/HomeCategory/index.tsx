@@ -77,13 +77,13 @@ type GameTypeItem = {
 const HomeCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
-
   const [activeLocalGameType, setActiveLocalGameType] = useState<GameTypeEnum>(GameTypeEnum.SPORTS);
+
   const isNonLobbyType = [
     GameTypeEnum.SLOT,
     GameTypeEnum.FISH,
     GameTypeEnum.TABLEGAME,
-  ].includes(activeGameType)
+  ].includes(activeLocalGameType)
 
   return (
     <HomeCategoryWrapper>
