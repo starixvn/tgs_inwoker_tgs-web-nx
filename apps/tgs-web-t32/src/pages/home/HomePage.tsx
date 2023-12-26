@@ -6,6 +6,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
 import CategoryLabel from "./components/CategoryRenderer/components/LobbyCategory/components/CategoryLabel";
+import PartnerTags from "./components/PartnerTags";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
@@ -16,7 +17,7 @@ import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNav
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import GameTypeTab from "@/pages/home/components/GameTypeTab/mobile";
 import Features from "@/pages/home/components/Features";
-import productIcon from "@/assets/t32/images/home/product.svg";
+import HomePromotionCard from "@/pages/home/components/HomePromotion";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -116,9 +117,9 @@ const HomePage = () => {
             <Division />
           </>
         }
-
         <CategoryRenderer />
-        <Division />
+        <HomePromotionCard />
+
       </MainContentWrapper>
     </MainWrapper>
   );
