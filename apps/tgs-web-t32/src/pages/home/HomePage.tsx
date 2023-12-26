@@ -5,11 +5,11 @@ import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
+import { useProvider } from "@tgs-web-nx/core/features";
 import CategoryLabel from "./components/CategoryRenderer/components/LobbyCategory/components/CategoryLabel";
 import PartnerTags from "./components/PartnerTags";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
@@ -28,7 +28,7 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    /* max-width: ${MAIN_CONTENT_MAX_WIDTH}; */
     margin: 0 auto;
     gap: unset;
   }
@@ -48,28 +48,8 @@ const MainContentWrapper = styled.div`
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 20px 0px;
+    padding: 0px;
   }
-`;
-
-const BannerWrapper = styled.div`
-  flex-shrink: 0;
-  width: 100%;
-
-  ${media.sm} {
-    height: 100%;
-    max-height: 450px;
-  }
-`;
-
-const GameTypeBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-  height: 450px;
-  margin: 0 auto;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 `;
 
 const Division = styled.div`
@@ -78,11 +58,47 @@ const Division = styled.div`
   background-color: rgba(0, 0, 0, 0.20);
 `;
 
+const VendorLogoWrapper = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const VendorLogoCard = styled.div`
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  & > img {
+    width: calc((100% - 20px * 5) / 5);
+    height: 100%;
+    margin: 10px;
+    object-fit: contain;
+
+    ${media.sm} {
+      width: calc((100% - 120px * 5) / 5);
+    }
+  }
+`;
+
 const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
+  const { providerList } = useProvider();
+
+  const vendorCodeList = providerList.map((provider) => provider.code);
+  const vendorLogoUrlList = vendorCodeList.map((gpCode) => {
+    return ({
+      gpCode: gpCode,
+      logoUrl: `/assets/images/home/provider_logo_gray/${gpCode}.png`
+    });
+  });
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -107,10 +123,9 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {isMobileSize && <><CardPrompt /><Banner /></>}
-      {isDesktopSize && <><Banner /><CardPrompt /></>}
-
       <MainContentWrapper>
+        {isMobileSize && <><CardPrompt /><Banner /></>}
+        {isDesktopSize && <><Banner /><CardPrompt /></>}
         {!activeGameType &&
           <>
             <Features />
@@ -119,8 +134,14 @@ const HomePage = () => {
         }
         <CategoryRenderer />
         <HomePromotionCard />
-
       </MainContentWrapper>
+      <VendorLogoWrapper>
+        <VendorLogoCard>
+          {vendorLogoUrlList.map((vendor) => {
+            return <img key={vendor.gpCode} src={vendor.logoUrl} alt={vendor.gpCode} />;
+          })}
+        </VendorLogoCard>
+      </VendorLogoWrapper>
     </MainWrapper>
   );
 };
