@@ -40,16 +40,17 @@ export type NavItem = {
   isHide?: boolean;
   router?: string;
   routePath?: string;
+  iconComponent?: React.FC<{ $color: string }>
 } & (
-  | {
+    | {
       navType: "route";
       routePath: string;
     }
-  | {
+    | {
       navType: "action";
       callback: () => void;
     }
-);
+  );
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -82,6 +83,7 @@ export function useGetNavItemList() {
           handleChangeGameType(gameTypeItem.gameType);
           history.push(`/main/${gameTypeItem.key}`);
         },
+        iconComponent: gameTypeItem.iconComponent,
       });
     }
 
