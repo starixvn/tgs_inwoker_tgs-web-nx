@@ -14,9 +14,13 @@ import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t29/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import notification from "@/assets/t29/images/home/notify.svg";
+import notification from "@/assets/t28/images/home/notify.svg";
 import Jackpot from "@/components/project/Jackpot";
 import useBanner from "@/hooks/home/useBanner";
+import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
+import { theme } from "@/theme";
+import BN from "@/assets/t28/images/home/BN.png";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -50,6 +54,12 @@ const BannerWrapper = styled.div`
   }
 `;
 
+const HomepageImgWrapper = styled(BannerWrapper)`
+  max-height: 450px;
+  width: auto;
+  height: auto;
+`;
+
 const MainContentWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -66,9 +76,6 @@ const MainContentWrapper = styled.div`
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
-    background-image: url(${bg});
-    background-size: unset;
-    background-repeat: repeat;
   }
 `;
 
@@ -88,17 +95,21 @@ const MarqueeContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   gap: 7px;
   font-size: 0.875rem;
   padding: 10px;
   color: ${({ theme }) => theme.white};
-  background: #000000b2;
+  background: ${({ theme }) => theme.darkPurple};
+  ${media.sm} {
+    background: ${({ theme }) => theme.mainBackground};
+  }
 `;
 
 const MarqueeContent = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const MarqueesBackground = styled.div`
@@ -106,8 +117,73 @@ const MarqueesBackground = styled.div`
   overflow: visible;
 `;
 
+const GameTypesContainer = styled.div`
+  display: flex;
+  padding: 0 24px;
+  /* margin-right: auto; */
+  /* flex-wrap: nowrap;
+  align-items: stretch; */
+  height: 100%;
+  position: relative;
+  gap: 24px;
+
+  /* &::-webkit-scrollbar {
+    //height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: ${(props) => props.theme.mainBackground};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: ${({ theme }) => theme.gray10};
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  } */
+`;
+
+const GameTypeNav = styled.div<{
+  $isActive: boolean;
+}>`
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: ${({ theme }) => theme.text};
+  cursor: pointer;
+  position: relative;
+  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
+  &:hover {
+    background: ${({ theme }) => theme.gray10};
+  }
+
+  ${media.lg} {
+    font-size: 1rem;
+  }
+`;
+
+const GameTypeGrid = styled.div`
+  align-self: center;
+  height: 18px;
+  display: flex;
+  border: 1px solid #cccccc;
+  margin: 0 5px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
+  const { sideNavItemList } = useGetNavItemList();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const {
@@ -147,31 +223,23 @@ const HomePage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
+
+  const handleClickNav = (navItem: NavItem) => {
+    if (navItem.navType !== "action") return;
+    navItem.callback();
+  };
+
   return (
     <MainWrapper>
-      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
-      {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
-      {hasActiveDesktopBanner() ? (
-        <BannerWrapper>
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
-          {isDesktopSize && !activeGameType && <Banner />}
-        </BannerWrapper>
-      ) : null}
-
-      {/* if uer did't setting baner, still show marquee and jackpot */}
-      {!hasActiveDesktopBanner() && isDesktopSize && (
+      {isDesktopSize && (
+        <HomepageImgWrapper>
+          <img src={BN} alt="homeImg" width={"100%"} height={"100%"} />
+        </HomepageImgWrapper>
+      )}
+      {
         <MarqueeContainer>
           <MarqueeContent>
+            <OnlineUser color={theme.text} />
             <img src={notification} alt="marquee" />
             {hasData && (
               // Disable TypeScript check for unknown HTML elements
@@ -191,20 +259,46 @@ const HomePage = () => {
                 {/*@ts-ignore*/}
               </marquee>
             )}
-
-            <Jackpot
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-              }}
-            />
           </MarqueeContent>
         </MarqueeContainer>
-      )}
+      }
+      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
+      {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
+      {hasActiveDesktopBanner() ? (
+        <BannerWrapper>
+          {isDesktopSize && !!activeGameType && !isNonLobby && (
+            <GameTypeBanner
+              $imageUrl={
+                activeGameTypeKey
+                  ? `${
+                      import.meta.env.BASE_URL
+                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  : ""
+              }
+            />
+          )}
+          {isDesktopSize && !activeGameType && <Banner />}
+        </BannerWrapper>
+      ) : null}
 
       {isMobileSize && <CardPrompt />}
-
+      <GameTypesContainer>
+        {sideNavItemList &&
+          sideNavItemList.map((navItem, index) => {
+            return (
+              <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
+                <img src={navItem.iconUrl} alt={navItem.label} />
+                <GameTypeNav
+                  $isActive={false}
+                  // onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+                  // onMouseLeave={handleMouseLeave}
+                >
+                  {navItem.label}
+                </GameTypeNav>
+              </Wrapper>
+            );
+          })}
+      </GameTypesContainer>
       <MainContentWrapper>
         <CategoryRenderer />
       </MainContentWrapper>
