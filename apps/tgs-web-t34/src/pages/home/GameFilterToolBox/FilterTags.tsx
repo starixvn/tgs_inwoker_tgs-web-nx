@@ -59,7 +59,7 @@ const FilterTags = () => {
   const { activeFilterTag, handleChangeActiveFilterTag, filterTagList } = useHomeGameContext();
 
   const handleFilterTagClick = (filterTag: FilterTag) => {
-    if (activeFilterTag.tagType !== FilterTagTypeEnum.ALL) {
+    if (activeFilterTag.tagType === filterTag.tagType) {
       handleChangeActiveFilterTag(allTag);
     } else {
       handleChangeActiveFilterTag(filterTag);

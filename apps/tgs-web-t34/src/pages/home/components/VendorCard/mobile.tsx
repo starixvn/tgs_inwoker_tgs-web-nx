@@ -3,7 +3,6 @@ import { providerStatus } from "@tgs-web-nx/constants";
 import { HTMLProps } from "react";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t30/images/home/maintenance.svg";
-import cardBgShort from "@/assets/t30/images/home/card-bg-short.svg";
 import beBackSoon from "@/assets/t30/images/home/be-back-soon.svg";
 import Icon from "@/components/project/Icon";
 
@@ -11,10 +10,8 @@ const MobileVendorCardContainer = styled.div`
   width: calc(50% - 6px);
   position: relative;
 
-  background: url(${cardBgShort});
   background-size: cover;
   background-position: center;
-  border: 1px solid ${({ theme }) => theme.mainLightBackground};
 
   ${media.sm} {
     width: calc(16.67% - 6px);

@@ -11,12 +11,6 @@ const BannerContainer = styled.div`
   height: 100%;
 `;
 
-const SlickWrapper = styled(Slider)`
-  max-height: 450px;
-  margin: 0 auto;
-  width: 100%;
-`;
-
 const SlickDot = styled.div`
   width: 10px;
   height: 10px;

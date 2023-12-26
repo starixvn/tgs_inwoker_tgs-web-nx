@@ -9,18 +9,15 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import playIcon from "@/assets/t30/images/home/play.svg";
-import maintenanceIcon from "@/assets/t30/images/home/maintenance.svg";
-import cardBg from "@/assets/t30/images/home/card-bg.svg";
+import maintenanceIcon from "@/assets/t34/images/home/maintenance.svg";
 
 const GameCardContainer = styled.div`
   width: calc(50% - 6px);
   position: relative;
   cursor: pointer;
 
-  background: url(${cardBg});
   background-size: cover;
   background-position: center;
-  border: 1px solid ${({ theme }) => theme.mainLightBackground};
 
   ${media.sm} {
     width: calc((100% - 15px * 1) / 2);
@@ -33,12 +30,6 @@ const GameCardContainer = styled.div`
   ${media.lg} {
     width: calc((100% - 15px * 5) / 6);
   }
-`;
-const GameName = styled.div`
-  //background: gold;
-  font-size: 0.875rem;
-  padding: 9px 17px;
-  border-top: 1px solid ${({ theme }) => theme.mainLightBackground};
 `;
 
 // -------- hover effect for desktop--------------
