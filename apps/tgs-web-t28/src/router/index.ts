@@ -231,7 +231,7 @@ const routes: RouteType[] = [
   {
     path: "/promotion-list",
     component: PromotionPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {

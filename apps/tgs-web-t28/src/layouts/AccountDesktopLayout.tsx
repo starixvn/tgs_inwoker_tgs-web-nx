@@ -13,10 +13,10 @@ import bg from "@/assets/t29/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.middlePurple};
 
   ${media.sm} {
-    background: url(${bg});
+    background: ${({ theme }) => theme.middlePurple};
   }
 `;
 
@@ -60,17 +60,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
 
       <DashboardContainer>
         <ContentWrapper>
-          <ChildrenWrapper>
-            <DarkMemberMenu
-              handleCloseContextMenu={() => {}}
-              style={{
-                width: "200px",
-                flexShrink: 0,
-                minHeight: "800px",
-              }}
-            />
-            {children}
-          </ChildrenWrapper>
+          <ChildrenWrapper>{children}</ChildrenWrapper>
         </ContentWrapper>
       </DashboardContainer>
       <Footer />
