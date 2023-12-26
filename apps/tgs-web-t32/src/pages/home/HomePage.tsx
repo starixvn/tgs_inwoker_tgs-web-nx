@@ -77,12 +77,6 @@ const Division = styled.div`
   background-color: rgba(0, 0, 0, 0.20);
 `;
 
-const CategoryTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
@@ -112,7 +106,8 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {isMobileSize && <><CardPrompt /><MobileSlider /></>}
+      {isMobileSize && <><CardPrompt /><Banner /></>}
+      {isDesktopSize && <><Banner /><CardPrompt /></>}
 
       <MainContentWrapper>
         {!activeGameType &&
