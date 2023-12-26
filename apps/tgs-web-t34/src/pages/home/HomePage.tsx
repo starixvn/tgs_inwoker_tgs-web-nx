@@ -128,29 +128,7 @@ const HomePage = () => {
   }, [urlGameType]);
 
   return (
-    <MainWrapper $isDark={!isMobileSize && activeGameType !== GameTypeEnum.NONE}>
-      {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
-
-      {hasActiveDesktopBanner() && activeGameType !== GameTypeEnum.NONE ? (
-        <BannerWrapper>
-          {isDesktopSize && !!activeGameType && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
-
-          <BannerTitle>{i18n.t(getGameTypeName(activeGameType))}</BannerTitle>
-          {isDesktopSize && !activeGameType && <Banner />}
-        </BannerWrapper>
-      ) : null}
-
-      {/*{isMobileSize && <CardPrompt />}*/}
+    <MainWrapper $isDark={false}>
       <GameTypeTab />
 
       <MainContentWrapper>

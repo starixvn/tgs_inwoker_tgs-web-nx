@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import PopularGames from "../components/PopularGames";
 import GameTypeCategory from "./GameTypeCategory";
 import PromotionList from "./PromotionList";
-import PopularGames from "./PopularGames";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import MobileSlider from "@/pages/home/components/Slider";
 

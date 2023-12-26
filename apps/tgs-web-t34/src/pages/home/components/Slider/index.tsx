@@ -7,9 +7,7 @@ import styled from "styled-components";
 
 const SlickWrapper = styled(Slick)<{ $maxHeight?: string }>`
   max-height: ${(props) => props.$maxHeight};
-  width: 100%;
   margin: 0 auto;
-  background: ${({ theme }) => theme.mainLightBackground};
 `;
 
 const SlickImage = styled.img`
@@ -82,16 +80,13 @@ type Props = {
 
 const Slider = ({ settings, maxHeight }: Props) => {
   const { general } = useGeneralStore();
-  const { isMobileSize } = useRwd();
+  const { isDesktopSize } = useRwd();
   const sliderSettings = { ...baseSettings, ...settings };
   return (
     <SlickWrapper {...sliderSettings} $maxHeight={maxHeight}>
       {general.banner.map((item: bannerProps) => (
         <a href={item.navurl} key={item.id} target="_blank" rel="noreferrer">
-          <SlickImage
-            src={isMobileSize ? item.mobileurl : item.desktopurl}
-            alt={item.alt}
-          ></SlickImage>
+          <SlickImage src={!isDesktopSize ? item.mobileurl : item.desktopurl} alt={item.alt} />
         </a>
       ))}
     </SlickWrapper>
