@@ -1,22 +1,24 @@
 import { useCallback, useMemo, useState } from "react";
-import { useAccountStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
 import { FilterTag, FilterTagTypeEnum } from "../../types";
 import { filterTagAll } from "../../constants/filterTagAll";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuth } from "../../../useAuth";
 
 export function useTagFilter() {
   const { isLogin } = useAuth();
   const history = useHistory();
   const [activeFilterTag, setActiveFilterTag] = useState<FilterTag>(filterTagAll);
 
-  const handleChangeActiveFilterTag = useCallback((newFilterTag: FilterTag) => {
-    if (!isLogin && newFilterTag.tagType === FilterTagTypeEnum.FAVORITE) {
-      history.push("/login");
-    }
+  const handleChangeActiveFilterTag = useCallback(
+    (newFilterTag: FilterTag) => {
+      if (!isLogin && newFilterTag.tagType === FilterTagTypeEnum.FAVORITE) {
+        history.push("/login");
+      }
 
-    setActiveFilterTag(newFilterTag);
-  }, [isLogin]);
+      setActiveFilterTag(newFilterTag);
+    },
+    [isLogin],
+  );
 
   const filterTagList = useMemo(() => {
     const tags = [

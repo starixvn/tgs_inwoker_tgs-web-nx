@@ -33,7 +33,7 @@ import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge
 
 const BadgeContainer = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
   margin-bottom: 12px;
 `;

@@ -1,40 +1,67 @@
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import VendorCard from "@/pages/home/components/VendorCard";
+import React from "react";
+import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { useCardWidth } from "@/hooks/home/useCardWidth";
 
-const CategoryContentWrapper = styled.div`
-  width: 100%;
+const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 17px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  background-color: ${({ theme }) => theme.mainDarkBackground};
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 6px;
 
   ${media.sm} {
-    background-color: transparent;
-    padding: 20px 0px;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
   }
+`;
+
+const CategoryContentWrapper = styled.div`
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: ${({ theme }) => theme.mainBackground};
+`;
+
+const DesktopCategoryContentWrapper = styled.div`
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  flex-shrink: 0;
+  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
+  align-content: center;
   width: 100%;
-  row-gap: 12px;
-  column-gap: 8px;
+  gap: 14px;
   align-self: stretch;
 
   ${media.sm} {
-    row-gap: 36px;
-    column-gap: 40px;
+    padding: 20px 0;
+  }
+`;
+
+const CategoryTitle = styled.div`
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.black};
+  margin-bottom: 10px;
+
+  display: none;
+
+  ${media.sm} {
+    display: block;
   }
 `;
 
@@ -43,6 +70,7 @@ const LobbyCategory = () => {
   const { account } = useAccountStore();
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
+  const cardWidth = useCardWidth("14px");
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -82,31 +110,36 @@ const LobbyCategory = () => {
   const hasMappingData = !!lobbyCategoryList.length;
 
   return (
-    <CategoryContentWrapper>
-      <CategoryContent>
-        {hasMappingData &&
-          lobbyCategoryList.map((provider) => {
-            const { code: gpCode, status, name } = provider;
+    <Wrapper>
+      <CategoryContentWrapper>
+        <CategoryTitle>{i18n.t(getGameTypeName(activeGameType))}</CategoryTitle>
 
-            if (gpCode === "BC") return null;
-            return (
-              <VendorCard
-                key={gpCode}
-                imageUrl={`${
-                  import.meta.env.BASE_URL
-                }assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${
-                  import.meta.env.BASE_URL
-                }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                launchGame={() => launchLobbyGame(gpCode)}
-                status={status}
-                venderName={name}
-              />
-            );
-          })}
-        {!hasMappingData && <div>No data</div>}
-      </CategoryContent>
-    </CategoryContentWrapper>
+        <CategoryContent>
+          {hasMappingData &&
+            lobbyCategoryList.map((provider) => {
+              const { code: gpCode, status, name } = provider;
+
+              if (gpCode === "BC") return null;
+              return (
+                <MobileVendorCard
+                  key={gpCode}
+                  bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
+                  imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  launchGame={() => launchLobbyGame(gpCode)}
+                  status={status}
+                  venderName={name}
+                  style={{
+                    width: cardWidth,
+                    flexShrink: 0,
+                  }}
+                />
+              );
+            })}
+          {!hasMappingData && <div>No data</div>}
+        </CategoryContent>
+      </CategoryContentWrapper>
+    </Wrapper>
   );
 };
 

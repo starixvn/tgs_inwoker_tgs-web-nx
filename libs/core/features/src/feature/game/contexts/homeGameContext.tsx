@@ -18,6 +18,7 @@ export type GameTypeItem = {
   fontSize: string;
   gameType: GameTypeEnum;
   bgUrl?: string;
+  iconActiveUrl?: string;
 };
 
 const initialState: {
