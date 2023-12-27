@@ -1,61 +1,36 @@
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { feature } from "@/constants/featuresList";
 
-const Wrapper = styled.div`
-  display: flex;
-  padding-left: 24px;
-  align-items: center;
-  gap: 12px;
-  align-self: stretch;
-  width: calc(50% - 6px);
-
-  &:nth-child(1), &:nth-child(2) {
-    border-bottom: 1px solid  rgba(4, 150, 207, 0.16);
-  }
-`;
-
-const MainTitle = styled.div`
-  color: ${({ theme }) => theme.black};
-  font-size: 10.5px;
-  line-height: 16.8px;
-  font-weight: 400;
-`;
-
-const Text = styled.div`
+const Wrapper = styled.div<{ $alignment: string }>`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
+  align-items: ${({ $alignment }) => $alignment};
+  justify-content: flex-start;
 `;
 
-const SubTitle = styled.div`
-  color: ${({ theme }) => theme.black};
-  font-size: 16px;
-  line-height: 30px;
-  font-weight: 700;
-`;
 
-const Content = styled.div`
-  color: ${({ theme }) => theme.black};
-  font-size: 16px;
-  line-height: 30px;
+const Text = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-family: Gill Sans MT;
+  font-size: 0.9375rem;
   font-weight: 400;
+  margin-top: 19px;
+  letter-spacing: 0.012rem;
+  white-space: pre-line;
 `;
 
-const ImageCard = ({ feature }: { feature: feature }) => {
-  const { isMobileSize, isDesktopSize } = useRwd();
+type Props = {
+  imageUrl: string;
+  text: string;
+  alignment: string;
+  title: string;
+}
 
+const ImageCard = ({ imageUrl, text, alignment, title }: Props) => {
   return (
-    <Wrapper>
-      <img src={feature.imgUrl} alt={feature.mainTitle} />
-      {isMobileSize && <MainTitle>{feature.mainTitle}</MainTitle>}
-      {isDesktopSize &&
-        <Text>
-          <SubTitle>{feature.subTitle}</SubTitle>
-          <Content>{feature.content}</Content>
-        </Text>
-      }
+    <Wrapper $alignment={alignment}>
+      {title}
+      <img src={imageUrl} alt={text} />
+      <Text><div dangerouslySetInnerHTML={{ __html: text }}></div></Text>
     </Wrapper>
   );
 };

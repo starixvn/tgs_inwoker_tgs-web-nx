@@ -15,7 +15,7 @@ import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.secBTNBGC};
     width: calc(100vw - 10px * 2);
     height: auto;
     margin: 4px;
@@ -42,8 +42,7 @@ const ChildContainer = styled.div`
 const Title = styled.div`
   font-size: 1.062rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.black};
-
+  color: #58addd;
   ${media.sm} {
     font-size: 1.5rem;
   }
@@ -51,7 +50,7 @@ const Title = styled.div`
 
 const Content = styled.div`
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.gray60};
   margin-top: 1rem;
 
   ${media.sm} {

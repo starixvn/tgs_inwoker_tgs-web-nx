@@ -11,8 +11,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
 import { useCallback } from "react";
+import React from "react";
 import CommonTag from "./CommonTag";
-import Tag from "./ProviderTag";
+import ProviderTag from "./ProviderTag";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t32/images/home/search.svg";
 import { media } from "@/theme/breakpoints";
@@ -24,74 +25,76 @@ import recommendIcon from "@/assets/t32/images/home/recommend.svg";
 import activedRecommendIcon from "@/assets/t32/images/home/actived-recommend.svg";
 import favoriteIcon from "@/assets/t32/images/home/favorite.svg";
 import activedFavoriteIcon from "@/assets/t32/images/home/actived-favorite.svg";
+import { gameTagList } from "@/constants/gameTag";
+import { theme } from "@/theme";
 
 const FilterTagWrapper = styled.div`
   width: 100%;
+  height: 50px;
+  flex-shrink: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  gap: 12px;
+
+`;
+
+const ProviderTagContainer = styled.div`
+  width: 52%;
+  height: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  align-self: stretch;
+
+  ${media.sm} {
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(4, 150, 207, 0.16);
+      background: ${(props) => props.theme.mainBackground};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(4, 150, 207, 0.16);
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
+  }
 `;
 
 const CommonTagContainer = styled.div`
-  padding: 0px 14px;
-  border-radius: 100px;
+  width: calc(100% - 180px);
+  height: 100%;
+  display: flex;
+  padding-bottom: 10px;
   gap: 12px;
-  display: flex;
-  align-items: center;
-  height: 37px;
 `;
 
-const ProviderTagContainer = styled.div``;
-
-const ProviderTagContent = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-`;
-
-export const SearchInputWrapper = styled.div`
-  width: 100%;
-  height: 37px;
-
-  ${media.sm} {
-    width: 300px;
-    height: 100%;
-    margin-left: 8px;
-  }
+const SearchInputWrapper = styled.div`
+  width: 180px;
+  height: 100%;
+  margin-left: 12px;
+  padding-bottom: 10px;
 `;
 
 const CommonSearchWrapper = styled.div`
-  width: 100%;
+  width: 48%;
+  height: 100%;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const AllText = styled.div<{
-  $isActive: boolean;
-}>`
-  display: flex;
-  width: 100px;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 14px;
-  letter-spacing: 0em;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.gray70};
-  border-bottom: ${({ $isActive, theme }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
-  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
-  margin-right: 10px;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const HomeGameFilterTag = () => {
   const { isLogin } = useAuth();
   const history = useHistory();
   const {
+    filterTagList,
     providerFilterTagList,
     handleChangeActiveFilterTag,
     handleChangeActiveProviderFilterTag,
@@ -118,86 +121,68 @@ const HomeGameFilterTag = () => {
     handleChangeActiveProviderFilterTag(newFilterTag);
   };
 
-  const filterTagList: FilterTag[] = [
-    {
-      name: "new",
-      tagType: FilterTagTypeEnum.NEW,
-      iconUrl: newIcon,
-      activedUrl: activedNewIcon,
-    },
-    {
-      name: "favorite",
-      tagType: FilterTagTypeEnum.FAVORITE,
-      iconUrl: favoriteIcon,
-      activedUrl: activedFavoriteIcon,
-    },
-    {
-      name: "hot",
-      tagType: FilterTagTypeEnum.HOT,
-      iconUrl: hotIcon,
-      activedUrl: activedHotIcon,
-    },
-    {
-      name: "recommend",
-      tagType: FilterTagTypeEnum.RECOMMEND,
-      iconUrl: recommendIcon,
-      activedUrl: activedRecommendIcon,
-    },
-  ];
-
-  const validFilterTagList: FilterTag[] = filterTagList.filter(
-    (tag): tag is FilterTag => tag !== null,
-  );
-
   return (
     <FilterTagWrapper>
       <ProviderTagContainer>
-        <ProviderTagContent>
-          <AllText
-            onClick={() =>
-              onChangeProviderFilterTag({
-                name: FilterTagTypeEnum.ALL,
-                tagType: FilterTagTypeEnum.ALL,
-              })
-            }
-            $isActive={activeProviderFilterTag.tagType === FilterTagTypeEnum.ALL}
-          >
-            ALL
-          </AllText>
-          <div>
-            {providerFilterTagList.map((filterTag) => {
-              const matchedProvider = navPopupCategoryList.find(
-                (provider) => provider.code === filterTag.gpCode,
-              );
-              const status = matchedProvider ? matchedProvider.status : -1;
+        {providerFilterTagList.map((filterTag: FilterTag) => {
+          const { name, gpCode } = filterTag;
 
-              return (
-                <Tag
-                  key={filterTag.name}
-                  text={filterTag.name}
-                  gpCode={filterTag.gpCode}
-                  isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
-                  onClick={() => onChangeProviderFilterTag(filterTag)}
-                  status={status}
-                />
-              );
-            })}
-          </div>
-        </ProviderTagContent>
+          const matchedProvider = navPopupCategoryList.find(
+            (provider) => provider.code === filterTag.gpCode,
+          );
+          const status = matchedProvider ? matchedProvider.status : -1;
+
+          const isActive =
+            filterTag.tagType === FilterTagTypeEnum.ALL ||
+            (filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
+              gpCode === activeProviderFilterTag.gpCode);
+
+          const tagCmp = gameTagList.find((tag) => tag.text === name);
+
+          return (
+            <ProviderTag
+              key={name}
+              text={name}
+              isActive={gpCode === activeProviderFilterTag.gpCode}
+              isShowIcon={gameTagList.some((tag) => tag.text === name)}
+              onClick={() => onChangeProviderFilterTag(filterTag)}
+            // status={status}
+            >
+              {tagCmp &&
+                tagCmp.iconComponent &&
+                React.createElement(tagCmp.iconComponent, {
+                  $color: isActive ? theme.primary : theme.text,
+                })}
+            </ProviderTag>
+          );
+        })}
       </ProviderTagContainer>
 
       <CommonSearchWrapper>
         <CommonTagContainer>
-          {validFilterTagList.map((filterTag) => {
+          {filterTagList.map((filterTag) => {
+            const { name, tagType } = filterTag;
+            const isActive =
+              filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType;
+            const tagCmp = gameTagList.find((tag) => tag.text === name);
+            if (filterTag.tagType === FilterTagTypeEnum.ALL) {
+              return null;
+            }
+
             return (
               <CommonTag
                 key={filterTag.name}
                 text={filterTag.name}
-                iconUrl={filterTag.iconUrl}
-                activedUrl={filterTag.activedUrl}
                 isActive={filterTag.tagType === activeFilterTag.tagType}
+                isShowIcon={gameTagList.some((tag) => tag.text === name)}
                 onClick={() => onChangeCommonFilterTag(filterTag)}
-              />
+              >
+                {tagCmp &&
+                  tagCmp.iconComponent &&
+                  React.createElement(tagCmp.iconComponent, {
+                    $color: isActive ? theme.primary : theme.text,
+                  })}
+              </CommonTag>
             );
           })}
         </CommonTagContainer>

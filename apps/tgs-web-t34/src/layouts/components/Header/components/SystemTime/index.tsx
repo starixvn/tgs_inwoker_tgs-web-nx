@@ -3,7 +3,7 @@ import styled from "styled-components";
 import moment from "moment";
 
 const Wrapper = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   font-family: Gill Sans MT;
   font-size: 15px;
   font-style: normal;

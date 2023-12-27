@@ -60,7 +60,7 @@ const HotTag = styled.div`
   height: 26px;
   padding: 4px 10px;
   border-radius: 50px;
-  background: ${(props) => props.theme.green};
+  background: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
@@ -115,7 +115,7 @@ const MaintenanceBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 70%);
+  background: rgb(0 0 0 / 60%);
   padding: 7px;
   display: flex;
   align-items: center;

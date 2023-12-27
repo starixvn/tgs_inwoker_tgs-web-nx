@@ -15,7 +15,6 @@ const InputWrapper = styled.div`
   padding: 5px 10px;
   border-radius: 50px;
   background-color: ${({ theme }) => theme.white};
-  border: 1px solid ${({ theme }) => theme.mainBackground};
 `;
 
 const InputTextfield = styled.input`

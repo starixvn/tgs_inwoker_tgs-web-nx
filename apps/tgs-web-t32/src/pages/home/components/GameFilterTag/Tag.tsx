@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
 
 const Wrapper = styled.div<{
   $isActive: boolean;
@@ -17,8 +18,8 @@ const Wrapper = styled.div<{
   margin-right: 8px;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.primary : theme.white};
+  background-color: ${({ theme, $isActive }) =>
+    $isActive ? theme.primary : theme.white};
   color: ${({ theme, $hasBackground }) =>
     $hasBackground ? theme.white : theme.primary};
   min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
@@ -51,7 +52,21 @@ type Props = {
   onClick: () => void;
 };
 
+type IconComponentProps = {
+  $color: string;
+};
+
 const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
+  const cloneChildrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      if (typeof child.type === 'function') {
+        const IconComponent = child.type as React.ComponentType<IconComponentProps>;
+        return <IconComponent $color={isActive ? theme.white : theme.primary} />;
+      }
+    }
+    return child;
+  });
+
   return (
     <Wrapper
       $isActive={isActive}
@@ -59,7 +74,7 @@ const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
       $hasBackground={!isShowIcon && isActive}
       onClick={onClick}
     >
-      {isShowIcon && children}
+      {isShowIcon && cloneChildrenWithProps}
       {!isShowIcon && <Text $isActive={isActive}>{text}</Text>}
     </Wrapper>
   );

@@ -18,11 +18,13 @@ const CustomText = styled.div`
 const ButtonContainer = styled.div`
   flex-shrink: 0;
   & > button {
-    height: 40px;
     font-size: 0.75rem;
-    border-radius: 50px;
-    padding: 8px;
-    background: ${({ theme }) => theme.secondary};
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: ${({ theme }) => theme.primary};
+    &:hover {
+      background: ${({ theme }) => theme.primary};
+    }
   }
 `;
 

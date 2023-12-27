@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import config from "@tgs-web-nx/config";
 import { featuresList } from "@/constants/featuresList";
-import ImageCard from "@/pages/home/components/ImageCard";
+import ImageCard from "@/pages/home/components/ImageCard/Feature";
 
 const FeaturesWrapper = styled.div`
   width: 100%;

@@ -1,22 +1,21 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory, useParams } from "react-router-dom";
-import CategoryLabel from "./components/CategoryRenderer/components/LobbyCategory/components/CategoryLabel";
+import { useParams } from "react-router-dom";
+import { useProvider } from "@tgs-web-nx/core/features";
+import config from "@tgs-web-nx/config";
+import Application from "@/pages/home/components/Application";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import MobileSlider from "@/pages/home/components/Slider";
-import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import Features from "@/pages/home/components/Features";
-import productIcon from "@/assets/t32/images/home/product.svg";
+import HomePromotionCard from "@/pages/home/components/HomePromotion";
+import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
+import ImageCard from "@/pages/home/components/ImageCard";
+import { media } from "@/theme/breakpoints";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -27,7 +26,6 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
   }
@@ -36,33 +34,24 @@ const MainWrapper = styled.div`
 const MainContentWrapper = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 20px 12px 40px 12px;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 10px;
-`;
-
-const BannerWrapper = styled.div`
-  flex-shrink: 0;
-  width: 100%;
 
   ${media.sm} {
-    height: 100%;
-    max-height: 450px;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+    padding: 0px;
   }
 `;
 
-const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+const ContentWrapper = styled.div`
   width: 100%;
-  height: 450px;
-  margin: 0 auto;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 100%;
+  padding: 20px 12px 40px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 `;
 
 const Division = styled.div`
@@ -71,17 +60,100 @@ const Division = styled.div`
   background-color: rgba(0, 0, 0, 0.20);
 `;
 
-const CategoryTitle = styled.div`
+const VendorLogoWrapper = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.20);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+`;
+
+const VendorLogoCard = styled.div`
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  & > img {
+    width: calc((100% - 20px * 5) / 5);
+    height: 100%;
+    margin: 10px;
+    object-fit: contain;
+
+    ${media.sm} {
+      width: calc((100% - 120px * 5) / 5);
+    }
+  }
+`;
+
+const BrandDescriptionWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
+`;
+
+const BrandDescription = styled.div`
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px;
+  gap: 6px;
+`;
+
+const Title = styled.div`
+  font-size: 20px;
+  font-weight: 400;
+`;
+const Content = styled.div`
+  font-size: 15px;
+  font-weight: 400;
+`;
+
+const HomeFooterWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: ${({ theme }) => theme.footerBGC};
+  padding: 6px 12px;
+`;
+
+const HomeFooterCategory = styled.div`
+  width: 100%;
+`;
+
+const CmpContentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
 `;
 
 const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
+  const { providerList } = useProvider();
+
+  const vendorCodeList = providerList.map((provider) => provider.code);
+  const vendorLogoUrlList = vendorCodeList.map((gpCode) => {
+    return ({
+      gpCode: gpCode,
+      logoUrl: `/assets/images/home/provider_logo_gray/${gpCode}.png`
+    });
+  });
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -106,25 +178,51 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {isMobileSize && <><CardPrompt /><MobileSlider /></>}
-
       <MainContentWrapper>
-        {!activeGameType &&
-          <>
-            <Features />
-            <Division />
-          </>
-        }
-
-        <CategoryRenderer />
-        <>
-          {/* <CategoryTitle>
-            <CategoryLabel imageUrl={productIcon} text={"Product"} />
-          </CategoryTitle>
-          <GameTypeTab />
-          <CategoryRenderer /> */}
-        </>
+        {isMobileSize && <><CardPrompt /><Banner /></>}
+        {isDesktopSize && <><Banner /><CardPrompt /></>}
+        <ContentWrapper>
+          {!activeGameType &&
+            <>
+              <Features />
+              <Division />
+            </>
+          }
+          <CategoryRenderer />
+          <HomePromotionCard />
+          {isDesktopSize && <Application />}
+        </ContentWrapper>
       </MainContentWrapper>
+      <VendorLogoWrapper>
+        <VendorLogoCard>
+          {vendorLogoUrlList.map((vendor) => {
+            return <img key={vendor.gpCode} src={vendor.logoUrl} alt={vendor.gpCode} />;
+          })}
+        </VendorLogoCard>
+      </VendorLogoWrapper>
+      <BrandDescriptionWrapper>
+        <BrandDescription>
+          <Title>{config.brand} Gaming: A Winning Casino</Title>
+          <Content>{config.brand} Gaming is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic. With irresistible weekly bonus promotions and attractive loyalty and VIP programs, we're sure you'll be sticking around for a while to come. All of our software is developed and maintained by the industry's foremost online gaming software company, Pegasus. Because of this, we are able to offer you the newest cutting-edge games, of the highest quality and ultimate security in a sophisticated, yet engaging atmosphere.</Content>
+        </BrandDescription>
+      </BrandDescriptionWrapper>
+
+      {isMobileSize && footerCategoriesList.map((category, index) => (
+        <HomeFooterWrapper key={index}>
+          <HomeFooterCategory>
+            {category.content ? (
+              <CmpContentWrapper>{category.title}{category.content}</CmpContentWrapper>
+            ) : (
+              <ImageCard
+                title={category.title}
+                imageUrl={category.imageUrl}
+                text={category.text}
+                alignment={category.alignment}
+              />
+            )}
+          </HomeFooterCategory>
+        </HomeFooterWrapper>
+      ))}
     </MainWrapper>
   );
 };

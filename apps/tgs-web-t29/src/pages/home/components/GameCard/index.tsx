@@ -39,16 +39,16 @@ const NewTag = styled.div`
   position: absolute;
   top: 5px;
   left: 3px;
-  width: 53px;
-  height: 26px;
-  padding: 4px 10px;
+  width: 43px;
+  height: 22px;
+  padding: 2px 5px;
   border-radius: 50px;
   background: ${(props) => props.theme.red};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 400;
 `;
 
@@ -56,16 +56,16 @@ const HotTag = styled.div`
   position: absolute;
   bottom: 7px;
   left: 0;
-  width: 53px;
-  height: 26px;
-  padding: 4px 10px;
+  width: 43px;
+  height: 22px;
+  padding: 2px 5px;
   border-radius: 50px;
   background: ${(props) => props.theme.green};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 400;
 `;
 
@@ -74,7 +74,7 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(50% - 6px);
+  width: calc(33.33% - 6px);
   position: relative;
   cursor: pointer;
   aspect-ratio: 161 / 161;
@@ -129,8 +129,8 @@ const MaintenanceBg = styled.div`
 `;
 
 const MaintenanceIcon = styled.img`
-  width: 118px;
-  height: 83px;
+  width: 82.68px;
+  height: 58.1px;
 `;
 
 type GameCardProps = {

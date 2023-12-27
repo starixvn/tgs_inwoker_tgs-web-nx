@@ -37,53 +37,52 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
 
   return (
     <FormPromotionCodeContainer>
-      <GrayInputWrapper key={name}>
-        <TextField
-          type={getFormInputType(type)}
-          placeholder={label}
+      <TextField
+        type={getFormInputType(type)}
+        placeholder={label}
+        variant={"outlined"}
+        fullWidth
+        name={name}
+        value={formik.values[name]}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
+        error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
+        inputProps={{
+          autoComplete: "off",
+        }}
+      />
+
+      <DropdownContainer>
+        <Select
+          type={"string"}
+          label={formik.values["userType"]}
           variant={"outlined"}
           fullWidth
-          name={name}
-          value={formik.values[name]}
+          name={"userType"}
+          value={formik.values["userType"]}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
-          error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
-          inputProps={{
-            autoComplete: "off",
-          }}
-        />
-
-        <DropdownContainer>
-          <Select
-            type={"string"}
-            label={formik.values["userType"]}
-            variant={"outlined"}
-            fullWidth
-            name={"userType"}
-            value={formik.values["userType"]}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            style={{ color: theme.text }}
-            MenuProps={{
-              PaperProps: {
-                sx: {
-                  "& .MuiMenuItem-root": {
-                    color: theme.text,
-                  },
+          style={{ color: theme.text }}
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                background: theme.mainBackground,
+                "& .MuiMenuItem-root": {
+                  color: theme.text,
                 },
               },
-            }}
-          >
-            <MenuItem value={UserTypeEnum.AGENT}>
-              <>{i18n.t("usertype.agent")}</>
-            </MenuItem>
-            <MenuItem value={UserTypeEnum.PLAYER}>
-              <>{i18n.t("usertype.player")}</>
-            </MenuItem>
-          </Select>
-        </DropdownContainer>
-      </GrayInputWrapper>
+            },
+          }}
+        >
+          <MenuItem value={UserTypeEnum.AGENT}>
+            <>{i18n.t("usertype.agent")}</>
+          </MenuItem>
+          <MenuItem value={UserTypeEnum.PLAYER}>
+            <>{i18n.t("usertype.player")}</>
+          </MenuItem>
+        </Select>
+      </DropdownContainer>
     </FormPromotionCodeContainer>
   );
 };

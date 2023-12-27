@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
+import rightIcon from "@/assets/t32/images/home/right.svg";
 
 type Props = {
   text: string;
@@ -11,15 +12,17 @@ const StyledButton = styled.button<{ size: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 66px;
-  min-height: 27px;
-  padding: 6px 10px;
+  height: 36px;
+  min-width: 30px;
+  padding: 10px 12px;
   border: none;
   border-radius: 5px;
-  background: ${(props) => props.theme.primaryLight};
-  color: ${(props) => props.theme.tertiaryMiddle};
-  font-size: ${(props) => (props.size === 'small' ? '0.625rem' : props.size === 'large' ? '1.125rem' : '1rem')};
-  font-weight: ${(props) => (props.size === 'small' ? '700' : props.size === 'large' ? '500' : '600')};
+  color: ${({ theme }) => theme.primary};
+  background-color:${({ theme }) => theme.white};
+  font-size: 12px;
+  font-weight: 500;
+  gap: 4px;
+  border: 1.5px solid ${({ theme }) => theme.primary};
 
   ${media.sm} {
     cursor: pointer;
@@ -33,6 +36,7 @@ const ButtonText = ({ size, text, onClick }: Props) => {
       onClick={onClick}
     >
       {text}
+      <img src={rightIcon} alt="see all" />
     </StyledButton>
   );
 };

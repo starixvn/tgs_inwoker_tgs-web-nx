@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import android from "@/assets/t23/images/home/android.svg";
-import ios from "@/assets/t23/images/home/ios.svg";
+import android from "@/assets/t30/images/home/android.svg";
+import ios from "@/assets/t30/images/home/ios.svg";
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 19px;
+  gap: 10px;
 `;
 
 const AppFlag = () => {

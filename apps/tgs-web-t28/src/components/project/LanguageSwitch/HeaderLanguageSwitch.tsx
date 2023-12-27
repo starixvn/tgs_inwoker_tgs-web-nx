@@ -13,11 +13,12 @@ import { imageMap } from "@/components/project/LanguageSwitch/index";
 import { theme } from "@/theme";
 
 const StyledSelect = styled(MuiSelect)`
-  min-width: 130px;
+  width: 100%;
+  padding: 5px;
   overflow: visible;
   font-weight: 400 !important;
   font-size: 0.812rem !important;
-
+  border: 1px solid ${({ theme }) => theme.gray20};
   .MuiOutlinedInput-input {
     padding: 0 12px !important;
     border-radius: 0;
@@ -86,7 +87,6 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
 
     setCurrentLanguage(selectedLanguage);
     i18n.changeLanguage(selectedLanguage.culturecode);
-    console.log("HeaderLanguageSwitch cause reload");
     window.location.reload();
   };
 
@@ -117,9 +117,9 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
-              <FlagContainer>
+              {/* <FlagContainer>
                 <img src={imageMap[culturecode] || ""} alt={culturecode} />
-              </FlagContainer>
+              </FlagContainer> */}
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
           );

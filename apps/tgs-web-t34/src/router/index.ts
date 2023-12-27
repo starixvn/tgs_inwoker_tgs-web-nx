@@ -26,6 +26,7 @@ import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
+import HomeLayout from "@/layouts/HomeLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -33,19 +34,19 @@ const routes: RouteType[] = [
   {
     path: "/",
     component: MainPage,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main",
     component: MainPage,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main/:page",
     component: MainPage,
-    layout: DefaultLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {

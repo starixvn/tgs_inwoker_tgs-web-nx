@@ -9,15 +9,29 @@ import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import GameTypeTab from "@/pages/home/components/GameTypeTab/mobile";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+
+const NonLobbyCategoryWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+
+  ${media.sm} {
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    margin: 0 auto;
+  }
+`;
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
+  padding: 20px 0px;
 `;
 
 const CategoryContent = styled.div`
@@ -30,8 +44,8 @@ const CategoryContent = styled.div`
   align-self: stretch;
 
   ${media.sm} {
-    row-gap: 5px;
-    column-gap: 9px;
+    row-gap: 10px;
+    column-gap: 7px;
   }
 `;
 
@@ -52,12 +66,13 @@ const NonLobbyCategory = () => {
   const categorytitle = gameTypeList.find((item) => item.key === activeGameTypeKey)?.title;
 
   return (
-    <>
+    <NonLobbyCategoryWrapper>
       <CategoryTitle>
         <CategoryLabel imageUrl={categoryIcon ?? ''} text={categorytitle ?? ''} />
       </CategoryTitle>
 
       {isMobileSize && <GameFilterTag />}
+      {isDesktopSize && <HomeGameFilterTag />}
 
       <CategoryContentWrapper>
         <CategoryContent>
@@ -76,7 +91,7 @@ const NonLobbyCategory = () => {
         </CategoryContent>
       </CategoryContentWrapper>
       <Loading show={isLoading} />
-    </>
+    </NonLobbyCategoryWrapper>
   );
 };
 

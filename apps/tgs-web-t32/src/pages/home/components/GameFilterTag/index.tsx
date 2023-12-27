@@ -17,7 +17,7 @@ const FilterSection = styled.div`
   gap: 10px;
 `;
 
-const ProvidorTagContainer = styled.div`
+const ProviderTagContainer = styled.div`
   width: 100%;
   height: 32px;
   overflow-x: auto;
@@ -51,7 +51,6 @@ const CommonContainer = styled.div`
   width: 100%;
   height: 32px;
   display: flex;
-  gap: 8px;
 
   ${media.sm} {
     width: 300px;
@@ -104,12 +103,9 @@ const GameFilterTag = () => {
 
   return (
     <FilterSection>
-      <ProvidorTagContainer>
-        {providerFilterTagList.map((filterTag) => {
+      <ProviderTagContainer>
+        {providerFilterTagList.map((filterTag: FilterTag) => {
           const { name, gpCode } = filterTag;
-
-          console.log(filterTag.tagType)
-
           const isActive =
             filterTag.tagType === FilterTagTypeEnum.ALL ||
             (filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
@@ -133,7 +129,7 @@ const GameFilterTag = () => {
             </Tag>
           );
         })}
-      </ProvidorTagContainer>
+      </ProviderTagContainer>
 
       <CommonContainer>
         {filterTagList.map((filterTag) => {

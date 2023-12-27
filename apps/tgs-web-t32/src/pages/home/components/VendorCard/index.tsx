@@ -110,7 +110,8 @@ const PlayBtn = styled.div`
   cursor: pointer;
   border-radius: 4px;
   background: ${({ theme }) => theme.btnPri};
-  
+  z-index: 2;
+
   &:hover {
     box-shadow: 0 -5px 15px 0 #34c75cc9;
     padding: 10px 12px;
@@ -133,12 +134,12 @@ const VendorCard = ({
   };
 
   return (
-    <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
+    <VendorCardBg $bgUrl={bgUrl}>
       <VendorNameInfo>
         <VendorLogo $vendorLogoUrl={vendorLogoUrl}></VendorLogo>
         <VendorPlay>
           <VendorName>{vendorName}</VendorName>
-          <PlayBtn>Play</PlayBtn>
+          <PlayBtn onClick={launchGameHandler}>Play</PlayBtn>
         </VendorPlay>
       </VendorNameInfo>
       <GameIcon $imageUrl={imageUrl}></GameIcon>

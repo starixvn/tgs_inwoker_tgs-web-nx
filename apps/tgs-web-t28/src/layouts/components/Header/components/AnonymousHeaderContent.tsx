@@ -13,7 +13,7 @@ import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLang
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 `;
 
 type Props = {
@@ -21,7 +21,7 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
   const { goToLogin, goToRegister } = useAuth();
 
   return (
@@ -29,12 +29,12 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <RoundHeaderButton
         onClick={goToLogin}
         style={{
-          color: theme.white,
-          background: theme.primary,
+          color: theme.lightPurple,
+          background: theme.memberSection,
+          border: `1px solid ${theme.lightPurple}`,
         }}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
-        {i18n.t("common.login")}
+        {i18n.t("common.login").toLocaleUpperCase()}
       </RoundHeaderButton>
 
       <RoundHeaderButton
@@ -42,13 +42,12 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         onClick={goToRegister}
         style={{
           color: theme.white,
-          background: theme.secondary,
+          background: theme.primary,
         }}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
-        {i18n.t("common.register")}
+        {i18n.t("common.register").toLocaleUpperCase()}
       </RoundHeaderButton>
-      {isDesktopSize && <HeaderLanguageSwitch />}
+      {isMobileSize && <HeaderLanguageSwitch />}
     </ButtonContainer>
   );
 };

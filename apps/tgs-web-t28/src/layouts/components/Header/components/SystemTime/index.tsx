@@ -3,14 +3,13 @@ import styled from "styled-components";
 import moment from "moment";
 
 const Wrapper = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-family: Gill Sans MT;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  white-space: nowrap;
+  color: ${({ theme }) => theme.gray50};
   flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
 `;
 
 const SystemTime = () => {
