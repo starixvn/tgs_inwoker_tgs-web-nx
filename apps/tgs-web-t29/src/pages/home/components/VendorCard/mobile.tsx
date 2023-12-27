@@ -24,7 +24,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 
 const VendorCardBg = styled.div<{ $bgUrl: string }>`
   position: relative;
-  width: calc(33.33% - 6px);
+  width: calc(50% - 6px);
   position: relative;
   aspect-ratio: 161 / 154;
   border-radius: 10px;
@@ -47,8 +47,8 @@ const VenderNameInfo = styled.div`
 
 const VenderName = styled.div`
   color: ${(props) => props.theme.text};
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   text-align: flex-start;
 `;
 
