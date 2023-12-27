@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
 import { useProvider } from "@tgs-web-nx/core/features";
-import CategoryLabel from "./components/CategoryRenderer/components/LobbyCategory/components/CategoryLabel";
-import PartnerTags from "./components/PartnerTags";
+import config from "@tgs-web-nx/config";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import Features from "@/pages/home/components/Features";
 import HomePromotionCard from "@/pages/home/components/HomePromotion";
+import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
+import ImageCard from "@/pages/home/components/ImageCard";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -27,7 +25,6 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   
   ${media.sm} {
-    /* max-width: ${MAIN_CONTENT_MAX_WIDTH}; */
     margin: 0 auto;
     gap: unset;
   }
@@ -54,12 +51,6 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
-
-  /* ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
-    margin: 0 auto;
-    padding: 0px;
-  } */
 `;
 
 const Division = styled.div`
@@ -126,10 +117,32 @@ const Content = styled.div`
   font-weight: 400;
 `;
 
+const HomeFooterWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: ${({ theme }) => theme.footerBGC};
+  padding: 6px 12px;
+`;
+
+const HomeFooterCategory = styled.div`
+  width: 100%;
+`;
+
+const CmpContentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+`;
+
 const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
   const { providerList } = useProvider();
 
@@ -187,10 +200,27 @@ const HomePage = () => {
       </VendorLogoWrapper>
       <BrandDescriptionWrapper>
         <BrandDescription>
-          <Title>Pega Gaming: A Winning Casino</Title>
-          <Content>Pega Gaming is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic. With irresistible weekly bonus promotions and attractive loyalty and VIP programs, we're sure you'll be sticking around for a while to come. All of our software is developed and maintained by the industry's foremost online gaming software company, Pegasus. Because of this, we are able to offer you the newest cutting-edge games, of the highest quality and ultimate security in a sophisticated, yet engaging atmosphere.</Content>
+          <Title>{config.brand} Gaming: A Winning Casino</Title>
+          <Content>{config.brand} Gaming is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic. With irresistible weekly bonus promotions and attractive loyalty and VIP programs, we're sure you'll be sticking around for a while to come. All of our software is developed and maintained by the industry's foremost online gaming software company, Pegasus. Because of this, we are able to offer you the newest cutting-edge games, of the highest quality and ultimate security in a sophisticated, yet engaging atmosphere.</Content>
         </BrandDescription>
       </BrandDescriptionWrapper>
+
+      {isMobileSize && footerCategoriesList.map((category, index) => (
+        <HomeFooterWrapper key={index}>
+          <HomeFooterCategory>
+            {category.content ? (
+              <CmpContentWrapper>{category.title}{category.content}</CmpContentWrapper>
+            ) : (
+              <ImageCard
+                title={category.title}
+                imageUrl={category.imageUrl}
+                text={category.text}
+                alignment={category.alignment}
+              />
+            )}
+          </HomeFooterCategory>
+        </HomeFooterWrapper>
+      ))}
     </MainWrapper>
   );
 };

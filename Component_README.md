@@ -12,3 +12,9 @@ Find available components based on development requirement.
 
 1. change icon.svg
 2. adjust m/d position
+
+# HomeFooterCategory + # ImageCard - mobile
+
+data resource: footerCategoriesList
+
+# Features - ImageCard - Feature
