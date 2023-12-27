@@ -1,10 +1,5 @@
-import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import TextButton from "../TextButton";
-import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
-import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
 
 type Props = {
@@ -30,7 +25,6 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 const VendorCardBg = styled.div<{ $bgUrl: string }>`
   position: relative;
   width: calc(50% - 6px);
-  //max-width: 161px;
   position: relative;
   aspect-ratio: 161 / 154;
   border-radius: 10px;

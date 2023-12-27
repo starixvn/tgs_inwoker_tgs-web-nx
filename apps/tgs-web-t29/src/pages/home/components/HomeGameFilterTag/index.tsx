@@ -41,6 +41,7 @@ const CommonTagContainer = styled.div`
   display: flex;
   align-items: center;
   height: 37px;
+  border: 1px solid ${({ theme }) => theme.blue40};
 `;
 
 const ProviderTagContainer = styled.div``;
@@ -53,6 +54,8 @@ const ProviderTagContent = styled.div`
 export const SearchInputWrapper = styled.div`
   width: 100%;
   height: 37px;
+  border-radius: 50px;
+  border: 1px solid ${({ theme }) => theme.blue40};
 
   ${media.sm} {
     width: 300px;
