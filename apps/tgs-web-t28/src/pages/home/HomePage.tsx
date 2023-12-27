@@ -40,7 +40,7 @@ const MainWrapper = styled.div`
     margin: 0 auto;
     gap: unset;
     height: unset;
-    padding: 0px 0px 0px 0px;
+    padding: 24px;
   }
 `;
 
@@ -73,7 +73,7 @@ const MainContentWrapper = styled.div`
   flex: 1;
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    /* max-width: ${MAIN_CONTENT_MAX_WIDTH}; */
     margin: 0 auto;
     gap: unset;
   }

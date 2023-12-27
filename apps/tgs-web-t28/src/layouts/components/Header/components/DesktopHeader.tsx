@@ -34,6 +34,7 @@ const HeaderContainer = styled.div`
 
   ${media.sm} {
     height: ${DESKTOP_HEADER_HEIGHT};
+    padding: 4px 12px;
   }
 `;
 

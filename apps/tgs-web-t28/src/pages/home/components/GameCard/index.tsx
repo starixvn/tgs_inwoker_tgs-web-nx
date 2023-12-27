@@ -8,17 +8,18 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t29/images/home/play.svg";
+import playIcon from "@/assets/t28/images/home/play.svg";
 import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
+  flex-shrink: 0;
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 60%);
+  backdrop-filter: blur(3px);
   border-radius: 10px;
   display: none;
   white-space: pre-line;
@@ -74,15 +75,18 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(50% - 6px);
+  /* width: calc(50% - 6px); */
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 161 / 161;
+  /* aspect-ratio: 161 / 161; */
   border-radius: 10px;
 
   ${media.sm} {
-    width: calc(16.67% - 6px);
-
+    /* width: calc(16.67% - 6px); */
+    flex-shrink: 0;
     &:hover {
       ${CardHoverBg} {
         z-index: 1;
@@ -141,14 +145,16 @@ type GameCardProps = {
 
 const HoverGameName = styled(GameCardContent)`
   color: ${(props) => props.theme.white};
-  font-size: 1rem;
+  font-size: 18px;
+  font-weight: 590;
+  line-height: 24px;
+  letter-spacing: 0em;
   text-align: center;
-  margin-bottom: 16px;
 `;
 
 const PlayIcon = styled.img`
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
 `;
 
 const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
@@ -166,7 +172,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       return;
     }
     launchGame();
-  }
+  };
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");
@@ -218,8 +224,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg onClick={launchGameHandler}>
-          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
           <PlayIcon src={playIcon} alt={"play"} />
+          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
         </CardHoverBg>
       )}
     </GameCardBg>

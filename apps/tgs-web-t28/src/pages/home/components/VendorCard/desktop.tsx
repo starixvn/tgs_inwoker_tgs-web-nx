@@ -21,19 +21,18 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   position: absolute;
   left: 0;
   top: 0;
-  width: 115px;
-  height: 135px;
+  width: 100%;
+  height: 100%;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  flex-shrink: 0;
 `;
 
-const VendorCardBg = styled.div<{ $bgUrl: string }>`
+const VendorCardBg = styled.div`
+  width: 248px;
+  height: 315.64px;
+  flex-shrink: 0;
   position: relative;
-  width: 20%;
-  max-width: 200px;
   position: relative;
-  aspect-ratio: 200/135;
   cursor: pointer;
   transition: transform 0.6s ease 0s;
 `;
@@ -52,8 +51,12 @@ const VenderNameInfo = styled.div`
   white-space: pre-wrap;
 `;
 
-
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
+  position: absolute;
+  /* padding-top: 100%; */
+  left: 40%;
+  top: 85%;
+  border-radius: 15px;
   display: inline-flex;
   width: 100%;
   max-width: 85px;
@@ -61,12 +64,12 @@ const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
-  position: relative;
 `;
 
 const VenderName = styled(VenderNameInfo)`
   position: absolute;
-  top: 50%;
+  top: 80%;
+  left: -50%;
   width: 100%;
   text-align: center;
   color: #333;
@@ -90,12 +93,28 @@ const MaintenanceBg = styled.div`
   }
 `;
 
+const GradientBg = styled.div`
+  position: absolute;
+  width: 100%;
+  /* padding-top: 100%; */
+  left: 0;
+  top: 0;
+  border-radius: 15px;
+`;
+
 const MaintenanceIcon = styled.img`
   width: 57px;
   height: 57px;
 `;
 
-const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
+const DesktopVendorCard = ({
+  bgUrl,
+  imageUrl,
+  venderName,
+  venderLogoUrl,
+  launchGame,
+  status,
+}: Props) => {
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
@@ -104,7 +123,7 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
       return;
     }
     launchGame();
-  }
+  };
 
   useEffect(() => {
     if (venderNameRef.current) {
@@ -113,12 +132,14 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
   }, [venderNameRef.current]);
 
   return (
-    <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
+    <VendorCardBg onClick={launchGameHandler}>
       <GameIcon $imageUrl={imageUrl}></GameIcon>
-      <VenderNameInfo>
+      {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+
+      {/* <VenderNameInfo>
         <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
         <VenderName ref={venderNameRef}>{venderName}</VenderName>
-      </VenderNameInfo>
+      </VenderNameInfo> */}
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>
           <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
