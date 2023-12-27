@@ -26,14 +26,13 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
-import HomeLayout from "@/layouts/HomeLayout";
-import HomeDialogLayout from "@/layouts/HomeDialogLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
 import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
+import VipLayout from "@/layouts/VipLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -41,19 +40,19 @@ const routes: RouteType[] = [
   {
     path: "/",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main/:gameType",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   // {
@@ -231,13 +230,13 @@ const routes: RouteType[] = [
   {
     path: "/promotion-list",
     component: PromotionPage,
-    layout: HomeDialogLayout,
+    layout: DialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
-    layout: HomeDialogLayout,
+    layout: DialogLayout,
     isAnonymousAllowed: true,
   },
   //
@@ -306,7 +305,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: HomeDialogLayout,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",
