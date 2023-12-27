@@ -2,19 +2,20 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useProvider } from "@tgs-web-nx/core/features";
 import config from "@tgs-web-nx/config";
+import Application from "@/pages/home/components/Application";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import Features from "@/pages/home/components/Features";
 import HomePromotionCard from "@/pages/home/components/HomePromotion";
 import { footerCategoriesList } from "@/layouts/components/Footer/footerCategoriesList";
 import ImageCard from "@/pages/home/components/ImageCard";
+import { media } from "@/theme/breakpoints";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -189,6 +190,7 @@ const HomePage = () => {
           }
           <CategoryRenderer />
           <HomePromotionCard />
+          {isDesktopSize && <Application />}
         </ContentWrapper>
       </MainContentWrapper>
       <VendorLogoWrapper>
