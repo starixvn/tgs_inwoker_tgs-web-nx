@@ -9,7 +9,7 @@ import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import GameCard from "../../../GameCard";
 import DesktopVendorCard from "../../../VendorCard/desktop";
 import WinnerCard from "../../../WinnerCard";
-import bg from "@/assets/t29/images/home/home_bg.png";
+import MobileFooter from "../../../MobileFooter";
 import sport from "@/assets/t28/images/home/home_sport.svg";
 import live_casino from "@/assets/t28/images/home/home_live_casino.svg";
 import slot from "@/assets/t28/images/home/home_slot.svg";
@@ -17,7 +17,6 @@ import hot from "@/assets/t28/images/home/home_hot.svg";
 import jackpotBG from "@/assets/t28/images/home/jackpotBG.png";
 import jackpotImg from "@/assets/t28/images/home/JackpotImg.png";
 import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
 
 const DesktopContainer = styled.div`
@@ -26,43 +25,8 @@ const DesktopContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 15px 0px;
-
-  ${media.sm} {
-    /* max-width: ${SUB_CONTENT_MAX_WIDTH}; */
-    /* margin: 0 auto; */
-  }
 `;
 
-const CategoryWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  padding: 8px 0px 34px 0px;
-  width: 100%;
-`;
-
-const CategoryImage = styled.div<{ $imageUrl: string }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 250px;
-  position: relative;
-  aspect-ratio: 250/200;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: contain;
-  background-repeat: repeat;
-  padding: 15px 0px;
-  cursor: pointer;
-`;
-
-const CategoryName = styled.div`
-  color: #333;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  text-align: center;
-`;
 const GameContainer = styled.div`
   width: 100%;
   overflow: auto;
@@ -90,14 +54,14 @@ const GameTypeTitle = styled.div`
   }
 `;
 
-const GameSubTitle = styled.div`
-  font-size: 14px;
-  font-weight: 510;
-  line-height: 21px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: ${({ theme }) => theme.gray};
-`;
+// const GameSubTitle = styled.div`
+//   font-size: 14px;
+//   font-weight: 510;
+//   line-height: 21px;
+//   letter-spacing: 0em;
+//   text-align: left;
+//   color: ${({ theme }) => theme.gray};
+// `;
 
 const GameTypeContainer = styled.div`
   display: flex;
@@ -106,40 +70,52 @@ const GameTypeContainer = styled.div`
 
 const JackpotContainer = styled.div`
   display: flex;
+  flex-direction: column;
   background-image: url(${jackpotBG});
   background-size: cover;
   gap: 16px;
+
+  ${media.sm} {
+    flex-direction: unset;
+  }
 `;
 
 const JackpotImgContainer = styled.div`
   position: relative;
   flex-shrink: 0;
+  & > img {
+    width: 100%;
+  }
 `;
 const JackpotAmount = styled.div`
   position: absolute;
   top: 30%;
   left: 20%;
-  font-size: 40px;
+  font-size: 32px;
   font-weight: 700;
-  line-height: 48px;
+  line-height: 37px;
   letter-spacing: 0.1em;
   text-align: center;
   color: ${({ theme }) => theme.yellow};
+  ${media.sm} {
+    font-size: 40px;
+    line-height: 48px;
+  }
 `;
-type GameTypeItem = {
-  key: string;
-  name: string;
-  imgUrl: string;
-  text: string | any;
-  gameType: GameTypeEnum;
-};
+// type GameTypeItem = {
+//   key: string;
+//   name: string;
+//   imgUrl: string;
+//   text: string | any;
+//   gameType: GameTypeEnum;
+// };
 
 const HomeCategory = () => {
   const history = useHistory();
   const { account } = useAccountStore();
-  const { isDesktopSize } = useRwd();
+  const { isMobileSize } = useRwd();
   const { jackpotAmount } = useJackpot();
-  const { handleChangeGameType, providerList, activeGameType } = useHomeGameContext();
+  const { providerList, activeGameType } = useHomeGameContext();
   const { hotGameList, newGameList } = useGetHomeCategoryList();
   const { leaderboard } = useBettingHistory();
   const liveCasinoList = providerList.filter((provider) => {
@@ -196,114 +172,115 @@ const HomeCategory = () => {
     }
   };
 
-  if (isDesktopSize) {
-    return (
-      <DesktopContainer>
-        <GameTypeContainer>
-          <GameTypeTitle>
-            <img src={hot} alt="hot" />
-            {i18n.t("slot.newGame")}
-          </GameTypeTitle>
-          {/* <GameSubTitle>Most recently played games</GameSubTitle> */}
-          <GameContainer>
-            {newGameList.slice(0, 20).map((gameItem) => {
-              return (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
-                />
-              );
-            })}
-          </GameContainer>
-          <GameTypeTitle>
-            <img src={slot} alt="slot" />
-            {i18n.t("common.slots")}
-          </GameTypeTitle>
-          <GameContainer>
-            {hotGameList.slice(0, 20).map((gameItem) => {
-              return (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
-                />
-              );
-            })}
-          </GameContainer>
-          <GameTypeTitle>
-            <img src={live_casino} alt="slot" />
-            {i18n.t("common.live")}
-          </GameTypeTitle>
-          <GameContainer>
-            {liveCasinoList.map((provider) => {
-              const { code: gpCode, status, name } = provider;
+  // if (isDesktopSize) {
+  return (
+    <DesktopContainer>
+      <GameTypeContainer>
+        <GameTypeTitle>
+          <img src={hot} alt="hot" />
+          {i18n.t("slot.newGame")}
+        </GameTypeTitle>
+        {/* <GameSubTitle>Most recently played games</GameSubTitle> */}
+        <GameContainer>
+          {newGameList.slice(0, 20).map((gameItem) => {
+            return (
+              <GameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
+              />
+            );
+          })}
+        </GameContainer>
+        <GameTypeTitle>
+          <img src={slot} alt="slot" />
+          {i18n.t("common.slots")}
+        </GameTypeTitle>
+        <GameContainer>
+          {hotGameList.slice(0, 20).map((gameItem) => {
+            return (
+              <GameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
+              />
+            );
+          })}
+        </GameContainer>
+        <GameTypeTitle>
+          <img src={live_casino} alt="slot" />
+          {i18n.t("common.live")}
+        </GameTypeTitle>
+        <GameContainer>
+          {liveCasinoList.map((provider) => {
+            const { code: gpCode, status, name } = provider;
 
-              if (gpCode === "BC") return null;
-              return (
-                <DesktopVendorCard
-                  key={gpCode}
-                  bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/liveCasino/bg.png`}
-                  imageUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/liveCasino/${gpCode}.jpg`}
-                  venderLogoUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </GameContainer>
-          <GameTypeTitle>
-            <img src={sport} alt="sports" />
-            {i18n.t("common.sports")}
-          </GameTypeTitle>
-          <GameContainer>
-            {sportList.map((provider) => {
-              const { code: gpCode, status, name } = provider;
+            if (gpCode === "BC") return null;
+            return (
+              <DesktopVendorCard
+                key={gpCode}
+                bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/liveCasino/bg.png`}
+                imageUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/desktop/liveCasino/${gpCode}.jpg`}
+                venderLogoUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
+                launchGame={() => launchLobbyGame(gpCode)}
+                status={status}
+                venderName={name}
+              />
+            );
+          })}
+        </GameContainer>
+        <GameTypeTitle>
+          <img src={sport} alt="sports" />
+          {i18n.t("common.sports")}
+        </GameTypeTitle>
+        <GameContainer>
+          {sportList.map((provider) => {
+            const { code: gpCode, status, name } = provider;
 
-              if (gpCode === "BC") return null;
-              return (
-                <DesktopVendorCard
-                  key={gpCode}
-                  bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/sports/bg.png`}
-                  imageUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/desktop/sports/${gpCode}.png`}
-                  venderLogoUrl={`${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/sports/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </GameContainer>
-        </GameTypeContainer>
-        <JackpotContainer>
-          <JackpotImgContainer>
-            <img src={jackpotImg} alt="jackpot" />
-            <JackpotAmount>{formatAmount(jackpotAmount, "vi-VN")}</JackpotAmount>
-          </JackpotImgContainer>
-          <WinnerCard leaderboard={leaderboard} />
-        </JackpotContainer>
-      </DesktopContainer>
-    );
-  }
+            if (gpCode === "BC") return null;
+            return (
+              <DesktopVendorCard
+                key={gpCode}
+                bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/sports/bg.png`}
+                imageUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/desktop/sports/${gpCode}.png`}
+                venderLogoUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/provider_logo/sports/${gpCode}.png`}
+                launchGame={() => launchLobbyGame(gpCode)}
+                status={status}
+                venderName={name}
+              />
+            );
+          })}
+        </GameContainer>
+      </GameTypeContainer>
+      <JackpotContainer>
+        <JackpotImgContainer>
+          <img src={jackpotImg} alt="jackpot" />
+          <JackpotAmount>{formatAmount(jackpotAmount, "vi-VN")}</JackpotAmount>
+        </JackpotImgContainer>
+        <WinnerCard leaderboard={leaderboard} />
+      </JackpotContainer>
+      {isMobileSize && <MobileFooter />}
+    </DesktopContainer>
+  );
 };
+// };
 
 export default HomeCategory;

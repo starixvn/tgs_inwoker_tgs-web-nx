@@ -14,18 +14,7 @@ const Wrapper = styled.div`
   gap: 18px;
 `;
 
-const Content = styled.div`
-  position: absolute;
-  width: 100%;
-  top: 32.51%;
-  margin-top: 19px;
-
-  ${media.sm} {
-    position: relative;
-    top: 0;
-    margin-top: 0px;
-  }
-`;
+const Content = styled.div``;
 
 type Props = {
   leaderboard: RankItem[];

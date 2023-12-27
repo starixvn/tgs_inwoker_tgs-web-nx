@@ -28,7 +28,8 @@ import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
-
+import homeImg from "@/assets/t28/images/home/gameType/home.svg";
+import activehomeImg from "@/assets/t28/images/home/gameType/homeActvie.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
@@ -85,18 +86,18 @@ export function useGetNavItemList() {
       });
     }
 
-    // navItemList.push({
-    //   key: NavCardKey.VIP,
-    //   label: "VIP",
-    //   iconUrl: vipImg,
-    //   iconActiveUrl: vipImg,
-    //   navType: "action",
-    //   gameType: GameTypeEnum.NONE,
-    //   router: "vip",
-    //   callback: () => {
-    //     history.push("/vip");
-    //   },
-    // });
+    navItemList.unshift({
+      key: NavCardKey.HOME,
+      label: "home",
+      iconUrl: homeImg,
+      iconActiveUrl: activehomeImg,
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "",
+      callback: () => {
+        history.push("/");
+      },
+    });
 
     // navItemList.push({
     //   key: NavCardKey.PROMOTION,

@@ -4,7 +4,7 @@ import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
@@ -119,30 +119,15 @@ const MarqueesBackground = styled.div`
 
 const GameTypesContainer = styled.div`
   display: flex;
-  padding: 0 24px;
-  /* margin-right: auto; */
-  /* flex-wrap: nowrap;
-  align-items: stretch; */
+  padding: 12px 24px;
+  width: 100%;
   height: 100%;
   position: relative;
   gap: 24px;
-
-  /* &::-webkit-scrollbar {
-    //height: 10px;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
   }
-
-  &::-webkit-scrollbar-track {
-    background: ${(props) => props.theme.mainBackground};
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: ${({ theme }) => theme.gray10};
-  }
-
-  &::-webkit-scrollbar-track-piece {
-    background: transparent;
-  } */
 `;
 
 const GameTypeNav = styled.div<{
@@ -158,15 +143,7 @@ const GameTypeNav = styled.div<{
   color: ${({ theme }) => theme.text};
   cursor: pointer;
   position: relative;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
-  color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
-  &:hover {
-    background: ${({ theme }) => theme.gray10};
-  }
-
-  ${media.lg} {
-    font-size: 1rem;
-  }
+  color: ${({ theme, $isActive }) => ($isActive ? theme.text : theme.gray50)};
 `;
 
 const GameTypeGrid = styled.div`
@@ -179,6 +156,19 @@ const GameTypeGrid = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  ${media.sm} {
+    flex-direction: unset;
+    background: ${({ theme }) => theme.mainBackground};
+  }
+  & img {
+    width: 48px;
+    height: 48px;
+  }
 `;
 
 const HomePage = () => {
@@ -198,11 +188,12 @@ const HomePage = () => {
   const hasNavData = !!navPopupCategoryList.length;
   const history = useHistory();
   const gameTypeList = useGameTypeList();
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const currentRoute = pathSegments[pathSegments.length - 1];
 
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-
   const isNonLobby = isNonLobbyList.includes(activeGameType);
-
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
@@ -224,7 +215,8 @@ const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
 
-  const handleClickNav = (navItem: NavItem) => {
+  const handleClickNav = (navItem: NavItem & { gameType: GameTypeEnum }) => {
+    handleChangeGameType(navItem.gameType);
     if (navItem.navType !== "action") return;
     navItem.callback();
   };
@@ -281,18 +273,17 @@ const HomePage = () => {
         </BannerWrapper>
       ) : null}
 
-      {isMobileSize && <CardPrompt />}
+      {/* {isMobileSize && <CardPrompt />} */}
       <GameTypesContainer>
         {sideNavItemList &&
           sideNavItemList.map((navItem, index) => {
             return (
               <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
-                <img src={navItem.iconUrl} alt={navItem.label} />
-                <GameTypeNav
-                  $isActive={false}
-                  // onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-                  // onMouseLeave={handleMouseLeave}
-                >
+                <img
+                  src={navItem.router === currentRoute ? navItem.iconActiveUrl : navItem.iconUrl}
+                  alt={navItem.label}
+                />
+                <GameTypeNav $isActive={navItem.router === currentRoute}>
                   {navItem.label}
                 </GameTypeNav>
               </Wrapper>

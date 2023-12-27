@@ -60,6 +60,7 @@ const LogoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+  flex-shrink: 0;
   & > img {
     height: 48px;
     /* width: 100%; */
