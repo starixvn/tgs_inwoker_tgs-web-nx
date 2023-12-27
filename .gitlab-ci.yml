@@ -83,7 +83,7 @@ stages:
         _value=$(curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key" | jq -r ".value")
         echo "value=$_value"
         
-        if [[ -z $_value ]]; then
+        if [[ "$_value" == "null" ]]; then
             url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${key}&value=${brand}&environment_scope=${tgs_env}&protected=true"
             echo "url=$url"
             echo "gitlab_token=$gitlab_token"
