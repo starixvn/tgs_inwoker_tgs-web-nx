@@ -9,7 +9,6 @@ import ChatQRcodePopup from "./ChatQRcodePopup";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import QRcodeUrl from "@/assets/t32/images/home/QRcode.svg";
 import qrcode_skype from "@/assets/t32/images/qrcode/qrcode_skype.png";
 import qrcode_whatsapp from "@/assets/t32/images/qrcode/qrcode_whatsapp.png";
 import qrcode_telegram from "@/assets/t32/images/qrcode/qrcode_telegram.png";
@@ -20,7 +19,7 @@ const FooterContainer = styled.div`
 
   ${media.sm} {
     width: 100%;
-    background: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.footerBGC};
     color: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
@@ -146,8 +145,6 @@ const Footer = () => {
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
-          <GroupTitle>Follow Us</GroupTitle>
-          <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>
@@ -171,8 +168,8 @@ const Footer = () => {
               {i18n.t("T13.quickLink.reponsible")}
             </Link>
           </GroupContent>
-          <DownLoadText>Download App</DownLoadText>
-          <img src={QRcodeUrl} width={117} alt="QRcode" />
+          <GroupTitle>Follow Us</GroupTitle>
+          <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>
