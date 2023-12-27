@@ -60,7 +60,9 @@ stages:
     - |
       echo "domain=$domain"
       echo "brand=$brand"
+      docker image ls 
       image_count=$(docker image ls | wc  -l)
+      echo "image_count=$image_count"
 
       if [[ $domain != "" && $brand != "" && $image_count -gt 1 ]]; then 
         export image=$(docker image ls | grep pgtgs | awk '{print $1}')
@@ -81,7 +83,7 @@ stages:
         _value=$(curl --header "PRIVATE-TOKEN: $gitlab_token" "https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/$key" | jq -r ".value")
         echo "value=$_value"
         
-        if [[  -z $_value  ]]; then
+        if [[ -z $_value ]]; then
             url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables?key=${key}&value=${brand}&environment_scope=${tgs_env}&protected=true"
             echo "url=$url"
             echo "gitlab_token=$gitlab_token"
@@ -116,7 +118,7 @@ stages:
       fi
   after_script:
     - |
-      if [[ $domain != "" && $brand != "" &&  ]]; then 
+      if [[ $domain != "" && $brand != "" ]]; then 
           curl --location --request POST $Telegram_Bot_Url \
             --header 'Content-Type: application/json' \
             --data-binary @- << EOF
