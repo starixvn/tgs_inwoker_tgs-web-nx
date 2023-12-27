@@ -20,10 +20,10 @@ const SlickImage = styled.img`
 `;
 
 const SlickDot = styled.div`
-  width: 5.7px;
-  height: 5.7px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: #CBDEED;
+  background: #fff;
 `;
 
 const baseSettings = {
@@ -41,7 +41,7 @@ const baseSettings = {
   appendDots: (dots: any) => (
     <div
       style={{
-        marginBottom: "30px",
+        marginBottom: "35px",
       }}
     >
       <ul>{dots}</ul>

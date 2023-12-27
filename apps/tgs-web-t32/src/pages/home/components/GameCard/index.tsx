@@ -115,7 +115,7 @@ const MaintenanceBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 70%);
+  background: rgb(0 0 0 / 60%);
   padding: 7px;
   display: flex;
   align-items: center;

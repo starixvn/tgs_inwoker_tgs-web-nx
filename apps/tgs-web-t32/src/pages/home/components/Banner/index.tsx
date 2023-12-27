@@ -1,20 +1,11 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
 import Slider from "@/pages/home/components/Slider";
-import notification from "@/assets/t32/images/home/notify.svg";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import Jackpot from "@/components/project/Jackpot";
 
 const BannerContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`;
-
-const SlickWrapper = styled(Slider)`
-  max-height: 450px;
-  margin: 0 auto;
-  width: 100%;
 `;
 
 const SlickDot = styled.div`
@@ -25,48 +16,14 @@ const SlickDot = styled.div`
 `;
 
 const SlickDotWrapper = styled.div`
-  margin-bottom: 80px;
+  margin-bottom: 35px;
 
   & ul li.slick-active ${SlickDot} {
-    background: #f1c137 !important;
+    background:#3E97FF !important;
   }
 `;
 
-const NewsContainer = styled.div`
-  width: 100%;
-  height: 50px;
-  position: absolute;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-`;
-
-const NewsContent = styled.div`
-  position: relative;
-  overflow: visible;
-  height: 100%;
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.875rem;
-  padding: 4px 10px;
-  color: ${({ theme }) => theme.white};
-`;
-
-const MarqueesBackground = styled.div`
-  display: inline;
-  overflow: visible;
-`;
-
 const Banner = () => {
-  const {
-    ui: { marquees },
-  } = useUiStore();
-
-  const hasData = marquees && marquees.length > 0;
-
   const settings = {
     dots: true,
     className: "center",
@@ -91,38 +48,7 @@ const Banner = () => {
 
   return (
     <BannerContainer>
-      <Slider settings={settings} maxHeight={"450px"} />
-      <NewsContainer>
-        <NewsContent>
-          <img src={notification} alt="marquee" />
-          {hasData && (
-            // Disable TypeScript check for unknown HTML elements
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            <marquee>
-              {marquees.map((item, index) => {
-                const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
-      `;
-                return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
-              })}
-              {/*@ts-ignore*/}
-            </marquee>
-          )}
-
-          <Jackpot
-            style={{
-              position: "absolute",
-              top: 0,
-              right: 0,
-            }}
-          />
-        </NewsContent>
-      </NewsContainer>
+      <Slider settings={settings} maxHeight={"600px"} />
     </BannerContainer>
   );
 };

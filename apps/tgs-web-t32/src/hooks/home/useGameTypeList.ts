@@ -23,11 +23,12 @@ import Sport from "@/pages/home/components/TabSvgIcon/Sport";
 type GameTypeItem = {
   key: string;
   iconUrl: string;
-  text: string | any;
+  text: string;
   fontSize: string;
   gameType: GameTypeEnum;
   iconComponent: React.FC<{ $color: string }>;
   title: string;
+  content: string;
 };
 
 export const useGameTypeList = () => {
@@ -43,6 +44,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.SPORTS,
         iconComponent: Sport,
         title: "Sports",
+        content: "Find the best odds, win securely and easily with top rated sportsbook.",
       },
       {
         key: "slots",
@@ -52,6 +54,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.SLOT,
         iconComponent: Slot,
         title: "Slots",
+        content: "Enjoy 500+ slots games with fun features, free bonuses, and more!",
       },
       {
         key: "liveCasino",
@@ -61,6 +64,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.LIVELOBBY,
         iconComponent: LiveCasino,
         title: "Live Casino",
+        content: "Play Roulette, Blackjack, Baccarat, all with Live Dealers.",
       },
       {
         key: "sabong",
@@ -70,6 +74,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.COCKFIGHT,
         iconComponent: Sabong,
         title: "Sabong",
+        content: "Most popular cockfight matches, why wait? Bet and win now!",
       },
       {
         key: "egame",
@@ -79,6 +84,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.TABLEGAME,
         iconComponent: Egame,
         title: "Egame",
+        content: "The world's #1 platform for playing Egames online.",
       },
       {
         key: "fishing",
@@ -88,6 +94,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.FISH,
         iconComponent: Fish,
         title: "Fishing",
+        content: "Shoot the fish online and start winning real money!",
       },
       {
         key: "cardGame",
@@ -97,6 +104,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.QIPAILOBBY,
         iconComponent: CardGame,
         title: "Card Game",
+        content: "Fantastic card games with endless entertainment just for you!",
       },
       {
         key: "lottery",
@@ -106,6 +114,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.LOTTERYLOBBY,
         iconComponent: Lottery,
         title: "Lottery",
+        content: "Player's favorite game, with thousands winning prizes every seconds!",
       },
       {
         key: "esports",
@@ -115,6 +124,7 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.ESPORTS,
         iconComponent: Esports,
         title: "Esports",
+        content: "Start your journey into the world of Esports and earn rewards!",
       },
     ];
 
