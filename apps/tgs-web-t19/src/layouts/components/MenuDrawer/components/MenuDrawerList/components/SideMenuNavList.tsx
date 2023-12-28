@@ -16,7 +16,7 @@ const TabContainer = styled.div`
 `;
 
 const SideMenuNavList = () => {
-  const { sideNavItemList, accountNavItemList } = useGetNavItemList();
+  const { sideNavItemList } = useGetNavItemList();
   const { activeGameType } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
 
@@ -28,7 +28,7 @@ const SideMenuNavList = () => {
 
   return (
     <TabContainer>
-      {accountNavItemList.map((navItem) => {
+      {sideNavItemList.map((navItem) => {
         const { key, iconUrl, label, gameType } = navItem;
 
         if (navItem.key === NavCardKey.VIP) return null;

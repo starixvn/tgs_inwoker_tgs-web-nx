@@ -4,7 +4,7 @@ import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
 // mobile side nav
 import vipImg from "@/assets/t19/images/header/sideMenuItem/icon-vip.svg";
-import profileImg from "@/assets/t19/images/header/sideMenuItem/icon-account.svg";
+import profileImg from "@/assets/t19/images/header/sideMenuItem/icon-profile.svg";
 import depositImg from "@/assets/t19/images/header/sideMenuItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t19/images/header/sideMenuItem/icon-withdraw.svg";
 import transferImg from "@/assets/t19/images/header/sideMenuItem/icon-transfer.svg";
@@ -18,7 +18,7 @@ import contactImg from "@/assets/t19/images/header/sideMenuItem/icon-contact.svg
 // mobile my account
 import profileSecondaryImg from "@/assets/t19/images/account/navItem/icon-profile.svg";
 import depositSecondaryImg from "@/assets/t19/images/account/navItem/icon-deposit.svg";
-import withdrawSecondaryImg from "@/assets/t19/images/account/navItem/icon-withdrawal.svg";
+import withdrawSecondaryImg from "@/assets/t19/images/account/navItem/icon-withdraw.svg";
 import transferSecondaryImg from "@/assets/t19/images/account/navItem/icon-transfer.svg";
 import reportSecondaryImg from "@/assets/t19/images/account/navItem/icon-report.svg";
 import inboxSecondaryImg from "@/assets/t19/images/account/navItem/icon-inbox.svg";
@@ -75,20 +75,20 @@ export function useAccountNavigations() {
         routePath: "/withdrawal",
       },
       {
-        key: NavCardKey.TRANSFER,
-        navType: "route",
-        label: i18n.t("common.transfer"),
-        iconUrl: transferImg,
-        iconSecondaryUrl: transferSecondaryImg,
-        routePath: "/transfer",
-      },
-      {
         key: NavCardKey.VIP,
         navType: "route",
         label: "VIP",
         iconUrl: vipImg,
         iconSecondaryUrl: vipSecondaryImg,
         routePath: "/vip",
+      },
+      {
+        key: NavCardKey.TRANSFER,
+        navType: "route",
+        label: i18n.t("common.transfer"),
+        iconUrl: transferImg,
+        iconSecondaryUrl: transferSecondaryImg,
+        routePath: "/transfer",
       },
       {
         key: NavCardKey.REPORT,

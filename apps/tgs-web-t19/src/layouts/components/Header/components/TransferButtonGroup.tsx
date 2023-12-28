@@ -33,7 +33,11 @@ const Text = styled.div`
   font-weight: 400;
 `;
 
-const TransferButtonGroup = () => {
+type Props = {
+  buttonWidth?: string;
+};
+
+const TransferButtonGroup = ({ buttonWidth }: Props) => {
   const history = useHistory();
 
   const handleGotoTransfer = useCallback(() => {
