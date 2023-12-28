@@ -3,7 +3,7 @@ import { media } from "@/theme/breakpoints";
 
 type Props = {
   imageUrl: string;
-  activeUrl: string;
+  activeUrl: string | undefined;
   text: string;
   isActive: boolean;
   onClick: () => void;
