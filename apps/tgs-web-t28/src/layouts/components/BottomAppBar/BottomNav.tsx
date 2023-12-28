@@ -11,8 +11,8 @@ const BottomNavContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align : center;
-  color: ${({ theme }) => theme.black};
+  text-align: center;
+  color: ${({ theme }) => theme.gray20};
   padding: 10px 0;
   cursor: pointer;
 `;
@@ -38,28 +38,12 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
       <BottomNavContainer onClick={onClick}>
         <Icon
           iconUrl={iconUrl}
-          width={"47px"}
-          height={"47px"}
+          width={"64px"}
+          height={"66px"}
           style={{
             marginBottom: "13px",
           }}
         />
-
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
-
-  if (["promotion"].includes(bottomNavItem.key)) {
-    return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon
-          iconUrl={iconUrl}
-          width={"60px"}
-          height={"44px"}
-        />
-
-        <NavLabel>{label}</NavLabel>
       </BottomNavContainer>
     );
   }

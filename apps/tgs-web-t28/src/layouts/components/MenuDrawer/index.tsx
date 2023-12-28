@@ -9,6 +9,7 @@ import {
   DRAWER_SHRINK_WIDTH,
   MOBILE_DRAWER_WIDTH,
   TABLET_DRAWER_WIDTH,
+  DESKTOP_HEADER_HEIGHT,
 } from "@/theme/constants";
 import { theme } from "@/theme";
 
@@ -36,10 +37,17 @@ const MenuDrawer = () => {
       sx={{
         flexShrink: 0,
         "& .MuiDrawer-paper": {
+          marginTop: {
+            xs: 0,
+            md: DESKTOP_HEADER_HEIGHT,
+          },
+          height: {
+            sx: "100vh",
+            md: `calc(100vh - ${DESKTOP_HEADER_HEIGHT})`,
+          },
           width: drawerWidth,
           transition: "all ease-in-out 0.2s",
           border: "none",
-          // background: theme.gray30,
         },
       }}
     >

@@ -13,7 +13,7 @@ import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLang
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
 `;
 
 type Props = {

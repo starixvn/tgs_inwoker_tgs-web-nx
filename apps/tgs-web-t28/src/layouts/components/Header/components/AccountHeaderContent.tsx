@@ -14,6 +14,7 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 200px;
 `;
 
 const BascicButton = styled.div`
@@ -28,6 +29,7 @@ const BascicButton = styled.div`
   line-height: 17px;
   letter-spacing: 0em;
   text-align: center;
+  flex-shrink: 0;
 `;
 
 const BalanceContainer = styled(BascicButton)`

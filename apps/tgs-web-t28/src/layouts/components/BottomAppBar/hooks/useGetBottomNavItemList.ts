@@ -4,11 +4,11 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import giftIcon from "@/assets/t29/images/bottomAppBar/icon-gift.svg";
-import transferIcon from "@/assets/t29/images/bottomAppBar/icon-transfer.svg";
-import reportIcon from "@/assets/t29/images/bottomAppBar/icon-report.svg";
-import accountIcon from "@/assets/t29/images/bottomAppBar/icon-account.svg";
-import homeIcon from "@/assets/t29/images/bottomAppBar/icon-home.svg";
+import promotionIcon from "@/assets/t28/images/bottomAppBar/icon-promotion.svg";
+import depositIcon from "@/assets/t28/images/bottomAppBar/icon-deposit.svg";
+import withdrawIcon from "@/assets/t28/images/bottomAppBar/icon-withdraw.svg";
+import accountIcon from "@/assets/t28/images/bottomAppBar/icon-account.svg";
+import homeIcon from "@/assets/t28/images/bottomAppBar/icon-home.svg";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
@@ -35,38 +35,39 @@ export function useGetBottomNavItemList() {
     return [
       {
         navType: NavTypeEnum.ITEM,
-        key: "home",
-        label: i18n.t("common.home"),
-        iconUrl: homeIcon,
-        handleClick: () => {
-          goToHomePage();
-        },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: giftIcon,
+        iconUrl: promotionIcon,
         handleClick: () => {
           history.push("/promotion-list");
         },
       },
       {
-        navType: NavTypeEnum.BIG_ITEM,
-        key: "vip",
-        label: i18n.t("common.bank"),
-        iconUrl: transferIcon,
+        navType: NavTypeEnum.ITEM,
+        key: "contact",
+        label: i18n.t("common.deposit"),
+        iconUrl: depositIcon,
         handleClick: () => {
-          handleTransferDrawerToggle();
+          history.push("/deposit");
+        },
+      },
+      {
+        navType: NavTypeEnum.BIG_ITEM,
+        key: "home",
+        label: i18n.t("common.home"),
+        iconUrl: homeIcon,
+        handleClick: () => {
+          // goToHomePage();
+          history.push("/");
         },
       },
       {
         navType: NavTypeEnum.ITEM,
-        key: "contact",
-        label: i18n.t("report.title"),
-        iconUrl: reportIcon,
+        key: "withdraw",
+        label: i18n.t("common.withdrawal"),
+        iconUrl: withdrawIcon,
         handleClick: () => {
-          history.push("/report");
+          history.push("/withdrawal");
         },
       },
       {

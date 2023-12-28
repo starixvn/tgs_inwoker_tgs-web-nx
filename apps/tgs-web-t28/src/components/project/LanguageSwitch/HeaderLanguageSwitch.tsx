@@ -20,7 +20,7 @@ const StyledSelect = styled(MuiSelect)`
   font-size: 0.812rem !important;
   border: 1px solid ${({ theme }) => theme.gray20};
   .MuiOutlinedInput-input {
-    padding: 0 12px !important;
+    padding: 5px !important;
     border-radius: 0;
     border-left: 1px solid ${({ theme }) => theme.mainBackground};
     border-right: 1px solid ${({ theme }) => theme.mainBackground};

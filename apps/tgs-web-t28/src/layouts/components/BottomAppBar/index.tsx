@@ -11,14 +11,15 @@ const BottomAppBarContainer = styled.div`
   top: auto;
   bottom: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.NavBGC};
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   //padding: 0 20px;
   z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
-  border-top: 1px solid ${({ theme }) => theme.gray30};
+  /* border-top: 1px solid ${({ theme }) => theme.gray30}; */
+  align-items: center;
 `;
 
 const BottomAppBar = () => {

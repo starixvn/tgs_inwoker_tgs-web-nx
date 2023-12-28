@@ -7,6 +7,7 @@ export const RoundHeaderButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "14px",
   fontWeight: "590",
   lineHeight: "17px",
+  flexShrink: 0,
 }));
 
 export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({

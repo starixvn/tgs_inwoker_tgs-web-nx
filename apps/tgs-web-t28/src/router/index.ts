@@ -47,13 +47,13 @@ const routes: RouteType[] = [
   {
     path: "/main",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main/:gameType",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   // {
@@ -231,7 +231,7 @@ const routes: RouteType[] = [
   {
     path: "/promotion-list",
     component: PromotionPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
@@ -306,7 +306,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: VipLayout,
+    layout: DialogLayout,
   },
   // {
   //   path: "/sports/:platform",

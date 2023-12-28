@@ -28,7 +28,8 @@ import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
-
+import homeImg from "@/assets/t28/images/home/gameType/home.svg";
+import activehomeImg from "@/assets/t28/images/home/gameType/homeActvie.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
@@ -74,6 +75,7 @@ export function useGetNavItemList() {
         key: gameTypeItem.key,
         label: gameTypeItem.text as string,
         iconUrl: gameTypeItem.iconUrl,
+        iconActiveUrl: gameTypeItem.activeIconUrl,
         navType: "action",
         gameType: gameTypeItem.gameType,
         router: gameTypeItem.key as string,
@@ -84,30 +86,30 @@ export function useGetNavItemList() {
       });
     }
 
-    navItemList.push({
-      key: NavCardKey.VIP,
-      label: "VIP",
-      iconUrl: vipImg,
-      iconActiveUrl: vipImg,
+    navItemList.unshift({
+      key: NavCardKey.HOME,
+      label: "home",
+      iconUrl: homeImg,
+      iconActiveUrl: activehomeImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
-      router: "vip",
+      router: "",
       callback: () => {
-        history.push("/vip");
+        history.push("/");
       },
     });
 
-    navItemList.push({
-      key: NavCardKey.PROMOTION,
-      label: i18n.t("common.promotion"),
-      iconUrl: "",
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "promotion-list",
-      callback: () => {
-        history.push("/promotion-list");
-      },
-    });
+    // navItemList.push({
+    //   key: NavCardKey.PROMOTION,
+    //   label: i18n.t("common.promotion"),
+    //   iconUrl: "",
+    //   navType: "action",
+    //   gameType: GameTypeEnum.NONE,
+    //   router: "promotion-list",
+    //   callback: () => {
+    //     history.push("/promotion-list");
+    //   },
+    // });
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps
