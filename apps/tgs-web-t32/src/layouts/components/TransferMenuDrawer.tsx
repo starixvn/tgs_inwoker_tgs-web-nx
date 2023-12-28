@@ -53,7 +53,7 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
       {
         key: "deposit",
         label: i18n.t("common.deposit"),
-        background: theme.green,
+        background: theme.mainBackground,
         routePath: "/deposit",
       },
       {
