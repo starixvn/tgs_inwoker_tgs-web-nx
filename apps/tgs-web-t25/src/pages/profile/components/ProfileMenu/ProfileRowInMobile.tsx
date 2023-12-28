@@ -15,10 +15,11 @@ const ProfileItemContainer = styled.div`
     color: ${({ theme }) => theme.text};
     font-size: 1.25rem;
     font-weight: 400;
+    margin-bottom: 8px;
   }
 
   & .status {
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.text};
     font-size: 0.937rem;
     font-weight: 400;
   }

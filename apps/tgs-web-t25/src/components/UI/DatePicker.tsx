@@ -82,7 +82,8 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  border-bottom: 1px solid ${({ theme }) => theme.gray10};
+  // border-bottom: 1px solid ${({ theme }) => theme.gray10};
+  background: ${({ theme }) => theme.inputBGC};
 
   //margin-top: 10px;
 

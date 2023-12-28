@@ -11,7 +11,7 @@ const DialogHeaderContainer = styled.div`
   left: 0;
   width: 100%;
   height: ${MOBILE_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.black04};
+  background: ${({ theme }) => theme.black03};
   color: ${({ theme }) => theme.white};
   font-size: 1.125rem;
   font-weight: 700;

@@ -16,16 +16,20 @@ export const Remark = styled.div`
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  background: linear-gradient(0deg, #262828, #262828), linear-gradient(0deg, #373939, #373939);
+  padding: 24px 20px;
+  border: 1px solid ${({ theme }) => theme.grey05};
   ${media.sm} {
     max-width: 500px;
   }
 `;
 
 export const LabelContainer = styled.div`
-  font-size: 0.875rem;
+  font-size: 1.25rem;
+  line-height: 20px;
   font-weight: 400;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   float: left;
   margin-bottom: 16px;
 `;
@@ -33,7 +37,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   height: "44px",
   width: "100%",
   fontSize: "0.875rem",
-  border: `1px solid ${theme.palette.grey07}`,
+  // border: `1px solid ${theme.palette.grey07}`,
   background: theme.palette.inputBGC,
   justifyContent: "center",
   borderRadius: "6px",
