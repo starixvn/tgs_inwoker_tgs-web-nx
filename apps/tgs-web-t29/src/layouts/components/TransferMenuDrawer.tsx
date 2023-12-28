@@ -47,7 +47,7 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
       {
         key: "transfer",
         label: i18n.t("common.transfer"),
-        background: theme.mainBackground,
+        background: theme.blueBtn,
         routePath: "/transfer",
       },
       {
