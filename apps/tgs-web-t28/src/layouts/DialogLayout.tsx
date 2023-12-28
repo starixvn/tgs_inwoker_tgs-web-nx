@@ -44,15 +44,7 @@ const DialogLayout = ({ children }: Props) => {
     <DialogLayoutContainer>
       <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
 
-      <ContentWrapper>
-        {isDesktopSize && (
-          <DarkMemberMenu
-            handleCloseContextMenu={() => {}}
-            style={{ width: "222px", margin: "22px 0 0 22px", flexShrink: 0, minHeight: "800px" }}
-          />
-        )}
-        {children}
-      </ContentWrapper>
+      <ContentWrapper>{children}</ContentWrapper>
 
       <BottomAppBar />
     </DialogLayoutContainer>

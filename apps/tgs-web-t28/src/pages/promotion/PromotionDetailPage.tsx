@@ -1,15 +1,18 @@
 import styled from "styled-components";
 import moment from "moment";
 import { usePromotionDetailPage } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import { useState } from "react";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import JoinPromotionButton from "@/pages/promotion/components/JoinPromotionButton";
 import { media } from "@/theme/breakpoints";
 import Loading from "@/components/UI/Loading";
+import extend from "@/assets/t28/images/promotion/IconExtend.svg";
+import cost from "@/assets/t28/images/promotion/IconCost.svg";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
   padding: 12px;
-  color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -42,7 +45,7 @@ const TextArea = styled.div`
   /* margin-bottom: 40px; */
 `;
 const Title = styled.h2`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.orange};
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -82,15 +85,34 @@ const JoinPromotionButtonWrapper = styled.div`
   }
 `;
 
+const TncContainer = styled.div`
+  display: flex;
+  & > img {
+    height: 20px;
+    width: 20px;
+    margin-left: 11px;
+    cursor: pointer;
+    ${media.sm} {
+      height: 35px;
+      width: 35px;
+    }
+  }
+`;
+
 const PromotionDetail = () => {
   const { promotionData, contentToDisplay, termsToDisplay, showJoinButton } =
     usePromotionDetailPage();
+  const [contentCollapse, setContentCollapse] = useState(false);
 
   const isLoading = !promotionData || Object.keys(promotionData).length === 0;
 
   if (isLoading) {
     return <Loading show={true} />;
   }
+
+  const handleClickCollapse = () => {
+    setContentCollapse((prevState) => !prevState);
+  };
 
   return (
     <div>
@@ -108,19 +130,28 @@ const PromotionDetail = () => {
             />
           </TextArea>
           <TextArea>
-            <Title>Promo Period</Title>
+            <Title>{i18n.t("promotion.promoDate")}</Title>
             <Description>
               {moment(promotionData.from).format("YYYY/MM/DD HH:mm:ss")} -{" "}
               {moment(promotionData.to).format("YYYY/MM/DD HH:mm:ss")}
             </Description>
           </TextArea>
           <TextArea>
-            <Title>Terms & Conditions</Title>
-            <TermsAndConditions
-              dangerouslySetInnerHTML={{
-                __html: termsToDisplay,
-              }}
-            />
+            <TncContainer>
+              <Title>{i18n.t("T13.quickLink.tnc")}</Title>
+              {contentCollapse ? (
+                <img src={cost} alt="cost" onClick={handleClickCollapse} />
+              ) : (
+                <img src={extend} alt="extend" onClick={handleClickCollapse} />
+              )}
+            </TncContainer>
+            {contentCollapse && (
+              <TermsAndConditions
+                dangerouslySetInnerHTML={{
+                  __html: termsToDisplay,
+                }}
+              />
+            )}
           </TextArea>
         </ContentContainer>
       </PromotionDetailContainer>

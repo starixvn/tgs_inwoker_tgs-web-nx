@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
+import { useUiStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory, useParams } from "react-router-dom";
-import CardPrompt from "@/pages/home/components/CardPrompt";
+import { useParams } from "react-router-dom";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import bg from "@/assets/t29/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import notification from "@/assets/t29/images/home/notify.svg";
-import Jackpot from "@/components/project/Jackpot";
+import notification from "@/assets/t28/images/home/notify.svg";
 import useBanner from "@/hooks/home/useBanner";
+import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
+import { theme } from "@/theme";
+import BN from "@/assets/t28/images/home/BN.png";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -36,7 +37,7 @@ const MainWrapper = styled.div`
     margin: 0 auto;
     gap: unset;
     height: unset;
-    padding: 0px 0px 0px 0px;
+    padding: 24px;
   }
 `;
 
@@ -48,6 +49,12 @@ const BannerWrapper = styled.div`
     height: 100%;
     max-height: 450px;
   }
+`;
+
+const HomepageImgWrapper = styled(BannerWrapper)`
+  max-height: 450px;
+  width: auto;
+  height: auto;
 `;
 
 const MainContentWrapper = styled.div`
@@ -63,23 +70,9 @@ const MainContentWrapper = styled.div`
   flex: 1;
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
-    background-image: url(${bg});
-    background-size: unset;
-    background-repeat: repeat;
   }
-`;
-
-const GameTypeBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-  height: 450px;
-  margin: 0 auto;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 `;
 
 const MarqueeContainer = styled.div`
@@ -88,17 +81,20 @@ const MarqueeContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 7px;
   font-size: 0.875rem;
   padding: 10px;
   color: ${({ theme }) => theme.white};
-  background: #000000b2;
+  background: ${({ theme }) => theme.darkPurple};
+  ${media.sm} {
+    background: ${({ theme }) => theme.mainBackground};
+  }
 `;
 
 const MarqueeContent = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const MarqueesBackground = styled.div`
@@ -106,8 +102,54 @@ const MarqueesBackground = styled.div`
   overflow: visible;
 `;
 
+const GameTypesContainer = styled.div`
+  display: flex;
+  padding: 12px 24px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  gap: 24px;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const GameTypeNav = styled.div<{
+  $isActive: boolean;
+}>`
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  color: ${({ theme }) => theme.text};
+  cursor: pointer;
+  position: relative;
+  color: ${({ theme, $isActive }) => ($isActive ? theme.text : theme.gray50)};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  ${media.sm} {
+    flex-direction: unset;
+    background: ${({ theme }) => theme.mainBackground};
+  }
+  & img {
+    width: 48px;
+    height: 48px;
+  }
+`;
+
 const HomePage = () => {
-  const { general } = useGeneralStore();
+  const { sideNavItemList } = useGetNavItemList();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const {
@@ -116,16 +158,10 @@ const HomePage = () => {
   const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
   const hasData = marquees && marquees.length > 0;
 
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
-    useHomeGameContext();
+  const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const hasNavData = !!navPopupCategoryList.length;
-  const history = useHistory();
   const gameTypeList = useGameTypeList();
-
-  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-
-  const isNonLobby = isNonLobbyList.includes(activeGameType);
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -147,36 +183,30 @@ const HomePage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
+
+  const handleClickNav = (navItem: NavItem & { gameType: GameTypeEnum }) => {
+    handleChangeGameType(navItem.gameType);
+    if (navItem.navType !== "action") return;
+    navItem.callback();
+  };
+
   return (
     <MainWrapper>
-      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
-      {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
-      {hasActiveDesktopBanner() ? (
-        <BannerWrapper>
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )}
-          {isDesktopSize && !activeGameType && <Banner />}
-        </BannerWrapper>
-      ) : null}
-
-      {/* if uer did't setting baner, still show marquee and jackpot */}
-      {!hasActiveDesktopBanner() && isDesktopSize && (
+      {isDesktopSize && (
+        <HomepageImgWrapper>
+          <img src={BN} alt="homeImg" width={"100%"} height={"100%"} />
+        </HomepageImgWrapper>
+      )}
+      {
         <MarqueeContainer>
           <MarqueeContent>
+            <OnlineUser color={theme.text} />
             <img src={notification} alt="marquee" />
             {hasData && (
               // Disable TypeScript check for unknown HTML elements
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
+              // eslint-disable-next-line jsx-a11y/no-distracting-elements
               <marquee>
                 {marquees.map((item, index) => {
                   const content = `
@@ -191,20 +221,33 @@ const HomePage = () => {
                 {/*@ts-ignore*/}
               </marquee>
             )}
-
-            <Jackpot
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-              }}
-            />
           </MarqueeContent>
         </MarqueeContainer>
-      )}
+      }
+      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
+      {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
+      {hasActiveDesktopBanner() ? (
+        <BannerWrapper>{isDesktopSize && <Banner />}</BannerWrapper>
+      ) : null}
 
-      {isMobileSize && <CardPrompt />}
-
+      <GameTypesContainer>
+        {sideNavItemList &&
+          sideNavItemList.map((navItem, index) => {
+            return (
+              <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
+                <img
+                  src={
+                    navItem.gameType === activeGameType ? navItem.iconActiveUrl : navItem.iconUrl
+                  }
+                  alt={navItem.label}
+                />
+                <GameTypeNav $isActive={navItem.gameType === activeGameType}>
+                  {navItem.label}
+                </GameTypeNav>
+              </Wrapper>
+            );
+          })}
+      </GameTypesContainer>
       <MainContentWrapper>
         <CategoryRenderer />
       </MainContentWrapper>

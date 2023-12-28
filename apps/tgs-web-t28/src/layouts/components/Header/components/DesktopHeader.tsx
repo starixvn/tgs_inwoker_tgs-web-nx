@@ -34,6 +34,7 @@ const HeaderContainer = styled.div`
 
   ${media.sm} {
     height: ${DESKTOP_HEADER_HEIGHT};
+    padding: 4px 12px;
   }
 `;
 
@@ -48,20 +49,9 @@ const HeaderWrapper = styled.div`
   z-index: 2;
 `;
 
-type ContentWrapperProps = {
-  $isOpen: boolean;
-};
-
 const MenuButonnWrapper = styled.div`
   display: flex;
   align-items: center;
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? TABLET_DRAWER_WIDTH : `10px`)};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? DESKTOP_DRAWER_WIDTH : `10px`)};
-  }
   position: absolute;
   left: 0;
 `;
@@ -69,7 +59,8 @@ const MenuButonnWrapper = styled.div`
 const LogoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-
+  margin-left: 20px;
+  flex-shrink: 0;
   & > img {
     height: 48px;
     /* width: 100%; */
@@ -95,15 +86,13 @@ const DesktopHeader = () => {
   const history = useHistory();
   const noLoginAccount = account.token !== account.info.token;
   const { isLargeDesktopSize, isDesktopSize } = useRwd();
-  const { handleChangeGameType } = useHomeGameContext();
-  const { isMenuOpen } = useHeader();
   const logoUrl = brand.loadingUrl;
   if (!logoUrl) return null;
   return (
     <HeaderContainer>
       <HeaderWrapper>
         {isDesktopSize ? (
-          <MenuButonnWrapper $isOpen={isDesktopSize && isMenuOpen}>
+          <MenuButonnWrapper>
             <MenuButton />
             <LogoWrapper>
               <img

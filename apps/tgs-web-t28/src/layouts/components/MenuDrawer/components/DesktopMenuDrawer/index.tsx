@@ -1,176 +1,186 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHeader } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
-import downloadIcon from "@/assets/t23/images/account/navItem/icon-download.svg";
-import iconVip from "@/assets/t23/images/account/navItem/icon-vip.svg";
-import MenuButton from "@/layouts/components/Header/components/MenuButton";
-import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
-import Icon from "@/components/project/Icon";
-import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
+import iconPromotion from "@/assets/t28/images/account/navItem/icon-promotions.svg";
+import iconVip from "@/assets/t28/images/account/navItem/icon-vip.svg";
+import iconDeposit from "@/assets/t28/images/account/navItem/icon-deposit.svg";
+import iconWithdraw from "@/assets/t28/images/account/navItem/icon-withdraw.svg";
+import iconTransfer from "@/assets/t28/images/account/navItem/icon-transfer.svg";
+import hotIcon from "@/assets/t28/images/account/navItem/hot.svg";
+import downloadIcon from "@/assets/t28/images/account/navItem/icon-download.svg";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
-import { theme } from "@/theme";
+import SocialMedia from "@/components/project/SocialMedia";
 
 const MobileMenuDrawerContainer = styled.div`
-  background: ${({ theme }) => theme.mainDarkBackground};
+  background: ${({ theme }) => theme.memberSection};
   width: 100%;
   height: 100vh;
   padding-bottom: 20px;
 `;
 
-const MenuHeaderContainer = styled.div`
-  position: relative;
-  height: ${DESKTOP_HEADER_HEIGHT};
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 19px 0;
-`;
-
 const HeaderContentContainer = styled.div`
   width: 100%;
-  height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  padding-bottom: 20px;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #53535375;
-  }
-
-  &::-webkit-scrollbar-track-piece {
-    background: transparent;
-  }
-
-  & > * {
-    flex-shrink: 0;
-  }
+  gap: 12px;
+  margin: 0 16px;
 `;
 
-const MenuButtonContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-`;
-
-type PromotionCardProps = {
-  $isShrink: boolean;
-};
-const PromotionCard = styled.div<PromotionCardProps>`
+const PromotionCard = styled.div`
+  width: 100%;
+  height: 52px;
+  display: flex;
+  justify-content: start;
   cursor: pointer;
-  width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "250px")};
-  margin: 0 auto 8px;
-  background: ${({ $isShrink }: PromotionCardProps) =>
-    $isShrink ? theme.mainDarkBackground : theme.mainLightBackground};
   border-radius: 12px;
-  padding: 12px 30px;
   display: flex;
   align-items: center;
-  justify-content: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "center" : "flex-start")};
   font-size: 1.375rem;
   line-height: 1.611rem;
   font-weight: 700;
   transition: all 0.2s ease-in-out;
-`;
-
-const DownLoadCard = styled(PromotionCard)``;
-
-const LogoImgContainer = styled.div`
-  max-width: 100px;
-  height: 27px;
-  justify-self: start;
-  padding: 0 10px;
-
-  & > img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-  }
+  gap: 12px;
 `;
 
 const IconText = styled.div`
-  margin-left: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
+
+const HotText = styled(IconText)`
+  color: ${({ theme }) => theme.orange};
+`;
+
+const DownloadWrapper = styled.div`
+  border-top: ${({ theme }) => `1px solid ${theme.gray20}`};
+  border-bottom: ${({ theme }) => `1px solid ${theme.gray20}`};
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  margin: 16px;
+`;
+
+const DownloadButton = styled.div`
+  width: 100%;
+  height: 52px;
+  padding: 24px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  background: ${({ theme }) => theme.primary};
+`;
+
+const DownloadIconWrapper = styled.div`
+  margin-right: 12px;
+`;
+
+const SocialMediaWrapper = styled.div`
+  width: 212px;
+  gap: 10px;
+  margin: 16px;
+`;
+
+const SocialMediaTitle = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${({ theme }) => theme.gray50};
+  margin-bottom: 12px;
 `;
 
 const DesktopMenuDrawer = () => {
-  const {
-    general: { brand },
-  } = useGeneralStore();
-  const { handleToggleMenu } = useHeader();
   const history = useHistory();
-  const { isDesktopSize } = useRwd();
-  const { isMenuOpen } = useHeader();
-  const isShrink = isDesktopSize && !isMenuOpen;
 
-  const handleDrawerClose = () => {
-    if (isDesktopSize) return;
-    handleToggleMenu(false);
+  type SideMenuItem = {
+    key: string;
+    iconUrl: string;
+    label: string;
+    routePath: string;
   };
 
-  const handleClickVip = () => {
-    history.push("/vip");
-    handleDrawerClose();
-  };
+  const sideMenuList: SideMenuItem[] = [
+    {
+      key: "promotion",
+      iconUrl: iconPromotion,
+      label: i18n.t("common.promotion"),
+      routePath: "/promotion-list",
+    },
+    {
+      key: "vip",
+      iconUrl: iconVip,
+      label: "VIP",
+      routePath: "/vip",
+    },
+    {
+      key: "deposit",
+      iconUrl: iconDeposit,
+      label: i18n.t("common.deposit"),
+      routePath: "/deposit",
+    },
+    {
+      key: "withdrawal",
+      iconUrl: iconWithdraw,
+      label: i18n.t("common.withdrawal"),
+      routePath: "/withdrawal",
+    },
 
-  const handleClickPromotion = () => {
-    history.push("/promotion-list");
-    handleDrawerClose();
-  };
-
-  const handleClickDownload = () => {
-    history.push("/appDownload");
-    handleDrawerClose();
-  };
+    {
+      key: "transfer",
+      iconUrl: iconTransfer,
+      label: i18n.t("common.transfer"),
+      routePath: "/transfer",
+    },
+  ];
 
   return (
     <MobileMenuDrawerContainer>
-      <MenuHeaderContainer>
-        <Link to={"/"}>
-          <LogoImgContainer>
-            <img src={brand && brand.loadingUrl} alt={"logo"} />
-          </LogoImgContainer>
-        </Link>
-
-        <MenuButtonContainer>
-          <MenuButton width={"18px"} height={"18px"} />
-        </MenuButtonContainer>
-      </MenuHeaderContainer>
-
       <HeaderContentContainer>
-        <MenuGameTypeList />
-        <PromotionCard $isShrink={isShrink} onClick={handleClickVip}>
-          <Icon className={"vip"} iconUrl={iconVip} width={"31px"} height={"31px"} />
-          <IconText>{!isShrink && "VIP"}</IconText>
-        </PromotionCard>
-
-        <PromotionCard $isShrink={isShrink} onClick={handleClickPromotion}>
-          <Icon className={"promotion"} iconUrl={iconPromotion} width={"31px"} height={"31px"} />
-          <IconText>{!isShrink && i18n.t("common.promotion")}</IconText>
-        </PromotionCard>
-
-        <DownLoadCard $isShrink={isShrink} onClick={handleClickDownload}>
-          <Icon className={"icon"} iconUrl={downloadIcon} width={"31px"} height={"31px"} />
-          {!isShrink && i18n.t("common.download")}
-        </DownLoadCard>
-
-        <MenuLanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
+        {sideMenuList.map((item: SideMenuItem) => {
+          return (
+            <PromotionCard
+              key={item.key}
+              onClick={() => {
+                history.push(item.routePath);
+              }}
+            >
+              <img src={item.iconUrl} alt={item.label} />
+              {item.key === "promotion" || item.key === "vip" ? (
+                <>
+                  <HotText>{item.label}</HotText>
+                  <img src={hotIcon} alt="hot" />
+                </>
+              ) : (
+                <IconText>{item.label}</IconText>
+              )}
+            </PromotionCard>
+          );
+        })}
       </HeaderContentContainer>
+      <DownloadWrapper>
+        <DownloadButton>
+          <DownloadIconWrapper
+            onClick={() => {
+              history.push("/appDownload");
+            }}
+          >
+            <img src={downloadIcon} alt="download" />
+          </DownloadIconWrapper>
+          {i18n.t("common.download")}
+        </DownloadButton>
+      </DownloadWrapper>
+
+      <SocialMediaWrapper>
+        <SocialMediaTitle>Official Channel</SocialMediaTitle>
+        <SocialMedia />
+      </SocialMediaWrapper>
+      <MenuLanguageSwitch style={{ width: "100%" }} />
     </MobileMenuDrawerContainer>
   );
 };

@@ -19,7 +19,7 @@ import bg from "@/assets/t29/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     background: url(${bg});
@@ -50,13 +50,11 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
   transition: all ease-in-out 0.2s;
 
   ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? TABLET_DRAWER_WIDTH : 0)};
   }
 
   ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? DESKTOP_DRAWER_WIDTH : 0)};
   }
 `;
 
