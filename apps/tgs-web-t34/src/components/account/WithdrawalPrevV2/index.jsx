@@ -509,7 +509,7 @@ class Withdrawal extends Component {
   };
 
   handleVerifyName = () => {
-    this.props.history.push("/account/profile/member_name");
+    this.props.history.push("/profile/name");
   };
 
   updateLoadingStatus = (isLoading) => {
