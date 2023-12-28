@@ -57,6 +57,11 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     "&.Mui-focused fieldset": {
       border: "none",
     },
+    "&.Mui-disabled": {
+      input: {
+        WebkitTextFillColor: `${theme.palette.text.primary}`,
+      },
+    },
   },
 }));
 

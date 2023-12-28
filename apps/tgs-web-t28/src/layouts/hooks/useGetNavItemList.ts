@@ -214,15 +214,15 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/appDownload",
       },
-      {
-        key: NavCardKey.LANGUAGE_SWITCH,
-        label: i18n.t("common.language"),
-        iconUrl: languageImg,
-        iconSecondaryUrl: languageWhiteImg,
-        navType: "action",
-        routePath: null,
-        callback: () => {},
-      },
+      // {
+      //   key: NavCardKey.LANGUAGE_SWITCH,
+      //   label: i18n.t("common.language"),
+      //   iconUrl: languageImg,
+      //   iconSecondaryUrl: languageWhiteImg,
+      //   navType: "action",
+      //   routePath: null,
+      //   callback: () => {},
+      // },
     ] as NavItem[];
   }, []);
 

@@ -14,13 +14,13 @@ const Content = styled.div`
 `;
 
 const LabelLink = styled(Link)`
-  color: ${({ theme }) => theme.primary};
-  text-decoration: none;
+  color: ${({ theme }) => theme.secondary};
+  text-decoration: underline;
 `;
 
 const LabelNormal = styled.span`
-  color: ${({ theme }) => theme.primary};
-  text-decoration: none;
+  color: ${({ theme }) => theme.secondary};
+  text-decoration: underline;
   cursor: pointer;
 `;
 

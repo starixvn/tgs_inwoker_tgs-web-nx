@@ -34,6 +34,9 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
   },
+  ".MuiOutlinedInput-input": {
+    WebkitTextFillColor: `${theme.palette.text.primary}`,
+  },
 }));
 
 export const Select = (props: SelectProps) => {
