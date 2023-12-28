@@ -232,7 +232,7 @@ const HomeCategory = () => {
                 bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/liveCasino/bg.png`}
                 imageUrl={`${
                   import.meta.env.BASE_URL
-                }assets/images/home/desktop/liveCasino/${gpCode}.jpg`}
+                }assets/images/home/desktop/liveCasino/${gpCode}.png`}
                 venderLogoUrl={`${
                   import.meta.env.BASE_URL
                 }assets/images/home/provider_logo/liveCasino/${gpCode}.png`}

@@ -8,22 +8,23 @@ import {
   useHomeGameContext,
 } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAccountStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
-import { useCallback } from "react";
+import { providerStatus } from "@tgs-web-nx/constants";
+import { MenuItem, Select } from "@mui/material";
 import CommonTag from "./CommonTag";
-import Tag from "./ProviderTag";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t29/images/home/search.svg";
 import { media } from "@/theme/breakpoints";
-import hotIcon from "@/assets/t29/images/home/hot.svg";
-import newIcon from "@/assets/t29/images/home/new.svg";
-import activedHotIcon from "@/assets/t29/images/home/actived-hot.svg";
-import activedNewIcon from "@/assets/t29/images/home/actived-new.svg";
-import recommendIcon from "@/assets/t29/images/home/recommend.svg";
-import activedRecommendIcon from "@/assets/t29/images/home/actived-recommend.svg";
-import favoriteIcon from "@/assets/t29/images/home/favorite.svg";
-import activedFavoriteIcon from "@/assets/t29/images/home/actived-favorite.svg";
+import hotIcon from "@/assets/t28/images/home/hot.svg";
+import newIcon from "@/assets/t28/images/home/new.svg";
+import recommendIcon from "@/assets/t28/images/home/recommend.svg";
+import favoriteIcon from "@/assets/t28/images/home/favorite.svg";
+//active
+import activedHotIcon from "@/assets/t28/images/home/actived-hot.svg";
+import activedNewIcon from "@/assets/t28/images/home/actived-new.svg";
+import activedRecommendIcon from "@/assets/t28/images/home/actived-recommend.svg";
+import activedFavoriteIcon from "@/assets/t28/images/home/actived-favorite.svg";
+import { theme } from "@/theme";
 
 const FilterTagWrapper = styled.div`
   width: 100%;
@@ -43,49 +44,22 @@ const CommonTagContainer = styled.div`
   height: 37px;
 `;
 
-const ProviderTagContainer = styled.div``;
-
-const ProviderTagContent = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-`;
-
 export const SearchInputWrapper = styled.div`
   width: 100%;
-  height: 37px;
-
+  height: 50px;
+  display: flex;
+  gap: 10px;
   ${media.sm} {
-    width: 300px;
+    width: 410px;
     height: 100%;
-    margin-left: 8px;
   }
 `;
 
 const CommonSearchWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-`;
-
-const AllText = styled.div<{
-  $isActive: boolean;
-}>`
-  display: flex;
-  width: 100px;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 14px;
-  letter-spacing: 0em;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.gray70};
-  border-bottom: ${({ $isActive, theme }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
-  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
-  margin-right: 10px;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const HomeGameFilterTag = () => {
@@ -101,7 +75,6 @@ const HomeGameFilterTag = () => {
     handleChangeSearch,
   } = useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
-
   const onChangeCommonFilterTag = (newFilterTag: FilterTag) => {
     if (!isLogin && newFilterTag.tagType === FilterTagTypeEnum.FAVORITE) {
       history.push("/login");
@@ -112,10 +85,6 @@ const HomeGameFilterTag = () => {
       return;
     }
     handleChangeActiveFilterTag(newFilterTag);
-  };
-
-  const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
-    handleChangeActiveProviderFilterTag(newFilterTag);
   };
 
   const filterTagList: FilterTag[] = [
@@ -149,43 +118,15 @@ const HomeGameFilterTag = () => {
     (tag): tag is FilterTag => tag !== null,
   );
 
+  const handleSelectProvider = (providerName: string) => {
+    const newFilterTag = providerFilterTagList.find(
+      (tag: FilterTag) => tag.name === providerName,
+    ) as FilterTag;
+    handleChangeActiveProviderFilterTag(newFilterTag);
+  };
+
   return (
     <FilterTagWrapper>
-      <ProviderTagContainer>
-        <ProviderTagContent>
-          <AllText
-            onClick={() =>
-              onChangeProviderFilterTag({
-                name: FilterTagTypeEnum.ALL,
-                tagType: FilterTagTypeEnum.ALL,
-              })
-            }
-            $isActive={activeProviderFilterTag.tagType === FilterTagTypeEnum.ALL}
-          >
-            ALL
-          </AllText>
-          <div>
-            {providerFilterTagList.map((filterTag) => {
-              const matchedProvider = navPopupCategoryList.find(
-                (provider) => provider.code === filterTag.gpCode,
-              );
-              const status = matchedProvider ? matchedProvider.status : -1;
-
-              return (
-                <Tag
-                  key={filterTag.name}
-                  text={filterTag.name}
-                  gpCode={filterTag.gpCode}
-                  isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
-                  onClick={() => onChangeProviderFilterTag(filterTag)}
-                  status={status}
-                />
-              );
-            })}
-          </div>
-        </ProviderTagContent>
-      </ProviderTagContainer>
-
       <CommonSearchWrapper>
         <CommonTagContainer>
           {validFilterTagList.map((filterTag) => {
@@ -203,6 +144,42 @@ const HomeGameFilterTag = () => {
         </CommonTagContainer>
 
         <SearchInputWrapper>
+          <Select
+            onChange={(e) => handleSelectProvider(e.target.value)}
+            value={activeProviderFilterTag.name}
+            sx={{
+              minWidth: "200px",
+              height: "39px",
+              backgroundColor: theme.secBTNBGC,
+              color: theme.text,
+              padding: "0 12px",
+              borderRadius: "50px",
+              "& .MuiSvgIcon-root": {
+                color: theme.white,
+              },
+              "& .MuiOutlinedInput-notchedOutline": {
+                border: "none",
+              },
+            }}
+          >
+            {providerFilterTagList.map((filterTag) => {
+              const matchedProvider = navPopupCategoryList.find(
+                (provider) => provider.code === filterTag.gpCode,
+              );
+              const status = matchedProvider ? matchedProvider.status : -1;
+
+              return (
+                <MenuItem
+                  key={filterTag.name}
+                  value={filterTag.name}
+                  sx={{ color: "black" }}
+                  disabled={status === providerStatus.Maintenance}
+                >
+                  {filterTag.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
           <SearchInput
             placeholder={i18n.t("slot.search")}
             imageUrl={searchIcon}

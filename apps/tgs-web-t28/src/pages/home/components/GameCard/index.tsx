@@ -75,17 +75,17 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  /* width: calc(50% - 6px); */
-  width: 160px;
-  height: 160px;
+  width: calc(50% - 6px);
+  /* width: 160px;
+  height: 160px; */
   flex-shrink: 0;
   position: relative;
   cursor: pointer;
-  /* aspect-ratio: 161 / 161; */
+  aspect-ratio: 161 / 161;
   border-radius: 10px;
 
   ${media.sm} {
-    /* width: calc(16.67% - 6px); */
+    width: calc(16.67% - 6px);
     flex-shrink: 0;
     &:hover {
       ${CardHoverBg} {
@@ -205,8 +205,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        {gameItem.tag.new && <NewTag>New</NewTag>}
-        {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+        {/* {gameItem.tag.new && <NewTag>New</NewTag>}
+        {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
         {!isActive && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />

@@ -258,7 +258,7 @@ const HomePage = () => {
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
         <BannerWrapper>
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
+          {/* {isDesktopSize && !!activeGameType && !isNonLobby && (
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
@@ -268,8 +268,8 @@ const HomePage = () => {
                   : ""
               }
             />
-          )}
-          {isDesktopSize && !activeGameType && <Banner />}
+          )} */}
+          {isDesktopSize && <Banner />}
         </BannerWrapper>
       ) : null}
 

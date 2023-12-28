@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   gap: 6px;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    /* max-width: ${SUB_CONTENT_MAX_WIDTH}; */
     margin: 0 auto;
     padding: 15px 0px;
   }
@@ -50,6 +50,7 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  padding: 24px 0;
 `;
 
 const CategoryContent = styled.div`
@@ -72,7 +73,8 @@ const DesktopWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* padding: 24px 0; */
+  /* align-items: center; */
 `;
 
 const Text = styled.div`
@@ -84,12 +86,18 @@ const Text = styled.div`
   font-weight: 700;
 `;
 
+const GameTitle = styled.div`
+  font-size: 28px;
+  font-weight: 510;
+  line-height: 31px;
+  letter-spacing: 0em;
+`;
+
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
-  const { searchString, handleChangeSearch } = useHomeGameContext();
-
+  const { searchString, handleChangeSearch, activeGameTypeKey } = useHomeGameContext();
   return (
     <Wrapper>
       {isMobileSize && (
@@ -130,6 +138,11 @@ const NonLobbyCategory = () => {
       {isDesktopSize && (
         <DesktopWrapper>
           <HomeGameFilterTag />
+          <GameTitle>
+            {activeGameTypeKey !== "fishing"
+              ? i18n.t(`common.${activeGameTypeKey}`)
+              : i18n.t(`common.fish`)}
+          </GameTitle>
           <DesktopCategoryContentWrapper>
             {hasMappingData &&
               gameList.map((gameItem) => (

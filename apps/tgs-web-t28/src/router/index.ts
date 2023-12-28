@@ -47,13 +47,13 @@ const routes: RouteType[] = [
   {
     path: "/main",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main/:gameType",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   // {
