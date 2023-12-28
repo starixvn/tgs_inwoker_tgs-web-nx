@@ -87,8 +87,8 @@
       "configurations": {
         "production": {
           "DockerContainerRegistry": "pgtgs/",
-          "AppPath": "./apps/tgs-web-template",
-          "ImageName": "tgs-web-template"
+          "AppPath": "./apps/tgs-web-t27",
+          "ImageName": "tgs-web-t27"
         }
       }
     }

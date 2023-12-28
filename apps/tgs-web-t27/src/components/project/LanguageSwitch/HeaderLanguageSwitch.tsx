@@ -104,7 +104,7 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
 
             "& .MuiMenuItem-root": {
               padding: 2,
-              color: theme.text,
+              color: theme.g2,
             },
           },
         },

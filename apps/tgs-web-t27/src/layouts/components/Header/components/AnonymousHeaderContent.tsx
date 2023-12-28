@@ -1,21 +1,15 @@
-import React, { useCallback } from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth, useAuthContext, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
-import MenuButton from "./MenuButton";
+import { useAuth } from "@tgs-web-nx/core/features";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
-import iconLogin from "@/assets/t29/images/header/icon-login.svg";
-import Icon from "@/components/project/Icon";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-right: 10px;
+  gap: 14px;
 `;
 
 type Props = {
@@ -23,27 +17,27 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
-  const { isDesktopSize, isLargeDesktopSize } = useRwd();
   const { goToLogin, goToRegister } = useAuth();
+  const { isDesktopSize } = useRwd();
 
   return (
     <ButtonContainer>
       <HeaderButton
         onClick={goToLogin}
         style={{
-          color: theme.black,
-          background: theme.silverGradient,
+          color: theme.g2,
+          background: "transparent",
         }}
       >
         {i18n.t("common.login")}
       </HeaderButton>
 
       <HeaderButton
-        color={"primary"}
         onClick={goToRegister}
         style={{
-          color: theme.black,
-          background: theme.goldGradient,
+          minWidth: "97px",
+          color: theme.white,
+          background: theme.primaryGradient,
         }}
       >
         {i18n.t("common.register")}

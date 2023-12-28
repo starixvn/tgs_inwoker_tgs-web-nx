@@ -10,7 +10,7 @@ import iconVip from "@/assets/t23/images/account/navItem/icon-vip.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
-import { HEADER_HEIGHT } from "@/theme/constants";
+import { MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
 
@@ -23,7 +23,7 @@ const MobileMenuDrawerContainer = styled.div`
 
 const MenuHeaderContainer = styled.div`
   position: relative;
-  height: ${HEADER_HEIGHT};
+  height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   display: flex;
   align-items: center;
@@ -33,7 +33,7 @@ const MenuHeaderContainer = styled.div`
 
 const HeaderContentContainer = styled.div`
   width: 100%;
-  height: calc(100vh - ${HEADER_HEIGHT});
+  height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,8 +76,9 @@ const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
   width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "250px")};
   margin: 0 auto 8px;
-  background: ${({ $isShrink }: PromotionCardProps) =>
-    $isShrink ? theme.mainDarkBackground : theme.mainLightBackground};
+  background: ${({ theme }) => theme.mainBackground};
+  /* background: ${({ $isShrink }: PromotionCardProps) =>
+    $isShrink ? theme.mainDarkBackground : theme.mainLightBackground}; */
   border-radius: 12px;
   padding: 12px 30px;
   display: flex;

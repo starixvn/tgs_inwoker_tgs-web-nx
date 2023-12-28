@@ -1,22 +1,30 @@
 export const theme = {
-  primary: "#45D91E",
+  primary: "#45D91E", //綠
   mainBackground: "#24262B",
-
-
-  secondary: "#44371A",
+  yellow: "#F19511",
+  green: "#1E6434",
+  red: "#FE0100",
   white: "#FFFFFF",
+  primaryGradient: "conic-gradient(from 0deg at 50% 50%, #58AF10 0deg, #1D803A 360deg)",
+  secondaryGradient: "conic-gradient(from 0deg at 50% 50%, #8853FC 0deg, #6E34E2 360deg)",
+  g2: "#98A7B5",
+  g3: "#2D3035",
+  g4: "#1C1E22",
+  g5: "#1A1C20",
+  g6: "#999CA0",
+  g7: "#31343C",
+  g8: "#67707B",
+
+  // 下面慢慢修樣式拿掉
   black: "#161616",
   pureBlack: "#000000",
-  red: "#FE0100",
   lightGold: "#D8BD80",
   lightPrimary: "#FFF2DB",
   darkPrimary: "#846A21",
-  primaryGradient: "linear-gradient(90deg, #B78316 0%, #F5D977 50.74%, #B78316 100%)",
   grayGradient: "linear-gradient(180deg, #787878 0%, #1E1E1E 100%)",
   silverGradient: "linear-gradient(180deg, #666 0%, #C5C5C5 51.19%, #666 100%)",
   goldGradient: "linear-gradient(180deg, #D5B95F 0%, #F4D486 40.36%, #C28D29 100%)",
   btnGradient: "linear-gradient(0deg, rgba(255, 255, 255, 0.70) -66.67%, rgba(255, 255, 255, 0.00) 50%), linear-gradient(180deg, rgba(255, 255, 255, 0.90) -41.67%, rgba(255, 255, 255, 0.00) 26.67%), #1D1D1D",
-
   subBackground: "#171717",
   pageLabelBackground: "linear-gradient(180deg, #242424 0%, #080808 100%)",
   gray: "#8C8998",
@@ -26,7 +34,6 @@ export const theme = {
   picMask: "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 29.17%, #181D30 100%)",
   cmpBackground: "#161513",
   btnHover: "box-shadow: 0 -5px 15px 0 rgba(236,166,61,.501)",
-  // 下面慢慢修樣式拿掉
   blue60: "#0E6399",
   blue50: "#0F548B",
   blue40: "#3281D0",

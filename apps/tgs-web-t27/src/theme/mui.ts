@@ -10,18 +10,29 @@ theme.lang = i18n.language;
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
+    yellow: string;
+    green: string;
+    red: string;
+    mainBackground: string;
+    primaryGradient: string;
+    secondaryGradient: string;
+    g2: string;
+    g3: string;
+    g4: string;
+    g5: string;
+    g6: string;
+    g7: string;
+    g8: string;
+
+    // 下面慢慢修樣式拿掉
     black: string;
     pureBlack: string;
-    mainBackground: string;
     btnGradient: string;
-    red: string;
     silverGradient: string;
-    primaryGradient: string;
     goldGradient: string;
     gray: string;
     darkGray: string;
     btnHover: string;
-    // 下面慢慢修樣式拿掉
     blue10: string;
     blue20: string;
     blue30: string;
@@ -50,22 +61,31 @@ const muiTheme = createTheme({
     primary: {
       main: theme.primary,
     },
-    secondary: {
-      main: theme.secondary,
-    },
     action: {
       disabledBackground: theme.gray,
       disabled: theme.white,
     },
     white: theme.white,
+    yellow: theme.white,
+    green: theme.white,
+    red: theme.red,
+    primaryGradient: theme.primaryGradient,
+    secondaryGradient: theme.secondaryGradient,
+    g2: theme.g2,
+    g3: theme.g3,
+    g4: theme.g4,
+    g5: theme.g5,
+    g6: theme.g6,
+    g7: theme.g7,
+    g8: theme.g8,
+
+    // 下面慢慢修樣式拿掉
     black: theme.black,
     pureBlack: theme.pureBlack,
     gray: theme.gray,
     darkGray: theme.darkGray,
     mainBackground: theme.mainBackground,
     btnGradient: theme.btnGradient,
-    red: theme.red,
-    primaryGradient: theme.primaryGradient,
     silverGradient: theme.silverGradient,
     goldGradient: theme.goldGradient,
     btnHover: theme.btnHover,
@@ -82,7 +102,6 @@ const muiTheme = createTheme({
     gray50: theme.gray50,
     text: {
       primary: theme.white,
-      secondary: theme.gray,
     },
   },
   typography: {

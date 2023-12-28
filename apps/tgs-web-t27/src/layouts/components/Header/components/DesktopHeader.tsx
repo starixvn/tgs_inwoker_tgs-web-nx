@@ -10,20 +10,16 @@ import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
-  SUB_CONTENT_MAX_WIDTH,
 } from "@/theme/constants";
-import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
-import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
-import SystemTime from "@/layouts/components/Header/components/SystemTime";
 import BrandLogo from "@/components/project/BrandLogo";
-import { theme } from "@/theme";
+import CurrentTime from "@/components/project/CurrentTime";
 
 const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.subBackground};
+  background: ${({ theme }) => theme.mainBackground};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -33,33 +29,23 @@ const HeaderContainer = styled.div`
   }
 `;
 
-const ContentWrapper = styled.div`
+const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 10px 17px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
   z-index: 2;
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
-  margin: auto;
+`;
+
+const HeaderContentContainer = styled.div`
+  flex-grow: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 10px;
-`;
-
-const ContentGroup = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const BlueHeaderRowContainer = styled.div`
-  background: ${({ theme }) => theme.subBackground};
-  background-size: cover;
-  height: 84px;
-`;
-
-const WhiteHeaderRowContainer = styled.div`
-  margin: auto;
-  height: 72px;
+  justify-content: end;
+  margin-right: 20px;
 `;
 
 const DesktopHeader = () => {
@@ -70,30 +56,18 @@ const DesktopHeader = () => {
 
   return (
     <HeaderContainer>
-      <BlueHeaderRowContainer>
-        <ContentWrapper>
-          <ContentGroup>
-            {isLargeDesktopSize && <SystemTime />}
-          </ContentGroup>
-
-          <ContentGroup>
-            {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-          </ContentGroup>
-        </ContentWrapper>
-      </BlueHeaderRowContainer>
-
-      <WhiteHeaderRowContainer>
-        <ContentWrapper>
-          <Link to={""}>
-            <BrandLogo
-              style={{ height: "27px" }}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-            />
-          </Link>
-
-          {isDesktopSize && <HeaderGameTypes />}
-        </ContentWrapper>
-      </WhiteHeaderRowContainer>
+      <HeaderWrapper>
+        <Link to={""}>
+          <BrandLogo
+            style={{ height: "28px" }}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
+        </Link>
+        <CurrentTime />
+        <HeaderContentContainer>
+          {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+        </HeaderContentContainer>
+      </HeaderWrapper>
     </HeaderContainer>
   );
 };
