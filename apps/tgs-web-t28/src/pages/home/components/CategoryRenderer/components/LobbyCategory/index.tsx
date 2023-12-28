@@ -5,6 +5,7 @@ import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import MobileFooter from "../../../MobileFooter";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -28,7 +29,7 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 78px);
+  width: 100%;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
 `;
@@ -99,31 +100,29 @@ const LobbyCategory = () => {
   return (
     <Wrapper>
       {isMobileSize && (
-        <>
-          <GameTypeTab />
-          <CategoryContentWrapper>
-            <CategoryContent>
-              {hasMappingData &&
-                lobbyCategoryList.map((provider) => {
-                  const { code: gpCode, status, name } = provider;
+        <CategoryContentWrapper>
+          <CategoryContent>
+            {hasMappingData &&
+              lobbyCategoryList.map((provider) => {
+                const { code: gpCode, status, name } = provider;
 
-                  if (gpCode === "BC") return null;
-                  return (
-                    <MobileVendorCard
-                      key={gpCode}
-                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                      imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                      venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                      launchGame={() => launchLobbyGame(gpCode)}
-                      status={status}
-                      venderName={name}
-                    />
-                  );
-                })}
-              {!hasMappingData && <div>No data</div>}
-            </CategoryContent>
-          </CategoryContentWrapper>
-        </>
+                if (gpCode === "BC") return null;
+                return (
+                  <MobileVendorCard
+                    key={gpCode}
+                    bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
+                    imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                    venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                    launchGame={() => launchLobbyGame(gpCode)}
+                    status={status}
+                    venderName={name}
+                  />
+                );
+              })}
+            {!hasMappingData && <div>No data</div>}
+          </CategoryContent>
+          {<MobileFooter />}
+        </CategoryContentWrapper>
       )}
       {isDesktopSize && (
         <DesktopCategoryContentWrapper>
@@ -135,12 +134,15 @@ const LobbyCategory = () => {
               return (
                 <DesktopVendorCard
                   key={gpCode}
-                  bgUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  bgUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+                  imageUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}
