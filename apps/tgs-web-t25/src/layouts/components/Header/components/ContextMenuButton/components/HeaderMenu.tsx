@@ -6,7 +6,12 @@ import Icon from "@/components/project/Icon";
 import MemberMenuHeader from "@/layouts/components/Header/components/ContextMenuButton/components/MemberMenuHeader";
 import { theme } from "@/theme";
 
-const MemberMenuContainer = styled.div``;
+const MemberMenuContainer = styled.div`
+  position: fixed;
+  top: 44px;
+  right: 25px;
+  z-index: 99;
+`;
 
 type MemberMenuItemProps = {
   $isActive: boolean;
@@ -15,26 +20,21 @@ type MemberMenuItemProps = {
 
 const MemberMenuItem = styled.div<MemberMenuItemProps>`
   font-size: 0.875rem;
-  font-weight: 500;
-  padding: 10px;
+  font-weight: 600;
+  padding: 8px 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: ${({ $isActive, theme }) => theme.black};
-  background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.primary : theme.white};
+  gap: 14px;
+  color: ${({ $isActive, theme }) => theme.white};
+  background: ${({ $isActive, theme }: MemberMenuItemProps) => theme.black02};
   cursor: pointer;
-
-  &:hover {
-    background: ${({ theme }) => theme.gray10};
-  }
 `;
 
 type Props = {
   handleCloseContextMenu: () => void;
 } & React.HTMLProps<HTMLDivElement>;
 
-const WhiteMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
+const HeaderMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
   const history = useHistory();
 
@@ -53,12 +53,12 @@ const WhiteMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   return (
     //@ts-ignore
     <MemberMenuContainer {...others}>
-      <MemberMenuHeader handleCloseContextMenu={handleCloseContextMenu} />
+      <MemberMenuHeader />
 
       {accountNavItemList.map((navItem) => {
         return (
           <MemberMenuItem key={navItem.key} $isActive={false} onClick={() => handleClick(navItem)}>
-            <Icon iconUrl={navItem.iconActiveUrl || ""} width={"24px"} height={"24px"} />
+            <Icon iconUrl={navItem.iconUrl || ""} width={"24px"} height={"24px"} />
             <span className={"label"}>{navItem.label}</span>
           </MemberMenuItem>
         );
@@ -67,4 +67,4 @@ const WhiteMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   );
 };
 
-export default WhiteMemberMenu;
+export default HeaderMenu;

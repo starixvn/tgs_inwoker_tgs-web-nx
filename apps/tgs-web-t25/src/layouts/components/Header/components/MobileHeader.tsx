@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage, useRwd } from "@tgs-web-nx/core/hooks";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
@@ -14,7 +13,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.black03};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -28,7 +27,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 1.49px 24px;
+  padding: 9.5px 15px;
   display: flex;
   align-items: center;
   justify-content: start;

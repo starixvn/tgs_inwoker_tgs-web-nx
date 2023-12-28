@@ -1,41 +1,44 @@
 import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import accountIcon from "@/assets/t33/images/header/icon-account.svg";
-import closeIcon from "@/assets/t33/images/header/icon-close.svg";
-import Icon from "@/components/project/Icon";
+import VipMedal from "@/components/project/VipMedal";
+// import VipMedal from "../../../../../../../../tgs-web-t24/src/components/project/VipMedal";
 
 const MemberMenuHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.primary};
-  color: ${({ theme }) => theme.black};
-  height: 44px;
+  background: ${({ theme }) => theme.black02};
+  width: 175px;
+  height: 42px;
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 10px 12px 10px 10px;
+  gap: 14px;
+  padding: 9px 12px;
 `;
-type Props = {
-  handleCloseContextMenu: () => void;
-};
 
-const MemberMenuHeader = ({ handleCloseContextMenu }: Props) => {
+const Col = styled.div``;
+const VipLevel = styled.div`
+  color: ${({ theme }) => theme.primary};
+  font-size: 0.875rem;
+  font-weight: 400;
+`;
+const Username = styled.div`
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+`;
+
+const MemberMenuHeader = () => {
   const { account } = useAccountStore();
   const username = account.info.member_username;
+  const accountLevel = account.info.member_level_id;
 
   return (
     <MemberMenuHeaderContainer>
-      <Icon iconUrl={accountIcon} width={"24px"} height={"24px"} />
-      {username}
-      <Icon
-        iconUrl={closeIcon}
-        width={"16px"}
-        height={"16px"}
-        style={{
-          cursor: "pointer",
-          marginLeft: "auto",
-        }}
-        onClick={() => handleCloseContextMenu()}
-      />
+      <VipMedal vipLevel={accountLevel} width={"24px"} />
+      <Col>
+        <VipLevel>VIP {accountLevel}</VipLevel>
+
+        <Username>{username}</Username>
+      </Col>
     </MemberMenuHeaderContainer>
   );
 };

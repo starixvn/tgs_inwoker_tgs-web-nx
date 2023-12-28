@@ -9,7 +9,6 @@ import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { imageMap } from "@/components/project/LanguageSwitch/index";
 import { theme } from "@/theme";
 
 const StyledSelect = styled(MuiSelect)`
@@ -17,12 +16,14 @@ const StyledSelect = styled(MuiSelect)`
   overflow: visible;
   font-weight: 400 !important;
   font-size: 0.812rem !important;
+  line-height: 1.5rem !important;
+  border: 1px solid ${({ theme }) => theme.grey06};
+  border-radius: 5px;
+  padding: 8.5px 12px;
 
   .MuiOutlinedInput-input {
     padding: 0 12px !important;
     border-radius: 0;
-    border-left: 1px solid ${({ theme }) => theme.mainBackground};
-    border-right: 1px solid ${({ theme }) => theme.mainBackground};
   }
 
   & .MuiSelect-select {
@@ -49,19 +50,6 @@ const StyledMenuItem = styled(MuiMenuItem)`
 
   & > img {
     margin-right: 10px;
-  }
-`;
-
-const FlagContainer = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  margin-right: 10px;
-
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 `;
 
@@ -117,9 +105,6 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
-              <FlagContainer>
-                <img src={imageMap[culturecode] || ""} alt={culturecode} />
-              </FlagContainer>
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
           );

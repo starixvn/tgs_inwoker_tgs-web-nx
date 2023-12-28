@@ -1,7 +1,11 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  useAuthContext,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import profileImg from "@/assets/t25/images/account/navItem/icon-profile.svg";
@@ -16,6 +20,7 @@ import languageImg from "@/assets/t25/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t25/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t25/images/account/navItem/icon-vip.svg";
 import wageringImg from "@/assets/t25/images/account/navItem/icon-wagering.svg";
+import logoutImg from "@/assets/t25/images/account/navItem/icon-logout.svg";
 import profileWhiteImg from "@/assets/t25/images/account/navItemWhite/icon-profile.svg";
 import depositWhiteImg from "@/assets/t25/images/account/navItemWhite/icon-deposit.svg";
 import withdrawWhiteImg from "@/assets/t25/images/account/navItemWhite/icon-withdraw.svg";
@@ -56,6 +61,7 @@ export function useGetNavItemList() {
   const { handleChangeGameType } = useHomeGameContext();
   const { providerList } = useHomeGameContext();
   const history = useHistory();
+  const { handleLogout } = useAuthContext();
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
@@ -212,14 +218,16 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/appDownload",
       },
+
       {
-        key: NavCardKey.LANGUAGE_SWITCH,
-        label: i18n.t("common.language"),
-        iconUrl: languageImg,
-        iconSecondaryUrl: languageWhiteImg,
+        key: NavCardKey.LOGOUT,
+        label: i18n.t("wap.main.account.signout"),
+        iconUrl: logoutImg,
+        iconSecondaryUrl: logoutImg,
         navType: "action",
-        routePath: null,
-        callback: () => {},
+        callback: () => {
+          handleLogout();
+        },
       },
     ] as NavItem[];
   }, []);

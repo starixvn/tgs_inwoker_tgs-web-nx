@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Drawer } from "@mui/material";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import avatarImg from "@/assets/t33/images/account/avatar.svg";
-import { theme } from "@/theme";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
-import WhiteMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/WhiteMemberMenu";
+import avatarImg from "@/assets/t25/images/account/avatar.svg";
+import HeaderMenu from "@/layouts/components/Header/components/ContextMenuButton/components/HeaderMenu";
+import Modal from "@/components/UI/Modal";
 
 const ContextMenuButtonContainer = styled.div`
   cursor: pointer;
@@ -20,7 +17,6 @@ const AvatarContainer = styled.div`
 
 const ContextMenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isDesktopSize } = useRwd();
 
   const handleClick = (isOpen?: boolean) => {
     if (typeof isOpen !== "undefined") {
@@ -37,22 +33,9 @@ const ContextMenuButton = () => {
         <AvatarContainer />
       </ContextMenuButtonContainer>
 
-      <Drawer
-        variant={"temporary"}
-        anchor={"right"}
-        open={isOpen}
-        onClose={() => handleClick(false)}
-        sx={{
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: "222px",
-            transition: "all ease-in-out 0.2s",
-            border: "none",
-          },
-        }}
-      >
-        <WhiteMemberMenu handleCloseContextMenu={() => handleClick(false)} />
-      </Drawer>
+      <Modal open={isOpen} onClose={() => handleClick(false)}>
+        <HeaderMenu handleCloseContextMenu={() => handleClick(false)} />
+      </Modal>
     </>
   );
 };
