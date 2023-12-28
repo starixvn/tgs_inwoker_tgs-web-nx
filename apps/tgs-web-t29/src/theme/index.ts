@@ -12,6 +12,7 @@ export const theme = {
   blue30: "#399FDA",
   blue20: "#E7F1FB",
   blue10: "#CBDEED",
+  blueBtn: "#3158FF",
   gray10: "#D6DBDD",
   gray20: "#F0EFF5",
   gray30: "#A7AEBB",
