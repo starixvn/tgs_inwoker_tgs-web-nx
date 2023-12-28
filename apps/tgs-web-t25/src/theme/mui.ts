@@ -11,21 +11,22 @@ declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
     black: string;
-    mainBackground: string;
     red: string;
+    yellow: string;
     green: string;
-    gradient: string;
-    blue10: string;
-    blue20: string;
-    blue30: string;
-    blue40: string;
-    blue50: string;
-    blue60: string;
-    gray10: string;
-    gray20: string;
-    gray30: string;
-    gray40: string;
-    gray50: string;
+    mainBackground: string;
+    memberBGC: string;
+    inputBGC: string;
+    grey02: string;
+    grey03: string;
+    grey04: string;
+    grey05: string;
+    grey06: string;
+    grey07: string;
+    black01: string;
+    black02: string;
+    black03: string;
+    black04: string;
   }
 }
 
@@ -47,29 +48,30 @@ const muiTheme = createTheme({
       main: theme.secondary,
     },
     action: {
-      disabledBackground: theme.gray30,
-      disabled: theme.white,
+      disabledBackground: theme.grey06,
+      disabled: theme.grey04,
     },
     white: theme.white,
     black: theme.black,
     mainBackground: theme.mainBackground,
     red: theme.red,
+    yellow: theme.red,
     green: theme.green,
-    gradient: theme.gradient,
-    blue10: theme.blue10,
-    blue20: theme.blue20,
-    blue30: theme.blue30,
-    blue40: theme.blue40,
-    blue50: theme.blue50,
-    blue60: theme.blue60,
-    gray10: theme.gray10,
-    gray20: theme.gray20,
-    gray30: theme.gray30,
-    gray40: theme.gray40,
-    gray50: theme.gray50,
+    memberBGC: theme.memberBGC,
+    inputBGC: theme.inputBGC,
+    grey02: theme.grey02,
+    grey03: theme.grey03,
+    grey04: theme.grey04,
+    grey05: theme.grey05,
+    grey06: theme.grey06,
+    grey07: theme.grey07,
+    black01: theme.black01,
+    black02: theme.black02,
+    black03: theme.black03,
+    black04: theme.black04,
     text: {
-      primary: theme.text,
-      secondary: theme.gray20,
+      primary: theme.grey02,
+      secondary: theme.white,
     },
   },
   typography: {
