@@ -88,7 +88,7 @@
         "production": {
           "DockerContainerRegistry": "pgtgs/",
           "AppPath": "./apps/tgs-web-t19",
-          "ImageName": "tgs-web-19"
+          "ImageName": "tgs-web-t19"
         }
       }
     }
