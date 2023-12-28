@@ -11,16 +11,18 @@ const BottomNavContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align : center;
-  color: ${({ theme }) => theme.black};
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  color: ${({ theme }) => theme.white};
   padding: 10px 0;
   cursor: pointer;
 `;
 
 const NavLabel = styled.h6`
-  font-size: 0.6rem;
+  font-size: 0.875rem;
+  line-height: 21px;
   font-weight: 400;
-  line-height: 0.625rem;
   text-transform: uppercase;
   white-space: nowrap;
 `;
@@ -33,47 +35,9 @@ type Props = {
 const BottomNav = ({ bottomNavItem, onClick }: Props) => {
   const { label, iconUrl } = bottomNavItem;
 
-  if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
-    return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon
-          iconUrl={iconUrl}
-          width={"47px"}
-          height={"47px"}
-          style={{
-            marginBottom: "13px",
-          }}
-        />
-
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
-
-  if (["promotion"].includes(bottomNavItem.key)) {
-    return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon
-          iconUrl={iconUrl}
-          width={"60px"}
-          height={"44px"}
-        />
-
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
-
   return (
     <BottomNavContainer onClick={onClick}>
-      <Icon
-        iconUrl={iconUrl}
-        width={"24px"}
-        height={"24px"}
-        style={{
-          marginBottom: "5px",
-        }}
-      />
+      <Icon iconUrl={iconUrl} width={"18px"} height={"18px"} />
 
       <NavLabel>{label}</NavLabel>
     </BottomNavContainer>

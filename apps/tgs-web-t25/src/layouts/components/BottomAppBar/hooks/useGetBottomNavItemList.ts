@@ -5,11 +5,16 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
-import giftIcon from "@/assets/t25/images/bottomAppBar/icon-gift.svg";
-import transferIcon from "@/assets/t25/images/bottomAppBar/icon-transfer.svg";
-import reportIcon from "@/assets/t25/images/bottomAppBar/icon-report.svg";
-import accountIcon from "@/assets/t25/images/bottomAppBar/icon-account.svg";
 import homeIcon from "@/assets/t25/images/bottomAppBar/icon-home.svg";
+import gameIcon from "@/assets/t25/images/bottomAppBar/icon-game.svg";
+import promotionIcon from "@/assets/t25/images/bottomAppBar/icon-promotion.svg";
+import depositIcon from "@/assets/t25/images/bottomAppBar/icon-deposit.svg";
+import withdrawIcon from "@/assets/t25/images/bottomAppBar/icon-withdraw.svg";
+import homeActiveIcon from "@/assets/t25/images/bottomAppBar/icon-home-active.svg";
+import gameActiveIcon from "@/assets/t25/images/bottomAppBar/icon-game-active.svg";
+import promotionActiveIcon from "@/assets/t25/images/bottomAppBar/icon-promotion-active.svg";
+import depositActiveIcon from "@/assets/t25/images/bottomAppBar/icon-deposit-active.svg";
+import withdrawActiveIcon from "@/assets/t25/images/bottomAppBar/icon-withdraw-active.svg";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 
 export enum NavTypeEnum {
@@ -23,6 +28,7 @@ export type BottomNavItem = {
   key: string;
   label: string | any;
   iconUrl: string;
+  iconActiveUrl: string;
   handleClick: () => void;
 };
 
@@ -38,44 +44,49 @@ export function useGetBottomNavItemList() {
         key: "home",
         label: i18n.t("common.home"),
         iconUrl: homeIcon,
+        iconActiveUrl: homeActiveIcon,
         handleClick: () => {
           goToHomePage();
         },
       },
       {
         navType: NavTypeEnum.ITEM,
+        key: "game",
+        label: "Game",
+        iconUrl: gameIcon,
+        iconActiveUrl: gameActiveIcon,
+        handleClick: () => {
+          history.push("/");
+        },
+      },
+      {
+        navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: giftIcon,
+        iconUrl: promotionIcon,
+        iconActiveUrl: promotionActiveIcon,
         handleClick: () => {
           history.push("/promotion-list");
         },
       },
       {
-        navType: NavTypeEnum.BIG_ITEM,
-        key: "vip",
-        label: i18n.t("common.bank"),
-        iconUrl: transferIcon,
-        handleClick: () => {
-          handleTransferDrawerToggle();
-        },
-      },
-      {
         navType: NavTypeEnum.ITEM,
-        key: "contact",
+        key: "deposit",
         label: i18n.t("report.title"),
-        iconUrl: reportIcon,
+        iconUrl: depositIcon,
+        iconActiveUrl: depositActiveIcon,
         handleClick: () => {
-          history.push("/report");
+          history.push("/deposit");
         },
       },
       {
         navType: NavTypeEnum.ITEM,
         key: "affiliate",
         label: i18n.t("deposit.details.account"),
-        iconUrl: accountIcon,
+        iconUrl: withdrawIcon,
+        iconActiveUrl: withdrawActiveIcon,
         handleClick: () => {
-          history.push("/account");
+          history.push("/withdraw");
         },
       },
     ];
