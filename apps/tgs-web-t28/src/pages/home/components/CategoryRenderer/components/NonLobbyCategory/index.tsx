@@ -1,17 +1,23 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import {
+  FilterTag,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+  useGetNonLobbyCategoryList,
+} from "@tgs-web-nx/core/features";
+import { MenuItem, Select } from "@mui/material";
+import { providerStatus } from "@tgs-web-nx/constants";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
-import GameFilterTag from "@/pages/home/components/GameFilterTag";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t29/images/home/search.svg";
+import { theme } from "@/theme";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,9 +36,10 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 78px);
+  width: 100%;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
+  padding: 0 20px;
 `;
 
 const FilterSection = styled.div`
@@ -96,43 +103,91 @@ const GameTitle = styled.div`
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
+  const {
+    providerFilterTagList,
+    handleChangeActiveProviderFilterTag,
+    activeProviderFilterTag,
+    searchString,
+    handleChangeSearch,
+    activeGameTypeKey,
+  } = useHomeGameContext();
   const hasMappingData = !!gameList.length;
-  const { searchString, handleChangeSearch, activeGameTypeKey } = useHomeGameContext();
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
+
+  const handleSelectProvider = (providerName: string) => {
+    const newFilterTag = providerFilterTagList.find(
+      (tag: FilterTag) => tag.name === providerName,
+    ) as FilterTag;
+    handleChangeActiveProviderFilterTag(newFilterTag);
+  };
   return (
     <Wrapper>
       {isMobileSize && (
-        <>
-          <GameTypeTab />
-          <CategoryContentWrapper>
-            <FilterSection>
-              <GameFilterTag />
-              <SearchInputWrapper>
-                <SearchInput
-                  placeholder={i18n.t("slot.search")}
-                  imageUrl={searchIcon}
-                  handleChange={handleChangeSearch}
-                  value={searchString}
+        <CategoryContentWrapper>
+          <FilterSection>
+            <HomeGameFilterTag />
+            <SearchInputWrapper>
+              <Select
+                onChange={(e) => handleSelectProvider(e.target.value)}
+                value={activeProviderFilterTag.name}
+                sx={{
+                  minWidth: "180px",
+                  height: "50px",
+                  backgroundColor: theme.secBTNBGC,
+                  color: theme.text,
+                  padding: "0 12px",
+                  borderRadius: "50px",
+                  "& .MuiSvgIcon-root": {
+                    color: theme.white,
+                  },
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                }}
+              >
+                {providerFilterTagList.map((filterTag) => {
+                  const matchedProvider = navPopupCategoryList.find(
+                    (provider) => provider.code === filterTag.gpCode,
+                  );
+                  const status = matchedProvider ? matchedProvider.status : -1;
+
+                  return (
+                    <MenuItem
+                      key={filterTag.name}
+                      value={filterTag.name}
+                      sx={{ color: "black" }}
+                      disabled={status === providerStatus.Maintenance}
+                    >
+                      {filterTag.name}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+              <SearchInput
+                placeholder={i18n.t("slot.search")}
+                imageUrl={searchIcon}
+                handleChange={handleChangeSearch}
+                value={searchString}
+              />
+            </SearchInputWrapper>
+          </FilterSection>
+          <CategoryContent>
+            {hasMappingData &&
+              gameList.map((gameItem) => (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
-              </SearchInputWrapper>
-            </FilterSection>
-            <CategoryContent>
-              {hasMappingData &&
-                gameList.map((gameItem) => (
-                  <GameCard
-                    key={gameItem.id}
-                    gameItem={gameItem}
-                    isActive={gameItem.isactive}
-                    imageUrl={`${
-                      config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                      gameItem.code
-                    }.jpg`}
-                  />
-                ))}
-              {!hasMappingData && !isLoading && <div>No data</div>}
-            </CategoryContent>
-          </CategoryContentWrapper>
-        </>
+              ))}
+            {!hasMappingData && !isLoading && <div>No data</div>}
+          </CategoryContent>
+        </CategoryContentWrapper>
       )}
 
       {isDesktopSize && (

@@ -1,21 +1,18 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
+import { useUiStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory, useLocation, useParams } from "react-router-dom";
-import CardPrompt from "@/pages/home/components/CardPrompt";
+import { useParams } from "react-router-dom";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import bg from "@/assets/t29/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import notification from "@/assets/t28/images/home/notify.svg";
-import Jackpot from "@/components/project/Jackpot";
 import useBanner from "@/hooks/home/useBanner";
 import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import { theme } from "@/theme";
@@ -73,20 +70,9 @@ const MainContentWrapper = styled.div`
   flex: 1;
 
   ${media.sm} {
-    /* max-width: ${MAIN_CONTENT_MAX_WIDTH}; */
     margin: 0 auto;
     gap: unset;
   }
-`;
-
-const GameTypeBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-  height: 450px;
-  margin: 0 auto;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 `;
 
 const MarqueeContainer = styled.div`
@@ -95,7 +81,6 @@ const MarqueeContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   gap: 7px;
   font-size: 0.875rem;
@@ -146,14 +131,6 @@ const GameTypeNav = styled.div<{
   color: ${({ theme, $isActive }) => ($isActive ? theme.text : theme.gray50)};
 `;
 
-const GameTypeGrid = styled.div`
-  align-self: center;
-  height: 18px;
-  display: flex;
-  border: 1px solid #cccccc;
-  margin: 0 5px;
-`;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -172,7 +149,6 @@ const Wrapper = styled.div`
 `;
 
 const HomePage = () => {
-  const { general } = useGeneralStore();
   const { sideNavItemList } = useGetNavItemList();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
@@ -182,18 +158,11 @@ const HomePage = () => {
   const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
   const hasData = marquees && marquees.length > 0;
 
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
-    useHomeGameContext();
+  const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const hasNavData = !!navPopupCategoryList.length;
-  const history = useHistory();
   const gameTypeList = useGameTypeList();
-  const location = useLocation();
-  const pathSegments = location.pathname.split("/");
-  const currentRoute = pathSegments[pathSegments.length - 1];
 
-  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-  const isNonLobby = isNonLobbyList.includes(activeGameType);
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
@@ -237,6 +206,7 @@ const HomePage = () => {
               // Disable TypeScript check for unknown HTML elements
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
+              // eslint-disable-next-line jsx-a11y/no-distracting-elements
               <marquee>
                 {marquees.map((item, index) => {
                   const content = `
@@ -257,33 +227,21 @@ const HomePage = () => {
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
-        <BannerWrapper>
-          {/* {isDesktopSize && !!activeGameType && !isNonLobby && (
-            <GameTypeBanner
-              $imageUrl={
-                activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                  : ""
-              }
-            />
-          )} */}
-          {isDesktopSize && <Banner />}
-        </BannerWrapper>
+        <BannerWrapper>{isDesktopSize && <Banner />}</BannerWrapper>
       ) : null}
 
-      {/* {isMobileSize && <CardPrompt />} */}
       <GameTypesContainer>
         {sideNavItemList &&
           sideNavItemList.map((navItem, index) => {
             return (
               <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
                 <img
-                  src={navItem.router === currentRoute ? navItem.iconActiveUrl : navItem.iconUrl}
+                  src={
+                    navItem.gameType === activeGameType ? navItem.iconActiveUrl : navItem.iconUrl
+                  }
                   alt={navItem.label}
                 />
-                <GameTypeNav $isActive={navItem.router === currentRoute}>
+                <GameTypeNav $isActive={navItem.gameType === activeGameType}>
                   {navItem.label}
                 </GameTypeNav>
               </Wrapper>

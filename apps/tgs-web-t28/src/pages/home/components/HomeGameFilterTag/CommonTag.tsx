@@ -16,7 +16,7 @@ const Wrapper = styled.div<{
   border: ${({ theme, $isActive }) =>
     `2px solid ${$isActive ? theme.lightPurple : theme.secBTNBGC}`};
   gap: 8px;
-
+  flex-shrink: 0;
   &:hover {
     cursor: pointer;
   }

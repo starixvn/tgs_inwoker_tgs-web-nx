@@ -19,7 +19,7 @@ import bg from "@/assets/t29/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     background: url(${bg});

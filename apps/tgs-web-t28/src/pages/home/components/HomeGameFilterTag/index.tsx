@@ -11,6 +11,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { MenuItem, Select } from "@mui/material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import CommonTag from "./CommonTag";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t29/images/home/search.svg";
@@ -36,12 +37,12 @@ const FilterTagWrapper = styled.div`
 `;
 
 const CommonTagContainer = styled.div`
-  padding: 0px 14px;
   border-radius: 100px;
   gap: 12px;
   display: flex;
   align-items: center;
   height: 37px;
+  overflow: auto;
 `;
 
 export const SearchInputWrapper = styled.div`
@@ -65,6 +66,7 @@ const CommonSearchWrapper = styled.div`
 const HomeGameFilterTag = () => {
   const { isLogin } = useAuth();
   const history = useHistory();
+  const { isDesktopSize } = useRwd();
   const {
     providerFilterTagList,
     handleChangeActiveFilterTag,
@@ -142,51 +144,52 @@ const HomeGameFilterTag = () => {
             );
           })}
         </CommonTagContainer>
+        {isDesktopSize && (
+          <SearchInputWrapper>
+            <Select
+              onChange={(e) => handleSelectProvider(e.target.value)}
+              value={activeProviderFilterTag.name}
+              sx={{
+                minWidth: "200px",
+                height: "39px",
+                backgroundColor: theme.secBTNBGC,
+                color: theme.text,
+                padding: "0 12px",
+                borderRadius: "50px",
+                "& .MuiSvgIcon-root": {
+                  color: theme.white,
+                },
+                "& .MuiOutlinedInput-notchedOutline": {
+                  border: "none",
+                },
+              }}
+            >
+              {providerFilterTagList.map((filterTag) => {
+                const matchedProvider = navPopupCategoryList.find(
+                  (provider) => provider.code === filterTag.gpCode,
+                );
+                const status = matchedProvider ? matchedProvider.status : -1;
 
-        <SearchInputWrapper>
-          <Select
-            onChange={(e) => handleSelectProvider(e.target.value)}
-            value={activeProviderFilterTag.name}
-            sx={{
-              minWidth: "200px",
-              height: "39px",
-              backgroundColor: theme.secBTNBGC,
-              color: theme.text,
-              padding: "0 12px",
-              borderRadius: "50px",
-              "& .MuiSvgIcon-root": {
-                color: theme.white,
-              },
-              "& .MuiOutlinedInput-notchedOutline": {
-                border: "none",
-              },
-            }}
-          >
-            {providerFilterTagList.map((filterTag) => {
-              const matchedProvider = navPopupCategoryList.find(
-                (provider) => provider.code === filterTag.gpCode,
-              );
-              const status = matchedProvider ? matchedProvider.status : -1;
-
-              return (
-                <MenuItem
-                  key={filterTag.name}
-                  value={filterTag.name}
-                  sx={{ color: "black" }}
-                  disabled={status === providerStatus.Maintenance}
-                >
-                  {filterTag.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          <SearchInput
-            placeholder={i18n.t("slot.search")}
-            imageUrl={searchIcon}
-            handleChange={handleChangeSearch}
-            value={searchString}
-          />
-        </SearchInputWrapper>
+                return (
+                  <MenuItem
+                    key={filterTag.name}
+                    value={filterTag.name}
+                    sx={{ color: "black" }}
+                    disabled={status === providerStatus.Maintenance}
+                  >
+                    {filterTag.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <SearchInput
+              placeholder={i18n.t("slot.search")}
+              imageUrl={searchIcon}
+              handleChange={handleChangeSearch}
+              value={searchString}
+            />
+          </SearchInputWrapper>
+        )}
       </CommonSearchWrapper>
     </FilterTagWrapper>
   );
