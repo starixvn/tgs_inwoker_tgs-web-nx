@@ -36,12 +36,10 @@ export const TableSubjectCell = muiStyled(MuiTableCell)(({ theme }) => ({
   fontSize: "0.937rem",
   lineHeight: "1.078rem",
   fontWeight: 700,
-  borderBottom: `1px solid ${theme.palette.gray30}`,
 })) as typeof MuiTableCell;
 
 export const TableDateCell = muiStyled(MuiTableCell)(({ theme }) => ({
   fontSize: "0.937rem",
   lineHeight: "1.078rem",
   fontWeight: 400,
-  borderBottom: `1px solid ${theme.palette.gray30}`,
 })) as typeof MuiTableCell;

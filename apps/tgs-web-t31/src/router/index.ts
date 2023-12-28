@@ -29,14 +29,12 @@ import AppDownloadPage from "@/pages/download/DownloadPage";
 import NewsPage from "@/pages/News/NewsPage";
 import NewsDetailPage from "@/pages/News/NewsDetailPage";
 import HomeLayout from "@/layouts/HomeLayout";
-import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
 import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
-import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
