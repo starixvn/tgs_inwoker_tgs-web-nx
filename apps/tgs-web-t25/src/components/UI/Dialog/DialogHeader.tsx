@@ -1,34 +1,29 @@
 import React from "react";
 import styled from "styled-components";
-import iconReturn from "@/assets/t25/images/dialog/icon-return.svg";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import iconClose from "@/assets/t25/images/dialog/icon-close.svg";
 import Icon from "@/components/project/Icon";
-
-export const DIALOG_HEADER_HEIGHT = "40px";
+import { MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 
 const DialogHeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.blue50};
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: ${MOBILE_HEADER_HEIGHT};
+  background: ${({ theme }) => theme.black04};
   color: ${({ theme }) => theme.white};
   font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
   z-index: 1300;
-  padding: 22px 10px;
-  gap: 14px;
+  padding: 24px 22px;
 `;
 
 const ReturnIconContainer = styled.div`
   position: absolute;
-  top: 50%;
-  left: 16px;
-  transform: translateY(-50%);
+  top: 10px;
+  right: 10px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -40,10 +35,14 @@ type Props = {
 };
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
+  const { isDesktopSize } = useRwd();
+
+  const width = isDesktopSize ? "30px" : "24px";
+
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
+        <Icon iconUrl={iconClose} width={width} height={width} />
       </ReturnIconContainer>
 
       {dialogHeaderTitle}

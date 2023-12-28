@@ -9,7 +9,7 @@ import { media } from "@/theme/breakpoints";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.black04};
   height: 100vh;
   overflow: auto;
 `;

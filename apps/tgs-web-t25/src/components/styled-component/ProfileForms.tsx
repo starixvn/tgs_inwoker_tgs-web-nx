@@ -30,17 +30,20 @@ export const LabelContainer = styled.div`
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
+  height: "44px",
   width: "100%",
   fontSize: "0.875rem",
-  borderBottom: `1px solid ${theme.palette.gray10}`,
+  border: `1px solid ${theme.palette.grey07}`,
+  background: theme.palette.inputBGC,
   justifyContent: "center",
+  borderRadius: "6px",
 
   "& fieldset": {
     border: "none",
   },
 
   "& input": {
-    padding: "10px 0",
+    padding: "11.5px 20px",
   },
 })) as typeof MuiFormControl;
 

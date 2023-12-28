@@ -6,6 +6,7 @@ import { Button } from "@/components/UI/Button";
 
 const CustomText = styled.div`
   width: 100%;
+  height: 44px;
   display: flex;
   align-items: center;
   overflow: visible;
@@ -17,12 +18,14 @@ const CustomText = styled.div`
 
 const ButtonContainer = styled.div`
   flex-shrink: 0;
+  padding-right: 10px;
   & > button {
     height: 40px;
-    font-size: 0.75rem;
-    border-radius: 50px;
-    padding: 8px;
-    background: ${({ theme }) => theme.secondary};
+    height: 30px;
+    font-size: 12px;
+    line-height: 18px;
+    padding: 6px 12px;
+    background: ${({ theme }) => theme.primary};
   }
 `;
 
