@@ -4,6 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import { media } from "@/theme/breakpoints";
+import { ItemContainer } from "@/components/styled-component/ProfileForms";
 
 const BadgeContainer = styled.div`
   display: flex;
@@ -33,19 +34,23 @@ const PaymentTabsHeader = ({ selectedPaymentIndex, handlePaymentChange }: Props)
   if (!transferChannels?.length) return null;
 
   return (
-    <BadgeContainer>
-      {depositTypes.map((depositType, index) => {
-        const { paymentcode, paymentid } = depositType;
-        return (
-          <Badge
-            key={`${paymentid}-${index}`}
-            text={i18n.t(paymentcode)}
-            isActive={index === selectedPaymentIndex}
-            handleClick={() => handlePaymentChange({}, index)}
-          />
-        );
-      })}
-    </BadgeContainer>
+    <ItemContainer>
+      <LabelContainer>{i18n.t("deposit.uploadReceipt")}</LabelContainer>
+
+      <BadgeContainer>
+        {depositTypes.map((depositType, index) => {
+          const { paymentcode, paymentid } = depositType;
+          return (
+            <Badge
+              key={`${paymentid}-${index}`}
+              text={i18n.t(paymentcode)}
+              isActive={index === selectedPaymentIndex}
+              handleClick={() => handlePaymentChange({}, index)}
+            />
+          );
+        })}
+      </BadgeContainer>
+    </ItemContainer>
   );
 };
 
