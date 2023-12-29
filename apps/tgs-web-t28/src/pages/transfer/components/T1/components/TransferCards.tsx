@@ -13,16 +13,16 @@ const TransferContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  justify-content: center;
+  justify-content: start;
 `;
 
 const GameTransferWallet = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  width: 250px;
   border-radius: 4px;
   border: solid 1px ${({ theme }) => "#dddedf"};
-  background: ${({ theme }) => theme.blue20};
+  background: #000000b2;
   padding: 10px 10px 10px 3px;
   gap: 10px;
 `;
@@ -46,7 +46,7 @@ const GameName = styled.div`
   line-height: 13px;
   letter-spacing: 0em;
   text-align: center;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   margin-top: 7px;
 `;
 const GameWalletAmount = styled.div`

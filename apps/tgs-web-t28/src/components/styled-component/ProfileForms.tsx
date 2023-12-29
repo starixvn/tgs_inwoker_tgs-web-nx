@@ -32,7 +32,7 @@ export const LabelContainer = styled.div`
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   width: "100%",
   fontSize: "0.875rem",
-  borderBottom: `1px solid ${theme.palette.gray10}`,
+  // borderBottom: `1px solid ${theme.palette.gray10}`,
   justifyContent: "center",
 
   "& fieldset": {
@@ -57,8 +57,8 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "0.875rem",
   height: "50px",
   color: "#828282",
-  background: theme.palette.mainBackground,
-  border: `1px solid ${theme.palette.gray10}`,
+  // background: theme.palette.mainBackground,
+  // border: `1px solid ${theme.palette.gray10}`,
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`

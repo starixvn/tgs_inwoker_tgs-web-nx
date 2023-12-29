@@ -13,7 +13,7 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.text};
 `;
 
 type Props = {
