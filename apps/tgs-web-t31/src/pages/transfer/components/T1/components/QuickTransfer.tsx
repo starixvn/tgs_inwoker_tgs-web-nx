@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { Select, SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
@@ -40,6 +40,7 @@ const AmountWrapper = styled.div`
   background: #12281e;
   padding: 17px 10px;
   display: flex;
+  align-items: center;
 `;
 
 const AmountText = styled.div`
@@ -63,8 +64,8 @@ type Props = {
   transferTo: string;
   handleTransferToChange: (e: SelectChangeEvent<any>) => void;
   mainAccountId: string;
-  transferAmount: number;
-  handleTransferAmountChange: (e: SelectChangeEvent<any>) => void;
+  transferAmount: string;
+  handleTransferAmountChange: (e: ChangeEvent<any>) => void;
   disabled: boolean;
   handleTransferClick: () => Promise<void>;
 };

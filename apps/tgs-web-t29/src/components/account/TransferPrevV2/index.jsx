@@ -120,6 +120,7 @@ class Transfer extends Component {
     const transferTo = this.state.transferTo;
     const transferAmount = parseFloat(this.state.transferAmount.replace(/,/g, ""));
     const balance = this.props.wallet.mainBalance;
+
     if (parseFloat(transferAmount) <= 0) {
       this.props.enqueueSnackbar(i18n.t("transfer.invalidAmount"), {
         variant: "error",
