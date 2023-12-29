@@ -39,9 +39,8 @@ const MenuDrawer = () => {
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-          transition: "all ease-in-out 0.5s",
+          transition: "all ease-in-out 0.2s",
           border: "none",
-          background: theme.secondary,
         },
       }}
     >

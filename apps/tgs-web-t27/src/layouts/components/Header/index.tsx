@@ -95,7 +95,7 @@ const Header = () => {
 
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
-
+        <MenuButton />
         {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
