@@ -18,7 +18,7 @@ declare module "@mui/material/styles/createPalette" {
     darkPurple: string;
     middlePurple: string;
     lightPurple: string;
-    mainBGC: string;
+    mainBackground:string;
     memberSection: string;
     NavBGC: string;
     secBTNBGC: string;
