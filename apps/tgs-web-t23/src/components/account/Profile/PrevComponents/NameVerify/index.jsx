@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import config from "@tgs-web-nx/config";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { accountAction, AccountService, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
+import { IdentityFormStatusEnum } from "@tgs-web-nx/constants";
 import BaseProfile from "../BaseProfile";
 import Default from "./default";
 import Approved from "./approved";
@@ -27,37 +28,23 @@ class NameVerify extends BaseProfile {
   }
 
   componentDidMount() {
-    const currentFormStatus = this.props.account.info.identityformstatus;
-    const hasSubmitted = this.props.account.info.identityformid ? true : false;
+    const { identityformstatus, identityformid } = this.props.account.info;
 
-    if (currentFormStatus === 0 && hasSubmitted === false) {
-      //api沒給表單id ，表示可以上傳
-      this.setState({
-        ...this.state,
-        scene: "waiting-submit",
-      });
-    }
-    if ((currentFormStatus === 1 && hasSubmitted === true) || currentFormStatus === 1) {
-      this.setState({
-        ...this.state,
-        scene: "approved",
-      });
-    }
-    if ((currentFormStatus === 2 && hasSubmitted === true) || currentFormStatus === 2) {
-      //有給表單id但是狀態是拒絕，也可以上傳
-      this.setState({
-        ...this.state,
-        scene: "rejected",
-      });
-    }
-    if (currentFormStatus === 0 && hasSubmitted === true) {
-      //有給表單id但狀態沒驗證，不能上傳
-      this.setState({
-        ...this.state,
-        scene: "waiting-verification",
-      });
+    switch (identityformstatus) {
+      case IdentityFormStatusEnum.WaitingVerify:
+        this.setState({ scene: identityformid ? "waiting-verification" : "waiting-submit" });
+        break;
+      case IdentityFormStatusEnum.Approve:
+        this.setState({ scene: "approved" });
+        break;
+      case IdentityFormStatusEnum.Reject:
+        this.setState({ scene: "rejected" });
+        break;
+      default:
+        break;
     }
   }
+
   componentDidUpdate(preProps, prevState) {
     if (preProps.account.info.member_card_no !== this.props.account.info.member_card_no) {
       const ic = this.props.account.info.member_card_no;
@@ -243,7 +230,12 @@ class NameVerify extends BaseProfile {
       //   return <Default {...this.commonprops} />;
 
       case "approved":
-        return <BottomNote text1={""} empty text2={""}></BottomNote>;
+        return (
+          <BottomNote
+            text1={i18n.t("profile.nameVerify.toEdit")}
+            text2={i18n.t("common.customerService")}
+          />
+        );
       default:
         return (
           <BottomNote
