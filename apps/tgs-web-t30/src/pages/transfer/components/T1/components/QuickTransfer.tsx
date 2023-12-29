@@ -1,9 +1,10 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
+import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
 import ArrowRightPNG from "@/assets/t30/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
@@ -38,6 +39,7 @@ const QuickTransferArrow = styled.div`
 const AmountWrapper = styled.div`
   padding: 17px 10px;
   display: flex;
+  align-items: center;
 `;
 
 const AmountText = styled.div`
@@ -61,8 +63,8 @@ type Props = {
   transferTo: string;
   handleTransferToChange: (e: SelectChangeEvent<any>) => void;
   mainAccountId: string;
-  transferAmount: number;
-  handleTransferAmountChange: (e: SelectChangeEvent<any>) => void;
+  transferAmount: string;
+  handleTransferAmountChange: (e: ChangeEvent<any>) => void;
   disabled: boolean;
   handleTransferClick: () => Promise<void>;
 };
@@ -160,15 +162,17 @@ const QuickTransfer = ({
       <GrayInputWrapper>
         <AmountWrapper>
           <AmountText>{i18n.t("common.amount")}</AmountText>
-          <div>
-            <CurrencyTextFieldReplacement
-              value={transferAmount || 0}
-              placeholder="0"
-              onChange={handleTransferAmountChange}
-              autoComplete="off"
-              type={"number"}
-            />
-          </div>
+          <TextField
+            value={transferAmount}
+            onChange={handleTransferAmountChange}
+            autoComplete="off"
+            type={"number"}
+            inputProps={{
+              style: {
+                textAlign: "right",
+              },
+            }}
+          />
         </AmountWrapper>
       </GrayInputWrapper>
 
