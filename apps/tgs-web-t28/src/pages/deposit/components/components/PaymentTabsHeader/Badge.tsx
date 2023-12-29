@@ -13,10 +13,11 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   cursor: pointer;
   padding: 13px 8px;
   text-align: center;
-  color: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? theme.white : theme.black)};
-  background: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? theme.blue40 : theme.blue20};
-
+  color: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? theme.lightPurple : theme.gray50};
+  background: ${({ $isActive, theme }: BadgeContainerProps) => theme.secPopupMask};
+  border: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? `1px solid ${theme.lightPurple}` : `2px solid ${theme.secBTNBGC}`};
   font-size: 0.812rem;
   font-weight: 400;
 

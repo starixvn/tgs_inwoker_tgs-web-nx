@@ -17,7 +17,7 @@ export const PageContainer = styled.div`
 export const TransferPageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 20px;
-  max-width: calc(961px + 20px * 2);
+  max-width: 1170px;
   flex: 1;
   margin: 0 auto;
 

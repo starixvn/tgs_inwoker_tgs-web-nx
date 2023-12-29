@@ -40,7 +40,6 @@ const ProfilePage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
-
       {isDesktopSize ? (
         <ProfileMenu />
       ) : (
