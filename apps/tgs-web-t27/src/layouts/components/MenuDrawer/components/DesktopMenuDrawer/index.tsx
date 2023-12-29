@@ -4,9 +4,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
-import downloadIcon from "@/assets/t23/images/account/navItem/icon-download.svg";
-import iconVip from "@/assets/t23/images/account/navItem/icon-vip.svg";
+import iconPromotion from "@/assets/t27/images/account/navItem/icon-promotions.svg";
+import downloadIcon from "@/assets/t27/images/account/navItem/icon-download.svg";
+import iconVip from "@/assets/t27/images/account/navItem/icon-vip.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
@@ -14,8 +14,8 @@ import { MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
 
-const MobileMenuDrawerContainer = styled.div`
-  background: ${({ theme }) => theme.mainDarkBackground};
+const DesktopMenuDrawerContainer = styled.div`
+  background: ${({ theme }) => theme.mainBackground};
   width: 100%;
   height: 100vh;
   padding-bottom: 20px;
@@ -76,9 +76,8 @@ const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
   width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "250px")};
   margin: 0 auto 8px;
-  background: ${({ theme }) => theme.mainBackground};
-  /* background: ${({ $isShrink }: PromotionCardProps) =>
-    $isShrink ? theme.mainDarkBackground : theme.mainLightBackground}; */
+  background: ${({ $isShrink }: PromotionCardProps) =>
+    $isShrink ? theme.mainDarkBackground : theme.mainLightBackground};
   border-radius: 12px;
   padding: 12px 30px;
   display: flex;
@@ -140,7 +139,7 @@ const DesktopMenuDrawer = () => {
   };
 
   return (
-    <MobileMenuDrawerContainer>
+    <DesktopMenuDrawerContainer>
       <MenuHeaderContainer>
         <Link to={"/"}>
           <LogoImgContainer>
@@ -172,7 +171,7 @@ const DesktopMenuDrawer = () => {
 
         <MenuLanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
       </HeaderContentContainer>
-    </MobileMenuDrawerContainer>
+    </DesktopMenuDrawerContainer>
   );
 };
 

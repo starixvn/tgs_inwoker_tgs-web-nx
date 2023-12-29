@@ -14,7 +14,7 @@ import { HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
 
-const MobileMenuDrawerContainer = styled.div`
+const DesktopMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainDarkBackground};
   width: 100%;
   height: 100vh;
@@ -139,7 +139,7 @@ const DesktopMenuDrawer = () => {
   };
 
   return (
-    <MobileMenuDrawerContainer>
+    <DesktopMenuDrawerContainer>
       <MenuHeaderContainer>
         <Link to={"/"}>
           <LogoImgContainer>
@@ -171,7 +171,7 @@ const DesktopMenuDrawer = () => {
 
         <MenuLanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} />
       </HeaderContentContainer>
-    </MobileMenuDrawerContainer>
+    </DesktopMenuDrawerContainer>
   );
 };
 

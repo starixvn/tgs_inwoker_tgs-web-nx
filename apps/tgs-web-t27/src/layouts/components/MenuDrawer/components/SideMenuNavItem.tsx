@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 import Icon from "@/components/project/Icon";
-import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 
 const NavCardContainer = styled.div`
   cursor: pointer;
@@ -10,9 +10,10 @@ const NavCardContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: start;
-  color: ${({ theme }) => theme.lightGold};
+  color: ${({ theme }) => theme.white};
   font-size: 1.125rem;
-  font-weight: 510;
+  font-weight: 400;
+  line-height: 1.304rem;
   padding: 19px 0;
 
   & > div:first-child {
@@ -26,7 +27,6 @@ type Props = {
 };
 const SideMenuNavItem = ({ navItem, handleClick }: Props) => {
   const { label, iconUrl } = navItem;
-
   return (
     <NavCardContainer onClick={() => handleClick(navItem)}>
       <Icon iconUrl={iconUrl} width={"20px"} height={"20px"} />

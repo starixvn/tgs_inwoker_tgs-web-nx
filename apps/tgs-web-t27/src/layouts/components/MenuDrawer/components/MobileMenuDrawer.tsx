@@ -10,10 +10,14 @@ import AnonymousHeaderContent from "@/layouts/components/Header/components/Anony
 import SideMenuNavItem from "@/layouts/components/MenuDrawer/components/SideMenuNavItem";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
-import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
-import logoutImg from "@/assets/t19/images/header/sideMenuItem/icon-logout.svg";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
+import profileImg from "@/assets/t23/images/header/sideMenuItem/icon-account.svg";
+import transferImg from "@/assets/t23/images/header/sideMenuItem/icon-transfer.svg";
+import reportImg from "@/assets/t23/images/header/sideMenuItem/icon-report.svg";
+import inboxImg from "@/assets/t23/images/header/sideMenuItem/icon-inbox.svg";
+import affiliateImg from "@/assets/t23/images/header/sideMenuItem/icon-affiliate.svg";
+import downloadImg from "@/assets/t23/images/header/sideMenuItem/icon-download.svg";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
-import Icon from "@/components/project/Icon";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -24,7 +28,7 @@ const MobileMenuDrawerContainer = styled.div`
 
 const ContentWrapper = styled.div`
   flex-shrink: 0;
-  padding: 27px 20px;
+  padding: 30px 25px;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -36,35 +40,12 @@ const NavsContainer = styled.div`
   height: fit-content;
 `;
 
-const LanguageSwitchWrapper = styled.div`
-  width: 100%;
-  height: 76px;
-  padding: 12px 0 24px 0;
-`;
-
-const LogoutBtnWrapper = styled.div`
-  height: 58px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-  border-top: 1px solid ${({ theme }) => theme.primary};
-`;
-
-const Text = styled.div`
-  color: ${({ theme }) => theme.primary};
-  font-size: 1.125rem;
-  font-weight: 510;
-`;
-
 const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isLogin } = useAuth();
   const history = useHistory();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
-  const { navItemList } = useAccountNavigations();
 
   const handleClickLogout = async () => {
     if (!isDesktopSize && isMenuOpen) {
@@ -73,20 +54,65 @@ const MobileMenuDrawer = () => {
     await handleLogout();
   };
 
+  const sideNavItemList: NavItem[] = useMemo(() => {
+    return [
+      {
+        key: NavCardKey.PROFILE,
+        label: i18n.t("wap.main.my"),
+        iconUrl: profileImg,
+        navType: "route",
+        routePath: "/account",
+      },
+      {
+        key: NavCardKey.TRANSFER,
+        label: i18n.t("common.transfer"),
+        iconUrl: transferImg,
+        navType: "route",
+        routePath: "/transfer",
+      },
+      {
+        key: NavCardKey.REPORT,
+        label: i18n.t("report.title"),
+        iconUrl: reportImg,
+        navType: "route",
+        routePath: "/report",
+      },
+      {
+        key: NavCardKey.MESSAGE_CENTER,
+        label: i18n.t("wap.main.account.inbox"),
+        iconUrl: inboxImg,
+        navType: "route",
+        routePath: "/message-center",
+      },
+      {
+        key: NavCardKey.AFFILIATE,
+        label: i18n.t("wap.main.account.affiliate"),
+        iconUrl: affiliateImg,
+        navType: "route",
+        routePath: "/affiliate",
+      },
+      {
+        key: NavCardKey.CONTACT_US,
+        label: i18n.t("common.contact"),
+        iconUrl: profileImg,
+        navType: "route",
+        routePath: "/support",
+      },
+      {
+        key: NavCardKey.APP_DOWNLOAD,
+        label: i18n.t("wap.main.account.appDownload"),
+        iconUrl: downloadImg,
+        navType: "route",
+        routePath: "/appDownload",
+      },
+    ] as NavItem[];
+  }, []);
+
   const handleClickNav = useCallback((navItem: NavItem) => {
     handleToggleMenu(false);
 
-    switch (navItem.navType) {
-      case "route":
-        history.push(navItem.routePath);
-        break;
-
-      case "action":
-        navItem.callback();
-    }
-
-    // if (navItem.navType !== "route") return;
-    // history.push(navItem.routePath);
+    if (navItem.navType !== "route") return;
+    history.push(navItem.routePath);
   }, []);
 
   return (
@@ -101,31 +127,29 @@ const MobileMenuDrawer = () => {
         )}
 
         <NavsContainer>
-          {navItemList.map((navItem) => {
-            if (navItem.key === NavCardKey.PROFILE ||
-              navItem.key === NavCardKey.DEPOSIT ||
-              navItem.key === NavCardKey.WITHDRAW ||
-              navItem.key === NavCardKey.LOGOUT) return null;
+          {sideNavItemList.map((navItem) => {
             return (
               <SideMenuNavItem key={navItem.key} navItem={navItem} handleClick={handleClickNav} />
             );
           })}
         </NavsContainer>
 
-        <LanguageSwitchWrapper>
-          <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
-        </LanguageSwitchWrapper>
+        <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
 
-        <LogoutBtnWrapper
+        <Button
+          fullWidth
+          variant={"contained"}
           onClick={handleClickLogout}
+          sx={{
+            fontSize: "1.562rem",
+            padding: "12px 20px",
+            borderRadius: "30px",
+            color: "white",
+            background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
+          }}
         >
-          <Icon
-            iconUrl={logoutImg}
-            width={"18px"}
-            height={"17px"}
-          />
-          <Text>{i18n.t("web.header.logout")}</Text>
-        </LogoutBtnWrapper>
+          {i18n.t("web.header.logout")}
+        </Button>
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );
