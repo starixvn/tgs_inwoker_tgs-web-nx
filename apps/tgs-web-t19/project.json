@@ -1,7 +1,7 @@
 {
   "name": "tgs-web-t19",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "tgs-web-t19/src",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tgs-web-t19/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -11,7 +11,7 @@
       ],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/tgs-web-t19"
+        "outputPath": "dist/apps/tgs-web-t19"
       },
       "configurations": {
         "development": {
