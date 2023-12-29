@@ -13,7 +13,7 @@ class Transfer extends Component {
     loading: false,
     transferFrom: "",
     transferTo: 0,
-    transferAmount: "",
+    transferAmount: "0",
     mainAccountId: "0",
     disabled: false,
   };
@@ -58,7 +58,7 @@ class Transfer extends Component {
         this.props.resetResult();
         this.props.getBalanceList();
         this.setState({
-          transferAmount: "0.00",
+          transferAmount: "0",
           fromWallet: "",
           toWallet: "",
           loading: false,
@@ -120,6 +120,7 @@ class Transfer extends Component {
     const transferTo = this.state.transferTo;
     const transferAmount = parseFloat(this.state.transferAmount.replace(/,/g, ""));
     const balance = this.props.wallet.mainBalance;
+
     if (parseFloat(transferAmount) <= 0) {
       this.props.enqueueSnackbar(i18n.t("transfer.invalidAmount"), {
         variant: "error",
