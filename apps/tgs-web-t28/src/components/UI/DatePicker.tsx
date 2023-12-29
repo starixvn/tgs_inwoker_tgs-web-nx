@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
-import calendar from "@/assets/t29/images/profile/calendar.svg";
+import calendar from "@/assets/t28/images/profile/calendar.svg";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -115,7 +115,7 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   position: relative;
 
   .MuiInputBase-input {
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.inputBGC};
     color: ${({ theme }) => theme.text};
     padding: 10px 10px;
     text-align: left;
