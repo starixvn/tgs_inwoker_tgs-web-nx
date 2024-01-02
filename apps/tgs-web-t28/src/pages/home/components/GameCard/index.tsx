@@ -9,7 +9,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import playIcon from "@/assets/t28/images/home/play.svg";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
