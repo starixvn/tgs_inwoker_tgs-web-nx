@@ -10,35 +10,38 @@ import iconVip from "@/assets/t27/images/account/navItem/icon-vip.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
-import { MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
 
 const DesktopMenuDrawerContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.g4};
   width: 100%;
   height: 100vh;
-  padding-bottom: 20px;
 `;
 
 const MenuHeaderContainer = styled.div`
   position: relative;
-  height: ${MOBILE_HEADER_HEIGHT};
+  height: ${DESKTOP_HEADER_HEIGHT};
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 19px 0;
+  padding: 0px 20px;
+  gap: 20px;
+  flex-shrink: 0;
 `;
 
 const HeaderContentContainer = styled.div`
   width: 100%;
-  height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
+  height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  padding-bottom: 20px;
+  padding: 20px 10px;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background: ${({ theme }) => theme.g4};
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -63,15 +66,14 @@ const HeaderContentContainer = styled.div`
 `;
 
 const MenuButtonContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+  padding: 10px;
+  background: ${({ theme }) => theme.mainBackground};
 `;
 
 type PromotionCardProps = {
   $isShrink: boolean;
 };
+
 const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
   width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "250px")};
@@ -141,15 +143,14 @@ const DesktopMenuDrawer = () => {
   return (
     <DesktopMenuDrawerContainer>
       <MenuHeaderContainer>
+        <MenuButtonContainer>
+          <MenuButton width={"20px"} height={"20px"} />
+        </MenuButtonContainer>
         <Link to={"/"}>
           <LogoImgContainer>
             <img src={brand && brand.loadingUrl} alt={"logo"} />
           </LogoImgContainer>
         </Link>
-
-        <MenuButtonContainer>
-          <MenuButton width={"18px"} height={"18px"} />
-        </MenuButtonContainer>
       </MenuHeaderContainer>
 
       <HeaderContentContainer>

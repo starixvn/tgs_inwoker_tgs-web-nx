@@ -27,6 +27,7 @@ const HeaderContainer = styled.div`
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
+  box-shadow: 0px 4px 6px 0px rgba(17, 20, 21, 0.50);
 `;
 
 const HeaderWrapper = styled.div`

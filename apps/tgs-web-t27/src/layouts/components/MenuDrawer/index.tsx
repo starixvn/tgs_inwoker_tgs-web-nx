@@ -21,7 +21,7 @@ const MenuDrawer = () => {
     }
 
     if (isLargeDesktopSize) {
-      return isMenuOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
+      return isMenuOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
     }
 
     return MOBILE_DRAWER_WIDTH;

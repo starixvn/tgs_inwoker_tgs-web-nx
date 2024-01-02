@@ -4,6 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import MenuGameTab from "./MenuGameTab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import React from "react";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -31,7 +32,7 @@ const MenuGameTypeList = () => {
   return (
     <TabContainer>
       {gameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType } = gameTypeItem;
+        const { key, iconUrl, text, gameType, iconComponent } = gameTypeItem;
 
         return (
           <MenuGameTab
@@ -40,7 +41,9 @@ const MenuGameTypeList = () => {
             text={isMenuOpen ? text : ""}
             isActive={gameType === activeGameType}
             onClick={() => handleTabClick(gameType)}
-          />
+          >
+            {iconComponent && React.createElement(iconComponent)}
+          </MenuGameTab>
         );
       })}
     </TabContainer>
