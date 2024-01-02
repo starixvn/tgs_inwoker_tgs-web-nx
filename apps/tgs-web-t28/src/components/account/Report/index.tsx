@@ -9,16 +9,14 @@ import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWi
 import ReportBetting from "@/pages/report/components/reports/ReportBetting";
 import ReportWithdraw from "@/pages/report/components/reports/ReportWithdraw";
 import ReportDeposit from "@/pages/report/components/reports/ReportDeposit";
-import ReportRebate from "@/pages/report/components/reports/ReportRebate";
 import Index from "@/pages/report/components/reports/ReportTransfer";
 import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion";
 import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
-import ReportPlatform from "@/pages/report/components/reports/ReportPlatform";
 import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   font-size: 1.25rem;
   font-weight: 700;
 `;
@@ -42,6 +40,7 @@ const Report = () => {
     handleDateRangeChange(dateRangeEnum);
   };
 
+  // eslint-disable-next-line @typescript-eslint/ban-types
   const handleChangeTab = (e: React.ChangeEvent<{}>, newValue: number) => {
     if (selectedType !== newValue) {
       window.scrollTo({ top: 0 });

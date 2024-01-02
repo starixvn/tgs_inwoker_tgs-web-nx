@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t28/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -39,7 +39,7 @@ const PlayerInfoContainer = styled.div`
 const PlayerName = styled.div`
   font-size: 2rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.text};
 `;
 
 const WalletsWrapper = styled.div`
@@ -69,7 +69,7 @@ const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.75rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.text};
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -101,10 +101,13 @@ const RefreshButton = styled(Icon)<RefreshButtonProps>`
 `;
 
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.primary};
-  font-size: 1.625rem;
+  color: ${({ theme }) => theme.lightPurple};
   margin-top: 11px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 31px;
+  letter-spacing: 0em;
+  text-align: left;
 `;
 
 const UserWalletInfo = () => {

@@ -12,7 +12,7 @@ const SupportCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.secBTNBGC};
   color: ${({ theme }) => theme.text};
   font-size: 1rem;
   font-weight: 400;
@@ -33,6 +33,7 @@ const SupportCardContainer = styled.div`
   // }
   ${media.md} {
     width: calc((100% - 16px * (4 - 1)) / 4);
+    background: ${({ theme }) => theme.mainBackground};
   }
 `;
 

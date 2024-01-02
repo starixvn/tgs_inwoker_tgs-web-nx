@@ -7,6 +7,7 @@ import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
 import { UpdatePhoneResDto } from "@tgs-web-nx/types";
+import { Select } from "@mui/material";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
@@ -17,7 +18,8 @@ import {
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
-import { Select } from "@/components/UI/Select";
+// import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -270,6 +272,17 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
                 (config.features.Profile_DisableVerifyPhone &&
                   !config.features.InitPhone_WithoutVerify)
               }
+              sx={{
+                background: theme.inputBGC,
+                border: `1px solid ${theme.gray20}`,
+                ".MuiSelect-icon": {
+                  color: theme.white,
+                },
+                ".MuiOutlinedInput-input": {
+                  WebkitTextFillColor: `${theme.white} !important`,
+                  padding: "12px",
+                },
+              }}
             >
               <option value={AREA_CODE}>{AREA_CODE}</option>
             </Select>

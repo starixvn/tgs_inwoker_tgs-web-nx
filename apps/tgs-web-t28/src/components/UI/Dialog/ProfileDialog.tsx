@@ -36,10 +36,12 @@ const ChildContainer = styled.div`
 `;
 
 const ProfileDialogTitle = styled.div`
-  margin: 0 auto 18px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.blue50};
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${({ theme }) => theme.text};
 `;
 
 type Props = {
@@ -59,6 +61,7 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
         "& .MuiPaper-root": {
           padding: "28px 61px",
           maxWidth: "550px",
+          background:theme.secBTNBGC
         },
         "& .MuiBackdrop-root": {
           backgroundColor: "rgba(0,0,0,0.8)",
@@ -77,8 +80,8 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
           onClick={onClose}
           style={{
             color: theme.text,
-            width: "20px",
-            height: "20px",
+            width: "30px",
+            height: "30px",
           }}
         />
       </CloseIconContainer>

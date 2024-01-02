@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
-import calendar from "@/assets/t29/images/profile/calendar.svg";
+import calendar from "@/assets/t28/images/profile/calendar.svg";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -82,10 +82,7 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  border-bottom: 1px solid ${({ theme }) => theme.gray10};
-
-  //margin-top: 10px;
-
+  border: 1px solid ${({ theme }) => theme.inputBGC};
   .MuiInputBase-input {
     background: none;
     color: ${({ theme }) => theme.text};
@@ -118,7 +115,7 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   position: relative;
 
   .MuiInputBase-input {
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.inputBGC};
     color: ${({ theme }) => theme.text};
     padding: 10px 10px;
     text-align: left;
@@ -133,12 +130,12 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
 
 const Wrapper = styled.div`
   position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 27px;
-    height: 27px;
-    pointer-events: none;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 27px;
+  height: 27px;
+  pointer-events: none;
 
   & > img {
     width: 100%;

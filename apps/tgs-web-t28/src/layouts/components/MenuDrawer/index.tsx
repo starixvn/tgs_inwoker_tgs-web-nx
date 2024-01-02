@@ -29,7 +29,6 @@ const MenuDrawer = () => {
   }, [isXlSize, isLargeDesktopSize, isMenuOpen]);
   return (
     <Drawer
-      container={document.getElementById("test")}
       variant={isLargeDesktopSize ? "persistent" : "temporary"}
       anchor={"left"}
       open={isMenuOpen}

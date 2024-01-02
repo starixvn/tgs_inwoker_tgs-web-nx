@@ -40,7 +40,7 @@ const AccountPage = () => {
 
   return (
     <AccountPageContainer>
-      {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "10px" }} />}
+      {isDesktopSize ? <UserWalletInfo /> : <InfoCard  />}
       <AccountNavigations />
     </AccountPageContainer>
   );

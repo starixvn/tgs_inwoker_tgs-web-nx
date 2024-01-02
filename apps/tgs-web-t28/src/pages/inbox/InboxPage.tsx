@@ -15,6 +15,7 @@ import ComposeForm from "@/pages/inbox/components/form/ComposeForm";
 import InboxList from "@/pages/inbox/components/InboxList";
 import SentList from "@/pages/inbox/components/SentList";
 import InboxCategoryTabs from "@/pages/inbox/components/InboxCategoryTabs";
+import MenuTabs from "@/components/project/MenuTabs";
 
 const InboxContainer = styled.div``;
 
@@ -47,7 +48,7 @@ const MessageCenterPage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
-
+      {isDesktopSize && <MenuTabs />}
       <AccountPaper pageName={i18n.t("wap.main.account.inbox")} iconUrl={iconInbox}>
         <InboxContainer>
           <InboxCategoryTabs

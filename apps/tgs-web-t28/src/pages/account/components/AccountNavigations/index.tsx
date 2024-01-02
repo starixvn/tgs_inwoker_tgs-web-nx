@@ -5,20 +5,22 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
+import NavCard from "./NavCard";
 import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
-import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import NavRowLanguage from "@/pages/account/components/AccountNavigations/NavRowLanguage";
+import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
 
 const AccountNavsContainer = styled.div`
   padding: 12px 14px;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.mainBackground};
   overflow: visible;
 `;
 
 const AccountNavCardsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  overflow: visible;
+  flex-wrap: wrap;
+  gap: 8px;
 `;
 
 const LogoutRegion = styled.div`
@@ -42,6 +44,7 @@ const AccountNavigations = () => {
   const { accountNavItemList } = useGetNavItemList();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
+  const { navItemList, navItemDictionary } = useAccountNavigations();
 
   const handleClickNav = useCallback((navItem: NavItem) => {
     switch (navItem.navType) {
@@ -58,7 +61,14 @@ const AccountNavigations = () => {
     <>
       <AccountNavsContainer>
         <AccountNavCardsContainer>
-          {/* Cards */}
+          {/* mobile Cards */}
+          {navItemList.map((navItem) => {
+            if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
+
+            return <NavCard key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
+          })}
+        </AccountNavCardsContainer>
+        {/* <AccountNavCardsContainer>
           {accountNavItemList.map((navItem) => {
             if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
 
@@ -70,10 +80,10 @@ const AccountNavigations = () => {
 
             return <NavRow key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
           })}
-        </AccountNavCardsContainer>
+        </AccountNavCardsContainer> */}
       </AccountNavsContainer>
 
-      <LogoutRegion onClick={handleLogout}>{i18n.t("web.header.logout")}</LogoutRegion>
+      {/* <LogoutRegion onClick={handleLogout}>{i18n.t("web.header.logout")}</LogoutRegion> */}
     </>
   );
 };

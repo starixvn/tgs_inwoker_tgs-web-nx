@@ -3,16 +3,19 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.secBTNBGC};
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid ${({ theme }) => theme.gray10};
-
+  ${media.sm} {
+    background: ${({ theme }) => theme.white};
+    border-bottom: 1px solid ${({ theme }) => theme.gray10};
+  }
   & .label {
     min-width: 110px;
     margin-right: 8px;
@@ -20,6 +23,9 @@ const AffiliateInfoRowContainer = styled.div`
     font-size: 1.125rem;
     line-height: 1.318rem;
     color: ${({ theme }) => theme.text};
+    ${media.sm} {
+      color: ${({ theme }) => theme.black};
+    }
   }
 
   & .value {
@@ -30,7 +36,10 @@ const AffiliateInfoRowContainer = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-right: 6px;
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.text};
+    ${media.sm} {
+      color: ${({ theme }) => theme.black};
+    }
   }
 
   & .button {
@@ -72,7 +81,7 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         sx={{
           width: "66px",
           color: theme.white,
-          background: theme.secondary,
+          background: theme.primary,
           fontSize: "0.75rem",
         }}
       >

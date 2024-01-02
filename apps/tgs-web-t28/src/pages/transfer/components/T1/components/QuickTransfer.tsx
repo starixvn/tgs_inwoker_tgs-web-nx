@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t29/images/transfer/arrow-right.png";
+import arrowRightIcon from "@/assets/t28/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -18,7 +18,7 @@ const QuickTransferContainer = styled.div`
   flex-wrap: wrap;
 
   & > * {
-    height: 50px;
+    height: 45px;
     max-width: 200px;
   }
 
@@ -30,16 +30,19 @@ const QuickTransferContainer = styled.div`
 const QuickTransferArrow = styled.div`
   flex-shrink: 0;
   display: flex;
-  width: 23px;
-  height: 23px;
+  width: 15px;
+  height: 15px;
   align-self: center;
   margin: 0 10px;
 `;
 
 const AmountWrapper = styled.div`
-  padding: 17px 10px;
+  padding: 10px;
   display: flex;
+  justify-content: center;
   align-items: center;
+  background: ${({ theme }) => theme.inputBGC};
+  border: ${({ theme }) => `1px solid ${theme.inputBGC}`};
 `;
 
 const AmountText = styled.div`
@@ -120,7 +123,7 @@ const QuickTransfer = ({
       </GrayInputWrapper>
 
       <QuickTransferArrow>
-        <img src={ArrowRightPNG} alt="arrow-right" />
+        <img src={arrowRightIcon} alt="arrow-right" />
       </QuickTransferArrow>
 
       <GrayInputWrapper>
@@ -159,22 +162,20 @@ const QuickTransfer = ({
         </Select>
       </GrayInputWrapper>
 
-      <GrayInputWrapper>
-        <AmountWrapper>
-          <AmountText>{i18n.t("common.amount")}</AmountText>
-          <TextField
-            value={transferAmount}
+      {/* <GrayInputWrapper> */}
+      <AmountWrapper>
+        <AmountText>{i18n.t("common.amount")}</AmountText>
+        <div>
+          <CurrencyTextFieldReplacement
+            value={transferAmount || 0}
+            placeholder="0"
             onChange={handleTransferAmountChange}
             autoComplete="off"
             type={"number"}
-            inputProps={{
-              style: {
-                textAlign: "right",
-              },
-            }}
           />
-        </AmountWrapper>
-      </GrayInputWrapper>
+        </div>
+      </AmountWrapper>
+      {/* </GrayInputWrapper> */}
 
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
@@ -182,7 +183,7 @@ const QuickTransfer = ({
         style={{
           color: theme.white,
           background: theme.primary,
-          height: "50px",
+          height: "45px",
           minWidth: "212px",
           padding: "13px",
         }}

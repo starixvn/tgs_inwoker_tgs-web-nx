@@ -102,8 +102,9 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              background: theme.blue10,
-              border: "4px",
+              background: theme.inputBGC,
+              border: `1px solid ${theme.inputBGC}`,
+              borderRadius: "4px",
             }}
           />
         </ColContainer>
