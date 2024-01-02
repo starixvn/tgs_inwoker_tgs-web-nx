@@ -8,6 +8,6 @@ export const DESKTOP_HEADER_HEIGHT = "74px";
 export const MAIN_CONTENT_MAX_WIDTH = "1920px";
 export const SUB_CONTENT_MAX_WIDTH = "1000px";
 
-export const DESKTOP_DRAWER_WIDTH = "250x"; // Loading component used this value
+export const DESKTOP_DRAWER_WIDTH = "250px"; // Loading component used this value
 export const DRAWER_SHRINK_WIDTH = "126px";
 export const TABLET_DRAWER_WIDTH = "250px";
