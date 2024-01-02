@@ -32,7 +32,14 @@ class NameVerify extends BaseProfile {
 
     switch (identityformstatus) {
       case IdentityFormStatusEnum.WaitingVerify:
-        this.setState({ scene: identityformid ? "waiting-verification" : "waiting-submit" });
+        this.setState({
+          scene: identityformid
+            ? "waiting-verification"
+            : //name有值的話代表提交過real name
+            this.state.name
+            ? "approved"
+            : "waiting-submit",
+        });
         break;
       case IdentityFormStatusEnum.Approve:
         this.setState({ scene: "approved" });
