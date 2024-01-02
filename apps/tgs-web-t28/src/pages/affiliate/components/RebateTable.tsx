@@ -36,6 +36,7 @@ const StyledHeadTableCell = styled(TableCell)`
 
 const StyledTableCell = styled(TableCell)`
   padding: 10px 20px;
+  border-bottom: ${({ theme }) => `1px solid ${theme.gray20} !important`};
 `;
 
 type Props = {

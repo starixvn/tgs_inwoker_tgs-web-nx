@@ -3,13 +3,19 @@ import styled from "styled-components";
 import { BrandsSupport } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useContactCS } from "@tgs-web-nx/core/hooks";
+import { useContactCS, useRwd } from "@tgs-web-nx/core/hooks";
 import SupportCard from "@/pages/contactUs/components/SupportCard";
 import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/components/account/Support/IMHandler";
 import HeaderImage from "@/pages/contactUs/components/HeaderImage";
+import { media } from "@/theme/breakpoints";
 
-const SupportContainer = styled.div``;
+const SupportContainer = styled.div`
+  padding: 24px 40px;
+  ${media.md} {
+    background: ${({ theme }) => theme.inputBGC};
+  }
+`;
 
 const CardsContainer = styled.div`
   display: flex;
@@ -22,6 +28,7 @@ const Support = () => {
   const { handleContactCs } = useContactCS();
   const brandsSupportList = general.brandsSupport;
   const [selectedBrandsSupport, setSelectedBrandsSupport] = useState<BrandsSupport | null>(null);
+  const { isMobileSize } = useRwd();
 
   const handleClick = (brandsSupport: BrandsSupport) => {
     if (brandsSupport.type === "Live") {
@@ -45,7 +52,7 @@ const Support = () => {
   return (
     <SupportContainer>
       <CardsContainer>
-        <HeaderImage />
+        {isMobileSize && <HeaderImage />}
 
         {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
