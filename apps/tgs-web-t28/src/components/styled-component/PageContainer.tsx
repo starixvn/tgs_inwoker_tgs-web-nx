@@ -37,7 +37,7 @@ export const TransferPageContainer = styled.div`
 export const DownloadPageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 12px;
-  max-width: calc(961px + 20px * 2);
+  /* max-width: calc(961px + 20px * 2); */
   flex: 1;
   margin: 0 auto;
 

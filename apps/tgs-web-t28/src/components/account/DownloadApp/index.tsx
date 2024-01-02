@@ -1,9 +1,9 @@
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import logoCompatibleImg from "@/assets/t29/images/download/logo_compatible.svg";
 import logoConvenientImg from "@/assets/t29/images/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t29/images/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t29/images/download/logo_secure.svg";
 import downloadGirlImg from "@/assets/t29/images/download/download-girl.png";
-
 import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
 import {
@@ -38,12 +38,15 @@ const infoCardItemList: InfoCardItem[] = [
 ];
 
 const DownloadApp = () => {
+  const { isMobileSize } = useRwd();
+
   return (
     <DownloadAppContainer>
-      <GirlImage>
-        <img src={downloadGirlImg} alt={"download"} />
-      </GirlImage>
-
+      {isMobileSize && (
+        <GirlImage>
+          <img src={downloadGirlImg} alt={"download"} />
+        </GirlImage>
+      )}
       <Paper>
         <IntroductionContainer>
           <span>Introduction</span>
