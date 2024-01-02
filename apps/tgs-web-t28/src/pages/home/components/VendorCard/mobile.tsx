@@ -5,7 +5,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
 
 type Props = {
   bgUrl: string;
@@ -105,10 +105,10 @@ const MobileVendorCard = ({
 
   return (
     <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
-      <VenderNameInfo>
+      {/* <VenderNameInfo>
         <VenderName>{venderName}</VenderName>
         <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
-      </VenderNameInfo>
+      </VenderNameInfo> */}
       <GameIcon $imageUrl={imageUrl}></GameIcon>
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>

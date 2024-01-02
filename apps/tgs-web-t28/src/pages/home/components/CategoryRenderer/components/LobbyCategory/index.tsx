@@ -20,8 +20,7 @@ const Wrapper = styled.div`
   gap: 6px;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding: 15px 0px;
   }
 `;
@@ -41,6 +40,7 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  gap: 16px;
 `;
 
 const CategoryContent = styled.div`
@@ -108,10 +108,11 @@ const LobbyCategory = () => {
 
                 if (gpCode === "BC") return null;
                 return (
-                  <MobileVendorCard
+                  //t28 image與component desktop和mobile可共用
+                  <DesktopVendorCard
                     key={gpCode}
-                    bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                    imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                    bgUrl={`/assets/images/home/desktop/${activeGameTypeKey}/mbg.png`}
+                    imageUrl={`/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
                     venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                     launchGame={() => launchLobbyGame(gpCode)}
                     status={status}

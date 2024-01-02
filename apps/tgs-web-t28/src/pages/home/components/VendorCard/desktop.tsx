@@ -1,11 +1,10 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
+import playIcon from "@/assets/t28/images/home/play.svg";
 
 type Props = {
   bgUrl: string;
@@ -27,35 +26,49 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-size: cover;
 `;
 
-const VendorCardBg = styled.div`
-  width: 248px;
-  height: 315.64px;
+const VendorCardHoverBg = styled.div`
   flex-shrink: 0;
-  position: relative;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.6s ease 0s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  backdrop-filter: blur(3px);
+  border-radius: 10px;
+  display: none;
+  white-space: pre-line;
 `;
 
-const VenderNameInfo = styled.div`
-  width: calc(100% - 115px);
+const VendorCardBg = styled.div`
+  min-width: 121px;
+  width: calc(33.33% - 8px);
   height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+  aspect-ratio: 248 / 315;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.6s ease 0s;
+
+  ${media.sm} {
+    width: 248px;
+    height: 315px;
+    aspect-ratio: 248 / 315;
+    cursor: pointer;
+    &:hover {
+      ${VendorCardHoverBg} {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
+  z-index: 100;
   position: absolute;
-  /* padding-top: 100%; */
-  left: 40%;
-  top: 85%;
+  left: 20%;
+  top: 75%;
   border-radius: 15px;
   display: inline-flex;
   width: 100%;
@@ -64,17 +77,10 @@ const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
-`;
-
-const VenderName = styled(VenderNameInfo)`
-  position: absolute;
-  top: 80%;
-  left: -50%;
-  width: 100%;
-  text-align: center;
-  color: #333;
-  font-size: 1rem;
-  font-weight: 600;
+  ${media.sm} {
+    left: 40%;
+    top: 85%;
+  }
 `;
 
 const MaintenanceBg = styled.div`
@@ -93,28 +99,26 @@ const MaintenanceBg = styled.div`
   }
 `;
 
-const GradientBg = styled.div`
-  position: absolute;
-  width: 100%;
-  /* padding-top: 100%; */
-  left: 0;
-  top: 0;
-  border-radius: 15px;
-`;
-
 const MaintenanceIcon = styled.img`
-  width: 57px;
-  height: 57px;
+  width: 185px;
+  height: 130px;
 `;
 
-const DesktopVendorCard = ({
-  bgUrl,
-  imageUrl,
-  venderName,
-  venderLogoUrl,
-  launchGame,
-  status,
-}: Props) => {
+const GradientOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(180deg, rgba(86, 20, 183, 0) 0%, #5614b7 80.21%);
+`;
+
+const PlayIcon = styled.img`
+  width: 60px;
+  height: 60px;
+`;
+
+const DesktopVendorCard = ({ imageUrl, venderLogoUrl, launchGame, status }: Props) => {
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
@@ -129,22 +133,22 @@ const DesktopVendorCard = ({
     if (venderNameRef.current) {
       resizeText({ container: venderNameRef.current, text: venderNameRef.current });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [venderNameRef.current]);
 
   return (
     <VendorCardBg onClick={launchGameHandler}>
       <GameIcon $imageUrl={imageUrl}></GameIcon>
       {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
-
-      {/* <VenderNameInfo>
-        <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
-        <VenderName ref={venderNameRef}>{venderName}</VenderName>
-      </VenderNameInfo> */}
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>
           <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
         </MaintenanceBg>
       )}
+      <GradientOverlay />
+      <VendorCardHoverBg onClick={launchGameHandler}>
+        <PlayIcon src={playIcon} alt={"play"} />
+      </VendorCardHoverBg>
     </VendorCardBg>
   );
 };

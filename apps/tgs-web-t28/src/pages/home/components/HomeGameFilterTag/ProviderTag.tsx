@@ -1,7 +1,7 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
 
 const Wrapper = styled.div<{
   $isActive: boolean;
