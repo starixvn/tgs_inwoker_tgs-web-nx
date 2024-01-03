@@ -17,7 +17,6 @@ const Wrapper = styled.div<{
   cursor: pointer;
   display: flex;
   align-items: center;
-  //background: ${({ theme, $isActive }) => ($isActive ? theme.gray40 : "transparent")};
   padding: 9.87px 10px;
 `;
 
@@ -30,7 +29,8 @@ const Text = styled.div<{ $isActive: boolean }>`
 const SideNavItem = ({ imageUrl, text, isActive, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
-      <Icon iconUrl={imageUrl} width={"30px"} height={"30px"} style={{ marginRight: "10px" }} />
+      {cloneChildrenWithProps}
+
       <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );

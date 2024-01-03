@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { theme } from "@/theme";
 
 type Props = {
-  imageUrl: string;
   text: string;
   isActive: boolean;
   onClick: () => void;
@@ -22,7 +21,6 @@ const Text = styled.div<{ $isActive: boolean }>`
 `;
 
 const Wrapper = styled.div<{
-  $imageUrl: string;
   $text: string;
   $isActive: boolean;
 }>`
@@ -48,7 +46,7 @@ const Wrapper = styled.div<{
   }
 `;
 
-const MenuGameTab = ({ imageUrl, text, isActive, onClick, children }: Props) => {
+const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleHover = () => {
@@ -75,7 +73,7 @@ const MenuGameTab = ({ imageUrl, text, isActive, onClick, children }: Props) => 
 
 
   return (
-    <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}
+    <Wrapper $isActive={isActive} $text={text} onClick={onClick}
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
     >

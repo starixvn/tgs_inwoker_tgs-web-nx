@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import MenuGameTab from "./MenuGameTab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import React from "react";
+import { useAccountNavigations } from "@/hooks/account/useAccountNavigations";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -22,6 +23,7 @@ type Props = {
 
 const MenuGameTypeList = ({ isShrink }: Props) => {
   const gameTypeList = useGameTypeList();
+
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isMenuOpen } = useHeader();
   const history = useHistory();

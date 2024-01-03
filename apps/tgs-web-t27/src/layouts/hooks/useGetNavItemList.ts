@@ -41,6 +41,7 @@ import downloadActiveImg from "@/assets/t19/images/account/navItemActive/icon-do
 import logoutActiveImg from "@/assets/t19/images/account/navItemActive/icon-logout.svg";
 import contactActiveImg from "@/assets/t19/images/account/navItemActive/icon-contact.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import VipSvg from "@/pages/home/components/TabSvgIcon/Vip";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -52,6 +53,7 @@ export type NavItem = {
   isHide?: boolean;
   router?: string;
   routePath?: string;
+  iconComponent?: React.FC<{ $color: string }>
 } & (
     | {
       navType: "route";
@@ -93,6 +95,7 @@ export function useGetNavItemList() {
           handleChangeGameType(gameTypeItem.gameType);
           history.push(`/main/${gameTypeItem.key}`);
         },
+        iconComponent: gameTypeItem.iconComponent,
       });
     }
 
@@ -100,26 +103,26 @@ export function useGetNavItemList() {
       key: NavCardKey.VIP,
       label: "VIP",
       iconUrl: vipImg,
-      iconActiveUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "vip",
       callback: () => {
         history.push("/vip");
       },
+      iconComponent: VipSvg,
     });
 
-    navItemList.push({
-      key: NavCardKey.PROMOTION,
-      label: i18n.t("common.promotion"),
-      iconUrl: "",
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "promotion-list",
-      callback: () => {
-        history.push("/promotion-list");
-      },
-    });
+    // navItemList.push({
+    //   key: NavCardKey.PROMOTION,
+    //   label: i18n.t("common.promotion"),
+    //   iconUrl: "",
+    //   navType: "action",
+    //   gameType: GameTypeEnum.NONE,
+    //   router: "promotion-list",
+    //   callback: () => {
+    //     history.push("/promotion-list");
+    //   },
+    // });
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps

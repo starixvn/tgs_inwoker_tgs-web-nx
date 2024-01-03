@@ -8,7 +8,7 @@ import promotionIcon from "@/assets/t27/images/account/navItem/icon-promotion.sv
 import downloadIcon from "@/assets/t27/images/account/navItem/icon-download.svg";
 import iconVip from "@/assets/t27/images/account/navItem/icon-vip.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
-import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
+import MenuList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuList";
 import Icon from "@/components/project/Icon";
 import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
@@ -160,7 +160,7 @@ const DesktopMenuDrawer = () => {
           <IconText>{!isShrink && i18n.t("common.promotion")}</IconText>
         </PromotionCard>
 
-        <MenuGameTypeList isShrink={isShrink} />
+        <MenuList isShrink={isShrink} />
 
         {/* <PromotionCard $isShrink={isShrink} onClick={handleClickVip}>
           <Icon className={"vip"} iconUrl={iconVip} width={"31px"} height={"31px"} />
