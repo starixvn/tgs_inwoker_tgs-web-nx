@@ -16,7 +16,11 @@ const TabContainer = styled.div`
   border: 1px solid red;
 `;
 
-const MenuGameTypeList = () => {
+type Props = {
+  isShrink: boolean;
+};
+
+const MenuGameTypeList = ({ isShrink }: Props) => {
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isMenuOpen } = useHeader();

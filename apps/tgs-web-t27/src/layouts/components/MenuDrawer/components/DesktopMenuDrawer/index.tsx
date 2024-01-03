@@ -74,27 +74,23 @@ const MenuButtonContainer = styled.div`
 
 type PromotionCardProps = {
   $isShrink: boolean;
+  // $isActive: boolean;
 };
 
 const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
   width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "260px")};
-  margin: 0 auto 8px;
-  background: ${({ theme }) => theme.g5};
-  /* background: ${({ $isShrink }: PromotionCardProps) =>
-    $isShrink ? theme.g5 : theme.mainLightBackground}; */
+  margin-bottom: 15px;
+  background: ${({ $isShrink }: PromotionCardProps) =>
+    $isShrink ? theme.g5 : "transparent"};
   border-radius: 12px;
-  padding: 12px 30px;
+  padding: 0px 24px;
   display: flex;
   align-items: center;
   justify-content: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "center" : "flex-start")};
-  font-size: 1.375rem;
-  line-height: 1.611rem;
-  font-weight: 700;
+  gap: 10px;
   transition: all 0.2s ease-in-out;
 `;
-
-const DownLoadCard = styled(PromotionCard)``;
 
 const LogoImgContainer = styled.div`
   max-width: 100px;
@@ -110,7 +106,8 @@ const LogoImgContainer = styled.div`
 `;
 
 const IconText = styled.div`
-  margin-left: 10px;
+  font-size: 15.6px;
+  font-weight: 700;
   color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.white)};
 `;
 
@@ -159,10 +156,11 @@ const DesktopMenuDrawer = () => {
 
       <HeaderContentContainer>
         <PromotionCard $isShrink={isShrink} onClick={handleClickPromotion}>
-          <Icon className={"promotion"} iconUrl={promotionIcon} width={"31px"} height={"31px"} />
+          <Icon className={"promotion"} iconUrl={promotionIcon} width={"50px"} height={"50px"} />
           <IconText>{!isShrink && i18n.t("common.promotion")}</IconText>
         </PromotionCard>
-        <MenuGameTypeList />
+
+        <MenuGameTypeList isShrink={isShrink} />
 
         {/* <PromotionCard $isShrink={isShrink} onClick={handleClickVip}>
           <Icon className={"vip"} iconUrl={iconVip} width={"31px"} height={"31px"} />

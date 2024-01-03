@@ -24,6 +24,8 @@ const MobileMenuDrawerContainer = styled.div`
   width: 100%;
   height: 100vh;
   overflow-y: auto;
+
+  border: 1px solid red;
 `;
 
 const ContentWrapper = styled.div`

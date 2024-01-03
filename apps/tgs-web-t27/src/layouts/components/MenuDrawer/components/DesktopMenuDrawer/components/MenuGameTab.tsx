@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import Icon from "@/components/project/Icon";
-import React from "react";
+import React, { useState } from "react";
 import { theme } from "@/theme";
 
 type Props = {
@@ -13,7 +12,14 @@ type Props = {
 
 type IconComponentProps = {
   $color: string;
+  isHovered: boolean;
 };
+
+const Text = styled.div<{ $isActive: boolean }>`
+  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)};
+  font-size: 15.6px;
+  font-weight: 400;
+`;
 
 const Wrapper = styled.div<{
   $imageUrl: string;
@@ -27,6 +33,7 @@ const Wrapper = styled.div<{
     $isActive
       ? theme.g7
       : theme.mainBackground};
+
   align-self: stretch;
   padding: 0px 24px;
   height: 44.74px;
@@ -35,44 +42,44 @@ const Wrapper = styled.div<{
 
   &:hover {
     background: ${({ theme }) => theme.g7};
-  }
-`;
-
-const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)};
-  font-size: 15.6px;
-  font-weight: 400;
-
-  &:hover {
-    color: ${({ theme }) => theme.white};
-  }
-`;
-
-const IconComponent = styled.div<IconComponentProps>`
-  color: ${({ $color }) => $color};
-  transition: color 0.3s;
-  cursor: pointer;
-
-  &:hover {
-    color: ${({ theme }) => theme.primary};
+    ${Text} {
+      color: ${({ theme }) => theme.white};
+    }
   }
 `;
 
 const MenuGameTab = ({ imageUrl, text, isActive, onClick, children }: Props) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleHover = () => {
+    setIsHovered(true);
+  };
+
+  const handleLeave = () => {
+    setIsHovered(false);
+  };
+
   const cloneChildrenWithProps = React.Children.map(children, (child) => {
-    if (React.isValidElement(child)) {
-      if (typeof child.type === 'function') {
-        const IconComponent = child.type as React.ComponentType<IconComponentProps>;
-        return <IconComponent $color={isActive ? theme.primary : theme.g2} />;
-      }
+    if (React.isValidElement(child) && typeof child.type === 'function') {
+      const IconComponent = child.type as React.ComponentType<IconComponentProps>;
+
+      return (
+        <IconComponent
+          $color={(isActive || isHovered) ? theme.white : (isActive ? theme.primary : theme.g2)}
+          isHovered={isHovered}
+        />
+      );
     }
     return child;
   });
 
+
   return (
-    <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
+    <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}
+      onMouseEnter={handleHover}
+      onMouseLeave={handleLeave}
+    >
       {cloneChildrenWithProps}
-      <IconComponent $color={isActive ? theme.primary : theme.g2} />
       <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );
