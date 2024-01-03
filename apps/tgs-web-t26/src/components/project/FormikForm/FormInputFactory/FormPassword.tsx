@@ -29,6 +29,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   return (
     <GrayInputWrapper key={name}>
       <TextField
+        key={name}
         type={inputType}
         placeholder={label}
         variant={"outlined"}

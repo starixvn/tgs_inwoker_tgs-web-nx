@@ -16,7 +16,7 @@ export const RememberMeContainer = styled.div`
   //margin: 8px 0;
 `;
 export const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.secondary};
   font-size: 0.875rem;
   font-weight: 400;
   white-space: nowrap;
@@ -34,7 +34,7 @@ export const RedirectContainer = styled.div`
   justify-content: center;
 
   .link {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.secondary};
     margin-left: 8px;
     cursor: pointer;
     font-weight: 700;

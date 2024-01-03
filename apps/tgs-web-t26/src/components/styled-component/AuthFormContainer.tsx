@@ -33,11 +33,7 @@ export const LoginTitle = styled.div`
   line-height: 55px;
   letter-spacing: 0em;
   text-align: center;
-  margin-bottom: 50px;
-  color: ${({ theme }) => theme.primary};
-`;
-
-export const FormContainerWithBG = styled.div`
-  height: 100%;
-  background: url(${BG}) no-repeat center center;
+  margin-bottom: 24px;
+  white-space: normal;
+  color: ${({ theme }) => theme.text};
 `;

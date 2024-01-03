@@ -19,10 +19,15 @@ const ButtonContainer = styled.div`
   flex-shrink: 0;
   & > button {
     height: 40px;
-    font-size: 0.75rem;
-    border-radius: 50px;
-    padding: 8px;
-    background: ${({ theme }) => theme.secondary};
+    border-radius: 10px;
+    padding: 0 8px;
+    background: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.black};
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
   }
 `;
 

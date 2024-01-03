@@ -17,18 +17,13 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
-      ) : (
-        <LoginTitle>{`${i18n.t("common.register")}`.toUpperCase()}</LoginTitle>
-      )}
-
+      <LoginTitle>{`${i18n.t("common.register")}`.toUpperCase()}</LoginTitle>
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>
 
       <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      {/* <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} /> */}
     </AuthFormContainer>
   );
 };
