@@ -11,7 +11,9 @@ const TabContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5px;
+  gap: 2px;
+  padding: 15px 0px;
+  border: 1px solid red;
 `;
 
 const MenuGameTypeList = () => {

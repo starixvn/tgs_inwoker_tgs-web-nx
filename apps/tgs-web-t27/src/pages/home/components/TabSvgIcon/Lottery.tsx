@@ -5,7 +5,7 @@ type LotteryProps = {
 const Lottery = ({ $color }: LotteryProps) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-      <mask id="mask0_36_302" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
+      <mask id="mask0_36_302" style={{ maskType: 'luminance' }} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
         <path d="M24 0.330566H0V24.3306H24V0.330566Z" fill="white" />
       </mask>
       <g mask="url(#mask0_36_302)">
