@@ -23,7 +23,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  /* background: ${({ theme }) => theme.white}; */
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -43,23 +43,35 @@ const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
 `;
 
 const ContentGroup = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
+  gap: 5px;
 `;
 
-const BlueHeaderRowContainer = styled.div`
-  background: #3158ff;
-  background-size: cover;
-  height: 40px;
+const BlackHeaderRowContainer = styled.div`
+  background: #1c1e22;
+  height: 60px;
+  padding: 10px 12px;
+  ${media.sm} {
+    height: 108px;
+    padding: 0 50px;
+  }
 `;
 
 const WhiteHeaderRowContainer = styled.div`
   margin: auto;
-  height: 65px;
+  height: 45px;
+`;
+
+const SystemInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
 `;
 
 const DesktopHeader = () => {
@@ -70,20 +82,26 @@ const DesktopHeader = () => {
 
   return (
     <HeaderContainer>
-      <BlueHeaderRowContainer>
+      <BlackHeaderRowContainer>
         <ContentWrapper>
           <ContentGroup>
-            {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
+            <Link to={""}>
+              <BrandLogo onClick={() => handleChangeGameType(GameTypeEnum.NONE)} />
+            </Link>
           </ContentGroup>
-
           <ContentGroup>
+            {isDesktopSize && (
+              <SystemInfo>
+                <SystemTime />
+                <OnlineUser color={theme.white} />
+              </SystemInfo>
+            )}
             {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
           </ContentGroup>
         </ContentWrapper>
-      </BlueHeaderRowContainer>
+      </BlackHeaderRowContainer>
 
-      <WhiteHeaderRowContainer>
+      {/* <WhiteHeaderRowContainer>
         <ContentWrapper>
           <Link to={""}>
             <BrandLogo
@@ -94,7 +112,7 @@ const DesktopHeader = () => {
 
           {isDesktopSize && <HeaderGameTypes />}
         </ContentWrapper>
-      </WhiteHeaderRowContainer>
+      </WhiteHeaderRowContainer> */}
     </HeaderContainer>
   );
 };
