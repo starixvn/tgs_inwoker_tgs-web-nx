@@ -74,6 +74,7 @@ const Header = () => {
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize, isLargeDesktopSize, isExtraLargeDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
+  const isShrink = isDesktopSize && !isMenuOpen;
 
   const { handleChangeGameType } = useHomeGameContext();
 
@@ -82,7 +83,7 @@ const Header = () => {
       <HeaderWrapper>
         <Link to={""}>
           <BrandLogo
-            style={{ height: "28px" }}
+            style={{ height: "28px", marginLeft: "70px" }}
             onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
           />
         </Link>

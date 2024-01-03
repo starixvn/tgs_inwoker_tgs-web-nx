@@ -41,7 +41,11 @@ import downloadActiveImg from "@/assets/t19/images/account/navItemActive/icon-do
 import logoutActiveImg from "@/assets/t19/images/account/navItemActive/icon-logout.svg";
 import contactActiveImg from "@/assets/t19/images/account/navItemActive/icon-contact.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+// update svg icon
 import VipSvg from "@/pages/home/components/TabSvgIcon/Vip";
+import AffiliateSvg from "@/pages/home/components/TabSvgIcon/Affiliate";
+import ContactUsSvg from "@/pages/home/components/TabSvgIcon/ContactUs";
+import HomeSvg from "@/pages/home/components/TabSvgIcon/Home";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -74,6 +78,19 @@ export function useGetNavItemList() {
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
+    navItemList.push({
+      key: NavCardKey.HOME,
+      label: "Home",
+      iconUrl: "",
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "",
+      callback: () => {
+        history.push("/");
+      },
+      iconComponent: HomeSvg,
+    });
+
     for (const gameTypeItem of gameTypeList) {
       if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
 
@@ -101,28 +118,42 @@ export function useGetNavItemList() {
 
     navItemList.push({
       key: NavCardKey.VIP,
-      label: "VIP",
+      label: "Vip",
       iconUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
-      router: "vip",
+      router: "",
       callback: () => {
         history.push("/vip");
       },
       iconComponent: VipSvg,
     });
 
-    // navItemList.push({
-    //   key: NavCardKey.PROMOTION,
-    //   label: i18n.t("common.promotion"),
-    //   iconUrl: "",
-    //   navType: "action",
-    //   gameType: GameTypeEnum.NONE,
-    //   router: "promotion-list",
-    //   callback: () => {
-    //     history.push("/promotion-list");
-    //   },
-    // });
+    navItemList.push({
+      key: NavCardKey.AFFILIATE,
+      label: i18n.t("wap.main.account.affiliate"),
+      iconUrl: affiliateImg,
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "",
+      callback: () => {
+        history.push("/affiliate");
+      },
+      iconComponent: AffiliateSvg,
+    });
+
+    navItemList.push({
+      key: NavCardKey.CONTACT_US,
+      label: i18n.t("common.contact"),
+      iconUrl: contactImg,
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "",
+      callback: () => {
+        history.push("/support");
+      },
+      iconComponent: ContactUsSvg,
+    });
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps

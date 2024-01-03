@@ -1,42 +1,38 @@
 import styled from "styled-components";
 import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory } from "react-router-dom";
 import MenuGameTab from "./MenuGameTab";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
-import React from "react";
-import { useAccountNavigations } from "@/hooks/account/useAccountNavigations";
+import React, { useState } from "react";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
-const TabContainer = styled.div`
-  width: 100%;
+const TabContainer = styled.div<{
+  $isShrink: boolean;
+}>`
+  width:100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
   padding: 15px 0px;
-  border: 1px solid red;
 `;
 
-type Props = {
-  isShrink: boolean;
-};
-
-const MenuList = ({ isShrink }: Props) => {
+const MenuList = () => {
   const { sideNavItemList } = useGetNavItemList();
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { activeGameType } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const history = useHistory();
+  const [isSelected, setIsSelected] = useState();
+  const { isDesktopSize } = useRwd();
+  const isShrink = isDesktopSize && !isMenuOpen;
 
   const handleTabClick = (navItem: NavItem) => {
+    setIsSelected(navItem.label);
     if (navItem.navType !== "action") return;
     navItem.callback();
     handleToggleMenu(false);
   };
 
-
   return (
-    <TabContainer>
+    <TabContainer $isShrink={isShrink}>
       {sideNavItemList.map((navItem) => {
         const { key, iconComponent, label, gameType } = navItem;
 
@@ -44,7 +40,7 @@ const MenuList = ({ isShrink }: Props) => {
           <MenuGameTab
             key={key}
             text={isMenuOpen ? label : ""}
-            isActive={gameType === activeGameType}
+            isActive={gameType === activeGameType && label === isSelected}
             onClick={() => handleTabClick(navItem)}
           >
             {iconComponent && React.createElement(iconComponent)}

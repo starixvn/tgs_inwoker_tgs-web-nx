@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { theme } from "@/theme";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useHeader } from "@tgs-web-nx/core/features";
 
 type Props = {
   text: string;
@@ -23,34 +25,44 @@ const Text = styled.div<{ $isActive: boolean }>`
 const Wrapper = styled.div<{
   $text: string;
   $isActive: boolean;
+  $isShrink: boolean;
 }>`
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: ${({ $isShrink }) => $isShrink ? "center" : "unset"};
+  height: 44.74px;;
   background: ${({ theme, $isActive }) =>
     $isActive
       ? theme.g7
       : theme.mainBackground};
-
   align-self: stretch;
-  padding: 0px 24px;
-  height: 44.74px;
-  gap: 24px;
-  border: 1px solid red;
+  padding: ${({ $isShrink }) => $isShrink ? "unset" : "0px 24px"};
+  gap:  ${({ $isShrink }) => $isShrink ? "unset" : "24px"};
 
   &:hover {
     background: ${({ theme }) => theme.g7};
     ${Text} {
-      color: ${({ theme }) => theme.white};
+      color: ${({ theme, $isActive }) =>
+    $isActive
+      ? theme.primary
+      : theme.white};
     }
   }
 `;
 
 const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { isDesktopSize } = useRwd();
+  const { isMenuOpen } = useHeader();
+  const isShrink = isDesktopSize && !isMenuOpen;
 
   const handleHover = () => {
-    setIsHovered(true);
+    if (isActive) {
+      return;
+    } else {
+      setIsHovered(true);
+    }
   };
 
   const handleLeave = () => {
@@ -63,7 +75,7 @@ const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
 
       return (
         <IconComponent
-          $color={(isActive || isHovered) ? theme.white : (isActive ? theme.primary : theme.g2)}
+          $color={(!isActive && isHovered) ? theme.white : (isActive ? theme.primary : theme.g2)}
           isHovered={isHovered}
         />
       );
@@ -71,9 +83,8 @@ const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
     return child;
   });
 
-
   return (
-    <Wrapper $isActive={isActive} $text={text} onClick={onClick}
+    <Wrapper $isShrink={isShrink} $isActive={isActive} $text={text} onClick={onClick}
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
     >

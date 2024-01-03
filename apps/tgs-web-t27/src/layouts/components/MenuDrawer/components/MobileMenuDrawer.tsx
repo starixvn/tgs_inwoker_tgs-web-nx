@@ -122,11 +122,11 @@ const MobileMenuDrawer = () => {
       <SideMenuHeader />
 
       <ContentWrapper>
-        {isLogin ? (
+        {/* {isLogin ? (
           <TransferButtonGroup buttonWidth={"140px"} />
         ) : (
           <AnonymousHeaderContent buttonWidth={"140px"} />
-        )}
+        )} */}
 
         <NavsContainer>
           {sideNavItemList.map((navItem) => {
@@ -136,9 +136,9 @@ const MobileMenuDrawer = () => {
           })}
         </NavsContainer>
 
-        <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
+        {/* <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} /> */}
 
-        <Button
+        {/* <Button
           fullWidth
           variant={"contained"}
           onClick={handleClickLogout}
@@ -151,7 +151,7 @@ const MobileMenuDrawer = () => {
           }}
         >
           {i18n.t("web.header.logout")}
-        </Button>
+        </Button> */}
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );

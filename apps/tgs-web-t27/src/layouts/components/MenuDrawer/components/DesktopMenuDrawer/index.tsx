@@ -20,10 +20,12 @@ const DesktopMenuDrawerContainer = styled.div`
   height: 100vh;
 `;
 
-const MenuHeaderContainer = styled.div`
+const MenuHeaderContainer = styled.div<{
+  $isShrink: boolean;
+}>`
   position: relative;
   height: ${DESKTOP_HEADER_HEIGHT};
-  width: 100%;
+  width: ${($isShrink) => ($isShrink ? "260px" : "100%")};
   display: flex;
   align-items: center;
   padding: 0px 20px;
@@ -42,8 +44,6 @@ const HeaderContentContainer = styled.div`
   align-items: flex-start;
   flex-shrink: 0;
   background: ${({ theme }) => theme.g4};
-
-  border: 1px solid red;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -74,26 +74,23 @@ const MenuButtonContainer = styled.div`
 
 type PromotionCardProps = {
   $isShrink: boolean;
-  // $isActive: boolean;
 };
 
 const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
-  width: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "auto" : "260px")};
-  margin-bottom: 15px;
+  width: 100%;
   background: ${({ $isShrink }: PromotionCardProps) =>
     $isShrink ? theme.g5 : "transparent"};
   border-radius: 12px;
-  padding: 0px 24px;
   display: flex;
   align-items: center;
-  justify-content: ${({ $isShrink }: PromotionCardProps) => ($isShrink ? "center" : "flex-start")};
+  justify-content: center;
   gap: 10px;
   transition: all 0.2s ease-in-out;
 `;
 
 const LogoImgContainer = styled.div`
-  max-width: 100px;
+  width: 100%;
   height: 27px;
   justify-self: start;
   padding: 0 10px;
@@ -108,7 +105,6 @@ const LogoImgContainer = styled.div`
 const IconText = styled.div`
   font-size: 15.6px;
   font-weight: 700;
-  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.white)};
 `;
 
 const DesktopMenuDrawer = () => {
@@ -143,7 +139,7 @@ const DesktopMenuDrawer = () => {
 
   return (
     <DesktopMenuDrawerContainer>
-      <MenuHeaderContainer>
+      <MenuHeaderContainer $isShrink={isShrink}>
         <MenuButtonContainer>
           <MenuButton width={"20px"} height={"20px"} />
         </MenuButtonContainer>
@@ -160,7 +156,7 @@ const DesktopMenuDrawer = () => {
           <IconText>{!isShrink && i18n.t("common.promotion")}</IconText>
         </PromotionCard>
 
-        <MenuList isShrink={isShrink} />
+        <MenuList />
 
         {/* <PromotionCard $isShrink={isShrink} onClick={handleClickVip}>
           <Icon className={"vip"} iconUrl={iconVip} width={"31px"} height={"31px"} />
