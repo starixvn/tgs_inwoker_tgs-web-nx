@@ -5,6 +5,9 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useLocation } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { theme } from "@/theme";
+import HomeIcon from "@/assets/t26/images/header/Home.svg";
+import LinkIcon from "@/assets/t26/images/header/Link.svg";
 
 const HeaderGameTypesContainer = styled.div`
   margin-right: auto;
@@ -46,6 +49,7 @@ const GameTypeNav = styled.div<{
   color: ${({ theme }) => theme.text};
   cursor: pointer;
   position: relative;
+  gap: 5px;
   border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
   color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
   &:hover {
@@ -57,16 +61,30 @@ const GameTypeNav = styled.div<{
   }
 `;
 
-const GameTypeGrid = styled.div`
-  align-self: center;
-  height: 18px;
-  display: flex;
-  border: 1px solid #cccccc;
-  margin: 0 5px;
-`;
-
 const Wrapper = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const GameIconWraprer = styled.div`
+  display: flex;
+  align-items: center;
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
+const HomeIconWrapper = styled.div`
+  display: flex;
+  align-self: center;
+  gap: 20px;
+  margin-right: 20px;
+  &img {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const HeaderGameTypeNavs = () => {
@@ -93,20 +111,28 @@ const HeaderGameTypeNavs = () => {
 
   return (
     <HeaderGameTypesContainer>
-      {sideNavItemList && sideNavItemList.map((navItem, index) => {
-        return (
-          <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
-            <GameTypeNav
-              $isActive={navItem.router === currentRoute}
-              onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {navItem.label}
-            </GameTypeNav>
-            {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
-          </Wrapper>
-        );
-      })}
+      <HomeIconWrapper>
+        <img src={HomeIcon} alt="home" />
+        <img src={LinkIcon} alt="link" />
+      </HomeIconWrapper>
+
+      {sideNavItemList &&
+        sideNavItemList.map((navItem, index) => {
+          const { Icon } = navItem;
+
+          return (
+            <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
+              <GameTypeNav
+                $isActive={navItem.router === currentRoute}
+                onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <GameIconWraprer>{Icon && <Icon $color={theme.white} />}</GameIconWraprer>
+                <span>{navItem.label}</span>
+              </GameTypeNav>
+            </Wrapper>
+          );
+        })}
     </HeaderGameTypesContainer>
   );
 };

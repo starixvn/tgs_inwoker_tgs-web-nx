@@ -1,19 +1,30 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
-import cardgame from "@/assets/t29/images/home/gameType/cardGame.svg";
-import egame from "@/assets/t29/images/home/gameType/egame.svg";
-import esports from "@/assets/t29/images/home/gameType/esports.svg";
-import fishing from "@/assets/t29/images/home/gameType/fishing.svg";
-import live from "@/assets/t29/images/home/gameType/liveCasino.svg";
-import lottery from "@/assets/t29/images/home/gameType/lottery.svg";
-import sabong from "@/assets/t29/images/home/gameType/sabong.svg";
-import slot from "@/assets/t29/images/home/gameType/slot.svg";
-import sports from "@/assets/t29/images/home/gameType/sports.svg";
-
+// import cardgame from "@/assets/t29/images/home/gameType/cardGame.svg";
+// import egame from "@/assets/t29/images/home/gameType/egame.svg";
+// import esports from "@/assets/t29/images/home/gameType/esports.svg";
+// import fishing from "@/assets/t29/images/home/gameType/fishing.svg";
+// import live from "@/assets/t29/images/home/gameType/liveCasino.svg";
+// import lottery from "@/assets/t29/images/home/gameType/lottery.svg";
+// import sabong from "@/assets/t29/images/home/gameType/sabong.svg";
+// import slot from "@/assets/t29/images/home/gameType/slot.svg";
+// import sports from "@/assets/t29/images/home/gameType/sports.svg";
+import {
+  SportsIcon,
+  EgameIcon,
+  SlotsIcon,
+  LiveCasinoIcon,
+  SabongIcon,
+  FishIcon,
+  CardGameIcon,
+  LotteryIcon,
+  EsportsIcon,
+} from "@/components/project/GameTypeIcons";
 type GameTypeItem = {
   key: string;
-  iconUrl: string;
+  // iconUrl: string;
+  Icon: any;
   text: string | any;
   fontSize: string;
   gameType: GameTypeEnum;
@@ -26,63 +37,63 @@ export const useGameTypeList = () => {
     const gameTypeList: GameTypeItem[] = [
       {
         key: "sports",
-        iconUrl: sports,
+        Icon: SportsIcon,
         text: i18n.t("common.sports"),
         fontSize: "small",
         gameType: GameTypeEnum.SPORTS,
       },
       {
         key: "slots",
-        iconUrl: slot,
+        Icon: SlotsIcon,
         text: i18n.t("common.slot"),
         fontSize: "small",
         gameType: GameTypeEnum.SLOT,
       },
       {
         key: "liveCasino",
-        iconUrl: live,
+        Icon: LiveCasinoIcon,
         text: i18n.t("common.live"),
         fontSize: "small",
         gameType: GameTypeEnum.LIVELOBBY,
       },
       {
         key: "sabong",
-        iconUrl: sabong,
+        Icon: SabongIcon,
         text: i18n.t("common.cockfight"),
         fontSize: "smaller",
         gameType: GameTypeEnum.COCKFIGHT,
       },
       {
         key: "egame",
-        iconUrl: egame,
+        Icon: EgameIcon,
         text: i18n.t("common.egame"),
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
       },
       {
         key: "fishing",
-        iconUrl: fishing,
+        Icon: FishIcon,
         text: i18n.t("common.fish"),
         fontSize: "smaller",
         gameType: GameTypeEnum.FISH,
       },
       {
         key: "cardGame",
-        iconUrl: cardgame,
+        Icon: CardGameIcon,
         text: i18n.t("common.chess"),
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
       },
       {
         key: "lottery",
-        iconUrl: lottery,
+        Icon: LotteryIcon,
         text: i18n.t("common.lottery"),
         fontSize: "small",
         gameType: GameTypeEnum.LOTTERYLOBBY,
       },
       {
         key: "esports",
-        iconUrl: esports,
+        Icon: EsportsIcon,
         text: i18n.t("common.esports"),
         fontSize: "smaller",
         gameType: GameTypeEnum.ESPORTS,

@@ -34,7 +34,8 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 export type NavItem = {
   key: NavCardKey | string;
   label: string | any;
-  iconUrl: string;
+  Icon: any
+  iconUrl?: string;
   iconActiveUrl?: string;
   iconSecondaryUrl?: string;
   isHide?: boolean;
@@ -73,7 +74,8 @@ export function useGetNavItemList() {
       navItemList.push({
         key: gameTypeItem.key,
         label: gameTypeItem.text as string,
-        iconUrl: gameTypeItem.iconUrl,
+        // iconUrl: gameTypeItem.iconUrl,
+        Icon: gameTypeItem.Icon,
         navType: "action",
         gameType: gameTypeItem.gameType,
         router: gameTypeItem.key as string,
@@ -87,8 +89,9 @@ export function useGetNavItemList() {
     navItemList.push({
       key: NavCardKey.VIP,
       label: "VIP",
-      iconUrl: vipImg,
-      iconActiveUrl: vipImg,
+      Icon: null,
+      // iconUrl: vipImg,
+      // iconActiveUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "vip",
@@ -100,7 +103,8 @@ export function useGetNavItemList() {
     navItemList.push({
       key: NavCardKey.PROMOTION,
       label: i18n.t("common.promotion"),
-      iconUrl: "",
+      Icon: null,
+      // iconUrl: "",
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "promotion-list",

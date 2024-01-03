@@ -62,9 +62,10 @@ const BlackHeaderRowContainer = styled.div`
   }
 `;
 
-const WhiteHeaderRowContainer = styled.div`
+const OrangeHeaderRowContainer = styled.div`
   margin: auto;
   height: 45px;
+  background: ${({ theme }) => theme.primary};
 `;
 
 const SystemInfo = styled.div`
@@ -100,19 +101,13 @@ const DesktopHeader = () => {
           </ContentGroup>
         </ContentWrapper>
       </BlackHeaderRowContainer>
-
-      {/* <WhiteHeaderRowContainer>
-        <ContentWrapper>
-          <Link to={""}>
-            <BrandLogo
-              style={{ height: "27px" }}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-            />
-          </Link>
-
-          {isDesktopSize && <HeaderGameTypes />}
-        </ContentWrapper>
-      </WhiteHeaderRowContainer> */}
+      {isDesktopSize && (
+        <OrangeHeaderRowContainer>
+          <ContentWrapper>
+            <HeaderGameTypes />
+          </ContentWrapper>
+        </OrangeHeaderRowContainer>
+      )}
     </HeaderContainer>
   );
 };
