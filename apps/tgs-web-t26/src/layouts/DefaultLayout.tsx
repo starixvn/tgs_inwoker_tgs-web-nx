@@ -30,6 +30,7 @@ const DashboardContainer = styled.div`
     margin-top: ${DESKTOP_HEADER_HEIGHT};
     min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
     margin-bottom: unset;
+    height: unset;
   }
 `;
 
@@ -40,10 +41,12 @@ const ContentWrapper = styled.div`
 `;
 
 const ChildrenWrapper = styled.div`
-  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
+  height: 100%;
+  /* padding-bottom: ${BOTTOM_APP_BAR_HEIGHT}; */
 
   ${media.sm} {
     padding-bottom: 0;
+    height: unset;
   }
 `;
 

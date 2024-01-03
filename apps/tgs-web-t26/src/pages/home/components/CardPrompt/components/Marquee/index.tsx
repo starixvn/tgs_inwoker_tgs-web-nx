@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
-import notification from "@/assets/t29/images/home/notification.svg";
+// import notification from "@/assets/t29/images/home/notification.svg";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import notification from "@/assets/t26/images/home/notify.svg";
+import notificationWithMobile from "@/assets/t26/images/home/notifyMobile.svg";
 
 const Container = styled.div`
   display: flex;
@@ -29,10 +32,11 @@ const Marquee = () => {
   } = useUiStore();
 
   const hasData = marquees && marquees.length > 0;
+  const { isDesktopSize } = useRwd();
 
   return (
     <Container>
-      <img src={notification} alt="marquee" />
+      <img src={isDesktopSize ? notification : notificationWithMobile} alt="marquee" />
       {hasData && (
         // Disable TypeScript check for unknown HTML elements
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

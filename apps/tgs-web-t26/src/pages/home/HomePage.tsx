@@ -5,6 +5,9 @@ import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
+import { Button, styled as muiStyled } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import Marquee from "./components/CardPrompt/components/Marquee";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
@@ -14,7 +17,7 @@ import Banner from "@/pages/home/components/Banner";
 import bg from "@/assets/t29/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import notification from "@/assets/t29/images/home/notify.svg";
+import notification from "@/assets/t26/images/home/notify.svg";
 import Jackpot from "@/components/project/Jackpot";
 import useBanner from "@/hooks/home/useBanner";
 
@@ -32,7 +35,7 @@ const MainWrapper = styled.div`
   flex: 1;
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    /* max-width: ${MAIN_CONTENT_MAX_WIDTH}; */
     margin: 0 auto;
     gap: unset;
     height: unset;
@@ -66,7 +69,7 @@ const MainContentWrapper = styled.div`
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
-    background-image: url(${bg});
+    /* background-image: url(${bg}); */
     background-size: unset;
     background-repeat: repeat;
   }
@@ -88,23 +91,42 @@ const MarqueeContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 7px;
   font-size: 0.875rem;
   padding: 10px;
   color: ${({ theme }) => theme.white};
-  background: #000000b2;
+  background: #1c1e22;
+  margin: 46px 0 30px 0;
 `;
 
 const MarqueeContent = styled.div`
   display: flex;
+  width: 100%;
+  align-items: center;
 `;
 
-const MarqueesBackground = styled.div`
-  display: inline;
-  overflow: visible;
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;
+
+const BasicButton = muiStyled(Button)(({ theme }) => ({
+  width: "100%",
+  fontSize: "20px",
+  fontWeight: "700",
+  letterSpacing: "0em",
+  color: theme.palette.text.primary,
+}));
+
+const DepositButton = muiStyled(BasicButton)(({ theme }) => ({
+  background: "linear-gradient(270deg, #BD2D01 -1.87%, #F58200 100%)",
+}));
+
+const WithdrawButton = muiStyled(BasicButton)(({ theme }) => ({
+  background: `linear-gradient(270deg, #936F29 -1.87%, #F2BF5F 100%)`,
+}));
 
 const HomePage = () => {
   const { general } = useGeneralStore();
@@ -150,6 +172,7 @@ const HomePage = () => {
   return (
     <MainWrapper>
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
+      {isMobileSize && <CardPrompt />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
         <BannerWrapper>
@@ -167,45 +190,21 @@ const HomePage = () => {
           {isDesktopSize && !activeGameType && <Banner />}
         </BannerWrapper>
       ) : null}
-
-      {/* if uer did't setting baner, still show marquee and jackpot */}
-      {!hasActiveDesktopBanner() && isDesktopSize && (
-        <MarqueeContainer>
-          <MarqueeContent>
-            <img src={notification} alt="marquee" />
-            {hasData && (
-              // Disable TypeScript check for unknown HTML elements
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              <marquee>
-                {marquees.map((item, index) => {
-                  const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
-      `;
-                  return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
-                })}
-                {/*@ts-ignore*/}
-              </marquee>
-            )}
-
-            <Jackpot
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-              }}
-            />
-          </MarqueeContent>
-        </MarqueeContainer>
+      {isMobileSize && (
+        <ButtonContainer>
+          <DepositButton>{i18n.t("common.deposit")}</DepositButton>
+          <WithdrawButton>{i18n.t("common.withdrawal")}</WithdrawButton>
+        </ButtonContainer>
       )}
-
-      {isMobileSize && <CardPrompt />}
-
       <MainContentWrapper>
+        {isDesktopSize && (
+          <MarqueeContainer>
+            <MarqueeContent>
+              <Marquee />
+            </MarqueeContent>
+          </MarqueeContainer>
+        )}
+        {/* todo: jackpot */}
         <CategoryRenderer />
       </MainContentWrapper>
     </MainWrapper>
