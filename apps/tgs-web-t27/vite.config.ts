@@ -5,8 +5,7 @@ import react from "@vitejs/plugin-react";
 import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
 
 export default defineConfig({
-  cacheDir: "../node_modules/.vite/tgs-web-t19",
-
+  cacheDir: "../../node_modules/.vite/tgs-web-t27",
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),

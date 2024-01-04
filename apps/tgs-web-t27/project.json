@@ -1,7 +1,7 @@
 {
   "name": "tgs-web-t27",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "tgs-web-t27/src",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/tgs-web-t27/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -11,7 +11,7 @@
       ],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/tgs-web-t27"
+        "outputPath": "dist/apps/tgs-web-t27"
       },
       "configurations": {
         "development": {
@@ -61,7 +61,7 @@
       ],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "../coverage/tgs-web-t27"
+        "reportsDirectory": "../../coverage/tgs-web-t27"
       }
     },
     "lint": {
