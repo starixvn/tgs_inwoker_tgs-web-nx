@@ -8,16 +8,11 @@ import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import bg from "@/assets/t29/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
-
-  ${media.sm} {
-    background: url(${bg});
-  }
+  background: ${({ theme }) => theme.mainBackground};
 `;
 
 const DashboardContainer = styled.div`
@@ -61,14 +56,6 @@ const AccountDesktopLayout = ({ children }: Props) => {
       <DashboardContainer>
         <ContentWrapper>
           <ChildrenWrapper>
-            <DarkMemberMenu
-              handleCloseContextMenu={() => {}}
-              style={{
-                width: "200px",
-                flexShrink: 0,
-                minHeight: "800px",
-              }}
-            />
             {children}
           </ChildrenWrapper>
         </ContentWrapper>

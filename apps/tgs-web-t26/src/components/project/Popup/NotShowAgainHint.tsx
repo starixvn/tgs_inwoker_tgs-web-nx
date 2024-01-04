@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "@/theme";
-import IconCheckBox from "@/assets/t23/images/icon_checkbox.svg";
+import IconCheckBox from "@/assets/t26/images/icon_checkbox.svg";
 
 const NotShowAgainHintContainer = styled.div`
   width: fit-content;
@@ -23,7 +23,7 @@ const CheckBox = styled.div<CheckBoxProps>`
   background: ${(props: CheckBoxProps) =>
     props.$isCheck ? `url(${IconCheckBox}) no-repeat center center;` : null};
   margin-right: 10px;
-  border: ${(props) => (props.$isCheck ? "0" : "1px")} solid ${({ theme }) => theme.black};
+  border: ${(props) => (props.$isCheck ? "0" : "1px")} solid ${({ theme }) => theme.white};
   border-radius: 5px;
 `;
 

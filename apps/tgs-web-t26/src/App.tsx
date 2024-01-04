@@ -51,6 +51,7 @@ const App: React.FC = () => {
               <PopupContextProvider>
                 <AuthDialogContextProvider>
                   <UserWalletInfoContextProvider>
+                    {/* todo:fix it */}
                     <HomeGameContextProvider gameTypeList={gameTypeList}>
                       <ScrollToTop />
                       <Switch>
