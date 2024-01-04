@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useAuth, useHeader } from "@tgs-web-nx/core/features";
+import { useAuth, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import Avatar from "@/components/project/Avatar";
 import HomeIcon from "./HomeIcon";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 const SideMenuHeaderContainer = styled.div`
   position: relative;
@@ -14,10 +15,7 @@ const SideMenuHeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding-left: 20px;
-
-  border: 1px solid red;
 `;
 
 const Wrapper = styled.div`
@@ -40,7 +38,7 @@ const CloseIconContainer = styled.div`
 const HomeBtn = styled.div`
   width: 97px;
   display: flex;
-  padding: 11.21px 6.54px 11.7px 6.73px;
+  padding: 10px 14px;
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
@@ -59,12 +57,13 @@ const SideMenuHeader = () => {
   } = useGeneralStore();
   const { isLogin } = useAuth();
   const { handleToggleMenu } = useHeader();
+  const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <SideMenuHeaderContainer>
       <LogoImg src={brand && brand.loadingUrl} />
       <Wrapper>
-        <HomeBtn>
+        <HomeBtn onClick={() => handleChangeGameType(GameTypeEnum.NONE)}>
           <HomeIcon $color={"#fff"} />
           <Text>Home</Text>
         </HomeBtn>

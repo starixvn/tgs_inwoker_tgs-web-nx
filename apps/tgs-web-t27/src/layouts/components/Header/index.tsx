@@ -74,8 +74,6 @@ const Header = () => {
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize, isLargeDesktopSize, isExtraLargeDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
-  const isShrink = isDesktopSize && !isMenuOpen;
-
   const { handleChangeGameType } = useHomeGameContext();
 
   return (

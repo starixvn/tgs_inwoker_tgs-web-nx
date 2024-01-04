@@ -131,11 +131,7 @@ const DesktopMenuDrawer = () => {
     history.push("/promotion-list");
     handleDrawerClose();
   };
-
-  const handleClickDownload = () => {
-    history.push("/appDownload");
-    handleDrawerClose();
-  };
+  ;
 
   return (
     <DesktopMenuDrawerContainer>
