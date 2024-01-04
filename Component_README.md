@@ -18,3 +18,8 @@ Find available components based on development requirement.
 data resource: footerCategoriesList
 
 # Features - ImageCard - Feature
+
+# TabSvgIcon - use svg icon component
+
+1. update gameType svg path below TabSvgIcon
+2. update useGameTypeList for template svg icon path
