@@ -6,7 +6,7 @@ const LogoImgContainer = styled.div`
   height: 48px;
   flex-shrink: 0;
   justify-self: start;
-  padding: 0 10px;
+  /* padding: 0 10px; */
   margin: 0 auto;
 
   & > img {
