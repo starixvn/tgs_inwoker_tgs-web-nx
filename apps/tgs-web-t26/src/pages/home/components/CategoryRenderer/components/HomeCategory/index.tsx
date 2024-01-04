@@ -256,150 +256,148 @@ const HomeCategory = () => {
     return provider.gametypes.includes(GameTypeEnum.LIVELOBBY);
   });
 
-  if (isDesktopSize) {
-    return (
-      <DesktopContainer>
-        {/* todo: jackpot */}
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel imageUrl={live_home} text={i18n.t("common.live")} />
-            <ButtonText
-              size="small"
-              text={i18n.t("common.more")}
-              onClick={() => handleActiveGametype(GameTypeEnum.LIVELOBBY)}
-            />
-          </CategoryTitle>
-          <CategoryContent>
-            {liveCasinoList.slice(0, 4).map((provider) => {
-              const { code: gpCode, status, name } = provider;
+  return (
+    <DesktopContainer>
+      {/* todo: jackpot */}
+      <HomeLobbyCategory>
+        <CategoryTitle>
+          <CategoryLabel imageUrl={live_home} text={i18n.t("common.live")} />
+          <ButtonText
+            size="small"
+            text={i18n.t("common.more")}
+            onClick={() => handleActiveGametype(GameTypeEnum.LIVELOBBY)}
+          />
+        </CategoryTitle>
+        <CategoryContent>
+          {liveCasinoList.slice(0, 4).map((provider) => {
+            const { code: gpCode, status, name } = provider;
 
-              if (gpCode === "BC") return null;
-              return (
-                <LobbyVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/desktop/liveCasino/bg.png`}
-                  imageUrl={`/assets/images/home/desktop/liveCasino/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </CategoryContent>
-        </HomeLobbyCategory>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel imageUrl={game_home} text={"Featured Products"} />
-          </CategoryTitle>
-          <CategoryContent>
-            <GameTypeContainer>
-              <NonLobbyTypeContainer>
-                <GameTypeCard>
-                  <GameTextWrapper>
-                    <GameTypeTitle>{i18n.t("common.chess")}</GameTypeTitle>
-                    <GameButton onClick={() => handleActiveGametype(GameTypeEnum.QIPAILOBBY)}>
-                      Go Play
-                    </GameButton>
-                  </GameTextWrapper>
-                  <img src={cardGameImg} alt="card game" />
-                </GameTypeCard>
-
-                <GameTypeCard>
-                  <GameTextWrapper>
-                    <GameTypeTitle>{i18n.t("common.egame")}</GameTypeTitle>
-                    <GameButton onClick={() => handleActiveGametype(GameTypeEnum.TABLEGAME)}>
-                      Go Play
-                    </GameButton>
-                  </GameTextWrapper>
-                  <img src={eGameImg} alt="egame" />
-                </GameTypeCard>
-              </NonLobbyTypeContainer>
-              <NonLobbyTypeContainer>
-                <GameTypeCard>
-                  <GameTextWrapper>
-                    <GameTypeTitle>{i18n.t("common.fish")}</GameTypeTitle>
-                    <GameButton onClick={() => handleActiveGametype(GameTypeEnum.FISH)}>
-                      Go Play
-                    </GameButton>
-                  </GameTextWrapper>
-                  <img src={fishImg} alt="fish" />
-                </GameTypeCard>
-                <GameTypeCard>
-                  <GameTextWrapper>
-                    <GameTypeTitle>{i18n.t("common.cockfight")}</GameTypeTitle>
-                    <GameButton onClick={() => handleActiveGametype(GameTypeEnum.COCKFIGHT)}>
-                      Go Play
-                    </GameButton>
-                  </GameTextWrapper>
-                  <img src={cockfightImg} alt="cockfight" />
-                </GameTypeCard>
-              </NonLobbyTypeContainer>
-              <SportsCard>
-                <SportsTextWrapper>
-                  <SportsTitle>{i18n.t("common.sports")}</SportsTitle>
-                  <SportsButton onClick={() => handleActiveGametype(GameTypeEnum.SPORTS)}>
+            if (gpCode === "BC") return null;
+            return (
+              <LobbyVendorCard
+                key={gpCode}
+                bgUrl={`/assets/images/home/desktop/liveCasino/bg.png`}
+                imageUrl={`/assets/images/home/desktop/liveCasino/${gpCode}.png`}
+                venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
+                launchGame={() => launchLobbyGame(gpCode)}
+                status={status}
+                venderName={name}
+              />
+            );
+          })}
+        </CategoryContent>
+      </HomeLobbyCategory>
+      <HomeLobbyCategory>
+        <CategoryTitle>
+          <CategoryLabel imageUrl={game_home} text={"Featured Products"} />
+        </CategoryTitle>
+        <CategoryContent>
+          <GameTypeContainer>
+            <NonLobbyTypeContainer>
+              <GameTypeCard>
+                <GameTextWrapper>
+                  <GameTypeTitle>{i18n.t("common.chess")}</GameTypeTitle>
+                  <GameButton onClick={() => handleActiveGametype(GameTypeEnum.QIPAILOBBY)}>
                     Go Play
-                  </SportsButton>
-                </SportsTextWrapper>
-                <img
-                  src={soccerballImg}
-                  alt="ball"
-                  style={{ position: "absolute", bottom: 0, left: "30%" }}
-                />
-                <img src={sportsImg} alt="sports" />
-              </SportsCard>
-            </GameTypeContainer>
-          </CategoryContent>
-        </HomeLobbyCategory>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel imageUrl={slot_home} text={i18n.t("common.slot")} />
-            <ButtonText
-              size="large"
-              text={i18n.t("common.more")}
-              onClick={() => handleActiveGametype(GameTypeEnum.SLOT)}
-            />
-          </CategoryTitle>
-          <SlotCategoryContent>
-            {hotGameList.slice(0, 18).map((gameItem) => {
-              return (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
-                />
-              );
-            })}
-          </SlotCategoryContent>
-        </HomeLobbyCategory>
-        <HomeLobbyCategory>
-          <PromotionContainer>
-            <PromotionContent>
-              {/* todo: 輪播功能 */}
-              {promotionList[0] && <BannerImage promotionData={promotionList[0]} />}
-              <PromotionDetailWrapper>
-                <PromotionTitle>{promotionList[0]?.subSubject}</PromotionTitle>
-                <PromotionButon
-                  onClick={() => {
-                    history.push(`/promotion/${promotionList[0].id}`);
-                  }}
-                >
-                  Details
-                </PromotionButon>
-              </PromotionDetailWrapper>
-            </PromotionContent>
-            <WinnerCard leaderboard={leaderboard} />
-          </PromotionContainer>
-        </HomeLobbyCategory>
-      </DesktopContainer>
-    );
-  }
+                  </GameButton>
+                </GameTextWrapper>
+                <img src={cardGameImg} alt="card game" />
+              </GameTypeCard>
+
+              <GameTypeCard>
+                <GameTextWrapper>
+                  <GameTypeTitle>{i18n.t("common.egame")}</GameTypeTitle>
+                  <GameButton onClick={() => handleActiveGametype(GameTypeEnum.TABLEGAME)}>
+                    Go Play
+                  </GameButton>
+                </GameTextWrapper>
+                <img src={eGameImg} alt="egame" />
+              </GameTypeCard>
+            </NonLobbyTypeContainer>
+            <NonLobbyTypeContainer>
+              <GameTypeCard>
+                <GameTextWrapper>
+                  <GameTypeTitle>{i18n.t("common.fish")}</GameTypeTitle>
+                  <GameButton onClick={() => handleActiveGametype(GameTypeEnum.FISH)}>
+                    Go Play
+                  </GameButton>
+                </GameTextWrapper>
+                <img src={fishImg} alt="fish" />
+              </GameTypeCard>
+              <GameTypeCard>
+                <GameTextWrapper>
+                  <GameTypeTitle>{i18n.t("common.cockfight")}</GameTypeTitle>
+                  <GameButton onClick={() => handleActiveGametype(GameTypeEnum.COCKFIGHT)}>
+                    Go Play
+                  </GameButton>
+                </GameTextWrapper>
+                <img src={cockfightImg} alt="cockfight" />
+              </GameTypeCard>
+            </NonLobbyTypeContainer>
+            <SportsCard>
+              <SportsTextWrapper>
+                <SportsTitle>{i18n.t("common.sports")}</SportsTitle>
+                <SportsButton onClick={() => handleActiveGametype(GameTypeEnum.SPORTS)}>
+                  Go Play
+                </SportsButton>
+              </SportsTextWrapper>
+              <img
+                src={soccerballImg}
+                alt="ball"
+                style={{ position: "absolute", bottom: 0, left: "30%" }}
+              />
+              <img src={sportsImg} alt="sports" />
+            </SportsCard>
+          </GameTypeContainer>
+        </CategoryContent>
+      </HomeLobbyCategory>
+      <HomeLobbyCategory>
+        <CategoryTitle>
+          <CategoryLabel imageUrl={slot_home} text={i18n.t("common.slot")} />
+          <ButtonText
+            size="large"
+            text={i18n.t("common.more")}
+            onClick={() => handleActiveGametype(GameTypeEnum.SLOT)}
+          />
+        </CategoryTitle>
+        <SlotCategoryContent>
+          {hotGameList.slice(0, 18).map((gameItem) => {
+            return (
+              <GameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
+              />
+            );
+          })}
+        </SlotCategoryContent>
+      </HomeLobbyCategory>
+      <HomeLobbyCategory>
+        <PromotionContainer>
+          <PromotionContent>
+            {/* todo: 輪播功能 */}
+            {promotionList[0] && <BannerImage promotionData={promotionList[0]} />}
+            <PromotionDetailWrapper>
+              <PromotionTitle>{promotionList[0]?.subSubject}</PromotionTitle>
+              <PromotionButon
+                onClick={() => {
+                  history.push(`/promotion/${promotionList[0].id}`);
+                }}
+              >
+                Details
+              </PromotionButon>
+            </PromotionDetailWrapper>
+          </PromotionContent>
+          <WinnerCard leaderboard={leaderboard} />
+        </PromotionContainer>
+      </HomeLobbyCategory>
+    </DesktopContainer>
+  );
 };
 
 export default HomeCategory;

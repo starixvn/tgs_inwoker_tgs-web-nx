@@ -1,16 +1,21 @@
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
+
+type IconProps = {
+  $color: string;
+};
 
 type Props = {
-  imageUrl: string;
+  // imageUrl: string;
   text: string;
   fontSize: "small" | "smaller" | string;
   isActive: boolean;
+  Icon: React.FC<IconProps>;
   onClick: () => void;
 };
 
 const Wrapper = styled.div<{
-  $imageUrl: string;
   $text: string;
   $isActive: boolean;
 }>`
@@ -20,42 +25,26 @@ const Wrapper = styled.div<{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 72px;
-  height: 55px;
+  min-width: 77px;
+  height: 68px;
   padding: 4px;
   gap: 6px;
   user-select: none;
   border-radius: 6px;
-  background: ${({ theme }) => theme.blue20};
-
-  ${media.sm} {
-    min-width: 90px;
-    height: 74px;
-    cursor: pointer;
-    & :hover {
-      color: ${({ theme }) => theme.text};
-    }
-  }
-`;
-
-const GameIcon = styled.img`
-  width: 20px;
-  height: 20px;
 `;
 
 const Text = styled.div<{ $fontSize: string }>`
   color: ${({ theme }) => theme.text};
-  font-size: ${({ $fontSize }) => ($fontSize === "small" ? "0.625rem" : "0.5rem")};
-  font-weight: 700;
-  text-transform: uppercase;
-  text-align: center;
-  line-height: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
 `;
 
-const Tab = ({ imageUrl, text, isActive, fontSize, onClick }: Props) => {
+const Tab = ({ text, isActive, fontSize, Icon, onClick }: Props) => {
   return (
-    <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
-      <GameIcon src={imageUrl} alt={text} />
+    <Wrapper $isActive={isActive} $text={text} onClick={onClick}>
+      <Icon $color={theme.white} />
       <Text $fontSize={fontSize}>{text}</Text>
     </Wrapper>
   );

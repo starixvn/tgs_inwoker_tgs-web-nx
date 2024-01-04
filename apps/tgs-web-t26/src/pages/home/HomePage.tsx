@@ -206,6 +206,7 @@ const HomePage = () => {
         )}
         <CategoryRenderer />
       </MainContentWrapper>
+      
     </MainWrapper>
   );
 };

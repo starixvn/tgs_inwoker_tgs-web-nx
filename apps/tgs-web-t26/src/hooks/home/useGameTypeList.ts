@@ -23,7 +23,7 @@ import {
 } from "@/components/project/GameTypeIcons";
 type GameTypeItem = {
   key: string;
-  // iconUrl: string;
+  iconUrl: string;
   Icon: any;
   text: string | any;
   fontSize: string;
@@ -38,6 +38,7 @@ export const useGameTypeList = () => {
       {
         key: "sports",
         Icon: SportsIcon,
+        iconUrl: "",
         text: i18n.t("common.sports"),
         fontSize: "small",
         gameType: GameTypeEnum.SPORTS,
@@ -45,6 +46,7 @@ export const useGameTypeList = () => {
       {
         key: "slots",
         Icon: SlotsIcon,
+        iconUrl: "",
         text: i18n.t("common.slot"),
         fontSize: "small",
         gameType: GameTypeEnum.SLOT,
@@ -52,6 +54,7 @@ export const useGameTypeList = () => {
       {
         key: "liveCasino",
         Icon: LiveCasinoIcon,
+        iconUrl: "",
         text: i18n.t("common.live"),
         fontSize: "small",
         gameType: GameTypeEnum.LIVELOBBY,
@@ -59,6 +62,7 @@ export const useGameTypeList = () => {
       {
         key: "sabong",
         Icon: SabongIcon,
+        iconUrl: "",
         text: i18n.t("common.cockfight"),
         fontSize: "smaller",
         gameType: GameTypeEnum.COCKFIGHT,
@@ -66,6 +70,7 @@ export const useGameTypeList = () => {
       {
         key: "egame",
         Icon: EgameIcon,
+        iconUrl: "",
         text: i18n.t("common.egame"),
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
@@ -73,6 +78,7 @@ export const useGameTypeList = () => {
       {
         key: "fishing",
         Icon: FishIcon,
+        iconUrl: "",
         text: i18n.t("common.fish"),
         fontSize: "smaller",
         gameType: GameTypeEnum.FISH,
@@ -80,6 +86,7 @@ export const useGameTypeList = () => {
       {
         key: "cardGame",
         Icon: CardGameIcon,
+        iconUrl: "",
         text: i18n.t("common.chess"),
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
@@ -87,6 +94,7 @@ export const useGameTypeList = () => {
       {
         key: "lottery",
         Icon: LotteryIcon,
+        iconUrl: "",
         text: i18n.t("common.lottery"),
         fontSize: "small",
         gameType: GameTypeEnum.LOTTERYLOBBY,
@@ -94,6 +102,7 @@ export const useGameTypeList = () => {
       {
         key: "esports",
         Icon: EsportsIcon,
+        iconUrl: "",
         text: i18n.t("common.esports"),
         fontSize: "smaller",
         gameType: GameTypeEnum.ESPORTS,

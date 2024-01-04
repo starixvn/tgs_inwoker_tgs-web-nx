@@ -15,8 +15,9 @@ import searchIcon from "@/assets/t29/images/home/search.svg";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  /* justify-content: center; */
   width: 100%;
   gap: 6px;
 

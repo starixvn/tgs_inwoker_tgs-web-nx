@@ -89,17 +89,16 @@ const MobileVendorCard = ({
   launchGame,
   status,
 }: Props) => {
-
   const launchGameHandler = () => {
     if (status === providerStatus.Maintenance) {
       return;
     }
     launchGame();
-  }
+  };
 
   return (
     <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
-      <VenderNameInfo>
+      {/* <VenderNameInfo>
         <VenderName>{venderName}</VenderName>
         <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
       </VenderNameInfo>
@@ -108,7 +107,7 @@ const MobileVendorCard = ({
         <MaintenanceBg>
           <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
         </MaintenanceBg>
-      )}
+      )} */}
     </VendorCardBg>
   );
 };
