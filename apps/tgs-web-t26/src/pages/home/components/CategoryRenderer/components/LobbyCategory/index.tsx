@@ -13,9 +13,11 @@ import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  /* justify-content: center; */
   width: 100%;
+  height: 100%;
   gap: 6px;
 
   ${media.sm} {
@@ -135,12 +137,15 @@ const LobbyCategory = () => {
               return (
                 <DesktopVendorCard
                   key={gpCode}
-                  bgUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  bgUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+                  imageUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}

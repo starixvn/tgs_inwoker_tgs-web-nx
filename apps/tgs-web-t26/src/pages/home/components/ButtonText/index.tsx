@@ -11,15 +11,17 @@ const StyledButton = styled.button<{ size: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 66px;
-  min-height: 27px;
+  min-width: 100px;
+  min-height: 44px;
   padding: 6px 10px;
   border: none;
-  border-radius: 5px;
-  background: ${(props) => props.theme.primaryLight};
-  color: ${(props) => props.theme.tertiaryMiddle};
-  font-size: ${(props) => (props.size === 'small' ? '0.625rem' : props.size === 'large' ? '1.125rem' : '1rem')};
-  font-weight: ${(props) => (props.size === 'small' ? '700' : props.size === 'large' ? '500' : '600')};
+  border-radius: 10px;
+  background: ${(props) => props.theme.darkGray};
+  color: #828282;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
 
   ${media.sm} {
     cursor: pointer;
@@ -28,10 +30,7 @@ const StyledButton = styled.button<{ size: string }>`
 
 const ButtonText = ({ size, text, onClick }: Props) => {
   return (
-    <StyledButton
-      size={size}
-      onClick={onClick}
-    >
+    <StyledButton size={size} onClick={onClick}>
       {text}
     </StyledButton>
   );

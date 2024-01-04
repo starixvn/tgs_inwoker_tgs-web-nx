@@ -197,16 +197,16 @@ const HomePage = () => {
         </ButtonContainer>
       )}
       <MainContentWrapper>
-        {isDesktopSize && (
+        {isDesktopSize && !activeGameType && (
           <MarqueeContainer>
             <MarqueeContent>
               <Marquee />
             </MarqueeContent>
           </MarqueeContainer>
         )}
-        {/* todo: jackpot */}
         <CategoryRenderer />
       </MainContentWrapper>
+      
     </MainWrapper>
   );
 };

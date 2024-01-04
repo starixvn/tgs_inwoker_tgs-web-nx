@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { FilterTagTypeEnum, GameTypeItem, useHomeGameContext, useProvider } from "@tgs-web-nx/core/features";
+import { FilterTagTypeEnum, useHomeGameContext, useProvider } from "@tgs-web-nx/core/features";
 import { useEffect, useState } from "react";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
@@ -9,19 +9,19 @@ import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import LoadingSvg from "@/components/project/LoadingSvg";
 
 const TabContainer = styled.div`
-  overflow-y: auto;
-  height: 100%;
+  overflow-x: auto;
+  width: 100%;
+  /* height: 100%; */
+  max-height: 88px;
   display: flex;
-  flex-direction: column;
-  width: 72px;
-  max-height: 862px; //826/926
-  overflow-y: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   flex-shrink: 0;
-  gap: 3px;
+  padding: 10px;
+  background: linear-gradient(180deg, #4e4e4e 0%, #2f2f2f 100%);
 
-  ${media.sm} {
+  /* background:; */
+  /* ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
 
     &::-webkit-scrollbar {
@@ -29,7 +29,7 @@ const TabContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
       background: ${(props) => props.theme.tertiaryDark};
     }
 
@@ -41,7 +41,7 @@ const TabContainer = styled.div`
     &::-webkit-scrollbar-track-piece {
       background: transparent;
     }
-  }
+  } */
 `;
 
 const SvgContainer = styled.div`
@@ -53,6 +53,17 @@ const SvgContainer = styled.div`
   width: 72px;
   flex-shrink: 0;
 `;
+
+type GameTypeItem = {
+  key: string;
+  iconUrl?: string;
+  Icon: React.FC;
+  text: string | any;
+  fontSize: string;
+  gameType: GameTypeEnum;
+  bgUrl?: string;
+  iconActiveUrl?: string;
+};
 
 const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
@@ -89,18 +100,21 @@ const GameTypeTab = () => {
     }
   }, [providerList, gameTypeList]);
   if (isLoading || !gameTypeList.length || !providerList.length) {
-    return <SvgContainer><LoadingSvg /></SvgContainer>
+    return (
+      <SvgContainer>
+        <LoadingSvg />
+      </SvgContainer>
+    );
   }
 
   return (
     <TabContainer>
       {filteredGameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
-
+        const { key, Icon, text, gameType, fontSize } = gameTypeItem;
         return (
           <Tab
             key={key}
-            imageUrl={iconUrl}
+            Icon={Icon}
             text={text}
             isActive={gameType === activeGameType}
             fontSize={fontSize}

@@ -81,7 +81,7 @@ const GameCardBg = styled.div`
   border-radius: 10px;
 
   ${media.sm} {
-    width: calc(16.67% - 6px);
+    width: calc(16.67% - 50px);
 
     &:hover {
       ${CardHoverBg} {
@@ -166,7 +166,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       return;
     }
     launchGame();
-  }
+  };
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");

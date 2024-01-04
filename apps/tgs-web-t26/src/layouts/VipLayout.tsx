@@ -12,7 +12,6 @@ import {
   MOBILE_HEADER_HEIGHT,
   SUB_CONTENT_MAX_WIDTH,
 } from "@/theme/constants";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import bg from "@/assets/t29/images/bg.png";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
@@ -79,16 +78,6 @@ const VipLayout = ({ children }: Props) => {
         )}
         <ContentWrapper>
           <ChildrenWrapper>
-            {isDesktopSize && (
-              <DarkMemberMenu
-                handleCloseContextMenu={() => {}}
-                style={{
-                  width: "200px",
-                  flexShrink: 0,
-                  minHeight:"800px"
-                }}
-              />
-            )}
             {children}
           </ChildrenWrapper>
         </ContentWrapper>

@@ -78,7 +78,7 @@ const SystemInfo = styled.div`
 const DesktopHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isLargeDesktopSize, isDesktopSize } = useRwd();
+  const { isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
 
   return (
