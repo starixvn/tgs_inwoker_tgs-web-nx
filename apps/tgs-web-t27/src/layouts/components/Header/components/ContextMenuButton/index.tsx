@@ -51,7 +51,6 @@ const ContextMenuButton = () => {
           },
         }}
       >
-        <WhiteMemberMenu handleCloseContextMenu={() => handleClick(false)} />
       </Drawer>
     </>
   );

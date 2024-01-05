@@ -8,19 +8,24 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Icon from "@/components/project/Icon";
 import iconAccount from "@/assets/t27/images/header/icon-account.svg";
+import iconAccountMobile from "@/assets/t27/images/header/icon-account-mobile.svg";
 import iconDeposit from "@/assets/t27/images/header/icon-deposit.svg";
 import iconPromotion from "@/assets/t27/images/header/icon-promotion.svg";
-import accountBtn from "@/assets/t27/images/header/account-btn.svg";
 import signoutBtn from "@/assets/t27/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { theme } from "@/theme";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import config from "@tgs-web-nx/config";
+import { media } from "@/theme/breakpoints";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+
+  ${media.sm} {
+   gap: 10px;
+  }
 `;
 
 const IconContainer = styled.div`
@@ -56,7 +61,7 @@ const DepositContainer = styled.div`
 `;
 
 const MobileDepositContainer = styled.div`
-  min-width: 110px;
+  min-width: 97px;
   height: 38px;
   display: flex;
   align-items: center;
@@ -66,10 +71,20 @@ const MobileDepositContainer = styled.div`
   border-radius: 4px;
   font-size: 0.85rem;
   font-weight: 700;
-  gap: 10px;
   cursor: pointer;
 `;
 
+const MobileIconContainer = styled.div`
+  cursor: pointer;
+  display: flex;
+  width: 42px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: ${({ theme }) => theme.g4};
+`;
 
 const AccountHeaderContent = () => {
   const history = useHistory();
@@ -96,11 +111,6 @@ const AccountHeaderContent = () => {
     handleChangeGameType(GameTypeEnum.NONE);
     history.push("/promotion-list");
   };
-
-  const handleGotoWithdrawal = useCallback(() => {
-    handleToggleMenu(false);
-    history.push("/withdrawal");
-  }, []);
 
   const handleGotoDeposit = useCallback(() => {
     handleToggleMenu(false);
@@ -152,13 +162,22 @@ const AccountHeaderContent = () => {
           {config.currency} ${currentBalance}
         </BalanceContainer>
         <MobileDepositContainer onClick={handleGotoDeposit}>
+          {i18n.t("common.deposit")}
+        </MobileDepositContainer>
+        <MobileIconContainer onClick={handleGotoPromotion}>
           <Icon
-            iconUrl={iconDeposit}
+            iconUrl={iconPromotion}
             width={"24px"}
             height={"24px"}
           />
-          {i18n.t("common.deposit")}
-        </MobileDepositContainer>
+        </MobileIconContainer>
+        <IconContainer>
+          <Icon
+            iconUrl={iconAccountMobile}
+            width={"24px"}
+            height={"24px"}
+          />
+        </IconContainer>
       </>}
     </ButtonContainer>
   );

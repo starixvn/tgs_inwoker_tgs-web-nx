@@ -94,8 +94,8 @@ const Header = () => {
 
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
-        {/* header最右側那顆 */}
-        {!isLargeDesktopSize && <MenuButton />}
+        {/* header最右側那顆選單按鈕 */}
+        {!isLargeDesktopSize && noLoginAccount && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
   );
