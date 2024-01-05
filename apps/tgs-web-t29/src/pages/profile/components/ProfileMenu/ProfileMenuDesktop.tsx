@@ -7,7 +7,6 @@ import AccountPaper from "@/components/project/AccountPaper";
 
 const ProfileMenuDesktop = () => {
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
-
   return (
     <AccountPaper pageName={i18n.t("deposit.details.account")} iconUrl={iconAccount}>
       <ProfileRowInDesktop
@@ -35,6 +34,11 @@ const ProfileMenuDesktop = () => {
       <ProfileRowInDesktop
         key={profileItemDictionary["wechat"].key}
         profileItem={profileItemDictionary["wechat"]}
+        handleClick={handleClickProfileItem}
+      />
+      <ProfileRowInDesktop
+        key={profileItemDictionary["zalo"].key}
+        profileItem={profileItemDictionary["zalo"]}
         handleClick={handleClickProfileItem}
       />
       <>

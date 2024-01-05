@@ -51,6 +51,11 @@ const ProfileMenuMobile = () => {
           profileItem={profileItemDictionary["wechat"]}
           handleClick={handleClickProfileItem}
         />
+        <ProfileRowInMobile
+          key={profileItemDictionary["zalo"].key}
+          profileItem={profileItemDictionary["zalo"]}
+          handleClick={handleClickProfileItem}
+        />
 
         {customMessagingList.map((messagingItem) => {
           return (
