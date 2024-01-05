@@ -2,7 +2,7 @@ import logoCompatibleImg from "@/assets/t29/images/download/logo_compatible.svg"
 import logoConvenientImg from "@/assets/t29/images/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t29/images/download/logo_extensive.svg";
 import logoSecureImg from "@/assets/t29/images/download/logo_secure.svg";
-import downloadGirlImg from "@/assets/t29/images/download/download-girl.png";
+import downloadGirlImg from "@/assets/t29/images/download/download-girl.jpg";
 
 import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
