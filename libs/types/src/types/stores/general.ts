@@ -5,6 +5,7 @@ export interface GeneralState {
   brand: {
     hasInvitationCode: boolean;
     loadingUrl: string;
+    code: string;
   };
   brandLanguage: BrandLanguage[];
   brandsSupport: BrandsSupport[];
