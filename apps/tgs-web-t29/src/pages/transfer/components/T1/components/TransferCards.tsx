@@ -13,7 +13,6 @@ const TransferContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  justify-content: center;
 `;
 
 const GameTransferWallet = styled.div`
@@ -38,7 +37,7 @@ const GameTransferRighttWrap = styled.div`
 const Logo = styled.img`
   width: 66px;
   height: 34px;
-  object-fit: cover;
+  object-fit: scale-down;
 `;
 const GameName = styled.div`
   font-size: 11px;
