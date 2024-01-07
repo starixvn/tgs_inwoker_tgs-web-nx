@@ -2,17 +2,17 @@ import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 import {
-  BottomNavItem,
   NavTypeEnum,
 } from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
 import depositBg from "@/assets/t27/images/bottomAppBar/icon-deposit-bg.png";
+import { theme } from "@/theme";
 
-const BigBottomNavContainer = styled.div`
+const BigBottomNavContainer = styled.div<{ $isActive: boolean }>`
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({ theme }) => theme.g2};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)};
   padding: 0px 24.859px 11.02px 24.821px;
   cursor: pointer;
   gap:  2.13px;
@@ -29,12 +29,12 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const BottomNavContainer = styled.div`
+const BottomNavContainer = styled.div<{ $isActive: boolean }>`
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({ theme }) => theme.g2};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)};
   padding: 9.969px 8.55px 11.02px 8.56px;
   cursor: pointer;
   gap: 1.446px;
@@ -45,37 +45,40 @@ const NavLabel = styled.h6`
   font-size: 9.6px;
   font-weight: 600;
   white-space: nowrap;
-`;
-
-const ActiveNavLabel = styled.div`
-  color: ${({ theme }) => theme.primary};
-  font-size: 9.6px;
-  font-weight: 600;
+  margin-top: 3px;
 `;
 
 type Props = {
-  bottomNavItem: BottomNavItem;
+  navType: NavTypeEnum;
+  label: string;
   onClick: MouseEventHandler<HTMLDivElement>;
+  children: React.ReactNode;
+  isActive: boolean;
 };
 
-const BottomNav = ({ bottomNavItem, onClick }: Props) => {
-  const { label, iconUrl } = bottomNavItem;
+type IconComponentProps = {
+  $color: string;
+};
 
-  if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
+const BottomNav = ({ isActive, navType, label, onClick, children }: Props) => {
+  const cloneChildrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement(child) && typeof child.type === 'function') {
+      const IconComponent = child.type as React.ComponentType<IconComponentProps>;
+
+      return (
+        <IconComponent
+          $color={!isActive ? theme.white : (isActive ? theme.primary : theme.g2)}
+        />
+      );
+    }
+    return child;
+  });
+
+  if (navType === NavTypeEnum.BIG_ITEM) {
     return (
-      <BigBottomNavContainer onClick={onClick}>
+      <BigBottomNavContainer onClick={onClick} $isActive={isActive}>
         <Wrapper>
-          <Icon
-            iconUrl={iconUrl}
-            width={"35.96px"}
-            height={"35.96px"}
-
-            style={{
-              padding: "7.77px 7.78px 7.77px 7.76px",
-              background: "conic-gradient(from 0deg at 50% 50%, #8853FC 0deg, #6E34E2 360deg)",
-              borderRadius: "17.98px"
-            }}
-          />
+          {cloneChildrenWithProps}
         </Wrapper>
 
         <NavLabel>{label}</NavLabel>
@@ -84,16 +87,8 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
   }
 
   return (
-    <BottomNavContainer onClick={onClick}>
-      <Icon
-        iconUrl={iconUrl}
-        width={"20px"}
-        height={"20px"}
-        style={{
-          marginBottom: "3px",
-        }}
-      />
-
+    <BottomNavContainer onClick={onClick} $isActive={isActive}>
+      {cloneChildrenWithProps}
       <NavLabel>{label}</NavLabel>
     </BottomNavContainer>
   );

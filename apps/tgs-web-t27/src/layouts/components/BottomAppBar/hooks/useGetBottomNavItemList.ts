@@ -3,13 +3,11 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import depositIcon from "@/assets/t27/images/bottomAppBar/icon-deposit.svg";
-import casinoIcon from "@/assets/t27/images/bottomAppBar/icon-liveCasino.svg";
-import sportsIcon from "@/assets/t27/images/bottomAppBar/icon-sports.svg";
-import accountIcon from "@/assets/t27/images/bottomAppBar/icon-account.svg";
-import promotionIcon from "@/assets/t27/images/bottomAppBar/icon-promotion.svg";
 import LiveCasinoSvg from "@/assets/t27/images/bottomAppBar/LiveCasino";
-
+import SportSvg from "@/assets/t27/images/bottomAppBar/Sport";
+import AccountSvg from "@/assets/t27/images/bottomAppBar/Account";
+import DepositSvg from "@/assets/t27/images/bottomAppBar/Deposit";
+import PromotionSvg from "@/assets/t27/images/bottomAppBar/Promotion";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 
 export enum NavTypeEnum {
@@ -22,8 +20,9 @@ export type BottomNavItem = {
   navType: NavTypeEnum;
   key: string;
   label: string | any;
-  iconUrl: string;
+  gameType: GameTypeEnum;
   handleClick: () => void;
+  iconComponent?: React.FC<{ $color: string }>
 };
 
 export function useGetBottomNavItemList() {
@@ -37,20 +36,21 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "account",
         label: i18n.t("deposit.details.account"),
-        iconUrl: accountIcon,
+        gameType: GameTypeEnum.NONE,
         handleClick: () => {
+          handleChangeGameType(GameTypeEnum.NONE);
           history.push("/account");
         },
-        iconComponent: LiveCasinoSvg,
+        iconComponent: AccountSvg,
       },
       {
         navType: NavTypeEnum.ITEM,
         key: "liveCasino",
         label: i18n.t("common.live"),
-        iconUrl: casinoIcon,
+        gameType: GameTypeEnum.LIVELOBBY,
         handleClick: () => {
           handleChangeGameType(GameTypeEnum.LIVELOBBY);
-          // history.push("/main/sports");
+          history.push("/main/liveCasino");
         },
         iconComponent: LiveCasinoSvg,
       },
@@ -58,54 +58,40 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.BIG_ITEM,
         key: "deposit",
         label: i18n.t("deposit.title"),
-        iconUrl: depositIcon,
+        gameType: GameTypeEnum.NONE,
         handleClick: () => {
-          // handleChangeGameType(GameTypeEnum.NONE);
+          handleChangeGameType(GameTypeEnum.NONE);
           history.push("/deposit");
         },
-        iconComponent: LiveCasinoSvg,
+        iconComponent: DepositSvg,
       },
       {
         navType: NavTypeEnum.ITEM,
         key: "sports",
         label: i18n.t("common.sports"),
-        iconUrl: sportsIcon,
+        gameType: GameTypeEnum.SPORTS,
         handleClick: () => {
           handleChangeGameType(GameTypeEnum.SPORTS);
-          // history.push("/main/sports");
+          history.push("/main/sports");
         },
-        iconComponent: LiveCasinoSvg,
+        iconComponent: SportSvg,
       },
       {
         navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: promotionIcon,
+        gameType: GameTypeEnum.NONE,
         handleClick: () => {
+          handleChangeGameType(GameTypeEnum.NONE);
           history.push("/promotion-list");
         },
-        iconComponent: LiveCasinoSvg,
+        iconComponent: PromotionSvg,
       },
     ];
   }, []);
 
-  // const { handleToggleMenu } = useHeader();
-  const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    switch (appBarItem.navType) {
-      // case NavTypeEnum.MENU :
-      //   handleToggleMenu(true);
-      //
-      //   break;
-
-      default:
-        appBarItem.handleClick();
-        break;
-    }
-  };
-
   return {
     bottomNavItemList,
-    handleClickBottomNavItem,
     isTransferDrawerOpen,
     handleTransferDrawerToggle,
   };
