@@ -11,7 +11,7 @@ const BottomAppBarContainer = styled.div`
   top: auto;
   bottom: 0;
   left: 0;
-  background: linear-gradient(180deg, #515151 0%, #313131 13.84%);
+  background:  ${({ theme }) => theme.g4};
   display: flex;
   align-items: flex-end;
   justify-content: space-between;

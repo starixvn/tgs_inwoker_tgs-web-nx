@@ -3,11 +3,13 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import giftIcon from "@/assets/t19/images/bottomAppBar/icon-gift.svg";
-import depositIcon from "@/assets/t19/images/bottomAppBar/icon-deposit.svg";
-import withdrawIcon from "@/assets/t19/images/bottomAppBar/icon-withdraw.svg";
-import accountIcon from "@/assets/t19/images/bottomAppBar/icon-account.svg";
-import homeIcon from "@/assets/t19/images/bottomAppBar/icon-home.svg";
+import depositIcon from "@/assets/t27/images/bottomAppBar/icon-deposit.svg";
+import casinoIcon from "@/assets/t27/images/bottomAppBar/icon-liveCasino.svg";
+import sportsIcon from "@/assets/t27/images/bottomAppBar/icon-sports.svg";
+import accountIcon from "@/assets/t27/images/bottomAppBar/icon-account.svg";
+import promotionIcon from "@/assets/t27/images/bottomAppBar/icon-promotion.svg";
+import LiveCasinoSvg from "@/assets/t27/images/bottomAppBar/LiveCasino";
+
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 
 export enum NavTypeEnum {
@@ -39,43 +41,50 @@ export function useGetBottomNavItemList() {
         handleClick: () => {
           history.push("/account");
         },
+        iconComponent: LiveCasinoSvg,
+      },
+      {
+        navType: NavTypeEnum.ITEM,
+        key: "liveCasino",
+        label: i18n.t("common.live"),
+        iconUrl: casinoIcon,
+        handleClick: () => {
+          handleChangeGameType(GameTypeEnum.LIVELOBBY);
+          // history.push("/main/sports");
+        },
+        iconComponent: LiveCasinoSvg,
+      },
+      {
+        navType: NavTypeEnum.BIG_ITEM,
+        key: "deposit",
+        label: i18n.t("deposit.title"),
+        iconUrl: depositIcon,
+        handleClick: () => {
+          // handleChangeGameType(GameTypeEnum.NONE);
+          history.push("/deposit");
+        },
+        iconComponent: LiveCasinoSvg,
+      },
+      {
+        navType: NavTypeEnum.ITEM,
+        key: "sports",
+        label: i18n.t("common.sports"),
+        iconUrl: sportsIcon,
+        handleClick: () => {
+          handleChangeGameType(GameTypeEnum.SPORTS);
+          // history.push("/main/sports");
+        },
+        iconComponent: LiveCasinoSvg,
       },
       {
         navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: giftIcon,
+        iconUrl: promotionIcon,
         handleClick: () => {
           history.push("/promotion-list");
         },
-      },
-      {
-        navType: NavTypeEnum.BIG_ITEM,
-        key: "home",
-        label: i18n.t("common.home"),
-        iconUrl: homeIcon,
-        handleClick: () => {
-          handleChangeGameType(GameTypeEnum.NONE);
-          history.push("/");
-        },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "deposit",
-        label: i18n.t("deposit.title"),
-        iconUrl: depositIcon,
-        handleClick: () => {
-          history.push("/deposit");
-        },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "withdraw",
-        label: i18n.t("common.withdrawal"),
-        iconUrl: withdrawIcon,
-        handleClick: () => {
-          history.push("/withdrawal");
-        },
+        iconComponent: LiveCasinoSvg,
       },
     ];
   }, []);

@@ -8,13 +8,10 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Icon from "@/components/project/Icon";
 import iconAccount from "@/assets/t27/images/header/icon-account.svg";
-import iconAccountMobile from "@/assets/t27/images/header/icon-account-mobile.svg";
 import iconDeposit from "@/assets/t27/images/header/icon-deposit.svg";
 import iconPromotion from "@/assets/t27/images/header/icon-promotion.svg";
 import signoutBtn from "@/assets/t27/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { theme } from "@/theme";
-import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import config from "@tgs-web-nx/config";
 import { media } from "@/theme/breakpoints";
 
@@ -22,6 +19,7 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-right: 10px;
 
   ${media.sm} {
    gap: 10px;
@@ -164,20 +162,6 @@ const AccountHeaderContent = () => {
         <MobileDepositContainer onClick={handleGotoDeposit}>
           {i18n.t("common.deposit")}
         </MobileDepositContainer>
-        <MobileIconContainer onClick={handleGotoPromotion}>
-          <Icon
-            iconUrl={iconPromotion}
-            width={"24px"}
-            height={"24px"}
-          />
-        </MobileIconContainer>
-        <IconContainer>
-          <Icon
-            iconUrl={iconAccountMobile}
-            width={"24px"}
-            height={"24px"}
-          />
-        </IconContainer>
       </>}
     </ButtonContainer>
   );
