@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT, DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import { media } from "@/theme/breakpoints";
 
@@ -15,8 +15,8 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
-  margin: ${MOBILE_HEADER_HEIGHT} 0 0;
+  height: calc(100vh - ${DIALOG_HEADER_HEIGHT});
+  /* margin: ${DIALOG_HEADER_HEIGHT} 0 0; */
   position: relative;
   z-index: 1;
 

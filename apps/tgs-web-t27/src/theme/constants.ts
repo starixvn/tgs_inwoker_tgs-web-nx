@@ -10,3 +10,6 @@ export const SUB_CONTENT_MAX_WIDTH = "1350px";
 export const DESKTOP_DRAWER_WIDTH = "260px";
 export const DRAWER_SHRINK_WIDTH = "82px";
 export const TABLET_DRAWER_WIDTH = "300px";
+
+// Dialog
+export const DIALOG_HEADER_HEIGHT = "56px";
