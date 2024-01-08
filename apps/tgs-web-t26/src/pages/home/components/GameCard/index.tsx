@@ -8,7 +8,6 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t29/images/home/play.svg";
 import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
 
 // -------- hover effect for desktop--------------
@@ -37,13 +36,12 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 
 const NewTag = styled.div`
   position: absolute;
-  top: 5px;
-  left: 3px;
+  top: 0px;
+  left: 0px;
   width: 43px;
   height: 22px;
   padding: 2px 5px;
-  border-radius: 50px;
-  background: ${(props) => props.theme.red};
+  background: #dc2626;
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
@@ -52,22 +50,22 @@ const NewTag = styled.div`
   font-weight: 400;
 `;
 
-const HotTag = styled.div`
-  position: absolute;
-  bottom: 7px;
-  left: 0;
-  width: 43px;
-  height: 22px;
-  padding: 2px 5px;
-  border-radius: 50px;
-  background: ${(props) => props.theme.green};
-  color: ${(props) => props.theme.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8rem;
-  font-weight: 400;
-`;
+// const HotTag = styled.div`
+//   position: absolute;
+//   bottom: 7px;
+//   left: 0;
+//   width: 43px;
+//   height: 22px;
+//   padding: 2px 5px;
+//   border-radius: 50px;
+//   background: ${(props) => props.theme.green};
+//   color: ${(props) => props.theme.white};
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 0.8rem;
+//   font-weight: 400;
+// `;
 
 const GameCardContent = styled.div`
   width: 100%;
@@ -81,7 +79,7 @@ const GameCardBg = styled.div`
   border-radius: 10px;
 
   ${media.sm} {
-    width: calc(16.67% - 50px);
+    width: calc(16.67% - 30px);
 
     &:hover {
       ${CardHoverBg} {
@@ -95,19 +93,19 @@ const GameCardBg = styled.div`
   }
 `;
 
-const GameName = styled.div`
-  position: absolute;
-  bottom: 0;
-  color: ${(props) => props.theme.white};
-  font-size: 0.875rem;
-  font-weight: 400;
-  text-align: center;
-  margin: 4px 0 12px 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%; //利用最大寬度來限制文字長度
-`;
+// const GameName = styled.div`
+//   position: absolute;
+//   bottom: 0;
+//   color: ${(props) => props.theme.white};
+//   font-size: 0.875rem;
+//   font-weight: 400;
+//   text-align: center;
+//   margin: 4px 0 12px 0;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   max-width: 100%; //利用最大寬度來限制文字長度
+// `;
 
 const MaintenanceBg = styled.div`
   position: absolute;
@@ -139,16 +137,21 @@ type GameCardProps = {
   imageUrl: string;
 };
 
-const HoverGameName = styled(GameCardContent)`
-  color: ${(props) => props.theme.white};
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 16px;
-`;
-
-const PlayIcon = styled.img`
-  width: 65px;
-  height: 65px;
+const PlayButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 36px;
+  padding: 10px 6px;
+  border-radius: 20px;
+  gap: 10px;
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.black};
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0em;
 `;
 
 const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
@@ -199,8 +202,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        {gameItem.tag.new && <NewTag>New</NewTag>}
-        {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+        {gameItem.tag.new && <NewTag>NEW</NewTag>}
+        {/* {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
         {!isActive && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
@@ -218,8 +221,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg onClick={launchGameHandler}>
-          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
-          <PlayIcon src={playIcon} alt={"play"} />
+          <PlayButton>PLAY</PlayButton>
         </CardHoverBg>
       )}
     </GameCardBg>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { media } from "@/theme/breakpoints";
 import { theme } from "@/theme";
 
 type IconProps = {
@@ -7,7 +6,6 @@ type IconProps = {
 };
 
 type Props = {
-  // imageUrl: string;
   text: string;
   fontSize: "small" | "smaller" | string;
   isActive: boolean;
@@ -33,8 +31,8 @@ const Wrapper = styled.div<{
   border-radius: 6px;
 `;
 
-const Text = styled.div<{ $fontSize: string }>`
-  color: ${({ theme }) => theme.text};
+const Text = styled.div<{ $fontSize: string; $isActive: boolean }>`
+  color: ${({ theme, $isActive }) => ($isActive ? theme.secondary : theme.text)};
   font-size: 14px;
   font-weight: 400;
   line-height: 15px;
@@ -44,8 +42,10 @@ const Text = styled.div<{ $fontSize: string }>`
 const Tab = ({ text, isActive, fontSize, Icon, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $text={text} onClick={onClick}>
-      <Icon $color={theme.white} />
-      <Text $fontSize={fontSize}>{text}</Text>
+      <Icon $color={isActive ? theme.secondary : theme.white} />
+      <Text $fontSize={fontSize} $isActive={isActive}>
+        {text}
+      </Text>
     </Wrapper>
   );
 };

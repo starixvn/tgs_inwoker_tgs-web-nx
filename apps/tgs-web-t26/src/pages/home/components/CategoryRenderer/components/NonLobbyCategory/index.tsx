@@ -1,8 +1,14 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTag,
+  useGetLobbyCategoryList,
+  useGetNonLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import ProviderTag from "../../../HomeGameFilterTag/ProviderTag";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
@@ -47,10 +53,54 @@ const FilterSection = styled.div`
 
 const DesktopCategoryContentWrapper = styled.div`
   width: 100%;
-  gap: 10px 6px;
+  display: flex;
+  gap: 20px;
+`;
+
+const ProviderTagContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  max-width: 86px;
+  height: 776px;
+  line-height: 110px;
+  padding: 0px 4px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 4px;
+  border-radius: 12px;
+  background: ${({ theme }) => theme.grayGradient};
+
+  ${media.sm} {
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background: ${(props) => props.theme.mainBackground};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #53535375;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
+  }
+`;
+
+const GameListWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: start;
+  row-gap: 15px;
+  column-gap: 30px;
 `;
 
 const CategoryContent = styled.div`
@@ -89,8 +139,18 @@ const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
-  const { searchString, handleChangeSearch } = useHomeGameContext();
+  const {
+    searchString,
+    handleChangeSearch,
+    providerFilterTagList,
+    activeProviderFilterTag,
+    handleChangeActiveProviderFilterTag,
+  } = useHomeGameContext();
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
 
+  const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
+    handleChangeActiveProviderFilterTag(newFilterTag);
+  };
   return (
     <Wrapper>
       {isMobileSize && (
@@ -132,20 +192,41 @@ const NonLobbyCategory = () => {
         <DesktopWrapper>
           <HomeGameFilterTag />
           <DesktopCategoryContentWrapper>
-            {hasMappingData &&
-              gameList.map((gameItem) => (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
-                />
-              ))}
-            {!hasMappingData && !isLoading && <Text>No data</Text>}
+            <ProviderTagContainer>
+              {providerFilterTagList.map((filterTag) => {
+                const matchedProvider = navPopupCategoryList.find(
+                  (provider) => provider.code === filterTag.gpCode,
+                );
+                const status = matchedProvider ? matchedProvider.status : -1;
+
+                return (
+                  <ProviderTag
+                    key={filterTag.name}
+                    text={filterTag.name}
+                    gpCode={filterTag.gpCode}
+                    isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
+                    onClick={() => onChangeProviderFilterTag(filterTag)}
+                    status={status}
+                  />
+                );
+              })}
+            </ProviderTagContainer>
+            <GameListWrapper>
+              {hasMappingData &&
+                gameList.map((gameItem) => (
+                  <GameCard
+                    key={gameItem.id}
+                    gameItem={gameItem}
+                    isActive={gameItem.isactive}
+                    imageUrl={`${
+                      config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                      gameItem.code
+                    }.jpg`}
+                  />
+                ))}
+              {!hasMappingData && !isLoading && <Text>No data</Text>}
+            </GameListWrapper>
           </DesktopCategoryContentWrapper>
         </DesktopWrapper>
       )}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 
 const MobileContainer = styled.div`
@@ -10,6 +11,8 @@ const MobileContainer = styled.div`
 `;
 
 const MobileHomeCategory = () => {
+  const { providerList } = useHomeGameContext();
+  console.log(providerList)
   return (
     <MobileContainer>
       <GameTypeTab />

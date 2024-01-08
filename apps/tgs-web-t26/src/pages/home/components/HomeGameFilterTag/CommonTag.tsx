@@ -8,10 +8,12 @@ const Wrapper = styled.div<{
   justify-content: center;
   align-items: center;
   max-width: none;
-  height: 100%;
+  height: 36px;
   user-select: none;
-  padding: 4px;
-
+  padding: 10px 24px;
+  gap: 10px;
+  color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.text)};
+  text-transform: capitalize;
   &:hover {
     cursor: pointer;
   }
@@ -28,7 +30,7 @@ type Props = {
 const CommonTag = ({ text, isActive, iconUrl, activedUrl, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} onClick={onClick}>
-      <img src={isActive ? activedUrl : iconUrl} alt={text} />
+      {text}
     </Wrapper>
   );
 };
