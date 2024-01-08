@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeItem, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
@@ -11,8 +11,11 @@ import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import bg from "@/assets/t19/images/home/home_bg.png";
-import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import CardPrompt from "@/pages/home/components/CardPrompt";
+import RegisterSection from "@/pages/home/components/RegisterSection";
+import { i18n } from "@tgs-web-nx/utils";
+import CategorySection from "./components/CategorySection";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -64,7 +67,7 @@ const SlickDotWrapper = styled.div`
   margin-bottom: 30px;
 
   & ul li.slick-active ${SlickDot} {
-    background: #F1C137 !important;
+    background: #45D91E !important;
   }
 `;
 
@@ -152,11 +155,16 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {!!general.banner.length && isMobileSize && (
-        <SliderWrapper>
-          <Slider settings={settings} />
-        </SliderWrapper>
+        <>
+          <CardPrompt />
+          <RegisterSection />
+          <SliderWrapper>
+            <Slider settings={settings} />
+          </SliderWrapper>
+          <CategorySection />
+        </>
+
       )}
       {!!general.banner.length && isDesktopSize && !activeGameType && (
         <SliderWrapper>
@@ -188,11 +196,11 @@ const HomePage = () => {
           <CategoryRenderer />
         </MainContentWrapper>
       )}
-      {isMobileSize && (
+      {/* {isMobileSize && (
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>
-      )}
+      )} */}
     </MainWrapper>
   );
 };

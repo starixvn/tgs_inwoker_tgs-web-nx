@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
-import notification from "@/assets/t19/images/home/notification.svg";
+import notification from "@/assets/t27/images/home/notification.svg";
 
 const Container = styled.div`
   display: flex;
@@ -16,8 +16,8 @@ const Container = styled.div`
   font-size: 0.875rem;
   padding: 4px 10px;
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.black};
-  border-radius: 100px;
+  background: ${({ theme }) => theme.g4};
+  border-radius: 3px;
 `;
 
 const Background = styled.div`

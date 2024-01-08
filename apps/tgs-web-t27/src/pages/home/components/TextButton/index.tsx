@@ -22,15 +22,14 @@ const StyledButton = styled.button<{
   align-items: center;
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
-  padding: 10px 6px;
+  padding: 0px 19.45px;
   border: none;
-  border-radius: 20px;
+  border-radius: 4px;
   background: ${({ $bgColor }) => $bgColor};
   color: ${({ $color }) => $color};
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  font-size: 0.9375rem;
+  font-size: 13.6px;
   line-height: 100%;
-  font-weight: 700;
+  font-weight: 400;
 
   ${media.sm} {
     cursor: pointer;
@@ -44,10 +43,10 @@ const StyledButton = styled.button<{
 const TextButton = ({
   text,
   onClick,
-  width = "76px",
-  height = "36px",
-  bgColor = theme.mainBackground,
-  color = theme.black,
+  width = "100%",
+  height = "46px",
+  bgColor = theme.secondaryGradient,
+  color = theme.white,
 }: Props) => {
   return (
     <StyledButton
