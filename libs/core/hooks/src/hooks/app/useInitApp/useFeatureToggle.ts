@@ -7,9 +7,10 @@ import { isMobileOnly } from "react-device-detect";
 
 export function useFeatureToggle() {
   const [isFeatureToggleFetched, setIsFeatureToggleFetched] = useState(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   function getJsonData(brandName: string) {
-    if (!brandName) return;
+    if (!brandName) return Promise.reject("Brand name is missing");
 
     return axios.get(`https://app12.srvptt.com/config_${brandName}.json`);
   }
@@ -18,38 +19,43 @@ export function useFeatureToggle() {
     const apiUrl = config.baseUrl;
 
     async function fetchFeatureToggle() {
-      const res = (await axios.get(`${apiUrl}brand`)) as GetBrandResDto;
-      const branId = res.data.brandId;
-      const brandName = res.data.code;
-      const getJsonRes = await getJsonData(brandName || "");
-      const jsonData = getJsonRes.data;
+      try {
+        const res = (await axios.get(`${apiUrl}brand`)) as GetBrandResDto;
+        const branId = res.data.brandId;
+        const brandName = res.data.code;
+        const getJsonRes = await getJsonData(brandName || "");
+        const jsonData = getJsonRes.data;
 
-      const newConfig = {
-        ...config,
-        baseUrl: apiUrl,
-        client: branId || "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
-        currency: jsonData.Currency || config.currency || "HKD",
-        brand: brandName,
-        brandName: brandName,
-        sourceUrl: jsonData.SourceUrl || config.sourceUrl || "https://images.srvptt.com/",
-        defaultLanguage: jsonData.DefaultLanguage || config.defaultLanguage || "en-US",
-        affiliateId: jsonData.AffiliateId || config.affiliateId || "",
-        isPC: isMobileOnly ? 1 : 0,
-        features: jsonData,
-        brandTitle: jsonData.BrandTitle || config.brandTitle || "",
-      };
+        const newConfig = {
+          ...config,
+          baseUrl: apiUrl,
+          client: branId || "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
+          currency: jsonData.Currency || config.currency || "HKD",
+          brand: brandName,
+          brandName: brandName,
+          sourceUrl: jsonData.SourceUrl || config.sourceUrl || "https://images.srvptt.com/",
+          defaultLanguage: jsonData.DefaultLanguage || config.defaultLanguage || "en-US",
+          affiliateId: jsonData.AffiliateId || config.affiliateId || "",
+          isPC: isMobileOnly ? 1 : 0,
+          features: jsonData,
+          brandTitle: jsonData.BrandTitle || config.brandTitle || "",
+        };
 
-      config.baseUrl = newConfig.baseUrl;
-      config.currency = newConfig.currency;
-      config.brand = newConfig.brand;
-      config.brandName = newConfig.brandName;
-      config.sourceUrl = newConfig.sourceUrl;
-      config.defaultLanguage = newConfig.defaultLanguage;
-      config.affiliateId = newConfig.affiliateId;
-      config.isPC = newConfig.isPC;
-      config.features = { ...config.features, ...newConfig.features };
-      config.brandTitle = newConfig.brandTitle;
-      setIsFeatureToggleFetched(true);
+        config.baseUrl = newConfig.baseUrl;
+        config.currency = newConfig.currency;
+        config.brand = newConfig.brand;
+        config.brandName = newConfig.brandName;
+        config.sourceUrl = newConfig.sourceUrl;
+        config.defaultLanguage = newConfig.defaultLanguage;
+        config.affiliateId = newConfig.affiliateId;
+        config.isPC = newConfig.isPC;
+        config.features = { ...config.features, ...newConfig.features };
+        config.brandTitle = newConfig.brandTitle;
+        setIsFeatureToggleFetched(true);
+      } catch (error) {
+        console.error("Error fetching feature toggle:", error);
+        setIsError("Error fetching feature toggle");
+      }
     }
 
     fetchFeatureToggle();
@@ -57,5 +63,6 @@ export function useFeatureToggle() {
 
   return {
     isFeatureToggleFetched,
+    isError,
   };
 }
