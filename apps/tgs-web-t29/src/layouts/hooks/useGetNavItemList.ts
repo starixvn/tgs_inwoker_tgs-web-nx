@@ -4,6 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
+import config from "@tgs-web-nx/config";
 import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
@@ -41,21 +42,23 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-  | {
+    | {
       navType: "route";
       routePath: string;
     }
-  | {
+    | {
       navType: "action";
       callback: () => void;
     }
-);
+  );
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
   const { handleChangeGameType } = useHomeGameContext();
   const { providerList } = useHomeGameContext();
   const history = useHistory();
+  const hiddenAddBankBtnBrand = ["MOVN2"];
+  const customizedBrand = hiddenAddBankBtnBrand.includes(config.brand);
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
@@ -84,18 +87,20 @@ export function useGetNavItemList() {
       });
     }
 
-    navItemList.push({
-      key: NavCardKey.VIP,
-      label: "VIP",
-      iconUrl: vipImg,
-      iconActiveUrl: vipImg,
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "vip",
-      callback: () => {
-        history.push("/vip");
-      },
-    });
+    if (!customizedBrand) {
+      navItemList.push({
+        key: NavCardKey.VIP,
+        label: "VIP",
+        iconUrl: vipImg,
+        iconActiveUrl: vipImg,
+        navType: "action",
+        gameType: GameTypeEnum.NONE,
+        router: "vip",
+        callback: () => {
+          history.push("/vip");
+        },
+      });
+    }
 
     navItemList.push({
       key: NavCardKey.PROMOTION,
@@ -114,7 +119,7 @@ export function useGetNavItemList() {
   }, [gameTypeList, providerList]);
 
   const accountNavItemList: NavItem[] = useMemo(() => {
-    return [
+    const navItems = [
       {
         key: NavCardKey.PROFILE,
         label: i18n.t("wap.main.my"),
@@ -188,7 +193,8 @@ export function useGetNavItemList() {
       //   navType: "route",
       //   routePath: "/affiliate",
       // },
-      {
+      !customizedBrand
+      && {
         key: NavCardKey.VIP,
         label: "VIP",
         iconUrl: vipImg,
@@ -220,8 +226,10 @@ export function useGetNavItemList() {
         navType: "action",
         routePath: null,
         callback: () => {},
-      },
-    ] as NavItem[];
+      }
+    ].filter(Boolean) as NavItem[];
+
+    return navItems;
   }, []);
 
   return {
