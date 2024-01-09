@@ -9,7 +9,11 @@ export function useShowAddCardButton(bankCardList: BankCard[]) {
     AddCard_DisableCreateUpdateDelete,
   } = config.features;
 
-  const isShowAddCardButton = bankCardList.length < AddCard_MaximumCardAllowed;
+
+  const hiddenAddBankBtnBrand = ["MOVN2"];
+  const customizedBrand = hiddenAddBankBtnBrand.includes(config.brand);
+
+  const isShowAddCardButton = bankCardList.length < AddCard_MaximumCardAllowed && !customizedBrand;
 
   const isManageCardButtonAvailable = !(
     ChangesNotAllowed ||
