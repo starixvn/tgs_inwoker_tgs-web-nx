@@ -57,6 +57,10 @@ const CardManage = ({
 
     return "";
   };
+
+  const hiddenDeleteBtnBrand = ["MOVN2"];
+  const isCustomizedBrand = hiddenDeleteBtnBrand.includes(config.brand);
+
   return (
     <CardManageContainer>
       {isDesktopSize && (
@@ -82,6 +86,7 @@ const CardManage = ({
                 //@ts-ignore
                 config.features.DisableRemoveCard
               }
+              isCustomizedBrand={isCustomizedBrand}
             />
           );
         })}
