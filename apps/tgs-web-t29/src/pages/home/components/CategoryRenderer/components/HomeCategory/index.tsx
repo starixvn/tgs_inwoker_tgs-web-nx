@@ -3,16 +3,9 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { i18n } from "@tgs-web-nx/utils";
-import { useEffect, useMemo } from "react";
-import bg from "@/assets/t29/images/home/home_bg.png";
-import sport from "@/assets/t29/images/home/home_sport.png";
-import live_casino from "@/assets/t29/images/home/home_live_casino.png";
-import slot from "@/assets/t29/images/home/home_slot.png";
-import lottery from "@/assets/t29/images/home/home_lottery.png";
-import fishing from "@/assets/t29/images/home/home_fishing.png";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import useHomeCategoryList from "@/hooks/home/useHomeCategoryList";
 
 const DesktopContainer = styled.div`
   display: flex;
@@ -72,39 +65,7 @@ const HomeCategory = () => {
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
-
-  const homeCategotyList = useMemo<GameTypeItem[]>(() => {
-    return [
-      {
-        key: "sports",
-        name: "SPORTS",
-        imgUrl: sport,
-        text: i18n.t("common.sports"),
-        gameType: GameTypeEnum.SPORTS,
-      },
-      {
-        key: "liveCasino",
-        name: "LIVE CASINO",
-        imgUrl: live_casino,
-        text: i18n.t("common.live"),
-        gameType: GameTypeEnum.LIVELOBBY,
-      },
-      {
-        key: "slots",
-        name: "SLOTS",
-        imgUrl: slot,
-        text: i18n.t("common.slot"),
-        gameType: GameTypeEnum.SLOT,
-      },
-      {
-        key: "fishing",
-        name: "FISHING",
-        imgUrl: fishing,
-        text: i18n.t("common.fishing"),
-        gameType: GameTypeEnum.FISH,
-      },
-    ];
-  }, []);
+  const homeCategoryList = useHomeCategoryList();
 
   const handleClick = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);
@@ -114,18 +75,17 @@ const HomeCategory = () => {
   if (isDesktopSize) {
     return (
       <DesktopContainer>
-        {homeCategotyList.map((item) => {
+        {homeCategoryList.map((item) => {
           return (
             <CategoryWrapper key={item.key}>
               <CategoryImage
                 $imageUrl={item.imgUrl}
                 onClick={() => handleClick(item)}
               ></CategoryImage>
-              <CategoryName>{item.name}</CategoryName>
+              <CategoryName>{item.text}</CategoryName>
             </CategoryWrapper>
           );
         })}
-        ;
       </DesktopContainer>
     );
   }
