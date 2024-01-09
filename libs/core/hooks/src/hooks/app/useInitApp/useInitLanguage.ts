@@ -8,31 +8,24 @@ const language: string | null = localStorage.getItem("i18nextLng");
 
 export function useInitLanguage(isConfigFetched: boolean) {
   const [isLanguageReady, setIsLanguageReady] = useState(false);
-  const [isLanguageError, setLanguageIsError] = useState(false);
   const { getBrandLanguage } = useGeneralStore();
 
   useEffect(() => {
     if (!isConfigFetched) return;
 
     initI18n();
-
-    setIsLanguageReady(true);
   }, [isConfigFetched]);
 
   const initI18n = async () => {
-    try {
-      const brandLanguageList = await getSupportLanguageList();
-      await setDefaultLanguage(brandLanguageList);
+    const brandLanguageList = await getSupportLanguageList();
+    await setDefaultLanguage(brandLanguageList);
+    updateHtmlTitleDescription();
+
+    setIsLanguageReady(true);
+
+    i18n.on("languageChanged", (lng) => {
       updateHtmlTitleDescription();
-
-      i18n.on("languageChanged", (lng) => {
-        updateHtmlTitleDescription();
-      });
-
-    } catch (error) {
-      console.error("Error initializing language:", error);
-      setLanguageIsError(error as boolean);
-    }
+    });
   };
 
   const getSupportLanguageList = async (): Promise<BrandLanguage[]> => {
@@ -45,7 +38,6 @@ export function useInitLanguage(isConfigFetched: boolean) {
 
   return {
     isLanguageReady,
-    isLanguageError,
   };
 }
 

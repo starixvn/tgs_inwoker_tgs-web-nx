@@ -3,15 +3,11 @@ import { useTokenVerify } from "./useTokenVerify";
 import { useFeatureToggle } from "./useFeatureToggle";
 
 export function useInitApp() {
-  const { isFeatureToggleFetched, isError: featureToggleError } = useFeatureToggle();
-  const { isLanguageReady, isLanguageError } = useInitLanguage(isFeatureToggleFetched);
+  const { isFeatureToggleFetched } = useFeatureToggle();
+  const { isLanguageReady } = useInitLanguage(isFeatureToggleFetched);
   const { isTokenVerified } = useTokenVerify();
 
-  const isReady = isLanguageReady && isFeatureToggleFetched && isTokenVerified;
+  const isReady = isLanguageReady && isTokenVerified && isFeatureToggleFetched;
 
-  return {
-    isReady,
-    featureToggleError,
-    isLanguageError
-  };
+  return { isReady };
 }

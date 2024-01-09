@@ -9,7 +9,6 @@ import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHistory } from "react-router-dom";
 import { theme } from "@/theme";
 
 export const imageMap: { [key in string]: string } = {
@@ -84,7 +83,6 @@ const NameContainer = styled.div`
 const LanguageSwitch = (props: SelectProps) => {
   const { general } = useGeneralStore();
   const languageList = general.brandLanguage;
-  const history = useHistory();
 
   const [currentLanguage, setCurrentLanguage] = useState<BrandLanguage>({
     culturecode: i18n.language,
@@ -98,14 +96,9 @@ const LanguageSwitch = (props: SelectProps) => {
     if (!selectedLanguage) return;
 
     setCurrentLanguage(selectedLanguage);
-    i18n.changeLanguage(selectedLanguage.culturecode)
-      .then(() => {
-        console.log("LanguageSwitch language changed successfully");
-        history.push("/");
-      })
-      .catch((error) => {
-        console.error("LanguageSwitch language change failed:", error);
-      });
+    i18n.changeLanguage(selectedLanguage.culturecode);
+    console.log("LanguageSwitch cause reload");
+    window.location.reload();
   };
 
   const culturecode = currentLanguage?.culturecode || "";

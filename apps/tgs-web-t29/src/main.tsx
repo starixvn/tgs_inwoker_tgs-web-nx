@@ -24,7 +24,7 @@ InterceptorService.setupInterceptors(store);
 window.onload = () => updateHtmlTitleDescription();
 
 const AppWrapper = () => {
-  const { isReady, featureToggleError, isLanguageError } = useInitApp();
+  const { isReady } = useInitApp();
 
   return (
     <NotificationContextProvider>
@@ -35,7 +35,7 @@ const AppWrapper = () => {
           <StyleComponentThemeProvider theme={theme}>
             <GlobalStyles />
             <StyledSnakeBarProvider>
-              {isReady && !featureToggleError && !isLanguageError ? <App /> : <Loading show={true} opacity={1} noShrink={true} />}
+              {isReady ? <App /> : <Loading show={true} opacity={1} noShrink={true} />}
             </StyledSnakeBarProvider>
           </StyleComponentThemeProvider>
         </MuiThemeProvider>
