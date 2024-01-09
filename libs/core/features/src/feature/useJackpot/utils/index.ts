@@ -23,8 +23,7 @@ export function getInitialJackpotAmount() {
 
   const intervalTime = getIntervalTimeInMs();
 
-  const increaseCount = Math.floor(timeDiff / intervalTime);
-
+  const increaseCount = Math.floor(Math.random() * 50) + 1;
   let newJackpotAmount = amount;
   for (let i = 0; i < increaseCount; i++) {
     const newAmount = getNewAmount();
