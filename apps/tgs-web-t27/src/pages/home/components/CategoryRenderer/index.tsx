@@ -8,23 +8,12 @@ import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/L
 import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/components/NonLobbyCategory";
 
 const CategoryRenderer = () => {
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { isDesktopSize } = useRwd();
+  const { activeGameType } = useHomeGameContext();
   const history = useHistory();
 
-  useEffect(() => {
-    if (history.location.pathname === "/") {
-      handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SPORTS);
-    } else {
-      handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SPORTS);
-    }
-  }, [isDesktopSize]);
-
-  if (isDesktopSize) {
-    switch (activeGameType) {
-      case GameTypeEnum.NONE:
-        return <HomeCategory />;
-    }
+  switch (activeGameType) {
+    case GameTypeEnum.NONE:
+      return <HomeCategory />;
   }
 
   switch (activeGameType) {

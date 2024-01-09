@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { GameTypeItem, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
@@ -16,6 +16,8 @@ import CardPrompt from "@/pages/home/components/CardPrompt";
 import RegisterSection from "@/pages/home/components/RegisterSection";
 import { i18n } from "@tgs-web-nx/utils";
 import CategorySection from "./components/CategorySection";
+import SocialMedia from "@/components/project/SocialMedia";
+import VendorLogo from "@/pages/home/components/VendorLogo";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -86,7 +88,8 @@ const MainContentWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   flex-shrink: 0;
   flex: 1;
-  padding: 16px 12px 0px 12px;
+
+  border: 1px solid red;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -110,16 +113,11 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
+  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType, isEnterGamePortal } =
     useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
-  const hasNavData = !!navPopupCategoryList.length;
   const history = useHistory();
   const gameTypeList = useGameTypeList();
-
-  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-
-  const isNonLobby = isNonLobbyList.includes(activeGameType);
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -153,9 +151,12 @@ const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
 
+  console.log("activeGameType", activeGameType)
+
   return (
     <MainWrapper>
-      {!!general.banner.length && isMobileSize && (
+      {/* 首頁但未進入遊戲大廳 */}
+      {!!general.banner.length && isMobileSize && !isEnterGamePortal && (
         <>
           <CardPrompt />
           <RegisterSection />
@@ -163,10 +164,12 @@ const HomePage = () => {
             <Slider settings={settings} />
           </SliderWrapper>
           <CategorySection />
+          <SocialMedia />
+          <VendorLogo />
         </>
-
       )}
-      {!!general.banner.length && isDesktopSize && !activeGameType && (
+
+      {/* {!!general.banner.length && isDesktopSize && !activeGameType && (
         <SliderWrapper>
           <Slider maxHeight={"600px"} settings={settings} />
         </SliderWrapper>
@@ -195,12 +198,18 @@ const HomePage = () => {
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>
-      )}
-      {/* {isMobileSize && (
-        <MainContentWrapper>
-          <CategoryRenderer />
-        </MainContentWrapper>
       )} */}
+
+      {isMobileSize && !!activeGameType && isEnterGamePortal && (
+        <>
+          <SliderWrapper>
+            <Slider settings={settings} />
+          </SliderWrapper>
+          <MainContentWrapper>
+            <CategoryRenderer />
+          </MainContentWrapper>
+        </>
+      )}
     </MainWrapper>
   );
 };

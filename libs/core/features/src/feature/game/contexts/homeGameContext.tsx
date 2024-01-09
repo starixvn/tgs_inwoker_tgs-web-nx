@@ -1,4 +1,4 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import { GameItem, ProviderDto } from "@tgs-web-nx/types";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import config from "@tgs-web-nx/config";
@@ -54,6 +54,8 @@ const initialState: {
   searchString: string;
   handleChangeSearch: (searchString: string) => void;
   isCustomizedBrand: boolean;
+  setIsEnterGamePortal: (isEnterGamePortal: boolean) => void;
+  isEnterGamePortal: boolean;
 } = {
   // provider
   providerList: [],
@@ -85,7 +87,9 @@ const initialState: {
   // search
   searchString: "",
   handleChangeSearch: () => {},
-  isCustomizedBrand: false
+  isCustomizedBrand: false,
+  setIsEnterGamePortal: () => {},
+  isEnterGamePortal: false,
 };
 
 export const HomeGameContext = createContext({
@@ -123,6 +127,8 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
   const customizedBrandList = ["MOVN2"];
   const isCustomizedBrand = customizedBrandList.includes(config.brand);
 
+  const [isEnterGamePortal, setIsEnterGamePortal] = useState<boolean>(false);
+
   return (
     <HomeGameContext.Provider
       value={{
@@ -156,7 +162,9 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         // search
         searchString,
         handleChangeSearch,
-        isCustomizedBrand
+        isCustomizedBrand,
+        setIsEnterGamePortal,
+        isEnterGamePortal
       }}
     >
       {children}

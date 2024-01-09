@@ -5,18 +5,15 @@ import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import React from "react";
 
 const TabContainer = styled.div`
-  overflow-y: auto;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  width: 62px;
-  overflow-y: auto;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  flex-shrink: 0;
-  gap: 8px;
+  padding-left: 12px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -43,8 +40,7 @@ const TabContainer = styled.div`
 
 const GameTypeTab = () => {
   const gameTypeList = useGameTypeList();
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType, handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
@@ -58,7 +54,11 @@ const GameTypeTab = () => {
     handleChangeActiveFilterTag(allTag);
   };
 
-  const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
+  const filteredGameTypeList = gameTypeList.filter((gameTypeItem, index) => {
+    if (index === 0) {
+      return true;
+    } //強制保留Home
+
     if (providerList.length) {
       const hasData = providerList.some((provider) => {
         return provider.gametypes.includes(gameTypeItem.gameType);
@@ -68,21 +68,21 @@ const GameTypeTab = () => {
     return true;
   });
 
-
   return (
     <TabContainer>
       {filteredGameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, activeIconUrl, text, gameType, fontSize } = gameTypeItem;
+        const { key, text, gameType, fontSize, iconComponent } = gameTypeItem;
 
         return (
           <Tab
             key={key}
-            imageUrl={gameType === activeGameType ? activeIconUrl : iconUrl}
             text={text}
             isActive={gameType === activeGameType}
             fontSize={fontSize}
             onClick={() => switchGameType(gameType)}
-          />
+          >
+            {React.createElement(iconComponent)}
+          </Tab>
         );
       })}
     </TabContainer>

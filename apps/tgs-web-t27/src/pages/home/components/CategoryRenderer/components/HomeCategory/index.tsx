@@ -34,6 +34,8 @@ const HomeCategoryContainer = styled.div`
   justify-content: center;
   width: 100%;
 
+  border: 1px solid red;
+
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
