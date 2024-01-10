@@ -16,7 +16,8 @@ const addRealNameFieldBrand = "MOVN2";
 export function useCreatePlayerStage() {
   const [isLoading, setIsLoading] = useState(false);
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
-  const { registerV2CreatePlayer, registerV2SetRealName, accountLogin } = useAccountStore();
+  const { registerV2CreatePlayer, registerV2SetRealName, accountLogin, getAccountInfo } =
+    useAccountStore();
   const { promotionData } = usePromotionCode();
   const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
 
@@ -62,10 +63,13 @@ export function useCreatePlayerStage() {
       if (addRealNameFieldBrand === config.brand) {
         //Set realname之前必須先login
         await accountLogin(values.username, values.pwd);
+
         const setRealNameReqDto: RegisterV2SetRealNameDto = {
           realname: values.realName,
         };
         await registerV2SetRealName(setRealNameReqDto);
+        //update user info
+        await getAccountInfo();
       }
 
       localStorage.setItem("remember", "true");

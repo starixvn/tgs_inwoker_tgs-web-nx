@@ -15,7 +15,6 @@ import {
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 
 const disableBankHolderBrand = "MOVN2";
-
 const Container = styled.div`
   width: 100%;
 `;
@@ -280,7 +279,10 @@ const AddCard = ({
               name="bankAccountName"
               onChange={handleBankAccountNameChange}
               value={bankAccountName}
-              disabled={disableBankAccountNameInput}
+              //for MOVN2 customization
+              disabled={
+                disableBankHolderBrand === config.brand ? true : disableBankAccountNameInput
+              }
             />
           </FormControl>
         </ItemContainer>
