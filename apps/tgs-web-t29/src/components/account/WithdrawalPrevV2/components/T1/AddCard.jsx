@@ -14,8 +14,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 
-const disableBankHolderBrand = ["MOVN2"];
-const customizedBrand = disableBankHolderBrand.includes(config.brand);
+const disableBankHolderBrand = "MOVN2";
 
 const Container = styled.div`
   width: 100%;
@@ -243,7 +242,9 @@ const AddCard = ({
                 name="bankAccountName"
                 value={bankAccountName}
                 //for MOVN2 customization
-                disabled={customizedBrand ? true : disableBankAccountNameInput}
+                disabled={
+                  disableBankHolderBrand === config.brand ? true : disableBankAccountNameInput
+                }
               />
             </FormControl>
           </ItemContainer>

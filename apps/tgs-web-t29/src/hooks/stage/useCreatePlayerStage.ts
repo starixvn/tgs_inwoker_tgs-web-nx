@@ -11,8 +11,7 @@ import {
 } from "@tgs-web-nx/core/features";
 import { useGenerateRegisterCreatePlayerFormik } from "./useGenerateRegisterCreatePlayerFormik";
 
-const addRealNameFieldBrand = ["MOVN2"];
-const customizedBrand = addRealNameFieldBrand.includes(config.brand);
+const addRealNameFieldBrand = "MOVN2";
 
 export function useCreatePlayerStage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +59,7 @@ export function useCreatePlayerStage() {
         throw new Error(i18n.t("common.msgAlreadyExist"));
       }
       //for MOVN2 customization
-      if (customizedBrand) {
+      if (addRealNameFieldBrand === config.brand) {
         //Set realname之前必須先login
         await accountLogin(values.username, values.pwd);
         const setRealNameReqDto: RegisterV2SetRealNameDto = {
