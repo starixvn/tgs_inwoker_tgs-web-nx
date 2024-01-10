@@ -57,8 +57,8 @@ export function useGetNavItemList() {
   const { handleChangeGameType } = useHomeGameContext();
   const { providerList } = useHomeGameContext();
   const history = useHistory();
-  const hiddenAddBankBtnBrand = ["MOVN2"];
-  const customizedBrand = hiddenAddBankBtnBrand.includes(config.brand);
+  const hiddenVippageBrand = ["MOVN2"];
+  const customizedBrand = hiddenVippageBrand.includes(config.brand);
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
