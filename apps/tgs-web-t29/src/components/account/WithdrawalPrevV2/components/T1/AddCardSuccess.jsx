@@ -21,33 +21,36 @@ const AddCardSuccess = ({
   onhandleGoDepositClick,
   onhandleCSClick,
 }) => {
-  const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
+  const { isCustomizedBrand, isShowAddCardButton } = useShowAddCardButton(bankCardList);
 
   return (
     <Container>
       <ImgSuccess src={SuccessPNG} />
 
       <SubTitle>{i18n.t("card.success.title")}</SubTitle>
-      {isShowAddCardButton ? (
+      {isShowAddCardButton && !isCustomizedBrand && (
         <SubTitleDesc>
           {i18n.t("card.success.successDesc")}
           <br></br>
           {i18n.t("card.success.bindDesc")}
         </SubTitleDesc>
-      ) : (
+      )}
+      {!isShowAddCardButton && !isCustomizedBrand && (
         <SubTitleDesc>{i18n.t("card.success.noMoreAddCard")}</SubTitleDesc>
       )}
+      {isCustomizedBrand && <SubTitleDesc>{i18n.t("movn2_addcardsuccess")}</SubTitleDesc>}
 
       <ButtonContainer>
-        {!(
+        {!isCustomizedBrand && !(
           config.features.ChangesNotAllowed ||
           config.features.AddCard_NotAllowedEditDelete ||
           bankCardList.length >= config.features.AddCard_MaximumCardAllowed
         ) && (
-          <SubmitButton fullWidth onClick={onhandleBindCardClick}>
-            {i18n.t("card.success.bindBankCard")}
-          </SubmitButton>
-        )}
+            <SubmitButton fullWidth onClick={onhandleBindCardClick}>
+              {i18n.t("card.success.bindBankCard")}
+            </SubmitButton>
+          )}
+
         <SubmitButton
           fullWidth
           onClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}

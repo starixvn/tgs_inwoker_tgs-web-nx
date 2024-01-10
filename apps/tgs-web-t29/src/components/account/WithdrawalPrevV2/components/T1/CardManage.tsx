@@ -29,7 +29,7 @@ const CardManage = ({
   onhandleBackClick,
 }: Props) => {
   const { isDesktopSize } = useRwd();
-  const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
+  const { isCustomizedBrand, isShowAddCardButton } = useShowAddCardButton(bankCardList);
 
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
@@ -58,14 +58,12 @@ const CardManage = ({
     return "";
   };
 
-  const hiddenDeleteBtnBrand = ["MOVN2"];
-  const isCustomizedBrand = hiddenDeleteBtnBrand.includes(config.brand);
-
   return (
     <CardManageContainer>
       {isDesktopSize && (
         <FormTitle
           title={i18n.t("card.title")}
+          isCustomizedBrand={isCustomizedBrand}
           isShowAddCardButton={isShowAddCardButton}
           handleClickAddCard={onhandleAddCardClick}
         />

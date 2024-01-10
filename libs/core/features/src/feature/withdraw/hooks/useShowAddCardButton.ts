@@ -10,10 +10,10 @@ export function useShowAddCardButton(bankCardList: BankCard[]) {
   } = config.features;
 
 
-  const hiddenAddBankBtnBrand = ["MOVN2"];
-  const customizedBrand = hiddenAddBankBtnBrand.includes(config.brand);
+  const customizedBrandList = ["MOVN2"];
+  const isCustomizedBrand = customizedBrandList.includes(config.brand);
 
-  const isShowAddCardButton = bankCardList.length < AddCard_MaximumCardAllowed && !customizedBrand;
+  const isShowAddCardButton = bankCardList.length < AddCard_MaximumCardAllowed;
 
   const isManageCardButtonAvailable = !(
     ChangesNotAllowed ||
@@ -22,6 +22,7 @@ export function useShowAddCardButton(bankCardList: BankCard[]) {
   );
 
   return {
+    isCustomizedBrand,
     isShowAddCardButton,
     isManageCardButtonAvailable,
   };

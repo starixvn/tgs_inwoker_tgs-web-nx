@@ -16,6 +16,7 @@ export const SubTitleDesc = styled.div`
   margin-bottom: 16px;
   color: ${({ theme }) => theme.text};
   text-align: center;
+  white-space: pre-line;
 `;
 export const ButtonContainer = styled.div`
   margin: 0 auto;
