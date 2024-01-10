@@ -6,7 +6,7 @@ import { nxViteTsPaths } from "@nx/vite/plugins/nx-tsconfig-paths.plugin";
 
 export default defineConfig({
   cacheDir: "../../node_modules/.vite/tgs-web-t29",
-  base: "./",
+  // base: "/assets/",
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
