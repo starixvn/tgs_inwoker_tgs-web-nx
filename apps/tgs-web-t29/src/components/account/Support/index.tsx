@@ -8,6 +8,7 @@ import SupportCard from "@/pages/contactUs/components/SupportCard";
 import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/components/account/Support/IMHandler";
 import HeaderImage from "@/pages/contactUs/components/HeaderImage";
+import { isCustomizedBrand } from "@/constants/customizedBrand";
 
 const SupportContainer = styled.div``;
 
@@ -47,7 +48,7 @@ const Support = () => {
       <CardsContainer>
         <HeaderImage />
 
-        {(config.features.LiveChatVendor || csLiveChatUrl) && (
+        {(config.features.LiveChatVendor || csLiveChatUrl) && !isCustomizedBrand && (
           <SupportCard
             brandsSupport={{
               appid: null,
