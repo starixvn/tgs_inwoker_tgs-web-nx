@@ -29,8 +29,7 @@ import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
-import { isCustomizedBrand } from "@/constants/customizedBrand";
+import useGameTypeList from "@/hooks/home/useGameTypeList";;
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -54,8 +53,7 @@ export type NavItem = {
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
-  const { handleChangeGameType } = useHomeGameContext();
-  const { providerList } = useHomeGameContext();
+  const { handleChangeGameType, providerList, isCustomizedBrand } = useHomeGameContext();
   const history = useHistory();
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {

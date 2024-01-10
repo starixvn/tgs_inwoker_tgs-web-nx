@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
-import { socialMediaIconList } from "@/constants/socialMedia";
+import useSocialMediaIconList from "@/hooks/home/useSocialMediaIconList";
 
 const SocialMediaContainer = styled.div`
   width: 100%;
@@ -21,6 +21,7 @@ const SocialMediaIcon = styled.div<{ $imageUrl: string }>`
 
 const SocialMedia = () => {
   const goToHomePage = useGoToHomePage();
+  const socialMediaIconList = useSocialMediaIconList();
 
   return (
     <SocialMediaContainer onClick={goToHomePage}>

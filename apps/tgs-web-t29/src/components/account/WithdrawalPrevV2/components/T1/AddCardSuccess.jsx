@@ -2,6 +2,7 @@ import React from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import {
   ButtonContainer,
@@ -21,7 +22,8 @@ const AddCardSuccess = ({
   onhandleGoDepositClick,
   onhandleCSClick,
 }) => {
-  const { isCustomizedBrand, isShowAddCardButton } = useShowAddCardButton(bankCardList);
+  const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
+  const { isCustomizedBrand } = useHomeGameContext();
 
   return (
     <Container>

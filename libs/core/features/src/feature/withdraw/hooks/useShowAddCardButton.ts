@@ -9,10 +9,6 @@ export function useShowAddCardButton(bankCardList: BankCard[]) {
     AddCard_DisableCreateUpdateDelete,
   } = config.features;
 
-
-  const customizedBrandList = ["MOVN2"];
-  const isCustomizedBrand = customizedBrandList.includes(config.brand);
-
   const isShowAddCardButton = bankCardList.length < AddCard_MaximumCardAllowed;
 
   const isManageCardButtonAvailable = !(
@@ -22,7 +18,6 @@ export function useShowAddCardButton(bankCardList: BankCard[]) {
   );
 
   return {
-    isCustomizedBrand,
     isShowAddCardButton,
     isManageCardButtonAvailable,
   };
