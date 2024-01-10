@@ -5,6 +5,7 @@ import { useProvider } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useState } from "react";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import ChatQRcodePopup from "./ChatQRcodePopup";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
@@ -14,7 +15,6 @@ import qrcode_skype from "@/assets/t29/images/qrcode/qrcode_skype.png";
 import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
 import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
-import { isCustomizedBrand } from "@/constants/customizedBrand";
 
 const FooterContainer = styled.div`
   display: none;
@@ -102,6 +102,7 @@ const Footer = () => {
   const { providerList } = useProvider();
   const history = useHistory();
   const [isOpenChatQRcode, setIsOpenChatQRcode] = useState(false);
+  const { isCustomizedBrand } = useHomeGameContext();
 
   const partnerList = providerList.map((provider) => {
     return provider.name;

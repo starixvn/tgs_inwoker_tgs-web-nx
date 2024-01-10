@@ -5,6 +5,7 @@ import config from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { BankCard } from "@tgs-web-nx/types";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import Card from "@/pages/withdrawal/components/CardManage/Card";
 import { CardContainer } from "@/components/styled-component/WithdrawV2/CardManage";
@@ -29,7 +30,8 @@ const CardManage = ({
   onhandleBackClick,
 }: Props) => {
   const { isDesktopSize } = useRwd();
-  const { isCustomizedBrand, isShowAddCardButton } = useShowAddCardButton(bankCardList);
+  const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
+  const { isCustomizedBrand } = useHomeGameContext();
 
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
