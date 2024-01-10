@@ -29,8 +29,8 @@ import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
-
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { isCustomizedBrand } from "@/constants/customizedBrand";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -57,8 +57,6 @@ export function useGetNavItemList() {
   const { handleChangeGameType } = useHomeGameContext();
   const { providerList } = useHomeGameContext();
   const history = useHistory();
-  const hiddenVippageBrand = ["MOVN2"];
-  const customizedBrand = hiddenVippageBrand.includes(config.brand);
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
@@ -87,7 +85,7 @@ export function useGetNavItemList() {
       });
     }
 
-    if (!customizedBrand) {
+    if (!isCustomizedBrand) {
       navItemList.push({
         key: NavCardKey.VIP,
         label: "VIP",
@@ -169,7 +167,7 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/report",
       },
-      {
+      !isCustomizedBrand && {
         key: NavCardKey.MESSAGE_CENTER,
         label: i18n.t("inbox.title"),
         iconUrl: inboxImg,
@@ -193,7 +191,7 @@ export function useGetNavItemList() {
       //   navType: "route",
       //   routePath: "/affiliate",
       // },
-      !customizedBrand
+      !isCustomizedBrand
       && {
         key: NavCardKey.VIP,
         label: "VIP",

@@ -1,5 +1,12 @@
 import fb from "@/assets/t29/images/home/social_media/fb.svg";
 import ig from "@/assets/t29/images/home/social_media/ig.svg";
 import twitter from "@/assets/t29/images/home/social_media/twitter.svg";
+import { isCustomizedBrand } from "@/constants/customizedBrand";
 
-export const socialMediaIconList: string[] = [fb, ig, twitter];
+const socialMediaIconList: string[] = [fb, ig];
+
+if (!isCustomizedBrand) {
+  socialMediaIconList.push(twitter);
+}
+
+export { socialMediaIconList };

@@ -14,6 +14,7 @@ import qrcode_skype from "@/assets/t29/images/qrcode/qrcode_skype.png";
 import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
 import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
+import { isCustomizedBrand } from "@/constants/customizedBrand";
 
 const FooterContainer = styled.div`
   display: none;
@@ -152,9 +153,13 @@ const Footer = () => {
 
         <FooterGroup>
           <GroupTitle>Quick Links</GroupTitle>
-          <GroupContent><Link onClick={() => setIsOpenChatQRcode(true)}>
-            {i18n.t("T13.quickLink.247")}
-          </Link></GroupContent>
+          {!isCustomizedBrand &&
+            <GroupContent>
+              <Link onClick={() => setIsOpenChatQRcode(true)}>
+                {i18n.t("T13.quickLink.247")}
+              </Link>
+            </GroupContent>
+          }
           <GroupContent>
             <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
           </GroupContent>
@@ -171,8 +176,12 @@ const Footer = () => {
               {i18n.t("T13.quickLink.reponsible")}
             </Link>
           </GroupContent>
-          <DownLoadText>Download App</DownLoadText>
-          <img src={QRcodeUrl} width={117} alt="QRcode" />
+          {!isCustomizedBrand &&
+            <>
+              <DownLoadText>Download App</DownLoadText>
+              <img src={QRcodeUrl} width={117} alt="QRcode" />
+            </>
+          }
         </FooterGroup>
 
         <FooterGroup>
