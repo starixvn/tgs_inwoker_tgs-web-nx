@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
+import { useUiStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
@@ -107,7 +107,6 @@ const MarqueesBackground = styled.div`
 `;
 
 const HomePage = () => {
-  const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const {
@@ -120,7 +119,6 @@ const HomePage = () => {
     useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const hasNavData = !!navPopupCategoryList.length;
-  const history = useHistory();
   const gameTypeList = useGameTypeList();
 
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
@@ -177,6 +175,7 @@ const HomePage = () => {
               // Disable TypeScript check for unknown HTML elements
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
+              // eslint-disable-next-line jsx-a11y/no-distracting-elements
               <marquee>
                 {marquees.map((item, index) => {
                   const content = `
