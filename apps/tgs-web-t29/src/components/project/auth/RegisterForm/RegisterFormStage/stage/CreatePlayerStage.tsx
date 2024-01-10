@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import * as Yup from "yup";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import {
+  FormInputTypeEnum,
   useAuthDialog,
   useConfirmAdult,
   useGenerateRegisterCreatePlayerFormik,
@@ -8,10 +10,10 @@ import {
   UserTypeEnum,
 } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
-import { useAccountStore } from "@tgs-web-nx/core";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { useCreatePlayerStage } from "@tgs-web-nx/core/features";
+import { useCreatePlayerStage } from "@/hooks/stage/useCreatePlayerStage";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 

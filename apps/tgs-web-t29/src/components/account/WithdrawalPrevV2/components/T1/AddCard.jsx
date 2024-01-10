@@ -1,4 +1,5 @@
 import React from "react";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
@@ -12,6 +13,9 @@ import {
   SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
+
+const disableBankHolderBrand = ["MOVN2"];
+const customizedBrand = disableBankHolderBrand.includes(config.brand);
 
 const Container = styled.div`
   width: 100%;
@@ -238,7 +242,8 @@ const AddCard = ({
                 onChange={handleBankAccountNameChange}
                 name="bankAccountName"
                 value={bankAccountName}
-                disabled={disableBankAccountNameInput}
+                //for MOVN2 customization
+                disabled={customizedBrand ? true : disableBankAccountNameInput}
               />
             </FormControl>
           </ItemContainer>
