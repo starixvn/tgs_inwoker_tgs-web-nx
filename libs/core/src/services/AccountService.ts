@@ -17,6 +17,7 @@ import {
   UpdateMemberNameAndICResDto,
   UpdatePhoneResDto,
   VerifyForgotPasswordResDto,
+  RegisterV2SetRealNameDto,
 } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { ApiService } from "../api-services/services/ApiService";
@@ -261,6 +262,13 @@ function RegisterV2CreatePlayer(createPlayerReqDto: RegisterV2CreatePlayerReqDto
   }) as unknown as Promise<RegisterV2CreatePlayerResDto>;
 }
 
+function registerV2SetRealName(registerV2SetRealNameDto: RegisterV2SetRealNameDto) {
+  return ApiService.post("player/register", {
+    type: "SetRealName",
+    input: registerV2SetRealNameDto,
+  }) as unknown as Promise<RegisterV2CreatePlayerResDto>;
+}
+
 function RegisterV2GetRegisterStep() {
   return ApiService.get("player/register") as unknown as Promise<RegisterV2GetRegisterStepResDto>;
 }
@@ -327,4 +335,5 @@ export const AccountService = {
   RegisterV2GetRegisterStep,
   UpdatePhoneV2,
   UpdateEmailV2,
+  registerV2SetRealName,
 };

@@ -16,3 +16,4 @@ export * from "./RegisterV2CreatePlayerReqDto";
 export * from "./RegisterV2GetRegisterStepResDto";
 export * from "./VerifyForgotPasswordResDto";
 export * from "./ResetPasswordResDto";
+export * from "./RegisterV2SetRealNameDto"

@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
 // import { AccountState } from "@tgs-web-nx/types";
-import { AccountState, RegisterReqDto, RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
+import {
+  AccountState,
+  RegisterReqDto,
+  RegisterV2CreatePlayerReqDto,
+  RegisterV2SetRealNameDto,
+} from "@tgs-web-nx/types";
 import { AccountService } from "../services";
 import {
   CHECKTOKEN_BEGIN,
@@ -380,6 +385,21 @@ export function useAccountStore() {
     [],
   );
 
+  const registerV2SetRealName = useCallback(
+    async (registerV2SetRealNameDto: RegisterV2SetRealNameDto) => {
+      try {
+        return await AccountService.registerV2SetRealName(registerV2SetRealNameDto);
+      } catch (e: any) {
+        dispatch({
+          type: GETACCOUNT_FAILURE,
+          payload: e,
+          loading: false,
+        });
+      }
+    },
+    [],
+  );
+
   return {
     account,
     updateMemberCardNo,
@@ -397,5 +417,6 @@ export function useAccountStore() {
     performUpdateMemberNameAndIC,
     resetAccountResult,
     registerV2CreatePlayer,
+    registerV2SetRealName,
   };
 }
