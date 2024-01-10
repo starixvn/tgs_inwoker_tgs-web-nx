@@ -7,8 +7,7 @@ import { FormInputTypeEnum, UserTypeEnum } from "@tgs-web-nx/core/features";
 import { useFormikInitValue } from "./useFormikInitValue";
 import { FormikFormInput } from "@/components/project/FormikForm";
 
-const addRealNameFieldBrand = ["MOVN2"];
-const customizedBrand = addRealNameFieldBrand.includes(config.brand);
+const addRealNameFieldBrand = "MOVN2";
 
 type Props = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,7 +52,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
       },
       (() => {
         //for MOVN2 customization
-        if (customizedBrand) {
+        if (addRealNameFieldBrand === config.brand) {
           return {
             label: i18n.t("common.realName"),
             name: "realName",
