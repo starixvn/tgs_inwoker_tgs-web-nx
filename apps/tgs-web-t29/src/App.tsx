@@ -31,6 +31,7 @@ import ForgotPasswordDialog from "@/components/project/auth/Dialogs/ForgotPasswo
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import RegisterV2InitPhoneDialog from "@/components/project/auth/Dialogs/RegisterV2InitPhoneDialog";
 import RegisterV2InitEmailDialog from "@/components/project/auth/Dialogs/RegisterV2InitEmailDialog";
+import RegisterV2SetRealNameDialog from "@/components/project/auth/Dialogs/RegisterV2SetRealName";
 
 const App: React.FC = () => {
   const { isLoading } = useInitSite();
@@ -100,6 +101,7 @@ const App: React.FC = () => {
                       <RegisterDialog />
                       <RegisterV2InitPhoneDialog />
                       <RegisterV2InitEmailDialog />
+                      <RegisterV2SetRealNameDialog />
                       <ForgotPasswordDialog />
 
                       <AuthContextConsumer>

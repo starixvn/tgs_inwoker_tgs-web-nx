@@ -18,6 +18,8 @@ const initialState: {
   handleToggleInitPhoneDialog: (isOpen?: boolean) => void;
   isRegisterV2InitEmailDialogOpen: boolean;
   handleToggleInitEmailDialog: (isOpen?: boolean) => void;
+  isRegisterV2SetRealNameDialogOpen: boolean;
+  handleToggleSetRealNameDialog: (isOpen?: boolean) => void;
 } = {
   isLoginDialogOpen: false,
   isRegisterDialogOpen: false,
@@ -31,6 +33,8 @@ const initialState: {
   handleToggleInitPhoneDialog: () => {},
   isRegisterV2InitEmailDialogOpen: false,
   handleToggleInitEmailDialog: () => {},
+  isRegisterV2SetRealNameDialogOpen: false,
+  handleToggleSetRealNameDialog: () => {},
 };
 
 export const AuthDialogContext = createContext({
@@ -85,6 +89,13 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
 
         handleToggleInitEmailDialog(true);
         break;
+      case RegisterStageEnum.SetRealName:
+        handleToggleLoginDialog(false);
+        handleToggleRegisterDialog(false);
+        handleToggleInitPhoneDialog(false);
+
+        handleToggleSetRealNameDialog(true);
+        break;
 
       default:
         break;
@@ -94,8 +105,10 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
   const {
     isRegisterV2InitEmailDialogOpen,
     isRegisterV2InitPhoneDialogOpen,
+    isRegisterV2SetRealNameDialogOpen,
     handleToggleInitEmailDialog,
     handleToggleInitPhoneDialog,
+    handleToggleSetRealNameDialog,
   } = useRegisterV2Dialog();
 
   return (
@@ -113,6 +126,8 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         handleToggleInitPhoneDialog,
         isRegisterV2InitEmailDialogOpen,
         handleToggleInitEmailDialog,
+        isRegisterV2SetRealNameDialogOpen,
+        handleToggleSetRealNameDialog,
       }}
     >
       {children}

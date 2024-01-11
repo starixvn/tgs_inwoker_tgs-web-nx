@@ -4,3 +4,4 @@ export * from "./useInitPhoneStage";
 export * from "./useNewPasswordStage";
 export * from "./useVerifyEmail";
 export * from "./useVerifyPhone";
+export * from "./useSetRealNameStage";

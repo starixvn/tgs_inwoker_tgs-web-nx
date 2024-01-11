@@ -8,6 +8,7 @@ export function useRegisterV2Dialog() {
   // register V2
   const [isRegisterV2InitPhoneDialogOpen, setIsRegisterV2InitPhoneDialogOpen] = useState(false);
   const [isRegisterV2InitEmailDialogOpen, setIsRegisterV2InitEmailDialogOpen] = useState(false);
+  const [isRegisterV2SetRealNameDialogOpen, setIsRegisterV2SetRealNameDialogOpen] = useState(false);
 
   const handleToggleInitPhoneDialog = useCallback(
     (isOpen?: boolean) => {
@@ -39,10 +40,27 @@ export function useRegisterV2Dialog() {
     [updatePageName],
   );
 
+  const handleToggleSetRealNameDialog = useCallback(
+    (isOpen?: boolean) => {
+      if (typeof isOpen === "undefined") {
+        setIsRegisterV2SetRealNameDialogOpen((prevState) => !prevState);
+      } else {
+        setIsRegisterV2SetRealNameDialogOpen(isOpen);
+
+        if (isOpen) {
+          updatePageName(i18n.t("profile.nameVerify.verifyName"));
+        }
+      }
+    },
+    [updatePageName],
+  );
+
   return {
     isRegisterV2InitEmailDialogOpen,
     isRegisterV2InitPhoneDialogOpen,
+    isRegisterV2SetRealNameDialogOpen,
     handleToggleInitEmailDialog,
     handleToggleInitPhoneDialog,
+    handleToggleSetRealNameDialog,
   };
 }
