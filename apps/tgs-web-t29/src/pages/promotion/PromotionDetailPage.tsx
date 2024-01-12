@@ -43,6 +43,12 @@ const TextArea = styled.div`
   & iframe {
     max-width: 100%;
   }
+  & img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
 `;
 const Title = styled.h2`
   color: ${({ theme }) => theme.blue50};
