@@ -5,7 +5,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t19/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t26images/home/maintenance.svg";
 
 type Props = {
   bgUrl: string;
