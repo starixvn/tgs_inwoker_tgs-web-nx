@@ -41,16 +41,19 @@ const CommonTagContainer = styled.div`
 `;
 
 export const SearchInputWrapper = styled.div`
-  width: 100%;
-  height: 37px;
-  border-radius: 50px;
-  border: 1px solid ${({ theme }) => theme.primary};
-  background-color: #1c1e22;
-  padding: 5px 10px;
+  width: 180px;
+  height: 38px;
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: 1px solid #828282;
+  gap: 5px;
+
   ${media.sm} {
     width: 200px;
     height: 100%;
-    margin-left: 8px;
+    border: 1px solid ${({ theme }) => theme.primary};
+    background-color: #1c1e22;
+    border-radius: 10px;
   }
 `;
 
@@ -131,7 +134,6 @@ const HomeGameFilterTag = () => {
             );
           })}
         </CommonTagContainer>
-
         <SearchInputWrapper>
           <SearchInput
             placeholder={i18n.t("slot.search")}

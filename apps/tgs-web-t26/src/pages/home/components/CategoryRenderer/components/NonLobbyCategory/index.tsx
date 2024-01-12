@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { Common } from "@tgs-web-nx/utils";
 import {
   FilterTag,
   useGetLobbyCategoryList,
@@ -11,13 +11,11 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import ProviderTag from "../../../HomeGameFilterTag/ProviderTag";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
-import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
+import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t29/images/home/search.svg";
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,16 +35,18 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 78px);
+  width: 100%;
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
+  ${media.sm} {
+    width: calc(100% - 78px);
+  }
 `;
 
 const FilterSection = styled.div`
   width: 100%;
   flex-shrink: 0;
   display: flex;
-  flex-direction: column;
   gap: 8px;
   margin-bottom: 10px;
 `;
@@ -59,10 +59,9 @@ const DesktopCategoryContentWrapper = styled.div`
 
 const ProviderTagContainer = styled.div`
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   margin-bottom: 20px;
-  max-width: 86px;
-  height: 776px;
   line-height: 110px;
   padding: 0px 4px;
   overflow-x: auto;
@@ -73,24 +72,8 @@ const ProviderTagContainer = styled.div`
   border-radius: 12px;
   background: ${({ theme }) => theme.grayGradient};
 
-  ${media.sm} {
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.mainBackground};
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: #53535375;
-    }
-
-    &::-webkit-scrollbar-track-piece {
-      background: transparent;
-    }
+  &::-webkit-scrollbar {
+    display: none;
   }
 `;
 
@@ -99,13 +82,16 @@ const GameListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: start;
-  row-gap: 15px;
-  column-gap: 30px;
+  row-gap: 10px;
+  column-gap: 10px;
+  ${media.sm} {
+    row-gap: 15px;
+    column-gap: 30px;
+  }
 `;
 
 const CategoryContent = styled.div`
   display: flex;
-  flex-wrap: wrap;
   align-content: center;
   width: 100%;
   row-gap: 10px;
@@ -140,8 +126,8 @@ const NonLobbyCategory = () => {
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
   const {
-    searchString,
-    handleChangeSearch,
+    // searchString,
+    // handleChangeSearch,
     providerFilterTagList,
     activeProviderFilterTag,
     handleChangeActiveProviderFilterTag,
@@ -159,30 +145,43 @@ const NonLobbyCategory = () => {
           <CategoryContentWrapper>
             <FilterSection>
               <GameFilterTag />
-              <SearchInputWrapper>
-                <SearchInput
-                  placeholder={i18n.t("slot.search")}
-                  imageUrl={searchIcon}
-                  handleChange={handleChangeSearch}
-                  value={searchString}
-                />
-              </SearchInputWrapper>
             </FilterSection>
             <CategoryContent>
-              {hasMappingData &&
-                gameList.map((gameItem) => (
-                  <GameCard
-                    key={gameItem.id}
-                    gameItem={gameItem}
-                    isActive={gameItem.isactive}
-                    imageUrl={`${
-                      config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                      gameItem.code
-                    }.jpg`}
-                  />
-                ))}
-              {!hasMappingData && !isLoading && <div>No data</div>}
+              <ProviderTagContainer>
+                {providerFilterTagList.map((filterTag) => {
+                  const matchedProvider = navPopupCategoryList.find(
+                    (provider) => provider.code === filterTag.gpCode,
+                  );
+                  const status = matchedProvider ? matchedProvider.status : -1;
+
+                  return (
+                    <ProviderTag
+                      key={filterTag.name}
+                      text={filterTag.name}
+                      gpCode={filterTag.gpCode}
+                      isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
+                      onClick={() => onChangeProviderFilterTag(filterTag)}
+                      status={status}
+                    />
+                  );
+                })}
+              </ProviderTagContainer>
+              <GameListWrapper>
+                {hasMappingData &&
+                  gameList.map((gameItem) => (
+                    <GameCard
+                      key={gameItem.id}
+                      gameItem={gameItem}
+                      isActive={gameItem.isactive}
+                      imageUrl={`${
+                        config.sourceUrl
+                      }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                        gameItem.code
+                      }.jpg`}
+                    />
+                  ))}
+                {!hasMappingData && !isLoading && <div>No data</div>}
+              </GameListWrapper>
             </CategoryContent>
           </CategoryContentWrapper>
         </>

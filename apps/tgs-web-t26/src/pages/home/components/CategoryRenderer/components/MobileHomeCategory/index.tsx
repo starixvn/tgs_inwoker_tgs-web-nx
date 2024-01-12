@@ -12,7 +12,6 @@ const MobileContainer = styled.div`
 
 const MobileHomeCategory = () => {
   const { providerList } = useHomeGameContext();
-  console.log(providerList)
   return (
     <MobileContainer>
       <GameTypeTab />

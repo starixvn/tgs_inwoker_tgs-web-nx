@@ -1,7 +1,7 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import maintenanceIcon from "@/assets/t19/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t26/images/home/maintenance.svg";
 
 const VendorName = styled.div`
   font-size: 14px;
@@ -18,11 +18,12 @@ const Wrapper = styled.div<{
   $hoverImage?: string;
 }>`
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 84px;
+  height: 84px;
   box-sizing: border-box;
   user-select: none;
   border-radius: 10px;
@@ -33,19 +34,6 @@ const Wrapper = styled.div<{
   & > img {
     width: inherit;
   }
-  /* 
-  &:hover {
-    background: ${({ theme }) => theme.goldGradient};
-    border-bottom: 2px solid ${({ theme }) => theme.primary};
-
-    img {
-      content: url(${(props) => props.$hoverImage || ""});
-    }
-
-    ${VendorName} {
-      color: ${({ theme }) => theme.black};
-    }
-  } */
 `;
 
 const AllText = styled.div<{
@@ -55,11 +43,6 @@ const AllText = styled.div<{
   align-items: center;
   font-size: 20px;
   font-weight: 400;
-  /* color: ${({ theme, $isActive }) => ($isActive ? theme.black : theme.white)}; */
-
-  /* &:hover {
-    color: ${({ theme }) => theme.white};
-  } */
 `;
 
 const MaintenanceBg = styled.div`
