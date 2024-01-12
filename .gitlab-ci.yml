@@ -54,6 +54,7 @@ stages:
     - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
     - echo "tgs_env=$tgs_env"
     - export KUBECONFIG="${config}_${tgs_env}"
+    - echo "kubeconfig=$KUBECONFIG"
     - export KUBECONFIG=${!KUBECONFIG}
     - echo "KUBECONFIG=$KUBECONFIG"
   script:
