@@ -60,7 +60,7 @@ const CategoryContent = styled.div`
 const SlotCategoryContent = styled.div`
   width: 100%;
   row-gap: 15px;
-  column-gap: 31px;
+  column-gap: 30px;
   display: flex;
   flex-wrap: wrap;
   align-content: center;

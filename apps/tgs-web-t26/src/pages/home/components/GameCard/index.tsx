@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
@@ -8,14 +8,14 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t29/images/home/play.svg";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t26/images/home/maintenance.svg";
+import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 80%;
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
@@ -37,13 +37,12 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 
 const NewTag = styled.div`
   position: absolute;
-  top: 5px;
-  left: 3px;
+  top: 0px;
+  left: 0px;
   width: 43px;
   height: 22px;
   padding: 2px 5px;
-  border-radius: 50px;
-  background: ${(props) => props.theme.red};
+  background: #dc2626;
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
@@ -52,36 +51,36 @@ const NewTag = styled.div`
   font-weight: 400;
 `;
 
-const HotTag = styled.div`
-  position: absolute;
-  bottom: 7px;
-  left: 0;
-  width: 43px;
-  height: 22px;
-  padding: 2px 5px;
-  border-radius: 50px;
-  background: ${(props) => props.theme.green};
-  color: ${(props) => props.theme.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.8rem;
-  font-weight: 400;
-`;
+// const HotTag = styled.div`
+//   position: absolute;
+//   bottom: 7px;
+//   left: 0;
+//   width: 43px;
+//   height: 22px;
+//   padding: 2px 5px;
+//   border-radius: 50px;
+//   background: ${(props) => props.theme.green};
+//   color: ${(props) => props.theme.white};
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 0.8rem;
+//   font-weight: 400;
+// `;
 
 const GameCardContent = styled.div`
   width: 100%;
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 6px);
+  width: calc(33.33% - 10px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 161 / 161;
+  aspect-ratio: 94 / 127;
   border-radius: 10px;
 
   ${media.sm} {
-    width: calc(16.67% - 50px);
+    width: calc(16.67% - 30px);
 
     &:hover {
       ${CardHoverBg} {
@@ -96,11 +95,14 @@ const GameCardBg = styled.div`
 `;
 
 const GameName = styled.div`
+  width: 100%;
   position: absolute;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
   bottom: 0;
   color: ${(props) => props.theme.white};
-  font-size: 0.875rem;
-  font-weight: 400;
   text-align: center;
   margin: 4px 0 12px 0;
   overflow: hidden;
@@ -139,16 +141,21 @@ type GameCardProps = {
   imageUrl: string;
 };
 
-const HoverGameName = styled(GameCardContent)`
-  color: ${(props) => props.theme.white};
-  font-size: 1rem;
-  text-align: center;
-  margin-bottom: 16px;
-`;
-
-const PlayIcon = styled.img`
-  width: 65px;
-  height: 65px;
+const PlayButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 36px;
+  padding: 10px 6px;
+  border-radius: 20px;
+  gap: 10px;
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.black};
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0em;
 `;
 
 const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
@@ -160,6 +167,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
   const isLogin = !!account.token;
+  const gameNameRef = useRef<HTMLDivElement | null>(null);
+  const { resizeText } = useDynamicFontSize();
 
   const launchGameHandler = () => {
     if (!isActive) {
@@ -194,13 +203,20 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       setIsUpdatingFavorite(false);
     }
   };
+  useEffect(() => {
+    if (gameNameRef.current) {
+      resizeText({ container: gameNameRef.current, text: gameNameRef.current });
+    }
+  }, [resizeText, gameNameRef.current]);
 
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        {gameItem.tag.new && <NewTag>New</NewTag>}
-        {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+        {gameItem.tag.new && <NewTag>NEW</NewTag>}
+        {/* {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
+        {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
+
         {!isActive && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
@@ -218,8 +234,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg onClick={launchGameHandler}>
-          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
-          <PlayIcon src={playIcon} alt={"play"} />
+          <PlayButton>PLAY</PlayButton>
         </CardHoverBg>
       )}
     </GameCardBg>

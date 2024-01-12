@@ -77,6 +77,7 @@ const MainContentWrapper = styled.div`
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
   height: 450px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
@@ -176,7 +177,7 @@ const HomePage = () => {
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
         <BannerWrapper>
-          {isDesktopSize && !!activeGameType && !isNonLobby && (
+          {isDesktopSize && !!activeGameType && (
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
@@ -206,7 +207,6 @@ const HomePage = () => {
         )}
         <CategoryRenderer />
       </MainContentWrapper>
-      
     </MainWrapper>
   );
 };

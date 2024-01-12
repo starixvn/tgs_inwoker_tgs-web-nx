@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
 import Tag from "./Tag";
 import { gameTagList } from "@/constants/gameTag";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
+import { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
+
+import SearchInput from "@/pages/home/components/SearchInput";
+import searchIcon from "@/assets/t29/images/home/search.svg";
 
 const TagContainer = styled.div`
+  display: flex;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
-  overflow-x: auto;
-  white-space: nowrap;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  align-items: center;
   padding: 0px 6px 0px 14px;
   border-radius: 100px;
-  border: 1px solid ${({ theme }) => theme.blue40};
+  gap: 3px;
   align-self: stretch;
-
   ${media.sm} {
     &::-webkit-scrollbar {
       height: 10px;
@@ -45,9 +45,9 @@ const GameFilterTag = () => {
     activeFilterTag,
     handleChangeActiveFilterTag,
     filterTagList,
-    activeProviderFilterTag,
+    searchString,
     handleChangeActiveProviderFilterTag,
-    providerFilterTagList,
+    handleChangeSearch,
   } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
 
@@ -111,37 +111,14 @@ const GameFilterTag = () => {
         );
       })}
 
-      {/* Provider list */}
-
-      {providerFilterTagList.map((filterTag) => {
-        const { name, gpCode } = filterTag;
-
-        const isActive =
-          filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
-          gpCode === activeProviderFilterTag.gpCode;
-
-        const tagCmp = gameTagList.find((tag) => tag.text === name);
-
-        if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          return null;
-        }
-
-        return (
-          <Tag
-            key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleFilterClick(filterTag)}
-          >
-            {tagCmp &&
-              tagCmp.iconComponent &&
-              React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.text,
-              })}
-          </Tag>
-        );
-      })}
+      <SearchInputWrapper>
+        <SearchInput
+          placeholder={i18n.t("slot.search")}
+          imageUrl={searchIcon}
+          handleChange={handleChangeSearch}
+          value={searchString}
+        />
+      </SearchInputWrapper>
     </TagContainer>
   );
 };

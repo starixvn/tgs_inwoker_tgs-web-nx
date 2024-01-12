@@ -11,23 +11,19 @@ const Wrapper = styled.div<{
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: auto;
-  max-width: none;
-  height: 26px;
-  margin-right: 10px;
-  border-radius: 50px;
+  width: 38px;
+  height: 38px;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.primary : theme.mainBackground};
-  min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
-
-  ${media.sm} {
+  background-color: #222222;
+  border-radius: 5px;
+  border: ${({ theme, $isActive }) => ($isActive ? `1px solid ${theme.primary}` : "unset")};
+  /* ${media.sm} {
     cursor: pointer;
     & :hover {
       color: ${({ theme }) => theme.white};
     }
-  }
+  } */
 `;
 
 const Text = styled.div<{
