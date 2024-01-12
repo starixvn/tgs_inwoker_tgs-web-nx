@@ -121,12 +121,13 @@ const HeaderGameTypeNavs = () => {
           const { Icon } = navItem;
 
           return (
-            <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
-              <GameTypeNav
-                $isActive={navItem.router === currentRoute}
-                onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-                onMouseLeave={handleMouseLeave}
-              >
+            <Wrapper
+              key={navItem.key}
+              onClick={() => handleClickNav(navItem)}
+              onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <GameTypeNav $isActive={navItem.router === currentRoute}>
                 <GameIconWraprer>{Icon && <Icon $color={theme.white} />}</GameIconWraprer>
                 <span>{navItem.label}</span>
               </GameTypeNav>
