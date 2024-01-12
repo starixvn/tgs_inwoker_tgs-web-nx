@@ -39,7 +39,10 @@ const ContentContainer = styled.div`
   padding-bottom: 73px;
 `;
 const TextArea = styled.div`
-  /* margin-bottom: 40px; */
+  width: 100%;
+  & iframe {
+    max-width: 100%;
+  }
 `;
 const Title = styled.h2`
   color: ${({ theme }) => theme.blue50};
