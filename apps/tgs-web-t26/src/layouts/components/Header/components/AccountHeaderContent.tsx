@@ -173,11 +173,8 @@ const AccountHeaderContent = () => {
   const open = Boolean(anchorEl);
   const [activeNavitem, setActiveNavitem] = useState<NavCardKey | null>(null);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
   };
 
   const handleCloseAccountMenu = () => {
@@ -218,13 +215,13 @@ const AccountHeaderContent = () => {
       </SecondaryButton>
       {isDesktopSize && (
         <>
-          <ProfileContainer onClick={handleClick}>
+          <ProfileContainer onMouseEnter={handleMouseEnter}>
             <Icon iconUrl={iconAccount} width={"20px"} height={"25px"} />
           </ProfileContainer>
           <Menu
             anchorEl={anchorEl}
             open={open}
-            onClose={handleClose}
+            onClose={handleCloseAccountMenu}
             sx={{
               "& .MuiPaper-root": {
                 backgroundColor: theme.mainBackground,
