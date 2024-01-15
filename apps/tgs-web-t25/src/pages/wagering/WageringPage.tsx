@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useWalletStore } from "@tgs-web-nx/core";
 // import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 // import { useNotifications } from "@tgs-web-nx/core/features";
@@ -11,8 +10,6 @@ import iconWagering from "@/assets/t25/images/account/navItem/icon-wagering.svg"
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 import iconCard from "@/assets/t25/images/withdraw/icon-card.svg";
-import iconPlay from "@/assets/t25/images/wagering/icon-play.svg";
-import iconPlayActive from "@/assets/t25/images/wagering/icon-play_active.svg";
 
 import LiveDealerIcon from "@/assets/t25/images/wagering/LiveDealer.svg";
 import LiveDealerIconActive from "@/assets/t25/images/wagering/LiveDealerActive.svg";
@@ -41,7 +38,7 @@ const Requirement = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.blue20};
+  background-color: ${({ theme }) => theme.mainBackground};
   width: 720px;
   height: 39px;
   padding: 10px 20px;
@@ -60,6 +57,7 @@ const TitleItem = styled.div`
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
+  color: ${({ theme }) => theme.white};
 `;
 
 const TitleAmountText = styled.div`
@@ -67,6 +65,7 @@ const TitleAmountText = styled.div`
   font-weight: 700;
   line-height: 21px;
   letter-spacing: 0em;
+  color: ${({ theme }) => theme.white};
 `;
 
 const GameWageringContainer = styled.div`
@@ -85,7 +84,9 @@ const GameCard = styled.div`
   height: 62px;
   padding: 12px 20px;
   gap: 10px;
-  background-color: ${({ theme }) => theme.blue20};
+  background-color: ${({ theme }) => theme.black02};
+  border: 1px solid ${({ theme }) => theme.grey06};
+  color: ${({ theme }) => theme.grey04};
 
   ${media.sm} {
     width: 230px;
@@ -93,7 +94,7 @@ const GameCard = styled.div`
 
   &:hover {
     color: ${({ theme }) => theme.white};
-    background-color: ${({ theme }) => theme.blue40};
+    background-color: ${({ theme }) => theme.grey06};
   }
 `;
 const CardContent = styled.div`

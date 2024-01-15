@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
-import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, MOBILE_DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
@@ -15,8 +15,8 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`${MOBILE_HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
+  min-height: calc(100vh - ${MOBILE_DIALOG_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin: ${`${MOBILE_DIALOG_HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
 
