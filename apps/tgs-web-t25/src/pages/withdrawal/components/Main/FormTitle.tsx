@@ -18,6 +18,7 @@ const Title = styled.div`
 
 type Props = {
   title: string;
+  isCustomizedBrand?: boolean;
   isShowAddCardButton?: boolean;
   handleClickAddCard?: () => void;
 };

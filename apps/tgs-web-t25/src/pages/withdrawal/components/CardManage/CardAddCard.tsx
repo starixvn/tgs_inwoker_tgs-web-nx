@@ -5,21 +5,21 @@ import AddCardIcon from "@/assets/t25/images/card/add-card.svg";
 
 const CardContainer = styled.div`
   width: 100%;
-  padding: 13px 20px;
-  background: ${({ theme }) => theme.blue20};
-  border: 1px solid ${({ theme }) => theme.main};
+  padding: 12px 20px;
+  background: ${({ theme }) => theme.black02};
+  border: 1px solid ${({ theme }) => theme.grey06};
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
 `;
 
 const EmptyCardTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 `;
 
 const IconContainer = styled.div`
@@ -38,7 +38,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 10px;
 `;
 
 type Props = {

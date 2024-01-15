@@ -8,12 +8,12 @@ import Icon from "@/components/project/Icon";
 const CardContainer = styled.div`
   width: 100%;
   padding: 16px;
-  background: ${({ theme }) => theme.blue20};
-  border: 1px solid ${({ theme }) => theme.blue40};
+  background: ${({ theme }) => theme.black02};
+  border: 1px solid ${({ theme }) => theme.grey06};
   display: flex;
   flex-direction: column;
   gap: 8px;
-  border-radius: 4px;
+  border-radius: 6px;
 
   ${media.md} {
     width: calc((100% - 14px * 1) / 2);
@@ -21,7 +21,7 @@ const CardContainer = styled.div`
 `;
 
 const CardTitle = styled.div`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   padding-bottom: 10px;
   font-size: 1.25rem;
@@ -29,7 +29,7 @@ const CardTitle = styled.div`
 `;
 
 const CardContent = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,13 +47,13 @@ const ContentRow = styled.div`
 `;
 
 const EndingInLabel = styled.div`
-  font-size: 1.125rem;
-  color: ${({ theme }) => theme.blue40};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.white};
 `;
 const EndingInValue = styled.div`
-  font-size: 1.125rem;
+  font-size: 1rem;
 
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 `;
 
 type Props = {
@@ -61,6 +61,7 @@ type Props = {
   content: string;
   handleDelete: () => void;
   disable: boolean;
+  isCustomizedBrand?: boolean;
 };
 const Card = ({ title, content, handleDelete, disable }: Props) => {
   return (

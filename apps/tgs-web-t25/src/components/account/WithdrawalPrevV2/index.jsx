@@ -4,13 +4,12 @@ import { withRouter } from "react-router-dom";
 import { accountAction, RESET_WALLETRESULT, walletAction, WalletService } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
-import NameVerification from "../CardPrev/PassSetting";
 import Main from "./components/Main";
 import AddCard from "./components/AddCard";
-import AddCardSuccess from "./components/T1/AddCardSuccess";
-import CardManage from "./components/T1/CardManage";
-import Success from "./components/T1/Success";
-import Disabled from "./components/T1/Disabled";
+import AddCardSuccess from "@/pages/withdrawal/components/T1/AddCardSuccess";
+import CardManage from "@/pages/withdrawal/components/T1/CardManage";
+import Success from "@/pages/withdrawal/components/T1/Success";
+import Disabled from "@/pages/withdrawal/components/T1/Disabled";
 import Loading from "@/components/UI/Loading";
 
 class Withdrawal extends Component {

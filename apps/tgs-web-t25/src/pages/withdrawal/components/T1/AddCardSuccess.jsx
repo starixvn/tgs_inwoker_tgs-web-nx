@@ -43,12 +43,20 @@ const AddCardSuccess = ({
       {isCustomizedBrand && <SubTitleDesc>{i18n.t("movn2_addcardsuccess")}</SubTitleDesc>}
 
       <ButtonContainer>
-        {!isCustomizedBrand && !(
-          config.features.ChangesNotAllowed ||
-          config.features.AddCard_NotAllowedEditDelete ||
-          bankCardList.length >= config.features.AddCard_MaximumCardAllowed
-        ) && (
-            <SubmitButton fullWidth onClick={onhandleBindCardClick}>
+        {!isCustomizedBrand &&
+          !(
+            config.features.ChangesNotAllowed ||
+            config.features.AddCard_NotAllowedEditDelete ||
+            bankCardList.length >= config.features.AddCard_MaximumCardAllowed
+          ) && (
+            <SubmitButton
+              fullWidth
+              onClick={onhandleBindCardClick}
+              style={{
+                background: theme.secondary,
+                color: theme.black,
+              }}
+            >
               {i18n.t("card.success.bindBankCard")}
             </SubmitButton>
           )}
@@ -57,7 +65,7 @@ const AddCardSuccess = ({
           fullWidth
           onClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}
           style={{
-            background: theme.blue30,
+            color: theme.black,
           }}
         >
           {isDeposit ? i18n.t("card.success.goDeposit") : i18n.t("card.success.goWithdrawal")}
