@@ -11,3 +11,4 @@ export * from "./forgotPassword/useForgotPasswordPage";
 export * from "./inbox";
 export * from "./wagering/useWageringPage";
 export * from "./transfer/useTransferPage";
+export * from "./vip/useVipBonusList";

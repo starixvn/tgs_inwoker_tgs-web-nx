@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
+import { useVipBonusList } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import { vipBonusList } from "@/constants/vip";
 
@@ -152,12 +153,13 @@ type Props = {
 };
 
 const BonusTable = ({ vipSortingData }: Props) => {
+  const { vipBonusList } = useVipBonusList();
   return (
     <ScrollableContainer>
       <BonusTableWrapper>
         <BonusTableHeader>
           {vipBonusList.map((bonus) => (
-            <HeaderItem key={bonus}>{bonus}</HeaderItem>
+            <HeaderItem key={bonus.key}>{bonus.label}</HeaderItem>
           ))}
         </BonusTableHeader>
 

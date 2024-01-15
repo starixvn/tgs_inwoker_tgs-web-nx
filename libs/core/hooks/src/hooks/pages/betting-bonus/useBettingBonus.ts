@@ -2,6 +2,7 @@ import { VipData as TypeVipData } from "@tgs-web-nx/types";
 import { useAccountStore } from "@tgs-web-nx/core";
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { useVipStore } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 
 const productColumnNameMap: {
   [key: string]: string;
@@ -17,9 +18,21 @@ const productColumnNameMap: {
 export interface TypeProductRebateByLevel {
   name: string;
   rebate: number[];
+  label: string;
 }
 
 export function useBettingBonus() {
+  const columnNameTranslateMap: {
+    [key: string]: string;
+  } = {
+    "Live Casino": i18n.t("vip.liveDealerRebate"),
+    "E-game": i18n.t("vip.slotRebate"),
+    "Card Game": i18n.t("vip.cardGameRebate"),
+    "Sports": i18n.t("vip.sportsRebate"),
+    "Virtual Sports": i18n.t("vip.liveDealerRebate"),
+    "Lottery": i18n.t("vip.lotteryRebate"),
+  };
+
   const { vipData, isLoading } = useVipStore();
   const accountStore = useAccountStore();
   const currentLevel = accountStore.account.info.member_level_id;
@@ -42,6 +55,7 @@ export function useBettingBonus() {
     });
     return {
       name: product,
+      label: columnNameTranslateMap[product],
       rebate: productRebateList,
     };
   });
@@ -50,6 +64,6 @@ export function useBettingBonus() {
     isLoading,
     currentLevel,
     productRebateByLevel,
-    vipData
+    vipData,
   };
 }

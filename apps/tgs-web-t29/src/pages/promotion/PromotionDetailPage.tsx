@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import moment from "moment";
 import { usePromotionDetailPage } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import JoinPromotionButton from "@/pages/promotion/components/JoinPromotionButton";
 import { media } from "@/theme/breakpoints";
@@ -117,14 +118,14 @@ const PromotionDetail = () => {
             />
           </TextArea>
           <TextArea>
-            <Title>Promo Period</Title>
+            <Title>{i18n.t("promotion.promoDate")}</Title>
             <Description>
               {moment(promotionData.from).format("YYYY/MM/DD HH:mm:ss")} -{" "}
               {moment(promotionData.to).format("YYYY/MM/DD HH:mm:ss")}
             </Description>
           </TextArea>
           <TextArea>
-            <Title>Terms & Conditions</Title>
+            <Title>{i18n.t("common.termsAndCondition")}</Title>
             <TermsAndConditions
               dangerouslySetInnerHTML={{
                 __html: termsToDisplay,

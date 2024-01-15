@@ -78,7 +78,7 @@ const JoinPromotionButton = ({ id, promotionType }: { id: string; promotionType:
 
   return (
     <StyledButton onClick={handleJoinPromotion} disabled={hasJoined}>
-      Claim Bonus
+      {i18n.t("T13.promo.join")}
     </StyledButton>
   );
 };

@@ -1,3 +1,5 @@
+import { i18n } from "@tgs-web-nx/utils";
+import config from "@tgs-web-nx/config";
 import logoCompatibleImg from "@/assets/t29/images/download/logo_compatible.svg";
 import logoConvenientImg from "@/assets/t29/images/download/logo_convenient.svg";
 import logoExtensiveImg from "@/assets/t29/images/download/logo_extensive.svg";
@@ -14,30 +16,29 @@ import {
   Paper,
 } from "@/components/styled-component/Download";
 
-const infoCardItemList: InfoCardItem[] = [
-  {
-    title: "COMPATIBLE",
-    content: "App supports any ios and android devices.",
-    logo: logoCompatibleImg,
-  },
-  {
-    title: "SECURE",
-    content: "Android and ios replicates teh same safety standards.",
-    logo: logoSecureImg,
-  },
-  {
-    title: "EXTENSIVE",
-    content: "Access to more than 1000+ games including sports betting and more.",
-    logo: logoExtensiveImg,
-  },
-  {
-    title: "CONVENIENT",
-    content: "User friendly interface simple, clear, and extremely engaging.",
-    logo: logoConvenientImg,
-  },
-];
-
 const DownloadApp = () => {
+  const infoCardItemList: InfoCardItem[] = [
+    {
+      title: i18n.t("compatible"),
+      content: i18n.t("compatibledesc"),
+      logo: logoCompatibleImg,
+    },
+    {
+      title: i18n.t("secure"),
+      content: i18n.t("securedesc"),
+      logo: logoSecureImg,
+    },
+    {
+      title: i18n.t("extensive"),
+      content: i18n.t("extensivedesc"),
+      logo: logoExtensiveImg,
+    },
+    {
+      title: i18n.t("convenient"),
+      content: i18n.t("convenientdesc"),
+      logo: logoConvenientImg,
+    },
+  ];
   return (
     <DownloadAppContainer>
       <GirlImage>
@@ -46,11 +47,8 @@ const DownloadApp = () => {
 
       <Paper>
         <IntroductionContainer>
-          <span>Introduction</span>
-          <p>
-            The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
-            available for IOS and Android that features a multitude of entertaining games.
-          </p>
+          <span>{i18n.t("introduction")}</span>
+          <p>{i18n.t("introdesc").replace(/{brandName}/g, config.brand)}</p>
         </IntroductionContainer>
 
         <InfoCardListContainer>
