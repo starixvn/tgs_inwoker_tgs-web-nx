@@ -5,4 +5,4 @@ export const providerStatus = {
   Maintenance: 3,
 };
 
-export const SHOW_CATEGORY_AMOUNT = 15;
+export const SHOW_CATEGORY_AMOUNT = 5;

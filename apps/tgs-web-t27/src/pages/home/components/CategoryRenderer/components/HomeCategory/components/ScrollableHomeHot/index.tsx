@@ -3,37 +3,39 @@ import { GameItem } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import Loading from "@/components/UI/Loading";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import { media } from "@/theme/breakpoints";
+import label_icon from "@/assets/t27/images/home/label-icon.svg";
+import CategoryLabel from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/CategoryLabel";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { useHistory } from "react-router-dom";
 
 const HomeCategorySection = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 6px;
+  padding: 12px;
+  gap: 14px;
 `;
 
 const CategoryTitle = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  padding: 15px 0px;
   gap: 10px;
   align-self: stretch;
-  color: ${({ theme }) => theme.primary};
-  font-size: 1.78rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  color: ${({ theme }) => theme.white};
+  font-size: 19.5px;
+  font-weight: 400;
 `;
 
 const CategoryContent = styled.div`
   width: 100%;
-  max-height: 150px;
+  max-height: 195px;
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -41,16 +43,14 @@ const CategoryContent = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height: 16.2%; //max-height: 150 /figma mobile height:926
+  height: 20.9%; //max-height: 194 /figma mobile height:926
   gap: 8px;
   background-color: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    max-height: 270px;
-    gap: 25px;
+    gap: 14px;
     scroll-snap-type: unset;
-    height: 20.9%;
-    padding-bottom: 5px;
+    max-height: 207px;
 
     &::-webkit-scrollbar {
       height: 12px;
@@ -71,46 +71,44 @@ const CategoryContent = styled.div`
   }
 `;
 
-type Props = {
-  title: string;
-  dataList: GameItem[];
-  isLoading: boolean;
-};
-
-const ScrollableHomeCategoryFolder = ({ title, dataList, isLoading }: Props) => {
+const ScrollableHomeHot = () => {
+  const history = useHistory();
   const { handleChangeGameType } = useHomeGameContext();
+  const { hotGameList } = useGetHomeCategoryList();
+  const hasMappingData = !!hotGameList.length;
+  const gameTypeList = useGameTypeList();
 
-  const hasMappingData = !!dataList.length;
+  const handleViewAllClick = (gameType: GameTypeEnum) => {
+    handleChangeGameType(gameType);
+    const activeGameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
+    history.push(`/main/${activeGameTypeKey}`);
+  };
 
   return (
     <>
       <HomeCategorySection>
-        <CategoryTitle>{title}</CategoryTitle>
+        <CategoryTitle><CategoryLabel imageUrl={label_icon} text={"Hot"} /></CategoryTitle>
         <CategoryContent>
           {hasMappingData &&
-            dataList
+            hotGameList
               .slice(0, SHOW_CATEGORY_AMOUNT)
               .map((gameItem) => (
                 <HomeGameCard
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
                 />
               ))}
-          {dataList.length > SHOW_CATEGORY_AMOUNT && (
-            <AllCard onClick={() => handleChangeGameType(GameTypeEnum.SLOT)} />
+          {hotGameList.length > SHOW_CATEGORY_AMOUNT && (
+            <AllCard onClick={() => handleViewAllClick(GameTypeEnum.SLOT)} />
           )}
         </CategoryContent>
       </HomeCategorySection>
-
-      <Loading show={isLoading} />
     </>
   );
 };
 
-export default ScrollableHomeCategoryFolder;
+export default ScrollableHomeHot;

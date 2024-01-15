@@ -26,6 +26,7 @@ import config from "@tgs-web-nx/config";
 import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
 import WinnerCard from "@/pages/home/components/WinnerCard";
 import Jackpot from "@/components/project/Jackpot";
+import GameTypeTab from "@/pages/home/components/GameTypeTab";
 
 const HomeCategoryContainer = styled.div`
   display: flex;
@@ -33,9 +34,7 @@ const HomeCategoryContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-
-  border: 1px solid red;
-
+  
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
@@ -224,8 +223,10 @@ const HomeCategory = () => {
   })
 
   return (
-    <HomeCategoryContainer>
-      <RankingContainer>
+    <>
+      <GameTypeTab />
+      <HomeCategoryContainer>
+        {/* <RankingContainer>
         <RecommendContainer>
           <CategoryLabel imageUrl={recommend_home} text={"Reocmmend"} />
           <GameColumnWrapper>
@@ -245,31 +246,32 @@ const HomeCategory = () => {
           <CategoryLabel imageUrl={latest_home} text={"Latest winners"} />
           <WinnerCard leaderboard={leaderboard} />
         </LatestContainer>
-      </RankingContainer>
-      <HomeLobbyCategory>
-        <CategoryTitle><CategoryLabel imageUrl={top_home} text={"Top Games"} />
-          <ButtonText
-            size="small"
-            text={"More"}
-            onClick={() => handleViewAllClick(GameTypeEnum.SLOT)}
-          />
-        </CategoryTitle>
-        <SlotCategoryContent>
-          {hotGameList.slice(0, 12).map((gameItem) => {
-            return (
-              <GameCard
-                key={gameItem.id}
-                gameItem={gameItem}
-                isActive={gameItem.isactive}
-                imageUrl={`${config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                  }.jpg`}
-              />
-            );
-          })}
-        </SlotCategoryContent>
-      </HomeLobbyCategory>
-      <HomeLobbyCategory>
+      </RankingContainer> */}
+        <HomeLobbyCategory>
+          <CategoryTitle><CategoryLabel imageUrl={top_home} text={"Top Games"} />
+            <ButtonText
+              size="small"
+              text={"More"}
+              onClick={() => handleViewAllClick(GameTypeEnum.SLOT)}
+            />
+          </CategoryTitle>
+          <SlotCategoryContent>
+            {hotGameList.slice(0, 12).map((gameItem) => {
+              return (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
+                />
+              );
+            })}
+          </SlotCategoryContent>
+        </HomeLobbyCategory>
+
+        {/* <HomeLobbyCategory>
         <CategoryTitle>
           <CategoryLabel imageUrl={live_home} text={"Live Casino"} />
           <ButtonText
@@ -296,7 +298,8 @@ const HomeCategory = () => {
             );
           })}
         </CategoryContent>
-      </HomeLobbyCategory>
+      </HomeLobbyCategory> */}
+        {/* 
       <HomeLobbyCategory>
         <CategoryTitle><CategoryLabel imageUrl={slot_home} text={"Slot Games"} />
           <ButtonText
@@ -319,8 +322,9 @@ const HomeCategory = () => {
             );
           })}
         </SlotCategoryContent>
-      </HomeLobbyCategory>
-    </HomeCategoryContainer>
+      </HomeLobbyCategory> */}
+      </HomeCategoryContainer>
+    </>
   );
 };
 

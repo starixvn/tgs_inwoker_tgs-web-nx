@@ -12,10 +12,10 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.div`
-    color:${({ theme }) => theme.primary};
-    margin-left: 8px;
-    font-size: 19px;
-    font-weight: 700;
+    color:${({ theme }) => theme.white};
+    margin-left: 10px;
+    font-size: 19.5px;
+    font-weight: 400;
 `;
 
 const CategoryLabel: FC<Props> = ({ imageUrl, text }) => {

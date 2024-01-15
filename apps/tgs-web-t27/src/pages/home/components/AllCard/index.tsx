@@ -3,16 +3,14 @@ import dots from "@/assets/t23/images/home/dots.svg";
 import { media } from "@/theme/breakpoints";
 
 const AllCardBg = styled.div`
-  width: calc(30.3% - 5.33px);
-  max-width: 130px;
+  width: calc(40% - 10px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 130 / 130;
+  aspect-ratio: 148 / 194;
 
   ${media.sm} {
-    width: calc(24% - 30px);
-    min-width: 250px;
-    aspect-ratio: 250 / 250;
+    width: calc(12.19% - 14px);
+    min-width: 148px;
   }
 `;
 
@@ -26,8 +24,8 @@ const AllIcon = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  border-radius: 10px;
-  border: 1px solid ${(props) => props.theme.primary};
+  border-radius: 4px;
+  border: 1px solid ${(props) => props.theme.g2};
   background: ${(props) => props.theme.mainBackground};
   display: flex;
   flex-direction: column;
@@ -36,10 +34,10 @@ const AllIcon = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.white};
   font-size: 1rem;
   font-weight: 400;
-  margin-top: 8px;
+  margin-top: 16px;
 
   ${media.sm} {
     font-size: 1.375rem;
