@@ -7,7 +7,7 @@ import { media } from "@/theme/breakpoints";
 
 const DateContainer = styled.div`
   width: 100%;
- 
+
   ${media.sm} {
     width: auto;
     height: 47px;
@@ -18,19 +18,11 @@ const FlatStraightLine = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-`;
+  gap: 12px;
 
-const DateSpliter = styled.div`
-  font-size: 20px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.gray50};
-  text-align: center;
-  padding: 12px;
-`;
-const DateInner = styled.div`
-  width: 159px;
-  height: 100%;
+  & > * {
+    flex: 1;
+  }
 `;
 
 type Props = {
@@ -72,33 +64,23 @@ const DateRangeWithDatePicker = ({
     //@ts-ignore
     <DateContainer {...others}>
       <FlatStraightLine>
-        <DateInner>
-          {/*<DateLabel>{i18n.t("report.startDate")}</DateLabel>*/}
+        <DatePickerForReport
+          disableFuture
+          minDate={minDateFrom}
+          maxDate={dateTo}
+          format="yyyy/MM/dd"
+          value={dateFrom}
+          onChange={handleDateFromChange}
+        />
 
-          <DatePickerForReport
-            disableFuture
-            minDate={minDateFrom}
-            maxDate={dateTo}
-            format="yyyy/MM/dd"
-            value={dateFrom}
-            onChange={handleDateFromChange}
-          />
-        </DateInner>
-
-        <DateSpliter>-</DateSpliter>
-
-        <DateInner>
-          {/*<DateLabel>{i18n.t("report.endDate")}</DateLabel>*/}
-
-          <DatePickerForReport
-            disableFuture
-            minDate={dateFrom}
-            maxDate={maxDateTo}
-            format="yyyy/MM/dd"
-            value={dateTo}
-            onChange={handleDateToChange}
-          />
-        </DateInner>
+        <DatePickerForReport
+          disableFuture
+          minDate={dateFrom}
+          maxDate={maxDateTo}
+          format="yyyy/MM/dd"
+          value={dateTo}
+          onChange={handleDateToChange}
+        />
       </FlatStraightLine>
       {/*<div className="clear"></div>*/}
     </DateContainer>

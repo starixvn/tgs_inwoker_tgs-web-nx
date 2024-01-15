@@ -9,40 +9,29 @@ const StatusSelectWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 20px;
+  background: ${({ theme }) => theme.grey05};
+  border-radius: 6px;
+  padding: 13px 12px;
+  gap: 82px;
 `;
 
-
 const StatusSelectContainer = styled.div`
-  border: 1px solid #D6DBDD;
-  height: 47px;
-  background: ${({ theme }) => theme.mainBackground};
   font-size: 0.937rem;
   color: ${({ theme }) => theme.white};
-  border-radius: 6px;
-  box-shadow: 0 4px 8px 0 rgba(35, 31, 27, 0.1);
+
   display: flex;
   align-items: center;
 `;
 
 const SelectLabel = styled.div`
   margin-right: 5px;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.white};
 `;
 
 const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
   flexGrow: 1,
   padding: 0,
 
-  "&:before": {
-    top: "1px",
-    right: "36px",
-    height: "100%",
-    content: "'\x00'",
-    display: "block",
-    zIndex: "2",
-    position: "absolute",
-    borderRight: "1px solid #D6DBDD",
-  },
   "& fieldset": {
     border: "none",
   },

@@ -18,9 +18,10 @@ import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
   font-size: 1.25rem;
   font-weight: 700;
+  align-self: flex-start;
 `;
 
 const Report = () => {
