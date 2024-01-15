@@ -29,7 +29,7 @@ import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-conta
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
-import useGameTypeList from "@/hooks/home/useGameTypeList";;
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -41,15 +41,15 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-    | {
+  | {
       navType: "route";
       routePath: string;
     }
-    | {
+  | {
       navType: "action";
       callback: () => void;
     }
-  );
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -142,8 +142,7 @@ export function useGetNavItemList() {
       },
       {
         key: NavCardKey.WAGERING,
-        //todo: 新增 Wagering t18 翻譯
-        label: "Wagering",
+        label: i18n.t("t29.wagering"),
         iconUrl: wageringImg,
         iconSecondaryUrl: wageringWhiteImg,
         navType: "route",
@@ -189,8 +188,7 @@ export function useGetNavItemList() {
       //   navType: "route",
       //   routePath: "/affiliate",
       // },
-      !isCustomizedBrand
-      && {
+      !isCustomizedBrand && {
         key: NavCardKey.VIP,
         label: "VIP",
         iconUrl: vipImg,
@@ -222,7 +220,7 @@ export function useGetNavItemList() {
         navType: "action",
         routePath: null,
         callback: () => {},
-      }
+      },
     ].filter(Boolean) as NavItem[];
 
     return navItems;
