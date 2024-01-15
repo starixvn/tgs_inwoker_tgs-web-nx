@@ -18,11 +18,9 @@ const AvatarContainer = styled.div`
 const ContextMenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = (isOpen?: boolean) => {
-    console.log("======handleClick=======");
-    console.log(isOpen);
-    if (typeof isOpen !== "undefined") {
-      setIsOpen(isOpen);
+  const handleClick = (newIsOpen?: boolean) => {
+    if (typeof newIsOpen !== "undefined") {
+      setIsOpen(newIsOpen);
       return;
     }
 

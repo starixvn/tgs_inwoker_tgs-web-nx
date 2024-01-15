@@ -83,21 +83,8 @@ const Modal = ({
   useDefaultContent?: boolean;
   useDarkBg?: boolean;
 }) => {
-  const handleContentClick = (event: { stopPropagation: () => void }) => {
-    event.stopPropagation();
-  };
-
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [open]);
-
   const handleCloseModal: MouseEventHandler<HTMLDivElement> = (e) => {
-    console.log("handleCloseModal");
-    e.preventDefault();
+    e.stopPropagation();
     onClose();
   };
 
@@ -106,7 +93,7 @@ const Modal = ({
       {useDefaultContent && (
         <ContentContainer>
           <CloseButton onClick={onClose}>✖</CloseButton>
-          <Content onClick={handleContentClick}>{children}</Content>
+          <Content>{children}</Content>
         </ContentContainer>
       )}
       {!useDefaultContent && children}
