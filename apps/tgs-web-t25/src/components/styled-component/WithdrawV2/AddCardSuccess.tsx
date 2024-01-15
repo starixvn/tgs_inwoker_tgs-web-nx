@@ -7,15 +7,11 @@ export const Container = styled.div`
 export const SubTitle = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 16px;
-  color: ${({ theme }) => theme.blue50};
-  text-align: center;
+  color: ${({ theme }) => theme.primary};
 `;
 export const SubTitleDesc = styled.div`
   font-size: 0.875rem;
-  margin-bottom: 16px;
   color: ${({ theme }) => theme.text};
-  text-align: center;
 `;
 export const ButtonContainer = styled.div`
   margin: 0 auto;
@@ -27,4 +23,19 @@ export const ButtonContainer = styled.div`
   ${media.sm} {
     flex-direction: row;
   }
+`;
+
+export const Card = styled.div`
+  background: ${({ theme }) => theme.black02};
+  border: 1px solid ${({ theme }) => theme.grey06};
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 24px 20px;
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 `;

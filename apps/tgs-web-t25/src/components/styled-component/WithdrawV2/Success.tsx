@@ -7,18 +7,13 @@ export const SameLine = styled.div`
   gap: 16px;
 `;
 
-export const Container = styled.div`
-  padding-top: 50px;
-`;
+export const Container = styled.div``;
 export const ImgSuccess = styled.img`
   display: block;
-  width: 100px;
-  margin: 16px auto;
+  width: 40px;
 `;
 export const SuccessMessage = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
-  color: #23507d;
-  text-align: center;
-  margin-bottom: 16px;
+  color: ${({ theme }) => theme.primary};
 `;

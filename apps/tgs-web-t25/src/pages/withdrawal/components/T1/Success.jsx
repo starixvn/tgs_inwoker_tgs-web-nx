@@ -8,18 +8,27 @@ import {
   SameLine,
   SuccessMessage,
 } from "@/components/styled-component/WithdrawV2/Success";
+import { Card, TitleContainer } from "@/components/styled-component/WithdrawV2/AddCardSuccess";
 
 const Success = ({ verified, handleConfirmClick, handleVerifyName }) => {
   return (
     <Container>
-      <ImgSuccess src={SuccessPNG} />
-      <SuccessMessage>{i18n.t("withdrawal.msgSuccess")}</SuccessMessage>
-      <SameLine>
-        <CustomButton onClick={handleConfirmClick}>{i18n.t("common.confirm")}</CustomButton>
-        {!verified && (
-          <CustomButton onClick={handleVerifyName}>{i18n.t("verified.goVerify")}</CustomButton>
-        )}
-      </SameLine>
+      <Card>
+        <TitleContainer>
+          <ImgSuccess src={SuccessPNG} />
+          <SuccessMessage>{i18n.t("withdrawal.msgSuccess")}</SuccessMessage>
+        </TitleContainer>
+        <SameLine>
+          <CustomButton fullWidth onClick={handleConfirmClick}>
+            {i18n.t("common.confirm")}
+          </CustomButton>
+          {!verified && (
+            <CustomButton fullWidth onClick={handleVerifyName}>
+              {i18n.t("verified.goVerify")}
+            </CustomButton>
+          )}
+        </SameLine>
+      </Card>
     </Container>
   );
 };

@@ -3,12 +3,15 @@ import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import styled from "styled-components";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import {
+  Card,
   ButtonContainer,
   Container,
   SubTitle,
   SubTitleDesc,
+  TitleContainer,
 } from "@/components/styled-component/WithdrawV2/AddCardSuccess";
 import { theme } from "@/theme";
 import { ImgSuccess } from "@/components/styled-component/WithdrawV2/Success";
@@ -27,20 +30,24 @@ const AddCardSuccess = ({
 
   return (
     <Container>
-      <ImgSuccess src={SuccessPNG} />
+      <Card>
+        <TitleContainer>
+          <ImgSuccess src={SuccessPNG} />
+          <SubTitle>{i18n.t("card.success.title")}</SubTitle>
+        </TitleContainer>
 
-      <SubTitle>{i18n.t("card.success.title")}</SubTitle>
-      {isShowAddCardButton && !isCustomizedBrand && (
-        <SubTitleDesc>
-          {i18n.t("card.success.successDesc")}
-          <br></br>
-          {i18n.t("card.success.bindDesc")}
-        </SubTitleDesc>
-      )}
-      {!isShowAddCardButton && !isCustomizedBrand && (
-        <SubTitleDesc>{i18n.t("card.success.noMoreAddCard")}</SubTitleDesc>
-      )}
-      {isCustomizedBrand && <SubTitleDesc>{i18n.t("movn2_addcardsuccess")}</SubTitleDesc>}
+        {isShowAddCardButton && !isCustomizedBrand && (
+          <SubTitleDesc>
+            {i18n.t("card.success.successDesc")}
+            <br></br>
+            {i18n.t("card.success.bindDesc")}
+          </SubTitleDesc>
+        )}
+        {!isShowAddCardButton && !isCustomizedBrand && (
+          <SubTitleDesc>{i18n.t("card.success.noMoreAddCard")}</SubTitleDesc>
+        )}
+        {isCustomizedBrand && <SubTitleDesc>{i18n.t("movn2_addcardsuccess")}</SubTitleDesc>}
+      </Card>
 
       <ButtonContainer>
         {!isCustomizedBrand &&

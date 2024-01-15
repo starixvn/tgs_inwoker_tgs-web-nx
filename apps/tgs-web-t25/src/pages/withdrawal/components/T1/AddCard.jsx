@@ -1,5 +1,4 @@
 import React from "react";
-import { useGeneralStore } from "@tgs-web-nx/core";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
