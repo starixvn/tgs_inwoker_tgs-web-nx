@@ -1,4 +1,5 @@
 import React from "react";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
@@ -13,6 +14,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 
+const disableBankHolderBrand = "MOVN2";
 const Container = styled.div`
   width: 100%;
 `;
@@ -274,7 +276,48 @@ const AddCard = ({
               name="bankAccountName"
               onChange={handleBankAccountNameChange}
               value={bankAccountName}
-              disabled={disableBankAccountNameInput}
+              //for MOVN2 customization
+              disabled={
+                disableBankHolderBrand === config.brand ? true : disableBankAccountNameInput
+              }
+            />
+          </FormControl>
+        </ItemContainer>
+      )}
+      {((!isDeposit &&
+        withdrawalList.length > 0 &&
+        withdrawalList[selectedBankTypeIndex].banktype === "EWallet") ||
+        (isDeposit &&
+          depositList.length > 0 &&
+          depositList[selectedBankTypeIndex].banktype === "EWallet")) && (
+        <ItemContainer>
+          <LabelContainer>
+            {eWalletCustomIDR
+              ? i18n.t("idr1.eWalletAccount")
+              : eWalletCustom
+              ? i18n.t("card.addCard.eWalletAccount")
+              : config.features.AddCard_DisplayFPS
+              ? i18n.t("hk28.card.addCard.BankAccountName")
+              : i18n.t("card.addCard.BankAccountName")}
+          </LabelContainer>
+          <FormControl>
+            <TextField
+              placeholder={
+                eWalletCustomIDR
+                  ? i18n.t("idr1.eWalletAccount")
+                  : eWalletCustom
+                  ? i18n.t("card.addCard.msgEnterEwalletAccount")
+                  : config.features.AddCard_DisplayFPS
+                  ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
+                  : i18n.t("card.addCard.msgEnterBankAccountName")
+              }
+              name="bankAccountName"
+              onChange={handleBankAccountNameChange}
+              value={bankAccountName}
+              //for MOVN2 customization
+              disabled={
+                disableBankHolderBrand === config.brand ? true : disableBankAccountNameInput
+              }
             />
           </FormControl>
         </ItemContainer>

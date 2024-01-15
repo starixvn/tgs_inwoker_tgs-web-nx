@@ -4,6 +4,7 @@ import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import AddCardT1 from "@/components/account/WithdrawalPrevV2/components/T1/AddCard";
 
+const setBankHolderNameBrand = "MOVN2";
 class AddCard extends Component {
   constructor(props) {
     super(props);
@@ -128,7 +129,8 @@ class AddCard extends Component {
       ...this.state,
       selectedBankTypeIndex: e.target.value,
       selectedChannelIndex: 0,
-      bankAccountName: name,
+      //for MOVN2 customization
+      bankAccountName: setBankHolderNameBrand === config.brand ? this.props.name : name,
       disableBankAccountNameInput: disableBankAccountNameInput,
       number: "",
     });

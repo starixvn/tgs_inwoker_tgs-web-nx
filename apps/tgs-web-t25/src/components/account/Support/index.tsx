@@ -4,6 +4,7 @@ import { BrandsSupport } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useContactCS } from "@tgs-web-nx/core/hooks";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import SupportCard from "@/pages/contactUs/components/SupportCard";
 import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/components/account/Support/IMHandler";
@@ -22,6 +23,7 @@ const Support = () => {
   const { handleContactCs } = useContactCS();
   const brandsSupportList = general.brandsSupport;
   const [selectedBrandsSupport, setSelectedBrandsSupport] = useState<BrandsSupport | null>(null);
+  const { isCustomizedBrand } = useHomeGameContext();
 
   const handleClick = (brandsSupport: BrandsSupport) => {
     if (brandsSupport.type === "Live") {
@@ -47,7 +49,7 @@ const Support = () => {
       <CardsContainer>
         <HeaderImage />
 
-        {(config.features.LiveChatVendor || csLiveChatUrl) && (
+        {(config.features.LiveChatVendor || csLiveChatUrl) && !isCustomizedBrand && (
           <SupportCard
             brandsSupport={{
               appid: null,
