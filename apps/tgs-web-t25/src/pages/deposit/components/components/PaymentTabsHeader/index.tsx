@@ -4,7 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import { media } from "@/theme/breakpoints";
-import { ItemContainer } from "@/components/styled-component/ProfileForms";
+import { ItemContainer, LabelContainer } from "@/components/styled-component/ProfileForms";
 
 const BadgeContainer = styled.div`
   display: flex;
