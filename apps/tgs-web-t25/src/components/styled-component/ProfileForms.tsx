@@ -29,7 +29,7 @@ export const LabelContainer = styled.div`
   font-size: 1.25rem;
   line-height: 20px;
   font-weight: 400;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   float: left;
   margin-bottom: 16px;
 `;
@@ -87,10 +87,6 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   color: theme.palette.white,
   background: theme.palette.primary.main,
   boxShadow: "none",
-
-  "&:hover": {
-    background: theme.palette.gray30,
-  },
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,

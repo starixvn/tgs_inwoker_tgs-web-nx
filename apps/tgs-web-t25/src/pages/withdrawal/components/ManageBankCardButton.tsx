@@ -15,6 +15,7 @@ const ButtonContainer = styled.div`
   background: ${({ theme }) => theme.primary};
   padding: 10px 22px;
   gap: 8px;
+  border-radius: 100px;
 `;
 
 type Props = {

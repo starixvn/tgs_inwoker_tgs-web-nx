@@ -81,12 +81,12 @@ export function useGetBottomNavItemList() {
       },
       {
         navType: NavTypeEnum.ITEM,
-        key: "affiliate",
+        key: "profile",
         label: i18n.t("deposit.details.account"),
         iconUrl: withdrawIcon,
         iconActiveUrl: withdrawActiveIcon,
         handleClick: () => {
-          history.push("/withdraw");
+          history.push("/profile");
         },
       },
     ];

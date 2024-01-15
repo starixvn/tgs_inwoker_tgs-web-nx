@@ -19,6 +19,8 @@ const ContextMenuButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (isOpen?: boolean) => {
+    console.log("======handleClick=======");
+    console.log(isOpen);
     if (typeof isOpen !== "undefined") {
       setIsOpen(isOpen);
       return;

@@ -46,8 +46,10 @@ const HeaderMenu = ({ handleCloseContextMenu, ...others }: Props) => {
 
       case "action":
         navItem.callback();
-        handleCloseContextMenu();
+        break;
     }
+
+    // handleCloseContextMenu();
   };
 
   return (

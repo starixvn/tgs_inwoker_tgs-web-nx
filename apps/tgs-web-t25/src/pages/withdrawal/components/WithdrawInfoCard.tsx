@@ -3,18 +3,22 @@ import styled from "styled-components";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
+import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.blue20};
-  padding: 12px;
-  border-radius: 5px;
+  background: ${({ theme }) => theme.black02};
+  padding: 14px 10px;
+  border-radius: 6px;
   font-size: 0.875rem;
   line-height: 1.098rem;
-  align-self: flex-start;
+  display: flex;
+  margin-bottom: 16px;
 `;
 
+const ColContainer = styled.div``;
+
 const RowContainer = styled.div`
-  border-left: 6px solid ${({ theme }) => theme.blue50};
+  border-left: 6px solid ${({ theme }) => theme.grey03};
   padding-left: 10px;
 
   &:first-child {
@@ -23,13 +27,17 @@ const RowContainer = styled.div`
 `;
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
 `;
 const Value = styled.div`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.grey02};
 `;
 
-const WithdrawInfoCard = () => {
+type Props = {
+  handleManageCardClick: any;
+};
+
+const WithdrawInfoCard = ({ handleManageCardClick }: Props) => {
   const [minWithdrawLimit, setMinWithdrawLimit] = useState(0);
 
   const getMinWithdrawLimit = useCallback(async () => {
@@ -50,23 +58,38 @@ const WithdrawInfoCard = () => {
   const { wallet } = useWalletStore();
   return (
     <CardContainer>
-      {/*您可提款餘額為*/}
-      <RowContainer>
-        <Label>{i18n.t("withdrawal.msgCanWithdrawal")}</Label>
-        <Value>
-          {wallet.mainSymbol}
-          {Common.formatNumberWithThousand(wallet.mainBalance)}
-        </Value>
-      </RowContainer>
+      <ColContainer
+        style={{
+          padding: "10px",
+        }}
+      >
+        {/*您可提款餘額為*/}
+        <RowContainer>
+          <Label>{i18n.t("withdrawal.msgCanWithdrawal")}</Label>
+          <Value>
+            {wallet.mainSymbol}
+            {Common.formatNumberWithThousand(wallet.mainBalance)}
+          </Value>
+        </RowContainer>
 
-      <RowContainer>
-        {/*流水需求*/}
-        <Label>{i18n.t("withdrawal.turnover")}</Label>
-        <Value>
-          {wallet.mainSymbol}
-          {Common.formatNumberWithThousand(minWithdrawLimit)}
-        </Value>
-      </RowContainer>
+        <RowContainer>
+          {/*流水需求*/}
+          <Label>{i18n.t("withdrawal.turnover")}</Label>
+          <Value>
+            {wallet.mainSymbol}
+            {Common.formatNumberWithThousand(minWithdrawLimit)}
+          </Value>
+        </RowContainer>
+      </ColContainer>
+
+      <ColContainer
+        style={{
+          marginLeft: "auto",
+          alignSelf: "flex-end",
+        }}
+      >
+        <ManageBankCardButton handleManageCardClick={handleManageCardClick} />
+      </ColContainer>
     </CardContainer>
   );
 };

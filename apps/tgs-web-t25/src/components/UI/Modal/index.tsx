@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { MouseEventHandler, useEffect } from "react";
 import styled from "styled-components";
 
 type OverlayProps = {
@@ -95,8 +95,14 @@ const Modal = ({
     }
   }, [open]);
 
+  const handleCloseModal: MouseEventHandler<HTMLDivElement> = (e) => {
+    console.log("handleCloseModal");
+    e.preventDefault();
+    onClose();
+  };
+
   return (
-    <Overlay $open={open} $useDarkBg={!!useDarkBg} onClick={onClose}>
+    <Overlay $open={open} $useDarkBg={!!useDarkBg} onClick={handleCloseModal}>
       {useDefaultContent && (
         <ContentContainer>
           <CloseButton onClick={onClose}>✖</CloseButton>
