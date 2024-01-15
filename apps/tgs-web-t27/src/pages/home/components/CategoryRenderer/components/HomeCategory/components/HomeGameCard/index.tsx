@@ -35,7 +35,7 @@ const GameCardBg = styled.div`
 
   ${media.sm} {
     width: calc(12.19% - 14px);
-    min-width: 148px;
+    max-width: 148px;
   }
 `;
 
@@ -98,7 +98,7 @@ const PlayBtnWrapper = styled.div`
   padding: 4px 10px;
 `;
 
-const PlayBtn = styled.div`
+const PlayBtn = styled.div<{ $tag: string }>`
   padding: 10px 20px;
   color: ${(props) => props.theme.white};
   font-size: 0.875rem;
@@ -107,17 +107,24 @@ const PlayBtn = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background: ${(props) => props.theme.secondaryGradient};
+  background: ${({ theme, $tag }) => $tag === "hot" ? theme.secondaryGradient : theme.primaryGradient};
   border-radius: 4px;
+
+  @media (max-width: 400px) {
+    padding: 7px;
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
 `;
 
 type GameCardProps = {
   gameItem: GameItem;
   isActive: boolean;
   imageUrl: string;
+  tag: string;
 };
 
-const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
+const HomeGameCard = ({ gameItem, isActive, imageUrl, tag }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
   const { account } = useAccountStore();
   const history = useHistory();
@@ -177,7 +184,7 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
           <NameBgIcon src={gradientBg} alt={"game name"} />
           {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
         </NameBg>
-        <PlayBtnWrapper><PlayBtn onClick={launchGameHandler}>Play Now</PlayBtn></PlayBtnWrapper>
+        <PlayBtnWrapper><PlayBtn onClick={launchGameHandler} $tag={tag}>Play Now</PlayBtn></PlayBtnWrapper>
 
         {!isActive && (
           <MaintenanceBg>

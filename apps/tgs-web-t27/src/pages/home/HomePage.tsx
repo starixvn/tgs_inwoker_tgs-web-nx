@@ -21,6 +21,7 @@ import VendorLogo from "@/pages/home/components/VendorLogo";
 import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import ScrollableHomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
+import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -200,6 +201,7 @@ const HomePage = () => {
 
       <HomeCategoryContainer>
         <ScrollableHomeHot />
+        <ScrollableHomeNew />
       </HomeCategoryContainer>
 
       {isMobileSize && !isEnterGamePortal && !activeGameType && (

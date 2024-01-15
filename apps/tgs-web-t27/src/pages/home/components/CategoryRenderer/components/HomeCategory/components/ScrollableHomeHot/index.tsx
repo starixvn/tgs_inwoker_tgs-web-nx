@@ -36,13 +36,13 @@ const CategoryTitle = styled.div`
 const CategoryContent = styled.div`
   width: 100%;
   max-height: 195px;
-  display: flex;
   overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
   height: 20.9%; //max-height: 194 /figma mobile height:926
   gap: 8px;
   background-color: ${({ theme }) => theme.mainBackground};
@@ -54,18 +54,18 @@ const CategoryContent = styled.div`
 
     &::-webkit-scrollbar {
       height: 12px;
-      background-color: ${({ theme }) => theme.gray30};
+      background-color: ${({ theme }) => theme.g5};
     }
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
       border-radius: 8px;
-      background: ${(props) => props.theme.subBackground};
+      background-color: ${({ theme }) => theme.g5};
     }
 
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px ${({ theme }) => theme.gray10};
+      -webkit-box-shadow: inset 0 0 6px ${({ theme }) => theme.g8};
       background-color: ${(props) => props.theme.mainBackground};
     }
   }
@@ -100,6 +100,7 @@ const ScrollableHomeHot = () => {
                   imageUrl={`${config.sourceUrl
                     }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
                     }.jpg`}
+                  tag={"hot"}
                 />
               ))}
           {hotGameList.length > SHOW_CATEGORY_AMOUNT && (
