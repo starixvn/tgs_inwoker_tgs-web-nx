@@ -24,13 +24,14 @@ export const imageMap: { [key in string]: string } = {
 };
 
 const StyledSelect = styled(MuiSelect)`
-  border-radius: 30px !important;
+  border-radius: 4px !important;
   min-width: 135px;
-  height: 40px;
+  height: 48px;
   overflow: visible;
-  background: ${({ theme }) => theme.lightGold};
+  background: ${({ theme }) => theme.g4};
   font-weight: 700 !important;
   font-size: 1rem !important;
+  border: 1px solid ${({ theme }) => theme.g5} !important;
 
   .MuiOutlinedInput-input {
     padding: 12px !important;

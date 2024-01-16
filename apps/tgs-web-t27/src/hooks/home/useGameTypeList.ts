@@ -19,6 +19,7 @@ import Lottery from "@/pages/home/components/TabSvgIcon/Lottery";
 import Sabong from "@/pages/home/components/TabSvgIcon/Sabong";
 import Slot from "@/pages/home/components/TabSvgIcon/Slot";
 import Sport from "@/pages/home/components/TabSvgIcon/Sport";
+import HomeSvg from "@/pages/home/components/TabSvgIcon/Home";
 
 type GameTypeItem = {
   key: string;
@@ -36,6 +37,16 @@ export const useGameTypeList = () => {
 
   useEffect(() => {
     const gameTypeList: GameTypeItem[] = [
+      {
+        key: "home",
+        iconUrl: "",
+        text: i18n.t("common.home"),
+        fontSize: "small",
+        gameType: GameTypeEnum.NONE,
+        iconComponent: HomeSvg,
+        title: "",
+        content: "",
+      },
       {
         key: "sports",
         iconUrl: sports,

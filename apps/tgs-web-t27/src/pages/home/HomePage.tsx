@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeItem, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
@@ -11,8 +11,17 @@ import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import bg from "@/assets/t19/images/home/home_bg.png";
-import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import CardPrompt from "@/pages/home/components/CardPrompt";
+import RegisterSection from "@/pages/home/components/RegisterSection";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import CategorySection from "./components/CategorySection";
+import SocialMedia from "@/components/project/SocialMedia";
+import VendorLogo from "@/pages/home/components/VendorLogo";
+import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
+import ScrollableHomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
+import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
+import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -64,7 +73,7 @@ const SlickDotWrapper = styled.div`
   margin-bottom: 30px;
 
   & ul li.slick-active ${SlickDot} {
-    background: #F1C137 !important;
+    background: #45D91E !important;
   }
 `;
 
@@ -83,7 +92,8 @@ const MainContentWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   flex-shrink: 0;
   flex: 1;
-  padding: 16px 12px 0px 12px;
+
+  border: 1px solid red;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -92,14 +102,32 @@ const MainContentWrapper = styled.div`
   }
 `;
 
-const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+const HomeCategoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
-  height: 520px;
-  margin: 0 auto;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+`;
+
+const HomeLobbyCategory = styled.div`
+  width: 100%;
+`;
+
+const CategoryTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0px;
+`;
+
+const SlotCategoryContent = styled.div`
+  width: 100%;
+  row-gap: 15px;
+  column-gap: 31px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 `;
 
 const HomePage = () => {
@@ -107,16 +135,11 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
+  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType, isEnterGamePortal } =
     useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
-  const hasNavData = !!navPopupCategoryList.length;
   const history = useHistory();
   const gameTypeList = useGameTypeList();
-
-  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-
-  const isNonLobby = isNonLobbyList.includes(activeGameType);
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -132,6 +155,14 @@ const HomePage = () => {
     customPaging: (i: number) => {
       return <SlickDot key={i} />;
     },
+  };
+
+  const { hotGameList, newGameList, recommendGameList, isLoading } = useGetHomeCategoryList();
+
+  const handleViewAllClick = (gameType: GameTypeEnum) => {
+    handleChangeGameType(gameType);
+    const activeGameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
+    history.push(`/main/${activeGameTypeKey}`);
   };
 
   useEffect(() => {
@@ -150,29 +181,67 @@ const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
 
+  console.log("activeGameType", activeGameType, "isEnterGamePortal", isEnterGamePortal)
+
   return (
     <MainWrapper>
-      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
-      {!!general.banner.length && isMobileSize && (
-        <SliderWrapper>
-          <Slider settings={settings} />
-        </SliderWrapper>
+      {/* 首頁但未進入遊戲大廳 */}
+      {isMobileSize && !isEnterGamePortal && !activeGameType && (
+        <>
+          <CardPrompt />
+          <RegisterSection />
+          {!!general.banner.length &&
+            <SliderWrapper>
+              <Slider settings={settings} />
+            </SliderWrapper>
+          }
+          <CategorySection />
+        </>
       )}
-      {!!general.banner.length && isDesktopSize && !activeGameType && (
+
+      <HomeCategoryContainer>
+        <ScrollableHomeHot />
+        <ScrollableHomeNew />
+      </HomeCategoryContainer>
+
+      {isMobileSize && !isEnterGamePortal && !activeGameType && (
+        <>
+          <SocialMedia />
+          <VendorLogo />
+        </>
+      )}
+
+
+      {/* 首頁並且進入遊戲大廳 */}
+      {isMobileSize && isEnterGamePortal && !activeGameType && (
+        <>
+          {!!general.banner.length &&
+            <SliderWrapper>
+              <Slider settings={settings} />
+            </SliderWrapper>
+          }
+          <MainContentWrapper>
+            <CategoryRenderer />
+          </MainContentWrapper>
+        </>
+      )}
+
+      {isMobileSize && isEnterGamePortal && !!activeGameType && (
+        <>
+          {!!general.banner.length &&
+            <SliderWrapper>
+              <Slider settings={settings} />
+            </SliderWrapper>
+          }
+          <MainContentWrapper>
+            <CategoryRenderer />
+          </MainContentWrapper>
+        </>
+      )}
+
+      {/* {!!general.banner.length && isDesktopSize && !activeGameType && (
         <SliderWrapper>
           <Slider maxHeight={"600px"} settings={settings} />
-        </SliderWrapper>
-      )}
-      {!!general.banner.length && isDesktopSize && !!activeGameType && (
-        <SliderWrapper>
-          <GameTypeBanner
-            $imageUrl={
-              activeGameTypeKey
-                ? `${import.meta.env.BASE_URL
-                }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                : ""
-            }
-          />
         </SliderWrapper>
       )}
 
@@ -187,12 +256,9 @@ const HomePage = () => {
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>
-      )}
-      {isMobileSize && (
-        <MainContentWrapper>
-          <CategoryRenderer />
-        </MainContentWrapper>
-      )}
+      )} */}
+
+
     </MainWrapper>
   );
 };

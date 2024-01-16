@@ -16,13 +16,13 @@ const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
     background: ${({ theme }) => theme.mainBackground};
-    width: calc(100vw - 10px * 2);
+    width: calc(100vw - 50px * 2);
     height: auto;
     margin: 4px;
     overflow: visible;
 
     ${media.sm} {
-      width: 640px;
+      width: 480px;
       gap: 18px;
       border-radius: 10px;
     }
@@ -44,7 +44,7 @@ const ChildContainer = styled.div`
 const Title = styled.div`
   font-size: 1.062rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
 
   ${media.sm} {
     font-size: 1.5rem;

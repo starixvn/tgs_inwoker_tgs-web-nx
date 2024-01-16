@@ -3,11 +3,11 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import giftIcon from "@/assets/t19/images/bottomAppBar/icon-gift.svg";
-import depositIcon from "@/assets/t19/images/bottomAppBar/icon-deposit.svg";
-import withdrawIcon from "@/assets/t19/images/bottomAppBar/icon-withdraw.svg";
-import accountIcon from "@/assets/t19/images/bottomAppBar/icon-account.svg";
-import homeIcon from "@/assets/t19/images/bottomAppBar/icon-home.svg";
+import LiveCasinoSvg from "@/assets/t27/images/bottomAppBar/LiveCasino";
+import SportSvg from "@/assets/t27/images/bottomAppBar/Sport";
+import AccountSvg from "@/assets/t27/images/bottomAppBar/Account";
+import DepositSvg from "@/assets/t27/images/bottomAppBar/Deposit";
+import PromotionSvg from "@/assets/t27/images/bottomAppBar/Promotion";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 
 export enum NavTypeEnum {
@@ -20,8 +20,9 @@ export type BottomNavItem = {
   navType: NavTypeEnum;
   key: string;
   label: string | any;
-  iconUrl: string;
+  gameType: GameTypeEnum;
   handleClick: () => void;
+  iconComponent?: React.FC<{ $color: string }>
 };
 
 export function useGetBottomNavItemList() {
@@ -35,68 +36,62 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "account",
         label: i18n.t("deposit.details.account"),
-        iconUrl: accountIcon,
+        gameType: GameTypeEnum.NONE,
         handleClick: () => {
+          handleChangeGameType(GameTypeEnum.NONE);
           history.push("/account");
         },
+        iconComponent: AccountSvg,
+      },
+      {
+        navType: NavTypeEnum.ITEM,
+        key: "liveCasino",
+        label: i18n.t("common.live"),
+        gameType: GameTypeEnum.LIVELOBBY,
+        handleClick: () => {
+          handleChangeGameType(GameTypeEnum.LIVELOBBY);
+          history.push("/main/liveCasino");
+        },
+        iconComponent: LiveCasinoSvg,
+      },
+      {
+        navType: NavTypeEnum.BIG_ITEM,
+        key: "deposit",
+        label: i18n.t("deposit.title"),
+        gameType: GameTypeEnum.NONE,
+        handleClick: () => {
+          handleChangeGameType(GameTypeEnum.NONE);
+          history.push("/deposit");
+        },
+        iconComponent: DepositSvg,
+      },
+      {
+        navType: NavTypeEnum.ITEM,
+        key: "sports",
+        label: i18n.t("common.sports"),
+        gameType: GameTypeEnum.SPORTS,
+        handleClick: () => {
+          handleChangeGameType(GameTypeEnum.SPORTS);
+          history.push("/main/sports");
+        },
+        iconComponent: SportSvg,
       },
       {
         navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: giftIcon,
-        handleClick: () => {
-          history.push("/promotion-list");
-        },
-      },
-      {
-        navType: NavTypeEnum.BIG_ITEM,
-        key: "home",
-        label: i18n.t("common.home"),
-        iconUrl: homeIcon,
+        gameType: GameTypeEnum.NONE,
         handleClick: () => {
           handleChangeGameType(GameTypeEnum.NONE);
-          history.push("/");
+          history.push("/promotion-list");
         },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "deposit",
-        label: i18n.t("deposit.title"),
-        iconUrl: depositIcon,
-        handleClick: () => {
-          history.push("/deposit");
-        },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "withdraw",
-        label: i18n.t("common.withdrawal"),
-        iconUrl: withdrawIcon,
-        handleClick: () => {
-          history.push("/withdrawal");
-        },
+        iconComponent: PromotionSvg,
       },
     ];
   }, []);
 
-  // const { handleToggleMenu } = useHeader();
-  const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    switch (appBarItem.navType) {
-      // case NavTypeEnum.MENU :
-      //   handleToggleMenu(true);
-      //
-      //   break;
-
-      default:
-        appBarItem.handleClick();
-        break;
-    }
-  };
-
   return {
     bottomNavItemList,
-    handleClickBottomNavItem,
     isTransferDrawerOpen,
     handleTransferDrawerToggle,
   };

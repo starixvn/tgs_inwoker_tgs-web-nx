@@ -57,13 +57,18 @@ const SideMenuHeader = () => {
   } = useGeneralStore();
   const { isLogin } = useAuth();
   const { handleToggleMenu } = useHeader();
-  const { handleChangeGameType } = useHomeGameContext();
+  const { setIsEnterGamePortal } = useHomeGameContext();
+
+  const handleEnterGamePortal = () => {
+    setIsEnterGamePortal(true);
+    handleToggleMenu();
+  }
 
   return (
     <SideMenuHeaderContainer>
       <LogoImg src={brand && brand.loadingUrl} />
       <Wrapper>
-        <HomeBtn onClick={() => handleChangeGameType(GameTypeEnum.NONE)}>
+        <HomeBtn onClick={() => handleEnterGamePortal()}>
           <HomeIcon $color={"#fff"} />
           <Text>Home</Text>
         </HomeBtn>

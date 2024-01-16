@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
+import { useProvider } from "@tgs-web-nx/core/features";
 
 const PartnersContainer = styled.div`
   display: flex;
@@ -23,21 +24,16 @@ const PartnerBadge = styled.div`
   }
 `;
 
-const PartnerList = [
-  "Red Tiger",
-  "EVOLUTION",
-  "SV388",
-  "Saba Sports",
-  "BTi",
-  "365 Cards",
-  "PG Soft",
-  "KY",
-];
-
 const PartnerTags = () => {
+  const { providerList } = useProvider();
+  const partnerList = providerList.map((provider) => {
+    console.log(provider)
+    return provider.name;
+  });
+
   return (
     <PartnersContainer>
-      {PartnerList.map((partner) => {
+      {partnerList.map((partner) => {
         return <PartnerBadge key={partner}>{partner}</PartnerBadge>;
       })}
     </PartnersContainer>

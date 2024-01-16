@@ -64,7 +64,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             value={formik.values["userType"]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            style={{ color: theme.primary }}
+            style={{ color: theme.white }}
             MenuProps={{
               PaperProps: {
                 sx: {

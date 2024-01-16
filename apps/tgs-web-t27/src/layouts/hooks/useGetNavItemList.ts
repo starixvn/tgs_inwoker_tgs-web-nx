@@ -46,6 +46,7 @@ import VipSvg from "@/pages/home/components/TabSvgIcon/Vip";
 import AffiliateSvg from "@/pages/home/components/TabSvgIcon/Affiliate";
 import ContactUsSvg from "@/pages/home/components/TabSvgIcon/ContactUs";
 import HomeSvg from "@/pages/home/components/TabSvgIcon/Home";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -74,22 +75,25 @@ export function useGetNavItemList() {
   const { handleChangeGameType } = useHomeGameContext();
   const { providerList } = useHomeGameContext();
   const history = useHistory();
+  const { isDesktopSize } = useRwd();
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
-    navItemList.push({
-      key: NavCardKey.HOME,
-      label: "Home",
-      iconUrl: "",
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "",
-      callback: () => {
-        history.push("/");
-      },
-      iconComponent: HomeSvg,
-    });
+    if (isDesktopSize) {
+      navItemList.push({
+        key: NavCardKey.HOME,
+        label: "Home",
+        iconUrl: "",
+        navType: "action",
+        gameType: GameTypeEnum.NONE,
+        router: "",
+        callback: () => {
+          history.push("/");
+        },
+        iconComponent: HomeSvg,
+      });
+    }
 
     for (const gameTypeItem of gameTypeList) {
       if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;

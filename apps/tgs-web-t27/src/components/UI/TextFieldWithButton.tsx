@@ -18,11 +18,11 @@ const CustomText = styled.div`
 const ButtonContainer = styled.div`
   flex-shrink: 0;
   & > button {
-    height: 40px;
+    height: 31px;
     font-size: 0.75rem;
-    border-radius: 50px;
+    border-radius: 4px;
     padding: 8px;
-    background: ${({ theme }) => theme.secondary};
+    background: ${({ theme }) => theme.green};
   }
 `;
 
@@ -48,7 +48,7 @@ const TextFieldWithButton = (
           autoComplete: "off",
         }}
 
-        // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+      // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
       />
 
       <ButtonContainer>

@@ -9,9 +9,9 @@ export const AuthFormContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  padding: 40px;
+  padding: 20px 15px;
   overflow: auto;
-  gap: 24px;
+  gap: 14px;
 
   ::-webkit-scrollbar {
     visibility: hidden;

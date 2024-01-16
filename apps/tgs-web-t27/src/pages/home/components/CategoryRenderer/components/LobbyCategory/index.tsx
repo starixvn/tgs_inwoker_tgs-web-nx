@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import VendorCard from "@/pages/home/components/VendorCard/index";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -13,10 +13,10 @@ import CardPrompt from "@/pages/home/components/CardPrompt";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-  gap: 16px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -26,22 +26,19 @@ const Wrapper = styled.div`
 `;
 
 const MainContentWrapper = styled.div`
-  overflow-y: auto;
-  width: calc(100% - 78px);
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
 const CategoryContentWrapper = styled.div`
-  overflow-y: auto;
-  width: 100%;
-  flex-shrink: 0;
-  gap: 12px;
-  padding: 12px 0px;
-  border-radius: 20px;
-  border: 2.5px solid #B78316;
-  background-color: #332915;
-  margin-top: 12px;
+  display: flex;
+  padding: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+
+  border: 1px solid #B78316;
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
@@ -52,6 +49,8 @@ const DesktopCategoryContentWrapper = styled.div`
   flex-wrap: wrap;
   align-content: center;
   gap: 32px;
+
+  border: 1px solid #B78316;
 `;
 
 const CategoryContent = styled.div`
@@ -62,13 +61,24 @@ const CategoryContent = styled.div`
   gap: 8px;
   padding: 14px 0px 18px 14px;
   align-self: stretch;
+
+  
+  border: 1px solid #B78316;
+`;
+
+const Title = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-size: 19.5px;
+  font-weight: 400;
+  line-height: 22px; 
+  text-align: center;
 `;
 
 const LobbyCategory = () => {
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { account } = useAccountStore();
   const history = useHistory();
-  const { lobbyCategoryList } = useGetLobbyCategoryList();
+  const { lobbyCategoryList } = useGetHomeCategoryList();
   const { isMobileSize, isDesktopSize } = useRwd();
 
   const launchLobbyGame = (gpcode: string) => {
@@ -106,17 +116,18 @@ const LobbyCategory = () => {
     }
   };
 
-  const hasMappingData = !!lobbyCategoryList.length;
+  // const hasMappingData = !!lobbyCategoryList.length;
 
   return (
     <Wrapper>
       {isMobileSize && (
         <>
           <GameTypeTab />
+
           <MainContentWrapper>
-            <CardPrompt />
             <CategoryContentWrapper>
-              <CategoryContent>
+              <Title></Title>
+              {/* <CategoryContent>
                 {hasMappingData &&
                   lobbyCategoryList.map((provider) => {
                     const { code: gpCode, status, name } = provider;
@@ -135,11 +146,12 @@ const LobbyCategory = () => {
                     );
                   })}
                 {!hasMappingData && <div>No data</div>}
-              </CategoryContent>
+              </CategoryContent> */}
             </CategoryContentWrapper>
           </MainContentWrapper>
         </>
       )}
+
       {isDesktopSize && (
         <DesktopCategoryContentWrapper>
           {hasMappingData &&

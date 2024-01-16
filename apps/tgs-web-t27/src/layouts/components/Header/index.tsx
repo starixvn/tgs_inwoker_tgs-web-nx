@@ -37,7 +37,6 @@ const HeaderWrapper = styled.div`
   padding: 10px 17px;
   display: flex;
   align-items: center;
-  justify-content: start;
   z-index: 2;
 `;
 
@@ -46,7 +45,6 @@ const HeaderContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-right: 20px;
 `;
 
 type ContentWrapperProps = {
@@ -56,6 +54,8 @@ type ContentWrapperProps = {
 const SystemInfoContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-right: 30px;
+
   ${media.md} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
     $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
@@ -65,8 +65,6 @@ const SystemInfoContainer = styled.div`
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
     $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
   }
-  position: absolute;
-  left: 0;
 `;
 
 const Header = () => {
@@ -81,21 +79,22 @@ const Header = () => {
       <HeaderWrapper>
         <Link to={""}>
           <BrandLogo
-            style={{ height: "28px", marginLeft: "70px" }}
+            style={{ height: "28px", marginLeft: isDesktopSize ? "70px" : "unset" }}
             onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
           />
         </Link>
-        {isExtraLargeDesktopSize && (
-          <SystemInfoContainer $isOpen={isDesktopSize && isMenuOpen}>
-            <CurrentTime />
-          </SystemInfoContainer>
-        )}
+
         <HeaderContentContainer>
+          {isExtraLargeDesktopSize && (
+            <SystemInfoContainer $isOpen={isDesktopSize && isMenuOpen}>
+              <CurrentTime />
+            </SystemInfoContainer>
+          )}
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
 
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
-        {/* header最右側那顆 */}
+        {/* header最右側那顆選單按鈕 */}
         {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
