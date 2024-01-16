@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Common } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
+import { media } from "@/theme/breakpoints";
 
 const BalanceButtonContainer = styled.div`
   color: ${({ theme }) => theme.white};
@@ -10,6 +11,10 @@ const BalanceButtonContainer = styled.div`
   padding: 11.5px 12px;
   border-radius: 6px;
   cursor: pointer;
+
+  ${media.sm} {
+    padding: 11.5px 20px;
+  }
 
   & span {
     color: ${({ theme }) => theme.primary};

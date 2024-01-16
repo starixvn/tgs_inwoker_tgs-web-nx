@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuth, useAuthContext, useHeader } from "@tgs-web-nx/core/features";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { media } from "@/theme/breakpoints";
 import BalanceButton from "@/layouts/components/Header/components/BalanceButton";
-import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 import ContextMenuButton from "@/layouts/components/Header/components/ContextMenuButton";
 
@@ -15,39 +14,21 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-`;
-
-const UsernameContainer = styled.div`
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.text};
-
-  ${media.sm} {
-    color: ${({ theme }) => theme.white};
-  }
-`;
-
-const InboxIconContainer = styled.div`
-  cursor: pointer;
-`;
-
-const Balance = styled.div`
-  color: ${({ theme }) => theme.black};
-  font-size: 0.875rem;
-  font-weight: 400;
-
-  ${media.sm} {
-    color: ${({ theme }) => theme.white};
-  }
+  height: 44px;
 `;
 
 const AccountHeaderContent = () => {
-  const history = useHistory();
   const { isDesktopSize } = useRwd();
+  const { handleLogout } = useAuthContext();
+  const { isMenuOpen, handleToggleMenu } = useHeader();
 
-  const goToDeposit = () => {
-    history.push("/deposit");
+  const {} = useAuth();
+
+  const handleClickLogout = async () => {
+    if (!isDesktopSize && isMenuOpen) {
+      handleToggleMenu(false);
+    }
+    await handleLogout();
   };
 
   return (
@@ -63,13 +44,24 @@ const AccountHeaderContent = () => {
       {/*>*/}
       {/*  {i18n.t("common.deposit")}*/}
       {/*</RoundHeaderButton>*/}
+      {<TransferButtonGroup />}
       <HeaderLanguageSwitch />
 
-      {!isDesktopSize && <ContextMenuButton />}
+      {<ContextMenuButton />}
 
-      {isDesktopSize && <TransferButtonGroup />}
-
-      {isDesktopSize && <HeaderLanguageSwitch />}
+      {isDesktopSize && (
+        <HeaderButton
+          color={"primary"}
+          onClick={handleClickLogout}
+          style={{
+            background: theme.grey06,
+            color: theme.grey02,
+            height: "100%",
+          }}
+        >
+          <>{i18n.t("web.header.logout")}</>
+        </HeaderButton>
+      )}
 
       {/*{isDesktopSize ? (*/}
       {/*  <>*/}

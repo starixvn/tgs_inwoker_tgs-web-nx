@@ -11,14 +11,13 @@ export const RoundHeaderButton = muiStyled(MuiButton)(({ theme }) => ({
 }));
 
 export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
-  color: theme.palette.white,
+  color: theme.palette.black,
   padding: "0 18px",
   width: "auto",
   whiteSpace: "nowrap",
-  fontSize: "0.812rem",
-  lineHeight: "1.25rem",
-  fontWeight: 400,
-  borderRadius: "3px",
+  fontSize: "1rem",
+  fontWeight: 600,
+  borderRadius: "6px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

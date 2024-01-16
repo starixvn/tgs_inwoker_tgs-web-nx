@@ -23,7 +23,7 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.black03};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
@@ -51,17 +51,6 @@ const ContentGroup = styled.div`
   align-items: center;
 `;
 
-const BlueHeaderRowContainer = styled.div`
-  background: #3158ff;
-  background-size: cover;
-  height: 40px;
-`;
-
-const WhiteHeaderRowContainer = styled.div`
-  margin: auto;
-  height: 65px;
-`;
-
 const DesktopHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
@@ -70,31 +59,16 @@ const DesktopHeader = () => {
 
   return (
     <HeaderContainer>
-      <BlueHeaderRowContainer>
-        <ContentWrapper>
-          <ContentGroup>
-            {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
-          </ContentGroup>
+      <ContentWrapper>
+        <ContentGroup>
+          {isDesktopSize && <SystemTime />}
+          {isLargeDesktopSize && <OnlineUser color={theme.white} />}
+        </ContentGroup>
 
-          <ContentGroup>
-            {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-          </ContentGroup>
-        </ContentWrapper>
-      </BlueHeaderRowContainer>
-
-      <WhiteHeaderRowContainer>
-        <ContentWrapper>
-          <Link to={""}>
-            <BrandLogo
-              style={{ height: "27px" }}
-              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-            />
-          </Link>
-
-          {isDesktopSize && <HeaderGameTypes />}
-        </ContentWrapper>
-      </WhiteHeaderRowContainer>
+        <ContentGroup>
+          {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+        </ContentGroup>
+      </ContentWrapper>
     </HeaderContainer>
   );
 };

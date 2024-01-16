@@ -3,11 +3,13 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 44px;
 `;
 
 const TransferButtonGroup = () => {
@@ -26,33 +28,34 @@ const TransferButtonGroup = () => {
   }, []);
   return (
     <ButtonContainer>
-      <HeaderButton
-        onClick={handleGotoTransfer}
-        style={{
-          background: "#00B2B9",
-        }}
-      >
-        <>{i18n.t("common.transfer")}</>
-      </HeaderButton>
+      {/*<HeaderButton*/}
+      {/*  onClick={handleGotoTransfer}*/}
+      {/*  style={{*/}
+      {/*    background: "#00B2B9",*/}
+      {/*  }}*/}
+      {/*>*/}
+      {/*  <>{i18n.t("common.transfer")}</>*/}
+      {/*</HeaderButton>*/}
 
       <HeaderButton
         color={"primary"}
         onClick={handleGotoDeposit}
         style={{
-          background: "#FFA84D",
+          background: theme.primary,
+          height: "100%",
         }}
       >
         <>{i18n.t("common.deposit")}</>
       </HeaderButton>
 
-      <HeaderButton
-        onClick={handleGotoWithdrawal}
-        style={{
-          background: "#FFA84D",
-        }}
-      >
-        <>{i18n.t("common.withdrawal")}</>
-      </HeaderButton>
+      {/*<HeaderButton*/}
+      {/*  onClick={handleGotoWithdrawal}*/}
+      {/*  style={{*/}
+      {/*    background: "#FFA84D",*/}
+      {/*  }}*/}
+      {/*>*/}
+      {/*  <>{i18n.t("common.withdrawal")}</>*/}
+      {/*</HeaderButton>*/}
     </ButtonContainer>
   );
 };
