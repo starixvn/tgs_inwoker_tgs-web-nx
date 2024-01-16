@@ -12,7 +12,7 @@ import {
   FormControl,
   ItemContainer,
   VerifySubmitButton,
-} from "@/components/styled-component/ProfileForms";
+} from "@/components/styled-component/AuthForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
 

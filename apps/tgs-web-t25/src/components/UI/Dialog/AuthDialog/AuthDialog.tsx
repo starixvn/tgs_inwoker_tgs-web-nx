@@ -3,30 +3,30 @@ import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
+import AuthDialogImage from "@/components/UI/Dialog/AuthDialog/components/AuthDialogImage";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
+import { media } from "@/theme/breakpoints";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
 
   & .MuiPaper-root {
-    position: relative;
+    background: #1c242c;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    border-radius: 4px;
+    //max-width: 871px;
   }
 `;
 
 const ChildContainer = styled.div`
-  width: 100%;
-  margin: auto;
-  max-height: 910px;
-  background: ${({ theme }) => theme.mainBackground};
+  width: 70%;
+  border-radius: 20px;
   z-index: 2;
-  overflow: auto;
 
-  ::-webkit-scrollbar {
-    visibility: hidden;
-    width: 0;
+  ${media.md} {
+    width: 50%;
   }
 `;
 
@@ -49,10 +49,12 @@ const AuthDialog = ({ open, onClose, children, showInMobile, ...others }: Props 
       open={open}
       TransitionComponent={UpTransition}
       onClose={onClose}
-      maxWidth={"sm"}
+      maxWidth={"md"}
       {...others}
     >
       <CloseIcon onClick={onClose} />
+
+      <AuthDialogImage />
       <ChildContainer>{children}</ChildContainer>
     </StyledDialog>
   );

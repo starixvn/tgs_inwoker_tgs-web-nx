@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Close } from "@mui/icons-material";
 import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
 
 const CloseIconContainer = styled.div`
   position: absolute;
@@ -34,7 +35,7 @@ const CloseIcon = ({ onClick, style, ...others }: Props) => {
       <Close
         onClick={onClick}
         style={{
-          color: "black",
+          color: theme.grey04,
         }}
       />
     </CloseIconContainer>

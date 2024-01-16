@@ -11,9 +11,7 @@ const ForgotPasswordDialog = () => {
       open={isForgotPasswordDialogOpen}
       onClose={() => handleToggleForgotPasswordDialog(false)}
     >
-      <DialogContentWithBG>
-        <ForgotPasswordForm />
-      </DialogContentWithBG>
+      <ForgotPasswordForm />
     </AuthDialog>
   );
 };
