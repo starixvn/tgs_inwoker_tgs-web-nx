@@ -44,7 +44,7 @@ const AffiliateProgram = () => {
     <Wrapper>
       <Content>
         <Title>AFFILIATE PROGRAM</Title>
-        <Text>With the{config.brand} Affiliate Program, you can share in the casino’s success while boosting your revenue.</Text>
+        <Text>With the {config.brand} Affiliate Program, you can share in the casino’s success while boosting your revenue.</Text>
         <img src={affiliateIcon} alt="affiliate" />
         <BtnWrapper>
           <TextButton

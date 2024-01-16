@@ -14,6 +14,7 @@ import bg from "@/assets/t19/images/home/home_bg.png";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import RegisterSection from "@/pages/home/components/RegisterSection";
+import DesktopRegisterSection from "@/pages/home/components/DesktopRegisterSection";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import CategorySection from "./components/CategorySection";
 import SocialMedia from "@/components/project/SocialMedia";
@@ -26,6 +27,7 @@ import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/co
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
 import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
 import AffiliateProgram from "@/pages/home/components//AffiliateProgram";
+import DesktopAffiliateProgram from "@/pages/home/components/DesktopAffiliateProgram";
 import config from "@tgs-web-nx/config";
 
 const MainWrapper = styled.div`
@@ -38,7 +40,7 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
     height: unset;
@@ -61,10 +63,6 @@ const DesktopBg = styled.div`
 const SliderWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
-
-  ${media.sm} {
-    height: 100%;
-  }
 `;
 
 const SlickDot = styled.div`
@@ -156,6 +154,8 @@ const Introduction = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 21px;
+  background-color: ${({ theme }) => theme.g3};
+  margin-bottom: 30px;
 `;
 
 const Brand = styled.div`
@@ -180,9 +180,8 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType, isEnterGamePortal } =
+  const { activeGameType, handleChangeGameType, isEnterGamePortal } =
     useHomeGameContext();
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
   const history = useHistory();
   const gameTypeList = useGameTypeList();
   const { betRecordList } = useBettingHistory();
@@ -202,8 +201,6 @@ const HomePage = () => {
       return <SlickDot key={i} />;
     },
   };
-
-  const { hotGameList, newGameList, recommendGameList, isLoading } = useGetHomeCategoryList();
 
   const handleViewAllClick = (gameType: GameTypeEnum) => {
     handleChangeGameType(gameType);
@@ -231,20 +228,15 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
+      <CardPrompt />
       {/* 首頁但未進入遊戲大廳 */}
-      {isMobileSize && !isEnterGamePortal && !activeGameType && (
-        <>
-          <CardPrompt />
-          <RegisterSection />
-          {!!general.banner.length &&
-            <SliderWrapper>
-              <Slider settings={settings} />
-            </SliderWrapper>
-          }
-          <CategorySection />
-        </>
-      )}
-
+      {(isDesktopSize && !isEnterGamePortal && !activeGameType) ? <DesktopRegisterSection /> : <RegisterSection />}
+      {!!general.banner.length &&
+        <SliderWrapper>
+          <Slider settings={settings} />
+        </SliderWrapper>
+      }
+      <CategorySection />
       <HomeCategoryContainer>
         <ScrollableHomeRecommend />
         <ScrollableHomeHot />
@@ -252,7 +244,7 @@ const HomePage = () => {
           <Title>Latest Bets & Wins</Title>
           <LatestRecordTable betRecordList={betRecordList} />
         </HomeRanking>
-        <AffiliateProgram />
+        {(isDesktopSize && !isEnterGamePortal && !activeGameType) ? <DesktopAffiliateProgram /> : <AffiliateProgram />}
         <ScrollableHomeNew />
         <Introduction>
           <Brand>{config.brand} : A Winning Casino!</Brand>
@@ -268,7 +260,6 @@ const HomePage = () => {
           <VendorLogo />
         </>
       )}
-
 
       {/* 首頁並且進入遊戲大廳 */}
       {isMobileSize && isEnterGamePortal && !activeGameType && (
@@ -315,7 +306,6 @@ const HomePage = () => {
           <CategoryRenderer />
         </MainContentWrapper>
       )} */}
-
 
     </MainWrapper>
   );

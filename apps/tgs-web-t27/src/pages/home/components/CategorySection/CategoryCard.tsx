@@ -2,6 +2,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { media } from '@/theme/breakpoints';
 
 const CategoryCardBg = styled.div<{ $bgUrl: string }>`
   width: calc(50% - 6px);
@@ -12,6 +13,12 @@ const CategoryCardBg = styled.div<{ $bgUrl: string }>`
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
+
+  ${media.sm} {
+    width: calc(25% - 15.67px);
+    aspect-ratio: 326 / 326;
+    max-height: 326px;
+  }
 `;
 
 const CategoryCardContent = styled.div<{ $imageUrl: string }>`
