@@ -36,13 +36,13 @@ const CategoryTitle = styled.div`
 const CategoryContent = styled.div`
   width: 100%;
   max-height: 195px;
+  display: flex;
   overflow-x: auto;
-  white-space: nowrap;
-  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   height: 20.9%; //max-height: 194 /figma mobile height:926
   gap: 8px;
   background-color: ${({ theme }) => theme.mainBackground};
@@ -51,6 +51,7 @@ const CategoryContent = styled.div`
     gap: 14px;
     scroll-snap-type: unset;
     max-height: 207px;
+    flex-direction: row;
 
     &::-webkit-scrollbar {
       height: 12px;
