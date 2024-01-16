@@ -3,6 +3,7 @@ import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
+  border: `none`,
   input: {
     padding: "12px 20px",
     background: theme.palette.darkGray,
@@ -31,6 +32,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontWeight: 400,
   },
   [theme.breakpoints.up("sm")]: {
+    border: `1px solid  ${theme.palette.white}`,
     input: {
       fontSize: "0.875rem",
     },
@@ -54,6 +56,11 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     },
     "&.Mui-focused fieldset": {
       border: "none",
+    },
+    "&.Mui-disabled": {
+      input: {
+        WebkitTextFillColor: `${theme.palette.text.primary}`,
+      },
     },
   },
 }));

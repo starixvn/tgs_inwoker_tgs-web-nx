@@ -5,7 +5,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: theme.palette.text.primary,
   fontSize: "0.937rem",
   fontWeight: 400,
-  border: "none",
+  border: `none`,
   "&:focus": {
     background: "none",
   },
@@ -40,6 +40,9 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   // "& .MuiOutlinedInput-notchedOutline": {
   //   border: "none",
   // },
+  [theme.breakpoints.up("sm")]: {
+    border: `1px solid  ${theme.palette.white}`,
+  },
 }));
 
 export const Select = (props: SelectProps) => {
