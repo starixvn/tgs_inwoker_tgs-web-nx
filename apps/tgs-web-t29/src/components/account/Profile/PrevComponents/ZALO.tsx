@@ -98,12 +98,12 @@ const ZALO = (props: Props) => {
   return (
     <div>
       <ItemContainer>
-        <LabelContainer>ZALO Account</LabelContainer>
+        <LabelContainer>{i18n.t("common.zalo")}</LabelContainer>
         <FormControl variant="outlined">
           <TextField
             value={zalo}
             onChange={handleChangeNumber}
-            placeholder={"Please enter ZALO account"}
+            placeholder={i18n.t("profile.zalo.plsEnterZalo")}
             disabled={
               isConfigured &&
               (config.features.ChangesNotAllowed ||
@@ -116,7 +116,7 @@ const ZALO = (props: Props) => {
       {isConfigured && config.features.ChangesNotAllowed ? (
         <div>
           <BottomNote
-            text1={"If Required to Edit ZALO, Please Click"}
+            text1={i18n.t("profile.zalo.toEdit")}
             link={"../chat"}
             text2={i18n.t("common.customerService")}
           />
