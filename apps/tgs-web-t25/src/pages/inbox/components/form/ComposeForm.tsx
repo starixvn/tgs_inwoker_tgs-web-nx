@@ -9,16 +9,17 @@ import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
 
 const InboxComposeFormContainer = styled.div`
-  padding-top: 16px;
+  padding: 24px 20px;
+  background: ${({ theme }) => theme.black02};
 `;
 const InputWrapper = styled.div`
   margin-bottom: 16px;
 `;
 
 const Label = styled.h6`
-  color: #23507d;
-  font-size: 0.875rem;
-  font-weight: 700;
+  color: ${({ theme }) => theme.white};
+  font-size: 1.125rem;
+  font-weight: 400;
   margin-bottom: 16px;
 `;
 
@@ -57,7 +58,7 @@ const ComposeForm = () => {
             placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("subject")}`.toLowerCase()}`}
             sx={{
               input: {
-                padding: "17px 0",
+                padding: "8.5px 10px",
               },
             }}
           />

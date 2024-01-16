@@ -16,7 +16,13 @@ import InboxList from "@/pages/inbox/components/InboxList";
 import SentList from "@/pages/inbox/components/SentList";
 import InboxCategoryTabs from "@/pages/inbox/components/InboxCategoryTabs";
 
-const InboxContainer = styled.div``;
+const InboxContainer = styled.div`
+  & > * {
+    &:first-child {
+      margin-bottom: 16px;
+    }
+  }
+`;
 
 const InboxComponentDictionary = {
   [InboxCategoryKeyEnum.COMPOSE]: ComposeForm,
