@@ -22,6 +22,10 @@ import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import ScrollableHomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
+import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
+import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
+import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
+import AffiliateProgram from "@/pages/home/components//AffiliateProgram";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -130,6 +134,21 @@ const SlotCategoryContent = styled.div`
   align-content: center;
 `;
 
+const HomeRanking = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px 12px;
+`;
+
+const Title = styled.div`
+  width: 100%;
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 22px;
+  color: ${({ theme }) => theme.white};
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
@@ -140,6 +159,7 @@ const HomePage = () => {
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const history = useHistory();
   const gameTypeList = useGameTypeList();
+  const { betRecordList } = useBettingHistory();
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -200,7 +220,12 @@ const HomePage = () => {
       )}
 
       <HomeCategoryContainer>
+        <ScrollableHomeRecommend />
         <ScrollableHomeHot />
+        <HomeRanking>
+          <Title>Latest Bets & Wins</Title>
+          <LatestRecordTable betRecordList={betRecordList} />
+        </HomeRanking>
         <ScrollableHomeNew />
       </HomeCategoryContainer>
 
