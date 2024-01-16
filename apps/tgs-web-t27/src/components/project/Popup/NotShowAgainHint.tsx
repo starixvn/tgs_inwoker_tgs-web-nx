@@ -4,13 +4,13 @@ import IconCheckBox from "@/assets/t27/images/dialog/icon_checkbox.svg";
 
 const NotShowAgainHintContainer = styled.div`
   width: fit-content;
-  height: 38px;
+  border-radius: 4px;
   padding: 10px;
   font-size: 1rem;
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.white};
-  margin: 18px 0;
+  background-color: ${({ theme }) => theme.g4};
 `;
 
 type CheckBoxProps = {
