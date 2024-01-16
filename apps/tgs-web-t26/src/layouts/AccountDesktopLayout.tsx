@@ -9,6 +9,7 @@ import {
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
 import bg from "@/assets/t29/images/bg.png";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -56,6 +57,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
       <DashboardContainer>
         <ContentWrapper>
           <ChildrenWrapper>
+            <DarkMemberMenu />
             {children}
           </ChildrenWrapper>
         </ContentWrapper>

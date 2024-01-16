@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t26/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -14,7 +14,7 @@ const rotateKeyFrame = keyframes`
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(-359deg);
+    transform: rotate(359deg);
   }
 `;
 
@@ -25,7 +25,6 @@ const Container = styled.div`
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
-  background: ${({ theme }) => theme.mainBackground};
   margin-bottom: 20px;
 `;
 
@@ -39,7 +38,7 @@ const PlayerInfoContainer = styled.div`
 const PlayerName = styled.div`
   font-size: 2rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.text};
 `;
 
 const WalletsWrapper = styled.div`
@@ -69,7 +68,7 @@ const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.75rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.text};
   display: flex;
   align-items: center;
   justify-content: flex-end;

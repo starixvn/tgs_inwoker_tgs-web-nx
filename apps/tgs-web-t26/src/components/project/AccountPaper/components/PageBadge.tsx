@@ -8,12 +8,10 @@ const PageBadgeContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 5px;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.text};
   width: fit-content;
   font-size: 1.25rem;
-  font-weight: 700;
   line-height: 1.437rem;
-  border-left: 5px solid ${({ theme }) => theme.primary};
 `;
 
 type Props = {
