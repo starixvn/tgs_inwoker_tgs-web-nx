@@ -26,6 +26,7 @@ import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/co
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
 import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
 import AffiliateProgram from "@/pages/home/components//AffiliateProgram";
+import config from "@tgs-web-nx/config";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -149,6 +150,31 @@ const Title = styled.div`
   color: ${({ theme }) => theme.white};
 `;
 
+const Introduction = styled.div`
+ display: flex;
+  padding: 60px 42px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21px;
+`;
+
+const Brand = styled.div`
+  width: 100%;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 58.36px;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.white};
+`;
+
+const IntroductionText = styled.div`
+  width: 100%;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: ${({ theme }) => theme.g2};
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
@@ -226,7 +252,14 @@ const HomePage = () => {
           <Title>Latest Bets & Wins</Title>
           <LatestRecordTable betRecordList={betRecordList} />
         </HomeRanking>
+        <AffiliateProgram />
         <ScrollableHomeNew />
+        <Introduction>
+          <Brand>{config.brand} : A Winning Casino!</Brand>
+          <IntroductionText>
+            {config.brand} is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic.
+          </IntroductionText>
+        </Introduction>
       </HomeCategoryContainer>
 
       {isMobileSize && !isEnterGamePortal && !activeGameType && (
