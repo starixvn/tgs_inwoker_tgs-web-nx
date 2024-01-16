@@ -42,6 +42,7 @@ const initialState: {
     member_question: "",
     member_qq: null,
     member_wechat: null,
+    member_zalo: null,
     member_fb: null,
     member_telegram: null,
     member_line: null,
