@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import config from "@tgs-web-nx/config";
 import { walletAction } from "@tgs-web-nx/core";
-import MainT1 from "./T1/MainTamplate";
+import MainT1 from "@/pages/withdrawal/components/T1/MainTamplate";
 
 const Main = (props) => {
   const [selectedCardIndex, setSelectedCardIndex] = useState(props.defaultCard);
