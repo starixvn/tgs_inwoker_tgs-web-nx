@@ -22,7 +22,6 @@ const VipWrapper = styled.div`
     margin: 0 auto;
     gap: 10px;
     padding: 10px;
-    background-color: ${({ theme }) => theme.blue20};
   }
 `;
 

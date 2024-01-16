@@ -4,7 +4,7 @@ import { media } from "@/theme/breakpoints";
 
 const IntroCardContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.grey05};
   border-radius: 10px;
   padding: 22px 38px;
   display: flex;
@@ -32,7 +32,7 @@ const IntroCardContainer = styled.div`
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
-    color: ${({ theme }) => theme.blue70};
+    color: ${({ theme }) => theme.white};
   }
 
   & .content {
@@ -42,7 +42,7 @@ const IntroCardContainer = styled.div`
     line-height: 17px;
     letter-spacing: 0em;
     text-align: left;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.white};
   }
 `;
 

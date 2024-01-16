@@ -12,8 +12,8 @@ const SupportCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: ${({ theme }) => theme.blue20};
-  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.grey05};
+  color: ${({ theme }) => theme.white};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.098rem;
@@ -87,9 +87,11 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
       <Button
         fullWidth
         sx={{
-          color: theme.white,
           background: theme.primary,
+          fontWeight: 400,
+          fontSize: "0.75rem",
           padding: "6px",
+          textTransform: "uppercase",
           "&:hover": {
             background: theme.secondary,
           },
