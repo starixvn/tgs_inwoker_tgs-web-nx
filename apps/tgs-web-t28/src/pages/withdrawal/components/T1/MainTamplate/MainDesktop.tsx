@@ -3,11 +3,12 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { useHistory } from "react-router";
 
+import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import BankCardGroup from "@/pages/withdrawal/components/Main/BankCardGroup";
 import StepTitle from "@/pages/withdrawal/components/Main/StepTitle";
-import { MainProps } from "@/components/account/WithdrawalPrevV2/components/T1/MainTamplate/index";
+import { MainProps } from "@/pages/withdrawal/components/T1/MainTamplate/index";
 import {
   AmountWrapper,
   ButtonWrapper,
@@ -18,8 +19,9 @@ import {
   SelectionContainer,
   Turnover,
   USDTWrapper,
-  DetailText,
   TurnoverTextWrapper,
+  RequireWrapper,
+  RequireAmount,
 } from "@/components/styled-component/WithdrawV2/Main";
 
 const MainDesktop = ({
@@ -44,7 +46,30 @@ const MainDesktop = ({
   useEffect(() => {
     getTransferLimit(cardList[selectedCardIndex].paymentchannelid);
   }, [cardList, getTransferLimit, selectedCardIndex]);
-  const history = useHistory();
+
+  useEffect(() => {
+    fetchpPlayerBucket();
+  }, []);
+
+  const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
+    useWageringPage();
+
+  const gett18Translation = (type: string) => {
+    switch (type) {
+      case "LiveDealer":
+        return i18n.t("common.live");
+      case "Sportsbook":
+        return i18n.t("common.sports");
+      case "Slot":
+        return i18n.t("common.slot");
+      case "CardGame":
+        return i18n.t("common.chess");
+      case "Lottery":
+        return i18n.t("common.lottery");
+      case "VirtualSports":
+        return i18n.t("common.virtualsports");
+    }
+  };
   return (
     <>
       {/* Please choose bank */}
@@ -135,12 +160,18 @@ const MainDesktop = ({
           <Turnover>
             {i18n.t("withdrawal.turnover")}
             <TurnoverTextWrapper>
-              <span>{Common.formatNumberWithThousand(minWithdrawLimit)}</span>
-              <DetailText
-                onClick={() => {
-                  history.push("/wagering");
-                }}
-              >{`(${i18n.t("withdrawal.checkDetails")})`}</DetailText>
+              <RequireWrapper>
+                <div>Main:</div>
+                <RequireAmount> {wageringRequirement}</RequireAmount>
+              </RequireWrapper>
+              {playerBuckets.map((bucket) => {
+                return (
+                  <RequireWrapper key={bucket.key}>
+                    <span>{gett18Translation(bucket.key)}:</span>
+                    <RequireAmount> {bucket.amount}</RequireAmount>
+                  </RequireWrapper>
+                );
+              })}
             </TurnoverTextWrapper>
           </Turnover>
         </SelectionContainer>
