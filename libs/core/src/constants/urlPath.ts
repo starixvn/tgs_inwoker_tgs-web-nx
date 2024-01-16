@@ -2,6 +2,7 @@ export const ProfilePathEnum = {
   PROFILE: "/profile",
   NAME: "/profile/name",
   WECHAT: "/profile/wechat",
+  ZALO: "/profile/zalo",
   BIRTHDATE: "/profile/birthdate",
   QQ: "/profile/qq",
   FB: "/profile/fb",

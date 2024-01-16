@@ -27,6 +27,7 @@ export type AccountInfo = {
   member_question: string;
   member_qq: null | string;
   member_wechat: null | string;
+  member_zalo: null | string;
   member_fb: null | string;
   member_telegram: null | string;
   member_line: null | string;

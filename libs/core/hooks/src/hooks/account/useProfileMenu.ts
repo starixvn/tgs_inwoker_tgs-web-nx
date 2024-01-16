@@ -120,6 +120,16 @@ export function useProfileMenu() {
           ? i18n.t("profile.details")
           : i18n.t("profile.setNow"),
       },
+      zalo: {
+        key: "zalo",
+        label: "ZALO",
+        isVerified: !!account.info.member_zalo,
+        status: account.info.member_zalo
+          ? account.info.member_zalo.substring(0, 1) + "**"
+          : i18n.t("profile.notSet"),
+        routePath: "/profile/zalo",
+        buttonText: account.info.member_zalo ? i18n.t("profile.details") : i18n.t("profile.setNow"),
+      },
       password: {
         key: "changepassword",
         label: i18n.t("profile.password.title"),
