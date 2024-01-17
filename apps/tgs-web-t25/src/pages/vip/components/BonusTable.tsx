@@ -58,7 +58,6 @@ const BonusTableHeader = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 48px;
   padding: 9px 0;
   background-color: ${({ theme }) => theme.grey05};
 
@@ -100,11 +99,7 @@ const BonusTableRowWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.grey04};
-
-  ${media.sm} {
-    border-bottom: unset;
-    color: #23507d;
-  }
+  color: ${({ theme }) => theme.white};
 `;
 
 const RowItem = styled.div`

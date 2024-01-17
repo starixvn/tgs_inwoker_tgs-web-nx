@@ -28,9 +28,11 @@ const SupportCardContainer = styled.div`
 
   width: calc((100% - 16px * (2 - 1)) / 2);
 
-  // ${media.sm} {
-  //   width: calc((100% - 16px * (2 - 1)) / 3);
-  // }
+  ${media.sm} {
+    background: #000000b2;
+    border-radius: 10px;
+    padding: 20px;
+  }
   ${media.md} {
     width: calc((100% - 16px * (4 - 1)) / 4);
   }

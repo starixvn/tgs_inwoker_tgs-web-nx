@@ -7,6 +7,8 @@ import LevelTable from "./components/LevelTable";
 import { media } from "@/theme/breakpoints";
 import BonusTable from "@/pages/vip/components/BonusTable";
 import Loading from "@/components/UI/Loading";
+import { PageContainer } from "@/components/styled-component/PageContainer";
+import banner from "@/assets/t25/images/vip/banner.png";
 
 const VipWrapper = styled.div`
   width: 100%;
@@ -25,18 +27,17 @@ const VipWrapper = styled.div`
   }
 `;
 
-const VipBanner = styled.div<{ $imageUrl: string }>`
+const VipBanner = styled.div`
   width: 100%;
-  height: 137px;
   border-radius: 4px;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 
-  ${media.sm} {
-    max-width: 780px;
-    height: 250px;
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -57,11 +58,18 @@ const VIP = () => {
     }
   }, [isLoading, vipData]);
 
-  if (isLoading) return <Loading show={true} />;
+  if (isLoading)
+    return (
+      <VipWrapper>
+        <Loading show={true} />;
+      </VipWrapper>
+    );
 
   return (
     <VipWrapper>
-      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} />
+      <VipBanner>
+        <img src={banner} alt={"vip"} />
+      </VipBanner>
       <BonusTable vipSortingData={vipSortingData} />
       <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
     </VipWrapper>

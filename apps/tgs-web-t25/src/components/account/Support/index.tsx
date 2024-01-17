@@ -47,7 +47,7 @@ const Support = () => {
   return (
     <SupportContainer>
       <CardsContainer>
-        <HeaderImage />
+        {/*<HeaderImage />*/}
 
         {(config.features.LiveChatVendor || csLiveChatUrl) && !isCustomizedBrand && (
           <SupportCard
