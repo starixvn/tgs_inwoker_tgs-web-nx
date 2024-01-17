@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from 'styled-components';
 
 type Props = {
-  imageUrl: string;
+  imageUrl?: string;
   text: string;
 }
 
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 
 const Text = styled.div`
     color:${({ theme }) => theme.white};
-    margin-left: 10px;
+    /* margin-left: 10px; */
     font-size: 19.5px;
     font-weight: 400;
 `;
@@ -21,7 +21,7 @@ const Text = styled.div`
 const CategoryLabel: FC<Props> = ({ imageUrl, text }) => {
   return (
     <Wrapper>
-      <img src={imageUrl} alt={text} />
+      {imageUrl && <img src={imageUrl} alt={text} />}
       <Text>{text}</Text>
     </Wrapper>
   );

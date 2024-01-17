@@ -16,8 +16,9 @@ const StyledButton = styled.button<{ size: string }>`
   padding: 6px 10px;
   border: none;
   color: ${(props) => props.theme.primary};
-  background-color: transparent;
+  background-color: ${(props) => props.theme.g3};
   font-size: 19px;
+  border-radius: 4px;
 
   ${media.sm} {
     cursor: pointer;

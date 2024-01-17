@@ -119,65 +119,9 @@ const LobbyCategory = () => {
   // const hasMappingData = !!lobbyCategoryList.length;
 
   return (
-    <Wrapper>
-      {isMobileSize && (
-        <>
-          <GameTypeTab />
-
-          <MainContentWrapper>
-            <CategoryContentWrapper>
-              <Title></Title>
-              {/* <CategoryContent>
-                {hasMappingData &&
-                  lobbyCategoryList.map((provider) => {
-                    const { code: gpCode, status, name } = provider;
-
-                    if (gpCode === "BC") return null;
-                    return (
-                      <VendorCard
-                        key={gpCode}
-                        bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/bg.png`}
-                        imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                        venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                        launchGame={() => launchLobbyGame(gpCode)}
-                        status={status}
-                        venderName={name}
-                      />
-                    );
-                  })}
-                {!hasMappingData && <div>No data</div>}
-              </CategoryContent> */}
-            </CategoryContentWrapper>
-          </MainContentWrapper>
-        </>
-      )}
-
-      {isDesktopSize && (
-        <DesktopCategoryContentWrapper>
-          {hasMappingData &&
-            lobbyCategoryList.map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              if (gpCode === "BC") return null;
-              return (
-                <VendorCard
-                  key={gpCode}
-                  bgUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          {!hasMappingData && <div>No data</div>}
-        </DesktopCategoryContentWrapper>
-      )}
-    </Wrapper>
+    <>
+      <GameTypeTab />
+    </>
   );
 };
 

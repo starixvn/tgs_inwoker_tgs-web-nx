@@ -224,35 +224,42 @@ const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
 
-  console.log("activeGameType", activeGameType, "isEnterGamePortal", isEnterGamePortal)
-
   return (
     <MainWrapper>
       <CardPrompt />
       {/* 首頁但未進入遊戲大廳 */}
-      {(isDesktopSize && !isEnterGamePortal && !activeGameType) ? <DesktopRegisterSection /> : <RegisterSection />}
+      {!isEnterGamePortal && !activeGameType &&
+        <>
+          {isDesktopSize ? <DesktopRegisterSection /> : <RegisterSection />}
+        </>
+      }
       {!!general.banner.length &&
         <SliderWrapper>
           <Slider settings={settings} />
         </SliderWrapper>
       }
-      <CategorySection />
-      <HomeCategoryContainer>
-        <ScrollableHomeRecommend />
-        <ScrollableHomeHot />
-        <HomeRanking>
-          <Title>Latest Bets & Wins</Title>
-          <LatestRecordTable betRecordList={betRecordList} />
-        </HomeRanking>
-        {(isDesktopSize && !isEnterGamePortal && !activeGameType) ? <DesktopAffiliateProgram /> : <AffiliateProgram />}
-        <ScrollableHomeNew />
-        <Introduction>
-          <Brand>{config.brand} : A Winning Casino!</Brand>
-          <IntroductionText>
-            {config.brand} is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic.
-          </IntroductionText>
-        </Introduction>
-      </HomeCategoryContainer>
+
+      {!isEnterGamePortal && !activeGameType &&
+        <>
+          <CategorySection />
+          <HomeCategoryContainer>
+            <ScrollableHomeRecommend />
+            <ScrollableHomeHot />
+            <HomeRanking>
+              <Title>Latest Bets & Wins</Title>
+              <LatestRecordTable betRecordList={betRecordList} />
+            </HomeRanking>
+            {isDesktopSize ? <DesktopAffiliateProgram /> : <AffiliateProgram />}
+            <ScrollableHomeNew />
+            <Introduction>
+              <Brand>{config.brand} : A Winning Casino!</Brand>
+              <IntroductionText>
+                {config.brand} is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic.
+              </IntroductionText>
+            </Introduction>
+          </HomeCategoryContainer>
+        </>
+      }
 
       {isMobileSize && !isEnterGamePortal && !activeGameType && (
         <>
@@ -261,52 +268,12 @@ const HomePage = () => {
         </>
       )}
 
-      {/* 首頁並且進入遊戲大廳 */}
-      {isMobileSize && isEnterGamePortal && !activeGameType && (
-        <>
-          {!!general.banner.length &&
-            <SliderWrapper>
-              <Slider settings={settings} />
-            </SliderWrapper>
-          }
-          <MainContentWrapper>
-            <CategoryRenderer />
-          </MainContentWrapper>
-        </>
-      )}
-
-      {isMobileSize && isEnterGamePortal && !!activeGameType && (
-        <>
-          {!!general.banner.length &&
-            <SliderWrapper>
-              <Slider settings={settings} />
-            </SliderWrapper>
-          }
-          <MainContentWrapper>
-            <CategoryRenderer />
-          </MainContentWrapper>
-        </>
-      )}
-
-      {/* {!!general.banner.length && isDesktopSize && !activeGameType && (
-        <SliderWrapper>
-          <Slider maxHeight={"600px"} settings={settings} />
-        </SliderWrapper>
-      )}
-
-      {isDesktopSize && !activeGameType &&
-        <DesktopBg>
-          <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>
-          <MainContentWrapper>
-            <CategoryRenderer />
-          </MainContentWrapper>
-        </DesktopBg>}
-      {(isDesktopSize && !!activeGameType) && (
+      {/* 首頁並且進入遊戲大廳 */}{/* 切換遊戲分頁 */}
+      {isEnterGamePortal && (
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>
-      )} */}
-
+      )}
     </MainWrapper>
   );
 };

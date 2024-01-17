@@ -5,7 +5,8 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t19/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t27/images/home/maintenance.svg";
+import gradientBg from "@/assets/t27/images/home/name-bg.png";
 
 type Props = {
   bgUrl: string;
@@ -25,7 +26,7 @@ const VendorCardHoverBg = styled.div`
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
-  border-radius: 15px;
+  border-radius: 4px;
   display: none;
   white-space: pre-line;
 `;
@@ -33,22 +34,27 @@ const VendorCardHoverBg = styled.div`
 const GameIcon = styled.div<{ $imageUrl: string }>`
   position: relative;
   width: 100%;
-  padding-top: 100%;
+  padding-top: 106%;
   left: 0;
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 15px;
-  background-color: ${({ theme }) => theme.black};;
+  border-radius: 4px;
 `;
 
 const GradientBg = styled.div`
   position: absolute;
   width: 100%;
-  padding-top: 100%;
+  height: 84%; //212/254
   left: 0;
   top: 0;
-  border-radius: 15px;
+  border-radius: 4px;
+`;
+
+const GradientBgIcon = styled.img`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 `;
 
 const VendorCardContent = styled.div`
@@ -56,10 +62,11 @@ const VendorCardContent = styled.div`
 `;
 
 const VendorCardBg = styled.div`
-  width: calc(33.33% - 8px);
+  width: calc(50% - 5px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 94 / 127;
+  aspect-ratio: 198 / 254;
+  background-color: ${(props) => props.theme.g4};
 
   ${media.sm} {
     width: calc(25% - 40px);
@@ -78,12 +85,17 @@ const VendorCardBg = styled.div`
 `;
 
 const VenderName = styled(VendorCardContent)`
+  width: 100%;
+  padding: 12px;
   position: absolute;
   bottom: 0;
   color: ${(props) => props.theme.white};
-  font-size: 1rem;
+  font-size: 15.6px;
   font-weight: 400;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
@@ -93,8 +105,8 @@ const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   transform: translate(-50%, -50%);
   display: inline-flex;
   width: 100%;
-  max-width: 200px;
-  min-height: 75px;
+  max-width: 131px;
+  min-height: 68px;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
@@ -112,7 +124,7 @@ const MaintenanceBg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
+  border-radius: 4px;
 
   ${media.sm} {
     height: 92%;
@@ -173,6 +185,7 @@ const LobbyVendorCard = ({
       <VendorCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         <GradientBg>
+          <GradientBgIcon src={gradientBg} alt={"vendor name"} />
           {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
         </GradientBg>
         {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
