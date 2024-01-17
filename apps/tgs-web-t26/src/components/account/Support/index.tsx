@@ -7,7 +7,6 @@ import { useContactCS } from "@tgs-web-nx/core/hooks";
 import SupportCard from "@/pages/contactUs/components/SupportCard";
 import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
 import IMHandler from "@/components/account/Support/IMHandler";
-import HeaderImage from "@/pages/contactUs/components/HeaderImage";
 
 const SupportContainer = styled.div``;
 
@@ -45,7 +44,6 @@ const Support = () => {
   return (
     <SupportContainer>
       <CardsContainer>
-        <HeaderImage />
 
         {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
