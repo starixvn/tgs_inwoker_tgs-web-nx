@@ -1,63 +1,42 @@
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import maintenanceIcon from "@/assets/t25/images/home/maintenance.svg";
+import { HTMLProps } from "react";
+import { media } from "@/theme/breakpoints";
+import maintenanceIcon from "@/assets/t34/images/home/maintenance.svg";
 
-type Props = {
-  bgUrl: string;
-  imageUrl: string;
-  gameName?: string;
-  venderName: string;
-  venderLogoUrl: string;
-  launchGame: () => void;
-  status: number;
-};
+const MobileVendorCardContainer = styled.div`
+  width: calc(50% - 6px);
+  position: relative;
 
-const GameIcon = styled.div<{ $imageUrl: string }>`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 68.9%; //111:161
-  height: 66.2%; //102:154
-  background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
+  background-position: center;
+
+  ${media.sm} {
+    width: calc(16.67% - 6px);
+
+`;
+
+const CardContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: ${({ theme }) => theme.black02};
+  border-radius: 4px;
 `;
 
 const VendorCardBg = styled.div<{ $bgUrl: string }>`
   position: relative;
-  width: calc(50% - 6px);
+  width: 100%;
   position: relative;
-  aspect-ratio: 161 / 154;
-  border-radius: 10px;
+  aspect-ratio: 128/128;
   background-image: url(${({ $bgUrl }) => $bgUrl});
   background-size: cover;
+  border-radius: 4px;
 `;
 
-const VenderNameInfo = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  padding: 14px 20px 20px 14px;
-`;
-
-const VenderName = styled.div`
-  color: ${(props) => props.theme.text};
-  font-size: 1rem;
-  font-weight: 700;
-  text-align: flex-start;
-`;
-
-const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
-  width: 46%;
-  height: 25%;
-  background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
-  background-size: contain;
-  background-repeat: no-repeat;
+const VendorName = styled.div`
+  font-size: 0.875rem;
+  padding: 8px;
 `;
 
 const MaintenanceBg = styled.div`
@@ -68,8 +47,10 @@ const MaintenanceBg = styled.div`
   top: 0;
   background: rgb(0 0 0 / 70%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 11px;
 
   &:hover {
     cursor: not-allowed;
@@ -81,6 +62,16 @@ const MaintenanceIcon = styled.img`
   height: 57px;
 `;
 
+type Props = {
+  bgUrl: string;
+  imageUrl: string;
+  gameName?: string;
+  venderName: string;
+  venderLogoUrl: string;
+  launchGame: () => void;
+  status: number;
+} & HTMLProps<HTMLDivElement>;
+
 const MobileVendorCard = ({
   bgUrl,
   imageUrl,
@@ -88,6 +79,7 @@ const MobileVendorCard = ({
   venderLogoUrl,
   launchGame,
   status,
+  ...others
 }: Props) => {
   const launchGameHandler = () => {
     if (status === providerStatus.Maintenance) {
@@ -97,18 +89,19 @@ const MobileVendorCard = ({
   };
 
   return (
-    <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
-      <VenderNameInfo>
-        <VenderName>{venderName}</VenderName>
-        <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
-      </VenderNameInfo>
-      <GameIcon $imageUrl={imageUrl}></GameIcon>
+    // @ts-ignore
+    <MobileVendorCardContainer {...others}>
+      <CardContainer onClick={launchGameHandler}>
+        <VendorCardBg $bgUrl={imageUrl} />
+        <VendorName>{venderName}</VendorName>
+      </CardContainer>
+
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>
           <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
         </MaintenanceBg>
       )}
-    </VendorCardBg>
+    </MobileVendorCardContainer>
   );
 };
 

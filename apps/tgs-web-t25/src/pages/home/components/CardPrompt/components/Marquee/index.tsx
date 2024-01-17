@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
-import notification from "@/assets/t25/images/home/notification.svg";
+import notification from "@/assets/t30/images/home/notification.svg";
+import Icon from "@/components/project/Icon";
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +16,8 @@ const Container = styled.div`
   word-break: keep-all;
   font-size: 0.875rem;
   padding: 4px 10px;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.text};
 `;
 
 const Background = styled.div`
@@ -32,7 +34,7 @@ const Marquee = () => {
 
   return (
     <Container>
-      <img src={notification} alt="marquee" />
+      <Icon iconUrl={notification} width={"18px"} height={"18px"} />
       {hasData && (
         // Disable TypeScript check for unknown HTML elements
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

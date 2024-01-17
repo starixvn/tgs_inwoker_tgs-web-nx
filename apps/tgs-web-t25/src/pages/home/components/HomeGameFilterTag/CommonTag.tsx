@@ -1,20 +1,22 @@
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
+import Icon from "@/components/project/Icon";
 
-const Wrapper = styled.div<{
+const CommonTagContainer = styled.div<{
   $isActive: boolean;
 }>`
+  width: calc((100% - 10px) / 2);
   display: flex;
-  justify-content: center;
   align-items: center;
-  max-width: none;
   height: 100%;
   user-select: none;
-  padding: 4px;
+  color: ${({ $isActive, theme }) => ($isActive ? theme.green : "#999999")};
+  cursor: pointer;
+  gap: 7px;
+  overflow: visible;
+`;
 
-  &:hover {
-    cursor: pointer;
-  }
+const Label = styled.div`
+  overflow: visible;
 `;
 
 type Props = {
@@ -27,9 +29,10 @@ type Props = {
 
 const CommonTag = ({ text, isActive, iconUrl, activedUrl, onClick }: Props) => {
   return (
-    <Wrapper $isActive={isActive} onClick={onClick}>
-      <img src={isActive ? activedUrl : iconUrl} alt={text} />
-    </Wrapper>
+    <CommonTagContainer $isActive={isActive} onClick={onClick}>
+      <Icon iconUrl={`${isActive ? activedUrl : iconUrl}`} width={"18px"} height={"18px"} />
+      <Label>{text}</Label>
+    </CommonTagContainer>
   );
 };
 

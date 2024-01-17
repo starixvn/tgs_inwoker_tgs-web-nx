@@ -1,21 +1,17 @@
 import React, { HTMLProps } from "react";
 import styled from "styled-components";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { Link } from "react-router-dom";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import BrandLogo from "../../../../../../tgs-web-t29/src/components/project/BrandLogo";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
-import {
-  DESKTOP_HEADER_HEIGHT,
-  MAIN_CONTENT_MAX_WIDTH,
-  MOBILE_HEADER_HEIGHT,
-} from "@/theme/constants";
+import { DESKTOP_HEADER_HEIGHT, MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
 import { theme } from "@/theme";
+import BrandLogo from "@/components/project/BrandLogo";
 
 type HeaderContainerProps = {
   $isOpen: boolean;

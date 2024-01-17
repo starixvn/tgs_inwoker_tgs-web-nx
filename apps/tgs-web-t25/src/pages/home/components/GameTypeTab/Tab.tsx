@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
-
-type Props = {
-  imageUrl: string;
-  text: string;
-  fontSize: "small" | "smaller" | string;
-  isActive: boolean;
-  onClick: () => void;
-};
+import { theme } from "@/theme";
 
 const Wrapper = styled.div<{
   $imageUrl: string;
@@ -20,19 +13,19 @@ const Wrapper = styled.div<{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 72px;
+  min-width: 50px;
   height: 55px;
   padding: 4px;
   gap: 6px;
   user-select: none;
   border-radius: 6px;
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    min-width: 90px;
-    height: 74px;
+    flex: 1;
+    height: 82px;
     cursor: pointer;
-    & :hover {
+    &:hover {
       color: ${({ theme }) => theme.text};
     }
   }
@@ -41,22 +34,44 @@ const Wrapper = styled.div<{
 const GameIcon = styled.img`
   width: 20px;
   height: 20px;
+
+  ${media.sm} {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
-const Text = styled.div<{ $fontSize: string }>`
-  color: ${({ theme }) => theme.text};
-  font-size: ${({ $fontSize }) => ($fontSize === "small" ? "0.625rem" : "0.5rem")};
+type TextProps = {
+  $isActive: boolean;
+  $fontSize: string;
+  theme: typeof theme;
+};
+
+const Text = styled.div<TextProps>`
+  color: ${({ $isActive, theme }: TextProps) => ($isActive ? theme.red : theme.text)};
+  font-size: ${({ $fontSize }: TextProps) => ($fontSize === "small" ? "0.625rem" : "0.5rem")};
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
   line-height: 10px;
 `;
 
-const Tab = ({ imageUrl, text, isActive, fontSize, onClick }: Props) => {
+type Props = {
+  imageUrl: string;
+  imageActiveUrl: string;
+  text: string;
+  fontSize: "small" | "smaller" | string;
+  isActive: boolean;
+  onClick: () => void;
+};
+
+const Tab = ({ imageUrl, imageActiveUrl, text, isActive, fontSize, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $imageUrl={imageUrl} $text={text} onClick={onClick}>
-      <GameIcon src={imageUrl} alt={text} />
-      <Text $fontSize={fontSize}>{text}</Text>
+      <GameIcon src={isActive ? imageActiveUrl : imageUrl} alt={text} />
+      <Text $fontSize={fontSize} $isActive={isActive}>
+        {text}
+      </Text>
     </Wrapper>
   );
 };
