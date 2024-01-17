@@ -24,10 +24,6 @@ const Row = styled.div`
   padding: 10px 0;
 `;
 
-export const SearchInputWrapper = styled.div`
-  border-bottom: 1px solid ${({ theme }) => theme.grey00};
-`;
-
 const GameFilterToolBox = () => {
   const { isDesktopSize } = useRwd();
   const { searchString, handleChangeSearch } = useHomeGameContext();
@@ -50,10 +46,10 @@ const GameFilterToolBox = () => {
 
   return (
     <GameFilterToolBoxContainer>
-      <ProviderTags />
+      <FilterTags />
 
       <Row>
-        <FilterTags />
+        <ProviderTags />
         <SearchInput
           placeholder={i18n.t("slot.search")}
           imageUrl={searchIcon}

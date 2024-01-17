@@ -9,20 +9,19 @@ import Icon from "@/components/project/Icon";
 import iconGoTo from "@/assets/t25/images/home/icon-goto.svg";
 
 const GameTypeCategoryContainer = styled.div``;
-const CategoryHeader = styled.div`
-  color: ${({ theme }) => theme.black};
+export const CategoryHeader = styled.div`
+  color: ${({ theme }) => theme.white};
   background: ${({ theme }) => theme.mainBackground};
-  padding: 10px 12px;
   display: flex;
   align-items: center;
-  font-size: 0.937rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
   gap: 8px;
 `;
 
-const MoreButton = styled.div`
-  color: ${({ theme }) => theme.grey00};
-  border: 1px solid ${({ theme }) => theme.black};
+export const MoreButton = styled.div`
+  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.black02};
   border-radius: 2px;
   display: flex;
   align-items: center;
@@ -52,18 +51,7 @@ const GameTypeCategory = ({ gameTypeItem, gameList }: Props) => {
         <Icon iconUrl={gameTypeItem.iconUrl} width={"18px"} height={"18px"} />
         {gameTypeItem.text}
 
-        <MoreButton onClick={handleClick}>
-          {i18n.t("web.slotGame.more")}
-          <Icon
-            iconUrl={iconGoTo}
-            width={"20px"}
-            height={"20px"}
-            style={{
-              marginLeft: "auto",
-              cursor: "pointer",
-            }}
-          />
-        </MoreButton>
+        <MoreButton onClick={handleClick}>{i18n.t("web.slotGame.more")}</MoreButton>
       </CategoryHeader>
 
       {!!gameList.length && <CategorySlider gameType={gameTypeItem.gameType} gameList={gameList} />}

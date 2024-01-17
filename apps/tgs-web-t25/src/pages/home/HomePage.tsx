@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useParams } from "react-router-dom";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import Banner from "./components/Banner";
+import CardPrompt from "./components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -48,6 +51,7 @@ const MainContentWrapper = styled.div`
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
+  margin-top: 20px;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -58,9 +62,8 @@ const MainContentWrapper = styled.div`
 
 const HomePage = () => {
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
-  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -85,6 +88,12 @@ const HomePage = () => {
 
   return (
     <MainWrapper $isDark={false}>
+      {!activeGameType && (
+        <>
+          <Banner />
+          <CardPrompt />
+        </>
+      )}
       <GameTypeTab />
 
       <MainContentWrapper>

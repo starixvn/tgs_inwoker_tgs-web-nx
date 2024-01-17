@@ -33,15 +33,15 @@ import cardGameBg from "@/assets/t25/images/home/gameType/bg/card-game-bg.png";
 export const useGameTypeList = () => {
   return useMemo(() => {
     const gameTypeList: GameTypeItem[] = [
-      {
-        key: "all",
-        iconUrl: home,
-        iconActiveUrl: homeActive,
-        text: i18n.t("common.home"),
-        fontSize: "small",
-        gameType: GameTypeEnum.NONE,
-        bgUrl: sportsBg,
-      },
+      // {
+      //   key: "all",
+      //   iconUrl: home,
+      //   iconActiveUrl: homeActive,
+      //   text: i18n.t("common.home"),
+      //   fontSize: "small",
+      //   gameType: GameTypeEnum.NONE,
+      //   bgUrl: sportsBg,
+      // },
       {
         key: "sports",
         iconUrl: sports,

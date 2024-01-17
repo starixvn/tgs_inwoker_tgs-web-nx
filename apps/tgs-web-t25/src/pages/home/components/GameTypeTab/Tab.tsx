@@ -13,13 +13,14 @@ const Wrapper = styled.div<{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 50px;
-  height: 55px;
-  padding: 4px;
-  gap: 6px;
+  min-width: 70px;
+  height: 76px;
+  padding: 12px 4px;
+  gap: 8px;
   user-select: none;
   border-radius: 6px;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme, $isActive }) => ($isActive ? theme.grey06 : theme.mainBackground)};
+  border: 1px solid ${({ theme }) => theme.grey06};
 
   ${media.sm} {
     flex: 1;
@@ -32,8 +33,8 @@ const Wrapper = styled.div<{
 `;
 
 const GameIcon = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 
   ${media.sm} {
     width: 40px;
@@ -48,12 +49,12 @@ type TextProps = {
 };
 
 const Text = styled.div<TextProps>`
-  color: ${({ $isActive, theme }: TextProps) => ($isActive ? theme.red : theme.text)};
-  font-size: ${({ $fontSize }: TextProps) => ($fontSize === "small" ? "0.625rem" : "0.5rem")};
+  color: ${({ $isActive, theme }: TextProps) => ($isActive ? theme.white : theme.grey06)};
+  font-size: 0.875rem;
+  line-height: 21px;
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
-  line-height: 10px;
 `;
 
 type Props = {

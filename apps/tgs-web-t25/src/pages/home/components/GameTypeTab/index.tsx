@@ -13,7 +13,8 @@ const TabContainer = styled.div`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   flex-shrink: 0;
-  gap: 3px;
+  gap: 10px;
+  padding: 12px 12px 4px;
 
   ${media.sm} {
     &::-webkit-scrollbar {
@@ -49,12 +50,17 @@ const GameTypeTab = () => {
   };
 
   const switchGameType = (gameTypeItem: GameTypeItem) => {
-    handleChangeGameType(gameTypeItem.gameType);
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
 
-    history.push(`/main/${gameTypeItem.key}`);
+    if (gameTypeItem.gameType === activeGameType) {
+      handleChangeGameType(GameTypeEnum.NONE);
+      history.push(`/`);
+    } else {
+      handleChangeGameType(gameTypeItem.gameType);
+      history.push(`/main/${gameTypeItem.key}`);
+    }
   };
 
   const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {

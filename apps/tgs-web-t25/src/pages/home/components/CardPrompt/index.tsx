@@ -10,15 +10,14 @@ const CardPromptContainer = styled.div`
   align-self: stretch;
   width: 100%;
   gap: 7px;
-  background-color: ${({ theme }) => theme.mainBackground};
   padding: 10px 0;
 `;
 
 const CardPrompt = () => {
   return (
     <CardPromptContainer>
+      <OnlineUser color={theme.grey07} />
       <Marquee />
-      <OnlineUser color={theme.white} />
     </CardPromptContainer>
   );
 };

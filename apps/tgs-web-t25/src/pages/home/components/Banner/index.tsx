@@ -88,26 +88,6 @@ const Banner = () => {
       <Slider settings={settings} maxHeight={"450px"} />
       <NewsContainer>
         <NewsContent>
-          <img src={notification} alt="marquee" />
-          {hasData && (
-            // Disable TypeScript check for unknown HTML elements
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            <marquee>
-              {marquees.map((item, index) => {
-                const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
-      `;
-                return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
-              })}
-              {/*@ts-ignore*/}
-            </marquee>
-          )}
-
           <Jackpot
             style={{
               position: "absolute",

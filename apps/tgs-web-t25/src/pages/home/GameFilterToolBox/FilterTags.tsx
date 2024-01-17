@@ -29,13 +29,13 @@ const activeFilterIconDictionary: Record<FilterTagTypeEnum | string, string> = {
 const FilterTagsContainer = styled.div`
   display: flex;
   gap: 8px;
+  justify-content: space-around;
+  padding: 10px 12px;
 `;
 
 const Label = styled.div`
-  display: none;
-  ${media.lg} {
-    display: block;
-  }
+  display: block;
+  text-transform: uppercase;
 `;
 
 type FilterTagProps = {
@@ -43,11 +43,10 @@ type FilterTagProps = {
   theme: typeof theme;
 };
 const FilterTagContainer = styled.div<FilterTagProps>`
-  width: 32px;
   height: 32px;
-  background: ${({ $isActive, theme }: FilterTagProps) => ($isActive ? theme.grey00 : theme.white)};
-  color: ${({ $isActive, theme }: FilterTagProps) => ($isActive ? theme.white : theme.grey00)};
-  border: 1px solid ${({ theme }) => theme.grey00};
+  background: ${({ $isActive, theme }: FilterTagProps) =>
+    $isActive ? theme.grey06 : theme.black02};
+  color: ${({ $isActive, theme }: FilterTagProps) => ($isActive ? theme.primary : theme.grey03)};
   border-radius: 2px;
   padding: 8px 12px;
   flex-shrink: 0;
@@ -56,16 +55,7 @@ const FilterTagContainer = styled.div<FilterTagProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  ${media.sm} {
-    font-size: 0.875rem;
-    width: auto;
-    height: auto;
-    gap: 4px;
-    padding: 12px;
-    background: ${({ $isActive, theme }: FilterTagProps) =>
-      $isActive ? theme.grey00 : theme.grey04};
-  }
+  gap: 4px;
 `;
 
 const allTag = {
