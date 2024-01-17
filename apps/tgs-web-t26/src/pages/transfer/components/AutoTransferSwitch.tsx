@@ -25,7 +25,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
 }));
 
 const AutoTransferContainer = styled.div`
-  display: flex;
+  /* display: flex; */
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
@@ -40,20 +40,26 @@ const Group = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   gap: 8px;
+  color: ${({ theme }) => theme.text};
+  margin-top: 12px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
 
   ${media.md} {
     flex-direction: row;
     flex-wrap: nowrap;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
   }
 `;
 
-const ButtonWrapper = styled.div`
-  flex-shrink: 0;
-
-  ${media.md} {
-    margin-left: auto;
-  }
-`;
+const ButtonWrapper = styled.div``;
 
 const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
   const { isChecked, isLoading, handleSwitchAutoTransfer, performWithdrawFromEveryBrand } =
@@ -85,6 +91,15 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
           <Button
             onClick={() => {
               performWithdrawFromEveryBrand();
+            }}
+            sx={{
+              width: "100%",
+              height: "37px",
+              marginTop: "15px",
+              background: theme.black,
+              fontSize: "15px",
+              fontWeight: "400",
+              borderRadius: "10px",
             }}
           >
             {i18n.t("transfer.oneKeyTransferOut")}
