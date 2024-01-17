@@ -37,6 +37,7 @@ const JoinPromotionTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.dateTime")}</>
@@ -44,6 +45,7 @@ const JoinPromotionTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.joinedPromo.promoName")}</>
@@ -73,7 +75,7 @@ const JoinPromotionTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.text,
           "& button": {},
         }}
       />

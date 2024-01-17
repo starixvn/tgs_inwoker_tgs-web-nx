@@ -39,6 +39,7 @@ const TransferDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.dateTime")}</>
@@ -46,6 +47,7 @@ const TransferDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.transfer.table.from")}</>
@@ -53,6 +55,7 @@ const TransferDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.transfer.table.to")}</>
@@ -61,6 +64,7 @@ const TransferDetailTable = ({
               align={"right"}
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.amount")}</>
@@ -97,7 +101,7 @@ const TransferDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.text,
           "& button": {},
         }}
       />

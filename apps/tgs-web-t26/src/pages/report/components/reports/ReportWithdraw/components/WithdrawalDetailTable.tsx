@@ -36,6 +36,7 @@ const WithdrawalDetailTable = ({
           <TableRow>
             <TableCell
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -43,6 +44,7 @@ const WithdrawalDetailTable = ({
             </TableCell>
             <TableCell
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -50,6 +52,7 @@ const WithdrawalDetailTable = ({
             </TableCell>
             <TableCell
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -58,6 +61,7 @@ const WithdrawalDetailTable = ({
             <TableCell
               align={"right"}
               sx={{
+                color: `${theme.text} !important`,
                 border: "none",
               }}
             >
@@ -94,7 +98,7 @@ const WithdrawalDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.text,
           "& button": {},
         }}
       />

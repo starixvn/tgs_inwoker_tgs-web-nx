@@ -36,6 +36,7 @@ const BalanceChangeTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.dateTime")}</>
@@ -43,6 +44,7 @@ const BalanceChangeTable = ({
             <TableCell
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.balanceChanges.type")}</>
@@ -51,6 +53,7 @@ const BalanceChangeTable = ({
               align={"right"}
               sx={{
                 border: "none",
+                color: `${theme.text} !important`,
               }}
             >
               <>{i18n.t("report.balanceChanges.amount")}</>
@@ -82,7 +85,7 @@ const BalanceChangeTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.text,
           "& button": {},
         }}
       />
