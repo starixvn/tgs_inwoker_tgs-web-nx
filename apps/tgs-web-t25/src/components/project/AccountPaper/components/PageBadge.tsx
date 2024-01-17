@@ -8,7 +8,7 @@ const PageBadgeContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 5px;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.white};
   width: fit-content;
   font-size: 1.25rem;
   font-weight: 700;

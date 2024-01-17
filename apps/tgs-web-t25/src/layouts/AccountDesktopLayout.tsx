@@ -13,11 +13,7 @@ import bg from "@/assets/t25/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
-
-  ${media.sm} {
-    background: url(${bg});
-  }
+  background: ${({ theme }) => theme.black02};
 `;
 
 const DashboardContainer = styled.div`

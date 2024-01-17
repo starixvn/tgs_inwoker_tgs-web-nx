@@ -18,12 +18,12 @@ const ProfileItemContainer = styled.div`
 `;
 
 const ProfileRowLabel = styled.div`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
   font-size: 1.25rem;
   font-weight: 400;
 `;
 const ProfileStatus = styled.div`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   font-size: 0.937rem;
   font-weight: 400;
 `;
@@ -51,10 +51,14 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         sx={{
           fontSize: "0.875rem",
           color: isVerified ? theme.white : theme.text,
-          background: isVerified ? theme.primary : theme.blue20,
+          background: isVerified ? theme.primary : theme.grey06,
           border: "none",
           width: "150px",
           height: "42px",
+          "&:hover": {
+            color: isVerified ? theme.white : theme.text,
+            background: isVerified ? theme.primary : theme.grey06,
+          },
         }}
         onClick={() => {
           if (!profileItem) return;

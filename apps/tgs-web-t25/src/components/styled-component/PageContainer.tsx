@@ -10,6 +10,7 @@ export const PageContainer = styled.div`
 
   ${media.sm} {
     padding: 10px;
+    background: ${({ theme }) => theme.black02};
   }
 `;
 
@@ -22,6 +23,7 @@ export const TransferPageContainer = styled.div`
 
   ${media.sm} {
     padding: 10px;
+    background: ${({ theme }) => theme.black02};
   }
 
   & .MuiButton-fullWidth {
@@ -41,6 +43,6 @@ export const DownloadPageContainer = styled.div`
 
   ${media.sm} {
     padding: 10px;
-    background: ${({ theme }) => theme.blue20};
+    background: ${({ theme }) => theme.black02};
   }
 `;

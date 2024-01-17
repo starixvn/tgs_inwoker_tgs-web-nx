@@ -11,7 +11,7 @@ import { Button } from "@/components/UI/Button";
 import iconLogout from "@/assets/t25/images/account/navItemWhite/icon-logout.svg";
 
 const MemberMenuContainer = styled.div`
-  background: ${({ theme }) => theme.blue50};
+  background: ${({ theme }) => theme.black};
 `;
 
 type MemberMenuItemProps = {
@@ -25,12 +25,12 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   align-items: center;
   gap: 10px;
   background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.blue60 : theme.blue50};
-  color: ${({ theme }: MemberMenuItemProps) => theme.white};
+    $isActive ? theme.grey06 : theme.black};
+  color: ${({ theme }) => theme.white};
   cursor: pointer;
 
   &:hover {
-    background: ${({ theme }) => theme.blue60};
+    background: ${({ theme }) => theme.grey06};
     color: ${({ theme }) => theme.white};
   }
 `;
