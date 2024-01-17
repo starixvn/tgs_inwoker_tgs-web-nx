@@ -18,7 +18,7 @@ const ButtonContainer = styled.div`
 `;
 
 const AccountHeaderContent = () => {
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isLargeDesktopSize } = useRwd();
   const { handleLogout } = useAuthContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
 
@@ -34,22 +34,13 @@ const AccountHeaderContent = () => {
   return (
     <ButtonContainer>
       <BalanceButton />
-      {/*TODO: Header is too small to contain this Deposit button*/}
-      {/*<RoundHeaderButton*/}
-      {/*  onClick={goToDeposit}*/}
-      {/*  style={{*/}
-      {/*    color: theme.black02,*/}
-      {/*    background: theme.primary,*/}
-      {/*  }}*/}
-      {/*>*/}
-      {/*  {i18n.t("common.deposit")}*/}
-      {/*</RoundHeaderButton>*/}
+
       {<TransferButtonGroup />}
       <HeaderLanguageSwitch />
 
       {<ContextMenuButton />}
 
-      {isDesktopSize && (
+      {isLargeDesktopSize && (
         <HeaderButton
           color={"primary"}
           onClick={handleClickLogout}
@@ -62,26 +53,6 @@ const AccountHeaderContent = () => {
           <>{i18n.t("web.header.logout")}</>
         </HeaderButton>
       )}
-
-      {/*{isDesktopSize ? (*/}
-      {/*  <>*/}
-      {/*    <InboxIconContainer onClick={handleGoToProfile}>*/}
-      {/*      <Icon iconUrl={iconAccount} width={"20px"} height={"20px"} />*/}
-      {/*    </InboxIconContainer>*/}
-
-      {/*    <InboxIconContainer onClick={handleGoToInbox}>*/}
-      {/*      <Icon iconUrl={iconInbox} width={"20px"} height={"20px"} />*/}
-      {/*    </InboxIconContainer>*/}
-
-      {/*    <InboxIconContainer onClick={handleClickLogout}>*/}
-      {/*      <Icon iconUrl={iconLogout} width={"20px"} height={"20px"} />*/}
-      {/*    </InboxIconContainer>*/}
-      {/*  </>*/}
-      {/*) : (*/}
-      {/*  <InboxIconContainer onClick={handleGoToInbox}>*/}
-      {/*    <Icon iconUrl={iconInboxBlue} width={"24px"} height={"24px"} />*/}
-      {/*  </InboxIconContainer>*/}
-      {/*)}*/}
     </ButtonContainer>
   );
 };

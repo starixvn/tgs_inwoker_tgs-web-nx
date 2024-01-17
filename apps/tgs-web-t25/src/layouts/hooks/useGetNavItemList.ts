@@ -63,59 +63,42 @@ export function useGetNavItemList() {
   const history = useHistory();
   const { handleLogout } = useAuthContext();
 
-  const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
-    const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
-
-    for (const gameTypeItem of gameTypeList) {
-      if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
-
-      if (providerList.length) {
-        const hasData = providerList.filter((provider) => {
-          return provider.gametypes.includes(gameTypeItem.gameType);
-        });
-        if (hasData.length === 0) continue;
-      }
-
-      navItemList.push({
-        key: gameTypeItem.key,
-        label: gameTypeItem.text as string,
-        iconUrl: gameTypeItem.iconUrl,
-        navType: "action",
-        gameType: gameTypeItem.gameType,
-        router: gameTypeItem.key as string,
-        callback: () => {
-          handleChangeGameType(gameTypeItem.gameType);
-          history.push(`/main/${gameTypeItem.key}`);
-        },
-      });
-    }
-
-    navItemList.push({
-      key: NavCardKey.VIP,
-      label: "VIP",
-      iconUrl: vipImg,
-      iconActiveUrl: vipImg,
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "vip",
-      callback: () => {
-        history.push("/vip");
+  const sideNavItemList: NavItem[] | null = useMemo(() => {
+    return [
+      {
+        key: NavCardKey.DEPOSIT,
+        label: i18n.t("common.deposit"),
+        iconUrl: depositImg,
+        iconSecondaryUrl: depositWhiteImg,
+        navType: "route",
+        routePath: "/deposit",
       },
-    });
-
-    navItemList.push({
-      key: NavCardKey.PROMOTION,
-      label: i18n.t("common.promotion"),
-      iconUrl: "",
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "promotion-list",
-      callback: () => {
-        history.push("/promotion-list");
+      {
+        key: NavCardKey.WITHDRAW,
+        label: i18n.t("common.withdrawal"),
+        iconUrl: withdrawImg,
+        iconSecondaryUrl: withdrawWhiteImg,
+        navType: "route",
+        routePath: "/withdrawal",
       },
-    });
 
-    return navItemList;
+      {
+        key: NavCardKey.TRANSFER,
+        label: i18n.t("common.transfer"),
+        iconUrl: transferImg,
+        iconSecondaryUrl: transferWhiteImg,
+        navType: "route",
+        routePath: "/transfer",
+      },
+      {
+        key: NavCardKey.APP_DOWNLOAD,
+        label: i18n.t("wap.main.account.appDownload"),
+        iconUrl: downloadImg,
+        iconSecondaryUrl: downloadWhiteImg,
+        navType: "route",
+        routePath: "/appDownload",
+      },
+    ] as NavItem[];
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameTypeList, providerList]);
 

@@ -10,3 +10,5 @@ export const MAIN_CONTENT_MAX_WIDTH = "1280px";
 export const SUB_CONTENT_MAX_WIDTH = "1280px";
 
 export const DESKTOP_DRAWER_WIDTH = "352px"; // Loading component used this value
+export const DRAWER_SHRINK_WIDTH = "88px";
+export const TABLET_DRAWER_WIDTH = "250px";

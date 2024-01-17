@@ -4,8 +4,9 @@ import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeade
 import SideMenuNavList from "@/layouts/components/MenuDrawer/components/MenuDrawerList/components/SideMenuNavList";
 
 const MobileMenuDrawerContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.black03};
   width: 100%;
+  padding: 12px 16px;
 `;
 
 const ContentWrapper = styled.div`
@@ -14,6 +15,7 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20px;
 `;
 
 const MenuDrawerList = () => {

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { useHistory } from "react-router-dom";
 import SideNavItem from "./SideNavItem";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
@@ -17,17 +18,18 @@ const SideMenuNavList = () => {
   const { sideNavItemList } = useGetNavItemList();
   const { activeGameType } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
+  const history = useHistory();
 
   const handleTabClick = (navItem: NavItem) => {
-    if (navItem.navType !== "action") return;
-    navItem.callback();
+    if (navItem.navType !== "route") return;
+    history.push(navItem.routePath);
     handleToggleMenu(false);
   };
 
   return (
     <TabContainer>
       {sideNavItemList.map((navItem) => {
-        const { key, iconUrl, label, gameType } = navItem;
+        const { key, iconUrl, label } = navItem;
 
         if (navItem.key === NavCardKey.VIP) return null;
 
@@ -36,7 +38,8 @@ const SideMenuNavList = () => {
             key={key}
             imageUrl={iconUrl}
             text={isMenuOpen ? label : ""}
-            isActive={gameType === activeGameType}
+            isShrink={!isMenuOpen}
+            isActive={false}
             onClick={() => handleTabClick(navItem)}
           />
         );

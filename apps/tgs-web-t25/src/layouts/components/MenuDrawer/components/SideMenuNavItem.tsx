@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Icon from "@/components/project/Icon";
 import { NavItem } from "@/layouts/hooks/useGetNavItemList";
+import Icon from "@/components/project/Icon";
 
 const NavCardContainer = styled.div`
   cursor: pointer;
