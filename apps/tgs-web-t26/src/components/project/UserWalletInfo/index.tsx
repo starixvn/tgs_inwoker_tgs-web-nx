@@ -19,7 +19,7 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  padding: 22px 50px;
+  padding-right: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;

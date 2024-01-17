@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
 
 export const PageContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
   padding: 20px;
   max-width: calc(961px + 20px * 2);
   flex: 1;
@@ -10,7 +9,6 @@ export const PageContainer = styled.div`
 
   ${media.sm} {
     padding: 10px;
-    background: ${({ theme }) => theme.blue20};
   }
 `;
 
@@ -23,7 +21,6 @@ export const TransferPageContainer = styled.div`
 
   ${media.sm} {
     padding: 10px;
-    background: ${({ theme }) => theme.blue20};
   }
 
   & .MuiButton-fullWidth {
@@ -43,6 +40,5 @@ export const DownloadPageContainer = styled.div`
 
   ${media.sm} {
     padding: 10px;
-    background: ${({ theme }) => theme.blue20};
   }
 `;

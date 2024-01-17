@@ -13,7 +13,7 @@ const TransferContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
-  justify-content: start;
+  justify-content: center;
 `;
 
 const GameTransferWallet = styled.div`
