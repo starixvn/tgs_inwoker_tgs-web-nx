@@ -31,7 +31,12 @@ const BalanceChangeTable = ({
   return (
     <ReportCardsContainer>
       <ReportTable aria-label="simple table">
-        <TableHead>
+        <TableHead
+          sx={{
+            background: theme.black,
+            borderRadius: "6px",
+          }}
+        >
           <TableRow>
             <TableCell
               sx={{
@@ -82,7 +87,7 @@ const BalanceChangeTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.white,
           "& button": {},
         }}
       />

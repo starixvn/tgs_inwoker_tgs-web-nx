@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
-import { TableBody, TableCell, TableHead, TableRow, TablePagination } from "@mui/material";
+import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
@@ -32,7 +32,12 @@ const WithdrawalDetailTable = ({
   return (
     <ReportCardsContainer>
       <ReportTable aria-label="simple table">
-        <TableHead>
+        <TableHead
+          sx={{
+            background: theme.black,
+            borderRadius: "6px",
+          }}
+        >
           <TableRow>
             <TableCell
               sx={{
@@ -94,7 +99,7 @@ const WithdrawalDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.white,
           "& button": {},
         }}
       />

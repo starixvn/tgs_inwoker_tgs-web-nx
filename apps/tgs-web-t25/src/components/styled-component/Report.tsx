@@ -29,7 +29,7 @@ export const ReportCard = styled.div`
   padding: 16px;
   font-size: 0.8rem;
   color: ${({ theme }) => theme.text};
-  background: ${({ theme }) => theme.gray20};
+  background: ${({ theme }) => theme.black};
   border-radius: 5px;
   margin-bottom: 10px;
 `;
@@ -55,16 +55,16 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontSize: "0.875rem",
     fontWeight: 500,
     whiteSpace: "nowrap",
-    padding: "0 5px",
-    color: theme.palette.black,
+    padding: "10px 12px",
+    color: theme.palette.white,
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
     fontSize: "0.857rem",
     fontWeight: 400,
     color: theme.palette.text.primary,
-    borderBottom: `1px solid ${theme.palette.gray10}`,
-    padding: "26px 5px 10px",
+    borderBottom: `1px solid ${theme.palette.grey06}`,
+    padding: "10px 12px",
   },
 }));
 export const ReportMainContainer = styled.div`
@@ -80,6 +80,5 @@ export const DateRangeSelector = styled.div`
   ${media.sm} {
     flex-wrap: wrap;
     flex-direction: row;
-    height: 47px;
   }
 `;

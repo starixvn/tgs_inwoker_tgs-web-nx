@@ -33,20 +33,39 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
             key={index}
             onClick={() => handleButtonClick(index)}
             sx={{
-              color: isSelected ? theme.black : theme.grey03,
-              background: isSelected ? theme.primary : theme.black02,
-              border: `1px solid ${isSelected ? theme.primary : theme.grey06}`,
+              color: {
+                xs: isSelected ? theme.black : theme.grey03,
+                sm: isSelected ? theme.primary : theme.grey04,
+              },
+              background: {
+                xs: isSelected ? theme.primary : theme.black02,
+                sm: theme.black03,
+              },
+              border: {
+                xs: `1px solid ${isSelected ? theme.primary : theme.grey06}`,
+                sm: `1px solid ${isSelected ? theme.primary : theme.grey04}`,
+              },
+
               "&:hover": {
-                color: isSelected ? theme.black : theme.grey03,
-                background: isSelected ? theme.primary : theme.black02,
-                border: `1px solid ${isSelected ? theme.primary : theme.grey06}`,
+                color: {
+                  xs: isSelected ? theme.black : theme.grey03,
+                  sm: isSelected ? theme.primary : theme.grey04,
+                },
+                background: {
+                  xs: isSelected ? theme.primary : theme.black02,
+                  sm: theme.black03,
+                },
+                border: {
+                  xs: `1px solid ${isSelected ? theme.primary : theme.grey06}`,
+                  sm: `1px solid ${isSelected ? theme.primary : theme.grey04}`,
+                },
               },
               whiteSpace: {
-                sx: "wrap",
+                xs: "wrap",
                 sm: "no-wrap",
               },
               padding: "12px",
-              borderRadius: "4px",
+              borderRadius: "6px",
               width: {
                 xs: "calc((100% - 2 * 9px) / 3)",
                 sm: "auto",

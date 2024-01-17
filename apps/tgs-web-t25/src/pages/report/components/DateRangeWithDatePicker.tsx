@@ -10,7 +10,7 @@ const DateContainer = styled.div`
 
   ${media.sm} {
     width: auto;
-    height: 47px;
+    //height: 47px;
   }
 `;
 
