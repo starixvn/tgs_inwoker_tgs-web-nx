@@ -4,7 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t34/images/home/search.svg";
+import searchIcon from "@/assets/t25/images/home/search.svg";
 import ProviderTags from "@/pages/home/GameFilterToolBox/ProviderTags";
 import FilterTags from "@/pages/home/GameFilterToolBox/FilterTags";
 import { media } from "@/theme/breakpoints";

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { HTMLProps } from "react";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t34/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t25/images/home/maintenance.svg";
 
 const MobileVendorCardContainer = styled.div`
   width: calc(50% - 6px);

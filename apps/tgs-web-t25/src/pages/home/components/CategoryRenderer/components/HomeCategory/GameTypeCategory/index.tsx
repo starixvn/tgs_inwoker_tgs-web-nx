@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import CategorySlider from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory/CategorySlider";
 import Icon from "@/components/project/Icon";
-import iconGoTo from "@/assets/t34/images/home/icon-goto.svg";
+import iconGoTo from "@/assets/t25/images/home/icon-goto.svg";
 
 const GameTypeCategoryContainer = styled.div``;
 const CategoryHeader = styled.div`

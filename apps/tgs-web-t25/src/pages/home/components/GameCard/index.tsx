@@ -8,8 +8,8 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t34/images/home/play-green.svg";
-import maintenanceIcon from "@/assets/t34/images/home/maintenance.svg";
+import playIcon from "@/assets/t25/images/home/play-green.svg";
+import maintenanceIcon from "@/assets/t25/images/home/maintenance.svg";
 
 const GameCardContainer = styled.div`
   width: calc(50% - 6px);
