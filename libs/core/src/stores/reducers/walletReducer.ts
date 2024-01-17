@@ -397,39 +397,38 @@ function mapBankList(data) {
   return { bankList };
 }
 function mapWithdrawalList(data) {
-  const withdrawalList = [];
-  const checkDuplicate = [];
-  const withdrawalMaxLimit = 0;
-  const withdrawalMinLimit = 999999999;
-  for (var i = 0; i < data.length; i++) {
-    if (checkDuplicate.indexOf(data[i].banktype) < 0) {
-      checkDuplicate.push(data[i].banktype);
-      withdrawalList.push({
-        banktype: data[i].banktype,
-        channel: [
-          {
-            id: data[i].id,
-            channelid: data[i].channelid,
-            channelname: data[i].channelname,
-            channelcode: data[i].channelcode,
-            transferlimit: data[i].transferlimit,
-            fees: data[i].feepercentile,
-          },
-        ],
-      });
+  const withdrawalList = data.reduce((result, item) => {
+    const existingBank = result.find((bank) => bank.banktype === item.banktype);
+    const channel = {
+      id: item.id,
+      channelid: item.channelid,
+      channelname: item.channelname,
+      channelcode: item.channelcode,
+      transferlimit: item.transferlimit,
+      fees: item.feepercentile,
+      displayorder: item.displayorder,
+    };
+
+    if (existingBank) {
+      existingBank.channel.push(channel);
+      existingBank.channel.sort((a, b) => a.channelid.localeCompare(b.channelid));
+      existingBank.channel.sort((a, b) => a.displayorder - b.displayorder);
+
+      existingBank.channel = existingBank.channel.filter(
+        (item, index, self) => index === self.findIndex((t) => t.channelid === item.channelid),
+      );
     } else {
-      withdrawalList
-        .filter((a) => a.banktype === data[i].banktype)[0]
-        .channel.push({
-          id: data[i].id,
-          channelid: data[i].channelid,
-          channelname: data[i].channelname,
-          channelcode: data[i].channelcode,
-          transferlimit: data[i].transferlimit,
-          fees: data[i].feepercentile,
-        });
+      result.push({
+        banktype: item.banktype,
+        channel: [channel],
+      });
     }
-  }
+    return result;
+  }, []);
+
+  const withdrawalLimits = data.map((item) => item.transferlimit);
+  const withdrawalMinLimit = Math.min(...withdrawalLimits);
+  const withdrawalMaxLimit = Math.max(...withdrawalLimits);
 
   return { withdrawalList, withdrawalMinLimit, withdrawalMaxLimit };
 }
