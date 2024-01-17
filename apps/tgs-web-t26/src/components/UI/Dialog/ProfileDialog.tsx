@@ -10,7 +10,7 @@ import { theme } from "@/theme";
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     position: relative;
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.darkGray};
     display: flex;
     flex-direction: column;
     align-items: center;

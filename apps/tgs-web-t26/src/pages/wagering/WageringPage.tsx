@@ -7,7 +7,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd, useWageringPage } from "@tgs-web-nx/core/hooks";
 // import { useSnackbar } from "notistack";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWagering from "@/assets/t29/images/account/navItem/icon-wagering.svg";
+import iconWagering from "@/assets/t26/images/account/navItem/icon-wagering.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";

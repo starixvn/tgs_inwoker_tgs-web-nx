@@ -2,9 +2,8 @@ import { RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { TableBody, TableCell, TableRow } from "@mui/material";
-import {
-  CustomWinLose
-} from "@/components/styled-component/Report";
+import { CustomWinLose } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   roundTotal: RoundTotalDto;
@@ -13,9 +12,9 @@ type Props = {
 const TotalState = ({ roundTotal }: Props) => {
   const { betAmount, validBetAmount, winLoss } = roundTotal;
   return (
-    <>{config.features.Report_ShowRoundsTotal &&
-      roundTotal &&
-      <TableBody>
+    config.features.Report_ShowRoundsTotal &&
+    roundTotal && (
+      <TableBody sx={{ background: theme.mainBackground }}>
         <TableRow>
           <TableCell
             style={{
@@ -52,14 +51,11 @@ const TotalState = ({ roundTotal }: Props) => {
               fontWeight: 500,
             }}
           >
-            <CustomWinLose $value={roundTotal && winLoss}>
-              {winLoss}
-            </CustomWinLose>
+            <CustomWinLose $value={roundTotal && winLoss}>{winLoss}</CustomWinLose>
           </TableCell>
         </TableRow>
       </TableBody>
-    }
-    </>
+    )
   );
 };
 

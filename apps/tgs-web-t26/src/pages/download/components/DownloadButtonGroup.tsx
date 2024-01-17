@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import AppFlag from "@/pages/home/components/AppFlag";
-import android from "@/assets/t29/images/home/android.svg";
-import ios from "@/assets/t29/images/home/ios.svg";
+import android from "@/assets/t26/images/home/android.svg";
+import ios from "@/assets/t26/images/home/ios.svg";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
 
 const Container = styled.div`
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.darkGray};
 `;
 
 const ContentContainer = styled.div`

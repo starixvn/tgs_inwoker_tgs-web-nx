@@ -11,13 +11,13 @@ const SupportCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 20px;
-  background: ${({ theme }) => theme.blue20};
+  padding: 20px;
+  background: ${({ theme }) => theme.darkGray};
   color: ${({ theme }) => theme.text};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.098rem;
-
+  border-radius: 20px;
   & > * {
     margin-bottom: 20px;
 
@@ -33,6 +33,7 @@ const SupportCardContainer = styled.div`
   // }
   ${media.md} {
     width: calc((100% - 16px * (4 - 1)) / 4);
+    background: ${({ theme }) => theme.black};
   }
 `;
 
@@ -87,11 +88,12 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
       <Button
         fullWidth
         sx={{
-          color: theme.white,
+          color: theme.black,
           background: theme.primary,
           padding: "6px",
           "&:hover": {
-            background: theme.secondary,
+            color: theme.black,
+            background: theme.primary,
           },
         }}
       >

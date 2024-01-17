@@ -25,7 +25,7 @@ export const ItemContainer = styled.div`
 export const LabelContainer = styled.div`
   font-size: 0.875rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
   float: left;
   margin-bottom: 16px;
 `;
@@ -77,7 +77,7 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "1rem",
   lineHeight: 1,
   fontWeight: 700,
-  color: theme.palette.mainBackground,
+  color: theme.palette.black,
   background: theme.palette.primary.main,
   boxShadow: "none",
 

@@ -44,11 +44,11 @@ export function useReportTypeTabs() {
       })(),
       {
         index: ReportTabIndexEnum.BALANCE_CHANGE,
-        label: "Balance Change",
+        label: i18n.t("balancechangereport"),
       },
       {
         index: ReportTabIndexEnum.JOIN_PROMOTION,
-        label: "Activity",
+        label: i18n.t("report.joinedPromo.title"),
       },
     ].filter((reportTab) => !!reportTab) as ReportTab[];
   }, [game.containTransferWallet]);

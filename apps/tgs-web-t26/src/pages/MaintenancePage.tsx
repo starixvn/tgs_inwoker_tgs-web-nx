@@ -69,11 +69,13 @@ const Button = styled.button`
 `;
 const CSButton = styled(Button)`
   cursor: pointer;
-  background: linear-gradient(0deg, #e7415a, #e7415a),
-    linear-gradient(0deg, rgba(231, 65, 90, 0.6), rgba(231, 65, 90, 0.6));
+  background: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.primary};
+  border: ${({ theme }) => `1px solid ${theme.primary}`};
 `;
 const IMButton = styled(Button)`
   background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.black};
   cursor: pointer;
 `;
 

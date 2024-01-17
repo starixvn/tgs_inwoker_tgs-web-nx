@@ -4,13 +4,21 @@ import { SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
+import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t29/images/transfer/arrow-right.png";
+import ArrowRightPNG from "@/assets/t26/images/transfer/arrow-right.png";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { media } from "@/theme/breakpoints";
 import { TextField } from "@/components/UI/TextField";
+
+const AmountTextField = muiStyled(TextField)(({ theme }) => ({
+  border: `none`,
+  [theme.breakpoints.up("sm")]: {
+    border: `none`,
+  },
+}));
 
 const QuickTransferContainer = styled.div`
   display: flex;
@@ -30,8 +38,8 @@ const QuickTransferContainer = styled.div`
 const QuickTransferArrow = styled.div`
   flex-shrink: 0;
   display: flex;
-  width: 23px;
-  height: 23px;
+  width: 15px;
+  height: 15px;
   align-self: center;
   margin: 0 10px;
 `;
@@ -82,86 +90,82 @@ const QuickTransfer = ({
   const { game } = useGameStore();
   return (
     <QuickTransferContainer>
-      <GrayInputWrapper>
-        <Select
-          native
-          fullWidth
-          variant="outlined"
-          value={transferFrom}
-          displayEmpty
-          onChange={handleTransferFromChange}
-        >
-          <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
-          {game.providerList
-            .filter((provider) => provider.status === 0 && provider.transferwallet === true)
-            .filter((provider) => {
-              if (config.features.MergeEVORTNT) {
-                if (
-                  !(
-                    provider.gpcode === "NTTF" ||
-                    provider.gpcode === "RTTF" ||
-                    provider.gpcode === "BTG" ||
-                    provider.gpcode === "NLC"
-                  )
-                ) {
-                  return provider;
-                }
-              } else {
+      <Select
+        native
+        fullWidth
+        variant="outlined"
+        value={transferFrom}
+        displayEmpty
+        onChange={handleTransferFromChange}
+      >
+        <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
+        {game.providerList
+          .filter((provider) => provider.status === 0 && provider.transferwallet === true)
+          .filter((provider) => {
+            if (config.features.MergeEVORTNT) {
+              if (
+                !(
+                  provider.gpcode === "NTTF" ||
+                  provider.gpcode === "RTTF" ||
+                  provider.gpcode === "BTG" ||
+                  provider.gpcode === "NLC"
+                )
+              ) {
                 return provider;
               }
-            })
-            .map((item, index) => (
-              <option value={item.gpcode} key={index}>
-                {item.name}
-              </option>
-            ))}
-        </Select>
-      </GrayInputWrapper>
+            } else {
+              return provider;
+            }
+          })
+          .map((item, index) => (
+            <option value={item.gpcode} key={index}>
+              {item.name}
+            </option>
+          ))}
+      </Select>
 
       <QuickTransferArrow>
         <img src={ArrowRightPNG} alt="arrow-right" />
       </QuickTransferArrow>
 
-      <GrayInputWrapper>
-        <Select
-          native
-          fullWidth
-          variant="outlined"
-          value={transferTo}
-          displayEmpty
-          onChange={handleTransferToChange}
-        >
-          <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
-          {game.providerList
-            .filter((item) => item.status === 0 && item.transferwallet === true)
-            .filter((e) => {
-              if (config.features.MergeEVORTNT) {
-                if (
-                  !(
-                    e.gpcode === "NTTF" ||
-                    e.gpcode === "RTTF" ||
-                    e.gpcode === "BTG" ||
-                    e.gpcode === "NLC"
-                  )
-                ) {
-                  return e;
-                }
-              } else {
+      <Select
+        native
+        fullWidth
+        variant="outlined"
+        value={transferTo}
+        displayEmpty
+        onChange={handleTransferToChange}
+      >
+        <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
+        {game.providerList
+          .filter((item) => item.status === 0 && item.transferwallet === true)
+          .filter((e) => {
+            if (config.features.MergeEVORTNT) {
+              if (
+                !(
+                  e.gpcode === "NTTF" ||
+                  e.gpcode === "RTTF" ||
+                  e.gpcode === "BTG" ||
+                  e.gpcode === "NLC"
+                )
+              ) {
                 return e;
               }
-            })
-            .map((item, index) => (
-              <option value={item.gpcode} key={index}>
-                {item.name}
-              </option>
-            ))}
-        </Select>
-      </GrayInputWrapper>
+            } else {
+              return e;
+            }
+          })
+          .map((item, index) => (
+            <option value={item.gpcode} key={index}>
+              {item.name}
+            </option>
+          ))}
+      </Select>
 
       <GrayInputWrapper>
         <AmountWrapper>
           <AmountText>{i18n.t("common.amount")}</AmountText>
-          <TextField
+          <AmountTextField
             value={transferAmount}
             onChange={handleTransferAmountChange}
             autoComplete="off"
@@ -179,7 +183,7 @@ const QuickTransfer = ({
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
         style={{
-          color: theme.white,
+          color: theme.darkGray,
           background: theme.primary,
           height: "50px",
           minWidth: "212px",

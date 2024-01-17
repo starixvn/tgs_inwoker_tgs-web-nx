@@ -16,7 +16,7 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: #23507d;
+  color: ${({ theme }) => theme.text};;
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 16px;
@@ -26,7 +26,7 @@ const OriginalMessage = styled.div`
   max-height: 120px;
   padding: 10px;
   white-space: pre-line;
-  border: ${({ theme }) => `1px solid ${theme.gray10}`};
+  border: ${({ theme }) => `1px solid ${theme.white}`};
   color: ${({ theme }) => theme.text};
   overflow: auto;
   font-size: 14px;

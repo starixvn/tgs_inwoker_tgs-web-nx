@@ -29,7 +29,7 @@ export const ReportCard = styled.div`
   padding: 16px;
   font-size: 0.8rem;
   color: ${({ theme }) => theme.text};
-  background: ${({ theme }) => theme.gray20};
+  background: ${({ theme }) => theme.darkGray};
   border-radius: 5px;
   margin-bottom: 10px;
 `;
@@ -63,7 +63,7 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontSize: "0.857rem",
     fontWeight: 400,
     color: theme.palette.text.primary,
-    borderBottom: `1px solid ${theme.palette.gray10}`,
+    borderBottom: `1px solid #4B4B4B`,
     padding: "26px 5px 10px",
   },
 }));

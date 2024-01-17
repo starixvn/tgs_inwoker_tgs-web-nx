@@ -16,14 +16,12 @@ import { imageMap } from "@/components/project/LanguageSwitch/index";
 
 const StyledSelect = styled(MuiSelect)`
   border-radius: 12px !important;
-  border: ${({ theme }) => ` 1px solid ${theme.mainBackground}`};
   height: 56px;
-  width: 250px;
+  width: 100%;
   overflow: visible;
-  background: ${({ theme }) => theme.mainBackground};
-  &:hover {
+  /* &:hover {
     border: 0;
-  }
+  } */
 
   .MuiOutlinedInput-input {
     padding: 10px 30px !important;
@@ -105,7 +103,6 @@ const MenuLanguageSwitch = (props: SelectProps) => {
         PaperProps: {
           sx: {
             background: theme.mainBackground,
-
             "& .MuiMenuItem-root": {
               padding: 2,
             },

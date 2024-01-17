@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
@@ -9,6 +10,7 @@ import {
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
 import bg from "@/assets/t29/images/bg.png";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -34,7 +36,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ChildrenWrapper = styled.div`
-  max-width: 1170px;
+  max-width: 1300px;
   margin: auto;
   padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
   display: flex;
@@ -49,6 +51,9 @@ type Props = {
   children: React.ReactNode;
 };
 const AccountDesktopLayout = ({ children }: Props) => {
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const currentRoute = pathSegments[pathSegments.length - 1];
   return (
     <DefaultLayoutContainer>
       <Header />
@@ -56,6 +61,8 @@ const AccountDesktopLayout = ({ children }: Props) => {
       <DashboardContainer>
         <ContentWrapper>
           <ChildrenWrapper>
+            {/* download page didn't  need side menu */}
+            {currentRoute !== "appDownload" && <DarkMemberMenu />}
             {children}
           </ChildrenWrapper>
         </ContentWrapper>

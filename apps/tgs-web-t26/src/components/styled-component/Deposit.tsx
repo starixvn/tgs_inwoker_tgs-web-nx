@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LimitLabel = styled.span`
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const LimitAmount = styled.span`

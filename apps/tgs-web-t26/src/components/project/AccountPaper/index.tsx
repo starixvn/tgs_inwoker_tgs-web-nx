@@ -6,7 +6,7 @@ import { media } from "@/theme/breakpoints";
 
 const AccountPaperContainer = styled.div`
   ${media.sm} {
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.darkGray};
     padding: 30px;
   }
 `;

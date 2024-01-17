@@ -7,6 +7,7 @@ import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -44,6 +45,12 @@ const DialogLayout = ({ children }: Props) => {
       <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
 
       <ContentWrapper>
+        {/* {isDesktopSize && (
+          <DarkMemberMenu
+            handleCloseContextMenu={() => {}}
+            style={{ width: "222px", margin: "22px 0 0 22px", flexShrink: 0, minHeight: "800px" }}
+          />
+        )} */}
         {children}
       </ContentWrapper>
 
