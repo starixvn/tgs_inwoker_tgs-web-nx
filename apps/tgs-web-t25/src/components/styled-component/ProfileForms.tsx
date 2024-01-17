@@ -20,8 +20,13 @@ export const ItemContainer = styled.div`
   background: linear-gradient(0deg, #262828, #262828), linear-gradient(0deg, #373939, #373939);
   padding: 24px 20px;
   border: 1px solid ${({ theme }) => theme.grey05};
+
   ${media.sm} {
     max-width: 500px;
+    background: ${({ theme }) => theme.black03};
+    border: none;
+    padding: 0;
+    margin-bottom: 24px;
   }
 `;
 
@@ -48,6 +53,10 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
 
   "& input": {
     padding: "11.5px 20px",
+  },
+
+  [theme.breakpoints.up("sm")]: {
+    border: `1px solid ${theme.palette.grey07}`,
   },
 })) as typeof MuiFormControl;
 

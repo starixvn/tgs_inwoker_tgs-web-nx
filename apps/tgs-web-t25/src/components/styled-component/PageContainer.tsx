@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 0 20px 20px;
-  max-width: calc(961px + 20px * 2);
+  max-width: calc(${SUB_CONTENT_MAX_WIDTH} + 20px * 2);
   flex: 1;
   margin: 0 auto;
 
@@ -17,7 +18,7 @@ export const PageContainer = styled.div`
 export const TransferPageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 0 20px 20px;
-  max-width: calc(961px + 20px * 2);
+  max-width: calc(${SUB_CONTENT_MAX_WIDTH} + 20px * 2);
   flex: 1;
   margin: 0 auto;
 
@@ -37,7 +38,7 @@ export const TransferPageContainer = styled.div`
 export const DownloadPageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 12px;
-  max-width: calc(961px + 20px * 2);
+  max-width: calc(${SUB_CONTENT_MAX_WIDTH} + 20px * 2);
   flex: 1;
   margin: 0 auto;
 

@@ -9,7 +9,6 @@ import {
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
-import bg from "@/assets/t25/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -35,7 +34,7 @@ const ContentWrapper = styled.div`
 `;
 
 const ChildrenWrapper = styled.div`
-  max-width: 1170px;
+  max-width: 1380px;
   margin: auto;
   padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
   display: flex;
