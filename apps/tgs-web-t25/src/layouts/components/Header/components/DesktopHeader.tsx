@@ -1,19 +1,18 @@
-import React from "react";
+import React, { HTMLProps } from "react";
 import styled from "styled-components";
-import { useAccountStore } from "@tgs-web-nx/core";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { Link } from "react-router-dom";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import BrandLogo from "../../../../../../tgs-web-t29/src/components/project/BrandLogo";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import {
-  DESKTOP_DRAWER_WIDTH,
   DESKTOP_HEADER_HEIGHT,
-  DRAWER_SHRINK_WIDTH,
+  MAIN_CONTENT_MAX_WIDTH,
   MOBILE_HEADER_HEIGHT,
-  SUB_CONTENT_MAX_WIDTH,
-  TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
-import { media } from "@/theme/breakpoints";
 import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
 import { theme } from "@/theme";
@@ -27,21 +26,10 @@ const HeaderContainer = styled.div<HeaderContainerProps>`
   top: 0;
   left: 0;
   background: ${({ theme }) => theme.black03};
-  height: ${MOBILE_HEADER_HEIGHT};
+  height: ${DESKTOP_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
   transition: all ease-in-out 0.2s;
-
-  ${media.sm} {
-    height: ${DESKTOP_HEADER_HEIGHT};
-    padding-left: ${({ $isOpen }: HeaderContainerProps) =>
-      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
-
-  ${media.lg} {
-    padding-left: ${({ $isOpen }: HeaderContainerProps) =>
-      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-
 `;
 
 const ContentWrapper = styled.div`
@@ -49,7 +37,7 @@ const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   z-index: 2;
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
   margin: auto;
   display: flex;
   align-items: center;
@@ -65,17 +53,50 @@ const ContentGroup = styled.div`
   align-items: center;
 `;
 
-const DesktopHeader = () => {
+const LogoImgContainer = styled.div`
+  max-width: 100px;
+  height: 27px;
+  justify-self: start;
+  padding: 0 10px;
+  margin: auto;
+  margin-right: 20px;
+  cursor: pointer;
+
+  & > img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+`;
+
+const DesktopHeader = ({
+  hideBrandLogo,
+  ...props
+}: HTMLProps<HTMLDivElement> & {
+  hideBrandLogo?: boolean;
+}) => {
   const { account } = useAccountStore();
+  const { handleChangeGameType } = useHomeGameContext();
+
   const noLoginAccount = account.token !== account.info.token;
   const { isExtraLargeDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
 
   return (
-    <HeaderContainer $isOpen={isMenuOpen}>
+    // @ts-ignore
+    <HeaderContainer {...props} $isOpen={isMenuOpen}>
       <ContentWrapper>
         <ContentGroup>
-          {isExtraLargeDesktopSize && <SystemTime />}
+          {!hideBrandLogo && (
+            <Link to={""}>
+              <BrandLogo
+                style={{ height: "27px" }}
+                onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+              />
+            </Link>
+          )}
+
+          {isExtraLargeDesktopSize && <SystemTime style={{ marginLeft: "20px" }} />}
           {isExtraLargeDesktopSize && <OnlineUser color={theme.white} />}
         </ContentGroup>
 

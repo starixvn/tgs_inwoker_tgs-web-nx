@@ -41,7 +41,7 @@ const ChildrenWrapper = styled.div`
   justify-content: center;
   ${media.sm} {
     padding-bottom: 15px;
-    margin-top: 15px;
+    //margin-top: 15px;
   }
 `;
 

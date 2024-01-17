@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, HTMLProps } from "react";
 import styled from "styled-components";
 import moment from "moment";
 
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   flex-shrink: 0;
 `;
 
-const SystemTime = () => {
+const SystemTime = (props: HTMLProps<HTMLDivElement>) => {
   const [systemTime, setSystemTime] = useState(
     moment().utcOffset("+07:00").format("YYYY-DD-MM HH:mm:ss"),
   );
@@ -26,7 +26,8 @@ const SystemTime = () => {
     return () => clearTimeout(timer);
   }, [tickCount]);
 
-  return <Wrapper>{`GMT+7 ${systemTime}`}</Wrapper>;
+  // @ts-ignore
+  return <Wrapper {...props}>{`GMT+7 ${systemTime}`}</Wrapper>;
 };
 
 export default SystemTime;

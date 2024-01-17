@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
@@ -66,13 +66,30 @@ type Props = {
   children: React.ReactNode;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
+  const { isDesktopSize, isMobileSize, isLargeDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
+
+  const shiftPadding = useMemo(() => {
+    if (isLargeDesktopSize) {
+      return isMenuOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
+    }
+
+    if (isDesktopSize) {
+      return isMenuOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH;
+    }
+
+    return "0px";
+  }, [isDesktopSize, isLargeDesktopSize, isMenuOpen]);
 
   return (
     <DefaultLayoutContainer>
       <DashboardContainer>
-        <Header />
+        <Header
+          hideBrandLogo={true}
+          style={{
+            paddingLeft: shiftPadding,
+          }}
+        />
         {isDesktopSize && <MenuDrawer />}
 
         <ContentWrapper $isOpen={isDesktopSize && isMenuOpen}>

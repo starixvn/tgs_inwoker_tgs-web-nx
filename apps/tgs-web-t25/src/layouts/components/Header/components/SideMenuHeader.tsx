@@ -6,7 +6,6 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 
 const SideMenuHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.gray30};
   position: relative;
   flex-shrink: 0;
   width: 100%;
