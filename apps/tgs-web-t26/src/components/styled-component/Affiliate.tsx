@@ -35,7 +35,7 @@ export const AffiliateTitle = styled.h2`
   font-weight: 700;
   line-height: 1.758rem;
   margin-bottom: 14px;
-  color: ${({ theme }) => theme.mainBackground};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const QRCodeContainer = styled.div`

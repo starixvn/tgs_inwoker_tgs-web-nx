@@ -6,12 +6,12 @@ import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.white};
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid ${({ theme }) => theme.gray10};
+  /* border-bottom: 1px solid ${({ theme }) => theme.gray10}; */
 
   & .label {
     min-width: 110px;
@@ -19,7 +19,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.318rem;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.black};
   }
 
   & .value {
@@ -71,8 +71,8 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         variant={isCopied ? "outlined" : "contained"}
         sx={{
           width: "66px",
-          color: theme.white,
-          background: theme.secondary,
+          color: theme.black,
+          background: theme.primary,
           fontSize: "0.75rem",
         }}
       >
