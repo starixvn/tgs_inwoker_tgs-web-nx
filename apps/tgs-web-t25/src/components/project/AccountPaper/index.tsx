@@ -6,8 +6,16 @@ import { media } from "@/theme/breakpoints";
 
 const AccountPaperContainer = styled.div`
   ${media.sm} {
+    //background: ${({ theme }) => theme.black03};
+    //padding: 30px;
+    //border-radius: 10px;
+  }
+`;
+
+const Paper = styled.div`
+  ${media.sm} {
     background: ${({ theme }) => theme.black03};
-    padding: 30px;
+    padding: 24px 40px;
     border-radius: 10px;
   }
 `;
@@ -31,7 +39,7 @@ const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
           }}
         />
       )}
-      {children}
+      <Paper>{children}</Paper>
     </AccountPaperContainer>
   );
 };

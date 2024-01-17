@@ -9,7 +9,7 @@ export const PageContainer = styled.div`
   margin: 0 auto;
 
   ${media.sm} {
-    padding: 10px;
+    padding: 40px;
     background: ${({ theme }) => theme.black02};
   }
 `;
@@ -22,7 +22,7 @@ export const TransferPageContainer = styled.div`
   margin: 0 auto;
 
   ${media.sm} {
-    padding: 10px;
+    padding: 40px;
     background: ${({ theme }) => theme.black02};
   }
 
@@ -42,7 +42,7 @@ export const DownloadPageContainer = styled.div`
   margin: 0 auto;
 
   ${media.sm} {
-    padding: 10px;
+    padding: 40px;
     background: ${({ theme }) => theme.black02};
   }
 `;

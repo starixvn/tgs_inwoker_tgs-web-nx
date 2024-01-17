@@ -8,6 +8,10 @@ export const SubTitle = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
   color: ${({ theme }) => theme.primary};
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.white};
+  }
 `;
 export const SubTitleDesc = styled.div`
   font-size: 0.875rem;
@@ -31,6 +35,11 @@ export const Card = styled.div`
   border-radius: 6px;
   margin-bottom: 20px;
   padding: 24px 20px;
+
+  ${media.sm} {
+    background: transparent;
+    border: none;
+  }
 `;
 
 export const TitleContainer = styled.div`
@@ -38,4 +47,12 @@ export const TitleContainer = styled.div`
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
+
+  ${media.sm} {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;

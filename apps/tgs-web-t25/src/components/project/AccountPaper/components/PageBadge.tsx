@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 
 const PageBadgeContainer = styled.div`
-  padding: 10px 20px;
+  //padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +13,7 @@ const PageBadgeContainer = styled.div`
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.437rem;
-  border-left: 5px solid ${({ theme }) => theme.primary};
+  //border-left: 5px solid ${({ theme }) => theme.primary};
 `;
 
 type Props = {

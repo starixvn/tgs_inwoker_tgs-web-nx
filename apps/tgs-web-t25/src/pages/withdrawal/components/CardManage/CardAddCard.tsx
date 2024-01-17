@@ -2,18 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import AddCardIcon from "@/assets/t25/images/card/add-card.svg";
+import { media } from "@/theme/breakpoints";
 
 const CardContainer = styled.div`
   width: 100%;
+  height: 150px;
   padding: 12px 20px;
   background: ${({ theme }) => theme.black02};
   border: 1px solid ${({ theme }) => theme.grey06};
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   border-radius: 6px;
   cursor: pointer;
+
+  ${media.md} {
+    width: calc((100% - 14px * 1) / 2);
+    background: #000000b2;
+    border: none;
+  }
 `;
 
 const EmptyCardTitle = styled.div`

@@ -4,6 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import {
   Card,
@@ -60,8 +61,8 @@ const AddCardSuccess = ({
               fullWidth
               onClick={onhandleBindCardClick}
               style={{
-                background: theme.secondary,
-                color: theme.black,
+                background: theme.grey06,
+                color: theme.white,
               }}
             >
               {i18n.t("card.success.bindBankCard")}

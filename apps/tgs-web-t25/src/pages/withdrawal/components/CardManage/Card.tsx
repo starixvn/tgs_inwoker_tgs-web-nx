@@ -17,6 +17,8 @@ const CardContainer = styled.div`
 
   ${media.md} {
     width: calc((100% - 14px * 1) / 2);
+    background: #000000b2;
+    border: none;
   }
 `;
 

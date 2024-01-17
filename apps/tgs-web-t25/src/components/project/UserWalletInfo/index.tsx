@@ -19,14 +19,14 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  padding: 22px 50px;
+  //padding: 22px 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
   background: ${({ theme }) => theme.black02};
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const PlayerInfoContainer = styled.div`

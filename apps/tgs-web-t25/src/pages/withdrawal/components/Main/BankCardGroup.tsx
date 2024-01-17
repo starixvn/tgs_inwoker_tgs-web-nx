@@ -26,9 +26,11 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   gap: 8px;
   padding: 8px 11px;
   font-size: 14px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
+  font-weight: 500;
+  border-radius: 6px;
+  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.black : theme.white)};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+    $active ? theme.secondary : "transparent"};
   width: auto !important;
   cursor: pointer;
   float: left;
@@ -75,7 +77,7 @@ const BankCardGroup = ({
               getTransferLimit(item.paymentchannelid);
             }}
           >
-            <Icon iconUrl={isActive ? iconCardActive : iconCard} width={"20px"} height={"20px"} />
+            <Icon iconUrl={!isActive ? iconCardActive : iconCard} width={"20px"} height={"20px"} />
             <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
             <BankCardButtonCardNoHL>
               {(() => {

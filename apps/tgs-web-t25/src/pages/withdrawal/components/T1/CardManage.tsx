@@ -66,7 +66,7 @@ const CardManage = ({
         <FormTitle
           title={i18n.t("card.title")}
           isCustomizedBrand={isCustomizedBrand}
-          isShowAddCardButton={isShowAddCardButton}
+          isShowAddCardButton={false}
           handleClickAddCard={onhandleAddCardClick}
         />
       )}
@@ -91,9 +91,7 @@ const CardManage = ({
           );
         })}
 
-        {!isDesktopSize && isShowAddCardButton && (
-          <CardAddCard handleClick={onhandleAddCardClick} />
-        )}
+        {isShowAddCardButton && <CardAddCard handleClick={onhandleAddCardClick} />}
       </CardContainer>
 
       <SubmitButton fullWidth onClick={onhandleBackClick}>
