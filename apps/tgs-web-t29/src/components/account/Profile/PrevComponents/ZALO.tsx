@@ -131,15 +131,7 @@ const ZALO = (props: Props) => {
           >
             {i18n.t("common.submit")}
           </SubmitButton>
-
-          {/* <BottomNote
-            text1={i18n.t("profile.wechat.toEdit")}
-            link={
-              config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly
-                ? "../chat"
-                : "profile.wechat.here"
-            }
-          /> */}
+          <BottomNote />
         </div>
       )}
 
