@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
@@ -50,6 +51,9 @@ type Props = {
   children: React.ReactNode;
 };
 const AccountDesktopLayout = ({ children }: Props) => {
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const currentRoute = pathSegments[pathSegments.length - 1];
   return (
     <DefaultLayoutContainer>
       <Header />
@@ -57,7 +61,8 @@ const AccountDesktopLayout = ({ children }: Props) => {
       <DashboardContainer>
         <ContentWrapper>
           <ChildrenWrapper>
-            <DarkMemberMenu />
+            {/* download page didn't  need side menu */}
+            {currentRoute !== "appDownload" && <DarkMemberMenu />}
             {children}
           </ChildrenWrapper>
         </ContentWrapper>

@@ -1,14 +1,12 @@
-import logoCompatibleImg from "@/assets/t29/images/download/logo_compatible.svg";
-import logoConvenientImg from "@/assets/t29/images/download/logo_convenient.svg";
-import logoExtensiveImg from "@/assets/t29/images/download/logo_extensive.svg";
-import logoSecureImg from "@/assets/t29/images/download/logo_secure.svg";
-import downloadGirlImg from "@/assets/t29/images/download/download-girl.png";
+import logoCompatibleImg from "@/assets/t26/images/download/logo_compatible.svg";
+import logoConvenientImg from "@/assets/t26/images/download/logo_convenient.svg";
+import logoExtensiveImg from "@/assets/t26/images/download/logo_extensive.svg";
+import logoSecureImg from "@/assets/t26/images/download/logo_secure.svg";
 
 import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";
 import {
   DownloadAppContainer,
-  GirlImage,
   InfoCardListContainer,
   IntroductionContainer,
   Paper,
@@ -40,10 +38,6 @@ const infoCardItemList: InfoCardItem[] = [
 const DownloadApp = () => {
   return (
     <DownloadAppContainer>
-      <GirlImage>
-        <img src={downloadGirlImg} alt={"download"} />
-      </GirlImage>
-
       <Paper>
         <IntroductionContainer>
           <span>Introduction</span>
