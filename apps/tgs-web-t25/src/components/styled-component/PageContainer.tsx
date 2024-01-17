@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};

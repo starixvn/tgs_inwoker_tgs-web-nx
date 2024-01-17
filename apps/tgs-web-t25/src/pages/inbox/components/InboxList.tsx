@@ -11,9 +11,16 @@ import LoadingBlock from "@/components/project/LoadingBlock";
 import InboxListTable from "@/pages/inbox/components/table/InboxListTable";
 import InboxReplyDialog from "@/pages/inbox/components/dialog/InboxReplyDialog";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const InboxTableContainer = styled.div`
   min-height: 50vh;
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.black03};
+    border-radius: 10px;
+    padding: 24px 40px;
+  }
 `;
 
 const InboxList = () => {

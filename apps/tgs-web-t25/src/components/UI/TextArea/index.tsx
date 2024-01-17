@@ -33,14 +33,16 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   },
 
   "& textarea::placeholder": {
-    color: "#828282",
+    color: theme.palette.grey04,
     opacity: 1,
     fontSize: "0.875rem",
     fontWeight: 400,
   },
   [theme.breakpoints.up("sm")]: {
-    input: {
+    textarea: {
       fontSize: "0.875rem",
+      background: theme.palette.inputBGC,
+      border: `1px solid ${theme.palette.grey07}`,
     },
     label: {
       fontSize: "0.875rem",

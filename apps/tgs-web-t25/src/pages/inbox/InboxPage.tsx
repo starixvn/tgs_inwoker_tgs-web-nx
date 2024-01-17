@@ -9,12 +9,13 @@ import {
 import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconInbox from "@/assets/t25/images/account/navItem/icon-inbox.svg";
-import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import ComposeForm from "@/pages/inbox/components/form/ComposeForm";
 import InboxList from "@/pages/inbox/components/InboxList";
 import SentList from "@/pages/inbox/components/SentList";
 import InboxCategoryTabs from "@/pages/inbox/components/InboxCategoryTabs";
+import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
+import { media } from "@/theme/breakpoints";
 
 const InboxContainer = styled.div`
   & > * {
@@ -54,16 +55,25 @@ const MessageCenterPage = () => {
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
 
-      <AccountPaper pageName={i18n.t("wap.main.account.inbox")} iconUrl={iconInbox}>
-        <InboxContainer>
-          <InboxCategoryTabs
-            tabList={tabList}
-            selectedTab={selectedTab}
-            handleClickTab={handleClickTab}
-          />
-          <InboxComponent />
-        </InboxContainer>
-      </AccountPaper>
+      {isDesktopSize && (
+        <PageBadge
+          iconUrl={iconInbox}
+          text={i18n.t("wap.main.account.inbox")}
+          style={{
+            marginBottom: "20px",
+          }}
+        />
+      )}
+
+      <InboxContainer>
+        <InboxCategoryTabs
+          tabList={tabList}
+          selectedTab={selectedTab}
+          handleClickTab={handleClickTab}
+        />
+
+        <InboxComponent />
+      </InboxContainer>
     </PageContainer>
   );
 };

@@ -16,7 +16,7 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: #23507d;
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 16px;
@@ -26,13 +26,15 @@ const OriginalMessage = styled.div`
   max-height: 120px;
   padding: 10px;
   white-space: pre-line;
-  border: ${({ theme }) => `1px solid ${theme.gray10}`};
-  color: ${({ theme }) => theme.text};
+  border: ${({ theme }) => `1px solid ${theme.grey07}`};
+  background: ${({ theme }) => theme.inputBGC};
+  color: ${({ theme }) => theme.white};
   overflow: auto;
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
   letter-spacing: 0em;
+  border-radius: 6px;
 `;
 
 type Props = {
@@ -66,7 +68,7 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
             value={displayedSubject}
             sx={{
               input: {
-                padding: "17px 0",
+                padding: "10px",
               },
             }}
             disabled={true}

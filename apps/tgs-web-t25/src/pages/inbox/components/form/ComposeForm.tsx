@@ -7,11 +7,19 @@ import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
+import { media } from "@/theme/breakpoints";
 
 const InboxComposeFormContainer = styled.div`
   padding: 24px 20px;
   background: ${({ theme }) => theme.black02};
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.black03};
+    border-radius: 10px;
+    padding: 24px 40px;
+  }
 `;
+
 const InputWrapper = styled.div`
   margin-bottom: 16px;
 `;

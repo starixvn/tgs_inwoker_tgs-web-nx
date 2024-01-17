@@ -12,7 +12,7 @@ const AccountPaperContainer = styled.div`
   }
 `;
 
-const Paper = styled.div`
+export const Paper = styled.div`
   ${media.sm} {
     background: ${({ theme }) => theme.black03};
     padding: 24px 40px;
