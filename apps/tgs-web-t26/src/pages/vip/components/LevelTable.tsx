@@ -22,7 +22,7 @@ const ScrollableContainer = styled.div`
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.gray10};
+      /* background: ${(props) => props.theme.gray10}; */
     }
 
     &::-webkit-scrollbar-thumb {
@@ -58,13 +58,11 @@ const LevelTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 12px 15px 12px 15px;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
+  background-color: ${({ theme }) => theme.darkGray};
 
   ${media.sm} {
     height: 86px;
     padding: 20px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
   }
 `;
 
@@ -84,10 +82,9 @@ const HeaderItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
-    max-width: 136px;
+    width: 166px;
     font-size: 1rem;
     margin: unset;
-    color: #23507d;
   }
 `;
 
@@ -96,16 +93,6 @@ const LevelTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
-  background: ${(props) => props.theme.mainBackground};
-  padding-top: 20px;
-
-  ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
-
-    > div:nth-child(even) {
-      background: rgba(255, 255, 255, 0.1);
-    }
-  }
 `;
 
 const LevelTableRowWrapper = styled.div`
@@ -114,10 +101,11 @@ const LevelTableRowWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
+  border-bottom: ${({ theme }) => `1px solid ${theme.darkGray}`};
 
   ${media.sm} {
     border-bottom: unset;
+    background-color: ${({ theme }) => theme.darkGray};
   }
 `;
 
@@ -130,7 +118,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.text};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -142,7 +130,6 @@ const RowItem = styled.div`
     min-height: 67px;
     width: 166px;
     font-size: 1rem;
-    color: #23507d;
   }
 `;
 

@@ -18,26 +18,10 @@ const VipWrapper = styled.div`
   gap: 16px;
 
   ${media.sm} {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
-    gap: 10px;
+    gap: 20px;
     padding: 10px;
-    background-color: ${({ theme }) => theme.blue20};
-  }
-`;
-
-const VipBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-  height: 137px;
-  border-radius: 4px;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  ${media.sm} {
-    max-width: 780px;
-    height: 250px;
   }
 `;
 
@@ -62,7 +46,6 @@ const VIP = () => {
 
   return (
     <VipWrapper>
-      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} />
       <BonusTable vipSortingData={vipSortingData} />
       <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
     </VipWrapper>
