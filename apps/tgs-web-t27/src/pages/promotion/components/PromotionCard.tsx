@@ -19,7 +19,7 @@ const PromotionCardContainer = styled.div`
   align-items: stretch;
   border-radius: 4px;
   flex-shrink: 0;
-  gap: 18px;
+  gap: 16px;
 
   &:hover {
       transform: scale(1.02);
@@ -54,10 +54,7 @@ const TitleWrapper = styled.div`
 const ClickMoreContainer = styled.div`
   flex-shrink: 0;
   margin-left: auto;
-
-  ${media.sm} {
-    width: 100px;
-  }
+  width: 100px;
 `;
 
 const MoreBtn = styled.div<MoreOnclickProps>`
@@ -95,10 +92,11 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
       <PromotionTextContainer>
         <TitleWrapper>{promotionData.name}</TitleWrapper>
         <ClickMoreContainer>
-          {isMobileSize
+          {/* {isMobileSize
             ? <Icon iconUrl={moreIcon} width={"28px"} height={"28px"} onClick={handleEnterDetail} />
             : <MoreBtn onClick={handleEnterDetail}>More</MoreBtn>
-          }
+          } */}
+          <MoreBtn onClick={handleEnterDetail}>More</MoreBtn>
         </ClickMoreContainer>
       </PromotionTextContainer>
     </PromotionCardContainer>

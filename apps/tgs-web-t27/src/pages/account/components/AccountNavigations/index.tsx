@@ -7,7 +7,7 @@ import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
-import NavCard from "@/pages/account/components/AccountNavigations/NavCard";
+import AccountMenuItem from "@/pages/account/components/AccountNavigations/AccountMenuItem";
 import AppDownloadButton from "@/components/project/AppDownloadButton";
 import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
 import { media } from "@/theme/breakpoints";
@@ -29,13 +29,9 @@ const AccountNavsContainer = styled.div`
 const AccountNavCardsContainer = styled.div`
   display: flex;
   width: 100%;
-  padding: 15px 20px;
+  padding: 15px 20px 0 20px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 15px;
-
-
-  border: 1px solid green;
 `;
 
 const AccountNavCardsSubContainer = styled.div`
@@ -45,6 +41,12 @@ const AccountNavCardsSubContainer = styled.div`
   & > * {
     flex: 1;
   }
+`;
+
+const LanguageSwitchWrapper = styled.div`
+  margin: 0 20px;
+  padding-left: 24px;
+  background: ${({ theme }) => theme.mainBackground};
 `;
 
 const hideInDesktopDictionary = {
@@ -104,18 +106,6 @@ const AccountNavigations = () => {
     }
   }, []);
 
-  const handleClick = (navItem: NavItem) => {
-    switch (navItem.navType) {
-      case "route":
-        history.push(navItem.routePath);
-        break;
-
-      case "action":
-        navItem.callback();
-        handleCloseContextMenu();
-    }
-  };
-
   const location = useLocation();
   const pathSegments = location.pathname.split("/");
   const currentRoute = pathSegments[pathSegments.length - 1];
@@ -124,43 +114,27 @@ const AccountNavigations = () => {
     <>
       <AccountNavsContainer>
         <AccountNavCardsContainer>
-          {/* mobile MenuList */}
-          {/* {sideNavItemList.map((navItem) => {
-            const { key, iconComponent, label, gameType } = navItem;
+          {/* mobile account menuList */}
+          {accountNavItemList.map((navItem) => {
+            const { key, iconComponent, label } = navItem;
 
             return (
-              <MenuGameTab
-                key={key}
+              <AccountMenuItem
+                key={navItem.key}
                 text={label}
                 isActive={label === isSelected}
                 onClick={() => handleClickNav(navItem)}
               >
                 {iconComponent && React.createElement(iconComponent)}
-              </MenuGameTab>
-            );
-          })} */}
-
-          {/* 改變資料來源 使用相同的樣式 */}
-
-          {accountNavItemList.map((navItem: NavItem) => {
-            return (
-              <MemberMenuItem
-                key={navItem.key}
-                $isActive={currentRoute === navItem.routePath?.replace("/", "")}
-                onClick={() => handleClick(navItem)}
-                $hoverImage={navItem.iconPrimaryUrl}
-              >
-                <Icon
-                  iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
-                  width={"20px"}
-                  height={"20px"}
-                />
-                <span className={"label"}>{navItem.label}</span>
-              </MemberMenuItem>
+              </AccountMenuItem>
             );
           })}
         </AccountNavCardsContainer>
+        <LanguageSwitchWrapper>
+          <LanguageSwitch />
+        </LanguageSwitchWrapper>
 
+        {/* 
         {isDesktopSize && (
           <AccountNavCardsSubContainer>
             <AppDownloadButton
@@ -183,7 +157,7 @@ const AccountNavigations = () => {
               {i18n.t("web.header.logout")}
             </Button>
           </AccountNavCardsSubContainer>
-        )}
+        )} */}
       </AccountNavsContainer>
 
       {/*<Loading show={logoutState.isLoading} />*/}

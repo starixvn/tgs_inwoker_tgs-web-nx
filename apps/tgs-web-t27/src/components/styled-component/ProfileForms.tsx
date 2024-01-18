@@ -72,7 +72,7 @@ export const UploadFileTag = styled.span`
 `;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "50px",
+  height: "53px",
   whiteSpace: "nowrap",
   padding: "10px",
   fontSize: "1rem",

@@ -1,45 +1,12 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
-import profileImg from "@/assets/t19/images/account/navItem/icon-profile.svg";
-import depositImg from "@/assets/t19/images/account/navItem/icon-deposit.svg";
-import withdrawImg from "@/assets/t19/images/account/navItem/icon-withdraw.svg";
-import transferImg from "@/assets/t19/images/account/navItem/icon-transfer.svg";
-import reportImg from "@/assets/t19/images/account/navItem/icon-report.svg";
-import inboxImg from "@/assets/t19/images/account/navItem/icon-inbox.svg";
 import affiliateImg from "@/assets/t19/images/account/navItem/icon-affiliate.svg";
-import downloadImg from "@/assets/t19/images/account/navItem/icon-download.svg";
-import languageImg from "@/assets/t19/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t19/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t19/images/account/navItem/icon-vip.svg";
-import wageringImg from "@/assets/t19/images/account/navItem/icon-wagering.svg";
-import profileWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-profile.svg";
-import depositWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-deposit.svg";
-import withdrawWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-withdraw.svg";
-import transferWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-transfer.svg";
-import reportWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-report.svg";
-import inboxWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-inbox.svg";
-import affiliateWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-affiliate.svg";
-import downloadWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-download.svg";
-import contactWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-contact.svg";
-import vipWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-vip.svg";
-import wageringWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-wagering.svg";
-import languageWhiteImg from "@/assets/t19/images/account/navItemWhite/icon-wagering.svg";
-// desktop left menu active icon
-import vipActiveImg from "@/assets/t19/images/account/navItemActive/icon-vip.svg";
-import profileActiveImg from "@/assets/t19/images/account/navItemActive/icon-profile.svg";
-import depositActiveImg from "@/assets/t19/images/account/navItemActive/icon-deposit.svg";
-import withdrawActiveImg from "@/assets/t19/images/account/navItemActive/icon-withdraw.svg";
-import transferActiveActiveImg from "@/assets/t19/images/account/navItemActive/icon-transfer.svg";
-import reportActiveImg from "@/assets/t19/images/account/navItemActive/icon-report.svg";
-import inboxActiveImg from "@/assets/t19/images/account/navItemActive/icon-inbox.svg";
-import affiliateActiveImg from "@/assets/t19/images/account/navItemActive/icon-affiliate.svg";
-import downloadActiveImg from "@/assets/t19/images/account/navItemActive/icon-download.svg";
-import logoutActiveImg from "@/assets/t19/images/account/navItemActive/icon-logout.svg";
-import contactActiveImg from "@/assets/t19/images/account/navItemActive/icon-contact.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 // update svg icon
 import VipSvg from "@/pages/home/components/TabSvgIcon/Vip";
@@ -47,6 +14,16 @@ import AffiliateSvg from "@/pages/home/components/TabSvgIcon/Affiliate";
 import ContactUsSvg from "@/pages/home/components/TabSvgIcon/ContactUs";
 import HomeSvg from "@/pages/home/components/TabSvgIcon/Home";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import AccountSvg from "@/pages/account/components/AccountSvgIcon/Account";
+import DepositSvg from "@/pages/account/components/AccountSvgIcon/Deposit";
+import WithdrawSvg from "@/pages/account/components/AccountSvgIcon/Withdraw";
+import TransferSvg from "@/pages/account/components/AccountSvgIcon/Transfer";
+import ReportSvg from "@/pages/account/components/AccountSvgIcon/Report";
+import InboxSvg from "@/pages/account/components/AccountSvgIcon/Inbox";
+import DownloadSvg from "@/pages/account/components/AccountSvgIcon/Download";
+import LanguageSvg from "@/pages/account/components/AccountSvgIcon/Language";
+import LogoutSvg from "@/pages/account/components/AccountSvgIcon/Logout";
+import { Logout } from "@mui/icons-material";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -76,6 +53,7 @@ export function useGetNavItemList() {
   const { providerList } = useHomeGameContext();
   const history = useHistory();
   const { isDesktopSize } = useRwd();
+  const { handleLogout } = useAuthContext();
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
@@ -168,29 +146,32 @@ export function useGetNavItemList() {
       {
         key: NavCardKey.PROFILE,
         label: i18n.t("wap.main.my"),
-        iconUrl: profileImg,
-        iconSecondaryUrl: profileWhiteImg,
-        iconPrimaryUrl: profileActiveImg,
         navType: "route",
         routePath: "/profile",
+        callback: () => {
+          history.push("/profile");
+        },
+        iconComponent: AccountSvg,
       },
       {
         key: NavCardKey.DEPOSIT,
         label: i18n.t("common.deposit"),
-        iconUrl: depositImg,
-        iconSecondaryUrl: depositWhiteImg,
-        iconPrimaryUrl: depositActiveImg,
         navType: "route",
         routePath: "/deposit",
+        callback: () => {
+          history.push("/deposit");
+        },
+        iconComponent: DepositSvg,
       },
       {
         key: NavCardKey.WITHDRAW,
         label: i18n.t("common.withdrawal"),
-        iconUrl: withdrawImg,
-        iconSecondaryUrl: withdrawWhiteImg,
-        iconPrimaryUrl: withdrawActiveImg,
         navType: "route",
         routePath: "/withdrawal",
+        callback: () => {
+          history.push("/withdrawal");
+        },
+        iconComponent: WithdrawSvg,
       },
       // {
       //   key: NavCardKey.WAGERING,
@@ -205,47 +186,52 @@ export function useGetNavItemList() {
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),
-        iconUrl: transferImg,
-        iconSecondaryUrl: transferWhiteImg,
-        iconPrimaryUrl: transferActiveActiveImg,
         navType: "route",
         routePath: "/transfer",
+        callback: () => {
+          history.push("/withdrawal");
+        },
+        iconComponent: TransferSvg,
       },
       {
         key: NavCardKey.REPORT,
         label: i18n.t("report.title"),
-        iconUrl: reportImg,
-        iconSecondaryUrl: reportWhiteImg,
-        iconPrimaryUrl: reportActiveImg,
         navType: "route",
         routePath: "/report",
+        callback: () => {
+          history.push("/withdrawal");
+        },
+        iconComponent: ReportSvg,
       },
       {
         key: NavCardKey.MESSAGE_CENTER,
         label: i18n.t("inbox.title"),
-        iconUrl: inboxImg,
-        iconSecondaryUrl: inboxWhiteImg,
-        iconPrimaryUrl: inboxActiveImg,
         navType: "route",
         routePath: "/message-center",
+        callback: () => {
+          history.push("/message-center");
+        },
+        iconComponent: InboxSvg,
       },
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),
-        iconUrl: inboxImg,
-        iconSecondaryUrl: inboxWhiteImg,
-        iconPrimaryUrl: inboxActiveImg,
         navType: "route",
         routePath: "/inbox",
+        callback: () => {
+          history.push("/inbox");
+        },
+        iconComponent: InboxSvg,
       },
       {
         key: NavCardKey.AFFILIATE,
         label: i18n.t("wap.main.account.affiliate"),
-        iconUrl: affiliateImg,
-        iconSecondaryUrl: affiliateWhiteImg,
-        iconPrimaryUrl: affiliateActiveImg,
         navType: "route",
         routePath: "/affiliate",
+        callback: () => {
+          history.push("/affiliate");
+        },
+        iconComponent: AffiliateSvg,
       },
       // {
       //   key: NavCardKey.VIP,
@@ -259,31 +245,40 @@ export function useGetNavItemList() {
       {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),
-        iconUrl: contactImg,
-        iconSecondaryUrl: contactWhiteImg,
-        iconPrimaryUrl: contactActiveImg,
         navType: "route",
         routePath: "/support",
+        callback: () => {
+          history.push("/support");
+        },
+        iconComponent: ContactUsSvg,
       },
       {
         key: NavCardKey.APP_DOWNLOAD,
         label: i18n.t("wap.main.account.appDownload"),
-        iconUrl: downloadImg,
-        iconSecondaryUrl: downloadWhiteImg,
-        iconPrimaryUrl: downloadActiveImg,
         navType: "route",
         routePath: "/appDownload",
+        callback: () => {
+          history.push("/appDownload");
+        },
+        iconComponent: DownloadSvg,
       },
       // {
       //   key: NavCardKey.LANGUAGE_SWITCH,
       //   label: i18n.t("common.language"),
-      //   iconUrl: languageImg,
-      //   iconSecondaryUrl: languageWhiteImg,
-      //   iconPrimaryUrl: languageWhiteImg,
       //   navType: "action",
-      //   routePath: null,
+      //   routePath: "",
       //   callback: () => {},
+      //   iconComponent: LanguageSvg,
       // },
+      {
+        key: NavCardKey.LOGOUT,
+        label: i18n.t("web.header.logout"),
+        navType: "action",
+        callback: () => {
+          handleLogout();
+        },
+        iconComponent: LogoutSvg,
+      },
     ] as NavItem[];
   }, []);
 

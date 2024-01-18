@@ -13,7 +13,7 @@ import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
 
 export const AccountPageContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: rgba(0, 0, 0, 1);
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
@@ -30,6 +30,10 @@ const AccountPage = () => {
   const { isLogin } = useAuth();
   const history = useHistory();
   const { isDesktopSize, isMobileSize } = useRwd();
+
+  if (isDesktopSize) {
+    history.push("/profile");
+  }
 
   useEffect(() => {
     if (!isLogin) {

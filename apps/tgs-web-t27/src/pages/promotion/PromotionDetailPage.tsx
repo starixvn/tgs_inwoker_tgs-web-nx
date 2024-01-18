@@ -9,7 +9,7 @@ import { PAGE_CONTAINER_WIDTH } from "@/theme/constants";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
-  padding: 12px;
+  padding: 16px;
   color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ const ContentContainer = styled.div`
   align-items: flex-start;
   gap: 18px;
   align-self: stretch;
-  padding-bottom: 6px;
+  padding-bottom: 73px;
 `;
 const TextArea = styled.div`
   /* margin-bottom: 40px; */
@@ -57,7 +57,7 @@ const Title = styled.h2`
 const Description = styled.p`
   color: #BCBFC7;
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 500;
 
   ${media.sm} {
     font-size: 1.5rem;
@@ -72,6 +72,7 @@ const TermsAndConditions = styled(Description)`
 
 const JoinPromotionButtonWrapper = styled.div`
   position: fixed;
+  left: 0;
   bottom: 62.25px;
   width: 100%;
   display: flex;
