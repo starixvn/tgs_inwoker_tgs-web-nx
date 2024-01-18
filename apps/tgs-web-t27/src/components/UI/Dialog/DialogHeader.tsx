@@ -44,7 +44,7 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
         <Icon iconUrl={backIcon} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
 
-      {/* {dialogHeaderTitle} */}
+      {dialogHeaderTitle}
     </DialogHeaderContainer>
   );
 };

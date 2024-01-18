@@ -45,6 +45,13 @@ const CategoryContent = styled.div`
   width: 100%;
   align-self: stretch;
   gap: 10px;
+  max-height: 254px;
+  overflow-x: hidden;
+
+  ${media.sm} {
+    max-height: unset;
+    overflow-x: unset;
+  }
 `;
 
 const HomeCategory = () => {
@@ -136,7 +143,7 @@ const HomeCategory = () => {
             />
           </CategoryTitle>
           <CategoryContent>
-            {liveCasinoList.slice(0, 2).map((provider) => {
+            {liveCasinoList.map((provider) => {
               const { code: gpCode, status, name } = provider;
 
               if (gpCode === "BC") return null;
@@ -227,7 +234,7 @@ const HomeCategory = () => {
             />
           </CategoryTitle>
           <CategoryContent>
-            {slotList.slice(0, 2).map((provider) => {
+            {fishList.slice(0, 2).map((provider) => {
               const { code: gpCode, status, name } = provider;
 
               return (
@@ -349,7 +356,7 @@ const HomeCategory = () => {
             />
           </CategoryTitle>
           <CategoryContent>
-            {slotList.slice(0, 2).map((provider) => {
+            {tableGameList.slice(0, 2).map((provider) => {
               const { code: gpCode, status, name } = provider;
 
               return (

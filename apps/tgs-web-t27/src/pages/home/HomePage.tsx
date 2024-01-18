@@ -96,8 +96,6 @@ const MainContentWrapper = styled.div`
   flex-shrink: 0;
   flex: 1;
 
-  border: 1px solid red;
-
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
@@ -202,11 +200,6 @@ const HomePage = () => {
     },
   };
 
-  const handleViewAllClick = (gameType: GameTypeEnum) => {
-    handleChangeGameType(gameType);
-    const activeGameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
-    history.push(`/main/${activeGameTypeKey}`);
-  };
 
   useEffect(() => {
     window.scrollTo({

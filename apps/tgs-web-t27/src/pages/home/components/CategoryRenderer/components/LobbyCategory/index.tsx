@@ -9,48 +9,16 @@ import VendorCard from "@/pages/home/components/VendorCard/index";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import CardPrompt from "@/pages/home/components/CardPrompt";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-
-  ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
-    margin: 0 auto;
-    padding: 15px 0px;
-  }
-`;
-
-const MainContentWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
 
 const CategoryContentWrapper = styled.div`
   display: flex;
-  padding: 12px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-
-  border: 1px solid #B78316;
-`;
-
-const DesktopCategoryContentWrapper = styled.div`
   width: 100%;
-  flex: 1;
-  flex-shrink: 0;
-  display: flex;
+  padding: 12px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  row-gap: 10px;
   flex-wrap: wrap;
-  align-content: center;
-  gap: 32px;
-
-  border: 1px solid #B78316;
 `;
 
 const CategoryContent = styled.div`
@@ -58,27 +26,22 @@ const CategoryContent = styled.div`
   flex-wrap: wrap;
   align-content: center;
   width: 100%;
-  gap: 8px;
-  padding: 14px 0px 18px 14px;
   align-self: stretch;
+  gap: 10px;
+  max-height: 254px;
+  overflow-x: hidden;
 
-  
-  border: 1px solid #B78316;
-`;
-
-const Title = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-size: 19.5px;
-  font-weight: 400;
-  line-height: 22px; 
-  text-align: center;
+  ${media.sm} {
+    max-height: unset;
+    overflow-x: unset;
+  }
 `;
 
 const LobbyCategory = () => {
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { account } = useAccountStore();
   const history = useHistory();
-  const { lobbyCategoryList } = useGetHomeCategoryList();
+  const { lobbyCategoryList } = useGetLobbyCategoryList();
   const { isMobileSize, isDesktopSize } = useRwd();
 
   const launchLobbyGame = (gpcode: string) => {
@@ -116,11 +79,35 @@ const LobbyCategory = () => {
     }
   };
 
-  // const hasMappingData = !!lobbyCategoryList.length;
+  const hasMappingData = !!lobbyCategoryList.length;
+
+  console.log(lobbyCategoryList)
 
   return (
     <>
       <GameTypeTab />
+      <CategoryContentWrapper>
+        <CategoryContent>
+          {hasMappingData &&
+            lobbyCategoryList.map((provider) => {
+              const { code: gpCode, status, name } = provider;
+
+              if (gpCode === "BC") return null;
+              return (
+                <VendorCard
+                  key={gpCode}
+                  bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/bg.png`}
+                  imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                  venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  launchGame={() => launchLobbyGame(gpCode)}
+                  status={status}
+                  venderName={name}
+                />
+              );
+            })}
+          {!hasMappingData && <div>No data</div>}
+        </CategoryContent>
+      </CategoryContentWrapper>
     </>
   );
 };
