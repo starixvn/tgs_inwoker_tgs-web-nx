@@ -26,8 +26,25 @@ declare module "@mui/material/styles/createPalette" {
     gray30: string;
     gray40: string;
     gray50: string;
+
+    // t22 setting
+    primaryBtn: string,
+    secondaryBtn: string,
+    navMenuBackground: string,
+    navTextDefault: string,
+    labelText: string,
+    navItemBackground: string,
+    activeTab: string,
+    defaultTab: string,
+    gray01: string,
+    gray02: string,
+    inputBackground: string,
+    yellow: string,
+    lightBlack: string,
+    lightWhite: string,
   }
 }
+
 
 const muiTheme = createTheme({
   breakpoints: {
@@ -71,6 +88,23 @@ const muiTheme = createTheme({
       primary: theme.text,
       secondary: theme.gray20,
     },
+
+    // t22 setting
+    primaryBtn: theme.primaryBtn,
+    secondaryBtn: theme.secondaryBtn,
+    navMenuBackground: theme.navMenuBackground,
+    navTextDefault: theme.navTextDefault,
+    labelText: theme.labelText,
+    navItemBackground: theme.navItemBackground,
+    activeTab: theme.activeTab,
+    defaultTab: theme.defaultTab,
+    gray01: theme.gray01,
+    gray02: theme.gray02,
+    inputBackground: theme.inputBackground,
+    yellow: theme.yellow,
+    lightBlack: theme.lightBlack,
+    lightWhite: theme.lightWhite,
+
   },
   typography: {
     fontFamily: fontFamily,

@@ -1,10 +1,7 @@
 export const theme = {
   primary: "#FEBA34",
   secondary: "#7C95FF",
-  white: "#FFFFFF",
-  black: "#000000",
-  red: "#FF2546",
-  green: "#12B436",
+  
   gradient: "linear-gradient(315deg, #F37A3F 14.64%, #FFA23E 85.36%)",
   blue60: "#0E6399",
   blue50: "#0F548B",
@@ -22,5 +19,25 @@ export const theme = {
   gray60: "#333333",
   gray70: "#484848",
   gray80: "#777777",
-  mainBackground: "#FFFFFF",
+
+  // t22 setting
+  mainBackground: "#F9F6E8",
+  primaryBtn: "linear-gradient(180deg, #C79B7D 0%, #895C43 100%)",
+  secondaryBtn: "linear-gradient(180deg, #D8AC8D 0%, #BF8A63 100%)",
+  navMenuBackground: "#E2DFDE",
+  navTextDefault: "#656565",
+  labelText: "#AB7F63",
+  navItemBackground: "rgba(255, 255, 255, 0.2)",
+  activeTab: "#9A604C",
+  defaultTab: "#B7967F",
+  white: "#FFFFFF",
+  gray01: "#E8E0D6",
+  gray02: "#989898",
+  black: "#262626",
+  lightWhite: "rgba(255, 255, 255, .54)",
+  lightBlack: "rgba(0, 0, 0, 0.64)",
+  inputBackground: "rgba(178, 171, 166, 0.6)",
+  green: "#4CCA51",
+  red: "#FE0100",
+  yellow: "#FFC700",
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { ForgotPasswordStageContextProvider } from "@tgs-web-nx/core/features";
 import ForgotPasswordFormStage from "./ForgotPasswordFormStage";
 import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
@@ -13,24 +12,19 @@ import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 
 const ForgotPasswordForm = () => {
-  const { isMobileSize } = useRwd();
-
   return (
     <ForgotPasswordStageContextProvider>
       <AuthFormContainer>
-        {isMobileSize ? (
-          <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
-        ) : (
-          <LoginTitle>{`${i18n.t("forgotPassword.title")}`.toUpperCase()}</LoginTitle>
-        )}
+        <BrandLogo style={{ marginBottom: "67px", maxWidth: "none" }} />
+        <LoginTitle>{`${i18n.t("forgotPassword.title")}`.toUpperCase()}</LoginTitle>
 
         <FormContainer>
           <ForgotPasswordFormStage />
+          <RedirectToLoginHint style={{ margin: "16px 0" }} />
+          <LanguageSwitch style={{ width: "100%"}} />
         </FormContainer>
-
-        <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-        <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
       </AuthFormContainer>
+      
     </ForgotPasswordStageContextProvider>
   );
 };

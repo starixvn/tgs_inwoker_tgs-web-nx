@@ -7,12 +7,12 @@ import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
-
   & .MuiPaper-root {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: 1080px;
   }
 `;
 
@@ -49,7 +49,6 @@ const AuthDialog = ({ open, onClose, children, showInMobile, ...others }: Props 
       open={open}
       TransitionComponent={UpTransition}
       onClose={onClose}
-      maxWidth={"sm"}
       {...others}
     >
       <CloseIcon onClick={onClose} />

@@ -18,6 +18,11 @@ const Form = styled.form`
   flex-direction: column;
   gap: 20px;
   flex-shrink: 0;
+
+  >div {
+    border-radius: 8px;
+    overflow: hidden;
+  }
 `;
 
 export interface FormikFormInput {

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { RegisterStageEnum, ValueOf } from "@tgs-web-nx/types";
 import { registerStageFactory } from "./stage/registerStageFactory";
 

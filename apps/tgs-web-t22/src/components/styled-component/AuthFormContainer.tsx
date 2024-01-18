@@ -22,19 +22,18 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto 20px;
 `;
 
-export const LoginTitle = styled.div`
-  font-size: 40px;
-  white-space: nowrap;
-  font-weight: 700;
-  line-height: 55px;
-  letter-spacing: 0em;
+export const LoginTitle = styled.p`
+  font-size: 24px;
+  font-weight: 400;
+  /* line-height: 55px; */
+  /* letter-spacing: 0em; */
   text-align: center;
-  margin-bottom: 50px;
-  color: ${({ theme }) => theme.primary};
+  margin-bottom: 36px;
+  color: ${({ theme }) => theme.white};
 `;
 
 export const FormContainerWithBG = styled.div`

@@ -9,7 +9,7 @@ const RedirectToRegisterHint = (props: React.HTMLProps<HTMLDivElement>) => {
   return (
     //@ts-ignore
     <RedirectContainer {...props}>
-      <span>{i18n.t("T13.proceedRegister")}</span>
+      {/* <span>{i18n.t("T13.proceedRegister")}</span> */}
       <span onClick={handleRedirect} className="link">
         {i18n.t("common.register")}
       </span>
