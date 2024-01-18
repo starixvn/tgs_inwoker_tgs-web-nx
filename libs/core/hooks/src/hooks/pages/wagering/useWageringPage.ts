@@ -1,6 +1,7 @@
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import { WalletService } from "@tgs-web-nx/core";
 import { useCallback, useState } from "react";
+import { i18n } from "@tgs-web-nx/utils";
 interface PlayerBucket {
   key: string;
   amount: number;
@@ -48,7 +49,7 @@ const initBucketList: PlayerBucket[] = [
 ];
 
 export function useWageringPage() {
-  useUpdatePageName("Wagering");
+  useUpdatePageName(i18n.t("t29.wageringrequirement"));
 
   const [playerBuckets, setPlayerBuckets] = useState<PlayerBucket[]>(initBucketList);
   const [wageringRequirement, setWageringRequirement] = useState<number>(0);
