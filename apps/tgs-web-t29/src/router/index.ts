@@ -9,7 +9,7 @@ import DepositPage from "@/pages/deposit/DepositPage";
 import MessageCenterPage from "@/pages/messageCenter/MessageCenterPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
-import MaintenancePage from "@/pages/MaintenancePage";
+import MaintenancePage from "@/pages/maintenance/MaintenancePage";
 import ProfilePage from "@/pages/profile/ProfilePage";
 import PromotionPage from "@/pages/promotion/PromotionPage";
 import RegisterPage from "@/pages/register/RegisterPage";

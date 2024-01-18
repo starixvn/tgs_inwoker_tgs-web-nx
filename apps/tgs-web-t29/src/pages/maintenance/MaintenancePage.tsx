@@ -4,9 +4,8 @@ import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { UiService, useGeneralStore } from "@tgs-web-nx/core";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
-import { BrandsSupport } from "@tgs-web-nx/types";
+import Supports from "./components/Supports";
 import { media } from "@/theme/breakpoints";
-import Dialog from "@/components/UI/Dialog/Dialog";
 
 const MaintenanceContainer = styled.div`
   display: flex;
@@ -77,35 +76,6 @@ const IMButton = styled(Button)`
   background: #ffa84d;
   cursor: pointer;
 `;
-
-const CardsContainer = styled.div`
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-`;
-
-const QRCodeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const QRCodeImage = styled.img`
-  height: 150px;
-  width: 150px;
-`;
-
-const QRCodeText = styled.div`
-  padding: 10px 0px;
-  font-weight: bold;
-  font-size: 20px;
-`;
-
-const IDText = styled.div`
-  font-size: 24px;
-`;
-
 const DefaultMaintenance = () => {
   return (
     <>
@@ -113,30 +83,6 @@ const DefaultMaintenance = () => {
       <p>If you have any questions,please contact our customer service.</p>
     </>
   );
-};
-
-type QrCodeHolderProps = {
-  selectedBrandsSupport: BrandsSupport;
-};
-
-const QRCodeHolder = ({ selectedBrandsSupport }: QrCodeHolderProps) => {
-  const { qrcodeurl, type, appid } = selectedBrandsSupport;
-
-  if (qrcodeurl) {
-    return (
-      <QRCodeContainer>
-        <QRCodeImage src={qrcodeurl} />
-        <QRCodeText>{type}</QRCodeText>
-      </QRCodeContainer>
-    );
-  } else {
-    return (
-      <QRCodeContainer>
-        <QRCodeText>{type}</QRCodeText>
-        <IDText>ID: {appid}</IDText>
-      </QRCodeContainer>
-    );
-  }
 };
 
 const MaintenancePage = () => {
@@ -152,7 +98,7 @@ const MaintenancePage = () => {
   const [endTime, setEndTime] = useState("");
   const [content, setContent] = useState("");
   const [isFailed, setFailed] = useState(false);
-  const [instantMsgDialgIsOpen, setInstantMsgDialgIsOpen] = useState(false);
+  const [isOpenSupports, setIsOpenSupports] = useState(false);
   const newURL = livechat.setting?.url.replace("{lang}", i18n.language);
   const handleCSClick = () => {
     if (newURL?.length) {
@@ -163,7 +109,7 @@ const MaintenancePage = () => {
   const handleIMClick = () => {
     // TODO: handle IM click
     // console.log("%c⧭", "color: #d90000", "brandsSupport", brandsSupport);
-    setInstantMsgDialgIsOpen(true);
+    setIsOpenSupports(true);
   };
 
   useEffect(() => {
@@ -230,19 +176,7 @@ const MaintenancePage = () => {
           {showContactButton && <CSButton onClick={handleCSClick}>Contact Customer</CSButton>}
           {showImButton && <IMButton onClick={handleIMClick}>Instant Messaging</IMButton>}
         </ButtonGroupContainer>
-        <Dialog
-          open={instantMsgDialgIsOpen}
-          onClose={() => {
-            setInstantMsgDialgIsOpen(false);
-          }}
-          fullWidth
-        >
-          <CardsContainer>
-            {brandsSupport.map((brandsSupport, index) => {
-              return <QRCodeHolder selectedBrandsSupport={brandsSupport} />;
-            })}
-          </CardsContainer>
-        </Dialog>
+        {isOpenSupports && <Supports setIsOpenSupports={setIsOpenSupports} />}
       </ContentContainer>
     </MaintenanceContainer>
   );
