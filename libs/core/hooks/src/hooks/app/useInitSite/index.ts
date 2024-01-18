@@ -9,7 +9,7 @@ export function useInitSite() {
   const { general } = useGeneralStore();
 
   useLanguageDetect();
-  useHandleMaintenance();
+  // useHandleMaintenance();
   // useUpdateProviderBalance();
   useCheckRegisterProcess();
 

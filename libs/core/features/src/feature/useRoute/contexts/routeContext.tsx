@@ -1,4 +1,5 @@
 import React, { createContext } from "react";
+import { useHandleMaintenance } from "../../../../../hooks/src/hooks/app/useInitSite/useHandleMaintenance";
 
 export interface Route {
   path: string;
@@ -23,6 +24,7 @@ type ProviderProps = {
 };
 
 export const RouteContextProvider = ({ route, children }: ProviderProps) => {
+  useHandleMaintenance();
   return (
     <RouteContext.Provider
       value={{

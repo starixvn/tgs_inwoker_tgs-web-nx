@@ -30,7 +30,7 @@ export function useInitLanguage(isConfigFetched: boolean) {
 
   const getSupportLanguageList = async (): Promise<BrandLanguage[]> => {
     const res = await getBrandLanguage();
-    if (res) {
+    if (res?.IsSuccess) {
       return res.data;
     }
     return [];
@@ -55,7 +55,7 @@ function getDefaultLanguage(brandLanguageList: BrandLanguage[]) {
     return config.defaultLanguage;
   }
 
-  return brandLanguageList[0].culturecode || "en-US";
+  return "en-US" || brandLanguageList[0].culturecode;
 }
 
 function checkIfLanguageValid(language: string | null, brandLanguageList: BrandLanguage[]) {
