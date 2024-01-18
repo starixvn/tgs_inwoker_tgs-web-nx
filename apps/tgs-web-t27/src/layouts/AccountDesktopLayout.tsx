@@ -87,7 +87,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
               <DarkMemberMenu
                 handleCloseContextMenu={() => {}}
                 style={{
-                  width: "180px",
+                  width: "258px",
                   flexShrink: 0,
                   minHeight: "800px",
                 }}

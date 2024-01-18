@@ -27,7 +27,7 @@ const ProfilePage = () => {
         <ProfileMenu />
       </PageContainer>
     );
-  }
+  } //Desktop Account right side
 
   const isDialogOpen = !!ProfilePageComponent;
 

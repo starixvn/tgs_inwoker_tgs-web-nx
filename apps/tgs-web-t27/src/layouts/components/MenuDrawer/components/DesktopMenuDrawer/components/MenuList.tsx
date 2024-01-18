@@ -18,7 +18,7 @@ const TabContainer = styled.div<{
 
 const MenuList = () => {
   const { sideNavItemList } = useGetNavItemList();
-  const { activeGameType } = useHomeGameContext();
+  const { activeGameType, setIsEnterGamePortal } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const [isSelected, setIsSelected] = useState();
   const { isDesktopSize } = useRwd();
@@ -28,6 +28,7 @@ const MenuList = () => {
     setIsSelected(navItem.label);
     if (navItem.navType !== "action") return;
     navItem.callback();
+    setIsEnterGamePortal(true);
     handleToggleMenu(false);
   };
 

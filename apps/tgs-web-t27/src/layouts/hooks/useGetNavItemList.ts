@@ -163,8 +163,6 @@ export function useGetNavItemList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameTypeList, providerList]);
 
-  // iconUrl for mobile account page use
-  // iconSecondaryUrl for desktop account menu use
   const accountNavItemList: NavItem[] = useMemo(() => {
     return [
       {
