@@ -10,16 +10,18 @@ import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t19/images/home/maintenance.svg";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
+import gradientBg from "@/assets/t27/images/home/name-bg.png";
+import playIcon from "@/assets/t27/images/home/play-icon.png";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 81%;
+  height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 60%);
-  border-radius: 15px;
+  background: rgb(0 0 0 / 50%);
+  border-radius: 4px;
   display: none;
   white-space: pre-line;
 `;
@@ -32,8 +34,26 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 15px;
+  border-radius: 4px;
   background-color: ${({ theme }) => theme.black};;
+`;
+
+const NameBg = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+`;
+
+const NameBgIcon = styled.img`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 `;
 
 const TagBg = styled.div`
@@ -42,7 +62,7 @@ const TagBg = styled.div`
   padding-top: 100%;
   left: 0;
   top: 0;
-  border-radius: 15px;
+  border-radius: 4px;
 `;
 
 const NewTag = styled.div`
@@ -84,15 +104,14 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 8px);
+  width: calc(50% - 5px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 94 / 127;
+  aspect-ratio: 196 / 198;
 
   ${media.sm} {
     width: calc(16.67% - 36px);
-    min-width: 170px;
-    aspect-ratio: 170 / 210;
+    min-width: 196px;
 
     &:hover {
       ${CardHoverBg} {
@@ -108,19 +127,15 @@ const GameCardBg = styled.div`
 const MaintenanceBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 74%;
+  height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 50%);
+  background: rgb(0 0 0 / 80%);
   padding: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
-
-  ${media.sm} {
-    height: 81%;
-  }
+  border-radius: 4px;
 `;
 
 const MaintenanceIcon = styled.img`
@@ -143,23 +158,9 @@ width: 100%;
   max-width: 100%; //利用最大寬度來限制文字長度
 `;
 
-const PlayBtn = styled.div`
-  min-width: 108px;
-  padding: 8px 30px;
-  color: ${(props) => props.theme.black};
-  font-size: 1.5rem;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 50px;
-  background: var(--Gold-Gridient, linear-gradient(180deg, #EFD068 0%, #FEDFA1 28.13%, #D4B34F 65.1%, #B77E18 100%));
-  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.25);
-  
-  &:hover {
-    box-shadow: 0 -5px 15px 0 rgba(236,166,61,.501);
-    }
+const PlayBtnIcon = styled.img`
+  width: 45px;
+  height: 45px;
 `;
 
 type GameCardProps = {
@@ -228,7 +229,11 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
           {gameItem.tag.new && <NewTag>New</NewTag>}
           {gameItem.tag.hot && <HotTag>Hot</HotTag>}
         </TagBg>
-        {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
+        <NameBg>
+          <NameBgIcon src={gradientBg} alt={"game name"} />
+          {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
+        </NameBg>
+
         {!isActive && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
@@ -243,9 +248,10 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
           gameItemId={gameItem.id}
         />
       )}
+
       {isDesktopSize && isActive && (
         <CardHoverBg onClick={launchGameHandler}>
-          <PlayBtn>Play</PlayBtn>
+          <PlayBtnIcon src={playIcon} alt={"play"} />
         </CardHoverBg>
       )}
     </GameCardBg>

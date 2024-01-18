@@ -18,8 +18,6 @@ const StyledDialog = styled(MuiDialog)`
     background: ${({ theme }) => theme.mainBackground};
     width: calc(100vw - 50px * 2);
     height: auto;
-    margin: 4px;
-    overflow: visible;
 
     ${media.sm} {
       width: 480px;
@@ -71,6 +69,8 @@ const AnnouncementCardContainer = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
+  margin-top: 20px;
+
   ${media.sm} {
     width: 100%;
     display: flex;
@@ -140,9 +140,6 @@ const PopupAnnouncement = () => {
               return <AnnouncementCard key={index} subject={subject} content={content} />;
             })}
         </Carousel>
-
-        <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
-
         <ButtonWrapper>
           <Button
             onClick={handleCloseDialog}
@@ -154,6 +151,7 @@ const PopupAnnouncement = () => {
             <>{i18n.t("common.close")}</>
           </Button>
         </ButtonWrapper>
+        <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
       </ChildContainer>
     </StyledDialog>
   );

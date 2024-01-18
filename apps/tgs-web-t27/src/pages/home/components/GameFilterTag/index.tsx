@@ -5,20 +5,24 @@ import Tag from "./Tag";
 import { gameTagList } from "@/constants/gameTag";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
+import TextTag from "./TextTag";
 
-const TagContainer = styled.div`
+const FilterSection = styled.div`
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const ProviderTagContainer = styled.div`
+  width: 100%;
+  height: 32px;
   overflow-x: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 0px 6px 0px 14px;
-  border-radius: 100px;
-  background-color: ${({ theme }) => theme.cmpBackground};
   align-self: stretch;
-  margin-bottom: 12px;
 
   ${media.sm} {
     &::-webkit-scrollbar {
@@ -39,6 +43,12 @@ const TagContainer = styled.div`
       background: transparent;
     }
   }
+`;
+
+const CommonContainer = styled.div`
+  width: 100%;
+  height: 32px;
+  display: flex;
 `;
 
 const GameFilterTag = () => {
@@ -82,68 +92,57 @@ const GameFilterTag = () => {
   };
 
   return (
-    <TagContainer>
-      {filterTagList.map((filterTag) => {
-        const { name, tagType } = filterTag;
+    <FilterSection>
+      <ProviderTagContainer>
+        {providerFilterTagList.map((filterTag: FilterTag) => {
+          const { name, gpCode } = filterTag;
+          const isActive =
+            filterTag.tagType === FilterTagTypeEnum.ALL ||
+            (filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
+              gpCode === activeProviderFilterTag.gpCode);
 
-        const isActive =
-          filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType;
+          const tagCmp = gameTagList.find((tag) => tag.text === name);
 
-        const tagCmp = gameTagList.find((tag) => tag.text === name);
+          return (
+            <Tag
+              key={name}
+              text={name}
+              isActive={isActive}
+              isShowIcon={gameTagList.some((tag) => tag.text === name)}
+              onClick={() => handleFilterClick(filterTag)}
+            >
+              {tagCmp &&
+                tagCmp.iconComponent &&
+                React.createElement(tagCmp.iconComponent, {
+                  $color: isActive ? theme.primary : theme.text,
+                })}
+            </Tag>
+          );
+        })}
+      </ProviderTagContainer>
 
-        if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          return null;
-        }
+      <CommonContainer>
+        {filterTagList.map((filterTag) => {
+          const { name, tagType } = filterTag;
 
-        return (
-          <Tag
-            key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleFilterClick(filterTag)}
-          >
-            {tagCmp &&
-              tagCmp.iconComponent &&
-              React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.gray,
-              })}
-          </Tag>
-        );
-      })}
+          const isActive =
+            filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType;
 
-      {/* Provider list */}
+          // if (filterTag.tagType === FilterTagTypeEnum.ALL) {
+          //   return null;
+          // }
 
-      {providerFilterTagList.map((filterTag) => {
-        const { name, gpCode } = filterTag;
-
-        const isActive =
-          filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
-          gpCode === activeProviderFilterTag.gpCode;
-
-        const tagCmp = gameTagList.find((tag) => tag.text === name);
-
-        if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          return null;
-        }
-
-        return (
-          <Tag
-            key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleFilterClick(filterTag)}
-          >
-            {tagCmp &&
-              tagCmp.iconComponent &&
-              React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.gray,
-              })}
-          </Tag>
-        );
-      })}
-    </TagContainer>
+          return (
+            <TextTag
+              key={name}
+              text={name}
+              isActive={isActive}
+              onClick={() => handleFilterClick(filterTag)}
+            />
+          );
+        })}
+      </CommonContainer>
+    </FilterSection>
   );
 };
 

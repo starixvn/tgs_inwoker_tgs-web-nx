@@ -87,15 +87,6 @@ const MobilePopupPromotion = () => {
             />
           ))}
         </Carousel>
-
-        <NotShowAgainHint
-          onClick={handleClickCheckbox}
-          isCheck={isCheck}
-          style={{
-            margin: "10px 0",
-          }}
-        />
-
         <ButtonWrapper>
           <Button
             onClick={handleCloseDialog}
@@ -107,6 +98,14 @@ const MobilePopupPromotion = () => {
             <>{i18n.t("common.close")}</>
           </Button>
         </ButtonWrapper>
+        <NotShowAgainHint
+          onClick={handleClickCheckbox}
+          isCheck={isCheck}
+          style={{
+            margin: "10px 0",
+          }}
+        />
+
       </ChildContainer>
     </StyledDialog>
   );

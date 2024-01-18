@@ -4,6 +4,8 @@ import config from "@tgs-web-nx/config";
 import TextButton from "@/pages/home/components/TextButton";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth } from "@tgs-web-nx/core/features";
+import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Wrapper = styled.div`
   display: flex;

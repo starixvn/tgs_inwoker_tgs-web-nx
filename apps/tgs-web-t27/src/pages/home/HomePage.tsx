@@ -14,6 +14,7 @@ import bg from "@/assets/t19/images/home/home_bg.png";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import RegisterSection from "@/pages/home/components/RegisterSection";
+import DesktopRegisterSection from "@/pages/home/components/DesktopRegisterSection";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import CategorySection from "./components/CategorySection";
 import SocialMedia from "@/components/project/SocialMedia";
@@ -22,6 +23,12 @@ import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import ScrollableHomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
+import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
+import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
+import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
+import AffiliateProgram from "@/pages/home/components//AffiliateProgram";
+import DesktopAffiliateProgram from "@/pages/home/components/DesktopAffiliateProgram";
+import config from "@tgs-web-nx/config";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -33,7 +40,7 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
     height: unset;
@@ -56,10 +63,6 @@ const DesktopBg = styled.div`
 const SliderWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
-
-  ${media.sm} {
-    height: 100%;
-  }
 `;
 
 const SlickDot = styled.div`
@@ -92,8 +95,6 @@ const MainContentWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   flex-shrink: 0;
   flex: 1;
-
-  border: 1px solid red;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -130,16 +131,58 @@ const SlotCategoryContent = styled.div`
   align-content: center;
 `;
 
+const HomeRanking = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px 12px;
+`;
+
+const Title = styled.div`
+  width: 100%;
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 22px;
+  color: ${({ theme }) => theme.white};
+`;
+
+const Introduction = styled.div`
+ display: flex;
+  padding: 60px 42px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 21px;
+  background-color: ${({ theme }) => theme.g3};
+  margin-bottom: 30px;
+`;
+
+const Brand = styled.div`
+  width: 100%;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 58.36px;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.white};
+`;
+
+const IntroductionText = styled.div`
+  width: 100%;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: ${({ theme }) => theme.g2};
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType, isEnterGamePortal } =
+  const { activeGameType, handleChangeGameType, isEnterGamePortal } =
     useHomeGameContext();
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
   const history = useHistory();
   const gameTypeList = useGameTypeList();
+  const { betRecordList } = useBettingHistory();
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -157,13 +200,6 @@ const HomePage = () => {
     },
   };
 
-  const { hotGameList, newGameList, recommendGameList, isLoading } = useGetHomeCategoryList();
-
-  const handleViewAllClick = (gameType: GameTypeEnum) => {
-    handleChangeGameType(gameType);
-    const activeGameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
-    history.push(`/main/${activeGameTypeKey}`);
-  };
 
   useEffect(() => {
     window.scrollTo({
@@ -181,28 +217,42 @@ const HomePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType]);
 
-  console.log("activeGameType", activeGameType, "isEnterGamePortal", isEnterGamePortal)
-
   return (
     <MainWrapper>
+      <CardPrompt />
       {/* 首頁但未進入遊戲大廳 */}
-      {isMobileSize && !isEnterGamePortal && !activeGameType && (
+      {!isEnterGamePortal && !activeGameType &&
         <>
-          <CardPrompt />
-          <RegisterSection />
-          {!!general.banner.length &&
-            <SliderWrapper>
-              <Slider settings={settings} />
-            </SliderWrapper>
-          }
-          <CategorySection />
+          {isDesktopSize ? <DesktopRegisterSection /> : <RegisterSection />}
         </>
-      )}
+      }
+      {!!general.banner.length &&
+        <SliderWrapper>
+          <Slider settings={settings} />
+        </SliderWrapper>
+      }
 
-      <HomeCategoryContainer>
-        <ScrollableHomeHot />
-        <ScrollableHomeNew />
-      </HomeCategoryContainer>
+      {!isEnterGamePortal && !activeGameType &&
+        <>
+          <CategorySection />
+          <HomeCategoryContainer>
+            <ScrollableHomeRecommend />
+            <ScrollableHomeHot />
+            <HomeRanking>
+              <Title>Latest Bets & Wins</Title>
+              <LatestRecordTable betRecordList={betRecordList} />
+            </HomeRanking>
+            {isDesktopSize ? <DesktopAffiliateProgram /> : <AffiliateProgram />}
+            <ScrollableHomeNew />
+            <Introduction>
+              <Brand>{config.brand} : A Winning Casino!</Brand>
+              <IntroductionText>
+                {config.brand} is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic.
+              </IntroductionText>
+            </Introduction>
+          </HomeCategoryContainer>
+        </>
+      }
 
       {isMobileSize && !isEnterGamePortal && !activeGameType && (
         <>
@@ -211,54 +261,12 @@ const HomePage = () => {
         </>
       )}
 
-
-      {/* 首頁並且進入遊戲大廳 */}
-      {isMobileSize && isEnterGamePortal && !activeGameType && (
-        <>
-          {!!general.banner.length &&
-            <SliderWrapper>
-              <Slider settings={settings} />
-            </SliderWrapper>
-          }
-          <MainContentWrapper>
-            <CategoryRenderer />
-          </MainContentWrapper>
-        </>
-      )}
-
-      {isMobileSize && isEnterGamePortal && !!activeGameType && (
-        <>
-          {!!general.banner.length &&
-            <SliderWrapper>
-              <Slider settings={settings} />
-            </SliderWrapper>
-          }
-          <MainContentWrapper>
-            <CategoryRenderer />
-          </MainContentWrapper>
-        </>
-      )}
-
-      {/* {!!general.banner.length && isDesktopSize && !activeGameType && (
-        <SliderWrapper>
-          <Slider maxHeight={"600px"} settings={settings} />
-        </SliderWrapper>
-      )}
-
-      {isDesktopSize && !activeGameType &&
-        <DesktopBg>
-          <NotificationWrapper><CardPromptDesktop /></NotificationWrapper>
-          <MainContentWrapper>
-            <CategoryRenderer />
-          </MainContentWrapper>
-        </DesktopBg>}
-      {(isDesktopSize && !!activeGameType) && (
+      {/* 首頁並且進入遊戲大廳 */}{/* 切換遊戲分頁 */}
+      {isEnterGamePortal && (
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>
-      )} */}
-
-
+      )}
     </MainWrapper>
   );
 };

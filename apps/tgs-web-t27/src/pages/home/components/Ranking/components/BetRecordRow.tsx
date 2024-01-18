@@ -1,8 +1,9 @@
 import React, { forwardRef, LegacyRef } from "react";
 import styled from "styled-components";
-import { RankTableCol, RankTableRow } from "@/pages/home/components/Ranking/styles";
+import { RankTableCol, RankTableRow, RankTableColSub } from "@/pages/home/components/Ranking/styles";
 import ranking_1 from "@/assets/t18/images/home/mobile/ranking_1.svg";
 import MaskPlayerName from "@/pages/home/components/Ranking/components/MaskPlayerName";
+import diamond from "@/assets/t27/images/home/diamond.png";
 
 const GameLabelContainer = styled.div`
   width: 28px;
@@ -42,13 +43,13 @@ const BetRecordRow = forwardRef(
     return (
       <RankTableRow ref={ref as any}>
         <RankTableCol>
-          {/*<GameLabel gameName={gameName} />*/}
+          <img src={diamond} alt="ranking" />
           {gameName}
         </RankTableCol>
-        <RankTableCol>
+        <RankTableColSub>
           <MaskPlayerName playerName={playerName} />
-        </RankTableCol>
-        <RankTableCol>{betAmount}</RankTableCol>
+        </RankTableColSub>
+        <RankTableColSub>{betAmount}</RankTableColSub>
       </RankTableRow>
     );
   },

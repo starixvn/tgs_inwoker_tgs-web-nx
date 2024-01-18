@@ -7,6 +7,7 @@ export const theme = {
   white: "#FFFFFF",
   primaryGradient: "conic-gradient(from 0deg at 50% 50%, #58AF10 0deg, #1D803A 360deg)",
   secondaryGradient: "conic-gradient(from 0deg at 50% 50%, #8853FC 0deg, #6E34E2 360deg)",
+  thirdGradient: "conic-gradient(from 0deg at 50% 50%, #F19511 0deg, #F1C011 360deg)",
   g2: "#98A7B5",
   g3: "#2D3035",
   g4: "#1C1E22",

@@ -5,6 +5,7 @@ export const RankingTable = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 12px 40px;
 `;
 
 export const RankingTableTitle = styled.div`
@@ -43,6 +44,21 @@ export const RankTableRow = styled.div`
 `;
 
 export const RankTableCol = styled.div`
+  color: ${(props) => props.theme.g2};
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:first-child {
+    justify-content: start;
+  }
+  &:last-child {
+    justify-content: end;
+  }
+`;
+
+export const RankTableColSub = styled.div`
   color: ${(props) => props.theme.white};
   width: 33%;
   display: flex;

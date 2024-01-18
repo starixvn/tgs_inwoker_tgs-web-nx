@@ -1,7 +1,5 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import HomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory";
 import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
@@ -9,11 +7,11 @@ import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/component
 
 const CategoryRenderer = () => {
   const { activeGameType } = useHomeGameContext();
-  const history = useHistory();
 
   switch (activeGameType) {
     case GameTypeEnum.NONE:
       return <HomeCategory />;
+    // 遊戲大廳 isEnterGamePortal
   }
 
   switch (activeGameType) {

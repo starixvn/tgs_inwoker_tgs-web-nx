@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { GameTypeItem } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import { BetRecord } from "@/pages/home/components/Ranking/components/BetRecordRow";
 import { useAutoBettingToggle } from "@/pages/home/components/Ranking/hooks/useAutoBettingToggle";
 import { mockBetRecordList } from "@/pages/home/components/Ranking/mocks/betRecordList";
 import { userList } from "@/pages/home/components/Ranking/mocks/userList";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { GameItem } from "@tgs-web-nx/types";
 
 function getRandomBetAmount() {
   const amountStatus = Math.floor(Math.random() * 10);
@@ -20,10 +21,22 @@ function getRandomBetAmount() {
   }
 }
 
-function getRandomGameType(gameTypeList: GameTypeItem[]) {
-  const randomGameType = gameTypeList[Math.floor(Math.random() * gameTypeList.length)];
+function getRandomGameName(gameList: GameItem[]) {
+  const gameNameList = gameList.map(item => item.name);
 
-  return randomGameType.text;
+  const getRandomGameNames = (gameNameList: string[], count: number) => {
+    const result = [];
+    const length = gameNameList.length;
+
+    for (let i = 0; i < count; i++) {
+      const randomIndex = Math.floor(Math.random() * length);
+      result.push(gameNameList[randomIndex]);
+    }
+
+    return result;
+  };
+
+  return getRandomGameNames(gameNameList, 1);
 }
 
 const initialBetRecordList: BetRecord[] = (() => {
@@ -37,11 +50,17 @@ export function useAutoBet() {
   const [latestBetRecord, setLatestBetRecord] = useState(
     initialBetRecordList[initialBetRecordList.length - 1],
   );
-  const gameTypeList = useGameTypeList();
+  const { gameList } = useGetHomeCategoryList();
+
+  const getRandomGameName = (gameList: GameItem[]) => {
+    const gameNameList = gameList.map(item => item.name);
+    const randomIndex = Math.floor(Math.random() * gameNameList.length);
+    return gameNameList[randomIndex];
+  };
 
   const generateSingleBetRecord = (): BetRecord => {
     const key = uuidv4();
-    const gameName = getRandomGameType(gameTypeList);
+    const gameName = getRandomGameName(gameList);
     const playerName = userList[Math.floor(Math.random() * userList.length)];
     const betAmount = getRandomBetAmount();
 

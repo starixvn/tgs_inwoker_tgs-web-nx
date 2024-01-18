@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import CategoryCard from './CategoryCard';
 import useHomeCategoryList from '@/hooks/home/useHomeCategoryList';
+import { media } from '@/theme/breakpoints';
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,6 +13,11 @@ const Wrapper = styled.div`
   align-content: flex-start;
   gap: 12px;
   flex-wrap: wrap;
+
+  ${media.sm} {
+    padding: 12px 0px;
+    gap: 20px;
+  }
 `;
 
 const CategorySection = () => {

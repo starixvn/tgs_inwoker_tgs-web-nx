@@ -35,7 +35,7 @@ const GameCardBg = styled.div`
 
   ${media.sm} {
     width: calc(12.19% - 14px);
-    max-width: 148px;
+    min-width: 148px;
   }
 `;
 
