@@ -5,7 +5,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
   input: {
     padding: "12px 20px",
-    color: theme.palette.gray,
+    color: theme.palette.white,
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
@@ -55,6 +55,11 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     },
     "&.Mui-focused fieldset": {
       border: "none",
+    },
+    "&.Mui-disabled": {
+      input: {
+        WebkitTextFillColor: `${theme.palette.text.primary}`,
+      },
     },
   },
 }));

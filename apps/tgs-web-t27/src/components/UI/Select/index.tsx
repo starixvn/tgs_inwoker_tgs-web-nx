@@ -32,8 +32,21 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
       background: "#828282 !important",
     },
   },
-  "& .MuiSvgIcon-root": {
-    color: theme.palette.text.primary,
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "none",
+    },
+    "&:hover fieldset": {
+      border: "none",
+    },
+    "&.Mui-focused fieldset": {
+      border: "none",
+    },
+    "&.Mui-disabled": {
+      input: {
+        WebkitTextFillColor: `${theme.palette.text.primary}`,
+      },
+    },
   },
 }));
 
