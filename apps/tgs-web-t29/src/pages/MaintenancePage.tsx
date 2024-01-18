@@ -4,7 +4,9 @@ import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { UiService, useGeneralStore } from "@tgs-web-nx/core";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
+import { BrandsSupport } from "@tgs-web-nx/types";
 import { media } from "@/theme/breakpoints";
+import Dialog from "@/components/UI/Dialog/Dialog";
 
 const MaintenanceContainer = styled.div`
   display: flex;
@@ -54,7 +56,7 @@ const TextContainer = styled.div`
 const ButtonGroupContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin-top: 20px;
   gap: 12px;
 `;
@@ -69,12 +71,39 @@ const Button = styled.button`
 `;
 const CSButton = styled(Button)`
   cursor: pointer;
-  background: linear-gradient(0deg, #e7415a, #e7415a),
-    linear-gradient(0deg, rgba(231, 65, 90, 0.6), rgba(231, 65, 90, 0.6));
+  background: ${({ theme }) => theme.blue40};
 `;
 const IMButton = styled(Button)`
-  background: ${({ theme }) => theme.primary};
+  background: #ffa84d;
   cursor: pointer;
+`;
+
+const CardsContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+`;
+
+const QRCodeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const QRCodeImage = styled.img`
+  height: 150px;
+  width: 150px;
+`;
+
+const QRCodeText = styled.div`
+  padding: 10px 0px;
+  font-weight: bold;
+  font-size: 20px;
+`;
+
+const IDText = styled.div`
+  font-size: 24px;
 `;
 
 const DefaultMaintenance = () => {
@@ -86,19 +115,44 @@ const DefaultMaintenance = () => {
   );
 };
 
+type QrCodeHolderProps = {
+  selectedBrandsSupport: BrandsSupport;
+};
+
+const QRCodeHolder = ({ selectedBrandsSupport }: QrCodeHolderProps) => {
+  const { qrcodeurl, type, appid } = selectedBrandsSupport;
+
+  if (qrcodeurl) {
+    return (
+      <QRCodeContainer>
+        <QRCodeImage src={qrcodeurl} />
+        <QRCodeText>{type}</QRCodeText>
+      </QRCodeContainer>
+    );
+  } else {
+    return (
+      <QRCodeContainer>
+        <QRCodeText>{type}</QRCodeText>
+        <IDText>ID: {appid}</IDText>
+      </QRCodeContainer>
+    );
+  }
+};
+
 const MaintenancePage = () => {
   const history = useHistory();
   const { GetMaintenance } = UiService;
   const {
     general: { livechat, brandsSupport, isMaintenance },
   } = useGeneralStore();
+
   const goToHomePage = useGoToHomePage();
 
   const [beginTime, setBeginTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [content, setContent] = useState("");
   const [isFailed, setFailed] = useState(false);
-
+  const [instantMsgDialgIsOpen, setInstantMsgDialgIsOpen] = useState(false);
   const newURL = livechat.setting?.url.replace("{lang}", i18n.language);
   const handleCSClick = () => {
     if (newURL?.length) {
@@ -108,8 +162,8 @@ const MaintenancePage = () => {
 
   const handleIMClick = () => {
     // TODO: handle IM click
-    console.log("%c⧭", "color: #d90000", "brandsSupport", brandsSupport);
-    history.push("/support");
+    // console.log("%c⧭", "color: #d90000", "brandsSupport", brandsSupport);
+    setInstantMsgDialgIsOpen(true);
   };
 
   useEffect(() => {
@@ -150,6 +204,7 @@ const MaintenancePage = () => {
 
   const showContactButton = !!newURL?.length;
   const showImButton = !!brandsSupport.length;
+
   return (
     <MaintenanceContainer>
       <MaintenanceBg />
@@ -175,6 +230,19 @@ const MaintenancePage = () => {
           {showContactButton && <CSButton onClick={handleCSClick}>Contact Customer</CSButton>}
           {showImButton && <IMButton onClick={handleIMClick}>Instant Messaging</IMButton>}
         </ButtonGroupContainer>
+        <Dialog
+          open={instantMsgDialgIsOpen}
+          onClose={() => {
+            setInstantMsgDialgIsOpen(false);
+          }}
+          fullWidth
+        >
+          <CardsContainer>
+            {brandsSupport.map((brandsSupport, index) => {
+              return <QRCodeHolder selectedBrandsSupport={brandsSupport} />;
+            })}
+          </CardsContainer>
+        </Dialog>
       </ContentContainer>
     </MaintenanceContainer>
   );
