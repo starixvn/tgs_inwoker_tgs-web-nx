@@ -1,8 +1,7 @@
-import React from "react";
 import { useLoginPage, useRwd } from "@tgs-web-nx/core/hooks";
 import LoginForm from "@/components/project/auth/LoginForm";
-import { FormContainerWithBG } from "@/components/styled-component/AuthFormContainer";
-
+import { FormContainerWithBG, FormWrapper } from "@/components/styled-component/AuthFormContainer";
+import BrandLogo from "@/components/project/BrandLogo";
 const LoginPage = () => {
   useLoginPage();
 
@@ -14,7 +13,10 @@ const LoginPage = () => {
 
   return (
     <FormContainerWithBG>
-      <LoginForm />
+      <BrandLogo style={{marginTop: "50px", maxWidth: "300px"}}/>
+      <FormWrapper>
+        <LoginForm />
+      </FormWrapper>
     </FormContainerWithBG>
   );
 };

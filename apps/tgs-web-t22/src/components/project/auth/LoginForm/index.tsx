@@ -1,7 +1,5 @@
-import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
@@ -9,9 +7,9 @@ import {
   AuthFormContainer,
   FormContainer,
   LoginTitle,
+  RedirectWrapper,
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
-import BrandLogo from "@/components/project/BrandLogo";
 import {
   ForgotPasswordContainer,
   FormSubContainer,
@@ -28,15 +26,10 @@ const LoginForm = () => {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   } = useLoginForm();
-  const { isMobileSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
-      ) : (
-        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
-      )}
+      <LoginTitle>{i18n.t("common.login")}</LoginTitle>
 
       <FormContainer>
         <FormikForm
@@ -56,17 +49,17 @@ const LoginForm = () => {
               />
               {i18n.t("wap.login.rememberMe")}
             </RememberMeContainer>
-
-            <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-              {i18n.t("forgotPassword.title")}?
-            </ForgotPasswordContainer>
           </FormSubContainer>
         </FormikForm>
       </FormContainer>
-
-      <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
-
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      
+      <RedirectWrapper style={{marginBottom: "36px"}}>
+        <ForgotPasswordContainer onClick={handleClickForgotPassword} style={{margin: 0}}>
+          {i18n.t("forgotPassword.title")}
+        </ForgotPasswordContainer>
+        <RedirectToRegisterHint style={{justifyContent: "flex-end"}}/>
+      </RedirectWrapper>
+      <LanguageSwitch style={{ width: "100%", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );
 };
