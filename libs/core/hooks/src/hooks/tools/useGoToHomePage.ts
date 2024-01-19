@@ -10,11 +10,7 @@ export function useGoToHomePage() {
   const { handleChangeGameType } = useHomeGameContext();
 
   return useCallback(() => {
-    if (isDesktopSize) {
-      handleChangeGameType(GameTypeEnum.NONE);
-    } else {
-      handleChangeGameType(GameTypeEnum.SPORTS);
-    }
+    handleChangeGameType(GameTypeEnum.NONE);
     history.push("/");
   }, []);
 }
