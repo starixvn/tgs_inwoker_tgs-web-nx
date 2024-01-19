@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import AppFlag from "@/pages/home/components/AppFlag";
-import { Button } from "@/components/UI/Button";
-import { theme } from "@/theme";
 import android from "@/assets/t25/images/home/android.svg";
 import ios from "@/assets/t25/images/home/ios.svg";
 import { media } from "@/theme/breakpoints";
