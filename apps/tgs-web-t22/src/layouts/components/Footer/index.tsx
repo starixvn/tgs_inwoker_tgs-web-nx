@@ -16,12 +16,12 @@ import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
 import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
 
-const FooterContainer = styled.div`
+const FooterContainer = styled.footer`
   display: none;
 
   ${media.sm} {
     width: 100%;
-    background: ${({ theme }) => theme.gray80};
+    background: ${({ theme }) => theme.black};
     color: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
@@ -36,7 +36,6 @@ const FooterGroups = styled.div`
   display: flex;
   max-width: ${SUB_CONTENT_MAX_WIDTH};
   gap: 20px;
-  margin-bottom: 20px;
 `;
 
 const FooterGroup = styled.div`
@@ -44,16 +43,15 @@ const FooterGroup = styled.div`
 `;
 
 const GroupTitle = styled.h6`
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-size: 1.5rem;
+  font-weight: 400;
   margin-bottom: 20px;
 `;
 
 const GroupContent = styled.div`
-  font-size: 0.875rem;
-  line-height: 1.025rem;
+  font-size: 1rem;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 const PartnersContainer = styled.div`
@@ -88,14 +86,20 @@ const Link = styled.div`
   width: max-content;
   cursor: pointer;
 `;
-const DownLoadText = styled.div`
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 14px;
-  letter-spacing: 0em;
-  margin: 20px 0;
-  padding: 5px 0;
+
+const Links = styled.div`
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
 `;
+
+
+interface QuickLink {
+  isVisible: boolean,
+  onClick: () => void,
+  content: string,
+}
 
 const Footer = () => {
   const { general } = useGeneralStore();
@@ -134,11 +138,61 @@ const Footer = () => {
     }
   ];
 
+  const quickLinks: QuickLink[] = [
+    {
+      isVisible: !isCustomizedBrand,
+      onClick: () => setIsOpenChatQRcode(true),
+      content: i18n.t("T13.quickLink.247"),
+    },
+    {
+      isVisible: true,
+      onClick: () => navigateTo("faq"),
+      content: i18n.t("T13.quickLink.faq"),
+    },
+    {
+      isVisible: true,
+      onClick: () => navigateTo("privacypolicy"),
+      content: i18n.t("T13.quickLink.privacy"),
+    },
+    {
+      isVisible: true,
+      onClick: () => navigateTo("terms"),
+      content: i18n.t("T13.quickLink.tnc"),
+    },
+    {
+      isVisible: true,
+      onClick: () => navigateTo("responsiblegaming"),
+      content: i18n.t("T13.quickLink.reponsible"),
+    },
+  ];
+
+  const renderQuickLinks = quickLinks.map((link, i) => {
+    if(link.isVisible) {
+      return (
+        <GroupContent key={i}>
+          <Link onClick={link.onClick}>
+            {link.content}
+          </Link>
+        </GroupContent>
+      );
+    }
+
+    return null;
+  });
+
   return (
     <FooterContainer>
       <FooterGroups>
+
+        {/* Left */}
         <FooterGroup>
-          <GroupTitle>Gaming License</GroupTitle>
+          {!isCustomizedBrand &&
+            <>
+              <GroupTitle>Download App</GroupTitle>
+              <img src={QRcodeUrl} width={65} alt="QRcode" />
+            </>
+          }
+          <GroupTitle style={{marginTop: "10px"}}>Gaming License</GroupTitle>
           <GroupContent>
             <LogoWrapper>
               <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} />
@@ -148,51 +202,27 @@ const Footer = () => {
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
+        </FooterGroup>
+        
+        {/* Middle */}
+        <FooterGroup>
+
+          <GroupTitle>Quick Links</GroupTitle>
+          <Links>{renderQuickLinks}</Links>
+
           <GroupTitle>Follow Us</GroupTitle>
           <SocialMedia />
-        </FooterGroup>
 
-        <FooterGroup>
-          <GroupTitle>Quick Links</GroupTitle>
-          {!isCustomizedBrand &&
-            <GroupContent>
-              <Link onClick={() => setIsOpenChatQRcode(true)}>
-                {i18n.t("T13.quickLink.247")}
-              </Link>
-            </GroupContent>
-          }
-          <GroupContent>
-            <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
-          </GroupContent>
-          <GroupContent>
-            <Link onClick={() => navigateTo("privacypolicy")}>
-              {i18n.t("T13.quickLink.privacy")}
-            </Link>
-          </GroupContent>
-          <GroupContent>
-            <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
-          </GroupContent>
-          <GroupContent>
-            <Link onClick={() => navigateTo("responsiblegaming")}>
-              {i18n.t("T13.quickLink.reponsible")}
-            </Link>
-          </GroupContent>
-          {!isCustomizedBrand &&
-            <>
-              <DownLoadText>Download App</DownLoadText>
-              <img src={QRcodeUrl} width={117} alt="QRcode" />
-            </>
-          }
         </FooterGroup>
-
+        
+        {/* Right */}
         <FooterGroup>
           <GroupTitle>Partners</GroupTitle>
           <PartnersContainer>
-            {partnerList.map((partner) => {
-              return <ParnterBadge key={partner}>{partner}</ParnterBadge>;
-            })}
+            {partnerList.map(partner => <ParnterBadge key={partner}>{partner}</ParnterBadge>)}
           </PartnersContainer>
         </FooterGroup>
+
       </FooterGroups>
 
       {isOpenChatQRcode && <ChatQRcodePopup setIsOpenChatQRcode={setIsOpenChatQRcode} chatQRcodeList={chatQRcodeList} />}

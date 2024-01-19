@@ -12,8 +12,8 @@ const SocialMediaContainer = styled.div`
 `;
 
 const SocialMediaIcon = styled.div<{ $imageUrl: string }>`
-  width: 38px;
-  height: 38px;
+  width: 70px;
+  height: 70px;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-repeat: no-repeat;
   background-size: contain;
