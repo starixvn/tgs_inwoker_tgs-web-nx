@@ -3,9 +3,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
-import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";
-import iconCardActive from "@/assets/t29/images/withdraw/icon-card-active.svg";
-import iconManage from "@/assets/t29/images/withdraw/icon-manage.svg";
+import iconCard from "@/assets/t26/images/withdraw/icon-card.svg";
+import iconCardActive from "@/assets/t26/images/withdraw/icon-card-active.svg";
+import iconManage from "@/assets/t26/images/withdraw/icon-manage.svg";
 import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
 
@@ -26,12 +26,18 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   gap: 8px;
   padding: 8px 11px;
   font-size: 14px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
-  background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.primary : theme.text)};
+  border: ${({ $active, theme }: BankCardButtonProps) =>
+    $active ? `1px solid ${theme.primary}` : `1px solid ${theme.white}`};
+  border-radius: 5px;
   width: auto !important;
   cursor: pointer;
   float: left;
+`;
+
+const ManageBackButton = styled(BankCardButton)`
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.black};
 `;
 
 const BankCardButtonLabel = styled.div`
@@ -127,11 +133,11 @@ const BankCardGroup = ({
         );
       })}
 
-      <BankCardButton onClick={onhandleManageCardClick} $active={true}>
+      <ManageBackButton onClick={onhandleManageCardClick} $active={true}>
         <Icon iconUrl={iconManage} width={"20px"} height={"20px"} />
 
         <Grid>{i18n.t("withdrawal.manageBank")}</Grid>
-      </BankCardButton>
+      </ManageBackButton>
     </BankCardGroupContainer>
   );
 };

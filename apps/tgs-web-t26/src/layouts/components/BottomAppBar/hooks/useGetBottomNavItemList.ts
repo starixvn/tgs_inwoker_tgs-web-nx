@@ -59,7 +59,7 @@ export function useGetBottomNavItemList() {
         label: i18n.t("common.withdrawal"),
         iconUrl: withdrawIcon,
         handleClick: () => {
-          history.push("/report");
+          history.push("/withdrawal");
         },
       },
 

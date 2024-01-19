@@ -4,6 +4,7 @@ import config from "@tgs-web-nx/config";
 import { useHistory } from "react-router";
 
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
+import styled from "styled-components";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import BankCardGroup from "@/pages/withdrawal/components/Main/BankCardGroup";
@@ -23,6 +24,12 @@ import {
   RequireWrapper,
   RequireAmount,
 } from "@/components/styled-component/WithdrawV2/Main";
+
+const SubmitButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
 
 const MainDesktop = ({
   amount,
@@ -202,20 +209,22 @@ const MainDesktop = ({
           </ItemContainer>
         )}
 
-      <SubmitButton
-        disabled={Boolean(
-          isNaN(parseFloat(amount)) ||
-            parseFloat(amount) < min ||
-            parseFloat(amount) > max ||
-            disabled,
-        )}
-        onClick={handleWithdrawalClick}
-        sx={{
-          width: "250px",
-        }}
-      >
-        {i18n.t("common.nextStep")}
-      </SubmitButton>
+      <SubmitButtonContainer>
+        <SubmitButton
+          disabled={Boolean(
+            isNaN(parseFloat(amount)) ||
+              parseFloat(amount) < min ||
+              parseFloat(amount) > max ||
+              disabled,
+          )}
+          onClick={handleWithdrawalClick}
+          sx={{
+            width: "250px",
+          }}
+        >
+          {i18n.t("common.nextStep")}
+        </SubmitButton>
+      </SubmitButtonContainer>
     </>
   );
 };

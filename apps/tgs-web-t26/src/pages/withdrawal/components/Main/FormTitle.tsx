@@ -13,7 +13,11 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.text};
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 26px;
+  letter-spacing: 0em;
 `;
 
 type Props = {
@@ -24,7 +28,7 @@ type Props = {
 const FormTitle = ({ title, isShowAddCardButton, handleClickAddCard }: Props) => {
   return (
     <TitleWrapper>
-      <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />
+      {/* <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} /> */}
       <Title>{title}</Title>
 
       {isShowAddCardButton && handleClickAddCard && (

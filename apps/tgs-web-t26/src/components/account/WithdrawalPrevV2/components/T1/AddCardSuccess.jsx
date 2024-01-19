@@ -11,7 +11,7 @@ import {
 } from "@/components/styled-component/WithdrawV2/AddCardSuccess";
 import { theme } from "@/theme";
 import { ImgSuccess } from "@/components/styled-component/WithdrawV2/Success";
-import SuccessPNG from "@/assets/t29/images/withdraw/icon-check.svg";
+import SuccessPNG from "@/assets/t26/images/withdraw/icon-check.svg";
 
 const AddCardSuccess = ({
   isDeposit,
