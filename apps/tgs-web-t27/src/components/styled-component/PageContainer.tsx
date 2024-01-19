@@ -18,13 +18,10 @@ export const PageContainer = styled.div`
 `;
 
 export const TransferPageContainer = styled.div`
-  background: ${({ theme }) => theme.pureBlack};
   padding: 20px;
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
-
-  border: 1px solid red;
 
   ${media.sm} {
     max-width: ${PAGE_CONTAINER_WIDTH};

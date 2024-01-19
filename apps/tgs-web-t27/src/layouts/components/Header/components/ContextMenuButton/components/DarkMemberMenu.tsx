@@ -55,10 +55,7 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { handleLogout } = useAuthContext();
   const history = useHistory();
   const { isLogin } = useAuth();
-  const [isSelected, setIsSelected] = useState();
-
   const handleClickNav = useCallback((navItem: NavItem) => {
-    setIsSelected(navItem.label);
 
     switch (navItem.navType) {
       case "route":
@@ -70,6 +67,10 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
     }
   }, []);
 
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const currentRoute = pathSegments[pathSegments.length - 1];
+
   return (
     //@ts-ignore
     <MemberMenuContainer {...others}>
@@ -79,7 +80,7 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
           <DesktopAccountMenuItem
             key={key}
             text={label}
-            isActive={label === isSelected}
+            isActive={currentRoute === navItem.routePath?.replace("/", "")}
             onClick={() => handleClickNav(navItem)}
           >
             {iconComponent && React.createElement(iconComponent)}

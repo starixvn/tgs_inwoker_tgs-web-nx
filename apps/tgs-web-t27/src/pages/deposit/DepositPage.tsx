@@ -5,9 +5,9 @@ import { useNotifications } from "@tgs-web-nx/core/features";
 import { useDepositPage, useRwd } from "@tgs-web-nx/core/hooks";
 import DepositPrev from "@/components/account/DepositPrev";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconDeposit from "@/assets/t19/images/account/navItemWhite/icon-deposit.svg";
+import iconDeposit from "@/assets/t27/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
-import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const DepositPage = () => {
   useDepositPage();
@@ -16,13 +16,13 @@ const DepositPage = () => {
   const { isDesktopSize } = useRwd();
 
   return (
-    <TransferPageContainer>
+    <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
 
       <AccountPaper pageName={i18n.t("common.deposit")} iconUrl={iconDeposit}>
         <DepositPrev appHistory={history} alert={alert} />
       </AccountPaper>
-    </TransferPageContainer>
+    </PageContainer>
   );
 };
 
