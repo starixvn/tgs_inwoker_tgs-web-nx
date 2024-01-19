@@ -82,6 +82,8 @@ export function useInitSiteApiData() {
   const handleSiteDataFetching = async () => {
     if (!general.token) {
       await getSiteToken();
+      //檢查是否在維護
+      await getBrand();
       return;
     }
 
