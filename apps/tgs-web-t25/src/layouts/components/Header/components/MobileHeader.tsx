@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useGoToHomePage, useRwd } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
-import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
 
@@ -45,7 +44,6 @@ const HeaderContentContainer = styled.div`
 const MobileHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isLargeDesktopSize } = useRwd();
   const goToHomePage = useGoToHomePage();
 
   return (
@@ -54,8 +52,6 @@ const MobileHeader = () => {
         <BrandLogo style={{ height: "27px", cursor: "pointer" }} onClick={() => goToHomePage()} />
 
         <HeaderContentContainer>
-          {isLargeDesktopSize && <HeaderGameTypes />}
-
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
         </HeaderContentContainer>
       </HeaderWrapper>

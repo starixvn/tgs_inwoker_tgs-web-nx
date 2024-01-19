@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useParams } from "react-router-dom";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import Banner from "./components/Banner";
 import CardPrompt from "./components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
