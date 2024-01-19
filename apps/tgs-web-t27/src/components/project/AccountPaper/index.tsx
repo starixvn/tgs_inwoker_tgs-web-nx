@@ -6,14 +6,14 @@ import { media } from "@/theme/breakpoints";
 
 const AccountPaperContainer = styled.div`
   ${media.sm} {
-    background: ${({ theme }) => theme.darkGray};
-    border-radius: 10px;
+    background: ${({ theme }) => theme.g7};
+    border-radius: 4px;
     display: flex;
     padding: 24px 40px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    align-self: stretch;
+    gap: 33px;
+    align-self: stretch;  
   }
 `;
 
@@ -31,9 +31,6 @@ const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
         <PageBadge
           iconUrl={iconUrl}
           text={pageName}
-          style={{
-            marginBottom: "12px",
-          }}
         />
       )}
       {children}

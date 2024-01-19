@@ -106,10 +106,6 @@ const AccountNavigations = () => {
     }
   }, []);
 
-  const location = useLocation();
-  const pathSegments = location.pathname.split("/");
-  const currentRoute = pathSegments[pathSegments.length - 1];
-
   return (
     <>
       <AccountNavsContainer>
@@ -120,7 +116,7 @@ const AccountNavigations = () => {
 
             return (
               <AccountMenuItem
-                key={navItem.key}
+                key={key}
                 text={label}
                 isActive={label === isSelected}
                 onClick={() => handleClickNav(navItem)}

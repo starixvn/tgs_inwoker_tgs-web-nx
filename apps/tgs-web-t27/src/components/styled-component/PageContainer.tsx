@@ -12,8 +12,8 @@ export const PageContainer = styled.div`
   ${media.sm} {
     max-width: ${PAGE_CONTAINER_WIDTH};
     margin: 0 auto;
-    padding: 40px 16px 16px 16px;
-    border-radius: 0 10px 10px 0;
+    padding: 0px;
+    border-radius: 4px;
   }
 `;
 

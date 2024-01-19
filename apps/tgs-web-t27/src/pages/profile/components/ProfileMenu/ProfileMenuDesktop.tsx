@@ -2,7 +2,7 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
 import ProfileDivision from "@/pages/profile/components/ProfileMenu/ProfileDivision";
-import iconAccount from "@/assets/t23/images/badge/icon-account.svg";
+import iconAccount from "@/assets/t27/images/badge/icon-account.svg";
 import ProfileRowInDesktop from "@/pages/profile/components/ProfileMenu/ProfileRowInDesktop";
 import AccountPaper from "@/components/project/AccountPaper";
 

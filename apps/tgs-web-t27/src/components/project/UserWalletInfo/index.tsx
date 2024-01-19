@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import refreshIcon from "@/assets/t19/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t27/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -19,14 +19,15 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  padding-right: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
-  background: ${({ theme }) => theme.pureBlack};
-  margin-bottom: 40px;
+  background: ${({ theme }) => theme.g7};
+  padding: 40px 30px;
+  margin-bottom: 20px;
+  border-radius: 4px;
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -100,7 +101,7 @@ const RefreshButton = styled(Icon) <RefreshButtonProps>`
 `;
 
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: #FBAF26;
+  color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
   margin-top: 6px;
   font-weight: 400;
