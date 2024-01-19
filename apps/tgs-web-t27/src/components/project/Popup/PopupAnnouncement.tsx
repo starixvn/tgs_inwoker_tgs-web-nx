@@ -8,7 +8,7 @@ import { usePopup } from "@tgs-web-nx/core/features";
 import Carousel from "@/components/UI/Carousel";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { media } from "@/theme/breakpoints";
-import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
+import { CloseButton as Button } from "@/components/styled-component/ProfileForms";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 

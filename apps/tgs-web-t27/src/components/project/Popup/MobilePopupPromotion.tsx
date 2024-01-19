@@ -9,7 +9,7 @@ import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { media } from "@/theme/breakpoints";
-import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
+import { CloseButton as Button } from "@/components/styled-component/ProfileForms";
 import PromotionBanner from "@/components/project/Popup/components/PromotionBanner";
 import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 
