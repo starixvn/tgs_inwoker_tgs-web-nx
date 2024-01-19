@@ -24,7 +24,7 @@ const Wrapper = styled.div<{
 
   ${media.sm} {
     flex: 1;
-    height: 82px;
+    height: auto;
     cursor: pointer;
     &:hover {
       color: ${({ theme }) => theme.text};

@@ -1,7 +1,6 @@
 import React, { Suspense, useRef } from "react";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
 import config from "@tgs-web-nx/config";
-import { ScrollToTop } from "@tgs-web-nx/utils";
 import { AppHistory } from "@tgs-web-nx/core";
 import { useInitSite } from "@tgs-web-nx/core/hooks";
 import {
@@ -18,6 +17,7 @@ import {
 } from "@tgs-web-nx/core/features";
 import { RouteType } from "@tgs-web-nx/types";
 import LiveChat from "./components/tools/LiveChat";
+import ScrollToTop from "@/components/ScrollToTop";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
 import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";

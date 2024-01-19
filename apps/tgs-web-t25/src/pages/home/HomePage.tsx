@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useParams } from "react-router-dom";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Banner from "./components/Banner";
 import CardPrompt from "./components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
@@ -62,19 +63,20 @@ const HomePage = () => {
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
+  const { isDesktopSize } = useRwd();
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
   };
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  }, [activeGameType]);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: "instant",
+  //   });
+  // }, [activeGameType]);
 
   useEffect(() => {
     const gameType = getGameTypeFromKey(urlGameType);
@@ -86,7 +88,7 @@ const HomePage = () => {
 
   return (
     <MainWrapper $isDark={false}>
-      {!activeGameType && (
+      {(!activeGameType || isDesktopSize) && (
         <>
           <Banner />
           <CardPrompt />

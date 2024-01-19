@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 import { socialMediaIconList } from "@/constants/socialMedia";
 
 const SocialMediaContainer = styled.div`

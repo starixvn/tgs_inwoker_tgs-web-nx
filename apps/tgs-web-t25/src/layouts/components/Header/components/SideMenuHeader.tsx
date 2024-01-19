@@ -4,6 +4,7 @@ import { Close as CloseIcon } from "@mui/icons-material";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 
 const SideMenuHeaderContainer = styled.div`
   position: relative;
@@ -20,6 +21,7 @@ const LogoImgContainer = styled.div`
   justify-self: start;
   padding: 0 10px;
   margin: auto;
+  cursor: pointer;
 
   & > img {
     height: 100%;
@@ -33,13 +35,14 @@ const SideMenuHeader = () => {
     general: { brand },
   } = useGeneralStore();
   const { isMenuOpen, handleToggleMenu } = useHeader();
+  const goToHomePage = useGoToHomePage();
 
   return (
     <SideMenuHeaderContainer>
       <MenuButton width={"56px"} height={"56px"} />
 
       {isMenuOpen && (
-        <LogoImgContainer>
+        <LogoImgContainer onClick={goToHomePage}>
           <img src={brand && brand.loadingUrl} alt={"logo"} />
         </LogoImgContainer>
       )}

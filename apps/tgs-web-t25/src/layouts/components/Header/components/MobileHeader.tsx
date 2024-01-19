@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";

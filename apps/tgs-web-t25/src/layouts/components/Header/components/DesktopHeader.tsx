@@ -8,9 +8,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import { DESKTOP_HEADER_HEIGHT, MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
-import { theme } from "@/theme";
 import BrandLogo from "@/components/project/BrandLogo";
 
 type HeaderContainerProps = {
@@ -93,7 +91,7 @@ const DesktopHeader = ({
           )}
 
           {isExtraLargeDesktopSize && <SystemTime style={{ marginLeft: "20px" }} />}
-          {isExtraLargeDesktopSize && <OnlineUser color={theme.white} />}
+          {/*{isExtraLargeDesktopSize && <OnlineUser color={theme.grey07} />}*/}
         </ContentGroup>
 
         <ContentGroup>

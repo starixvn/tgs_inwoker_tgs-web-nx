@@ -138,9 +138,7 @@ const PopupAnnouncement = () => {
               return <AnnouncementCard key={index} subject={subject} content={content} />;
             })}
         </Carousel>
-
         <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
-
         <ButtonWrapper>
           <Button
             onClick={handleCloseDialog}

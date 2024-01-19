@@ -11,7 +11,6 @@ import hotActiveIcon from "@/assets/t25/images/home/filter/icon-hot-active.svg";
 import newActiveIcon from "@/assets/t25/images/home/filter/icon-new-active.svg";
 import recommendActiveIcon from "@/assets/t25/images/home/filter/icon-recommend-active.svg";
 import favoriteActiveIcon from "@/assets/t25/images/home/filter/icon-favorite-active.svg";
-import { media } from "@/theme/breakpoints";
 
 const filterIconDictionary: Record<FilterTagTypeEnum | string, string> = {
   [FilterTagTypeEnum.HOT]: hotIcon,
@@ -29,7 +28,7 @@ const activeFilterIconDictionary: Record<FilterTagTypeEnum | string, string> = {
 const FilterTagsContainer = styled.div`
   display: flex;
   gap: 8px;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 10px 12px;
 `;
 
@@ -43,6 +42,7 @@ type FilterTagProps = {
   theme: typeof theme;
 };
 const FilterTagContainer = styled.div<FilterTagProps>`
+  flex: 1;
   height: 32px;
   background: ${({ $isActive, theme }: FilterTagProps) =>
     $isActive ? theme.grey06 : theme.black02};
