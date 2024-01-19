@@ -1,3 +1,6 @@
+import primaryBtn from "@/assets/t22/images/header/primaryBtn.png";
+import secondaryBtn from "@/assets/t22/images/header/secondaryBtn.png";
+
 export const theme = {
   primary: "#FEBA34",
   secondary: "#7C95FF",
@@ -22,8 +25,10 @@ export const theme = {
 
   // t22 setting
   mainBackground: "#F9F6E8",
-  primaryBtn: "linear-gradient(180deg, #C79B7D 0%, #895C43 100%)",
-  secondaryBtn: "linear-gradient(180deg, #D8AC8D 0%, #BF8A63 100%)",
+  primaryGradient: "linear-gradient(180deg, #C79B7D 0%, #895C43 100%)",
+  secondaryGradient: "linear-gradient(180deg, #D8AC8D 0%, #BF8A63 100%)",
+  primaryBtn: `url("${primaryBtn}")`,
+  secondaryBtn: `url("${secondaryBtn}")`,
   navMenuBackground: "#E2DFDE",
   navTextDefault: "#656565",
   labelText: "#AB7F63",

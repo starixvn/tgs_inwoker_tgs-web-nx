@@ -5,12 +5,8 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 
 const Wrapper = styled.div`
   color: ${({ theme }) => theme.white};
-  font-family: Gill Sans MT;
-  font-size: 15px;
-  font-style: normal;
+  font-size: 13px;
   font-weight: 400;
-  line-height: normal;
-  white-space: nowrap;
   flex-shrink: 0;
 `;
 

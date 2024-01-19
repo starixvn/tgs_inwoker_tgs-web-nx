@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { memo } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
@@ -7,12 +7,11 @@ import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const HeaderGameTypesContainer = styled.div`
-  margin-right: auto;
+  margin-left: 35px;
   display: flex;
   flex-wrap: nowrap;
-  align-items: stretch;
+  align-items: center; 
   height: 100%;
-  /* overflow-x: auto; */
   position: relative;
 
   &::-webkit-scrollbar {
@@ -37,8 +36,8 @@ const GameTypeNav = styled.div<{
   $isActive: boolean;
 }>`
   flex-shrink: 0;
-  font-size: 0.875rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 400;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -46,10 +45,9 @@ const GameTypeNav = styled.div<{
   color: ${({ theme }) => theme.text};
   cursor: pointer;
   position: relative;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
-  color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
+  border-bottom: ${({ theme, $isActive }) => ($isActive ? `2px solid ${theme.labelText}` : `none`)};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.labelText : theme.white)};
   &:hover {
-    background: ${({ theme }) => theme.gray10};
   }
 
   ${media.lg} {
@@ -58,11 +56,10 @@ const GameTypeNav = styled.div<{
 `;
 
 const GameTypeGrid = styled.div`
+  margin: 0 5px;
+  display: flex;
   align-self: center;
   height: 18px;
-  display: flex;
-  border: 1px solid #cccccc;
-  margin: 0 5px;
 `;
 
 const Wrapper = styled.div`
@@ -96,7 +93,7 @@ const HeaderGameTypeNavs = () => {
       {sideNavItemList && sideNavItemList.map((navItem, index) => {
         return (
           <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
-            <GameTypeNav
+            <GameTypeNav 
               $isActive={navItem.router === currentRoute}
               onMouseEnter={() => handleMouseEnter(navItem.gameType)}
               onMouseLeave={handleMouseLeave}
@@ -111,4 +108,4 @@ const HeaderGameTypeNavs = () => {
   );
 };
 
-export default React.memo(HeaderGameTypeNavs);
+export default memo(HeaderGameTypeNavs);

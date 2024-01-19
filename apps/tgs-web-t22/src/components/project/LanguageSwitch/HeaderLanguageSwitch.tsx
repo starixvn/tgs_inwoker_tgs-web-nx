@@ -13,22 +13,19 @@ import { imageMap } from "@/components/project/LanguageSwitch/index";
 import { theme } from "@/theme";
 
 const StyledSelect = styled(MuiSelect)`
-  min-width: 130px;
+  min-width: 110px;
   overflow: visible;
   font-weight: 400 !important;
   font-size: 0.812rem !important;
 
   .MuiOutlinedInput-input {
     padding: 0 12px !important;
-    border-radius: 0;
-    border-left: 1px solid ${({ theme }) => theme.mainBackground};
-    border-right: 1px solid ${({ theme }) => theme.mainBackground};
   }
 
   & .MuiSelect-select {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.white} !important;
+    color: ${({ theme }) => theme.black} !important;
 
     & > img {
       margin-right: 10px;
@@ -40,13 +37,13 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.white};
+    top: -5px;
+    right: 0;
+    color: ${({ theme }) => theme.black};
   }
 `;
 
 const StyledMenuItem = styled(MuiMenuItem)`
-  //border-radius: 8px;
-
   & > img {
     margin-right: 10px;
   }
@@ -55,7 +52,7 @@ const StyledMenuItem = styled(MuiMenuItem)`
 const FlagContainer = styled.div`
   width: 20px;
   height: 20px;
-  border-radius: 50%;
+  border-radius: 100%;
   margin-right: 10px;
 
   & > img {
@@ -66,8 +63,8 @@ const FlagContainer = styled.div`
 `;
 
 const NameContainer = styled.div`
-  font-weight: 700;
-  font-size: 1rem;
+  font-size: .6rem;
+  color: ${({ theme }) => theme.black};
 `;
 
 const HeaderLanguageSwitch = (props: SelectProps) => {

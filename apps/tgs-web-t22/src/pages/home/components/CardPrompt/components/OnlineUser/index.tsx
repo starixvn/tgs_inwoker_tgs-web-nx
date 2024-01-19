@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import { useOnlineUser } from "@tgs-web-nx/core/hooks";
-import member from "@/assets/t29/images/home/member.svg";
+import member from "@/assets/t22/images/header/member.svg";
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   font-size: 1rem;
   font-weight: 400;
-  min-width: 105px;
   padding: 4px 10px;
   gap: 6px;
 `;
@@ -17,11 +15,12 @@ type Props = {
   $color: string;
 };
 
-const Text = styled.div<Props>`
+const Text = styled.p<Props>`
   color: ${({ $color }) => $color};
+  font-size: 0.7rem;
 `;
 
-const OnlineUser = (props: { color: string }) => {
+const  OnlineUser = (props: { color: string }) => {
   const { onlineUser } = useOnlineUser();
 
   return (

@@ -1,21 +1,21 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const TransferButtonGroup = () => {
   const history = useHistory();
 
-  const handleGotoTransfer = useCallback(() => {
-    history.push("/transfer");
-  }, []);
+  // const handleGotoTransfer = useCallback(() => {
+  //   history.push("/transfer");
+  // }, []);
 
   const handleGotoWithdrawal = useCallback(() => {
     history.push("/withdrawal");
@@ -24,35 +24,18 @@ const TransferButtonGroup = () => {
   const handleGotoDeposit = useCallback(() => {
     history.push("/deposit");
   }, []);
+
   return (
     <ButtonContainer>
-      <HeaderButton
-        onClick={handleGotoTransfer}
-        style={{
-          background: "#00B2B9",
-        }}
-      >
-        <>{i18n.t("common.transfer")}</>
-      </HeaderButton>
 
-      <HeaderButton
-        color={"primary"}
-        onClick={handleGotoDeposit}
-        style={{
-          background: "#FFA84D",
-        }}
-      >
-        <>{i18n.t("common.deposit")}</>
-      </HeaderButton>
+      <RoundHeaderButton onClick={handleGotoDeposit}>
+        {i18n.t("common.deposit")}
+      </RoundHeaderButton>
 
-      <HeaderButton
-        onClick={handleGotoWithdrawal}
-        style={{
-          background: "#FFA84D",
-        }}
-      >
-        <>{i18n.t("common.withdrawal")}</>
-      </HeaderButton>
+      <RoundHeaderButton onClick={handleGotoWithdrawal}>
+        {i18n.t("common.withdrawal")}
+      </RoundHeaderButton>
+
     </ButtonContainer>
   );
 };

@@ -28,7 +28,9 @@ declare module "@mui/material/styles/createPalette" {
     gray50: string;
 
     // t22 setting
+    primaryGradient: string,
     primaryBtn: string,
+    secondaryGradient: string,
     secondaryBtn: string,
     navMenuBackground: string,
     navTextDefault: string,
@@ -90,9 +92,12 @@ const muiTheme = createTheme({
     },
 
     // t22 setting
+    primaryGradient: theme.primaryGradient,
+    secondaryGradient: theme.secondaryGradient,
     primaryBtn: theme.primaryBtn,
     secondaryBtn: theme.secondaryBtn,
     navMenuBackground: theme.navMenuBackground,
+    
     navTextDefault: theme.navTextDefault,
     labelText: theme.labelText,
     navItemBackground: theme.navItemBackground,

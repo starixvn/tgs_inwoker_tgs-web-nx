@@ -1,19 +1,19 @@
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 
 export const RoundHeaderButton = muiStyled(MuiButton)(({ theme }) => ({
-  color: theme.palette.gray30,
-  padding: "4px 12px 4px 6px",
-  width: "auto",
-  minWidth: "104px",
+  color: theme.palette.white,
+  padding: "8px",
+  minWidth: "110px",
   whiteSpace: "nowrap",
-  fontSize: "0.715rem",
-  lineHeight: "0.715rem",
+  fontSize: "0.8rem",
   fontWeight: 400,
-  borderRadius: "50px",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-start",
-  gap: "10px",
+  background: `${theme.palette.primaryBtn} no-repeat center center`,
+  backgroundSize: "contain",
+  transition: "background-image .4s",
+  
+  "&:hover": {
+    backgroundImage: `${theme.palette.secondaryBtn}`,
+  },
 }));
 
 export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
