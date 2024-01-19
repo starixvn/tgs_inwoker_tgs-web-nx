@@ -193,8 +193,20 @@ const HomePage = () => {
       ) : null}
       {isMobileSize && (
         <ButtonContainer>
-          <DepositButton>{i18n.t("common.deposit")}</DepositButton>
-          <WithdrawButton>{i18n.t("common.withdrawal")}</WithdrawButton>
+          <DepositButton
+            onClick={() => {
+              history.push("/deposit");
+            }}
+          >
+            {i18n.t("common.deposit")}
+          </DepositButton>
+          <WithdrawButton
+            onClick={() => {
+              history.push("/withdrawal");
+            }}
+          >
+            {i18n.t("common.withdrawal")}
+          </WithdrawButton>
         </ButtonContainer>
       )}
       <MainContentWrapper>
