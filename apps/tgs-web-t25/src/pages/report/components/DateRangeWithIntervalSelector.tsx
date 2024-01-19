@@ -1,0 +1,93 @@
+import React from "react";
+import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
+import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
+
+const DateRangContainer = styled.div`
+  display: flex;
+  //align-items: center;
+  justify-content: center;
+  gap: 13px;
+  //height: 30px;
+`;
+
+type DateRangSelectionTypes = {
+  $isSelected: boolean;
+  theme: typeof theme;
+};
+const DateRangSelection = styled.div<DateRangSelectionTypes>`
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 6px;
+  background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+    return $isSelected ? theme.primary : theme.black02;
+  }};
+  color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+    return $isSelected ? theme.black : theme.grey03;
+  }};
+  border: 1px solid
+    ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+      return $isSelected ? theme.black : theme.grey03;
+    }};
+  padding: 4.5px 40px;
+  font-size: 0.812rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+
+  ${media.sm} {
+    padding: 11px 24px;
+    background: ${({ theme }) => theme.black03};
+    color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+      return $isSelected ? theme.primary : theme.grey04;
+    }};
+    border: 1px solid
+      ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+        return $isSelected ? theme.primary : theme.grey04;
+      }};
+  }
+`;
+
+export enum DateRangeEnum {
+  TODAY,
+  WEEKLY,
+  MONTHLY,
+}
+
+type Props = {
+  dateRange: DateRangeEnum;
+  handleDateRangeChange: (dateRange: DateRangeEnum) => void;
+  isSelectedDateRange: boolean;
+};
+const DateRangeWithIntervalSelector = ({
+  dateRange,
+  handleDateRangeChange,
+  isSelectedDateRange,
+}: Props) => {
+  return (
+    <DateRangContainer>
+      <DateRangSelection
+        onClick={() => handleDateRangeChange(DateRangeEnum.TODAY)}
+        $isSelected={dateRange === DateRangeEnum.TODAY && !isSelectedDateRange}
+      >
+        {i18n.t("report.today")}
+      </DateRangSelection>
+      <DateRangSelection
+        onClick={() => handleDateRangeChange(DateRangeEnum.WEEKLY)}
+        $isSelected={dateRange === DateRangeEnum.WEEKLY && !isSelectedDateRange}
+      >
+        {i18n.t("report.oneWeek")}
+      </DateRangSelection>
+      <DateRangSelection
+        onClick={() => handleDateRangeChange(DateRangeEnum.MONTHLY)}
+        $isSelected={dateRange === DateRangeEnum.MONTHLY && !isSelectedDateRange}
+      >
+        {i18n.t("report.oneMonth")}
+      </DateRangSelection>
+    </DateRangContainer>
+  );
+};
+
+export default DateRangeWithIntervalSelector;
