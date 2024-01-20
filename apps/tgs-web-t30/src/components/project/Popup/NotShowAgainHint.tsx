@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
 import IconCheckBox from "@/assets/t30/images/icon-checkbox.svg";
 import { media } from "@/theme/breakpoints";
@@ -43,7 +44,7 @@ const NotShowAgainHint = ({
   return (
     <NotShowAgainHintContainer onClick={onClick} {...others}>
       <CheckBox $isCheck={isCheck} />
-      Don't show again
+      {i18n.t("common.donotshowagain")}
     </NotShowAgainHintContainer>
   );
 };
