@@ -41,7 +41,6 @@ const CategoryImage = styled.div<{ $imageUrl: string }>`
   aspect-ratio: 250/200;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: contain;
-  background-repeat: repeat;
   padding: 15px 0px;
   cursor: pointer;
 `;

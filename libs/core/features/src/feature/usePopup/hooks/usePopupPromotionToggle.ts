@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
 import { useAudio } from "@tgs-web-nx/core/hooks";
@@ -15,13 +15,16 @@ export function usePopupPromotionToggle() {
   const [isShowPromotion, setIsShowPromotion] = useState(false);
 
   const isInHomePage = mains && mains.length > 0;
-
+  useEffect(() => {
+    handleOpenPromotion();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(promotionList)]);
   const handleOpenPromotion = () => {
     if (!config.features.PopupPromotion) {
       return;
     }
 
-    if (!isInHomePage || !promotionList.items.length) {
+    if ( !promotionList.items.length) {
       return;
     }
     if (isShowPromotion) {
