@@ -165,7 +165,7 @@ const WageringPage = () => {
         <WageringContainer>
           <Requirement>
             <img src={iconCard} alt="" />
-            <TitleItem> Main</TitleItem>
+            <TitleItem>{i18n.t("t29.main")} </TitleItem>
             <TitleAmountText>{wageringRequirement}</TitleAmountText>
           </Requirement>
           <GameWageringContainer>
