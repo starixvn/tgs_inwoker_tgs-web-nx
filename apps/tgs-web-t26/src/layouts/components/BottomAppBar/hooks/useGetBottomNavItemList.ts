@@ -1,18 +1,15 @@
-import { useMemo } from "react";
-import { useHistory } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useRoute } from "@tgs-web-nx/core/features";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
-
-import promotionIcon from "@/assets/t26/images/bottomAppBar/icon-promotion.svg";
-import depositIcon from "@/assets/t26/images/bottomAppBar/icon-deposit.svg";
-import withdrawIcon from "@/assets/t26/images/bottomAppBar/icon-withdraw.svg";
-import accountIcon from "@/assets/t26/images/bottomAppBar/icon-account.svg";
-import homeIcon from "@/assets/t26/images/bottomAppBar/icon-home.svg";
-
-import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
+import {
+  HomeIcon,
+  DepositIcon,
+  WithdrawIcon,
+  PromotionIcon,
+  AccountIcon,
+} from "../components/icons";
 
 export enum NavTypeEnum {
   ITEM,
@@ -20,17 +17,20 @@ export enum NavTypeEnum {
   MENU,
 }
 
+type IconProps = {
+  $color: string;
+};
+
 export type BottomNavItem = {
   navType: NavTypeEnum;
   key: string;
-  label: string | any;
-  iconUrl: string;
+  icon: React.FC<IconProps>;
+  label: string;
   handleClick: () => void;
 };
 
 export function useGetBottomNavItemList() {
   const history = useHistory();
-  const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
   const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
@@ -39,7 +39,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "home",
         label: i18n.t("common.home"),
-        iconUrl: homeIcon,
+        icon: HomeIcon,
         handleClick: () => {
           goToHomePage();
         },
@@ -48,7 +48,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "deposit",
         label: i18n.t("common.deposit"),
-        iconUrl: depositIcon,
+        icon: DepositIcon,
         handleClick: () => {
           history.push("/deposit");
         },
@@ -57,7 +57,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "withdrawal",
         label: i18n.t("common.withdrawal"),
-        iconUrl: withdrawIcon,
+        icon: WithdrawIcon,
         handleClick: () => {
           history.push("/withdrawal");
         },
@@ -67,7 +67,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: promotionIcon,
+        icon: PromotionIcon,
         handleClick: () => {
           history.push("/promotion-list");
         },
@@ -77,32 +77,41 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "profile",
         label: i18n.t("deposit.details.account"),
-        iconUrl: accountIcon,
+        icon: AccountIcon,
         handleClick: () => {
           history.push("/account");
         },
       },
     ];
   }, []);
+  const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
 
-  // const { handleToggleMenu } = useHeader();
   const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    switch (appBarItem.navType) {
-      // case NavTypeEnum.MENU :
-      //   handleToggleMenu(true);
-      //
-      //   break;
-
-      default:
-        appBarItem.handleClick();
-        break;
-    }
+    setSelectedBottomNavItem(appBarItem);
+    appBarItem.handleClick();
   };
+  const { route } = useRoute();
+  const location = useLocation();
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/":
+        return setSelectedBottomNavItem(bottomNavItemList[0]);
+      case "/deposit":
+        return setSelectedBottomNavItem(bottomNavItemList[1]);
+      case "/withdrawal":
+        return setSelectedBottomNavItem(bottomNavItemList[2]);
+      case "/promotion-list":
+        return setSelectedBottomNavItem(bottomNavItemList[3]);
+      case "/account":
+        return setSelectedBottomNavItem(bottomNavItemList[4]);
+      default:
+        return setSelectedBottomNavItem(bottomNavItemList[0]);
+    }
+  }, [route]);
 
   return {
+    selectedBottomNavItem,
     bottomNavItemList,
     handleClickBottomNavItem,
-    isTransferDrawerOpen,
-    handleTransferDrawerToggle,
   };
 }
