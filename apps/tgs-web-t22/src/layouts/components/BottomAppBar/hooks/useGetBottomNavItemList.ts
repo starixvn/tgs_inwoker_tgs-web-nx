@@ -1,104 +1,78 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
-import giftIcon from "@/assets/t29/images/bottomAppBar/icon-gift.svg";
-import transferIcon from "@/assets/t29/images/bottomAppBar/icon-transfer.svg";
-import reportIcon from "@/assets/t29/images/bottomAppBar/icon-report.svg";
-import accountIcon from "@/assets/t29/images/bottomAppBar/icon-account.svg";
-import homeIcon from "@/assets/t29/images/bottomAppBar/icon-home.svg";
-import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
+import accountIcon from "@/assets/t22/images/bottomAppBar/account.svg";
+import accountActiveIcon from "@/assets/t22/images/bottomAppBar/accountActive.svg";
+import depositIcon from "@/assets/t22/images/bottomAppBar/deposit.svg";
+import depositActiveIcon from "@/assets/t22/images/bottomAppBar/depositActive.svg";
+import homeIcon from "@/assets/t22/images/bottomAppBar/home.svg";
+import homeActiveIcon from "@/assets/t22/images/bottomAppBar/homeActive.svg";
+import promotionIcon from "@/assets/t22/images/bottomAppBar/promotion.svg";
+import promotionActiveIcon from "@/assets/t22/images/bottomAppBar/promotionActive.svg";
+import withdrawalIcon from "@/assets/t22/images/bottomAppBar/withdrawal.svg";
+import withdrawalActiveIcon from "@/assets/t22/images/bottomAppBar/withdrawalActive.svg";
 
-export enum NavTypeEnum {
-  ITEM,
-  BIG_ITEM,
-  MENU,
-}
 
 export type BottomNavItem = {
-  navType: NavTypeEnum;
   key: string;
   label: string | any;
+  path: string;
   iconUrl: string;
+  activeIconUrl: string;
   handleClick: () => void;
 };
 
 export function useGetBottomNavItemList() {
   const history = useHistory();
-  const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
   const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
     return [
       {
-        navType: NavTypeEnum.ITEM,
         key: "home",
         label: i18n.t("common.home"),
         iconUrl: homeIcon,
-        handleClick: () => {
-          goToHomePage();
-        },
+        activeIconUrl: homeActiveIcon,
+        path: "/",
+        handleClick: () => goToHomePage(),
       },
       {
-        navType: NavTypeEnum.ITEM,
-        key: "promotion",
-        label: i18n.t("common.promotion"),
-        iconUrl: giftIcon,
-        handleClick: () => {
-          history.push("/promotion-list");
-        },
-      },
-      {
-        navType: NavTypeEnum.BIG_ITEM,
-        key: "vip",
-        label: i18n.t("common.bank"),
-        iconUrl: transferIcon,
-        handleClick: () => {
-          handleTransferDrawerToggle();
-        },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "contact",
-        label: i18n.t("report.title"),
-        iconUrl: reportIcon,
-        handleClick: () => {
-          history.push("/report");
-        },
-      },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "affiliate",
+        key: "account",
         label: i18n.t("deposit.details.account"),
         iconUrl: accountIcon,
-        handleClick: () => {
-          history.push("/account");
-        },
+        activeIconUrl: accountActiveIcon,
+        path: "/account",
+        handleClick: () => history.push("/account"),
+      },
+      {
+        key: "promotion",
+        label: i18n.t("common.promotion"),
+        iconUrl: promotionIcon,
+        activeIconUrl: promotionActiveIcon,
+        path: "/promotion-list",
+        handleClick: () => history.push("/promotion-list"),
+      },
+      {
+        key: "deposit",
+        label: i18n.t("common.deposit"),
+        iconUrl: depositIcon,
+        activeIconUrl: depositActiveIcon,
+        handleClick: () => history.push("/deposit"),
+        path: "/deposit",
+      },
+      {
+        key: "withdrawal",
+        label: i18n.t("common.withdrawal"),
+        iconUrl: withdrawalIcon,
+        activeIconUrl: withdrawalActiveIcon,
+        handleClick: () => history.push("/withdrawal"),
+        path: "/withdrawal",
       },
     ];
   }, []);
 
-  // const { handleToggleMenu } = useHeader();
-  const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    switch (appBarItem.navType) {
-      // case NavTypeEnum.MENU :
-      //   handleToggleMenu(true);
-      //
-      //   break;
-
-      default:
-        appBarItem.handleClick();
-        break;
-    }
-  };
-
   return {
     bottomNavItemList,
-    handleClickBottomNavItem,
-    isTransferDrawerOpen,
-    handleTransferDrawerToggle,
   };
 }

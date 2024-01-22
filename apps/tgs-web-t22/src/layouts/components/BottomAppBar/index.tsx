@@ -1,53 +1,42 @@
 import styled from "styled-components";
-import BottomNav from "./BottomNav";
+import { useHistory } from "react-router";
 import { useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
-import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
-import TransferMenuDrawer from "@/layouts/components/TransferMenuDrawer";
+import BottomNav from "./BottomNav";
 
 const BottomAppBarContainer = styled.div`
+  padding: 10px;
   position: fixed;
-  height: ${BOTTOM_APP_BAR_HEIGHT};
-  width: 100%;
   top: auto;
   bottom: 0;
   left: 0;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  grid-column-gap: 10px;
+
   background: ${({ theme }) => theme.white};
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  //padding: 0 20px;
-  z-index: 1000; // cant be grater then 1300 or will block Dialog
-  overflow: visible;
-  border-top: 1px solid ${({ theme }) => theme.gray30};
+  width: 100%;
 `;
 
 const BottomAppBar = () => {
-  const {
-    bottomNavItemList,
-    handleClickBottomNavItem,
-    isTransferDrawerOpen,
-    handleTransferDrawerToggle,
-  } = useGetBottomNavItemList();
-
+  const {bottomNavItemList} = useGetBottomNavItemList();
+  const history = useHistory();
+  const {pathname} = history.location;
+  
   return (
-    <>
-      <BottomAppBarContainer>
-        {bottomNavItemList.map((bottomNavItem) => {
-          return (
-            <BottomNav
-              key={bottomNavItem.label}
-              bottomNavItem={bottomNavItem}
-              onClick={() => handleClickBottomNavItem(bottomNavItem)}
-            />
-          );
-        })}
-      </BottomAppBarContainer>
-
-      <TransferMenuDrawer
-        isOpen={isTransferDrawerOpen}
-        handleDrawerToggle={handleTransferDrawerToggle}
-      />
-    </>
+    <BottomAppBarContainer>
+      {bottomNavItemList.map((bottomNavItem) => {
+        return (
+          <BottomNav
+            key={bottomNavItem.label}
+            bottomNavItem={bottomNavItem}
+            onClick={bottomNavItem.handleClick}
+            isActive={bottomNavItem.path === pathname}
+          />
+        );
+      })}
+    </BottomAppBarContainer>
   );
 };
 
