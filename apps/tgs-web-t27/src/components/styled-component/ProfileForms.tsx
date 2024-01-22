@@ -115,7 +115,7 @@ export const CloseButton = muiStyled(MuiButton)(({ theme }) => ({
   },
 })) as typeof MuiButton;
 
-export const VerifySubmitButton = styled(SubmitButton)`
+export const VerifySubmitButton = styled(CloseButton)`
   margin-bottom: 20px !important;
   margin-top: auto !important;
 `;
