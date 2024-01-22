@@ -71,7 +71,6 @@ const GameTypeTab = () => {
   const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
   const { providerList, isLoading } = useProvider();
   const [filteredGameTypeList, setFilteredGameTypeList] = useState<GameTypeItem[]>([]);
-
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
     name: "",
