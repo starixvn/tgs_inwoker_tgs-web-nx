@@ -7,18 +7,19 @@ import TransferMenuDrawer from "@/layouts/components/TransferMenuDrawer";
 const BottomAppBarContainer = styled.div`
   position: fixed;
   height: ${BOTTOM_APP_BAR_HEIGHT};
-  width: 100%;
+  width: calc(100% - 11px * 2);
   top: auto;
   bottom: 0;
-  left: 0;
-  background: ${({ theme }) => theme.white};
+  left: 11px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   //padding: 0 20px;
   z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
-  border-top: 1px solid ${({ theme }) => theme.gray30};
+
+  border-radius: 8.36px 8.36px 0px 0px;
+  background: linear-gradient(180deg, #03a9dd 0%, #09b6ed 50%, #02c3ff 100%);
 `;
 
 const BottomAppBar = () => {

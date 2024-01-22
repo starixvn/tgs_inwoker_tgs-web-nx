@@ -5,24 +5,39 @@ import {
   BottomNavItem,
   NavTypeEnum,
 } from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
+import { theme } from "@/theme";
 
 const BottomNavContainer = styled.div`
   flex: 1;
+  height: 78.11px;
   display: flex;
+  padding: 16px 0;
   flex-direction: column;
   align-items: center;
-  text-align : center;
-  color: ${({ theme }) => theme.black};
-  padding: 10px 0;
+  justify-content: center;
+  text-align: center;
+  color: ${({ theme }) => theme.white};
   cursor: pointer;
+  position: relative;
 `;
 
 const NavLabel = styled.h6`
-  font-size: 0.6rem;
+  font-size: 11px;
+  line-height: 15.38px;
   font-weight: 400;
-  line-height: 0.625rem;
   text-transform: uppercase;
   white-space: nowrap;
+`;
+
+const BigItemBg = styled.div`
+  width: 86.93px;
+  height: 86.93px;
+  background: linear-gradient(180deg, #ffffff 20.4%, #56d7ff 100%);
+  box-shadow: 0px 0px 8.359379768371582px 2.7864599227905273px #02d6ef;
+  border-radius: 43.47px;
+  position: absolute;
+  z-index: 0;
+  top: 0;
 `;
 
 type Props = {
@@ -35,45 +50,31 @@ const BottomNav = ({ bottomNavItem, onClick }: Props) => {
 
   if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
     return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon
-          iconUrl={iconUrl}
-          width={"47px"}
-          height={"47px"}
+      <BottomNavContainer
+        onClick={onClick}
+        style={{
+          color: theme.primary,
+          padding: "0 0 14px",
+        }}
+      >
+        <Icon iconUrl={iconUrl} width={"47px"} height={"47px"} style={{ zIndex: 1 }} />
+
+        <NavLabel
           style={{
-            marginBottom: "13px",
+            fontSize: "14.4px",
+            zIndex: 1,
           }}
-        />
-
-        <NavLabel>{label}</NavLabel>
-      </BottomNavContainer>
-    );
-  }
-
-  if (["promotion"].includes(bottomNavItem.key)) {
-    return (
-      <BottomNavContainer onClick={onClick}>
-        <Icon
-          iconUrl={iconUrl}
-          width={"60px"}
-          height={"44px"}
-        />
-
-        <NavLabel>{label}</NavLabel>
+        >
+          {label}
+        </NavLabel>
+        <BigItemBg />
       </BottomNavContainer>
     );
   }
 
   return (
     <BottomNavContainer onClick={onClick}>
-      <Icon
-        iconUrl={iconUrl}
-        width={"24px"}
-        height={"24px"}
-        style={{
-          marginBottom: "5px",
-        }}
-      />
+      <Icon iconUrl={iconUrl} width={"30.65px"} height={"30.65px"} />
 
       <NavLabel>{label}</NavLabel>
     </BottomNavContainer>

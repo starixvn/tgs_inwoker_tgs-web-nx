@@ -5,9 +5,9 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
-import giftIcon from "@/assets/t21/images/bottomAppBar/icon-gift.svg";
-import transferIcon from "@/assets/t21/images/bottomAppBar/icon-transfer.svg";
-import reportIcon from "@/assets/t21/images/bottomAppBar/icon-report.svg";
+import promotionIcon from "@/assets/t21/images/bottomAppBar/icon-promotion.svg";
+import sportIcon from "@/assets/t21/images/bottomAppBar/icon_sport.svg";
+import chatIcon from "@/assets/t21/images/bottomAppBar/icon-chat.svg";
 import accountIcon from "@/assets/t21/images/bottomAppBar/icon-account.svg";
 import homeIcon from "@/assets/t21/images/bottomAppBar/icon-home.svg";
 import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
@@ -46,7 +46,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
-        iconUrl: giftIcon,
+        iconUrl: promotionIcon,
         handleClick: () => {
           history.push("/promotion-list");
         },
@@ -55,7 +55,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.BIG_ITEM,
         key: "vip",
         label: i18n.t("common.bank"),
-        iconUrl: transferIcon,
+        iconUrl: sportIcon,
         handleClick: () => {
           handleTransferDrawerToggle();
         },
@@ -63,10 +63,10 @@ export function useGetBottomNavItemList() {
       {
         navType: NavTypeEnum.ITEM,
         key: "contact",
-        label: i18n.t("report.title"),
-        iconUrl: reportIcon,
+        label: i18n.t("common.cs"),
+        iconUrl: chatIcon,
         handleClick: () => {
-          history.push("/report");
+          history.push("/support");
         },
       },
       {
