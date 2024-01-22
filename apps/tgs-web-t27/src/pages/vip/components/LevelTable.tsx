@@ -57,11 +57,10 @@ const LevelTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 12px;
-  background: ${({ theme }) => theme.darkGray};
+  border-bottom: 1px solid ${({ theme }) => theme.g2};
 
   ${media.sm} {
     height: 86px;
-    background: ${({ theme }) => theme.mask};
   }
 `;
 
@@ -93,11 +92,9 @@ const LevelTableBody = styled.div`
   align-self: stretch;
 
   ${media.sm} {
-    background: ${({ theme }) => theme.mask};
-
-    /* > div:nth-child(even) {
+    > div:nth-child(even) {
       background: rgba(255, 255, 255, 0.1);
-    } */
+    }
   }
 `;
 
@@ -106,7 +103,7 @@ const LevelTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.darkGray};
+  border-bottom: 1px solid ${({ theme }) => theme.g8};
 
   ${media.sm} {
     border-bottom: unset;
@@ -122,7 +119,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.g2};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
