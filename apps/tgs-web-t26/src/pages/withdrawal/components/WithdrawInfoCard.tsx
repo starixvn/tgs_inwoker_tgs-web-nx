@@ -5,7 +5,7 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.blue20};
+  background: ${({ theme }) => theme.darkGray};
   padding: 12px;
   border-radius: 5px;
   font-size: 0.875rem;
@@ -14,7 +14,7 @@ const CardContainer = styled.div`
 `;
 
 const RowContainer = styled.div`
-  border-left: 6px solid ${({ theme }) => theme.blue50};
+  border-left: 6px solid ${({ theme }) => theme.white};
   padding-left: 10px;
 
   &:first-child {
@@ -23,10 +23,10 @@ const RowContainer = styled.div`
 `;
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
 `;
 const Value = styled.div`
-  color: ${({ theme }) => theme.text};
+  color: #bfbfbf;
 `;
 
 const WithdrawInfoCard = () => {

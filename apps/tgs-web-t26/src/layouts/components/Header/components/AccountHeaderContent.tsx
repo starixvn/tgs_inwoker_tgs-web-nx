@@ -173,7 +173,7 @@ const AccountHeaderContent = () => {
   const open = Boolean(anchorEl);
   const [activeNavitem, setActiveNavitem] = useState<NavCardKey | null>(null);
 
-  const handleMouseEnter = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -215,7 +215,7 @@ const AccountHeaderContent = () => {
       </SecondaryButton>
       {isDesktopSize && (
         <>
-          <ProfileContainer onMouseEnter={handleMouseEnter}>
+          <ProfileContainer onClick={handleClick}>
             <Icon iconUrl={iconAccount} width={"20px"} height={"25px"} />
           </ProfileContainer>
           <Menu

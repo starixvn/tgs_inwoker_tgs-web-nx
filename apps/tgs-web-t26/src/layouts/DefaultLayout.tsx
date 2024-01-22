@@ -42,8 +42,8 @@ const ContentWrapper = styled.div`
 
 const ChildrenWrapper = styled.div`
   height: 100%;
-  /* padding-bottom: ${BOTTOM_APP_BAR_HEIGHT}; */
-
+  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
+  background: ${({ theme }) => theme.mainBackground};
   ${media.sm} {
     padding-bottom: 0;
     height: unset;

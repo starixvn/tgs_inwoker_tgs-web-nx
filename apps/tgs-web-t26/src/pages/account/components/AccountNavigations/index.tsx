@@ -31,7 +31,7 @@ const AccountNavCardsContainer = styled.div`
   background: ${({ theme }) => theme.darkGray};
   padding: 20px 50px;
   border-radius: 10px;
-  gap: 20px;
+  gap: 30px;
 `;
 
 const LanguageSwitchContainer = styled.div`
@@ -83,7 +83,7 @@ const AccountNavigations = () => {
       case "action":
         navItem.callback();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
