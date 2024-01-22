@@ -5,7 +5,7 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.g4};
   padding: 12px;
   border-radius: 5px;
   font-size: 0.875rem;
@@ -23,7 +23,7 @@ const RowContainer = styled.div`
 `;
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.g2};
 `;
 const Value = styled.div`
   color: ${({ theme }) => theme.white};

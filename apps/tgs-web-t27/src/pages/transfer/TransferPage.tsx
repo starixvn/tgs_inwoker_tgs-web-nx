@@ -8,7 +8,7 @@ import TransferPrevV2 from "@/components/account/TransferPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconTransfer from "@/assets/t19/images/account/navItemWhite/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
-import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const TransferPage = () => {
   const { getAllGameBalance } = useTransferPage();
@@ -19,7 +19,7 @@ const TransferPage = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <TransferPageContainer>
+    <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
       <AccountPaper pageName={i18n.t("common.transfer")} iconUrl={iconTransfer}>
         <TransferPrevV2
@@ -29,7 +29,7 @@ const TransferPage = () => {
           enqueueSnackbar={enqueueSnackbar}
         />
       </AccountPaper>
-    </TransferPageContainer>
+    </PageContainer>
   );
 };
 

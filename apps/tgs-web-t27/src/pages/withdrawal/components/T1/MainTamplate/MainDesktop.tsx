@@ -49,7 +49,7 @@ const MainDesktop = ({
     <>
       {/* Please choose bank */}
       <ItemContainer>
-        {/* <StepTitle step={1} title={i18n.t("withdrawal.msgEnterBank")} /> */}
+        <StepTitle step={1} title={i18n.t("withdrawal.msgEnterBank")} />
 
         <SelectionContainer>
           <BankCardGroup
