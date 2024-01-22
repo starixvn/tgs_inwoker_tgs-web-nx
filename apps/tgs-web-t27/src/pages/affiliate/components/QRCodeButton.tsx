@@ -2,7 +2,9 @@ import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 
 export const QRCodeButton = muiStyled(MuiButton)(({ theme }) => ({
   color: theme.palette.white,
-  background: theme.palette.primary.main,
+  background: theme.palette.primaryGradient,
   fontSize: "1rem",
-  fontWeight: 700,
+  fontWeight: 400,
+  borderRadius: "3px",
+  padding: "4px"
 })) as typeof MuiButton;

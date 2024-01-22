@@ -6,6 +6,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   fontSize: "0.937rem",
   fontWeight: 400,
   border: "none",
+  background: "#1A1C20",
   "&:focus": {
     background: "none",
   },
