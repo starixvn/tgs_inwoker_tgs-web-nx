@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t19/images/transfer/arrow-right.svg";
+import ArrowRightPNG from "@/assets/t27/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -14,18 +14,18 @@ import { media } from "@/theme/breakpoints";
 const QuickTransferContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 
   & > div:nth-child(1),
   & > div:nth-child(3) {
-    max-width: 240px;
-    height: 40px;
+    max-width: 210px;
+    height: 50px;
   }
 
   & > div:nth-child(4) {
-    max-width: 360px;
-    height: 40px;
+    max-width: 220px;
+    height: 50px;
   } 
 
   ${media.lg} {
@@ -36,8 +36,8 @@ const QuickTransferContainer = styled.div`
 const QuickTransferArrow = styled.div`
   flex-shrink: 0;
   display: flex;
-  width: 14px;
-  height: 9px;
+  width: 23px;
+  height: 23px;
   align-self: center;
   margin: 0 10px;
 `;
@@ -187,12 +187,11 @@ const QuickTransfer = ({
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
         style={{
-          color: theme.pureBlack,
-          background: theme.goldGradient,
-          width: "143px",
-          height: "40px",
-          padding: "13px",
-          borderRadius: "6px",
+          color: theme.white,
+          background: theme.secondaryGradient,
+          width: "307px",
+          height: "50px",
+          borderRadius: "3px",
         }}
       >
         {i18n.t("common.transfer")}

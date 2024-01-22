@@ -15,7 +15,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
     padding: 2,
     "&.Mui-checked": {
       transform: "translateX(32px)",
-      color: "#fff",
+      color: theme.palette.g5,
       "& + .MuiSwitch-track": {
         opacity: 1,
         backgroundColor: theme.palette.primary,
@@ -95,7 +95,7 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
             sx={{
               fontSize: "0.875rem",
               color: theme.white,
-              background: theme.black,
+              background: theme.primaryGradient,
               width: "147px",
               height: "37px",
               borderRadius: "6px",

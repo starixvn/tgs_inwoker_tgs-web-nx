@@ -6,7 +6,7 @@ import { useRwd, useTransferPage } from "@tgs-web-nx/core/hooks";
 import { useSnackbar } from "notistack";
 import TransferPrevV2 from "@/components/account/TransferPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconTransfer from "@/assets/t19/images/account/navItemWhite/icon-transfer.svg";
+import iconTransfer from "@/assets/t27/images/account/navItemWhite/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

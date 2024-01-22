@@ -37,7 +37,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
       border: "none",
     },
     "&:hover fieldset": {
-      border: "none",
+      border: "none !important",
     },
     "&.Mui-focused fieldset": {
       border: "none",
@@ -47,6 +47,9 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
         WebkitTextFillColor: `${theme.palette.text.primary}`,
       },
     },
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "none",
   },
 }));
 
