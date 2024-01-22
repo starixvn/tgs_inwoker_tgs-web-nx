@@ -8,13 +8,13 @@ import {
 } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconInbox from "@/assets/t19/images/account/navItemWhite/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import ComposeForm from "@/pages/inbox/components/form/ComposeForm";
 import InboxList from "@/pages/inbox/components/InboxList";
 import SentList from "@/pages/inbox/components/SentList";
 import InboxCategoryTabs from "@/pages/inbox/components/InboxCategoryTabs";
+import iconInbox from "@/assets/t27/images/badge/icon-inbox.svg";
 
 const InboxContainer = styled.div`
   width: 100%;
