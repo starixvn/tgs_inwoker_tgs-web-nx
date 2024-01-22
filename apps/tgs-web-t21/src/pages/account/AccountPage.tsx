@@ -8,18 +8,7 @@ import AccountNavigations from "./components/AccountNavigations";
 import InfoCard from "@/pages/account/components/InfoCard";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import { media } from "@/theme/breakpoints";
-
-const AccountPageContainer = styled.div`
-  background: ${({ theme }) => theme.gray20};
-  max-width: calc(961px + 22px * 2);
-  flex: 1;
-  margin: 0 auto;
-  padding-bottom: 50px;
-
-  ${media.sm} {
-    padding-bottom: 0;
-  }
-`;
+import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const AccountPage = () => {
   useUpdatePageName(i18n.t("TIGER.my"));
@@ -39,10 +28,10 @@ const AccountPage = () => {
   }, [history, isLogin]);
 
   return (
-    <AccountPageContainer>
+    <PageContainer>
       {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "10px" }} />}
       <AccountNavigations />
-    </AccountPageContainer>
+    </PageContainer>
   );
 };
 

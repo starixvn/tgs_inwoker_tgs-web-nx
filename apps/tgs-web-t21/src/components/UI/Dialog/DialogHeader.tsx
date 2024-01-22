@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router";
 import iconReturn from "@/assets/t21/images/dialog/icon-return.svg";
 import Icon from "@/components/project/Icon";
+import downloadImg from "@/assets/t21/images/header/icon-download.svg";
 
-export const DIALOG_HEADER_HEIGHT = "40px";
+export const DIALOG_HEADER_HEIGHT = "50px";
 
 const DialogHeaderContainer = styled.div`
   position: fixed;
@@ -11,24 +13,20 @@ const DialogHeaderContainer = styled.div`
   left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.blue50};
+  background: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.white};
+  justify-content: space-between;
+  color: ${({ theme }) => theme.primary};
   font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
   z-index: 1300;
-  padding: 22px 10px;
+  padding: 10px 11.42px;
   gap: 14px;
 `;
 
 const ReturnIconContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 16px;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -40,6 +38,11 @@ type Props = {
 };
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
+  const history = useHistory();
+
+  const goToDownload = useCallback(() => {
+    history.push("/appDownload");
+  }, []);
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
@@ -47,6 +50,16 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
       </ReturnIconContainer>
 
       {dialogHeaderTitle}
+
+      <Icon
+        iconUrl={downloadImg}
+        width={"30px"}
+        height={"30px"}
+        style={{
+          cursor: "pointer",
+        }}
+        onClick={() => goToDownload()}
+      />
     </DialogHeaderContainer>
   );
 };

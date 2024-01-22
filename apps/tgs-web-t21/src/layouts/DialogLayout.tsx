@@ -8,10 +8,11 @@ import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuBu
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
+import bg from "@/assets/t21/images/bg.png";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background: url(${bg});
 `;
 
 const ContentWrapper = styled.div`

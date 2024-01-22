@@ -19,6 +19,7 @@ const BottomNavContainer = styled.div`
   color: ${({ theme }) => theme.white};
   cursor: pointer;
   position: relative;
+  overflow: visible;
 `;
 
 const NavLabel = styled.h6`

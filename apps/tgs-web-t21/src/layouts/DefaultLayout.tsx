@@ -15,11 +15,7 @@ import MenuDrawer from "@/layouts/components/MenuDrawer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
-
-  ${media.sm} {
-    background: url(${bg});
-  }
+  background: url(${bg});
 `;
 
 const DashboardContainer = styled.div`
