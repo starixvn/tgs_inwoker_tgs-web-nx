@@ -10,37 +10,38 @@ export const Remark = styled.div`
   font-size: 0.937rem;
   font-weight: 400;
   color: ${({ theme }) => theme.text};
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 `;
 
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   ${media.sm} {
     max-width: 500px;
   }
 `;
 
 export const LabelContainer = styled.div`
-  font-size: 0.875rem;
+  font-size: 1.25rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.black};
   float: left;
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   width: "100%",
   fontSize: "0.875rem",
-  borderBottom: `1px solid ${theme.palette.gray10}`,
   justifyContent: "center",
+  background: theme.palette.gray10,
+  borderRadius: "6px",
 
   "& fieldset": {
     border: "none",
   },
 
   "& input": {
-    padding: "10px 0",
+    padding: "15px 25px",
   },
 })) as typeof MuiFormControl;
 
@@ -71,10 +72,10 @@ export const UploadFileTag = styled.span`
 `;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "50px",
+  height: "46px",
   whiteSpace: "nowrap",
-  padding: "16px",
-  fontSize: "1rem",
+  padding: "11.5px",
+  fontSize: "1.5rem",
   lineHeight: 1,
   fontWeight: 700,
   color: theme.palette.white,

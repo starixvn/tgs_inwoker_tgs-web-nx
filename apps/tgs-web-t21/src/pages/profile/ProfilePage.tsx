@@ -4,11 +4,18 @@ import { useHistory } from "react-router-dom";
 import { ValueOf } from "@tgs-web-nx/types";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { ProfilePathEnum } from "@tgs-web-nx/core";
+import styled from "styled-components";
 import { profilePageDictionary } from "@/components/account/Profile/profilePageDictionary";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+
+const Paper = styled.div`
+  background: ${({ theme }) => theme.gray5};
+  padding: 20px 29px;
+  border-radius: 10px;
+`;
 
 const ProfilePage = () => {
   const { isDesktopSize } = useRwd();
@@ -41,12 +48,16 @@ const ProfilePage = () => {
       {isDesktopSize ? (
         <ProfileMenu />
       ) : (
-        <ProfilePageComponent handleCloseDialog={handleCloseDialog} />
+        <Paper>
+          <ProfilePageComponent handleCloseDialog={handleCloseDialog} />
+        </Paper>
       )}
 
       {isDesktopSize && (
         <ProfileDialog open={isDialogOpen} onClose={handleCloseDialog}>
-          <ProfilePageComponent handleCloseDialog={handleCloseDialog} />
+          <Paper>
+            <ProfilePageComponent handleCloseDialog={handleCloseDialog} />
+          </Paper>
         </ProfileDialog>
       )}
     </PageContainer>

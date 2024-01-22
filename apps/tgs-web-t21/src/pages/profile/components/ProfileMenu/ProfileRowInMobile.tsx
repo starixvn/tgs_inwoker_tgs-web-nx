@@ -12,13 +12,14 @@ const ProfileItemContainer = styled.div`
   cursor: pointer;
 
   & .label {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.gray80};
     font-size: 1.25rem;
     font-weight: 400;
+    margin-bottom: 9px;
   }
 
   & .status {
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.gray30};
     font-size: 0.937rem;
     font-weight: 400;
   }
@@ -50,7 +51,7 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         <div className={"status"}>{status}</div>
       </div>
 
-      <Icon iconUrl={iconArrow} width={"20px"} height={"20px"} />
+      <Icon iconUrl={iconArrow} width={"32px"} height={"32px"} />
     </ProfileItemContainer>
   );
 };

@@ -20,9 +20,9 @@ const ButtonContainer = styled.div`
   & > button {
     height: 40px;
     font-size: 0.75rem;
-    border-radius: 50px;
+    border-radius: 6px;
     padding: 8px;
-    background: ${({ theme }) => theme.secondary};
+    background: ${({ theme }) => theme.primary};
   }
 `;
 
