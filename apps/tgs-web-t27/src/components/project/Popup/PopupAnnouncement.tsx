@@ -146,6 +146,7 @@ const PopupAnnouncement = () => {
             style={{
               width: isDesktopSize ? "242px" : "100%",
               textAlign: "center",
+              marginBottom: "40px",
             }}
           >
             <>{i18n.t("common.close")}</>
