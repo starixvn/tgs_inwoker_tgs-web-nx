@@ -3,7 +3,8 @@ import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { TableBody, TableCell, TableRow } from "@mui/material";
 import {
-  CustomWinLose
+  CustomWinLose,
+
 } from "@/components/styled-component/Report";
 
 type Props = {
