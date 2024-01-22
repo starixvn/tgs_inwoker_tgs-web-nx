@@ -1,24 +1,26 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t25/images/home/maintenance.svg";
 
-const Wrapper = styled.div<{
+const ProviderTagContainer = styled.div<{
   $isActive: boolean;
 }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 60px;
-  max-width: none;
+  width: calc((100% - 10px * 2) / 3);
+
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
-  padding: 4px;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
+  background: #2c2c2c;
+  border-bottom: 3px solid #ffffff1a;
+  opacity: 0.8;
+  padding: 15px 8px;
   position: relative;
 
   & > img {
+    display: block;
     width: 100px;
     &:hover {
       cursor: pointer;
@@ -60,7 +62,7 @@ const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
 
   if (text !== "All") {
     return (
-      <Wrapper $isActive={isActive}>
+      <ProviderTagContainer $isActive={isActive}>
         <img
           onClick={onClick}
           src={`${
@@ -73,7 +75,7 @@ const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
           </MaintenanceBg>
         )}
-      </Wrapper>
+      </ProviderTagContainer>
     );
   }
 };

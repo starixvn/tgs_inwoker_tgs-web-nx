@@ -175,10 +175,7 @@ const Introduction = () => {
 
   const handleClick = () => {
     handleChangeGameType(GameTypeEnum.SPORTS);
-
-    if (history.location.pathname !== "/") {
-      goToHomePage();
-    }
+    history.push(`/main/sports`);
   };
 
   return (

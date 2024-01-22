@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from "react";
+import React, { HTMLProps, MouseEvent, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
@@ -8,8 +8,29 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t21/images/home/play.svg";
-import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
+import playIcon from "@/assets/t25/images/home/play-green.svg";
+import maintenanceIcon from "@/assets/t25/images/home/maintenance.svg";
+
+const GameCardContainer = styled.div`
+  width: calc(50% - 6px);
+  position: relative;
+  cursor: pointer;
+
+  background-size: cover;
+  background-position: center;
+
+  ${media.sm} {
+    width: calc((100% - 15px * 1) / 2);
+  }
+
+  ${media.md} {
+    width: calc((100% - 15px * 2) / 3);
+  }
+
+  ${media.lg} {
+    width: calc((100% - 15px * 5) / 6);
+  }
+`;
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -19,7 +40,6 @@ const CardHoverBg = styled.div`
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
-  border-radius: 10px;
   display: none;
   white-space: pre-line;
 `;
@@ -32,23 +52,22 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 10px;
 `;
 
 const NewTag = styled.div`
   position: absolute;
   top: 5px;
   left: 3px;
-  width: 43px;
-  height: 22px;
-  padding: 2px 5px;
+  width: 53px;
+  height: 26px;
+  padding: 4px 10px;
   border-radius: 50px;
   background: ${(props) => props.theme.red};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 400;
 `;
 
@@ -56,16 +75,16 @@ const HotTag = styled.div`
   position: absolute;
   bottom: 7px;
   left: 0;
-  width: 43px;
-  height: 22px;
-  padding: 2px 5px;
+  width: 53px;
+  height: 26px;
+  padding: 4px 10px;
   border-radius: 50px;
   background: ${(props) => props.theme.green};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 400;
 `;
 
@@ -74,15 +93,11 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 6px);
+  width: 100%;
   position: relative;
-  cursor: pointer;
   aspect-ratio: 161 / 161;
-  border-radius: 10px;
 
   ${media.sm} {
-    width: calc(16.67% - 6px);
-
     &:hover {
       ${CardHoverBg} {
         z-index: 1;
@@ -93,20 +108,6 @@ const GameCardBg = styled.div`
       }
     }
   }
-`;
-
-const GameName = styled.div`
-  position: absolute;
-  bottom: 0;
-  color: ${(props) => props.theme.white};
-  font-size: 0.875rem;
-  font-weight: 400;
-  text-align: center;
-  margin: 4px 0 12px 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%; //利用最大寬度來限制文字長度
 `;
 
 const MaintenanceBg = styled.div`
@@ -120,7 +121,6 @@ const MaintenanceBg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
   z-index: 3;
 
   &:hover {
@@ -129,15 +129,9 @@ const MaintenanceBg = styled.div`
 `;
 
 const MaintenanceIcon = styled.img`
-  width: 82.68px;
-  height: 58.1px;
+  width: 118px;
+  height: 83px;
 `;
-
-type GameCardProps = {
-  gameItem: GameItem;
-  isActive: boolean;
-  imageUrl: string;
-};
 
 const HoverGameName = styled(GameCardContent)`
   color: ${(props) => props.theme.white};
@@ -151,7 +145,13 @@ const PlayIcon = styled.img`
   height: 65px;
 `;
 
-const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
+type GameCardProps = {
+  gameItem: GameItem;
+  isActive: boolean;
+  imageUrl: string;
+} & HTMLProps<HTMLDivElement>;
+
+const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
   const { account } = useAccountStore();
   const history = useHistory();
@@ -196,34 +196,45 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <GameCardBg onClick={launchGameHandler}>
-      <GameCardContent>
-        <GameIcon $imageUrl={imageUrl}></GameIcon>
-        {gameItem.tag.new && <NewTag>New</NewTag>}
-        {gameItem.tag.hot && <HotTag>Hot</HotTag>}
-        {!isActive && (
-          <MaintenanceBg>
-            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-          </MaintenanceBg>
+    // @ts-ignore
+    <GameCardContainer {...others}>
+      <GameCardBg onClick={launchGameHandler}>
+        <GameCardContent>
+          <GameIcon $imageUrl={imageUrl}></GameIcon>
+          {gameItem.tag.new && <NewTag>New</NewTag>}
+          {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+          {!isActive && (
+            <MaintenanceBg>
+              <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+            </MaintenanceBg>
+          )}
+        </GameCardContent>
+
+        {isLogin && (
+          <Favorite
+            isFavorite={isFavorite}
+            handleToggleFavorite={handleToggleFavorite}
+            gameItemId={gameItem.id}
+          />
         )}
-      </GameCardContent>
 
-      {isLogin && (
-        <Favorite
-          isFavorite={isFavorite}
-          handleToggleFavorite={handleToggleFavorite}
-          gameItemId={gameItem.id}
-        />
-      )}
-
-      {isDesktopSize && (
-        <CardHoverBg onClick={launchGameHandler}>
-          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
-          <PlayIcon src={playIcon} alt={"play"} />
-        </CardHoverBg>
-      )}
-    </GameCardBg>
+        {isDesktopSize && (
+          <CardHoverBg onClick={launchGameHandler}>
+            {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
+            <PlayIcon src={playIcon} alt={"play"} />
+          </CardHoverBg>
+        )}
+      </GameCardBg>
+    </GameCardContainer>
   );
 };
 
-export default GameCard;
+export default React.memo(GameCard);
+
+function transformString(inputString: string): string {
+  const words: string[] = inputString.replace(/_/g, " ").split(" ");
+  const transformedString: string = words
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+  return transformedString;
+}

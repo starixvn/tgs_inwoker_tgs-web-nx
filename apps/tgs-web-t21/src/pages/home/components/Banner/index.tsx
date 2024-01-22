@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
 import Slider from "@/pages/home/components/Slider";
-import notification from "@/assets/t21/images/home/notify.svg";
+import notification from "@/assets/t30/images/home/notify.svg";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Jackpot from "@/components/project/Jackpot";
 
@@ -9,12 +9,6 @@ const BannerContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-`;
-
-const SlickWrapper = styled(Slider)`
-  max-height: 450px;
-  margin: 0 auto;
-  width: 100%;
 `;
 
 const SlickDot = styled.div`
@@ -94,26 +88,6 @@ const Banner = () => {
       <Slider settings={settings} maxHeight={"450px"} />
       <NewsContainer>
         <NewsContent>
-          <img src={notification} alt="marquee" />
-          {hasData && (
-            // Disable TypeScript check for unknown HTML elements
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            <marquee>
-              {marquees.map((item, index) => {
-                const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
-      `;
-                return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
-              })}
-              {/*@ts-ignore*/}
-            </marquee>
-          )}
-
           <Jackpot
             style={{
               position: "absolute",

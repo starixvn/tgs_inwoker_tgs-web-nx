@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 type Props = {
   placeholder?: string;
@@ -8,13 +9,17 @@ type Props = {
 };
 
 const InputWrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  flex: 1;
   display: flex;
   align-items: center;
-  padding: 5px 10px;
-  border-radius: 50px;
-  background-color: ${({ theme }) => theme.white};
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.mainBackground};
+  border: 1px solid ${({ theme }) => theme.grey06};
+  padding: 10px 12px;
+
+  ${media.sm} {
+    background-color: ${({ theme }) => theme.grey04};
+  }
 `;
 
 const InputTextfield = styled.input`
@@ -26,7 +31,7 @@ const InputTextfield = styled.input`
   outline: none;
   width: 100%;
   font-size: 0.875rem;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.white};
   margin-left: 5px;
   &::placeholder {
     color: ${(props) => props.theme.text};
