@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import closeIcon from "@/assets/t29/images/qrcode/icon-close.svg";
+import closeIcon from "@/assets/t21/images/qrcode/icon-close.svg";
 import { media } from "@/theme/breakpoints";
 
 const PopupBg = styled.div`
@@ -83,7 +83,6 @@ const QrcodeImage = styled.img`
   max-width: 110px;
   height: 110px;
 
-  
   ${media.md} {
     max-width: 150px;
     height: 150px;
@@ -120,7 +119,7 @@ const ChatQRcodePopup = ({ setIsOpenChatQRcode, chatQRcodeList }: Props) => {
                   <QrcodeImage src={item.url} />
                   <QrcodeTitle>{item.name}</QrcodeTitle>
                 </QrcodeContainer>
-              )
+              );
             })}
           </PopupContent>
         </PopupBox>

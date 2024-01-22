@@ -1,10 +1,10 @@
 import { useEffect, useState, useMemo } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
-import sport from "@/assets/t29/images/home/home_sport.png";
-import live_casino from "@/assets/t29/images/home/home_live_casino.png";
-import slot from "@/assets/t29/images/home/home_slot.png";
-import fishing from "@/assets/t29/images/home/home_fishing.png";
+import sport from "@/assets/t21/images/home/home_sport.png";
+import live_casino from "@/assets/t21/images/home/home_live_casino.png";
+import slot from "@/assets/t21/images/home/home_slot.png";
+import fishing from "@/assets/t21/images/home/home_fishing.png";
 
 type GameTypeItem = {
   key: string;

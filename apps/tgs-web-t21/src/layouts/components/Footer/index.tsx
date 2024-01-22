@@ -10,11 +10,11 @@ import ChatQRcodePopup from "./ChatQRcodePopup";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import QRcodeUrl from "@/assets/t29/images/home/QRcode.svg";
-import qrcode_skype from "@/assets/t29/images/qrcode/qrcode_skype.png";
-import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
-import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
-import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
+import QRcodeUrl from "@/assets/t21/images/home/QRcode.svg";
+import qrcode_skype from "@/assets/t21/images/qrcode/qrcode_skype.png";
+import qrcode_whatsapp from "@/assets/t21/images/qrcode/qrcode_whatsapp.png";
+import qrcode_telegram from "@/assets/t21/images/qrcode/qrcode_telegram.png";
+import qrcode_wechat from "@/assets/t21/images/qrcode/qrcode_wechat.png";
 
 const FooterContainer = styled.div`
   display: none;
@@ -131,7 +131,7 @@ const Footer = () => {
     {
       name: "WeChat",
       url: qrcode_wechat,
-    }
+    },
   ];
 
   return (
@@ -154,13 +154,11 @@ const Footer = () => {
 
         <FooterGroup>
           <GroupTitle>Quick Links</GroupTitle>
-          {!isCustomizedBrand &&
+          {!isCustomizedBrand && (
             <GroupContent>
-              <Link onClick={() => setIsOpenChatQRcode(true)}>
-                {i18n.t("T13.quickLink.247")}
-              </Link>
+              <Link onClick={() => setIsOpenChatQRcode(true)}>{i18n.t("T13.quickLink.247")}</Link>
             </GroupContent>
-          }
+          )}
           <GroupContent>
             <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
           </GroupContent>
@@ -177,12 +175,12 @@ const Footer = () => {
               {i18n.t("T13.quickLink.reponsible")}
             </Link>
           </GroupContent>
-          {!isCustomizedBrand &&
+          {!isCustomizedBrand && (
             <>
               <DownLoadText>Download App</DownLoadText>
               <img src={QRcodeUrl} width={117} alt="QRcode" />
             </>
-          }
+          )}
         </FooterGroup>
 
         <FooterGroup>
@@ -195,7 +193,12 @@ const Footer = () => {
         </FooterGroup>
       </FooterGroups>
 
-      {isOpenChatQRcode && <ChatQRcodePopup setIsOpenChatQRcode={setIsOpenChatQRcode} chatQRcodeList={chatQRcodeList} />}
+      {isOpenChatQRcode && (
+        <ChatQRcodePopup
+          setIsOpenChatQRcode={setIsOpenChatQRcode}
+          chatQRcodeList={chatQRcodeList}
+        />
+      )}
     </FooterContainer>
   );
 };

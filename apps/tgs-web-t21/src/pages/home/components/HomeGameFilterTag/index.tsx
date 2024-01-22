@@ -14,16 +14,16 @@ import { useCallback } from "react";
 import CommonTag from "./CommonTag";
 import Tag from "./ProviderTag";
 import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t29/images/home/search.svg";
+import searchIcon from "@/assets/t21/images/home/search.svg";
 import { media } from "@/theme/breakpoints";
-import hotIcon from "@/assets/t29/images/home/hot.svg";
-import newIcon from "@/assets/t29/images/home/new.svg";
-import activedHotIcon from "@/assets/t29/images/home/actived-hot.svg";
-import activedNewIcon from "@/assets/t29/images/home/actived-new.svg";
-import recommendIcon from "@/assets/t29/images/home/recommend.svg";
-import activedRecommendIcon from "@/assets/t29/images/home/actived-recommend.svg";
-import favoriteIcon from "@/assets/t29/images/home/favorite.svg";
-import activedFavoriteIcon from "@/assets/t29/images/home/actived-favorite.svg";
+import hotIcon from "@/assets/t21/images/home/hot.svg";
+import newIcon from "@/assets/t21/images/home/new.svg";
+import activedHotIcon from "@/assets/t21/images/home/actived-hot.svg";
+import activedNewIcon from "@/assets/t21/images/home/actived-new.svg";
+import recommendIcon from "@/assets/t21/images/home/recommend.svg";
+import activedRecommendIcon from "@/assets/t21/images/home/actived-recommend.svg";
+import favoriteIcon from "@/assets/t21/images/home/favorite.svg";
+import activedFavoriteIcon from "@/assets/t21/images/home/actived-favorite.svg";
 
 const FilterTagWrapper = styled.div`
   width: 100%;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
-import iconArrow from "@/assets/t29/images/profile/icon-arrow.svg";
+import iconArrow from "@/assets/t21/images/profile/icon-arrow.svg";
 import Icon from "@/components/project/Icon";
 
 const ProfileItemContainer = styled.div`

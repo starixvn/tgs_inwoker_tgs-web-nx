@@ -2,25 +2,24 @@ import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useHeader } from "@tgs-web-nx/core/features";
+import iconReturn from "@/assets/t21/images/drawer/icon-return.svg";
+import Icon from "@/components/project/Icon";
 
 const SideMenuHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.gray30};
   position: relative;
   flex-shrink: 0;
   width: 100%;
-  height: 40px;
+  height: 44px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: end;
+  padding: 11.14px 12.14px;
 `;
 
 const CloseIconContainer = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 10px;
   display: flex;
   align-items: center;
+  justify-content: end;
   cursor: pointer;
 `;
 
@@ -30,13 +29,7 @@ const SideMenuHeader = () => {
   return (
     <SideMenuHeaderContainer>
       <CloseIconContainer onClick={() => handleToggleMenu(false)}>
-        <CloseIcon
-          style={{
-            color: "white",
-            width: "20px",
-            height: "20px",
-          }}
-        />
+        <Icon iconUrl={iconReturn} width={"21px"} height={"21px"} />
       </CloseIconContainer>
     </SideMenuHeaderContainer>
   );

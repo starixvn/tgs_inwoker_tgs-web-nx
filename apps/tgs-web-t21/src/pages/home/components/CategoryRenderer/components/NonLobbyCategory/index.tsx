@@ -11,7 +11,7 @@ import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t29/images/home/search.svg";
+import searchIcon from "@/assets/t21/images/home/search.svg";
 
 const Wrapper = styled.div`
   display: flex;

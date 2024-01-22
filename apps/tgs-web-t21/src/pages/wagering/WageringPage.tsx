@@ -7,27 +7,27 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd, useWageringPage } from "@tgs-web-nx/core/hooks";
 // import { useSnackbar } from "notistack";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWagering from "@/assets/t29/images/account/navItem/icon-wagering.svg";
+import iconWagering from "@/assets/t21/images/account/navItem/icon-wagering.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
-import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";
-import iconPlay from "@/assets/t29/images/wagering/icon-play.svg";
-import iconPlayActive from "@/assets/t29/images/wagering/icon-play_active.svg";
+import iconCard from "@/assets/t21/images/withdraw/icon-card.svg";
+import iconPlay from "@/assets/t21/images/wagering/icon-play.svg";
+import iconPlayActive from "@/assets/t21/images/wagering/icon-play_active.svg";
 
-import LiveDealerIcon from "@/assets/t29/images/wagering/LiveDealer.svg";
-import LiveDealerIconActive from "@/assets/t29/images/wagering/LiveDealerActive.svg";
+import LiveDealerIcon from "@/assets/t21/images/wagering/LiveDealer.svg";
+import LiveDealerIconActive from "@/assets/t21/images/wagering/LiveDealerActive.svg";
 
-import SportsbookIcon from "@/assets/t29/images/wagering/Sportsbook.svg";
-import SportsbookIconActive from "@/assets/t29/images/wagering/SportsbookActive.svg";
-import SlotIcon from "@/assets/t29/images/wagering/Slot.svg";
-import SlotIconActive from "@/assets/t29/images/wagering/SlotActive.svg";
-import CardGameIcon from "@/assets/t29/images/wagering/CardGame.svg";
-import CardGameIconActive from "@/assets/t29/images/wagering/CardGameActive.svg";
-import LotteryIcon from "@/assets/t29/images/wagering/Lottery.svg";
-import LotteryIconActive from "@/assets/t29/images/wagering/LotteryActive.svg";
+import SportsbookIcon from "@/assets/t21/images/wagering/Sportsbook.svg";
+import SportsbookIconActive from "@/assets/t21/images/wagering/SportsbookActive.svg";
+import SlotIcon from "@/assets/t21/images/wagering/Slot.svg";
+import SlotIconActive from "@/assets/t21/images/wagering/SlotActive.svg";
+import CardGameIcon from "@/assets/t21/images/wagering/CardGame.svg";
+import CardGameIconActive from "@/assets/t21/images/wagering/CardGameActive.svg";
+import LotteryIcon from "@/assets/t21/images/wagering/Lottery.svg";
+import LotteryIconActive from "@/assets/t21/images/wagering/LotteryActive.svg";
 
-import VirtualSportsIcon from "@/assets/t29/images/wagering/VirtualSports.svg";
-import VirtualSportsIconActive from "@/assets/t29/images/wagering/VirtualSportsActive.svg";
+import VirtualSportsIcon from "@/assets/t21/images/wagering/VirtualSports.svg";
+import VirtualSportsIconActive from "@/assets/t21/images/wagering/VirtualSportsActive.svg";
 import { media } from "@/theme/breakpoints";
 
 const WageringContainer = styled.div`

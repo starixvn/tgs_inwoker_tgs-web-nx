@@ -8,8 +8,8 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t29/images/home/play.svg";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import playIcon from "@/assets/t21/images/home/play.svg";
+import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -166,7 +166,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       return;
     }
     launchGame();
-  }
+  };
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");

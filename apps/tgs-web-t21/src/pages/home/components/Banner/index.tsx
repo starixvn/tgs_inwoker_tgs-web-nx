@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
 import Slider from "@/pages/home/components/Slider";
-import notification from "@/assets/t29/images/home/notify.svg";
+import notification from "@/assets/t21/images/home/notify.svg";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Jackpot from "@/components/project/Jackpot";
 

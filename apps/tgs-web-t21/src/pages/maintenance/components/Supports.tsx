@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
-import closeIcon from "@/assets/t29/images/qrcode/icon-close.svg";
+import closeIcon from "@/assets/t21/images/qrcode/icon-close.svg";
 import { media } from "@/theme/breakpoints";
 
 const PopupBg = styled.div`

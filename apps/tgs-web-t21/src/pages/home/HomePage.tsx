@@ -11,10 +11,10 @@ import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import bg from "@/assets/t29/images/home/home_bg.png";
+import bg from "@/assets/t21/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import notification from "@/assets/t29/images/home/notify.svg";
+import notification from "@/assets/t21/images/home/notify.svg";
 import Jackpot from "@/components/project/Jackpot";
 import useBanner from "@/hooks/home/useBanner";
 

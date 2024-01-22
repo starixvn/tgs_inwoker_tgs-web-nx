@@ -9,7 +9,7 @@ import {
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
-import bg from "@/assets/t29/images/bg.png";
+import bg from "@/assets/t21/images/bg.png";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;

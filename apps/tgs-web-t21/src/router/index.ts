@@ -26,7 +26,6 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
-import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
 import Faq from "@/pages/Faq";
@@ -41,19 +40,19 @@ const routes: RouteType[] = [
   {
     path: "/",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/main/:gameType",
     component: MainPage,
-    layout: HomeLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   // {

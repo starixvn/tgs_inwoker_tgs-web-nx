@@ -5,7 +5,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
 
 type Props = {
   bgUrl: string;
@@ -52,7 +52,6 @@ const VenderNameInfo = styled.div`
   white-space: pre-wrap;
 `;
 
-
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   display: inline-flex;
   width: 100%;
@@ -95,7 +94,14 @@ const MaintenanceIcon = styled.img`
   height: 57px;
 `;
 
-const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
+const DesktopVendorCard = ({
+  bgUrl,
+  imageUrl,
+  venderName,
+  venderLogoUrl,
+  launchGame,
+  status,
+}: Props) => {
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
@@ -104,7 +110,7 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
       return;
     }
     launchGame();
-  }
+  };
 
   useEffect(() => {
     if (venderNameRef.current) {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
 
 type Props = {
   bgUrl: string;
@@ -89,13 +89,12 @@ const MobileVendorCard = ({
   launchGame,
   status,
 }: Props) => {
-
   const launchGameHandler = () => {
     if (status === providerStatus.Maintenance) {
       return;
     }
     launchGame();
-  }
+  };
 
   return (
     <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>

@@ -10,7 +10,8 @@ import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
-import bg from "@/assets/t29/images/bg.png";
+import bg from "@/assets/t21/images/bg.png";
+import MenuDrawer from "@/layouts/components/MenuDrawer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -60,6 +61,7 @@ const DefaultLayout = ({ children }: Props) => {
       <DashboardContainer>
         <ContentWrapper>
           <>
+            <MenuDrawer />
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />
           </>

@@ -6,7 +6,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth, useAuthContext, useAuthDialog, useHeader } from "@tgs-web-nx/core/features";
 import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
-import iconLogin from "@/assets/t29/images/header/icon-login.svg";
+import iconLogin from "@/assets/t21/images/header/icon-login.svg";
 import Icon from "@/components/project/Icon";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 

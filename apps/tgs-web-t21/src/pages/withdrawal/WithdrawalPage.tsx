@@ -8,7 +8,7 @@ import { useSnackbar } from "notistack";
 import { useWalletStore } from "@tgs-web-nx/core";
 import WithdrawalPrevV2 from "@/components/account/WithdrawalPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWithdrawal from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
+import iconWithdrawal from "@/assets/t21/images/account/navItem/icon-withdraw.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 

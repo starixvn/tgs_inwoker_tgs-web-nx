@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
-import iconArrow from "@/assets/t29/images/withdraw/icon-arrow.svg";
+import iconArrow from "@/assets/t21/images/withdraw/icon-arrow.svg";
 import CardAddButton from "@/pages/withdrawal/components/CardManage/CardAddButton";
 
 const TitleWrapper = styled.div`
@@ -22,7 +22,12 @@ type Props = {
   isShowAddCardButton?: boolean;
   handleClickAddCard?: () => void;
 };
-const FormTitle = ({ title, isCustomizedBrand, isShowAddCardButton, handleClickAddCard }: Props) => {
+const FormTitle = ({
+  title,
+  isCustomizedBrand,
+  isShowAddCardButton,
+  handleClickAddCard,
+}: Props) => {
   return (
     <TitleWrapper>
       <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />

@@ -13,7 +13,7 @@ import {
   SUB_CONTENT_MAX_WIDTH,
 } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
-import bg from "@/assets/t29/images/bg.png";
+import bg from "@/assets/t21/images/bg.png";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
@@ -85,7 +85,7 @@ const VipLayout = ({ children }: Props) => {
                 style={{
                   width: "200px",
                   flexShrink: 0,
-                  minHeight:"800px"
+                  minHeight: "800px",
                 }}
               />
             )}

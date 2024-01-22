@@ -12,7 +12,7 @@ import {
 } from "@/components/styled-component/WithdrawV2/AddCardSuccess";
 import { theme } from "@/theme";
 import { ImgSuccess } from "@/components/styled-component/WithdrawV2/Success";
-import SuccessPNG from "@/assets/t29/images/withdraw/icon-check.svg";
+import SuccessPNG from "@/assets/t21/images/withdraw/icon-check.svg";
 
 const AddCardSuccess = ({
   isDeposit,
@@ -43,11 +43,12 @@ const AddCardSuccess = ({
       {isCustomizedBrand && <SubTitleDesc>{i18n.t("movn2_addcardsuccess")}</SubTitleDesc>}
 
       <ButtonContainer>
-        {!isCustomizedBrand && !(
-          config.features.ChangesNotAllowed ||
-          config.features.AddCard_NotAllowedEditDelete ||
-          bankCardList.length >= config.features.AddCard_MaximumCardAllowed
-        ) && (
+        {!isCustomizedBrand &&
+          !(
+            config.features.ChangesNotAllowed ||
+            config.features.AddCard_NotAllowedEditDelete ||
+            bankCardList.length >= config.features.AddCard_MaximumCardAllowed
+          ) && (
             <SubmitButton fullWidth onClick={onhandleBindCardClick}>
               {i18n.t("card.success.bindBankCard")}
             </SubmitButton>

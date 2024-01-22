@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BG from "@/assets/t29/images/loginBG.png";
+import BG from "@/assets/t21/images/loginBG.png";
 
 export const AuthFormContainer = styled.div`
   width: 100%;

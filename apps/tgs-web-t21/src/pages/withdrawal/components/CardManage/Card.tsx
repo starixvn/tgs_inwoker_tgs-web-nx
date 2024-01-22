@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import deleteIcon from "@/assets/t29/images/card/delete.svg";
+import deleteIcon from "@/assets/t21/images/card/delete.svg";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 

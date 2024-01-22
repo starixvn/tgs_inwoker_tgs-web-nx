@@ -8,7 +8,7 @@ import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
 import { Button } from "@/components/UI/Button";
-import iconLogout from "@/assets/t29/images/account/navItemWhite/icon-logout.svg";
+import iconLogout from "@/assets/t21/images/account/navItemWhite/icon-logout.svg";
 
 const MemberMenuContainer = styled.div`
   background: ${({ theme }) => theme.blue50};

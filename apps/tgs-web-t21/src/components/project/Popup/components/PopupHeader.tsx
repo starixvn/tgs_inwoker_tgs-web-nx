@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
-import iconClose from "@/assets/t29/images/dialog/icon-close.svg";
+import iconClose from "@/assets/t21/images/dialog/icon-close.svg";
 
 const PopupHeaderContainer = styled.div`
   background: ${({ theme }) => theme.white};
