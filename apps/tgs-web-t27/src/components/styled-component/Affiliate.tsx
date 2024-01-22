@@ -39,11 +39,10 @@ export const AffiliateTitle = styled.h2`
 `;
 
 export const QRCodeContainer = styled.div`
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.white};
   padding: 16px;
   border-radius: 10px;
   margin-bottom: 18px;
-  border: 1px solid ${({ theme }) => theme.gray};
 `;
 export const ActionButtonContainer = styled.div`
   width: 288px;

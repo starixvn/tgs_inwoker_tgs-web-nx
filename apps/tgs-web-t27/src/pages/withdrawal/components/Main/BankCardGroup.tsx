@@ -23,15 +23,39 @@ type BankCardButtonProps = {
 const BankCardButton = styled.div<BankCardButtonProps>`
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 11px;
-  font-size: 14px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
+  gap: 10px;
+  padding: 12px 20px;
+  font-size: 15px;
+  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.g2)};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+    $active ? theme.green : theme.g3};
   width: auto !important;
   cursor: pointer;
   float: left;
+  border-radius: 3px;
+  border: 1px solid ${({ $active, theme }: BankCardButtonProps) =>
+    $active ? "transparent" : theme.g4};
+`;
+
+type ManageBankButtonProps = {
+  $active: boolean;
+  theme: typeof theme;
+};
+const ManageBankButton = styled.div<ManageBankButtonProps>`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  font-size: 15px;
+  color: ${({ $active, theme }: ManageBankButtonProps) => ($active ? theme.white : theme.g2)};
+  background: ${({ $active, theme }: ManageBankButtonProps) =>
+    $active ? theme.primaryGradient : theme.g3};
+  width: auto !important;
+  cursor: pointer;
+  float: left;
+  border-radius: 3px;
+  border: 1px solid ${({ $active, theme }: ManageBankButtonProps) =>
+    $active ? "transparent" : theme.g4};
 `;
 
 const BankCardButtonLabel = styled.div`
@@ -127,11 +151,11 @@ const BankCardGroup = ({
         );
       })}
 
-      <BankCardButton onClick={onhandleManageCardClick} $active={true}>
+      <ManageBankButton onClick={onhandleManageCardClick} $active={true}>
         <Icon iconUrl={iconManage} width={"20px"} height={"20px"} />
 
         <Grid>{i18n.t("withdrawal.manageBank")}</Grid>
-      </BankCardButton>
+      </ManageBankButton>
     </BankCardGroupContainer>
   );
 };

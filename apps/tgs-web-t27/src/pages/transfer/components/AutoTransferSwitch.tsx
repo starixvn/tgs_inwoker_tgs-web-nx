@@ -15,7 +15,7 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
     padding: 2,
     "&.Mui-checked": {
       transform: "translateX(32px)",
-      color: "#fff",
+      color: theme.palette.g5,
       "& + .MuiSwitch-track": {
         opacity: 1,
         backgroundColor: theme.palette.primary,
@@ -67,13 +67,12 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
       {!isLargeDesktopSize && (
         <Button
           sx={{
-            fontSize: "0.9375rem",
+            fontSize: "1.25rem",
             color: theme.white,
-            background: theme.pureBlack,
+            background: theme.primaryGradient,
             border: "none",
-            width: "143px",
-            height: "37px",
-            borderRadius: "6px",
+            height: "50px",
+            borderRadius: "4px",
           }}
           fullWidth
           onClick={() => {
@@ -95,10 +94,10 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
             sx={{
               fontSize: "0.875rem",
               color: theme.white,
-              background: theme.black,
-              width: "147px",
-              height: "37px",
-              borderRadius: "6px",
+              background: theme.primaryGradient,
+              minWidth: "307px",
+              height: "50px",
+              borderRadius: "3px",
             }}
             onClick={() => {
               performWithdrawFromEveryBrand();

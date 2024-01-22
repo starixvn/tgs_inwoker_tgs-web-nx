@@ -21,6 +21,7 @@ import {
   DetailText,
   TurnoverTextWrapper,
 } from "@/components/styled-component/WithdrawV2/Main";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const MainDesktop = ({
   amount,
@@ -45,11 +46,13 @@ const MainDesktop = ({
     getTransferLimit(cardList[selectedCardIndex].paymentchannelid);
   }, [cardList, getTransferLimit, selectedCardIndex]);
   const history = useHistory();
+  const { isDesktopSize } = useRwd();
+
   return (
     <>
       {/* Please choose bank */}
       <ItemContainer>
-        {/* <StepTitle step={1} title={i18n.t("withdrawal.msgEnterBank")} /> */}
+        <StepTitle step={1} title={i18n.t("withdrawal.msgEnterBank")} />
 
         <SelectionContainer>
           <BankCardGroup
@@ -180,7 +183,7 @@ const MainDesktop = ({
         )}
         onClick={handleWithdrawalClick}
         sx={{
-          width: "250px",
+          width: isDesktopSize ? "250px" : "100%",
         }}
       >
         {i18n.t("common.nextStep")}

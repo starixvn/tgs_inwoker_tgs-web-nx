@@ -8,7 +8,7 @@ const DateRangContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 12px;
-  height: 40px;
+  height: 47px;
 `;
 
 type DateRangSelectionTypes = {
@@ -20,17 +20,17 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   cursor: pointer;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.primary : "transparent";
+    return $isSelected ? theme.green : theme.g3;
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.pureBlack : theme.white;
+    return $isSelected ? theme.white : theme.g2;
   }};
   border: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? "transparent" : `1px solid ${theme.white}`;
+    return $isSelected ? "transparent" : `1px solid ${theme.g4}`;
   }};
-  border-radius: 6px;
-  padding: 11.5px 16px;
-  font-size: 0.812rem;
+  border-radius: 3px;
+  padding: 12px 20px;
+  font-size: 0.875rem;
   display: flex;
   align-items: center;
 `;

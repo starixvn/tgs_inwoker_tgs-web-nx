@@ -26,10 +26,10 @@ const DateSpliter = styled.div`
   font-weight: 400;
   color: ${({ theme }) => theme.white};
   text-align: center;
-  padding: 12px;
+  padding: 10px;
 `;
 const DateInner = styled.div`
-  width: 159px;
+  width: 182px;
   height: 100%;
 `;
 

@@ -26,8 +26,8 @@ const VipBanner = styled.div<{ $imageUrl: string }>`
 
 const VipBannerWrapper = styled.div`
   width: 100%;
-  padding: 12px;
   background-color: ${({ theme }) => theme.mainBackground};
+  margin-bottom: 8px;
 `;
 
 const VipContentContainer = styled.div`
@@ -35,15 +35,13 @@ const VipContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
-  padding: 12px;
+  /* background-color: ${({ theme }) => theme.mainBackground}; */
   gap: 16px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: 40px;
-    padding: 10px;
   }
 `;
 
@@ -69,8 +67,7 @@ const VIP = () => {
 
   return (
     <PageContainer>
-      {isDesktopSize && <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.png`} />}
-      {isMobileSize && <VipBannerWrapper><VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} /></VipBannerWrapper>}
+      <VipBannerWrapper><VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} /></VipBannerWrapper>
       <VipContentContainer>
         <BonusTable vipSortingData={vipSortingData} />
         <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />

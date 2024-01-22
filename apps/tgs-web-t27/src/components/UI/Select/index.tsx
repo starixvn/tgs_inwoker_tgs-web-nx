@@ -6,6 +6,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   fontSize: "0.937rem",
   fontWeight: 400,
   border: "none",
+  background: "#1A1C20",
   "&:focus": {
     background: "none",
   },
@@ -32,8 +33,27 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
       background: "#828282 !important",
     },
   },
-  "& .MuiSvgIcon-root": {
-    color: theme.palette.text.primary,
+  "& .MuiOutlinedInput-root": {
+    "& fieldset": {
+      border: "none",
+    },
+    "&:hover fieldset": {
+      border: "none !important",
+    },
+    "&.Mui-focused fieldset": {
+      border: "none",
+    },
+    "&.Mui-disabled": {
+      input: {
+        WebkitTextFillColor: `${theme.palette.text.primary}`,
+      },
+    },
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "none",
+  },
+  "& .css-xrq6d6-MuiSvgIcon-root-MuiNativeSelect-icon": {
+    color: "white !important",
   },
 }));
 

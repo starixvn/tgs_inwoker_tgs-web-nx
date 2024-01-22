@@ -6,7 +6,7 @@ import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.g5};
   padding: 10px;
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.318rem;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.g2};
   }
 
   & .value {
@@ -30,7 +30,7 @@ const AffiliateInfoRowContainer = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-right: 6px;
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.white};
   }
 
   & .button {
@@ -70,10 +70,10 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         onClick={handleCopyText}
         variant={isCopied ? "outlined" : "contained"}
         sx={{
-          color: theme.pureBlack,
-          background: theme.goldGradient,
-          fontSize: "20px",
-          padding: "8px 24px",
+          color: theme.white,
+          background: theme.green,
+          fontSize: "16px",
+          padding: "4px",
         }}
       >
         {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}

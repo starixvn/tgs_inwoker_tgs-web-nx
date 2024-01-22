@@ -21,6 +21,8 @@ const NavCardContainer = styled.div`
   -webkit-transition-duration: 0.4s; /* Safari */
   overflow: visible;
 
+  border: 1px solid red;
+
   ${media.sm} {
     background: ${({ theme }) => theme.mainLightBackground};
     //width: calc((100% - 7 * 8px) / 8);

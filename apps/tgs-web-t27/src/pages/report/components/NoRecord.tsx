@@ -27,7 +27,7 @@ const NoRecordContainer = styled.div`
 
 const NoDataText = styled.div`
   font-size: 1.062rem;
-  color: ${({ theme }) => theme.gray10};
+  color: ${({ theme }) => theme.g6};
 `;
 
 const NoRecord = () => {

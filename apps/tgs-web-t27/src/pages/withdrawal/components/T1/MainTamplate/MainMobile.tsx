@@ -106,21 +106,20 @@ const MainMobile = ({
 
       {/*請輸入提款金額*/}
       <ItemContainer>
-        <LabelContainer>{i18n.t("common.amount")}</LabelContainer>
+        {/* <LabelContainer>{i18n.t("common.amount")}</LabelContainer> */}
         <FormControl variant="outlined">
           <TextField
             fullWidth
             value={amount}
             onChange={handleAmountChange}
             type={"number"}
-            placeholder={`${
-              selectedCardIndex != null
-                ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(
-                    max,
-                  )})`
-                : i18n.t("withdrawal.enterAmount")
-            }`}
+            placeholder={`${selectedCardIndex != null
+              ? i18n.t("withdrawal.enterAmount") +
+              ` (${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(
+                max,
+              )})`
+              : i18n.t("withdrawal.enterAmount")
+              }`}
           />
         </FormControl>
       </ItemContainer>
@@ -160,9 +159,9 @@ const MainMobile = ({
         fullWidth
         disabled={Boolean(
           isNaN(parseFloat(amount)) ||
-            parseFloat(amount) < min ||
-            parseFloat(amount) > max ||
-            !!disabled,
+          parseFloat(amount) < min ||
+          parseFloat(amount) > max ||
+          !!disabled,
         )}
         onClick={handleWithdrawalClick}
       >

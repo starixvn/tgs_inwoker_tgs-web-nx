@@ -15,6 +15,7 @@ import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuBu
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
+import AccountNavigations from "@/pages/account/components/AccountNavigations";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -68,6 +69,7 @@ const ChildrenWrapper = styled.div`
   ${media.sm} {
     width: 100%;
     padding: 30px 0px;
+    gap: 20px;
   }
 `;
 
@@ -87,9 +89,9 @@ const AccountDesktopLayout = ({ children }: Props) => {
               <DarkMemberMenu
                 handleCloseContextMenu={() => {}}
                 style={{
-                  width: "180px",
+                  width: "258px",
                   flexShrink: 0,
-                  minHeight: "800px",
+                  minHeight: "540px",
                 }}
               />
               {children}

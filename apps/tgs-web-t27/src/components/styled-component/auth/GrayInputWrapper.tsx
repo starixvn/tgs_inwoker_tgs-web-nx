@@ -7,4 +7,5 @@ export const GrayInputWrapper = styled.div`
   /* border: 1px solid ${({ theme }) => theme.gray}; input外框線 */
   border-radius: 6px;
   /* overflow: visible; */
+  background-color: ${({ theme }) => theme.g5};
 `;

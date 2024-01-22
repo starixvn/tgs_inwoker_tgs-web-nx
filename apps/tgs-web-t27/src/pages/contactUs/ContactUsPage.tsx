@@ -5,7 +5,6 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Support from "@/components/account/Support";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconContact from "@/assets/t19/images/account/navItemWhite/icon-contact.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 
 const ContactUsPage = () => {
@@ -15,9 +14,7 @@ const ContactUsPage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
-      <AccountPaper pageName={i18n.t("common.contactus")} iconUrl={iconContact}>
-        <Support />
-      </AccountPaper>
+      <Support />
     </PageContainer>
   );
 };
