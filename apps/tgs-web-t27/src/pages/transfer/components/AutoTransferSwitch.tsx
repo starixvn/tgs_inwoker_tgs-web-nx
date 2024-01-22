@@ -67,13 +67,12 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
       {!isLargeDesktopSize && (
         <Button
           sx={{
-            fontSize: "0.9375rem",
+            fontSize: "1.25rem",
             color: theme.white,
-            background: theme.pureBlack,
+            background: theme.primaryGradient,
             border: "none",
-            width: "143px",
-            height: "37px",
-            borderRadius: "6px",
+            height: "50px",
+            borderRadius: "4px",
           }}
           fullWidth
           onClick={() => {
@@ -96,9 +95,9 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
               fontSize: "0.875rem",
               color: theme.white,
               background: theme.primaryGradient,
-              width: "147px",
-              height: "37px",
-              borderRadius: "6px",
+              minWidth: "307px",
+              height: "50px",
+              borderRadius: "3px",
             }}
             onClick={() => {
               performWithdrawFromEveryBrand();

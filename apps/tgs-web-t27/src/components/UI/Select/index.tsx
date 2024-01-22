@@ -51,6 +51,9 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
   },
+  "& .css-xrq6d6-MuiSvgIcon-root-MuiNativeSelect-icon": {
+    color: "white !important",
+  },
 }));
 
 export const Select = (props: SelectProps) => {

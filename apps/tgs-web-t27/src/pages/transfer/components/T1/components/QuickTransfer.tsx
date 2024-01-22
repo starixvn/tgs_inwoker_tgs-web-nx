@@ -189,7 +189,7 @@ const QuickTransfer = ({
         style={{
           color: theme.white,
           background: theme.secondaryGradient,
-          width: "307px",
+          minWidth: "307px",
           height: "50px",
           borderRadius: "3px",
         }}
