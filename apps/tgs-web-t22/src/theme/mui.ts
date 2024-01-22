@@ -32,6 +32,7 @@ declare module "@mui/material/styles/createPalette" {
     primaryBtn: string,
     secondaryGradient: string,
     secondaryBtn: string,
+    headerBg: string,
     navMenuBackground: string,
     navTextDefault: string,
     labelText: string,
@@ -97,7 +98,7 @@ const muiTheme = createTheme({
     primaryBtn: theme.primaryBtn,
     secondaryBtn: theme.secondaryBtn,
     navMenuBackground: theme.navMenuBackground,
-    
+    headerBg: theme.headerBg,
     navTextDefault: theme.navTextDefault,
     labelText: theme.labelText,
     navItemBackground: theme.navItemBackground,

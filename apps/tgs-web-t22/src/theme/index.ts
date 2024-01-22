@@ -1,5 +1,6 @@
 import primaryBtn from "@/assets/t22/images/header/primaryBtn.png";
 import secondaryBtn from "@/assets/t22/images/header/secondaryBtn.png";
+import headerBg from "@/assets/t22/images/header/headerBg.png";
 
 export const theme = {
   primary: "#FEBA34",
@@ -29,6 +30,7 @@ export const theme = {
   secondaryGradient: "linear-gradient(180deg, #D8AC8D 0%, #BF8A63 100%)",
   primaryBtn: `url("${primaryBtn}")`,
   secondaryBtn: `url("${secondaryBtn}")`,
+  headerBg: `url("${headerBg}")`,
   navMenuBackground: "#E2DFDE",
   navTextDefault: "#656565",
   labelText: "#AB7F63",

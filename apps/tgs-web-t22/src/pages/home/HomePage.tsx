@@ -5,8 +5,8 @@ import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/fe
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useParams } from "react-router-dom";
-import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
+import HeaderCard from "@/pages/home/components/HeaderCard";
 import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -26,7 +26,6 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  padding: 0px 8px 12px 8px;
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
@@ -36,7 +35,6 @@ const MainWrapper = styled.div`
     margin: 0 auto;
     gap: unset;
     height: unset;
-    padding: 0px 0px 0px 0px;
   }
 `;
 
@@ -147,6 +145,7 @@ const HomePage = () => {
   }, [urlGameType]);
   return (
     <MainWrapper>
+      
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
@@ -166,6 +165,8 @@ const HomePage = () => {
         </BannerWrapper>
       ) : null}
 
+      
+
       {/* if uer did't setting baner, still show marquee and jackpot */}
       {!hasActiveDesktopBanner() && isDesktopSize && (
         <MarqueeContainer>
@@ -179,12 +180,12 @@ const HomePage = () => {
               <marquee>
                 {marquees.map((item, index) => {
                   const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
-      `;
+                    *${
+                      item.localization !== null && item.localization.content
+                        ? item.localization.content
+                        : item.content
+                    }
+                  `;
                   return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
                 })}
                 {/*@ts-ignore*/}
@@ -202,11 +203,12 @@ const HomePage = () => {
         </MarqueeContainer>
       )}
 
-      {isMobileSize && <CardPrompt />}
 
       <MainContentWrapper>
+        <HeaderCard />
         <CategoryRenderer />
       </MainContentWrapper>
+
     </MainWrapper>
   );
 };
