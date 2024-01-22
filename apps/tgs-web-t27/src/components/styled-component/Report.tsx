@@ -5,7 +5,7 @@ import { media } from "@/theme/breakpoints";
 export const ReportContainer = styled.div``;
 export const ReportSummary = styled.div`
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   border-radius: 5px;
   margin-bottom: 5px;
 
@@ -21,14 +21,14 @@ export const ReportSummaryRow = styled.div`
 export const ReportSummaryCol = styled.div``;
 export const ReportCardsContainer = styled.div`
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   border-radius: 5px;
   margin-bottom: 5px;
 `;
 export const ReportCard = styled.div`
   padding: 16px;
   font-size: 0.8rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   background: ${({ theme }) => theme.gray};
   border-radius: 5px;
   margin-bottom: 10px;
@@ -56,7 +56,7 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontWeight: 500,
     whiteSpace: "nowrap",
     padding: "0 5px",
-    color: theme.palette.black,
+    color: theme.palette.white,
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
