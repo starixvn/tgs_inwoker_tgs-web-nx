@@ -1,0 +1,50 @@
+import primaryBtn from "@/assets/t22/images/header/primaryBtn.png";
+import secondaryBtn from "@/assets/t22/images/header/secondaryBtn.png";
+import headerBg from "@/assets/t22/images/header/headerBg.png";
+
+export const theme = {
+  primary: "#FEBA34",
+  secondary: "#7C95FF",
+  
+  gradient: "linear-gradient(315deg, #F37A3F 14.64%, #FFA23E 85.36%)",
+  blue60: "#0E6399",
+  blue50: "#0F548B",
+  blue40: "#3281D0",
+  blue30: "#399FDA",
+  blue20: "#E7F1FB",
+  blue10: "#CBDEED",
+  blueBtn: "#3158FF",
+  gray10: "#D6DBDD",
+  gray20: "#F0EFF5",
+  gray30: "#A7AEBB",
+  gray40: "#8C9099",
+  gray50: "#535867",
+  text: "#535867",
+  gray60: "#333333",
+  gray70: "#484848",
+  gray80: "#777777",
+
+  // t22 setting
+  mainBackground: "#F9F6E8",
+  primaryGradient: "linear-gradient(180deg, #C79B7D 0%, #895C43 100%)",
+  secondaryGradient: "linear-gradient(180deg, #D8AC8D 0%, #BF8A63 100%)",
+  primaryBtn: `url("${primaryBtn}")`,
+  secondaryBtn: `url("${secondaryBtn}")`,
+  headerBg: `url("${headerBg}")`,
+  navMenuBackground: "#E2DFDE",
+  navTextDefault: "#656565",
+  labelText: "#AB7F63",
+  navItemBackground: "rgba(255, 255, 255, 0.2)",
+  activeTab: "#9A604C",
+  defaultTab: "#B7967F",
+  white: "#FFFFFF",
+  gray01: "#E8E0D6",
+  gray02: "#989898",
+  black: "#262626",
+  lightWhite: "rgba(255, 255, 255, .54)",
+  lightBlack: "rgba(0, 0, 0, 0.64)",
+  inputBackground: "rgba(178, 171, 166, 0.6)",
+  green: "#4CCA51",
+  red: "#FE0100",
+  yellow: "#FFC700",
+};

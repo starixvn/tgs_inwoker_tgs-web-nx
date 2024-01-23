@@ -1,0 +1,49 @@
+import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
+import { theme } from "@/theme";
+import { useCreatePlayerStage } from "@/hooks/stage/useCreatePlayerStage";
+import FormikForm from "@/components/project/FormikForm";
+import { Checkbox } from "@/components/UI/Checkbox";
+
+const VerifyAgeContainer = styled.div`
+  width: 100%;
+  color: ${({ theme }) => theme.white};
+  font-size: 0.875rem;
+  display: flex;
+  align-items: start;
+`;
+
+const CreatePlayerStage = () => {
+  const {
+    formInputConfigList,
+    formik,
+    isLoading,
+    registerError,
+    //  confirmAdult
+    isConfirmedAdult,
+    handleClickConfirmAdult,
+  } = useCreatePlayerStage();
+  return (
+    <FormikForm
+      formInputList={formInputConfigList}
+      formik={formik}
+      isLoading={isLoading}
+      error={registerError}
+      buttonText={i18n.t("createaccount")}
+    >
+      <VerifyAgeContainer>
+        <Checkbox 
+          value={isConfirmedAdult}
+          onClick={handleClickConfirmAdult}
+          style={{
+            padding: "0px 5px 0px",
+            color: theme.white,
+        }}
+        />
+        {i18n.t("web.register.contract")}
+      </VerifyAgeContainer>
+    </FormikForm>
+  );
+};
+
+export default CreatePlayerStage;
