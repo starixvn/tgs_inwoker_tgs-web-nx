@@ -21,7 +21,11 @@ const TransferPage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
-      <AccountPaper pageName={i18n.t("common.transfer")} iconUrl={iconTransfer}>
+      <AccountPaper
+        pageName={i18n.t("common.transfer")}
+        iconUrl={iconTransfer}
+        hidePaperColorInMobile={true}
+      >
         <TransferPrevV2
           alert={alert}
           history={history}

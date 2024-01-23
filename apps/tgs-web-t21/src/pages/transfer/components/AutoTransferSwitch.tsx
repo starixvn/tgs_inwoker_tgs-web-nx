@@ -29,6 +29,8 @@ const AutoTransferContainer = styled.div`
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
+  color: ${({ theme }) => theme.gray80};
+  font-size: 14px;
 
   ${media.md} {
     flex-wrap: nowrap;
