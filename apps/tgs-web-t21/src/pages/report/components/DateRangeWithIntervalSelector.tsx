@@ -8,7 +8,6 @@ const DateRangContainer = styled.div`
   //align-items: center;
   justify-content: center;
   gap: 13px;
-  height: 47px;
 `;
 
 type DateRangSelectionTypes = {
@@ -20,13 +19,16 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   cursor: pointer;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.blue40 : theme.blue20;
+    return $isSelected ? theme.primary : theme.white;
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.white : theme.text;
+    return $isSelected ? theme.white : theme.gray80;
   }};
-  padding: 12px 20px;
+  border: 2px solid ${({ theme }) => theme.primary};
+  border-radius: 6px;
+  padding: 7px 15px;
   font-size: 0.812rem;
+  line-height: 17.25px;
   display: flex;
   align-items: center;
 `;
@@ -42,7 +44,11 @@ type Props = {
   handleDateRangeChange: (dateRange: DateRangeEnum) => void;
   isSelectedDateRange: boolean;
 };
-const DateRangeWithIntervalSelector = ({ dateRange, handleDateRangeChange, isSelectedDateRange }: Props) => {
+const DateRangeWithIntervalSelector = ({
+  dateRange,
+  handleDateRangeChange,
+  isSelectedDateRange,
+}: Props) => {
   return (
     <DateRangContainer>
       <DateRangSelection

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import noResultImg from "@/assets/t18/images/report/no_result.svg";
+import noResultImg from "@/assets/t21/images/report/no_result.svg";
 
 const NoRecordWrapper = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const NoRecordContainer = styled.div`
 
 const NoDataText = styled.div`
   font-size: 1.062rem;
-  color: ${({ theme }) => theme.gray10};
+  color: ${({ theme }) => theme.gray30};
 `;
 
 const NoRecord = () => {
