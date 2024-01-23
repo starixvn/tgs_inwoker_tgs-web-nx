@@ -14,6 +14,7 @@ import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 
 const CardManageContainer = styled.div`
   width: 100%;
+  padding: 0 18px;
 `;
 
 type Props = {
@@ -62,14 +63,12 @@ const CardManage = ({
 
   return (
     <CardManageContainer>
-      {isDesktopSize && (
-        <FormTitle
-          title={i18n.t("card.title")}
-          isCustomizedBrand={isCustomizedBrand}
-          isShowAddCardButton={isShowAddCardButton}
-          handleClickAddCard={onhandleAddCardClick}
-        />
-      )}
+      <FormTitle
+        title={i18n.t("card.title")}
+        isCustomizedBrand={isCustomizedBrand}
+        isShowAddCardButton={isShowAddCardButton}
+        handleClickAddCard={onhandleAddCardClick}
+      />
 
       <CardContainer>
         {bankCardList.map((item, key) => {

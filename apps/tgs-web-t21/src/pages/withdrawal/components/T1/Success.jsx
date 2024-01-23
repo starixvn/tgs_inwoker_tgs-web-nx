@@ -1,6 +1,6 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import SuccessPNG from "@/assets/t21/images/withdraw/icon-check.svg";
+import SuccessPNG from "@/assets/t21/images/withdraw/icon-check.png";
 import { Button as CustomButton } from "@/components/UI/Button";
 import {
   Container,
@@ -15,7 +15,9 @@ const Success = ({ verified, handleConfirmClick, handleVerifyName }) => {
       <ImgSuccess src={SuccessPNG} />
       <SuccessMessage>{i18n.t("withdrawal.msgSuccess")}</SuccessMessage>
       <SameLine>
-        <CustomButton onClick={handleConfirmClick}>{i18n.t("common.confirm")}</CustomButton>
+        <CustomButton onClick={handleConfirmClick} fullWidth={true}>
+          {i18n.t("common.confirm")}
+        </CustomButton>
         {!verified && (
           <CustomButton onClick={handleVerifyName}>{i18n.t("verified.goVerify")}</CustomButton>
         )}

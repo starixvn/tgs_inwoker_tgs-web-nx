@@ -7,14 +7,15 @@ import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
 const ButtonContainer = styled.div`
   cursor: pointer;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.15rem;
   color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.primary};
-  padding: 10px 22px;
   gap: 8px;
+  border-radius: 5px;
+  padding: 5px;
 `;
 
 type Props = {

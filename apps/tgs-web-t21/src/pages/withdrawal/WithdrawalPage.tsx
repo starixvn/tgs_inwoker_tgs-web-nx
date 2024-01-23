@@ -29,7 +29,11 @@ const WithdrawalPage = () => {
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
 
-      <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
+      <AccountPaper
+        pageName={i18n.t("common.withdrawal")}
+        iconUrl={iconWithdrawal}
+        hidePaperColorInMobile={true}
+      >
         <WithdrawalPrevV2
           appHistory={history}
           alert={alert}

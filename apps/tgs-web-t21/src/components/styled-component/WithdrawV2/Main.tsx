@@ -58,7 +58,7 @@ export const ManageBankCardButtonContainer = styled.div`
   display: flex;
   justify-content: end;
   align-self: flex-start;
-  margin-top: 10px;
+  margin-top: 8px;
 `;
 export const ItemContainer = styled(ProfileItemContainer)`
   ${media.sm} {
@@ -88,7 +88,7 @@ export const LimitPopupContainer = styled.div`
 `;
 export const Turnover = styled.div`
   /* display: flex; */
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.gray80};
   /* span {
     margin-left: 5px;
     color: ${({ theme }) => theme.secondary};

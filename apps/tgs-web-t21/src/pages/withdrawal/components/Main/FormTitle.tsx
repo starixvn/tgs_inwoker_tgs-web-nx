@@ -7,13 +7,16 @@ import CardAddButton from "@/pages/withdrawal/components/CardManage/CardAddButto
 const TitleWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   margin-bottom: 16px;
   height: 46px;
 `;
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.primary};
+  font-size: 1.5rem;
+  font-weight: 700;
 `;
 
 type Props = {
@@ -30,12 +33,12 @@ const FormTitle = ({
 }: Props) => {
   return (
     <TitleWrapper>
-      <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />
+      {/*<Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />*/}
       <Title>{title}</Title>
 
-      {!isCustomizedBrand && isShowAddCardButton && handleClickAddCard && (
-        <CardAddButton handleClick={handleClickAddCard} />
-      )}
+      {/*{!isCustomizedBrand && isShowAddCardButton && handleClickAddCard && (*/}
+      {/*  <CardAddButton handleClick={handleClickAddCard} />*/}
+      {/*)}*/}
     </TitleWrapper>
   );
 };
