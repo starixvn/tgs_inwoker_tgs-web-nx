@@ -1,49 +1,40 @@
-import React, { HTMLProps } from "react";
 import styled from "styled-components";
 import { useJackpot } from "@tgs-web-nx/core/features";
+import bg from "@/assets/t22/images/home/jackpot.png";
+import { media } from "@/theme/breakpoints";
 
 const JackpotContainer = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 40px;
-  overflow: visible;
-`;
-
-const Background = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: none;
   width: 100%;
-  height: 100%;
-  transform: skewX(-30deg);
-  background: linear-gradient(180deg, #c93131 0%, #a41616 100%);
-  z-index: 1;
+  background: url(${bg}) center no-repeat;
+  background-size: cover;
+
+  ${media.sm} {
+    display: block;
+  }
 `;
 
-const JackpotContent = styled.div`
-  z-index: 2;
+const Content = styled.div`
+  margin: 0 auto;
+  padding: 15px 0 55px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 35px;
+  align-items: center;
+  width: 300px;
 `;
 
-const Title = styled.div`
+const Amount = styled.p`
   font-size: 1.5rem;
-  font-weight: 700;
 `;
 
-const Amount = styled.div`
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-style: italic;
+const Title = styled(Amount)`
+  margin-right: 10px;
+  color: #FDCB5B;
 `;
 
-type Props = HTMLProps<HTMLDivElement>;
 
-const Jackpot = ({ ...others }: Props) => {
+
+const Jackpot = () => {
   const { jackpotAmount } = useJackpot();
 
   const formatAmount = (amount: number, locales = "en-US") => {
@@ -53,15 +44,13 @@ const Jackpot = ({ ...others }: Props) => {
       useGrouping: true,
     });
   };
-  return (
-    //@ts-ignore
-    <JackpotContainer {...others}>
-      <Background />
 
-      <JackpotContent>
+  return (
+    <JackpotContainer >
+      <Content>
         <Title>Jackpot</Title>
-        <Amount>{formatAmount(jackpotAmount, "vi-VN")}</Amount>
-      </JackpotContent>
+        <Amount>$ {formatAmount(jackpotAmount, "vi-VN")}</Amount>
+      </Content>
     </JackpotContainer>
   );
 };
