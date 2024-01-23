@@ -13,7 +13,14 @@ const BottomAppBarContainer = styled.div`
   top: auto;
   bottom: 0;
   left: 0;
-  background:  ${({ theme }) => theme.g4};
+  background:  ${({ theme }) => theme.mainBackground};
+  border-top: 2px solid ${({ theme }) => theme.primary};
+`;
+
+const BottomAppBarInner = styled.div`
+  padding: 0 20px;
+
+  border: 1px solid red;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -21,6 +28,7 @@ const BottomAppBarContainer = styled.div`
   z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
 `;
+
 
 const BottomAppBar = () => {
   const {
@@ -39,21 +47,22 @@ const BottomAppBar = () => {
   return (
     <>
       <BottomAppBarContainer>
-        {bottomNavItemList.map((bottomNavItem) => {
-          const { key, label, navType, iconComponent, gameType } = bottomNavItem;
-
-          return (
-            <BottomNav
-              key={key}
-              label={label}
-              navType={navType}
-              isActive={gameType === activeGameType && label === isSelected}
-              onClick={() => handleNavItemClick(bottomNavItem)}
-            >
-              {iconComponent && React.createElement(iconComponent)}
-            </BottomNav>
-          );
-        })}
+        <BottomAppBarInner>
+          {bottomNavItemList.map((bottomNavItem) => {
+            const { key, label, iconComponent } = bottomNavItem;
+            console.log(label, isSelected)
+            return (
+              <BottomNav
+                key={key}
+                label={label}
+                isActive={label === isSelected}
+                onClick={() => handleNavItemClick(bottomNavItem)}
+              >
+                {iconComponent && React.createElement(iconComponent)}
+              </BottomNav>
+            );
+          })}
+        </BottomAppBarInner>
       </BottomAppBarContainer>
 
       <TransferMenuDrawer
