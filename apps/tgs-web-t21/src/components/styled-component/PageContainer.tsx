@@ -2,24 +2,24 @@ import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
 
 export const PageContainer = styled.div`
-  padding: 20px;
+  padding: 22px 10px;
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
 
   ${media.sm} {
-    padding: 10px;
+    //padding: 10px;
   }
 `;
 
 export const TransferPageContainer = styled.div`
-  padding: 20px;
+  padding: 22px 10px;
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
 
   ${media.sm} {
-    padding: 10px;
+    //padding: 10px;
   }
 
   & .MuiButton-fullWidth {
@@ -31,12 +31,12 @@ export const TransferPageContainer = styled.div`
 `;
 
 export const DownloadPageContainer = styled.div`
-  padding: 12px;
+  padding: 22px 10px;
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
 
   ${media.sm} {
-    padding: 10px;
+    //padding: 10px;
   }
 `;

@@ -5,9 +5,11 @@ import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 import { media } from "@/theme/breakpoints";
 
 const AccountPaperContainer = styled.div`
+  background: ${({ theme }) => theme.white};
+  padding: 16px 9px;
   ${media.sm} {
-    background: ${({ theme }) => theme.mainBackground};
-    padding: 30px;
+    //background: ${({ theme }) => theme.mainBackground};
+    //padding: 30px;
   }
 `;
 
