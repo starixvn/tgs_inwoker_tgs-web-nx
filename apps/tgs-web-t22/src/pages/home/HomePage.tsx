@@ -9,9 +9,9 @@ import HeaderCard from "@/pages/home/components/HeaderCard";
 import MobileSlider from "@/pages/home/components/Slider";
 import Marquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import Banner from "@/pages/home/components/Banner";
-import bg from "@/assets/t29/images/home/home_bg.png";
+import bg from "@/assets/t22/images/home/homeBackground.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import Jackpot from "@/components/project/Jackpot";
@@ -47,26 +47,36 @@ const BannerWrapper = styled.div`
 `;
 
 const MainContentWrapper = styled.div`
+  padding: 5px;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
 
   ${media.sm} {
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
+    padding: 80px 20px;
     gap: unset;
-    background-image: url(${bg});
-    background-size: unset;
-    background-repeat: repeat;
+    max-width: calc(${SUB_CONTENT_MAX_WIDTH} - 40px);
   }
 `;
+
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => theme.mainBackground};
+
+  ${media.sm} {
+    background: url(${bg}) center no-repeat;
+    background-size: cover;
+  }
+`;
+
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
@@ -145,12 +155,14 @@ const HomePage = () => {
       {renderBanner()}
 
       {isDesktopSize && <Marquee />}
-      {/* <Jackpot /> */}
-            
-      <MainContentWrapper>
-        <HeaderCard />
-        <CategoryRenderer />
-      </MainContentWrapper>
+      
+      <Background>
+        <MainContentWrapper>
+          <HeaderCard />
+          <Jackpot />
+          <CategoryRenderer />
+        </MainContentWrapper>
+      </Background>
 
     </MainWrapper>
   );
