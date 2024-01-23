@@ -175,8 +175,10 @@ const MaintenancePage = () => {
           )}
         </TextContainer>
         <ButtonGroupContainer>
-          {showContactButton && <CSButton onClick={handleCSClick}>Contact Customer</CSButton>}
-          {showImButton && <IMButton onClick={handleIMClick}>Instant Messaging</IMButton>}
+          {showContactButton && (
+            <CSButton onClick={handleCSClick}>{i18n.t("support.online")}</CSButton>
+          )}
+          {showImButton && <IMButton onClick={handleIMClick}>{i18n.t("panel.im")}</IMButton>}
         </ButtonGroupContainer>
       </ContentContainer>
     </MaintenanceContainer>
