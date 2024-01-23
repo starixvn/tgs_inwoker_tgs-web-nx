@@ -14,7 +14,7 @@ const Label = styled.div`
   font-weight: 400;
   padding: 3px 15px;
   border-radius: 50px;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.gray};
   position: absolute;
   top: 0;
   left: 0;

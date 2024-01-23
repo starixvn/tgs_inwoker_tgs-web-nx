@@ -16,6 +16,7 @@ const BottomAppBarContainer = styled.div`
   left: 0;
   background:  ${({ theme }) => theme.mainBackground};
   border-top: 2px solid ${({ theme }) => theme.primary};
+  z-index: 1000; // cant be grater then 1300 or will block Dialog
 `;
 
 const BottomAppBarInner = styled.div`
@@ -24,7 +25,6 @@ const BottomAppBarInner = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   padding: 0 20px;
-  z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
 `;
 

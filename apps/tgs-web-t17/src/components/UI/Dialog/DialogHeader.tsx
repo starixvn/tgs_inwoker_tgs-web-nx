@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import backIcon from "@/assets/t27/images/dialog/icon-close.svg";
+import backIcon from "@/assets/t17/images/dialog/icon-close.svg";
 import Icon from "@/components/project/Icon";
 import { DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 
@@ -14,6 +14,7 @@ const DialogHeaderContainer = styled.div`
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.darkGray};
   font-size: 1.125rem;
   font-weight: 700;
   margin: 0;

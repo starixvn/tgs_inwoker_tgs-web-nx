@@ -12,7 +12,7 @@ import { DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.black};
+  background: ${({ theme }) => theme.mainBackground};
 `;
 
 const ContentWrapper = styled.div`

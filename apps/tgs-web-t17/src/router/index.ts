@@ -64,7 +64,7 @@ const routes: RouteType[] = [
   {
     path: "/account",
     component: AccountPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: "/deposit",

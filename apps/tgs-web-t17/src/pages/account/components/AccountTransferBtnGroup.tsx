@@ -33,7 +33,7 @@ const AccountTransferBtnGroup = ({ buttonWidth }: Props) => {
       <HeaderButton
         onClick={handleGotoDeposit}
         style={{
-          background: theme.btnGradient,
+          background: theme.primaryGradient,
           width: buttonWidth ?? "87px",
         }}
       >
@@ -44,7 +44,7 @@ const AccountTransferBtnGroup = ({ buttonWidth }: Props) => {
         color={"primary"}
         onClick={handleGotoWithdrawal}
         style={{
-          background: theme.btnGradient,
+          background: theme.primaryGradient,
           width: buttonWidth ?? "112px",
         }}
       >
