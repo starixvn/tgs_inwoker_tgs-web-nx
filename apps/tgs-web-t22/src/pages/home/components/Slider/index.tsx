@@ -5,25 +5,36 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import styled from "styled-components";
 
+
+const SlickDot = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 1px solid ${({theme}) => theme.white};
+`;
+
 const SlickWrapper = styled(Slick) <{ $maxHeight?: string }>`
+  margin: 0 auto;
   max-height: ${(props) => props.$maxHeight};
   width: 100%;
-  margin: 0 auto;
+
+  & ul li {
+    width: 6px;
+    height: 6px;
+  }
+
+  & ul li.slick-active ${SlickDot} {
+    background: ${({theme}) => theme.white} !important;
+  }
+
+  & .slick-slide {
+    line-height: 0;
+  }
 `;
 
 const SlickImage = styled.img`
   display: block;
-  max-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-`;
-
-const SlickDot = styled.div`
-  width: 5.7px;
-  height: 5.7px;
-  border-radius: 50%;
-  background: #CBDEED;
+  width: 100%;
 `;
 
 const baseSettings = {
@@ -36,12 +47,12 @@ const baseSettings = {
   slidesToScroll: 1,
   speed: 500,
   arrows: false,
-  autoplay: true,
+  autoplay: false,
 
   appendDots: (dots: any) => (
     <div
       style={{
-        marginBottom: "30px",
+        bottom: 0,
       }}
     >
       <ul>{dots}</ul>
@@ -70,11 +81,12 @@ type Props = {
 
 const Slider = ({
   settings,
-  maxHeight
+  maxHeight = '200px'
 }: Props) => {
   const { general } = useGeneralStore();
   const { isMobileSize } = useRwd();
   const sliderSettings = { ...baseSettings, ...settings };
+
   return (
     <SlickWrapper {...sliderSettings} $maxHeight={maxHeight}>
       {general.banner.map((item: bannerProps) => (
@@ -82,7 +94,7 @@ const Slider = ({
           <SlickImage
             src={isMobileSize ? item.mobileurl : item.desktopurl}
             alt={item.alt}
-          ></SlickImage>
+          />
         </a>
       ))}
     </SlickWrapper>
