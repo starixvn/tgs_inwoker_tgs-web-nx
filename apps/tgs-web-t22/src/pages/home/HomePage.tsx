@@ -144,7 +144,7 @@ const HomePage = () => {
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {renderBanner()}
 
-      <Marquee />
+      {isDesktopSize && <Marquee />}
       {/* <Jackpot /> */}
             
       <MainContentWrapper>
