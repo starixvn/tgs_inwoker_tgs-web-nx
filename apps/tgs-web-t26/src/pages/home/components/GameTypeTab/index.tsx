@@ -81,6 +81,7 @@ const GameTypeTab = () => {
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
+    // handleSetActiveProviderFilterTag(null);
   };
 
   useEffect(() => {

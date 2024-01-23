@@ -58,25 +58,11 @@ const GameFilterTag = () => {
 
   const handleFilterClick = (filterTag: FilterTag) => {
     setPrevFilterTag(filterTag);
-
-    if (filterTag.tagType === FilterTagTypeEnum.PROVIDER) {
-      if (filterTag.gpCode === prevFilterTag?.gpCode) {
-        handleChangeActiveProviderFilterTag(allTag);
-        handleChangeActiveFilterTag(allTag);
-        setPrevFilterTag(allTag);
-      } else {
-        handleChangeActiveProviderFilterTag(filterTag);
-        handleChangeActiveFilterTag(allTag);
-      }
+    if (filterTag.tagType === prevFilterTag?.tagType) {
+      handleChangeActiveFilterTag(allTag);
+      setPrevFilterTag(allTag);
     } else {
-      if (filterTag.tagType === prevFilterTag?.tagType) {
-        handleChangeActiveFilterTag(allTag);
-        handleChangeActiveProviderFilterTag(allTag);
-        setPrevFilterTag(allTag);
-      } else {
-        handleChangeActiveFilterTag(filterTag);
-        handleChangeActiveProviderFilterTag(allTag);
-      }
+      handleChangeActiveFilterTag(filterTag);
     }
   };
 

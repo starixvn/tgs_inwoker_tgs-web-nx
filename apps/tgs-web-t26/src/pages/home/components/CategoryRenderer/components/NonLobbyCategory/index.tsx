@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common } from "@tgs-web-nx/utils";
-import { FilterTag, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTag,
+  useGetLobbyCategoryList,
+  useGetNonLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHistory } from "react-router";
-import { useEffect, useState } from "react";
 import ProviderTag from "../../../HomeGameFilterTag/ProviderTag";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
@@ -13,7 +16,6 @@ import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import { useGetNonLobbyCategoryList } from "@/hooks/game/useGetNonLobbyCategoryList";
 
 const Wrapper = styled.div`
   display: flex;
@@ -80,7 +82,6 @@ const GameListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: start;
-  justify-content: center;
   row-gap: 10px;
   column-gap: 10px;
   ${media.sm} {
@@ -122,37 +123,24 @@ const Text = styled.div`
 
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
-  const history = useHistory();
-  const { gameList, isLoading, activeMobileProviderFilterTag, handleSetActiveProviderFilterTag } =
-    useGetNonLobbyCategoryList();
+  const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
-  const {
-    // searchString,
-    // handleChangeSearch,
-    providerFilterTagList,
-    activeProviderFilterTag,
-    handleChangeActiveProviderFilterTag,
-  } = useHomeGameContext();
+  const { providerFilterTagList, activeProviderFilterTag, handleChangeActiveProviderFilterTag } =
+    useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
 
-  const { activeGameType } = useHomeGameContext();
-
   const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
-    handleSetActiveProviderFilterTag(newFilterTag);
     handleChangeActiveProviderFilterTag(newFilterTag);
   };
 
-  useEffect(() => {
-    handleSetActiveProviderFilterTag(null);
-  }, [activeGameType]);
   return (
     <Wrapper>
       {isMobileSize && (
         <>
-          {activeMobileProviderFilterTag ? (
-            <>
-              <GameTypeTab />
-              <CategoryContentWrapper>
+          <GameTypeTab />
+          <CategoryContentWrapper>
+            {activeProviderFilterTag.tagType !== "All" ? (
+              <>
                 <FilterSection>
                   <GameFilterTag />
                 </FilterSection>
@@ -174,15 +162,13 @@ const NonLobbyCategory = () => {
                     {!hasMappingData && !isLoading && <div>No data</div>}
                   </GameListWrapper>
                 </CategoryContent>
-              </CategoryContentWrapper>
-            </>
-          ) : (
-            <>
-              <GameTypeTab />
-              <CategoryContentWrapper>
-                <CategoryContent>
-                  <GameListWrapper>
-                    {providerFilterTagList.map((filterTag) => {
+              </>
+            ) : (
+              <CategoryContent>
+                <GameListWrapper>
+                  {providerFilterTagList
+                    .filter((filterTag) => filterTag.name !== "All")
+                    .map((filterTag) => {
                       const matchedProvider = navPopupCategoryList.find(
                         (provider) => provider.code === filterTag.gpCode,
                       );
@@ -199,11 +185,10 @@ const NonLobbyCategory = () => {
                         />
                       );
                     })}
-                  </GameListWrapper>
-                </CategoryContent>
-              </CategoryContentWrapper>
-            </>
-          )}
+                </GameListWrapper>
+              </CategoryContent>
+            )}
+          </CategoryContentWrapper>
         </>
       )}
 
