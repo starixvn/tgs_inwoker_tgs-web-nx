@@ -1,44 +1,45 @@
 import React, { HTMLProps } from "react";
 import styled from "styled-components";
 import { useJackpot } from "@tgs-web-nx/core/features";
+import jackpotPic from "@/assets/t26/images/home/jackpotPic.png";
 
-const JackpotContainer = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 40px;
-  overflow: visible;
-`;
-
-const Background = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+const JackPotContainer = styled.div`
+  position: relative;
   width: 100%;
-  height: 100%;
-  transform: skewX(-30deg);
-  background: linear-gradient(180deg, #c93131 0%, #a41616 100%);
-  z-index: 1;
+  height: 250px;
+  background-image: url(${jackpotPic});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 `;
 
-const JackpotContent = styled.div`
-  z-index: 2;
+const JackPotText = styled.div`
+  position: absolute;
+  top: 12%;
+  left: 60%;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: 0em;
+  text-align: center;
+`;
+
+const AmountContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 35px;
+  font-size: 62px;
+  font-weight: 400;
+  line-height: 66px;
+  letter-spacing: 0.3em;
+  text-align: center;
+  gap: 10px;
 `;
 
-const Title = styled.div`
-  font-size: 1.5rem;
-  font-weight: 700;
-`;
-
-const Amount = styled.div`
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-style: italic;
+const AmountColumn = styled.div`
+  width: 50px;
+  height: 60px;
 `;
 
 type Props = HTMLProps<HTMLDivElement>;
@@ -46,23 +47,19 @@ type Props = HTMLProps<HTMLDivElement>;
 const Jackpot = ({ ...others }: Props) => {
   const { jackpotAmount } = useJackpot();
 
-  const formatAmount = (amount: number, locales = "en-US") => {
-    return amount.toLocaleString(locales, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1,
-      useGrouping: true,
-    });
-  };
   return (
     //@ts-ignore
-    <JackpotContainer {...others}>
-      <Background />
-
-      <JackpotContent>
-        <Title>Jackpot</Title>
-        <Amount>{formatAmount(jackpotAmount, "vi-VN")}</Amount>
-      </JackpotContent>
-    </JackpotContainer>
+    <JackPotContainer>
+      <JackPotText>MEGA JACKPOT</JackPotText>
+      <AmountContainer>
+        {Array.from(jackpotAmount.toFixed(0).toString()).map((amount, index) => {
+          return <AmountColumn key={index}>{amount}</AmountColumn>;
+        })}
+        <AmountColumn>{0}</AmountColumn>
+        <AmountColumn>{0}</AmountColumn>
+        <AmountColumn>{0}</AmountColumn>
+      </AmountContainer>
+    </JackPotContainer>
   );
 };
 

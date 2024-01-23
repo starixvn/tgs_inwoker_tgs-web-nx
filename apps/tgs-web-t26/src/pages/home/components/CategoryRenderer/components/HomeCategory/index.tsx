@@ -2,16 +2,19 @@ import styled from "styled-components";
 import { usePromotionPage, useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList, useHomeGameContext, useJackpot } from "@tgs-web-nx/core/features";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import CategoryLabel from "./components/CategoryLabel";
+import InfoCardList from "./components/InfoCardList";
 import WinnerCard from "@/pages/home/components//WinnerCard";
 import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
 import LobbyVendorCard from "@/pages/home/components/VendorCard/LobbyVendorCard";
 import GameCard from "@/pages/home/components/GameCard";
 import ButtonText from "@/pages/home/components/ButtonText";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import Jackpot from "@/components/project/Jackpot";
 
 import slot_home from "@/assets/t26/images/home/slot_home.svg";
 import live_home from "@/assets/t26/images/home/live_home.svg";
@@ -24,7 +27,6 @@ import sportBG from "@/assets/t26/images/home/sportBG.png";
 import sportsImg from "@/assets/t26/images/home/sports_home.png";
 import soccerballImg from "@/assets/t26/images/home/soccerball.png";
 import BannerImage from "@/pages/promotion/components/BannerImage";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const DesktopContainer = styled.div`
   display: flex;
@@ -258,7 +260,8 @@ const HomeCategory = () => {
 
   return (
     <DesktopContainer>
-      {/* todo: jackpot */}
+      <Jackpot />
+      <InfoCardList />
       <HomeLobbyCategory>
         <CategoryTitle>
           <CategoryLabel imageUrl={live_home} text={i18n.t("common.live")} />

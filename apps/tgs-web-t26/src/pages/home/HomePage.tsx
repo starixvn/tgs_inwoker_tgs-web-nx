@@ -18,7 +18,6 @@ import bg from "@/assets/t29/images/home/home_bg.png";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import notification from "@/assets/t26/images/home/notify.svg";
-import Jackpot from "@/components/project/Jackpot";
 import useBanner from "@/hooks/home/useBanner";
 
 const MainWrapper = styled.div`
