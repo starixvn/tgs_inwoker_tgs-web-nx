@@ -8,7 +8,7 @@ const CustomLabel = styled.div`
   font-size: 1.125rem;
   font-weight: 700;
   margin-left: 3px;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.primary};
 `;
 
 const ButtonWrapper = styled.div`

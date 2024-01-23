@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
 import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
-import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { CloseButton } from "@/components/styled-component/ProfileForms";
 
 const ErrorMessageContainer = styled.div`
   color: ${({ theme }) => theme.red};
@@ -80,9 +80,9 @@ const FormikForm = ({
         </ErrorMessageContainer>
       )}
 
-      <SubmitButton fullWidth={true} type={"submit"} disabled={isLoading}>
+      <CloseButton fullWidth={true} type={"submit"} disabled={isLoading}>
         {buttonText}
-      </SubmitButton>
+      </CloseButton>
     </Form>
   );
 };

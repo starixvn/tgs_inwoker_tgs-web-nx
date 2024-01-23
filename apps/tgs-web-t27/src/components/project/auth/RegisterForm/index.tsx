@@ -13,16 +13,26 @@ import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 import logoBg from "@/assets/t27/images/dialog/login-header-desktop.png";
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
 
+  const Wrapper = styled.div`
+    position: relative;
+    height: 100%;
+    overflow: scroll;
+
+    ${media.sm} {
+      overflow: unset;
+  }
+  `;
+
   const LoginHeader = styled.div`
-  position: relative;
+    position: relative;
     display: flex;
     width: 100%;
-    height: 33%;
-    padding: 20px 0;
+    padding-top: 44%;
     justify-content: center;
     align-items: flex-end;
     flex-shrink: 0;
@@ -47,7 +57,7 @@ const RegisterForm = () => {
   `;
 
   return (
-    <>
+    <Wrapper>
       {isMobileSize ? (
         <LoginHeader>
           <BrandLogoBg></BrandLogoBg>
@@ -63,10 +73,10 @@ const RegisterForm = () => {
           <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
         </FormContainer>
 
-        {/* <RedirectToLoginHint style={{ marginBottom: "20px" }} /> */}
+        <RedirectToLoginHint style={{ marginBottom: "20px" }} />
         <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />
       </AuthFormContainer>
-    </>
+    </Wrapper>
   );
 };
 

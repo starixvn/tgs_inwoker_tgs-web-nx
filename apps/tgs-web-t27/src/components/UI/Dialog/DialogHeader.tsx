@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import backIcon from "@/assets/t27/images/dialog/icon-close.svg";
+import closeIcon from "@/assets/t27/images/dialog/icon-close.svg";
 import Icon from "@/components/project/Icon";
 import { DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 
@@ -14,6 +14,7 @@ const DialogHeaderContainer = styled.div`
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.mainBackground};
   font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
@@ -38,13 +39,14 @@ type Props = {
 };
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
+  const showDialogHeaderTitle = dialogHeaderTitle !== "Login" && dialogHeaderTitle !== "Register" && dialogHeaderTitle !== "ForgotPassword";
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl={backIcon} width={"20px"} height={"20px"} />
+        <Icon iconUrl={closeIcon} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
 
-      {dialogHeaderTitle}
+      {showDialogHeaderTitle && dialogHeaderTitle}
     </DialogHeaderContainer>
   );
 };

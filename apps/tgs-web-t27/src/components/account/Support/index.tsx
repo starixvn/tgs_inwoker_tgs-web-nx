@@ -15,8 +15,8 @@ const SupportContainer = styled.div`
 
 const CardsContainer = styled.div`
   display: flex;
-  gap: 12px;
   flex-wrap: wrap;
+  gap: 14px;
 `;
 
 const Support = () => {

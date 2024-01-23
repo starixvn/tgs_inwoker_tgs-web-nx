@@ -2,7 +2,7 @@ import { styled as muiStyled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
 import { ListItem, ListItemText } from "@mui/material";
 import styled from "styled-components";
-import limitBg from "@/assets/t19/images/withdraw/limit-bg.png";
+import limitBg from "@/assets/t27/images/withdraw/limit-bg.png";
 import {
   FormControl as ProfileFormControl,
   ItemContainer as ProfileItemContainer,
@@ -129,7 +129,6 @@ export const GameWalletButton = styled.div`
 export const AmountWrapper = styled.div`
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 5px;
 `;
 export const USDTWrapper = styled.div``;
@@ -149,7 +148,7 @@ export const DetailText = styled.div`
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 0em;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.white};
   cursor: pointer;
 `;
 

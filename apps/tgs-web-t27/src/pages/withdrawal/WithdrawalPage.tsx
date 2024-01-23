@@ -8,9 +8,9 @@ import { useSnackbar } from "notistack";
 import { useWalletStore } from "@tgs-web-nx/core";
 import WithdrawalPrevV2 from "@/components/account/WithdrawalPrevV2";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWithdrawal from "@/assets/t19/images/account/navItemWhite/icon-withdraw.svg";
+import iconWithdrawal from "@/assets/t27/images/badge/icon-withdrawal.svg";
 import AccountPaper from "@/components/project/AccountPaper";
-import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const WithdrawalPage = () => {
   useWithdrawalPage();
@@ -26,7 +26,7 @@ const WithdrawalPage = () => {
   const { isManageCardButtonAvailable, isShowAddCardButton } = useShowAddCardButton(bankCardList);
 
   return (
-    <TransferPageContainer>
+    <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
 
       <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
@@ -38,7 +38,7 @@ const WithdrawalPage = () => {
           isAddCardAvailable={isShowAddCardButton}
         />
       </AccountPaper>
-    </TransferPageContainer>
+    </PageContainer>
   );
 };
 

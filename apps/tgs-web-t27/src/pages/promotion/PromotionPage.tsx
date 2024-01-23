@@ -5,7 +5,6 @@ import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { media } from "@/theme/breakpoints";
 import { PageContainer } from "@/components/styled-component/PageContainer";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const PromotionCardListContainer = styled.div`
   overflow-y: auto;
@@ -16,7 +15,6 @@ const PromotionCardListContainer = styled.div`
   padding: 18px 20px;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
@@ -52,7 +50,7 @@ const PromotionPage = () => {
   }
   return (
     <PageContainer>
-      {isDesktopSize && <PromotionBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/promotion/promotion-banner.png`} />}
+      {/* {isDesktopSize && <PromotionBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/promotion/promotion-banner.png`} />} */}
       <PromotionCardListContainer>
         {promotionList
           .sort((a, b) => a.order - b.order)

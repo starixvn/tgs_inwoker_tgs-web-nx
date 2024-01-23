@@ -12,7 +12,7 @@ import { DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.black};
+  background: ${({ theme }) => theme.mainBackground};
 `;
 
 const ContentWrapper = styled.div`
@@ -20,6 +20,7 @@ const ContentWrapper = styled.div`
   margin: ${`${DIALOG_HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
+  background: ${({ theme }) => theme.g7};
 
   display: flex;
   justify-content: center;

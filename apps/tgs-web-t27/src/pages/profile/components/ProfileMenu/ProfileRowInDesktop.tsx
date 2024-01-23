@@ -50,8 +50,8 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         variant={isVerified ? "contained" : "outlined"}
         sx={{
           fontSize: "0.875rem",
-          color: isVerified ? theme.pureBlack : theme.white,
-          background: isVerified ? theme.goldGradient : "transparent",
+          color: isVerified ? theme.white : theme.white,
+          background: isVerified ? theme.primaryGradient : "transparent",
           border: isVerified ? "none" : "1px solid #fff",
           width: "150px",
           height: "42px",

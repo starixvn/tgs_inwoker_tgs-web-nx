@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
@@ -9,9 +9,16 @@ import { theme } from "@/theme";
 import { Button } from "@/components/UI/Button";
 import iconLogout from "@/assets/t19/images/account/navItemWhite/icon-logout.svg";
 import ArrowRightPNG from "@/assets/t19/images/transfer/arrow-right.svg";
+import DesktopAccountMenuItem from "@/pages/account/components/AccountNavigations/DesktopAccountMenuItem";
+
 const MemberMenuContainer = styled.div`
-  background: ${({ theme }) => theme.pureBlack};
-  border-radius: 10px 0 0 10px;
+  display: flex;
+  width: 100%;
+  padding: 15px 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  background: ${({ theme }) => theme.g7};
+  border-radius: 4px;
 `;
 
 type MemberMenuItemProps = {
@@ -48,7 +55,8 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { handleLogout } = useAuthContext();
   const history = useHistory();
   const { isLogin } = useAuth();
-  const handleClick = (navItem: NavItem) => {
+  const handleClickNav = useCallback((navItem: NavItem) => {
+
     switch (navItem.navType) {
       case "route":
         history.push(navItem.routePath);
@@ -56,31 +64,27 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
 
       case "action":
         navItem.callback();
-        handleCloseContextMenu();
     }
-  };
+  }, []);
 
   const location = useLocation();
   const pathSegments = location.pathname.split("/");
   const currentRoute = pathSegments[pathSegments.length - 1];
+
   return (
     //@ts-ignore
     <MemberMenuContainer {...others}>
       {accountNavItemList.map((navItem: NavItem) => {
+        const { key, iconComponent, label } = navItem;
         return (
-          <MemberMenuItem
-            key={navItem.key}
-            $isActive={currentRoute === navItem.routePath?.replace("/", "")}
-            onClick={() => handleClick(navItem)}
-            $hoverImage={navItem.iconPrimaryUrl}
+          <DesktopAccountMenuItem
+            key={key}
+            text={label}
+            isActive={currentRoute === navItem.routePath?.replace("/", "")}
+            onClick={() => handleClickNav(navItem)}
           >
-            <Icon
-              iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
-              width={"20px"}
-              height={"20px"}
-            />
-            <span className={"label"}>{navItem.label}</span>
-          </MemberMenuItem>
+            {iconComponent && React.createElement(iconComponent)}
+          </DesktopAccountMenuItem>
         );
       })}
 

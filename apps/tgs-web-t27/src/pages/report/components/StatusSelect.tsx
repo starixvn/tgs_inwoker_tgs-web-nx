@@ -13,12 +13,12 @@ const StatusSelectWrapper = styled.div`
 
 
 const StatusSelectContainer = styled.div`
-  border: 1px solid${({ theme }) => theme.white};
+  border: 1px solid ${({ theme }) => theme.g4};
   height: 40px;
-  background: transparent;
+  background: ${({ theme }) => theme.g3};
   font-size: 0.937rem;
   color: ${({ theme }) => theme.white};
-  border-radius: 6px;
+  border-radius: 3px;
   box-shadow: 0 4px 8px 0 rgba(35, 31, 27, 0.1);
   display: flex;
   align-items: center;
@@ -37,11 +37,11 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
     top: "1px",
     right: "36px",
     height: "100%",
-    content: "'\x00'",
+    content: "''",
     display: "block",
     zIndex: "2",
     position: "absolute",
-    borderRight: "1px solid #D6DBDD",
+    borderRight: "1px solid #1C1E22",
   },
   "& fieldset": {
     border: "none",

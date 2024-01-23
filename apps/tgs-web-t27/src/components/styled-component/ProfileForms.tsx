@@ -72,7 +72,29 @@ export const UploadFileTag = styled.span`
 `;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "50px",
+  height: "53px",
+  whiteSpace: "nowrap",
+  padding: "10px",
+  fontSize: "1rem",
+  lineHeight: 1,
+  fontWeight: 700,
+  color: theme.palette.white,
+  background: theme.palette.secondaryGradient,
+  boxShadow: "none",
+  borderRadius: "6px",
+
+  "&:hover": {
+    background: theme.palette.btnHover,
+  },
+
+  "&:disabled": {
+    background: theme.palette.action.disabledBackground,
+    color: theme.palette.action.disabled,
+  },
+})) as typeof MuiButton;
+
+export const CloseButton = muiStyled(MuiButton)(({ theme }) => ({
+  height: "53px",
   whiteSpace: "nowrap",
   padding: "10px",
   fontSize: "1rem",
@@ -93,7 +115,7 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   },
 })) as typeof MuiButton;
 
-export const VerifySubmitButton = styled(SubmitButton)`
+export const VerifySubmitButton = styled(CloseButton)`
   margin-bottom: 20px !important;
   margin-top: auto !important;
 `;

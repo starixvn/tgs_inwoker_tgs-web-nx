@@ -18,11 +18,12 @@ const CustomText = styled.div`
 const ButtonContainer = styled.div`
   flex-shrink: 0;
   & > button {
-    height: 31px;
+    height: 29px;
     font-size: 0.75rem;
-    border-radius: 4px;
-    padding: 8px;
-    background: ${({ theme }) => theme.green};
+    border-radius: 6px;
+    padding: 6px 8px;
+    background: #1E6434;
+    color: #fff;
   }
 `;
 

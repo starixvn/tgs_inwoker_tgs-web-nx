@@ -13,15 +13,16 @@ const StyledButton = styled(SubmitButton)`
   width: 100%;
   height: 100%;
   padding: 12px 20px 12px 20px;
-  border-radius: 12px;
+  border-radius: 4px;
   gap: 10px;
   font-size: 1.25rem;
   cursor: pointer;
 
   ${media.sm} {
-    max-width: 500px;
-    padding: 10px;
-    font-size: 18px;
+    max-width: 360px;
+    padding: 12px 20px;
+    font-size: 32px;
+    font-weight: 500;
   }
 `;
 

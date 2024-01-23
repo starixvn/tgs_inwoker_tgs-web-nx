@@ -59,15 +59,13 @@ const BonusTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 10.5px 0;
-  background-color: ${({ theme }) => theme.mainBackground};
   border-radius: 6px 0px 0px 0px;
-  background: ${({ theme }) => theme.darkGray};
+  border-bottom: 1px solid ${({ theme }) => theme.g2};
 
   ${media.sm} {
-    height: 86px;
-    padding: 20px;
-    border-radius: 12px;
-    background: ${({ theme }) => theme.grayGradient};
+    height: 97px;
+    padding: 20px 0px;
+    border-radius: 8px 8px 0px 0px;
   }
 `;
 
@@ -97,9 +95,11 @@ const BonusTableBody = styled.div`
   align-self: stretch;
 
   ${media.sm} {
-    gap: 36px;
     border-radius: 10px;
-    background: ${({ theme }) => theme.mask};
+    
+    > div:nth-child(even) {
+      background: rgba(255, 255, 255, 0.1);
+    }
   }
 `;
 
@@ -108,7 +108,6 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.darkGray};
 `;
 
 const RowItem = styled.div`
@@ -119,7 +118,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.g2};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -131,6 +130,7 @@ const RowItem = styled.div`
     min-height: 106px;
     width: 128px;
     font-size: 1rem;
+    margin: 0px 0;
   }
 `;
 

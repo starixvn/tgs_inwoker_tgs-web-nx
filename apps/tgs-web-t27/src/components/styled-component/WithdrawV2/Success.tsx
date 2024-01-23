@@ -18,7 +18,7 @@ export const ImgSuccess = styled.img`
 export const SuccessMessage = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
-  color: #23507d;
+  color: #fff;
   text-align: center;
   margin-bottom: 16px;
 `;

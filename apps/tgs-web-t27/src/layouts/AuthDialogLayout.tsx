@@ -15,7 +15,7 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  height: calc(100vh - ${DIALOG_HEADER_HEIGHT});
+  height: 100%;
   /* margin: ${DIALOG_HEADER_HEIGHT} 0 0; */
   position: relative;
   z-index: 1;

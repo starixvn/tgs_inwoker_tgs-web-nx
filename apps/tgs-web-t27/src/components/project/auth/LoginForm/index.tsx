@@ -33,11 +33,10 @@ const LoginForm = () => {
   const { isMobileSize } = useRwd();
 
   const LoginHeader = styled.div`
-  position: relative;
+    position: relative;
     display: flex;
     width: 100%;
-    height: 33%;
-    padding: 20px 0;
+    padding-top: 44%;
     justify-content: center;
     align-items: flex-end;
     flex-shrink: 0;

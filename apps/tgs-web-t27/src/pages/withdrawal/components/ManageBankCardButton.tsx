@@ -12,9 +12,10 @@ const ButtonContainer = styled.div`
   color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.green};
   padding: 10px 22px;
   gap: 8px;
+  border-radius: 4px;
 `;
 
 type Props = {
@@ -24,7 +25,7 @@ type Props = {
 const ManageBankCardButton = ({ handleManageCardClick }: Props) => {
   return (
     <ButtonContainer onClick={handleManageCardClick}>
-      <Icon iconUrl={iconImg} width={"24px"} height={"24px"} />
+      <Icon iconUrl={iconImg} width={"24px"} height={"20px"} />
       {i18n.t("withdrawal.manageBank")}
     </ButtonContainer>
   );

@@ -12,6 +12,8 @@ const PageBadgeContainer = styled.div`
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.437rem;
+  padding: 10px 20px;
+  border-left: 5px solid ${({ theme }) => theme.green};;
 `;
 
 type Props = {
@@ -27,10 +29,10 @@ const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
     <PageBadgeContainer {...others}>
       <Icon
         iconUrl={iconUrl}
-        width={width || "20px"}
-        height={height || "20px"}
+        width={width || "24px"}
+        height={height || "24px"}
         style={{
-          marginRight: "8px",
+          marginRight: "5px",
         }}
       />
       {text}

@@ -17,10 +17,9 @@ const PromotionCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border-radius: 10px;
-  border: 2.5px solid #B78316;
-  background: ${({ theme }) => theme.black};
+  border-radius: 4px;
   flex-shrink: 0;
+  gap: 16px;
 
   &:hover {
       transform: scale(1.02);
@@ -29,7 +28,6 @@ const PromotionCardContainer = styled.div`
   ${media.sm} {
     width: calc((100% - 80px) / 2);
     margin: 20px 0;
-    background: #332915;
   }
 `;
 const BannerWrapper = styled.div<MoreOnclickProps>`
@@ -43,43 +41,34 @@ const PromotionTextContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
 `;
 
 const TitleWrapper = styled.div`
   font-size: 1.062rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   text-overflow: ellipsis;
 `;
 
 const ClickMoreContainer = styled.div`
   flex-shrink: 0;
   margin-left: auto;
-
-  ${media.sm} {
-    min-width: 105px;
-  }
+  width: 100px;
 `;
 
 const MoreBtn = styled.div<MoreOnclickProps>`
-  padding: 10px;
-  height: 30px;
-  color: ${(props) => props.theme.black};
+  padding: 16px 0px;
+  height: 48px;
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 600;
   display: flex;
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
-  border-radius: 50px;
-  background: ${({ theme }) => theme.goldGradient};
-
-
-  
-  &:hover {
-    box-shadow: 0 -5px 15px 0 rgba(236,166,61,.501);
-    }
+  border-radius: 4px;
+  background: ${({ theme }) => theme.secondaryGradient};
 `;
 
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
@@ -103,10 +92,11 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
       <PromotionTextContainer>
         <TitleWrapper>{promotionData.name}</TitleWrapper>
         <ClickMoreContainer>
-          {isMobileSize
+          {/* {isMobileSize
             ? <Icon iconUrl={moreIcon} width={"28px"} height={"28px"} onClick={handleEnterDetail} />
             : <MoreBtn onClick={handleEnterDetail}>More</MoreBtn>
-          }
+          } */}
+          <MoreBtn onClick={handleEnterDetail}>More</MoreBtn>
         </ClickMoreContainer>
       </PromotionTextContainer>
     </PromotionCardContainer>

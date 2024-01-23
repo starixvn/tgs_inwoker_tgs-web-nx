@@ -16,16 +16,16 @@ type CategoryTabProps = {
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1 1 0%;
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? theme.goldGradient : "transparent"};
-  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.pureBlack : theme.white)};
+    $isActive ? theme.green : theme.g5};
+  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.g2)};
   padding: 10px 24px;
   text-align: center;
   font-size: 0.9375rem;
   font-weight: 400;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 3px;
   border: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? "transparent" : `1px solid ${theme.gray}`};
+    $isActive ? "transparent" : `1px solid ${theme.g5}`};
 `;
 
 type Props = {

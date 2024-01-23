@@ -7,6 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const InboxComposeFormContainer = styled.div`
   padding-top: 16px;
@@ -25,6 +26,7 @@ const Label = styled.h6`
 const ComposeForm = () => {
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
+  const { isDesktopSize } = useRwd();
 
   const updateSubject = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setSubject(event.target.value);
@@ -77,8 +79,10 @@ const ComposeForm = () => {
         onClick={handleSubmit}
         variant={"contained"}
         color={"primary"}
-        fullWidth
         disabled={isSubmitButtonDisabled}
+        sx={{
+          width: isDesktopSize ? "250px" : "100%",
+        }}
       >
         {i18n.t("common.submit")}
       </SubmitButton>
