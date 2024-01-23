@@ -5,6 +5,7 @@ import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import TransferMenuDrawer from "@/layouts/components/TransferMenuDrawer";
 import React, { useState } from "react";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useLocation } from "react-router-dom";
 
 const BottomAppBarContainer = styled.div`
   position: fixed;
@@ -19,8 +20,6 @@ const BottomAppBarContainer = styled.div`
 
 const BottomAppBarInner = styled.div`
   padding: 0 20px;
-
-  border: 1px solid red;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -29,20 +28,20 @@ const BottomAppBarInner = styled.div`
   overflow: visible;
 `;
 
-
 const BottomAppBar = () => {
   const {
     bottomNavItemList,
     isTransferDrawerOpen,
     handleTransferDrawerToggle,
   } = useGetBottomNavItemList();
-  const [isSelected, setIsSelected] = useState();
-  const { activeGameType } = useHomeGameContext();
 
   const handleNavItemClick = (bottomNavItem: BottomNavItem) => {
-    setIsSelected(bottomNavItem.label);
     bottomNavItem.handleClick();
   };
+
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const currentRoute = pathSegments[pathSegments.length - 1];
 
   return (
     <>
@@ -50,12 +49,11 @@ const BottomAppBar = () => {
         <BottomAppBarInner>
           {bottomNavItemList.map((bottomNavItem) => {
             const { key, label, iconComponent } = bottomNavItem;
-            console.log(label, isSelected)
             return (
               <BottomNav
                 key={key}
                 label={label}
-                isActive={label === isSelected}
+                isActive={bottomNavItem.router === currentRoute}
                 onClick={() => handleNavItemClick(bottomNavItem)}
               >
                 {iconComponent && React.createElement(iconComponent)}

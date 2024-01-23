@@ -38,7 +38,7 @@ const BottomNav = ({ isActive, label, onClick, children }: Props) => {
 
       return (
         <IconComponent
-          $color={!isActive ? theme.white : (isActive ? theme.primary : theme.lightGray)}
+          $color={isActive ? theme.primary : theme.lightGray}
         />
       );
     }

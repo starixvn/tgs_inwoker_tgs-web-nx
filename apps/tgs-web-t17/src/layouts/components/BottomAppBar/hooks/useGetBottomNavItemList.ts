@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
 import HomeSvg from "@/assets/t17/images/bottomAppBar/Home";
 import AccountSvg from "@/assets/t17/images/bottomAppBar/Account";
 import DepositSvg from "@/assets/t17/images/bottomAppBar/Deposit";
@@ -20,7 +18,8 @@ export enum NavTypeEnum {
 export type BottomNavItem = {
   navType: NavTypeEnum;
   key: string;
-  label: string | any;
+  label: string;
+  router: string;
   handleClick: () => void;
   iconComponent?: React.FC<{ $color: string }>
 };
@@ -28,7 +27,6 @@ export type BottomNavItem = {
 export function useGetBottomNavItemList() {
   const history = useHistory();
   const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
-  const { handleChangeGameType } = useHomeGameContext();
   const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
@@ -37,6 +35,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "home",
         label: i18n.t("common.home"),
+        router: "",
         handleClick: () => {
           goToHomePage();
         },
@@ -46,6 +45,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "deposit",
         label: i18n.t("common.deposit"),
+        router: "deposit",
         handleClick: () => {
           history.push("/deposit");
         },
@@ -55,6 +55,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "withdraw",
         label: i18n.t("common.withdrawal"),
+        router: "transfer",
         handleClick: () => {
           history.push("withdrawal");
         },
@@ -64,6 +65,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "promotion",
         label: i18n.t("common.promotion"),
+        router: "promotion-list",
         handleClick: () => {
           history.push("/promotion-list");
         },
@@ -73,6 +75,7 @@ export function useGetBottomNavItemList() {
         navType: NavTypeEnum.ITEM,
         key: "account",
         label: i18n.t("deposit.details.account"),
+        router: "account",
         handleClick: () => {
           history.push("/account");
         },
