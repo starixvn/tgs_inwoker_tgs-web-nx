@@ -5,6 +5,7 @@ import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import ProviderCard from "../MobileHomeCategory/components/ProviderCard";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -17,7 +18,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   /* justify-content: center; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   gap: 6px;
 
   ${media.sm} {
@@ -30,9 +31,13 @@ const Wrapper = styled.div`
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
   height: 100%;
-  width: calc(100% - 78px);
+  width: 100%;
+
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
+  ${media.sm} {
+    width: calc(100% - 78px);
+  }
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
@@ -107,19 +112,20 @@ const LobbyCategory = () => {
             <CategoryContent>
               {hasMappingData &&
                 lobbyCategoryList.map((provider) => {
-                  const { code: gpCode, status, name } = provider;
+                  const { code, status, name } = provider;
 
-                  if (gpCode === "BC") return null;
+                  if (code === "BC") return null;
                   return (
-                    <MobileVendorCard
-                      key={gpCode}
-                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                      imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                      venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                      launchGame={() => launchLobbyGame(gpCode)}
-                      status={status}
-                      venderName={name}
-                    />
+                    <ProviderCard key={code} provider={provider} />
+                    // <MobileVendorCard
+                    //   key={gpCode}
+                    //   bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
+                    //   imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                    //   venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                    //   launchGame={() => launchLobbyGame(gpCode)}
+                    //   status={status}
+                    //   venderName={name}
+                    // />
                   );
                 })}
               {!hasMappingData && <div>No data</div>}

@@ -71,7 +71,6 @@ const GameTypeTab = () => {
   const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
   const { providerList, isLoading } = useProvider();
   const [filteredGameTypeList, setFilteredGameTypeList] = useState<GameTypeItem[]>([]);
-
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
     name: "",
@@ -82,6 +81,7 @@ const GameTypeTab = () => {
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
+    // handleSetActiveProviderFilterTag(null);
   };
 
   useEffect(() => {

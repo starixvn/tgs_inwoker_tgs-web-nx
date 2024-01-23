@@ -125,64 +125,69 @@ const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
-  const {
-    // searchString,
-    // handleChangeSearch,
-    providerFilterTagList,
-    activeProviderFilterTag,
-    handleChangeActiveProviderFilterTag,
-  } = useHomeGameContext();
+  const { providerFilterTagList, activeProviderFilterTag, handleChangeActiveProviderFilterTag } =
+    useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
 
   const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
     handleChangeActiveProviderFilterTag(newFilterTag);
   };
+
   return (
     <Wrapper>
       {isMobileSize && (
         <>
           <GameTypeTab />
           <CategoryContentWrapper>
-            <FilterSection>
-              <GameFilterTag />
-            </FilterSection>
-            <CategoryContent>
-              <ProviderTagContainer>
-                {providerFilterTagList.map((filterTag) => {
-                  const matchedProvider = navPopupCategoryList.find(
-                    (provider) => provider.code === filterTag.gpCode,
-                  );
-                  const status = matchedProvider ? matchedProvider.status : -1;
+            {activeProviderFilterTag.tagType !== "All" ? (
+              <>
+                <FilterSection>
+                  <GameFilterTag />
+                </FilterSection>
+                <CategoryContent>
+                  <GameListWrapper>
+                    {hasMappingData &&
+                      gameList.map((gameItem) => (
+                        <GameCard
+                          key={gameItem.id}
+                          gameItem={gameItem}
+                          isActive={gameItem.isactive}
+                          imageUrl={`${
+                            config.sourceUrl
+                          }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                            gameItem.code
+                          }.jpg`}
+                        />
+                      ))}
+                    {!hasMappingData && !isLoading && <div>No data</div>}
+                  </GameListWrapper>
+                </CategoryContent>
+              </>
+            ) : (
+              <CategoryContent>
+                <GameListWrapper>
+                  {providerFilterTagList
+                    .filter((filterTag) => filterTag.name !== "All")
+                    .map((filterTag) => {
+                      const matchedProvider = navPopupCategoryList.find(
+                        (provider) => provider.code === filterTag.gpCode,
+                      );
+                      const status = matchedProvider ? matchedProvider.status : -1;
 
-                  return (
-                    <ProviderTag
-                      key={filterTag.name}
-                      text={filterTag.name}
-                      gpCode={filterTag.gpCode}
-                      isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
-                      onClick={() => onChangeProviderFilterTag(filterTag)}
-                      status={status}
-                    />
-                  );
-                })}
-              </ProviderTagContainer>
-              <GameListWrapper>
-                {hasMappingData &&
-                  gameList.map((gameItem) => (
-                    <GameCard
-                      key={gameItem.id}
-                      gameItem={gameItem}
-                      isActive={gameItem.isactive}
-                      imageUrl={`${
-                        config.sourceUrl
-                      }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                        gameItem.code
-                      }.jpg`}
-                    />
-                  ))}
-                {!hasMappingData && !isLoading && <div>No data</div>}
-              </GameListWrapper>
-            </CategoryContent>
+                      return (
+                        <ProviderTag
+                          key={filterTag.name}
+                          text={filterTag.name}
+                          gpCode={filterTag.gpCode}
+                          isActive={false}
+                          onClick={() => onChangeProviderFilterTag(filterTag)}
+                          status={status}
+                        />
+                      );
+                    })}
+                </GameListWrapper>
+              </CategoryContent>
+            )}
           </CategoryContentWrapper>
         </>
       )}

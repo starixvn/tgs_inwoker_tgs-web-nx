@@ -18,11 +18,11 @@ import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.mainBackground};
 
-  ${media.sm} {
+  /* ${media.sm} {
     background: url(${bg});
-  }
+  } */
 `;
 
 const DashboardContainer = styled.div`
@@ -34,7 +34,7 @@ const DashboardContainer = styled.div`
     margin-top: ${DESKTOP_HEADER_HEIGHT};
     min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
     margin-bottom: unset;
-    padding: 15px 0px;
+    /* padding: 15px 0px; */
   }
 `;
 
@@ -45,7 +45,6 @@ const ContentWrapper = styled.div`
 `;
 
 const ChildrenWrapper = styled.div`
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
   margin: auto;
   padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
   display: flex;
@@ -70,16 +69,13 @@ const VipLayout = ({ children }: Props) => {
 
   return (
     <DefaultLayoutContainer>
-      <Header />
-
+      {isDesktopSize && <Header />}
       <DashboardContainer>
         {isMobileSize && (
           <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
         )}
         <ContentWrapper>
-          <ChildrenWrapper>
-            {children}
-          </ChildrenWrapper>
+          <ChildrenWrapper>{children}</ChildrenWrapper>
         </ContentWrapper>
       </DashboardContainer>
       <Footer />

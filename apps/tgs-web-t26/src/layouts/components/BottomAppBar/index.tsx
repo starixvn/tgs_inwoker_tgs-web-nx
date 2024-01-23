@@ -2,7 +2,6 @@ import styled from "styled-components";
 import BottomNav from "./BottomNav";
 import { useGetBottomNavItemList } from "./hooks/useGetBottomNavItemList";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
-import TransferMenuDrawer from "@/layouts/components/TransferMenuDrawer";
 
 const BottomAppBarContainer = styled.div`
   position: fixed;
@@ -18,36 +17,24 @@ const BottomAppBarContainer = styled.div`
   padding: 0 20px;
   z-index: 1000; // cant be grater then 1300 or will block Dialog
   overflow: visible;
-  /* border-top: 1px solid ${({ theme }) => theme.gray30}; */
 `;
 
 const BottomAppBar = () => {
-  const {
-    bottomNavItemList,
-    handleClickBottomNavItem,
-    isTransferDrawerOpen,
-    handleTransferDrawerToggle,
-  } = useGetBottomNavItemList();
-
+  const { bottomNavItemList, handleClickBottomNavItem, selectedBottomNavItem } =
+    useGetBottomNavItemList();
   return (
-    <>
-      <BottomAppBarContainer>
-        {bottomNavItemList.map((bottomNavItem) => {
-          return (
-            <BottomNav
-              key={bottomNavItem.label}
-              bottomNavItem={bottomNavItem}
-              onClick={() => handleClickBottomNavItem(bottomNavItem)}
-            />
-          );
-        })}
-      </BottomAppBarContainer>
-
-      {/* <TransferMenuDrawer
-        isOpen={isTransferDrawerOpen}
-        handleDrawerToggle={handleTransferDrawerToggle}
-      /> */}
-    </>
+    <BottomAppBarContainer>
+      {bottomNavItemList.map((bottomNavItem) => {
+        return (
+          <BottomNav
+            key={bottomNavItem.label}
+            bottomNavItem={bottomNavItem}
+            onClick={() => handleClickBottomNavItem(bottomNavItem)}
+            isSelected={selectedBottomNavItem?.label === bottomNavItem.label}
+          />
+        );
+      })}
+    </BottomAppBarContainer>
   );
 };
 

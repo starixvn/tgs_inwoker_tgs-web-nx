@@ -23,7 +23,6 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  /* background: ${({ theme }) => theme.white}; */
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
