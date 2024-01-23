@@ -5,6 +5,7 @@ import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { theme } from "@/theme";
+import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
 
 type Props = {
   formInput: FormikFormInput;
@@ -30,7 +31,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
     <GrayInputWrapper key={name}>
       <TextField
         type={inputType}
-        placeholder={label}
+        placeholder={getPlaceholderWording(name) || label}
         variant={"outlined"}
         fullWidth
         name={name}

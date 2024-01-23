@@ -6,6 +6,7 @@ import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { Select } from "@/components/UI/Select";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ const FormPhone = ({ formInput, formik, showErrorOn }: Props) => {
       <GrayInputWrapper key={name} style={{ flex: 1 }}>
         <TextField
           type={"text"}
-          placeholder={label}
+          placeholder={getPlaceholderWording(name) || label}
           variant={"outlined"}
           fullWidth
           name={name}

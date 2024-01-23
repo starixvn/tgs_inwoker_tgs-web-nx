@@ -2,14 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
-import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import { accountAction, AccountService } from "@tgs-web-nx/core";
 import BaseProfile from "@/components/account/Profile/PrevComponents/BaseProfile";
 import BottomNote from "@/components/UI/BottomNote";
 
-import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
+import { ItemContainer } from "@/components/styled-component/ProfileForms";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
+import FormLabel from "@/components/project/FormikForm/FormLabel";
+import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
+import { FormControl } from "@/components/styled-component/auth/Form";
 
 class VerifyEmail extends BaseProfile {
   constructor(props) {
@@ -189,6 +192,8 @@ class VerifyEmail extends BaseProfile {
       i18n.t("common.emailAddress"),
       <>
         <ItemContainer>
+          <FormLabel name={"email"} label={getPlaceholderWording("email")} />
+
           <FormControl variant="outlined">
             <TextField
               value={this.state.email}
@@ -206,6 +211,7 @@ class VerifyEmail extends BaseProfile {
           ) {
             return (
               <ItemContainer>
+                <FormLabel name={"code"} label={getPlaceholderWording("code")} />
                 <FormControl variant="outlined">
                   <TextFieldWithButton
                     buttonLabel={

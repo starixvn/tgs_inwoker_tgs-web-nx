@@ -8,13 +8,12 @@ import { EnqueueSnackbar } from "notistack";
 import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
-import {
-  FormControl,
-  ItemContainer,
-  VerifySubmitButton,
-} from "@/components/styled-component/ProfileForms";
+import { ItemContainer, VerifySubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
+import FormLabel from "@/components/project/FormikForm/FormLabel";
+import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
+import { FormControl } from "@/components/styled-component/auth/Form";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -142,6 +141,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
   return (
     <>
       <ItemContainer>
+        <FormLabel name={"phone"} label={getPlaceholderWording("phone")} />
         <PhoneContainer>
           <FormControl variant="outlined" style={{ width: "40%" }}>
             <Select
@@ -175,6 +175,8 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       </ItemContainer>
 
       <ItemContainer>
+        <FormLabel name={"code"} label={getPlaceholderWording("code")} />
+
         <FormControl variant="outlined">
           <TextFieldWithButton
             buttonLabel={
