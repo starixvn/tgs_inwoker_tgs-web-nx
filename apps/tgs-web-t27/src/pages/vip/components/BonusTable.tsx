@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
+import { useVipBonusList } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
-import { vipBonusList } from "@/constants/vip";
 
 const ScrollableContainer = styled.div`
   width: 100%;
@@ -96,7 +96,7 @@ const BonusTableBody = styled.div`
 
   ${media.sm} {
     border-radius: 10px;
-    
+
     > div:nth-child(even) {
       background: rgba(255, 255, 255, 0.1);
     }
@@ -125,7 +125,7 @@ const RowItem = styled.div`
   font-weight: 400;
   text-align: center;
   margin: 8px 0;
- 
+
   ${media.sm} {
     min-height: 106px;
     width: 128px;
@@ -146,12 +146,13 @@ type Props = {
 };
 
 const BonusTable = ({ vipSortingData }: Props) => {
+  const { vipBonusList } = useVipBonusList();
   return (
     <ScrollableContainer>
       <BonusTableWrapper>
         <BonusTableHeader>
           {vipBonusList.map((bonus) => (
-            <HeaderItem key={bonus}>{bonus}</HeaderItem>
+            <HeaderItem key={bonus.key}>{bonus.label}</HeaderItem>
           ))}
         </BonusTableHeader>
 
@@ -164,8 +165,9 @@ const BonusTable = ({ vipSortingData }: Props) => {
                     <img
                       width={"50px"}
                       height={"50px"}
-                      src={`${import.meta.env.BASE_URL}assets/images/vip/level_${vipData.level
-                        }.png`}
+                      src={`${import.meta.env.BASE_URL}assets/images/vip/level_${
+                        vipData.level
+                      }.png`}
                       alt={`level_${vipData.level}`}
                     />
                     <span>VIP{vipData.level}</span>

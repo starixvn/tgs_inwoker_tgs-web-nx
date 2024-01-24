@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
 
 const ScrollableContainer = styled.div`
@@ -154,10 +155,6 @@ const LevelTable = ({
   currentLevel: number;
   productRebateByLevel: TypeProductRebateByLevel[];
 }) => {
-  const gameList = productRebateByLevel.map((productRebate) => {
-    return productRebate.name;
-  });
-
   const firstProductRebate = productRebateByLevel[0];
   const maxLevel = firstProductRebate.rebate.length;
   const levelList = Array.from({ length: maxLevel }, (_, i) => i + 1);
@@ -173,9 +170,9 @@ const LevelTable = ({
     <ScrollableContainer>
       <LevelTableWrapper>
         <LevelTableHeader>
-          <HeaderItem>VIP Rebate</HeaderItem>
-          {gameList.map((game) => (
-            <HeaderItem key={game}>{game}</HeaderItem>
+          <HeaderItem>{i18n.t("vip.vipBenefit")}</HeaderItem>
+          {productRebateByLevel.map((game) => (
+            <HeaderItem key={game.name}>{game.label}</HeaderItem>
           ))}
         </LevelTableHeader>
 

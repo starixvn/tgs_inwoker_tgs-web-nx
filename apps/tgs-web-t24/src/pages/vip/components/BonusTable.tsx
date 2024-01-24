@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
+import { useVipBonusList } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
-import { vipBonusList } from "@/constants/vip";
+
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const ScrollableContainer = styled.div`
@@ -26,7 +27,7 @@ const ScrollableContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
       background: ${(props) => props.theme.tertiaryDark};
     }
 
@@ -149,12 +150,13 @@ type Props = {
 };
 
 const BonusTable = ({ vipSortingData }: Props) => {
+  const { vipBonusList } = useVipBonusList();
   return (
     <ScrollableContainer>
       <BonusTableWrapper>
         <BonusTableHeader>
           {vipBonusList.map((bonus) => (
-            <HeaderItem key={bonus}>{bonus}</HeaderItem>
+            <HeaderItem key={bonus.key}>{bonus.label}</HeaderItem>
           ))}
         </BonusTableHeader>
 
@@ -164,16 +166,22 @@ const BonusTable = ({ vipSortingData }: Props) => {
               <BonusTableRowWrapper key={vipData.level}>
                 <RowItem>
                   <LevelIcon>
-                    <img width={"50px"} height={"50px"} src={`/assets/images/vip/level_${vipData.level}.png`} alt={`level_${vipData.level}`} />VIP{vipData.level}
+                    <img
+                      width={"50px"}
+                      height={"50px"}
+                      src={`/assets/images/vip/level_${vipData.level}.png`}
+                      alt={`level_${vipData.level}`}
+                    />
+                    VIP{vipData.level}
                   </LevelIcon>
                 </RowItem>
-                <RowItem>{(vipData.levelKeepAccumulateBetAmount).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.levelKeepAccumulateDeposit).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.levelUpAccumulateBetAmount).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.levelUpAccumulateDeposit).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.birthBenefit).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.promotionBenefit).toLocaleString()}</RowItem>
-                <RowItem>{(vipData.quarterlyBenefit).toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelKeepAccumulateBetAmount.toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelKeepAccumulateDeposit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelUpAccumulateBetAmount.toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelUpAccumulateDeposit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.birthBenefit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.promotionBenefit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.quarterlyBenefit.toLocaleString()}</RowItem>
               </BonusTableRowWrapper>
             );
           })}

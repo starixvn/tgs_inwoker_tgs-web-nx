@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
@@ -25,7 +26,7 @@ const ScrollableContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
       background: ${(props) => props.theme.tertiaryDark};
     }
 
@@ -170,10 +171,6 @@ const LevelTable = ({
   currentLevel: number;
   productRebateByLevel: TypeProductRebateByLevel[];
 }) => {
-  const gameList = productRebateByLevel.map((productRebate) => {
-    return productRebate.name;
-  });
-
   const firstProductRebate = productRebateByLevel[0];
   const maxLevel = firstProductRebate.rebate.length;
   const levelList = Array.from({ length: maxLevel }, (_, i) => i + 1);
@@ -190,8 +187,8 @@ const LevelTable = ({
       <LevelTableWrapper>
         <LevelTableHeader>
           <HeaderItem>VIP rebate</HeaderItem>
-          {gameList.map((game) => (
-            <HeaderItem key={game}>{game}</HeaderItem>
+          {productRebateByLevel.map((game) => (
+            <HeaderItem key={game.name}>{game.label}</HeaderItem>
           ))}
         </LevelTableHeader>
 

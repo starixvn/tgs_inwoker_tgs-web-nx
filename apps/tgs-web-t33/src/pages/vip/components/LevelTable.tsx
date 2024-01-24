@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const ScrollableContainer = styled.div`
   width: 100%;
@@ -22,7 +22,7 @@ const ScrollableContainer = styled.div`
     }
 
     &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
       background: ${(props) => props.theme.tertiaryDark};
     }
 
@@ -60,7 +60,7 @@ const LevelTableHeader = styled.div`
   height: 48px;
   padding: 12px 15px 12px 15px;
   background-color: ${({ theme }) => theme.subBackground};
-  border-bottom: 1px solid #98A7B5;
+  border-bottom: 1px solid #98a7b5;
 
   ${media.sm} {
     height: 86px;
@@ -103,7 +103,7 @@ const LevelTableBody = styled.div`
     background: ${(props) => props.theme.subBackground};
 
     > div:nth-child(even) {
-      background: rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.1);
     }
   }
 `;
@@ -114,7 +114,7 @@ const LevelTableRowWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.subBackground};
-  border-bottom: 1px solid #67707B;
+  border-bottom: 1px solid #67707b;
 
   ${media.sm} {
     border-bottom: unset;
@@ -170,10 +170,6 @@ const LevelTable = ({
   currentLevel: number;
   productRebateByLevel: TypeProductRebateByLevel[];
 }) => {
-  const gameList = productRebateByLevel.map((productRebate) => {
-    return productRebate.name;
-  });
-
   const firstProductRebate = productRebateByLevel[0];
   const maxLevel = firstProductRebate.rebate.length;
   const levelList = Array.from({ length: maxLevel }, (_, i) => i + 1);
@@ -189,9 +185,9 @@ const LevelTable = ({
     <ScrollableContainer>
       <LevelTableWrapper>
         <LevelTableHeader>
-          <HeaderItem>VIP rebate</HeaderItem>
-          {gameList.map((game) => (
-            <HeaderItem key={game}>{game}</HeaderItem>
+          <HeaderItem>{i18n.t("vip.vipBenefit")}</HeaderItem>
+          {productRebateByLevel.map((game) => (
+            <HeaderItem key={game.name}>{game.label}</HeaderItem>
           ))}
         </LevelTableHeader>
 
