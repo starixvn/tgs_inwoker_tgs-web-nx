@@ -3,14 +3,14 @@ import styled from "styled-components";
 import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
-import hotIcon from "@/assets/t25/images/home/filter/icon-hot.svg";
-import newIcon from "@/assets/t25/images/home/filter/icon-new.svg";
-import recommendIcon from "@/assets/t25/images/home/filter/icon-recommend.svg";
-import favoriteIcon from "@/assets/t25/images/home/filter/icon-favorite.svg";
-import hotActiveIcon from "@/assets/t25/images/home/filter/icon-hot-active.svg";
-import newActiveIcon from "@/assets/t25/images/home/filter/icon-new-active.svg";
-import recommendActiveIcon from "@/assets/t25/images/home/filter/icon-recommend-active.svg";
-import favoriteActiveIcon from "@/assets/t25/images/home/filter/icon-favorite-active.svg";
+import hotIcon from "@/assets/t21/images/home/filter/icon-hot.svg";
+import newIcon from "@/assets/t21/images/home/filter/icon-new.svg";
+import recommendIcon from "@/assets/t21/images/home/filter/icon-recommend.svg";
+import favoriteIcon from "@/assets/t21/images/home/filter/icon-favorite.svg";
+import hotActiveIcon from "@/assets/t21/images/home/filter/icon-hot-active.svg";
+import newActiveIcon from "@/assets/t21/images/home/filter/icon-new-active.svg";
+import recommendActiveIcon from "@/assets/t21/images/home/filter/icon-recommend-active.svg";
+import favoriteActiveIcon from "@/assets/t21/images/home/filter/icon-favorite-active.svg";
 
 const filterIconDictionary: Record<FilterTagTypeEnum | string, string> = {
   [FilterTagTypeEnum.HOT]: hotIcon,

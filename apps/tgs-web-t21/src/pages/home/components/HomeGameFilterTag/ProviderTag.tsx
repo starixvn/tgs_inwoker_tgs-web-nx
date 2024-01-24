@@ -1,7 +1,7 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import maintenanceIcon from "@/assets/t25/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
 
 const ProviderTagContainer = styled.div<{
   $isActive: boolean;

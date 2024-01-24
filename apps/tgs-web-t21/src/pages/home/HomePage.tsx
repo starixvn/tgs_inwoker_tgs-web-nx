@@ -11,6 +11,7 @@ import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { theme } from "@/theme";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import AuthButtonGroup from "@/pages/home/components/AuthButtonGroup";
 
 type MainWrapperProps = {
   $isDark: boolean;
@@ -23,10 +24,7 @@ const MainWrapper = styled.div<MainWrapperProps>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: ${({ $isDark, theme }: MainWrapperProps) =>
-    $isDark ? "#141B1F" : theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  padding: 0px 8px 12px 8px;
   flex-shrink: 0;
   flex: 1;
   position: relative;
@@ -88,12 +86,10 @@ const HomePage = () => {
 
   return (
     <MainWrapper $isDark={false}>
-      {(!activeGameType || isDesktopSize) && (
-        <>
-          <Banner />
-          <CardPrompt />
-        </>
-      )}
+      <CardPrompt />
+      <Banner />
+      <AuthButtonGroup />
+
       <GameTypeTab />
 
       <MainContentWrapper>
