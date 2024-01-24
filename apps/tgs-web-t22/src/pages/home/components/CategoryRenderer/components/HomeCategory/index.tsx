@@ -3,11 +3,13 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import WinnerCard from "../../../WinnerCard";
+import { useBettingHistory } from "../../../Ranking/hooks/useBettingHistory";
 import useHomeCategoryList from "@/hooks/home/useHomeCategoryList";
 import labelBg from "@/assets/t22/images/home/label.png";
 import { media } from "@/theme/breakpoints";
-import WinnerCard from "../../../WinnerCard";
-import { useBettingHistory } from "../../../Ranking/hooks/useBettingHistory";
+import Download from '@/pages/home/components/Download';
+import Services from '@/pages/home/components/Services';
 
 
 
@@ -106,7 +108,7 @@ const HomeCategory = () => {
                 <Label>
                   <Icon $imageUrl={item.icon} />
                   <Desc>
-                    <Title>{item.title}</Title>
+                    <Title>{item.text}</Title>
                     <SubTitle>{item.subTitle}</SubTitle>
                   </Desc>
                 </Label>
@@ -117,6 +119,12 @@ const HomeCategory = () => {
 
         {/* ranking */}
         <WinnerCard leaderboard={leaderboard}/>
+
+        {/* download */}
+        <Download />
+
+        {/* quality services */}
+        <Services />
       </>
     );
   }

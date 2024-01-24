@@ -1,32 +1,43 @@
 import styled from "styled-components";
 import FlipMove from "react-flip-move";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import WinnerRankRow, { RankItem } from "./components/WinnerRankRow";
-import { theme } from "@/theme";
-import winnerBanner from "@/assets/t23/images/home/winner-banner.png";
-import { media } from "@/theme/breakpoints";
 import boxBg from '@/assets/t22/images/home/rankingBoxBg.png';
 import bg from '@/assets/t22/images/home/rankingBg.png'
+import {media} from '@/theme/breakpoints';
 
-const Wrapper = styled.div`
-  width: 100%;
+const Root = styled.div`
+  margin-top: 80px;
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 18px;
+  justify-content: center;
+  width: 100%;
+
+  ${media.md} {
+    justify-content: flex-end;
+    background: url(${bg}) no-repeat center center;
+    background-size: contain;
+  }
 `;
 
 const Content = styled.div`
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: url(${boxBg}) no-repeat top;
+  background-size: contain;
   width: 100%;
-  top: 32.51%;
-  margin-top: 19px;
-  
-  ${media.sm} {
-    position: relative;
-    top:0;
-    margin-top: 0px;
-  }
+  max-width: 450px;
+  height: 515px;
+`;
+
+const Label = styled.p`
+  padding: 16px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+`;
+
+const Ranking = styled.div`
+  padding: 25px 25px 0;
+  flex: 1;
 `;
 
 type Props = {
@@ -34,18 +45,19 @@ type Props = {
 };
 
 const WinnerCard = ({ leaderboard }: Props) => {
-  const { isMobileSize } = useRwd();
-
   return (
-    <Wrapper>
+    <Root>
       <Content>
-        <FlipMove style={{ width: "100%", display: "flex", gap: isMobileSize ? "10spx" : "15px", flexDirection: "column" }}>
-          {leaderboard.map((rankItem) => {
-            return <WinnerRankRow key={rankItem.key} rankItem={rankItem} />;
-          })}
-        </FlipMove>
+        <Label>Latest Winners</Label>
+        <Ranking>
+          <FlipMove>
+            {leaderboard.map((rankItem) => {
+              return <WinnerRankRow key={rankItem.key} rankItem={rankItem} />;
+            })}
+          </FlipMove>
+        </Ranking>
       </Content>
-    </Wrapper>
+    </Root>
   );
 };
 

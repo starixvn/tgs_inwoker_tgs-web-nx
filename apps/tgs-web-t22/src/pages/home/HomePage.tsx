@@ -25,7 +25,6 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  flex-shrink: 0;
   flex: 1;
 
   ${media.sm} {
@@ -55,7 +54,6 @@ const MainContentWrapper = styled.div`
   align-items: flex-start;
   color: ${({ theme }) => theme.white};
   gap: 6px;
-  flex-shrink: 0;
   flex: 1;
 
   ${media.sm} {
@@ -150,12 +148,12 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      
+
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {renderBanner()}
 
       {isDesktopSize && <Marquee />}
-      
+
       <Background>
         <MainContentWrapper>
           <HeaderCard />

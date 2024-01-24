@@ -15,7 +15,7 @@ type GameTypeItem = {
   name: string;
   imgUrl: string;
   icon: string;
-  title: string;
+  text: string;
   subTitle: string;
   gameType: GameTypeEnum;
 };
@@ -30,7 +30,7 @@ export const useHomeCategoryList = () => {
         name: "SPORTS",
         imgUrl: sport,
         icon: iconSport,
-        title: i18n.t("common.sports"),
+        text: i18n.t("common.sports"),
         subTitle: "SPORTS GAMES",
         gameType: GameTypeEnum.SPORTS,
       },
@@ -39,7 +39,7 @@ export const useHomeCategoryList = () => {
         name: "SLOTS",
         imgUrl: slot,
         icon: iconSlot,
-        title: i18n.t("common.slot"),
+        text: i18n.t("common.slot"),
         subTitle: "Slot GAMES",
         gameType: GameTypeEnum.SLOT,
       },
@@ -48,7 +48,7 @@ export const useHomeCategoryList = () => {
         name: "FISHING",
         imgUrl: fishing,
         icon: iconFishing,
-        title: i18n.t("common.fish"),
+        text: i18n.t("common.fish"),
         subTitle: "Fishing GAMES",
         gameType: GameTypeEnum.FISH,
       },
@@ -57,7 +57,7 @@ export const useHomeCategoryList = () => {
         name: "LIVE CASINO",
         imgUrl: live_casino,
         icon: iconCasino,
-        title: i18n.t("common.live"),
+        text: i18n.t("common.live"),
         subTitle: "Live Casino",
         gameType: GameTypeEnum.LIVELOBBY,
       },
@@ -65,7 +65,7 @@ export const useHomeCategoryList = () => {
 
     const translatedList: GameTypeItem[] = homeCategoryList.map((gameItem) => ({
       ...gameItem,
-      title: i18n.t(gameItem.title),
+      text: i18n.t(gameItem.text),
     }));
 
     setTranslatedGameTypeList(translatedList);

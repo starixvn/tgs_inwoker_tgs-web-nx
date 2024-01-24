@@ -14,7 +14,10 @@ import {
 const HomeLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.white};
-  /* height: 100vh; */
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.black};
+  }
 `;
 
 const DashboardContainer = styled.div`

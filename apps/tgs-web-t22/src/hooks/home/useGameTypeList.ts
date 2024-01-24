@@ -91,12 +91,11 @@ export const useGameTypeList = () => {
 
     const translatedList: GameTypeItem[] = gameTypeList.map((gameItem) => ({
       ...gameItem,
-      text: i18n.t(gameItem.text),
+      // text: i18n.t(gameItem.text),
     }));
 
     setTranslatedGameTypeList(translatedList);
   }, []);
-
   return translatedGameTypeList;
 };
 
