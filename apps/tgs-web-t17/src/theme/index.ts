@@ -9,4 +9,5 @@ export const theme = {
   black: "#000",
   white: "#FFFFFF",
   primaryGradient: "linear-gradient(180deg, #D84736 0%, #E08144 100%)",
+  btnHover: "linear-gradient(180deg, #e44d3b 0%, #e5935e 100%)",
 };

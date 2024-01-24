@@ -17,6 +17,7 @@ declare module "@mui/material/styles/createPalette" {
     darkGray: string;
     black: string;
     disabledGray: string;
+    btnHover: string;
   }
 }
 
@@ -45,6 +46,7 @@ const muiTheme = createTheme({
     lightGray: theme.lightGray,
     darkGray: theme.darkGray,
     black: theme.black,
+    btnHover: theme.btnHover,
     text: {
       primary: theme.white,
       disabled: theme.disabledGray,

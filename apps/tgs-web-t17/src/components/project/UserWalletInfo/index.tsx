@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import refreshIcon from "@/assets/t19/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t17/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 
@@ -58,14 +58,14 @@ const MainWalletContainer = styled.div`
   //width: 128px;
 `;
 
-const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
+const MainAccountLabel = styled.div`
   font-size: 1.062rem;
   font-weight: 400;
   color: ${({ theme }) => theme.white};
   white-space: nowrap;
 `;
 
-const AmountContainer = styled.div<{ theme: DefaultTheme }>`
+const AmountContainer = styled.div`
   font-size: 2.125rem;
   font-weight: 400;
   color: ${({ theme }) => theme.white};
@@ -99,8 +99,8 @@ const RefreshButton = styled(Icon) <RefreshButtonProps>`
   }
 `;
 
-const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: #FBAF26;
+const VIPLabel = styled.div`
+  color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
   margin-top: 6px;
   font-weight: 400;
