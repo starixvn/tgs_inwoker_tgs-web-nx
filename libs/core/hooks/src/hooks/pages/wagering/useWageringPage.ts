@@ -1,3 +1,4 @@
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import { WalletService } from "@tgs-web-nx/core";
 import { useCallback, useState } from "react";

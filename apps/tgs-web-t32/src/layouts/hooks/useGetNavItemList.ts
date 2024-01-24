@@ -144,8 +144,7 @@ export function useGetNavItemList() {
       },
       {
         key: NavCardKey.WAGERING,
-        //todo: 新增 Wagering t18 翻譯
-        label: "Wagering",
+        label: i18n.t("t29.wagering"),
         iconUrl: wageringImg,
         iconSecondaryUrl: wageringWhiteImg,
         navType: "route",
