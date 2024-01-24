@@ -159,12 +159,11 @@ const WageringPage = () => {
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
-      {/* todo: add t18 Wagering Requirement  */}
-      <AccountPaper pageName={"Wagering Requirement"} iconUrl={iconWagering}>
+      <AccountPaper pageName={i18n.t("t29.wageringrequirement")} iconUrl={iconWagering}>
         <WageringContainer>
           <Requirement>
             <img src={iconCard} alt="" />
-            <TitleItem> Main</TitleItem>
+            <TitleItem>{i18n.t("t29.main")} </TitleItem>
             <TitleAmountText>{wageringRequirement}</TitleAmountText>
           </Requirement>
           <GameWageringContainer>

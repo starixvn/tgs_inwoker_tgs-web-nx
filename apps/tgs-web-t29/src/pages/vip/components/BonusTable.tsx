@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
 import { useVipBonusList } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
-import { vipBonusList } from "@/constants/vip";
 
 const ScrollableContainer = styled.div`
   width: 100%;

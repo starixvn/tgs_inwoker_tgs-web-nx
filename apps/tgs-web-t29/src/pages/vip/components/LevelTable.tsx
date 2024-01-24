@@ -172,10 +172,6 @@ const LevelTable = ({
   currentLevel: number;
   productRebateByLevel: TypeProductRebateByLevel[];
 }) => {
-  // console.log(productRebateByLevel)
-  // const gameList = productRebateByLevel.map((productRebate) => {
-  //   return productRebate.name;
-  // });
 
   const firstProductRebate = productRebateByLevel[0];
   const maxLevel = firstProductRebate.rebate.length;
