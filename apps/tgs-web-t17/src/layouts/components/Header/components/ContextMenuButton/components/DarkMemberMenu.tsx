@@ -25,9 +25,8 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   display: flex;
   align-items: center;
   gap: 10px;
-  background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.darkGray : theme.pureBlack};
-  color: ${({ theme }: MemberMenuItemProps) => theme.white};
+  color: ${({ $isActive, theme }: MemberMenuItemProps) =>
+    $isActive ? theme.primary : theme.white};
   cursor: pointer;
 
   &:hover {

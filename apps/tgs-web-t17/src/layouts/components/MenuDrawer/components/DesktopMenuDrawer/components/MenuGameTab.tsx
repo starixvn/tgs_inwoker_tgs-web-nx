@@ -37,8 +37,8 @@ const Wrapper = styled.div<{
       ? theme.g7
       : theme.mainBackground};
   align-self: stretch;
-  padding: ${({ $isShrink }) => $isShrink ? "unset" : "0px 24px"};
-  gap:  ${({ $isShrink }) => $isShrink ? "unset" : "24px"};
+  padding: ${({ $isShrink }) => $isShrink ? "unset" : "10px 20px"};
+  gap:  ${({ $isShrink }) => $isShrink ? "unset" : "15px"};
 
   &:hover {
     background: ${({ theme }) => theme.g7};
@@ -75,7 +75,7 @@ const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
 
       return (
         <IconComponent
-          $color={(!isActive && isHovered) ? theme.white : (isActive ? theme.primary : theme.g2)}
+          $color={(isActive || isHovered) ? theme.primary : theme.white}
           isHovered={isHovered}
         />
       );

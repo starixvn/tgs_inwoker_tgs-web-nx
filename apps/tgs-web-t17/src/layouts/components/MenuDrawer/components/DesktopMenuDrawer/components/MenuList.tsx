@@ -12,20 +12,18 @@ const TabContainer = styled.div<{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2px;
-  padding: 15px 0px;
+
+  border: 1px solid red;
 `;
 
 const MenuList = () => {
   const { sideNavItemList } = useGetNavItemList();
   const { activeGameType } = useHomeGameContext();
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const [isSelected, setIsSelected] = useState();
   const { isDesktopSize } = useRwd();
   const isShrink = isDesktopSize && !isMenuOpen;
 
   const handleTabClick = (navItem: NavItem) => {
-    setIsSelected(navItem.label);
     if (navItem.navType !== "action") return;
     navItem.callback();
     handleToggleMenu(false);
@@ -40,7 +38,7 @@ const MenuList = () => {
           <MenuGameTab
             key={key}
             text={isMenuOpen ? label : ""}
-            isActive={gameType === activeGameType && label === isSelected}
+            isActive={gameType === activeGameType}
             onClick={() => handleTabClick(navItem)}
           >
             {iconComponent && React.createElement(iconComponent)}

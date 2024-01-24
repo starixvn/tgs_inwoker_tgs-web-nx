@@ -11,11 +11,9 @@ const SideMenuHeaderContainer = styled.div`
   position: relative;
   flex-shrink: 0;
   width: 100%;
-  height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 20px;
+  justify-content: flex-end;
 `;
 
 const Wrapper = styled.div`
@@ -66,12 +64,8 @@ const SideMenuHeader = () => {
 
   return (
     <SideMenuHeaderContainer>
-      <LogoImg src={brand && brand.loadingUrl} />
-      <Wrapper>
-        <HomeBtn onClick={() => handleEnterGamePortal()}>
-          <HomeIcon $color={"#fff"} />
-          <Text>Home</Text>
-        </HomeBtn>
+      {/* <LogoImg src={brand && brand.loadingUrl} /> */}
+      {/* <Wrapper>
         <CloseIconContainer onClick={() => handleToggleMenu(false)}>
           <CloseIcon
             style={{
@@ -81,7 +75,7 @@ const SideMenuHeader = () => {
             }}
           />
         </CloseIconContainer>
-      </Wrapper>
+      </Wrapper> */}
       {/* {isLogin ? <Avatar /> : <LogoImg src={brand && brand.loadingUrl} />} */}
     </SideMenuHeaderContainer>
   );
