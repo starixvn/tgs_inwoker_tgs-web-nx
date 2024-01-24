@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { UiService, useGeneralStore } from "@tgs-web-nx/core";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import Supports from "./components/Supports";
+import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
 import { media } from "@/theme/breakpoints";
 
 const MaintenanceContainer = styled.div`

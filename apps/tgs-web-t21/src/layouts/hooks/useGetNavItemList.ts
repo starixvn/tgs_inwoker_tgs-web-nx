@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { NavCardKey } from "@tgs-web-nx/types";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
 import homeImg from "@/assets/t21/images/account/navItem/icon-home.svg";
 import profileImg from "@/assets/t21/images/account/navItem/icon-account.svg";
 import depositImg from "@/assets/t21/images/account/navItem/icon-deposit.svg";

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
 import { media } from "@/theme/breakpoints";
 import emphasizedLine from "@/assets/t33/images/home/emphasized-line.svg";
 

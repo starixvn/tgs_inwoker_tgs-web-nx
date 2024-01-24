@@ -48,7 +48,6 @@ const MainContentWrapper = styled.div`
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
-  margin-top: 20px;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -61,7 +60,6 @@ const HomePage = () => {
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
-  const { isDesktopSize } = useRwd();
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);

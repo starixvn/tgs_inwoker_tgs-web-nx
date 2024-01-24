@@ -14,7 +14,7 @@ const TabContainer = styled.div`
   -webkit-overflow-scrolling: touch;
   flex-shrink: 0;
   gap: 10px;
-  padding: 12px 12px 4px;
+  background: ${({ theme }) => theme.primary};
 
   ${media.sm} {
     &::-webkit-scrollbar {
@@ -78,13 +78,13 @@ const GameTypeTab = () => {
   return (
     <TabContainer>
       {filteredGameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, iconActiveUrl, text, gameType, fontSize } = gameTypeItem;
+        const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
 
         return (
           <Tab
             key={key}
             imageUrl={iconUrl}
-            imageActiveUrl={iconActiveUrl || iconUrl}
+            imageActiveUrl={iconUrl}
             text={text}
             isActive={gameType === activeGameType}
             fontSize={fontSize}

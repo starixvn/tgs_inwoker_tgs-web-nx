@@ -1,10 +1,7 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
 import promotionIcon from "@/assets/t21/images/bottomAppBar/icon-promotion.svg";
 import sportIcon from "@/assets/t21/images/bottomAppBar/icon_sport.svg";
 import chatIcon from "@/assets/t21/images/bottomAppBar/icon-chat.svg";

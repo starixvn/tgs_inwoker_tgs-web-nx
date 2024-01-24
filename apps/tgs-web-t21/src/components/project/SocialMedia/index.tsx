@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
 import useSocialMediaIconList from "@/hooks/home/useSocialMediaIconList";
 
 const SocialMediaContainer = styled.div`
@@ -31,7 +31,13 @@ const SocialMedia = () => {
         <SocialMediaIcon
           key={item.icon}
           $imageUrl={item.icon}
-          onClick={isCustomizedBrand ? () => { window.open(item.link, "_blank") } : goToHomePage}
+          onClick={
+            isCustomizedBrand
+              ? () => {
+                  window.open(item.link, "_blank");
+                }
+              : goToHomePage
+          }
         />
       ))}
     </SocialMediaContainer>

@@ -7,10 +7,12 @@ import { i18n } from "@tgs-web-nx/utils";
 import CategorySlider from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory/CategorySlider";
 import Icon from "@/components/project/Icon";
 
-const GameTypeCategoryContainer = styled.div``;
+const GameTypeCategoryContainer = styled.div`
+  padding: 14.49px;
+`;
+
 export const CategoryHeader = styled.div`
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.mainBackground};
+  color: ${({ theme }) => theme.black};
   display: flex;
   align-items: center;
   font-size: 1rem;
@@ -47,7 +49,6 @@ const GameTypeCategory = ({ gameTypeItem, gameList }: Props) => {
   return (
     <GameTypeCategoryContainer>
       <CategoryHeader>
-        <Icon iconUrl={gameTypeItem.iconUrl} width={"18px"} height={"18px"} />
         {gameTypeItem.text}
 
         <MoreButton onClick={handleClick}>{i18n.t("web.slotGame.more")}</MoreButton>

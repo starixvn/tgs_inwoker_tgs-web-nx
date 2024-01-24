@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { useHistory } from "react-router";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
@@ -10,6 +9,7 @@ import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import Icon from "@/components/project/Icon";
 import downloadImg from "@/assets/t21/images/header/icon-download.svg";
 import messageImg from "@/assets/t21/images/header/icon-message.svg";
+import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
 
 const HeaderContainer = styled.div`
   position: fixed;
