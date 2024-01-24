@@ -2,8 +2,6 @@ import styled from "styled-components";
 import FlipMove from "react-flip-move";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import WinnerRankRow, { RankItem } from "./components/WinnerRankRow";
-import { theme } from "@/theme";
-import winnerBanner from "@/assets/t23/images/home/winner-banner.png";
 import { media } from "@/theme/breakpoints";
 
 const Wrapper = styled.div`

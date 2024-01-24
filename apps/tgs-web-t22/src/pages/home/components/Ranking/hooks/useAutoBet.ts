@@ -22,7 +22,8 @@ function getRandomBetAmount() {
 
 function getRandomGameType(gameTypeList: GameTypeItem[]) {
   const randomGameType = gameTypeList[Math.floor(Math.random() * gameTypeList.length)];
-
+  console.log(gameTypeList);
+  
   return randomGameType.text;
 }
 
