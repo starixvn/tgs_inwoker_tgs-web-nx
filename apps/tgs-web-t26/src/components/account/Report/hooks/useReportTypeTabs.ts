@@ -44,7 +44,7 @@ export function useReportTypeTabs() {
       })(),
       {
         index: ReportTabIndexEnum.BALANCE_CHANGE,
-        label: i18n.t("balancechangereport"),
+        label: i18n.t("report.balanceChanges.title"),
       },
       {
         index: ReportTabIndexEnum.JOIN_PROMOTION,
