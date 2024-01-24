@@ -91,7 +91,9 @@ const CardManage = ({
         )}
       </CardContainer>
 
-      <SubmitButton fullWidth onClick={onhandleBackClick}>
+      <SubmitButton fullWidth onClick={onhandleBackClick}
+        style={{ width: isDesktopSize ? "250px" : "", height: isDesktopSize ? "46px" : "50px" }}
+      >
         {i18n.t("common.back")}
       </SubmitButton>
     </CardManageContainer>

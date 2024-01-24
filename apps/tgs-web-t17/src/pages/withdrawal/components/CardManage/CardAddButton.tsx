@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import iconPlus from "@/assets/t19/images/withdraw/icon-plus.svg";
+import iconPlus from "@/assets/t17/images/withdraw/icon-plus.svg";
 import Icon from "@/components/project/Icon";
 
 const CardAddButtonContainer = styled.div`
   margin-left: auto;
-  background: ${({ theme }) => theme.blue40};
+  background: ${({ theme }) => theme.darkGray};
   color: ${({ theme }) => theme.white};
   padding: 13px;
   cursor: pointer;

@@ -6,15 +6,15 @@ export const Container = styled.div`
 `;
 export const SubTitle = styled.div`
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 16px;
-  color: ${({ theme }) => theme.blue50};
+  color: #F2F2F2;
   text-align: center;
 `;
 export const SubTitleDesc = styled.div`
   font-size: 0.875rem;
   margin-bottom: 16px;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   text-align: center;
 `;
 export const ButtonContainer = styled.div`

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
+import iconImg from "@/assets/t17/images/withdraw/manage-card-icon.svg";
 import Icon from "@/components/project/Icon";
 
 const ButtonContainer = styled.div`
@@ -9,12 +9,13 @@ const ButtonContainer = styled.div`
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.15rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.primary};
   padding: 10px 22px;
   gap: 8px;
+  border-radius: 10px;
 `;
 
 type Props = {

@@ -3,17 +3,19 @@ import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
-import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";
-import iconCardActive from "@/assets/t29/images/withdraw/icon-card-active.svg";
-import iconManage from "@/assets/t29/images/withdraw/icon-manage.svg";
+import iconCard from "@/assets/t17/images/withdraw/icon-card.svg";
+import iconCardActive from "@/assets/t17/images/withdraw/icon-card-active.svg";
+import iconManage from "@/assets/t17/images/withdraw/icon-manage.svg";
 import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
+import { media } from "@/theme/breakpoints";
 
 const BankCardGroupContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   flex-wrap: wrap;
+
 `;
 
 type BankCardButtonProps = {
@@ -23,15 +25,21 @@ type BankCardButtonProps = {
 const BankCardButton = styled.div<BankCardButtonProps>`
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 11px;
+  gap: 12px;
+  padding: 8px;
   font-size: 14px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
+  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.black : theme.white)};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+    $active ? theme.primary : "transparent"};
   width: auto !important;
   cursor: pointer;
   float: left;
+  border: 1px solid ${({ $active, theme }: BankCardButtonProps) => ($active ? "transparent" : theme.white)};
+  border-radius: 10px;
+
+  ${media.sm} {
+    height: 44px;
+  }
 `;
 
 const BankCardButtonLabel = styled.div`

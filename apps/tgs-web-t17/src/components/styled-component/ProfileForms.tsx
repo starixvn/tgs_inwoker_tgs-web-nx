@@ -72,16 +72,16 @@ export const UploadFileTag = styled.span`
 `;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "53px",
+  height: "44px",
   whiteSpace: "nowrap",
-  padding: "10px",
+  padding: "12px 20px",
   fontSize: "1rem",
   lineHeight: 1,
-  fontWeight: 700,
-  color: theme.palette.black,
+  fontWeight: 400,
+  color: theme.palette.white,
   background: theme.palette.primaryGradient,
   boxShadow: "none",
-  borderRadius: "6px",
+  borderRadius: "10px",
 
   "&:hover": {
     background: theme.palette.btnHover,
@@ -119,3 +119,49 @@ export const VerifySubmitButton = styled(CloseButton)`
   margin-bottom: 20px !important;
   margin-top: auto !important;
 `;
+
+export const SwitchPageButton = muiStyled(MuiButton)(({ theme }) => ({
+  height: "44px",
+  whiteSpace: "nowrap",
+  padding: "padding: 0px 24px;",
+  fontSize: "1rem",
+  lineHeight: 1,
+  fontWeight: 400,
+  color: theme.palette.black,
+  background: theme.palette.primaryGradient,
+  boxShadow: "none",
+  borderRadius: "10px",
+  border: `1px solid ${theme.palette.secondary.main}`,
+
+  "&:hover": {
+    background: theme.palette.btnHover,
+  },
+
+  "&:disabled": {
+    background: theme.palette.action.disabledBackground,
+    color: theme.palette.action.disabled,
+  },
+})) as typeof MuiButton;
+
+export const GoOnButton = muiStyled(MuiButton)(({ theme }) => ({
+  height: "44px",
+  whiteSpace: "nowrap",
+  padding: "0px 24px",
+  fontSize: "1rem",
+  lineHeight: 1,
+  fontWeight: 400,
+  color: theme.palette.primary.main,
+  background: "rgba(0, 0, 0, 0.60)",
+  boxShadow: "none",
+  borderRadius: "10px",
+  border: `1px solid ${theme.palette.secondary.main}`,
+
+  "&:hover": {
+    background: theme.palette.btnHover,
+  },
+
+  "&:disabled": {
+    background: theme.palette.action.disabledBackground,
+    color: theme.palette.action.disabled,
+  },
+})) as typeof MuiButton;

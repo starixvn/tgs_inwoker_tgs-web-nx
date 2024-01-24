@@ -2,7 +2,7 @@ import React from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
-import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { SubmitButton, SwitchPageButton, GoOnButton } from "@/components/styled-component/ProfileForms";
 import {
   ButtonContainer,
   Container,
@@ -11,7 +11,7 @@ import {
 } from "@/components/styled-component/WithdrawV2/AddCardSuccess";
 import { theme } from "@/theme";
 import { ImgSuccess } from "@/components/styled-component/WithdrawV2/Success";
-import SuccessPNG from "@/assets/t29/images/withdraw/icon-check.svg";
+import SuccessPNG from "@/assets/t17/images/withdraw/icon-check.svg";
 
 const AddCardSuccess = ({
   isDeposit,
@@ -44,11 +44,11 @@ const AddCardSuccess = ({
           config.features.AddCard_NotAllowedEditDelete ||
           bankCardList.length >= config.features.AddCard_MaximumCardAllowed
         ) && (
-          <SubmitButton fullWidth onClick={onhandleBindCardClick}>
-            {i18n.t("card.success.bindBankCard")}
-          </SubmitButton>
-        )}
-        <SubmitButton
+            <GoOnButton fullWidth onClick={onhandleBindCardClick}>
+              {i18n.t("card.success.bindBankCard")}
+            </GoOnButton>
+          )}
+        <SwitchPageButton
           fullWidth
           onClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}
           style={{
@@ -56,7 +56,7 @@ const AddCardSuccess = ({
           }}
         >
           {isDeposit ? i18n.t("card.success.goDeposit") : i18n.t("card.success.goWithdrawal")}
-        </SubmitButton>
+        </SwitchPageButton>
       </ButtonContainer>
     </Container>
   );
