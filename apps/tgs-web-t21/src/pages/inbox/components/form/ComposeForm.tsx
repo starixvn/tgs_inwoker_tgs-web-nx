@@ -16,9 +16,9 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: #23507d;
-  font-size: 0.875rem;
-  font-weight: 700;
+  color: ${({ theme }) => theme.black};
+  font-size: 1.125rem;
+  font-weight: 400;
   margin-bottom: 16px;
 `;
 
@@ -57,7 +57,7 @@ const ComposeForm = () => {
             placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("subject")}`.toLowerCase()}`}
             sx={{
               input: {
-                padding: "17px 0",
+                padding: "16.5px 20px",
               },
             }}
           />

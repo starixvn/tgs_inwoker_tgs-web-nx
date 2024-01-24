@@ -5,6 +5,8 @@ import { Close as CloseIcon } from "@mui/icons-material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { theme } from "@/theme";
+import Icon from "@/components/project/Icon";
+import iconClose from "@/assets/t21/images/dialog/icon-close.svg";
 
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
@@ -20,8 +22,8 @@ const StyledDialog = styled(MuiDialog)`
 const CloseIconContainer = styled.div`
   cursor: pointer;
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 4.5px;
+  right: 4.5px;
   display: flex;
   align-items: center;
 `;
@@ -52,13 +54,8 @@ const Dialog = ({ open, onClose, children, fullscreenOnMobile = true, ...others 
       onClose={onClose}
       {...others}
     >
-      <CloseIconContainer>
-        <CloseIcon
-          onClick={onClose}
-          style={{
-            color: theme.text,
-          }}
-        />
+      <CloseIconContainer onClick={onClose}>
+        <Icon iconUrl={iconClose} width={"30px"} height={"30px"} />
       </CloseIconContainer>
 
       <ChildContainer>{children}</ChildContainer>

@@ -20,9 +20,6 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontSize: "0.875rem",
     fontWeight: 400,
   },
-  placeholder: {
-    // color: "red",
-  },
 
   "& input::placeholder": {
     color: theme.palette.gray50,

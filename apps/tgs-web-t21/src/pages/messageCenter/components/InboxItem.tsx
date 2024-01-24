@@ -8,7 +8,8 @@ const InboxItemContainer = styled.div`
   width: 100%;
   padding: 10px 30px;
   cursor: pointer;
-  background: ${({ theme }) => theme.gray20};
+  background: ${({ theme }) => theme.gray10};
+  border-radius: 6px;
 `;
 
 type CheckboxContainerProps = {

@@ -4,8 +4,9 @@ import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "
 const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
   textarea: {
-    padding: "10px",
+    padding: "10px 20px",
     color: theme.palette.text.primary,
+    background: theme.palette.gray10,
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
@@ -18,7 +19,6 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   },
   "& .MuiInputBase-root": {
     padding: 0,
-    border: `1px solid ${theme.palette.gray10}`,
   },
   label: {
     color: "rgba(255,255,255,0.3)",
@@ -26,12 +26,9 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
     fontSize: "0.875rem",
     fontWeight: 400,
   },
-  placeholder: {
-    // color: "red",
-  },
 
   "& textarea::placeholder": {
-    color: "#828282",
+    color: theme.palette.gray50,
     opacity: 1,
     fontSize: "0.875rem",
     fontWeight: 400,

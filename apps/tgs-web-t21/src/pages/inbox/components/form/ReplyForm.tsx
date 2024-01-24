@@ -9,7 +9,7 @@ import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
 
 const InboxComposeFormContainer = styled.div`
-  padding: 16px;
+  padding: 16px 10px;
 `;
 const InputWrapper = styled.div`
   margin-bottom: 16px;
@@ -27,11 +27,11 @@ const OriginalMessage = styled.div`
   padding: 10px;
   white-space: pre-line;
   border: ${({ theme }) => `1px solid ${theme.gray10}`};
-  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.gray10};
+  color: ${({ theme }) => theme.black};
   overflow: auto;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 16px;
   letter-spacing: 0em;
 `;
 
@@ -66,7 +66,7 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
             value={displayedSubject}
             sx={{
               input: {
-                padding: "17px 0",
+                padding: "17px 20px",
               },
             }}
             disabled={true}
