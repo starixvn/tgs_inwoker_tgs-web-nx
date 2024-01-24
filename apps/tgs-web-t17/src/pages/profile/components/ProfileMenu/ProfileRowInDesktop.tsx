@@ -49,13 +49,14 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
       <Button
         variant={isVerified ? "contained" : "outlined"}
         sx={{
-          fontSize: "0.875rem",
-          color: isVerified ? theme.pureBlack : theme.white,
-          background: isVerified ? theme.goldGradient : "transparent",
+          fontSize: "1.25rem",
+          color: isVerified ? theme.black : theme.white,
+          background: isVerified ? theme.primaryGradient : "transparent",
           border: isVerified ? "none" : "1px solid #fff",
-          width: "150px",
-          height: "42px",
-          borderRadius: "6px",
+          width: "160px",
+          height: "44px",
+          borderRadius: "10px",
+          fontWeight: "400",
         }}
         onClick={() => {
           if (!profileItem) return;

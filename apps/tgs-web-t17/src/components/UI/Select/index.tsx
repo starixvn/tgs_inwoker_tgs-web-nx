@@ -6,6 +6,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   fontSize: "0.937rem",
   fontWeight: 400,
   border: "none",
+
   "&:focus": {
     background: "none",
   },
@@ -23,6 +24,9 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
     "&:disabled": {
       color: "#828282",
+    },
+    "&.Mui-disabled": {
+      WebkitTextFillColor: `${theme.palette.text.disabled}`,
     },
   },
   option: {

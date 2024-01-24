@@ -67,7 +67,7 @@ const ChildrenWrapper = styled.div`
 
   ${media.sm} {
     width: 100%;
-    padding: 30px 0px;
+    /* padding: 30px 0px; */
   }
 `;
 
@@ -84,14 +84,14 @@ const AccountDesktopLayout = ({ children }: Props) => {
         <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
           <>
             <ChildrenWrapper>
-              <DarkMemberMenu
+              {/* <DarkMemberMenu
                 handleCloseContextMenu={() => {}}
                 style={{
                   width: "180px",
                   flexShrink: 0,
                   minHeight: "800px",
                 }}
-              />
+              /> */}
               {children}
             </ChildrenWrapper>
             <Footer />

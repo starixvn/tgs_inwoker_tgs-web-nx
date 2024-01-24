@@ -3,14 +3,14 @@ import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
+  border: `none`,
   input: {
     padding: "12px 20px",
-    color: theme.palette.white,
+    background: theme.palette.darkGray,
+    color: theme.palette.text.primary,
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
-    background: theme.palette.darkGray,
-
     "&:-webkit-autofill": {
       WebkitTextFillColor: `${theme.palette.text.primary} !important`,
     },

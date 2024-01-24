@@ -16,6 +16,7 @@ declare module "@mui/material/styles/createPalette" {
     lightGray: string;
     darkGray: string;
     black: string;
+    disabledGray: string;
   }
 }
 
@@ -46,6 +47,7 @@ const muiTheme = createTheme({
     black: theme.black,
     text: {
       primary: theme.white,
+      disabled: theme.disabledGray,
     },
   },
   typography: {
