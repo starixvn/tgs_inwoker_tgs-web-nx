@@ -46,6 +46,7 @@ const DesktopCategoryContentWrapper = styled.div`
   flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
   align-content: center;
 `;
 

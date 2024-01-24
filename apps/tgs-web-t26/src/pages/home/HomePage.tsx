@@ -171,7 +171,7 @@ const HomePage = () => {
   }, [urlGameType]);
   return (
     <MainWrapper>
-      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
+      {/* {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />} */}
       {isMobileSize && <CardPrompt />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (
