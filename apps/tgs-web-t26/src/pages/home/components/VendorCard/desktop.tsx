@@ -1,10 +1,7 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
-import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t26/images/home/maintenance.svg";
 
 type Props = {
@@ -17,61 +14,80 @@ type Props = {
   status: number;
 };
 
+const MainWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+// -------- hover effect for desktop--------------
+const VendorCardHoverBg = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(0 0 0 / 50%);
+  border-radius: 4px;
+  display: none;
+  white-space: pre-line;
+`;
+
+const VendorCardBg = styled.div`
+  width: 270px;
+  height: 170px;
+  position: relative;
+  cursor: pointer;
+  background-color: ${(props) => props.theme.g4};
+  &:hover {
+    ${VendorCardHoverBg} {
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+`;
+
+const VendorCardContent = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 const GameIcon = styled.div<{ $imageUrl: string }>`
   position: absolute;
   left: 0;
   top: 0;
-  width: 115px;
-  height: 135px;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  flex-shrink: 0;
-`;
-
-const VendorCardBg = styled.div<{ $bgUrl: string }>`
-  position: relative;
-  width: 20%;
-  max-width: 200px;
-  position: relative;
-  aspect-ratio: 200/135;
-  cursor: pointer;
-  transition: transform 0.6s ease 0s;
-`;
-
-const VenderNameInfo = styled.div`
-  width: calc(100% - 115px);
+  width: 100%;
   height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
-
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: inline-flex;
   width: 100%;
-  max-width: 85px;
-  min-height: 38px;
+  max-width: 131px;
+  min-height: 68px;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
-  position: relative;
+  background-position: center;
 `;
 
-const VenderName = styled(VenderNameInfo)`
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  color: #333;
-  font-size: 1rem;
-  font-weight: 600;
+const VenderName = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  /* text-align: left; */
 `;
 
 const MaintenanceBg = styled.div`
@@ -95,7 +111,31 @@ const MaintenanceIcon = styled.img`
   height: 57px;
 `;
 
-const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
+const PlayButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 36px;
+  padding: 10px 6px;
+  border-radius: 20px;
+  gap: 10px;
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.black};
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 15px;
+  letter-spacing: 0em;
+`;
+
+const DesktopVendorCard = ({
+  bgUrl,
+  imageUrl,
+  venderName,
+  venderLogoUrl,
+  launchGame,
+  status,
+}: Props) => {
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
@@ -104,7 +144,7 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
       return;
     }
     launchGame();
-  }
+  };
 
   useEffect(() => {
     if (venderNameRef.current) {
@@ -113,18 +153,25 @@ const DesktopVendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchG
   }, [venderNameRef.current]);
 
   return (
-    <VendorCardBg $bgUrl={bgUrl} onClick={launchGameHandler}>
-      <GameIcon $imageUrl={imageUrl}></GameIcon>
-      <VenderNameInfo>
-        <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>
-        <VenderName ref={venderNameRef}>{venderName}</VenderName>
-      </VenderNameInfo>
-      {status === providerStatus.Maintenance && (
-        <MaintenanceBg>
-          <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-        </MaintenanceBg>
-      )}
-    </VendorCardBg>
+    <MainWrapper>
+      <VendorCardBg>
+        <VendorCardContent>
+          <GameIcon $imageUrl={imageUrl}></GameIcon>
+          {status === providerStatus.Maintenance && (
+            <MaintenanceBg>
+              <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+            </MaintenanceBg>
+          )}
+        </VendorCardContent>
+        {
+          <VendorCardHoverBg>
+            <PlayButton onClick={launchGameHandler}>PLAY</PlayButton>
+            {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+          </VendorCardHoverBg>
+        }
+      </VendorCardBg>
+      <VenderName>{venderName}</VenderName>
+    </MainWrapper>
   );
 };
 

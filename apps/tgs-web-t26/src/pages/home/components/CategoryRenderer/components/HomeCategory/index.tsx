@@ -6,6 +6,7 @@ import { useGetHomeCategoryList, useHomeGameContext, useJackpot } from "@tgs-web
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
+import DesktopVendorCard from "../../../VendorCard/desktop";
 import CategoryLabel from "./components/CategoryLabel";
 import InfoCardList from "./components/InfoCardList";
 import WinnerCard from "@/pages/home/components//WinnerCard";
@@ -250,7 +251,7 @@ const HomeCategory = () => {
         audioElement.volume = 0;
       }
       Common.closePreviousPopup();
-      Common.PopupCenter(`/joinlobbygame/${activeGameType}/${gpcode}`, "gamewindow");
+      Common.PopupCenter(`/joinlobbygame/${GameTypeEnum.LIVELOBBY}/${gpcode}`, "gamewindow");
     }
   };
 
@@ -277,15 +278,28 @@ const HomeCategory = () => {
 
             if (gpCode === "BC") return null;
             return (
-              <LobbyVendorCard
+              <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`/assets/images/home/desktop/liveCasino/bg.png`}
-                imageUrl={`/assets/images/home/desktop/liveCasino/${gpCode}.png`}
-                venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
+                bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/liveCasino/bg.png`}
+                imageUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/desktop/liveCasino/${gpCode}.png`}
+                venderLogoUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode)}
                 status={status}
                 venderName={name}
               />
+              // <LobbyVendorCard
+              //   key={gpCode}
+              //   bgUrl={`/assets/images/home/desktop/liveCasino/bg.png`}
+              //   imageUrl={`/assets/images/home/desktop/liveCasino/${gpCode}.png`}
+              //   venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
+              //   launchGame={() => launchLobbyGame(gpCode)}
+              //   status={status}
+              //   venderName={name}
+              // />
             );
           })}
         </CategoryContent>
