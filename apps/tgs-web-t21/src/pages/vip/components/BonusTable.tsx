@@ -61,9 +61,8 @@ const BonusTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 10.5px 0;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
-  border-radius: 6px 0px 0px 0px;
+  background-color: ${({ theme }) => theme.primary};
+  border-radius: 6px;
 
   ${media.sm} {
     height: 97px;
@@ -77,7 +76,7 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -98,9 +97,10 @@ const BonusTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
-
+  margin-top: 14px;
+  background: ${(props) => props.theme.white};
+  border-radius: 6px;
   ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
   }
 `;
 
@@ -109,10 +109,8 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid#23507D;
 
   ${media.sm} {
-    border-bottom: unset;
     color: #23507d;
   }
 `;
@@ -125,7 +123,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.gray80};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;

@@ -12,11 +12,12 @@ const SupportCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 15px 20px;
-  background: ${({ theme }) => theme.blue20};
-  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.gray80};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.098rem;
+  border-radius: 5px;
 
   & > * {
     margin-bottom: 20px;
@@ -89,6 +90,8 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
         sx={{
           color: theme.white,
           background: theme.primary,
+          lineHeight: "13.8px",
+          fontWeight: 400,
           padding: "6px",
           "&:hover": {
             background: theme.secondary,

@@ -13,7 +13,7 @@ const VipWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
+  // background-color: ${({ theme }) => theme.mainBackground};
   padding: 12px;
   gap: 16px;
 
@@ -22,7 +22,7 @@ const VipWrapper = styled.div`
     margin: 0 auto;
     gap: 10px;
     padding: 10px;
-    background-color: ${({ theme }) => theme.blue20};
+    // background-color: ${({ theme }) => theme.blue20};
   }
 `;
 
@@ -62,7 +62,7 @@ const VIP = () => {
 
   return (
     <VipWrapper>
-      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} />
+      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.png`} />
       <BonusTable vipSortingData={vipSortingData} />
       <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
     </VipWrapper>

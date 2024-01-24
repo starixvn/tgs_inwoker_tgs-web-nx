@@ -59,13 +59,12 @@ const LevelTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 12px 15px 12px 15px;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
+  background-color: ${({ theme }) => theme.primary};
+  border-radius: 6px;
 
   ${media.sm} {
     height: 86px;
     padding: 20px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
   }
 `;
 
@@ -76,7 +75,7 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -98,7 +97,8 @@ const LevelTableBody = styled.div`
   align-items: flex-start;
   align-self: stretch;
   background: ${(props) => props.theme.mainBackground};
-  padding-top: 20px;
+  margin-top: 14px;
+  border-radius: 6px;
 
   ${media.sm} {
     background: ${(props) => props.theme.mainBackground};
@@ -115,7 +115,6 @@ const LevelTableRowWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
 
   ${media.sm} {
     border-bottom: unset;
@@ -131,7 +130,7 @@ const RowItem = styled.div`
   min-width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.black};
+  color: ${(props) => props.theme.gray80};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
