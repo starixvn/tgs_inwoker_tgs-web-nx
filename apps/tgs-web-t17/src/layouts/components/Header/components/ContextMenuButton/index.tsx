@@ -4,7 +4,7 @@ import { Drawer } from "@mui/material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import avatarImg from "@/assets/t33/images/account/avatar.svg";
 import { theme } from "@/theme";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/AccountMenu";
 import WhiteMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/WhiteMemberMenu";
 
 const ContextMenuButtonContainer = styled.div`

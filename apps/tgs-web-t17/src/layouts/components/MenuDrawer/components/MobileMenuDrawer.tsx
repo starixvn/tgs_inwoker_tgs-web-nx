@@ -12,6 +12,9 @@ import casinoIcon from "@/assets/t17/images/account/navItem/icon-casino.svg";
 import toggleIcon from "@/assets/t17/images/account/navItem/icon-toggle.svg";
 import { useState } from "react";
 import { media } from "@/theme/breakpoints";
+import AccountMenu from "../../Header/components/ContextMenuButton/components/AccountMenu";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
+import { Button } from "@/components/UI/Button";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.darkGray};
@@ -19,7 +22,6 @@ const MobileMenuDrawerContainer = styled.div`
   height: 100vh;
   padding: 20px;
   gap: 15px;
-  border: 1px solid yellow;
   
   ${media.sm} {
     padding: 20px 40px;
@@ -35,12 +37,10 @@ const ContentWrapper = styled.div`
   align-items: center;
   overflow-y: auto;
   padding: 20px;
-  /* padding: 32px 0px 10px 30px; */
   align-items: flex-start;
   flex-shrink: 0;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.darkGray};
 
-  border: 1px solid red;
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -78,7 +78,6 @@ const CasinoCard = styled.div<CasinoCardProps>`
   justify-content: center;
   transition: all 0.2s ease-in-out;
   padding: 10px 20px;
-  border: 1px solid red;
 `;
 
 const GameTypeWrapper = styled.div`
@@ -100,6 +99,10 @@ const IconText = styled.div`
   font-weight: 700;
 `;
 
+const LanguageSwitchWrapper = styled.div`
+  width: 100%;
+`;
+
 const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isLogin } = useAuth();
@@ -112,11 +115,6 @@ const MobileMenuDrawer = () => {
   const handleDrawerClose = () => {
     if (isDesktopSize) return;
     handleToggleMenu(false);
-  };
-
-  const handleClickPromotion = () => {
-    history.push("/promotion-list");
-    handleDrawerClose();
   };
 
   return (
@@ -132,6 +130,25 @@ const MobileMenuDrawer = () => {
           <ToggleWrapper $isOpenGameTypeMenu={isOpenGameTypeMenu}><Icon iconUrl={toggleIcon} width={"14px"} height={"8px"} /></ToggleWrapper>
         </CasinoCard>
         {isOpenGameTypeMenu && <MenuList />}
+        {/* Data Ref: sideNavItemList */}
+        <AccountMenu />
+        {/* Data Ref: accountNavItemList */}
+        <LanguageSwitchWrapper>
+          <LanguageSwitch />
+        </LanguageSwitchWrapper>
+
+        {isLogin && (
+          <Button
+            sx={{
+              height: "40px",
+              width: "100%",
+            }}
+            onClick={handleLogout}
+          >
+            {i18n.t("web.header.logout")}
+          </Button>
+        )}
+
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );

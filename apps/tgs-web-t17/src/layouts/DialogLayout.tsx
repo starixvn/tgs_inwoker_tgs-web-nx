@@ -4,7 +4,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/AccountMenu";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import BottomAppBar from "@/layouts/components/BottomAppBar";

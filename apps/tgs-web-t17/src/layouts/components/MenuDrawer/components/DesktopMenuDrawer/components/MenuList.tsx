@@ -12,8 +12,7 @@ const TabContainer = styled.div<{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  border: 1px solid red;
+  border-radius: 10px;
 `;
 
 const MenuList = () => {

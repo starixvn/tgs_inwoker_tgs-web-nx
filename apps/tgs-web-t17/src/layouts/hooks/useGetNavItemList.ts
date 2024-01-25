@@ -10,11 +10,9 @@ import vipImg from "@/assets/t19/images/account/navItem/icon-vip.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 // update svg icon
 import VipSvg from "@/pages/home/components/TabSvgIcon/Vip";
-import AffiliateSvg from "@/pages/home/components/TabSvgIcon/Affiliate";
-import ContactUsSvg from "@/pages/home/components/TabSvgIcon/ContactUs";
-import HomeSvg from "@/pages/home/components/TabSvgIcon/Home";
+import AffiliateSvg from "@/pages/account/components/AccountSvgIcon/Affiliate";
+import ContactUsSvg from "@/pages/account/components/AccountSvgIcon/ContactUs";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import AccountSvg from "@/pages/account/components/AccountSvgIcon/Account";
 import DepositSvg from "@/pages/account/components/AccountSvgIcon/Deposit";
 import WithdrawSvg from "@/pages/account/components/AccountSvgIcon/Withdraw";
 import TransferSvg from "@/pages/account/components/AccountSvgIcon/Transfer";
@@ -143,16 +141,16 @@ export function useGetNavItemList() {
 
   const accountNavItemList: NavItem[] = useMemo(() => {
     return [
-      {
-        key: NavCardKey.PROFILE,
-        label: i18n.t("wap.main.my"),
-        navType: "route",
-        routePath: "/profile",
-        callback: () => {
-          history.push("/profile");
-        },
-        iconComponent: AccountSvg,
-      },
+      // {
+      //   key: NavCardKey.PROFILE,
+      //   label: i18n.t("wap.main.my"),
+      //   navType: "route",
+      //   routePath: "/profile",
+      //   callback: () => {
+      //     history.push("/profile");
+      //   },
+      //   iconComponent: AccountSvg,
+      // },
       {
         key: NavCardKey.DEPOSIT,
         label: i18n.t("common.deposit"),
@@ -270,15 +268,15 @@ export function useGetNavItemList() {
       //   callback: () => {},
       //   iconComponent: LanguageSvg,
       // },
-      {
-        key: NavCardKey.LOGOUT,
-        label: i18n.t("web.header.logout"),
-        navType: "action",
-        callback: () => {
-          handleLogout();
-        },
-        iconComponent: LogoutSvg,
-      },
+      // {
+      //   key: NavCardKey.LOGOUT,
+      //   label: i18n.t("web.header.logout"),
+      //   navType: "action",
+      //   callback: () => {
+      //     handleLogout();
+      //   },
+      //   iconComponent: LogoutSvg,
+      // },
     ] as NavItem[];
   }, []);
 

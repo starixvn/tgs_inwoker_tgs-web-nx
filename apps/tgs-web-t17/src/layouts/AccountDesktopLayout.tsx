@@ -11,7 +11,7 @@ import {
   SUB_CONTENT_MAX_WIDTH,
   TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
+import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/AccountMenu";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
