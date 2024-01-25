@@ -13,17 +13,21 @@ import {
 
 const HomeLayoutContainer = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
   background: ${({ theme }) => theme.white};
+  height: 100vh;
 
   ${media.sm} {
     background: ${({ theme }) => theme.black};
+    height: auto;
   }
 `;
 
 const DashboardContainer = styled.div`
   display: flex;
   margin-top: ${MOBILE_HEADER_HEIGHT};
-  height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  flex: 1;
 
   ${media.sm} {
     margin-top: ${DESKTOP_HEADER_HEIGHT};
@@ -52,18 +56,16 @@ type Props = {
   children: React.ReactNode;
 };
 const HomeLayout = ({ children }: Props) => {
-  const { isMobileSize } = useRwd();
+  const { isMobileSize, isDesktopSize } = useRwd();
 
   return (
     <HomeLayoutContainer>
-      <Header />
+      {isDesktopSize && <Header/>}
 
       <DashboardContainer>
         <ContentWrapper>
-          <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
-            <Footer />
-          </>
+            {isDesktopSize && <Footer />}
         </ContentWrapper>
       </DashboardContainer>
 

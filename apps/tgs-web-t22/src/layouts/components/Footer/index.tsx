@@ -17,18 +17,14 @@ import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
 
 const FooterContainer = styled.footer`
-  display: none;
-
-  ${media.sm} {
-    width: 100%;
-    background: ${({ theme }) => theme.black};
-    color: ${({ theme }) => theme.white};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.white};
+  padding: 30px;
 `;
 
 const FooterGroups = styled.div`
@@ -203,7 +199,7 @@ const Footer = () => {
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
         </FooterGroup>
-        
+
         {/* Middle */}
         <FooterGroup>
 
@@ -214,7 +210,7 @@ const Footer = () => {
           <SocialMedia />
 
         </FooterGroup>
-        
+
         {/* Right */}
         <FooterGroup>
           <GroupTitle>Partners</GroupTitle>

@@ -13,25 +13,26 @@ const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 5px 10px;
-  border-radius: 50px;
-  background-color: ${({ theme }) => theme.white};
+  border-radius: 6px;
+  background: ${({ theme }) => theme.navMenuBackground};
 `;
 
 const InputTextfield = styled.input`
+  margin-left: 5px;
   display: flex;
   align-items: flex-start;
-  outline: none;
   border: 0;
   background-color: transparent;
   outline: none;
   width: 100%;
-  font-size: 0.875rem;
+
+  font-size: 0.7rem;
   color: ${(props) => props.theme.text};
-  margin-left: 5px;
+
   &::placeholder {
     color: ${(props) => props.theme.text};
     font-weight: 700;
-    line-height: 0.875rem;
+    line-height: 0.7rem;
   }
 
   &:focus {
@@ -42,7 +43,7 @@ const InputTextfield = styled.input`
 const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
   return (
     <InputWrapper>
-      {imageUrl && <img src={imageUrl} alt={"Search"} />}
+      {imageUrl && <img src={imageUrl} alt={"Search"} width="20px" />}
       <InputTextfield
         type="text"
         placeholder={placeholder}

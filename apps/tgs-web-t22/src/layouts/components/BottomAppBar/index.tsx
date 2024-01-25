@@ -5,14 +5,9 @@ import BottomNav from "./BottomNav";
 
 const BottomAppBarContainer = styled.div`
   padding: 10px;
-  position: fixed;
-  top: auto;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
 
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
+  grid-template-columns: repeat(5, 1fr);
   grid-column-gap: 10px;
 
   background: ${({ theme }) => theme.white};
@@ -23,7 +18,7 @@ const BottomAppBar = () => {
   const {bottomNavItemList} = useGetBottomNavItemList();
   const history = useHistory();
   const {pathname} = history.location;
-  
+
   return (
     <BottomAppBarContainer>
       {bottomNavItemList.map((bottomNavItem) => {

@@ -52,10 +52,10 @@ const ProviderTagContent = styled.div`
 `;
 
 export const SearchInputWrapper = styled.div`
+  padding: 4px;
   width: 100%;
-  height: 37px;
-  border-radius: 50px;
-  border: 1px solid ${({ theme }) => theme.blue40};
+  border-radius: 6px;
+  box-shadow: 1px 2px 8px 0 #9A8075;
 
   ${media.sm} {
     width: 300px;
@@ -205,14 +205,12 @@ const HomeGameFilterTag = () => {
           })}
         </CommonTagContainer>
 
-        <SearchInputWrapper>
           <SearchInput
             placeholder={i18n.t("slot.search")}
             imageUrl={searchIcon}
             handleChange={handleChangeSearch}
             value={searchString}
           />
-        </SearchInputWrapper>
       </CommonSearchWrapper>
     </FilterTagWrapper>
   );

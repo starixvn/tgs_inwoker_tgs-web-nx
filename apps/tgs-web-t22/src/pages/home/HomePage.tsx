@@ -51,29 +51,31 @@ const MainContentWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  color: ${({ theme }) => theme.white};
   gap: 6px;
+  color: ${({ theme }) => theme.white};
   flex: 1;
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     margin: 0 auto;
     padding: 80px 20px;
     gap: unset;
+    background: url(${bg}) center no-repeat;
+    background-size: cover;
     max-width: calc(${SUB_CONTENT_MAX_WIDTH} - 40px);
   }
 `;
 
-const Background = styled.div`
-  width: 100%;
-  height: 100%;
-  background: ${({ theme }) => theme.mainBackground};
-
-  ${media.sm} {
-    background: url(${bg}) center no-repeat;
-    background-size: cover;
-  }
-`;
+// const Background = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   background: ${({ theme }) => theme.mainBackground};
+//
+//   ${media.sm} {
+//     background: url(${bg}) center no-repeat;
+//     background-size: cover;
+//   }
+// `;
 
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
@@ -154,13 +156,11 @@ const HomePage = () => {
 
       {isDesktopSize && <Marquee />}
 
-      <Background>
-        <MainContentWrapper>
-          <HeaderCard />
-          <Jackpot />
-          <CategoryRenderer />
-        </MainContentWrapper>
-      </Background>
+      <MainContentWrapper>
+        {isMobileSize && <HeaderCard/>}
+        {isDesktopSize && <Jackpot />}
+        <CategoryRenderer />
+      </MainContentWrapper>
 
     </MainWrapper>
   );
