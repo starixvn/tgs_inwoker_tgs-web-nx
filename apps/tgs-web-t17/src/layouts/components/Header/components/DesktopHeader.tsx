@@ -57,12 +57,12 @@ const DesktopHeader = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <Link to={""}>
+        {/* <Link to={""}>
           <BrandLogo
             style={{ height: "28px" }}
             onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
           />
-        </Link>
+        </Link> */}
         <CurrentTime />
         <HeaderContentContainer>
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}

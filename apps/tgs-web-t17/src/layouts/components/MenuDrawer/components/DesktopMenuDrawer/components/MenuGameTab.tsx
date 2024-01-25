@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { theme } from "@/theme";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
+import { media } from "@/theme/breakpoints";
 
 type Props = {
   text: string;
@@ -31,22 +32,20 @@ const Wrapper = styled.div<{
   display: flex;
   align-items: center;
   justify-content: ${({ $isShrink }) => $isShrink ? "center" : "unset"};
-  height: 44.74px;;
+  height: 44.74px;
   background: ${({ theme, $isActive }) =>
     $isActive
       ? theme.g7
       : theme.mainBackground};
   align-self: stretch;
   padding: ${({ $isShrink }) => $isShrink ? "unset" : "10px 20px"};
-  gap:  ${({ $isShrink }) => $isShrink ? "unset" : "15px"};
+  gap: ${({ $isShrink }) => $isShrink ? "unset" : "15px"};
 
-  &:hover {
-    background: ${({ theme }) => theme.g7};
-    ${Text} {
-      color: ${({ theme, $isActive }) =>
-    $isActive
-      ? theme.primary
-      : theme.white};
+  ${media.sm} {
+    height: 30px;
+
+    &:hover {
+      color: ${({ theme }) => theme.primary};
     }
   }
 `;

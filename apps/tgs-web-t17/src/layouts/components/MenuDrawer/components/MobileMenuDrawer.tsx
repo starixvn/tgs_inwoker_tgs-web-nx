@@ -6,7 +6,6 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
 import MenuList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuList";
 import Icon from "@/components/project/Icon";
-import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import { theme } from "@/theme";
 import casinoIcon from "@/assets/t17/images/account/navItem/icon-casino.svg";
 import toggleIcon from "@/assets/t17/images/account/navItem/icon-toggle.svg";
@@ -87,13 +86,6 @@ const GameTypeWrapper = styled.div`
   width: calc(100% - 14px);
 `;
 
-const ToggleWrapper = styled.div<{
-  $isOpenGameTypeMenu: boolean;
-}>`
-  transform: ${({ $isOpenGameTypeMenu }) => $isOpenGameTypeMenu ? 'rotate(180deg)' : 'rotate(0deg)'};
-  transition: all 0.2s ease-in-out;
-`;
-
 const IconText = styled.div`
   font-size: 15.6px;
   font-weight: 700;
@@ -101,6 +93,13 @@ const IconText = styled.div`
 
 const LanguageSwitchWrapper = styled.div`
   width: 100%;
+`;
+
+const ToggleWrapper = styled.div<{
+  $isOpenGameTypeMenu: boolean;
+}>`
+  transform: ${({ $isOpenGameTypeMenu }) => $isOpenGameTypeMenu ? 'rotate(180deg)' : 'rotate(0deg)'};
+  transition: all 0.2s ease-in-out;
 `;
 
 const MobileMenuDrawer = () => {
@@ -111,11 +110,6 @@ const MobileMenuDrawer = () => {
   const { isDesktopSize } = useRwd();
   const isShrink = isDesktopSize && !isMenuOpen;
   const [isOpenGameTypeMenu, setIsOpenGameTypeMenu] = useState(false);
-
-  const handleDrawerClose = () => {
-    if (isDesktopSize) return;
-    handleToggleMenu(false);
-  };
 
   return (
     <MobileMenuDrawerContainer>
