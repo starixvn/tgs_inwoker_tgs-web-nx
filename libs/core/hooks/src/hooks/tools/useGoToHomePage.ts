@@ -5,7 +5,6 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "./useRwd";
 
 export function useGoToHomePage() {
-  const { isDesktopSize } = useRwd();
   const history = useHistory();
   const { handleChangeGameType } = useHomeGameContext();
 
