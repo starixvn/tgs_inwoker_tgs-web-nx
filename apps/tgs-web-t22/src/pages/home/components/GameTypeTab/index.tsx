@@ -1,25 +1,24 @@
-import styled from "styled-components";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { FilterTagTypeEnum, GameTypeItem, useHomeGameContext, useProvider } from "@tgs-web-nx/core/features";
-import { useEffect, useState } from "react";
-import Tab from "./Tab";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
-import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import LoadingSvg from "@/components/project/LoadingSvg";
+import styled from 'styled-components';
+import {GameTypeEnum} from '@tgs-web-nx/constants';
+import {FilterTagTypeEnum, GameTypeItem, useHomeGameContext, useProvider} from '@tgs-web-nx/core/features';
+import {useEffect, useState} from 'react';
+import Tab from './Tab';
+import useGameTypeList from '@/hooks/home/useGameTypeList';
+import {media} from '@/theme/breakpoints';
+import {SUB_CONTENT_MAX_WIDTH} from '@/theme/constants';
+import LoadingSvg from '@/components/project/LoadingSvg';
 
 const TabContainer = styled.div`
-  overflow-y: auto;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  width: 72px;
-  max-height: 862px; //826/926
+  gap: 5px;
+
+  width: 100%;
+  height: 100%;
+
   overflow-y: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  flex-shrink: 0;
-  gap: 3px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -80,30 +79,39 @@ const GameTypeTab = () => {
           const hasData = providerList.some((provider) => {
             return provider.gametypes.includes(gameTypeItem.gameType);
           });
+
           return hasData;
         }
+
         return true;
       });
 
       setFilteredGameTypeList(filteredList);
     }
   }, [providerList, gameTypeList]);
+
+  // loading
   if (isLoading || !gameTypeList.length || !providerList.length) {
-    return <SvgContainer><LoadingSvg /></SvgContainer>
+    return (
+      <SvgContainer>
+        <LoadingSvg />
+      </SvgContainer>
+    );
   }
 
   return (
     <TabContainer>
       {filteredGameTypeList.map((gameTypeItem) => {
-        const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
-
+        const { key, iconUrl, iconActiveUrl, text, gameType} = gameTypeItem;
+        const isActive = gameType === activeGameType;
+        const imageUrl = isActive && iconActiveUrl ? iconActiveUrl : iconUrl;
+        
         return (
           <Tab
             key={key}
-            imageUrl={iconUrl}
+            imageUrl={imageUrl}
             text={text}
-            isActive={gameType === activeGameType}
-            fontSize={fontSize}
+            isActive={isActive}
             onClick={() => switchGameType(gameType)}
           />
         );

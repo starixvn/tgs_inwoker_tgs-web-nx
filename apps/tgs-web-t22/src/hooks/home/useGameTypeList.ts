@@ -1,19 +1,31 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
-import cardgame from "@/assets/t29/images/home/gameType/cardGame.svg";
-import egame from "@/assets/t29/images/home/gameType/egame.svg";
-import esports from "@/assets/t29/images/home/gameType/esports.svg";
-import fishing from "@/assets/t29/images/home/gameType/fishing.svg";
-import live from "@/assets/t29/images/home/gameType/liveCasino.svg";
-import lottery from "@/assets/t29/images/home/gameType/lottery.svg";
-import sabong from "@/assets/t29/images/home/gameType/sabong.svg";
-import slot from "@/assets/t29/images/home/gameType/slot.svg";
-import sports from "@/assets/t29/images/home/gameType/sports.svg";
+import card from "@/assets/t22/images/home/gameType/card.svg";
+import egame from "@/assets/t22/images/home/gameType/egame.svg";
+import esports from "@/assets/t22/images/home/gameType/esports.svg";
+import fishing from "@/assets/t22/images/home/gameType/fish.svg";
+import live from "@/assets/t22/images/home/gameType/live.svg";
+import lottery from "@/assets/t22/images/home/gameType/lottery.svg";
+import sabong from "@/assets/t22/images/home/gameType/sabong.svg";
+import slot from "@/assets/t22/images/home/gameType/slot.svg";
+import sports from "@/assets/t22/images/home/gameType/sports.svg";
+import cardActive from "@/assets/t22/images/home/gameType/cardActive.svg";
+import egameActive from "@/assets/t22/images/home/gameType/egameActive.svg";
+import esportsActive from "@/assets/t22/images/home/gameType/esportsActive.svg";
+import fishingActive from "@/assets/t22/images/home/gameType/fishActive.svg";
+import liveActive from "@/assets/t22/images/home/gameType/liveActive.svg";
+import lotteryActive from "@/assets/t22/images/home/gameType/lotteryActive.svg";
+import sabongActive from "@/assets/t22/images/home/gameType/sabongActive.svg";
+import slotActive from "@/assets/t22/images/home/gameType/slotActive.svg";
+import sportsActive from "@/assets/t22/images/home/gameType/sportsActive.svg";
+
+
 
 type GameTypeItem = {
   key: string;
   iconUrl: string;
+  iconActiveUrl: string;
   text: string | any;
   fontSize: string;
   gameType: GameTypeEnum;
@@ -27,6 +39,7 @@ export const useGameTypeList = () => {
       {
         key: "sports",
         iconUrl: sports,
+        iconActiveUrl: sportsActive,
         text: i18n.t("common.sports"),
         fontSize: "small",
         gameType: GameTypeEnum.SPORTS,
@@ -34,6 +47,7 @@ export const useGameTypeList = () => {
       {
         key: "slots",
         iconUrl: slot,
+        iconActiveUrl: slotActive,
         text: i18n.t("common.slot"),
         fontSize: "small",
         gameType: GameTypeEnum.SLOT,
@@ -41,6 +55,7 @@ export const useGameTypeList = () => {
       {
         key: "liveCasino",
         iconUrl: live,
+        iconActiveUrl: liveActive,
         text: i18n.t("common.live"),
         fontSize: "small",
         gameType: GameTypeEnum.LIVELOBBY,
@@ -48,6 +63,7 @@ export const useGameTypeList = () => {
       {
         key: "sabong",
         iconUrl: sabong,
+        iconActiveUrl: sabongActive,
         text: i18n.t("common.cockfight"),
         fontSize: "smaller",
         gameType: GameTypeEnum.COCKFIGHT,
@@ -55,6 +71,7 @@ export const useGameTypeList = () => {
       {
         key: "egame",
         iconUrl: egame,
+        iconActiveUrl: egameActive,
         text: i18n.t("common.egame"),
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
@@ -62,13 +79,15 @@ export const useGameTypeList = () => {
       {
         key: "fishing",
         iconUrl: fishing,
+        iconActiveUrl: fishingActive,
         text: i18n.t("common.fish"),
         fontSize: "smaller",
         gameType: GameTypeEnum.FISH,
       },
       {
         key: "cardGame",
-        iconUrl: cardgame,
+        iconUrl: card,
+        iconActiveUrl: cardActive,
         text: i18n.t("common.chess"),
         fontSize: "smaller",
         gameType: GameTypeEnum.QIPAILOBBY,
@@ -76,6 +95,7 @@ export const useGameTypeList = () => {
       {
         key: "lottery",
         iconUrl: lottery,
+        iconActiveUrl: lotteryActive,
         text: i18n.t("common.lottery"),
         fontSize: "small",
         gameType: GameTypeEnum.LOTTERYLOBBY,
@@ -83,6 +103,7 @@ export const useGameTypeList = () => {
       {
         key: "esports",
         iconUrl: esports,
+        iconActiveUrl: esportsActive,
         text: i18n.t("common.esports"),
         fontSize: "smaller",
         gameType: GameTypeEnum.ESPORTS,
@@ -91,11 +112,12 @@ export const useGameTypeList = () => {
 
     const translatedList: GameTypeItem[] = gameTypeList.map((gameItem) => ({
       ...gameItem,
-      // text: i18n.t(gameItem.text),
+      text: i18n.t(gameItem.text),
     }));
 
     setTranslatedGameTypeList(translatedList);
   }, []);
+
   return translatedGameTypeList;
 };
 

@@ -7,7 +7,7 @@ const Badge = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   max-width: 250px;
   width: 100%;
 `;
@@ -41,6 +41,7 @@ const BadgeDesc = styled.p`
   color: #EDD9C6;
   font-size: .9rem;
   text-transform: uppercase;
+  text-align: center;
 `;
 
 const Root = styled.div`
@@ -54,9 +55,9 @@ const Badges = () => {
   return (
     <Root>
       {
-        badges.map((badge) => {
+        badges.map((badge, i) => {
           return (
-            <Badge>
+            <Badge key={i}>
               <Circle>
                 <Value>{badge.value}</Value>
                 <Unit>{badge.unit}</Unit>

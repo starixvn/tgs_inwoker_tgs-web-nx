@@ -1,17 +1,12 @@
 import styled from "styled-components";
 import { useJackpot } from "@tgs-web-nx/core/features";
 import bg from "@/assets/t22/images/home/jackpot.png";
-import { media } from "@/theme/breakpoints";
 
 const JackpotContainer = styled.div`
-  display: none;
+  display: block;
   width: 100%;
   background: url(${bg}) center no-repeat;
   background-size: cover;
-
-  ${media.sm} {
-    display: block;
-  }
 `;
 
 const Content = styled.div`

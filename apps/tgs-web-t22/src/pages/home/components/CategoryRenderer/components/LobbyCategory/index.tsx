@@ -1,3 +1,4 @@
+import {memo} from 'react'
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
@@ -12,24 +13,22 @@ import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 12px;
+  flex: 1;
   width: 100%;
-  gap: 6px;
+  overflow-y: auto;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 15px 0px;
+    padding: 15px 0;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
   }
 `;
 
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
-  height: 100%;
-  width: calc(100% - 78px);
-  flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
@@ -43,13 +42,10 @@ const DesktopCategoryContentWrapper = styled.div`
 `;
 
 const CategoryContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  width: 100%;
-  row-gap: 13px;
-  column-gap: 9px;
-  align-self: stretch;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 100px;
+  gap: 6px;
 `;
 
 const LobbyCategory = () => {
@@ -96,9 +92,8 @@ const LobbyCategory = () => {
 
   const hasMappingData = !!lobbyCategoryList.length;
 
-  return (
-    <Wrapper>
-      {isMobileSize && (
+  const renderMobileLayout = () => {
+      return (
         <>
           <GameTypeTab />
           <CategoryContentWrapper>
@@ -124,8 +119,11 @@ const LobbyCategory = () => {
             </CategoryContent>
           </CategoryContentWrapper>
         </>
-      )}
-      {isDesktopSize && (
+      )
+  };
+
+  const renderDesktopLayout = () => {
+      return (
         <DesktopCategoryContentWrapper>
           {hasMappingData &&
             lobbyCategoryList.map((provider) => {
@@ -136,11 +134,11 @@ const LobbyCategory = () => {
                 <DesktopVendorCard
                   key={gpCode}
                   bgUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
                   imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
                   venderLogoUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}
@@ -149,9 +147,15 @@ const LobbyCategory = () => {
             })}
           {!hasMappingData && <div>No data</div>}
         </DesktopCategoryContentWrapper>
-      )}
+      )
+  };
+
+  return (
+    <Wrapper>
+      {isMobileSize && renderMobileLayout()}
+      {isDesktopSize && renderDesktopLayout()}
     </Wrapper>
   );
 };
 
-export default LobbyCategory;
+export default memo(LobbyCategory);
