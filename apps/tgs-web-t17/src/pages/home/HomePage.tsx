@@ -26,9 +26,11 @@ import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/componen
 import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
 import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
-import AffiliateProgram from "@/pages/home/components//AffiliateProgram";
+import AffiliateProgram from "@/pages/home/components/AffiliateProgram";
 import DesktopAffiliateProgram from "@/pages/home/components/DesktopAffiliateProgram";
 import config from "@tgs-web-nx/config";
+import Marquee from "@/pages/home/components/CardPrompt/components/Marquee";
+import HomeGameTypeTab from "@/pages/home/components/HomeGameTypeTab";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -44,7 +46,8 @@ const MainWrapper = styled.div`
     margin: 0 auto;
     gap: unset;
     height: unset;
-    padding: 0px 0px 0px 0px;
+    padding: 20px 0px;
+    gap: 20px;
   }
 `;
 
@@ -76,7 +79,7 @@ const SlickDotWrapper = styled.div`
   margin-bottom: 30px;
 
   & ul li.slick-active ${SlickDot} {
-    background: #45D91E !important;
+    background: #D84736 !important;
   }
 `;
 
@@ -109,6 +112,8 @@ const HomeCategoryContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+
+  border: 1px solid red;
 `;
 
 const HomeLobbyCategory = styled.div`
@@ -178,7 +183,7 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, handleChangeGameType, isEnterGamePortal } =
+  const { activeGameType, handleChangeGameType } =
     useHomeGameContext();
   const history = useHistory();
   const gameTypeList = useGameTypeList();
@@ -219,22 +224,19 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      <CardPrompt />
-      {/* 首頁但未進入遊戲大廳 */}
-      {!isEnterGamePortal && !activeGameType &&
-        <>
-          {isDesktopSize ? <DesktopRegisterSection /> : <RegisterSection />}
-        </>
-      }
       {!!general.banner.length &&
         <SliderWrapper>
           <Slider settings={settings} />
         </SliderWrapper>
       }
+      {isDesktopSize && <Marquee />}
+      {isMobileSize && <CardPrompt />}
 
-      {!isEnterGamePortal && !activeGameType &&
+      <HomeGameTypeTab />
+
+
+      {/* {!activeGameType &&
         <>
-          <CategorySection />
           <HomeCategoryContainer>
             <ScrollableHomeRecommend />
             <ScrollableHomeHot />
@@ -252,21 +254,17 @@ const HomePage = () => {
             </Introduction>
           </HomeCategoryContainer>
         </>
-      }
-
-      {isMobileSize && !isEnterGamePortal && !activeGameType && (
+      } */}
+      {/* 
+      {isMobileSize && !activeGameType && (
         <>
           <SocialMedia />
           <VendorLogo />
         </>
-      )}
-
-      {/* 首頁並且進入遊戲大廳 */}{/* 切換遊戲分頁 */}
-      {isEnterGamePortal && (
-        <MainContentWrapper>
-          <CategoryRenderer />
-        </MainContentWrapper>
-      )}
+      )} */}
+      {/* <MainContentWrapper>
+        <CategoryRenderer />
+      </MainContentWrapper> */}
     </MainWrapper>
   );
 };

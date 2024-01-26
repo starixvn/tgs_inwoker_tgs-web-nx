@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
-import cardgame from "@/assets/t27/images/home/gameType/cardGame.svg";
-import egame from "@/assets/t27/images/home/gameType/egame.svg";
-import esports from "@/assets/t27/images/home/gameType/esports.svg";
-import fishing from "@/assets/t27/images/home/gameType/fishing.svg";
-import live from "@/assets/t27/images/home/gameType/liveCasino.svg";
-import lottery from "@/assets/t27/images/home/gameType/lottery.svg";
-import sabong from "@/assets/t27/images/home/gameType/sabong.svg";
-import slot from "@/assets/t27/images/home/gameType/slot.svg";
-import sports from "@/assets/t27/images/home/gameType/sports.svg";
+import cardgame from "@/assets/t17/images/home/homeGameType/cardGame.png";
+import egame from "@/assets/t17/images/home/homeGameType/egame.png";
+import esports from "@/assets/t17/images/home/homeGameType/esports.png";
+import fishing from "@/assets/t17/images/home/homeGameType/fishing.png";
+import live from "@/assets/t17/images/home/homeGameType/liveCasino.png";
+import lottery from "@/assets/t17/images/home/homeGameType/lottery.png";
+import sabong from "@/assets/t17/images/home/homeGameType/sabong.png";
+import slot from "@/assets/t17/images/home/homeGameType/slot.png";
+import sports from "@/assets/t17/images/home/homeGameType/sports.png";
 import LiveCasino from "@/pages/home/components/TabSvgIcon/LiveCasino";
 import Egame from "@/pages/home/components/TabSvgIcon/Egame";
 import CardGame from "@/pages/home/components/TabSvgIcon/CardGame";
@@ -19,9 +19,8 @@ import Lottery from "@/pages/home/components/TabSvgIcon/Lottery";
 import Sabong from "@/pages/home/components/TabSvgIcon/Sabong";
 import Slot from "@/pages/home/components/TabSvgIcon/Slot";
 import Sport from "@/pages/home/components/TabSvgIcon/Sport";
-import HomeSvg from "@/pages/home/components/TabSvgIcon/Home";
 
-type GameTypeItem = {
+type homeGameTypeItem = {
   key: string;
   iconUrl: string;
   text: string;
@@ -33,20 +32,20 @@ type GameTypeItem = {
 };
 
 export const useGameTypeList = () => {
-  const [translatedGameTypeList, setTranslatedGameTypeList] = useState<GameTypeItem[]>([]);
+  const [translatedGameTypeList, setTranslatedGameTypeList] = useState<homeGameTypeItem[]>([]);
 
   useEffect(() => {
-    const gameTypeList: GameTypeItem[] = [
-      {
-        key: "home",
-        iconUrl: "",
-        text: i18n.t("common.home"),
-        fontSize: "small",
-        gameType: GameTypeEnum.NONE,
-        iconComponent: HomeSvg,
-        title: "",
-        content: "",
-      },
+    const gameTypeList: homeGameTypeItem[] = [
+      // {
+      //   key: "home",
+      //   iconUrl: "",
+      //   text: i18n.t("common.home"),
+      //   fontSize: "small",
+      //   gameType: GameTypeEnum.NONE,
+      //   iconComponent: HomeSvg,
+      //   title: "",
+      //   content: "",
+      // },
       {
         key: "sports",
         iconUrl: sports,

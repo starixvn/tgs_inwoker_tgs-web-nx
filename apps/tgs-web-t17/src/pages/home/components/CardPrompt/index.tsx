@@ -10,7 +10,7 @@ const CardPromptContainer = styled.div`
   align-self: stretch;
   width: 100%;
   gap: 10px;
-  padding: 12px;
+  padding: 4px 10px;
 `;
 
 const CardPrompt = () => {
