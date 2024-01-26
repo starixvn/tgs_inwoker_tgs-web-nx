@@ -8,7 +8,6 @@ import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import refreshIcon from "@/assets/t21/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
-
 const rotateKeyFrame = keyframes`
   0% {
     transform: rotate(0deg);
@@ -25,8 +24,6 @@ const Container = styled.div`
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
-  background: ${({ theme }) => theme.mainBackground};
-  margin-bottom: 20px;
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -38,8 +35,9 @@ const PlayerInfoContainer = styled.div`
 
 const PlayerName = styled.div`
   font-size: 2rem;
+  line-height: 2.343rem;
   font-weight: 500;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.white};
 `;
 
 const WalletsWrapper = styled.div`
@@ -55,21 +53,19 @@ const WalletsWrapper = styled.div`
 `;
 
 const MainWalletContainer = styled.div`
-  //width: 128px;
+  width: 128px;
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.245rem;
-  color: ${({ theme }) => theme.text};
-  white-space: nowrap;
+  color: ${({ theme }) => theme.white};
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.blue60};
+  font-size: 2.125rem;
+  color: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -81,21 +77,9 @@ const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
-type RefreshButtonProps = {
-  $isLoading: boolean;
-};
-
-const RefreshButton = styled(Icon)<RefreshButtonProps>`
-  cursor: pointer;
-
-  animation: ${({ $isLoading }: RefreshButtonProps) =>
-    $isLoading
-      ? css`
-          ${rotateKeyFrame} 1s linear 0s infinite
-        `
-      : "none"};
-
+const RefreshButton = styled(Icon)`
   &:hover {
+    cursor: pointer;
     animation: ${rotateKeyFrame} 1s linear 0s infinite;
   }
 `;
@@ -104,7 +88,7 @@ const VIPLabel = styled.div<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
   margin-top: 11px;
-  font-weight: 700;
+  font-weight: 400;
 `;
 
 const UserWalletInfo = () => {

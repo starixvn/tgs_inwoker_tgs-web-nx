@@ -1,42 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 import { media } from "@/theme/breakpoints";
-import { theme } from "@/theme";
+import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 
-type PaperProps = {
-  $hidePaperColorInMobile: boolean;
-  theme: typeof theme;
-};
-const AccountPaperContainer = styled.div<PaperProps>`
-  background: ${({ theme, $hidePaperColorInMobile }: PaperProps) =>
-    $hidePaperColorInMobile ? "transparent" : theme.white};
-  padding: ${({ $hidePaperColorInMobile }: PaperProps) =>
-    $hidePaperColorInMobile ? "0px" : "16px 17px"};
+const AccountPaperContainer = styled.div`
+  padding: 0 0 20px 0;
+
   ${media.sm} {
-    //background: ${({ theme }) => theme.mainBackground};
-    //padding: 30px;
+    background: ${({ theme }) => theme.primaryLight};
+    padding: 20px 24px;
+    border-radius: 20px;
   }
 `;
 
 type Props = {
   pageName: string;
   iconUrl: string;
-  children: React.ReactNode | React.ReactNode[];
-  hidePaperColorInMobile?: boolean;
+  children: React.ReactElement | React.ReactElement[];
 };
-const AccountPaper = ({ pageName, iconUrl, children, hidePaperColorInMobile }: Props) => {
+const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
   const { isDesktopSize } = useRwd();
 
   return (
-    <AccountPaperContainer $hidePaperColorInMobile={!!hidePaperColorInMobile}>
+    <AccountPaperContainer>
       {isDesktopSize && (
         <PageBadge
           iconUrl={iconUrl}
           text={pageName}
           style={{
-            marginBottom: "20px",
+            marginBottom: "31px",
           }}
         />
       )}

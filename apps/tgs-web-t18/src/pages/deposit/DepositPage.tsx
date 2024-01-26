@@ -8,6 +8,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconDeposit from "@/assets/t21/images/account/navItem/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import TransferTabs from "@/pages/deposit/components/TransferTabs";
 
 const DepositPage = () => {
   useDepositPage();
@@ -18,6 +19,7 @@ const DepositPage = () => {
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
+      {!isDesktopSize && <TransferTabs />}
 
       <AccountPaper pageName={i18n.t("common.deposit")} iconUrl={iconDeposit}>
         <DepositPrev appHistory={history} alert={alert} />

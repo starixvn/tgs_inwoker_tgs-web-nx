@@ -13,8 +13,8 @@ export const PageContainer = styled.div`
 `;
 
 export const TransferPageContainer = styled.div`
-  padding: 22px 10px;
-  max-width: calc(961px + 20px * 2);
+  padding: 21px 22px;
+  max-width: calc(848px + 22px * 2);
   flex: 1;
   margin: 0 auto;
 

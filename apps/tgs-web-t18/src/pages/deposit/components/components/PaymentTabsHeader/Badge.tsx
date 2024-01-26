@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { media } from "@/theme/breakpoints";
 import { theme } from "@/theme";
 
 type BadgeContainerProps = {
@@ -8,23 +7,18 @@ type BadgeContainerProps = {
   theme: typeof theme;
 };
 const BadgeContainer = styled.div<BadgeContainerProps>`
-  width: calc((100% - 8px * 3) / 4);
-  height: fit-content;
   cursor: pointer;
-  padding: 13px 8px;
+  border-radius: 50px;
+  padding: 12px 20px;
+  //min-width: 86px;
   text-align: center;
-  border: 2px solid ${({ theme }) => theme.primary};
-  border-radius: 5px;
-  color: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? theme.white : theme.gray80)};
+  color: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? "white" : theme.tertiary)};
   background: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? theme.primary : theme.white};
+    $isActive ? theme.primary : "none"};
+  border: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? "none" : `1px solid ${theme.tertiary}`};
 
-  font-size: 0.812rem;
-  font-weight: 400;
-
-  ${media.md} {
-    width: auto;
-  }
+  border-radius: 50px;
 `;
 
 type Props = {

@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
-import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
+import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
+import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 
 const BadgeContainer = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 5px 14px;
   flex-wrap: wrap;
   margin-bottom: 12px;
 
@@ -38,7 +38,7 @@ const PaymentTabsHeader = ({ selectedPaymentIndex, handlePaymentChange }: Props)
         const { paymentcode, paymentid } = depositType;
         return (
           <Badge
-            key={`${paymentid}-${index}`}
+            key={paymentid}
             text={i18n.t(paymentcode)}
             isActive={index === selectedPaymentIndex}
             handleClick={() => handlePaymentChange({}, index)}
@@ -47,6 +47,24 @@ const PaymentTabsHeader = ({ selectedPaymentIndex, handlePaymentChange }: Props)
       })}
     </BadgeContainer>
   );
+  // return (
+  //   <CustomTabs
+  //     value={selectedPaymentIndex}
+  //     onChange={handlePaymentChange}
+  //     variant="scrollable"
+  //     scrollButtons="auto"
+  //   >
+  //     {depositTypes.map((depositType, index) => {
+  //       return (
+  //         <Tab
+  //           key={index}
+  //           value={index}
+  //           label={i18n.t(depositType.paymentcode)}
+  //         ></Tab>
+  //       );
+  //     })}
+  //   </CustomTabs>
+  // );
 };
 
 export default React.memo(PaymentTabsHeader);
