@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useOnlineUser } from "@tgs-web-nx/core/hooks";
-import member from "@/assets/t27/images/home/member.svg";
+import member from "@/assets/t17/images/home/member.svg";
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,10 +9,9 @@ const Wrapper = styled.div`
   font-size: 1rem;
   font-weight: 400;
   min-width: 105px;
-  padding: 4px 10px;
-  gap: 6px;
-  background: ${({ theme }) => theme.g4};
-  border-radius: 3px;
+  padding: 10px 6px;
+  gap: 5px;
+  border-radius: 10px;
 `;
 
 type Props = {
