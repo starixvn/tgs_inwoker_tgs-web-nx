@@ -7,17 +7,15 @@ import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 
 const TagContainer = styled.div`
+  padding: 5px;
+  border-radius: 6px;
+  background: ${({ theme }) => theme.navMenuBackground};
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+
   overflow-x: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding: 0px 6px 0px 14px;
-  border-radius: 100px;
-  border: 1px solid ${({ theme }) => theme.blue40};
-  align-self: stretch;
 
   ${media.sm} {
     &::-webkit-scrollbar {
@@ -39,6 +37,8 @@ const TagContainer = styled.div`
     }
   }
 `;
+
+
 
 const GameFilterTag = () => {
   const {
@@ -113,37 +113,39 @@ const GameFilterTag = () => {
 
       {/* Provider list */}
 
-      {providerFilterTagList.map((filterTag) => {
-        const { name, gpCode } = filterTag;
 
-        const isActive =
-          filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
-          gpCode === activeProviderFilterTag.gpCode;
-
-        const tagCmp = gameTagList.find((tag) => tag.text === name);
-
-        if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          return null;
-        }
-
-        return (
-          <Tag
-            key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleFilterClick(filterTag)}
-          >
-            {tagCmp &&
-              tagCmp.iconComponent &&
-              React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.text,
-              })}
-          </Tag>
-        );
-      })}
     </TagContainer>
   );
 };
 
 export default GameFilterTag;
+
+// {providerFilterTagList.map((filterTag) => {
+//   const { name, gpCode } = filterTag;
+//
+//   const isActive =
+//     filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
+//     gpCode === activeProviderFilterTag.gpCode;
+//
+//   const tagCmp = gameTagList.find((tag) => tag.text === name);
+//
+//   if (filterTag.tagType === FilterTagTypeEnum.ALL) {
+//     return null;
+//   }
+//
+//   return (
+//     <Tag
+//       key={name}
+//       text={name}
+//       isActive={isActive}
+//       isShowIcon={gameTagList.some((tag) => tag.text === name)}
+//       onClick={() => handleFilterClick(filterTag)}
+//     >
+//       {tagCmp &&
+//         tagCmp.iconComponent &&
+//         React.createElement(tagCmp.iconComponent, {
+//           $color: isActive ? theme.primary : theme.text,
+//         })}
+//     </Tag>
+//   );
+// })}

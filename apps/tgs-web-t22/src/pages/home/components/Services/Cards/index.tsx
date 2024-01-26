@@ -42,9 +42,9 @@ const Cards = () => {
   return (
     <Root>
       {
-        cards.map((card) => {
+        cards.map((card, i) => {
           return (
-            <Card>
+            <Card key={i}>
               <Icon src={card.icon} alt="icon"/>
               <Title>{card.title}</Title>
               <Content>{card.content}</Content>

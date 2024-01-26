@@ -14,11 +14,12 @@ import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t29/images/home/search.svg";
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 100px 1fr;
   width: 100%;
-  gap: 6px;
+  gap: 12px;
+  flex: 1;
+  overflow-y: auto;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -28,11 +29,10 @@ const Wrapper = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
-  overflow-y: auto;
+  width: 100%;
   height: 100%;
-  width: calc(100% - 78px);
-  flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
+  overflow-y: auto;
 `;
 
 const FilterSection = styled.div`
@@ -90,22 +90,20 @@ const NonLobbyCategory = () => {
   const hasMappingData = !!gameList.length;
   const { searchString, handleChangeSearch } = useHomeGameContext();
 
-  return (
-    <Wrapper>
-      {isMobileSize && (
+  const renderMobileLayout = () => {
+    if(isMobileSize) {
+      return (
         <>
           <GameTypeTab />
           <CategoryContentWrapper>
             <FilterSection>
+              <SearchInput
+                placeholder={i18n.t("slot.search")}
+                imageUrl={searchIcon}
+                handleChange={handleChangeSearch}
+                value={searchString}
+              />
               <GameFilterTag />
-              <SearchInputWrapper>
-                <SearchInput
-                  placeholder={i18n.t("slot.search")}
-                  imageUrl={searchIcon}
-                  handleChange={handleChangeSearch}
-                  value={searchString}
-                />
-              </SearchInputWrapper>
             </FilterSection>
             <CategoryContent>
               {hasMappingData &&
@@ -125,9 +123,13 @@ const NonLobbyCategory = () => {
             </CategoryContent>
           </CategoryContentWrapper>
         </>
-      )}
+      )
+    }
+  };
 
-      {isDesktopSize && (
+  const renderDesktopLayout = () => {
+    if(isDesktopSize) {
+      return (
         <DesktopWrapper>
           <HomeGameFilterTag />
           <DesktopCategoryContentWrapper>
@@ -147,7 +149,17 @@ const NonLobbyCategory = () => {
             {!hasMappingData && !isLoading && <Text>No data</Text>}
           </DesktopCategoryContentWrapper>
         </DesktopWrapper>
-      )}
+      );
+    }
+  };
+
+  return (
+    <Wrapper>
+      {/* mobile layout*/}
+      {renderMobileLayout()}
+
+      {/* desktop layout */}
+      {renderDesktopLayout()}
       <Loading show={isLoading} />
     </Wrapper>
   );

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAccountStore } from "@tgs-web-nx/core";
 import Marquee from "./components/Marquee";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
@@ -8,9 +7,8 @@ import OnlineUser from "./components/OnlineUser";
 import { theme } from "@/theme";
 import BrandLogo from "@/components/project/BrandLogo";
 
-const HeaderRoot = styled.nav`
+const Root = styled.div`
   border-radius: 6px;
-  overflow: hidden;
   background: ${({ theme }) => theme.navMenuBackground};
 `;
 
@@ -29,31 +27,25 @@ const AuthWrapper = styled.div`
 
 
 const HeaderCard = () => {
-  const {isMobileSize} = useRwd();
   const { account } = useAccountStore();
   const isAuth = account.token === account.info.token;
-  
 
-  if(isMobileSize){
-    return (
-      <HeaderRoot>
-        <Wrapper>
-          <OnlineUser color={theme.white} />
-          <Marquee />
-        </Wrapper>
+  return (
+    <Root>
+      <Wrapper>
+        <OnlineUser color={theme.white} />
+        <Marquee />
+      </Wrapper>
 
-        <AuthWrapper>
-          <BrandLogo
-              style={{ maxWidth: "105px", margin: "0 auto 0 0" }}
-          />
-          {isAuth ? <AccountHeaderContent/> : <AnonymousHeaderContent />}
-        </AuthWrapper>
+      <AuthWrapper>
+        <BrandLogo
+            style={{ maxWidth: "105px", margin: "0 auto 0 0" }}
+        />
+        {isAuth ? <AccountHeaderContent/> : <AnonymousHeaderContent />}
+      </AuthWrapper>
 
-      </HeaderRoot>
-    )
-  }
-
-  return null;
+    </Root>
+  )
 };
 
 export default HeaderCard;

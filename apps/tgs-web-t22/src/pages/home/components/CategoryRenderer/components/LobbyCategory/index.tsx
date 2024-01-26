@@ -12,16 +12,17 @@ import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 100px 1fr;
   width: 100%;
-  gap: 6px;
+  gap: 12px;
+  flex: 1;
+  overflow-y: auto;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 15px 0px;
+    padding: 15px 0;
   }
 `;
 
@@ -96,9 +97,9 @@ const LobbyCategory = () => {
 
   const hasMappingData = !!lobbyCategoryList.length;
 
-  return (
-    <Wrapper>
-      {isMobileSize && (
+  const renderMobileLayout = () => {
+    if(isMobileSize) {
+      return (
         <>
           <GameTypeTab />
           <CategoryContentWrapper>
@@ -124,8 +125,13 @@ const LobbyCategory = () => {
             </CategoryContent>
           </CategoryContentWrapper>
         </>
-      )}
-      {isDesktopSize && (
+      )
+    }
+  };
+
+  const renderDesktopLayout = () => {
+    if(isDesktopSize) {
+      return (
         <DesktopCategoryContentWrapper>
           {hasMappingData &&
             lobbyCategoryList.map((provider) => {
@@ -136,11 +142,11 @@ const LobbyCategory = () => {
                 <DesktopVendorCard
                   key={gpCode}
                   bgUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
                   imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
                   venderLogoUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}
@@ -149,7 +155,14 @@ const LobbyCategory = () => {
             })}
           {!hasMappingData && <div>No data</div>}
         </DesktopCategoryContentWrapper>
-      )}
+      )
+    }
+  };
+
+  return (
+    <Wrapper>
+      {renderMobileLayout()}
+      {renderDesktopLayout()}
     </Wrapper>
   );
 };
