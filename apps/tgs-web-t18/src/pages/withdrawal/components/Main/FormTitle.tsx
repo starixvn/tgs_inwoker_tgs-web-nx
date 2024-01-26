@@ -14,7 +14,7 @@ const TitleWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   font-size: 1.5rem;
   font-weight: 700;
 `;

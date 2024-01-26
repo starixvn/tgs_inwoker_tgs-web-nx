@@ -26,7 +26,7 @@ class Withdrawal extends Component {
         password: "",
       },
       isAddCardSuccess: false,
-      displayView: 1,
+      displayView: 4,
       showMessagebox: false,
       messageboxText: "",
       withdrawalInfo: {

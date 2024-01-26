@@ -1,20 +1,19 @@
 import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
+import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useWalletStore, WalletService } from "@tgs-web-nx/core";
 
 const CardContainer = styled.div`
-  background: ${({ theme }) => theme.gray10};
+  background: ${({ theme }) => theme.primaryLight};
+  color: ${({ theme }) => theme.white};
   padding: 25px 37px;
   border-radius: 5px;
   font-size: 0.937rem;
   line-height: 1.098rem;
-  align-self: flex-start;
 `;
-
 const RowContainer = styled.div`
-  border-left: 6px solid ${({ theme }) => theme.primary};
+  border-left: 6px solid ${({ theme }) => theme.tertiary};
   padding-left: 10px;
 
   &:first-child {
@@ -23,14 +22,12 @@ const RowContainer = styled.div`
 `;
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.black};
-  margin-bottom: 9px;
+  margin-bottom: 8px;
 `;
-const Value = styled.div`
-  color: ${({ theme }) => theme.gray50};
-`;
+const Value = styled.div``;
 
-const WithdrawInfoCard = () => {
+type Props = {};
+const WithdrawInfoCard = (props: Props) => {
   const [minWithdrawLimit, setMinWithdrawLimit] = useState(0);
 
   const getMinWithdrawLimit = useCallback(async () => {
@@ -45,7 +42,6 @@ const WithdrawInfoCard = () => {
 
   useEffect(() => {
     getMinWithdrawLimit().then();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const { wallet } = useWalletStore();

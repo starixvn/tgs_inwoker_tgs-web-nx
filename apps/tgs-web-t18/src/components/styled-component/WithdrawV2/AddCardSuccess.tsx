@@ -8,12 +8,12 @@ export const SubTitle = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 16px;
-  color: ${({ theme }) => theme.gray80};
+  color: ${({ theme }) => theme.white};
 `;
 export const SubTitleDesc = styled.div`
-  font-size: 0.875rem;
-  margin-bottom: 16px;
-  color: ${({ theme }) => theme.gray80};
+  font-size: 0.937rem;
+  margin-bottom: 30px;
+  color: ${({ theme }) => theme.white};
   white-space: pre-line;
 `;
 export const ButtonContainer = styled.div`

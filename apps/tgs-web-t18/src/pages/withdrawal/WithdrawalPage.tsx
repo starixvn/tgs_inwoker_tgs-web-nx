@@ -11,6 +11,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconWithdrawal from "@/assets/t18/images/account/navItem/icon-withdraw.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import TransferTabs from "@/pages/deposit/components/TransferTabs";
 
 const WithdrawalPage = () => {
   useWithdrawalPage();

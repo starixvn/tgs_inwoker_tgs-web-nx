@@ -18,6 +18,6 @@ export const ImgSuccess = styled.img`
 export const SuccessMessage = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.gray80};
-  margin-bottom: 16px;
+  color: ${({ theme }) => theme.white};
+  margin-bottom: 30px;
 `;

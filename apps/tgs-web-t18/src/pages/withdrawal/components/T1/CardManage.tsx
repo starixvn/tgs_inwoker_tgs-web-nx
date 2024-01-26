@@ -14,7 +14,6 @@ import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 
 const CardManageContainer = styled.div`
   width: 100%;
-  padding: 0 18px;
 `;
 
 type Props = {

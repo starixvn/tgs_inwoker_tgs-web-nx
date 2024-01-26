@@ -27,6 +27,7 @@ import {
   SubHeaderContainer,
   Hint,
 } from "@/components/styled-component/WithdrawV2/Main";
+import TransferTabs from "@/pages/deposit/components/TransferTabs";
 
 const MainMobile = ({
   amount,
@@ -73,6 +74,7 @@ const MainMobile = ({
   };
   return (
     <>
+      <TransferTabs />
       <WithdrawInfoCard />
 
       <ManageBankCardButtonContainer>

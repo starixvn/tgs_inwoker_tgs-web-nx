@@ -49,7 +49,7 @@ export const InfoContainer = styled.div`
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "0.875rem",
   height: "50px",
-  color: theme.palette.black,
+  color: theme.palette.white,
   border: "none",
   borderRadius: "6px",
   // border: `1px solid ${theme.palette.gray10}`,

@@ -14,6 +14,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 import WithdrawPaper from "@/components/project/WithdrawPaper";
+import TransferTabs from "@/pages/deposit/components/TransferTabs";
 
 const disableBankHolderBrand = "MOVN2";
 const Container = styled.div`
@@ -67,7 +68,8 @@ const AddCard = ({
   };
 
   return (
-    <WithdrawPaper>
+    <>
+      <TransferTabs />
       <Container>
         <FormTitle title={i18n.t("card.addCard.title")} />
         {!config.features.AddCard_HideCertainField && (
@@ -456,7 +458,7 @@ const AddCard = ({
           </SubmitButton>
         </ButtonGroups>
       </Container>
-    </WithdrawPaper>
+    </>
   );
 };
 

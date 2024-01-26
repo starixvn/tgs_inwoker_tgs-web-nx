@@ -68,12 +68,12 @@ const routes: RouteType[] = [
   {
     path: "/deposit",
     component: DepositPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/withdrawal",
     component: WithdrawalPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/wagering",
@@ -266,12 +266,12 @@ const routes: RouteType[] = [
   {
     path: "/deposit/:promotionid?",
     component: DepositPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/manual/:paymentId?",
     component: DepositPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   {
     path: "/maintenance",
@@ -362,7 +362,7 @@ if (!config.features.NewTransferUI) {
   routes.push({
     path: "/transfer",
     component: TransferPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   });
 }
 
