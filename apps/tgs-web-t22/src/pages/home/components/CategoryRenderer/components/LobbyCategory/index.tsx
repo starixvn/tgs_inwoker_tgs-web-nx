@@ -9,8 +9,6 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Wrapper = styled.div`
   display: grid;
@@ -18,13 +16,7 @@ const Wrapper = styled.div`
   gap: 12px;
   flex: 1;
   width: 100%;
-  overflow-y: auto;
-
-  ${media.sm} {
-    margin: 0 auto;
-    padding: 15px 0;
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
-  }
+  overflow-y: auto; 
 `;
 
 const CategoryContentWrapper = styled.div`
@@ -32,13 +24,12 @@ const CategoryContentWrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
-const DesktopCategoryContentWrapper = styled.div`
+const DesktopWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(210px, auto);
+  gap: 15px 35px;
   width: 100%;
-  flex: 1;
-  flex-shrink: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
 `;
 
 const CategoryContent = styled.div`
@@ -54,6 +45,7 @@ const LobbyCategory = () => {
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
   const { isMobileSize, isDesktopSize } = useRwd();
+  const hasMappingData = !!lobbyCategoryList.length;
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -90,71 +82,66 @@ const LobbyCategory = () => {
     }
   };
 
-  const hasMappingData = !!lobbyCategoryList.length;
-
   const renderMobileLayout = () => {
       return (
-        <>
+        <Wrapper>
           <GameTypeTab />
           <CategoryContentWrapper>
             <CategoryContent>
               {hasMappingData &&
                 lobbyCategoryList.map((provider) => {
-                  const { code: gpCode, status, name } = provider;
+                  const { code: gpCode, status } = provider;
 
                   if (gpCode === "BC") return null;
                   return (
                     <MobileVendorCard
                       key={gpCode}
-                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
                       imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                      venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                       launchGame={() => launchLobbyGame(gpCode)}
                       status={status}
-                      venderName={name}
                     />
                   );
                 })}
               {!hasMappingData && <div>No data</div>}
             </CategoryContent>
           </CategoryContentWrapper>
-        </>
+        </Wrapper>
       )
   };
 
   const renderDesktopLayout = () => {
       return (
-        <DesktopCategoryContentWrapper>
+        <DesktopWrapper>
           {hasMappingData &&
             lobbyCategoryList.map((provider) => {
               const { code: gpCode, status, name } = provider;
+              const imageUrl = `${import.meta.env.BASE_URL}assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`;
+              
+              if (gpCode === "BC") {
+                return null;
+              }
 
-              if (gpCode === "BC") return null;
               return (
                 <DesktopVendorCard
                   key={gpCode}
-                  bgUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                  imageUrl={imageUrl}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}
                 />
               );
             })}
+
           {!hasMappingData && <div>No data</div>}
-        </DesktopCategoryContentWrapper>
+        </DesktopWrapper>
       )
   };
 
   return (
-    <Wrapper>
+    < >
       {isMobileSize && renderMobileLayout()}
       {isDesktopSize && renderDesktopLayout()}
-    </Wrapper>
+    </>
   );
 };
 

@@ -2,7 +2,6 @@ import { useEffect, memo } from "react";
 import styled from "styled-components";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useParams } from "react-router-dom";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import HeaderCard from "@/pages/home/components/HeaderCard";
@@ -45,6 +44,17 @@ const BannerWrapper = styled.div`
   }
 `;
 
+const Background = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${({ theme }) => theme.mainBackground};
+
+  ${media.sm} {
+    background: url(${bg}) center no-repeat;
+    background-size: cover;
+  }
+`;
+
 const MainContentWrapper = styled.div`
   padding: 5px;
   width: 100%;
@@ -54,14 +64,11 @@ const MainContentWrapper = styled.div`
   gap: 6px;
   color: ${({ theme }) => theme.white};
   flex: 1;
-  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     margin: 0 auto;
     padding: 80px 20px;
     gap: unset;
-    background: url(${bg}) center no-repeat;
-    background-size: cover;
     max-width: calc(${SUB_CONTENT_MAX_WIDTH} - 40px);
   }
 `;
@@ -69,7 +76,7 @@ const MainContentWrapper = styled.div`
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 450px;
+  aspect-ratio: 1920 / 520;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
@@ -89,10 +96,7 @@ const HomePage = () => {
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const hasNavData = !!navPopupCategoryList.length;
   const gameTypeList = useGameTypeList();
-
-  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-
-  const isNonLobby = isNonLobbyList.includes(activeGameType);
+  const isShowHome = isDesktopSize && !activeGameType;
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -127,7 +131,7 @@ const HomePage = () => {
 
       return (
         <BannerWrapper>
-          {!!activeGameType && !isNonLobby && <GameTypeBanner $imageUrl={imageUrl} />}
+          {!!activeGameType && <GameTypeBanner $imageUrl={imageUrl} />}
           {!activeGameType && <Banner />}
         </BannerWrapper>
       );
@@ -143,14 +147,14 @@ const HomePage = () => {
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {renderBanner()}
 
-      {isDesktopSize && <Marquee />}
-
-      <MainContentWrapper>
-        {isMobileSize && <HeaderCard/>}
-        {isDesktopSize && <Jackpot />}
-        <CategoryRenderer />
-      </MainContentWrapper>
-
+      {isShowHome && <Marquee />}
+      <Background>
+        <MainContentWrapper>
+          {isMobileSize && <HeaderCard/>}
+          {isShowHome && <Jackpot />}
+          <CategoryRenderer />
+        </MainContentWrapper>
+      </Background>
     </MainWrapper>
   );
 };

@@ -11,7 +11,7 @@ const CategoryRenderer = () => {
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isDesktopSize } = useRwd();
   const history = useHistory();
-
+  const isShowHome = isDesktopSize && activeGameType === GameTypeEnum.NONE;
   useEffect(() => {
     if (history.location.pathname === "/") {
       handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SLOT);
@@ -22,12 +22,12 @@ const CategoryRenderer = () => {
 
   }, [isDesktopSize]);
 
-  if (isDesktopSize) {
-    switch (activeGameType) {
-      case GameTypeEnum.NONE:
-        return <HomeCategory />;
-    }
+  // 電腦版首頁
+  if (isShowHome) {
+    return <HomeCategory />;
   }
+
+  
   switch (activeGameType) {
     case GameTypeEnum.SLOT:
     case GameTypeEnum.FISH:

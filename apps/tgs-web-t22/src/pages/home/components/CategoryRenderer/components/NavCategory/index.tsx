@@ -8,7 +8,7 @@ import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
-const Wrapper = styled.div`
+const Wrapper = styled.nav`
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -66,18 +66,19 @@ const NavCategory = () => {
 
             if (gpCode === "BC") return null;
             return (
-              <DesktopVendorCard
-                key={gpCode}
-                bgUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
-                imageUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-                launchGame={() => enterVendorFilter(gpCode)}
-                status={status}
-                venderName={name}
-              />
+              // <DesktopVendorCard
+              //   key={gpCode}
+              //   bgUrl={`${import.meta.env.BASE_URL
+              //     }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
+              //   imageUrl={`${import.meta.env.BASE_URL
+              //     }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
+              //   venderLogoUrl={`${import.meta.env.BASE_URL
+              //     }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
+              //   launchGame={() => enterVendorFilter(gpCode)}
+              //   status={status}
+              //   venderName={name}
+              // />
+              <p styled={{color: '#000'}}key={gpCode}>{name}</p>
             );
           })}
         {!hasMappingData && <NoDataText>No data</NoDataText>}

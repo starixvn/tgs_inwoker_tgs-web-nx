@@ -4,6 +4,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 
 const SlickDot = styled.div`
@@ -36,6 +37,10 @@ const SlickImage = styled.img`
   width: 100%;
   aspect-ratio: 430 / 195;
   object-fit: fill;
+
+  ${media.sm} {
+    aspect-ratio: 1920 / 400;
+  }
 `;
 
 const baseSettings = {
