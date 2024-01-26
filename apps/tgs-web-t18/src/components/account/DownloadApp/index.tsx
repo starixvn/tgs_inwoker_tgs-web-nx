@@ -1,10 +1,10 @@
 import { i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
-import logoCompatibleImg from "@/assets/t21/images/download/logo_compatible.svg";
-import logoConvenientImg from "@/assets/t21/images/download/logo_convenient.svg";
-import logoExtensiveImg from "@/assets/t21/images/download/logo_extensive.svg";
-import logoSecureImg from "@/assets/t21/images/download/logo_secure.svg";
-import downloadGirlImg from "@/assets/t21/images/download/download-girl.jpg";
+import logoCompatibleImg from "@/assets/t18/images/download/logo_compatible.svg";
+import logoConvenientImg from "@/assets/t18/images/download/logo_convenient.svg";
+import logoExtensiveImg from "@/assets/t18/images/download/logo_extensive.svg";
+import logoSecureImg from "@/assets/t18/images/download/logo_secure.svg";
+import downloadGirlImg from "@/assets/t18/images/download/download-girl.jpg";
 
 import DownloadButtonGroup from "@/pages/download/components/DownloadButtonGroup";
 import InfoCard, { InfoCardItem } from "@/pages/download/components/InfoCard";

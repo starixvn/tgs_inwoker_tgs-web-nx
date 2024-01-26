@@ -1,8 +1,8 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useEffect, useState } from "react";
-import fb from "@/assets/t21/images/home/social_media/fb.svg";
-import ig from "@/assets/t21/images/home/social_media/ig.svg";
-import twitter from "@/assets/t21/images/home/social_media/twitter.svg";
+import fb from "@/assets/t18/images/home/social_media/fb.svg";
+import ig from "@/assets/t18/images/home/social_media/ig.svg";
+import twitter from "@/assets/t18/images/home/social_media/twitter.svg";
 
 type SocialMediaItem = {
   key: string;

@@ -4,7 +4,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import Affiliate from "@/components/account/Affiliate";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconAffiliate from "@/assets/t21/images/account/navItem/icon-affiliate.svg";
+import iconAffiliate from "@/assets/t18/images/account/navItem/icon-affiliate.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

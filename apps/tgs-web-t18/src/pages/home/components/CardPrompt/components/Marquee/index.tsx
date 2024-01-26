@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
-import notification from "@/assets/t21/images/home/notification.svg";
+import notification from "@/assets/t18/images/home/notification.svg";
 import Icon from "@/components/project/Icon";
 
 const Container = styled.div`

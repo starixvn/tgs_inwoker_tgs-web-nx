@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
-import playIcon from "@/assets/t21/images/home/play-green.svg";
+import maintenanceIcon from "@/assets/t18/images/home/maintenance.svg";
+import playIcon from "@/assets/t18/images/home/play-green.svg";
 
 type Props = {
   bgUrl: string;

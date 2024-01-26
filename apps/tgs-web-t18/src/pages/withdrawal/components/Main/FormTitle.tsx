@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
-import iconArrow from "@/assets/t21/images/withdraw/icon-arrow.svg";
+import iconArrow from "@/assets/t18/images/withdraw/icon-arrow.svg";
 import CardAddButton from "@/pages/withdrawal/components/CardManage/CardAddButton";
 
 const TitleWrapper = styled.div`

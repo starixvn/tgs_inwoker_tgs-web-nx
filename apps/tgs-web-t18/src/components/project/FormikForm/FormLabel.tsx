@@ -2,12 +2,12 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 import { FormikFormInput } from "@/hooks/stage/useFormikInitValue";
-import iconUsername from "@/assets/t21/images/auth/icon-username.svg";
-import iconPassword from "@/assets/t21/images/auth/icon-password.svg";
-import iconEmail from "@/assets/t21/images/auth/icon-email.svg";
-import iconPhone from "@/assets/t21/images/auth/icon-phone.svg";
-import iconCode from "@/assets/t21/images/auth/icon-code.svg";
-import iconPromoteCode from "@/assets/t21/images/auth/icon-promoteCode.svg";
+import iconUsername from "@/assets/t18/images/auth/icon-username.svg";
+import iconPassword from "@/assets/t18/images/auth/icon-password.svg";
+import iconEmail from "@/assets/t18/images/auth/icon-email.svg";
+import iconPhone from "@/assets/t18/images/auth/icon-phone.svg";
+import iconCode from "@/assets/t18/images/auth/icon-code.svg";
+import iconPromoteCode from "@/assets/t18/images/auth/icon-promoteCode.svg";
 
 const FormLabelContainer = styled.div`
   display: flex;

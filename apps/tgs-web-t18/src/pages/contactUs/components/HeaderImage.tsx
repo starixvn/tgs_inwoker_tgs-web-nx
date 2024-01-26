@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import contactGirlImg from "@/assets/t21/images/contact/contact.jpg";
+import contactGirlImg from "@/assets/t18/images/contact/contact.jpg";
 
 const HeaderImageContainer = styled.div`
   width: 100%;

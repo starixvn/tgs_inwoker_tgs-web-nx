@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import styled from "styled-components";
-import dislikeIcon from "@/assets/t21/images/home/icon-like.svg";
-import likeIcon from "@/assets/t21/images/home/icon-like-active.svg";
+import dislikeIcon from "@/assets/t18/images/home/icon-like.svg";
+import likeIcon from "@/assets/t18/images/home/icon-like-active.svg";
 
 const LikeIcon = styled.div<{ $imageUrl: string }>`
   width: 30px;

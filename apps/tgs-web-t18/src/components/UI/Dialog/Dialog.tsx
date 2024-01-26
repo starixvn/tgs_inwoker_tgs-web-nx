@@ -6,7 +6,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
-import iconClose from "@/assets/t21/images/dialog/icon-close.svg";
+import iconClose from "@/assets/t18/images/dialog/icon-close.svg";
 
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
