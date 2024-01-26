@@ -1,12 +1,48 @@
 import React from "react";
 import styled from "styled-components";
-import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTag,
+  FilterTagTypeEnum,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { MenuItem as MuiMenuItem, Select as MuiSelect, SelectChangeEvent } from "@mui/material";
+import Tag from "../components/HomeGameFilterTag/ProviderTag";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 
 const ProviderTagsContainer = styled.div`
-  ${media.sm} {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  /* padding: 0px 6px 0px 14px; */
+  /* border-radius: 100px; */
+  /* border: 1px solid ${({ theme }) => theme.blue40}; */
+  align-self: stretch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    background: ${(props) => props.theme.mainBackground};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #53535375;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
   }
 `;
 
@@ -59,21 +95,43 @@ const StyledMenuItem = styled(MuiMenuItem)`
 const ProviderTags = () => {
   const { activeProviderFilterTag, handleChangeActiveProviderFilterTag, providerFilterTagList } =
     useHomeGameContext();
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
 
-  const handleChange = (e: SelectChangeEvent<any>) => {
-    const selectedTagName = e.target.value;
-    const selectedFilterTag = providerFilterTagList.find(
-      (filterTag) => filterTag.name === selectedTagName,
-    ) || {
-      tagType: FilterTagTypeEnum.ALL,
-      name: "",
-    };
-    handleChangeActiveProviderFilterTag(selectedFilterTag);
+  // const handleChange = (e: SelectChangeEvent<any>) => {
+  //   const selectedTagName = e.target.value;
+  //   const selectedFilterTag = providerFilterTagList.find(
+  //     (filterTag) => filterTag.name === selectedTagName,
+  //   ) || {
+  //     tagType: FilterTagTypeEnum.ALL,
+  //     name: "",
+  //   };
+  //   handleChangeActiveProviderFilterTag(selectedFilterTag);
+  // };
+
+  const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
+    handleChangeActiveProviderFilterTag(newFilterTag);
   };
 
   return (
     <ProviderTagsContainer>
-      <StyledSelect
+      {providerFilterTagList.map((filterTag) => {
+        const matchedProvider = navPopupCategoryList.find(
+          (provider) => provider.code === filterTag.gpCode,
+        );
+        const status = matchedProvider ? matchedProvider.status : -1;
+
+        return (
+          <Tag
+            key={filterTag.name}
+            text={filterTag.name}
+            gpCode={filterTag.gpCode}
+            isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
+            onClick={() => onChangeProviderFilterTag(filterTag)}
+            status={status}
+          />
+        );
+      })}
+      {/* <StyledSelect
         type={"string"}
         value={activeProviderFilterTag.name || "All"}
         onChange={handleChange}
@@ -97,7 +155,7 @@ const ProviderTags = () => {
             </StyledMenuItem>
           );
         })}
-      </StyledSelect>
+      </StyledSelect> */}
     </ProviderTagsContainer>
   );
 };

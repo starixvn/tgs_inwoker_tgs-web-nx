@@ -28,7 +28,6 @@ const CategoryContentWrapper = styled.div`
   height: 100%;
   width: 100%;
   flex-shrink: 0;
-  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CategoryContent = styled.div`
@@ -38,7 +37,7 @@ const CategoryContent = styled.div`
   width: 100%;
   gap: 14px;
   align-self: stretch;
-
+  color: ${({ theme }) => theme.black};
   ${media.sm} {
     padding: 20px 0;
   }

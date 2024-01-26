@@ -19,7 +19,7 @@ const SlickDot = styled.div`
 `;
 
 const SlickDotWrapper = styled.div`
-  margin-bottom: 80px;
+  margin-bottom: 30px;
 
   & ul li.slick-active ${SlickDot} {
     background: #f1c137 !important;
@@ -86,7 +86,7 @@ const Banner = () => {
   return (
     <BannerContainer>
       <Slider settings={settings} maxHeight={"450px"} />
-      <NewsContainer>
+      {/* <NewsContainer>
         <NewsContent>
           <Jackpot
             style={{
@@ -96,7 +96,7 @@ const Banner = () => {
             }}
           />
         </NewsContent>
-      </NewsContainer>
+      </NewsContainer> */}
     </BannerContainer>
   );
 };

@@ -14,7 +14,7 @@ const InputWrapper = styled.div`
   align-items: center;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.mainBackground};
-  border: 1px solid ${({ theme }) => theme.grey06};
+  border: 1px solid ${({ theme }) => theme.primary};
   padding: 10px 12px;
 
   ${media.sm} {
@@ -31,10 +31,10 @@ const InputTextfield = styled.input`
   outline: none;
   width: 100%;
   font-size: 0.875rem;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.black};
   margin-left: 5px;
   &::placeholder {
-    color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.primary};
     font-weight: 700;
     line-height: 0.875rem;
   }
