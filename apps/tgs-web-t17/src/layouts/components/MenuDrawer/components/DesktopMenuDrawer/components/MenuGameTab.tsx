@@ -88,7 +88,7 @@ const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
       onMouseLeave={handleLeave}
     >
       {cloneChildrenWithProps}
-      <Text $isActive={isActive}>{text}</Text>
+      {!isShrink && <Text $isActive={isActive}>{text}</Text>}
     </Wrapper>
   );
 };

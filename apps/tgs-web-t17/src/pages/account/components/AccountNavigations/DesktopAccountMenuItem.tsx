@@ -37,7 +37,8 @@ const Wrapper = styled.div<{
   gap: 15px;
   border-radius: ${({ $isHovered }) => ($isHovered ? "4px" : "0px")};
   background: ${({ $isActive, theme }) => ($isActive ? theme.black : theme.g7)};
-
+  justify-content: ${({ $isShrink }) => $isShrink ? "center" : "unset"};
+  
   &:hover {
     background:  ${({ theme }) => theme.black};
     ${Text} {
@@ -78,7 +79,7 @@ const DesktopAccountMenuItem = ({ text, isActive, onClick, children }: Props) =>
 
       return (
         <IconComponent
-          $color={(!isActive && isHovered) ? theme.white : (isActive ? theme.white : theme.g2)}
+          $color={(isActive || isHovered) ? theme.primary : theme.white}
           isHovered={isHovered}
         />
       );
@@ -92,7 +93,7 @@ const DesktopAccountMenuItem = ({ text, isActive, onClick, children }: Props) =>
       onMouseLeave={handleLeave}
     >
       <IconWrapper>{cloneChildrenWithProps}</IconWrapper>
-      <Text $isActive={isActive}>{text}</Text>
+      {!isShrink && <Text $isActive={isActive}>{text}</Text>}
     </Wrapper>
   );
 };

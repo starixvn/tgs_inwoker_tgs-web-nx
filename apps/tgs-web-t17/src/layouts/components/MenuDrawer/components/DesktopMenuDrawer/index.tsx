@@ -19,6 +19,7 @@ import toggleIcon from "@/assets/t17/images/account/navItem/icon-toggle.svg";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
 import AccountMenu from "@/layouts/components/Header/components/ContextMenuButton/components/AccountMenu";
+import { media } from "@/theme/breakpoints";
 
 const DesktopMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.darkGray};
@@ -51,6 +52,11 @@ const HeaderContentContainer = styled.div`
   align-items: flex-start;
   flex-shrink: 0;
   background: ${({ theme }) => theme.darkGray};
+
+  ${media.sm} {
+    padding: 22px 5px;
+    gap: 8px;
+  }
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -91,11 +97,7 @@ const LogoImgContainer = styled.div`
   }
 `;
 
-type CasinoCardProps = {
-  $isShrink: boolean;
-};
-
-const CasinoCard = styled.div<CasinoCardProps>`
+const CasinoCard = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   cursor: pointer;
   width: 100%;
@@ -107,11 +109,14 @@ const CasinoCard = styled.div<CasinoCardProps>`
   border-radius: 10px 10px 0 0;
 `;
 
-const GameTypeWrapper = styled.div`
+const GameTypeWrapper = styled.div<{
+  $isShrink: boolean;
+}>`
   display: flex;
   align-items: center;
+  justify-content: ${({ $isShrink }) => $isShrink ? "center" : ""};
   gap: 15px;
-  width: calc(100% - 14px);
+  width: ${({ $isShrink }) => $isShrink ? "100%" : "calc(100% - 14px)"};
 `;
 
 const IconText = styled.div`
@@ -164,12 +169,12 @@ const DesktopMenuDrawer = () => {
       </MenuHeaderContainer>
 
       <HeaderContentContainer>
-        <CasinoCard $isShrink={isShrink} onClick={() => setIsOpenGameTypeMenu(!isOpenGameTypeMenu)}>
-          <GameTypeWrapper>
+        <CasinoCard onClick={() => setIsOpenGameTypeMenu(!isOpenGameTypeMenu)}>
+          <GameTypeWrapper $isShrink={isShrink}>
             <Icon iconUrl={casinoIcon} width={"30px"} height={"21px"} />
-            <IconText>Casino</IconText>
+            {!isShrink && <IconText>Casino</IconText>}
           </GameTypeWrapper >
-          <ToggleWrapper $isOpenGameTypeMenu={isOpenGameTypeMenu}><Icon iconUrl={toggleIcon} width={"14px"} height={"8px"} /></ToggleWrapper>
+          {!isShrink && <ToggleWrapper $isOpenGameTypeMenu={isOpenGameTypeMenu}><Icon iconUrl={toggleIcon} width={"14px"} height={"8px"} /></ToggleWrapper>}
         </CasinoCard>
         {isOpenGameTypeMenu && <MenuList />}
         <AccountMenu />
