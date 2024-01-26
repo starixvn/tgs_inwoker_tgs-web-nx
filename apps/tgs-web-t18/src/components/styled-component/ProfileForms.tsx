@@ -5,50 +5,42 @@ import {
   styled as muiStyled,
 } from "@mui/material";
 import { media } from "@/theme/breakpoints";
+import { Button } from "@/components/UI/Button";
 
 export const Remark = styled.div`
   font-size: 0.937rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.gray80};
-  margin-bottom: 32px;
+  color: ${({ theme }) => theme.white};
+  margin-bottom: 20px;
 `;
 
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
-  ${media.sm} {
-    max-width: 500px;
-  }
+  margin-bottom: 20px;
 `;
 
 export const LabelContainer = styled.div`
   font-size: 1.125rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.white};
   float: left;
-  margin-bottom: 16px;
+  margin-bottom: 19px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
+  borderRadius: "5px",
+  border: `1px solid ${theme.palette.tertiary.main}`,
   width: "100%",
-  fontSize: "0.875rem",
-  justifyContent: "center",
-  background: theme.palette.gray10,
-  borderRadius: "6px",
-
+  fontSize: "0.937rem",
   "& fieldset": {
     border: "none",
-  },
-
-  "& input": {
-    padding: "15px 25px",
   },
 })) as typeof MuiFormControl;
 
 export const InfoContainer = styled.div`
   width: 100%;
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.gray80};
+  color: ${({ theme }) => theme.white};
 
   display: flex;
   align-items: center;
@@ -66,32 +58,13 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
 export const UploadFileTag = styled.span`
   width: 100%;
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 
   display: flex;
   align-items: center;
 `;
 
-export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "46px",
-  whiteSpace: "nowrap",
-  padding: "11.5px",
-  fontSize: "1.25rem",
-  lineHeight: 1,
-  fontWeight: 400,
-  color: theme.palette.white,
-  background: theme.palette.primary.main,
-  boxShadow: "none",
-
-  "&:hover": {
-    background: theme.palette.gray30,
-  },
-
-  "&:disabled": {
-    background: theme.palette.action.disabledBackground,
-    color: theme.palette.action.disabled,
-  },
-})) as typeof MuiButton;
+export const SubmitButton = muiStyled(Button)(({ theme }) => ({}));
 
 export const VerifySubmitButton = styled(SubmitButton)`
   margin-bottom: 20px !important;

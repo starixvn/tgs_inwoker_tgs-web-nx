@@ -1,31 +1,30 @@
+import { NavigateNext as NavigateNextIcon } from "@mui/icons-material";
 import React from "react";
 import styled from "styled-components";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
-import iconArrow from "@/assets/t21/images/profile/icon-arrow.svg";
-import Icon from "@/components/project/Icon";
 
 const ProfileItemContainer = styled.div`
   width: 100%;
+  padding: 21px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
 
   & .label {
-    color: ${({ theme }) => theme.gray80};
+    color: ${({ theme }) => theme.white};
     font-size: 1.25rem;
     font-weight: 400;
-    margin-bottom: 9px;
   }
 
   & .status {
-    color: ${({ theme }) => theme.gray30};
-    font-size: 0.937rem;
+    color: ${({ theme }) => theme.tertiary};
+    font-size: 0.93rem;
     font-weight: 400;
   }
 
   & svg {
-    color: ${({ theme }) => theme.white} !important;
+    color: ${({ theme }) => theme.tertiary} !important;
   }
 `;
 
@@ -51,7 +50,7 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         <div className={"status"}>{status}</div>
       </div>
 
-      <Icon iconUrl={iconArrow} width={"32px"} height={"32px"} />
+      <NavigateNextIcon style={{ transform: "scale(2)" }} />
     </ProfileItemContainer>
   );
 };

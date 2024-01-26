@@ -1,11 +1,11 @@
+import { Select as MuiSelect, SelectProps } from "@mui/material";
+import { styled as muiStyled } from "@mui/material/styles";
 import React from "react";
-import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/material";
 
-const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
-  color: theme.palette.text.primary,
+export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
+  color: theme.palette.tertiary.main,
   fontSize: "0.937rem",
   fontWeight: 400,
-  border: "none",
   "&:focus": {
     background: "none",
   },
@@ -13,7 +13,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     background: "none",
   },
   select: {
-    color: theme.palette.text.primary,
+    color: theme.palette.tertiary.main,
     padding: "14px",
     "&:focus": {
       background: "none",
@@ -22,25 +22,18 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
       background: "none",
     },
     "&:disabled": {
-      color: "#828282",
+      color: theme.palette.tertiary.main,
+      WebkitTextFillColor: `${theme.palette.common.white}`,
     },
   },
   "& .MuiSvgIcon-root": {
-    color: theme.palette.text.primary,
+    color: theme.palette.tertiary.main,
   },
-
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
   },
 }));
 
 export const Select = (props: SelectProps) => {
-  return (
-    <StyledSelect
-      {...props}
-      // IconComponent={() => (
-      //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
-      // )}
-    />
-  );
+  return <StyledSelect {...props} />;
 };

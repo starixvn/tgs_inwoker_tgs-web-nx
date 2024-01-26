@@ -21,8 +21,9 @@ const ButtonContainer = styled.div`
     height: 40px;
     font-size: 0.75rem;
     border-radius: 6px;
-    padding: 8px;
-    background: ${({ theme }) => theme.primary};
+    padding: 7px 9px;
+    margin-right: 6px;
+    background: #4333c5;
   }
 `;
 

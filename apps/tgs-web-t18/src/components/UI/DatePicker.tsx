@@ -76,14 +76,15 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
 
 type CustomDatepickerProps = {
   $disabled?: boolean;
+  theme: typeof theme;
 };
 
 const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  background: ${({ theme }) => theme.gray10};
   border-radius: 6px;
+  border: 1px solid ${({ theme }) => theme.gray01};
 
   //margin-top: 10px;
 

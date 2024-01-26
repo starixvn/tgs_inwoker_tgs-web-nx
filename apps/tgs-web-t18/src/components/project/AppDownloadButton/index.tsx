@@ -1,23 +1,33 @@
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import { NavCardKey } from "@tgs-web-nx/types";
-import Icon from "@/components/project/Icon";
-import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { media } from "@/theme/breakpoints";
+import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 
 const AppDownloadButtonContainer = styled.button`
   width: 100%;
-  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 30px;
+  border-radius: 12px;
   padding: 20px;
-  background: ${({ theme }) => theme.mainBackground};
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.primaryLight};
+  color: ${({ theme }) => theme.tertiary};
   border: none;
   cursor: pointer;
-  font-size: 1.125rem;
-  font-weight: 700;
+
+  ${media.sm} {
+    margin-top: 12px;
+  }
+`;
+
+const LogoContainer = styled.span`
+  display: inline-block;
+  margin-right: 10px;
+
+  & > img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+  }
 `;
 
 type Props = {
@@ -25,28 +35,13 @@ type Props = {
   handleClick: (navItem: NavItem) => void;
 };
 
-const AppDownloadButton = ({ handleClick }: Props) => {
-  const history = useHistory();
-  const { accountNavItemList } = useGetNavItemList();
-
-  const downloadNavItem = accountNavItemList.find(
-    (navItem) => navItem.key === NavCardKey.APP_DOWNLOAD && navItem.navType === "route",
-  );
-
-  if (!downloadNavItem) return null;
-  if (downloadNavItem.navType !== "route") return null;
-
-  const { label, iconUrl, routePath } = downloadNavItem;
+const AppDownloadButton = ({ navItem, handleClick }: Props) => {
+  const { label, iconUrl } = navItem;
   return (
-    <AppDownloadButtonContainer onClick={() => history.push(routePath)}>
-      <Icon
-        iconUrl={iconUrl}
-        width={"24px"}
-        height={"24px"}
-        style={{
-          marginRight: "10px",
-        }}
-      />
+    <AppDownloadButtonContainer onClick={() => handleClick(navItem)}>
+      <LogoContainer>
+        <img src={iconUrl} alt={label} />
+      </LogoContainer>
 
       <span>{label}</span>
     </AppDownloadButtonContainer>

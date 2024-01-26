@@ -10,6 +10,8 @@ export const theme = {
   white: "#FFFFFF",
   yellow: "#F3DE4B",
   green: "#33AD4E",
+  text: "#ffffff",
   primaryGradient:
     "linear-gradient(180deg, rgba(57, 22, 164, 0.00) 8.88%, #3916A4 50.07%, rgba(57, 22, 164, 0.50) 89.25%)",
+  gray01: "#596578",
 };

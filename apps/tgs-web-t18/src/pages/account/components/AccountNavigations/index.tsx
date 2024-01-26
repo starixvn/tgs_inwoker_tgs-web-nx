@@ -1,79 +1,81 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuthContext } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
-import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
+import { i18n } from "@tgs-web-nx/utils";
+import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import NavRowLanguage from "@/pages/account/components/AccountNavigations/NavRowLanguage";
+import BalanceTracker from "@/components/project/BalanceTracker";
+import AppDownloadButton from "@/components/project/AppDownloadButton";
+import NavCard from "@/pages/account/components/AccountNavigations/NavCard";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
+import { Button } from "@/components/UI/Button";
 
 const AccountNavsContainer = styled.div`
-  padding: 12px 14px;
-  background: ${({ theme }) => theme.white};
-  overflow: visible;
+  & > div {
+    margin-bottom: 15px;
+  }
+
+  ${media.sm} {
+    & > div {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const AccountNavCardsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  overflow: visible;
+  flex-wrap: wrap;
+  gap: 8px;
 `;
 
-const LogoutRegion = styled.div`
-  background: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.red};
-  font-size: 1.25rem;
-  padding: 15px;
-  text-align: center;
-  margin: 9px 0 0;
-  cursor: pointer;
-`;
-
-const hideInDesktopDictionary = {
-  [NavCardKey.VIP]: true,
-  [NavCardKey.APP_DOWNLOAD]: true,
-  [NavCardKey.LOGOUT]: true,
-} as { [key in NavCardKey | string]: boolean };
-
-const AccountNavigations = () => {
+type Props = {};
+const AccountNavigations = (props: Props) => {
   const history = useHistory();
-  const { accountNavItemList } = useGetNavItemList();
-  const { handleLogout } = useAuthContext();
-  const { isDesktopSize } = useRwd();
+  const { accountNavItemList: navItemList } = useGetNavItemList();
+  const { handleLogout, logoutState } = useAuthContext();
 
   const handleClickNav = useCallback((navItem: NavItem) => {
-    switch (navItem.navType) {
-      case "route":
-        history.push(navItem.routePath);
-        break;
+    if (navItem.navType === "route") {
+      history.push(navItem.routePath);
+    }
 
-      case "action":
-        navItem.callback();
+    if (navItem.navType === "action") {
+      navItem.callback();
     }
   }, []);
 
   return (
     <>
       <AccountNavsContainer>
+        <BalanceTracker />
+
         <AccountNavCardsContainer>
           {/* Cards */}
-          {accountNavItemList.map((navItem) => {
-            if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
-
-            if (navItem.key === NavCardKey.LANGUAGE_SWITCH) {
+          {navItemList.map((navItem) => {
+            if (navItem.key === NavCardKey.APP_DOWNLOAD) {
               return (
-                <NavRowLanguage key={navItem.key} navItem={navItem} handleClick={handleClickNav} />
+                <AppDownloadButton
+                  key={navItem.key}
+                  navItem={navItem}
+                  handleClick={handleClickNav}
+                />
               );
             }
 
-            return <NavRow key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
+            return <NavCard key={navItem.key} navItem={navItem} handleClick={handleClickNav} />;
           })}
         </AccountNavCardsContainer>
+
+        <LanguageSwitch />
+
+        <Button fullWidth variant={"contained"} color={"primary"} onClick={handleLogout}>
+          {i18n.t("web.header.logout")}
+        </Button>
       </AccountNavsContainer>
 
-      <LogoutRegion onClick={handleLogout}>{i18n.t("web.header.logout")}</LogoutRegion>
+      {/*<Loading show={logoutState.isLoading} />*/}
     </>
   );
 };

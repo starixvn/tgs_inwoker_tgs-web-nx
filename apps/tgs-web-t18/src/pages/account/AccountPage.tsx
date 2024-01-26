@@ -1,38 +1,73 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
+import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth, useUpdatePageName } from "@tgs-web-nx/core/features";
-import styled from "styled-components";
-import AccountNavigations from "./components/AccountNavigations";
-import InfoCard from "@/pages/account/components/InfoCard";
-import UserWalletInfo from "@/components/project/UserWalletInfo";
+import { useAuth } from "@tgs-web-nx/core/features";
+import accountImg from "@/assets/t18/images/account/icon_account.png";
+import infoImg from "@/assets/t18/images/account/icon_info.png";
 import { media } from "@/theme/breakpoints";
-import { PageContainer } from "@/components/styled-component/PageContainer";
+import Tabs, { TabItem } from "@/components/UI/Tabs";
+import { useTab } from "@/hooks/account/useTab";
+import InfoCard from "@/pages/account/components/InfoCard";
+import AccountNavigations from "@/pages/account/components/AccountNavigations";
+import MyInfo from "@/pages/account/components/MyInfo";
 
-const AccountPage = () => {
-  useUpdatePageName(i18n.t("TIGER.my"));
+const AccountContainer = styled.div`
+  background: ${({ theme }) => theme.primaryDark};
+  padding: 40px 15px 0;
+  max-width: 870px;
+  margin: auto;
 
+  & > div {
+    margin-bottom: 15px;
+  }
+
+  ${media.sm} {
+    & > div {
+      margin-bottom: 20px;
+    }
+  }
+`;
+
+const AccountIcon = () => {
+  return <img src={accountImg} alt="account" />;
+};
+
+const InfoIcon = () => {
+  return <img src={infoImg} alt="info" />;
+};
+
+const Mine = () => {
+  const tabList = useMemo<TabItem[]>(() => {
+    return [
+      {
+        label: i18n.t("TIGER.my"),
+        value: "account",
+        icon: <AccountIcon />,
+      },
+      { label: i18n.t("common.info"), value: "info", icon: <InfoIcon /> },
+    ] as TabItem[];
+  }, []);
+  const { selectedTab, handleTabChange } = useTab(tabList);
   const { isLogin } = useAuth();
   const history = useHistory();
-  const { isDesktopSize } = useRwd();
-
-  if (isDesktopSize) {
-    history.push("/profile");
-  }
 
   useEffect(() => {
     if (!isLogin) {
       history.push("/login");
     }
-  }, [history, isLogin]);
+  }, []);
 
   return (
-    <PageContainer>
-      {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "10px" }} />}
-      <AccountNavigations />
-    </PageContainer>
+    <AccountContainer>
+      <InfoCard style={{ marginBottom: "50px" }} />
+
+      <Tabs tabItemList={tabList} selectedTabItem={selectedTab} handleChange={handleTabChange} />
+
+      {selectedTab.value === "account" && <AccountNavigations />}
+      {selectedTab.value === "info" && <MyInfo />}
+    </AccountContainer>
   );
 };
 
-export default AccountPage;
+export default Mine;

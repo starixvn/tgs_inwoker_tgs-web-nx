@@ -2,16 +2,14 @@ import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { NavCardKey } from "@tgs-web-nx/types";
 import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
-import homeImg from "@/assets/t21/images/account/navItem/icon-home.svg";
-import profileImg from "@/assets/t21/images/account/navItem/icon-account.svg";
-import depositImg from "@/assets/t21/images/account/navItem/icon-deposit.svg";
-import withdrawImg from "@/assets/t21/images/account/navItem/icon-withdraw.svg";
-import transferImg from "@/assets/t21/images/account/navItem/icon-transfer.svg";
-import reportImg from "@/assets/t21/images/account/navItem/icon-report.svg";
-import inboxImg from "@/assets/t21/images/account/navItem/icon-inbox.svg";
-import languageImg from "@/assets/t21/images/account/navItem/icon-language.svg";
-import contactImg from "@/assets/t21/images/account/navItem/icon-contact.svg";
-import vipImg from "@/assets/t21/images/account/navItem/icon-vip.svg";
+import profileImg from "@/assets/t18/images/account/navItem/icon_profile.svg";
+import depositImg from "@/assets/t18/images/account/navItem/icon_deposit.svg";
+import withdrawImg from "@/assets/t18/images/account/navItem/icon_withdraw.svg";
+import transferImg from "@/assets/t18/images/account/navItem/icon_transfer.svg";
+import reportImg from "@/assets/t18/images/account/navItem/icon_report.svg";
+import inboxImg from "@/assets/t18/images/account/navItem/icon_inbox.svg";
+import affiliateImg from "@/assets/t18/images/account/navItem/icon_affiliate.svg";
+import downloadImg from "@/assets/t18/images/account/navItem/icon_download.png";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -38,15 +36,15 @@ export function useGetNavItemList() {
 
   const accountNavItemList: NavItem[] = useMemo(() => {
     const navItems = [
-      {
-        key: NavCardKey.HOME,
-        label: i18n.t("common.home"),
-        iconUrl: homeImg,
-        navType: "action",
-        callback: () => {
-          goToHomePage();
-        },
-      },
+      // {
+      //   key: NavCardKey.HOME,
+      //   label: i18n.t("common.home"),
+      //   iconUrl: homeImg,
+      //   navType: "action",
+      //   callback: () => {
+      //     goToHomePage();
+      //   },
+      // },
       {
         key: NavCardKey.PROFILE,
         label: i18n.t("wap.main.my"),
@@ -111,35 +109,35 @@ export function useGetNavItemList() {
       //   navType: "route",
       //   routePath: "/affiliate",
       // },
-      {
-        key: NavCardKey.VIP,
-        label: "VIP",
-        iconUrl: vipImg,
-        navType: "route",
-        routePath: "/vip",
-      },
+      // {
+      //   key: NavCardKey.VIP,
+      //   label: "VIP",
+      //   iconUrl: vipImg,
+      //   navType: "route",
+      //   routePath: "/vip",
+      // },
       {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),
-        iconUrl: contactImg,
+        iconUrl: profileImg,
         navType: "route",
         routePath: "/support",
       },
-      // {
-      //   key: NavCardKey.APP_DOWNLOAD,
-      //   label: i18n.t("wap.main.account.appDownload"),
-      //   iconUrl: downloadImg,
-      //   navType: "route",
-      //   routePath: "/appDownload",
-      // },
       {
-        key: NavCardKey.LANGUAGE_SWITCH,
-        label: i18n.t("common.language"),
-        iconUrl: languageImg,
-        navType: "action",
-        routePath: null,
-        callback: () => {},
+        key: NavCardKey.APP_DOWNLOAD,
+        label: i18n.t("wap.main.account.appDownload"),
+        iconUrl: downloadImg,
+        navType: "route",
+        routePath: "/appDownload",
       },
+      // {
+      //   key: NavCardKey.LANGUAGE_SWITCH,
+      //   label: i18n.t("common.language"),
+      //   iconUrl: languageImg,
+      //   navType: "action",
+      //   routePath: null,
+      //   callback: () => {},
+      // },
     ] as NavItem[];
 
     return navItems;

@@ -1,32 +1,39 @@
-import React, { useCallback } from "react";
+import { Close as CloseIcon } from "@mui/icons-material";
 import styled from "styled-components";
-import { useHistory } from "react-router";
-import iconReturn from "@/assets/t21/images/dialog/icon-return.svg";
-import Icon from "@/components/project/Icon";
-import downloadImg from "@/assets/t21/images/header/icon-download.svg";
-
-export const DIALOG_HEADER_HEIGHT = "50px";
+import backIcon from "@/assets/t18/images/promotion/back.png";
 
 const DialogHeaderContainer = styled.div`
   position: fixed;
+  width: 100%;
+  height: 73px;
   top: 0;
   left: 0;
-  width: 100%;
-  height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.primaryLight};
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  color: ${({ theme }) => theme.primary};
-  font-size: 1.125rem;
-  font-weight: 700;
+  justify-content: center;
+  color: ${({ theme }) => theme.white};
+  font-size: 1.25rem;
+  font-weight: 400;
   margin: 0;
   z-index: 1300;
-  padding: 10px 11.42px;
-  gap: 14px;
 `;
 
-const ReturnIconContainer = styled.div`
+const CloseIconContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+
+const BackIconContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -38,28 +45,24 @@ type Props = {
 };
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
-  const history = useHistory();
-
-  const goToDownload = useCallback(() => {
-    history.push("/appDownload");
-  }, []);
   return (
     <DialogHeaderContainer>
-      <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
-      </ReturnIconContainer>
+      {dialogHeaderTitle === "Promotion" ? (
+        <BackIconContainer onClick={handleClose}>
+          <img src={backIcon} alt="back" />
+        </BackIconContainer>
+      ) : (
+        <CloseIconContainer onClick={handleClose}>
+          <CloseIcon
+            style={{
+              color: "white",
+              transform: "scale(1.6)",
+            }}
+          />
+        </CloseIconContainer>
+      )}
 
       {dialogHeaderTitle}
-
-      <Icon
-        iconUrl={downloadImg}
-        width={"30px"}
-        height={"30px"}
-        style={{
-          cursor: "pointer",
-        }}
-        onClick={() => goToDownload()}
-      />
     </DialogHeaderContainer>
   );
 };
