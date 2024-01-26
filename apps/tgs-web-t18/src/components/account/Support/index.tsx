@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { BrandsSupport } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useContactCS } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { BrandsSupport } from "@tgs-web-nx/types";
+import config from "@tgs-web-nx/config";
+import IMHandler from "@/components/account/Support/IMHandler";
+import contactGirlImg from "@/assets/t18/images/account/girl/contact.png";
 import SupportCard from "@/pages/contactUs/components/SupportCard";
 import QrCodeDialog from "@/pages/contactUs/components/QRCodeHolder";
-import IMHandler from "@/components/account/Support/IMHandler";
-import HeaderImage from "@/pages/contactUs/components/HeaderImage";
 
 const SupportContainer = styled.div``;
+
+const ContactGirlImage = styled.div`
+  width: 100%;
+  margin-bottom: 20px;
+
+  img {
+    width: 100%;
+  }
+`;
 
 const CardsContainer = styled.div`
   display: flex;
@@ -18,12 +26,14 @@ const CardsContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const Support = () => {
+type Props = {};
+const Support = ({}: Props) => {
   const { general } = useGeneralStore();
   const { handleContactCs } = useContactCS();
   const brandsSupportList = general.brandsSupport;
   const [selectedBrandsSupport, setSelectedBrandsSupport] = useState<BrandsSupport | null>(null);
-  const { isCustomizedBrand } = useHomeGameContext();
+
+  //================
 
   const handleClick = (brandsSupport: BrandsSupport) => {
     if (brandsSupport.type === "Live") {
@@ -46,10 +56,11 @@ const Support = () => {
 
   return (
     <SupportContainer>
+      <ContactGirlImage>
+        <img src={contactGirlImg} alt={"contact"} />
+      </ContactGirlImage>
       <CardsContainer>
-        <HeaderImage />
-
-        {(config.features.LiveChatVendor || csLiveChatUrl) && !isCustomizedBrand && (
+        {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
             brandsSupport={{
               appid: null,

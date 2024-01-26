@@ -2,22 +2,20 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { BrandsSupport } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
-import { Button } from "@/components/UI/Button";
-import { theme } from "@/theme";
+import Icon from "@/components/project/Icon";
 
 const SupportCardContainer = styled.div`
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 20px;
-  background: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.gray80};
+  padding: 14px 21px;
+  background: ${({ theme }) => theme.tertiaryDark};
+  color: ${({ theme }) => theme.white};
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.098rem;
-  border-radius: 5px;
 
   & > * {
     margin-bottom: 20px;
@@ -29,11 +27,8 @@ const SupportCardContainer = styled.div`
 
   width: calc((100% - 16px * (2 - 1)) / 2);
 
-  // ${media.sm} {
-  //   width: calc((100% - 16px * (2 - 1)) / 3);
-  // }
-  ${media.md} {
-    width: calc((100% - 16px * (4 - 1)) / 4);
+  ${media.sm} {
+    width: calc((100% - 16px * (3 - 1)) / 4);
   }
 `;
 
@@ -62,6 +57,29 @@ const iconSwitcher = (icon: string) => {
   }
 };
 
+const IconContainer = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: ${({ theme }) => theme.tertiary};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ContactButton = styled.div`
+  width: 100%;
+  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.primary};
+  padding: 6px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 0.878rem;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
 type Props = {
   brandsSupport: BrandsSupport;
   handleClick: (brandsSupport: BrandsSupport) => void;
@@ -75,31 +93,19 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
 
   return (
     <SupportCardContainer onClick={handleClickCard}>
-      <Icon
-        iconUrl={`${import.meta.env.BASE_URL}assets/images/support/${iconSwitcher(
-          brandsSupport.type,
-        )}`}
-        width={"55px"}
-        height={"55px"}
-      />
+      <IconContainer>
+        <Icon
+          iconUrl={`${import.meta.env.BASE_URL}assets/images/support/${iconSwitcher(
+            brandsSupport.type,
+          )}`}
+          width={"26px"}
+          height={"26px"}
+        />
+      </IconContainer>
 
       <span>{type}</span>
 
-      <Button
-        fullWidth
-        sx={{
-          color: theme.white,
-          background: theme.primary,
-          lineHeight: "13.8px",
-          fontWeight: 400,
-          padding: "6px",
-          "&:hover": {
-            background: theme.secondary,
-          },
-        }}
-      >
-        {i18n.t("common.contact")}
-      </Button>
+      <ContactButton>{i18n.t("common.contact")}</ContactButton>
     </SupportCardContainer>
   );
 };
