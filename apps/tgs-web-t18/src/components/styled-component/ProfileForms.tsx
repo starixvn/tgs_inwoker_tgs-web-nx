@@ -64,7 +64,9 @@ export const UploadFileTag = styled.span`
   align-items: center;
 `;
 
-export const SubmitButton = muiStyled(Button)(({ theme }) => ({}));
+export const SubmitButton = muiStyled(Button)(({ theme }) => ({
+  fontSize: "1.25rem !important",
+}));
 
 export const VerifySubmitButton = styled(SubmitButton)`
   margin-bottom: 20px !important;

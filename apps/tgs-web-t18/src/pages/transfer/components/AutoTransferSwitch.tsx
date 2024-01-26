@@ -29,7 +29,7 @@ const AutoTransferContainer = styled.div`
   align-items: center;
   gap: 15px;
   flex-wrap: wrap;
-  color: ${({ theme }) => theme.gray80};
+  color: ${({ theme }) => theme.white};
   font-size: 14px;
 
   ${media.md} {

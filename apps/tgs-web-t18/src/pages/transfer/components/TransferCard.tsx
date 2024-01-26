@@ -2,24 +2,23 @@ import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
+import { FormControl as MuiFormControl } from "@mui/material";
+import { styled as muiStyled } from "@mui/material/styles";
 import { TextField } from "@/components/UI/TextField";
 import WalletSelect from "@/pages/transfer/components/WalletSelect";
 import { theme } from "@/theme";
 
 const TransferCardContainer = styled.div`
-  background: ${({ theme }) => theme.gray5};
-  color: ${({ theme }) => theme.text};
-  padding: 22px 25px 20px;
-  border-radius: 6px;
-
-  & > div {
-    font-size: 0.875rem !important;
-    margin-bottom: 6px;
+  background: ${({ theme }) => theme.primaryLight};
+  color: ${({ theme }) => theme.white};
+  padding: 12px;
+  & * {
+    font-size: 15px !important;
   }
 
   input,
   input::placeholder {
-    font-size: 0.875rem !important;
+    font-size: 15px !important;
     padding: 0;
   }
 `;
@@ -35,8 +34,18 @@ const ColContainer = styled.div`
   width: 50%;
 `;
 
+const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
+  borderRadius: "5px",
+  border: `1px solid ${theme.palette.tertiary.main}`,
+  width: "100%",
+  fontSize: "0.937rem",
+  "& fieldset": {
+    border: "none",
+  },
+}));
+
 const Spacing = styled.div`
-  height: 14px;
+  margin-bottom: 10px;
 `;
 
 type Props = {
@@ -102,8 +111,11 @@ const TransferCard = ({
             value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
-              background: theme.gray10,
-              border: "5px",
+              border: `1px solid ${theme.gray01}`,
+              borderRadius: "5px",
+              "& input": {
+                padding: "6.5px 8px",
+              },
             }}
           />
         </ColContainer>

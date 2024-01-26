@@ -4,6 +4,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
 type Props = {
   value: string;
@@ -22,7 +23,17 @@ const WalletSelect = ({ value, handleChange, providerList, mainAccountId }: Prop
   };
 
   return (
-    <Select native value={value} onChange={(e) => handleChange(e as ChangeEvent)}>
+    <Select
+      native
+      value={value}
+      onChange={(e) => handleChange(e as ChangeEvent)}
+      sx={{
+        "& select": {
+          color: theme.white,
+          paddingLeft: "0",
+        },
+      }}
+    >
       <option value={mainAccountId}>{i18n.t("transfer.mainAccount")}</option>
       {game.providerList
         .filter((provider) => provider.status === 0 && provider.transferwallet)
