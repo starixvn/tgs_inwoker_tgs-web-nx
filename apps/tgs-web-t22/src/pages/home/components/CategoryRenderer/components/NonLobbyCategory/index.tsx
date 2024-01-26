@@ -15,23 +15,23 @@ import searchIcon from "@/assets/t29/images/home/search.svg";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 100px 1fr;
-  width: 100%;
+  grid-template-columns: 110px 1fr;
   gap: 12px;
   flex: 1;
+  width: 100%;
   overflow-y: auto;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     padding: 15px 0px;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
   }
 `;
 
 const CategoryContentWrapper = styled.div`
+  background-color: ${({ theme }) => theme.mainBackground};
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.mainBackground};
   overflow-y: auto;
 `;
 
@@ -53,17 +53,17 @@ const DesktopCategoryContentWrapper = styled.div`
 `;
 
 const CategoryContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
   width: 100%;
-  row-gap: 10px;
-  column-gap: 9px;
-  align-self: stretch;
+  
 
   ${media.sm} {
-    row-gap: 5px;
-    column-gap: 9px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-self: stretch;
   }
 `;
 
@@ -87,52 +87,25 @@ const Text = styled.div`
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
+  
   const hasMappingData = !!gameList.length;
   const { searchString, handleChangeSearch } = useHomeGameContext();
 
   const renderMobileLayout = () => {
-    if(isMobileSize) {
-      return (
-        <>
-          <GameTypeTab />
-          <CategoryContentWrapper>
-            <FilterSection>
-              <SearchInput
-                placeholder={i18n.t("slot.search")}
-                imageUrl={searchIcon}
-                handleChange={handleChangeSearch}
-                value={searchString}
-              />
-              <GameFilterTag />
-            </FilterSection>
-            <CategoryContent>
-              {hasMappingData &&
-                gameList.map((gameItem) => (
-                  <GameCard
-                    key={gameItem.id}
-                    gameItem={gameItem}
-                    isActive={gameItem.isactive}
-                    imageUrl={`${
-                      config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                      gameItem.code
-                    }.jpg`}
-                  />
-                ))}
-              {!hasMappingData && !isLoading && <div>No data</div>}
-            </CategoryContent>
-          </CategoryContentWrapper>
-        </>
-      )
-    }
-  };
-
-  const renderDesktopLayout = () => {
-    if(isDesktopSize) {
-      return (
-        <DesktopWrapper>
-          <HomeGameFilterTag />
-          <DesktopCategoryContentWrapper>
+    return (
+      <>
+        <GameTypeTab />
+        <CategoryContentWrapper>
+          <FilterSection>
+            <SearchInput
+              placeholder={i18n.t("slot.search")}
+              imageUrl={searchIcon}
+              handleChange={handleChangeSearch}
+              value={searchString}
+            />
+            <GameFilterTag />
+          </FilterSection>
+          <CategoryContent>
             {hasMappingData &&
               gameList.map((gameItem) => (
                 <GameCard
@@ -146,20 +119,45 @@ const NonLobbyCategory = () => {
                   }.jpg`}
                 />
               ))}
-            {!hasMappingData && !isLoading && <Text>No data</Text>}
-          </DesktopCategoryContentWrapper>
-        </DesktopWrapper>
-      );
-    }
+            {!hasMappingData && !isLoading && <div>No data</div>}
+          </CategoryContent>
+        </CategoryContentWrapper>
+      </>
+    )
+};
+
+  const renderDesktopLayout = () => {
+    return (
+      <DesktopWrapper>
+        <HomeGameFilterTag />
+        <DesktopCategoryContentWrapper>
+          {hasMappingData &&
+            gameList.map((gameItem) => (
+              <GameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
+              />
+            ))}
+          {!hasMappingData && !isLoading && <Text>No data</Text>}
+        </DesktopCategoryContentWrapper>
+      </DesktopWrapper>
+    );
   };
 
   return (
     <Wrapper>
       {/* mobile layout*/}
-      {renderMobileLayout()}
+      {isMobileSize && renderMobileLayout()}
 
       {/* desktop layout */}
-      {renderDesktopLayout()}
+      {isDesktopSize && renderDesktopLayout()}
+      
       <Loading show={isLoading} />
     </Wrapper>
   );

@@ -1,3 +1,4 @@
+import {memo} from 'react'
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
@@ -13,24 +14,21 @@ import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 100px 1fr;
-  width: 100%;
+  grid-template-columns: 110px 1fr;
   gap: 12px;
   flex: 1;
+  width: 100%;
   overflow-y: auto;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     padding: 15px 0;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
   }
 `;
 
 const CategoryContentWrapper = styled.div`
   overflow-y: auto;
-  height: 100%;
-  width: calc(100% - 78px);
-  flex-shrink: 0;
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
@@ -44,13 +42,10 @@ const DesktopCategoryContentWrapper = styled.div`
 `;
 
 const CategoryContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  width: 100%;
-  row-gap: 13px;
-  column-gap: 9px;
-  align-self: stretch;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 100px;
+  gap: 6px;
 `;
 
 const LobbyCategory = () => {
@@ -98,7 +93,6 @@ const LobbyCategory = () => {
   const hasMappingData = !!lobbyCategoryList.length;
 
   const renderMobileLayout = () => {
-    if(isMobileSize) {
       return (
         <>
           <GameTypeTab />
@@ -126,11 +120,9 @@ const LobbyCategory = () => {
           </CategoryContentWrapper>
         </>
       )
-    }
   };
 
   const renderDesktopLayout = () => {
-    if(isDesktopSize) {
       return (
         <DesktopCategoryContentWrapper>
           {hasMappingData &&
@@ -156,15 +148,14 @@ const LobbyCategory = () => {
           {!hasMappingData && <div>No data</div>}
         </DesktopCategoryContentWrapper>
       )
-    }
   };
 
   return (
     <Wrapper>
-      {renderMobileLayout()}
-      {renderDesktopLayout()}
+      {isMobileSize && renderMobileLayout()}
+      {isDesktopSize && renderDesktopLayout()}
     </Wrapper>
   );
 };
 
-export default LobbyCategory;
+export default memo(LobbyCategory);

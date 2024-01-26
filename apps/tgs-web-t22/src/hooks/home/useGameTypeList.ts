@@ -118,7 +118,6 @@ export const useGameTypeList = () => {
     setTranslatedGameTypeList(translatedList);
   }, []);
 
-  console.log(translatedGameTypeList);
   return translatedGameTypeList;
 };
 

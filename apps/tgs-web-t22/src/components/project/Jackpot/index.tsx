@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useJackpot } from "@tgs-web-nx/core/features";
 import bg from "@/assets/t22/images/home/jackpot.png";
-import { media } from "@/theme/breakpoints";
 
 const JackpotContainer = styled.div`
   display: block;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect, memo } from "react";
 import styled from "styled-components";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -65,17 +65,6 @@ const MainContentWrapper = styled.div`
     max-width: calc(${SUB_CONTENT_MAX_WIDTH} - 40px);
   }
 `;
-
-// const Background = styled.div`
-//   width: 100%;
-//   height: 100%;
-//   background: ${({ theme }) => theme.mainBackground};
-//
-//   ${media.sm} {
-//     background: url(${bg}) center no-repeat;
-//     background-size: cover;
-//   }
-// `;
 
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
@@ -166,4 +155,4 @@ const HomePage = () => {
   );
 };
 
-export default React.memo(HomePage);
+export default memo(HomePage);

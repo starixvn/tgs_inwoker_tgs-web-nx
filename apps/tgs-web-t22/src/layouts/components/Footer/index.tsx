@@ -17,14 +17,14 @@ import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
 
 const FooterContainer = styled.footer`
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
   background: ${({ theme }) => theme.black};
+  width: 100%;
   color: ${({ theme }) => theme.white};
-  padding: 30px;
 `;
 
 const FooterGroups = styled.div`

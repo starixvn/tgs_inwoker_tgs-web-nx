@@ -6,7 +6,6 @@ import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
 import {
-  BOTTOM_APP_BAR_HEIGHT,
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";

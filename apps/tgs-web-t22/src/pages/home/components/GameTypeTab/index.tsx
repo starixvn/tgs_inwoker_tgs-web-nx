@@ -79,6 +79,7 @@ const GameTypeTab = () => {
           return providerList.some((provider) => {
             return provider.gametypes.includes(gameTypeItem.gameType);
           });
+
         }
 
         return true;
@@ -101,13 +102,15 @@ const GameTypeTab = () => {
     <TabContainer>
       {filteredGameTypeList.map((gameTypeItem) => {
         const { key, iconUrl, iconActiveUrl, text, gameType} = gameTypeItem;
-
+        const isActive = gameType === activeGameType;
+        const imageUrl = isActive && iconActiveUrl ? iconActiveUrl : iconUrl;
+        
         return (
           <Tab
             key={key}
-            imageUrl={gameType === activeGameType && iconActiveUrl ? iconActiveUrl : iconUrl}
+            imageUrl={imageUrl}
             text={text}
-            isActive={gameType === activeGameType}
+            isActive={isActive}
             onClick={() => switchGameType(gameType)}
           />
         );

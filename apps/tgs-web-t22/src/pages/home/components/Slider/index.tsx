@@ -33,8 +33,9 @@ const SlickWrapper = styled(Slick) <{ $maxHeight?: string }>`
 `;
 
 const SlickImage = styled.img`
-  display: block;
   width: 100%;
+  aspect-ratio: 430 / 195;
+  object-fit: fill;
 `;
 
 const baseSettings = {

@@ -7,7 +7,10 @@ import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 
 const TagContainer = styled.div`
-  padding: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   border-radius: 6px;
   background: ${({ theme }) => theme.navMenuBackground};
   width: 100%;
@@ -45,9 +48,7 @@ const GameFilterTag = () => {
     activeFilterTag,
     handleChangeActiveFilterTag,
     filterTagList,
-    activeProviderFilterTag,
     handleChangeActiveProviderFilterTag,
-    providerFilterTagList,
   } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
 
@@ -97,55 +98,20 @@ const GameFilterTag = () => {
         return (
           <Tag
             key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
             onClick={() => handleFilterClick(filterTag)}
           >
             {tagCmp &&
               tagCmp.iconComponent &&
               React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.text,
+                $color: isActive ? theme.labelText : theme.gray02,
               })}
           </Tag>
         );
       })}
-
-      {/* Provider list */}
-
-
     </TagContainer>
   );
 };
 
 export default GameFilterTag;
 
-// {providerFilterTagList.map((filterTag) => {
-//   const { name, gpCode } = filterTag;
-//
-//   const isActive =
-//     filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
-//     gpCode === activeProviderFilterTag.gpCode;
-//
-//   const tagCmp = gameTagList.find((tag) => tag.text === name);
-//
-//   if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-//     return null;
-//   }
-//
-//   return (
-//     <Tag
-//       key={name}
-//       text={name}
-//       isActive={isActive}
-//       isShowIcon={gameTagList.some((tag) => tag.text === name)}
-//       onClick={() => handleFilterClick(filterTag)}
-//     >
-//       {tagCmp &&
-//         tagCmp.iconComponent &&
-//         React.createElement(tagCmp.iconComponent, {
-//           $color: isActive ? theme.primary : theme.text,
-//         })}
-//     </Tag>
-//   );
-// })}
+

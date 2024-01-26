@@ -9,7 +9,7 @@ type Props = {
   onClick: () => void;
 };
 
-const Text = styled.div`
+const Text = styled.p`
   font-size: .6rem;
   font-weight: 700;
   text-transform: uppercase;

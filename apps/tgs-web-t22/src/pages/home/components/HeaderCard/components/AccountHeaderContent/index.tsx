@@ -6,6 +6,7 @@ import { useAuthContext } from "@tgs-web-nx/core/features";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import Icon from "@/components/project/Icon";
 import iconEyeOpen from "@/assets/t22/images/header/eyeOpen.svg";
+import iconEyeClose from "@/assets/t22/images/header/eyeClose.svg";
 import iconLogout from "@/assets/t22/images/header/logout.svg";
 
 const ButtonContainer = styled.div`
@@ -65,6 +66,7 @@ const AccountHeaderContent = () => {
   const visibleBalance = `${prefix}${currentBalance}`;
   const hideBalance = prefix.padEnd(visibleBalance.length, '*');
   const balanceAmount = isShowBalance ? visibleBalance : hideBalance;
+  const iconUrl = isShowBalance ? iconEyeOpen : iconEyeClose;
 
   const handleShowBalance = () => {
     setIsShowBalance(prev => !prev);
@@ -82,7 +84,7 @@ const AccountHeaderContent = () => {
         <UsernameContainer>{username}</UsernameContainer>
 
         <Balance>
-          <Icon iconUrl={iconEyeOpen} width={"24px"} height={"24px"} onClick={handleShowBalance} />
+          <Icon iconUrl={iconUrl} width={"24px"} height={"24px"} onClick={handleShowBalance} />
           <BalanceAmount>{balanceAmount}</BalanceAmount>
         </Balance>
       </Box>

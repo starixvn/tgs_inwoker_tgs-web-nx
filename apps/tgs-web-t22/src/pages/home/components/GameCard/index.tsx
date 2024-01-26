@@ -25,14 +25,11 @@ const CardHoverBg = styled.div`
 `;
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
-  position: absolute;
-  width: 100%;
-  padding-top: 100%;
-  left: 0;
-  top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 1;
 `;
 
 const NewTag = styled.div`
@@ -48,14 +45,13 @@ const NewTag = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8rem;
-  font-weight: 400;
+  font-size: 0.8rem; 
 `;
 
 const HotTag = styled.div`
   position: absolute;
-  bottom: 7px;
-  left: 0;
+  bottom: 5px;
+  left: 3px;
   width: 43px;
   height: 22px;
   padding: 2px 5px;
@@ -69,20 +65,14 @@ const HotTag = styled.div`
   font-weight: 400;
 `;
 
-const GameCardContent = styled.div`
-  width: 100%;
-`;
-
 const GameCardBg = styled.div`
-  width: calc(33.33% - 6px);
   position: relative;
-  cursor: pointer;
-  aspect-ratio: 161 / 161;
   border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: pointer;
 
   ${media.sm} {
-    width: calc(16.67% - 6px);
-
     &:hover {
       ${CardHoverBg} {
         z-index: 1;
@@ -95,33 +85,35 @@ const GameCardBg = styled.div`
   }
 `;
 
-const GameName = styled.div`
-  position: absolute;
-  bottom: 0;
-  color: ${(props) => props.theme.white};
-  font-size: 0.875rem;
-  font-weight: 400;
+const GameName = styled.p`
+  margin-top: 6px;
+  max-width: 100%;
+
+  color: ${(props) => props.theme.navTextDefault};
+  font-size: .9rem;
+  line-height: 20px;
   text-align: center;
-  margin: 4px 0 12px 0;
+
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 100%; //利用最大寬度來限制文字長度
 `;
 
 const MaintenanceBg = styled.div`
+  padding: 7px;
   position: absolute;
-  width: 100%;
-  height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 70%);
-  padding: 7px;
+  z-index: 3;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background: rgb(0 0 0 / 70%);
   border-radius: 10px;
-  z-index: 3;
+  width: 100%;
+  height: 100%;
 
   &:hover {
     cursor: not-allowed;
@@ -129,8 +121,7 @@ const MaintenanceBg = styled.div`
 `;
 
 const MaintenanceIcon = styled.img`
-  width: 82.68px;
-  height: 58.1px;
+  max-width: 80%;
 `;
 
 type GameCardProps = {
@@ -139,11 +130,12 @@ type GameCardProps = {
   imageUrl: string;
 };
 
-const HoverGameName = styled(GameCardContent)`
+const HoverGameName = styled.div`
+  margin-bottom: 16px;
+  width: 100%;
   color: ${(props) => props.theme.white};
   font-size: 1rem;
   text-align: center;
-  margin-bottom: 16px;
 `;
 
 const PlayIcon = styled.img`
@@ -196,8 +188,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <GameCardBg onClick={launchGameHandler}>
-      <GameCardContent>
+    <div>
+      <GameCardBg onClick={launchGameHandler}>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
         {gameItem.tag.hot && <HotTag>Hot</HotTag>}
@@ -206,23 +198,25 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
           </MaintenanceBg>
         )}
-      </GameCardContent>
+        
+        {isLogin && (
+          <Favorite
+            isFavorite={isFavorite}
+            handleToggleFavorite={handleToggleFavorite}
+            gameItemId={gameItem.id}
+          />
+        )}
 
-      {isLogin && (
-        <Favorite
-          isFavorite={isFavorite}
-          handleToggleFavorite={handleToggleFavorite}
-          gameItemId={gameItem.id}
-        />
-      )}
+        {isDesktopSize && (
+          <CardHoverBg onClick={launchGameHandler}>
+            {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
+            <PlayIcon src={playIcon} alt={"play"} />
+          </CardHoverBg>
+        )}
 
-      {isDesktopSize && (
-        <CardHoverBg onClick={launchGameHandler}>
-          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
-          <PlayIcon src={playIcon} alt={"play"} />
-        </CardHoverBg>
-      )}
-    </GameCardBg>
+      </GameCardBg>
+      <GameName>{gameItem.name}</GameName>
+    </div>
   );
 };
 
