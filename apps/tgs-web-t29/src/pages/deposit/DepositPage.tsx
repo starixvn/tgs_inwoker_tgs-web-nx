@@ -22,11 +22,7 @@ const DepositPage = () => {
       {isDesktopSize && <UserWalletInfo />}
 
       <AccountPaper pageName={i18n.t("common.deposit")} iconUrl={iconDeposit}>
-        {isCustomizedBrand ? (
-          <DepositPrevMOVN appHistory={history} alert={alert} />
-        ) : (
-          <DepositPrev appHistory={history} alert={alert} />
-        )}
+        <DepositPrevMOVN appHistory={history} alert={alert} />
       </AccountPaper>
     </TransferPageContainer>
   );
