@@ -90,6 +90,10 @@ const GameListWrapper = styled.div`
   }
 `;
 
+const VenderListWarpper = styled(GameListWrapper)`
+  justify-content: center;
+`;
+
 const CategoryContent = styled.div`
   display: flex;
   align-content: center;
@@ -165,7 +169,7 @@ const NonLobbyCategory = () => {
               </>
             ) : (
               <CategoryContent>
-                <GameListWrapper>
+                <VenderListWarpper>
                   {providerFilterTagList
                     .filter((filterTag) => filterTag.name !== "All")
                     .map((filterTag) => {
@@ -185,7 +189,7 @@ const NonLobbyCategory = () => {
                         />
                       );
                     })}
-                </GameListWrapper>
+                </VenderListWarpper>
               </CategoryContent>
             )}
           </CategoryContentWrapper>
