@@ -1,17 +1,16 @@
 import React from "react";
 import { Route } from "@tgs-web-nx/core/features";
-import DefaultLayout from "@/layouts/DefaultLayout";
 
 type Props = {
   route: Route;
   children: React.ReactNode;
 };
-const LayoutProvider = ({ children, route }: Props) => {
-  const LayoutComponent = route?.layout;
+const LayoutProvider = ({ route, children }: Props) => {
+  const LayoutComponent = route.layout;
 
-  if (!LayoutComponent) return <DefaultLayout>{children}</DefaultLayout>;
+  if (!LayoutComponent) return <>{children}</>;
 
   return <LayoutComponent>{children}</LayoutComponent>;
 };
 
-export default React.memo(LayoutProvider);
+export default LayoutProvider;

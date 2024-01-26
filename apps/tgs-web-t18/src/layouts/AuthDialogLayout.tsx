@@ -1,71 +1,72 @@
-import React from "react";
+import React, { ReactElement, useCallback } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { Close as CloseIcon } from "@mui/icons-material";
+import DefaultLayout from "@/layouts/DefaultLayout";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
-import Footer from "@/layouts/components/Footer";
-import Header from "@/layouts/components/Header";
-import { media } from "@/theme/breakpoints";
-import {
-  BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_HEADER_HEIGHT,
-  MOBILE_HEADER_HEIGHT,
-} from "@/theme/constants";
-import bg from "@/assets/t21/images/loginBG.png";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
 
-const DefaultLayoutContainer = styled.div`
+const DialogLayoutContainer = styled.div`
   position: relative;
-  background: url(${bg});
-`;
-
-const DashboardContainer = styled.div`
-  display: flex;
-  margin-top: ${MOBILE_HEADER_HEIGHT};
-  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
-
-  ${media.sm} {
-    margin-top: ${DESKTOP_HEADER_HEIGHT};
-    min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
-    margin-bottom: unset;
-  }
+  background: ${({ theme }) => theme.primaryLight};
 `;
 
 const ContentWrapper = styled.div`
+  min-height: calc(100vh - 80px - 82px); // 80px:Header, 82px: BottomAppBar
+  margin: 80px 0 82px;
   position: relative;
-  flex-grow: 1;
-  transition: all ease-in-out 0.2s;
+  z-index: 1;
 `;
 
-const ChildrenWrapper = styled.div`
-  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
-
-  ${media.sm} {
-    padding-bottom: 0;
-  }
+const CloseIconContainer = styled.div`
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactElement;
 };
 const AuthDialogLayout = ({ children }: Props) => {
-  const { isMobileSize } = useRwd();
+  const history = useHistory();
+  const location = useLocation();
+  const { isDesktopSize } = useRwd();
+
+  const pathname = location.pathname;
+  const handleCloseDialog = useCallback(() => {
+    const profileRegex = /\/profile\//;
+    if (profileRegex.test(pathname)) {
+      return history.push("/profile");
+    }
+
+    if (pathname === "/profile") {
+      return history.push("/account");
+    }
+
+    history.push("/");
+  }, [pathname]);
+
+  if (isDesktopSize) {
+    return <DefaultLayout>{children}</DefaultLayout>;
+  }
 
   return (
-    <DefaultLayoutContainer>
-      <Header />
-
-      <DashboardContainer>
-        <ContentWrapper>
-          <>
-            <MenuDrawer />
-            <ChildrenWrapper>{children}</ChildrenWrapper>
-            <Footer />
-          </>
-        </ContentWrapper>
-      </DashboardContainer>
-
-      {isMobileSize && <BottomAppBar />}
-    </DefaultLayoutContainer>
+    <DialogLayoutContainer>
+      <CloseIconContainer onClick={handleCloseDialog}>
+        <CloseIcon
+          style={{
+            color: "white",
+            transform: "scale(1.6)",
+          }}
+        />
+      </CloseIconContainer>
+      <ContentWrapper>{children}</ContentWrapper>
+      <BottomAppBar />
+    </DialogLayoutContainer>
   );
 };
 

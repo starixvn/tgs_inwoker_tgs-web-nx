@@ -1,43 +1,46 @@
-import React from "react";
 import styled from "styled-components";
+import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import BottomAppBar from "@/layouts/components/BottomAppBar";
-import Footer from "@/layouts/components/Footer";
-import Header from "@/layouts/components/Header";
+import { DESKTOP_DRAWER_WIDTH, MOBILE_DRAWER_WIDTH } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
-import {
-  BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_HEADER_HEIGHT,
-  MOBILE_HEADER_HEIGHT,
-} from "@/theme/constants";
-import bg from "@/assets/t21/images/bg.png";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
+import Header from "@/layouts/components/Header";
+import Footer from "@/layouts/components/Footer";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
+import MenuDrawer from "@/layouts/components/Header/components/MenuDrawer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: url(${bg});
+  background: ${({ theme }) => theme.primaryDark};
 `;
 
 const DashboardContainer = styled.div`
   display: flex;
-  margin-top: ${MOBILE_HEADER_HEIGHT};
-  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
+  margin-top: 80px;
+  min-height: calc(100vh - 80px - 82px);
 
   ${media.sm} {
-    margin-top: ${DESKTOP_HEADER_HEIGHT};
-    min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
     margin-bottom: unset;
   }
 `;
 
-const ContentWrapper = styled.div`
+type ContentWrapperProps = {
+  $isOpen: boolean;
+};
+
+const ContentWrapper = styled.div<ContentWrapperProps>`
   position: relative;
   flex-grow: 1;
   transition: all ease-in-out 0.2s;
+
+  ${media.lg} {
+    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? MOBILE_DRAWER_WIDTH : 0)};
+  }
 `;
 
 const ChildrenWrapper = styled.div`
-  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
+  padding-bottom: 82px;
 
   ${media.sm} {
     padding-bottom: 0;
@@ -48,16 +51,18 @@ type Props = {
   children: React.ReactNode;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isMobileSize } = useRwd();
+  const { isMenuOpen, handleToggleMenu } = useHeader();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   return (
     <DefaultLayoutContainer>
       <Header />
 
       <DashboardContainer>
-        <ContentWrapper>
+        <MenuDrawer />
+        {/*ts-ignore*/}
+        <ContentWrapper $isOpen={isDesktopSize && isMenuOpen}>
           <>
-            <MenuDrawer />
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />
           </>

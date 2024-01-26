@@ -1,81 +1,51 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
-import Icon from "@/components/project/Icon";
-import {
-  BottomNavItem,
-  NavTypeEnum,
-} from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
-import { theme } from "@/theme";
+import { RouteCategoryEnum } from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
 
-const BottomNavContainer = styled.div`
+const BottomNavContainer = styled.div<{ $isSelected: boolean }>`
+  cursor: pointer;
   flex: 1;
-  height: 78.11px;
   display: flex;
-  padding: 16px 0;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: ${({ theme }) => theme.white};
-  cursor: pointer;
-  position: relative;
-  overflow: visible;
+  color: ${({ $isSelected }) => ($isSelected ? "#B2C3EC" : "#596578")};
+  background-image: ${({ $isSelected }) => {
+    if ($isSelected) {
+      return "radial-gradient(at top, rgba(178,195,236,0.3) 0%, rgba(178,195,236,0) 65%, rgba(255,255,255,0) 100%)";
+    }
+  }};
+  padding: 10px 0;
 `;
+
+const IconContainer = styled.div``;
 
 const NavLabel = styled.h6`
-  font-size: 11px;
-  line-height: 15.38px;
-  font-weight: 400;
-  text-transform: uppercase;
-  white-space: nowrap;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1rem;
 `;
 
-const BigItemBg = styled.div`
-  width: 86.93px;
-  height: 86.93px;
-  background: linear-gradient(180deg, #ffffff 20.4%, #56d7ff 100%);
-  box-shadow: 0px 0px 8.359379768371582px 2.7864599227905273px #02d6ef;
-  border-radius: 43.47px;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-`;
-
+export type BottomNavItem = {
+  navType: "item" | "menu";
+  label: string;
+  iconUrl: string;
+  iconActiveUrl: string;
+  routePath: string;
+  routeCategory: RouteCategoryEnum;
+};
 type Props = {
   bottomNavItem: BottomNavItem;
-  onClick: MouseEventHandler<HTMLDivElement>;
+  isSelected: boolean;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 };
-
-const BottomNav = ({ bottomNavItem, onClick }: Props) => {
-  const { label, iconUrl } = bottomNavItem;
-
-  if (bottomNavItem.navType === NavTypeEnum.BIG_ITEM) {
-    return (
-      <BottomNavContainer
-        onClick={onClick}
-        style={{
-          color: theme.primary,
-          padding: "0 0 14px",
-        }}
-      >
-        <Icon iconUrl={iconUrl} width={"47px"} height={"47px"} style={{ zIndex: 1 }} />
-
-        <NavLabel
-          style={{
-            fontSize: "14.4px",
-            zIndex: 1,
-          }}
-        >
-          {label}
-        </NavLabel>
-        <BigItemBg />
-      </BottomNavContainer>
-    );
-  }
+const BottomNav = ({ bottomNavItem, onClick, isSelected }: Props) => {
+  const { label, iconUrl, iconActiveUrl } = bottomNavItem;
 
   return (
-    <BottomNavContainer onClick={onClick}>
-      <Icon iconUrl={iconUrl} width={"30.65px"} height={"30.65px"} />
+    <BottomNavContainer onClick={onClick} $isSelected={isSelected}>
+      <IconContainer>
+        <img src={isSelected ? iconActiveUrl : iconUrl} alt={label} />
+      </IconContainer>
 
       <NavLabel>{label}</NavLabel>
     </BottomNavContainer>

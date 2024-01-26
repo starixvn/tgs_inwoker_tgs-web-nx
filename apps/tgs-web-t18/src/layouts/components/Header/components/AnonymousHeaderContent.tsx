@@ -1,53 +1,85 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
+import { useHistory } from "react-router-dom";
+import { styled as muiStyled } from "@mui/material/styles";
+import { Button as MuiButton } from "@mui/material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth } from "@tgs-web-nx/core/features";
-import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
-import { theme } from "@/theme";
-import iconLogin from "@/assets/t21/images/header/icon-login.svg";
-import Icon from "@/components/project/Icon";
-import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
+import { useAuthDialog } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
+import { media } from "@/theme/breakpoints";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+
+  ${media.sm} {
+    gap: 10px;
+  }
 `;
 
-type Props = {
-  buttonWidth?: string;
-};
+export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
+  whiteSpace: "nowrap",
+  padding: "12px 20px",
+  lineHeight: "1.318rem",
+  fontWeight: 500,
+  borderRadius: "12px",
+  color: "white",
+  fontSize: "1rem",
+  "&:disabled": {
+    background: theme.palette.tertiary.dark,
+    color: theme.palette.common.white,
+  },
 
-const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
+  [theme.breakpoints.up("sm")]: {
+    padding: "7px 20px",
+    borderRadius: "5px",
+    fontSize: "1rem",
+    lineHeight: "1,171rem",
+  },
+}));
+
+type Props = {};
+const AnonymousHeaderContent = (props: Props) => {
+  const history = useHistory();
   const { isDesktopSize } = useRwd();
-  const { goToLogin, goToRegister } = useAuth();
+  const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
+
+  const toggleLoginDialog = useCallback(() => {
+    if (isDesktopSize) {
+      handleToggleLoginDialog(true);
+      return;
+    }
+
+    history.push("/login");
+  }, []);
+
+  const toggleRegisterDialog = useCallback(() => {
+    if (isDesktopSize) {
+      handleToggleRegisterDialog(true);
+      return;
+    }
+    history.push("/register");
+  }, []);
 
   return (
     <ButtonContainer>
-      <RoundHeaderButton
-        onClick={goToLogin}
+      <HeaderButton
+        onClick={toggleLoginDialog}
         style={{
-          color: theme.white,
-          background: theme.primary,
+          background: "#5D50E0",
         }}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.login")}
-      </RoundHeaderButton>
+      </HeaderButton>
 
-      <RoundHeaderButton
+      <HeaderButton
         color={"primary"}
-        onClick={goToRegister}
-        style={{
-          color: theme.white,
-          background: theme.secondary,
-        }}
+        onClick={toggleRegisterDialog}
+        style={{ background: "#E7415A", color: "white", fontSize: "1rem" }}
       >
-        <Icon iconUrl={iconLogin} width={"20px"} height={"20px"} />
         {i18n.t("common.register")}
-      </RoundHeaderButton>
-      {isDesktopSize && <HeaderLanguageSwitch />}
+      </HeaderButton>
     </ButtonContainer>
   );
 };

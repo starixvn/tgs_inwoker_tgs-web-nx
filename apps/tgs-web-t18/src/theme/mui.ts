@@ -1,8 +1,8 @@
-import { createTheme, ThemeOptions } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 import { i18n } from "@tgs-web-nx/utils";
-import { breakpoints } from "@/theme/breakpoints";
+import { theme } from "@/theme/index";
 import { fontFamily } from "@/theme/fontFamily";
-import { theme } from "@/theme";
+import { breakpoints } from "@/theme/breakpoints";
 
 //@ts-ignore
 theme.lang = i18n.language;
@@ -11,16 +11,19 @@ declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
     black: string;
-    mainBackground: string;
-    red: string;
+    primaryDark: string;
+    primaryLight: string;
+    tertiary: {
+      main: string;
+      dark: string;
+      light: string;
+    };
+    tertiaryMiddle: string;
+    tertiaryLight: string;
+    tertiaryDark: string;
     yellow: string;
-    focus: string;
-    gray80: string;
-    gray50: string;
-    gray30: string;
-    gray20: string;
-    gray10: string;
-    gray5: string;
+    green: string;
+    primaryGradient: string;
   }
 }
 
@@ -41,25 +44,19 @@ const muiTheme = createTheme({
     secondary: {
       main: theme.secondary,
     },
-    action: {
-      disabledBackground: theme.gray30,
-      disabled: theme.white,
+    // @ts-ignore
+    tertiary: {
+      main: theme.tertiary,
+      dark: theme.tertiaryDark,
+      light: theme.tertiaryLight,
     },
+    type: "light",
     white: theme.white,
-    black: theme.black,
-    mainBackground: theme.mainBackground,
-    red: theme.red,
-    yellow: theme.yellow,
-    focus: theme.focus,
-    gray80: theme.gray80,
-    gray50: theme.gray50,
-    gray30: theme.gray30,
-    gray20: theme.gray20,
-    gray10: theme.gray10,
-    gray5: theme.gray5,
+    yellow: "#f4bd29",
+    primaryGradient: theme.primaryGradient,
     text: {
-      primary: theme.text,
-      secondary: theme.gray30,
+      primary: theme.white,
+      secondary: theme.tertiaryLight,
     },
   },
   typography: {
@@ -69,13 +66,14 @@ const muiTheme = createTheme({
     fontWeightMedium: 500,
     button: {
       textTransform: "none",
+    },
+  },
+  overrides: {
+    MuiSelect: {
       color: theme.white,
     },
   },
   components: {
-    MuiButton: {
-      color: theme.white,
-    },
     MuiTablePagination: {
       styleOverrides: {
         actions: {
@@ -89,6 +87,6 @@ const muiTheme = createTheme({
       },
     },
   },
-} as ThemeOptions);
+});
 
 export { muiTheme };

@@ -1,17 +1,15 @@
 export const theme = {
-  primary: "#02A9DC",
-  secondary: "#2DCE09",
+  primary: "#6152DD",
+  primaryDark: "#0E131B", //BG
+  primaryLight: "#181F2B", //Sub BG = Main_Blue
+  secondary: "#E7415A",
+  tertiary: "#596578", //Gray1
+  tertiaryMiddle: "#6A768B", //Gray2
+  tertiaryLight: "#B2C3EC", //Gray3
+  tertiaryDark: "#212937", //Gray4
   white: "#FFFFFF",
-  black: "#000000",
-  red: "#FF0000",
-  yellow: "#F6D720",
-  focus: "#0E7AA8",
-  text: "#535867",
-  gray80: "#757575",
-  gray50: "#888888",
-  gray30: "#B8B8B8",
-  gray20: "#DCDCDC",
-  gray10: "#EDEDED",
-  gray5: "#F6F6F6",
-  mainBackground: "#FFFFFF",
+  yellow: "#F3DE4B",
+  green: "#33AD4E",
+  primaryGradient:
+    "linear-gradient(180deg, rgba(57, 22, 164, 0.00) 8.88%, #3916A4 50.07%, rgba(57, 22, 164, 0.50) 89.25%)",
 };

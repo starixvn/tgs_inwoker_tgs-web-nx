@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { HTMLProps, useCallback } from "react";
 import styled from "styled-components";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
@@ -34,6 +34,7 @@ const BalanceContainer = styled.div`
 type Props = {
   size?: "normal" | "small";
 };
+
 const BalanceTracker = ({ size, ...others }: Props) => {
   const { wallet, getBalanceList } = useWalletStore();
 

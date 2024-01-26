@@ -26,7 +26,6 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
-import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
 import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";

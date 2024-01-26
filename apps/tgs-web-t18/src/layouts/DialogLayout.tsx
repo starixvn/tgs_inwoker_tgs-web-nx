@@ -1,60 +1,56 @@
-import React, { useCallback } from "react";
+import React, { ReactElement, useCallback } from "react";
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { usePageName } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
-import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
-import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
-import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
+import { useLocation } from "react-router";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
+import DefaultLayout from "@/layouts/DefaultLayout";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
-import bg from "@/assets/t21/images/bg.png";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: url(${bg});
+  background: ${({ theme }) => theme.primaryDark};
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - ${DIALOG_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`${DIALOG_HEADER_HEIGHT} auto ${BOTTOM_APP_BAR_HEIGHT}`};
+  min-height: calc(100vh - 80px - 82px); // 80px:Header, 82px: BottomAppBar
+  margin: 80px 0 82px;
   position: relative;
   z-index: 1;
-
-  display: flex;
-  justify-content: center;
 `;
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactElement;
 };
 const DialogLayout = ({ children }: Props) => {
-  const { isDesktopSize } = useRwd();
-  const { pageName } = usePageName();
   const history = useHistory();
+  const location = useLocation();
+  const { pageName } = usePageName();
+  const { isDesktopSize } = useRwd();
 
+  const pathname = location.pathname;
   const handleCloseDialog = useCallback(() => {
+    const profileRegex = /\/profile\//;
+    if (profileRegex.test(pathname)) {
+      return history.push("/profile");
+    }
+
+    if (pathname === "/profile") {
+      return history.push("/account");
+    }
+
     history.goBack();
-  }, [history]);
+  }, [pathname]);
 
   if (isDesktopSize) {
-    return <AccountDesktopLayout>{children}</AccountDesktopLayout>;
+    return <DefaultLayout>{children}</DefaultLayout>;
   }
 
   return (
     <DialogLayoutContainer>
       <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
-
-      <ContentWrapper>
-        {isDesktopSize && (
-          <DarkMemberMenu
-            handleCloseContextMenu={() => {}}
-            style={{ width: "222px", margin: "22px 0 0 22px", flexShrink: 0, minHeight: "800px" }}
-          />
-        )}
-        {children}
-      </ContentWrapper>
-
+      <ContentWrapper>{children}</ContentWrapper>
       <BottomAppBar />
     </DialogLayoutContainer>
   );

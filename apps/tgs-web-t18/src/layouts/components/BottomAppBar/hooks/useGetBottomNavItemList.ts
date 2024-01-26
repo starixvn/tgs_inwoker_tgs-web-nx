@@ -1,101 +1,103 @@
-import { useMemo } from "react";
-import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
-import promotionIcon from "@/assets/t21/images/bottomAppBar/icon-promotion.svg";
-import sportIcon from "@/assets/t21/images/bottomAppBar/icon_sport.svg";
-import chatIcon from "@/assets/t21/images/bottomAppBar/icon-chat.svg";
-import accountIcon from "@/assets/t21/images/bottomAppBar/icon-account.svg";
-import homeIcon from "@/assets/t21/images/bottomAppBar/icon-home.svg";
-import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router";
+import { useRoute } from "@tgs-web-nx/core/features";
+import { AppHistory } from "@tgs-web-nx/core";
+import { BottomNavItem } from "@/layouts/components/BottomAppBar/BottomNav";
 
-export enum NavTypeEnum {
-  ITEM,
-  BIG_ITEM,
-  MENU,
+export enum RouteCategoryEnum {
+  HOME,
+  REFER,
+  PROMOTION,
+  INBOX,
+  MINE,
 }
 
-export type BottomNavItem = {
-  navType: NavTypeEnum;
-  key: string;
-  label: string | any;
-  iconUrl: string;
-  handleClick: () => void;
-};
-
 export function useGetBottomNavItemList() {
-  const history = useHistory();
-  const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
-  const goToHomePage = useGoToHomePage();
-
-  const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
+  const location = useLocation();
+  const bottomNavItemList = useMemo(() => {
     return [
       {
-        navType: NavTypeEnum.ITEM,
-        key: "home",
+        navType: "item",
         label: i18n.t("common.home"),
-        iconUrl: homeIcon,
-        handleClick: () => {
-          goToHomePage();
-        },
+        iconUrl: `${import.meta.env.PUBLIC_URL || ""}/assets/images/bottomAppBar/icon_home.svg`,
+        iconActiveUrl: `${
+          import.meta.env.PUBLIC_URL || ""
+        }/assets/images/bottomAppBar/icon_home_active.svg`,
+        routePath: "/",
+        routeCategory: RouteCategoryEnum.HOME,
       },
       {
-        navType: NavTypeEnum.ITEM,
-        key: "promotion",
+        navType: "item",
+        label: i18n.t("affiliate.title"),
+        iconUrl: `${import.meta.env.PUBLIC_URL || ""}/assets/images/bottomAppBar/icon_refer.svg`,
+        iconActiveUrl: `${
+          import.meta.env.PUBLIC_URL || ""
+        }/assets/images/bottomAppBar/icon_refer_active.svg`,
+        routePath: "/affiliate",
+        routeCategory: RouteCategoryEnum.REFER,
+      },
+      {
+        navType: "item",
         label: i18n.t("common.promotion"),
-        iconUrl: promotionIcon,
-        handleClick: () => {
-          history.push("/promotion-list");
-        },
+        iconUrl: `${
+          import.meta.env.PUBLIC_URL || ""
+        }/assets/images/bottomAppBar/icon_promotion.svg`,
+        iconActiveUrl: `${
+          import.meta.env.PUBLIC_URL || ""
+        }/assets/images/bottomAppBar/icon_promotion_active.svg`,
+        routePath: "/promotion-list",
+        routeCategory: RouteCategoryEnum.PROMOTION,
       },
       {
-        navType: NavTypeEnum.BIG_ITEM,
-        key: "vip",
-        label: i18n.t("common.bank"),
-        iconUrl: sportIcon,
-        handleClick: () => {
-          handleTransferDrawerToggle();
-        },
+        navType: "item",
+        label: i18n.t("wap.main.account.inbox"),
+        iconUrl: `${import.meta.env.PUBLIC_URL || ""}/assets/images/bottomAppBar/icon_email.svg`,
+        iconActiveUrl: `${
+          import.meta.env.PUBLIC_URL || ""
+        }/assets/images/bottomAppBar/icon_email_active.svg`,
+        routePath: "/inbox",
+        routeCategory: RouteCategoryEnum.INBOX,
       },
       {
-        navType: NavTypeEnum.ITEM,
-        key: "contact",
-        label: i18n.t("common.cs"),
-        iconUrl: chatIcon,
-        handleClick: () => {
-          history.push("/support");
-        },
+        navType: "item",
+        label: i18n.t("web.account.profile"),
+        iconUrl: `${import.meta.env.PUBLIC_URL || ""}/assets/images/bottomAppBar/icon_mine.svg`,
+        iconActiveUrl: `${
+          import.meta.env.PUBLIC_URL || ""
+        }/assets/images/bottomAppBar/icon_mine_active.svg`,
+        routePath: "/account",
+        routeCategory: RouteCategoryEnum.MINE,
       },
-      {
-        navType: NavTypeEnum.ITEM,
-        key: "affiliate",
-        label: i18n.t("deposit.details.account"),
-        iconUrl: accountIcon,
-        handleClick: () => {
-          history.push("/account");
-        },
-      },
-    ];
+    ] as BottomNavItem[];
   }, []);
 
-  // const { handleToggleMenu } = useHeader();
-  const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
-    switch (appBarItem.navType) {
-      // case NavTypeEnum.MENU :
-      //   handleToggleMenu(true);
-      //
-      //   break;
+  const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
+  const { route } = useRoute();
 
-      default:
-        appBarItem.handleClick();
-        break;
+  useEffect(() => {
+    const matchNavItem =
+      bottomNavItemList.find((bottomNavItem) => {
+        // return bottomNavItem.routeCategory === route?.category;
+        return false;
+      }) || null;
+
+    if (!matchNavItem) {
+      console.log(location.pathname);
+      return;
     }
+
+    setSelectedBottomNavItem(matchNavItem);
+  }, [route]);
+
+  const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
+    setSelectedBottomNavItem(appBarItem);
+    AppHistory.push(appBarItem.routePath);
   };
 
   return {
     bottomNavItemList,
+    selectedBottomNavItem,
     handleClickBottomNavItem,
-    isTransferDrawerOpen,
-    handleTransferDrawerToggle,
   };
 }

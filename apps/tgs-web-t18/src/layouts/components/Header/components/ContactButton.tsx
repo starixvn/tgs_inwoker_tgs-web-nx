@@ -1,9 +1,9 @@
 import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import Icon from "@/components/project/Icon";
 import ContactIcon from "@/assets/t18/images/header/contactIcon.svg";
 import { media } from "@/theme/breakpoints";
+import Icon from "@/components/project/Icon";
 
 const ContactButtonContainer = styled.div`
   display: none;
@@ -11,7 +11,7 @@ const ContactButtonContainer = styled.div`
   ${media.sm} {
     width: 33px;
     height: 33px;
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.tertiaryDark};
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -22,7 +22,8 @@ const ContactButtonContainer = styled.div`
   }
 `;
 
-const ContactButton = () => {
+type Props = {};
+const ContactButton = (props: Props) => {
   const history = useHistory();
 
   const handleClick = useCallback(() => {
