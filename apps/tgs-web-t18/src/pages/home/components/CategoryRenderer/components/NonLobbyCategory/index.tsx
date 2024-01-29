@@ -28,7 +28,6 @@ const CategoryContentWrapper = styled.div`
   height: 100%;
   width: 100%;
   flex-shrink: 0;
-  background-color: ${({ theme }) => theme.mainBackground};
 `;
 
 const CategoryContent = styled.div`

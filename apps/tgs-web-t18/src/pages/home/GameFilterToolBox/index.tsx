@@ -10,18 +10,9 @@ import FilterTags from "@/pages/home/GameFilterToolBox/FilterTags";
 import { media } from "@/theme/breakpoints";
 
 const GameFilterToolBoxContainer = styled.div`
-  ${media.sm} {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-`;
-
-const Row = styled.div`
   display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 0;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 const GameFilterToolBox = () => {
@@ -46,17 +37,14 @@ const GameFilterToolBox = () => {
 
   return (
     <GameFilterToolBoxContainer>
+      <SearchInput
+        placeholder={i18n.t("slot.search")}
+        imageUrl={searchIcon}
+        handleChange={handleChangeSearch}
+        value={searchString}
+      />
+      <ProviderTags />
       <FilterTags />
-
-      <Row>
-        <ProviderTags />
-        <SearchInput
-          placeholder={i18n.t("slot.search")}
-          imageUrl={searchIcon}
-          handleChange={handleChangeSearch}
-          value={searchString}
-        />
-      </Row>
     </GameFilterToolBoxContainer>
   );
 };

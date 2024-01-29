@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import CategorySlider from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory/CategorySlider";
-import Icon from "@/components/project/Icon";
 
 const GameTypeCategoryContainer = styled.div``;
 
@@ -43,8 +42,6 @@ const GameTypeCategory = ({ gameTypeItem, gameList }: Props) => {
     handleChangeGameType(gameTypeItem.gameType);
     history.push(`/main/${gameTypeItem.key}`);
   };
-
-  // console.log(gameTypeItem);
 
   return (
     <GameTypeCategoryContainer>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { HTMLProps, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { providerStatus } from "@tgs-web-nx/constants";
@@ -15,7 +15,7 @@ type Props = {
   launchGame: () => void;
   status: number;
   lobbyVenderName?: string;
-};
+} & HTMLProps<HTMLDivElement>;
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`

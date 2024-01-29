@@ -18,23 +18,16 @@ const filterIconDictionary: Record<FilterTagTypeEnum | string, string> = {
   [FilterTagTypeEnum.RECOMMEND]: recommendIcon,
   [FilterTagTypeEnum.FAVORITE]: favoriteIcon,
 };
-const activeFilterIconDictionary: Record<FilterTagTypeEnum | string, string> = {
-  [FilterTagTypeEnum.HOT]: hotActiveIcon,
-  [FilterTagTypeEnum.NEW]: newActiveIcon,
-  [FilterTagTypeEnum.RECOMMEND]: recommendActiveIcon,
-  [FilterTagTypeEnum.FAVORITE]: favoriteActiveIcon,
-};
 
 const FilterTagsContainer = styled.div`
   display: flex;
   gap: 8px;
   justify-content: space-between;
-  padding: 10px 12px;
 `;
 
 const Label = styled.div`
   display: block;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 `;
 
 type FilterTagProps = {
@@ -42,13 +35,13 @@ type FilterTagProps = {
   theme: typeof theme;
 };
 const FilterTagContainer = styled.div<FilterTagProps>`
-  flex: 1;
+  flex-grow: 1;
   height: 32px;
   background: ${({ $isActive, theme }: FilterTagProps) =>
-    $isActive ? theme.grey06 : theme.black02};
-  color: ${({ $isActive, theme }: FilterTagProps) => ($isActive ? theme.primary : theme.grey03)};
-  border-radius: 2px;
-  padding: 8px 12px;
+    $isActive ? theme.primary : theme.tertiaryDark};
+  color: ${({ $isActive, theme }: FilterTagProps) => ($isActive ? theme.white : theme.tertiary)};
+  border-radius: 50px;
+  padding: 9px;
   flex-shrink: 0;
   cursor: pointer;
   font-size: 0.75rem;
@@ -85,16 +78,12 @@ const FilterTags = () => {
             $isActive={isActive}
             onClick={() => handleFilterTagClick(filterTag)}
           >
-            <Label>{filterTag.name}</Label>
             <Icon
-              iconUrl={
-                isActive
-                  ? activeFilterIconDictionary[filterTag.tagType]
-                  : filterIconDictionary[filterTag.tagType]
-              }
+              iconUrl={filterIconDictionary[filterTag.tagType]}
               width={"20px"}
               height={"20px"}
             />
+            <Label>{filterTag.name}</Label>
           </FilterTagContainer>
         );
       })}

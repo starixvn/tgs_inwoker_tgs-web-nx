@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
-import Slider from "react-slick";
 import config from "@tgs-web-nx/config";
 import { Common } from "@tgs-web-nx/utils";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
@@ -12,29 +11,10 @@ import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import { useCategorySlider } from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory/hooks/useCategorySlider";
 
 const CategorySliderContainer = styled.div`
-  padding: 8px 0px;
+  padding: 8px 0;
   display: flex;
   gap: 14px;
   overflow-x: auto;
-`;
-
-const SlickDot = styled.div`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #4d8ab9;
-`;
-
-const DotsContainer = styled.div`
-  li {
-    width: 8px;
-    height: 8px;
-  }
-  & .slick-active {
-    & div {
-      background: white;
-    }
-  }
 `;
 
 type Props = {
@@ -76,9 +56,6 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
             return (
               <MobileVendorCard
                 key={gpCode}
-                // bgUrl={`/assets/images/home/mobile/${gameTypeKey}/mbg.png`}
-                // imageUrl={`/assets/images/home/mobile/${gameTypeKey}/${gpCode}.png`}
-                // venderLogoUrl={`/assets/images/home/provider_logo/${gameTypeKey}/${gpCode}.png`}
                 imageUrl={`/assets/images/home/${gameTypeKey}/${gpCode}.png`}
                 venderLogoUrl={`/assets/images/home/provider_logo/${gameTypeKey}/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode)}
