@@ -8,17 +8,16 @@ type Props = {
 };
 
 const InputWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
+  padding: 10px;
+  width: 160px;
+  display: flex; 
   align-items: center;
-  padding: 5px 10px;
-  border-radius: 6px;
-  background: ${({ theme }) => theme.navMenuBackground};
+  border-radius: 12px;
+  border: 1px solid ${({theme}) => theme.gray02};
 `;
 
 const InputTextfield = styled.input`
-  margin-left: 5px;
+  margin-left: 8px;
   display: flex;
   align-items: flex-start;
   border: 0;
@@ -27,10 +26,10 @@ const InputTextfield = styled.input`
   width: 100%;
 
   font-size: 0.7rem;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.gray02};
 
   &::placeholder {
-    color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.gray02};
     font-weight: 700;
     line-height: 0.7rem;
   }

@@ -5,6 +5,7 @@ import Badges from '@/pages/home/components/Services/Badges';
 import Cards from '@/pages/home/components/Services/Cards';
 
 const Root = styled.div`
+  margin-bottom: 80px;
   width: 100%;
 `;
 

@@ -6,16 +6,16 @@ import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
 const Wrapper = styled.div<{
   $isActive: boolean;
 }>`
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 60px;
+  min-width: 160px;
   max-width: none;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
+  background: ${({ theme, $isActive }) => ($isActive ?  theme.primaryGradient : "none")};
+  border-radius: 6px;
   padding: 4px;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
   position: relative;
 
   & > img {

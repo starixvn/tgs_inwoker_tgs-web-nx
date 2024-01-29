@@ -25,6 +25,7 @@ const CategoryContentWrapper = styled.div`
 `;
 
 const DesktopWrapper = styled.div`
+  padding: 30px 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(210px, auto);
