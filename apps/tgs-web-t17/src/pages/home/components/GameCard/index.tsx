@@ -10,8 +10,8 @@ import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t19/images/home/maintenance.svg";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
-import gradientBg from "@/assets/t27/images/home/name-bg.png";
-import playIcon from "@/assets/t27/images/home/play-icon.png";
+import gradientBg from "@/assets/t17/images/home/name-bg.png";
+import playIcon from "@/assets/t17/images/home/play.png";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -21,7 +21,7 @@ const CardHoverBg = styled.div`
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 50%);
-  border-radius: 4px;
+  border-radius: 10px;
   display: none;
   white-space: pre-line;
 `;
@@ -34,7 +34,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 4px;
+  border-radius: 10px;
   background-color: ${({ theme }) => theme.black};;
 `;
 
@@ -47,7 +47,7 @@ const NameBg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 10px;
 `;
 
 const NameBgIcon = styled.img`
@@ -62,7 +62,7 @@ const TagBg = styled.div`
   padding-top: 100%;
   left: 0;
   top: 0;
-  border-radius: 4px;
+  border-radius: 10px;
 `;
 
 const NewTag = styled.div`
@@ -73,7 +73,7 @@ const NewTag = styled.div`
   height: 22px;
   padding: 10px;
   border-radius: 12px;
-  background: ${(props) => props.theme.goldGradient};
+  background: ${(props) => props.theme.primaryGradient};
   color: ${(props) => props.theme.black};
   display: flex;
   justify-content: center;
@@ -90,7 +90,7 @@ const HotTag = styled.div`
   height: 22px;
   padding: 10px;
   border-radius: 12px;
-  background: ${(props) => props.theme.red};
+  background: ${(props) => props.theme.secondary};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
@@ -104,14 +104,13 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(50% - 5px);
+  width: calc(33.33% - 8px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 196 / 198;
+  aspect-ratio: 130 / 130;
 
   ${media.sm} {
-    width: calc(16.67% - 36px);
-    min-width: 196px;
+    width: calc(12.5% - 20px);
 
     &:hover {
       ${CardHoverBg} {
@@ -135,7 +134,7 @@ const MaintenanceBg = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 10px;
 `;
 
 const MaintenanceIcon = styled.img`
