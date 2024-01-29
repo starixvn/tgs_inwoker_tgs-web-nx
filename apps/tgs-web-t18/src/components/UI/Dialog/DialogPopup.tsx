@@ -6,7 +6,7 @@ import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.primaryDark};
     width: 321px;
     border-radius: 10px;
   }
