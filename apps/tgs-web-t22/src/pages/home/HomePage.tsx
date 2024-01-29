@@ -50,7 +50,7 @@ const Background = styled.div`
   background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    background: url(${bg}) center no-repeat;
+    background: url(${bg}) top no-repeat;
     background-size: cover;
   }
 `;
@@ -67,9 +67,9 @@ const MainContentWrapper = styled.div`
 
   ${media.sm} {
     margin: 0 auto;
-    padding: 80px 20px;
+    padding: 0 20px;
     gap: unset;
-    max-width: calc(${SUB_CONTENT_MAX_WIDTH} - 40px);
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
   }
 `;
 

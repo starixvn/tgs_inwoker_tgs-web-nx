@@ -22,9 +22,10 @@ const Wrapper = styled.div`
   overflow-y: auto;
 
   ${media.sm} {
-    margin: 0 auto;
-    padding: 15px 0px;
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    /* margin: 0 auto; */
+    /* padding: 15px 0px; */
+    /* max-width: ${SUB_CONTENT_MAX_WIDTH}; */
+    display: block;
   }
 `;
 
@@ -44,12 +45,11 @@ const FilterSection = styled.div`
   margin-bottom: 10px;
 `;
 
-const DesktopCategoryContentWrapper = styled.div`
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 35px;
   width: 100%;
-  gap: 10px 6px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
 `;
 
 const CategoryContent = styled.div`
@@ -68,11 +68,7 @@ const CategoryContent = styled.div`
 `;
 
 const DesktopWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 30px 0;
 `;
 
 const Text = styled.div`
@@ -130,7 +126,7 @@ const NonLobbyCategory = () => {
     return (
       <DesktopWrapper>
         <HomeGameFilterTag />
-        <DesktopCategoryContentWrapper>
+        <Content>
           {hasMappingData &&
             gameList.map((gameItem) => (
               <GameCard
@@ -145,7 +141,7 @@ const NonLobbyCategory = () => {
               />
             ))}
           {!hasMappingData && !isLoading && <Text>No data</Text>}
-        </DesktopCategoryContentWrapper>
+        </Content>
       </DesktopWrapper>
     );
   };

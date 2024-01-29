@@ -1,9 +1,16 @@
+
+
 body {
     margin: 0;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+
+    --black: #262626;
+    --white: #fff;
+    --gray: #989898;
+    --background: #F9F6E8;
 }
 
 div {
@@ -35,6 +42,26 @@ input:-webkit-autofill:active {
     /* Firefox */
     font-size: 13px;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+@media (max-width:600px) {
+    ::-webkit-scrollbar-track{
+        background: var(--white);
+    }
+}
+
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
