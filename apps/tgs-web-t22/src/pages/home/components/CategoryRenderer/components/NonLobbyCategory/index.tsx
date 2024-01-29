@@ -22,9 +22,6 @@ const Wrapper = styled.div`
   overflow-y: auto;
 
   ${media.sm} {
-    /* margin: 0 auto; */
-    /* padding: 15px 0px; */
-    /* max-width: ${SUB_CONTENT_MAX_WIDTH}; */
     display: block;
   }
 `;

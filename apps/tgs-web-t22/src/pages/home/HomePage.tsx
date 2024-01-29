@@ -68,8 +68,6 @@ const MainContentWrapper = styled.div`
   ${media.sm} {
     margin: 0 auto;
     padding: 0 20px;
-    gap: unset;
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
   }
 `;
 
