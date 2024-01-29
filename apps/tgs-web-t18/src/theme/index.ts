@@ -9,6 +9,7 @@ export const theme = {
   tertiaryDark: "#212937", //Gray4
   white: "#FFFFFF",
   yellow: "#F3DE4B",
+  red: "#E7415A",
   green: "#33AD4E",
   text: "#ffffff",
   primaryGradient:

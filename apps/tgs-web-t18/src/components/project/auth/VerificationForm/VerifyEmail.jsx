@@ -9,10 +9,7 @@ import BottomNote from "@/components/UI/BottomNote";
 
 import { ItemContainer } from "@/components/styled-component/ProfileForms";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
-import { TextField } from "@/components/UI/TextField";
-import FormLabel from "@/components/project/FormikForm/FormLabel";
-import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
-import { FormControl } from "@/components/styled-component/auth/Form";
+import { GrayInputWrapper, TextField } from "@/components/UI/TextField";
 
 class VerifyEmail extends BaseProfile {
   constructor(props) {
@@ -192,16 +189,14 @@ class VerifyEmail extends BaseProfile {
       i18n.t("common.emailAddress"),
       <>
         <ItemContainer>
-          <FormLabel name={"email"} label={getPlaceholderWording("email")} />
-
-          <FormControl variant="outlined">
+          <GrayInputWrapper variant="outlined">
             <TextField
               value={this.state.email}
               onChange={this.handleChangeEmail}
               placeholder={i18n.t("common.msgEnterEmail")}
               disabled={this.state.isConfigured}
             />
-          </FormControl>
+          </GrayInputWrapper>
         </ItemContainer>
 
         {(() => {
@@ -211,8 +206,7 @@ class VerifyEmail extends BaseProfile {
           ) {
             return (
               <ItemContainer>
-                <FormLabel name={"code"} label={getPlaceholderWording("code")} />
-                <FormControl variant="outlined">
+                <GrayInputWrapper variant="outlined">
                   <TextFieldWithButton
                     buttonLabel={
                       this.state.countdownToken <= 0
@@ -231,7 +225,7 @@ class VerifyEmail extends BaseProfile {
                     maxLength={6}
                     type={"text"}
                   />
-                </FormControl>
+                </GrayInputWrapper>
               </ItemContainer>
             );
           }

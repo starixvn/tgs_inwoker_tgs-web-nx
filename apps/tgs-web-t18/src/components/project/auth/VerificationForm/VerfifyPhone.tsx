@@ -9,11 +9,8 @@ import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { ItemContainer, VerifySubmitButton } from "@/components/styled-component/ProfileForms";
-import { TextField } from "@/components/UI/TextField";
+import { GrayInputWrapper, TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-import FormLabel from "@/components/project/FormikForm/FormLabel";
-import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
-import { FormControl } from "@/components/styled-component/auth/Form";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -141,9 +138,8 @@ function VerifyPhone({ handleUpdateStage }: Props) {
   return (
     <>
       <ItemContainer>
-        <FormLabel name={"phone"} label={getPlaceholderWording("phone")} />
         <PhoneContainer>
-          <FormControl variant="outlined" style={{ width: "40%" }}>
+          <GrayInputWrapper style={{ width: "40%" }}>
             <Select
               native
               value={areacode}
@@ -155,12 +151,15 @@ function VerifyPhone({ handleUpdateStage }: Props) {
                 (config.features.Profile_DisableVerifyPhone &&
                   !config.features.InitPhone_WithoutVerify)
               }
+              sx={{
+                width: "100%",
+              }}
             >
               <option value={AREA_CODE}>{AREA_CODE}</option>
             </Select>
-          </FormControl>
+          </GrayInputWrapper>
 
-          <FormControl variant="outlined">
+          <GrayInputWrapper>
             <TextField
               type={"text"}
               value={phone}
@@ -170,14 +169,12 @@ function VerifyPhone({ handleUpdateStage }: Props) {
               }
               onChange={handleChangePhone}
             />
-          </FormControl>
+          </GrayInputWrapper>
         </PhoneContainer>
       </ItemContainer>
 
       <ItemContainer>
-        <FormLabel name={"code"} label={getPlaceholderWording("code")} />
-
-        <FormControl variant="outlined">
+        <GrayInputWrapper>
           <TextFieldWithButton
             buttonLabel={
               countdownToken <= 0
@@ -190,7 +187,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
             onClick={handleGetCodeClick}
             buttonDisabled={countdownToken > 0}
           />
-        </FormControl>
+        </GrayInputWrapper>
       </ItemContainer>
 
       <VerifySubmitButton fullWidth disabled={isDisableButton} onClick={handleSubmitClicked}>

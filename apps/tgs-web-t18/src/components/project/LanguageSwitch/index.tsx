@@ -24,14 +24,12 @@ export const imageMap: { [key in string]: string } = {
 };
 
 const StyledSelect = styled(MuiSelect)`
-  //width: 140px;
-  //margin-right: 10px;
   overflow: visible;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.tertiaryDark};
   font-weight: 400 !important;
   font-size: 0.937rem !important;
-  border: 1px solid ${({ theme }) => theme.gray10};
   border-radius: 1px;
+  min-width: 180px;
 
   .MuiOutlinedInput-input {
     padding: 12px !important;
@@ -51,7 +49,7 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.gray30};
+    color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -77,6 +75,7 @@ const FlagContainer = styled.div`
 
 const NameContainer = styled.div`
   font-weight: 400;
+
   font-size: 15px;
 `;
 
@@ -113,7 +112,7 @@ const LanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainBackground,
+            background: theme.primaryLight,
 
             "& .MuiMenuItem-root": {
               padding: 2,

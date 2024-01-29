@@ -66,6 +66,7 @@ export const UploadFileTag = styled.span`
 
 export const SubmitButton = muiStyled(Button)(({ theme }) => ({
   fontSize: "1.25rem !important",
+  borderRadius: "12px",
 }));
 
 export const VerifySubmitButton = styled(SubmitButton)`

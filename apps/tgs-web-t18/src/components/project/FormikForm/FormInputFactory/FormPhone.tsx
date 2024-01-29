@@ -2,16 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import config from "@tgs-web-nx/config";
-import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
+import { TextField, GrayInputWrapper } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
-import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
+import { FormikFormInput } from "@/components/project/FormikForm";
 
 const PhoneContainer = styled.div`
   display: flex;
   overflow: visible;
-  gap: 14px;
 `;
 
 type Props = {
@@ -25,12 +22,12 @@ const FormPhone = ({ formInput, formik, showErrorOn }: Props) => {
 
   return (
     <PhoneContainer>
-      <GrayInputWrapper key={"areaCode"} style={{ marginRight: "10px", width: "100px" }}>
+      <GrayInputWrapper key={"areaCode"} style={{ marginRight: "10px" }}>
         <Select
           type={"string"}
-          fullWidth
           placeholder={formik.values["areaCode"]}
           variant={"outlined"}
+          fullWidth
           name={"areaCode"}
           value={formik.values["areaCode"]}
           onChange={formik.handleChange}
@@ -39,11 +36,10 @@ const FormPhone = ({ formInput, formik, showErrorOn }: Props) => {
           <MenuItem value={config.features.PhonePrefix}>{config.features.PhonePrefix}</MenuItem>
         </Select>
       </GrayInputWrapper>
-
       <GrayInputWrapper key={name} style={{ flex: 1 }}>
         <TextField
           type={"text"}
-          placeholder={getPlaceholderWording(name) || label}
+          placeholder={label}
           variant={"outlined"}
           fullWidth
           name={name}

@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
 import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
-import FormLabel from "@/components/project/FormikForm/FormLabel";
 
 const ErrorMessageContainer = styled.div`
   color: ${({ theme }) => theme.red};
@@ -72,12 +71,7 @@ const FormikForm = ({
         const FormInput = FormInputFactory[formInput.type];
         if (!FormInput) return null;
 
-        return (
-          <FormInputGroup key={formInput.name}>
-            <FormLabel label={formInput.label} name={formInput.name} />
-            <FormInput formInput={formInput} formik={formik} />
-          </FormInputGroup>
-        );
+        return <FormInput key={formInput.name} formInput={formInput} formik={formik} />;
       })}
       {children}
 

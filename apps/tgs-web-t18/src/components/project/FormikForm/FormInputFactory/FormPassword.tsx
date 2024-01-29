@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { TextField } from "@/components/UI/TextField";
+import { TextField, GrayInputWrapper } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
-import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
-import { theme } from "@/theme";
-import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
 
 type Props = {
   formInput: FormikFormInput;
@@ -26,12 +23,11 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   };
 
   const inputType = isShowPassword ? "text" : "password";
-
   return (
     <GrayInputWrapper key={name}>
       <TextField
         type={inputType}
-        placeholder={getPlaceholderWording(name) || label}
+        placeholder={label}
         variant={"outlined"}
         fullWidth
         name={name}
@@ -48,7 +44,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
                 onMouseDown={handleMouseDownPassword}
-                style={{ color: theme.text }}
+                style={{ color: "white" }}
               >
                 {isShowPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>

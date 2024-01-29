@@ -252,7 +252,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
     <>
       <ItemContainer>
         <PhoneContainer>
-          <FormControl variant="outlined" style={{ width: "40%" }}>
+          <FormControl style={{ width: "40%" }}>
             <Select
               native
               value={areacode}

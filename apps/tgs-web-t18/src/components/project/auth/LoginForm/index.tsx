@@ -6,11 +6,11 @@ import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
 import { AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
-import BrandLogo from "@/components/project/BrandLogo";
 import {
   ForgotPasswordContainer,
   FormSubContainer,
   RememberMeContainer,
+  TitleContainer,
 } from "@/components/styled-component/auth/Form";
 
 const LoginForm = () => {
@@ -26,7 +26,10 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      <BrandLogo style={{ marginBottom: "20px", maxWidth: "none" }} />
+      <TitleContainer>
+        {i18n.t("common.login")}
+        <div className="bottom-border" />
+      </TitleContainer>
 
       <FormContainer>
         <FormikForm

@@ -1,6 +1,29 @@
 import styled from "styled-components";
 import { styled as muiStyled } from "@mui/material/styles";
 import { FormControl as MuiFormControl } from "@mui/material";
+import { media } from "@/theme/breakpoints";
+
+export const TitleContainer = styled.div`
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 41px;
+  white-space: nowrap;
+
+  & > .bottom-border {
+    width: 68px;
+    height: 5px;
+    background: #6152dd;
+  }
+
+  ${media.sm} {
+    display: none;
+  }
+`;
 
 export const FormSubContainer = styled.div`
   width: 100%;
@@ -12,22 +35,23 @@ export const RememberMeContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.gray80};
-  font-size: 0.875rem;
+  color: #6152dd;
+  font-size: 0.937rem;
   cursor: pointer;
   //margin: 8px 0;
 `;
 export const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
-  font-size: 0.875rem;
+  color: #5d50e0;
+  font-size: 0.937rem;
   font-weight: 400;
+  line-height: 1.245;
   white-space: nowrap;
   cursor: pointer;
 `;
 export const RedirectContainer = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.gray80};
-  font-size: 0.875rem;
+  color: ${({ theme }) => theme.white};
+  font-size: 0.937rem;
   font-weight: 400;
   line-height: 1.245;
   align-self: baseline;

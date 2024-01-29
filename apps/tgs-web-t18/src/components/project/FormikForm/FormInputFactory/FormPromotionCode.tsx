@@ -1,15 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
-import { i18n } from "@tgs-web-nx/utils";
 import { UserTypeEnum } from "@tgs-web-nx/core/features";
-import { TextField } from "@/components/UI/TextField";
+import { i18n } from "@tgs-web-nx/utils";
+import { GrayInputWrapper, TextField } from "@/components/UI/TextField";
+import { Select } from "@/components/UI/Select";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
-import { Select } from "@/components/UI/Select";
-import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
-import { theme } from "@/theme";
-import { getPlaceholderWording } from "@/components/project/FormikForm/utils/getPlaceholderWording";
 
 const FormPromotionCodeContainer = styled.div`
   position: relative;
@@ -41,7 +38,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
       <GrayInputWrapper key={name}>
         <TextField
           type={getFormInputType(type)}
-          placeholder={getPlaceholderWording(name) || label}
+          placeholder={label}
           variant={"outlined"}
           fullWidth
           name={name}
@@ -65,23 +62,22 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             value={formik.values["userType"]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            style={{ color: theme.text }}
             MenuProps={{
               PaperProps: {
                 sx: {
+                  bgcolor: (theme) => {
+                    return theme.palette.tertiary.dark;
+                  },
+
                   "& .MuiMenuItem-root": {
-                    color: theme.text,
+                    padding: 2,
                   },
                 },
               },
             }}
           >
-            <MenuItem value={UserTypeEnum.AGENT}>
-              <>{i18n.t("usertype.agent")}</>
-            </MenuItem>
-            <MenuItem value={UserTypeEnum.PLAYER}>
-              <>{i18n.t("usertype.player")}</>
-            </MenuItem>
+            <MenuItem value={UserTypeEnum.AGENT}>{i18n.t("usertype.agent")}</MenuItem>
+            <MenuItem value={UserTypeEnum.PLAYER}>{i18n.t("usertype.player")}</MenuItem>
           </Select>
         </DropdownContainer>
       </GrayInputWrapper>
