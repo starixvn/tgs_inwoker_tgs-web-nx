@@ -27,8 +27,8 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   padding: 8px 11px;
   font-size: 14px;
   color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
-  background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+  border: ${({ theme }) => `1px solid ${theme.white}`};
+  border-radius: 8px;
   width: auto !important;
   cursor: pointer;
   float: left;

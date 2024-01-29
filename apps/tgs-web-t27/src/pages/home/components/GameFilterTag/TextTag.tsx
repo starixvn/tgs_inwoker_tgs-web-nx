@@ -42,7 +42,6 @@ const Text = styled.div<{
 type Props = {
   text: string;
   isActive: boolean;
-  isShowIcon: boolean;
   onClick: () => void;
 };
 

@@ -9,7 +9,7 @@ import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
 import AccountMenuItem from "@/pages/account/components/AccountNavigations/AccountMenuItem";
 import AppDownloadButton from "@/components/project/AppDownloadButton";
-import { NavItem, useAccountNavigations } from "@/hooks/account/useAccountNavigations";
+import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { media } from "@/theme/breakpoints";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import MenuGameTab from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTab";
@@ -69,7 +69,7 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
     background: ${({ theme }) => theme.darkGray};
     color: ${({ theme }) => theme.primary};
     img {
-      content: url(${props => props.$hoverImage || ""});
+      content: url(${(props) => props.$hoverImage || ""});
     }
   }
 `;
@@ -84,10 +84,9 @@ type Props = {
   handleCloseContextMenu: () => void;
 } & React.HTMLProps<HTMLDivElement>;
 
-
 const AccountNavigations = () => {
   const history = useHistory();
-  const { navItemList, navItemDictionary } = useAccountNavigations();
+  // const { navItemList, navItemDictionary } = useAccountNavigations();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
   const { sideNavItemList, accountNavItemList } = useGetNavItemList();
@@ -119,7 +118,7 @@ const AccountNavigations = () => {
                 key={key}
                 text={label}
                 isActive={label === isSelected}
-                onClick={() => handleClickNav(navItem)}
+                onClick={() => handleClickNav(navItem as NavItem)}
               >
                 {iconComponent && React.createElement(iconComponent)}
               </AccountMenuItem>
