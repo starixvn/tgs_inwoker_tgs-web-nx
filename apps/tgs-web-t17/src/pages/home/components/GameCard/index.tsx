@@ -111,6 +111,7 @@ const GameCardBg = styled.div`
 
   ${media.sm} {
     width: calc(12.5% - 20px);
+    min-width: 130px;
 
     &:hover {
       ${CardHoverBg} {

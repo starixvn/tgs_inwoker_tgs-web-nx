@@ -1,11 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
-import { theme } from "@/theme";
 
 const Wrapper = styled.div<{
   $isActive: boolean;
-  $isShowIcon: boolean;
   $hasBackground: boolean;
 }>`
   vertical-align: middle;
@@ -14,16 +11,16 @@ const Wrapper = styled.div<{
   align-items: center;
   width: auto;
   max-width: none;
-  height: 30px;
+  height: 38px;
   margin-right: 4px;
   box-sizing: border-box;
   user-select: none;
   background: ${({ theme, $isActive }) =>
-    $isActive ? theme.primaryGradient : theme.g5};
-  color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.white : theme.primary};
-  min-width: 60px;
-  padding: 4px;
+    $isActive ? "transparent" : theme.darkGray};
+  min-width: 100px;
+  padding: 12px 15px;
+  border-radius: 5px;
+  border: 1px solid ${({ $isActive, theme }) => ($isActive ? theme.secondary : "transparent")};
 
   ${media.sm} {
     cursor: pointer;
@@ -36,7 +33,7 @@ const Wrapper = styled.div<{
 const Text = styled.div<{
   $isActive: boolean;
 }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.g2)};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.disabledGray)};
   font-size: 0.875rem;
   font-weight: 400;
 `;
@@ -44,21 +41,14 @@ const Text = styled.div<{
 type Props = {
   text: string;
   isActive: boolean;
-  isShowIcon: boolean;
-  children: React.ReactNode;
   onClick: () => void;
 };
 
-type IconComponentProps = {
-  $color: string;
-};
-
-const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
+const Tag = ({ text, isActive, onClick }: Props) => {
   return (
     <Wrapper
       $isActive={isActive}
-      $isShowIcon={isShowIcon}
-      $hasBackground={!isShowIcon && isActive}
+      $hasBackground={isActive}
       onClick={onClick}
     >
       <Text $isActive={isActive}>{text}</Text>

@@ -8,14 +8,15 @@ type Props = {
 };
 
 const InputWrapper = styled.div`
-  width: 160px;
-  height: 36px;
-  padding: 10px;
+  width: 170px;
+  height: 40px;
   display: flex;
   align-items: center;
-  border-radius: 12px;
-  border: 1px solid ${({ theme }) => theme.lightGold};
-  background: ${({ theme }) => theme.darkPrimary};;
+  padding: 8px 14px;
+  background: color: ${({ theme }) => theme.darkGray};
+  gap: 10px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.secondary};
 `;
 
 const InputTextfield = styled.input`
@@ -26,13 +27,11 @@ const InputTextfield = styled.input`
   background-color: transparent;
   outline: none;
   width: 100%;
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme.lightGold};
-  margin-left: 5px;
-
+  font-size: 14px;
+  color: ${({ theme }) => theme.secondary};
+  
   &::placeholder {
-    color:${({ theme }) => theme.lightGold};
-    font-weight: 400;
+    color: ${({ theme }) => theme.secondary};
   }
 
   &:focus {
@@ -40,10 +39,9 @@ const InputTextfield = styled.input`
   }
 `;
 
-const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
+const DesktopSearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
   return (
     <InputWrapper>
-      {imageUrl && <img src={imageUrl} alt={"Search"} />}
       <InputTextfield
         type="text"
         placeholder={placeholder}
@@ -52,8 +50,9 @@ const SearchInput = ({ placeholder, imageUrl, value, handleChange }: Props) => {
           handleChange(event.target.value);
         }}
       />
+      {imageUrl && <img src={imageUrl} alt={"Search"} />}
     </InputWrapper>
   );
 };
 
-export default SearchInput;
+export default DesktopSearchInput;
