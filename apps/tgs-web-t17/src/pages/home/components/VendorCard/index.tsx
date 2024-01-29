@@ -2,12 +2,9 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t27/images/home/maintenance.svg";
-import playIcon from "@/assets/t27/images/home/play-icon.png";
-import gradientBg from "@/assets/t27/images/home/name-bg.png";
+import playIcon from "@/assets/t17/images/home/play.png";
 
 type Props = {
   bgUrl: string;
@@ -23,11 +20,11 @@ type Props = {
 const VendorCardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 84%;
+  height: 81%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 50%);
-  border-radius: 4px;
+  background: rgb(0 0 0 / 60%);
+  border-radius: 15px;
   display: none;
   white-space: pre-line;
 `;
@@ -35,27 +32,31 @@ const VendorCardHoverBg = styled.div`
 const GameIcon = styled.div<{ $imageUrl: string }>`
   position: relative;
   width: 100%;
-  padding-top: 106%;
+  padding-top: 80%;
   left: 0;
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 4px;
+  background-color: ${({ theme }) => theme.mainBackground};;
+
+  ${media.sm} {
+    padding-top: 62.96%;
+    border-radius: 15px;
+  }
 `;
 
 const GradientBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 84%; //212/254
+  padding-top: 37.5%;
   left: 0;
-  top: 0;
-  border-radius: 4px;
-`;
-
-const GradientBgIcon = styled.img`
-  width: 100%;
-  position: absolute;
   bottom: 0;
+  background: ${({ theme }) => theme.picMask};
+
+  ${media.sm} {
+    bottom: 15%;
+    padding-top: 42.2%;
+  }
 `;
 
 const VendorCardContent = styled.div`
@@ -63,16 +64,15 @@ const VendorCardContent = styled.div`
 `;
 
 const VendorCardBg = styled.div`
-  width: calc(50% - 5px);
+  width: calc(50% - 4px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 198 / 254;
-  background-color: ${(props) => props.theme.g4};
+  aspect-ratio: 200 / 160;
 
   ${media.sm} {
-    width: calc(14.28% - 10px);
-    min-width: 196px;
-    aspect-ratio: 196 / 254;
+    width: calc(25% - 30px);
+    min-width: 270px;
+    aspect-ratio: 270 / 210;
 
     &:hover {
       ${VendorCardHoverBg} {
@@ -85,29 +85,35 @@ const VendorCardBg = styled.div`
   }
 `;
 
-const VenderName = styled(VendorCardContent)`
-  width: 100%;
-  padding: 12px;
+const VenderNameMobile = styled(VendorCardContent)`
   position: absolute;
   bottom: 0;
   color: ${(props) => props.theme.white};
-  font-size: 15.6px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-align: left;
+  margin: 4px 0 12px 20px;
+`;
+
+const VenderName = styled(VendorCardContent)`
+  position: absolute;
+  bottom: 0;
+  color: ${(props) => props.theme.white};
+  font-size: 0.875rem;
   font-weight: 400;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  margin: 4px 0 12px 0;
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   position: absolute;
-  bottom: -30px;
+  bottom: -10px;
   left: 50%;
   transform: translate(-50%, -50%);
   display: inline-flex;
   width: 100%;
-  max-width: 131px;
-  min-height: 68px;
+  max-width: 150px;
+  min-height: 44px;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
@@ -117,26 +123,38 @@ const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
 const MaintenanceBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 84%;
+  height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 80%);
+  background: rgb(0 0 0 / 60%);
   padding: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+  border-radius: 15px;
+
+  ${media.sm} {
+    height: 81%;
+  }
 `;
 
-const PlayBtnIcon = styled.img`
-  width: 45px;
-  height: 45px;
+const Text = styled.div`
+  color:#E0E0E0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+
+  ${media.sm} {
+    font-size: 1.5625rem;
+  }
 `;
 
-const MaintenanceIcon = styled.img`
-  width: 140px;
-  height: 90px;
+const PlayBtn = styled.img`
+  width: 74px;
+  height: 74px;
 `;
+
+
 const VendorCard = ({
   bgUrl,
   imageUrl,
@@ -166,20 +184,27 @@ const VendorCard = ({
     <VendorCardBg onClick={launchGameHandler}>
       <VendorCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        <GradientBg>
-          <GradientBgIcon src={gradientBg} alt={"vendor name"} />
-          {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
-        </GradientBg>
-        {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
+        {isDesktopSize &&
+          <GradientBg>
+            {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+          </GradientBg>
+        }
+        {isMobileSize &&
+          <GradientBg>
+            {venderName && <VenderNameMobile ref={venderNameRef}>{venderName}</VenderNameMobile>}
+          </GradientBg>
+        }
+        {isDesktopSize && venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
         {status === providerStatus.Maintenance && (
           <MaintenanceBg>
-            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+            <Text>UNDER MAINTENANCE</Text>
           </MaintenanceBg>
         )}
       </VendorCardContent>
+
       {isDesktopSize && (
         <VendorCardHoverBg onClick={launchGameHandler}>
-          <PlayBtnIcon src={playIcon} alt={"play"} />
+          <PlayBtn src={playIcon} alt={"play"} />
         </VendorCardHoverBg>
       )}
     </VendorCardBg>

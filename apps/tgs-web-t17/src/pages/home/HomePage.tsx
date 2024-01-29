@@ -178,12 +178,26 @@ const IntroductionText = styled.div`
   color: ${({ theme }) => theme.g2};
 `;
 
+const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+  width: 100%;
+  height: 158px;
+  margin: 0 auto;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  ${media.sm} {
+    height: 438px;
+  }
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, handleChangeGameType } =
+  const { activeGameType, activeGameTypeKey, handleChangeGameType } =
     useHomeGameContext();
   const history = useHistory();
   const gameTypeList = useGameTypeList();
@@ -224,15 +238,33 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {!!general.banner.length &&
+      {!!general.banner.length && !activeGameType &&
         <SliderWrapper>
           <Slider settings={settings} />
         </SliderWrapper>
       }
-      {isDesktopSize && <Marquee />}
-      {isMobileSize && <CardPrompt />}
+      {isDesktopSize && !activeGameType && <Marquee />}
+      {isMobileSize && !activeGameType && <CardPrompt />}
+      {!!general.banner.length && !activeGameType && <HomeGameTypeTab />}
+      {!!activeGameType && (
+        <GameTypeBanner
+          $imageUrl={
+            activeGameTypeKey
+              ? `${import.meta.env.BASE_URL
+              }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+              : ""
+          }
+        />
+      )}
 
-      <HomeGameTypeTab />
+      {!!activeGameType && (
+        <MainContentWrapper>
+          <CategoryRenderer />
+        </MainContentWrapper>
+      )}
+
+
+
 
 
       {/* {!activeGameType &&
@@ -262,9 +294,7 @@ const HomePage = () => {
           <VendorLogo />
         </>
       )} */}
-      {/* <MainContentWrapper>
-        <CategoryRenderer />
-      </MainContentWrapper> */}
+
     </MainWrapper>
   );
 };

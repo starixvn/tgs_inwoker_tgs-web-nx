@@ -6,6 +6,7 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const TabContainer = styled.div`
   width: 100%;
@@ -39,6 +40,7 @@ const TabContainer = styled.div`
 `;
 
 const HomeGameTypeTab = () => {
+  const history = useHistory();
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType, handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
 
@@ -47,8 +49,9 @@ const HomeGameTypeTab = () => {
     name: "",
   };
 
-  const switchGameType = (gameType: GameTypeEnum) => {
+  const switchGameType = (gameType: GameTypeEnum, key: string) => {
     handleChangeGameType(gameType);
+    history.push(`/main/${key}`);
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
@@ -79,7 +82,7 @@ const HomeGameTypeTab = () => {
             imageUrl={iconUrl}
             text={text}
             isActive={gameType === activeGameType}
-            onClick={() => switchGameType(gameType)}
+            onClick={() => switchGameType(gameType, key)}
           />
         );
       })}
