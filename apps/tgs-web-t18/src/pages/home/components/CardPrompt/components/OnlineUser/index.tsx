@@ -10,7 +10,9 @@ const Wrapper = styled.div`
   font-weight: 400;
   min-width: 105px;
   gap: 6px;
-  border-radius: 6px;
+  border-radius: 5px;
+  background-color: ${({ theme }) => theme.primaryLight};
+  padding: 4px 10px;
 `;
 
 type Props = {

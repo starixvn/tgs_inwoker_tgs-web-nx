@@ -14,7 +14,7 @@ import {
 } from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory";
 
 const PopularGamesContainer = styled.div`
-  padding: 14.49px;
+  //padding: 14.49px;
 `;
 
 const GameCardContainer = styled.div`

@@ -7,9 +7,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import CategorySlider from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory/CategorySlider";
 import Icon from "@/components/project/Icon";
 
-const GameTypeCategoryContainer = styled.div`
-  padding: 14.49px;
-`;
+const GameTypeCategoryContainer = styled.div``;
 
 export const CategoryHeader = styled.div`
   color: ${({ theme }) => theme.black};
@@ -22,7 +20,7 @@ export const CategoryHeader = styled.div`
 
 export const MoreButton = styled.div`
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.black02};
+  background: ${({ theme }) => theme.primaryLight};
   border-radius: 2px;
   display: flex;
   align-items: center;

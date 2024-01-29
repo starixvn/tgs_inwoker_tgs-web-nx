@@ -1,82 +1,99 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { Dialog as MuiDialog } from "@mui/material";
-import { i18n } from "@tgs-web-nx/utils";
+import { Close as CloseIcon } from "@mui/icons-material";
 import { useUiStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { usePopup } from "@tgs-web-nx/core/features";
 import Carousel from "@/components/UI/Carousel";
-import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
-import { media } from "@/theme/breakpoints";
-import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import PopupHeader from "@/components/project/Popup/components/PopupHeader";
+import { media } from "@/theme/breakpoints";
+import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
+import mobileBgUrl from "@/assets/t18/images/announcement/mobile_bg.png";
+import desktopBgUrl from "@/assets/t18/images/announcement/desktop_bg.png";
 
-const StyledDialog = styled(MuiDialog)`
+const doNotShowAnnouncementDialogKey = "doNotShowAnnouncementDialog";
+
+const DialogContainer = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
-    background: ${({ theme }) => theme.mainBackground};
-    width: calc(100vw - 10px * 2);
-    height: auto;
-    margin: 4px;
+    background: url(${mobileBgUrl}) no-repeat center center !important;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 321px;
+    //height: 283px;
     overflow: visible;
+    border-radius: 10px;
 
     ${media.sm} {
-      max-width: 478px;
+      width: 652px;
+      //height: 386px;
+      background: url(${desktopBgUrl}) no-repeat center center !important;
     }
   }
 `;
 
 const ChildContainer = styled.div`
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px 20px;
+  overflow: visible;
+  //height: calc(283px - 20px - 20px);
+`;
 
-  ${media.sm} {
-    padding: 0 40px 40px;
-  }
+const CloseIconContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
 `;
 
 const Title = styled.div`
-  font-size: 1.062rem;
+  font-size: 1.8rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.black};
-
-  ${media.sm} {
-    font-size: 1.5rem;
-  }
+  color: #ffffff;
 `;
 
 const Content = styled.div`
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme.text};
+  font-size: 1rem;
+  font-weight: 400;
+  color: #ffffff;
   margin-top: 1rem;
+  line-height: 1.2rem;
 
   ${media.sm} {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+`;
+
+const Button = styled.div`
+  cursor: pointer;
+  width: 90%;
+  height: 52px;
+  text-align: center;
+  font-size: 1.6rem;
+  color: #ffffff;
+  background: #6152dd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin: auto;
+
+  ${media.sm} {
+    font-size: 2rem;
+    width: 281px;
+    height: 53px;
   }
 `;
 
 const AnnouncementCardContainer = styled.div`
-  //min-height: 120px;
-  height: auto;
-
-  ${media.sm} {
-    //min-height: 150px;
-  }
+  padding: 20px;
+  //height: calc(283px - 52px - 20px - 20px);
 `;
-
-const ButtonWrapper = styled.div`
-  ${media.sm} {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-`;
-
-const doNotShowAnnouncementDialogKey = "doNotShowAnnouncementDialog";
 
 const AnnouncementCard = ({ subject, content }: { subject: string; content: string }) => {
   return (
@@ -94,13 +111,12 @@ const PopupAnnouncement = () => {
     needToShowPopupAnnouncement,
     handleOpenPromotion,
   } = usePopup();
-  const { isDesktopSize } = useRwd();
+  const disableDialog =
+    window.sessionStorage && sessionStorage.getItem(doNotShowAnnouncementDialogKey) === "true";
 
   const [isCheck, setIsCheck] = useState(false);
-  const handleClickCheckbox = () => {
-    setIsCheck((prevIsCheck) => !prevIsCheck);
-  };
 
+  const { isMobileSize } = useRwd();
   const { ui } = useUiStore();
   const { mains: announcementList } = ui;
 
@@ -112,22 +128,22 @@ const PopupAnnouncement = () => {
     handleOpenPromotion();
   };
 
+  const handleClickCheckbox = () => {
+    setIsCheck((prevIsCheck) => !prevIsCheck);
+  };
+
   if (!needToShowPopupAnnouncement) return null;
 
   const isEmptyData = announcementList.length === 0;
-  const disableDialog =
-    window.sessionStorage && sessionStorage.getItem(doNotShowAnnouncementDialogKey) === "true";
 
   if (isEmptyData || disableDialog) return null;
 
   return (
-    <StyledDialog
+    <DialogContainer
       open={isOpenAnnouncement}
       onClose={handleCloseDialog}
       TransitionComponent={UpTransition}
     >
-      <PopupHeader title={i18n.t("web.header.announcement")} handleClose={handleCloseDialog} />
-
       <ChildContainer>
         <Carousel>
           {announcementList
@@ -138,22 +154,29 @@ const PopupAnnouncement = () => {
               return <AnnouncementCard key={index} subject={subject} content={content} />;
             })}
         </Carousel>
-
-        <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
-
-        <ButtonWrapper>
-          <Button
-            onClick={handleCloseDialog}
-            style={{
-              width: isDesktopSize ? "242px" : "100%",
-              textAlign: "center",
-            }}
-          >
-            <>{i18n.t("common.close")}</>
-          </Button>
-        </ButtonWrapper>
+        <Button onClick={handleCloseDialog}>Got It!</Button>
       </ChildContainer>
-    </StyledDialog>
+
+      <NotShowAgainHint
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "100%",
+          transform: "translateX(-50%)",
+        }}
+        onClick={handleClickCheckbox}
+        isCheck={isCheck}
+      />
+
+      <CloseIconContainer>
+        <CloseIcon
+          onClick={handleCloseDialog}
+          style={{
+            color: "white",
+          }}
+        />
+      </CloseIconContainer>
+    </DialogContainer>
   );
 };
 

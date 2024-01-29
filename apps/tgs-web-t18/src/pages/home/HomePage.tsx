@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useParams } from "react-router-dom";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import Banner from "./components/Banner";
 import CardPrompt from "./components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
@@ -28,6 +27,7 @@ const MainWrapper = styled.div<MainWrapperProps>`
   flex-shrink: 0;
   flex: 1;
   position: relative;
+  padding: 22px;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
@@ -43,7 +43,6 @@ const MainContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  // background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 6px;
   flex-shrink: 0;
@@ -84,9 +83,8 @@ const HomePage = () => {
 
   return (
     <MainWrapper $isDark={false}>
-      <CardPrompt />
       <Banner />
-      <AuthButtonGroup />
+      <CardPrompt />
 
       <GameTypeTab />
 

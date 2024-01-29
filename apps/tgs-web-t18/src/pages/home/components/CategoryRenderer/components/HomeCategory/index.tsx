@@ -8,6 +8,7 @@ import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2"
 
 const HomeCategoryContainer = styled.div`
   width: 100%;
+  margin-top: 15px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};

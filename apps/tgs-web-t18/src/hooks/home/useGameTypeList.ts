@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
-import cardgame from "@/assets/t18/images/home/gameType/cardGame.svg";
+import cardgame from "@/assets/t18/images/home/gameType/card_game.svg";
 import egame from "@/assets/t18/images/home/gameType/egame.svg";
 import esports from "@/assets/t18/images/home/gameType/esports.svg";
 import fishing from "@/assets/t18/images/home/gameType/fishing.svg";
-import live from "@/assets/t18/images/home/gameType/liveCasino.svg";
+import live from "@/assets/t18/images/home/gameType/live_casino.svg";
 import lottery from "@/assets/t18/images/home/gameType/lottery.svg";
 import sabong from "@/assets/t18/images/home/gameType/sabong.svg";
 import slot from "@/assets/t18/images/home/gameType/slot.svg";

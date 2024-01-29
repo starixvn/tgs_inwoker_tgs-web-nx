@@ -15,8 +15,10 @@ const Container = styled.div`
   white-space: nowrap;
   word-break: keep-all;
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.gray80};
-  border-radius: 6px;
+  color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.primaryLight};
+  border-radius: 5px;
+  padding: 4px 10px;
 `;
 
 const Background = styled.div`
