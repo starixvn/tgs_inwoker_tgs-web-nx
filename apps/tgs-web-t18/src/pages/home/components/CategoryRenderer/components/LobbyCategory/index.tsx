@@ -5,10 +5,11 @@ import { Common, getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import React from "react";
-import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
+import VendorCard from "@/pages/home/components/VendorCard/mobile";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useCardWidth } from "@/hooks/home/useCardWidth";
+import bg from "@/assets/t18/images/home/mobile/vender_card_bg.png";
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,24 +32,18 @@ const CategoryContentWrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
 `;
 
-const DesktopCategoryContentWrapper = styled.div`
-  overflow-y: auto;
-  height: 100%;
-  width: 100%;
-  flex-shrink: 0;
-  background-color: ${({ theme }) => theme.mainBackground};
-`;
-
 const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: flex-start;
   width: 100%;
-  gap: 10px;
+  margin-bottom: 30px;
+  row-gap: 18px;
+  column-gap: 15px;
   align-self: stretch;
 
   ${media.sm} {
-    padding: 20px 0;
+    column-gap: 24.4px;
   }
 `;
 
@@ -121,18 +116,13 @@ const LobbyCategory = () => {
 
               if (gpCode === "BC") return null;
               return (
-                <MobileVendorCard
+                <VendorCard
                   key={gpCode}
-                  bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                  imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                  imageUrl={`/assets/images/home/${activeGameTypeKey}/${gpCode}.png`}
                   venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}
-                  style={{
-                    width: cardWidth,
-                    flexShrink: 0,
-                  }}
                 />
               );
             })}

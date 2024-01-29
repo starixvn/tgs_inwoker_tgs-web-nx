@@ -21,7 +21,6 @@ export function useCategorySlider(gameType: GameTypeEnum, gameList: GameItem[]) 
   }, [gameType, JSON.stringify(providerList)]);
 
   const gameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
-
   const hasMappingData = !!lobbyCategoryList.length;
 
   const isLobbyCategory = getIsGameTypeLobbyCategory(gameType);

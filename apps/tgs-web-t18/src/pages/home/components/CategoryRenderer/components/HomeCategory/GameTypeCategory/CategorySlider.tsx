@@ -51,6 +51,7 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
     hasMappingData,
     gameTypeKey,
   } = useCategorySlider(gameType, gameList);
+
   const { isLargeDesktopSize, isDesktopSize } = useRwd();
 
   const cardWidth = useMemo(() => {
@@ -75,8 +76,10 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
             return (
               <MobileVendorCard
                 key={gpCode}
-                bgUrl={`/assets/images/home/mobile/${gameTypeKey}/mbg.png`}
-                imageUrl={`/assets/images/home/mobile/${gameTypeKey}/${gpCode}.png`}
+                // bgUrl={`/assets/images/home/mobile/${gameTypeKey}/mbg.png`}
+                // imageUrl={`/assets/images/home/mobile/${gameTypeKey}/${gpCode}.png`}
+                // venderLogoUrl={`/assets/images/home/provider_logo/${gameTypeKey}/${gpCode}.png`}
+                imageUrl={`/assets/images/home/${gameTypeKey}/${gpCode}.png`}
                 venderLogoUrl={`/assets/images/home/provider_logo/${gameTypeKey}/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode)}
                 status={status}

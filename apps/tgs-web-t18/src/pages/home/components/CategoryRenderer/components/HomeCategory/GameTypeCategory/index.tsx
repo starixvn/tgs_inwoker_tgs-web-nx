@@ -44,6 +44,8 @@ const GameTypeCategory = ({ gameTypeItem, gameList }: Props) => {
     history.push(`/main/${gameTypeItem.key}`);
   };
 
+  // console.log(gameTypeItem);
+
   return (
     <GameTypeCategoryContainer>
       <CategoryHeader>

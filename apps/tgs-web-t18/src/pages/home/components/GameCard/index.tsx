@@ -12,16 +12,14 @@ import playIcon from "@/assets/t18/images/home/play-green.svg";
 import maintenanceIcon from "@/assets/t18/images/home/maintenance.svg";
 
 const GameCardContainer = styled.div`
-  width: calc(50% - 6px);
+  //width: calc(50% - 6px);
   position: relative;
   cursor: pointer;
 
   background-size: cover;
   background-position: center;
 
-  ${media.sm} {
-    width: calc((100% - 15px * 1) / 2);
-  }
+  width: calc((100% - 15px * 1) / 2);
 
   ${media.md} {
     width: calc((100% - 15px * 2) / 3);

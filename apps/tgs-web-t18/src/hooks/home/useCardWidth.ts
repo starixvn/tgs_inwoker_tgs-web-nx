@@ -7,8 +7,8 @@ export function useCardWidth(gap = "10px") {
   return useMemo(() => {
     if (isLargeDesktopSize) return `calc((100% - ${gap} * 5)/6)`;
 
-    if (isDesktopSize) return `calc((100% - ${gap} * 3)/4)`;
+    if (isDesktopSize) return `calc((100% - ${gap} * 2)/3)`;
 
-    return `calc((100% - ${gap} * 2)/3)`;
+    return `calc((100% - ${gap} * 1)/2)`;
   }, [isLargeDesktopSize, isDesktopSize]);
 }

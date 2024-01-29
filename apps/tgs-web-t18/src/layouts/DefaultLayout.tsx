@@ -34,7 +34,7 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
   flex-grow: 1;
   transition: all ease-in-out 0.2s;
 
-  ${media.lg} {
+  ${media.sm} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? MOBILE_DRAWER_WIDTH : 0)};
   }
 `;
