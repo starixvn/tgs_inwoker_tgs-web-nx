@@ -22,7 +22,7 @@ const Row = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  /* padding: 10px 0; */
+  padding: 0 14px;
 `;
 
 const GameFilterToolBox = () => {
@@ -33,7 +33,6 @@ const GameFilterToolBox = () => {
     return (
       <GameFilterToolBoxContainer>
         <ProviderTags />
-
         <FilterTags />
         <SearchInput
           placeholder={i18n.t("slot.search")}
@@ -48,7 +47,6 @@ const GameFilterToolBox = () => {
   return (
     <GameFilterToolBoxContainer>
       <Row>
-        <FilterTags />
         <ProviderTags />
       </Row>
       <SearchInput

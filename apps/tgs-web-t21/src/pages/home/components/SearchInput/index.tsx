@@ -16,7 +16,7 @@ const InputWrapper = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
   border: 1px solid ${({ theme }) => theme.primary};
   padding: 10px 12px;
-
+  margin: 0 14px;
   ${media.sm} {
     background-color: ${({ theme }) => theme.grey04};
   }

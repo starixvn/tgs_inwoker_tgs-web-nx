@@ -11,25 +11,9 @@ const ProviderTagContainer = styled.div<{
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  padding: 4px;
-  /* width: calc((100% - 10px * 2) / 3); */
-  background: ${({ theme }) => theme.primary};
-
-  /* box-sizing: border-box;
-  user-select: none;
-  background: #2c2c2c;
-  border-bottom: 3px solid #ffffff1a;
-  opacity: 0.8;
-  padding: 15px 8px;
-  position: relative; */
-
-  /* & > img {
-    display: block;
-    width: 100px;
-    &:hover {
-      cursor: pointer;
-    }
-  } */
+  padding: 14px;
+  background: ${({ theme, $isActive }) => ($isActive ? theme.focus : theme.primary)};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.yellow : theme.white)};
 `;
 
 const MaintenanceBg = styled.div`
@@ -69,18 +53,11 @@ type Props = {
 };
 
 const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
-  const { activeGameTypeKey } = useHomeGameContext();
 
   return (
-    <ProviderTagContainer $isActive={isActive}>
+    <ProviderTagContainer $isActive={isActive} onClick={onClick}>
       <Text>{text}</Text>
-      {/* <img
-          onClick={onClick}
-          src={`${
-            import.meta.env.BASE_URL
-          }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-          alt={text}
-        /> */}
+
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>
           <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />

@@ -36,6 +36,7 @@ const CategoryContent = styled.div`
   align-content: center;
   width: 100%;
   gap: 14px;
+  padding: 14px;
   align-self: stretch;
   color: ${({ theme }) => theme.black};
   ${media.sm} {
