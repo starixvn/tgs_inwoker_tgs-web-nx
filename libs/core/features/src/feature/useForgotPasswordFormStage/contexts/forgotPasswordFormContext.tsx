@@ -23,8 +23,7 @@ type ProviderProps = {
 
 export const ForgotPasswordStageContextProvider = ({ children }: ProviderProps) => {
   const initialStage = useMemo(() => {
-    // return ForgotPasswordStageEnum.VerifyPhone;
-    return ForgotPasswordStageEnum.NewPassword;
+    return ForgotPasswordStageEnum.VerifyPhone;
   }, []);
   const [currentStage, setCurrentStage] = useState(initialStage);
 
