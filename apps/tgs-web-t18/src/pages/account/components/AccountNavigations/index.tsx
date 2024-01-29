@@ -11,8 +11,11 @@ import AppDownloadButton from "@/components/project/AppDownloadButton";
 import NavCard from "@/pages/account/components/AccountNavigations/NavCard";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
 
 const AccountNavsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   & > div {
     margin-bottom: 15px;
   }
@@ -50,7 +53,6 @@ const AccountNavigations = (props: Props) => {
     <>
       <AccountNavsContainer>
         <BalanceTracker />
-
         <AccountNavCardsContainer>
           {/* Cards */}
           {navItemList.map((navItem) => {
@@ -68,8 +70,13 @@ const AccountNavigations = (props: Props) => {
           })}
         </AccountNavCardsContainer>
 
-        <LanguageSwitch />
-
+        <LanguageSwitch
+          style={{
+            background: theme.primaryDark,
+            border: `1px solid ${theme.gray01}`,
+            borderRadius: "10px",
+          }}
+        />
         <Button fullWidth variant={"contained"} color={"primary"} onClick={handleLogout}>
           {i18n.t("web.header.logout")}
         </Button>

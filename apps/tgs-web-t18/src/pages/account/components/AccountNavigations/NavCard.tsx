@@ -11,12 +11,7 @@ const NavCardContainer = styled.div`
   align-items: center;
   width: calc((100% - 3 * 8px) / 4);
   padding: 20px 30px;
-
-  color: ${({ theme }) => theme.tertiary};
-  font-size: 0.875rem;
-  font-weight: 700;
   cursor: pointer;
-  white-space: nowrap;
   transition-duration: 0.4s;
   -webkit-transition-duration: 0.4s; /* Safari */
   overflow: visible;
@@ -37,10 +32,18 @@ const LogoContainer = styled.div`
   }
 `;
 
+const Label = styled.div`
+  color: ${({ theme }) => theme.tertiary};
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-align: center;
+`;
+
 type Props = {
   navItem: NavItem;
   handleClick: (navItem: NavItem) => void;
 };
+
 const NavCard = ({ navItem, handleClick }: Props) => {
   const { label, iconUrl } = navItem;
   return (
@@ -49,7 +52,7 @@ const NavCard = ({ navItem, handleClick }: Props) => {
         <img src={iconUrl} alt={label} />
       </LogoContainer>
 
-      <span>{label}</span>
+      <Label>{label}</Label>
     </NavCardContainer>
   );
 };
