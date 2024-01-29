@@ -3,6 +3,7 @@ import { useJackpot } from "@tgs-web-nx/core/features";
 import bg from "@/assets/t22/images/home/jackpot.png";
 
 const JackpotContainer = styled.div`
+  margin-top: 80px;
   display: block;
   width: 100%;
   background: url(${bg}) center no-repeat;

@@ -130,17 +130,17 @@ type GameCardProps = {
   imageUrl: string;
 };
 
-const HoverGameName = styled.div`
-  margin-bottom: 16px;
-  width: 100%;
-  color: ${(props) => props.theme.white};
-  font-size: 1rem;
-  text-align: center;
-`;
 
-const PlayIcon = styled.img`
-  width: 65px;
-  height: 65px;
+
+const PlayButton = styled.button`
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  width: 110px;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #EFD068 0%, #FEDFA1 28.13%, #D5B34F 65.1%, #B77E18 100%);
+  box-shadow: 0px 2px 8px 0px #000040;
+  cursor: pointer;
 `;
 
 const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
@@ -209,8 +209,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
         {isDesktopSize && (
           <CardHoverBg onClick={launchGameHandler}>
-            {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
-            <PlayIcon src={playIcon} alt={"play"} />
+            <PlayButton>Play</PlayButton>
           </CardHoverBg>
         )}
 
