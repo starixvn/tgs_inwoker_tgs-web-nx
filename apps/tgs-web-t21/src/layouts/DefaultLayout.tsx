@@ -57,7 +57,7 @@ const DefaultLayout = ({ children }: Props) => {
       <DashboardContainer>
         <ContentWrapper>
           <>
-            <MenuDrawer />
+            {isMobileSize && <MenuDrawer />}
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />
           </>

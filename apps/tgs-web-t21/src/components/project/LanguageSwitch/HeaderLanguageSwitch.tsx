@@ -17,18 +17,16 @@ const StyledSelect = styled(MuiSelect)`
   overflow: visible;
   font-weight: 400 !important;
   font-size: 0.812rem !important;
-
+  background: ${({ theme }) => theme.gray5};
   .MuiOutlinedInput-input {
     padding: 0 12px !important;
     border-radius: 0;
-    border-left: 1px solid ${({ theme }) => theme.mainBackground};
-    border-right: 1px solid ${({ theme }) => theme.mainBackground};
   }
 
   & .MuiSelect-select {
     display: flex;
     align-items: center;
-    color: ${({ theme }) => theme.white} !important;
+    color: ${({ theme }) => theme.black} !important;
 
     & > img {
       margin-right: 10px;
@@ -40,7 +38,7 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
   }
 `;
 
@@ -103,7 +101,6 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
         PaperProps: {
           sx: {
             background: theme.mainBackground,
-
             "& .MuiMenuItem-root": {
               padding: 2,
               color: theme.text,

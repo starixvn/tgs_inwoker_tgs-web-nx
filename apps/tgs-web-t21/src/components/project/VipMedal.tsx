@@ -23,7 +23,7 @@ const VipMedal = ({ vipLevel }: Props) => {
 
   if (!image) return null;
 
-  return <Icon iconUrl={image} width={"66px"} height={"66px"} />;
+  return <Icon iconUrl={image} width={"35px"} height={"35px"} />;
 };
 
 export default VipMedal;

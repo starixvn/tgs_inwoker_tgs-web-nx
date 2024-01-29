@@ -4,8 +4,7 @@ import moment from "moment";
 import { useGeneralStore } from "@tgs-web-nx/core";
 
 const Wrapper = styled.div`
-  color: ${({ theme }) => theme.white};
-  font-family: Gill Sans MT;
+  /* color: ${({ theme }) => theme.gray80}; */
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
@@ -15,31 +14,21 @@ const Wrapper = styled.div`
 `;
 
 const SystemTime = () => {
-  const {
-    general: { brand },
-  } = useGeneralStore();
-
-  const timeText = brand.code === "MOPH" ? "GMT+8" : "GMT+7";
+  const timeText = `(GMT+8)`;
 
   const [systemTime, setSystemTime] = useState(
-    moment()
-      .utcOffset(brand.code === "MOPH" ? "+08:00" : "+07:00")
-      .format("YYYY-DD-MM HH:mm:ss"),
+    moment().utcOffset("+08:00").format("YYYY-DD-MM HH:mm:ss"),
   );
   const [tickCount, setTickCount] = useState(0);
   useEffect(() => {
     const timer = setTimeout(() => {
       setTickCount(tickCount + 1);
-      setSystemTime(
-        moment()
-          .utcOffset(brand.code === "MOPH" ? "+08:00" : "+07:00")
-          .format("YYYY-DD-MM HH:mm:ss"),
-      );
+      setSystemTime(moment().utcOffset("+08:00").format("YYYY-DD-MM HH:mm:ss"));
     }, 1000);
     return () => clearTimeout(timer);
   }, [tickCount]);
 
-  return <Wrapper>{`${timeText} ${systemTime}`}</Wrapper>;
+  return <Wrapper>{` ${systemTime} ${timeText}`}</Wrapper>;
 };
 
 export default SystemTime;

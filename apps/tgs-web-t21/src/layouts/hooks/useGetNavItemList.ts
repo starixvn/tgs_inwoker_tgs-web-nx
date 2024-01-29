@@ -1,6 +1,9 @@
 import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router";
 import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
 import homeImg from "@/assets/t21/images/account/navItem/icon-home.svg";
 import profileImg from "@/assets/t21/images/account/navItem/icon-account.svg";
@@ -12,6 +15,7 @@ import inboxImg from "@/assets/t21/images/account/navItem/icon-inbox.svg";
 import languageImg from "@/assets/t21/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t21/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t21/images/account/navItem/icon-vip.svg";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -35,7 +39,67 @@ export type NavItem = {
 
 export function useGetNavItemList() {
   const goToHomePage = useGoToHomePage();
+  const gameTypeList = useGameTypeList();
+  const { handleChangeGameType, providerList, isCustomizedBrand } = useHomeGameContext();
+  const history = useHistory();
 
+  const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
+    const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
+
+    for (const gameTypeItem of gameTypeList) {
+      if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
+
+      if (providerList.length) {
+        const hasData = providerList.filter((provider) => {
+          return provider.gametypes.includes(gameTypeItem.gameType);
+        });
+        if (hasData.length === 0) continue;
+      }
+
+      navItemList.push({
+        key: gameTypeItem.key,
+        label: gameTypeItem.text as string,
+        iconUrl: gameTypeItem.iconUrl,
+        navType: "action",
+        gameType: gameTypeItem.gameType,
+        router: gameTypeItem.key as string,
+        callback: () => {
+          handleChangeGameType(gameTypeItem.gameType);
+          history.push(`/main/${gameTypeItem.key}`);
+        },
+      });
+    }
+
+    if (!isCustomizedBrand) {
+      navItemList.push({
+        key: NavCardKey.VIP,
+        label: "VIP",
+        iconUrl: vipImg,
+        iconActiveUrl: vipImg,
+        navType: "action",
+        gameType: GameTypeEnum.NONE,
+        router: "vip",
+        callback: () => {
+          history.push("/vip");
+        },
+      });
+    }
+
+    navItemList.push({
+      key: NavCardKey.PROMOTION,
+      label: i18n.t("common.promotion"),
+      iconUrl: "",
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "promotion-list",
+      callback: () => {
+        history.push("/promotion-list");
+      },
+    });
+
+    return navItemList;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameTypeList, providerList]);
   const accountNavItemList: NavItem[] = useMemo(() => {
     const navItems = [
       {
@@ -146,6 +210,7 @@ export function useGetNavItemList() {
   }, []);
 
   return {
+    sideNavItemList,
     accountNavItemList,
   };
 }

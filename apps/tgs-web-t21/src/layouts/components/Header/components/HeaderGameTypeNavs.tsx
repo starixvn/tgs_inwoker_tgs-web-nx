@@ -7,62 +7,39 @@ import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const HeaderGameTypesContainer = styled.div`
-  margin-right: auto;
   display: flex;
+  justify-content: center;
   flex-wrap: nowrap;
   align-items: stretch;
   height: 100%;
-  /* overflow-x: auto; */
   position: relative;
-
-  &::-webkit-scrollbar {
-    //height: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: ${(props) => props.theme.mainBackground};
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: ${({ theme }) => theme.gray10};
-  }
-
-  &::-webkit-scrollbar-track-piece {
-    background: transparent;
-  }
+  gap: 20px;
 `;
 
 const GameTypeNav = styled.div<{
   $isActive: boolean;
 }>`
   flex-shrink: 0;
-  font-size: 0.875rem;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
   white-space: nowrap;
   display: flex;
   align-items: center;
   padding: 5px;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   cursor: pointer;
   position: relative;
   border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : `none`)};
   color: ${({ theme, $isActive }) => ($isActive ? theme.blue60 : theme.gray70)};
-  &:hover {
+  /* &:hover {
     background: ${({ theme }) => theme.gray10};
-  }
+  } */
 
-  ${media.lg} {
+  /* ${media.lg} {
     font-size: 1rem;
-  }
-`;
-
-const GameTypeGrid = styled.div`
-  align-self: center;
-  height: 18px;
-  display: flex;
-  border: 1px solid #cccccc;
-  margin: 0 5px;
+  } */
 `;
 
 const Wrapper = styled.div`
@@ -93,20 +70,20 @@ const HeaderGameTypeNavs = () => {
 
   return (
     <HeaderGameTypesContainer>
-      {sideNavItemList && sideNavItemList.map((navItem, index) => {
-        return (
-          <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
-            <GameTypeNav
-              $isActive={navItem.router === currentRoute}
-              onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {navItem.label}
-            </GameTypeNav>
-            {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
-          </Wrapper>
-        );
-      })}
+      {sideNavItemList &&
+        sideNavItemList.map((navItem, index) => {
+          return (
+            <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
+              <GameTypeNav
+                $isActive={navItem.router === currentRoute}
+                onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {navItem.label}
+              </GameTypeNav>
+            </Wrapper>
+          );
+        })}
     </HeaderGameTypesContainer>
   );
 };

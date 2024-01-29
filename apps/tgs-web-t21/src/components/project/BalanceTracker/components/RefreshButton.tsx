@@ -9,10 +9,10 @@ type StyledRefreshButtonProps = {
 
 const spinAnimation = keyframes`
   0% {
-    transform: rotate(0deg);
+    transform: rotate(360deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(0deg);
   }
 `;
 
@@ -40,7 +40,7 @@ const RefreshButton = ({ handleClick }: Props) => {
 
   return (
     <StyledRefreshButton $isSpinning={isSpinning} onClick={handleRefreshClick}>
-      <Icon iconUrl={refreshImg} width={"28px"} height={"28px"} />
+      <Icon iconUrl={refreshImg} width={"20px"} height={"20px"} />
     </StyledRefreshButton>
   );
 };

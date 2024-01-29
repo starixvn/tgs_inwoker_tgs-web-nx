@@ -1,19 +1,16 @@
-import React from "react";
+import { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { useAuthContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import config from "@tgs-web-nx/config";
+import { RoundHeaderButton } from "./HeaderButton";
 import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
-import Icon from "@/components/project/Icon";
-import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
-import iconAccount from "@/assets/t21/images/header/icon-account.svg";
-import iconInbox from "@/assets/t21/images/header/icon-inbox.svg";
-import iconInboxBlue from "@/assets/t21/images/header/icon-inbox-blue.svg";
-import iconLogout from "@/assets/t21/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
+import VipMedal from "@/components/project/VipMedal";
+import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -21,82 +18,83 @@ const ButtonContainer = styled.div`
   gap: 10px;
 `;
 
-const UsernameContainer = styled.div`
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.text};
-
-  ${media.sm} {
-    color: ${({ theme }) => theme.white};
-  }
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
-const InboxIconContainer = styled.div`
-  cursor: pointer;
+const Username = styled.div`
+  color: ${({ theme }) => theme.primary};
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+`;
+
+const BalanceContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Balance = styled.div`
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.gray80};
   font-size: 0.875rem;
   font-weight: 400;
-
-  ${media.sm} {
-    color: ${({ theme }) => theme.white};
-  }
 `;
 
 const AccountHeaderContent = () => {
   const history = useHistory();
   const { account } = useAccountStore();
-  const { wallet } = useWalletStore();
+  const { wallet, getBalanceList } = useWalletStore();
   const { handleLogout } = useAuthContext();
-  const { isDesktopSize } = useRwd();
   const goToHomePage = useGoToHomePage();
-
   const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
   const username = account.info.member_username;
-
-  const handleGoToProfile = () => {
-    history.push("/profile");
-  };
-
-  const handleGoToInbox = () => {
-    history.push("/inbox");
-  };
+  const accountLevel = account.info.member_level_id;
   const handleClickLogout = async () => {
     await handleLogout();
     goToHomePage();
   };
+  const handleRefreshBalance = useCallback(async () => {
+    await getBalanceList();
+  }, [getBalanceList]);
 
   return (
     <ButtonContainer>
-      <UsernameContainer onClick={() => history.push("/account")}>{username}</UsernameContainer>
-      <Balance>${currentBalance}</Balance>
+      <VipMedal vipLevel={accountLevel} />
+      <UserInfo>
+        <Username>
+          <span> {username}</span>
+          <span> {`(${config.currency})`}</span>
+        </Username>
+        <BalanceContainer>
+          <Balance>${currentBalance}</Balance>
+          <RefreshButton handleClick={() => handleRefreshBalance()} />
+        </BalanceContainer>
+      </UserInfo>
 
-      {isDesktopSize && <TransferButtonGroup />}
-
-      {isDesktopSize && <HeaderLanguageSwitch />}
-
-      {isDesktopSize ? (
-        <>
-          <InboxIconContainer onClick={handleGoToProfile}>
-            <Icon iconUrl={iconAccount} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-
-          <InboxIconContainer onClick={handleGoToInbox}>
-            <Icon iconUrl={iconInbox} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-
-          <InboxIconContainer onClick={handleClickLogout}>
-            <Icon iconUrl={iconLogout} width={"20px"} height={"20px"} />
-          </InboxIconContainer>
-        </>
-      ) : (
-        <InboxIconContainer onClick={handleGoToInbox}>
-          <Icon iconUrl={iconInboxBlue} width={"24px"} height={"24px"} />
-        </InboxIconContainer>
-      )}
+      <RoundHeaderButton
+        onClick={() => {
+          history.push("/deposit");
+        }}
+        style={{
+          color: theme.black,
+          background: theme.white,
+          border: `1px solid ${theme.gray30}`,
+        }}
+      >
+        {i18n.t("common.deposit")}
+      </RoundHeaderButton>
+      <RoundHeaderButton
+        onClick={handleClickLogout}
+        style={{
+          color: theme.white,
+          background: theme.red,
+        }}
+      >
+        {i18n.t("web.header.logout")}
+      </RoundHeaderButton>
+      <HeaderLanguageSwitch />
     </ButtonContainer>
   );
 };

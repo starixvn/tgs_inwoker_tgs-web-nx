@@ -27,7 +27,6 @@ const HeaderContainer = styled.div`
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
-
   ${media.sm} {
     height: ${DESKTOP_HEADER_HEIGHT};
   }
@@ -38,7 +37,7 @@ const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   z-index: 2;
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  /* max-width: ${SUB_CONTENT_MAX_WIDTH}; */
   margin: auto;
   display: flex;
   align-items: center;
@@ -51,15 +50,15 @@ const ContentGroup = styled.div`
   align-items: center;
 `;
 
-const BlueHeaderRowContainer = styled.div`
-  background: #3158ff;
+const WhiteHeaderRowContainer = styled.div`
+  background: ${({ theme }) => theme.white};
   background-size: cover;
-  height: 40px;
+  height: 114px;
 `;
 
-const WhiteHeaderRowContainer = styled.div`
-  margin: auto;
-  height: 65px;
+const BlueHeaderRowContainer = styled.div`
+  height: 45px;
+  background: linear-gradient(180deg, #02a9dc 25%, #0282a9 100%);
 `;
 
 const DesktopHeader = () => {
@@ -70,19 +69,6 @@ const DesktopHeader = () => {
 
   return (
     <HeaderContainer>
-      <BlueHeaderRowContainer>
-        <ContentWrapper>
-          <ContentGroup>
-            {isLargeDesktopSize && <SystemTime />}
-            {isLargeDesktopSize && <OnlineUser color={theme.white} />}
-          </ContentGroup>
-
-          <ContentGroup>
-            {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-          </ContentGroup>
-        </ContentWrapper>
-      </BlueHeaderRowContainer>
-
       <WhiteHeaderRowContainer>
         <ContentWrapper>
           <Link to={""}>
@@ -91,10 +77,15 @@ const DesktopHeader = () => {
               onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
             />
           </Link>
-
-          {isDesktopSize && <HeaderGameTypes />}
+          <ContentGroup>
+            {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+          </ContentGroup>
         </ContentWrapper>
       </WhiteHeaderRowContainer>
+
+      <BlueHeaderRowContainer>
+        <HeaderGameTypes />
+      </BlueHeaderRowContainer>
     </HeaderContainer>
   );
 };
