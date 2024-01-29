@@ -113,16 +113,16 @@ export const DatePickerForBirthDate = ({ disabled, ...others }: Props) => {
 };
 
 const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
-  ${({ $disabled }: CustomDatepickerProps) => {
+  ${({ $disabled, theme }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  border: 1px solid #596578;
+  border: 1px solid ${({ theme }) => theme.tertiary};
   border-radius: 6px;
   position: relative;
 
   .MuiInputBase-input {
-    background: ${({ theme }) => theme.mainBackground};
-    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.primaryDark};
+    color: ${({ theme }) => theme.tertiaryLight};
     padding: 10px 10px;
     text-align: left;
     cursor: pointer;

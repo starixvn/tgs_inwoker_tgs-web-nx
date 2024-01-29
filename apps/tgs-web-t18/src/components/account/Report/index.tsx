@@ -9,18 +9,41 @@ import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWi
 import ReportBetting from "@/pages/report/components/reports/ReportBetting";
 import ReportWithdraw from "@/pages/report/components/reports/ReportWithdraw";
 import ReportDeposit from "@/pages/report/components/reports/ReportDeposit";
-import ReportRebate from "@/pages/report/components/reports/ReportRebate";
 import ReportTransfer from "@/pages/report/components/reports/ReportTransfer";
 import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion";
 import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
-import ReportPlatform from "@/pages/report/components/reports/ReportPlatform";
 import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
-import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
+import { media } from "@/theme/breakpoints";
 
-const Title = styled.div`
-  color: ${({ theme }) => theme.blue50};
+const Container = styled.div`
+  width: 100%;
+`;
+
+const DateRangeSelector = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+
+  ${media.sm} {
+    flex-direction: row;
+  }
+`;
+
+const DateTitle = styled.div`
+  align-self: flex-start;
   font-size: 1.25rem;
   font-weight: 700;
+  line-height: 1.465rem;
+  color: ${({ theme }) => theme.white};
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  ${media.sm} {
+    align-self: center;
+  }
 `;
 
 const Report = () => {
@@ -50,7 +73,7 @@ const Report = () => {
   };
 
   return (
-    <ReportMainContainer>
+    <Container>
       <ReportTypeTabs
         selectedType={selectedType}
         handleChangeTab={handleChangeTab}
@@ -58,7 +81,7 @@ const Report = () => {
       />
 
       <DateRangeSelector>
-        <Title>{i18n.t("report.date")}</Title>
+        <DateTitle>{i18n.t("report.date")}</DateTitle>
         <DateRangeWithDatePicker
           dateFrom={dateRangeInfo.dateFrom}
           dateTo={dateRangeInfo.dateTo}
@@ -97,7 +120,7 @@ const Report = () => {
       })()}
 
       <Loading show={false /* Replace with loading state */} />
-    </ReportMainContainer>
+    </Container>
   );
 };
 

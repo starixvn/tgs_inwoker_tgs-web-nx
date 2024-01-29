@@ -7,10 +7,9 @@ import { media } from "@/theme/breakpoints";
 
 const DateContainer = styled.div`
   width: 100%;
- 
+
   ${media.sm} {
     width: auto;
-    height: 47px;
   }
 `;
 
@@ -22,15 +21,14 @@ const FlatStraightLine = styled.div`
 `;
 
 const DateSpliter = styled.div`
-  font-size: 20px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.gray50};
+  font-size: 22px;
+  font-weight: 600;
+  color: #4a4a4a;
+  width: 48px;
   text-align: center;
-  padding: 12px;
 `;
 const DateInner = styled.div`
-  width: 159px;
-  height: 100%;
+  max-width: 168px;
 `;
 
 type Props = {

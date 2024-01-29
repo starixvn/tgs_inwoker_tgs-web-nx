@@ -15,22 +15,25 @@ type DateRangSelectionTypes = {
   theme: typeof theme;
 };
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
-  text-align: center;
-  cursor: pointer;
-  white-space: nowrap;
-  background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.primary : theme.white;
-  }};
-  color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.white : theme.gray80;
-  }};
-  border: 2px solid ${({ theme }) => theme.primary};
-  border-radius: 6px;
-  padding: 7px 15px;
-  font-size: 0.812rem;
-  line-height: 17.25px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  width: 83px;
+  height: 47px;
+  white-space: nowrap;
+  background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+    return $isSelected ? theme.primary : "none";
+  }};
+  color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+    return $isSelected ? theme.white : theme.tertiaryLight;
+  }};
+  border: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
+    return $isSelected ? "none" : `1px solid ${theme.tertiary}`;
+  }};
+  border-radius: 5px;
+  font-size: 0.937rem;
 `;
 
 export enum DateRangeEnum {

@@ -3,11 +3,43 @@ import styled from "styled-components";
 import { Button } from "@mui/material";
 import { useReportTypeTabs } from "@/components/account/Report/hooks/useReportTypeTabs";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const ReportTypeTabsContainer = styled.div`
   display: flex;
   gap: 9px;
   flex-wrap: wrap;
+`;
+
+type TabButtonProps = {
+  $isSelected: boolean;
+  theme: typeof theme;
+};
+
+const TabButton = styled.button<TabButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: ${({ $isSelected }: TabButtonProps) => {
+    return $isSelected ? `linear-gradient(180deg, #922ACF 0%, #2F26AD 100%)` : "none";
+  }};
+  color: ${({ $isSelected }: TabButtonProps) => {
+    return $isSelected ? theme.white : theme.tertiaryLight;
+  }};
+  border: ${({ $isSelected, theme }: TabButtonProps) => {
+    return $isSelected ? "none" : `1px solid ${theme.tertiary}`;
+  }};
+  border-radius: 5px;
+  font-size: 0.937rem;
+  width: calc((100% - 2 * 9px) / 3);
+  min-width: 100px;
+  height: 45px;
+
+  ${media.sm} {
+    width: calc((100% - 5 * 9px) / 6);
+    min-width: 125px;
+  }
 `;
 
 type Props = {
@@ -27,37 +59,14 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
     <ReportTypeTabsContainer {...others}>
       {displayedTabList.map((reportTab) => {
         const { index, label } = reportTab;
-        const isSelected = index === selectedType;
         return (
-          <Button
+          <TabButton
             key={index}
+            $isSelected={index === selectedType}
             onClick={() => handleButtonClick(index)}
-            sx={{
-              fontSize: "0.937rem",
-              color: isSelected ? theme.white : theme.gray80,
-              background: isSelected ? theme.primary : theme.white,
-              border: `2px solid ${theme.primary}`,
-              "&:hover": {
-                color: isSelected ? theme.white : theme.gray80,
-                background: isSelected ? theme.primary : theme.white,
-              },
-              whiteSpace: {
-                sx: "wrap",
-                sm: "no-wrap",
-              },
-              padding: "13px",
-              borderRadius: "6px",
-              width: {
-                xs: "calc((100% - 2 * 9px) / 3)",
-                sm: "auto",
-              },
-              minWidth: {
-                sm: "calc((100% - 5 * 9px) / 6)",
-              },
-            }}
           >
             {label}
-          </Button>
+          </TabButton>
         );
       })}
     </ReportTypeTabsContainer>
