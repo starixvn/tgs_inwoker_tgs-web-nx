@@ -5,6 +5,7 @@ import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
 
 const MobileVendorCardContainer = styled.div`
+  flex-shrink: 0;
   width: calc(50% - 6px);
   position: relative;
 
@@ -13,7 +14,7 @@ const MobileVendorCardContainer = styled.div`
 
   ${media.sm} {
     width: calc(16.67% - 6px);
-
+  }
 `;
 
 const CardContainer = styled.div`

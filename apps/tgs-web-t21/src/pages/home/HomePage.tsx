@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useParams } from "react-router-dom";
+import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHistory, useParams } from "react-router-dom";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import { ProviderDto } from "@tgs-web-nx/types";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Banner from "./components/Banner";
 import CardPrompt from "./components/CardPrompt";
+import PopularGames from "./components/CategoryRenderer/components/HomeCategory/components/PopularGames";
+import MobileVendorCard from "./components/VendorCard/mobile";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -12,6 +17,11 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { theme } from "@/theme";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import AuthButtonGroup from "@/pages/home/components/AuthButtonGroup";
+import GameTypeCategory, {
+  CategoryHeader,
+} from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory";
+import HomePromotionCard from "@/pages/home/components/HomePromotion";
+import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
 
 type MainWrapperProps = {
   $isDark: boolean;
@@ -56,11 +66,51 @@ const MainContentWrapper = styled.div`
   }
 `;
 
+const CategoryContentWrapper = styled.div`
+  padding: 14px;
+`;
+
+const CategoryContent = styled.div`
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    height: 10px;
+    display: none;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    background: ${(props) => props.theme.tertiaryDark};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #53535375;
+  }
+
+  &::-webkit-scrollbar-track-piece {
+    background: transparent;
+  }
+`;
+
+const Title = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0em;
+  color: ${({ theme }) => theme.black};
+`;
+
 const HomePage = () => {
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType, providerList } = useHomeGameContext();
+  const { gameTypeItemList, gameTypeDictionary } = useGetHomeCategoryListV2();
   const gameTypeList = useGameTypeList();
-
+  const history = useHistory();
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
@@ -87,12 +137,30 @@ const HomePage = () => {
       <CardPrompt />
       <Banner />
       <AuthButtonGroup />
-
       <GameTypeTab />
-
       <MainContentWrapper>
         <CategoryRenderer />
+        <HomePromotionCard />
+        <CategoryContentWrapper>
+          {gameTypeItemList
+            .filter(
+              (gameTypeItem) =>
+                gameTypeItem.gameType === GameTypeEnum.LIVELOBBY ||
+                gameTypeItem.gameType === GameTypeEnum.SLOT,
+            )
+            .reverse()
+            .map((gameTypeItem) => {
+              return (
+                <GameTypeCategory
+                  key={gameTypeItem.key}
+                  gameTypeItem={gameTypeItem}
+                  gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
+                />
+              );
+            })}
+        </CategoryContentWrapper>
       </MainContentWrapper>
+      {/* todo: mobile footer */}
     </MainWrapper>
   );
 };

@@ -7,7 +7,6 @@ import sportIcon from "@/assets/t21/images/bottomAppBar/icon_sport.svg";
 import chatIcon from "@/assets/t21/images/bottomAppBar/icon-chat.svg";
 import accountIcon from "@/assets/t21/images/bottomAppBar/icon-account.svg";
 import homeIcon from "@/assets/t21/images/bottomAppBar/icon-home.svg";
-import { useTransferDrawer } from "@/layouts/components/BottomAppBar/hooks/useTransferDrawer";
 
 export enum NavTypeEnum {
   ITEM,
@@ -25,7 +24,6 @@ export type BottomNavItem = {
 
 export function useGetBottomNavItemList() {
   const history = useHistory();
-  const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
   const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
@@ -50,11 +48,11 @@ export function useGetBottomNavItemList() {
       },
       {
         navType: NavTypeEnum.BIG_ITEM,
-        key: "vip",
-        label: i18n.t("common.bank"),
+        key: "sports",
+        label: i18n.t("common.sports"),
         iconUrl: sportIcon,
         handleClick: () => {
-          handleTransferDrawerToggle();
+          history.push("/sports");
         },
       },
       {
@@ -68,7 +66,7 @@ export function useGetBottomNavItemList() {
       },
       {
         navType: NavTypeEnum.ITEM,
-        key: "affiliate",
+        key: "account",
         label: i18n.t("deposit.details.account"),
         iconUrl: accountIcon,
         handleClick: () => {
@@ -95,7 +93,5 @@ export function useGetBottomNavItemList() {
   return {
     bottomNavItemList,
     handleClickBottomNavItem,
-    isTransferDrawerOpen,
-    handleTransferDrawerToggle,
   };
 }
