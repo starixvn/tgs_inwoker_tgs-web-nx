@@ -6,12 +6,12 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
-import iconClose from "@/assets/t18/images/dialog/icon-close.svg";
+import iconClose from "@/assets/t18/images/dialog/icon_close.svg";
 
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     position: relative;
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.primaryLight};
     display: flex;
     flex-direction: column;
     align-items: center;

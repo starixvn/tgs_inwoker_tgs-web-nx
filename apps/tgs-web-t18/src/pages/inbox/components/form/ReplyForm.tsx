@@ -16,23 +16,24 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: #23507d;
-  font-size: 0.875rem;
+  color: ${({ theme }) => theme.white};
+  font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 16px;
 `;
 
 const OriginalMessage = styled.div`
   max-height: 120px;
-  padding: 10px;
   white-space: pre-line;
-  border: ${({ theme }) => `1px solid ${theme.gray10}`};
-  background: ${({ theme }) => theme.gray10};
+  border: ${({ theme }) => `1px solid ${theme.tertiary}`};
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.primaryDark};
   color: ${({ theme }) => theme.black};
   overflow: auto;
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0em;
+  padding: 10px 20px;
 `;
 
 type Props = {

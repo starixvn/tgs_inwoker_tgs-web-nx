@@ -9,7 +9,7 @@ const Title = styled.div`
   font-size: 1.5rem;
   text-align: center;
   font-weight: 700;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
   margin-bottom: 18px;
 `;
 
@@ -21,7 +21,7 @@ type Props = {
 const InboxDialogContent = ({ inboxItemDetail, handleSubmitReply }: Props) => {
   return (
     <InboxDialogContentContainer>
-      {/*<Title>{i18n.t("reply")}</Title>*/}
+      <Title>{i18n.t("reply")}</Title>
       <ReplyForm inboxItemDetail={inboxItemDetail} handleSubmitReply={handleSubmitReply} />
     </InboxDialogContentContainer>
   );

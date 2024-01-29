@@ -52,6 +52,8 @@ const muiTheme = createTheme({
     },
     type: "light",
     white: theme.white,
+    primaryDark: theme.primaryDark,
+    primaryLight: theme.primaryLight,
     yellow: "#f4bd29",
     primaryGradient: theme.primaryGradient,
     text: {

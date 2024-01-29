@@ -15,14 +15,16 @@ type CategoryTabProps = {
 };
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1;
+
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? "linear-gradient(180deg, #03A9DD 0%, #09B6ED 50%, #02C3FF 100%)" : theme.gray10};
-  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.white : theme.gray80)};
+    $isActive ? "linear-gradient(180deg, #922ACF 0%, #2F26AD 100%)" : theme.primaryLight};
+  color: ${({ $isActive, theme }: CategoryTabProps) =>
+    $isActive ? theme.white : theme.tertiaryMiddle};
   border-radius: 5px;
   padding: 12px;
   text-align: center;
-  font-size: 0.812rem;
-  line-height: 0.934rem;
+  font-size: 0.875rem;
+  line-height: 0.875rem;
   font-weight: 700;
   cursor: pointer;
 `;

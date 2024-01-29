@@ -30,10 +30,16 @@ export const LabelContainer = styled.div`
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   borderRadius: "5px",
   border: `1px solid ${theme.palette.tertiary.main}`,
+  background: theme.palette.primaryDark,
   width: "100%",
-  fontSize: "0.937rem",
   "& fieldset": {
     border: "none",
+  },
+  "& input": {
+    fontSize: "0.937rem !important",
+  },
+  "& input:placeholder": {
+    fontSize: "0.937rem !important",
   },
 })) as typeof MuiFormControl;
 

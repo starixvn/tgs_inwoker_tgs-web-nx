@@ -6,10 +6,11 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   textarea: {
     padding: "10px 20px",
     color: theme.palette.text.primary,
-    background: theme.palette.gray10,
+    background: theme.palette.primaryDark,
+    border: `1px solid ${theme.palette.tertiary.main}`,
+    borderRadius: "6px",
     fontSize: "0.875rem",
     fontWeight: 400,
-    border: "none",
     height: "100% !important",
     minHeight: "100px",
 
@@ -28,9 +29,9 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   },
 
   "& textarea::placeholder": {
-    color: theme.palette.gray50,
-    opacity: 1,
-    fontSize: "0.875rem",
+    color: theme.palette.white,
+    opacity: 0.3,
+    fontSize: "0.937rem",
     fontWeight: 400,
   },
   [theme.breakpoints.up("sm")]: {

@@ -1,9 +1,10 @@
-<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<rect width="36" height="36" fill="url(#pattern0)"/>
+<svg width="27" height="27" viewBox="0 0 27 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_1889_5124)">
+<path d="M20.5876 6.42381C20.1488 5.98506 19.4401 5.98506 19.0013 6.42381L13.5001 11.9138L7.99881 6.41256C7.56006 5.97381 6.85131 5.97381 6.41256 6.41256C5.97381 6.85131 5.97381 7.56006 6.41256 7.99881L11.9138 13.5001L6.41256 19.0013C5.97381 19.4401 5.97381 20.1488 6.41256 20.5876C6.85131 21.0263 7.56006 21.0263 7.99881 20.5876L13.5001 15.0863L19.0013 20.5876C19.4401 21.0263 20.1488 21.0263 20.5876 20.5876C21.0263 20.1488 21.0263 19.4401 20.5876 19.0013L15.0863 13.5001L20.5876 7.99881C21.0151 7.57131 21.0151 6.85131 20.5876 6.42381Z" fill="white"/>
+</g>
 <defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_11_3214" transform="scale(0.016129)"/>
-</pattern>
-<image id="image0_11_3214" width="62" height="62" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD4AAAA+BAMAAACB77V3AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAkUExURWaFsUdwTGeGsUe2xWiEsmeGsmeFsmaGsmeFsmeGsmaGsmaFsbCb1loAAAAMdFJOU8wAeQEQvic7TqlkjUhLljYAAAJsSURBVDjLhVXNi9NQEP9RjVo9TV+MVS9ZV/DjFiO7xVMrLfhxCSq6rJetsjl3WaWHvewHHvRUP8CrCorgpYKi+Nc585L0vZc0ZKAlmd/Mb+ZNZuaBbPHTaTpwNLCe71xLAHjvXizF/dco5O+gigchjDwYlHHfhoHWwMXVK9E+/Z4O0ze/5XHDxe9LYt8iojii+Jmk+cvG11jT3s1dVNSb8evYwif8vqPMqXps/8TgXeZbdcpymzU7C3xSWBt5CZwo8DVmd6tKKkjgjXN8BHxQJX+6y8oMV/OKOytvJmhlOGf3iCoSbwMHgqtRnmpJujoA+4c4TctE60EB8FBeD49Mea6STtsbMN7J6LtoRUVuoUSWAJ8Z76Mtyo4p4Q1gRTKcMTFoHyfzdHICdtf+ShDQLAsv2tXCPbMc4QzBlyi22hh24EVg3jHZBAt3WufMIUZkERh3Emqc5yBkERh34tR+4qypnkBxaLVKiLfo4xRZBJcsd/qEY9jK+qQgcDptguMOLgSWu8b5Rw6B1ajs24g38Tfl13S+pvo01bfp+5yr/74CSX+s1PTHRekPmtf2V1/6i7tQH7BX6U8+nvTnCO1oaX+rRPd3B/k0lOfjQjYffj6+dfPFVWqVh1//z7P5pPr5fl/sh8dVWG1pN2gir7JfKFjsl2IVubKt6TVe7LKSuyZFHmqjFH0/T0rjPIi47OC8zz2zX2WbekcWfCspzpThgSx0Y3AvWWxcmH2NK5nK37O62Llf2ten6fTLTB4/lu+nr879tBmV7zfHYLNyv5GK95Ic9f5ES+5PFa//kNDtf89r7l+2GabDiCJL8x8o2LRHVlOuTwAAAABJRU5ErkJggg=="/>
+<clipPath id="clip0_1889_5124">
+<rect width="27" height="27" fill="white"/>
+</clipPath>
 </defs>
 </svg>
