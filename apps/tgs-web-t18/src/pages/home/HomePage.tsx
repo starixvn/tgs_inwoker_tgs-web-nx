@@ -47,7 +47,6 @@ const MainContentWrapper = styled.div`
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
-  padding-top: 15px;
 
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};

@@ -7,12 +7,11 @@ import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t18/images/home/search.svg";
 import ProviderTags from "@/pages/home/GameFilterToolBox/ProviderTags";
 import FilterTags from "@/pages/home/GameFilterToolBox/FilterTags";
-import { media } from "@/theme/breakpoints";
 
 const GameFilterToolBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  padding: 15px 0;
 `;
 
 const GameFilterToolBox = () => {
