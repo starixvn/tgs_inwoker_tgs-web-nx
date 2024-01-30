@@ -106,78 +106,6 @@ const MainContentWrapper = styled.div`
   }
 `;
 
-const HomeCategoryContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-
-  border: 1px solid red;
-`;
-
-const HomeLobbyCategory = styled.div`
-  width: 100%;
-`;
-
-const CategoryTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 0px;
-`;
-
-const SlotCategoryContent = styled.div`
-  width: 100%;
-  row-gap: 15px;
-  column-gap: 31px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-`;
-
-const HomeRanking = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 16px 12px;
-`;
-
-const Title = styled.div`
-  width: 100%;
-  font-size: 17.5px;
-  font-weight: 400;
-  line-height: 22px;
-  color: ${({ theme }) => theme.white};
-`;
-
-const Introduction = styled.div`
- display: flex;
-  padding: 60px 42px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 21px;
-  background-color: ${({ theme }) => theme.g3};
-  margin-bottom: 30px;
-`;
-
-const Brand = styled.div`
-  width: 100%;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 58.36px;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.white};
-`;
-
-const IntroductionText = styled.div`
-  width: 100%;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 30px;
-  color: ${({ theme }) => theme.g2};
-`;
-
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
   height: 158px;
@@ -190,6 +118,36 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   ${media.sm} {
     height: 438px;
   }
+`;
+
+const WalletWrapper = styled.div`
+  width: 100%;
+  padding: 10px 0px;
+  gap: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.darkGray};
+  border-radius: 5px;
+  margin: 10px 0;
+`;
+
+const WalletBtn = styled.div`
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 14px;
+  text-align: center;
+  color: #F2F2F2;
+  width: 95px;
+  padding: 12px 15px;
+`;
+
+const Line = styled.div`
+  width: 2px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: ${({ theme }) => theme.lightGray};
 `;
 
 const HomePage = () => {
@@ -261,35 +219,17 @@ const HomePage = () => {
         <CategoryRenderer />
       </MainContentWrapper>
 
-
-      {/* {!activeGameType &&
-        <>
-          <HomeCategoryContainer>
-            <ScrollableHomeRecommend />
-            <ScrollableHomeHot />
-            <HomeRanking>
-              <Title>Latest Bets & Wins</Title>
-              <LatestRecordTable betRecordList={betRecordList} />
-            </HomeRanking>
-            {isDesktopSize ? <DesktopAffiliateProgram /> : <AffiliateProgram />}
-            <ScrollableHomeNew />
-            <Introduction>
-              <Brand>{config.brand} : A Winning Casino!</Brand>
-              <IntroductionText>
-                {config.brand} is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic.
-              </IntroductionText>
-            </Introduction>
-          </HomeCategoryContainer>
-        </>
-      } */}
-      {/* 
       {isMobileSize && !activeGameType && (
         <>
+          <WalletWrapper>
+            <WalletBtn onClick={() => history.push("/deposit")}>{i18n.t("common.deposit")}</WalletBtn>
+            <Line />
+            <WalletBtn onClick={() => history.push("/withdrawal")}>{i18n.t("common.withdrawal")}</WalletBtn>
+          </WalletWrapper>
           <SocialMedia />
           <VendorLogo />
         </>
-      )} */}
-
+      )}
     </MainWrapper>
   );
 };
