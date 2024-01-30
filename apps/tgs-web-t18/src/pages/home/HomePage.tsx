@@ -10,7 +10,6 @@ import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { theme } from "@/theme";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import AuthButtonGroup from "@/pages/home/components/AuthButtonGroup";
 
 type MainWrapperProps = {
   $isDark: boolean;

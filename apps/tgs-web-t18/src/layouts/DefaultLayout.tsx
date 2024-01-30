@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { DESKTOP_DRAWER_WIDTH, MOBILE_DRAWER_WIDTH } from "@/theme/constants";
+import {
+  MOBILE_BOTTOM_APP_BAR_HEIGHT,
+  MOBILE_DRAWER_WIDTH,
+  MOBILE_HEADER_HEIGHT,
+} from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
 import Header from "@/layouts/components/Header";
 import Footer from "@/layouts/components/Footer";
@@ -16,7 +20,7 @@ const DefaultLayoutContainer = styled.div`
 const DashboardContainer = styled.div`
   display: flex;
   margin-top: 80px;
-  min-height: calc(100vh - 80px - 82px);
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${MOBILE_BOTTOM_APP_BAR_HEIGHT});
 
   ${media.sm} {
     margin-top: 60px;
@@ -40,7 +44,7 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
 `;
 
 const ChildrenWrapper = styled.div`
-  padding-bottom: 82px;
+  padding-bottom: ${MOBILE_BOTTOM_APP_BAR_HEIGHT};
 
   ${media.sm} {
     padding-bottom: 0;

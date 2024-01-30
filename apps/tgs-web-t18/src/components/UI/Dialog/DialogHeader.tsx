@@ -1,6 +1,6 @@
 import { Close as CloseIcon } from "@mui/icons-material";
 import styled from "styled-components";
-import backIcon from "@/assets/t18/images/promotion/back.png";
+import backIcon from "@/assets/t18/images/dialog/back.png";
 
 const DialogHeaderContainer = styled.div`
   position: fixed;

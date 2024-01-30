@@ -32,6 +32,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
+import PromotionLayout from "@/layouts/PromotionLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -234,13 +235,13 @@ const routes: RouteType[] = [
   {
     path: "/promotion-list",
     component: PromotionPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
-    layout: DialogLayout,
+    layout: PromotionLayout,
     isAnonymousAllowed: true,
   },
   //

@@ -11,11 +11,12 @@ import { useTab } from "@/hooks/account/useTab";
 import InfoCard from "@/pages/account/components/InfoCard";
 import AccountNavigations from "@/pages/account/components/AccountNavigations";
 import MyInfo from "@/pages/account/components/MyInfo";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const AccountContainer = styled.div`
   background: ${({ theme }) => theme.primaryDark};
   padding: 40px 15px 0;
-  max-width: 870px;
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
   margin: auto;
 
   & > div {

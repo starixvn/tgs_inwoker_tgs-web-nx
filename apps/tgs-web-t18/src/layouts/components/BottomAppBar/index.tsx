@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import BottomNav from "./BottomNav";
 import { useGetBottomNavItemList } from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
+import { MOBILE_BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 
 const BottomAppBarContainer = styled.div`
   position: fixed;
-  height: 82px;
+
+  height: ${MOBILE_BOTTOM_APP_BAR_HEIGHT};
   width: 100%;
   top: auto;
   bottom: 0;

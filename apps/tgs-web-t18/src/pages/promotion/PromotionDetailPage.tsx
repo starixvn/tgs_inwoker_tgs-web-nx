@@ -1,28 +1,29 @@
 import styled from "styled-components";
-import moment from "moment";
-import { usePromotionDetailPage } from "@tgs-web-nx/core/hooks";
+import { useGeneralStore } from "@tgs-web-nx/core";
+import { Promotion } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+import { NOT_SHOW_JOIN_BUTTON_KEY_LIST } from "@tgs-web-nx/constants";
+import moment from "moment";
+import { media } from "@/theme/breakpoints";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import JoinPromotionButton from "@/pages/promotion/components/JoinPromotionButton";
-import { media } from "@/theme/breakpoints";
-import Loading from "@/components/UI/Loading";
+import { MOBILE_BOTTOM_APP_BAR_HEIGHT, MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
-  padding: 12px;
-  color: ${({ theme }) => theme.white};
+  padding: 22px 22px 80px 22px;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 22px;
-  flex-shrink: 0;
 
   ${media.sm} {
-    max-width: 870px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 22px;
   }
 `;
+
 const BannerWrapper = styled.div`
   width: 100%;
   height: calc((100vw - 44px) * 0.4);
@@ -31,28 +32,21 @@ const BannerWrapper = styled.div`
     border-radius: 12px;
   }
 `;
+
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 40px;
   align-self: stretch;
-  padding-bottom: 73px;
 `;
+
 const TextArea = styled.div`
-  width: 100%;
-  & iframe {
-    max-width: 100%;
-  }
-  & img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-  }
+  position: relative;
 `;
+
 const Title = styled.h2`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.yellow};
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -61,8 +55,9 @@ const Title = styled.h2`
     font-size: 2rem;
   }
 `;
+
 const Description = styled.p`
-  color: ${({ theme }) => theme.text};
+  color: #ffffff;
   font-size: 0.875rem;
   font-weight: 500;
   ${media.sm} {
@@ -71,75 +66,96 @@ const Description = styled.p`
 `;
 
 const TermsAndConditions = styled(Description)`
+  ol {
+    padding-left: 16px;
+  }
   ${media.sm} {
-    padding-left: 30px;
+    ol {
+      padding-left: 30px;
+    }
   }
 `;
 
 const JoinPromotionButtonWrapper = styled.div`
   position: fixed;
-  bottom: 63px;
+  bottom: ${MOBILE_BOTTOM_APP_BAR_HEIGHT};
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
-  background: ${({ theme }) => theme.mainBackground};
-
+  padding: 10px 22px;
   ${media.sm} {
     position: relative;
+    bottom: 0px;
     background: transparent;
   }
 `;
 
 const PromotionDetail = () => {
-  const { promotionData, contentToDisplay, termsToDisplay, showJoinButton } =
-    usePromotionDetailPage();
+  const {
+    general: {
+      promotionList: { items = [] },
+    },
+  } = useGeneralStore();
 
-  const isLoading = !promotionData || Object.keys(promotionData).length === 0;
+  const targetPromotionId = window.location.pathname.split("/")[2]; // TODO: 確定取得方法
 
-  if (isLoading) {
-    return <Loading show={true} />;
-  }
+  const promotionData = items.find((item: Promotion) => item.id === targetPromotionId) as Promotion;
+
+  if (!promotionData || Object.keys(promotionData).length === 0) return null;
+
+  const isLocalizationHasData = Object.keys(promotionData.localization).length > 0;
+
+  const contentToDisplay =
+    (isLocalizationHasData && promotionData.localization[i18n.language].content) ||
+    promotionData.content ||
+    "";
+
+  const termsToDisplay =
+    (isLocalizationHasData && promotionData.localization[i18n.language].terms) ||
+    promotionData.terms ||
+    "";
+
+  const showJoinButton = !NOT_SHOW_JOIN_BUTTON_KEY_LIST.includes(
+    promotionData.promotionType.toUpperCase(),
+  );
 
   return (
-    <div>
-      <PromotionDetailContainer>
-        <BannerWrapper>
-          <BannerImage promotionData={promotionData} />
-        </BannerWrapper>
-        <ContentContainer>
-          <TextArea>
-            <Title>{promotionData.name}</Title>
-            <Description
-              dangerouslySetInnerHTML={{
-                __html: "<div>" + contentToDisplay + "</div>",
-              }}
-            />
-          </TextArea>
-          <TextArea>
-            <Title>{i18n.t("promotion.promoDate")}</Title>
-            <Description>
-              {moment(promotionData.from).format("YYYY/MM/DD HH:mm:ss")} -{" "}
-              {moment(promotionData.to).format("YYYY/MM/DD HH:mm:ss")}
-            </Description>
-          </TextArea>
-          <TextArea>
-            <Title>{i18n.t("common.termsAndCondition")}</Title>
-            <TermsAndConditions
-              dangerouslySetInnerHTML={{
-                __html: termsToDisplay,
-              }}
-            />
-          </TextArea>
-        </ContentContainer>
-      </PromotionDetailContainer>
+    <PromotionDetailContainer>
+      <BannerWrapper>
+        <BannerImage promotionData={promotionData} />
+      </BannerWrapper>
+      <ContentContainer>
+        <TextArea>
+          <Title>{promotionData.name}</Title>
+          <Description
+            dangerouslySetInnerHTML={{
+              __html: "<div>" + contentToDisplay + "</div>",
+            }}
+          />
+        </TextArea>
+        <TextArea>
+          <Title>Promo Period</Title>
+          <Description>
+            {moment(promotionData.from).format("YYYY/MM/DD HH:mm:ss")} -{" "}
+            {moment(promotionData.to).format("YYYY/MM/DD HH:mm:ss")}
+          </Description>
+        </TextArea>
+        <TextArea>
+          <Title>Terms & Conditions</Title>
+          <TermsAndConditions
+            dangerouslySetInnerHTML={{
+              __html: termsToDisplay,
+            }}
+          />
+        </TextArea>
+      </ContentContainer>
       {showJoinButton && (
         <JoinPromotionButtonWrapper>
           <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />
         </JoinPromotionButtonWrapper>
       )}
-    </div>
+    </PromotionDetailContainer>
   );
 };
 

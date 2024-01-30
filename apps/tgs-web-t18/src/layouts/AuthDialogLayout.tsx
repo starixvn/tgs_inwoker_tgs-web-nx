@@ -6,6 +6,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Close as CloseIcon } from "@mui/icons-material";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
+import { MOBILE_BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -13,8 +14,8 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - 80px - 82px); // 80px:Header, 82px: BottomAppBar
-  margin: 80px 0 82px;
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${MOBILE_BOTTOM_APP_BAR_HEIGHT});
+  margin: ${MOBILE_HEADER_HEIGHT} 0 ${MOBILE_BOTTOM_APP_BAR_HEIGHT};
   position: relative;
   z-index: 1;
 `;

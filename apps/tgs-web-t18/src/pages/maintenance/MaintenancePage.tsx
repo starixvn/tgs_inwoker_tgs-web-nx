@@ -12,7 +12,6 @@ const MaintenanceContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  //height: calc(100vh - 80px - 82px);
   height: 100vh;
   color: ${({ theme }) => theme.white};
   background: black;

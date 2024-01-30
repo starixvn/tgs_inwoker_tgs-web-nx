@@ -4,6 +4,7 @@ import CurrentLevelBanner from "@/components/project/BettingBonus/CurrentLevelBa
 import LevelTable from "@/components/project/BettingBonus/LevelTable";
 import Loading from "@/components/UI/Loading";
 import { media } from "@/theme/breakpoints";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Container = styled.div`
   padding: 20px 10px;
@@ -13,7 +14,7 @@ const Container = styled.div`
   align-items: center;
 
   ${media.sm} {
-    max-width: 870px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
   }
 `;

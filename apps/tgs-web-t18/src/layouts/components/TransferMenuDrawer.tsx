@@ -4,7 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { theme } from "@/theme";
-import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
+import { MOBILE_BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import { Button } from "@/components/UI/Button";
 
 const ButtonContainer = styled.div`
@@ -73,15 +73,15 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
       onClose={handleDialogClose}
       sx={{
         flexShrink: 0,
-        height: `calc(100vh - ${BOTTOM_APP_BAR_HEIGHT})`,
+        height: `calc(100vh - ${MOBILE_BOTTOM_APP_BAR_HEIGHT})`,
         zIndex: "999",
         "& .MuiBackdrop-root": {
-          height: `calc(100vh - ${BOTTOM_APP_BAR_HEIGHT})`,
-          marginBottom: BOTTOM_APP_BAR_HEIGHT,
+          height: `calc(100vh - ${MOBILE_BOTTOM_APP_BAR_HEIGHT})`,
+          marginBottom: MOBILE_BOTTOM_APP_BAR_HEIGHT,
         },
         "& .MuiDrawer-paper": {
           height: "72px",
-          marginBottom: BOTTOM_APP_BAR_HEIGHT,
+          marginBottom: MOBILE_BOTTOM_APP_BAR_HEIGHT,
           transition: "all ease-in-out 0.2s",
           border: "none",
           background: theme.mainBackground,
