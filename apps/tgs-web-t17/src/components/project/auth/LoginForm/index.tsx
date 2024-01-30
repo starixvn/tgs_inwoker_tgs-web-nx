@@ -56,9 +56,11 @@ const LoginForm = () => {
   `;
 
   const Title = styled(LoginTitle)`
-    font-size: 15.6px;
+    font-size: 48px;
     font-weight: 700;
+    text-transform: uppercase;
     color: ${({ theme }) => theme.white};
+    text-align: center; 
   `;
 
   return (
@@ -69,11 +71,10 @@ const LoginForm = () => {
           <BrandLogo style={{ maxHeight: "55px", zIndex: "1" }} />
         </LoginHeader>
       ) : (
-        <BrandLogo style={{ maxHeight: "55px" }} />
+        <Title>{i18n.t("common.login")}</Title>
       )}
 
       <AuthFormContainer>
-        <Title>{i18n.t("common.login")}</Title>
         <FormContainer>
           <FormikForm
             formInputList={formInputConfigList}
@@ -102,7 +103,7 @@ const LoginForm = () => {
 
         <RedirectToRegisterHint />
 
-        <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />
+        {/* <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} /> */}
       </AuthFormContainer>
     </>
   );

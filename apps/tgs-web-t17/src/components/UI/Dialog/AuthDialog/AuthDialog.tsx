@@ -4,9 +4,11 @@ import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import CloseIcon from "@/components/project/Popup/components/CloseIcon";
+import { media } from "@/theme/breakpoints";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
+  border-radius: 10px;
 
   & .MuiPaper-root {
     position: relative;
@@ -14,14 +16,19 @@ const StyledDialog = styled(MuiDialog)`
     flex-direction: column;
     justify-content: center;
   }
+
+  & .MuiDialog-paper {
+    max-width: 490px;
+  }
 `;
 
 const ChildContainer = styled.div`
   width: 100%;
   margin: auto;
-  background: ${({ theme }) => theme.pureBlack};
+  background: ${({ theme }) => theme.mainBackground};
   z-index: 2;
   overflow: auto;
+  padding: 50px 55px;
 
   ::-webkit-scrollbar {
     visibility: hidden;
