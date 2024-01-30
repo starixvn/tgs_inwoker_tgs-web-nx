@@ -3,6 +3,7 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common, getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import { media } from "@/theme/breakpoints";
@@ -39,7 +40,7 @@ const CategoryContent = styled.div`
   align-self: stretch;
 
   ${media.sm} {
-    padding: 20px 0;
+    padding: 0 0 20px;
   }
 `;
 
@@ -61,11 +62,12 @@ const NonLobbyCategory = () => {
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
   const cardWidth = useCardWidth("14px");
+  const { isDesktopSize } = useRwd();
 
   return (
     <Wrapper>
       <CategoryContentWrapper>
-        <CategoryTitle>{i18n.t(getGameTypeName(activeGameType))}</CategoryTitle>
+        {!isDesktopSize && <CategoryTitle>{i18n.t(getGameTypeName(activeGameType))}</CategoryTitle>}
         <GameFilterToolBox />
 
         <CategoryContent>

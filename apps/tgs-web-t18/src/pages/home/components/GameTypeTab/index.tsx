@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FilterTagTypeEnum, GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { HTMLProps } from "react";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
@@ -16,29 +17,31 @@ const TabContainer = styled.div`
 
   ${media.sm} {
     margin-bottom: unset;
-    padding-bottom: 5px;
+    background-color: ${({ theme }) => theme.primaryLight};
+    border-radius: 10px;
+    padding: 4px;
 
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.tertiaryDark};
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: #53535375;
-    }
-
-    &::-webkit-scrollbar-track-piece {
-      background: transparent;
-    }
+    //&::-webkit-scrollbar {
+    //  height: 0;
+    //}
+    //
+    // &::-webkit-scrollbar-track {
+    //   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    //   background: ${(props) => props.theme.tertiaryDark};
+    // }
+    //
+    // &::-webkit-scrollbar-thumb {
+    //   border-radius: 5px;
+    //   background-color: #53535375;
+    // }
+    //
+    // &::-webkit-scrollbar-track-piece {
+    //   background: transparent;
+    // }
   }
 `;
 
-const GameTypeTab = () => {
+const GameTypeTab = (props: HTMLProps<HTMLDivElement>) => {
   const history = useHistory();
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
@@ -77,7 +80,8 @@ const GameTypeTab = () => {
   });
 
   return (
-    <TabContainer>
+    // @ts-ignore
+    <TabContainer {...props}>
       {filteredGameTypeList.map((gameTypeItem) => {
         const { key, iconUrl, text, gameType, fontSize } = gameTypeItem;
 

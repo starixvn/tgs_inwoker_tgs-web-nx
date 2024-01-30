@@ -7,11 +7,16 @@ import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t18/images/home/search.svg";
 import ProviderTags from "@/pages/home/GameFilterToolBox/ProviderTags";
 import FilterTags from "@/pages/home/GameFilterToolBox/FilterTags";
+import { media } from "@/theme/breakpoints";
 
 const GameFilterToolBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px 0;
+  padding: 20px 0;
+
+  ${media.sm} {
+    //padding-top: 0;
+  }
 `;
 
 const GameFilterToolBox = () => {
@@ -24,12 +29,12 @@ const GameFilterToolBox = () => {
         <ProviderTags />
 
         <FilterTags />
-        <SearchInput
-          placeholder={i18n.t("slot.search")}
-          imageUrl={searchIcon}
-          handleChange={handleChangeSearch}
-          value={searchString}
-        />
+        {/*<SearchInput*/}
+        {/*  placeholder={i18n.t("slot.search")}*/}
+        {/*  imageUrl={searchIcon}*/}
+        {/*  handleChange={handleChangeSearch}*/}
+        {/*  value={searchString}*/}
+        {/*/>*/}
       </GameFilterToolBoxContainer>
     );
   }

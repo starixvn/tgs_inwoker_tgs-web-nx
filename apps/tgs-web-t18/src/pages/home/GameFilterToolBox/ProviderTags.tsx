@@ -11,7 +11,6 @@ const ProviderTagsContainer = styled.div`
   padding: 15px 0;
 
   ${media.sm} {
-    width: 42%;
   }
 `;
 
