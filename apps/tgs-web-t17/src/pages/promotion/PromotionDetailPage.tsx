@@ -22,7 +22,6 @@ const PromotionDetailContainer = styled.div`
     margin: 0 auto;
     padding: 46px 46px 60px 46px;
     border-radius: 10px;
-    border: 2px solid #B29224;
   }
 `;
 const BannerWrapper = styled.div`
@@ -30,7 +29,7 @@ const BannerWrapper = styled.div`
   height: calc((100vw - 44px) * 0.4);
   ${media.sm} {
     height: calc(100% * 2.858);
-    border-radius: 12px;
+    border-radius: 10px;
   }
 `;
 const ContentContainer = styled.div`

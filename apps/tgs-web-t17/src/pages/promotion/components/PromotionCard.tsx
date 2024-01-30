@@ -17,9 +17,7 @@ const PromotionCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border-radius: 10px;
-  border: 2.5px solid #B78316;
-  background: ${({ theme }) => theme.black};
+  border-radius: 10px 10px 0px 0px;
   flex-shrink: 0;
 
   &:hover {
@@ -27,59 +25,13 @@ const PromotionCardContainer = styled.div`
     }
 
   ${media.sm} {
-    width: calc((100% - 80px) / 2);
-    margin: 20px 0;
-    background: #332915;
+    width: calc((100% - 36px) / 3);
   }
 `;
+
 const BannerWrapper = styled.div<MoreOnclickProps>`
   width: 100%;
   cursor: pointer;
-`;
-
-const PromotionTextContainer = styled.div`
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 10px 20px;
-`;
-
-const TitleWrapper = styled.div`
-  font-size: 1.062rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.primary};
-  text-overflow: ellipsis;
-`;
-
-const ClickMoreContainer = styled.div`
-  flex-shrink: 0;
-  margin-left: auto;
-
-  ${media.sm} {
-    min-width: 105px;
-  }
-`;
-
-const MoreBtn = styled.div<MoreOnclickProps>`
-  padding: 10px;
-  height: 30px;
-  color: ${(props) => props.theme.black};
-  font-size: 0.875rem;
-  font-weight: 400;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 50px;
-  background: ${({ theme }) => theme.goldGradient};
-
-
-  
-  &:hover {
-    box-shadow: 0 -5px 15px 0 rgba(236,166,61,.501);
-    }
 `;
 
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
@@ -99,16 +51,6 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
       <BannerWrapper onClick={handleEnterDetail}>
         <BannerImage promotionData={promotionData} />
       </BannerWrapper>
-
-      <PromotionTextContainer>
-        <TitleWrapper>{promotionData.name}</TitleWrapper>
-        <ClickMoreContainer>
-          {isMobileSize
-            ? <Icon iconUrl={moreIcon} width={"28px"} height={"28px"} onClick={handleEnterDetail} />
-            : <MoreBtn onClick={handleEnterDetail}>More</MoreBtn>
-          }
-        </ClickMoreContainer>
-      </PromotionTextContainer>
     </PromotionCardContainer>
   );
 };
