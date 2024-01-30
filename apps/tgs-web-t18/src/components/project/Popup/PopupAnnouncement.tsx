@@ -17,28 +17,31 @@ const doNotShowAnnouncementDialogKey = "doNotShowAnnouncementDialog";
 const DialogContainer = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
-    background: url(${mobileBgUrl}) no-repeat center center !important;
+    background: url(${mobileBgUrl});
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 321px;
+    //width: 321px;
     //height: 283px;
     overflow: visible;
     border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
 
     ${media.sm} {
-      width: 652px;
+      //width: 652px;
       //height: 386px;
-      background: url(${desktopBgUrl}) no-repeat center center !important;
+      background: url(${desktopBgUrl});
     }
   }
 `;
 
 const ChildContainer = styled.div`
   width: 100%;
-  overflow: visible;
+  overflow: auto;
   //height: calc(283px - 20px - 20px);
 `;
 

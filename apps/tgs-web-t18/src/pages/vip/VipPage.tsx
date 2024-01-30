@@ -1,53 +1,52 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useBettingBonus } from "@tgs-web-nx/core/hooks";
-import { VipData } from "@tgs-web-nx/types";
-import { useUpdatePageName } from "@tgs-web-nx/core/features";
-import LevelTable from "./components/LevelTable";
-import { media } from "@/theme/breakpoints";
-import BonusTable from "@/pages/vip/components/BonusTable";
+import { useVipStore } from "@tgs-web-nx/core/hooks";
+import { useAccountStore } from "@tgs-web-nx/core";
 import Loading from "@/components/UI/Loading";
+import { media } from "@/theme/breakpoints";
+import VipSingleItem, { VipCardItem } from "@/pages/vip/components/VipSingleItem";
+import { levelItemStyleList } from "@/pages/vip/constants/vip";
 
-const VipWrapper = styled.div`
+const VipScrollableContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  // background-color: ${({ theme }) => theme.mainBackground};
-  padding: 12px;
-  gap: 16px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  background-color: ${(props) => props.theme.primaryDark};
+  color: ${(props) => props.theme.white};
+  box-sizing: border-box;
 
   ${media.sm} {
-    max-width: 800px;
+    max-width: 870px;
     margin: 0 auto;
-    gap: 10px;
-    padding: 10px;
-    // background-color: ${({ theme }) => theme.blue20};
-  }
-`;
+    scroll-snap-type: unset;
+    &::-webkit-scrollbar {
+      width: 10px;
+      background-color: #1d1d1d40;
+    }
 
-const VipBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-  height: 137px;
-  border-radius: 4px;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      background: ${(props) => props.theme.primaryLight};
+    }
 
-  ${media.sm} {
-    max-width: 780px;
-    height: 250px;
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background-color: ${(props) => props.theme.tertiary};
+    }
   }
 `;
 
 const VIP = () => {
-  const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
-  const [vipSortingData, setVipSortingData] = useState<VipData[]>([]);
-  useUpdatePageName("VIP");
+  const { vipData, isLoading } = useVipStore();
+  const accountStore = useAccountStore();
+  const [vipSortingData, setVipSortingData] = useState<VipCardItem[]>([]);
+  const accountLevel = accountStore.account.info.member_level_id;
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && levelItemStyleList) {
       const vipList =
         vipData &&
         vipData.sort((a, b) => {
@@ -56,16 +55,34 @@ const VIP = () => {
 
       setVipSortingData(vipList);
     }
-  }, [isLoading, vipData]);
+  }, [levelItemStyleList, isLoading, vipData]);
+
+  const numberOfLevels = vipSortingData.length;
+  const levelItems = levelItemStyleList.slice(0, numberOfLevels);
+  // 將 levelItems 中對應索引的等級資料添加到 sortingItem 中
+  const updatedVipSortingData = vipSortingData.map((sortingItem, index) => {
+    sortingItem.levelStyle = levelItems[index];
+    return sortingItem;
+  });
+
+  // to-do: 多抽一層資料處理hooks/vip for useVipDataHandler.ts 把資料和UI切分乾淨
 
   if (isLoading) return <Loading show={true} />;
 
   return (
-    <VipWrapper>
-      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.png`} />
-      <BonusTable vipSortingData={vipSortingData} />
-      <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
-    </VipWrapper>
+    <VipScrollableContainer>
+      {updatedVipSortingData &&
+        updatedVipSortingData.map((vipCardItem, index) => {
+          const isCurrentLevel = index === accountLevel - 1;
+          return (
+            <VipSingleItem
+              key={vipCardItem.levelStyle.level}
+              isCurrentLevel={isCurrentLevel}
+              vipCardItem={vipCardItem}
+            />
+          );
+        })}
+    </VipScrollableContainer>
   );
 };
 

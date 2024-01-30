@@ -310,7 +310,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: DialogLayout,
+    layout: DefaultLayout,
   },
   // {
   //   path: "/sports/:platform",

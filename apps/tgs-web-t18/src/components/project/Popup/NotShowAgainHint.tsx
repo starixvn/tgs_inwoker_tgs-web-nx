@@ -13,6 +13,7 @@ const NotShowAgainHintContainer = styled.div`
   color: ${({ theme }) => theme.text};
   margin: 18px 0;
   background-color: ${({ theme }) => theme.primaryLight};
+  border-radius: 50px;
 `;
 
 type CheckBoxProps = {
