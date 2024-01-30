@@ -25,10 +25,10 @@ const SupportCardContainer = styled.div`
     }
   }
 
-  width: calc((100% - 16px * (2 - 1)) / 2);
+  width: calc((100% - 16px * 1) / 2);
 
   ${media.sm} {
-    width: calc((100% - 16px * (3 - 1)) / 4);
+    width: calc((100% - 16px * 3) / 4);
   }
 `;
 

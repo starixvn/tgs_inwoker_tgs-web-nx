@@ -3,14 +3,22 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import deleteIcon from "@/assets/t18/images/card/delete.svg";
 import Icon from "@/components/project/Icon";
+import { media } from "@/theme/breakpoints";
 
 const CardContainer = styled.div`
+  width: 100%;
   padding: 13px 20px;
   background: ${({ theme }) => theme.primaryLight};
   display: flex;
   flex-direction: column;
   gap: 8px;
   border-radius: 5px;
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.tertiaryDark};
+    padding: 13px 21px;
+    width: calc((100% - 14px * 1) / 2);
+  }
 `;
 
 const CardTitle = styled.div`

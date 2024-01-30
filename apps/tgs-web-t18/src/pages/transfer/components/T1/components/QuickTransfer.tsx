@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t18/images/transfer/arrow-right.png";
+import ArrowRightIcon from "@/assets/t18/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -119,7 +119,7 @@ const QuickTransfer = ({
       </GrayInputWrapper>
 
       <QuickTransferArrow>
-        <img src={ArrowRightPNG} alt="arrow-right" />
+        <img src={ArrowRightIcon} alt="arrow-right" />
       </QuickTransferArrow>
 
       <GrayInputWrapper>

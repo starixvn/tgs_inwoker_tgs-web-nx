@@ -12,16 +12,15 @@ const TransferContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 11px;
 `;
 
 const GameTransferWallet = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 200px;
-  border-radius: 4px;
-  border: solid 1px ${({ theme }) => "#dddedf"};
-  background: ${({ theme }) => theme.blue20};
+  width: calc((100% - 11px * 3) / 4);
+  border-radius: 5px;
+  background: ${({ theme }) => theme.tertiaryDark};
   padding: 10px 10px 10px 3px;
   gap: 10px;
 `;

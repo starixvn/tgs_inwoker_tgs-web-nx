@@ -3,7 +3,6 @@ import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
 import iconCard from "@/assets/t18/images/withdraw/icon-card.svg";
-import iconCardActive from "@/assets/t18/images/withdraw/icon-card-active.svg";
 import iconManage from "@/assets/t18/images/withdraw/icon-manage.svg";
 import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
@@ -25,9 +24,12 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   gap: 8px;
   padding: 8px 11px;
   font-size: 14px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
+  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.white)};
+  border: 1px solid
+    ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.primary : theme.white)};
+  border-radius: 6px;
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+    $active ? theme.primary : "transparent"};
   width: auto !important;
   cursor: pointer;
   float: left;
@@ -74,7 +76,7 @@ const BankCardGroup = ({
               getTransferLimit(item.paymentchannelid);
             }}
           >
-            <Icon iconUrl={isActive ? iconCardActive : iconCard} width={"20px"} height={"20px"} />
+            <Icon iconUrl={isActive ? iconCard : iconCard} width={"20px"} height={"20px"} />
             <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
             <BankCardButtonCardNoHL>
               {(() => {
@@ -126,7 +128,14 @@ const BankCardGroup = ({
         );
       })}
 
-      <BankCardButton onClick={onhandleManageCardClick} $active={true}>
+      <BankCardButton
+        onClick={onhandleManageCardClick}
+        $active={true}
+        style={{
+          background: theme.red,
+          borderColor: theme.red,
+        }}
+      >
         <Icon iconUrl={iconManage} width={"20px"} height={"20px"} />
 
         <Grid>{i18n.t("withdrawal.manageBank")}</Grid>
