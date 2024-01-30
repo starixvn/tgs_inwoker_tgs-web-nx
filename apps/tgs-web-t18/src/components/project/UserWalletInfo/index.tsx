@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import refreshIcon from "@/assets/t18/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t18/images/account/icon-refresh.png";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 const rotateKeyFrame = keyframes`
@@ -53,7 +53,7 @@ const WalletsWrapper = styled.div`
 `;
 
 const MainWalletContainer = styled.div`
-  width: 128px;
+  min-width: 128px;
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
@@ -77,9 +77,21 @@ const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
-const RefreshButton = styled(Icon)`
+type RefreshButtonProps = {
+  $isLoading: boolean;
+};
+
+const RefreshButton = styled(Icon)<RefreshButtonProps>`
+  cursor: pointer;
+
+  animation: ${({ $isLoading }: RefreshButtonProps) =>
+    $isLoading
+      ? css`
+          ${rotateKeyFrame} 1s linear 0s infinite
+        `
+      : "none"};
+
   &:hover {
-    cursor: pointer;
     animation: ${rotateKeyFrame} 1s linear 0s infinite;
   }
 `;

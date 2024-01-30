@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useWalletStore } from "@tgs-web-nx/core";
 // import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 // import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd, useWageringPage } from "@tgs-web-nx/core/hooks";
 // import { useSnackbar } from "notistack";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWagering from "@/assets/t18/images/account/navItem/icon-wagering.svg";
+import iconWagering from "@/assets/t18/images/account/badge/icon-wagering.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 import iconCard from "@/assets/t18/images/withdraw/icon-card.svg";
-import iconPlay from "@/assets/t18/images/wagering/icon-play.svg";
-import iconPlayActive from "@/assets/t18/images/wagering/icon-play_active.svg";
 
 import LiveDealerIcon from "@/assets/t18/images/wagering/LiveDealer.svg";
 import LiveDealerIconActive from "@/assets/t18/images/wagering/LiveDealerActive.svg";
@@ -25,7 +22,6 @@ import CardGameIcon from "@/assets/t18/images/wagering/CardGame.svg";
 import CardGameIconActive from "@/assets/t18/images/wagering/CardGameActive.svg";
 import LotteryIcon from "@/assets/t18/images/wagering/Lottery.svg";
 import LotteryIconActive from "@/assets/t18/images/wagering/LotteryActive.svg";
-
 import VirtualSportsIcon from "@/assets/t18/images/wagering/VirtualSports.svg";
 import VirtualSportsIconActive from "@/assets/t18/images/wagering/VirtualSportsActive.svg";
 import { media } from "@/theme/breakpoints";
