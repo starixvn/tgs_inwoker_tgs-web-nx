@@ -4,7 +4,7 @@ import { Drawer } from "@mui/material";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { AppHistory } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage, useRwd } from "@tgs-web-nx/core/hooks";
 import cardBonus from "@/assets/t18/images/header/card_bonus.png";
 import cardVip from "@/assets/t18/images/header/card_vip.png";
 import { media } from "@/theme/breakpoints";
@@ -64,6 +64,7 @@ const DrawerImageCard = styled(DrawerCard)`
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isDesktopSize } = useRwd();
+  const goToHomePage = useGoToHomePage();
 
   const handleDrawerClose = () => {
     if (isDesktopSize) return;
@@ -71,7 +72,7 @@ const MenuDrawer = () => {
   };
 
   const handleClickHome = () => {
-    AppHistory.push("/");
+    goToHomePage();
     handleDrawerClose();
   };
 

@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router";
 import { useRoute } from "@tgs-web-nx/core/features";
 import { AppHistory } from "@tgs-web-nx/core";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { BottomNavItem } from "@/layouts/components/BottomAppBar/BottomNav";
 
 export enum RouteCategoryEnum {
@@ -15,6 +16,8 @@ export enum RouteCategoryEnum {
 
 export function useGetBottomNavItemList() {
   const location = useLocation();
+  const goToHomePage = useGoToHomePage();
+
   const bottomNavItemList = useMemo(() => {
     return [
       {
@@ -92,6 +95,12 @@ export function useGetBottomNavItemList() {
 
   const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
     setSelectedBottomNavItem(appBarItem);
+
+    if (appBarItem.routeCategory === RouteCategoryEnum.HOME) {
+      goToHomePage();
+      return;
+    }
+
     AppHistory.push(appBarItem.routePath);
   };
 
