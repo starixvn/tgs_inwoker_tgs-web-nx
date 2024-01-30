@@ -11,6 +11,7 @@ export const AuthFormContainer = styled.div`
   align-self: stretch;
   overflow: auto;
   gap: 24px;
+  padding: 0 24px;
 
   ::-webkit-scrollbar {
     visibility: hidden;

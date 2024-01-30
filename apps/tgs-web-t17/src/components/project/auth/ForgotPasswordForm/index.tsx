@@ -18,28 +18,8 @@ const ForgotPasswordForm = () => {
   const { isMobileSize } = useRwd();
 
   const LoginHeader = styled.div`
-  position: relative;
-    display: flex;
-    width: 100%;
-    height: 33%;
-    padding: 20px 0;
-    justify-content: center;
-    align-items: flex-end;
-    flex-shrink: 0;
-    background-image: url(${logoBg});
-    background-repeat: no-repeat;
-    background-size: cover;
+     padding: 125px 24px 24px;
   `;
-
-  const BrandLogoBg = styled.div`
-    position: absolute;
-    width: 100%;
-    height:40%;
-    left: 0;
-    bottom: 0;
-    background: linear-gradient(0deg,rgb(36 38 43),rgb(25 25 25 / 70%),rgb(115 115 115 / 0%));
-  `;
-
 
   const Title = styled(LoginTitle)`
     font-size: 40px;
@@ -54,8 +34,7 @@ const ForgotPasswordForm = () => {
     <>
       {isMobileSize ? (
         <LoginHeader>
-          <BrandLogoBg></BrandLogoBg>
-          <BrandLogo style={{ maxHeight: "55px", zIndex: "1" }} />
+          <Title>{i18n.t("forgotPassword.title")}</Title>
         </LoginHeader>
       ) : (
         <Title>{i18n.t("forgotPassword.title")}</Title>
@@ -66,7 +45,8 @@ const ForgotPasswordForm = () => {
             <ForgotPasswordFormStage />
           </FormContainer>
 
-          <RedirectToLoginHint style={{ marginBottom: "20px" }} />
+          <RedirectToLoginHint />
+          {isMobileSize && <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />}
         </AuthFormContainer>
       </ForgotPasswordStageContextProvider>
     </>

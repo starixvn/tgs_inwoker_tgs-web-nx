@@ -24,14 +24,15 @@ export const imageMap: { [key in string]: string } = {
 };
 
 const StyledSelect = styled(MuiSelect)`
-  border-radius: 4px !important;
-  min-width: 135px;
-  height: 48px;
+  border-radius: 10px !important;
+  min-width: 150px;
+  height: 40px;
+  padding: 10px 20px;
   overflow: visible;
   font-size: 15.6px;
   font-weight: 400;
-  padding: 0px 24px;
   gap: 15px;
+  background-color: ${({ theme }) => theme.darkGray};
 
   .MuiOutlinedInput-input {
     padding: 12px !important;
@@ -56,7 +57,6 @@ const StyledSelect = styled(MuiSelect)`
 
   & .css-1spkydz-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
     padding: unset !important;
-    margin-right: 30px;
   },
 `;
 

@@ -4,7 +4,7 @@ import backIcon from "@/assets/t17/images/dialog/icon-close.svg";
 import Icon from "@/components/project/Icon";
 import { DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 
-const DialogHeaderContainer = styled.div`
+const DialogHeaderContainer = styled.div<{ $showDialogHeaderTitle: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +14,7 @@ const DialogHeaderContainer = styled.div`
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.white};
-  background-color: ${({ theme }) => theme.darkGray};
+  background-color: ${({ theme, $showDialogHeaderTitle }) => $showDialogHeaderTitle ? theme.darkGray : "transparent"};
   font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
@@ -39,13 +39,14 @@ type Props = {
 };
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
+  const showDialogHeaderTitle = dialogHeaderTitle !== "Login" && dialogHeaderTitle !== "Register" && dialogHeaderTitle !== "Forgot Password";
   return (
-    <DialogHeaderContainer>
+    <DialogHeaderContainer $showDialogHeaderTitle={showDialogHeaderTitle}>
       <ReturnIconContainer onClick={handleClose}>
         <Icon iconUrl={backIcon} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
 
-      {dialogHeaderTitle}
+      {showDialogHeaderTitle && dialogHeaderTitle}
     </DialogHeaderContainer>
   );
 };
