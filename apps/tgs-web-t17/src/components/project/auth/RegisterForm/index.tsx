@@ -41,9 +41,11 @@ const RegisterForm = () => {
   `;
 
   const Title = styled(LoginTitle)`
-    font-size: 15.6px;
+    font-size: 48px;
     font-weight: 700;
+    text-transform: uppercase;
     color: ${({ theme }) => theme.white};
+    text-align: center; 
   `;
 
   return (
@@ -54,17 +56,15 @@ const RegisterForm = () => {
           <BrandLogo style={{ maxHeight: "55px", zIndex: "1" }} />
         </LoginHeader>
       ) : (
-        <BrandLogo style={{ maxHeight: "55px" }} />
+        <Title>{i18n.t("common.register")}</Title>
       )}
 
       <AuthFormContainer>
-        <Title>{i18n.t("common.register")}</Title>
         <FormContainer>
           <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
         </FormContainer>
 
-        {/* <RedirectToLoginHint style={{ marginBottom: "20px" }} /> */}
-        <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />
+        <RedirectToLoginHint style={{ marginBottom: "20px" }} />
       </AuthFormContainer>
     </>
   );
