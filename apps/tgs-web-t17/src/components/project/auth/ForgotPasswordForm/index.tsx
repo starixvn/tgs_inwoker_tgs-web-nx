@@ -40,11 +40,15 @@ const ForgotPasswordForm = () => {
     background: linear-gradient(0deg,rgb(36 38 43),rgb(25 25 25 / 70%),rgb(115 115 115 / 0%));
   `;
 
+
   const Title = styled(LoginTitle)`
-    font-size: 15.6px;
+    font-size: 40px;
     font-weight: 700;
+    text-transform: uppercase;
     color: ${({ theme }) => theme.white};
-  `;
+    text-align: center;
+    text-wrap: wrap;
+`;
 
   return (
     <>
@@ -54,7 +58,7 @@ const ForgotPasswordForm = () => {
           <BrandLogo style={{ maxHeight: "55px", zIndex: "1" }} />
         </LoginHeader>
       ) : (
-        <BrandLogo style={{ maxHeight: "55px" }} />
+        <Title>{i18n.t("forgotPassword.title")}</Title>
       )}
       <ForgotPasswordStageContextProvider>
         <AuthFormContainer>
@@ -63,7 +67,6 @@ const ForgotPasswordForm = () => {
           </FormContainer>
 
           <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-          <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
         </AuthFormContainer>
       </ForgotPasswordStageContextProvider>
     </>
