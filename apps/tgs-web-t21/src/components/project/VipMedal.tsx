@@ -3,9 +3,11 @@ import Icon from "@/components/project/Icon";
 
 type Props = {
   vipLevel: number;
+  width: string;
+  height: string;
 } & React.HTMLProps<HTMLDivElement>;
 
-const VipMedal = ({ vipLevel }: Props) => {
+const VipMedal = ({ vipLevel, width, height }: Props) => {
   const [image, setImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const VipMedal = ({ vipLevel }: Props) => {
 
   if (!image) return null;
 
-  return <Icon iconUrl={image} width={"35px"} height={"35px"} />;
+  return <Icon iconUrl={image} width={width} height={height} />;
 };
 
 export default VipMedal;

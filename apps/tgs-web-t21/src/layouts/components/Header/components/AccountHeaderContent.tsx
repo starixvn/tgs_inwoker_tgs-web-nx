@@ -61,7 +61,7 @@ const AccountHeaderContent = () => {
 
   return (
     <ButtonContainer>
-      <VipMedal vipLevel={accountLevel} />
+      <VipMedal vipLevel={accountLevel} width="35px" height="35px" />
       <UserInfo>
         <Username>
           <span> {username}</span>

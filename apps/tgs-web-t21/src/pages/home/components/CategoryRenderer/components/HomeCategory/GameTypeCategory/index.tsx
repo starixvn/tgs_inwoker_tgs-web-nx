@@ -51,7 +51,7 @@ const GameTypeCategory = ({ gameTypeItem, gameList }: Props) => {
       <CategoryHeader>
         {gameTypeItem.text}
 
-        <MoreButton onClick={handleClick}>{i18n.t("web.slotGame.more")}</MoreButton>
+        {/* <MoreButton onClick={handleClick}>{i18n.t("web.slotGame.more")}</MoreButton> */}
       </CategoryHeader>
 
       {!!gameList.length && <CategorySlider gameType={gameTypeItem.gameType} gameList={gameList} />}

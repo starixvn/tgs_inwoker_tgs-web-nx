@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useHistory, useParams } from "react-router-dom";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePromotionPage, useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
-import { ProviderDto } from "@tgs-web-nx/types";
+import { Promotion, ProviderDto } from "@tgs-web-nx/types";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Banner from "./components/Banner";
 import CardPrompt from "./components/CardPrompt";
 import PopularGames from "./components/CategoryRenderer/components/HomeCategory/components/PopularGames";
 import MobileVendorCard from "./components/VendorCard/mobile";
+import BannerImage from "./components/HomePromotion/BannerImage";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { theme } from "@/theme";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -44,7 +45,6 @@ const MainWrapper = styled.div<MainWrapperProps>`
     margin: 0 auto;
     gap: unset;
     height: unset;
-    padding: 0 20px;
   }
 `;
 
@@ -53,7 +53,6 @@ const MainContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  // background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 6px;
   flex-shrink: 0;
@@ -68,46 +67,39 @@ const MainContentWrapper = styled.div`
 
 const CategoryContentWrapper = styled.div`
   padding: 14px;
+  ${media.sm} {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
-const CategoryContent = styled.div`
-  display: flex;
+const BannerWrapper = styled.div`
+  flex-shrink: 0;
   width: 100%;
-  overflow-x: auto;
-  white-space: nowrap;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    height: 10px;
-    display: none;
-  }
 
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-    background: ${(props) => props.theme.tertiaryDark};
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #53535375;
-  }
-
-  &::-webkit-scrollbar-track-piece {
-    background: transparent;
+  ${media.sm} {
+    height: 100%;
+    max-height: 450px;
   }
 `;
 
-const Title = styled.div`
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 18px;
-  letter-spacing: 0em;
-  color: ${({ theme }) => theme.black};
+const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+  width: 100%;
+  height: 450px;
+  margin: 0 auto;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 `;
 
 const HomePage = () => {
+  const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const { activeGameType, handleChangeGameType, providerList } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType, providerList, activeGameTypeKey } =
+    useHomeGameContext();
   const { gameTypeItemList, gameTypeDictionary } = useGetHomeCategoryListV2();
   const gameTypeList = useGameTypeList();
   const history = useHistory();
@@ -115,7 +107,6 @@ const HomePage = () => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
   };
-
   // useEffect(() => {
   //   window.scrollTo({
   //     top: 0,
@@ -134,33 +125,55 @@ const HomePage = () => {
 
   return (
     <MainWrapper $isDark={false}>
-      <CardPrompt />
-      <Banner />
-      <AuthButtonGroup />
-      <GameTypeTab />
-      <MainContentWrapper>
-        <CategoryRenderer />
-        <HomePromotionCard />
-        <CategoryContentWrapper>
-          {gameTypeItemList
-            .filter(
-              (gameTypeItem) =>
-                gameTypeItem.gameType === GameTypeEnum.LIVELOBBY ||
-                gameTypeItem.gameType === GameTypeEnum.SLOT,
-            )
-            .reverse()
-            .map((gameTypeItem) => {
-              return (
-                <GameTypeCategory
-                  key={gameTypeItem.key}
-                  gameTypeItem={gameTypeItem}
-                  gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
-                />
-              );
-            })}
-        </CategoryContentWrapper>
-      </MainContentWrapper>
-      {/* todo: mobile footer */}
+      {isMobileSize && (
+        <>
+          <CardPrompt />
+          <Banner />
+          <AuthButtonGroup />
+          <GameTypeTab />
+          <MainContentWrapper>
+            <CategoryRenderer />
+            <HomePromotionCard />
+            <CategoryContentWrapper>
+              {gameTypeItemList
+                .filter(
+                  (gameTypeItem) =>
+                    gameTypeItem.gameType === GameTypeEnum.LIVELOBBY ||
+                    gameTypeItem.gameType === GameTypeEnum.SLOT,
+                )
+                .reverse()
+                .map((gameTypeItem) => {
+                  return (
+                    <GameTypeCategory
+                      key={gameTypeItem.key}
+                      gameTypeItem={gameTypeItem}
+                      gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
+                    />
+                  );
+                })}
+            </CategoryContentWrapper>
+          </MainContentWrapper>
+          {/* todo: mobile footer */}
+        </>
+      )}
+      {isDesktopSize && (
+        <>
+          <BannerWrapper>
+            {!!activeGameType && (
+              <GameTypeBanner
+                $imageUrl={
+                  activeGameTypeKey
+                    ? `${
+                        import.meta.env.BASE_URL
+                      }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                    : ""
+                }
+              />
+            )}
+          </BannerWrapper>
+          <CategoryRenderer />
+        </>
+      )}
     </MainWrapper>
   );
 };

@@ -28,7 +28,7 @@ const CategoryContentWrapper = styled.div`
   height: 100%;
   width: 100%;
   flex-shrink: 0;
-  background-color: ${({ theme }) => theme.mainBackground};
+  background-color: ${({ theme }) => theme.gray5};
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
@@ -112,7 +112,7 @@ const LobbyCategory = () => {
   return (
     <Wrapper>
       <CategoryContentWrapper>
-        <CategoryTitle>{i18n.t(getGameTypeName(activeGameType))}</CategoryTitle>
+        {/* <CategoryTitle>{i18n.t(getGameTypeName(activeGameType))}</CategoryTitle> */}
 
         <CategoryContent>
           {hasMappingData &&
