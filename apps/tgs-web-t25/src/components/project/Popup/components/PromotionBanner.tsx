@@ -37,7 +37,7 @@ const ImgWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.text};
   font-size: 1.062rem;
   font-weight: 700;
   margin: 10px 0;

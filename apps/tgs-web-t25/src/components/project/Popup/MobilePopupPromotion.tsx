@@ -36,7 +36,7 @@ const ChildContainer = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  padding: 0 24px 18px;
+  padding: 24px 24px 18px;
 `;
 
 const ButtonWrapper = styled.div`
