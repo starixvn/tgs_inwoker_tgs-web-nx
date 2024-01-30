@@ -17,6 +17,7 @@ const TabContainer = styled.div`
   padding: 12px 12px 4px;
 
   ${media.sm} {
+    background: ${({ theme }) => theme.black02};
     &::-webkit-scrollbar {
       height: 10px;
     }

@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import HeaderBg from "@/assets/t18/images/header/background.png";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
@@ -54,6 +54,7 @@ const LogoImgContainer = styled.div`
   height: 27px;
   justify-self: start;
   padding: 0 10px;
+  cursor: pointer;
 
   & > img {
     height: 100%;
@@ -72,6 +73,7 @@ const Header = (props: Props) => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
+  const goToHomePage = useGoToHomePage();
 
   return (
     <HeaderContainer>
@@ -81,11 +83,9 @@ const Header = (props: Props) => {
       <HeaderWrapper>
         <MenuButton />
 
-        <Link to={"/"}>
-          <LogoImgContainer>
-            <img src={general.brand && general.brand.loadingUrl} alt={"logo"} />
-          </LogoImgContainer>
-        </Link>
+        <LogoImgContainer onClick={goToHomePage}>
+          <img src={general.brand && general.brand.loadingUrl} alt={"logo"} />
+        </LogoImgContainer>
 
         <HeaderContentContainer>
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
