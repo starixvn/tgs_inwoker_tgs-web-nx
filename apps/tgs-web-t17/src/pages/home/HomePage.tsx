@@ -257,14 +257,9 @@ const HomePage = () => {
         />
       )}
 
-      {!!activeGameType && (
-        <MainContentWrapper>
-          <CategoryRenderer />
-        </MainContentWrapper>
-      )}
-
-
-
+      <MainContentWrapper>
+        <CategoryRenderer />
+      </MainContentWrapper>
 
 
       {/* {!activeGameType &&

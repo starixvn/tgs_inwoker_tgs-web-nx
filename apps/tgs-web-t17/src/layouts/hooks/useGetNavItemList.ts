@@ -19,8 +19,7 @@ import TransferSvg from "@/pages/account/components/AccountSvgIcon/Transfer";
 import ReportSvg from "@/pages/account/components/AccountSvgIcon/Report";
 import InboxSvg from "@/pages/account/components/AccountSvgIcon/Inbox";
 import DownloadSvg from "@/pages/account/components/AccountSvgIcon/Download";
-import LanguageSvg from "@/pages/account/components/AccountSvgIcon/Language";
-import LogoutSvg from "@/pages/account/components/AccountSvgIcon/Logout";
+import PromotionSvg from "@/pages/account/components/AccountSvgIcon/Promotion";
 import { Logout } from "@mui/icons-material";
 
 export type NavItem = {
@@ -249,6 +248,16 @@ export function useGetNavItemList() {
           history.push("/support");
         },
         iconComponent: ContactUsSvg,
+      },
+      {
+        key: NavCardKey.PROMOTION,
+        label: i18n.t("common.promotion"),
+        navType: "route",
+        routePath: "promotion-list",
+        callback: () => {
+          history.push("/promotion-list");
+        },
+        iconComponent: PromotionSvg,
       },
       {
         key: NavCardKey.APP_DOWNLOAD,

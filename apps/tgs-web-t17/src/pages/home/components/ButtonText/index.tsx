@@ -13,15 +13,18 @@ const StyledButton = styled.button<{ size: string }>`
   align-items: center;
   min-width: 44px;
   min-height: 22px;
-  padding: 6px 10px;
+  padding: 12px 15px;
   border: none;
-  color: ${(props) => props.theme.primary};
-  background-color: ${(props) => props.theme.g3};
-  font-size: 19px;
-  border-radius: 4px;
+  color:#89909A;
+  background-color: ${({ theme }) => theme.darkGray};
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
 
   ${media.sm} {
     cursor: pointer;
+    min-width: 120px;
+    min-height: 44px;
   }
 `;
 
