@@ -2,6 +2,7 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
+import { media } from "@/theme/breakpoints";
 
 const ProviderTagContainer = styled.div<{
   $isActive: boolean;
@@ -14,6 +15,17 @@ const ProviderTagContainer = styled.div<{
   padding: 14px;
   background: ${({ theme, $isActive }) => ($isActive ? theme.focus : theme.primary)};
   color: ${({ theme, $isActive }) => ($isActive ? theme.yellow : theme.white)};
+
+  ${media.sm} {
+    width: 122px;
+    height: 37px;
+    padding: 10px 4px;
+    gap: 2px;
+    background: ${({ theme, $isActive }) => ($isActive ? theme.primary : "transparent")};
+    color: ${({ theme, $isActive }) => ($isActive ? theme.white : theme.gray50)};
+    border: ${({ theme, $isActive }) => ($isActive ? "none" : `1px solid ${theme.gray20}`)};
+    cursor: pointer;
+  }
 `;
 
 const MaintenanceBg = styled.div`
@@ -53,7 +65,6 @@ type Props = {
 };
 
 const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
-
   return (
     <ProviderTagContainer $isActive={isActive} onClick={onClick}>
       <Text>{text}</Text>

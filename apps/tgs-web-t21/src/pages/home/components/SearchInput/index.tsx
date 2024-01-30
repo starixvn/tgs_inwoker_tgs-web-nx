@@ -9,7 +9,6 @@ type Props = {
 };
 
 const InputWrapper = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
   border-radius: 4px;
@@ -18,7 +17,11 @@ const InputWrapper = styled.div`
   padding: 10px 12px;
   margin: 0 14px;
   ${media.sm} {
-    background-color: ${({ theme }) => theme.grey04};
+    width: 189px;
+    height: 34px;
+    padding: 10px;
+    background-color: ${({ theme }) => theme.gray20};
+    border: none;
   }
 `;
 
@@ -37,6 +40,9 @@ const InputTextfield = styled.input`
     color: ${(props) => props.theme.primary};
     font-weight: 700;
     line-height: 0.875rem;
+    ${media.sm} {
+      color: ${(props) => props.theme.gray30};
+    }
   }
 
   &:focus {

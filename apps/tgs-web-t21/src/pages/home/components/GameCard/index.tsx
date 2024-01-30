@@ -221,7 +221,7 @@ const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) =>
         {isDesktopSize && (
           <CardHoverBg onClick={launchGameHandler}>
             {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
-            <PlayIcon src={playIcon} alt={"play"} />
+            {/* <PlayIcon src={playIcon} alt={"play"} /> */}
           </CardHoverBg>
         )}
       </GameCardBg>
