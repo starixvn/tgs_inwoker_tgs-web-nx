@@ -14,6 +14,12 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import config from "@tgs-web-nx/config";
 import { usePromotionPage, useRwd } from "@tgs-web-nx/core/hooks";
 import HomePromotionCard from "@/pages/promotion/components/HomePromotionCard";
+import logo from "@/assets/t17/images/home/logo.png";
+import ImageCard from "@/pages/home/components/ImageCard";
+import Jackpot from "@/components/project/Jackpot";
+import jackpotBg from "@/assets/t17/images/home/jackpot-bg.png";
+import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
+import WinnerCard from "@/pages/home/components/WinnerCard";
 
 const HomeCategoryContainer = styled.div`
   display: flex;
@@ -46,7 +52,7 @@ const CategoryContent = styled.div`
   align-content: center;
   width: 100%;
   align-self: stretch;
-  gap: 20px;
+  gap: 10px;
   overflow-x: hidden;
 `;
 
@@ -74,6 +80,58 @@ const PromotionContent = styled.div`
   overflow-x: hidden;
 `;
 
+const IntroductionContent = styled.div`
+  display: flex;
+  align-content: center;
+  width: 100%;
+`;
+
+const RankingContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  ${media.sm} {
+    max-height: 310px;
+    flex-direction: row;
+  }
+`;
+
+const JackPotContainer = styled.div`
+  position: relative;
+  aspect-ratio: 720 / 297.05;
+  width: 100%;
+  background-image: url(${jackpotBg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-right: 10px;
+  border-radius: 15px;
+
+  ${media.sm} {
+    max-width: 720px;
+  }
+`;
+
+const LatestContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 19px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.darkGray};
+
+  ${media.sm} {
+    max-width: 470px;
+  }
+`;
+
 const HomeCategory = () => {
   const history = useHistory();
   const { account } = useAccountStore();
@@ -82,6 +140,7 @@ const HomeCategory = () => {
   const { hotGameList } = useGetHomeCategoryList();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { promotionList } = usePromotionPage();
+  const { leaderboard } = useBettingHistory();
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -133,6 +192,17 @@ const HomeCategory = () => {
 
   return (
     <>
+      {isDesktopSize &&
+        <RankingContainer>
+          <JackPotContainer>
+            <Jackpot />
+          </JackPotContainer>
+          <LatestContainer>
+            <WinnerCard leaderboard={leaderboard} />
+          </LatestContainer>
+        </RankingContainer>
+      }
+
       <HomeCategoryContainer>
         <HomeLobbyCategory>
           <CategoryTitle>
@@ -223,6 +293,34 @@ const HomeCategory = () => {
           </LobbyCategoryContent>
         </HomeLobbyCategory>
       </HomeCategoryContainer>
+
+      {isMobileSize &&
+        <RankingContainer>
+          <JackPotContainer>
+            <Jackpot />
+          </JackPotContainer>
+          <LatestContainer>
+            <WinnerCard leaderboard={leaderboard} />
+          </LatestContainer>
+        </RankingContainer>
+      }
+
+      {isDesktopSize &&
+        <HomeCategoryContainer>
+          <HomeLobbyCategory>
+            <CategoryTitle>
+              <CategoryLabel text={`${config.brand} : A Winning Casino!`} />
+            </CategoryTitle>
+            <IntroductionContent>
+              <ImageCard
+                imageUrl={logo}
+                text={`${config.brand}is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic. With irresistible weekly bonus promotions and attractive loyalty and VIP programs, we're sure you'll be sticking around for a while to come. All of our software is developed and maintained by the industry's foremost online gaming software company, Pegasus. Because of this, we are able to offer you the newest cutting-edge games, of the highest quality and ultimate security in a sophisticated, yet engaging atmosphere.`}
+                alignment={"center"}
+              />
+            </IntroductionContent>
+          </HomeLobbyCategory>
+        </HomeCategoryContainer>
+      }
     </>
   );
 };

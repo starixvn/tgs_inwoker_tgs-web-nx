@@ -14,6 +14,7 @@ import qrcode_skype from "@/assets/t29/images/qrcode/qrcode_skype.png";
 import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
 import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
+import gc from "@/assets/t17/images/home/gc.png";
 
 const FooterContainer = styled.div`
   display: none;
@@ -139,7 +140,7 @@ const Footer = () => {
           <GroupTitle>Gaming License</GroupTitle>
           <GroupContent>
             <LogoWrapper>
-              <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} />
+              <LogoImg src={gc} alt={`${brand}`} />
             </LogoWrapper>
           </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
