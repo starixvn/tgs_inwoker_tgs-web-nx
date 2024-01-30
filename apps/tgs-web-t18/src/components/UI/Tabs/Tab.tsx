@@ -1,6 +1,6 @@
 import React from "react";
-import { TabItem } from "@/components/UI/Tabs/index";
 import styled from "styled-components";
+import { TabItem } from "@/components/UI/Tabs/index";
 import { theme } from "@/theme";
 
 type TabContainerProps = {
@@ -18,8 +18,7 @@ const TabContainer = styled.div<TabContainerProps>`
   font-size: 0.875rem;
   line-height: 0.875rem;
   font-weight: 700;
-  color: ${({ $isActive }: TabContainerProps) =>
-    $isActive ? theme.white : theme.tertiaryMiddle};
+  color: ${({ $isActive }: TabContainerProps) => ($isActive ? theme.white : theme.tertiaryMiddle)};
   background: ${({ $isActive }: TabContainerProps) =>
     $isActive ? "linear-gradient(180deg, #922ACF 0%, #2F26AD 100%)" : "none"};
 `;
@@ -47,7 +46,7 @@ const Tab = ({ tabItem, handleClick, isActive }: Props) => {
 
     if (typeof icon === "string") {
       return (
-        <IconContainer $isActive={isActive}>
+        <IconContainer>
           <img src={icon} alt={value} />
         </IconContainer>
       );

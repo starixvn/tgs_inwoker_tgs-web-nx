@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-// import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-// import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd, useWageringPage } from "@tgs-web-nx/core/hooks";
-// import { useSnackbar } from "notistack";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWagering from "@/assets/t18/images/account/badge/icon-wagering.svg";
+import iconWagering from "@/assets/t18/images/account/badge/icon-transfer.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 import iconCard from "@/assets/t18/images/withdraw/icon-card.svg";
-
 import LiveDealerIcon from "@/assets/t18/images/wagering/LiveDealer.svg";
 import LiveDealerIconActive from "@/assets/t18/images/wagering/LiveDealerActive.svg";
-
 import SportsbookIcon from "@/assets/t18/images/wagering/Sportsbook.svg";
 import SportsbookIconActive from "@/assets/t18/images/wagering/SportsbookActive.svg";
 import SlotIcon from "@/assets/t18/images/wagering/Slot.svg";
@@ -37,7 +32,7 @@ const Requirement = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.blue20};
+  background-color: ${({ theme }) => theme.tertiaryDark};
   width: 720px;
   height: 39px;
   padding: 10px 20px;
@@ -81,7 +76,7 @@ const GameCard = styled.div`
   height: 62px;
   padding: 12px 20px;
   gap: 10px;
-  background-color: ${({ theme }) => theme.blue20};
+  background-color: ${({ theme }) => theme.tertiaryDark};
 
   ${media.sm} {
     width: 230px;
@@ -89,7 +84,7 @@ const GameCard = styled.div`
 
   &:hover {
     color: ${({ theme }) => theme.white};
-    background-color: ${({ theme }) => theme.blue40};
+    background-color: ${({ theme }) => theme.tertiary};
   }
 `;
 const CardContent = styled.div`

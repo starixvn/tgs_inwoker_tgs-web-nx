@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import TablePagination from '@mui/material/TablePagination';
-import { theme } from '@/theme';
+import TablePagination from "@mui/material/TablePagination";
+import { theme } from "@/theme";
 
 type Props = {
   totalCount: number;
@@ -10,10 +10,7 @@ const ReportTablePagination = ({ totalCount }: Props) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
   };
 
@@ -35,11 +32,11 @@ const ReportTablePagination = ({ totalCount }: Props) => {
       onRowsPerPageChange={handleChangeRowsPerPage}
       sx={{
         width: "100%",
-        color: theme.blue40,
+        color: theme.text,
         "& button": {},
       }}
     />
   );
-}
+};
 
 export default ReportTablePagination;

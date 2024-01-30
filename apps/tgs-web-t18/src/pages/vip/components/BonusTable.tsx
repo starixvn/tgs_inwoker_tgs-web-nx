@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
 import { useVipBonusList } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
-import { vipBonusList } from "@/constants/vip";
 
 const ScrollableContainer = styled.div`
   width: 100%;
@@ -25,7 +24,7 @@ const ScrollableContainer = styled.div`
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.gray10};
+      background: ${(props) => props.theme.tertiaryDark};
     }
 
     &::-webkit-scrollbar-thumb {
@@ -68,7 +67,7 @@ const BonusTableHeader = styled.div`
     height: 97px;
     padding: 20px 0;
     border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
+    border-bottom: 1px solid ${(props) => props.theme.tertiary};
   }
 `;
 

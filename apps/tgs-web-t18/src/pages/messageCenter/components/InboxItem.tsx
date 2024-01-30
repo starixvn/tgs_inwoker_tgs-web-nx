@@ -8,7 +8,7 @@ const InboxItemContainer = styled.div`
   width: 100%;
   padding: 10px 30px;
   cursor: pointer;
-  background: ${({ theme }) => theme.gray10};
+  background: ${({ theme }) => theme.tertiary};
   border-radius: 6px;
 `;
 

@@ -4,7 +4,6 @@ import {
   FormControl as MuiFormControl,
   styled as muiStyled,
 } from "@mui/material";
-import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
 
 export const Remark = styled.div`
@@ -58,7 +57,6 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   color: theme.palette.white,
   border: "none",
   borderRadius: "6px",
-  // border: `1px solid ${theme.palette.gray10}`,
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`

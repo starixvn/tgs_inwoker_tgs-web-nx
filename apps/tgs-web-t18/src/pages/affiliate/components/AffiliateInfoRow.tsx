@@ -11,7 +11,7 @@ const AffiliateInfoRowContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid ${({ theme }) => theme.gray10};
+  border-bottom: 1px solid ${({ theme }) => theme.tertiary};
 
   & .label {
     min-width: 110px;

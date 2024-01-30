@@ -46,30 +46,42 @@ const JoinPromotionButton = ({ id, promotionType }: { id: string; promotionType:
   const [hasJoined, setHasjoined] = useState(false);
 
   const handleJoinPromotion = async () => {
-    if (token === null) history.push("/login");
-    else {
-      if (REDIRECT_PROMOTION_TYPE.indexOf(promotionType) >= 0) {
-        AppHistory.push({
-          pathname: "/deposit/" + id,
-        });
-      } else {
-        setLoading(true);
-        const {
-          data: { success, error },
-        } = await joinPromotion(id);
-        setLoading(false);
+    if (token === null) {
+      history.push("/login");
+      return;
+    }
 
-        if (success) {
-          enqueueSnackbar(i18n.t("promotion.joinSuccess"), {
-            variant: "success",
-          });
-          setHasjoined(true);
-        } else if (error === 0) {
-          enqueueSnackbar(i18n.t("promotion.promoJoint"), {
-            variant: "success",
-          });
-        }
-      }
+    if (REDIRECT_PROMOTION_TYPE.indexOf(promotionType) >= 0) {
+      history.push({
+        pathname: "/deposit/" + id,
+      });
+      return;
+    }
+
+    setLoading(true);
+    const joinPromotionResDto = await joinPromotion(id);
+    setLoading(false);
+
+    if (!joinPromotionResDto?.data) {
+      console.error("something went wrong in joinPromotion", joinPromotionResDto);
+      enqueueSnackbar(i18n.t("promotion.joinFail") as string, {
+        variant: "success",
+      });
+      return;
+    }
+
+    if (joinPromotionResDto.data.success) {
+      enqueueSnackbar(i18n.t("promotion.joinSuccess") as string, {
+        variant: "success",
+      });
+      setHasjoined(true);
+      return;
+    }
+
+    if (joinPromotionResDto.data.err === 0) {
+      enqueueSnackbar(i18n.t("promotion.promoJoint") as string, {
+        variant: "success",
+      });
     }
   };
 

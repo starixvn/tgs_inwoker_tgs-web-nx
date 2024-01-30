@@ -69,10 +69,12 @@ const Button = styled.button`
 `;
 const CSButton = styled(Button)`
   cursor: pointer;
-  background: ${({ theme }) => theme.blue40};
+  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.red};
 `;
 const IMButton = styled(Button)`
-  background: #ffa84d;
+  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.primary};
   cursor: pointer;
 `;
 const DefaultMaintenance = () => {

@@ -18,14 +18,15 @@ const ProfileItemContainer = styled.div`
 `;
 
 const ProfileRowLabel = styled.div`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.white};
   font-size: 1.25rem;
   font-weight: 400;
 `;
 const ProfileStatus = styled.div`
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   font-size: 0.937rem;
   font-weight: 400;
+  opacity: 0.3;
 `;
 
 type Props = {
@@ -50,9 +51,9 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         variant={isVerified ? "contained" : "outlined"}
         sx={{
           fontSize: "0.875rem",
-          color: isVerified ? theme.white : theme.text,
-          background: isVerified ? theme.primary : theme.blue20,
-          border: "none",
+          color: isVerified ? theme.white : theme.tertiaryLight,
+          background: isVerified ? theme.primary : theme.primaryLight,
+          border: `1px solid ${isVerified ? theme.primary : theme.tertiaryLight}`,
           width: "150px",
           height: "42px",
         }}

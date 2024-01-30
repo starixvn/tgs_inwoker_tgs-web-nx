@@ -8,7 +8,7 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t18/images/home/play-green.svg";
+import playIcon from "@/assets/t18/images/home/play.svg";
 import maintenanceIcon from "@/assets/t18/images/home/maintenance.svg";
 
 const GameCardContainer = styled.div`

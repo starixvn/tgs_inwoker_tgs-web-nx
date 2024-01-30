@@ -1,10 +1,8 @@
 import { Dialog as MuiDialog, DialogProps } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import { Close as CloseIcon } from "@mui/icons-material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
 import iconClose from "@/assets/t18/images/dialog/icon_close.svg";
 

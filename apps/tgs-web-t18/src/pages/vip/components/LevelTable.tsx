@@ -23,7 +23,7 @@ const ScrollableContainer = styled.div`
 
     &::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.gray10};
+      background: ${(props) => props.theme.tertiary};
     }
 
     &::-webkit-scrollbar-thumb {

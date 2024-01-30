@@ -6,7 +6,7 @@ import authImage from "@/assets/t18/images/auth/auth-image.png";
 const AuthDialogImageContainer = styled.div`
   position: relative;
   width: 50%;
-  height: 80vh;
+  //height: 80vh;
 
   & > .bg {
     width: 100%;

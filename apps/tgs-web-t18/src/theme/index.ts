@@ -1,6 +1,7 @@
 export const theme = {
   primary: "#6152DD",
   primaryDark: "#0E131B", //BG
+  mainBackground: "#0E131B",
   primaryLight: "#181F2B", //Sub BG = Main_Blue
   secondary: "#E7415A",
   tertiary: "#596578", //Gray1
@@ -8,6 +9,7 @@ export const theme = {
   tertiaryLight: "#B2C3EC", //Gray3
   tertiaryDark: "#212937", //Gray4
   white: "#FFFFFF",
+  black: "#000000",
   yellow: "#F3DE4B",
   red: "#E7415A",
   green: "#33AD4E",
