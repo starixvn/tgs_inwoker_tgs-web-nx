@@ -1,40 +1,39 @@
 import React from "react";
 import styled from "styled-components";
-import { usePageName } from "@tgs-web-nx/core/features";
-import authImage from "@/assets/t23/images/auth/login-header-img 1.png";
+import { useGeneralStore } from "@tgs-web-nx/core";
+import authImage from "@/assets/t18/images/auth/auth-image.png";
 
 const AuthDialogImageContainer = styled.div`
   position: relative;
-  width: 100%;
-  height: 169px;
-  z-index: 1;
-  background: #6401d5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 33px 60px 0 27px;
+  width: 50%;
+  height: 80vh;
 
   & > .bg {
-    width: 178px;
-    height: 152px;
-    align-self: flex-start;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
-const TitleContainer = styled.div`
-  font-size: 3rem;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: visible;
+const LogoImg = styled.img`
+  margin: 0 auto;
+  display: block;
+  width: 165px;
+
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
-const AuthDialogImage = () => {
-  const { pageName } = usePageName();
+type Props = {};
+const AuthDialogImage = (props: Props) => {
+  const { general } = useGeneralStore();
 
   return (
     <AuthDialogImageContainer>
-      <TitleContainer>{pageName}</TitleContainer>
       <img className={"bg"} src={authImage} alt={"welcome"} />
+      <LogoImg src={general.brand && general.brand.loadingUrl} />
     </AuthDialogImageContainer>
   );
 };
