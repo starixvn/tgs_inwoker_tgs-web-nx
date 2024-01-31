@@ -93,6 +93,7 @@ const MobilePopupPromotion = () => {
             style={{
               margin: "0 auto",
               width: "100%",
+              color: "#fff",
             }}
           >
             <>{i18n.t("common.close")}</>
