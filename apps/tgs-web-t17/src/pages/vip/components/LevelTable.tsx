@@ -61,7 +61,6 @@ const LevelTableHeader = styled.div`
 
   ${media.sm} {
     height: 86px;
-    background: ${({ theme }) => theme.mask};
   }
 `;
 
@@ -91,13 +90,10 @@ const LevelTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    background: ${({ theme }) => theme.mask};
-
-    /* > div:nth-child(even) {
-      background: rgba(255, 255, 255, 0.1);
-    } */
+    background: ${({ theme }) => theme.darkGray};
   }
 `;
 
@@ -107,9 +103,9 @@ const LevelTableRowWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.darkGray};
-
+  
   ${media.sm} {
-    border-bottom: unset;
+    border-bottom: 1px solid #434343;
   }
 `;
 
