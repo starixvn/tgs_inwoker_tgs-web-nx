@@ -11,20 +11,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 18px;
-`;
-
-const Content = styled.div`
-  position: absolute;
-  width: 100%;
-  top: 32.51%;
-  margin-top: 19px;
-  
-  ${media.sm} {
-    position: relative;
-    top:0;
-    margin-top: 0px;
-  }
 `;
 
 type Props = {
@@ -36,13 +22,11 @@ const WinnerCard = ({ leaderboard }: Props) => {
 
   return (
     <Wrapper>
-      <Content>
-        <FlipMove style={{ width: "100%", display: "flex", gap: isMobileSize ? "10spx" : "15px", flexDirection: "column" }}>
-          {leaderboard.map((rankItem) => {
-            return <WinnerRankRow key={rankItem.key} rankItem={rankItem} />;
-          })}
-        </FlipMove>
-      </Content>
+      <FlipMove style={{ width: "100%", display: "flex", gap: isMobileSize ? "10spx" : "15px", flexDirection: "column" }}>
+        {leaderboard.map((rankItem) => {
+          return <WinnerRankRow key={rankItem.key} rankItem={rankItem} />;
+        })}
+      </FlipMove>
     </Wrapper>
   );
 };

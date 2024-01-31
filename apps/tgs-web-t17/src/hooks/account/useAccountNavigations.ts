@@ -3,30 +3,30 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
 // mobile side nav
-import vipImg from "@/assets/t19/images/header/sideMenuItem/icon-vip.svg";
-import profileImg from "@/assets/t19/images/header/sideMenuItem/icon-account.svg";
-import depositImg from "@/assets/t19/images/header/sideMenuItem/icon-deposit.svg";
-import withdrawImg from "@/assets/t19/images/header/sideMenuItem/icon-withdraw.svg";
-import transferImg from "@/assets/t19/images/header/sideMenuItem/icon-transfer.svg";
-import reportImg from "@/assets/t19/images/header/sideMenuItem/icon-report.svg";
-import inboxImg from "@/assets/t19/images/header/sideMenuItem/icon-inbox.svg";
-import affiliateImg from "@/assets/t19/images/header/sideMenuItem/icon-affiliate.svg";
-import downloadImg from "@/assets/t19/images/header/sideMenuItem/icon-download.svg";
-import logoutImg from "@/assets/t19/images/header/sideMenuItem/icon-logout.svg";
-import contactImg from "@/assets/t19/images/header/sideMenuItem/icon-contact.svg";
+import vipImg from "@/assets/t17/images/header/sideMenuItem/icon-vip.svg";
+import profileImg from "@/assets/t17/images/header/sideMenuItem/icon-account.svg";
+import depositImg from "@/assets/t17/images/header/sideMenuItem/icon-deposit.svg";
+import withdrawImg from "@/assets/t17/images/header/sideMenuItem/icon-withdraw.svg";
+import transferImg from "@/assets/t17/images/header/sideMenuItem/icon-transfer.svg";
+import reportImg from "@/assets/t17/images/header/sideMenuItem/icon-report.svg";
+import inboxImg from "@/assets/t17/images/header/sideMenuItem/icon-inbox.svg";
+import affiliateImg from "@/assets/t17/images/header/sideMenuItem/icon-affiliate.svg";
+import downloadImg from "@/assets/t17/images/header/sideMenuItem/icon-download.svg";
+import logoutImg from "@/assets/t17/images/header/sideMenuItem/icon-logout.svg";
+import contactImg from "@/assets/t17/images/header/sideMenuItem/icon-contact.svg";
 
 // mobile my account
-import profileSecondaryImg from "@/assets/t19/images/account/navItem/icon-profile.svg";
-import depositSecondaryImg from "@/assets/t19/images/account/navItem/icon-deposit.svg";
-import withdrawSecondaryImg from "@/assets/t19/images/account/navItem/icon-withdrawal.svg";
-import transferSecondaryImg from "@/assets/t19/images/account/navItem/icon-transfer.svg";
-import reportSecondaryImg from "@/assets/t19/images/account/navItem/icon-report.svg";
-import inboxSecondaryImg from "@/assets/t19/images/account/navItem/icon-inbox.svg";
-import affiliateSecondaryImg from "@/assets/t19/images/account/navItem/icon-affiliate.svg";
-import downloadSecondaryImg from "@/assets/t19/images/account/navItem/icon-download.svg";
-import contactSecondaryImg from "@/assets/t19/images/account/navItem/icon-contact.svg";
-import vipSecondaryImg from "@/assets/t19/images/account/navItem/icon-vip.svg";
-import logoutSecondaryImg from "@/assets/t19/images/account/navItem/icon-logout.svg";
+import profileSecondaryImg from "@/assets/t17/images/account/navItem/icon-profile.svg";
+import depositSecondaryImg from "@/assets/t17/images/account/navItem/icon-deposit.svg";
+import withdrawSecondaryImg from "@/assets/t17/images/account/navItem/icon-withdrawal.svg";
+import transferSecondaryImg from "@/assets/t17/images/account/navItem/icon-transfer.svg";
+import reportSecondaryImg from "@/assets/t17/images/account/navItem/icon-report.svg";
+import inboxSecondaryImg from "@/assets/t17/images/account/navItem/icon-inbox.svg";
+import affiliateSecondaryImg from "@/assets/t17/images/account/navItem/icon-affiliate.svg";
+import downloadSecondaryImg from "@/assets/t17/images/account/navItem/icon-download.svg";
+import contactSecondaryImg from "@/assets/t17/images/account/navItem/icon-contact.svg";
+import vipSecondaryImg from "@/assets/t17/images/account/navItem/icon-vip.svg";
+import logoutSecondaryImg from "@/assets/t17/images/account/navItem/icon-logout.svg";
 
 export type NavItem = {
   key: NavCardKey;

@@ -3,37 +3,23 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetHomeCategoryList, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import VendorCard from "@/pages/home/components/VendorCard/index";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-
-const CategoryContentWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 12px;
-  justify-content: space-between;
-  align-items: flex-start;
-  align-content: flex-start;
-  row-gap: 10px;
-  flex-wrap: wrap;
-`;
 
 const CategoryContent = styled.div`
+  width: 100%;
+  flex: 1;
+  flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  width: 100%;
-  align-self: stretch;
-  gap: 10px;
-  max-height: 254px;
-  overflow-x: hidden;
-
+  gap: 6px;
+  padding: 0px 10px;
+  
   ${media.sm} {
-    max-height: unset;
-    overflow-x: unset;
+    gap: 36px;
+    padding: 0px 0px;
   }
 `;
 
@@ -42,7 +28,6 @@ const LobbyCategory = () => {
   const { account } = useAccountStore();
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
-  const { isMobileSize, isDesktopSize } = useRwd();
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -81,34 +66,27 @@ const LobbyCategory = () => {
 
   const hasMappingData = !!lobbyCategoryList.length;
 
-  console.log(lobbyCategoryList)
-
   return (
-    <>
-      <GameTypeTab />
-      <CategoryContentWrapper>
-        <CategoryContent>
-          {hasMappingData &&
-            lobbyCategoryList.map((provider) => {
-              const { code: gpCode, status, name } = provider;
+    <CategoryContent>
+      {hasMappingData &&
+        lobbyCategoryList.map((provider) => {
+          const { code: gpCode, status, name } = provider;
 
-              if (gpCode === "BC") return null;
-              return (
-                <VendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          {!hasMappingData && <div>No data</div>}
-        </CategoryContent>
-      </CategoryContentWrapper>
-    </>
+          if (gpCode === "BC") return null;
+          return (
+            <VendorCard
+              key={gpCode}
+              bgUrl={`/assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+              imageUrl={`/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+              venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+              launchGame={() => launchLobbyGame(gpCode)}
+              status={status}
+              venderName={name}
+            />
+          );
+        })}
+      {!hasMappingData && <div>No data</div>}
+    </CategoryContent>
   );
 };
 

@@ -7,7 +7,7 @@ import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { REDIRECT_PROMOTION_TYPE } from "@tgs-web-nx/constants";
 import Loading from "@/components/UI/Loading";
 import { media } from "@/theme/breakpoints";
-import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { SubmitButton, CloseButton } from "@/components/styled-component/ProfileForms";
 
 const StyledButton = styled(SubmitButton)`
   width: 100%;
@@ -17,11 +17,13 @@ const StyledButton = styled(SubmitButton)`
   gap: 10px;
   font-size: 1.25rem;
   cursor: pointer;
+  color: ${({ theme }) => theme.white} !important;
 
   ${media.sm} {
-    max-width: 500px;
+    max-width: 242px;
     padding: 10px;
     font-size: 18px;
+    color: ${({ theme }) => theme.black} !important;
   }
 `;
 

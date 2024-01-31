@@ -11,6 +11,7 @@ import {
   DRAWER_SHRINK_WIDTH,
   MOBILE_HEADER_HEIGHT,
   TABLET_DRAWER_WIDTH,
+  DESKTOP_HEADER_HEIGHT
 } from "@/theme/constants";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { useHeader } from "@tgs-web-nx/core/features";
@@ -26,7 +27,7 @@ const DashboardContainer = styled.div`
   min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
 
   ${media.sm} {
-    margin-top: ${MOBILE_HEADER_HEIGHT};
+    margin-top: ${DESKTOP_HEADER_HEIGHT};
     min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
     margin-bottom: unset;
   }

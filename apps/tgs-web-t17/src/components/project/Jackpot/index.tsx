@@ -1,35 +1,39 @@
 import React, { HTMLProps } from "react";
 import styled from "styled-components";
 import { useJackpot } from "@tgs-web-nx/core/features";
+import jackpoTitle from "@/assets/t17/images/home/jackpot-title.svg";
+import { media } from "@/theme/breakpoints";
 
 const JackpotContainer = styled.div`
   height: 100%;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   overflow: visible;
-`;
-
-const Background = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-`;
-
-const JackpotContent = styled.div`
-  z-index: 2;
-  position: absolute;
-  bottom: 63px;
 `;
 
 const Amount = styled.div`
   font-size: 32px;
   font-weight: 700;
   letter-spacing: 3.2px;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
+`;
+
+const Image = styled.div`
+  width: 100%;
+  max-width: 216px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  ${media.sm} {
+    max-width: 497px;
+    margin-right: 72px;
+  }
 `;
 
 type Props = HTMLProps<HTMLDivElement>;
@@ -47,11 +51,8 @@ const Jackpot = ({ ...others }: Props) => {
   return (
     //@ts-ignore
     <JackpotContainer {...others}>
-      <Background />
-
-      <JackpotContent>
-        <Amount>₱{formatAmount(jackpotAmount, "vi-VN")}</Amount>
-      </JackpotContent>
+      <Image><img src={jackpoTitle} alt={"jackpot"} /></Image>
+      <Amount>{formatAmount(jackpotAmount, "vi-VN")}</Amount>
     </JackpotContainer>
   );
 };

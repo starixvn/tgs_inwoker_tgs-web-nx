@@ -1,11 +1,13 @@
 import React from "react";
 import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
+import { height } from "@mui/system";
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
   border: `none`,
   input: {
-    padding: "12px 20px",
+    height: "100%",
+    padding: "0px 20px",
     background: theme.palette.darkGray,
     color: theme.palette.text.primary,
     fontSize: "0.875rem",
@@ -47,6 +49,8 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     borderBottom: "none",
   },
   "& .MuiOutlinedInput-root": {
+    height: "44px",
+
     "& fieldset": {
       border: "none",
     },

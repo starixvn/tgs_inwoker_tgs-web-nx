@@ -16,7 +16,7 @@ const Form = styled.form`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 24px;
   flex-shrink: 0;
 `;
 

@@ -59,7 +59,7 @@ const BonusTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 10.5px 0;
-  background-color: ${({ theme }) => theme.mainBackground};
+  background-color: ${({ theme }) => theme.gray};
   border-radius: 6px 0px 0px 0px;
   background: ${({ theme }) => theme.darkGray};
 
@@ -67,7 +67,7 @@ const BonusTableHeader = styled.div`
     height: 86px;
     padding: 20px;
     border-radius: 12px;
-    background: ${({ theme }) => theme.grayGradient};
+    background: ${({ theme }) => theme.gray};
   }
 `;
 
@@ -95,11 +95,12 @@ const BonusTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
+  background: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
     gap: 36px;
     border-radius: 10px;
-    background: ${({ theme }) => theme.mask};
+    background: ${({ theme }) => theme.darkGray};
   }
 `;
 
@@ -109,6 +110,10 @@ const BonusTableRowWrapper = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${({ theme }) => theme.darkGray};
+
+  ${media.sm} {
+    border-bottom: unset;
+  }
 `;
 
 const RowItem = styled.div`

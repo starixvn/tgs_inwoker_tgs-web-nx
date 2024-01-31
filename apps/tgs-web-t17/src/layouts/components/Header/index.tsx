@@ -12,12 +12,15 @@ import MenuButton from "./components/MenuButton";
 import {
   DESKTOP_DRAWER_WIDTH,
   DRAWER_SHRINK_WIDTH,
-  MOBILE_HEADER_HEIGHT,
+  DESKTOP_HEADER_HEIGHT,
   TABLET_DRAWER_WIDTH,
+  MOBILE_HEADER_HEIGHT
 } from "@/theme/constants";
 import CurrentTime from "@/components/project/CurrentTime";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
+import { theme } from "@/theme";
+import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -27,24 +30,48 @@ const HeaderContainer = styled.div`
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
-  box-shadow: 0px 4px 6px 0px rgba(17, 20, 21, 0.50);
+
+  ${media.sm} {
+    height: ${DESKTOP_HEADER_HEIGHT};
+  }
 `;
 
 const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px 17px;
+  padding: 10px 12px;
   display: flex;
   align-items: center;
   z-index: 2;
+
+  ${media.md} {
+    flex-direction: column;
+    padding: 0px 50px;
+  }
 `;
 
-const HeaderContentContainer = styled.div`
-  flex-grow: 1;
+const HeaderTimeContainer = styled.div`
+  background: ${({ theme }) => theme.darkGray};
   display: flex;
   align-items: center;
   justify-content: end;
+  width: 100%;
+  height: 30px;
+`;
+
+const HeaderContentContainer = styled.div<{
+  $isMenuOpen: boolean;
+}>`
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: ${({ $isMenuOpen }) => ($isMenuOpen ? "flex-end" : "space-between")};
+  width: 100%;
+
+  ${media.sm} {
+    height: calc(100% - 30px);
+  }
 `;
 
 type ContentWrapperProps = {
@@ -54,17 +81,6 @@ type ContentWrapperProps = {
 const SystemInfoContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 30px;
-
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-    $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-    $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
 `;
 
 const Header = () => {
@@ -77,22 +93,30 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <Link to={""}>
-          <BrandLogo
-            style={{ height: "28px", marginLeft: isDesktopSize ? "70px" : "unset" }}
-            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-          />
-        </Link>
+        {isLargeDesktopSize &&
+          <HeaderTimeContainer>
+            <>
+              <SystemInfoContainer>
+                <CurrentTime />
+              </SystemInfoContainer>
+              <OnlineUser color={theme.white} />
+            </>
+          </HeaderTimeContainer>
+        }
 
-        <HeaderContentContainer>
-          {isExtraLargeDesktopSize && (
-            <SystemInfoContainer $isOpen={isDesktopSize && isMenuOpen}>
-              <CurrentTime />
-            </SystemInfoContainer>
-          )}
+        <HeaderContentContainer $isMenuOpen={isMenuOpen}>
+          {!isMenuOpen &&
+            <Link to={""}>
+              <BrandLogo
+                style={{ height: isDesktopSize ? "48px" : "24px", marginLeft: isDesktopSize ? "126px" : "unset" }}
+                onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+              />
+            </Link>
+          }
+
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
 
-          {!isDesktopSize && <ContactButton />}
+          {/* {!isDesktopSize && <ContactButton />} */}
         </HeaderContentContainer>
         {/* header最右側那顆選單按鈕 */}
         {!isLargeDesktopSize && <MenuButton />}

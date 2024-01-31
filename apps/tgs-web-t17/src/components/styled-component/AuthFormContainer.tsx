@@ -9,9 +9,9 @@ export const AuthFormContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  padding: 20px 15px;
   overflow: auto;
-  gap: 14px;
+  gap: 24px;
+  padding: 0 24px;
 
   ::-webkit-scrollbar {
     visibility: hidden;
@@ -25,11 +25,6 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  
-  ${media.sm} {
-    width: 500px;
-    height: 489px;
-  }
 `;
 
 export const LoginTitle = styled.div`

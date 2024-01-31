@@ -56,7 +56,7 @@ const Dialog = ({ open, onClose, children, fullscreenOnMobile = true, ...others 
         <CloseIcon
           onClick={onClose}
           style={{
-            color: theme.text,
+            color: theme.white,
           }}
         />
       </CloseIconContainer>

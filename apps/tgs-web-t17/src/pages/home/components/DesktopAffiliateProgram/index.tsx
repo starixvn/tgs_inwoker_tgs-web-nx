@@ -64,7 +64,7 @@ const DesktopAffiliateProgram = () => {
         <BtnWrapper>
           <TextButton
             text="More"
-            bgColor={theme.thirdGradient}
+            bgColor={theme.primaryGradient}
             width="300px"
           />
         </BtnWrapper>

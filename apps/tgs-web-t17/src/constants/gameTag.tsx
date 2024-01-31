@@ -14,12 +14,12 @@ export const gameTagList: TagIcon[] = [
     iconComponent: FavoriteIcon,
   },
   {
-    text: "Hot",
-    iconComponent: HotIcon,
-  },
-  {
     text: "New",
     iconComponent: NewIcon,
+  },
+  {
+    text: "Hot",
+    iconComponent: HotIcon,
   },
   {
     text: "Recommend",

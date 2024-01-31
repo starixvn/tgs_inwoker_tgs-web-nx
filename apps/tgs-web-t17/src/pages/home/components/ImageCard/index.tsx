@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Wrapper = styled.div<{ $alignment: string }>`
   display: flex;
-  flex-direction: column;
   align-items: ${({ $alignment }) => $alignment};
   justify-content: flex-start;
 `;
@@ -17,6 +16,18 @@ const Text = styled.div`
   white-space: pre-line;
 `;
 
+const Image = styled.div`
+  width: 100%;
+  max-width: 340px;
+  margin-right: 72px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
 type Props = {
   imageUrl: string;
   text: string;
@@ -26,7 +37,7 @@ type Props = {
 const ImageCard = ({ imageUrl, text, alignment }: Props) => {
   return (
     <Wrapper $alignment={alignment}>
-      <img src={imageUrl} alt={text} />
+      <Image><img src={imageUrl} alt={text} /></Image>
       <Text>
         <div dangerouslySetInnerHTML={{ __html: text }}></div>
       </Text>

@@ -10,4 +10,5 @@ export const theme = {
   white: "#FFFFFF",
   primaryGradient: "linear-gradient(180deg, #D84736 0%, #E08144 100%)",
   btnHover: "linear-gradient(180deg, #e44d3b 0%, #e5935e 100%)",
+  picMask: "linear-gradient(180deg,rgb(255 255 255 / 0%) 29.17%,#000000 100%)"
 };

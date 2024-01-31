@@ -5,10 +5,12 @@ import { i18n } from "@tgs-web-nx/utils";
 
 const StyledTable = styled(Table)`
   padding: 20px;
+  border: 1px solid ${({ theme }) => theme.mainBackground};
+  border-radius: 10px;
 `;
 
 const StyledTableHead = styled(TableHead)`
-  background: ${({ theme }) => theme.pureBlack};
+  background: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white}
 
   & * {
@@ -17,7 +19,7 @@ const StyledTableHead = styled(TableHead)`
 `;
 
 const StyledTableBody = styled(TableBody)`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.darkGray};
   & * {
     color: ${({ theme }) => theme.white} !important;
   }
@@ -25,6 +27,7 @@ const StyledTableBody = styled(TableBody)`
 
 const StyledTableCell = styled(TableCell)`
   padding: 10px 20px;
+  border-bottom: none !important;
 `;
 
 type Props = {

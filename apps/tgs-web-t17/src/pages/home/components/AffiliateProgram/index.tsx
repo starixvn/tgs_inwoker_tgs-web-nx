@@ -49,7 +49,7 @@ const AffiliateProgram = () => {
         <BtnWrapper>
           <TextButton
             text="More"
-            bgColor={theme.thirdGradient}
+            bgColor={theme.primaryGradient}
           />
         </BtnWrapper>
       </Content>

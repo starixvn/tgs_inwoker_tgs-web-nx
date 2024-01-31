@@ -13,34 +13,15 @@ const PromotionCardListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
-  padding: 18px 20px;
+  padding: 18px 23px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 30px 80px;
+    padding: 20px 0px;
   }
-`;
-
-const PromotionBanner = styled.div<{ $imageUrl: string }>`
-  width: 100%;
-  padding-top: 27%;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  ${media.sm} {
-    height: 520px;
-  }
-`;
-
-const TitleText = styled.h1`
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.white};
 `;
 
 const PromotionPage = () => {
@@ -52,7 +33,6 @@ const PromotionPage = () => {
   }
   return (
     <PageContainer>
-      {isDesktopSize && <PromotionBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/promotion/promotion-banner.png`} />}
       <PromotionCardListContainer>
         {promotionList
           .sort((a, b) => a.order - b.order)

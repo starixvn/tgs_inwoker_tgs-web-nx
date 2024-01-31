@@ -12,7 +12,7 @@ const HomeCategoryContainer = styled.div`
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 0 14px;
+    padding: 20px 14px;
   }
 `;
 

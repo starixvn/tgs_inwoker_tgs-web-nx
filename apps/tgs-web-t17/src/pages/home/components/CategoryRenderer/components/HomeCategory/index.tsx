@@ -1,16 +1,25 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import ButtonText from "@/pages/home/components/ButtonText";
 import CategoryLabel from "./components/CategoryLabel";
-import LobbyVendorCard from "@/pages/home/components/VendorCard/LobbyVendorCard";
+import VendorCard from "@/pages/home/components/VendorCard";
+import GameCard from "@/pages/home/components/GameCard";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
+import config from "@tgs-web-nx/config";
+import { usePromotionPage, useRwd } from "@tgs-web-nx/core/hooks";
+import HomePromotionCard from "@/pages/promotion/components/HomePromotionCard";
+import logo from "@/assets/t17/images/home/logo.png";
+import ImageCard from "@/pages/home/components/ImageCard";
+import Jackpot from "@/components/project/Jackpot";
+import jackpotBg from "@/assets/t17/images/home/jackpot-bg.png";
+import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
+import WinnerCard from "@/pages/home/components/WinnerCard";
 
 const HomeCategoryContainer = styled.div`
   display: flex;
@@ -18,8 +27,7 @@ const HomeCategoryContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 12px;
-  gap: 14px;
+  padding: 10px;
   
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -45,12 +53,82 @@ const CategoryContent = styled.div`
   width: 100%;
   align-self: stretch;
   gap: 10px;
-  max-height: 254px;
   overflow-x: hidden;
+`;
+
+const LobbyCategoryContent = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100%;
+  flex: 1;
+  flex-shrink: 0;
+  gap: 8px;
 
   ${media.sm} {
     max-height: unset;
     overflow-x: unset;
+  }
+`;
+
+const PromotionContent = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100%;
+  gap: 23px;
+  overflow-x: hidden;
+`;
+
+const IntroductionContent = styled.div`
+  display: flex;
+  align-content: center;
+  width: 100%;
+`;
+
+const RankingContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  ${media.sm} {
+    max-height: 310px;
+    flex-direction: row;
+  }
+`;
+
+const JackPotContainer = styled.div`
+  position: relative;
+  aspect-ratio: 720 / 297.05;
+  width: 100%;
+  background-image: url(${jackpotBg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-right: 10px;
+  border-radius: 15px;
+
+  ${media.sm} {
+    max-width: 720px;
+  }
+`;
+
+const LatestContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 19px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background-color: ${({ theme }) => theme.darkGray};
+
+  ${media.sm} {
+    max-width: 470px;
   }
 `;
 
@@ -59,6 +137,10 @@ const HomeCategory = () => {
   const { account } = useAccountStore();
   const { handleChangeGameType, providerList, activeGameType } = useHomeGameContext();
   const gameTypeList = useGameTypeList();
+  const { hotGameList } = useGetHomeCategoryList();
+  const { isMobileSize, isDesktopSize } = useRwd();
+  const { promotionList } = usePromotionPage();
+  const { leaderboard } = useBettingHistory();
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -97,41 +179,90 @@ const HomeCategory = () => {
   const handleViewAllClick = (gameType: GameTypeEnum) => {
     handleChangeGameType(gameType);
     const activeGameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
-    history.push(`/main/${activeGameTypeKey}`);
+    if (!gameType) {
+      history.push(`/promotion-list`);
+    } else {
+      history.push(`/main/${activeGameTypeKey}`);
+    }
   };
 
   const liveCasinoList = providerList.filter((provider) => {
     return provider.gametypes.includes(GameTypeEnum.LIVELOBBY);
   })
-  const lotteryList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.LOTTERYLOBBY);
-  })
-  const sportsList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.SPORTS);
-  })
-  const sabongList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.COCKFIGHT);
-  })
-  const cardGamegList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.QIPAILOBBY);
-  })
-  const esportsList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.ESPORTS);
-  })
-  const slotList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.SLOT);
-  })
-  const fishList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.FISH);
-  })
-  const tableGameList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.TABLEGAME);
-  })
-  // to-do : 抽出去useGetVendorList
 
   return (
     <>
-      <GameTypeTab />
+      {isDesktopSize &&
+        <RankingContainer>
+          <JackPotContainer>
+            <Jackpot />
+          </JackPotContainer>
+          <LatestContainer>
+            <WinnerCard leaderboard={leaderboard} />
+          </LatestContainer>
+        </RankingContainer>
+      }
+
+      <HomeCategoryContainer>
+        <HomeLobbyCategory>
+          <CategoryTitle>
+            <CategoryLabel text={"Hot Games"} />
+            <ButtonText
+              size="small"
+              text={"More"}
+              onClick={() => handleViewAllClick(GameTypeEnum.SLOT)}
+            />
+          </CategoryTitle>
+          <CategoryContent>
+            {isMobileSize && hotGameList.slice(0, 6).map((gameItem) => {
+              return (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
+                />
+              );
+            })}
+            {isDesktopSize && hotGameList.slice(0, 16).map((gameItem) => {
+              return (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+                    }.jpg`}
+                />
+              );
+            })}
+          </CategoryContent>
+        </HomeLobbyCategory>
+      </HomeCategoryContainer>
+
+      <HomeCategoryContainer>
+        <HomeLobbyCategory>
+          <CategoryTitle>
+            <CategoryLabel text={"Promotion"} />
+            <ButtonText
+              size="small"
+              text={"More"}
+              onClick={() => handleViewAllClick(GameTypeEnum.NONE)}
+            />
+          </CategoryTitle>
+          <PromotionContent>
+            {promotionList
+              .sort((a, b) => a.order - b.order)
+              .slice(0, 2)
+              .map((promotionData) => (
+                <HomePromotionCard key={promotionData.id} promotionData={promotionData} />
+              ))}
+          </PromotionContent>
+        </HomeLobbyCategory>
+      </HomeCategoryContainer>
+
       <HomeCategoryContainer>
         <HomeLobbyCategory>
           <CategoryTitle>
@@ -142,13 +273,13 @@ const HomeCategory = () => {
               onClick={() => handleViewAllClick(GameTypeEnum.LIVELOBBY)}
             />
           </CategoryTitle>
-          <CategoryContent>
-            {liveCasinoList.map((provider) => {
+          <LobbyCategoryContent>
+            {liveCasinoList.slice(0, 2).map((provider) => {
               const { code: gpCode, status, name } = provider;
 
               if (gpCode === "BC") return null;
               return (
-                <LobbyVendorCard
+                <VendorCard
                   key={gpCode}
                   bgUrl={`/assets/images/home/desktop/liveCasino/bg.png`}
                   imageUrl={`/assets/images/home/desktop/liveCasino/${gpCode}.png`}
@@ -159,251 +290,37 @@ const HomeCategory = () => {
                 />
               );
             })}
-          </CategoryContent>
+          </LobbyCategoryContent>
         </HomeLobbyCategory>
       </HomeCategoryContainer>
 
-      <HomeCategoryContainer>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel text={"Lottery"} />
-            <ButtonText
-              size="small"
-              text={"More"}
-              onClick={() => handleViewAllClick(GameTypeEnum.LOTTERYLOBBY)}
-            />
-          </CategoryTitle>
-          <CategoryContent>
-            {lotteryList.slice(0, 2).map((provider) => {
-              const { code: gpCode, status, name } = provider;
+      {isMobileSize &&
+        <RankingContainer>
+          <JackPotContainer>
+            <Jackpot />
+          </JackPotContainer>
+          <LatestContainer>
+            <WinnerCard leaderboard={leaderboard} />
+          </LatestContainer>
+        </RankingContainer>
+      }
 
-              return (
-                <LobbyVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/desktop/lottery/bg.png`}
-                  imageUrl={`/assets/images/home/desktop/lottery/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/lottery/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </CategoryContent>
-        </HomeLobbyCategory>
-      </HomeCategoryContainer>
-
-      <HomeCategoryContainer>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel text={"Slot"} />
-            <ButtonText
-              size="small"
-              text={"More"}
-              onClick={() => handleViewAllClick(GameTypeEnum.SLOT)}
-            />
-          </CategoryTitle>
-          <CategoryContent>
-            {slotList.slice(0, 2).map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              return (
-                <LobbyVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/desktop/slots/bg.png`}
-                  imageUrl={`/assets/images/home/desktop/slots/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/slots/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </CategoryContent>
-        </HomeLobbyCategory>
-      </HomeCategoryContainer>
-
-      <HomeCategoryContainer>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel text={"Fishing"} />
-            <ButtonText
-              size="small"
-              text={"More"}
-              onClick={() => handleViewAllClick(GameTypeEnum.FISH)}
-            />
-          </CategoryTitle>
-          <CategoryContent>
-            {fishList.slice(0, 2).map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              return (
-                <LobbyVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/desktop/fishing/bg.png`}
-                  imageUrl={`/assets/images/home/desktop/fishing/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/fishing/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </CategoryContent>
-        </HomeLobbyCategory>
-      </HomeCategoryContainer>
-
-      <HomeCategoryContainer>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel text={"Sports"} />
-            <ButtonText
-              size="small"
-              text={"More"}
-              onClick={() => handleViewAllClick(GameTypeEnum.SPORTS)}
-            />
-          </CategoryTitle>
-          <CategoryContent>
-            {sportsList.slice(0, 2).map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              return (
-                <LobbyVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/desktop/sports/bg.png`}
-                  imageUrl={`/assets/images/home/desktop/sports/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/sports/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </CategoryContent>
-        </HomeLobbyCategory>
-      </HomeCategoryContainer>
-
-      {sabongList.length > 0 &&
+      {isDesktopSize &&
         <HomeCategoryContainer>
           <HomeLobbyCategory>
             <CategoryTitle>
-              <CategoryLabel text={"Sabong"} />
-              <ButtonText
-                size="small"
-                text={"More"}
-                onClick={() => handleViewAllClick(GameTypeEnum.COCKFIGHT)}
-              />
+              <CategoryLabel text={`${config.brand} : A Winning Casino!`} />
             </CategoryTitle>
-            <CategoryContent>
-              {sabongList.slice(0, 2).map((provider) => {
-                const { code: gpCode, status, name } = provider;
-
-                return (
-                  <LobbyVendorCard
-                    key={gpCode}
-                    bgUrl={`/assets/images/home/desktop/sabong/bg.png`}
-                    imageUrl={`/assets/images/home/desktop/sabong/${gpCode}.png`}
-                    venderLogoUrl={`/assets/images/home/provider_logo/sabong/${gpCode}.png`}
-                    launchGame={() => launchLobbyGame(gpCode)}
-                    status={status}
-                    venderName={name}
-                  />
-                );
-              })}
-            </CategoryContent>
+            <IntroductionContent>
+              <ImageCard
+                imageUrl={logo}
+                text={`${config.brand}is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic. With irresistible weekly bonus promotions and attractive loyalty and VIP programs, we're sure you'll be sticking around for a while to come. All of our software is developed and maintained by the industry's foremost online gaming software company, Pegasus. Because of this, we are able to offer you the newest cutting-edge games, of the highest quality and ultimate security in a sophisticated, yet engaging atmosphere.`}
+                alignment={"center"}
+              />
+            </IntroductionContent>
           </HomeLobbyCategory>
         </HomeCategoryContainer>
       }
-
-      <HomeCategoryContainer>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel text={"Card Game"} />
-            <ButtonText
-              size="small"
-              text={"More"}
-              onClick={() => handleViewAllClick(GameTypeEnum.SPORTS)}
-            />
-          </CategoryTitle>
-          <CategoryContent>
-            {cardGamegList.slice(0, 2).map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              return (
-                <LobbyVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/desktop/cardGame/bg.png`}
-                  imageUrl={`/assets/images/home/desktop/cardGame/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/cardGame/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </CategoryContent>
-        </HomeLobbyCategory>
-      </HomeCategoryContainer>
-
-      <HomeCategoryContainer>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel text={"Egame"} />
-            <ButtonText
-              size="small"
-              text={"More"}
-              onClick={() => handleViewAllClick(GameTypeEnum.TABLEGAME)}
-            />
-          </CategoryTitle>
-          <CategoryContent>
-            {tableGameList.slice(0, 2).map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              return (
-                <LobbyVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/desktop/egame/bg.png`}
-                  imageUrl={`/assets/images/home/desktop/egame/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/egame/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </CategoryContent>
-        </HomeLobbyCategory>
-      </HomeCategoryContainer>
-
-      <HomeCategoryContainer>
-        <HomeLobbyCategory>
-          <CategoryTitle>
-            <CategoryLabel text={"Esports"} />
-            <ButtonText
-              size="small"
-              text={"More"}
-              onClick={() => handleViewAllClick(GameTypeEnum.SPORTS)}
-            />
-          </CategoryTitle>
-          <CategoryContent>
-            {esportsList.slice(0, 2).map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              return (
-                <LobbyVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/desktop/esports/bg.png`}
-                  imageUrl={`/assets/images/home/desktop/esports/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/esports/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          </CategoryContent>
-        </HomeLobbyCategory>
-      </HomeCategoryContainer>
     </>
   );
 };

@@ -55,8 +55,8 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontSize: "0.875rem",
     fontWeight: 500,
     whiteSpace: "nowrap",
-    padding: "0 5px",
-    color: theme.palette.black,
+    padding: "0 10px",
+    color: theme.palette.white,
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {

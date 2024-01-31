@@ -9,7 +9,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 `;
 
 type Props = {
@@ -25,8 +25,9 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <HeaderButton
         onClick={goToLogin}
         style={{
-          color: theme.g2,
-          background: "transparent",
+          minWidth: "92px",
+          color: theme.white,
+          background: theme.primaryGradient,
         }}
       >
         {i18n.t("common.login")}
@@ -35,9 +36,10 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <HeaderButton
         onClick={goToRegister}
         style={{
-          minWidth: "97px",
+          minWidth: "92px",
           color: theme.white,
-          background: theme.primaryGradient,
+          background: "transparent",
+          border: `1px solid ${theme.secondary}`,
         }}
       >
         {i18n.t("common.register")}
