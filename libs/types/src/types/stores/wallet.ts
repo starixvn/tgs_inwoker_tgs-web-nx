@@ -18,6 +18,9 @@ export interface DepositType {
     channelid: string;
     channelname: string;
     displayorer: number;
+    methodcode: string;
+    methodid: string;
+    displayname: string;
     extended: {};
     fees: number;
     id: string;
