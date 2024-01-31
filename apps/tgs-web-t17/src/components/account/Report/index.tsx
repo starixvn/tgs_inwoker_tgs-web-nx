@@ -20,7 +20,7 @@ import { DateRangeSelector, ReportMainContainer } from "@/components/styled-comp
 const Title = styled.div`
   color: ${({ theme }) => theme.white};
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 400;
 `;
 
 const Report = () => {

@@ -37,6 +37,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
   "& .MuiOutlinedInput-root": {
+    height: "100%",
     "&.Mui-disabled": {
       input: {
         WebkitTextFillColor: `${theme.palette.text.primary} !important`,
