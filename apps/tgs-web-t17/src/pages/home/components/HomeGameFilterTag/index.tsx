@@ -144,8 +144,7 @@ const HomeGameFilterTag = () => {
               text={name}
               isActive={isActive}
               onClick={() => handleFilterClick(filterTag)}
-            >
-            </Tag>
+            />
           );
         })}
       </ProviderTagContainer>
