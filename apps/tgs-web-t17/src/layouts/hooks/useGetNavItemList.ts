@@ -4,12 +4,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
-import affiliateImg from "@/assets/t19/images/account/navItem/icon-affiliate.svg";
-import contactImg from "@/assets/t19/images/account/navItem/icon-contact.svg";
-import vipImg from "@/assets/t19/images/account/navItem/icon-vip.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 // update svg icon
-import VipSvg from "@/pages/home/components/TabSvgIcon/Vip";
+import VipSvg from "@/pages/account/components/AccountSvgIcon/Vip";
 import AffiliateSvg from "@/pages/account/components/AccountSvgIcon/Affiliate";
 import ContactUsSvg from "@/pages/account/components/AccountSvgIcon/ContactUs";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -19,9 +16,7 @@ import TransferSvg from "@/pages/account/components/AccountSvgIcon/Transfer";
 import ReportSvg from "@/pages/account/components/AccountSvgIcon/Report";
 import InboxSvg from "@/pages/account/components/AccountSvgIcon/Inbox";
 import DownloadSvg from "@/pages/account/components/AccountSvgIcon/Download";
-import LanguageSvg from "@/pages/account/components/AccountSvgIcon/Language";
-import LogoutSvg from "@/pages/account/components/AccountSvgIcon/Logout";
-import { Logout } from "@mui/icons-material";
+import PromotionSvg from "@/pages/account/components/AccountSvgIcon/Promotion";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -231,15 +226,16 @@ export function useGetNavItemList() {
         },
         iconComponent: AffiliateSvg,
       },
-      // {
-      //   key: NavCardKey.VIP,
-      //   label: "VIP",
-      //   iconUrl: vipImg,
-      //   iconSecondaryUrl: vipWhiteImg,
-      //   iconPrimaryUrl: vipActiveImg,
-      //   navType: "route",
-      //   routePath: "/vip",
-      // },
+      {
+        key: NavCardKey.VIP,
+        label: "VIP",
+        navType: "route",
+        routePath: "/vip",
+        callback: () => {
+          history.push("/vip");
+        },
+        iconComponent: VipSvg,
+      },
       {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),
@@ -249,6 +245,16 @@ export function useGetNavItemList() {
           history.push("/support");
         },
         iconComponent: ContactUsSvg,
+      },
+      {
+        key: NavCardKey.PROMOTION,
+        label: i18n.t("common.promotion"),
+        navType: "route",
+        routePath: "promotion-list",
+        callback: () => {
+          history.push("/promotion-list");
+        },
+        iconComponent: PromotionSvg,
       },
       {
         key: NavCardKey.APP_DOWNLOAD,

@@ -2,7 +2,7 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHeader } from "@tgs-web-nx/core/features";
+import { useAuth, useAuthContext, useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import promotionIcon from "@/assets/t27/images/account/navItem/icon-promotion.svg";
 import downloadIcon from "@/assets/t27/images/account/navItem/icon-download.svg";
@@ -13,9 +13,16 @@ import Icon from "@/components/project/Icon";
 import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
+import { useState } from "react";
+import casinoIcon from "@/assets/t17/images/account/navItem/icon-casino.svg";
+import toggleIcon from "@/assets/t17/images/account/navItem/icon-toggle.svg";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
+import { Button } from "@/components/UI/Button";
+import AccountMenu from "@/layouts/components/Header/components/ContextMenuButton/components/AccountMenu";
+import { media } from "@/theme/breakpoints";
 
 const DesktopMenuDrawerContainer = styled.div`
-  background: ${({ theme }) => theme.g4};
+  background: ${({ theme }) => theme.darkGray};
   width: 100%;
   height: 100vh;
 `;
@@ -25,12 +32,13 @@ const MenuHeaderContainer = styled.div<{
 }>`
   position: relative;
   height: ${DESKTOP_HEADER_HEIGHT};
-  width: ${($isShrink) => ($isShrink ? "260px" : "100%")};
+  width: ${($isShrink) => ($isShrink ? "310px" : "100%")};
   display: flex;
   align-items: center;
-  padding: 0px 20px;
-  gap: 20px;
+  gap: 30px;
   flex-shrink: 0;
+  background: ${({ theme }) => theme.mainBackground};
+  padding: 0 30px;
 `;
 
 const HeaderContentContainer = styled.div`
@@ -40,10 +48,15 @@ const HeaderContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  padding: 20px 10px;
+  padding: 20px 40px;
   align-items: flex-start;
   flex-shrink: 0;
-  background: ${({ theme }) => theme.g4};
+  background: ${({ theme }) => theme.darkGray};
+
+  ${media.sm} {
+    padding: 22px 5px;
+    gap: 8px;
+  }
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -68,30 +81,12 @@ const HeaderContentContainer = styled.div`
 `;
 
 const MenuButtonContainer = styled.div`
-  padding: 10px;
   background: ${({ theme }) => theme.mainBackground};
 `;
 
-type PromotionCardProps = {
-  $isShrink: boolean;
-};
-
-const PromotionCard = styled.div<PromotionCardProps>`
-  cursor: pointer;
-  width: 100%;
-  background: ${({ $isShrink }: PromotionCardProps) =>
-    $isShrink ? theme.g5 : "transparent"};
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: all 0.2s ease-in-out;
-`;
-
 const LogoImgContainer = styled.div`
-  width: 100%;
-  height: 27px;
+  width: 155px;
+  height: 77px;
   justify-self: start;
   padding: 0 10px;
 
@@ -102,9 +97,42 @@ const LogoImgContainer = styled.div`
   }
 `;
 
+const CasinoCard = styled.div`
+  background: ${({ theme }) => theme.mainBackground};
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  padding: 10px 20px 10px;
+  border-radius: 10px 10px 0 0;
+`;
+
+const GameTypeWrapper = styled.div<{
+  $isShrink: boolean;
+}>`
+  display: flex;
+  align-items: center;
+  justify-content: ${({ $isShrink }) => $isShrink ? "center" : ""};
+  gap: 15px;
+  width: ${({ $isShrink }) => $isShrink ? "100%" : "calc(100% - 14px)"};
+`;
+
 const IconText = styled.div`
   font-size: 15.6px;
   font-weight: 700;
+`;
+
+const LanguageSwitchWrapper = styled.div`
+  width: 100%;
+`;
+
+const ToggleWrapper = styled.div<{
+  $isOpenGameTypeMenu: boolean;
+}>`
+  transform: ${({ $isOpenGameTypeMenu }) => $isOpenGameTypeMenu ? 'rotate(180deg)' : 'rotate(0deg)'};
+  transition: all 0.2s ease-in-out;
 `;
 
 const DesktopMenuDrawer = () => {
@@ -116,57 +144,55 @@ const DesktopMenuDrawer = () => {
   const { isDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
   const isShrink = isDesktopSize && !isMenuOpen;
+  const [isOpenGameTypeMenu, setIsOpenGameTypeMenu] = useState(false);
+  const { isLogin } = useAuth();
+  const { handleLogout } = useAuthContext();
 
   const handleDrawerClose = () => {
     if (isDesktopSize) return;
     handleToggleMenu(false);
   };
 
-  const handleClickVip = () => {
-    history.push("/vip");
-    handleDrawerClose();
-  };
-
-  const handleClickPromotion = () => {
-    history.push("/promotion-list");
-    handleDrawerClose();
-  };
-  ;
-
   return (
     <DesktopMenuDrawerContainer>
       <MenuHeaderContainer $isShrink={isShrink}>
         <MenuButtonContainer>
-          <MenuButton width={"20px"} height={"20px"} />
+          <MenuButton width={"30px"} height={"20px"} />
         </MenuButtonContainer>
-        <Link to={"/"}>
-          <LogoImgContainer>
-            <img src={brand && brand.loadingUrl} alt={"logo"} />
-          </LogoImgContainer>
-        </Link>
+        {!isShrink &&
+          <Link to={"/"}>
+            <LogoImgContainer>
+              <img src={brand && brand.loadingUrl} alt={"logo"} />
+            </LogoImgContainer>
+          </Link>
+        }
       </MenuHeaderContainer>
 
       <HeaderContentContainer>
-        <PromotionCard $isShrink={isShrink} onClick={handleClickPromotion}>
-          <Icon className={"promotion"} iconUrl={promotionIcon} width={"50px"} height={"50px"} />
-          <IconText>{!isShrink && i18n.t("common.promotion")}</IconText>
-        </PromotionCard>
+        <CasinoCard onClick={() => setIsOpenGameTypeMenu(!isOpenGameTypeMenu)}>
+          <GameTypeWrapper $isShrink={isShrink}>
+            <Icon iconUrl={casinoIcon} width={"30px"} height={"21px"} />
+            {!isShrink && <IconText>Casino</IconText>}
+          </GameTypeWrapper >
+          {!isShrink && <ToggleWrapper $isOpenGameTypeMenu={isOpenGameTypeMenu}><Icon iconUrl={toggleIcon} width={"14px"} height={"8px"} /></ToggleWrapper>}
+        </CasinoCard>
+        {isOpenGameTypeMenu && <MenuList />}
+        <AccountMenu />
+        <LanguageSwitchWrapper>
+          <LanguageSwitch />
+        </LanguageSwitchWrapper>
 
-        <MenuList />
-
-        {/* <PromotionCard $isShrink={isShrink} onClick={handleClickVip}>
-          <Icon className={"vip"} iconUrl={iconVip} width={"31px"} height={"31px"} />
-          <IconText>{!isShrink && "VIP"}</IconText>
-        </PromotionCard> */}
-
-
-
-        {/* <DownLoadCard $isShrink={isShrink} onClick={handleClickDownload}>
-          <Icon className={"icon"} iconUrl={downloadIcon} width={"31px"} height={"31px"} />
-          {!isShrink && i18n.t("common.download")}
-        </DownLoadCard> */}
-
-        {/* <MenuLanguageSwitch style={{ width: "250px", margin: "0 auto 20px" }} /> */}
+        {isLogin && (
+          <Button
+            sx={{
+              height: "40px",
+              width: "100%",
+            }}
+            onClick={handleLogout}
+          >
+            {i18n.t("web.header.logout")}
+          </Button>
+        )}
       </HeaderContentContainer>
     </DesktopMenuDrawerContainer>
   );

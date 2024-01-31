@@ -8,11 +8,11 @@ const RankingRowWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 82px;
-  padding: 12px;
-  gap: 12px;
-  border-radius: 12px;
-  background: #504C40;
+  gap: 19px;
+  
+  ${media.sm} {
+    padding: 0px 15px;
+  }
 `;
 
 const LeftColumn = styled.div`
@@ -55,15 +55,22 @@ const PlayerName = styled.div`
 `;
 
 const GameName = styled.div`
-  color: #C19B37;
+  color: ${({ theme }) => theme.white};
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 400;
+`;
+
+const Amount = styled.div`
+  color: ${({ theme }) => theme.white};
   font-size: 0.75rem;
   font-weight: 700;
 `;
 
 const BetAmount = styled.div`
-  color: ${({ theme }) => theme.primary};
+  display: flex;
+  color: #F3AF16;
   font-size: 1rem;
   font-weight: 700;
 `;
@@ -98,7 +105,7 @@ const WinnerRankRow = forwardRef(
         </LeftColumn>
 
         <RightColumn>
-          <BetAmount>₱{betAmount}</BetAmount>
+          <BetAmount>PHP <Amount>{betAmount}</Amount></BetAmount>
         </RightColumn>
       </RankingRowWrapper>
     );

@@ -26,9 +26,11 @@ import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/componen
 import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
 import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
-import AffiliateProgram from "@/pages/home/components//AffiliateProgram";
+import AffiliateProgram from "@/pages/home/components/AffiliateProgram";
 import DesktopAffiliateProgram from "@/pages/home/components/DesktopAffiliateProgram";
 import config from "@tgs-web-nx/config";
+import Marquee from "@/pages/home/components/CardPrompt/components/Marquee";
+import HomeGameTypeTab from "@/pages/home/components/HomeGameTypeTab";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -44,7 +46,8 @@ const MainWrapper = styled.div`
     margin: 0 auto;
     gap: unset;
     height: unset;
-    padding: 0px 0px 0px 0px;
+    padding: 20px 0px;
+    gap: 20px;
   }
 `;
 
@@ -76,7 +79,7 @@ const SlickDotWrapper = styled.div`
   margin-bottom: 30px;
 
   & ul li.slick-active ${SlickDot} {
-    background: #45D91E !important;
+    background: #D84736 !important;
   }
 `;
 
@@ -103,74 +106,48 @@ const MainContentWrapper = styled.div`
   }
 `;
 
-const HomeCategoryContainer = styled.div`
+const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+  width: 100%;
+  height: 158px;
+  margin: 0 auto;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  ${media.sm} {
+    height: 438px;
+  }
+`;
+
+const WalletWrapper = styled.div`
+  width: 100%;
+  padding: 10px 0px;
+  gap: 5px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
-  width: 100%;
+  background-color: ${({ theme }) => theme.darkGray};
+  border-radius: 5px;
+  margin: 10px 0;
 `;
 
-const HomeLobbyCategory = styled.div`
-  width: 100%;
-`;
-
-const CategoryTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 0px;
-`;
-
-const SlotCategoryContent = styled.div`
-  width: 100%;
-  row-gap: 15px;
-  column-gap: 31px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-`;
-
-const HomeRanking = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 16px 12px;
-`;
-
-const Title = styled.div`
-  width: 100%;
-  font-size: 17.5px;
+const WalletBtn = styled.div`
+  font-size: 18px;
   font-weight: 400;
-  line-height: 22px;
-  color: ${({ theme }) => theme.white};
+  line-height: 14px;
+  text-align: center;
+  color: #F2F2F2;
+  width: 95px;
+  padding: 12px 15px;
 `;
 
-const Introduction = styled.div`
- display: flex;
-  padding: 60px 42px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 21px;
-  background-color: ${({ theme }) => theme.g3};
-  margin-bottom: 30px;
-`;
-
-const Brand = styled.div`
-  width: 100%;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 58.36px;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.white};
-`;
-
-const IntroductionText = styled.div`
-  width: 100%;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 30px;
-  color: ${({ theme }) => theme.g2};
+const Line = styled.div`
+  width: 2px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: ${({ theme }) => theme.lightGray};
 `;
 
 const HomePage = () => {
@@ -178,7 +155,7 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, handleChangeGameType, isEnterGamePortal } =
+  const { activeGameType, activeGameTypeKey, handleChangeGameType } =
     useHomeGameContext();
   const history = useHistory();
   const gameTypeList = useGameTypeList();
@@ -219,53 +196,39 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      <CardPrompt />
-      {/* 首頁但未進入遊戲大廳 */}
-      {!isEnterGamePortal && !activeGameType &&
-        <>
-          {isDesktopSize ? <DesktopRegisterSection /> : <RegisterSection />}
-        </>
-      }
-      {!!general.banner.length &&
+      {!!general.banner.length && !activeGameType &&
         <SliderWrapper>
           <Slider settings={settings} />
         </SliderWrapper>
       }
+      {isDesktopSize && !activeGameType && <Marquee />}
+      {isMobileSize && !activeGameType && <CardPrompt />}
+      {!!general.banner.length && !activeGameType && <HomeGameTypeTab />}
+      {!!activeGameType && (
+        <GameTypeBanner
+          $imageUrl={
+            activeGameTypeKey
+              ? `${import.meta.env.BASE_URL
+              }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+              : ""
+          }
+        />
+      )}
 
-      {!isEnterGamePortal && !activeGameType &&
-        <>
-          <CategorySection />
-          <HomeCategoryContainer>
-            <ScrollableHomeRecommend />
-            <ScrollableHomeHot />
-            <HomeRanking>
-              <Title>Latest Bets & Wins</Title>
-              <LatestRecordTable betRecordList={betRecordList} />
-            </HomeRanking>
-            {isDesktopSize ? <DesktopAffiliateProgram /> : <AffiliateProgram />}
-            <ScrollableHomeNew />
-            <Introduction>
-              <Brand>{config.brand} : A Winning Casino!</Brand>
-              <IntroductionText>
-                {config.brand} is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic.
-              </IntroductionText>
-            </Introduction>
-          </HomeCategoryContainer>
-        </>
-      }
+      <MainContentWrapper>
+        <CategoryRenderer />
+      </MainContentWrapper>
 
-      {isMobileSize && !isEnterGamePortal && !activeGameType && (
+      {isMobileSize && !activeGameType && (
         <>
+          <WalletWrapper>
+            <WalletBtn onClick={() => history.push("/deposit")}>{i18n.t("common.deposit")}</WalletBtn>
+            <Line />
+            <WalletBtn onClick={() => history.push("/withdrawal")}>{i18n.t("common.withdrawal")}</WalletBtn>
+          </WalletWrapper>
           <SocialMedia />
           <VendorLogo />
         </>
-      )}
-
-      {/* 首頁並且進入遊戲大廳 */}{/* 切換遊戲分頁 */}
-      {isEnterGamePortal && (
-        <MainContentWrapper>
-          <CategoryRenderer />
-        </MainContentWrapper>
       )}
     </MainWrapper>
   );

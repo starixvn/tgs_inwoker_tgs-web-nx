@@ -1,3 +1,4 @@
+import { media } from "@/theme/breakpoints";
 import { FC } from "react";
 import styled from 'styled-components';
 
@@ -12,10 +13,13 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.div`
-    color:${({ theme }) => theme.white};
-    /* margin-left: 10px; */
-    font-size: 19.5px;
-    font-weight: 400;
+    color: ${({ theme }) => theme.white};
+    font-size: 18px;
+    font-weight: 700;
+
+    ${media.sm} {
+      font-size: 25px;
+  }
 `;
 
 const CategoryLabel: FC<Props> = ({ imageUrl, text }) => {

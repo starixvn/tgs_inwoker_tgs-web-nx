@@ -9,12 +9,16 @@ type Props = {
 
 const InputWrapper = styled.div`
   width: 100%;
+  max-width: 149px;
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0px 24px;
-  background: #17191B;
-  gap: 10px;
+  padding: 8px 14px;
+  gap: 5px;
+  background: color: ${({ theme }) => theme.darkGray};
+  gap: 5px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.lightGray};
 `;
 
 const InputTextfield = styled.input`
@@ -28,7 +32,7 @@ const InputTextfield = styled.input`
   font-size: 14px;
   
   &::placeholder {
-    color: ${({ theme }) => theme.g8};
+    color: ${({ theme }) => theme.lightGray};
   }
 
   &:focus {

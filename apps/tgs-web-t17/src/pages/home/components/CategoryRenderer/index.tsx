@@ -11,7 +11,6 @@ const CategoryRenderer = () => {
   switch (activeGameType) {
     case GameTypeEnum.NONE:
       return <HomeCategory />;
-    // 遊戲大廳 isEnterGamePortal
   }
 
   switch (activeGameType) {

@@ -10,10 +10,9 @@ export const RememberMeContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   cursor: pointer;
-  //margin: 8px 0;
 `;
 export const ForgotPasswordContainer = styled.span`
   color: ${({ theme }) => theme.primary};
