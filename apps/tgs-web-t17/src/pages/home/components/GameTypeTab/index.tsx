@@ -13,7 +13,9 @@ const TabContainer = styled.div`
   white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  padding-left: 12px;
+  background-color: ${({ theme }) => (theme.darkGray)};
+  padding: 10px;
+  margin: 10px;
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
