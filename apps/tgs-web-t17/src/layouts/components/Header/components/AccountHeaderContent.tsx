@@ -7,10 +7,11 @@ import { useAuthContext, useHeader, useHomeGameContext } from "@tgs-web-nx/core/
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Icon from "@/components/project/Icon";
-import iconAccount from "@/assets/t27/images/header/icon-account.svg";
-import iconDeposit from "@/assets/t27/images/header/icon-deposit.svg";
-import iconPromotion from "@/assets/t27/images/header/icon-promotion.svg";
-import signoutBtn from "@/assets/t27/images/header/icon-logout.svg";
+import iconAccount from "@/assets/t17/images/header/icon-account.svg";
+import iconDeposit from "@/assets/t17/images/header/icon-deposit.svg";
+import iconPromotion from "@/assets/t17/images/header/icon-promotion.svg";
+import iconWallet from "@/assets/t17/images/header/icon-wallet.svg";
+import signoutBtn from "@/assets/t17/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import config from "@tgs-web-nx/config";
 import { media } from "@/theme/breakpoints";
@@ -33,29 +34,33 @@ const IconContainer = styled.div`
 const BalanceContainer = styled.div`
   display: flex;
   height: 36px;
-  padding: 4px 10px;
+  padding: 10px 6px;
   align-items: center;
-  gap: 5px;
-  border-radius: 4px;
-  background: ${({ theme }) => theme.g4};
-  color: ${({ theme }) => theme.white};
+  gap: 10px;
+  border-radius: 5px;
+  flex-shrink: 0;
+  border: 1px solid ${({ theme }) => theme.lightGray};
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #F2AE15;
   font-size: 0.875rem;
   font-weight: 700;
 `;
 
 const DepositContainer = styled.div`
   min-width: 110px;
-  height: 38px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.secondaryGradient};
-  border-radius: 4px;
+  background: ${({ theme }) => theme.primaryGradient};
+  border-radius: px;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 400;
   gap: 10px;
   cursor: pointer;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 `;
 
 const MobileDepositContainer = styled.div`
@@ -120,14 +125,14 @@ const AccountHeaderContent = () => {
       {isDesktopSize &&
         <>
           <BalanceContainer>
+            <Icon
+              iconUrl={iconWallet}
+              width={"20px"}
+              height={"20px"}
+            />
             {config.currency} ${currentBalance}
           </BalanceContainer>
           <DepositContainer onClick={handleGotoDeposit}>
-            <Icon
-              iconUrl={iconDeposit}
-              width={"24px"}
-              height={"24px"}
-            />
             {i18n.t("common.deposit")}
           </DepositContainer>
           <IconContainer onClick={handleClickLogout}>
