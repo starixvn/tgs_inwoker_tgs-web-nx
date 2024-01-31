@@ -37,20 +37,17 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
   "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      border: "none",
-    },
-    "&:hover fieldset": {
-      border: "none",
-    },
-    "&.Mui-focused fieldset": {
-      border: "none",
-    },
     "&.Mui-disabled": {
       input: {
         WebkitTextFillColor: `${theme.palette.text.primary} !important`,
       },
     },
+  },
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "1px solid #828282 !important",
+  },
+  "& .css-xrq6d6-MuiSvgIcon-root-MuiNativeSelect-icon": {
+    color: "white !important",
   },
 }));
 
