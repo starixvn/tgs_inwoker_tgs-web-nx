@@ -47,7 +47,6 @@ const Support = () => {
   return (
     <SupportContainer>
       <CardsContainer>
-        <HeaderImage />
         {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
             brandsSupport={{

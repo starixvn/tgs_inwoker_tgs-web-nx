@@ -82,7 +82,7 @@ const BalanceChangeTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.text,
+          color: theme.white,
           "& button": {},
         }}
       />

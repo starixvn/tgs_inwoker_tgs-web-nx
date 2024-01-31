@@ -19,7 +19,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.318rem;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.gray};
   }
 
   & .value {
@@ -30,7 +30,7 @@ const AffiliateInfoRowContainer = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-right: 6px;
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.gray};
   }
 
   & .button {
@@ -70,8 +70,8 @@ const AffiliateInfoRow = ({ label, value }: Props) => {
         onClick={handleCopyText}
         variant={isCopied ? "outlined" : "contained"}
         sx={{
-          color: theme.pureBlack,
-          background: theme.goldGradient,
+          color: theme.black,
+          background: theme.primary,
           fontSize: "20px",
           padding: "8px 24px",
         }}

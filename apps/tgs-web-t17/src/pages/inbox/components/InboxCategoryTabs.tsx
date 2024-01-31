@@ -16,8 +16,8 @@ type CategoryTabProps = {
 const CategoryTab = styled.div<CategoryTabProps>`
   flex: 1 1 0%;
   background: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? theme.goldGradient : "transparent"};
-  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.pureBlack : theme.white)};
+    $isActive ? theme.primary : "transparent"};
+  color: ${({ $isActive, theme }: CategoryTabProps) => ($isActive ? theme.black : theme.white)};
   padding: 10px 24px;
   text-align: center;
   font-size: 0.9375rem;
@@ -25,7 +25,7 @@ const CategoryTab = styled.div<CategoryTabProps>`
   cursor: pointer;
   border-radius: 6px;
   border: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? "transparent" : `1px solid ${theme.gray}`};
+    $isActive ? "transparent" : `1px solid ${theme.white}`};
 `;
 
 type Props = {

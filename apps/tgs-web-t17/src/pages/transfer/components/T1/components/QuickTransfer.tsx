@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t19/images/transfer/arrow-right.svg";
+import ArrowRightPNG from "@/assets/t17/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -187,12 +187,12 @@ const QuickTransfer = ({
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
         style={{
-          color: theme.pureBlack,
-          background: theme.goldGradient,
+          color: theme.black,
+          background: theme.primaryGradient,
           width: "143px",
           height: "40px",
           padding: "13px",
-          borderRadius: "6px",
+          borderRadius: "10px",
         }}
       >
         {i18n.t("common.transfer")}
