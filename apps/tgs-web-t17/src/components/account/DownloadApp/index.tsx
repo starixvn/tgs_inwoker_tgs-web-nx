@@ -38,10 +38,6 @@ const infoCardItemList: InfoCardItem[] = [
 const DownloadApp = () => {
   return (
     <DownloadAppContainer>
-      <GirlImage>
-        <img src={downloadGirlImg} alt={"download"} />
-      </GirlImage>
-
       <IntroductionContainer>
         <span>Introduction</span>
         <p>
