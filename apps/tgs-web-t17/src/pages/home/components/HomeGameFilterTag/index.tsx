@@ -27,7 +27,6 @@ const SearchWrapper = styled.div`
 
 const ProviderTagContainer = styled.div`
   width: 100%;
-  height: 32px;
   overflow-x: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
@@ -138,8 +137,6 @@ const HomeGameFilterTag = () => {
             filterTag.tagType === FilterTagTypeEnum.ALL ||
             (filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
               gpCode === activeProviderFilterTag.gpCode);
-
-          const tagCmp = gameTagList.find((tag) => tag.text === name);
 
           return (
             <Tag

@@ -65,9 +65,9 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   padding: "4px 12px",
   borderRadius: "6px",
   color: theme.palette.white,
-  background: theme.palette.pureBlack,
+  background: theme.palette.black,
   "&:hover": {
-    background: theme.palette.goldGradient,
+    background: theme.palette.primaryGradient,
   },
 }));
 

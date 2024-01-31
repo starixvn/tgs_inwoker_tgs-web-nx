@@ -45,7 +45,7 @@ const TextButton = ({
   onClick,
   width = "100%",
   height = "46px",
-  bgColor = theme.secondaryGradient,
+  bgColor = theme.primaryGradient,
   color = theme.white,
 }: Props) => {
   return (

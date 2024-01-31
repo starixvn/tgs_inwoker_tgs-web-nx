@@ -75,7 +75,7 @@ const AccountMenuItem = ({ text, isActive, onClick, children }: Props) => {
 
       return (
         <IconComponent
-          $color={(!isActive && isHovered) ? theme.white : (isActive ? theme.primary : theme.g2)}
+          $color={(isActive || isHovered) ? theme.primary : theme.white}
           isHovered={isHovered}
         />
       );

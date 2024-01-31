@@ -266,24 +266,7 @@ export function useGetNavItemList() {
         },
         iconComponent: DownloadSvg,
       },
-      // {
-      //   key: NavCardKey.LANGUAGE_SWITCH,
-      //   label: i18n.t("common.language"),
-      //   navType: "action",
-      //   routePath: "",
-      //   callback: () => {},
-      //   iconComponent: LanguageSvg,
-      // },
-      // {
-      //   key: NavCardKey.LOGOUT,
-      //   label: i18n.t("web.header.logout"),
-      //   navType: "action",
-      //   callback: () => {
-      //     handleLogout();
-      //   },
-      //   iconComponent: LogoutSvg,
-      // },
-    ] as NavItem[];
+    ] as unknown as NavItem[];
   }, []);
 
   return {

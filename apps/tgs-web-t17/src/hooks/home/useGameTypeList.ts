@@ -19,6 +19,7 @@ import Lottery from "@/pages/home/components/TabSvgIcon/Lottery";
 import Sabong from "@/pages/home/components/TabSvgIcon/Sabong";
 import Slot from "@/pages/home/components/TabSvgIcon/Slot";
 import Sport from "@/pages/home/components/TabSvgIcon/Sport";
+import { GameTypeItem } from "@tgs-web-nx/core/features";
 
 type homeGameTypeItem = {
   key: string;
@@ -138,9 +139,12 @@ export const useGameTypeList = () => {
       },
     ];
 
-    const translatedList: GameTypeItem[] = gameTypeList.map((gameItem) => ({
+    const translatedList: homeGameTypeItem[] = gameTypeList.map((gameItem) => ({
       ...gameItem,
       text: i18n.t(gameItem.text),
+      iconComponent: gameItem.iconComponent,
+      title: gameItem.title,
+      content: gameItem.content,
     }));
 
     setTranslatedGameTypeList(translatedList);

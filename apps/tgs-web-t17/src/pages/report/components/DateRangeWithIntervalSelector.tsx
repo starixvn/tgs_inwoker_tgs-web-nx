@@ -23,7 +23,7 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
     return $isSelected ? theme.primary : "transparent";
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.pureBlack : theme.white;
+    return $isSelected ? theme.black : theme.white;
   }};
   border: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
     return $isSelected ? "transparent" : `1px solid ${theme.white}`;

@@ -5,8 +5,6 @@ import { theme } from "@/theme";
 
 const Wrapper = styled.div<{
   $isActive: boolean;
-  $isShowIcon: boolean;
-  $hasBackground: boolean;
 }>`
   vertical-align: middle;
   display: inline-flex;
@@ -15,7 +13,7 @@ const Wrapper = styled.div<{
   width: auto;
   max-width: none;
   height: 30px;
-  margin-right: 4px;
+  margin: 4px;
   box-sizing: border-box;
   user-select: none;
   background: ${({ theme, $isActive }) =>
@@ -44,21 +42,13 @@ const Text = styled.div<{
 type Props = {
   text: string;
   isActive: boolean;
-  isShowIcon: boolean;
-  children: React.ReactNode;
   onClick: () => void;
 };
 
-type IconComponentProps = {
-  $color: string;
-};
-
-const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
+const Tag = ({ text, isActive, onClick }: Props) => {
   return (
     <Wrapper
       $isActive={isActive}
-      $isShowIcon={isShowIcon}
-      $hasBackground={!isShowIcon && isActive}
       onClick={onClick}
     >
       <Text $isActive={isActive}>{text}</Text>

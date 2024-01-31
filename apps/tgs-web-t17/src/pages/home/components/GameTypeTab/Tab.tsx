@@ -51,7 +51,7 @@ const Tab = ({ text, isActive, onClick, children }: Props) => {
     if (React.isValidElement(child)) {
       if (typeof child.type === 'function') {
         const IconComponent = child.type as React.ComponentType<IconComponentProps>;
-        return <IconComponent $color={isActive ? theme.g2 : theme.g2} />;
+        return <IconComponent $color={isActive ? theme.primary : theme.gray} />;
       }
     }
     return child;

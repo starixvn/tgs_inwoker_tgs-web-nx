@@ -69,7 +69,7 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
           sx={{
             fontSize: "0.9375rem",
             color: theme.white,
-            background: theme.pureBlack,
+            background: theme.black,
             border: "none",
             width: "143px",
             height: "37px",
