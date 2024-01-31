@@ -13,16 +13,20 @@ export const Table = muiStyled(MuiTable)(({ theme }) => ({
 })) as typeof MuiTable;
 
 export const TableHead = muiStyled(MuiTableHead)(({ theme }) => ({
+  padding: "10px 20px",
+  backgroundColor: `${theme.palette.mainBackground} !important`,
+
   "& .MuiTableCell-root": {
     fontSize: "0.812rem",
     lineHeight: "0.934rem",
     color: `${theme.palette.text.primary} !important`,
     borderBottom: "none",
-    borderRadius: "6px",
   },
 })) as typeof MuiTableHead;
 
 export const TableBody = muiStyled(MuiTableBody)(({ theme }) => ({
+  backgroundColor: `${theme.palette.darkGray} !important`,
+
   "& .MuiTableCell-root": {
     color: `${theme.palette.text.primary} !important`,
     cursor: "pointer",

@@ -44,7 +44,7 @@ const InboxList = () => {
         rowsPerPageOptions={[]}
         sx={{
           width: "100%",
-          color: theme.text,
+          color: theme.white,
           "& button": {},
         }}
       />

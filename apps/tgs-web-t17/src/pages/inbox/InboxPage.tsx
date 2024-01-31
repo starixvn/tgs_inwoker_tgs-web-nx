@@ -8,7 +8,7 @@ import {
 } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconInbox from "@/assets/t19/images/account/navItemWhite/icon-inbox.svg";
+import iconInbox from "@/assets/t17/images/account/navItemWhite/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import ComposeForm from "@/pages/inbox/components/form/ComposeForm";
