@@ -29,6 +29,7 @@ const Username = styled.div`
   font-weight: 700;
   line-height: 14px;
   letter-spacing: 0em;
+  cursor: pointer;
 `;
 
 const BalanceContainer = styled.div`
@@ -63,7 +64,7 @@ const AccountHeaderContent = () => {
     <ButtonContainer>
       <VipMedal vipLevel={accountLevel} width="35px" height="35px" />
       <UserInfo>
-        <Username>
+        <Username onClick={() => history.push("/account")}>
           <span> {username}</span>
           <span> {`(${config.currency})`}</span>
         </Username>

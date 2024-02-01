@@ -16,7 +16,7 @@ const ScrollableContainer = styled.div`
 
   ${media.sm} {
     //overflow-x: hidden; // this will cause tablet display issue
-    margin: 0 auto;
+    margin-top: 40px;
     scroll-snap-type: unset;
 
     &::-webkit-scrollbar {
@@ -56,7 +56,7 @@ const BonusTableWrapper = styled.div`
 const BonusTableHeader = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   width: 100%;
   height: 48px;
@@ -68,7 +68,6 @@ const BonusTableHeader = styled.div`
     height: 97px;
     padding: 20px 0;
     border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
   }
 `;
 
@@ -83,12 +82,10 @@ const HeaderItem = styled.div`
   font-weight: 400;
   text-align: center;
   margin: 0px 8px;
-
   ${media.sm} {
-    max-width: 115px;
+    /* max-width: 115px; */
     font-size: 1rem;
     margin: 0px 6px;
-    color: #23507d;
   }
 `;
 
@@ -97,10 +94,12 @@ const BonusTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
-  margin-top: 14px;
-  background: ${(props) => props.theme.white};
-  border-radius: 6px;
+
   ${media.sm} {
+    background: rgba(2, 169, 220, 0.1);
+    > div:nth-child(even) {
+      background: rgba(255, 255, 255, 0.4);
+    }
   }
 `;
 
@@ -109,9 +108,10 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border-bottom: ${({ theme }) => `1px solid ${theme.primary}`};
 
   ${media.sm} {
-    color: #23507d;
+    border-bottom: unset;
   }
 `;
 

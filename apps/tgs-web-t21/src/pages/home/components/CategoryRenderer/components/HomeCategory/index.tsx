@@ -2,11 +2,11 @@ import styled from "styled-components";
 import React from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { usePromotionPage } from "@tgs-web-nx/core/hooks";
+import { useHistory } from "react-router";
 import Banner from "../../../Banner";
 import CardPrompt from "../../../CardPrompt";
 import GameTypeCategory from "./GameTypeCategory";
 import PopularGames from "./components/PopularGames";
-import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
 import BannerImage from "@/pages/promotion/components/BannerImage";
@@ -69,7 +69,9 @@ const CategoryContent = styled.div`
 
 const PromotionImg = styled.div`
   max-width: 300px;
+  max-height: 100px;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -102,6 +104,8 @@ const HomeCategory = () => {
   const { gameTypeItemList, gameTypeDictionary } = useGetHomeCategoryListV2();
   const { promotionList } = usePromotionPage();
   const levelList = Array.from({ length: 9 }, (_, i) => i + 1);
+  const history = useHistory();
+
   return (
     <HomeCategoryContainer>
       <Banner />
@@ -112,7 +116,12 @@ const HomeCategory = () => {
             {promotionList
               .sort((a, b) => a.order - b.order)
               .map((promotionData) => (
-                <PromotionImg key={promotionData.id}>
+                <PromotionImg
+                  key={promotionData.id}
+                  onClick={() => {
+                    history.push("/promotion/" + promotionData.id);
+                  }}
+                >
                   <BannerImage promotionData={promotionData} />
                 </PromotionImg>
               ))}

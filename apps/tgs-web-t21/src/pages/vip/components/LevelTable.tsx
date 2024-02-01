@@ -14,7 +14,7 @@ const ScrollableContainer = styled.div`
   gap: 12px;
 
   ${media.sm} {
-    margin: 0 auto;
+    margin-top: 30px;
     scroll-snap-type: unset;
     //overflow-x: hidden; // this will cause tablet display issue
     &::-webkit-scrollbar {
@@ -84,10 +84,10 @@ const HeaderItem = styled.div`
   margin: 0px 8px;
 
   ${media.sm} {
-    max-width: 136px;
+    width: 166px;
     font-size: 1rem;
     margin: unset;
-    color: #23507d;
+    color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -96,15 +96,12 @@ const LevelTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
-  background: ${(props) => props.theme.mainBackground};
-  margin-top: 14px;
   border-radius: 6px;
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
-
+    background: rgba(2, 169, 220, 0.1);
     > div:nth-child(even) {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.4);
     }
   }
 `;
@@ -114,7 +111,7 @@ const LevelTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.mainBackground};
+  border-bottom: ${({ theme }) => `1px solid ${theme.primary}`};
 
   ${media.sm} {
     border-bottom: unset;
