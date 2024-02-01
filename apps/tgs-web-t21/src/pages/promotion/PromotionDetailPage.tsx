@@ -52,7 +52,7 @@ const TextArea = styled.div`
   }
 `;
 const Title = styled.h2`
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.primary};
   font-size: 1.125rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -78,13 +78,13 @@ const TermsAndConditions = styled(Description)`
 
 const JoinPromotionButtonWrapper = styled.div`
   position: fixed;
-  bottom: 63px;
+  bottom: 80px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.primary};
 
   ${media.sm} {
     position: relative;

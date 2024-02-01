@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
 import { usePromotionPage } from "@tgs-web-nx/core/hooks";
 import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
@@ -9,11 +8,10 @@ import { PageContainer } from "@/components/styled-component/PageContainer";
 const PromotionCardListContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 
   ${media.sm} {
-    flex-direction: row;
-    flex-wrap: wrap;
+    gap: 30px;
   }
 `;
 
