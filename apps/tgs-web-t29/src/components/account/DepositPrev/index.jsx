@@ -171,13 +171,17 @@ class DepositPrev extends Component {
               url = config.baseUrl.replace("/api/", "") + response.data.paymenturl;
             }
             if (response.data.paymenturl) {
-              url = response.data.paymenturl;
+              // url = response.data.paymenturl;
+              this.setState({
+                ...this.state,
+                openPopup: true,
+              });
             }
-            if (url !== "") {
-              window.open(url, "_blank");
-            }
+            // if (url !== "") {
+            //   window.open(url, "_blank");
+            // }
 
-            this.props.alert("", i18n.t("deposit.completeDeposit"));
+            // this.props.alert("", i18n.t("deposit.completeDeposit"));
           }
         }
         //===========================
@@ -621,6 +625,7 @@ class DepositPrev extends Component {
       openPopup: false,
       url: "",
     });
+    this.props.alert("", i18n.t("deposit.completeDeposit"));
   };
 
   render() {
