@@ -2,58 +2,66 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Promotion } from "@tgs-web-nx/types";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";
+import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import iconArrow from "@/assets/t23/images/promotion/icon_arrow.svg";
 
-type PromotionCardContainerProps = {
-  onClick: (event: Event) => void;
-};
-const PromotionCardContainer = styled.div<PromotionCardContainerProps>`
+const PromotionCardContainer = styled.div`
+  padding: 20px;
+  background: #fff;
+  border-radius: 16px;
   width: 100%;
-  border-radius: 10px;
-  gap: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  overflow: hidden;
+  line-height: 0;
   cursor: pointer;
 
   ${media.sm} {
-    width: calc((100% - 40px) / 2);
+    padding: 0;
+    background: none;
   }
 `;
-const BannerWrapper = styled.div`
-  pointer-events: none;
-  width: 100%;
-  //padding: 34.37% 0 0 0;
+
+const Text = styled.p`
+  color: ${({theme}) => theme.black};
+  font-size: .8rem;
+  font-weight: 400;
+  line-height: 23px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  ${media.sm} {
+    font-weight: 700;
+    line-height: 18px;
+  }
 `;
 
-// const PromotionTextContainer = styled.div`
-//   width: 100%;
-//   position: relative;
-//   display: flex;
-//   align-items: center;
-//   justify-content: flex-start;
-//   padding: 17.5px 11px;
-//   gap: 20.84px;
-// `;
+const DetailContainer = styled.div`
+  margin-top: 10px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 
-// const TitleWrapper = styled.div`
-//   font-size: 1.062rem;
-//   font-weight: 400;
-//   color: ${({ theme }) => theme.white};
-//   text-overflow: ellipsis;
-// `;
+  ${media.sm} {
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, #D8BFAA 0%, #FEE8D3 52%, #D5B89F 100%);
+  }
+`;
 
-// const ClickMoreContainer = styled.div`
-//   flex-shrink: 0;
-//   width: 28px;
-//   margin-left: auto;
-// `;
+const Arrow = styled.img`
+  width: 24px;
+  height: 24px;
+  transform: rotate(180deg);
+`;
 
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
   const history = useHistory();
-
+  const { isMobileSize } = useRwd();
   const handleEnterDetail: React.MouseEventHandler<HTMLDivElement> & ((event: Event) => void) = (
     event,
   ) => {
@@ -64,9 +72,12 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
 
   return (
     <PromotionCardContainer onClick={handleEnterDetail}>
-      <BannerWrapper>
-        <BannerImage promotionData={promotionData} />
-      </BannerWrapper>
+      <BannerImage promotionData={promotionData} />
+      <DetailContainer>
+        <Text>{promotionData.subSubject}</Text>
+        {!isMobileSize && <RoundHeaderButton>Details</RoundHeaderButton>}
+        {isMobileSize && <Arrow src={iconArrow} alt="arrow" />}
+      </DetailContainer>
     </PromotionCardContainer>
   );
 };

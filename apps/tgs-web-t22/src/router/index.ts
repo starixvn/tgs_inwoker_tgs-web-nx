@@ -231,13 +231,13 @@ const routes: RouteType[] = [
   {
     path: "/promotion-list",
     component: PromotionPage,
-    layout: DialogLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/promotion/:id?",
     component: PromotionDetailPage,
-    layout: DialogLayout,
+    layout: HomeLayout,
     isAnonymousAllowed: true,
   },
   //

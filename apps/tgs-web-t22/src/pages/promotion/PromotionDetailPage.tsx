@@ -2,14 +2,16 @@ import styled from "styled-components";
 import moment from "moment";
 import { usePromotionDetailPage } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
+import { MobileHeader } from "./components/MobileHeader";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import JoinPromotionButton from "@/pages/promotion/components/JoinPromotionButton";
 import { media } from "@/theme/breakpoints";
 import Loading from "@/components/UI/Loading";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
-  padding: 12px;
+  padding: 20px;
   color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
@@ -18,9 +20,8 @@ const PromotionDetailContainer = styled.div`
   flex-shrink: 0;
 
   ${media.sm} {
-    max-width: 870px;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
-    padding: 22px;
   }
 `;
 const BannerWrapper = styled.div`
@@ -36,12 +37,13 @@ const ContentContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 40px;
-  align-self: stretch;
-  padding-bottom: 73px;
 `;
 const TextArea = styled.div`
   width: 100%;
+
   & iframe {
+    margin: 20px auto 0;
+    display: block;
     max-width: 100%;
   }
   & img {
@@ -52,21 +54,23 @@ const TextArea = styled.div`
   }
 `;
 const Title = styled.h2`
-  color: ${({ theme }) => theme.blue50};
-  font-size: 1.125rem;
+  color: ${({ theme }) => theme.black};
+  font-size: .9rem;
   font-weight: 700;
   margin-bottom: 10px;
 
   ${media.sm} {
-    font-size: 2rem;
+    font-size: 1.2rem;
+    color: ${({ theme }) => theme.white};
   }
 `;
 const Description = styled.p`
-  color: ${({ theme }) => theme.text};
-  font-size: 0.875rem;
+  color: ${({ theme }) => theme.black};
+  font-size: 0.9rem;
   font-weight: 500;
   ${media.sm} {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -77,18 +81,28 @@ const TermsAndConditions = styled(Description)`
 `;
 
 const JoinPromotionButtonWrapper = styled.div`
-  position: fixed;
-  bottom: 63px;
-  width: 100%;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
   background: ${({ theme }) => theme.mainBackground};
+  width: 100%;
 
   ${media.sm} {
     position: relative;
     background: transparent;
+  }
+`;
+
+
+const MainContentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  background: ${({theme}) => theme.mainBackground};
+  overflow-y: auto;
+
+  ${media.sm} {
+    background: ${({theme}) => theme.black};
   }
 `;
 
@@ -103,7 +117,8 @@ const PromotionDetail = () => {
   }
 
   return (
-    <div>
+    <MainContentWrapper>
+      <MobileHeader title="Promotion"/>
       <PromotionDetailContainer>
         <BannerWrapper>
           <BannerImage promotionData={promotionData} />
@@ -139,7 +154,7 @@ const PromotionDetail = () => {
           <JoinPromotionButton id={promotionData.id} promotionType={promotionData.promotionType} />
         </JoinPromotionButtonWrapper>
       )}
-    </div>
+    </MainContentWrapper>
   );
 };
 
