@@ -664,7 +664,7 @@ class Main extends Component {
 
         {/*提交*/}
         <SubmitButton
-          onClick={this.props.handleDepositClick}
+          onClick={() => this.props.handleDepositClick(activePayment, activeMethod)}
           variant={"contained"}
           color={"primary"}
           fullWidth

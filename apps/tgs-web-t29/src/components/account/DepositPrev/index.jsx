@@ -306,10 +306,15 @@ class DepositPrev extends Component {
     this.setState({ ...this.state, open: false });
   };
 
-  handleDepositClick = () => {
+  handleDepositClick = (activePayment, activeMethod) => {
     this.setState({ ...this.state, disabled: true });
-    var payment = this.props.wallet.depositTypeList[this.state.selectedPaymentIndex];
-    var method = payment.method[this.state.selectedMethodIndex];
+    
+    // var payment = this.props.wallet.depositTypeList[this.state.selectedPaymentIndex];
+    // var method = payment.method[this.state.selectedMethodIndex];
+
+    // t29 custom deposit form: switch payment & method
+    const payment = this.props.wallet.depositTypeList.find(list => list.paymentcode === activePayment)
+    const method = payment.method.find(m => m.methodcode === activeMethod);
 
     var channel = method.channel[this.state.selectedChannelIndex];
     var bankCardIndex = this.props.wallet.bankCardList.findIndex(
