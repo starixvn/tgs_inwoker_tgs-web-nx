@@ -82,9 +82,12 @@ const Template1 = ({
             </SubmitButton>
           </TransferCard>
         )}
-
-        <SubTitle>{i18n.t("transfer.transferWallet")}</SubTitle>
-        <AutoTransferSwitch style={{ marginBottom: "20px" }} />
+        {isLargeDesktopSize && (
+          <>
+            <SubTitle>{i18n.t("transfer.transferWallet")}</SubTitle>
+            <AutoTransferSwitch style={{ marginBottom: "20px" }} />
+          </>
+        )}
         {isLargeDesktopSize && <TransferCards handleTransferIn={handleTransferIn} />}
         <Loading show={loading || wallet.transferLoading || wallet.updateBalanceloading}></Loading>
       </InnerWrap>

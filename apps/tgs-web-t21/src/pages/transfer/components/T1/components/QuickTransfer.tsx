@@ -15,7 +15,7 @@ import { TextField } from "@/components/UI/TextField";
 const QuickTransferContainer = styled.div`
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   & > * {
     height: 50px;
@@ -182,7 +182,7 @@ const QuickTransfer = ({
           color: theme.white,
           background: theme.primary,
           height: "50px",
-          minWidth: "212px",
+          minWidth: "156px",
           padding: "13px",
         }}
       >
