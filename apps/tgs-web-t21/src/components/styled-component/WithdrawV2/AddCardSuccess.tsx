@@ -3,6 +3,9 @@ import { media } from "@/theme/breakpoints";
 
 export const Container = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 export const SubTitle = styled.div`
   font-size: 1.5rem;

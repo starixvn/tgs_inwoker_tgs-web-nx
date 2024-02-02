@@ -14,14 +14,12 @@ const Success = ({ verified, handleConfirmClick, handleVerifyName }) => {
     <Container>
       <ImgSuccess src={SuccessPNG} />
       <SuccessMessage>{i18n.t("withdrawal.msgSuccess")}</SuccessMessage>
-      <SameLine>
-        <CustomButton onClick={handleConfirmClick} fullWidth={true}>
-          {i18n.t("common.confirm")}
-        </CustomButton>
-        {!verified && (
-          <CustomButton onClick={handleVerifyName}>{i18n.t("verified.goVerify")}</CustomButton>
-        )}
-      </SameLine>
+      <CustomButton onClick={handleConfirmClick} fullWidth={true}>
+        {i18n.t("common.close")}
+      </CustomButton>
+      {!verified && (
+        <CustomButton onClick={handleVerifyName}>{i18n.t("verified.goVerify")}</CustomButton>
+      )}
     </Container>
   );
 };

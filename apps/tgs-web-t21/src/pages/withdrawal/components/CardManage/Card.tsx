@@ -8,7 +8,7 @@ import Icon from "@/components/project/Icon";
 const CardContainer = styled.div`
   width: 100%;
   padding: 13px 20px;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.gray5};
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -21,10 +21,12 @@ const CardContainer = styled.div`
 
 const CardTitle = styled.div`
   color: ${({ theme }) => theme.black};
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
   padding-bottom: 10px;
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: Arial;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
 `;
 
 const CardContent = styled.div`

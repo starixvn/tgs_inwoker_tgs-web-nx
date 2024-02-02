@@ -3,17 +3,17 @@ import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 
 const PageBadgeContainer = styled.div`
+  width: 100%;
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   gap: 5px;
-  color: ${({ theme }) => theme.blue60};
-  width: fit-content;
+  color: ${({ theme }) => theme.white};
+  background: linear-gradient(180deg, #03a9dd 0%, #09b6ed 50%, #02c3ff 100%);
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.437rem;
-  border-left: 5px solid ${({ theme }) => theme.primary};
 `;
 
 type Props = {

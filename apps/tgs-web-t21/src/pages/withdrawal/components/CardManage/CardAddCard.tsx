@@ -6,7 +6,7 @@ import AddCardIcon from "@/assets/t21/images/card/add-card.svg";
 const CardContainer = styled.div`
   width: 100%;
   padding: 15px;
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.gray5};
   display: flex;
   flex-direction: column;
   align-items: center;

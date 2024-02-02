@@ -14,19 +14,19 @@ const rotateKeyFrame = keyframes`
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(-359deg);
+    transform: rotate(360deg);
   }
 `;
 
 const Container = styled.div`
-  padding: 22px 50px;
+  padding: 40px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 60px;
   flex-wrap: wrap;
   background: ${({ theme }) => theme.mainBackground};
-  margin-bottom: 20px;
+  border-radius: 5px 0;
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -59,17 +59,20 @@ const MainWalletContainer = styled.div`
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
-  font-size: 1.062rem;
-  font-weight: 700;
-  line-height: 1.245rem;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
   color: ${({ theme }) => theme.text};
   white-space: nowrap;
 `;
 
 const AmountContainer = styled.div<{ theme: DefaultTheme }>`
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.blue60};
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 39px;
+  letter-spacing: 0em;
+  color: ${({ theme }) => theme.black};
   display: flex;
   align-items: center;
   justify-content: flex-end;

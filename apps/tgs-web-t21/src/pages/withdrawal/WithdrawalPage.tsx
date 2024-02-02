@@ -32,7 +32,7 @@ const WithdrawalPage = () => {
       <AccountPaper
         pageName={i18n.t("common.withdrawal")}
         iconUrl={iconWithdrawal}
-        hidePaperColorInMobile={true}
+        hidePaperColorInMobile={false}
       >
         <WithdrawalPrevV2
           appHistory={history}

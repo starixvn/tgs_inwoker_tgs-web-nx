@@ -8,6 +8,7 @@ export const PageContainer = styled.div`
   margin: 0 auto;
 
   ${media.sm} {
+    padding: 0px 30px;
     //padding: 10px;
   }
 `;
@@ -19,7 +20,7 @@ export const TransferPageContainer = styled.div`
   margin: 0 auto;
 
   ${media.sm} {
-    //padding: 10px;
+    padding: 0px 30px;
   }
 
   & .MuiButton-fullWidth {

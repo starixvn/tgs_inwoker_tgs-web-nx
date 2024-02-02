@@ -155,5 +155,9 @@ export const RequireWrapper = styled.div`
 `;
 
 export const RequireAmount = styled.div`
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  color: ${({ theme }) => theme.red};
 `;

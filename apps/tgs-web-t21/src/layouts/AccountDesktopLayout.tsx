@@ -61,14 +61,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
       <DashboardContainer>
         <ContentWrapper>
           <ChildrenWrapper>
-            <DarkMemberMenu
-              handleCloseContextMenu={() => {}}
-              style={{
-                width: "200px",
-                flexShrink: 0,
-                minHeight: "800px",
-              }}
-            />
+            <DarkMemberMenu />
             {children}
           </ChildrenWrapper>
         </ContentWrapper>

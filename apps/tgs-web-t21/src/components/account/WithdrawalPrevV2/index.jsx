@@ -332,7 +332,9 @@ class Withdrawal extends Component {
     this.props.onhandleClickTab("report");
   };
   handleSuccessConfirmClick = () => {
-    this.setState({ ...this.state, displayView: 1 });
+    // this.setState({ ...this.state, displayView: 1 });
+    this.props.history.push("/profile");
+
   };
   handleWithdrawalClick = (bankid, amount, password, note) => {
     const formatedamount = amount.toString().replace(/,/g, "");

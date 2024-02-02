@@ -49,13 +49,12 @@ const AddCardSuccess = ({
             config.features.AddCard_NotAllowedEditDelete ||
             bankCardList.length >= config.features.AddCard_MaximumCardAllowed
           ) && (
-            <SubmitButton fullWidth onClick={onhandleBindCardClick}>
+            <SubmitButton onClick={onhandleBindCardClick}>
               {i18n.t("card.success.bindBankCard")}
             </SubmitButton>
           )}
 
         <SubmitButton
-          fullWidth
           onClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}
           style={{
             background: theme.blue30,

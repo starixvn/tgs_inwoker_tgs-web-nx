@@ -26,12 +26,18 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   gap: 8px;
   padding: 8px 11px;
   font-size: 14px;
+  border-radius: 5px;
   color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+    $active ? theme.primary : theme.gray20};
   width: auto !important;
   cursor: pointer;
   float: left;
+`;
+
+const ManageBankButton = styled(BankCardButton)`
+  color: ${({ theme }) => theme.white};
+  background: #2dce09;
 `;
 
 const BankCardButtonLabel = styled.div`
@@ -127,11 +133,11 @@ const BankCardGroup = ({
         );
       })}
 
-      <BankCardButton onClick={onhandleManageCardClick} $active={true}>
+      <ManageBankButton onClick={onhandleManageCardClick} $active={true}>
         <Icon iconUrl={iconManage} width={"20px"} height={"20px"} />
 
         <Grid>{i18n.t("withdrawal.manageBank")}</Grid>
-      </BankCardButton>
+      </ManageBankButton>
     </BankCardGroupContainer>
   );
 };

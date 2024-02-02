@@ -33,7 +33,6 @@ const CardManage = ({
   const { isDesktopSize } = useRwd();
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
   const { isCustomizedBrand } = useHomeGameContext();
-
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
       return item.detail.phone.substring(item.detail.phone.length - 4);
@@ -63,12 +62,12 @@ const CardManage = ({
 
   return (
     <CardManageContainer>
-      <FormTitle
+      {/* <FormTitle
         title={i18n.t("card.title")}
         isCustomizedBrand={isCustomizedBrand}
         isShowAddCardButton={isShowAddCardButton}
         handleClickAddCard={onhandleAddCardClick}
-      />
+      /> */}
 
       <CardContainer>
         {bankCardList.map((item, key) => {
@@ -90,9 +89,7 @@ const CardManage = ({
           );
         })}
 
-        {!isDesktopSize && isShowAddCardButton && (
-          <CardAddCard handleClick={onhandleAddCardClick} />
-        )}
+        {isShowAddCardButton && <CardAddCard handleClick={onhandleAddCardClick} />}
       </CardContainer>
 
       <SubmitButton fullWidth onClick={onhandleBackClick}>

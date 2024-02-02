@@ -20,6 +20,12 @@ const AccountPaperContainer = styled.div<PaperProps>`
   }
 `;
 
+const Divider = styled.div`
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: ${({ theme }) => `1px solid ${theme.gray30}`};
+`;
+
 type Props = {
   pageName: string;
   iconUrl: string;
@@ -32,13 +38,16 @@ const AccountPaper = ({ pageName, iconUrl, children, hidePaperColorInMobile }: P
   return (
     <AccountPaperContainer $hidePaperColorInMobile={!!hidePaperColorInMobile}>
       {isDesktopSize && (
-        <PageBadge
-          iconUrl={iconUrl}
-          text={pageName}
-          style={{
-            marginBottom: "20px",
-          }}
-        />
+        <>
+          <Divider />
+          <PageBadge
+            iconUrl={iconUrl}
+            text={pageName}
+            style={{
+              marginBottom: "20px",
+            }}
+          />
+        </>
       )}
       {children}
     </AccountPaperContainer>

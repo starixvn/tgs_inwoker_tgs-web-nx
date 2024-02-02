@@ -9,6 +9,9 @@ export const SameLine = styled.div`
 
 export const Container = styled.div`
   //padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 export const ImgSuccess = styled.img`
   display: block;

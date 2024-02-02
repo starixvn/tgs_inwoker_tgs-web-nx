@@ -15,6 +15,9 @@ import inboxImg from "@/assets/t21/images/account/navItem/icon-inbox.svg";
 import languageImg from "@/assets/t21/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t21/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t21/images/account/navItem/icon-vip.svg";
+import affiliateImg from "@/assets/t21/images/account/navItem/icon-affiliate.svg";
+import downloadImg from "@/assets/t21/images/header/icon-download.svg";
+
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
@@ -167,14 +170,13 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/inbox",
       },
-      // {
-      //   key: NavCardKey.AFFILIATE,
-      //   label: i18n.t("wap.main.account.affiliate"),
-      //   iconUrl: affiliateImg,
-      //   iconSecondaryUrl: affiliateWhiteImg,
-      //   navType: "route",
-      //   routePath: "/affiliate",
-      // },
+      {
+        key: NavCardKey.AFFILIATE,
+        label: i18n.t("wap.main.account.affiliate"),
+        iconUrl: affiliateImg,
+        navType: "route",
+        routePath: "/affiliate",
+      },
       {
         key: NavCardKey.VIP,
         label: "VIP",
@@ -189,13 +191,13 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/support",
       },
-      // {
-      //   key: NavCardKey.APP_DOWNLOAD,
-      //   label: i18n.t("wap.main.account.appDownload"),
-      //   iconUrl: downloadImg,
-      //   navType: "route",
-      //   routePath: "/appDownload",
-      // },
+      {
+        key: NavCardKey.APP_DOWNLOAD,
+        label: i18n.t("wap.main.account.appDownload"),
+        iconUrl: downloadImg,
+        navType: "route",
+        routePath: "/appDownload",
+      },
       {
         key: NavCardKey.LANGUAGE_SWITCH,
         label: i18n.t("common.language"),

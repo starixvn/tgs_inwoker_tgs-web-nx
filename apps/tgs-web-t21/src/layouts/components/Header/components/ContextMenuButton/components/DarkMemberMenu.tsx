@@ -4,14 +4,20 @@ import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
-import { Button } from "@/components/UI/Button";
-import iconLogout from "@/assets/t21/images/account/navItemWhite/icon-logout.svg";
+import iconLogout from "@/assets/t21/images/account/navItem/icon-logout.svg";
 
 const MemberMenuContainer = styled.div`
-  background: ${({ theme }) => theme.blue50};
+  display: flex;
+  flex-direction: column;
+  background: ${({ theme }) => theme.white};
+  width: 250px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  gap: 25px;
 `;
 
 type MemberMenuItemProps = {
@@ -20,30 +26,38 @@ type MemberMenuItemProps = {
 };
 
 const MemberMenuItem = styled.div<MemberMenuItemProps>`
-  padding: 10px 24px;
+  padding: 0px 24px;
   display: flex;
   align-items: center;
   gap: 10px;
-  background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.blue60 : theme.blue50};
-  color: ${({ theme }: MemberMenuItemProps) => theme.white};
+  color: ${({ theme, $isActive }: MemberMenuItemProps) =>
+    $isActive ? theme.primary : theme.gray30};
   cursor: pointer;
 
   &:hover {
-    background: ${({ theme }) => theme.blue60};
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.primary};
   }
 `;
 
-type Props = {
-  handleCloseContextMenu: () => void;
-} & React.HTMLProps<HTMLDivElement>;
+const MenuHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0em;
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
+`;
 
-const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
+const DarkMemberMenu = () => {
   const { accountNavItemList } = useGetNavItemList();
   const { handleLogout } = useAuthContext();
   const history = useHistory();
   const { isLogin } = useAuth();
+  const goToHomePage = useGoToHomePage();
+
   const handleClick = (navItem: NavItem) => {
     switch (navItem.navType) {
       case "route":
@@ -52,51 +66,44 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
 
       case "action":
         navItem.callback();
-        handleCloseContextMenu();
+      // handleCloseContextMenu();
     }
   };
-
   const location = useLocation();
   const pathSegments = location.pathname.split("/");
   const currentRoute = pathSegments[pathSegments.length - 1];
+  const handleClickLogout = async () => {
+    await handleLogout();
+    goToHomePage();
+  };
   return (
     //@ts-ignore
-    <MemberMenuContainer {...others}>
-      {accountNavItemList.map((navItem: NavItem) => {
-        if (navItem.key === NavCardKey.LANGUAGE_SWITCH) return null;
-
-        return (
-          <MemberMenuItem
-            key={navItem.key}
-            $isActive={currentRoute === navItem.routePath?.replace("/", "")}
-            onClick={() => handleClick(navItem)}
-          >
-            <Icon
-              iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
-              width={"24px"}
-              height={"24px"}
-            />
-            <span className={"label"}>{navItem.label}</span>
-          </MemberMenuItem>
-        );
-      })}
+    <MemberMenuContainer>
+      <MenuHeader>{i18n.t("membercenter")}</MenuHeader>
+      {accountNavItemList
+        .filter((navItem: NavItem) => navItem.key !== NavCardKey.HOME)
+        .map((navItem: NavItem) => {
+          return (
+            <MemberMenuItem
+              key={navItem.key}
+              $isActive={currentRoute === navItem.routePath?.replace("/", "")}
+              onClick={() => handleClick(navItem)}
+            >
+              <Icon
+                iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
+                width={"24px"}
+                height={"24px"}
+              />
+              <span className={"label"}>{navItem.label}</span>
+            </MemberMenuItem>
+          );
+        })}
 
       {isLogin && (
-        <Button
-          sx={{
-            margin: " 15px 10px 0",
-            width: "180px",
-          }}
-          onClick={handleLogout}
-        >
-          <Icon
-            iconUrl={iconLogout}
-            width={"24px"}
-            height={"24px"}
-            style={{ marginRight: "10px" }}
-          />
-          {i18n.t("web.header.logout")}
-        </Button>
+        <MemberMenuItem $isActive={false} onClick={handleClickLogout}>
+          <Icon iconUrl={iconLogout} width={"24px"} height={"24px"} />
+          <span className={"label"}>{i18n.t("web.header.logout")}</span>
+        </MemberMenuItem>
       )}
     </MemberMenuContainer>
   );

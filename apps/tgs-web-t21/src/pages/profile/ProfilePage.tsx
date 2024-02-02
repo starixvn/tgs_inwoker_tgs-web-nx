@@ -10,11 +10,15 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import { media } from "@/theme/breakpoints";
 
 const Paper = styled.div`
   background: ${({ theme }) => theme.gray5};
   padding: 20px 29px;
   border-radius: 10px;
+  ${media.sm} {
+    background: transparent;
+  }
 `;
 
 const ProfilePage = () => {
