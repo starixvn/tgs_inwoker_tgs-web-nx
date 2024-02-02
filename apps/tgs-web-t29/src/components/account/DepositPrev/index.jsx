@@ -31,8 +31,8 @@ class DepositPrev extends Component {
       selectedPaymentIndex: 0,
       selectedMethodIndex: 0,
 
-      activeMethod: '',
-      activePayment: '',
+      activeMethod: "",
+      activePayment: "",
 
       selectedChannelIndex: 0,
       depositPromotion: this.props.match.params.promotionid,
@@ -87,7 +87,7 @@ class DepositPrev extends Component {
           this.handleBankCardChange({ target: { value: defaultCard[0].id } });
         }
       }
-        } else {
+    } else {
       this.props.appHistory.replace("/login");
     }
   }
@@ -173,13 +173,16 @@ class DepositPrev extends Component {
               url = config.baseUrl.replace("/api/", "") + response.data.paymenturl;
             }
             if (response.data.paymenturl) {
-              url = response.data.paymenturl;
+              // url = response.data.paymenturl;
+              this.setState({
+                openPopup: true,
+              });
             }
-            if (url !== "") {
-              window.open(url, "_blank");
-            }
+            // if (url !== "") {
+            //   window.open(url, "_blank");
+            // }
 
-            this.props.alert("", i18n.t("deposit.completeDeposit"));
+            // this.props.alert("", i18n.t("deposit.completeDeposit"));
           }
         }
         //===========================
@@ -239,7 +242,7 @@ class DepositPrev extends Component {
             } else {
               this.setState({
                 ...this.state,
-                 exchangeRate: this.initialState.exchangeRate,
+                exchangeRate: this.initialState.exchangeRate,
               });
             }
           });
@@ -308,13 +311,15 @@ class DepositPrev extends Component {
 
   handleDepositClick = (activePayment, activeMethod) => {
     this.setState({ ...this.state, disabled: true });
-    
+
     // var payment = this.props.wallet.depositTypeList[this.state.selectedPaymentIndex];
     // var method = payment.method[this.state.selectedMethodIndex];
 
     // t29 custom deposit form: switch payment & method
-    const payment = this.props.wallet.depositTypeList.find(list => list.paymentcode === activePayment)
-    const method = payment.method.find(m => m.methodcode === activeMethod);
+    const payment = this.props.wallet.depositTypeList.find(
+      (list) => list.paymentcode === activePayment,
+    );
+    const method = payment.method.find((m) => m.methodcode === activeMethod);
 
     var channel = method.channel[this.state.selectedChannelIndex];
     var bankCardIndex = this.props.wallet.bankCardList.findIndex(
@@ -509,8 +514,7 @@ class DepositPrev extends Component {
       ...this.state,
       selectedChannelIndex: 0,
       activeMethod: value,
-      activePayment: '',
-      
+      activePayment: "",
     });
   };
   handleChannelChange = (e) => {
@@ -628,6 +632,7 @@ class DepositPrev extends Component {
       openPopup: false,
       url: "",
     });
+    this.props.alert("", i18n.t("deposit.completeDeposit"));
   };
 
   render() {
