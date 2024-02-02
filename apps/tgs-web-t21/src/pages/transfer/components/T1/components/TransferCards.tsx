@@ -11,7 +11,6 @@ import { Button } from "@/components/UI/Button";
 const TransferContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   gap: 6px;
 `;
