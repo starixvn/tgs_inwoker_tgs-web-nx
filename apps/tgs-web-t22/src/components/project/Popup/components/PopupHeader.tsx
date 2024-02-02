@@ -4,7 +4,7 @@ import Icon from "@/components/project/Icon";
 import iconClose from "@/assets/t29/images/dialog/icon-close.svg";
 
 const PopupHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.black};
   position: relative;
   height: 40px;
   display: flex;

@@ -18,6 +18,10 @@ export const useVipBonusList = () => {
         label: i18n.t("vip.levelKeepAccumulateBetAmount"),
       },
       {
+        key: "Quarterly Deposit to Maintain",
+        label: i18n.t("vip.levelKeepAccumulateBetAmount"),
+      },
+      {
         key: "Daily Bet to Level UP",
         label: i18n.t("vip.levelUpAccumulateBetAmount"),
       },

@@ -14,27 +14,8 @@ const ScrollableContainer = styled.div`
   gap: 12px;
 
   ${media.sm} {
-    //overflow-x: hidden; // this will cause tablet display issue
     margin: 0 auto;
     scroll-snap-type: unset;
-
-    &::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-      background: ${(props) => props.theme.gray10};
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 5px;
-      background-color: #53535375;
-    }
-
-    &::-webkit-scrollbar-track-piece {
-      background: transparent;
-    }
   }
 `;
 
@@ -60,15 +41,14 @@ const BonusTableHeader = styled.div`
   width: 100%;
   height: 48px;
   padding: 10.5px 0;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
-  border-radius: 6px 0px 0px 0px;
+  background: ${({ theme }) => theme.labelText};
+  border-radius: 8px 8px 0px 0px;
 
   ${media.sm} {
     height: 97px;
     padding: 20px 0;
-    border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
+    
+    background: ${({ theme }) => theme.primaryGradient};
   }
 `;
 
@@ -76,7 +56,7 @@ const HeaderItem = styled.div`
   width: 60px;
   height: 100%;
   flex: 1;
-  color: ${(props) => props.theme.text};
+  color: ${(props) => props.theme.white};
   word-wrap: break-word;
   white-space: pre-wrap;
   font-size: 0.75rem;
@@ -88,7 +68,7 @@ const HeaderItem = styled.div`
     max-width: 115px;
     font-size: 1rem;
     margin: 0px 6px;
-    color: #23507d;
+    color: #fff;
   }
 `;
 
@@ -97,9 +77,10 @@ const BonusTableBody = styled.div`
   flex-flow: column;
   align-items: flex-start;
   align-self: stretch;
+  border-radius: 0px 0px 8px 8px;
 
   ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
+    background: ${(props) => props.theme.lightBlack };
   }
 `;
 
@@ -108,11 +89,9 @@ const BonusTableRowWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid#23507D;
 
   ${media.sm} {
-    border-bottom: unset;
-    color: #23507d;
+    color: #fff;
   }
 `;
 
@@ -136,7 +115,7 @@ const RowItem = styled.div`
     min-height: 106px;
     width: 128px;
     font-size: 1rem;
-    color: #23507d;
+    color: #fff;
   }
 `;
 
