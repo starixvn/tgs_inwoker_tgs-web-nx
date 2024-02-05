@@ -14,23 +14,25 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
 
   return (
-    <GrayInputWrapper key={name}>
-      <TextField
-        type={getFormInputType(type)}
-        placeholder={label}
-        variant={"outlined"}
-        fullWidth
-        name={name}
-        value={formik.values[name]}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
-        error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
-        inputProps={{
-          autoComplete: "off",
-        }}
-      />
-    </GrayInputWrapper>
+    <>{label}
+      <GrayInputWrapper key={name}>
+        <TextField
+          type={getFormInputType(type)}
+          placeholder={label}
+          variant={"outlined"}
+          fullWidth
+          name={name}
+          value={formik.values[name]}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
+          error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
+          inputProps={{
+            autoComplete: "off",
+          }}
+        />
+      </GrayInputWrapper>
+    </>
   );
 };
 

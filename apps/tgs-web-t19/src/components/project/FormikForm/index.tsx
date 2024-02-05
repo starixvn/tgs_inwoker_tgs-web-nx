@@ -18,6 +18,13 @@ const Form = styled.form`
   flex-direction: column;
   gap: 18px;
   flex-shrink: 0;
+  position: relative;
+`;
+
+const SubmitButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
 
 export interface FormikFormInput {
@@ -80,9 +87,11 @@ const FormikForm = ({
         </ErrorMessageContainer>
       )}
 
-      <SubmitButton fullWidth={true} type={"submit"} disabled={isLoading}>
-        {buttonText}
-      </SubmitButton>
+      <SubmitButtonWrapper>
+        <SubmitButton fullWidth={true} type={"submit"} disabled={isLoading}>
+          {buttonText}
+        </SubmitButton>
+      </SubmitButtonWrapper>
     </Form>
   );
 };

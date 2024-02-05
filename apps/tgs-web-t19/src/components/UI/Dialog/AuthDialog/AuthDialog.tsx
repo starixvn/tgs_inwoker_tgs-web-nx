@@ -11,8 +11,9 @@ const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    max-width: 1080px;
+    max-height: 760px;
   }
 `;
 
@@ -22,6 +23,7 @@ const ChildContainer = styled.div`
   background: ${({ theme }) => theme.pureBlack};
   z-index: 2;
   overflow: auto;
+  display: flex;
 
   ::-webkit-scrollbar {
     visibility: hidden;
