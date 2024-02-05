@@ -8,7 +8,7 @@ import BrandLogo from "@/components/project/BrandLogo";
 
 const Container = styled.div`
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.gray5};
 `;
 
 const ContentContainer = styled.div`

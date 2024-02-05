@@ -12,14 +12,12 @@ export const GirlImage = styled.div`
 `;
 export const Paper = styled.div`
   padding: 0;
-  background: ${({ theme }) => theme.mainBackground};
-
   ${media.sm} {
+    background: ${({ theme }) => theme.mainBackground};
     padding: 10px;
   }
 `;
 export const IntroductionContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.text};
@@ -41,7 +39,6 @@ export const IntroductionContainer = styled.div`
   }
 `;
 export const InfoCardListContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
   display: flex;
   flex-direction: column;
   gap: 10px;

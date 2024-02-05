@@ -38,6 +38,7 @@ export const DownloadPageContainer = styled.div`
   margin: 0 auto;
 
   ${media.sm} {
+    padding: 0px 30px;
     //padding: 10px;
   }
 `;
