@@ -15,7 +15,7 @@ import live_casino from "@/assets/t28/images/home/home_live_casino.svg";
 import slot from "@/assets/t28/images/home/home_slot.svg";
 import hot from "@/assets/t28/images/home/home_hot.svg";
 import jackpotBG from "@/assets/t28/images/home/jackpotBG.png";
-import jackpotImg from "@/assets/t28/images/home/JackpotImg.png";
+import jackpotImg from "@/assets/t28/images/home/jackpotImg.png";
 import { media } from "@/theme/breakpoints";
 import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
 
