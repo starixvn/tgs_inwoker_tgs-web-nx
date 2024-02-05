@@ -29,8 +29,8 @@ const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
     <PageBadgeContainer {...others}>
       <Icon
         iconUrl={iconUrl}
-        width={width || "22px"}
-        height={height || "22px"}
+        width={width || "30px"}
+        height={height || "30px"}
         style={{
           marginRight: "8px",
         }}

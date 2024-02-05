@@ -4,7 +4,7 @@ import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Report from "@/components/account/Report";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconReport from "@/assets/t21/images/account/navItem/icon-report.svg";
+import iconReport from "@/assets/t21/images/account/pageIcon/pageIcon-report.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 

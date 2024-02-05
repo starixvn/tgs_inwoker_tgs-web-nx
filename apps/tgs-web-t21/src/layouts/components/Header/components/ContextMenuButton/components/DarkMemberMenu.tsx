@@ -9,6 +9,7 @@ import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
 import iconLogout from "@/assets/t21/images/account/navItem/icon-logout.svg";
+import iconLogoutWhite from "@/assets/t21/images/account/navItemWhite/icon-logout.svg";
 
 const MemberMenuContainer = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const MemberMenuContainer = styled.div`
 type MemberMenuItemProps = {
   $isActive: boolean;
   theme: typeof theme;
+  $hoverImage?: string;
 };
 
 const MemberMenuItem = styled.div<MemberMenuItemProps>`
@@ -36,6 +38,10 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
 
   &:hover {
     color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.primary};
+    img {
+      content: url(${(props) => props.$hoverImage || ""});
+    }
   }
 `;
 
@@ -88,9 +94,14 @@ const DarkMemberMenu = () => {
               key={navItem.key}
               $isActive={currentRoute === navItem.routePath?.replace("/", "")}
               onClick={() => handleClick(navItem)}
+              $hoverImage={navItem.iconUrl}
             >
               <Icon
-                iconUrl={navItem.iconSecondaryUrl || navItem.iconUrl}
+                iconUrl={
+                  currentRoute === navItem.routePath?.replace("/", "")
+                    ? navItem.iconUrl
+                    : (navItem.iconSecondaryUrl as string)
+                }
                 width={"24px"}
                 height={"24px"}
               />
@@ -100,8 +111,8 @@ const DarkMemberMenu = () => {
         })}
 
       {isLogin && (
-        <MemberMenuItem $isActive={false} onClick={handleClickLogout}>
-          <Icon iconUrl={iconLogout} width={"24px"} height={"24px"} />
+        <MemberMenuItem $isActive={false} onClick={handleClickLogout} $hoverImage={iconLogout}>
+          <Icon iconUrl={iconLogoutWhite} width={"24px"} height={"24px"} />
           <span className={"label"}>{i18n.t("web.header.logout")}</span>
         </MemberMenuItem>
       )}
