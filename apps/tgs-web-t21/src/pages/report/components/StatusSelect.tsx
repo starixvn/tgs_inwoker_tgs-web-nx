@@ -10,19 +10,13 @@ const StatusSelectWrapper = styled.div`
   align-items: center;
   margin-bottom: 20px;
   padding: 2px 29px;
-  background: ${({ theme }) => theme.gray10};
-  gap: 82px;
 `;
 
 const StatusSelectContainer = styled.div`
-  //border: 1px solid #d6dbdd;
-  flex: 1;
+  border: 1px solid #d6dbdd;
   height: 47px;
-  // background: ${({ theme }) => theme.mainBackground};
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.gray80};
   border-radius: 6px;
-  //box-shadow: 0 4px 8px 0 rgba(35, 31, 27, 0.1);
   display: flex;
   align-items: center;
 `;

@@ -64,7 +64,7 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontWeight: 400,
     color: theme.palette.text.primary,
     borderBottom: `1px solid ${theme.palette.gray10}`,
-    padding: "26px 5px 10px",
+    padding: "5px  0",
   },
 }));
 export const ReportMainContainer = styled.div`

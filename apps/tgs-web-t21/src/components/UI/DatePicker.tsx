@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
 import calendar from "@/assets/t21/images/profile/calendar.svg";
+import { media } from "@/theme/breakpoints";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -118,13 +119,17 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   border: 1px solid #596578;
   border-radius: 6px;
   position: relative;
-
+  ${media.sm} {
+    border: none;
+  }
   .MuiInputBase-input {
-    background: ${({ theme }) => theme.mainBackground};
     color: ${({ theme }) => theme.text};
     padding: 10px 10px;
     text-align: left;
     cursor: pointer;
+    ${media.sm} {
+      background: ${({ theme }) => theme.gray10};
+    }
   }
 
   .MuiInput-underline:before,

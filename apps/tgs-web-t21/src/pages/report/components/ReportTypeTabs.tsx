@@ -36,7 +36,7 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
               fontSize: "0.937rem",
               color: isSelected ? theme.white : theme.gray80,
               background: isSelected ? theme.primary : theme.white,
-              border: `2px solid ${theme.primary}`,
+              border: `1px solid ${theme.primary}`,
               "&:hover": {
                 color: isSelected ? theme.white : theme.gray80,
                 background: isSelected ? theme.primary : theme.white,
