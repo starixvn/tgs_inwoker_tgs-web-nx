@@ -35,7 +35,7 @@ const ReportTablePagination = ({ totalCount }: Props) => {
       onRowsPerPageChange={handleChangeRowsPerPage}
       sx={{
         width: "100%",
-        color: theme.blue40,
+        color: theme.gray80,
         "& button": {},
       }}
     />
