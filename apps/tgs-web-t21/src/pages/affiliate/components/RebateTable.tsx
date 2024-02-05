@@ -8,16 +8,16 @@ const StyledTable = styled(Table)`
 `;
 
 const StyledTableHead = styled(TableHead)`
-  background: ${({ theme }) => theme.blue10};
+  background: ${({ theme }) => theme.primary};
   & * {
-    color: ${({ theme }) => theme.black} !important;
+    color: ${({ theme }) => theme.white} !important;
   }
 `;
 
 const StyledTableBody = styled(TableBody)`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.gray10};
   & * {
-    color: ${({ theme }) => theme.gray50} !important;
+    color: ${({ theme }) => theme.gray80} !important;
   }
 `;
 
