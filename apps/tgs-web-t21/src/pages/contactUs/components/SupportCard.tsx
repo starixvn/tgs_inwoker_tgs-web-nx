@@ -94,7 +94,7 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
           fontWeight: 400,
           padding: "6px",
           "&:hover": {
-            background: theme.secondary,
+            background: theme.primary,
           },
         }}
       >
