@@ -21,7 +21,7 @@ type Props = {
 const InboxDialogContent = ({ inboxItemDetail, handleSubmitReply }: Props) => {
   return (
     <InboxDialogContentContainer>
-      {/*<Title>{i18n.t("reply")}</Title>*/}
+      {/* <Title>{i18n.t("reply")}</Title> */}
       <ReplyForm inboxItemDetail={inboxItemDetail} handleSubmitReply={handleSubmitReply} />
     </InboxDialogContentContainer>
   );

@@ -34,6 +34,11 @@ const SentList = () => {
 
   return (
     <SentTableContainer>
+      {isLoading ? (
+        <LoadingBlock size={30} style={{ marginTop: "90px" }} />
+      ) : (
+        <SendListTable sendList={sendList} handleItemClick={handleSelectInboxItem} />
+      )}
       <TablePagination
         component={"div"}
         count={totalCount}
@@ -47,13 +52,6 @@ const SentList = () => {
           "& button": {},
         }}
       />
-
-      {isLoading ? (
-        <LoadingBlock size={30} style={{ marginTop: "90px" }} />
-      ) : (
-        <SendListTable sendList={sendList} handleItemClick={handleSelectInboxItem} />
-      )}
-
       <SendItemDetailDialog />
     </SentTableContainer>
   );

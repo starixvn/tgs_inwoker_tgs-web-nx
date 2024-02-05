@@ -9,14 +9,21 @@ import { styled as muiStyled } from "@mui/material/styles";
 
 export const Table = muiStyled(MuiTable)(({ theme }) => ({
   width: "100%",
-  background: theme.palette.gray10,
 })) as typeof MuiTable;
 
 export const TableHead = muiStyled(MuiTableHead)(({ theme }) => ({
   "& .MuiTableCell-root": {
-    fontSize: "1.125rem",
+    fontSize: "15px",
+    fontWeight: "400",
+    lineHeight: "17px",
+    letterSpacing: "0em",
     color: `${theme.palette.black} !important`,
-    borderBottom: "none",
+    background: theme.palette.gray5,
+    padding: "8px 20px",
+    borderBottom: `1px solid ${theme.palette.gray30}`,
+    [theme.breakpoints.up("sm")]: {
+      borderBottom: `none`,
+    },
   },
 })) as typeof MuiTableHead;
 
@@ -24,6 +31,12 @@ export const TableBody = muiStyled(MuiTableBody)(({ theme }) => ({
   "& .MuiTableCell-root": {
     color: `${theme.palette.gray80} !important`,
     cursor: "pointer",
+    borderBottom: "none",
+    background: theme.palette.gray5,
+    [theme.breakpoints.up("sm")]: {
+      borderBottom: `1px solid ${theme.palette.gray80}`,
+      background: "transparent",
+    },
   },
 })) as typeof MuiTableBody;
 

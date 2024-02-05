@@ -4,9 +4,10 @@ import { InboxCategoryTab } from "@tgs-web-nx/core/hooks";
 import { theme } from "@/theme";
 
 const InboxCategoryTabsContainer = styled.div`
+  max-width: 340px;
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  margin-bottom: 24px;
 `;
 
 type CategoryTabProps = {

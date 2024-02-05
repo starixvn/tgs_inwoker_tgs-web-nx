@@ -7,9 +7,12 @@ import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const InboxDialogContentContainer = styled.div``;
 const Title = styled.div`
-  font-size: 1.25rem;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.primary};
   margin-bottom: 5px;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0em;
 `;
 const Info = styled.div`
   font-size: 0.812rem;

@@ -35,6 +35,11 @@ const InboxList = () => {
 
   return (
     <InboxTableContainer>
+      {isLoading ? (
+        <LoadingBlock size={30} style={{ marginTop: "90px" }} />
+      ) : (
+        <InboxListTable inboxList={inboxList} handleItemClick={handleSelectInboxItem} />
+      )}
       <TablePagination
         component={"div"}
         count={totalCount}
@@ -48,12 +53,6 @@ const InboxList = () => {
           "& button": {},
         }}
       />
-
-      {isLoading ? (
-        <LoadingBlock size={30} style={{ marginTop: "90px" }} />
-      ) : (
-        <InboxListTable inboxList={inboxList} handleItemClick={handleSelectInboxItem} />
-      )}
 
       <InboxItemDetailDialog />
       <InboxReplyDialog />
