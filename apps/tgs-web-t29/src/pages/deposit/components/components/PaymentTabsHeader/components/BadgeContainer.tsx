@@ -8,6 +8,6 @@ export const BadgeContainer = styled.div`
   margin-bottom: 12px;
 
   ${media.sm} {
-    margin-bottom: 40px;
+    margin-bottom: 0;
   }
 `;

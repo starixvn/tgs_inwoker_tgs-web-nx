@@ -1,22 +1,13 @@
-import React, { useMemo } from "react";
-import styled from "styled-components";
+import {memo, useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
-import { BadgeContainer } from "./BadgeContainer";
-import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
+import { BadgeContainer } from "./components/BadgeContainer";
+import Badge from "./components/Badge";
+import {LabelContainer} from "./components/LabelContainer";
 import { formatDepositTypeList } from "@/components/account/DepositPrev/utils";
-import {
-  LabelContainer as ProfileLabelContainer,
-  ItemContainer,
-} from "@/components/styled-component/ProfileForms";
+import {ItemContainer,} from "@/components/styled-component/ProfileForms";
 
-const LabelContainer = styled(ProfileLabelContainer)`
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: left;
-`;
+
 
 type Props = {
   activeMethod: string
@@ -42,7 +33,7 @@ const PaymentTabs = ({
 
   return (
     <ItemContainer>
-        <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer>
+        <LabelContainer>{i18n.t("depositAndWithdrawalStatus.channel")}</LabelContainer>
         <BadgeContainer>
           {depositTypes?.map((depositType, index) => {
             const { paymentcode } = depositType;
@@ -62,4 +53,4 @@ const PaymentTabs = ({
   );
 };
 
-export default React.memo(PaymentTabs);
+export default memo(PaymentTabs);
