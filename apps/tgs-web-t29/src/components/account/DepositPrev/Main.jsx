@@ -29,14 +29,9 @@ import {
   TransferLabel,
   TransferValue,
 } from "@/components/styled-component/Deposit";
-import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
+import {PaymentTabs, MethodTabs} from "@/pages/deposit/components/components/PaymentTabsHeader";
+import { formatDepositTypeList } from "@/components/account/DepositPrev/utils";
 
-const BadgeContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-`;
 
 const LabelContainer = styled(ProfileLabelContainer)`
   font-size: 14px;
@@ -56,9 +51,32 @@ const TransferHint = styled.div`
 
 class Main extends Component {
   render() {
-    const selectedDepositType = this.props.wallet.depositTypeList[this.props.selectedPaymentIndex];
-    const selectedPaymentMethod = selectedDepositType.method[this.props.selectedMethodIndex];
+    const depositTypeList = this.props.wallet.depositTypeList;
 
+    // 下方程式碼為針對客戶需求客製化修改 若要修改請先詢問 Sean 相關邏輯
+    // ---- hardcode 結界 start ----
+
+    // 將 depositTypeList 解析為 method[]
+    const formatTypeList = formatDepositTypeList(depositTypeList);
+
+    // 預設選第一個 method
+    const activeMethod = this.props.activeMethod ? this.props.activeMethod : formatTypeList[0].methodcode;
+    
+    // 預設選第一個method的第一個 payment
+    const isPaymentInclude = !!(formatTypeList.find(row => row.methodcode === activeMethod)?.paymentList.find(p => p.paymentcode === this.props.activePayment));
+    const defaultList = formatTypeList.find(row => row.methodcode === activeMethod)?.paymentList.sort((a, b) => a.displayorder - b.displayorder);
+    const defaultPayment = defaultList[0].paymentcode;
+
+    const activePayment = isPaymentInclude ? this.props.activePayment : defaultPayment;
+    
+    // 將選擇後的 method, payment 轉回原本的格式
+    const selectedPaymentIndex = depositTypeList.findIndex(list => list.paymentcode === activePayment)
+    const selectedDepositType = depositTypeList[selectedPaymentIndex];
+
+    const selectedMethodIndex = selectedDepositType.method.findIndex(m => m.methodcode === activeMethod);
+    const selectedPaymentMethod = selectedDepositType.method[selectedMethodIndex];
+
+    // ---- hardcode 結界 end ----
     const methodCode = (method) => {
       return selectedPaymentMethod.methodcode.toUpperCase() === method.toUpperCase();
     };
@@ -102,6 +120,11 @@ class Main extends Component {
 
     return (
       <>
+        <MethodTabs
+          activeMethod={activeMethod}
+          handleMethodChange={this.props.handleMethodChange}
+        />
+
         {!config.features.Deposit_AddCard ? (
           <>
             {selectedDepositType.paymentcode === "ZeroNineNinePay" && (
@@ -113,10 +136,17 @@ class Main extends Component {
             )}
 
             {/*1. 请选择支付方式 */}
-            <ItemContainer>
-              <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer>
-              <BadgeContainer>
-                {this.props.wallet.depositTypeList.length > 0 &&
+            <PaymentTabs
+              activeMethod={activeMethod}
+              activePayment={activePayment}
+              handlePaymentChange={this.props.handlePaymentChange}
+            />
+            {/* legacy code start */}
+
+            {/* <ItemContainer> */}
+              {/* <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer> */}
+              {/* <BadgeContainer>
+                {depositTypeList.length > 0 &&
                   selectedDepositType.method.map((item, index) => {
                     return (
                       <Badge
@@ -133,8 +163,10 @@ class Main extends Component {
                       />
                     );
                   })}
-              </BadgeContainer>
-            </ItemContainer>
+              </BadgeContainer> */}
+            {/* </ItemContainer> */}
+
+            {/* legacy code end */}
           </>
         ) : (
           //请输入银行名称
@@ -173,7 +205,7 @@ class Main extends Component {
                 value={this.props.selectedChannelIndex}
                 onChange={(e) => this.props.handleChannelChange(e)}
               >
-                {this.props.wallet.depositTypeList.length > 0 &&
+                {depositTypeList.length > 0 &&
                   selectedPaymentMethod.channel.map((item, index) => {
                     return (
                       <option key={index} value={index}>
@@ -632,7 +664,7 @@ class Main extends Component {
 
         {/*提交*/}
         <SubmitButton
-          onClick={this.props.handleDepositClick}
+          onClick={() => this.props.handleDepositClick(activePayment, activeMethod)}
           variant={"contained"}
           color={"primary"}
           fullWidth

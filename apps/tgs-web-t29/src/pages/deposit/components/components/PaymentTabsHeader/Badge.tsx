@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
 import { theme } from "@/theme";
@@ -8,10 +7,12 @@ type BadgeContainerProps = {
   theme: typeof theme;
 };
 const BadgeContainer = styled.div<BadgeContainerProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: calc((100% - 8px * 3) / 4);
-  height: fit-content;
   cursor: pointer;
-  padding: 13px 8px;
+  padding: 10px;
   text-align: center;
   color: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? theme.white : theme.black)};
   background: ${({ $isActive, theme }: BadgeContainerProps) =>

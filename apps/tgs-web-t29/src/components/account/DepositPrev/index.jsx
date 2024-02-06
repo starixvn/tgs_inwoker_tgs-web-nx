@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
@@ -17,7 +17,6 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import Loading from "@/components/UI/Loading";
 import DepositNotificationDialog from "@/pages/deposit/components/components/DepositNotificationDialog";
 import WalletMessagePopupDialog from "@/pages/deposit/components/components/WalletMessagePopupDialog";
-import PaymentTabsHeader from "@/pages/deposit/components/components/PaymentTabsHeader";
 import DepositAddCard from "@/pages/deposit/components/components/DepositAddCard";
 
 const Container = styled.div`
@@ -31,6 +30,9 @@ class DepositPrev extends Component {
     this.initialState = {
       selectedPaymentIndex: 0,
       selectedMethodIndex: 0,
+
+      activeMethod: "",
+      activePayment: "",
 
       selectedChannelIndex: 0,
       depositPromotion: this.props.match.params.promotionid,
@@ -308,10 +310,17 @@ class DepositPrev extends Component {
     this.setState({ ...this.state, open: false });
   };
 
-  handleDepositClick = () => {
+  handleDepositClick = (activePayment, activeMethod) => {
     this.setState({ ...this.state, disabled: true });
-    var payment = this.props.wallet.depositTypeList[this.state.selectedPaymentIndex];
-    var method = payment.method[this.state.selectedMethodIndex];
+
+    // var payment = this.props.wallet.depositTypeList[this.state.selectedPaymentIndex];
+    // var method = payment.method[this.state.selectedMethodIndex];
+
+    // t29 custom deposit form: switch payment & method
+    const payment = this.props.wallet.depositTypeList.find(
+      (list) => list.paymentcode === activePayment,
+    );
+    const method = payment.method.find((m) => m.methodcode === activeMethod);
 
     var channel = method.channel[this.state.selectedChannelIndex];
     var bankCardIndex = this.props.wallet.bankCardList.findIndex(
@@ -487,13 +496,11 @@ class DepositPrev extends Component {
     }, 1000);
   };
 
-  handlePaymentChange = (e, value) => {
+  handlePaymentChange = (value) => {
     this.setState({
       ...this.state,
-      selectedMethodIndex: 0,
-
       selectedChannelIndex: 0,
-      selectedPaymentIndex: value,
+      activePayment: value,
     });
   };
 
@@ -503,11 +510,12 @@ class DepositPrev extends Component {
       file,
     );
   };
-  handleMethodChange = (targetIndex) => {
+  handleMethodChange = (value) => {
     this.setState({
       ...this.state,
       selectedChannelIndex: 0,
-      selectedMethodIndex: targetIndex,
+      activeMethod: value,
+      activePayment: "",
     });
   };
   handleChannelChange = (e) => {
@@ -641,15 +649,13 @@ class DepositPrev extends Component {
           return (
             <>
               {config.features.Deposit_AddCard && <DepositAddCard />}
-              <PaymentTabsHeader
-                selectedPaymentIndex={this.state.selectedPaymentIndex}
-                handlePaymentChange={this.handlePaymentChange}
-              />
-
               <Main
                 name={this.state.name}
+                activeMethod={this.state.activeMethod}
+                activePayment={this.state.activePayment}
                 handleNameChange={this.handleNameChange}
                 handleMethodChange={this.handleMethodChange}
+                handlePaymentChange={this.handlePaymentChange}
                 handleChannelChange={this.handleChannelChange}
                 handleAccountChange={this.handleAccountChange}
                 handlePromotionChange={this.handlePromotionChange}
