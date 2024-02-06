@@ -79,16 +79,12 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
             return (
               <MobileVendorCard
                 key={gpCode}
-                bgUrl={`/assets/images/home/mobile/${gameTypeKey}/mbg.png`}
-                imageUrl={`/assets/images/home/mobile/${gameTypeKey}/home/${gpCode}.png`}
-                venderLogoUrl={`/assets/images/home/provider_logo/${gameTypeKey}/${gpCode}.png`}
+                bgUrl={`/assets/images/home/mobile/liveCasino/mbg.png`}
+                imageUrl={`/assets/images/home/mobile/liveCasino/home/${gpCode}.png`}
+                venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/home/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode)}
                 status={status}
                 venderName={name}
-                // style={{
-                //   width: cardWidth,
-                //   flexShrink: 0,
-                // }}
               />
             );
           })}

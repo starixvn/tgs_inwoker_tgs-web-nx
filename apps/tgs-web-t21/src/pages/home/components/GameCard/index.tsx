@@ -200,8 +200,8 @@ const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) =>
       <GameCardBg onClick={launchGameHandler}>
         <GameCardContent>
           <GameIcon $imageUrl={imageUrl}></GameIcon>
-          {gameItem.tag.new && <NewTag>New</NewTag>}
-          {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+          {/* {gameItem.tag.new && <NewTag>New</NewTag>}
+          {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
           {!isActive && (
             <MaintenanceBg>
               <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
@@ -209,13 +209,13 @@ const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) =>
           )}
         </GameCardContent>
 
-        {isLogin && (
+        {/* {isLogin && (
           <Favorite
             isFavorite={isFavorite}
             handleToggleFavorite={handleToggleFavorite}
             gameItemId={gameItem.id}
           />
-        )}
+        )} */}
 
         {isDesktopSize && (
           <CardHoverBg onClick={launchGameHandler}>
