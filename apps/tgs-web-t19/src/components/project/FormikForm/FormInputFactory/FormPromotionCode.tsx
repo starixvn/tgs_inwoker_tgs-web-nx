@@ -10,19 +10,16 @@ import { Select } from "@/components/UI/Select";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { theme } from "@/theme";
 
-const FormPromotionCodeContainer = styled.div`
-  position: relative;
-  overflow: visible;
-`;
 const DropdownContainer = styled.div`
-  width: 90px;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+  min-width: 104px;
   border: none;
+
   .MuiOutlinedInput-notchedOutline {
     border: none !important;
+  }
+
+  .MuiPopover-paper-MuiMenu-paper {
+    background-color: red !important;
   }
 `;
 
@@ -36,7 +33,8 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
 
   return (
-    <FormPromotionCodeContainer>
+    <>
+      {label}
       <GrayInputWrapper key={name}>
         <TextField
           type={getFormInputType(type)}
@@ -64,12 +62,18 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             value={formik.values["userType"]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            style={{ color: theme.primary }}
+            style={{ color: theme.white }}
             MenuProps={{
               PaperProps: {
                 sx: {
+                  backgroundColor: theme.mainBackground,
                   "& .MuiMenuItem-root": {
                     color: theme.white,
+                    backgroundColor: theme.mainBackground,
+                    "&:hover": {
+                      backgroundColor: theme.primary,
+                      color: theme.mainBackground,
+                    }
                   },
                 },
               },
@@ -84,7 +88,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
           </Select>
         </DropdownContainer>
       </GrayInputWrapper>
-    </FormPromotionCodeContainer>
+    </>
   );
 };
 

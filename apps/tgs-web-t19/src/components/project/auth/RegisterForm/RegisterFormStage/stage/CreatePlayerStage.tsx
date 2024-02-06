@@ -17,10 +17,11 @@ import { Checkbox } from "@/components/UI/Checkbox";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   display: flex;
   align-items: start;
+  margin-bottom: 98px;
 `;
 
 const CreatePlayerStage = () => {

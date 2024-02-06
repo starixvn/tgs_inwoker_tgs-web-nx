@@ -27,8 +27,7 @@ export const FormContainer = styled.div`
   width: 100%;
   
   ${media.sm} {
-    width: 500px;
-    height: 489px;
+    min-height: 494px;
   }
 `;
 

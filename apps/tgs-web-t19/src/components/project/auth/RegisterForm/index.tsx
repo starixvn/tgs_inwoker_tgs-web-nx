@@ -9,7 +9,6 @@ import {
   LoginTitle,
   FormContainer,
 } from "@/components/styled-component/AuthFormContainer";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 
 const RegisterForm = () => {
@@ -27,8 +26,7 @@ const RegisterForm = () => {
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>
 
-      <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-      <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+      <RedirectToLoginHint />
     </AuthFormContainer>
   );
 };
