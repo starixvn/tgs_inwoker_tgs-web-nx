@@ -1,4 +1,5 @@
 import React from "react";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
@@ -12,9 +13,10 @@ type Props = {
 
 const FormText = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
+  const { isDesktopSize } = useRwd();
 
   return (
-    <>{label}
+    <>{isDesktopSize && label}
       <GrayInputWrapper key={name}>
         <TextField
           type={getFormInputType(type)}

@@ -6,10 +6,13 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import { media } from "@/theme/breakpoints";
+import loginBg from "@/assets/t19/images/home/login-bg.png";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background-image: url(${loginBg});
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 100vh;
   overflow: auto;
 `;
@@ -29,6 +32,7 @@ const ContentWrapper = styled.div`
 type Props = {
   children: React.ReactNode;
 };
+
 const AuthDialogLayout = ({ children }: Props) => {
   const { handleCloseDialog } = useAuthDialogLayout();
   const { pageName } = usePageName();

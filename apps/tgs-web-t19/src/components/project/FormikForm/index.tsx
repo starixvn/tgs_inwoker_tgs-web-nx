@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
 import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { media } from "@/theme/breakpoints";
 
 const ErrorMessageContainer = styled.div`
   color: ${({ theme }) => theme.red};
@@ -14,18 +15,23 @@ const ErrorMessageContainer = styled.div`
 
 const Form = styled.form`
   height: 100%;
-  min-height: 494px;
   display: flex;
   flex-direction: column;
   gap: 18px;
   flex-shrink: 0;
   position: relative;
+
+  ${media.sm} {
+    min-height: 494px;
+  }
 `;
 
 const SubmitButtonWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  ${media.sm} {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 `;
 
 export interface FormikFormInput {
