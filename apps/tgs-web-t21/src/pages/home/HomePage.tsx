@@ -66,6 +66,7 @@ const MainContentWrapper = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
+  width: 100%;
   padding: 14px;
   ${media.sm} {
     margin: 0 auto;

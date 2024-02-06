@@ -31,10 +31,11 @@ const HomeCategoryContainer = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 `;
 
 const CategoryContent = styled.div`
@@ -98,6 +99,15 @@ const Wrapper = styled(CategoryContent)`
 
 const VIPList = styled(CategoryContent)`
   gap: 40px;
+  flex-wrap: wrap;
+`;
+
+const GameContainer = styled.div`
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
 `;
 
 const HomeCategory = () => {
@@ -148,24 +158,36 @@ const HomeCategory = () => {
         <Wrapper>
           <img src={homeImg} alt="home" />
         </Wrapper>
+        <GameContainer>
+          {gameTypeItemList
+            .filter((gameTypeItem) => gameTypeItem.gameType === GameTypeEnum.LIVELOBBY)
+            .reverse()
+            .map((gameTypeItem) => {
+              return (
+                <GameTypeCategory
+                  key={gameTypeItem.key}
+                  gameTypeItem={gameTypeItem}
+                  gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
+                />
+              );
+            })}
+        </GameContainer>
+        <GameContainer>
+          {gameTypeItemList
+            .filter((gameTypeItem) => gameTypeItem.gameType === GameTypeEnum.SLOT)
+            .reverse()
+            .map((gameTypeItem) => {
+              return (
+                <GameTypeCategory
+                  key={gameTypeItem.key}
+                  gameTypeItem={gameTypeItem}
+                  gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
+                />
+              );
+            })}
+        </GameContainer>
 
-        {gameTypeItemList
-          .filter(
-            (gameTypeItem) =>
-              gameTypeItem.gameType === GameTypeEnum.LIVELOBBY ||
-              gameTypeItem.gameType === GameTypeEnum.SLOT,
-          )
-          .reverse()
-          .map((gameTypeItem) => {
-            return (
-              <GameTypeCategory
-                key={gameTypeItem.key}
-                gameTypeItem={gameTypeItem}
-                gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
-              />
-            );
-          })}
-        <img src={DownloadImg} alt="download" />
+        {/* <img src={DownloadImg} alt="download" /> */}
       </CategoryContentWrapper>
     </HomeCategoryContainer>
   );

@@ -16,6 +16,10 @@ const CategorySliderContainer = styled.div`
   display: flex;
   gap: 14px;
   overflow-x: auto;
+
+  /* ::-webkit-scrollbar {
+    visibility: hidden;
+  } */
 `;
 
 const SlickDot = styled.div`
@@ -76,15 +80,15 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
               <MobileVendorCard
                 key={gpCode}
                 bgUrl={`/assets/images/home/mobile/${gameTypeKey}/mbg.png`}
-                imageUrl={`/assets/images/home/mobile/${gameTypeKey}/${gpCode}.png`}
+                imageUrl={`/assets/images/home/mobile/${gameTypeKey}/home/${gpCode}.png`}
                 venderLogoUrl={`/assets/images/home/provider_logo/${gameTypeKey}/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode)}
                 status={status}
                 venderName={name}
-                style={{
-                  width: cardWidth,
-                  flexShrink: 0,
-                }}
+                // style={{
+                //   width: cardWidth,
+                //   flexShrink: 0,
+                // }}
               />
             );
           })}

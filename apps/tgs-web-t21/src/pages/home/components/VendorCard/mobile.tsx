@@ -13,11 +13,12 @@ const MobileVendorCardContainer = styled.div`
   background-position: center;
 
   ${media.sm} {
-    width: calc(16.67% - 6px);
+    max-width: 186px;
   }
 `;
 
 const CardContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -58,6 +59,24 @@ const MaintenanceBg = styled.div`
   }
 `;
 
+const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
+  z-index: 100;
+  position: absolute;
+  left: 25%;
+  top: 70%;
+  display: inline-flex;
+  width: 100%;
+  max-width: 100px;
+  min-height: 50px;
+  background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  ${media.sm} {
+    top: 75%;
+  }
+`;
+
 const MaintenanceIcon = styled.img`
   width: 57px;
   height: 57px;
@@ -94,7 +113,7 @@ const MobileVendorCard = ({
     <MobileVendorCardContainer {...others}>
       <CardContainer onClick={launchGameHandler}>
         <VendorCardBg $bgUrl={imageUrl} />
-        <VendorName>{venderName}</VendorName>
+        {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
       </CardContainer>
 
       {status === providerStatus.Maintenance && (

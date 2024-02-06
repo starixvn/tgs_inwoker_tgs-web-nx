@@ -8,6 +8,7 @@ import CategorySlider from "@/pages/home/components/CategoryRenderer/components/
 import Icon from "@/components/project/Icon";
 
 const GameTypeCategoryContainer = styled.div`
+  width: 100%;
   padding: 14.49px;
 `;
 

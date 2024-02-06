@@ -12,14 +12,14 @@ import playIcon from "@/assets/t21/images/home/play-green.svg";
 import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
 
 const GameCardContainer = styled.div`
-  width: calc(50% - 6px);
+  max-width: 186px;
   position: relative;
   cursor: pointer;
 
   background-size: cover;
   background-position: center;
 
-  ${media.sm} {
+  /* ${media.sm} {
     width: calc((100% - 15px * 1) / 2);
   }
 
@@ -29,9 +29,8 @@ const GameCardContainer = styled.div`
 
   ${media.lg} {
     width: calc((100% - 15px * 5) / 6);
-  }
+  } */
 `;
-
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
   position: absolute;
