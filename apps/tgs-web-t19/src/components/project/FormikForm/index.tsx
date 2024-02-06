@@ -14,6 +14,7 @@ const ErrorMessageContainer = styled.div`
 
 const Form = styled.form`
   height: 100%;
+  min-height: 494px;
   display: flex;
   flex-direction: column;
   gap: 18px;

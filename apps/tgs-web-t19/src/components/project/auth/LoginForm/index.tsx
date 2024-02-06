@@ -10,7 +10,6 @@ import {
   FormContainer,
   LoginTitle,
 } from "@/components/styled-component/AuthFormContainer";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 import {
   ForgotPasswordContainer,
@@ -65,8 +64,6 @@ const LoginForm = () => {
       </FormContainer>
 
       <RedirectToRegisterHint />
-
-      {/* <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} /> */}
     </AuthFormContainer>
   );
 };

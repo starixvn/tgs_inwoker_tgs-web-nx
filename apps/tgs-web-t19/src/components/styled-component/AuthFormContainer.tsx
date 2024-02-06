@@ -25,10 +25,6 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  
-  ${media.sm} {
-    min-height: 494px;
-  }
 `;
 
 export const LoginTitle = styled.div`
