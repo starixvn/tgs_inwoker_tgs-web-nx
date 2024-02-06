@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTag,
+  useGetNonLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
@@ -9,7 +13,6 @@ import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t29/images/home/search.svg";
 
@@ -24,6 +27,36 @@ const Wrapper = styled.div`
   ${media.sm} {
     display: block;
   }
+`;
+
+const VendorCard = styled.div`
+  width: 100%;
+`;
+
+const VendorText = styled.p`
+  margin-top: 6px;
+  max-width: 100%;
+
+  color: ${(props) => props.theme.navTextDefault};
+  font-size: .9rem;
+  line-height: 20px;
+  text-align: center;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const VendorImage = styled.div<{
+  $imageUrl: string;
+}>`
+  position: relative;
+  background: url(${({$imageUrl}) => $imageUrl}) no-repeat center;
+  background-size: 90%;
+  border-radius: 6px;
+  border: 1px solid ${({theme}) => theme.gray01};
+  width: 100%;
+  aspect-ratio: 1;
 `;
 
 const CategoryContentWrapper = styled.div`
@@ -80,11 +113,52 @@ const Text = styled.div`
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
-  
   const hasMappingData = !!gameList.length;
-  const { searchString, handleChangeSearch } = useHomeGameContext();
+  const { activeGameTypeKey, searchString, handleChangeSearch, providerFilterTagList, activeProviderFilterTag, handleChangeActiveProviderFilterTag  } = useHomeGameContext();
+
+  const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
+    handleChangeActiveProviderFilterTag(newFilterTag);
+  };
 
   const renderMobileLayout = () => {
+    const renderCards = () => {
+      if(activeProviderFilterTag.tagType !== "All") {
+        return (
+          <>
+            {hasMappingData &&
+              gameList.map((gameItem) => (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
+                />
+              ))}
+                {!hasMappingData && !isLoading && <div>No data</div>}
+          </>
+        )
+      }
+      
+      return (
+        providerFilterTagList
+          .filter((filterTag) => filterTag.name !== "All")
+          .map((filterTag, i) => (
+              <VendorCard 
+                key={i} 
+                onClick={() => onChangeProviderFilterTag(filterTag)}
+              >
+                <VendorImage $imageUrl={`${import.meta.env.BASE_URL}assets/images/home/provider_logo/${activeGameTypeKey}/${filterTag.gpCode}.png`}/>
+                <VendorText>{filterTag.name}</VendorText>
+              </VendorCard>
+            )
+        )
+      )
+    };
+    
     return (
       <>
         <GameTypeTab />
@@ -99,25 +173,12 @@ const NonLobbyCategory = () => {
             <GameFilterTag />
           </FilterSection>
           <CategoryContent>
-            {hasMappingData &&
-              gameList.map((gameItem) => (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
-                />
-              ))}
-            {!hasMappingData && !isLoading && <div>No data</div>}
+            {renderCards()}
           </CategoryContent>
         </CategoryContentWrapper>
       </>
-    )
-};
+    );
+  };
 
   const renderDesktopLayout = () => {
     return (

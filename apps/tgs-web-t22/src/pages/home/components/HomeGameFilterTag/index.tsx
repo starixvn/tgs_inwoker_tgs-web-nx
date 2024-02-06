@@ -78,7 +78,7 @@ const SearchContainer = styled.div`
   width: 100%;
 `;
 
-const AllText = styled.div<{
+const TextTag = styled.div<{
   $isActive: boolean;
 }>`
   display: flex;
@@ -150,7 +150,7 @@ const HomeGameFilterTag = () => {
   return (
     <Wrapper>
       <TagContainer>
-        <AllText
+        <TextTag
           onClick={() =>
             onChangeProviderFilterTag({
               name: FilterTagTypeEnum.ALL,
@@ -160,7 +160,7 @@ const HomeGameFilterTag = () => {
           $isActive={activeProviderFilterTag.tagType === FilterTagTypeEnum.ALL}
         >
           ALL
-        </AllText>
+        </TextTag>
         {providerFilterTagList.map((filterTag) => {
           const matchedProvider = navPopupCategoryList.find(
             (provider) => provider.code === filterTag.gpCode,

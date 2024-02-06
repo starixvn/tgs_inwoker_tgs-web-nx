@@ -47,8 +47,6 @@ const GameTypeNav = styled.div<{
   position: relative;
   border-bottom: ${({ theme, $isActive }) => ($isActive ? `2px solid ${theme.labelText}` : `none`)};
   color: ${({ theme, $isActive }) => ($isActive ? theme.labelText : theme.white)};
-  &:hover {
-  }
 
   ${media.lg} {
     font-size: 1rem;
@@ -75,10 +73,6 @@ const HeaderGameTypeNavs = () => {
     handleChangeNavPopupGameType(gameType);
   };
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
   const handleClickNav = (navItem: NavItem) => {
     if (navItem.navType !== "action") return;
     navItem.callback();
@@ -96,7 +90,6 @@ const HeaderGameTypeNavs = () => {
             <GameTypeNav 
               $isActive={navItem.router === currentRoute}
               onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-              onMouseLeave={handleMouseLeave}
             >
               {navItem.label}
             </GameTypeNav>

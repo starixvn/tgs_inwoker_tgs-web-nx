@@ -3,41 +3,58 @@ import styled from "styled-components";
 import { useBettingBonus } from "@tgs-web-nx/core/hooks";
 import { VipData } from "@tgs-web-nx/types";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
+import { MobileHeader } from "../promotion/components/MobileHeader";
 import LevelTable from "./components/LevelTable";
 import { media } from "@/theme/breakpoints";
 import BonusTable from "@/pages/vip/components/BonusTable";
 import Loading from "@/components/UI/Loading";
+import bg from "@/assets/t22/images/promotion/bg.png";
+import banner from "@/assets/t22/images/vip/banner.png";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+;
 
-const VipWrapper = styled.div`
-  width: 100%;
+const TabletContainer = styled.div`
+  margin: 0 auto;
+  padding: 20px 0 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
-  padding: 12px;
-  gap: 16px;
-
+  gap: 20px;
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  width: 100%;
+  
   ${media.sm} {
-    max-width: 800px;
-    margin: 0 auto;
-    gap: 10px;
-    padding: 10px;
-    background-color: ${({ theme }) => theme.blue20};
+    padding: 50px 20px;
+    gap: 50px;
   }
 `;
 
-const VipBanner = styled.div<{ $imageUrl: string }>`
+const MainContentWrapper = styled.div`
+  padding: 0 20px;
   width: 100%;
-  height: 137px;
-  border-radius: 4px;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 100%;
+  background: #fff;
+  overflow-y: auto;
 
   ${media.sm} {
-    max-width: 780px;
-    height: 250px;
+    padding: 0;
+    background: url(${bg}) center no-repeat;
+    background-size: cover;
+  }
+`;
+
+const Banner = styled.div`
+  margin-top: 20px;
+  display: block;
+  width: 100%;
+  aspect-ratio: 400 / 140;
+  background: url(${banner}) center no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+
+  ${media.sm} {
+    border-radius: 0;
+    margin: 0;
+    aspect-ratio: 1920 / 400;
   }
 `;
 
@@ -61,11 +78,16 @@ const VIP = () => {
   if (isLoading) return <Loading show={true} />;
 
   return (
-    <VipWrapper>
-      <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} />
-      <BonusTable vipSortingData={vipSortingData} />
-      <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
-    </VipWrapper>
+    <>
+      <MobileHeader title="VIP"/>
+      <MainContentWrapper>
+        <Banner />
+        <TabletContainer>
+          <BonusTable vipSortingData={vipSortingData} />
+          <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
+        </TabletContainer>
+      </MainContentWrapper>
+    </> 
   );
 };
 

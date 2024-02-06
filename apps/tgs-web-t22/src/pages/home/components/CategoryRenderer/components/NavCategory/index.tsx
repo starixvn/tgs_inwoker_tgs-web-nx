@@ -1,17 +1,10 @@
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { Common } from "@tgs-web-nx/utils";
-import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
-const Wrapper = styled.nav`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+const Wrapper = styled.div`
   width: 100%;
 
   ${media.sm} {
@@ -21,12 +14,12 @@ const Wrapper = styled.nav`
 `;
 
 const DesktopCategoryContentWrapper = styled.div`
+  padding-top: 20px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   width: 100%;
-  flex: 1;
-  flex-shrink: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
 `;
 
 const NoDataText = styled.div`
@@ -35,6 +28,20 @@ const NoDataText = styled.div`
   font-weight: 700;
   text-align: center;
 `;
+
+const Card = styled.div<{
+  $imageUrl: string;
+}>`
+  width: 100%;
+  aspect-ratio: 1;
+  background: url(${({$imageUrl}) => $imageUrl}) center no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: transform .4s ease-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+`
 
 const NavCategory = () => {
   const { activeNavPopupGameType, activeNavPopupGameTypeKey, handleChangeGameType, handleChangeActiveProviderFilterTag } = useHomeGameContext();
@@ -55,30 +62,25 @@ const NavCategory = () => {
 
   const hasMappingData = !!navPopupCategoryList.length;
 
-  // activeNavPopupGameType just for nav popup displays vendor list
-
   return (
     <Wrapper>
       <DesktopCategoryContentWrapper>
         {hasMappingData &&
           navPopupCategoryList.map((provider) => {
-            const { code: gpCode, status, name } = provider;
+            const { code: gpCode } = provider;
+            const baseUrl = `${import.meta.env.BASE_URL}assets/images/home`;
+            const imageUrl = `${baseUrl}/nav/${activeNavPopupGameTypeKey}/${gpCode}.png`;
 
-            if (gpCode === "BC") return null;
+            if (gpCode === "BC") {
+              return null;
+            }
+
             return (
-              // <DesktopVendorCard
-              //   key={gpCode}
-              //   bgUrl={`${import.meta.env.BASE_URL
-              //     }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
-              //   imageUrl={`${import.meta.env.BASE_URL
-              //     }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-              //   venderLogoUrl={`${import.meta.env.BASE_URL
-              //     }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-              //   launchGame={() => enterVendorFilter(gpCode)}
-              //   status={status}
-              //   venderName={name}
-              // />
-              <p styled={{color: '#000'}}key={gpCode}>{name}</p>
+              <Card
+                key={gpCode}
+                $imageUrl={imageUrl}
+                onClick={() => enterVendorFilter(gpCode)}
+              />
             );
           })}
         {!hasMappingData && <NoDataText>No data</NoDataText>}
