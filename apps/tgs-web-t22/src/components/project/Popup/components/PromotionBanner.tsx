@@ -45,21 +45,16 @@ const Title = styled.h2`
   ${media.sm} {
     font-size: 1.5rem;
     margin: 0;
+    color: ${({ theme }) => theme.white};
   }
 `;
 
 const Description = styled.div`
-  color: ${({ theme }) => theme.text};
-  font-size: 0.875rem !important;
-  font-weight: 400;
-  max-height: 100px;
+  color: ${({ theme }) => theme.black};
+  font-size: .7rem !important;
+  max-height: 70px;
   overflow-y: auto;
-
-  ${media.sm} {
-    font-size: 1.5rem;
-  }
 `;
-
 const PromotionBanner = ({
   handleCloseDialog,
   promotionData,
@@ -70,7 +65,7 @@ const PromotionBanner = ({
   const history = useHistory();
   const { isDesktopSize } = useRwd();
   const { contentToDisplay } = usePromotionData(promotionData);
-
+  
   const handleClickBanner = () => {
     handleCloseDialog();
     history.push("/promotion/" + promotionData.id);
@@ -83,11 +78,6 @@ const PromotionBanner = ({
         <ImgWrapper>
           <BannerImage promotionData={promotionData} />
         </ImgWrapper>
-        {/* <Description
-          dangerouslySetInnerHTML={{
-            __html: "<div>" + contentToDisplay + "</div>",
-          }}
-        /> */}
       </PromotionBannerWrapper>
     );
   }
@@ -97,11 +87,11 @@ const PromotionBanner = ({
         <BannerImage promotionData={promotionData} />
       </ImgWrapper>
       <Title>{promotionData.name}</Title>
-      {/* <Description
-        dangerouslySetInnerHTML={{
-          __html: "<div>" + contentToDisplay + "</div>",
-        }}
-      /> */}
+      <Description
+          dangerouslySetInnerHTML={{
+            __html: "<div>" + contentToDisplay + "</div>",
+          }}
+        />
     </PromotionBannerWrapper>
   );
 };

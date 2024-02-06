@@ -17,9 +17,10 @@ const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
-  border-radius: 4px;
+  border-radius: 10px;
+
   & .MuiPaper-root {
-    background: ${({ theme }) => theme.black};
+    background: ${({ theme }) => theme.white};
     width: calc(100vw - 10px * 2);
     height: auto;
     margin: 4px;
@@ -27,6 +28,7 @@ const StyledDialog = styled(MuiDialog)`
 
     ${media.sm} {
       max-width: 478px;
+      background: ${({ theme }) => theme.black};
     }
   }
 `;
@@ -75,7 +77,7 @@ const MobilePopupPromotion = () => {
       TransitionComponent={UpTransition}
       onClose={handleCloseDialog}
     >
-      <PopupHeader title={i18n.t("web.header.promotion")} handleClose={handleCloseDialog} />
+      <PopupHeader handleClose={handleCloseDialog} />
 
       <ChildContainer>
         <Carousel>

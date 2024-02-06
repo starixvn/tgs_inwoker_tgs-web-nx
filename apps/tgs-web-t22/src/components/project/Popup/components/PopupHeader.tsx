@@ -1,33 +1,37 @@
-import React from "react";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Icon from "@/components/project/Icon";
-import iconClose from "@/assets/t29/images/dialog/icon-close.svg";
+import iconClose from "@/assets/t22/images/dialog/icon-close.svg";
+import iconCloseMobile from "@/assets/t29/images/dialog/icon-close.svg";
+import { media } from "@/theme/breakpoints";
 
 const PopupHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.black};
-  position: relative;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 10px;
 `;
 
 const IconContainer = styled.div`
-  position: absolute;
-  top: 12px;
-  right: 12px;
+  margin-left: auto;
+  padding: 5px;
+  width: 25px;
   cursor: pointer;
+
+  ${media.sm} {
+    width: 40px;
+    border-radius: 100%;
+    background: ${({theme}) => theme.primaryGradient};
+  }
 `;
 
 type Props = {
-  title: string;
   handleClose: () => void;
 };
-const PopupHeader = ({ title, handleClose }: Props) => {
+const PopupHeader = ({ handleClose }: Props) => {
+  const {isMobileSize} = useRwd();
+
   return (
     <PopupHeaderContainer>
       <IconContainer onClick={handleClose}>
-        <Icon iconUrl={iconClose} width={"20px"} height={"20px"} />
+        <Icon iconUrl={isMobileSize ? iconCloseMobile : iconClose} width={"100%"} height={"100%"} />
       </IconContainer>
     </PopupHeaderContainer>
   );
