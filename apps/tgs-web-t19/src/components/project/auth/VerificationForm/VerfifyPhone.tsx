@@ -21,6 +21,13 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 494px;
+`;
+
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
@@ -140,7 +147,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
   };
 
   return (
-    <>
+    <Wrapper>
       <ItemContainer>
         <PhoneContainer>
           <FormControl variant="outlined" style={{ width: "40%" }}>
@@ -196,7 +203,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       </VerifySubmitButton>
 
       <Loading show={isLoading} />
-    </>
+    </Wrapper>
   );
 }
 
