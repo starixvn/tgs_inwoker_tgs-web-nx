@@ -13,12 +13,13 @@ const StyledDialog = styled(MuiDialog)`
     display: flex;
     justify-content: space-between;
     max-width: 1080px;
-    max-height: 760px;
+    height: 760px;
   }
 `;
 
 const ChildContainer = styled.div`
   width: 100%;
+  height: 100%;
   margin: auto;
   background: ${({ theme }) => theme.pureBlack};
   z-index: 2;

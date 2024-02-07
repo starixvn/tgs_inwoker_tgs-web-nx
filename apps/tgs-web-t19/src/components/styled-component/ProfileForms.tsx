@@ -33,7 +33,6 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   height: "48px",
   width: "100%",
   fontSize: "0.875rem",
-  borderBottom: `1px solid ${theme.palette.gray}`,
   justifyContent: "center",
 
   "& fieldset": {
@@ -94,6 +93,5 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
 })) as typeof MuiButton;
 
 export const VerifySubmitButton = styled(SubmitButton)`
-  margin-bottom: 20px !important;
-  margin-top: auto !important;
+  /* border-radius: 100px !important */
 `;

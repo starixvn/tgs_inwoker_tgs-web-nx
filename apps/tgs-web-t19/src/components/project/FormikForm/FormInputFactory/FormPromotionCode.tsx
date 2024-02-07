@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { UserTypeEnum } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
@@ -17,10 +18,6 @@ const DropdownContainer = styled.div`
   .MuiOutlinedInput-notchedOutline {
     border: none !important;
   }
-
-  .MuiPopover-paper-MuiMenu-paper {
-    background-color: red !important;
-  }
 `;
 
 type Props = {
@@ -31,10 +28,11 @@ type Props = {
 
 const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
+  const { isDesktopSize } = useRwd();
 
   return (
     <>
-      {label}
+      {isDesktopSize && label}
       <GrayInputWrapper key={name}>
         <TextField
           type={getFormInputType(type)}

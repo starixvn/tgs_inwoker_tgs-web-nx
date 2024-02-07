@@ -6,15 +6,19 @@ import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
 import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { borderRadius } from "@mui/system";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,
   ItemContainer,
-  VerifySubmitButton,
+  SubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
+import { media } from "@/theme/breakpoints";
+import { theme } from "@/theme";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -24,8 +28,11 @@ const PhoneContainer = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  min-height: 494px;
+  gap: 16px;
+ 
+  ${media.sm} {
+    min-height: 494px;
+  }
 `;
 
 type Props = {
@@ -48,6 +55,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
   const [securityKey, setSecurityKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const { isMobileSize } = useRwd();
 
   const handleChangePhone = (e: ChangeEvent<any>) => {
     setPhone(e.target.value);
@@ -162,8 +170,16 @@ function VerifyPhone({ handleUpdateStage }: Props) {
                 (config.features.Profile_DisableVerifyPhone &&
                   !config.features.InitPhone_WithoutVerify)
               }
+              sx={{
+                background: isMobileSize ? theme.black : theme.pureBlack,
+                borderRadius: isMobileSize ? "12px" : "0px",
+                borderBottom: isMobileSize ? "" : "1px solid #8C8998",
+              }}
             >
-              <option value={AREA_CODE}>{AREA_CODE}</option>
+              <option
+                value={AREA_CODE}
+                style={{ color: "black" }}
+              >{AREA_CODE}</option>
             </Select>
           </FormControl>
 
@@ -176,13 +192,25 @@ function VerifyPhone({ handleUpdateStage }: Props) {
                 (isConfigured ? isConfigured : false) || config.features.Profile_DisableVerifyPhone
               }
               onChange={handleChangePhone}
+              sx={{
+                background: isMobileSize ? theme.black : theme.pureBlack,
+                borderRadius: isMobileSize ? "12px" : "6px",
+                border: isMobileSize ? "" : "1px solid #8C8998",
+              }}
             />
           </FormControl>
         </PhoneContainer>
       </ItemContainer>
 
       <ItemContainer>
-        <FormControl variant="outlined">
+        <FormControl variant="outlined"
+          style={{
+            background: isMobileSize ? theme.black : "",
+            borderRadius: isMobileSize ? "12px" : "6px",
+            padding: isMobileSize ? "10px 8px 10px 20px" : "0px",
+            border: isMobileSize ? "" : "1px solid #8C8998",
+          }}
+        >
           <TextFieldWithButton
             buttonLabel={
               countdownToken <= 0
@@ -198,9 +226,13 @@ function VerifyPhone({ handleUpdateStage }: Props) {
         </FormControl>
       </ItemContainer>
 
-      <VerifySubmitButton fullWidth disabled={isDisableButton} onClick={handleSubmitClicked}>
+      <SubmitButton
+        fullWidth disabled={isDisableButton}
+        onClick={handleSubmitClicked}
+        style={{ borderRadius: isMobileSize ? "100px" : "6px" }}
+      >
         {i18n.t("common.submit")}
-      </VerifySubmitButton>
+      </SubmitButton>
 
       <Loading show={isLoading} />
     </Wrapper>

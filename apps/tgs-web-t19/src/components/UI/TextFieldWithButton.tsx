@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { TextFieldProps } from "@mui/material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { Button } from "@/components/UI/Button";
+import { theme } from "@/theme";
 
 const CustomText = styled.div`
   width: 100%;
@@ -18,11 +20,11 @@ const CustomText = styled.div`
 const ButtonContainer = styled.div`
   flex-shrink: 0;
   & > button {
-    height: 40px;
+    height: 30px;
     font-size: 0.75rem;
-    border-radius: 50px;
+    border-radius: 6px;
     padding: 8px;
-    background: ${({ theme }) => theme.secondary};
+    background: ${({ theme }) => theme.goldGradient};
   }
 `;
 
@@ -35,6 +37,7 @@ const TextFieldWithButton = (
     buttonDisabled?: boolean;
   },
 ) => {
+  const { isMobileSize } = useRwd();
   return (
     <CustomText>
       <TextField
@@ -47,8 +50,8 @@ const TextFieldWithButton = (
         inputProps={{
           autoComplete: "off",
         }}
-
-        // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+        sx={{ background: isMobileSize ? "transparent !important" : theme.pureBlack }}
+      // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
       />
 
       <ButtonContainer>

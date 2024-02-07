@@ -1,5 +1,6 @@
 import React from "react";
 import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
@@ -9,7 +10,6 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
-    background: theme.palette.pureBlack,
 
     "&:-webkit-autofill": {
       WebkitTextFillColor: `${theme.palette.text.primary} !important`,
@@ -60,6 +60,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
 }));
 
 export const TextField = (props: TextFieldProps) => {
+
   return (
     <StyledTextField
       {...props}

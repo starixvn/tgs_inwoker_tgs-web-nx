@@ -29,6 +29,7 @@ const LoginWrapper = styled.div`
   background: linear-gradient(180deg, rgba(51, 41, 28, 0.8) 0%, #1F1F1F 100%);
   border-radius: 20px;
   padding: 24px 22px 24px 22px;
+  box-shadow: 0px 0px 8px 0px #595634 inset;
 `;
 
 const LoginForm = () => {

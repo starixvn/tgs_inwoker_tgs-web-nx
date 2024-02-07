@@ -2,6 +2,7 @@ import React from "react";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { media } from "@/theme/breakpoints";
@@ -61,6 +62,8 @@ const FormikForm = ({
   children,
   showErrorOn = "bottom",
 }: Props) => {
+  const { isMobileSize } = useRwd();
+
   const getBottomErrorMessage = () => {
     if (showErrorOn !== "bottom") return "";
 
@@ -95,7 +98,12 @@ const FormikForm = ({
       )}
 
       <SubmitButtonWrapper>
-        <SubmitButton fullWidth={true} type={"submit"} disabled={isLoading}>
+        <SubmitButton
+          fullWidth={true}
+          type={"submit"}
+          disabled={isLoading}
+          style={{ borderRadius: isMobileSize ? "100px" : "6px" }}
+        >
           {buttonText}
         </SubmitButton>
       </SubmitButtonWrapper>
