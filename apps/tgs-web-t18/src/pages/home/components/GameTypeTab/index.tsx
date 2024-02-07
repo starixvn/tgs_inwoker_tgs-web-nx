@@ -21,23 +21,23 @@ const TabContainer = styled.div`
     border-radius: 10px;
     padding: 4px;
 
-    //&::-webkit-scrollbar {
-    //  height: 0;
-    //}
-    //
-    // &::-webkit-scrollbar-track {
-    //   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-    //   background: ${(props) => props.theme.tertiaryDark};
-    // }
-    //
-    // &::-webkit-scrollbar-thumb {
-    //   border-radius: 5px;
-    //   background-color: #53535375;
-    // }
-    //
-    // &::-webkit-scrollbar-track-piece {
-    //   background: transparent;
-    // }
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background: ${(props) => props.theme.tertiaryDark};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #53535375;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
   }
 `;
 
