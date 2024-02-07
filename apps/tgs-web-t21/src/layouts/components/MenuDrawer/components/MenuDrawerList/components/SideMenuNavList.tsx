@@ -10,7 +10,7 @@ const TabContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 25px;
-  padding: 0 20px;
+  padding: 10px 20px;
 `;
 
 const SideMenuNavList = () => {

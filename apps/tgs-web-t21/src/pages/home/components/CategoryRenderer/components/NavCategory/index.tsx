@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTagTypeEnum,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
+import NavPopCard from "../../../NavPopCard";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -13,7 +18,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   width: 100%;
-
+  padding: 10px;
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
@@ -27,6 +32,7 @@ const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  gap: 40px;
 `;
 
 const NoDataText = styled.div`
@@ -37,7 +43,12 @@ const NoDataText = styled.div`
 `;
 
 const NavCategory = () => {
-  const { activeNavPopupGameType, activeNavPopupGameTypeKey, handleChangeGameType, handleChangeActiveProviderFilterTag } = useHomeGameContext();
+  const {
+    activeNavPopupGameType,
+    activeNavPopupGameTypeKey,
+    handleChangeGameType,
+    handleChangeActiveProviderFilterTag,
+  } = useHomeGameContext();
   const history = useHistory();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
 
@@ -66,14 +77,17 @@ const NavCategory = () => {
 
             if (gpCode === "BC") return null;
             return (
-              <DesktopVendorCard
+              <NavPopCard
                 key={gpCode}
-                bgUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
-                imageUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
+                bgUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
+                imageUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/navpop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
+                venderLogoUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
                 launchGame={() => enterVendorFilter(gpCode)}
                 status={status}
                 venderName={name}

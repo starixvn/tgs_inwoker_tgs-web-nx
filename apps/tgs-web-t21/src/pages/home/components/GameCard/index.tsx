@@ -9,10 +9,12 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import playIcon from "@/assets/t21/images/home/play-green.svg";
-import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
+import maintenanceBG from "@/assets/t21/images/home/maintenanceBG.svg";
+import maintenanceText from "@/assets/t21/images/home/maintenanceText.svg";
 
 const GameCardContainer = styled.div`
-  width: calc(50% - 6px);
+  /* max-width: 186px; */
+  width: calc(33.33%);
   position: relative;
   cursor: pointer;
 
@@ -20,18 +22,9 @@ const GameCardContainer = styled.div`
   background-position: center;
 
   ${media.sm} {
-    width: calc((100% - 15px * 1) / 2);
-  }
-
-  ${media.md} {
-    width: calc((100% - 15px * 2) / 3);
-  }
-
-  ${media.lg} {
-    width: calc((100% - 15px * 5) / 6);
+    max-width: 186px;
   }
 `;
-
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
   position: absolute;
@@ -111,17 +104,19 @@ const GameCardBg = styled.div`
 `;
 
 const MaintenanceBg = styled.div`
+  z-index: 100;
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 70%);
-  padding: 7px;
+  /* background: rgb(0 0 0 / 70%); */
+  background-image: url(${maintenanceBG});
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
 
   &:hover {
     cursor: not-allowed;
@@ -140,9 +135,19 @@ const HoverGameName = styled(GameCardContent)`
   margin-bottom: 16px;
 `;
 
-const PlayIcon = styled.img`
-  width: 65px;
-  height: 65px;
+const MaintenanceText = styled.img`
+  width: 113px;
+  height: 63px;
+`;
+
+const GameName = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0em;
 `;
 
 type GameCardProps = {
@@ -201,22 +206,22 @@ const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) =>
       <GameCardBg onClick={launchGameHandler}>
         <GameCardContent>
           <GameIcon $imageUrl={imageUrl}></GameIcon>
-          {gameItem.tag.new && <NewTag>New</NewTag>}
-          {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+          {/* {gameItem.tag.new && <NewTag>New</NewTag>}
+          {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
           {!isActive && (
             <MaintenanceBg>
-              <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+              <MaintenanceText src={maintenanceText} alt={"maintenance"} />
             </MaintenanceBg>
           )}
         </GameCardContent>
 
-        {isLogin && (
+        {/* {isLogin && (
           <Favorite
             isFavorite={isFavorite}
             handleToggleFavorite={handleToggleFavorite}
             gameItemId={gameItem.id}
           />
-        )}
+        )} */}
 
         {isDesktopSize && (
           <CardHoverBg onClick={launchGameHandler}>
@@ -225,6 +230,7 @@ const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) =>
           </CardHoverBg>
         )}
       </GameCardBg>
+      <GameName>{gameItem.name}</GameName>
     </GameCardContainer>
   );
 };

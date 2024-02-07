@@ -8,16 +8,18 @@ import CategorySlider from "@/pages/home/components/CategoryRenderer/components/
 import Icon from "@/components/project/Icon";
 
 const GameTypeCategoryContainer = styled.div`
+  width: 100%;
   padding: 14.49px;
 `;
 
 export const CategoryHeader = styled.div`
   color: ${({ theme }) => theme.black};
   display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 500;
-  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: 0em;
+  margin-bottom: 10px;
 `;
 
 export const MoreButton = styled.div`

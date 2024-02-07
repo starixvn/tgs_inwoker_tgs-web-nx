@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  useGetHomeCategoryList,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useHistory, useParams } from "react-router-dom";
 import { usePromotionPage, useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
@@ -8,7 +12,6 @@ import { Promotion, ProviderDto } from "@tgs-web-nx/types";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Banner from "./components/Banner";
 import CardPrompt from "./components/CardPrompt";
-import PopularGames from "./components/CategoryRenderer/components/HomeCategory/components/PopularGames";
 import MobileVendorCard from "./components/VendorCard/mobile";
 import BannerImage from "./components/HomePromotion/BannerImage";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
@@ -23,6 +26,8 @@ import GameTypeCategory, {
 } from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory";
 import HomePromotionCard from "@/pages/home/components/HomePromotion";
 import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
+import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
+import downloadImg from "@/assets/t21/images/home/DownloadImgMobile.png";
 
 type MainWrapperProps = {
   $isDark: boolean;
@@ -66,7 +71,7 @@ const MainContentWrapper = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
-  padding: 14px;
+  width: 100%;
   ${media.sm} {
     margin: 0 auto;
     display: flex;
@@ -95,11 +100,28 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   background-position: center;
 `;
 
+const DownloadImg = styled.div<{ $downloadImgUrl: string }>`
+  display: flex;
+  background-image: url(${({ $downloadImgUrl }) => $downloadImgUrl});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 240px;
+`;
+
 const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const { activeGameType, handleChangeGameType, providerList, activeGameTypeKey } =
-    useHomeGameContext();
+  const {
+    activeGameType,
+    handleChangeGameType,
+    providerList,
+    activeGameTypeKey,
+    activeNavPopupGameType,
+  } = useHomeGameContext();
+  const { navPopupCategoryList } = useGetLobbyCategoryList();
+  const hasNavData = !!navPopupCategoryList.length;
   const { gameTypeItemList, gameTypeDictionary } = useGetHomeCategoryListV2();
   const gameTypeList = useGameTypeList();
   const history = useHistory();
@@ -107,6 +129,7 @@ const HomePage = () => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
   };
+
   // useEffect(() => {
   //   window.scrollTo({
   //     top: 0,
@@ -153,11 +176,12 @@ const HomePage = () => {
                 })}
             </CategoryContentWrapper>
           </MainContentWrapper>
-          {/* todo: mobile footer */}
+          <DownloadImg $downloadImgUrl={downloadImg} />
         </>
       )}
       {isDesktopSize && (
         <>
+          {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
           <BannerWrapper>
             {!!activeGameType && (
               <GameTypeBanner

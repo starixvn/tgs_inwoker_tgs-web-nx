@@ -3,10 +3,10 @@ import React from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { usePromotionPage } from "@tgs-web-nx/core/hooks";
 import { useHistory } from "react-router";
+import { i18n } from "@tgs-web-nx/utils";
 import Banner from "../../../Banner";
 import CardPrompt from "../../../CardPrompt";
 import GameTypeCategory from "./GameTypeCategory";
-import PopularGames from "./components/PopularGames";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
 import BannerImage from "@/pages/promotion/components/BannerImage";
@@ -31,14 +31,12 @@ const HomeCategoryContainer = styled.div`
 `;
 
 const CategoryContentWrapper = styled.div`
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  width: 100%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 const CategoryContent = styled.div`
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
   display: flex;
   justify-content: start;
   gap: 20px;
@@ -47,23 +45,8 @@ const CategoryContent = styled.div`
   white-space: nowrap;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    height: 10px;
-    display: none;
-  }
-
-  &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-    background: ${(props) => props.theme.tertiaryDark};
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #53535375;
-  }
-
-  &::-webkit-scrollbar-track-piece {
-    background: transparent;
+  ::-webkit-scrollbar {
+    visibility: hidden;
   }
 `;
 
@@ -75,7 +58,8 @@ const PromotionImg = styled.div`
 `;
 
 const Title = styled.div`
-  display: inline-flex;
+  display: flex;
+  justify-content: start;
   font-size: 16px;
   font-weight: 700;
   line-height: 18px;
@@ -94,10 +78,21 @@ const ContentText = styled.div`
 
 const Wrapper = styled(CategoryContent)`
   display: block;
+  max-width: 1200px;
 `;
 
 const VIPList = styled(CategoryContent)`
   gap: 40px;
+  flex-wrap: wrap;
+`;
+
+const GameContainer = styled.div`
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
 `;
 
 const HomeCategory = () => {
@@ -148,24 +143,28 @@ const HomeCategory = () => {
         <Wrapper>
           <img src={homeImg} alt="home" />
         </Wrapper>
-
-        {gameTypeItemList
-          .filter(
-            (gameTypeItem) =>
-              gameTypeItem.gameType === GameTypeEnum.LIVELOBBY ||
-              gameTypeItem.gameType === GameTypeEnum.SLOT,
-          )
-          .reverse()
-          .map((gameTypeItem) => {
-            return (
-              <GameTypeCategory
-                key={gameTypeItem.key}
-                gameTypeItem={gameTypeItem}
-                gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
-              />
-            );
-          })}
-        <img src={DownloadImg} alt="download" />
+        <GameContainer>
+          {gameTypeItemList
+            .filter(
+              (gameTypeItem) =>
+                gameTypeItem.gameType === GameTypeEnum.LIVELOBBY ||
+                gameTypeItem.gameType === GameTypeEnum.SLOT,
+            )
+            .reverse()
+            .map((gameTypeItem) => {
+              return (
+                <GameTypeCategory
+                  key={gameTypeItem.key}
+                  gameTypeItem={gameTypeItem}
+                  gameList={gameTypeDictionary[gameTypeItem.gameType] || []}
+                />
+              );
+            })}
+        </GameContainer>
+        <Wrapper>
+          <Title>{i18n.t("wap.main.account.appDownload")}</Title>
+          <img src={DownloadImg} alt="download" />
+        </Wrapper>
       </CategoryContentWrapper>
     </HomeCategoryContainer>
   );

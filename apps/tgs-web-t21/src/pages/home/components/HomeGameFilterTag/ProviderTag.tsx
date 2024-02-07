@@ -65,15 +65,10 @@ type Props = {
 };
 
 const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
+  if (status === providerStatus.Maintenance) return;
   return (
     <ProviderTagContainer $isActive={isActive} onClick={onClick}>
       <Text>{text}</Text>
-
-      {status === providerStatus.Maintenance && (
-        <MaintenanceBg>
-          <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-        </MaintenanceBg>
-      )}
     </ProviderTagContainer>
   );
 };

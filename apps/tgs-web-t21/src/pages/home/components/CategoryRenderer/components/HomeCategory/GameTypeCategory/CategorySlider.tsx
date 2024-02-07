@@ -16,6 +16,15 @@ const CategorySliderContainer = styled.div`
   display: flex;
   gap: 14px;
   overflow-x: auto;
+  color: ${({ theme }) => theme.gray80};
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+
+  ::-webkit-scrollbar {
+    visibility: hidden;
+  }
 `;
 
 const SlickDot = styled.div`
@@ -75,16 +84,12 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
             return (
               <MobileVendorCard
                 key={gpCode}
-                bgUrl={`/assets/images/home/mobile/${gameTypeKey}/mbg.png`}
-                imageUrl={`/assets/images/home/mobile/${gameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`/assets/images/home/provider_logo/${gameTypeKey}/${gpCode}.png`}
+                bgUrl={`/assets/images/home/mobile/liveCasino/mbg.png`}
+                imageUrl={`/assets/images/home/mobile/liveCasino/home/${gpCode}.png`}
+                venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/white/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode)}
                 status={status}
                 venderName={name}
-                style={{
-                  width: cardWidth,
-                  flexShrink: 0,
-                }}
               />
             );
           })}
@@ -107,7 +112,7 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
               gameItem.code
             }.jpg`}
             style={{
-              width: cardWidth,
+              // width: cardWidth,
               flexShrink: 0,
             }}
           />

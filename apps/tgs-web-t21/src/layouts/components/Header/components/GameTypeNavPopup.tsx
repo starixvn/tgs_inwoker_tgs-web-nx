@@ -4,14 +4,13 @@ import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import GameTypeNavPopupContent from "@/layouts/components/Header/components/GameTypeNavPopupContent";
 
 const popupStyles = css`
-  display: ${(props: { $isHovered: any; }) => (props.$isHovered ? "block" : "none")};
+  display: ${(props: { $isHovered: any }) => (props.$isHovered ? "block" : "none")};
   width: 100%;
   position: fixed;
   top: ${DESKTOP_HEADER_HEIGHT};
   left: 0;
-  background: rgba(255, 255, 255, 0.90);
+  background: rgba(255, 255, 255, 0.9);
   z-index: 5;
-  padding: 0 20px 20px 20px;
 `;
 
 export const PopupBg = styled.div`

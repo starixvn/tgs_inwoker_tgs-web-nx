@@ -21,8 +21,8 @@ const FooterContainer = styled.div`
 
   ${media.sm} {
     width: 100%;
-    background: ${({ theme }) => theme.gray80};
-    color: ${({ theme }) => theme.white};
+    background: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.gray80};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,8 +45,9 @@ const FooterGroup = styled.div`
 
 const GroupTitle = styled.h6`
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 20px;
+  color: ${({ theme }) => theme.primary};
 `;
 
 const GroupContent = styled.div`
@@ -65,10 +66,11 @@ const PartnersContainer = styled.div`
 const ParnterBadge = styled.div`
   padding: 8px 16px;
   border-radius: 50px;
-  border: 1px solid white;
   font-size: 0.875rem;
 
   ${media.md} {
+    background: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.white};
     padding: 10px 20px;
   }
 `;
