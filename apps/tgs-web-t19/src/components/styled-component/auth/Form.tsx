@@ -16,7 +16,7 @@ export const RememberMeContainer = styled.div`
   //margin: 8px 0;
 `;
 export const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.primary};
   font-size: 0.875rem;
   font-weight: 400;
   white-space: nowrap;

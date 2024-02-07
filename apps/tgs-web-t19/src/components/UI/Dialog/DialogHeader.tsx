@@ -2,16 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import backIcon from "@/assets/t19/images/dialog/icon-back.svg";
 import Icon from "@/components/project/Icon";
+import { DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 
-export const DIALOG_HEADER_HEIGHT = "57px";
-
-const DialogHeaderContainer = styled.div`
+const DialogHeaderContainer = styled.div<{ $showDialogHeaderTitle: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.pageLabelBackground};
+  background-color: ${({ theme, $showDialogHeaderTitle }) => $showDialogHeaderTitle ? theme.darkGray : "transparent"};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,13 +39,14 @@ type Props = {
 };
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
+  const showDialogHeaderTitle = dialogHeaderTitle !== "Login" && dialogHeaderTitle !== "Register" && dialogHeaderTitle !== "Forgot Password";
   return (
-    <DialogHeaderContainer>
+    <DialogHeaderContainer $showDialogHeaderTitle={showDialogHeaderTitle}>
       <ReturnIconContainer onClick={handleClose}>
         <Icon iconUrl={backIcon} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
 
-      {dialogHeaderTitle}
+      {showDialogHeaderTitle && dialogHeaderTitle}
     </DialogHeaderContainer>
   );
 };

@@ -14,13 +14,18 @@ import config from "@tgs-web-nx/config";
 import { useCreatePlayerStage } from "@tgs-web-nx/core/features";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
+import { media } from "@/theme/breakpoints";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   display: flex;
   align-items: start;
+
+  ${media.sm} {
+    margin-bottom: 98px;
+  }
 `;
 
 const CreatePlayerStage = () => {

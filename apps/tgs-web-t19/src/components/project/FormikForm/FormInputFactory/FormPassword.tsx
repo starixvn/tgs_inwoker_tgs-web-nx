@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@/components/project/FormikForm";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -15,6 +16,7 @@ type Props = {
 const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name } = formInput;
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const { isDesktopSize } = useRwd();
 
   const handleClickShowPassword = () => {
     setIsShowPassword((prevState) => !prevState);
@@ -27,35 +29,37 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   const inputType = isShowPassword ? "text" : "password";
 
   return (
-    <GrayInputWrapper key={name}>
-      <TextField
-        type={inputType}
-        placeholder={label}
-        variant={"outlined"}
-        fullWidth
-        name={name}
-        value={formik.values[name]}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
-        error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
-        InputProps={{
-          autoComplete: "new-password",
-          endAdornment: (
-            <InputAdornment position="end" style={{ height: "20px" }}>
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                style={{ color: theme.text }}
-              >
-                {isShowPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-    </GrayInputWrapper>
+    <>{isDesktopSize && label}
+      <GrayInputWrapper key={name}>
+        <TextField
+          type={inputType}
+          placeholder={label}
+          variant={"outlined"}
+          fullWidth
+          name={name}
+          value={formik.values[name]}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
+          error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
+          InputProps={{
+            autoComplete: "new-password",
+            endAdornment: (
+              <InputAdornment position="end" style={{ height: "20px" }}>
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  style={{ color: theme.text }}
+                >
+                  {isShowPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </GrayInputWrapper>
+    </>
   );
 };
 

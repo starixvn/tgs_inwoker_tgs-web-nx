@@ -2,8 +2,10 @@ import React from "react";
 import * as Yup from "yup";
 import styled from "styled-components";
 import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { media } from "@/theme/breakpoints";
 
 const ErrorMessageContainer = styled.div`
   color: ${({ theme }) => theme.red};
@@ -18,6 +20,19 @@ const Form = styled.form`
   flex-direction: column;
   gap: 18px;
   flex-shrink: 0;
+  position: relative;
+
+  ${media.sm} {
+    min-height: 494px;
+  }
+`;
+
+const SubmitButtonWrapper = styled.div`
+  ${media.sm} {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 `;
 
 export interface FormikFormInput {
@@ -47,6 +62,8 @@ const FormikForm = ({
   children,
   showErrorOn = "bottom",
 }: Props) => {
+  const { isMobileSize } = useRwd();
+
   const getBottomErrorMessage = () => {
     if (showErrorOn !== "bottom") return "";
 
@@ -80,9 +97,16 @@ const FormikForm = ({
         </ErrorMessageContainer>
       )}
 
-      <SubmitButton fullWidth={true} type={"submit"} disabled={isLoading}>
-        {buttonText}
-      </SubmitButton>
+      <SubmitButtonWrapper>
+        <SubmitButton
+          fullWidth={true}
+          type={"submit"}
+          disabled={isLoading}
+          style={{ borderRadius: isMobileSize ? "100px" : "6px" }}
+        >
+          {buttonText}
+        </SubmitButton>
+      </SubmitButtonWrapper>
     </Form>
   );
 };

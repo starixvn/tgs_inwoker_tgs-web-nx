@@ -3,10 +3,9 @@ import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 
 const LogoImgContainer = styled.div`
-  height: 48px;
+  height: 44px;
   flex-shrink: 0;
   justify-self: start;
-  padding: 0 10px;
   margin: 0 auto;
 
   & > img {
