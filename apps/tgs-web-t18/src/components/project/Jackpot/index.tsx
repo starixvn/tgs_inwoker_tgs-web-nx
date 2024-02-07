@@ -1,4 +1,4 @@
-import React, { HTMLProps } from "react";
+import { HTMLProps } from "react";
 import styled from "styled-components";
 import { useJackpot } from "@tgs-web-nx/core/features";
 
