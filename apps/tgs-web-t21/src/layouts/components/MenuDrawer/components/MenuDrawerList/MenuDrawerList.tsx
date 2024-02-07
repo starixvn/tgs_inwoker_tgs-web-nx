@@ -5,6 +5,8 @@ import SideMenuNavList from "@/layouts/components/MenuDrawer/components/MenuDraw
 
 const MobileMenuDrawerContainer = styled.div`
   width: 100%;
+  height: 100%;
+  overflow: auto;
 `;
 
 const ContentWrapper = styled.div`

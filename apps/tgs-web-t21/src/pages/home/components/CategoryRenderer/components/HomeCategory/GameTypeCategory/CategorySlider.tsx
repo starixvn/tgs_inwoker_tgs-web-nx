@@ -16,10 +16,15 @@ const CategorySliderContainer = styled.div`
   display: flex;
   gap: 14px;
   overflow-x: auto;
+  color: ${({ theme }) => theme.gray80};
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
 
-  /* ::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     visibility: hidden;
-  } */
+  }
 `;
 
 const SlickDot = styled.div`
@@ -107,7 +112,7 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
               gameItem.code
             }.jpg`}
             style={{
-              width: cardWidth,
+              // width: cardWidth,
               flexShrink: 0,
             }}
           />

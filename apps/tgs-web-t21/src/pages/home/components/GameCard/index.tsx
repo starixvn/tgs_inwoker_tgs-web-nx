@@ -13,24 +13,17 @@ import maintenanceBG from "@/assets/t21/images/home/maintenanceBG.svg";
 import maintenanceText from "@/assets/t21/images/home/maintenanceText.svg";
 
 const GameCardContainer = styled.div`
-  max-width: 186px;
+  /* max-width: 186px; */
+  width: calc(33.33%);
   position: relative;
   cursor: pointer;
 
   background-size: cover;
   background-position: center;
 
-  /* ${media.sm} {
-    width: calc((100% - 15px * 1) / 2);
+  ${media.sm} {
+    max-width: 186px;
   }
-
-  ${media.md} {
-    width: calc((100% - 15px * 2) / 3);
-  }
-
-  ${media.lg} {
-    width: calc((100% - 15px * 5) / 6);
-  } */
 `;
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -147,6 +140,16 @@ const MaintenanceText = styled.img`
   height: 63px;
 `;
 
+const GameName = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0em;
+`;
+
 type GameCardProps = {
   gameItem: GameItem;
   isActive: boolean;
@@ -227,6 +230,7 @@ const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) =>
           </CardHoverBg>
         )}
       </GameCardBg>
+      <GameName>{gameItem.name}</GameName>
     </GameCardContainer>
   );
 };

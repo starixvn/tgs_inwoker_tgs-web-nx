@@ -12,7 +12,6 @@ import { Promotion, ProviderDto } from "@tgs-web-nx/types";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Banner from "./components/Banner";
 import CardPrompt from "./components/CardPrompt";
-import PopularGames from "./components/CategoryRenderer/components/HomeCategory/components/PopularGames";
 import MobileVendorCard from "./components/VendorCard/mobile";
 import BannerImage from "./components/HomePromotion/BannerImage";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
@@ -28,6 +27,7 @@ import GameTypeCategory, {
 import HomePromotionCard from "@/pages/home/components/HomePromotion";
 import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
+import downloadImg from "@/assets/t21/images/home/DownloadImgMobile.png";
 
 type MainWrapperProps = {
   $isDark: boolean;
@@ -72,7 +72,6 @@ const MainContentWrapper = styled.div`
 
 const CategoryContentWrapper = styled.div`
   width: 100%;
-  padding: 14px;
   ${media.sm} {
     margin: 0 auto;
     display: flex;
@@ -99,6 +98,16 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+`;
+
+const DownloadImg = styled.div<{ $downloadImgUrl: string }>`
+  display: flex;
+  background-image: url(${({ $downloadImgUrl }) => $downloadImgUrl});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 240px;
 `;
 
 const HomePage = () => {
@@ -167,7 +176,7 @@ const HomePage = () => {
                 })}
             </CategoryContentWrapper>
           </MainContentWrapper>
-          {/* todo: mobile footer */}
+          <DownloadImg $downloadImgUrl={downloadImg} />
         </>
       )}
       {isDesktopSize && (

@@ -7,7 +7,7 @@ import maintenanceText from "@/assets/t21/images/home/maintenanceText.svg";
 
 const MobileVendorCardContainer = styled.div`
   flex-shrink: 0;
-  width: calc(50% - 6px);
+  width: calc(33.33%);
   position: relative;
 
   background-size: cover;
@@ -19,7 +19,7 @@ const MobileVendorCardContainer = styled.div`
 `;
 
 const CardContainer = styled.div`
-  position: relative;
+  /* position: relative; */
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -79,27 +79,16 @@ const MaintenanceBg = styled.div`
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
-  z-index: 100;
+  z-index: 2;
   position: absolute;
-  left: 15%;
-  top: 60%;
-  display: inline-flex;
+  left: 0%;
+  bottom: 5%;
   width: 100%;
-  max-width: 100px;
   min-height: 41px;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
+  background-position: center;
   background-repeat: no-repeat;
-
-  ${media.sm} {
-    left: 25%;
-    top: 70%;
-  }
-`;
-
-const MaintenanceIcon = styled.img`
-  width: 57px;
-  height: 57px;
 `;
 
 const MaintenanceText = styled.img`
