@@ -40,7 +40,7 @@ const RegisterForm = () => {
               <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
             </FormContainer>
             <RedirectToLoginHint />
-            <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+            <LanguageSwitch style={{ width: "100%" }} />
           </LoginWrapper>
         </>
       }

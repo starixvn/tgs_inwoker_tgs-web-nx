@@ -18,6 +18,7 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+import { theme } from "@/theme";
 
 const LoginWrapper = styled.div`
   width: 100%;
@@ -78,7 +79,9 @@ const LoginForm = () => {
             </FormContainer>
 
             <RedirectToRegisterHint />
-            <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+            <LanguageSwitch
+              style={{ width: "100%" }}
+            />
           </LoginWrapper>
         </>
       }
