@@ -132,7 +132,7 @@ const NonLobbyCategory = () => {
           <VenderContainer>
             <CategoryContent>
               {providerFilterTagList
-                .filter((filterTag) => filterTag.name !== "All")
+                // .filter((filterTag) => filterTag.name !== "All")
                 .map((filterTag) => {
                   const matchedProvider = navPopupCategoryList.find(
                     (provider) => provider.code === filterTag.gpCode,

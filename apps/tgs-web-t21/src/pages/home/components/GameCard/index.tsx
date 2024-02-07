@@ -9,7 +9,8 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import playIcon from "@/assets/t21/images/home/play-green.svg";
-import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
+import maintenanceBG from "@/assets/t21/images/home/maintenanceBG.svg";
+import maintenanceText from "@/assets/t21/images/home/maintenanceText.svg";
 
 const GameCardContainer = styled.div`
   max-width: 186px;
@@ -110,17 +111,19 @@ const GameCardBg = styled.div`
 `;
 
 const MaintenanceBg = styled.div`
+  z-index: 100;
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 70%);
-  padding: 7px;
+  /* background: rgb(0 0 0 / 70%); */
+  background-image: url(${maintenanceBG});
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
 
   &:hover {
     cursor: not-allowed;
@@ -139,9 +142,9 @@ const HoverGameName = styled(GameCardContent)`
   margin-bottom: 16px;
 `;
 
-const PlayIcon = styled.img`
-  width: 65px;
-  height: 65px;
+const MaintenanceText = styled.img`
+  width: 113px;
+  height: 63px;
 `;
 
 type GameCardProps = {
@@ -204,7 +207,7 @@ const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) =>
           {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
           {!isActive && (
             <MaintenanceBg>
-              <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+              <MaintenanceText src={maintenanceText} alt={"maintenance"} />
             </MaintenanceBg>
           )}
         </GameCardContent>

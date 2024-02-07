@@ -81,7 +81,7 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
                 key={gpCode}
                 bgUrl={`/assets/images/home/mobile/liveCasino/mbg.png`}
                 imageUrl={`/assets/images/home/mobile/liveCasino/home/${gpCode}.png`}
-                venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/home/${gpCode}.png`}
+                venderLogoUrl={`/assets/images/home/provider_logo/liveCasino/white/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode)}
                 status={status}
                 venderName={name}

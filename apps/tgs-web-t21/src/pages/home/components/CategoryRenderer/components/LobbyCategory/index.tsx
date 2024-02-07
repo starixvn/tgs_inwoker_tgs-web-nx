@@ -5,6 +5,7 @@ import { Common, getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import React from "react";
+import SportsCard from "../../../SportsCard";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -46,7 +47,7 @@ const CategoryContent = styled.div`
   width: 100%;
   gap: 10px;
   align-self: stretch;
-
+  padding: 14px;
   ${media.sm} {
     padding: 20px 0;
   }
@@ -108,7 +109,6 @@ const LobbyCategory = () => {
   };
 
   const hasMappingData = !!lobbyCategoryList.length;
-
   return (
     <Wrapper>
       <CategoryContentWrapper>
@@ -120,21 +120,35 @@ const LobbyCategory = () => {
               const { code: gpCode, status, name } = provider;
 
               if (gpCode === "BC") return null;
-              return (
-                <MobileVendorCard
-                  key={gpCode}
-                  bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                  imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
-                  status={status}
-                  venderName={name}
-                  style={{
-                    width: cardWidth,
-                    flexShrink: 0,
-                  }}
-                />
-              );
+              if (activeGameType === GameTypeEnum.SPORTS) {
+                return (
+                  <SportsCard
+                    key={gpCode}
+                    bgUrl={`/assets/images/home/mobile/sports/mbg.png`}
+                    imageUrl={`/assets/images/home/mobile/sports/${gpCode}.png`}
+                    venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                    launchGame={() => launchLobbyGame(gpCode)}
+                    status={status}
+                    venderName={name}
+                  />
+                );
+              } else {
+                return (
+                  <MobileVendorCard
+                    key={gpCode}
+                    bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
+                    imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
+                    venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/white/${gpCode}.png`}
+                    launchGame={() => launchLobbyGame(gpCode)}
+                    status={status}
+                    venderName={name}
+                    style={{
+                      width: cardWidth,
+                      flexShrink: 0,
+                    }}
+                  />
+                );
+              }
             })}
           {!hasMappingData && <div>No data</div>}
         </CategoryContent>

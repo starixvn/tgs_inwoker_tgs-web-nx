@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { HTMLProps } from "react";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t21/images/home/maintenance.svg";
+import maintenanceBG from "@/assets/t21/images/home/maintenanceBG.svg";
+import maintenanceText from "@/assets/t21/images/home/maintenanceText.svg";
 
 const MobileVendorCardContainer = styled.div`
   flex-shrink: 0;
@@ -36,23 +37,41 @@ const VendorCardBg = styled.div<{ $bgUrl: string }>`
   border-radius: 4px;
 `;
 
-const VendorName = styled.div`
-  font-size: 0.875rem;
-  padding: 8px;
+const VendorCardImg = styled.div<{ $imageUrl: string }>`
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 0%;
+`;
+
+const GradientOverlay = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(1.67deg, #02a9dc 1.16%, rgba(2, 169, 220, 0) 75.02%);
 `;
 
 const MaintenanceBg = styled.div`
+  z-index: 100;
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 70%);
+  /* background: rgb(0 0 0 / 70%); */
+  background-image: url(${maintenanceBG});
+  background-size: cover;
+  background-position: center;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 11px;
 
   &:hover {
     cursor: not-allowed;
@@ -62,24 +81,30 @@ const MaintenanceBg = styled.div`
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   z-index: 100;
   position: absolute;
-  left: 25%;
-  top: 70%;
+  left: 15%;
+  top: 60%;
   display: inline-flex;
   width: 100%;
   max-width: 100px;
-  min-height: 50px;
+  min-height: 41px;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
 
   ${media.sm} {
-    top: 75%;
+    left: 25%;
+    top: 70%;
   }
 `;
 
 const MaintenanceIcon = styled.img`
   width: 57px;
   height: 57px;
+`;
+
+const MaintenanceText = styled.img`
+  width: 113px;
+  height: 63px;
 `;
 
 type Props = {
@@ -112,15 +137,17 @@ const MobileVendorCard = ({
     // @ts-ignore
     <MobileVendorCardContainer {...others}>
       <CardContainer onClick={launchGameHandler}>
-        <VendorCardBg $bgUrl={imageUrl} />
+        <VendorCardBg $bgUrl={bgUrl} />
+        <VendorCardImg $imageUrl={imageUrl} />
         {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
       </CardContainer>
 
       {status === providerStatus.Maintenance && (
         <MaintenanceBg>
-          <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+          <MaintenanceText src={maintenanceText} alt={"maintenance"} />
         </MaintenanceBg>
       )}
+      <GradientOverlay />
     </MobileVendorCardContainer>
   );
 };
