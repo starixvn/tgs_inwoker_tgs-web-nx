@@ -38,6 +38,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     border: `1px solid  ${theme.palette.white}`,
     input: {
       fontSize: "0.875rem",
+      padding: "10px",
     },
     label: {
       fontSize: "0.875rem",
