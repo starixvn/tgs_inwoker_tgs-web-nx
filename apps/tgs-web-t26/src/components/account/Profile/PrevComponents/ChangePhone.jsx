@@ -210,6 +210,7 @@ class ChangePhone extends BaseProfile {
         <ItemContainer>
           <FormControl>
             <TextFieldWithButton
+              buttonDisabled={this.state.countdownToken > 0}
               buttonLabel={
                 this.state.countdownToken <= 0
                   ? i18n.t("common.msgSendToken")
