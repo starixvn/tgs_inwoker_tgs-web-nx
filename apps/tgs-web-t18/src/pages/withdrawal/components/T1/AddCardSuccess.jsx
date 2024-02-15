@@ -1,4 +1,3 @@
-import React from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
@@ -23,27 +22,25 @@ const AddCardSuccess = ({
   onhandleCSClick,
 }) => {
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
-  const { isCustomizedBrand } = useHomeGameContext();
 
   return (
     <Container>
       <ImgSuccess src={SuccessPNG} />
 
       <SubTitle>{i18n.t("card.success.title")}</SubTitle>
-      {isShowAddCardButton && !isCustomizedBrand && (
+      {isShowAddCardButton && (
         <SubTitleDesc>
           {i18n.t("card.success.successDesc")}
           <br></br>
           {i18n.t("card.success.bindDesc")}
         </SubTitleDesc>
       )}
-      {!isShowAddCardButton && !isCustomizedBrand && (
+      {!isShowAddCardButton && (
         <SubTitleDesc>{i18n.t("card.success.noMoreAddCard")}</SubTitleDesc>
       )}
-      {isCustomizedBrand && <SubTitleDesc>{i18n.t("movn2_addcardsuccess")}</SubTitleDesc>}
 
       <ButtonContainer>
-        {!isCustomizedBrand &&
+        {
           !(
             config.features.ChangesNotAllowed ||
             config.features.AddCard_NotAllowedEditDelete ||

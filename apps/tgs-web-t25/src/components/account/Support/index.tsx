@@ -23,7 +23,6 @@ const Support = () => {
   const { handleContactCs } = useContactCS();
   const brandsSupportList = general.brandsSupport;
   const [selectedBrandsSupport, setSelectedBrandsSupport] = useState<BrandsSupport | null>(null);
-  const { isCustomizedBrand } = useHomeGameContext();
 
   const handleClick = (brandsSupport: BrandsSupport) => {
     if (brandsSupport.type === "Live") {
@@ -49,7 +48,7 @@ const Support = () => {
       <CardsContainer>
         {/*<HeaderImage />*/}
 
-        {(config.features.LiveChatVendor || csLiveChatUrl) && !isCustomizedBrand && (
+        {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
             brandsSupport={{
               appid: null,

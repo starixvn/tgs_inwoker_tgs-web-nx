@@ -7,7 +7,6 @@ import { FormInputTypeEnum, UserTypeEnum } from "@tgs-web-nx/core/features";
 import { useFormikInitValue } from "./useFormikInitValue";
 import { FormikFormInput } from "@/components/project/FormikForm";
 
-const addRealNameFieldBrand = "MOVN2";
 
 type Props = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,18 +49,6 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
           //@ts-ignore
           .oneOf([Yup.ref("pwd"), null], "Passwords must match"),
       },
-      (() => {
-        //for MOVN2 customization
-        if (addRealNameFieldBrand === config.brand) {
-          return {
-            label: i18n.t("common.realName"),
-            name: "realName",
-            type: FormInputTypeEnum.TEXT,
-            initialValue: "",
-            validationSchema: Yup.string().required("Realname is required"),
-          };
-        }
-      })(),
       (() => {
         if (!config.features.Register_ShowPhone) return;
 

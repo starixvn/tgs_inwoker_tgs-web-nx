@@ -63,7 +63,6 @@ type Props = {
   content: string;
   handleDelete: () => void;
   disable: boolean;
-  isCustomizedBrand?: boolean;
 };
 const Card = ({ title, content, handleDelete, disable }: Props) => {
   return (
