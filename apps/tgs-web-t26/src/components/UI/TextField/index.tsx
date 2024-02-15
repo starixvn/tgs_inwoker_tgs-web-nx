@@ -25,6 +25,9 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     // color: "red",
   },
 
+  "& .MuiInputBase-root": {
+    background: theme.palette.darkGray,
+  },
   "& input::placeholder": {
     color: "#828282",
     opacity: 1,

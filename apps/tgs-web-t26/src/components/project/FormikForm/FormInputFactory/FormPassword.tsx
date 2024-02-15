@@ -27,36 +27,34 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   const inputType = isShowPassword ? "text" : "password";
 
   return (
-    <GrayInputWrapper key={name}>
-      <TextField
-        key={name}
-        type={inputType}
-        placeholder={label}
-        variant={"outlined"}
-        fullWidth
-        name={name}
-        value={formik.values[name]}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
-        error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
-        InputProps={{
-          autoComplete: "new-password",
-          endAdornment: (
-            <InputAdornment position="end" style={{ height: "20px" }}>
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                style={{ color: theme.text }}
-              >
-                {isShowPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-    </GrayInputWrapper>
+    <TextField
+      key={name}
+      type={inputType}
+      placeholder={label}
+      variant={"outlined"}
+      fullWidth
+      name={name}
+      value={formik.values[name]}
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
+      error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
+      InputProps={{
+        autoComplete: "new-password",
+        endAdornment: (
+          <InputAdornment position="end" style={{ height: "20px" }}>
+            <IconButton
+              aria-label="toggle password visibility"
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+              style={{ color: theme.text }}
+            >
+              {isShowPassword ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 };
 
