@@ -42,7 +42,7 @@ const ChildContainer = styled.div`
 const Title = styled.div`
   font-size: 1.062rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.primary};
 
   ${media.sm} {
     font-size: 1.5rem;

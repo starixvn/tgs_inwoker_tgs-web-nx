@@ -5,12 +5,11 @@ import jackpotPic from "@/assets/t26/images/home/jackpotPic.png";
 
 const JackPotContainer = styled.div`
   position: relative;
-  width: 100%;
+  width: 1300px;
   height: 250px;
   background-image: url(${jackpotPic});
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
 `;
 
 const JackPotText = styled.div`
@@ -26,20 +25,21 @@ const JackPotText = styled.div`
 
 const AmountContainer = styled.div`
   position: absolute;
+  width: 580px;
   top: 50%;
   left: 50%;
+  margin-left: 5px;
   display: flex;
-  font-size: 62px;
-  font-weight: 400;
-  line-height: 66px;
-  letter-spacing: 0.3em;
-  text-align: center;
-  gap: 10px;
+  justify-content: space-between;
 `;
 
 const AmountColumn = styled.div`
+  font-size: 62px;
+  font-weight: 400;
+  line-height: 66px;
   width: 50px;
-  height: 60px;
+  display: flex;
+  justify-content: center;
 `;
 
 type Props = HTMLProps<HTMLDivElement>;

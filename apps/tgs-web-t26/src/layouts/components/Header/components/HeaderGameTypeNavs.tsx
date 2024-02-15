@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import { theme } from "@/theme";
@@ -81,7 +81,8 @@ const HomeIconWrapper = styled.div`
   align-self: center;
   gap: 20px;
   margin-right: 20px;
-  &img {
+  & img {
+    cursor: pointer;
     width: 20px;
     height: 20px;
   }
@@ -106,14 +107,28 @@ const HeaderGameTypeNavs = () => {
   };
 
   const location = useLocation();
+  const history = useHistory();
+
   const pathSegments = location.pathname.split("/");
   const currentRoute = pathSegments[pathSegments.length - 1];
 
   return (
     <HeaderGameTypesContainer>
       <HomeIconWrapper>
-        <img src={HomeIcon} alt="home" />
-        <img src={LinkIcon} alt="link" />
+        <img
+          src={HomeIcon}
+          alt="home"
+          onClick={() => {
+            history.push("/");
+          }}
+        />
+        <img
+          src={LinkIcon}
+          alt="link"
+          onClick={() => {
+            history.push("/appDownload");
+          }}
+        />
       </HomeIconWrapper>
 
       {sideNavItemList &&
