@@ -11,6 +11,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconWithdrawal from "@/assets/t26/images/account/navItem/icon-withdraw.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 
 const WithdrawalPage = () => {
   useWithdrawalPage();
@@ -28,8 +29,9 @@ const WithdrawalPage = () => {
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
+      {isDesktopSize && <PageBadge iconUrl={iconWithdrawal} text={i18n.t("common.withdrawal")} />}
 
-      <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
+      <AccountPaper>
         <WithdrawalPrevV2
           appHistory={history}
           alert={alert}

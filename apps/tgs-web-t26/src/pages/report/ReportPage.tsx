@@ -7,6 +7,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconReport from "@/assets/t26/images/account/navItem/icon-report.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 
 const ReportPage = () => {
   useUpdatePageName(i18n.t("affiliate.report"));
@@ -16,7 +17,9 @@ const ReportPage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
-      <AccountPaper pageName={i18n.t("affiliate.report")} iconUrl={iconReport}>
+      {isDesktopSize && <PageBadge iconUrl={iconReport} text={i18n.t("affiliate.report")} />}
+
+      <AccountPaper>
         <Report />
       </AccountPaper>
     </PageContainer>

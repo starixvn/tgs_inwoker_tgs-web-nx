@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 
 const PageBadgeContainer = styled.div`
-  padding: 10px 20px;
+  padding: 10px 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,8 +27,8 @@ const PageBadge = ({ iconUrl, width, height, text, ...others }: Props) => {
     <PageBadgeContainer {...others}>
       <Icon
         iconUrl={iconUrl}
-        width={width || "22px"}
-        height={height || "22px"}
+        width={width || "20px"}
+        height={height || "20px"}
         style={{
           marginRight: "8px",
         }}

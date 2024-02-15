@@ -1,7 +1,5 @@
 import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
-import iconAccount from "@/assets/t26/images/account/navItem/icon-profile.svg";
 import ProfileRowInDesktop from "@/pages/profile/components/ProfileMenu/ProfileRowInDesktop";
 import AccountPaper from "@/components/project/AccountPaper";
 
@@ -9,7 +7,7 @@ const ProfileMenuDesktop = () => {
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
 
   return (
-    <AccountPaper pageName={i18n.t("deposit.details.account")} iconUrl={iconAccount}>
+    <AccountPaper>
       <ProfileRowInDesktop
         profileItem={profileItemDictionary["name"]}
         handleClick={handleClickProfileItem}

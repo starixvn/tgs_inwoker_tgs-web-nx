@@ -7,6 +7,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconAffiliate from "@/assets/t26/images/account/navItem/icon-affiliate.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 
 const AffiliatePage = () => {
   useUpdatePageName(i18n.t("affiliate.title"));
@@ -15,8 +16,9 @@ const AffiliatePage = () => {
   return (
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
+      {isDesktopSize && <PageBadge iconUrl={iconAffiliate} text={i18n.t("affiliate.title")} />}
 
-      <AccountPaper pageName={i18n.t("affiliate.title")} iconUrl={iconAffiliate}>
+      <AccountPaper>
         <Affiliate />
       </AccountPaper>
     </PageContainer>

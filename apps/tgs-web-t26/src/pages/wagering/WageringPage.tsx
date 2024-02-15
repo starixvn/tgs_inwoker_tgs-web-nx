@@ -27,6 +27,7 @@ import LotteryIconActive from "@/assets/t26/images/wagering/LotteryActive.svg";
 import VirtualSportsIcon from "@/assets/t26/images/wagering/VirtualSports.svg";
 import VirtualSportsIconActive from "@/assets/t26/images/wagering/VirtualSportsActive.svg";
 import { media } from "@/theme/breakpoints";
+import PageBadge from "@/components/project/AccountPaper/components/PageBadge";
 
 const WageringContainer = styled.div`
   display: flex;
@@ -159,7 +160,11 @@ const WageringPage = () => {
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
-      <AccountPaper pageName={i18n.t("t29.wageringrequirement")} iconUrl={iconWagering}>
+      {isDesktopSize && (
+        <PageBadge iconUrl={iconWagering} text={i18n.t("t29.wageringrequirement")} />
+      )}
+
+      <AccountPaper>
         <WageringContainer>
           <Requirement>
             <img src={iconCard} alt="" />
