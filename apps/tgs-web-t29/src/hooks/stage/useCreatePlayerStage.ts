@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig, type BrandName} from "@tgs-web-nx/config";
 import {
   UserTypeEnum,
   useAuthDialog,
@@ -11,7 +11,6 @@ import {
 } from "@tgs-web-nx/core/features";
 import { useGenerateRegisterCreatePlayerFormik } from "./useGenerateRegisterCreatePlayerFormik";
 
-const addRealNameFieldBrand = "MOVN2";
 
 export function useCreatePlayerStage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +59,7 @@ export function useCreatePlayerStage() {
         throw new Error(i18n.t("common.msgAlreadyExist"));
       }
       //for MOVN2 customization
-      if (addRealNameFieldBrand === config.brand) {
+      if (brandConfig[config.brand as BrandName]?.isAddRealNameFieldBrand) {
         //Set realname之前必須先login
         await accountLogin(values.username, values.pwd);
 
