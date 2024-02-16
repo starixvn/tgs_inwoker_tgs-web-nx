@@ -39,9 +39,6 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
     border: "none",
   },
 
-  "& input": {
-    padding: "10px 0",
-  },
 })) as typeof MuiFormControl;
 
 export const InfoContainer = styled.div`
