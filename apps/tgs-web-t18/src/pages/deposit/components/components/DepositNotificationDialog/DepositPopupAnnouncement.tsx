@@ -8,7 +8,7 @@ import { Button } from "@/components/UI/Button";
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     position: relative;
-    background: ${({ theme }) => theme.primaryDark};
+    background: ${({ theme }) => theme.primaryLight};
     border-radius: 6px;
     display: flex;
     flex-direction: column;

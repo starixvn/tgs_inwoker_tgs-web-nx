@@ -71,6 +71,17 @@ const CloseBtn = styled.div`
   height: 36px;
   cursor: pointer;
   margin-top: 60px;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+
+  ${media.sm} {
+    width: 64px;
+    height: 64px;
+    margin-top: 29px;
+  }
 `;
 
 const PromotionBannerWrapper = styled.div`

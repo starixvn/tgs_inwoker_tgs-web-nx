@@ -72,15 +72,11 @@ export const SelectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  & input {
-    padding: 16px 0 !important;
-  }
 `;
 export const LimitPopupContainer = styled.div`
   white-space: nowrap;
   font-size: 0.812rem;
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.text};
   /* padding: 10px 24px; */
   border-radius: 4px;
   display: inline-block;

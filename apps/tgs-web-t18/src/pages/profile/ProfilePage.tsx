@@ -12,8 +12,6 @@ import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const Paper = styled.div`
-  background: ${({ theme }) => theme.gray5};
-  padding: 20px 29px;
   border-radius: 10px;
 `;
 
