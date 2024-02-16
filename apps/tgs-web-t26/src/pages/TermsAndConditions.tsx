@@ -10,7 +10,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   background-color: transparent;
-  color: ${({ theme }) => theme.gray60};
+  color: ${({ theme }) => theme.text};
   padding: 20px;
   gap: 6px;
   flex-shrink: 0;
