@@ -14,16 +14,7 @@ const RegisterV2InitEmailDialog = () => {
   };
 
   return (
-    <ProfileDialog
-      open={isRegisterV2InitEmailDialogOpen}
-      onClose={() => handleClose()}
-      sx={{
-        "& .MuiPaper-root": {
-          padding: "28px 0",
-          maxWidth: "550px",
-        },
-      }}
-    >
+    <ProfileDialog open={isRegisterV2InitEmailDialogOpen} onClose={() => handleClose()}>
       <RegisterFormStage currentStage={RegisterStageEnum.InitEmail} />
     </ProfileDialog>
   );
