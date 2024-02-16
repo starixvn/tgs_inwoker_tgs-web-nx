@@ -51,6 +51,7 @@ const CloseIconContainer = styled.div`
   right: 20px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 const Title = styled.div`
@@ -63,7 +64,7 @@ const Content = styled.div`
   font-size: 1rem;
   font-weight: 400;
   color: #ffffff;
-  margin-top: 1rem;
+  margin-top: 20px;
   line-height: 1.2rem;
 
   ${media.sm} {
