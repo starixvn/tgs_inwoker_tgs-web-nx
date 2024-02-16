@@ -197,6 +197,7 @@ class ChangeEmail extends BaseProfile {
                   ? i18n.t("common.msgSendToken")
                   : i18n.t("common.btnTokenResendLabel") + "(" + this.state.countdownToken + "s)"
               }
+              buttonDisabled={this.state.countdownToken > 0}
               type={"text"}
               value={this.state.code}
               onChange={this.handleChangeCode}

@@ -599,12 +599,12 @@ class Main extends Component {
                       accept="image/jpg, image/jpeg, image/png, image/tiff"
                       style={{ display: "none" }}
                     />
-                    {this.props.files ? (
-                      <UploadFileTag>{this.props.files[0].name}</UploadFileTag>
-                    ) : (
-                      ""
-                    )}
                   </FormControl>
+                  {this.props.files ? (
+                    <UploadFileTag>{this.props.files[0].name}</UploadFileTag>
+                  ) : (
+                    ""
+                  )}
                 </ItemContainer>
                 <Remark>
                   {i18n.t(

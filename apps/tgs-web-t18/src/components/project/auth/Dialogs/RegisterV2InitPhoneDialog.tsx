@@ -14,16 +14,7 @@ const RegisterV2InitPhoneDialog = () => {
   };
 
   return (
-    <ProfileDialog
-      open={isRegisterV2InitPhoneDialogOpen}
-      onClose={handleClose}
-      sx={{
-        "& .MuiPaper-root": {
-          padding: "28px 0",
-          maxWidth: "550px",
-        },
-      }}
-    >
+    <ProfileDialog open={isRegisterV2InitPhoneDialogOpen} onClose={handleClose}>
       <RegisterFormStage currentStage={RegisterStageEnum.InitPhone} />
     </ProfileDialog>
   );

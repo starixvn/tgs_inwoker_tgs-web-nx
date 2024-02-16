@@ -10,12 +10,12 @@ import { theme } from "@/theme";
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     position: relative;
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.primaryLight};
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 40px 20px 20px;
   }
 `;
 
@@ -32,14 +32,13 @@ const ChildContainer = styled.div`
   width: 100%;
   height: auto;
   overflow: auto;
-  padding: 12px 24px;
 `;
 
 const ProfileDialogTitle = styled.div`
   margin: 0 auto 18px;
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.blue50};
+  color: ${({ theme }) => theme.text};
 `;
 
 type Props = {
@@ -57,7 +56,6 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
     <StyledDialog
       sx={{
         "& .MuiPaper-root": {
-          padding: "28px 61px",
           maxWidth: "550px",
         },
         "& .MuiBackdrop-root": {
