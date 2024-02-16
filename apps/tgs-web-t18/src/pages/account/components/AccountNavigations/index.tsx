@@ -33,8 +33,7 @@ const AccountNavCardsContainer = styled.div`
   gap: 8px;
 `;
 
-type Props = {};
-const AccountNavigations = (props: Props) => {
+const AccountNavigations = () => {
   const history = useHistory();
   const { accountNavItemList: navItemList } = useGetNavItemList();
   const { handleLogout, logoutState } = useAuthContext();
