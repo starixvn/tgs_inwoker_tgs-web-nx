@@ -56,7 +56,7 @@ const BalanceTracker = ({ size, ...others }: Props) => {
   return (
     //@ts-ignore
     <BalanceTrackerContainer $size={size} {...others}>
-      {isShow && <span>{i18n.t("wap.main.account.totalFund")}</span>}
+      {isShow && <span>{i18n.t("web.account.header.total")}</span>}
 
       <BalanceContainer>
         <span>{currentBalance}</span>

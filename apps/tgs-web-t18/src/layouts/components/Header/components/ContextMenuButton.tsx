@@ -7,6 +7,7 @@ import Modal from "@/components/UI/Modal";
 import { media } from "@/theme/breakpoints";
 import arrowImg from "@/assets/t18/images/header/contextMenu/icon_arrow.svg";
 import ContextMenu from "@/layouts/components/Header/components/ContextMenu";
+import Avatar from "@/components/project/Avatar";
 
 const ContextMenuButtonContainer = styled.div`
   height: 40px;
@@ -62,7 +63,8 @@ const ContextMenuButton = () => {
   return (
     <>
       <ContextMenuButtonContainer onClick={handleClick}>
-        <AvatarContainer />
+        {/* <AvatarContainer /> */}
+        <Avatar size={"small"} hideName={true} />
 
         <UsernameContainer>{username}</UsernameContainer>
 
