@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import phoneImg from "@/assets/t18/images/account/icon_phone.png";
 import emailImg from "@/assets/t18/images/account/icon_email.png";
 import birthImg from "@/assets/t18/images/account/icon_birth.png";
@@ -46,6 +47,53 @@ const InfoItemContainer = styled.div`
   }
 `;
 
+const VIPCardContainer = styled.div`
+  height: 112px;
+  width: 372px;
+`;
+
+const VIPCard = styled.div<{ $bg: string }>`
+  background-image: url(${({ $bg }) => $bg});
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  & img {
+    width: 97px;
+    height: 90px;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+  }
+`;
+
+const VIPTextWrapper = styled.div<{ $textColor: string }>`
+  position: absolute;
+  top: 30%;
+  left: 15%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: ${({ $textColor }) => $textColor};
+`;
+
+const VIPUserName = styled.div`
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+`;
+
+const VIPLevel = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0em;
+`;
+
 interface InfoItem {
   infoType: string;
   value: string;
@@ -56,6 +104,7 @@ interface InfoItem {
 const InfoCard = (props: any) => {
   const { account } = useAccountStore();
   const accountInfo = account.info;
+  const { isDesktopSize } = useRwd();
 
   const infoItemList: InfoItem[] = useMemo(() => {
     return [
@@ -80,11 +129,58 @@ const InfoCard = (props: any) => {
     ];
   }, [accountInfo]);
 
+  const getVIPTextColor = () => {
+    switch (accountInfo.member_level_id - 1) {
+      case 0:
+        return "#643E13";
+      case 1:
+        return "#643E13";
+      case 2:
+        return "#312F59";
+      case 3:
+        return "#643E13";
+      case 4:
+        return "#2E575F";
+      case 5:
+        return "#73ADF8";
+      case 6:
+        return "#2D1652";
+      case 7:
+        return "#550F61";
+      case 8:
+        return "#64171C";
+      case 9:
+        return "#713316";
+      case 10:
+        return "#336E69";
+      case 11:
+        return "#3D095A";
+      default:
+        return "#643E13";
+    }
+  };
+  const generateVIPCard = () => {
+    return (
+      <VIPCardContainer>
+        <VIPCard
+          $bg={`/assets/images/vip/mobile/card/level_${accountInfo.member_level_id - 1}.png`}
+        >
+          <img
+            src={`/assets/images/vip/mobile/badge/level_${accountInfo.member_level_id - 1}.png`}
+            alt="vip"
+          />
+          <VIPTextWrapper $textColor={getVIPTextColor()}>
+            <VIPUserName>{accountInfo.member_name}</VIPUserName>
+            <VIPLevel>{`VIP${accountInfo.member_level_id}`}</VIPLevel>
+          </VIPTextWrapper>
+        </VIPCard>
+      </VIPCardContainer>
+    );
+  };
   return (
     // @ts-ignore
     <InfoCardContainer {...props}>
-      <Avatar />
-
+      {isDesktopSize ? generateVIPCard() : <Avatar />}
       <Border />
 
       <InfoItemListContainer>
