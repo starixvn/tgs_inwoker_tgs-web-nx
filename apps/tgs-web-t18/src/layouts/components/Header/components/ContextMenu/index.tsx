@@ -7,7 +7,7 @@ import supportImg from "@/assets/t18/images/header/contextMenu/icon_service_supp
 import logoutImg from "@/assets/t18/images/header/contextMenu/icon_logout.svg";
 import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
-import { Avatar } from "@mui/material";
+import Avatar from "@/components/project/Avatar";
 import { useLogout } from "../../../../../../../../libs/core/features/src/feature/useAuth/hooks/useLogout";
 
 const ContextMenuContainer = styled.div`
@@ -77,27 +77,25 @@ const ContextMenu = () => {
   };
 
   return (
-    <>
-      <ContextMenuContainer>
-        <AvatarLevelWrapper>
-          <Avatar />
-        </AvatarLevelWrapper>
-        <ContextMenuItemWrapper>
-          {contextMenuList.map((contextMenuItem) => {
-            const { label, iconUrl, routePath } = contextMenuItem;
-            return (
-              <ContextMenuItem
-                key={label}
-                label={label}
-                iconUrl={iconUrl}
-                onClick={() => handleClick(routePath)}
-              />
-            );
-          })}
-        </ContextMenuItemWrapper>
-        <VersionTagContainer>V1.1.3795703</VersionTagContainer>
-      </ContextMenuContainer>
-    </>
+    <ContextMenuContainer>
+      <AvatarLevelWrapper>
+        <Avatar />
+      </AvatarLevelWrapper>
+      <ContextMenuItemWrapper>
+        {contextMenuList.map((contextMenuItem) => {
+          const { label, iconUrl, routePath } = contextMenuItem;
+          return (
+            <ContextMenuItem
+              key={label}
+              label={label}
+              iconUrl={iconUrl}
+              onClick={() => handleClick(routePath)}
+            />
+          );
+        })}
+      </ContextMenuItemWrapper>
+      <VersionTagContainer>V1.1.3795703</VersionTagContainer>
+    </ContextMenuContainer>
   );
 };
 
