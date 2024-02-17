@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import React from "react";
-import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
