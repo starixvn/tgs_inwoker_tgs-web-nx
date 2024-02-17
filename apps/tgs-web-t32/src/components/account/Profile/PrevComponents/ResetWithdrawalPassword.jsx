@@ -185,6 +185,7 @@ class ResetResetWithdrawalPassword extends Component {
                         this.state.countdownToken +
                         "s)"
                   }
+                  buttonDisabled={this.state.countdownToken > 0}
                   value={this.state.code}
                   onChange={this.handleCodeChange}
                   placeholder={i18n.t("common.msgEnterEmailCode")}
@@ -230,7 +231,7 @@ class ResetResetWithdrawalPassword extends Component {
             </ItemContainer>
 
             <Button fullWidth onClick={this.handleSubmitClicked}>
-             {i18n.t("common.submit")}
+              {i18n.t("common.submit")}
             </Button>
             <Button fullWidth onClick={this.handleBackClick}>
               {i18n.t("common.back")}
