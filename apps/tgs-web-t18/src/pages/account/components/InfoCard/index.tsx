@@ -130,7 +130,7 @@ const InfoCard = (props: any) => {
   }, [accountInfo]);
 
   const getVIPTextColor = () => {
-    switch (accountInfo.member_level_id - 1) {
+    switch (accountInfo.member_level_id) {
       case 0:
         return "#643E13";
       case 1:
