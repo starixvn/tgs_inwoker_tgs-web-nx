@@ -28,22 +28,15 @@ type MemberMenuItemProps = {
 };
 
 const MemberMenuItem = styled.div<MemberMenuItemProps>`
+  max-width: 200px;
   padding: 18.5px 16px;
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   align-items: center;
   gap: 10px;
   color: ${({ theme, $isActive }: MemberMenuItemProps) =>
     $isActive ? theme.primary : theme.white};
   cursor: pointer;
-
-  /* &:hover {
-    background: ${({ theme }) => theme.darkGray};
-    color: ${({ theme }) => theme.primary};
-    img {
-      content: url(${(props) => props.$hoverImage || ""});
-    }
-  } */
 `;
 
 const DarkMemberMenu = () => {
