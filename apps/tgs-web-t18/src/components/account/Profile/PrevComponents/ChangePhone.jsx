@@ -145,7 +145,7 @@ class ChangePhone extends BaseProfile {
           } else {
             this.props.getAccountInfo().then((responseUpdate) => {
               if (responseUpdate.IsSuccess) {
-                this.props.appHistory.replace("/profile/phone");
+                this.props.handleCloseDialog();
               }
             });
           }
