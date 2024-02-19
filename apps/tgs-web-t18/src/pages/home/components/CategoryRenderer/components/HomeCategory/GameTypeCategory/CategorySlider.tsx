@@ -63,7 +63,6 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
                 venderName={name}
                 style={{
                   width: cardWidth,
-                  flexShrink: 0,
                 }}
               />
             );

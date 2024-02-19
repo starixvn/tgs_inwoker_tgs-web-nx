@@ -3,7 +3,7 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useGetHomeCategoryListV2 } from "@/hooks/home/useGetHomeCategoryListV2";
 import GameCard from "@/pages/home/components/GameCard";
@@ -12,6 +12,7 @@ import {
   CategoryHeader,
   MoreButton,
 } from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory";
+import HotIcon from "@/assets/t18/images/home/mobile/hot.svg";
 
 const PopularGamesContainer = styled.div`
   //padding: 14.49px;
@@ -28,16 +29,28 @@ const GameCardContainer = styled.div`
   }
 `;
 
+const HotText = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #9dacd0;
+`;
+
 const PopularGames = () => {
-  const { recommendGames } = useGetHomeCategoryListV2();
+  // const { recommendGames } = useGetHomeCategoryListV2();
+  const { hotGameList } = useGetHomeCategoryList();
   const { handleChangeGameType } = useHomeGameContext();
   const history = useHistory();
   const cardWidth = useCardWidth("14px");
 
   const handleClick = () => {
     const gameTypeItem = {
-      gameType: GameTypeEnum.LIVE,
-      key: "liveCasino",
+      gameType: GameTypeEnum.SLOT,
+      key: "slots",
     };
     handleChangeGameType(gameTypeItem.gameType);
     history.push(`/main/${gameTypeItem.key}`);
@@ -46,13 +59,16 @@ const PopularGames = () => {
   return (
     <PopularGamesContainer>
       <CategoryHeader>
-        {i18n.t("slot.recommendGame")}
+        <HotText>
+          <img src={HotIcon} width={28} alt="hot" />
+          {i18n.t("slot.hotGame")}
+        </HotText>
 
         <MoreButton onClick={handleClick}>{i18n.t("web.slotGame.more")}</MoreButton>
       </CategoryHeader>
 
       <GameCardContainer>
-        {recommendGames.map((gameItem) => {
+        {hotGameList.map((gameItem) => {
           return (
             <GameCard
               key={gameItem.id}

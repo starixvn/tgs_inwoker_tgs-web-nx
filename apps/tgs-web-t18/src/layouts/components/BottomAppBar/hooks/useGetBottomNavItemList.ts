@@ -83,7 +83,6 @@ export function useGetBottomNavItemList() {
       }) || null;
 
     if (!matchNavItem) {
-      console.log(location.pathname);
       return;
     }
 

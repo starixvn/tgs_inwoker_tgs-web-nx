@@ -78,6 +78,7 @@ const PlayIcon = styled.img`
 `;
 
 const CardVendorBg = styled.div`
+  flex-shrink: 0;
   width: calc(33.33% - 10px);
   background-image: url(${bg});
   background-size: cover;
