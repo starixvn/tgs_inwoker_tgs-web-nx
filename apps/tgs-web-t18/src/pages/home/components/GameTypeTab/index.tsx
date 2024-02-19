@@ -53,18 +53,19 @@ const GameTypeTab = (props: HTMLProps<HTMLDivElement>) => {
     name: "",
   };
 
-  const switchGameType = (gameTypeItem: GameTypeItem) => {
+  const switchGameType = (gameType: GameTypeEnum) => {
+    handleChangeGameType(gameType);
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
 
-    if (gameTypeItem.gameType === activeGameType) {
-      handleChangeGameType(GameTypeEnum.NONE);
-      history.push(`/`);
-    } else {
-      handleChangeGameType(gameTypeItem.gameType);
-      history.push(`/main/${gameTypeItem.key}`);
-    }
+    // if (gameTypeItem.gameType === activeGameType) {
+    //   handleChangeGameType(GameTypeEnum.NONE);
+    //   history.push(`/`);
+    // } else {
+    //   handleChangeGameType(gameTypeItem.gameType);
+    //   history.push(`/main/${gameTypeItem.key}`);
+    // }
   };
 
   const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
@@ -93,7 +94,7 @@ const GameTypeTab = (props: HTMLProps<HTMLDivElement>) => {
             text={text}
             isActive={gameType === activeGameType}
             fontSize={fontSize}
-            onClick={() => switchGameType(gameTypeItem)}
+            onClick={() => switchGameType(gameType)}
           />
         );
       })}
