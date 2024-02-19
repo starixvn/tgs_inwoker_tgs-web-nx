@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
+import lobby from "@/assets/t18/images/home/gameType/lobby.svg";
 import cardgame from "@/assets/t18/images/home/gameType/card_game.svg";
 import egame from "@/assets/t18/images/home/gameType/egame.svg";
 import esports from "@/assets/t18/images/home/gameType/esports.svg";
@@ -22,6 +23,13 @@ type GameTypeItem = {
 export const useGameTypeList = () => {
   const translatedGameTypeList = useMemo(() => {
     const gameTypeList: GameTypeItem[] = [
+      {
+        key: "home",
+        iconUrl: lobby,
+        text: i18n.t("common.home"),
+        fontSize: "small",
+        gameType: GameTypeEnum.NONE,
+      },
       {
         key: "sports",
         iconUrl: sports,
