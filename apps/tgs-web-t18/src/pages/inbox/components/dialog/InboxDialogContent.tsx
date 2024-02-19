@@ -8,17 +8,17 @@ import { SubmitButton } from "@/components/styled-component/ProfileForms";
 const InboxDialogContentContainer = styled.div``;
 const Title = styled.div`
   font-size: 1.25rem;
-  color: ${({ theme }) => theme.black};
+  color:#F2F2F2;
   margin-bottom: 5px;
 `;
 const Info = styled.div`
   font-size: 0.812rem;
-  color: ${({ theme }) => theme.gray80};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 18px;
 `;
 const Content = styled.div`
   font-size: 1rem;
-  color: ${({ theme }) => theme.gray80};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 18px;
   white-space: pre-line;
 `;

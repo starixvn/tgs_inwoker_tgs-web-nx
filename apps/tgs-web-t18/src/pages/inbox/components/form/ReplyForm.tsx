@@ -28,7 +28,7 @@ const OriginalMessage = styled.div`
   border: ${({ theme }) => `1px solid ${theme.tertiary}`};
   border-radius: 6px;
   background-color: ${({ theme }) => theme.primaryDark};
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.text};
   overflow: auto;
   font-size: 15px;
   font-weight: 400;

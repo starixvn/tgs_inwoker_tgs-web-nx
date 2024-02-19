@@ -22,6 +22,11 @@ const Label = styled.h6`
   margin-bottom: 16px;
 `;
 
+const SubmitButtonWrapper = styled.div`
+  max-width: 373px;
+  height: 46px;
+`;
+
 const ComposeForm = () => {
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("");
@@ -73,15 +78,17 @@ const ComposeForm = () => {
         />
       </InputWrapper>
 
-      <SubmitButton
-        onClick={handleSubmit}
-        variant={"contained"}
-        color={"primary"}
-        fullWidth
-        disabled={isSubmitButtonDisabled}
-      >
-        {i18n.t("common.submit")}
-      </SubmitButton>
+      <SubmitButtonWrapper>
+        <SubmitButton
+          onClick={handleSubmit}
+          variant={"contained"}
+          color={"primary"}
+          fullWidth
+          disabled={isSubmitButtonDisabled}
+        >
+          {i18n.t("common.submit")}
+        </SubmitButton>
+      </SubmitButtonWrapper>
 
       <ConfirmDialog
         isDialogOpen={isConfirmDialogOpen}
