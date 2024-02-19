@@ -91,7 +91,7 @@ const Banner = () => {
 
   return (
     <BannerContainer>
-      <Slider settings={settings} maxHeight={"450px"} />
+      <Slider settings={settings} maxHeight={"800px"} />
       <NewsContainer>
         <NewsContent>
           <img src={notification} alt="marquee" />

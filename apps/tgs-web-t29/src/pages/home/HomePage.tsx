@@ -46,7 +46,7 @@ const BannerWrapper = styled.div`
 
   ${media.sm} {
     height: 100%;
-    max-height: 450px;
+    max-height: 800px;
   }
 `;
 
