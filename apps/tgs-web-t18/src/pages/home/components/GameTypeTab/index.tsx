@@ -14,7 +14,7 @@ const TabContainer = styled.div`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   /* Enable smooth scrolling on iOS */
-
+  margin-bottom: 15px;
   ${media.sm} {
     margin-bottom: unset;
     background-color: ${({ theme }) => theme.primaryLight};

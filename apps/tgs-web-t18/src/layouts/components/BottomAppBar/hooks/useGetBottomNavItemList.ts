@@ -1,7 +1,6 @@
 import { i18n } from "@tgs-web-nx/utils";
 import { useEffect, useMemo, useState } from "react";
 import { useLocation } from "react-router";
-import { useRoute } from "@tgs-web-nx/core/features";
 import { AppHistory } from "@tgs-web-nx/core";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import { BottomNavItem } from "@/layouts/components/BottomAppBar/BottomNav";
@@ -76,22 +75,19 @@ export function useGetBottomNavItemList() {
   }, []);
 
   const [selectedBottomNavItem, setSelectedBottomNavItem] = useState<BottomNavItem | null>(null);
-  const { route } = useRoute();
 
   useEffect(() => {
     const matchNavItem =
       bottomNavItemList.find((bottomNavItem) => {
-        // return bottomNavItem.routeCategory === route?.category;
-        return false;
+        return bottomNavItem.routePath === location.pathname;
       }) || null;
 
     if (!matchNavItem) {
-      console.log(location.pathname);
       return;
     }
 
     setSelectedBottomNavItem(matchNavItem);
-  }, [route]);
+  }, [location.pathname]);
 
   const handleClickBottomNavItem = (appBarItem: BottomNavItem) => {
     setSelectedBottomNavItem(appBarItem);

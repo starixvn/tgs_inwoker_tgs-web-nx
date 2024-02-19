@@ -9,7 +9,7 @@ import CategorySlider from "@/pages/home/components/CategoryRenderer/components/
 const GameTypeCategoryContainer = styled.div``;
 
 export const CategoryHeader = styled.div`
-  color: ${({ theme }) => theme.black};
+  color: #9dacd0;
   display: flex;
   align-items: center;
   font-size: 1rem;
@@ -18,7 +18,7 @@ export const CategoryHeader = styled.div`
 `;
 
 export const MoreButton = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.tertiaryMiddle};
   background: ${({ theme }) => theme.primaryLight};
   border-radius: 2px;
   display: flex;
@@ -27,6 +27,20 @@ export const MoreButton = styled.div`
   margin-left: auto;
   padding: 8px 12px;
   cursor: pointer;
+`;
+
+const GameTypeTextWrapper = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  & img {
+    width: 28px;
+    height: 28px;
+  }
 `;
 
 type Props = {
@@ -46,7 +60,10 @@ const GameTypeCategory = ({ gameTypeItem, gameList }: Props) => {
   return (
     <GameTypeCategoryContainer>
       <CategoryHeader>
-        {gameTypeItem.text}
+        <GameTypeTextWrapper>
+          <img src={gameTypeItem.iconUrl} alt="gametype" />
+          {gameTypeItem.text}
+        </GameTypeTextWrapper>
 
         <MoreButton onClick={handleClick}>{i18n.t("web.slotGame.more")}</MoreButton>
       </CategoryHeader>
