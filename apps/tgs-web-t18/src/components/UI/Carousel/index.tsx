@@ -1,25 +1,30 @@
 import styled from "styled-components";
-import CarouselArrow from "@/assets/t23/images/promotion/icon_arrow.svg";
-import CarouselArrowYellow from "@/assets/t23/images/promotion/icon_arrow_yellow.svg";
+import CarouselArrowLeft from "@/assets/t18/images/promotion/icon_arrow_left.svg";
+import CarouselArrowRight from "@/assets/t18/images/promotion/icon_arrow_right.svg";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Carousel from "@/components/account/Carousel";
 
 const NextArrowContainer = styled.div`
   position: absolute;
-  top: 50%;
-  right: -20px;
+  top: 40%;
+  right: 0;
   cursor: pointer;
   z-index: 99;
   width: 22px;
   height: 44px;
-  background: url(${CarouselArrowYellow}) no-repeat center center;
+  background: url(${CarouselArrowRight}) no-repeat center center;
 `;
 
-const PrevArrowContainer = styled(NextArrowContainer)`
-  left: -23px;
-  right: auto;
-  background: url(${CarouselArrow}) no-repeat center center;
+const PrevArrowContainer = styled.div`
+  position: absolute;
+  top: 40%;
+  left: 0;
+  cursor: pointer;
+  z-index: 99;
+  width: 22px;
+  height: 44px;
+  background: url(${CarouselArrowLeft}) no-repeat center center;
 `;
 
 function SampleNextArrow({ onClick }: { onClick: () => void }) {

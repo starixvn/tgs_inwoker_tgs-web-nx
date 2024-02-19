@@ -21,7 +21,7 @@ const DialogPopup = styled(MuiDialog)`
     width: 100%;
     height: auto;
     min-height: 100px;
-    background: ${({ theme }) => theme.primaryLight};
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,7 +70,6 @@ const CloseBtn = styled.div`
   width: 36px;
   height: 36px;
   cursor: pointer;
-  margin-top: 60px;
 
   & > img {
     width: 100%;
@@ -102,6 +101,13 @@ const PromotionBannerWrapper = styled.div`
     height: auto;
   }
 `;
+
+const NotShowAgainHintWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 const PromotionBanner = ({
   handleCloseDialog,
   promotionData,
@@ -165,7 +171,7 @@ const PopupPromotion = () => {
           ))}
         </Carousel>
         <PromotionTag>PROMOTIONS</PromotionTag>
-        <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
+        <NotShowAgainHintWrapper><NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} /></NotShowAgainHintWrapper>
         <CloseBtn onClick={handleCloseDialog}>
           <img src={IconCloseButton} />
         </CloseBtn>
