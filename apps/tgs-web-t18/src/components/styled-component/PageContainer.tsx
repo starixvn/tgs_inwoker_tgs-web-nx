@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
 
 export const PageContainer = styled.div`
-  padding: 21px 22px;
+  padding: 20px 24px;
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;

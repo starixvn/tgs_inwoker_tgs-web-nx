@@ -174,11 +174,18 @@ const CardVendor = ({
   status,
   lobbyVenderName,
 }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
+  const { isDesktopSize } = useRwd();
   const gameNameRef = useRef<HTMLDivElement | null>(null);
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const lobbyVenderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
+
+  const launchGameHandler = () => {
+    if (status === providerStatus.Maintenance) {
+      return;
+    }
+    launchGame();
+  }
 
   useEffect(() => {
     if (gameNameRef.current) {
@@ -193,7 +200,7 @@ const CardVendor = ({
   }, [resizeText, gameNameRef.current, venderNameRef.current, lobbyVenderNameRef.current]);
 
   return (
-    <CardVendorBg onClick={launchGame}>
+    <CardVendorBg onClick={launchGameHandler}>
       <>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         <GradientBg>
@@ -212,7 +219,7 @@ const CardVendor = ({
         </MaintenanceBg>
       )}
 
-      {isDesktopSize && (
+      {isDesktopSize && status !== providerStatus.Maintenance && (
         <CardHoverBg>
           {gameName && (
             <HoverGameOrVenderName ref={lobbyVenderNameRef}>{gameName}</HoverGameOrVenderName>

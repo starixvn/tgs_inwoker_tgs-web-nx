@@ -64,13 +64,13 @@ const HomePage = () => {
     return matchingGameType ? matchingGameType.gameType : null;
   };
 
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: 0,
-  //     left: 0,
-  //     behavior: "instant",
-  //   });
-  // }, [activeGameType]);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [activeGameType]);
 
   useEffect(() => {
     const gameType = getGameTypeFromKey(urlGameType);

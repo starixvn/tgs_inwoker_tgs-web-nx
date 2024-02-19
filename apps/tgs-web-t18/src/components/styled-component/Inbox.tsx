@@ -28,7 +28,9 @@ export const TableBody = muiStyled(MuiTableBody)(({ theme }) => ({
   },
 })) as typeof MuiTableBody;
 
-export const TableRow = muiStyled(MuiTableRow)(({ theme }) => ({})) as typeof MuiTableRow;
+export const TableRow = muiStyled(MuiTableRow)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.gray01}`,
+})) as typeof MuiTableCell;
 
 export const TableCell = muiStyled(MuiTableCell)(({ theme }) => ({})) as typeof MuiTableCell;
 
