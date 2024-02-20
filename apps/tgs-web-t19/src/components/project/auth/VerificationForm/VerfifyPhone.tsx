@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
- 
+
   ${media.sm} {
     min-height: 494px;
   }
@@ -176,10 +176,9 @@ function VerifyPhone({ handleUpdateStage }: Props) {
                 borderBottom: isMobileSize ? "" : "1px solid #8C8998",
               }}
             >
-              <option
-                value={AREA_CODE}
-                style={{ color: "black" }}
-              >{AREA_CODE}</option>
+              <option value={AREA_CODE} style={{ color: "black" }}>
+                {AREA_CODE}
+              </option>
             </Select>
           </FormControl>
 
@@ -203,7 +202,8 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       </ItemContainer>
 
       <ItemContainer>
-        <FormControl variant="outlined"
+        <FormControl
+          variant="outlined"
           style={{
             background: isMobileSize ? theme.black : "",
             borderRadius: isMobileSize ? "12px" : "6px",
@@ -220,6 +220,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
             value={code}
             onChange={handleChangeCode}
             placeholder={i18n.t("common.msgEnterPhoneCode")}
+            type={"number"}
             onClick={handleGetCodeClick}
             buttonDisabled={countdownToken > 0}
           />
@@ -227,7 +228,8 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       </ItemContainer>
 
       <SubmitButton
-        fullWidth disabled={isDisableButton}
+        fullWidth
+        disabled={isDisableButton}
         onClick={handleSubmitClicked}
         style={{ borderRadius: isMobileSize ? "100px" : "6px" }}
       >

@@ -219,6 +219,7 @@ class ChangePhone extends BaseProfile {
               value={this.state.code}
               onChange={this.handleChangeCode}
               placeholder={i18n.t("common.msgEnterPhoneCode")}
+              type={"number"}
               label={i18n.t("common.token")}
               onClick={this.handleGetCodeClick}
               maxLength={6}
