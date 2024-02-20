@@ -159,7 +159,6 @@ const HomePage = () => {
     useHomeGameContext();
   const history = useHistory();
   const gameTypeList = useGameTypeList();
-  const { betRecordList } = useBettingHistory();
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -192,7 +191,7 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
 
   return (
     <MainWrapper>
