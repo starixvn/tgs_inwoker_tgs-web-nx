@@ -9,16 +9,16 @@ import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/component
 
 const CategoryRenderer = () => {
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { isDesktopSize } = useRwd();
+  const { isMobileSize, isDesktopSize } = useRwd();
   const history = useHistory();
 
   useEffect(() => {
-    if (history.location.pathname === "/") {
-      handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SPORTS);
+    if (history.location.pathname === "/" && isMobileSize) {
+      handleChangeGameType(GameTypeEnum.SPORTS);
     } else {
-      handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SPORTS);
+      handleChangeGameType(activeGameType);
     }
-  }, [isDesktopSize]);
+  }, [isMobileSize]);
 
   if (isDesktopSize) {
     switch (activeGameType) {
