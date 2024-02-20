@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const ImgSuccess = styled.img`
   display: block;
   width: 75px;
-  margin: 0 0 16px;
+  margin: 16px auto;
 `;
 export const SuccessMessage = styled.div`
   font-size: 1.5rem;
