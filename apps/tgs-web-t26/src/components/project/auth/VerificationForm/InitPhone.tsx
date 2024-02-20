@@ -302,6 +302,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
                     value={code}
                     onChange={handleChangeCode}
                     placeholder={i18n.t("common.msgEnterPhoneCode")}
+                    type={"number"}
                     onClick={handleGetCodeClick}
                     buttonDisabled={countdownToken > 0}
                   />

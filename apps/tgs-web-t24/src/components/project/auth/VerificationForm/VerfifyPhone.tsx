@@ -182,6 +182,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
             value={code}
             onChange={handleChangeCode}
             placeholder={i18n.t("common.msgEnterPhoneCode")}
+            type={"number"}
             onClick={handleGetCodeClick}
             buttonDisabled={countdownToken > 0}
           />

@@ -13,9 +13,7 @@ const Wrapper = styled.div<{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto;
-  min-width: 64px;
-  max-width: none;
+  width: 64px;
   height: 77px;
   border-radius: 12px;
   background-color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.primaryLight)};
@@ -42,8 +40,8 @@ const GameIcon = styled.img`
   height: 36px;
 
   ${media.sm} {
-    //width: 40px;
-    //height: 40px;
+    width: 24px;
+    height: 24px;
   }
 `;
 
@@ -60,6 +58,7 @@ const Text = styled.div<TextProps>`
 
   ${media.sm} {
     font-size: 0.875rem;
+    margin-left: 5px;
   }
 `;
 

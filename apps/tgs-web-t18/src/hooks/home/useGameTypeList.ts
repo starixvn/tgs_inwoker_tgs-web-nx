@@ -48,7 +48,7 @@ export const useGameTypeList = () => {
         key: "liveCasino",
         iconUrl: live,
         text: i18n.t("common.live"),
-        fontSize: "small",
+        fontSize: "smaller",
         gameType: GameTypeEnum.LIVELOBBY,
       },
       {
