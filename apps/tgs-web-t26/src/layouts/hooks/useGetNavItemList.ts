@@ -179,13 +179,13 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/report",
       },
-      {
-        key: NavCardKey.MESSAGE_CENTER,
-        label: i18n.t("inbox.title"),
-        Icon: InoboxIcon,
-        navType: "route",
-        routePath: "/message-center",
-      },
+      // {
+      //   key: NavCardKey.MESSAGE_CENTER,
+      //   label: i18n.t("inbox.title"),
+      //   Icon: InoboxIcon,
+      //   navType: "route",
+      //   routePath: "/message-center",
+      // },
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),

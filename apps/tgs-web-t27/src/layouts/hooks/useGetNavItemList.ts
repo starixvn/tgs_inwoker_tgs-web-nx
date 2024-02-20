@@ -202,16 +202,16 @@ export function useGetNavItemList() {
         },
         iconComponent: ReportSvg,
       },
-      {
-        key: NavCardKey.MESSAGE_CENTER,
-        label: i18n.t("inbox.title"),
-        navType: "route",
-        routePath: "/message-center",
-        callback: () => {
-          history.push("/message-center");
-        },
-        iconComponent: InboxSvg,
-      },
+      // {
+      //   key: NavCardKey.MESSAGE_CENTER,
+      //   label: i18n.t("inbox.title"),
+      //   navType: "route",
+      //   routePath: "/message-center",
+      //   callback: () => {
+      //     history.push("/message-center");
+      //   },
+      //   iconComponent: InboxSvg,
+      // },
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),

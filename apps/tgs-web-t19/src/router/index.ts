@@ -240,12 +240,11 @@ const routes: RouteType[] = [
     layout: HomeDialogLayout,
     isAnonymousAllowed: true,
   },
-  //
-  {
-    path: "/message-center",
-    component: MessageCenterPage,
-    layout: DialogLayout,
-  },
+  // {
+  //   path: "/message-center",
+  //   component: MessageCenterPage,
+  //   layout: DialogLayout,
+  // },
   {
     path: "/inbox",
     component: InboxPage,
