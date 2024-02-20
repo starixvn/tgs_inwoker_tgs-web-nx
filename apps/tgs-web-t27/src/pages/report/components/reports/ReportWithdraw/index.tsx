@@ -29,7 +29,7 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
   >([]);
   const [totalCount, setTotalCount] = useState(0);
   const [isMaxPage, setIsMaxPage] = useState(false);
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
 
   const { statusDictionary, status, handleStatusChange } = useWithdrawalStatus();
 
@@ -108,7 +108,11 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
         <Loading show={isLoading} />
       </ReportContainer>
       {/*@ts-ignore*/}
-      <BottomScrollListener onBottom={handleLoadMore} />
+      <BottomScrollListener
+        onBottom={() => {
+          isMobileSize && handleLoadMore();
+        }}
+      />
     </>
   );
 };
