@@ -128,14 +128,14 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/report",
       },
-      {
-        key: NavCardKey.MESSAGE_CENTER,
-        label: i18n.t("wap.main.account.inbox"),
-        iconUrl: inboxIcon,
-        iconActiveUrl: inboxIconDark,
-        navType: "route",
-        routePath: "/message-center",
-      },
+      // {
+      //   key: NavCardKey.MESSAGE_CENTER,
+      //   label: i18n.t("wap.main.account.inbox"),
+      //   iconUrl: inboxIcon,
+      //   iconActiveUrl: inboxIconDark,
+      //   navType: "route",
+      //   routePath: "/message-center",
+      // },
       {
         key: NavCardKey.AFFILIATE,
         label: i18n.t("wap.main.account.affiliate"),

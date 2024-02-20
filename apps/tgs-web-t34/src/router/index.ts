@@ -222,12 +222,11 @@ const routes: RouteType[] = [
     layout: DialogLayout,
     isAnonymousAllowed: true,
   },
-  //
-  {
-    path: "/message-center",
-    component: MessageCenterPage,
-    layout: DialogLayout,
-  },
+  // {
+  //   path: "/message-center",
+  //   component: MessageCenterPage,
+  //   layout: DialogLayout,
+  // },
   {
     path: "/inbox",
     component: InboxPage,

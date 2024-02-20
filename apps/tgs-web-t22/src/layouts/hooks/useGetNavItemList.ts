@@ -164,14 +164,14 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/report",
       },
-      !isCustomizedBrand && {
-        key: NavCardKey.MESSAGE_CENTER,
-        label: i18n.t("inbox.title"),
-        iconUrl: inboxImg,
-        iconSecondaryUrl: inboxWhiteImg,
-        navType: "route",
-        routePath: "/message-center",
-      },
+      // !isCustomizedBrand && {
+      //   key: NavCardKey.MESSAGE_CENTER,
+      //   label: i18n.t("inbox.title"),
+      //   iconUrl: inboxImg,
+      //   iconSecondaryUrl: inboxWhiteImg,
+      //   navType: "route",
+      //   routePath: "/message-center",
+      // },
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),
