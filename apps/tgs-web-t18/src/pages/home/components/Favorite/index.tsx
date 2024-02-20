@@ -13,6 +13,7 @@ const LikeIcon = styled.div<{ $imageUrl: string }>`
   right: 8px;
   border-radius: 50%;
   background-color: #ffffff1f;
+  z-index: 2;
 `;
 
 type FavoriteProps = {
