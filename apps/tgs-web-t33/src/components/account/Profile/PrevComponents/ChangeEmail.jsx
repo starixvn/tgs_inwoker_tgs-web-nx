@@ -201,7 +201,7 @@ class ChangeEmail extends BaseProfile {
               type={"text"}
               value={this.state.code}
               onChange={this.handleChangeCode}
-              placeholder={i18n.t("common.msgEnterEmailCode")}
+              placeholder={i18n.t("common.token")}
               onClick={this.handleGetCodeClick}
               maxLength={6}
             />

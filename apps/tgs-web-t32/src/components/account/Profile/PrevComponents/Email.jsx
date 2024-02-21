@@ -228,7 +228,7 @@ class Email extends BaseProfile {
                     style={{ margin: "20px auto 20px auto" }}
                     value={this.state.code}
                     onChange={this.handleChangeCode}
-                    placeholder={i18n.t("common.msgEnterEmailCode")}
+                    placeholder={i18n.t("common.token")}
                     onClick={this.handleGetCodeClick}
                     maxLength={6}
                     type={"text"}
