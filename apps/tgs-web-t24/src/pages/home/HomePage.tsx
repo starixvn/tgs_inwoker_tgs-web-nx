@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useParams } from "react-router-dom";
 import HomePromotionCard from "./components/HomePromotionCard";
 import { media } from "@/theme/breakpoints";
 import CardPrompt from "@/pages/home/components/CardPrompt";
@@ -10,6 +11,7 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import promotionBanner from "@/assets/t24/images/home/promo-banner.png";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -76,9 +78,16 @@ const HomePromotionWrapper = styled.div`
 `;
 
 const HomePage = () => {
+  const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const { activeGameType, activeGameTypeKey, handleChangeGameType } = useHomeGameContext();
+  const gameTypeList = useGameTypeList();
+
+  const getGameTypeFromKey = (key: string) => {
+    const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
+    return matchingGameType ? matchingGameType.gameType : null;
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -87,6 +96,15 @@ const HomePage = () => {
       behavior: "instant",
     });
   }, [activeGameType]);
+
+  useEffect(() => {
+    const gameType = getGameTypeFromKey(urlGameType);
+
+    if (gameType) {
+      handleChangeGameType(gameType);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlGameType, gameTypeList]);
 
   return (
     <MainWrapper>
