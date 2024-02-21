@@ -7,9 +7,14 @@ import { useRwd } from "./useRwd";
 export function useGoToHomePage() {
   const history = useHistory();
   const { handleChangeGameType } = useHomeGameContext();
+  const { isMobileSize } = useRwd();
 
   return useCallback(() => {
-    handleChangeGameType(GameTypeEnum.NONE);
+    if (isMobileSize) {
+      handleChangeGameType(GameTypeEnum.SPORTS);
+    } else {
+      handleChangeGameType(GameTypeEnum.NONE);
+    }
     history.push("/");
-  }, []);
+  }, [isMobileSize]);
 }
