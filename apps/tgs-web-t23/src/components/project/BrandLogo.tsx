@@ -25,7 +25,7 @@ const BrandLogo = (props: React.HTMLProps<HTMLDivElement>) => {
   return (
     //@ts-ignore
     <LogoImgContainer {...props}>
-      <img src={brand.loadingUrl} alt={"logo"} />
+      <img src={brand && brand.loadingUrl} alt={"logo"} />
     </LogoImgContainer>
   );
 };

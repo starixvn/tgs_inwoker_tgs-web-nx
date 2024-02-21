@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "./useRwd";
 
-export function useGoToHomePage(withoutHomeIcon: boolean) {
+export function useGoToHomePage(withoutHomeIcon = true) {
   const history = useHistory();
   const { handleChangeGameType } = useHomeGameContext();
   const { isMobileSize } = useRwd();

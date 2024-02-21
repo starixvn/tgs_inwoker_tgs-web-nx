@@ -9,25 +9,23 @@ import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/component
 
 const CategoryRenderer = () => {
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
   const history = useHistory();
   const isShowHome = isDesktopSize && activeGameType === GameTypeEnum.NONE;
+
   useEffect(() => {
-    if (history.location.pathname === "/") {
-      handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.SLOT);
-      return;
+    if (history.location.pathname === "/" && isMobileSize) {
+      handleChangeGameType(GameTypeEnum.SPORTS);
+    } else {
+      handleChangeGameType(activeGameType);
     }
-
-    handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SLOT);
-
-  }, [isDesktopSize]);
+  }, [isMobileSize]);
 
   // 電腦版首頁
   if (isShowHome) {
     return <HomeCategory />;
   }
 
-  
   switch (activeGameType) {
     case GameTypeEnum.SLOT:
     case GameTypeEnum.FISH:

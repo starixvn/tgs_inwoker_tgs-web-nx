@@ -54,7 +54,7 @@ const GameTypeTab = () => {
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
 
-    if (gameTypeItem.gameType === activeGameType) {
+    if (gameTypeItem.gameType === GameTypeEnum.NONE) {
       handleChangeGameType(GameTypeEnum.NONE);
       history.push(`/`);
     } else {

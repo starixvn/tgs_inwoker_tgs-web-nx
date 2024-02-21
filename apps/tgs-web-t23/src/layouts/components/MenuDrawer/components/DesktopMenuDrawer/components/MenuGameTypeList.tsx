@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHeader, FilterTagTypeEnum, useHomeGameContext, GameTypeItem } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import MenuGameTab from "./MenuGameTab";
@@ -15,16 +15,27 @@ const TabContainer = styled.div`
 
 const MenuGameTypeList = () => {
   const gameTypeList = useGameTypeList();
+  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isMenuOpen } = useHeader();
   const history = useHistory();
 
-  const handleTabClick = (gameType: GameTypeEnum) => {
-    handleChangeGameType(gameType);
+  const allTag = {
+    tagType: FilterTagTypeEnum.ALL,
+    name: "",
+  };
 
-    if (history.location.pathname !== "/") {
+  const handleTabClick = (gameTypeItem: GameTypeItem) => {
+    // 把filter tag的狀態清空
+    handleChangeActiveProviderFilterTag(allTag);
+    handleChangeActiveFilterTag(allTag);
+
+    if (gameTypeItem.gameType === GameTypeEnum.NONE) {
       handleChangeGameType(GameTypeEnum.NONE);
-      history.push("/");
+      history.push(`/`);
+    } else {
+      handleChangeGameType(gameTypeItem.gameType);
+      history.push(`/main/${gameTypeItem.key}`);
     }
   };
 
@@ -39,7 +50,7 @@ const MenuGameTypeList = () => {
             imageUrl={iconUrl}
             text={isMenuOpen ? text : ""}
             isActive={gameType === activeGameType}
-            onClick={() => handleTabClick(gameType)}
+            onClick={() => handleTabClick(gameTypeItem)}
           />
         );
       })}
