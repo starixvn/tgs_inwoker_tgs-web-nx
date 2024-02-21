@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import Icon from "@/components/project/Icon";
 import iconAccount from "@/assets/t32/images/header/icon-account.svg";
 
@@ -43,8 +44,10 @@ const AccountLabel = styled.div`
 const AccountHeaderContent = () => {
   const history = useHistory();
   const { wallet } = useWalletStore();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
 
   const handleGoToAccount = () => {
     history.push("/account");

@@ -4,6 +4,7 @@ import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useHistory } from "react-router-dom";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import closeIcon from "@/assets/t30/images/header/icon-avatar.svg";
 
 import bg from "@/assets/t30/images/header/header-background.png";
@@ -57,8 +58,10 @@ const MemberMenuHeader = ({ handleCloseContextMenu }: Props) => {
   const { account } = useAccountStore();
   const history = useHistory();
   const username = account.info.member_username;
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const handleDeposit = () => {
     history.push("/deposit");
   };

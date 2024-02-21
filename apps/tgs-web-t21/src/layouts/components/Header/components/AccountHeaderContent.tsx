@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useAuthContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import config from "@tgs-web-nx/config";
 import { RoundHeaderButton } from "./HeaderButton";
 import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
@@ -49,7 +49,9 @@ const AccountHeaderContent = () => {
   const { wallet, getBalanceList } = useWalletStore();
   const { handleLogout } = useAuthContext();
   const goToHomePage = useGoToHomePage();
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
   const handleClickLogout = async () => {

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Common } from "@tgs-web-nx/utils";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import VipMedal from "@/components/project/VipMedal";
 import Icon from "@/components/project/Icon";
 import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
@@ -43,9 +44,11 @@ type Props = {
 const Avatar = ({ hideName }: Props) => {
   const { wallet } = useWalletStore();
   const { account } = useAccountStore();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
 
   return (
     <AvatarContainer>

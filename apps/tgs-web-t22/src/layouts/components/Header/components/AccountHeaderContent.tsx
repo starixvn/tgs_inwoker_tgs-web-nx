@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useAuthContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import Icon from "@/components/project/Icon";
@@ -25,7 +25,7 @@ const UsernameContainer = styled.div`
 `;
 
 const SeparatorLine = styled.span`
-  background: ${({ theme }) => theme.black};;
+  background: ${({ theme }) => theme.black};
   width: 1px;
   height: 16px;
 `;
@@ -45,10 +45,12 @@ const AccountHeaderContent = () => {
   const { handleLogout } = useAuthContext();
   const { isLargeDesktopSize } = useRwd();
   const goToHomePage = useGoToHomePage();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
+
   const username = account.info.member_username;
-
 
   const handleGoToProfile = () => {
     history.push("/profile");
@@ -59,7 +61,7 @@ const AccountHeaderContent = () => {
   };
 
   const handleGoToAccount = () => {
-    history.push("/account")
+    history.push("/account");
   };
 
   const handleClickLogout = async () => {
@@ -71,10 +73,10 @@ const AccountHeaderContent = () => {
     <ButtonContainer>
       <UsernameContainer onClick={handleGoToAccount}>{username}</UsernameContainer>
 
-      <SeparatorLine/>
+      <SeparatorLine />
 
       <Balance onClick={getWalletBalance}>
-        {isLargeDesktopSize && `${i18n.t("web.header.mainAccount")}: ` }${currentBalance}
+        {isLargeDesktopSize && `${i18n.t("web.header.mainAccount")}: `}${currentBalance}
         <Icon iconUrl={iconRefresh} width={"20px"} height={"20px"} />
       </Balance>
 
@@ -83,7 +85,6 @@ const AccountHeaderContent = () => {
       <Logout onClick={handleClickLogout}>{i18n.t("web.header.logout")}</Logout>
 
       <HeaderLanguageSwitch />
-    
     </ButtonContainer>
   );
 };
