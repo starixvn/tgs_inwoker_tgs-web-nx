@@ -44,22 +44,21 @@ type Props = {
   statusDictionary: StatusDictionary;
   handleStatusChange: (e: any) => void;
   status: string;
+  type: string;
 };
-const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) => {
+const StatusSelect = ({ statusDictionary, handleStatusChange, status, type }: Props) => {
   return (
     <StatusSelectContainer>
       <SelectLabel>{i18n.t("report.status")}</SelectLabel>
 
       <SelectFormControl variant="outlined">
         <Select native onChange={handleStatusChange} value={status} fullWidth>
-          <option value={""}>
-            {i18n.t("report.all")}
-          </option>
+          <option value={""}>{i18n.t("report.all")}</option>
 
           {Object.keys(statusDictionary).map((key) => {
             return (
               <option key={key} value={key}>
-                {i18n.t(`report.withdrawal.status${key}`)}
+                {i18n.t(`report.${type}.status${key}`)}
               </option>
             );
           })}
