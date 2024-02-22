@@ -171,11 +171,12 @@ class Withdrawal extends Component {
     ) {
       if (this.props.wallet.addBankCardResult.IsSuccess) {
         this.props.resetResult();
-        this.props.getBankCardList();
-        this.setState({
-          ...this.state,
-          loading: false,
-          isAddCardSuccess: true,
+        this.props.getBankCardList().then(() => {
+          this.setState({
+            ...this.state,
+            loading: false,
+            isAddCardSuccess: true,
+          });
         });
       } else {
         this.props.enqueueSnackbar(

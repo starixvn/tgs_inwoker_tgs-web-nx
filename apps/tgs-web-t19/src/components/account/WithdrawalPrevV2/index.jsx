@@ -5,12 +5,12 @@ import { accountAction, RESET_WALLETRESULT, walletAction, WalletService } from "
 import config from "@tgs-web-nx/config";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import NameVerification from "../CardPrev/PassSetting";
-import Main from "./components/Main";
-import AddCard from "./components/AddCard";
 import AddCardSuccess from "../../../pages/withdrawal/components/T1/AddCardSuccess";
 import CardManage from "../../../pages/withdrawal/components/T1/CardManage";
 import Success from "../../../pages/withdrawal/components/T1/Success";
 import Disabled from "../../../pages/withdrawal/components/T1/Disabled";
+import AddCard from "./components/AddCard";
+import Main from "./components/Main";
 import Loading from "@/components/UI/Loading";
 
 class Withdrawal extends Component {
@@ -171,11 +171,12 @@ class Withdrawal extends Component {
     ) {
       if (this.props.wallet.addBankCardResult.IsSuccess) {
         this.props.resetResult();
-        this.props.getBankCardList();
-        this.setState({
-          ...this.state,
-          loading: false,
-          isAddCardSuccess: true,
+        this.props.getBankCardList().then(() => {
+          this.setState({
+            ...this.state,
+            loading: false,
+            isAddCardSuccess: true,
+          });
         });
       } else {
         this.props.enqueueSnackbar(
