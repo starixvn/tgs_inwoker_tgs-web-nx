@@ -88,6 +88,7 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
   return (
     <>
       <StatusSelect
+        type="withdrawal"
         statusDictionary={statusDictionary}
         status={status}
         handleStatusChange={handleStatusChange}
