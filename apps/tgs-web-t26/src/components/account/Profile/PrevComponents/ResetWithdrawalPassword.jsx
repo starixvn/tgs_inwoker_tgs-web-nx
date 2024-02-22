@@ -188,7 +188,7 @@ class ResetResetWithdrawalPassword extends Component {
                   buttonDisabled={this.state.countdownToken > 0}
                   value={this.state.code}
                   onChange={this.handleCodeChange}
-                  placeholder={i18n.t("common.msgEnterEmailCode")}
+                  placeholder={i18n.t("common.token")}
                   onClick={this.handleGetCodeClick}
                   maxLength={6}
                   type={"text"}

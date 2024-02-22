@@ -274,7 +274,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
             <TextField
               type={"text"}
               value={phone}
-              placeholder={i18n.t("common.msgEnterPhone")}
+              placeholder={i18n.t("common.phoneNumber")}
               disabled={
                 (isConfigured ? isConfigured : false) || config.features.Profile_DisableVerifyPhone
               }
@@ -302,7 +302,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
                     }
                     value={code}
                     onChange={handleChangeCode}
-                    placeholder={i18n.t("common.msgEnterPhoneCode")}
+                    placeholder={i18n.t("common.token")}
                     type={"number"}
                     onClick={handleGetCodeClick}
                     buttonDisabled={countdownToken > 0}

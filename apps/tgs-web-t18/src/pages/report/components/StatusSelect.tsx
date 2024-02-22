@@ -4,21 +4,30 @@ import { FormControl } from "@mui/material";
 import { styled as muiStyled } from "@mui/material/styles";
 import { i18n } from "@tgs-web-nx/utils";
 import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
-const StatusSelectContainer = styled.div`
-  padding: 1px 29px;
-  background: ${({ theme }) => theme.tertiaryDark};
-  font-size: 0.937rem;
-  color: ${({ theme }) => theme.white};
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(35, 31, 27, 0.1);
+const StatusSelectWrapper = styled.div`
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 20px;
 `;
 
+const StatusSelectContainer = styled.div`
+  border: 1px solid ${theme.gray01};
+  height: 47px;
+  background: ${({ theme }) => theme.mainBackground};
+  font-size: 0.937rem;
+  color: ${({ theme }) => theme.white};
+  border-radius: 6px;
+  box-shadow: 0 4px 8px 0 rgba(35, 31, 27, 0.1);
+  display: flex;
+  align-items: center;
+`;
+
 const SelectLabel = styled.div`
-  margin-right: 80px;
+  margin-right: 15px;
+  color: ${({ theme }) => theme.text};
 `;
 
 const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
@@ -45,26 +54,28 @@ type Props = {
   statusDictionary: StatusDictionary;
   handleStatusChange: (e: any) => void;
   status: string;
+  type?: string;
 };
-const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) => {
+const StatusSelect = ({ statusDictionary, handleStatusChange, status, type }: Props) => {
   return (
-    <StatusSelectContainer>
+    <StatusSelectWrapper>
       <SelectLabel>{i18n.t("report.status")}</SelectLabel>
-
-      <SelectFormControl variant="outlined">
+      <StatusSelectContainer>
+        {/* <SelectFormControl variant="outlined"> */}
         <Select native onChange={handleStatusChange} value={status} fullWidth>
           <option value={""}>{i18n.t("report.all")}</option>
 
           {Object.keys(statusDictionary).map((key) => {
             return (
               <option key={key} value={key}>
-                {i18n.t(`report.withdrawal.status${key}`)}
+                {i18n.t(`report.${type}.status${key}`)}
               </option>
             );
           })}
         </Select>
-      </SelectFormControl>
-    </StatusSelectContainer>
+        {/* </SelectFormControl> */}
+      </StatusSelectContainer>
+    </StatusSelectWrapper>
   );
 };
 

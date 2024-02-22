@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { Common } from "@tgs-web-nx/utils";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import VipMedal from "@/components/project/VipMedal";
 import depositImg from "@/assets/t31/images/account/Deposit.png";
 import withdrawImg from "@/assets/t31/images/account/Withdraw.png";
@@ -121,7 +122,10 @@ const MemberInfo = () => {
   const { account } = useAccountStore();
   const accountLevel = account.info.member_level_id;
   const username = account.info.member_username;
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
+
+  const currentBalance =
+    mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const history = useHistory();
   enum NavCardKey {
     DEPOSIT,

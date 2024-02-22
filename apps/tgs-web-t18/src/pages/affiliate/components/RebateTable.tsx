@@ -8,21 +8,26 @@ const StyledTable = styled(Table)`
 `;
 
 const StyledTableHead = styled(TableHead)`
-  background: ${({ theme }) => theme.blue10};
+  border: none;
   & * {
-    color: ${({ theme }) => theme.black} !important;
+    color: ${({ theme }) => theme.tertiaryLight} !important;
   }
 `;
 
 const StyledTableBody = styled(TableBody)`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.tertiaryDark};
   & * {
     color: ${({ theme }) => theme.gray50} !important;
   }
 `;
 
+const StyledHeadTableCell = styled(TableCell)`
+  border: none !important;
+`;
+
 const StyledTableCell = styled(TableCell)`
   padding: 10px 20px;
+  text-align: right !important;
 `;
 
 type Props = {
@@ -33,9 +38,9 @@ const RebateTable = ({ rebateTableRow }: Props) => {
     <StyledTable>
       <StyledTableHead>
         <TableRow>
-          <StyledTableCell>{i18n.t("rebateRate.players")}</StyledTableCell>
-          <StyledTableCell>{i18n.t("rebateRate.turnover")}</StyledTableCell>
-          <StyledTableCell>{i18n.t("rebateRate.rebates")}(%)</StyledTableCell>
+          <StyledHeadTableCell>{i18n.t("rebateRate.players")}</StyledHeadTableCell>
+          <StyledHeadTableCell>{i18n.t("rebateRate.turnover")}</StyledHeadTableCell>
+          <StyledHeadTableCell>{i18n.t("rebateRate.rebates")}(%)</StyledHeadTableCell>
         </TableRow>
       </StyledTableHead>
 

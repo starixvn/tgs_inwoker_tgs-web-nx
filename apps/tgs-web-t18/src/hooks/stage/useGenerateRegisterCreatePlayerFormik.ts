@@ -21,7 +21,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
       {
         label: i18n.t("common.username"),
         name: "username",
-        initialValue: "",
+        initialValue: "123",
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required("Username is required")
@@ -112,7 +112,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
       {
         label: i18n.t("wap.register.promoteCode"),
         name: "userType",
-        initialValue: UserTypeEnum.PLAYER,
+        initialValue: UserTypeEnum.AGENT,
         type: FormInputTypeEnum.USER_TYPE,
       },
     ].filter((item) => !!item) as FormikFormInput[];

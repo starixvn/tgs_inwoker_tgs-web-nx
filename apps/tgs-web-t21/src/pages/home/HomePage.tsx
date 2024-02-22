@@ -144,7 +144,7 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
 
   return (
     <MainWrapper $isDark={false}>
@@ -187,9 +187,8 @@ const HomePage = () => {
               <GameTypeBanner
                 $imageUrl={
                   activeGameTypeKey
-                    ? `${
-                        import.meta.env.BASE_URL
-                      }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                    ? `${import.meta.env.BASE_URL
+                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
                     : ""
                 }
               />

@@ -30,7 +30,7 @@ export function useGetNavItemList() {
         iconSecondaryUrl: gameTypeItem.iconUrl,
         navType: "action",
         callback: () => {
-          history.push("/");
+          history.push(`/main/${gameTypeItem.key}`);
           handleChangeGameType(gameTypeItem.gameType);
         },
       };

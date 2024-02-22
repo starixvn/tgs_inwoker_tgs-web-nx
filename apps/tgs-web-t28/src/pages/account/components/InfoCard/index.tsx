@@ -82,10 +82,11 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
   const { wallet } = useWalletStore();
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
-  const currentBalance = `${wallet.mainSymbol}$ ${Common.formatNumberWithThousand(
-    wallet.mainBalance,
-  )}`;
-  const { fetchBalance } = useUserWalletInfoContext();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance, fetchBalance } =
+    useUserWalletInfoContext();
+
+  const currentBalance =
+    mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   return (
     //@ts-ignore
     <InfoCardContainer {...props}>

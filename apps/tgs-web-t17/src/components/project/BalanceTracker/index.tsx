@@ -4,6 +4,7 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
 import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
 import { theme } from "@/theme";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 
 type BalanceTrackerContainerProps = {
   $size?: "normal" | "small" | undefined;
@@ -36,8 +37,10 @@ type Props = {
 };
 const BalanceTracker = ({ size, ...others }: Props) => {
   const { wallet, getBalanceList } = useWalletStore();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
 
   const handleRefreshBalance = useCallback(async () => {
     await getBalanceList();

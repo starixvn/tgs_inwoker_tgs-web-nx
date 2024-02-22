@@ -116,17 +116,17 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
 
   const renderBanner = () => {
     // mobile banner
-    if(isMobileSize && hasActiveMobileBanner()) {
+    if (isMobileSize && hasActiveMobileBanner()) {
       return (<MobileSlider />);
     }
 
     // desktop banner
-    if(isDesktopSize && hasActiveDesktopBanner()){
-      const imageUrl = activeGameTypeKey ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png`: "";
+    if (isDesktopSize && hasActiveDesktopBanner()) {
+      const imageUrl = activeGameTypeKey ? `${import.meta.env.BASE_URL}assets/images/home/gameType_banner/${activeGameTypeKey}.png` : "";
 
       return (
         <BannerWrapper>
@@ -149,7 +149,7 @@ const HomePage = () => {
       {isShowHome && <Marquee />}
       <Background>
         <MainContentWrapper>
-          {isMobileSize && <HeaderCard/>}
+          {isMobileSize && <HeaderCard />}
           {isShowHome && <Jackpot />}
           <CategoryRenderer />
         </MainContentWrapper>

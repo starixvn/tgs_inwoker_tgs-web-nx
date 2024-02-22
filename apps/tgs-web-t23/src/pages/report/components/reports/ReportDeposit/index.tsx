@@ -87,6 +87,7 @@ const ReportDeposit = ({ dateRangeInfo }: Props) => {
   return (
     <>
       <StatusSelect
+        type="deposit"
         statusDictionary={statusDictionary}
         status={status}
         handleStatusChange={handleStatusChange}

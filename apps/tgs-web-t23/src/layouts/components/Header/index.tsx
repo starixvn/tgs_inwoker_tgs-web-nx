@@ -58,12 +58,12 @@ const SystemInfoContainer = styled.div`
   align-items: center;
   ${media.md} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+    $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
   }
 
   ${media.lg} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+    $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
   }
   position: absolute;
   left: 0;

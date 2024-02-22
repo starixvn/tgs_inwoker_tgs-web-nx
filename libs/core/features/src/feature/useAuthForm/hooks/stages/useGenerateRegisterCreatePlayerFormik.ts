@@ -97,7 +97,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
       {
         label: i18n.t("wap.register.promoteCode"),
         name: "userType",
-        initialValue: UserTypeEnum.PLAYER,
+        initialValue: UserTypeEnum.AGENT,
         type: FormInputTypeEnum.USER_TYPE,
       },
     ].filter((item) => !!item) as FormikFormInput[];

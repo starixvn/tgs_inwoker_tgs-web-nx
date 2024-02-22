@@ -4,12 +4,17 @@ import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "./useRwd";
 
-export function useGoToHomePage() {
+export function useGoToHomePage(withoutHomeIcon = true) {
   const history = useHistory();
   const { handleChangeGameType } = useHomeGameContext();
+  const { isMobileSize } = useRwd();
 
   return useCallback(() => {
-    handleChangeGameType(GameTypeEnum.NONE);
+    if (isMobileSize && withoutHomeIcon) {
+      handleChangeGameType(GameTypeEnum.SPORTS);
+    } else {
+      handleChangeGameType(GameTypeEnum.NONE);
+    }
     history.push("/");
-  }, []);
+  }, [isMobileSize, withoutHomeIcon]);
 }
