@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog as MuiDialog } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { useUiStore } from "@tgs-web-nx/core";
@@ -105,6 +105,13 @@ const PopupAnnouncement = () => {
 
   const { ui } = useUiStore();
   const { mains: announcementList } = ui;
+
+  useEffect(() => {
+    if (disableDialog) {
+      //trigger open promotion dialog
+      handleCloseAnnouncement();
+    }
+  });
 
   const handleCloseDialog = () => {
     if (isCheck) {

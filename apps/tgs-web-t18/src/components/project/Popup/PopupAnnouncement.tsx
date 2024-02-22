@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog as MuiDialog } from "@mui/material";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useUiStore } from "@tgs-web-nx/core";
@@ -123,6 +123,13 @@ const PopupAnnouncement = () => {
   const { isMobileSize } = useRwd();
   const { ui } = useUiStore();
   const { mains: announcementList } = ui;
+
+  useEffect(() => {
+    if (disableDialog) {
+      //trigger open promotion dialog
+      handleCloseAnnouncement();
+    }
+  });
 
   const handleCloseDialog = () => {
     if (isCheck) {
