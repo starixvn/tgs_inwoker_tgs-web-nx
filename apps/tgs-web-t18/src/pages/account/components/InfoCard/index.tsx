@@ -11,8 +11,7 @@ import Avatar from "@/components/project/Avatar";
 const InfoCardContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding-left: 28px;
+  justify-content: start;
 `;
 
 const Border = styled.div`
@@ -170,7 +169,7 @@ const InfoCard = (props: any) => {
             alt="vip"
           />
           <VIPTextWrapper $textColor={getVIPTextColor()}>
-            <VIPUserName>{accountInfo.member_name}</VIPUserName>
+            <VIPUserName>{accountInfo.member_username}</VIPUserName>
             <VIPLevel>{`VIP${accountInfo.member_level_id}`}</VIPLevel>
           </VIPTextWrapper>
         </VIPCard>
