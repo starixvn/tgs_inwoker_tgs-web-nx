@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 import homeIcon from "@/assets/t25/images/bottomAppBar/icon-home.svg";
 import gameIcon from "@/assets/t25/images/bottomAppBar/icon-game.svg";
@@ -33,6 +35,7 @@ export function useGetBottomNavItemList() {
   const history = useHistory();
   const { isTransferDrawerOpen, handleTransferDrawerToggle } = useTransferDrawer();
   const goToHomePage = useGoToHomePage();
+  const { handleChangeGameType } = useHomeGameContext();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
     return [
@@ -53,7 +56,8 @@ export function useGetBottomNavItemList() {
         iconUrl: gameIcon,
         iconActiveUrl: gameActiveIcon,
         handleClick: () => {
-          history.push("/");
+          handleChangeGameType(GameTypeEnum.SPORTS)
+          history.push(`/main/sports`);
         },
       },
       {

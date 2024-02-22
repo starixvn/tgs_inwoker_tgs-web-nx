@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
@@ -44,12 +45,12 @@ const HeaderContentContainer = styled.div`
 const MobileHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const goToHomePage = useGoToHomePage();
+  const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        <BrandLogo style={{ height: "27px", cursor: "pointer" }} onClick={() => goToHomePage()} />
+        <BrandLogo style={{ height: "27px", cursor: "pointer" }} onClick={() => handleChangeGameType(GameTypeEnum.NONE)} />
 
         <HeaderContentContainer>
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
