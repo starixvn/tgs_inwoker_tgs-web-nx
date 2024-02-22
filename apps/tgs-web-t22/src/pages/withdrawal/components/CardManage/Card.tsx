@@ -61,9 +61,8 @@ type Props = {
   content: string;
   handleDelete: () => void;
   disable: boolean;
-  isCustomizedBrand: boolean;
 };
-const Card = ({ title, content, handleDelete, disable, isCustomizedBrand }: Props) => {
+const Card = ({ title, content, handleDelete, disable }: Props) => {
   return (
     <CardContainer>
       <CardTitle>{title}</CardTitle>
@@ -73,7 +72,7 @@ const Card = ({ title, content, handleDelete, disable, isCustomizedBrand }: Prop
           <EndingInValue>{content}</EndingInValue>
         </ContentRow>
         <ContentRow>
-          {!disable && !isCustomizedBrand && (
+          {!disable && (
             <Icon
               onClick={handleDelete}
               iconUrl={deleteIcon}

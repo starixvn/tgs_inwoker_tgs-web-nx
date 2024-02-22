@@ -1,8 +1,6 @@
-import React from "react";
-import { useGeneralStore } from "@tgs-web-nx/core";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig} from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { Select as CustomSelect } from "@/components/UI/Select";
@@ -14,7 +12,6 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 
-const disableBankHolderBrand = "MOVN2";
 const Container = styled.div`
   width: 100%;
 `;
@@ -240,7 +237,8 @@ const AddCard = ({
                 onChange={handleBankAccountNameChange}
                 name="bankAccountName"
                 value={bankAccountName}
-                disabled={disableBankAccountNameInput}
+                //for MOVN2 customization
+                disabled={brandConfig[config.brand]?.isDisabledBankHolderName ? true : disableBankAccountNameInput}
               />
             </FormControl>
           </ItemContainer>
@@ -278,7 +276,7 @@ const AddCard = ({
               value={bankAccountName}
               //for MOVN2 customization
               disabled={
-                disableBankHolderBrand === config.brand ? true : disableBankAccountNameInput
+                brandConfig[config.brand]?.isDisabledBankHolderName ? true : disableBankAccountNameInput
               }
             />
           </FormControl>
@@ -315,9 +313,7 @@ const AddCard = ({
               onChange={handleBankAccountNameChange}
               value={bankAccountName}
               //for MOVN2 customization
-              disabled={
-                disableBankHolderBrand === config.brand ? true : disableBankAccountNameInput
-              }
+              disabled={brandConfig[config.brand]?.isDisabledBankHolderName ? true : disableBankAccountNameInput}
             />
           </FormControl>
         </ItemContainer>

@@ -53,7 +53,7 @@ export type NavItem = {
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
-  const { handleChangeGameType, providerList, isCustomizedBrand } = useHomeGameContext();
+  const { handleChangeGameType, providerList } = useHomeGameContext();
   const history = useHistory();
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
@@ -83,30 +83,16 @@ export function useGetNavItemList() {
       });
     }
 
-    if (!isCustomizedBrand) {
-      navItemList.push({
-        key: NavCardKey.VIP,
-        label: "VIP",
-        iconUrl: vipImg,
-        iconActiveUrl: vipImg,
-        navType: "action",
-        gameType: GameTypeEnum.NONE,
-        router: "vip",
-        callback: () => {
-          history.push("/vip");
-        },
-      });
-    }
-
     navItemList.push({
-      key: NavCardKey.PROMOTION,
-      label: i18n.t("common.promotion"),
-      iconUrl: "",
+      key: NavCardKey.VIP,
+      label: "VIP",
+      iconUrl: vipImg,
+      iconActiveUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
-      router: "promotion-list",
+      router: "vip",
       callback: () => {
-        history.push("/promotion-list");
+        history.push("/vip");
       },
     });
 
@@ -188,7 +174,7 @@ export function useGetNavItemList() {
       //   navType: "route",
       //   routePath: "/affiliate",
       // },
-      !isCustomizedBrand && {
+      {
         key: NavCardKey.VIP,
         label: "VIP",
         iconUrl: vipImg,
