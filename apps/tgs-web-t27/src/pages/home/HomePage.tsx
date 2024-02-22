@@ -178,7 +178,7 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, handleChangeGameType, isEnterGamePortal } =
+  const { activeGameType, handleChangeGameType, isEnterGamePortal, setIsEnterGamePortal } =
     useHomeGameContext();
   const history = useHistory();
   const gameTypeList = useGameTypeList();
@@ -213,9 +213,10 @@ const HomePage = () => {
     const gameType = getGameTypeFromKey(urlGameType);
     if (gameType) {
       handleChangeGameType(gameType);
+      setIsEnterGamePortal(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
 
   return (
     <MainWrapper>
