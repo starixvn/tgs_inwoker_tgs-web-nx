@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FilterTagTypeEnum, GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
@@ -55,13 +56,19 @@ const GameTypeTab = () => {
   };
 
   const switchGameType = (gameTypeItem: GameTypeItem) => {
-    handleChangeGameType(gameTypeItem.gameType);
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
 
-    history.push(`/main/${gameTypeItem.key}`);
+    if (gameTypeItem.gameType === GameTypeEnum.NONE) {
+      handleChangeGameType(GameTypeEnum.NONE);
+      history.push(`/`);
+    } else {
+      handleChangeGameType(gameTypeItem.gameType);
+      history.push(`/main/${gameTypeItem.key}`);
+    }
   };
+
 
   const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
     if (providerList.length) {
