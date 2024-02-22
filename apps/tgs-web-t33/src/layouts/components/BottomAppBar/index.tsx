@@ -62,10 +62,7 @@ const BottomAppBar = () => {
 
   const handleClick = (gameTypeItem: GameTypeItem) => {
     handleChangeGameType(gameTypeItem.gameType);
-
-    if (history.location.pathname !== "/") {
-      history.push("/");
-    }
+    history.push(`/main/${gameTypeItem.key}`);
   };
 
   return (
