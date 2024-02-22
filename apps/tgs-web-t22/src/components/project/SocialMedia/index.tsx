@@ -23,7 +23,6 @@ const SocialMediaIcon = styled.div<{ $imageUrl: string }>`
 const SocialMedia = () => {
   const goToHomePage = useGoToHomePage();
   const socialMediaIconList = useSocialMediaIconList();
-  const { isCustomizedBrand } = useHomeGameContext();
 
   return (
     <SocialMediaContainer>
@@ -31,7 +30,7 @@ const SocialMedia = () => {
         <SocialMediaIcon
           key={item.icon}
           $imageUrl={item.icon}
-          onClick={isCustomizedBrand ? () => { window.open(item.link, "_blank") } : goToHomePage}
+          onClick={goToHomePage}
         />
       ))}
     </SocialMediaContainer>

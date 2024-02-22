@@ -102,7 +102,6 @@ const Footer = () => {
   const { providerList } = useProvider();
   const history = useHistory();
   const [isOpenChatQRcode, setIsOpenChatQRcode] = useState(false);
-  const { isCustomizedBrand } = useHomeGameContext();
 
   const partnerList = providerList.map((provider) => {
     return provider.name;
@@ -136,7 +135,7 @@ const Footer = () => {
 
   const quickLinks: QuickLink[] = [
     {
-      isVisible: !isCustomizedBrand,
+      isVisible: true,
       onClick: () => setIsOpenChatQRcode(true),
       content: i18n.t("T13.quickLink.247"),
     },
@@ -182,12 +181,8 @@ const Footer = () => {
 
         {/* Left */}
         <FooterGroup>
-          {!isCustomizedBrand &&
-            <>
-              <GroupTitle>Download App</GroupTitle>
-              <img src={QRcodeUrl} width={65} alt="QRcode" />
-            </>
-          }
+          <GroupTitle>Download App</GroupTitle>
+          <img src={QRcodeUrl} width={65} alt="QRcode" />
           <GroupTitle style={{marginTop: "10px"}}>Gaming License</GroupTitle>
           <GroupContent>
             <LogoWrapper>

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { usePromotionPage } from "@tgs-web-nx/core/hooks";
-import Marquee from "react-fast-marquee";
 import { useHistory } from "react-router-dom";
 import { Promotion } from "@tgs-web-nx/types";
 import BannerImage from "@/pages/promotion/components/BannerImage";
+import Marquee from "@/pages/home/components/CardPrompt/components/Marquee";
 
 const PromotionListContainer = styled.div`
   display: flex;

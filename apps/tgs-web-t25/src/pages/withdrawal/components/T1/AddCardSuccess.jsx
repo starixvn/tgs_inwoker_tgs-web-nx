@@ -27,7 +27,6 @@ const AddCardSuccess = ({
   onhandleCSClick,
 }) => {
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
-  const { isCustomizedBrand } = useHomeGameContext();
 
   return (
     <Container>
@@ -37,21 +36,20 @@ const AddCardSuccess = ({
           <SubTitle>{i18n.t("card.success.title")}</SubTitle>
         </TitleContainer>
 
-        {isShowAddCardButton && !isCustomizedBrand && (
+        {isShowAddCardButton && (
           <SubTitleDesc>
             {i18n.t("card.success.successDesc")}
             <br></br>
             {i18n.t("card.success.bindDesc")}
           </SubTitleDesc>
         )}
-        {!isShowAddCardButton && !isCustomizedBrand && (
+        {!isShowAddCardButton && (
           <SubTitleDesc>{i18n.t("card.success.noMoreAddCard")}</SubTitleDesc>
         )}
-        {isCustomizedBrand && <SubTitleDesc>{i18n.t("movn2_addcardsuccess")}</SubTitleDesc>}
       </Card>
 
       <ButtonContainer>
-        {!isCustomizedBrand &&
+        {
           !(
             config.features.ChangesNotAllowed ||
             config.features.AddCard_NotAllowedEditDelete ||

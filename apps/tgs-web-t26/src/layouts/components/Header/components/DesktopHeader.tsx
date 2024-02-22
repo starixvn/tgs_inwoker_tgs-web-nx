@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage, useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
@@ -78,7 +78,7 @@ const DesktopHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize } = useRwd();
-  const { handleChangeGameType } = useHomeGameContext();
+  const goToHomePage = useGoToHomePage();
 
   return (
     <HeaderContainer>
@@ -86,7 +86,7 @@ const DesktopHeader = () => {
         <ContentWrapper>
           <ContentGroup>
             <Link to={""}>
-              <BrandLogo onClick={() => handleChangeGameType(GameTypeEnum.NONE)} />
+              <BrandLogo onClick={() => goToHomePage()} />
             </Link>
           </ContentGroup>
           <ContentGroup>

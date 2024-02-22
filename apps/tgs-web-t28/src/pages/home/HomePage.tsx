@@ -182,7 +182,7 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
 
   const handleClickNav = (navItem: NavItem & { gameType: GameTypeEnum }) => {
     handleChangeGameType(navItem.gameType);
@@ -210,11 +210,10 @@ const HomePage = () => {
               <marquee>
                 {marquees.map((item, index) => {
                   const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
+      *${item.localization !== null && item.localization.content
+                      ? item.localization.content
+                      : item.content
+                    }
       `;
                   return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
                 })}

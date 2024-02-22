@@ -1,13 +1,12 @@
 import { useMemo } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import config from "@tgs-web-nx/config";
+import config, {BrandName, brandConfig} from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { FormInputTypeEnum, UserTypeEnum } from "@tgs-web-nx/core/features";
 import { useFormikInitValue } from "./useFormikInitValue";
 import { FormikFormInput } from "@/components/project/FormikForm";
 
-const addRealNameFieldBrand = "MOVN2";
 
 type Props = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,7 +51,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
       },
       (() => {
         //for MOVN2 customization
-        if (addRealNameFieldBrand === config.brand) {
+        if (brandConfig[config.brand as BrandName]?.isRegisterRealNameRequired) {
           return {
             label: i18n.t("common.realName"),
             name: "realName",

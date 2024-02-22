@@ -1,4 +1,3 @@
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useEffect, useState } from "react";
 import fb from "@/assets/t18/images/home/social_media/fb.svg";
 import ig from "@/assets/t18/images/home/social_media/ig.svg";
@@ -11,49 +10,31 @@ type SocialMediaItem = {
 };
 
 export const useSocialMediaIconList = () => {
-  const { isCustomizedBrand } = useHomeGameContext();
   const [socialMediaIconList, setSocialMediaIconList] = useState<SocialMediaItem[]>([]);
 
   useEffect(() => {
-    const socialMediaIconList: Array<{ key: string; icon: string; link: string }> = [];
+    const socialMediaIconList: { key: string; icon: string; link: string }[] = [];
 
-    if (!isCustomizedBrand) {
-      socialMediaIconList.push(
-        {
-          key: "fb",
-          icon: fb,
-          link: "",
-        },
-        {
-          key: "ig",
-          icon: ig,
-          link: "",
-        },
-        // {
-        //   key: "twitter",
-        //   icon: twitter,
-        //   link: "",
-        // },
-      );
-    }
-
-    if (isCustomizedBrand) {
-      socialMediaIconList.push(
-        {
-          key: "fb",
-          icon: fb,
-          link: "https://www.facebook.com/momobetvn/",
-        },
-        {
-          key: "ig",
-          icon: ig,
-          link: "https://www.instagram.com/momobet.vn/",
-        },
-      );
-    }
+    socialMediaIconList.push(
+      {
+        key: "fb",
+        icon: fb,
+        link: "",
+      },
+      {
+        key: "ig",
+        icon: ig,
+        link: "",
+      },
+      // {
+      //   key: "twitter",
+      //   icon: twitter,
+      //   link: "",
+      // },
+    );
 
     setSocialMediaIconList(socialMediaIconList);
-  }, [isCustomizedBrand]);
+  }, []);
 
   return socialMediaIconList;
 };

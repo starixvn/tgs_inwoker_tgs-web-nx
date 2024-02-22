@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useHeader } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHistory } from "react-router-dom";
 import BrandLogo from "@/components/project/BrandLogo";
 
 const SideMenuHeaderContainer = styled.div`
@@ -23,6 +25,14 @@ const CloseIconContainer = styled.div`
 
 const SideMenuHeader = () => {
   const { handleToggleMenu } = useHeader();
+  const { handleChangeGameType } = useHomeGameContext();
+  const history = useHistory();
+
+  const backToHome = () => {
+    handleChangeGameType(GameTypeEnum.NONE);
+    history.push(`/`);
+    handleToggleMenu(false);
+  }
 
   return (
     <SideMenuHeaderContainer>
@@ -33,7 +43,7 @@ const SideMenuHeader = () => {
           }}
         />
       </CloseIconContainer>
-      <BrandLogo style={{ height: "28px", margin: 0 }} />
+      <BrandLogo style={{ height: "28px", margin: 0 }} onClick={() => backToHome()} />
     </SideMenuHeaderContainer>
   );
 };
