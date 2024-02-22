@@ -73,7 +73,7 @@ const Header = (props: Props) => {
   const { general } = useGeneralStore();
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const goToHomePage = useGoToHomePage();
+  const goToHomePage = useGoToHomePage(false);
 
   return (
     <HeaderContainer>
