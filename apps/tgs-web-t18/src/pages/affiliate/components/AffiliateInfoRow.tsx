@@ -6,12 +6,11 @@ import { theme } from "@/theme";
 
 const AffiliateInfoRowContainer = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.tertiaryDark};
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  border-bottom: 1px solid ${({ theme }) => theme.tertiary};
 
   & .label {
     min-width: 110px;
@@ -19,7 +18,7 @@ const AffiliateInfoRowContainer = styled.div`
     font-weight: 400;
     font-size: 1.125rem;
     line-height: 1.318rem;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.tertiaryLight};
   }
 
   & .value {
@@ -30,16 +29,18 @@ const AffiliateInfoRowContainer = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-right: 6px;
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.white};
   }
 
   & .button {
     //justify-self: flex-end;
+    background: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.white};
     margin-left: auto;
-    font-size: 0.75rem;
+    font-size: 18px;
     font-weight: 400;
-    padding: 8px 15px;
-    border-radius: 5px;
+    line-height: 21px;
+    letter-spacing: 0em;
   }
 `;
 

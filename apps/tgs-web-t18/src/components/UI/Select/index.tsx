@@ -4,6 +4,7 @@ import React from "react";
 
 export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: theme.palette.tertiary.main,
+  background: theme.palette.primaryLight,
   fontSize: "0.937rem",
   fontWeight: 400,
   "&:focus": {
@@ -13,7 +14,7 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     background: "none",
   },
   select: {
-    color: theme.palette.tertiary.main,
+    color: theme.palette.white,
     padding: "14px",
     "&:focus": {
       background: "none",
@@ -31,6 +32,10 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   },
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
+  },
+  option: {
+    background: "#181F2B !important",
+    color: "#fff",
   },
 }));
 
