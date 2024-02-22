@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
 import { Common, i18n, utility } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig} from "@tgs-web-nx/config";
 import AddCardT1 from "@/pages/withdrawal/components/T1/AddCard";
 
-const setBankHolderNameBrand = "MOVN2";
 class AddCard extends Component {
   constructor(props) {
     super(props);
@@ -130,7 +129,7 @@ class AddCard extends Component {
       selectedBankTypeIndex: e.target.value,
       selectedChannelIndex: 0,
       //for MOVN2 customization
-      bankAccountName: setBankHolderNameBrand === config.brand ? this.props.name : name,
+      bankAccountName: brandConfig[config.brand]?.isAutoFillBankHolderName ? this.props.name : name,
       disableBankAccountNameInput: disableBankAccountNameInput,
       number: "",
     });

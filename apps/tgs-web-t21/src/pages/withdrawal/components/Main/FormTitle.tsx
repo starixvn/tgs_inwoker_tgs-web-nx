@@ -21,13 +21,11 @@ const Title = styled.div`
 
 type Props = {
   title: string;
-  isCustomizedBrand?: boolean;
   isShowAddCardButton?: boolean;
   handleClickAddCard?: () => void;
 };
 const FormTitle = ({
   title,
-  isCustomizedBrand,
   isShowAddCardButton,
   handleClickAddCard,
 }: Props) => {
@@ -36,7 +34,7 @@ const FormTitle = ({
       {/*<Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />*/}
       <Title>{title}</Title>
 
-      {/*{!isCustomizedBrand && isShowAddCardButton && handleClickAddCard && (*/}
+      {/*{isShowAddCardButton && handleClickAddCard && (*/}
       {/*  <CardAddButton handleClick={handleClickAddCard} />*/}
       {/*)}*/}
     </TitleWrapper>

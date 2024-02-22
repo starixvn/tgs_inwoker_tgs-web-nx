@@ -55,7 +55,7 @@ export type NavItem = {
 export function useGetNavItemList() {
   const goToHomePage = useGoToHomePage();
   const gameTypeList = useGameTypeList();
-  const { handleChangeGameType, providerList, isCustomizedBrand } = useHomeGameContext();
+  const { handleChangeGameType, providerList } = useHomeGameContext();
   const history = useHistory();
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
@@ -85,8 +85,7 @@ export function useGetNavItemList() {
       });
     }
 
-    if (!isCustomizedBrand) {
-      navItemList.push({
+    navItemList.push({
         key: NavCardKey.VIP,
         label: "VIP",
         iconUrl: vipImg,
@@ -98,19 +97,7 @@ export function useGetNavItemList() {
           history.push("/vip");
         },
       });
-    }
 
-    navItemList.push({
-      key: NavCardKey.PROMOTION,
-      label: i18n.t("common.promotion"),
-      iconUrl: "",
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "promotion-list",
-      callback: () => {
-        history.push("/promotion-list");
-      },
-    });
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps

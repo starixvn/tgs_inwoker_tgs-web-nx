@@ -32,7 +32,6 @@ const CardManage = ({
 }: Props) => {
   const { isDesktopSize } = useRwd();
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
-  const { isCustomizedBrand } = useHomeGameContext();
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
       return item.detail.phone.substring(item.detail.phone.length - 4);
@@ -64,7 +63,6 @@ const CardManage = ({
     <CardManageContainer>
       {/* <FormTitle
         title={i18n.t("card.title")}
-        isCustomizedBrand={isCustomizedBrand}
         isShowAddCardButton={isShowAddCardButton}
         handleClickAddCard={onhandleAddCardClick}
       /> */}
@@ -84,7 +82,6 @@ const CardManage = ({
                 //@ts-ignore
                 config.features.DisableRemoveCard
               }
-              isCustomizedBrand={isCustomizedBrand}
             />
           );
         })}
