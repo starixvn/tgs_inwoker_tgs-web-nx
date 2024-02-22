@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Common } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { theme } from "@/theme";
 
 type BalanceTrackerContainerProps = {
@@ -43,8 +44,10 @@ type Props = {
 const BalanceTracker = ({ balanceTrackerSize, ...others }: Props) => {
   const { wallet, getBalanceList } = useWalletStore();
   const history = useHistory();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
-  const currentBalance = `$ ${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const currentBalance =
+    mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
 
   const handleClick = useCallback(() => {
     history.push("/deposit");

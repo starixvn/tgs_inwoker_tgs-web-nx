@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Common } from "@tgs-web-nx/utils";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import cardBackground from "@/assets/t23/images/account/infoCard/card-background.png";
 import VipMedal from "@/components/project/VipMedal";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
@@ -60,9 +61,10 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
   const { account } = useAccountStore();
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
-  const currentBalance = `${wallet.mainSymbol}$ ${Common.formatNumberWithThousand(
-    wallet.mainBalance,
-  )}`;
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
+
+  const currentBalance =
+    mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   return (
     // @ts-ignore
     <InfoCardContainer {...props}>

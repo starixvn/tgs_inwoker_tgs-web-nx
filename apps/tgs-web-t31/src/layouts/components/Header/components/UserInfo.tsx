@@ -3,6 +3,7 @@ import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import memberImg from "@/assets/t31/images/header/Member.svg";
 import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
 
@@ -48,9 +49,12 @@ const UserInfo = () => {
   const history = useHistory();
   const { account } = useAccountStore();
   const { wallet, getBalanceList } = useWalletStore();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const currentBalance =
+    mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const username = account.info.member_username;
+
   const handleRefreshBalance = useCallback(async () => {
     await getBalanceList();
   }, [getBalanceList]);

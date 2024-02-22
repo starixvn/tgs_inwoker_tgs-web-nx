@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import VipMedal from "@/components/project/VipMedal";
 import { Button } from "@/components/UI/Button";
 
@@ -67,11 +68,12 @@ const BalanceContainer = styled.div`
 const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
   const { wallet, getBalanceList } = useWalletStore();
   const { account } = useAccountStore();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
+
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
-  const currentBalance = `${wallet.mainSymbol}$ ${Common.formatNumberWithThousand(
-    wallet.mainBalance,
-  )}`;
+  const currentBalance =
+    mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
 
   const handleRefreshBalance = useCallback(async () => {
     await getBalanceList();
