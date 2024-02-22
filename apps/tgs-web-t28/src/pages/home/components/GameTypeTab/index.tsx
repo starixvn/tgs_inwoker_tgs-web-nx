@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { FilterTagTypeEnum, useHomeGameContext, GameTypeItem } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
@@ -43,6 +44,7 @@ const TabContainer = styled.div`
 `;
 
 const GameTypeTab = () => {
+  const history = useHistory();
   const gameTypeList = useGameTypeList();
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
@@ -52,11 +54,18 @@ const GameTypeTab = () => {
     name: "",
   };
 
-  const switchGameType = (gameType: GameTypeEnum) => {
-    handleChangeGameType(gameType);
+  const switchGameType = (gameTypeItem: GameTypeItem) => {
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
+
+    if (gameTypeItem.gameType === GameTypeEnum.NONE) {
+      handleChangeGameType(GameTypeEnum.NONE);
+      history.push(`/`);
+    } else {
+      handleChangeGameType(gameTypeItem.gameType);
+      history.push(`/main/${gameTypeItem.key}`);
+    }
   };
 
   const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
@@ -82,7 +91,7 @@ const GameTypeTab = () => {
             text={text}
             isActive={gameType === activeGameType}
             fontSize={fontSize}
-            onClick={() => switchGameType(gameType)}
+            onClick={() => switchGameType(gameTypeItem)}
           />
         );
       })}

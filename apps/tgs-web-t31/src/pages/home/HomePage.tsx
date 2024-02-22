@@ -157,7 +157,8 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
+
   return (
     <PageContainer>
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}

@@ -48,7 +48,7 @@ const MobileHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isLargeDesktopSize } = useRwd();
-  const goToHomePage = useGoToHomePage();
+  const goToHomePage = useGoToHomePage(false);
 
   return (
     <HeaderContainer>

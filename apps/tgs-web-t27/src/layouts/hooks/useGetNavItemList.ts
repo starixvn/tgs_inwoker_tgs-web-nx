@@ -67,6 +67,7 @@ export function useGetNavItemList() {
         gameType: GameTypeEnum.NONE,
         router: "",
         callback: () => {
+          handleChangeGameType(GameTypeEnum.NONE);
           history.push("/");
         },
         iconComponent: HomeSvg,

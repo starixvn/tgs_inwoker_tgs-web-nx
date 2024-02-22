@@ -174,7 +174,7 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
 
   return (
     <MainWrapper>
@@ -189,7 +189,7 @@ const HomePage = () => {
             </>
           }
           <CategoryRenderer />
-          <HomePromotionCard />
+          {!activeGameType && <HomePromotionCard />}
           {isDesktopSize && <Application />}
         </ContentWrapper>
       </MainContentWrapper>
