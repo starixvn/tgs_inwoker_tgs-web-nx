@@ -44,7 +44,7 @@ type Props = {
   statusDictionary: StatusDictionary;
   handleStatusChange: (e: any) => void;
   status: string;
-  type: string;
+  type?: string;
 };
 const StatusSelect = ({ statusDictionary, handleStatusChange, status, type }: Props) => {
   return (
