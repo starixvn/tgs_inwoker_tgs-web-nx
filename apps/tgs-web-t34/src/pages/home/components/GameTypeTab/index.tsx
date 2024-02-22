@@ -49,12 +49,17 @@ const GameTypeTab = () => {
   };
 
   const switchGameType = (gameTypeItem: GameTypeItem) => {
-    handleChangeGameType(gameTypeItem.gameType);
     // 把filter tag的狀態清空
     handleChangeActiveProviderFilterTag(allTag);
     handleChangeActiveFilterTag(allTag);
 
-    history.push(`/main/${gameTypeItem.key}`);
+    if (gameTypeItem.gameType === GameTypeEnum.NONE) {
+      handleChangeGameType(GameTypeEnum.NONE);
+      history.push(`/`);
+    } else {
+      handleChangeGameType(gameTypeItem.gameType);
+      history.push(`/main/${gameTypeItem.key}`);
+    }
   };
 
   const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
