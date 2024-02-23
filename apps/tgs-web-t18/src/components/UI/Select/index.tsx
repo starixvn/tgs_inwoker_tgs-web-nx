@@ -4,7 +4,7 @@ import React from "react";
 
 export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: theme.palette.tertiary.main,
-  background: theme.palette.primaryLight,
+  // background: theme.palette.primaryLight,
   fontSize: "0.937rem",
   fontWeight: 400,
   "&:focus": {

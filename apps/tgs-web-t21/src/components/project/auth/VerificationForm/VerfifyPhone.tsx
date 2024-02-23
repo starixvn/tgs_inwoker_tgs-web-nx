@@ -162,7 +162,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
 
           <FormControl variant="outlined">
             <TextField
-              type={"text"}
+              type={"number"}
               value={phone}
               placeholder={i18n.t("common.phoneNumber")}
               disabled={

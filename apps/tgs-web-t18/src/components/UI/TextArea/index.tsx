@@ -6,7 +6,10 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   textarea: {
     padding: "10px 20px",
     color: theme.palette.text.primary,
-    background: theme.palette.primaryDark,
+    background: {
+      xs: theme.palette.primaryDark,
+      sm: theme.palette.primaryLight,
+    },
     border: `1px solid ${theme.palette.tertiary.main}`,
     borderRadius: "6px",
     fontSize: "0.875rem",
