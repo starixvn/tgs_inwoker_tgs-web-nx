@@ -7,6 +7,7 @@ const lobbyCategoryGameTypeList = [
   GameTypeEnum.COCKFIGHT,
   GameTypeEnum.ESPORTS,
   GameTypeEnum.QIPAILOBBY,
+  GameTypeEnum.LOTTERYLOBBY,
 ];
 
 export function getIsGameTypeLobbyCategory(gameType: GameTypeEnum) {
