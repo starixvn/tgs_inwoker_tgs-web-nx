@@ -161,7 +161,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
 
           <GrayInputWrapper>
             <TextField
-              type={"text"}
+              type={"number"}
               value={phone}
               placeholder={i18n.t("common.phoneNumber")}
               disabled={

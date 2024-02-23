@@ -705,7 +705,7 @@ class AddCardPrev extends Component {
                       phone: value,
                     });
                   }}
-                  type={"text"}
+                  type={"number"}
                   placeholder={
                     config.features.AddCard_InputAddFPS
                       ? i18n.t("custom.addcard.msgEnterPhone")
