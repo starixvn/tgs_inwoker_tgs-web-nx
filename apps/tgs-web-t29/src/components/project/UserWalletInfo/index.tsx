@@ -8,6 +8,7 @@ import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
+import processBG from "@/assets/t29/images/profile/processbarBG.png";
 
 const rotateKeyFrame = keyframes`
   0% {
@@ -31,15 +32,44 @@ const Container = styled.div`
 
 const PlayerInfoContainer = styled.div`
   ${media.md} {
+    position: static;
+
     flex: 1;
     min-width: 184px;
   }
+`;
+
+const PlayerInfo = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const PlayerName = styled.div`
   font-size: 2rem;
   font-weight: 500;
   color: ${({ theme }) => theme.blue60};
+`;
+
+const ProcessBar = styled.div`
+  position: absolute;
+  width: 361px;
+  height: 12px;
+  background: url(${processBG});
+`;
+
+const TotalBar = styled.div`
+  width: 361px;
+  height: 12px;
+  background: #eaeaea;
+  border-radius: 20px;
+`;
+
+const Bar = styled.div`
+  position: absolute;
+  height: 12px;
+  background: blue;
+  border-radius: 20px;
+  width: 30%;
 `;
 
 const WalletsWrapper = styled.div`
@@ -81,6 +111,12 @@ const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
+const Wrapper = styled.div`
+  position: relative;
+  width: 361px;
+  height: 12px;
+`;
+
 type RefreshButtonProps = {
   $isLoading: boolean;
 };
@@ -103,8 +139,14 @@ const RefreshButton = styled(Icon)<RefreshButtonProps>`
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
-  margin-top: 11px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  & img {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const UserWalletInfo = () => {
@@ -124,16 +166,32 @@ const UserWalletInfo = () => {
   return (
     <Container>
       <PlayerInfoContainer>
-        <PlayerName>{info.member_username}</PlayerName>
-        {config.features.HaveVIPFeature && (
-          <VIPLabel>
-            VIP
-            {info.member_level_id}
-          </VIPLabel>
-        )}
+        <PlayerInfo>
+          <PlayerName>{info.member_username}</PlayerName>
+          {config.features.HaveVIPFeature && (
+            <VIPLabel>
+              <img
+                width={"50px"}
+                height={"50px"}
+                src={`${import.meta.env.BASE_URL}assets/images/vip/level_${
+                  info.member_level_id
+                }.png`}
+                alt={`level_${info.member_level_id}`}
+              />
+              VIP
+              {info.member_level_id}
+            </VIPLabel>
+          )}
+          <Wrapper>
+            <ProcessBar>
+              <Bar />
+            </ProcessBar>
+            <TotalBar />
+          </Wrapper>
+        </PlayerInfo>
       </PlayerInfoContainer>
 
-      <WalletsWrapper>
+      {/* <WalletsWrapper>
         <MainWalletContainer>
           <MainAccountLabel>{i18n.t("web.account.header.mainWallet")}</MainAccountLabel>
           <AmountContainer>
@@ -194,7 +252,7 @@ const UserWalletInfo = () => {
             />
           </AmountContainer>
         </MainWalletContainer>
-      </WalletsWrapper>
+      </WalletsWrapper> */}
     </Container>
   );
 };

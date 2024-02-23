@@ -178,7 +178,6 @@ type Props = {
 const BonusTable = ({ vipSortingData }: Props) => {
   const { vipBonusList } = useVipBonusListV2();
   const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
-  // console.log(productRebateByLevel);
   const titleList = [...vipBonusList];
   productRebateByLevel.map((gametype) => {
     titleList.push({
@@ -186,7 +185,6 @@ const BonusTable = ({ vipSortingData }: Props) => {
       label: gametype.label,
     });
   });
-  console.log(vipSortingData);
 
   return (
     <ScrollableContainer>
