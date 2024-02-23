@@ -197,7 +197,7 @@ class ChangePhone extends BaseProfile {
 
             <FormControl variant="outlined">
               <TextField
-                type={"text"}
+                type={"number"}
                 value={this.state.phone}
                 placeholder={i18n.t("common.msgEnterPhone")}
                 disabled={this.state.currentStep === 1}

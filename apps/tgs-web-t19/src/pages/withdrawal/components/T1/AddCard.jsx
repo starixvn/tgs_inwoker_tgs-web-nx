@@ -332,6 +332,7 @@ const AddCard = ({
                 maxLength={config.features.MAX_PHONE_LENGTH || 10}
                 name="phone"
                 onChange={handlePhoneChange}
+                type={"number"}
               />
             </FormControl>
           </ItemContainer>
