@@ -4,20 +4,31 @@
 */
 export type BrandName = 'GPI' | 'MOVN2'
 
+type SocialMediaLink = {
+  fb: string,
+  ig: string,
+  twitter: string,
+}
+
 /*
 * MOVN2 客製化設定
 */
 type MOVN2Config = {
   isAddRealNameFieldBrand: boolean // 是否需要新增姓名欄位
-  hasSocialMediaLink: boolean // 是否有社群媒體連結
   isAutoFillBankHolderName: boolean // 是否自動帶入姓名
   isDisabledBankHolderName: boolean // 是否可以編輯姓名
   isRegisterRealNameRequired: boolean // 註冊是否需要真實姓名
+  socialMediaLink: SocialMediaLink // 社群媒體連結
+  isShowLiveChat: boolean // 是否顯示 livechat
+  isShowDownloadApp: boolean; // footer 是否顯示下載 app qrcode
+  isShowChatCustomerService: boolean; // footer 是否顯示 Chat Customer Service
+  isShowVIP: boolean; // Navbar 是否顯示 VIP
+  isAllowMulitBankCards: boolean; // 是否可新增多張銀行卡 https://raypro.atlassian.net/browse/TGS-3978
 }
 
 /*
 * 新站台 客製化設定
-* 建議以 boolean 為主
+* 建議以 boolean 為主, {key: value} 為輔 例如 socialMediaLink 
 
 --- example start --- 
 
@@ -42,13 +53,21 @@ type Config = MOVN2Config & NewBrandConfig
 type Config = MOVN2Config
 
 // 預設共用設定
-const defaultConfig: Config = {
-  // MOVN2
+export const defaultConfig: Config = {
   isAddRealNameFieldBrand: false,
-  hasSocialMediaLink: false,
+  socialMediaLink: {
+    fb: "",
+    ig: "",
+    twitter: "",
+  },
   isAutoFillBankHolderName: false,
   isDisabledBankHolderName: false,
   isRegisterRealNameRequired: false,
+  isShowLiveChat: true,
+  isShowDownloadApp: true,
+  isShowChatCustomerService: true,
+  isShowVIP: true,
+  isAllowMulitBankCards: true,
 
   // new brand config start here
   // NewBrand
@@ -62,9 +81,18 @@ export const brandConfig: Record<BrandName, Config> = {
   MOVN2: {
     ...defaultConfig,
     isAddRealNameFieldBrand: true,
-    hasSocialMediaLink: true,
+    socialMediaLink: {
+      ...defaultConfig.socialMediaLink,
+      fb: "https://www.facebook.com/momobetvn/",
+      ig: "https://www.instagram.com/momobet.vn/",
+    },
     isAutoFillBankHolderName: true,
     isRegisterRealNameRequired: true,
     isDisabledBankHolderName: true,
+    isShowLiveChat: false,
+    isShowDownloadApp: false,
+    isShowChatCustomerService: false,
+    isShowVIP: false,
+    isAllowMulitBankCards: false,
   },
 }

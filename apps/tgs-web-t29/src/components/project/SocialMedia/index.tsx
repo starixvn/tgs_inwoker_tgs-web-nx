@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import config, {brandConfig, type BrandName} from "@tgs-web-nx/config";
 import useSocialMediaIconList from "@/hooks/home/useSocialMediaIconList";
 
 const SocialMediaContainer = styled.div`
@@ -24,9 +22,6 @@ const SocialMediaIcon = styled.div<{ $imageUrl: string }>`
 const SocialMedia = () => {
   const goToHomePage = useGoToHomePage();
   const socialMediaIconList = useSocialMediaIconList();
-  const { isCustomizedBrand } = useHomeGameContext();
-  // 因為來源 config.brand 沒有定義型別 所以使用 as
-  const hasSocialMediaLink = brandConfig[config.brand as BrandName]?.hasSocialMediaLink;
   
   return (
     <SocialMediaContainer>
@@ -34,8 +29,7 @@ const SocialMedia = () => {
         <SocialMediaIcon
           key={item.icon}
           $imageUrl={item.icon}
-          // onClick={isCustomizedBrand ? () => { window.open(item.link, "_blank") } : goToHomePage}
-          onClick={hasSocialMediaLink ? () => { window.open(item.link, "_blank") } : goToHomePage}
+          onClick={item.link ? () => { window.open(item.link, "_blank") } : goToHomePage}
         />
       ))}
     </SocialMediaContainer>

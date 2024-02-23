@@ -150,14 +150,6 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/report",
       },
-      // !isCustomizedBrand && {
-      //   key: NavCardKey.MESSAGE_CENTER,
-      //   label: i18n.t("inbox.title"),
-      //   iconUrl: inboxImg,
-      //   iconSecondaryUrl: inboxWhiteImg,
-      //   navType: "route",
-      //   routePath: "/message-center",
-      // },
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),
@@ -166,14 +158,6 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/inbox",
       },
-      // {
-      //   key: NavCardKey.AFFILIATE,
-      //   label: i18n.t("wap.main.account.affiliate"),
-      //   iconUrl: affiliateImg,
-      //   iconSecondaryUrl: affiliateWhiteImg,
-      //   navType: "route",
-      //   routePath: "/affiliate",
-      // },
       {
         key: NavCardKey.VIP,
         label: "VIP",
