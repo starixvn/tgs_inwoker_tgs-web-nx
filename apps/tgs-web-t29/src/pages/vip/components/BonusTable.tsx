@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
-import { useVipBonusList } from "@tgs-web-nx/core/hooks";
+import { useBettingBonus, useVipBonusListV2 } from "@tgs-web-nx/core/hooks";
+
 import { media } from "@/theme/breakpoints";
 
 const ScrollableContainer = styled.div`
@@ -47,7 +48,7 @@ const BonusTableWrapper = styled.div`
   height: 100%;
 
   ${media.sm} {
-    width: 100%;
+    /* width: 100%; */
     margin: 0 auto;
   }
 `;
@@ -59,13 +60,28 @@ const BonusTableHeader = styled.div`
   align-items: center;
   width: 100%;
   height: 48px;
-  padding: 10.5px 0;
+  padding: 0;
   background-color: ${({ theme }) => theme.mainBackground};
   border-bottom: 1px solid #23507d;
   border-radius: 6px 0px 0px 0px;
 
   ${media.sm} {
-    height: 97px;
+    height: 67px;
+    border-radius: 8px 8px 0px 0px;
+    border-bottom: 1px solid ${(props) => props.theme.gray10};
+  }
+  & *:nth-child(5) {
+    background: #e7f1fb;
+  }
+  *:nth-child(6) {
+    background: #e7f1fb;
+  }
+`;
+
+const VIPTitleTableHeader = styled(BonusTableHeader)`
+  justify-content: start;
+  ${media.sm} {
+    height: 60px;
     padding: 20px 0;
     border-radius: 8px 8px 0px 0px;
     border-bottom: 1px solid ${(props) => props.theme.gray10};
@@ -73,7 +89,10 @@ const BonusTableHeader = styled.div`
 `;
 
 const HeaderItem = styled.div`
-  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 115px;
   height: 100%;
   flex: 1;
   color: ${(props) => props.theme.text};
@@ -82,12 +101,11 @@ const HeaderItem = styled.div`
   font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
-  margin: 0px 8px;
+  margin: 0px;
 
   ${media.sm} {
     max-width: 115px;
     font-size: 1rem;
-    margin: 0px 6px;
     color: #23507d;
   }
 `;
@@ -114,9 +132,15 @@ const BonusTableRowWrapper = styled.div`
     border-bottom: unset;
     color: #23507d;
   }
+  & *:nth-child(5) {
+    background: #e7f1fb;
+  }
+  *:nth-child(6) {
+    background: #e7f1fb;
+  }
 `;
 
-const RowItem = styled.div`
+const RowItem = styled(HeaderItem)`
   display: flex;
   min-height: 69px;
   justify-content: center;
@@ -130,7 +154,7 @@ const RowItem = styled.div`
   font-size: 0.75rem;
   font-weight: 400;
   text-align: center;
-  margin: 0px 8px;
+  margin: 0px 0px;
 
   ${media.sm} {
     min-height: 106px;
@@ -152,12 +176,28 @@ type Props = {
 };
 
 const BonusTable = ({ vipSortingData }: Props) => {
-  const { vipBonusList } = useVipBonusList();
+  const { vipBonusList } = useVipBonusListV2();
+  const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
+  // console.log(productRebateByLevel);
+  const titleList = [...vipBonusList];
+  productRebateByLevel.map((gametype) => {
+    titleList.push({
+      key: gametype.name,
+      label: gametype.label,
+    });
+  });
+  console.log(vipSortingData);
+
   return (
     <ScrollableContainer>
       <BonusTableWrapper>
+        <VIPTitleTableHeader>
+          <HeaderItem>Bonus</HeaderItem>
+          <HeaderItem>Level Up</HeaderItem>
+          <HeaderItem>VIP Rebate</HeaderItem>
+        </VIPTitleTableHeader>
         <BonusTableHeader>
-          {vipBonusList.map((bonus) => (
+          {titleList.map((bonus) => (
             <HeaderItem key={bonus.key}>{bonus.label}</HeaderItem>
           ))}
         </BonusTableHeader>
@@ -179,13 +219,22 @@ const BonusTable = ({ vipSortingData }: Props) => {
                     <span>VIP{vipData.level}</span>
                   </LevelIcon>
                 </RowItem>
-                <RowItem>{vipData.levelKeepAccumulateBetAmount.toLocaleString()}</RowItem>
+                {/* <RowItem>{vipData.levelKeepAccumulateBetAmount.toLocaleString()}</RowItem>
                 <RowItem>{vipData.levelKeepAccumulateDeposit.toLocaleString()}</RowItem>
                 <RowItem>{vipData.levelUpAccumulateBetAmount.toLocaleString()}</RowItem>
-                <RowItem>{vipData.levelUpAccumulateDeposit.toLocaleString()}</RowItem>
-                <RowItem>{vipData.birthBenefit.toLocaleString()}</RowItem>
-                <RowItem>{vipData.promotionBenefit.toLocaleString()}</RowItem>
-                <RowItem>{vipData.quarterlyBenefit.toLocaleString()}</RowItem>
+                <RowItem>{vipData.levelUpAccumulateDeposit.toLocaleString()}</RowItem> */}
+                <RowItem>{vipData.birthBenefit}</RowItem>
+                <RowItem>{vipData.promotionBenefit}</RowItem>
+                <RowItem>{vipData.quarterlyBenefit}</RowItem>
+                <RowItem>{vipData.levelUpAccumulateDeposit}</RowItem>
+                <RowItem>{vipData.levelUpAccumulateBetAmount}</RowItem>
+
+                <RowItem>{`${vipData.liveDealerRebate} %`}</RowItem>
+                <RowItem>{`${vipData.slotRebate} %`}</RowItem>
+                <RowItem>{`${vipData.cardGameRebate} %`}</RowItem>
+                <RowItem>{`${vipData.sportsRebate} %`}</RowItem>
+                <RowItem>{`${vipData.virtualSportsRebate} %`}</RowItem>
+                <RowItem>{`${vipData.lotteryRebate} %`}</RowItem>
               </BonusTableRowWrapper>
             );
           })}
