@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import config from "@tgs-web-nx/config";
+import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProvider } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useState } from "react";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import ChatQRcodePopup from "./ChatQRcodePopup";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
@@ -102,13 +101,15 @@ const Footer = () => {
   const { providerList } = useProvider();
   const history = useHistory();
   const [isOpenChatQRcode, setIsOpenChatQRcode] = useState(false);
-  const { isCustomizedBrand } = useHomeGameContext();
+  const brand = config.brand;
+  const isShowDownloadApp = brandConfig[brand as BrandName]?.isShowDownloadApp;
+  const isShowChatCustomerService = brandConfig[brand as BrandName]?.isShowChatCustomerService;
 
   const partnerList = providerList.map((provider) => {
     return provider.name;
   });
 
-  const brand = config.brand;
+  
 
   const navigateTo = (pageName: string) => {
     history.push("/" + pageName);
@@ -154,7 +155,7 @@ const Footer = () => {
 
         <FooterGroup>
           <GroupTitle>Quick Links</GroupTitle>
-          {!isCustomizedBrand &&
+          {isShowChatCustomerService &&
             <GroupContent>
               <Link onClick={() => setIsOpenChatQRcode(true)}>
                 {i18n.t("T13.quickLink.247")}
@@ -177,7 +178,7 @@ const Footer = () => {
               {i18n.t("T13.quickLink.reponsible")}
             </Link>
           </GroupContent>
-          {!isCustomizedBrand &&
+          {isShowDownloadApp &&
             <>
               <DownLoadText>Download App</DownLoadText>
               <img src={QRcodeUrl} width={117} alt="QRcode" />

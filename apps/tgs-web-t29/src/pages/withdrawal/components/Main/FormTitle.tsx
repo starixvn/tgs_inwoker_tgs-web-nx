@@ -18,17 +18,17 @@ const Title = styled.div`
 
 type Props = {
   title: string;
-  isCustomizedBrand?: boolean;
+  isAllowMulitBankCards?: boolean;
   isShowAddCardButton?: boolean;
   handleClickAddCard?: () => void;
 };
-const FormTitle = ({ title, isCustomizedBrand, isShowAddCardButton, handleClickAddCard }: Props) => {
+const FormTitle = ({ title, isAllowMulitBankCards, isShowAddCardButton, handleClickAddCard }: Props) => {
   return (
     <TitleWrapper>
       <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />
       <Title>{title}</Title>
 
-      {!isCustomizedBrand && isShowAddCardButton && handleClickAddCard && (
+      {isAllowMulitBankCards && isShowAddCardButton && handleClickAddCard && (
         <CardAddButton handleClick={handleClickAddCard} />
       )}
     </TitleWrapper>

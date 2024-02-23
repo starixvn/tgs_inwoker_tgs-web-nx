@@ -1,7 +1,6 @@
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 import { GameItem, ProviderDto } from "@tgs-web-nx/types";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import config from "@tgs-web-nx/config";
 import { useFavoriteList } from "../hooks/useFavoriteList";
 import { useProviderFilter } from "../hooks/useFilter/useProviderFilter";
 import { useTagFilter } from "../hooks/useFilter/useTagFilter";
@@ -53,7 +52,6 @@ const initialState: {
   // search
   searchString: string;
   handleChangeSearch: (searchString: string) => void;
-  isCustomizedBrand: boolean;
   setIsEnterGamePortal: (isEnterGamePortal: boolean) => void;
   isEnterGamePortal: boolean;
 } = {
@@ -87,7 +85,6 @@ const initialState: {
   // search
   searchString: "",
   handleChangeSearch: () => {},
-  isCustomizedBrand: false,
   setIsEnterGamePortal: () => {},
   isEnterGamePortal: false,
 };
@@ -124,8 +121,6 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
     (item) => item.gameType === activeNavPopupGameType,
   )?.key;
 
-  const customizedBrandList = ["MOVN2"];
-  const isCustomizedBrand = customizedBrandList.includes(config.brand);
 
   const [isEnterGamePortal, setIsEnterGamePortal] = useState<boolean>(false);
 
@@ -162,7 +157,6 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         // search
         searchString,
         handleChangeSearch,
-        isCustomizedBrand,
         setIsEnterGamePortal,
         isEnterGamePortal
       }}

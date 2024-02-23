@@ -1,5 +1,5 @@
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useEffect, useState } from "react";
+import config, { BrandName, brandConfig, defaultConfig} from "@tgs-web-nx/config";
 import fb from "@/assets/t29/images/home/social_media/fb.svg";
 import ig from "@/assets/t29/images/home/social_media/ig.svg";
 import twitter from "@/assets/t29/images/home/social_media/twitter.svg";
@@ -11,49 +11,30 @@ type SocialMediaItem = {
 };
 
 export const useSocialMediaIconList = () => {
-  const { isCustomizedBrand } = useHomeGameContext();
   const [socialMediaIconList, setSocialMediaIconList] = useState<SocialMediaItem[]>([]);
+  const socialMediaLink = brandConfig[config.brand as BrandName]?.socialMediaLink ?? defaultConfig.socialMediaLink;
 
   useEffect(() => {
-    const socialMediaIconList: Array<{ key: string; icon: string; link: string; }> = [];
-
-    if (!isCustomizedBrand) {
-      socialMediaIconList.push(
-        {
-          key: "fb",
-          icon: fb,
-          link: ""
-        },
-        {
-          key: "ig",
-          icon: ig,
-          link: ""
-        },
-        {
-          key: "twitter",
-          icon: twitter,
-          link: ""
-        }
-      );
-    }
-
-    if (isCustomizedBrand) {
-      socialMediaIconList.push(
-        {
-          key: "fb",
-          icon: fb,
-          link: "https://www.facebook.com/momobetvn/"
-        },
-        {
-          key: "ig",
-          icon: ig,
-          link: "https://www.instagram.com/momobet.vn/"
-        }
-      );
-    }
+    const socialMediaIconList: SocialMediaItem[] = [
+      {
+        key: "fb",
+        icon: fb,
+        link: socialMediaLink["fb"],
+      },
+      {
+        key: "ig",
+        icon: ig,
+        link: socialMediaLink["ig"],
+      },
+      {
+        key: "twitter",
+        icon: twitter,
+        link: socialMediaLink["twitter"],
+      }
+    ];
 
     setSocialMediaIconList(socialMediaIconList);
-  }, [isCustomizedBrand]);
+  }, []);
 
   return socialMediaIconList;
 };
