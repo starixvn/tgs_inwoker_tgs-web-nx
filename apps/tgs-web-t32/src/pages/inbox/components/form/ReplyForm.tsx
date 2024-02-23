@@ -66,7 +66,7 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
             value={displayedSubject}
             sx={{
               input: {
-                padding: "17px 0",
+                padding: "17px 20px",
               },
             }}
             disabled={true}
