@@ -18,7 +18,7 @@ const QuickTransferContainer = styled.div`
   flex-wrap: wrap;
 
   & > * {
-    height: 50px;
+    height: 55px;
     max-width: 200px;
   }
 
