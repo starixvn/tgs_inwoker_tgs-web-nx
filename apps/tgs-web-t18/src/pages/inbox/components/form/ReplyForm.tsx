@@ -7,6 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
+import { media } from "@/theme/breakpoints";
 
 const InboxComposeFormContainer = styled.div`
   padding: 16px 10px;
@@ -28,6 +29,9 @@ const OriginalMessage = styled.div`
   border: ${({ theme }) => `1px solid ${theme.tertiary}`};
   border-radius: 6px;
   background-color: ${({ theme }) => theme.primaryDark};
+  ${media.sm} {
+    background-color: ${({ theme }) => theme.primaryLight};
+  }
   color: ${({ theme }) => theme.text};
   overflow: auto;
   font-size: 15px;
