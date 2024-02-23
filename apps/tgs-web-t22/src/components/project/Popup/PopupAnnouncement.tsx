@@ -126,7 +126,7 @@ const PopupAnnouncement = () => {
       onClose={handleCloseDialog}
       TransitionComponent={UpTransition}
     >
-      <PopupHeader title={i18n.t("web.header.announcement")} handleClose={handleCloseDialog} />
+      <PopupHeader handleClose={handleCloseDialog} />
 
       <ChildContainer>
         <Carousel>

@@ -1,10 +1,7 @@
-import React, { MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
-import {
-  BottomNavItem,
-  NavTypeEnum,
-} from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
+import { BottomNavItem } from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
 
 const BottomNavContainer = styled.div<{
   $isActive: boolean,
