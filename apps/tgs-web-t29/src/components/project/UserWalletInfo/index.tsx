@@ -1,7 +1,6 @@
-import React from "react";
 import styled, { css, DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig, BrandName} from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
@@ -141,7 +140,7 @@ const UserWalletInfo = () => {
               <span>-</span>
             ) : (
               <DynamicFont
-                content={mainSymbol + Common.formatNumberWithThousand(mainWalletBalance)}
+                content={mainSymbol + Common.formatCurrency(mainWalletBalance, brandConfig[config.brand as BrandName]?.countryCode)}
               />
             )}
             <RefreshButton
@@ -181,7 +180,7 @@ const UserWalletInfo = () => {
               <DynamicFont
                 content={
                   mainSymbol +
-                  Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance)
+                  Common.formatCurrency((mainWalletBalance + transferWalletBalance), brandConfig[config.brand as BrandName]?.countryCode)
                 }
               />
             )}

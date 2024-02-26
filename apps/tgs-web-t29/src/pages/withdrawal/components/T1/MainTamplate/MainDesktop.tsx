@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
-import { useHistory } from "react-router";
-
+import config, { brandConfig, BrandName } from "@tgs-web-nx/config";
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
@@ -130,7 +128,7 @@ const MainDesktop = ({
             </FormControl>
 
             <LimitPopupContainer>
-              {Common.formatNumberWithThousand(min, 0)} - {Common.formatNumberWithThousand(max, 0)}
+              {Common.formatCurrency(min, brandConfig[config.brand as BrandName]?.countryCode)} - {Common.formatCurrency(max, brandConfig[config.brand as BrandName]?.countryCode)}
             </LimitPopupContainer>
           </AmountWrapper>
 

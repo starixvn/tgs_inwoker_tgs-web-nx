@@ -1,7 +1,7 @@
 import { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import config from "@tgs-web-nx/config";
+import config, { brandConfig } from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
@@ -474,9 +474,9 @@ class Main extends Component {
               type="tel"
               placeholder={
                 i18n.t("deposit.msgPleaseEnter") +
-                Common.formatNumberWithThousand(channel.transferlimit.from, 0) +
-                "-" +
-                Common.formatNumberWithThousand(channel.transferlimit.to, 0) +
+                Common.formatCurrency(channel.transferlimit.from, brandConfig[config.brand].countryCode) +
+                " - " +
+                Common.formatCurrency(channel.transferlimit.to, brandConfig[config.brand].countryCode) +
                 i18n.t("deposit.dollor")
               }
             />
@@ -489,10 +489,10 @@ class Main extends Component {
               </FeeSpot>
             )}
             <TransferHint>
-              {`${Common.formatNumberWithThousand(
-                transferLimitFrom, 0
-              )} - ${Common.formatNumberWithThousand(transferLimitTo, 0)}
-                ${i18n.t("deposit.dollor")}`}
+                {Common.formatCurrency(channel.transferlimit.from, brandConfig[config.brand].countryCode) +
+                " - " +
+                Common.formatCurrency(channel.transferlimit.to, brandConfig[config.brand].countryCode) +
+                i18n.t("deposit.dollor")}
             </TransferHint>
           </AmountHint>
         </ItemContainer>

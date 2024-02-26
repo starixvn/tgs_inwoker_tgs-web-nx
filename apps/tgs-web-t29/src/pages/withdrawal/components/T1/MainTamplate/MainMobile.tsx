@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig, BrandName} from "@tgs-web-nx/config";
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { MainProps } from "./index";
 import {
@@ -47,7 +46,6 @@ const MainMobile = ({
   handlePlayerNote,
   handleWithdrawalClick,
 }: MainProps) => {
-  const history = useHistory();
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
     useWageringPage();
 
@@ -140,8 +138,8 @@ const MainMobile = ({
             placeholder={`${
               selectedCardIndex != null
                 ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatNumberWithThousand(min, 0)} - ${Common.formatNumberWithThousand(
-                    max, 0
+                  ` (${Common.formatCurrency(min, brandConfig[config.brand as BrandName]?.countryCode)} - ${Common.formatCurrency(
+                    max, brandConfig[config.brand as BrandName]?.countryCode
                   )})`
                 : i18n.t("withdrawal.enterAmount")
             }`}

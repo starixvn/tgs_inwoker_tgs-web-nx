@@ -131,10 +131,20 @@ function truncateString(str: string, n: number): string {
  * @param minAmount 最小金額
  * @returns isDisabled
  */
-export const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minAmount: number) : boolean => {
+const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minAmount: number) : boolean => {
   const regex = /^(?!0)[0-9]+$/;
   const isValid = regex.test(input) && Number(input) <= maxAmount && Number(input) >= minAmount;
   return !isValid;
+};
+
+/**
+ * 取得貨幣格式 
+ * @param amount 金額
+ * @param countryCode 國碼
+ * @returns 貨幣格式
+ */
+const formatCurrency = (amount: number, countryCode?: string) => {
+  return new Intl.NumberFormat(countryCode).format(amount);
 };
 
 const Common = {
@@ -147,7 +157,8 @@ const Common = {
   getCDNLanguagePrefix,
   arrayValidator,
   truncateString,
-  validateDepositAndWithdrawAmount
+  validateDepositAndWithdrawAmount,
+  formatCurrency,
 };
 
 export default Common;

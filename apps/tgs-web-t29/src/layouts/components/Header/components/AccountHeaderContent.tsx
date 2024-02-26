@@ -1,11 +1,11 @@
-import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { Common } from "@tgs-web-nx/utils";
 import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
+import config, {brandConfig, BrandName} from "@tgs-web-nx/config";
 import Icon from "@/components/project/Icon";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
 import iconAccount from "@/assets/t29/images/header/icon-account.svg";
@@ -49,14 +49,13 @@ const Balance = styled.div`
 const AccountHeaderContent = () => {
   const history = useHistory();
   const { account } = useAccountStore();
-  const { wallet } = useWalletStore();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
   const goToHomePage = useGoToHomePage();
   const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
   const currentBalance =
-    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
+    mainSymbol + Common.formatCurrency((mainWalletBalance + transferWalletBalance), brandConfig[config.brand as BrandName]?.countryCode);
   const username = account.info.member_username;
 
   const handleGoToProfile = () => {
