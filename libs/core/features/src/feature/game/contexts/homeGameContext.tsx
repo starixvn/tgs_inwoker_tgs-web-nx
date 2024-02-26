@@ -113,7 +113,7 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
     updateGpCodeList,
   } = useProviderFilter(providerList);
 
-  const { favoriteList, fetchFavoriteList } = useFavoriteList(activeGameType);
+  const { favoriteList, fetchFavoriteList } = useFavoriteList(activeGameType ? activeGameType : GameTypeEnum.SLOT);
   const { searchString, handleChangeSearch } = useGameSearch();
 
   const activeGameTypeKey = gameTypeList.find((item) => item.gameType === activeGameType)?.key;

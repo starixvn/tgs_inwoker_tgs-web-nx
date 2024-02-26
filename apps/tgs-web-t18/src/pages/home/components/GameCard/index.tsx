@@ -228,11 +228,3 @@ const GameCard = ({ gameItem, isActive, imageUrl, ...others }: GameCardProps) =>
 };
 
 export default React.memo(GameCard);
-
-function transformString(inputString: string): string {
-  const words: string[] = inputString.replace(/_/g, " ").split(" ");
-  const transformedString: string = words
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-  return transformedString;
-}
