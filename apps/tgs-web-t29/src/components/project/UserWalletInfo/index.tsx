@@ -3,7 +3,7 @@ import styled, { css, DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGameStore } from "@tgs-web-nx/core";
+import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
@@ -11,7 +11,6 @@ import { media } from "@/theme/breakpoints";
 import processBG from "@/assets/t29/images/profile/processbarBG.png";
 import depositIcon from "@/assets/t29/images/profile/VIPdepositIcon.png";
 import turnoverIcon from "@/assets/t29/images/profile/VIPturnoverIcon.png";
-
 import depositBarImg from "@/assets/t29/images/profile/depositBar.png";
 import turnoverBarImg from "@/assets/t29/images/profile/turnoverBar.png";
 
@@ -28,45 +27,75 @@ const Container = styled.div`
   padding: 22px 50px;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
-  /* gap: 60px;。 */
+  gap: 60px;
   flex-wrap: wrap;
   background: ${({ theme }) => theme.mainBackground};
   margin-bottom: 20px;
 `;
 
-const PlayerInfoContainer = styled.div`
-  /* position: static;
-  flex: 1; */
-  min-width: 398px;
-`;
+const PlayerInfoContainer = styled.div``;
 
-const PlayerInfo = styled.div`
+export const PlayerInfo = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const PlayerName = styled.div`
+export const PlayerName = styled.div`
   font-size: 2rem;
   font-weight: 500;
   color: ${({ theme }) => theme.blue60};
 `;
 
-const ProcessBar = styled.div`
+export const VIPInfo = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+export const RefreshContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ProcessBarWrapper = styled.div`
+  width: 280px;
+  ${media.sm} {
+    width: 320px;
+  }
+`;
+
+export const ProcessBarContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  width: 100%;
+
+  & img {
+    position: absolute;
+    left: 0;
+    top: 35%;
+    width: 32px;
+    height: 32px;
+    z-index: 100;
+  }
+`;
+
+export const ProcessBar = styled.div`
   position: absolute;
-  width: 361px;
+  width: 100%;
   height: 12px;
   background: url(${processBG});
 `;
 
-const TotalBar = styled.div`
-  width: 361px;
+export const TotalBar = styled.div`
+  width: 100%;
   height: 12px;
   background: #eaeaea;
   border-radius: 20px;
 `;
 
-const DepositBar = styled.div<{ $width: number }>`
+export const DepositBar = styled.div<{ $width: number }>`
   position: absolute;
   height: 12px;
   background-image: url(${depositBarImg});
@@ -78,31 +107,51 @@ const DepositBar = styled.div<{ $width: number }>`
   width: ${({ $width }) => `${($width * 100).toFixed(2)}%`};
 `;
 
-const TurnoverBar = styled(DepositBar)<{ $width: number }>`
+export const TurnoverBar = styled(DepositBar)<{ $width: number }>`
   background-image: url(${turnoverBarImg});
 `;
 
-const WalletsWrapper = styled.div`
+export const VIPText = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: ${({ theme }) => theme.blueBtn};
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+export const WalletsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
   flex-wrap: wrap;
-
-  ${media.lg} {
-    gap: 60px;
+  background: ${({ theme }) => theme.mainBackground};
+  padding: 20px;
+  ${media.sm} {
+    padding: 0;
   }
 `;
 
-const MainWalletContainer = styled.div`
+export const MainWalletContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 260px;
+  width: 100%;
+  ${media.sm} {
+    width: 260px;
+  }
 `;
 
-const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
+export const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.062rem;
   font-weight: 700;
   line-height: 1.245rem;
@@ -110,7 +159,7 @@ const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
   white-space: nowrap;
 `;
 
-const AmountContainer = styled.div<{ theme: DefaultTheme }>`
+export const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.75rem;
   font-weight: 700;
   color: ${({ theme }) => theme.blue60};
@@ -124,45 +173,11 @@ const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
-const ProcessBarContainer = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 10px;
-
-  & img {
-    position: absolute;
-    left: 0;
-    top: 35%;
-    width: 32px;
-    height: 32px;
-    z-index: 100;
-  }
-`;
-
-const VIPTextx = styled.div`
-  width: 361px;
-  display: flex;
-  justify-content: end;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 14px;
-  letter-spacing: 0em;
-  color: ${({ theme }) => theme.blueBtn};
-`;
-
-const Wrapper = styled.div`
-  position: relative;
-  width: 361px;
-  height: 12px;
-`;
-
 type RefreshButtonProps = {
   $isLoading: boolean;
 };
 
-const RefreshButton = styled(Icon)<RefreshButtonProps>`
+export const RefreshButton = styled(Icon)<RefreshButtonProps>`
   cursor: pointer;
 
   animation: ${({ $isLoading }: RefreshButtonProps) =>
@@ -177,7 +192,7 @@ const RefreshButton = styled(Icon)<RefreshButtonProps>`
   }
 `;
 
-const VIPLabel = styled.div<{ theme: DefaultTheme }>`
+export const VIPLabel = styled.div<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.primary};
   font-size: 1.625rem;
   font-weight: 700;
@@ -203,6 +218,7 @@ const UserWalletInfo = () => {
     isTransferWalletLoading,
     info,
   } = useUserWalletInfoContext();
+  const { getAccountInfo } = useAccountStore();
 
   return (
     <Container>
@@ -224,27 +240,40 @@ const UserWalletInfo = () => {
             </VIPLabel>
           )}
         </PlayerInfo>
-        <ProcessBarContainer>
-          <VIPTextx>{`Total Deposit: ${info.accumdeposit}/${info.levelupaccumulatedeposit}`}</VIPTextx>
-          <img src={depositIcon} alt="deposit" />
-          <Wrapper>
-            <ProcessBar>
-              <DepositBar $width={info.accumdeposit / info.levelupaccumulatedeposit} />
-            </ProcessBar>
-            <TotalBar />
-          </Wrapper>
-        </ProcessBarContainer>
+        <VIPInfo>
+          <ProcessBarWrapper>
+            <ProcessBarContainer>
+              <VIPText>{`Total Deposit: ${info.accumdeposit}/${info.levelupaccumulatedeposit}`}</VIPText>
+              <img src={depositIcon} alt="deposit" />
+              <Wrapper>
+                <ProcessBar>
+                  <DepositBar $width={info.accumdeposit / info.levelupaccumulatedeposit} />
+                </ProcessBar>
+                <TotalBar />
+              </Wrapper>
+            </ProcessBarContainer>
 
-        <ProcessBarContainer>
-          <VIPTextx>{`Total Valid Bet: ${info.accumturnover}/${info.levelupaccumulatebetamount}`}</VIPTextx>
-          <img src={turnoverIcon} alt="turnover" />
-          <Wrapper>
-            <ProcessBar>
-              <TurnoverBar $width={info.accumturnover / info.levelupaccumulatebetamount} />
-            </ProcessBar>
-            <TotalBar />
-          </Wrapper>
-        </ProcessBarContainer>
+            <ProcessBarContainer>
+              <VIPText>{`Total Valid Bet: ${info.accumturnover}/${info.levelupaccumulatebetamount}`}</VIPText>
+              <img src={turnoverIcon} alt="turnover" />
+              <Wrapper>
+                <ProcessBar>
+                  <TurnoverBar $width={info.accumturnover / info.levelupaccumulatebetamount} />
+                </ProcessBar>
+                <TotalBar />
+              </Wrapper>
+            </ProcessBarContainer>
+          </ProcessBarWrapper>
+          <RefreshContainer>
+            <RefreshButton
+              width={"44px"}
+              height={"44px"}
+              iconUrl={refreshIcon}
+              onClick={getAccountInfo}
+              $isLoading={isMainWalletLoading}
+            />
+          </RefreshContainer>
+        </VIPInfo>
       </PlayerInfoContainer>
       <WalletsWrapper>
         <MainWalletContainer>
