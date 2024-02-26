@@ -1,17 +1,16 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
+import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
 import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
 import transferImg from "@/assets/t29/images/account/navItem/icon-transfer.svg";
 import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
 import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
-import affiliateImg from "@/assets/t29/images/account/navItem/icon-affiliate.svg";
 import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
 import languageImg from "@/assets/t29/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
@@ -23,7 +22,6 @@ import withdrawWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-with
 import transferWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-transfer.svg";
 import reportWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-report.svg";
 import inboxWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-inbox.svg";
-import affiliateWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-affiliate.svg";
 import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
 import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
 import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
@@ -53,9 +51,9 @@ export type NavItem = {
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
-  const { handleChangeGameType, providerList, isCustomizedBrand } = useHomeGameContext();
+  const { handleChangeGameType, providerList } = useHomeGameContext();
   const history = useHistory();
-
+  const isShowVIP = brandConfig[config.brand as BrandName]?.isShowVIP;
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
@@ -83,7 +81,7 @@ export function useGetNavItemList() {
       });
     }
 
-    if (!isCustomizedBrand) {
+    if (isShowVIP) {
       navItemList.push({
         key: NavCardKey.VIP,
         label: "VIP",
@@ -164,14 +162,6 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/report",
       },
-      // !isCustomizedBrand && {
-      //   key: NavCardKey.MESSAGE_CENTER,
-      //   label: i18n.t("inbox.title"),
-      //   iconUrl: inboxImg,
-      //   iconSecondaryUrl: inboxWhiteImg,
-      //   navType: "route",
-      //   routePath: "/message-center",
-      // },
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),
@@ -180,15 +170,7 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/inbox",
       },
-      // {
-      //   key: NavCardKey.AFFILIATE,
-      //   label: i18n.t("wap.main.account.affiliate"),
-      //   iconUrl: affiliateImg,
-      //   iconSecondaryUrl: affiliateWhiteImg,
-      //   navType: "route",
-      //   routePath: "/affiliate",
-      // },
-      !isCustomizedBrand && {
+      {
         key: NavCardKey.VIP,
         label: "VIP",
         iconUrl: vipImg,
