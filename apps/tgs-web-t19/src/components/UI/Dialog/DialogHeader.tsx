@@ -4,13 +4,12 @@ import backIcon from "@/assets/t19/images/dialog/icon-back.svg";
 import Icon from "@/components/project/Icon";
 import { DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 
-const DialogHeaderContainer = styled.div<{ $showDialogHeaderTitle: boolean }>`
+const DialogHeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background-color: ${({ theme, $showDialogHeaderTitle }) => $showDialogHeaderTitle ? theme.darkGray : "transparent"};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,14 +38,13 @@ type Props = {
 };
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
-  const showDialogHeaderTitle = dialogHeaderTitle !== "Login" && dialogHeaderTitle !== "Register" && dialogHeaderTitle !== "Forgot Password";
   return (
-    <DialogHeaderContainer $showDialogHeaderTitle={showDialogHeaderTitle}>
+    <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
         <Icon iconUrl={backIcon} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
 
-      {showDialogHeaderTitle && dialogHeaderTitle}
+      {dialogHeaderTitle}
     </DialogHeaderContainer>
   );
 };

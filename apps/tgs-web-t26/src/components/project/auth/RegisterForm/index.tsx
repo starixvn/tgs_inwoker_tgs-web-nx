@@ -20,7 +20,7 @@ const RegisterForm = () => {
       {isMobileSize ? (
         <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
       ) : (
-        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+        <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
       )}
 
       <FormContainer>

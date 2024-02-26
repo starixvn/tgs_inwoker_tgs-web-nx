@@ -44,46 +44,42 @@ const LoginForm = () => {
   `;
 
   return (
-    <>
+    <AuthFormContainer>
       {isMobileSize ? (
-        <LoginHeader>
-          <Title>{i18n.t("common.login")}</Title>
-        </LoginHeader>
+        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
       ) : (
-        <Title>{i18n.t("common.login")}</Title>
+        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
       )}
 
-      <AuthFormContainer>
-        <FormContainer>
-          <FormikForm
-            formInputList={formInputConfigList}
-            formik={formik}
-            isLoading={isLoading}
-            error={loginError}
-            buttonText={i18n.t("common.login")}
-          >
-            <FormSubContainer>
-              <RememberMeContainer onClick={handleClickNeedToRemember}>
-                <Checkbox
-                  checked={needToRemember}
-                  style={{
-                    padding: "0px 5px 0px",
-                  }}
-                />
-                {i18n.t("wap.login.rememberMe")}
-              </RememberMeContainer>
+      <FormContainer>
+        <FormikForm
+          formInputList={formInputConfigList}
+          formik={formik}
+          isLoading={isLoading}
+          error={loginError}
+          buttonText={i18n.t("common.login")}
+        >
+          <FormSubContainer>
+            <RememberMeContainer onClick={handleClickNeedToRemember}>
+              <Checkbox
+                checked={needToRemember}
+                style={{
+                  padding: "0px 5px 0px",
+                }}
+              />
+              {i18n.t("wap.login.rememberMe")}
+            </RememberMeContainer>
 
-              <ForgotPasswordContainer onClick={handleClickForgotPassword}>
-                {i18n.t("forgotPassword.title")}?
-              </ForgotPasswordContainer>
-            </FormSubContainer>
-          </FormikForm>
-        </FormContainer>
+            <ForgotPasswordContainer onClick={handleClickForgotPassword}>
+              {i18n.t("forgotPassword.title")}?
+            </ForgotPasswordContainer>
+          </FormSubContainer>
+        </FormikForm>
+      </FormContainer>
 
-        <RedirectToRegisterHint />
-        {isMobileSize && <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />}
-      </AuthFormContainer>
-    </>
+      <RedirectToRegisterHint />
+      {isMobileSize && <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />}
+    </AuthFormContainer>
   );
 };
 
