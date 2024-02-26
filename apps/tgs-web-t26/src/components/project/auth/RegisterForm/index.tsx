@@ -17,7 +17,12 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      <LoginTitle>{`${i18n.t("common.register")}`.toUpperCase()}</LoginTitle>
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+      )}
+
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>

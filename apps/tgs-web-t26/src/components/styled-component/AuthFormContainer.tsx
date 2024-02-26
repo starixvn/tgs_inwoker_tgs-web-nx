@@ -3,11 +3,11 @@ import BG from "@/assets/t29/images/loginBG.png";
 
 export const AuthFormContainer = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: calc(100vh - 80px - 82px);
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 70px 20px 30px;
+  padding: 30px 32px;
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -22,7 +22,7 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-  max-width: 400px;
+  /* max-width: 400px; */
   margin: 0 auto 20px;
 `;
 
