@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
@@ -474,7 +474,7 @@ class Main extends Component {
               fullWidth
               value={this.props.amount}
               onChange={this.props.handleAmountChange}
-              type={"number"}
+              type="tel"
               placeholder={
                 i18n.t("deposit.msgPleaseEnter") +
                 Common.formatCurrency(channel.transferlimit.from) +
@@ -682,12 +682,11 @@ class Main extends Component {
           fullWidth
           disabled={(() => {
             const transferlimit = channel.transferlimit;
+            const [maxAmount, minAmount] = [transferlimit.to, transferlimit.from];
 
             return (
               !!this.props.disabled ||
-              this.props.amount < transferlimit.from ||
-              this.props.amount > transferlimit.to ||
-              this.props.amount === "" ||
+              Common.validateDepositAndWithdrawAmount(this.props.amount, maxAmount, minAmount) ||
               (this.props.files === null &&
                 config.features.Deposit_UploadRequired &&
                 paymentCode("manual"))

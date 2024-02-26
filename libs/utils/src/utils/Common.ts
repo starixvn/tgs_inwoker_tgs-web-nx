@@ -101,9 +101,9 @@ function formatNumberWithCommas(x: number | string): string {
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
-function formatNumberWithThousand(x: number): string {
+function formatNumberWithThousand(x: number, decimal = 2): string {
   if (isNaN(x)) return x.toString();
-  return x.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  return x.toFixed(decimal).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
 function formatNumberWithCommasNoRounding(x: number | string): string {
@@ -131,7 +131,7 @@ function truncateString(str: string, n: number): string {
  * @param minAmount 最小金額
  * @returns isDisabled
  */
-const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minAmount: number) : boolean => {
+export const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minAmount: number) : boolean => {
   const regex = /^(?!0)[0-9]+$/;
   const isValid = regex.test(input) && Number(input) <= maxAmount && Number(input) >= minAmount;
   return !isValid;
