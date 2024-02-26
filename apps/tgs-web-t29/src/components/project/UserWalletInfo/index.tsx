@@ -9,6 +9,11 @@ import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 import processBG from "@/assets/t29/images/profile/processbarBG.png";
+import depositIcon from "@/assets/t29/images/profile/VIPdepositIcon.png";
+import turnoverIcon from "@/assets/t29/images/profile/VIPturnoverIcon.png";
+
+import depositBarImg from "@/assets/t29/images/profile/depositBar.png";
+import turnoverBarImg from "@/assets/t29/images/profile/turnoverBar.png";
 
 const rotateKeyFrame = keyframes`
   0% {
@@ -23,20 +28,17 @@ const Container = styled.div`
   padding: 22px 50px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 60px;
+  /* justify-content: space-between; */
+  /* gap: 60px;。 */
   flex-wrap: wrap;
   background: ${({ theme }) => theme.mainBackground};
   margin-bottom: 20px;
 `;
 
 const PlayerInfoContainer = styled.div`
-  ${media.md} {
-    position: static;
-
-    flex: 1;
-    min-width: 184px;
-  }
+  /* position: static;
+  flex: 1; */
+  min-width: 398px;
 `;
 
 const PlayerInfo = styled.div`
@@ -64,16 +66,25 @@ const TotalBar = styled.div`
   border-radius: 20px;
 `;
 
-const Bar = styled.div`
+const DepositBar = styled.div<{ $width: number }>`
   position: absolute;
   height: 12px;
-  background: blue;
+  background-image: url(${depositBarImg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
-  width: 30%;
+  max-width: 100%;
+  width: ${({ $width }) => `${($width * 100).toFixed(2)}%`};
+`;
+
+const TurnoverBar = styled(DepositBar)<{ $width: number }>`
+  background-image: url(${turnoverBarImg});
 `;
 
 const WalletsWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
@@ -85,7 +96,10 @@ const WalletsWrapper = styled.div`
 `;
 
 const MainWalletContainer = styled.div`
-  //width: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 260px;
 `;
 
 const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
@@ -104,11 +118,38 @@ const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   align-items: center;
   justify-content: flex-end;
   gap: 9px;
-  padding-top: 19px;
 
   & *:first-child {
     flex-grow: 1;
   }
+`;
+
+const ProcessBarContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+
+  & img {
+    position: absolute;
+    left: 0;
+    top: 35%;
+    width: 32px;
+    height: 32px;
+    z-index: 100;
+  }
+`;
+
+const VIPTextx = styled.div`
+  width: 361px;
+  display: flex;
+  justify-content: end;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: ${({ theme }) => theme.blueBtn};
 `;
 
 const Wrapper = styled.div`
@@ -182,16 +223,30 @@ const UserWalletInfo = () => {
               {info.member_level_id}
             </VIPLabel>
           )}
+        </PlayerInfo>
+        <ProcessBarContainer>
+          <VIPTextx>{`Total Deposit: ${info.accumdeposit}/${info.levelupaccumulatedeposit}`}</VIPTextx>
+          <img src={depositIcon} alt="deposit" />
           <Wrapper>
             <ProcessBar>
-              <Bar />
+              <DepositBar $width={info.accumdeposit / info.levelupaccumulatedeposit} />
             </ProcessBar>
             <TotalBar />
           </Wrapper>
-        </PlayerInfo>
-      </PlayerInfoContainer>
+        </ProcessBarContainer>
 
-      {/* <WalletsWrapper>
+        <ProcessBarContainer>
+          <VIPTextx>{`Total Valid Bet: ${info.accumturnover}/${info.levelupaccumulatebetamount}`}</VIPTextx>
+          <img src={turnoverIcon} alt="turnover" />
+          <Wrapper>
+            <ProcessBar>
+              <TurnoverBar $width={info.accumturnover / info.levelupaccumulatebetamount} />
+            </ProcessBar>
+            <TotalBar />
+          </Wrapper>
+        </ProcessBarContainer>
+      </PlayerInfoContainer>
+      <WalletsWrapper>
         <MainWalletContainer>
           <MainAccountLabel>{i18n.t("web.account.header.mainWallet")}</MainAccountLabel>
           <AmountContainer>
@@ -252,7 +307,7 @@ const UserWalletInfo = () => {
             />
           </AmountContainer>
         </MainWalletContainer>
-      </WalletsWrapper> */}
+      </WalletsWrapper>
     </Container>
   );
 };
