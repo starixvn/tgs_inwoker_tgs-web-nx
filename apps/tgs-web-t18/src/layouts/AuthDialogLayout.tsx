@@ -4,9 +4,11 @@ import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Close as CloseIcon } from "@mui/icons-material";
+import { usePageName } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import { MOBILE_BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -36,6 +38,7 @@ const AuthDialogLayout = ({ children }: Props) => {
   const history = useHistory();
   const location = useLocation();
   const { isDesktopSize } = useRwd();
+  const { pageName } = usePageName();
 
   const pathname = location.pathname;
   const handleCloseDialog = useCallback(() => {
@@ -57,14 +60,15 @@ const AuthDialogLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <CloseIconContainer onClick={handleCloseDialog}>
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
+      {/* <CloseIconContainer onClick={handleCloseDialog}>
         <CloseIcon
           style={{
             color: "white",
             transform: "scale(1.6)",
           }}
         />
-      </CloseIconContainer>
+      </CloseIconContainer> */}
       <ContentWrapper>{children}</ContentWrapper>
       <BottomAppBar />
     </DialogLayoutContainer>

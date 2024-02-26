@@ -47,7 +47,7 @@ const AuthDialog = ({ open, onClose, children, ...others }: Props & DialogProps)
       onClose={onClose}
       maxWidth={"md"}
     >
-      <AuthDialogImage />
+      {/* <AuthDialogImage /> */}
       <ChildContainer>{children}</ChildContainer>
     </DialogContainer>
   );
