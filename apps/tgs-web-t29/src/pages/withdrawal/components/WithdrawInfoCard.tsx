@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
+import config, {brandConfig, BrandName} from "@tgs-web-nx/config";
 
 const CardContainer = styled.div`
   background: ${({ theme }) => theme.blue20};
@@ -55,7 +56,7 @@ const WithdrawInfoCard = () => {
         <Label>{i18n.t("withdrawal.msgCanWithdrawal")}</Label>
         <Value>
           {wallet.mainSymbol}
-          {Common.formatNumberWithThousand(wallet.mainBalance)}
+          {Common.formatCurrency(wallet.mainBalance, brandConfig[config.brand as BrandName]?.countryCode)}
         </Value>
       </RowContainer>
 
@@ -64,7 +65,7 @@ const WithdrawInfoCard = () => {
         <Label>{i18n.t("withdrawal.turnover")}</Label>
         <Value>
           {wallet.mainSymbol}
-          {Common.formatNumberWithThousand(minWithdrawLimit)}
+          {Common.formatCurrency(minWithdrawLimit, brandConfig[config.brand as BrandName]?.countryCode)}
         </Value>
       </RowContainer>
     </CardContainer>
