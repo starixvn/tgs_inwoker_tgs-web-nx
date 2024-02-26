@@ -101,9 +101,9 @@ function formatNumberWithCommas(x: number | string): string {
     .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
-function formatNumberWithThousand(x: number): string {
+function formatNumberWithThousand(x: number, decimal = 2): string {
   if (isNaN(x)) return x.toString();
-  return x.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  return x.toFixed(decimal).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 }
 
 function formatNumberWithCommasNoRounding(x: number | string): string {
@@ -122,6 +122,21 @@ function truncateString(str: string, n: number): string {
   return str.length > n ? str.slice(0, n) + "…" : str;
 }
 
+/**
+ * 檢查存提款輸入欄位 
+ * 1. 只能輸入純數字
+ * 2. 須在區間內
+ * @param input 輸入內容
+ * @param maxAmount 最大金額
+ * @param minAmount 最小金額
+ * @returns isDisabled
+ */
+export const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minAmount: number) : boolean => {
+  const regex = /^(?!0)[0-9]+$/;
+  const isValid = regex.test(input) && Number(input) <= maxAmount && Number(input) >= minAmount;
+  return !isValid;
+};
+
 const Common = {
   formatNumberWithCommas,
   formatNumberWithThousand,
@@ -132,6 +147,7 @@ const Common = {
   getCDNLanguagePrefix,
   arrayValidator,
   truncateString,
+  validateDepositAndWithdrawAmount
 };
 
 export default Common;

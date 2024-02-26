@@ -136,12 +136,12 @@ const MainMobile = ({
             fullWidth
             value={amount}
             onChange={handleAmountChange}
-            type={"number"}
+            type="tel"
             placeholder={`${
               selectedCardIndex != null
                 ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(
-                    max,
+                  ` (${Common.formatNumberWithThousand(min, 0)} - ${Common.formatNumberWithThousand(
+                    max, 0
                   )})`
                 : i18n.t("withdrawal.enterAmount")
             }`}
@@ -188,12 +188,10 @@ const MainMobile = ({
 
       <SubmitButton
         fullWidth
-        disabled={Boolean(
-          isNaN(parseFloat(amount)) ||
-            parseFloat(amount) < min ||
-            parseFloat(amount) > max ||
-            !!disabled,
-        )}
+        disabled={
+          Boolean(isNaN(parseFloat(amount)) || disabled) ||
+          Common.validateDepositAndWithdrawAmount(amount, max, min)
+        }
         onClick={handleWithdrawalClick}
       >
         {i18n.t("common.nextStep")}

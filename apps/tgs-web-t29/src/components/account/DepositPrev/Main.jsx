@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import config from "@tgs-web-nx/config";
@@ -471,12 +471,12 @@ class Main extends Component {
               fullWidth
               value={this.props.amount}
               onChange={this.props.handleAmountChange}
-              type={"number"}
+              type="tel"
               placeholder={
                 i18n.t("deposit.msgPleaseEnter") +
-                Common.formatNumberWithThousand(channel.transferlimit.from) +
+                Common.formatNumberWithThousand(channel.transferlimit.from, 0) +
                 "-" +
-                Common.formatNumberWithThousand(channel.transferlimit.to) +
+                Common.formatNumberWithThousand(channel.transferlimit.to, 0) +
                 i18n.t("deposit.dollor")
               }
             />
@@ -490,8 +490,8 @@ class Main extends Component {
             )}
             <TransferHint>
               {`${Common.formatNumberWithThousand(
-                transferLimitFrom,
-              )} - ${Common.formatNumberWithThousand(transferLimitTo)}
+                transferLimitFrom, 0
+              )} - ${Common.formatNumberWithThousand(transferLimitTo, 0)}
                 ${i18n.t("deposit.dollor")}`}
             </TransferHint>
           </AmountHint>
@@ -670,12 +670,11 @@ class Main extends Component {
           fullWidth
           disabled={(() => {
             const transferlimit = channel.transferlimit;
+            const [maxAmount, minAmount] = [transferlimit.to, transferlimit.from];
 
             return (
               !!this.props.disabled ||
-              this.props.amount < transferlimit.from ||
-              this.props.amount > transferlimit.to ||
-              this.props.amount === "" ||
+              Common.validateDepositAndWithdrawAmount(this.props.amount, maxAmount, minAmount) ||
               (this.props.files === null &&
                 config.features.Deposit_UploadRequired &&
                 paymentCode("manual"))

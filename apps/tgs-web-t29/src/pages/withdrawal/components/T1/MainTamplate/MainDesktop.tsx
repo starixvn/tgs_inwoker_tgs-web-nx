@@ -125,12 +125,12 @@ const MainDesktop = ({
                 variant="outlined"
                 autoComplete="off"
                 value={amount}
-                type={"number"}
+                type="tel"
               />
             </FormControl>
 
             <LimitPopupContainer>
-              {Common.formatNumberWithThousand(min)} - {Common.formatNumberWithThousand(max)}
+              {Common.formatNumberWithThousand(min, 0)} - {Common.formatNumberWithThousand(max, 0)}
             </LimitPopupContainer>
           </AmountWrapper>
 
@@ -148,9 +148,9 @@ const MainDesktop = ({
                     <TextField
                       variant="outlined"
                       autoComplete="off"
-                      value={isNaN(amount) === false ? (amount * exchangeRate).toFixed(2) : 0}
-                      type={"number"}
-                      disabled={true}
+                      value={isNaN(amount) === false ? (amount * exchangeRate).toFixed(0) : 0}
+                      type="tel"
+                      disabled
                     />
                   </FormControl>
                 </USDTWrapper>
@@ -203,12 +203,10 @@ const MainDesktop = ({
         )}
 
       <SubmitButton
-        disabled={Boolean(
-          isNaN(parseFloat(amount)) ||
-            parseFloat(amount) < min ||
-            parseFloat(amount) > max ||
-            disabled,
-        )}
+        disabled={
+          Boolean(isNaN(parseFloat(amount)) || disabled) ||
+          Common.validateDepositAndWithdrawAmount(amount, max, min)
+        }
         onClick={handleWithdrawalClick}
         sx={{
           width: "250px",
