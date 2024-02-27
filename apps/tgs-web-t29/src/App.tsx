@@ -17,6 +17,7 @@ import {
   UserWalletInfoContextProvider,
 } from "@tgs-web-nx/core/features";
 import { RouteType } from "@tgs-web-nx/types";
+import CustomConfig, { BrandName, brandConfig } from "@tgs-web-nx/config";
 import LiveChat from "./components/tools/LiveChat";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
@@ -39,7 +40,20 @@ const App: React.FC = () => {
   const routeRef = useRef<RouteType>();
 
   const currentRoute = routeRef.current;
-
+  
+  const isDisableWebPinchAction = brandConfig[config.brand as BrandName]?.isDisableWebPinchAction;
+  if (isDisableWebPinchAction) {
+    document.addEventListener(
+      "touchstart",
+      (event) => {
+        if (event.touches && event.touches.length > 1) {
+          // 禁止多指觸控
+          event.preventDefault();
+        }
+      },
+      { passive: false },
+    );
+  }
   if (isLoading) {
     return <Loading show={true} opacity={1} noShrink={true} />;
   }

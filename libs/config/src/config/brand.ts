@@ -24,6 +24,7 @@ type MOVN2Config = {
   isShowChatCustomerService: boolean; // footer 是否顯示 Chat Customer Service
   isShowVIP: boolean; // Navbar 是否顯示 VIP
   isAllowMulitBankCards: boolean; // 是否可新增多張銀行卡 https://raypro.atlassian.net/browse/TGS-3978
+  isDisableWebPinchAction: boolean; // 網站是否禁用縮放
   countryCode: string;
   currencyRate?: number;
 }
@@ -70,6 +71,7 @@ export const defaultConfig: Config = {
   isShowChatCustomerService: true,
   isShowVIP: true,
   isAllowMulitBankCards: true,
+  isDisableWebPinchAction:false,
   countryCode: "en-US",
   // new brand config start here
   // NewBrand
@@ -100,5 +102,6 @@ export const brandConfig: Record<BrandName, Config> = {
     isAllowMulitBankCards: false,
     countryCode: "vi-VN",
     currencyRate: 1000,
+    isDisableWebPinchAction:true,
   },
 }
