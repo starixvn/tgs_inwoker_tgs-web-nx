@@ -55,7 +55,7 @@ const AccountHeaderContent = () => {
   const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
   const currentBalance =
-    mainSymbol + Common.formatCurrency((mainWalletBalance + transferWalletBalance), brandConfig[config.brand as BrandName]?.countryCode);
+    mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance);
   const username = account.info.member_username;
 
   const handleGoToProfile = () => {

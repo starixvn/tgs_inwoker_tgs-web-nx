@@ -25,6 +25,7 @@ type MOVN2Config = {
   isShowVIP: boolean; // Navbar 是否顯示 VIP
   isAllowMulitBankCards: boolean; // 是否可新增多張銀行卡 https://raypro.atlassian.net/browse/TGS-3978
   countryCode: string;
+  currencyRate?: number;
 }
 
 /*
@@ -70,7 +71,6 @@ export const defaultConfig: Config = {
   isShowVIP: true,
   isAllowMulitBankCards: true,
   countryCode: "en-US",
-
   // new brand config start here
   // NewBrand
 }
@@ -79,6 +79,8 @@ export const defaultConfig: Config = {
 export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
+    countryCode: "vi-VN", //for QA testing TGS-4194 & TGS-4184
+    currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184 
   },
   MOVN2: {
     ...defaultConfig,
@@ -97,5 +99,6 @@ export const brandConfig: Record<BrandName, Config> = {
     isShowVIP: false,
     isAllowMulitBankCards: false,
     countryCode: "vi-VN",
+    currencyRate: 1000,
   },
 }

@@ -56,7 +56,7 @@ const WithdrawInfoCard = () => {
         <Label>{i18n.t("withdrawal.msgCanWithdrawal")}</Label>
         <Value>
           {wallet.mainSymbol}
-          {Common.formatCurrency(wallet.mainBalance, brandConfig[config.brand as BrandName]?.countryCode)}
+          {Common.formatCurrency(wallet.mainBalance)}
         </Value>
       </RowContainer>
 
@@ -65,7 +65,7 @@ const WithdrawInfoCard = () => {
         <Label>{i18n.t("withdrawal.turnover")}</Label>
         <Value>
           {wallet.mainSymbol}
-          {Common.formatCurrency(minWithdrawLimit, brandConfig[config.brand as BrandName]?.countryCode)}
+          {Common.formatCurrency(minWithdrawLimit)}
         </Value>
       </RowContainer>
     </CardContainer>
