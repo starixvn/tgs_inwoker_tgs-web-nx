@@ -6,24 +6,35 @@ import Icon from "@/components/project/Icon";
 export const DIALOG_HEADER_HEIGHT = "64px";
 
 const DialogHeaderContainer = styled.div`
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.mainBackground};
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   color: ${({ theme }) => theme.white};
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 700;
   margin: 0;
   z-index: 1300;
-  padding: 0 22px;
+  padding: 22px 10px;
+  gap: 14px;
 `;
 
 const Title = styled.div`
   font-size: 1.125rem;
   font-weight: 700;
+`;
+
+const ReturnIconContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 17px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;
 
 type Props = {
@@ -34,13 +45,14 @@ type Props = {
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
   return (
     <DialogHeaderContainer>
-      <Icon
-        iconUrl={iconReturn}
-        width={"16px"}
-        height={"16px"}
-        style={{ marginRight: "14px", cursor: "pointer" }}
-        onClick={handleClose}
-      />
+      <ReturnIconContainer onClick={handleClose}>
+        <Icon
+          iconUrl={iconReturn}
+          width={"16px"}
+          height={"16px"}
+        />
+      </ReturnIconContainer>
+
       <Title>{dialogHeaderTitle}</Title>
     </DialogHeaderContainer>
   );

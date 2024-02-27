@@ -2,8 +2,10 @@ import { Close as CloseIcon } from "@mui/icons-material";
 import React from "react";
 import styled from "styled-components";
 import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
+import { usePageName } from "@tgs-web-nx/core/features";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -33,7 +35,7 @@ type Props = {
 };
 const AuthDialogLayout = ({ children }: Props) => {
   const { handleCloseDialog } = useAuthDialogLayout();
-
+  const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
 
   if (isDesktopSize) {
@@ -42,16 +44,7 @@ const AuthDialogLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <CloseIconContainer onClick={handleCloseDialog}>
-        <CloseIcon
-          style={{
-            color: "white",
-            transform: "scale(1.6)",
-            width: "20px",
-            height: "20px",
-          }}
-        />
-      </CloseIconContainer>
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
       <ContentWrapper>{children}</ContentWrapper>
     </DialogLayoutContainer>
   );

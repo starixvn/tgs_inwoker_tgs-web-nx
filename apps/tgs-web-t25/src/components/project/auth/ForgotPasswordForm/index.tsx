@@ -6,15 +6,15 @@ import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
 import {
   AuthFormContainer,
   FormContainer,
-  AuthDialogTitle,
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const ForgotPasswordForm = () => {
   return (
     <ForgotPasswordStageContextProvider>
       <AuthFormContainer>
-        <AuthDialogTitle>{i18n.t("forgotPassword.title")}</AuthDialogTitle>
+        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
         <FormContainer>
           <ForgotPasswordFormStage />
         </FormContainer>
