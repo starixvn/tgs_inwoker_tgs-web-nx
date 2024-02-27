@@ -7,7 +7,7 @@ import { media } from "@/theme/breakpoints";
 
 const ScrollableContainer = styled.div`
   width: 800px;
-  overflow-x: scroll;
+  overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -49,7 +49,6 @@ const VIPTable = styled.table`
   background: ${(props) => props.theme.mainBackground};
   padding: 10px;
   border-collapse: collapse;
-  
 `;
 
 const RowItem = styled.td`
@@ -128,7 +127,7 @@ const BonusTable = ({ vipSortingData }: Props) => {
       <VIPTable>
         <thead>
           <TopHeader>
-            <HeaderRowItem $width={"473px"} colSpan={3}>
+            <HeaderRowItem $width={"450px"} colSpan={3}>
               {i18n.t("vip.bonus")}
             </HeaderRowItem>
             <HeaderRowItem $width={"320px"} colSpan={3}>
