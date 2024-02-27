@@ -10,10 +10,7 @@ const RegisterV2InitPhoneDialog = () => {
   const { handleLogout } = useAuthContext();
   const { updatePageName } = usePageName();
 
-  useEffect(() => {
-    updatePageName(i18n.t("web.register.activation"));
-  });
-  
+   
   const handleClose = async () => {
     handleToggleInitPhoneDialog(false);
     await handleLogout();
