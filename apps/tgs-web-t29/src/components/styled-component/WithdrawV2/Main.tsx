@@ -157,3 +157,8 @@ export const RequireWrapper = styled.div`
 export const RequireAmount = styled.div`
   font-weight: bold;
 `;
+
+export const CurrencyHint = styled.p`
+  margin-top: 5px;
+  color: red;
+`;

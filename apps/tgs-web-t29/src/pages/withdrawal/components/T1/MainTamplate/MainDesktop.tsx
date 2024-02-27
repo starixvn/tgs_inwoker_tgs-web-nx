@@ -20,6 +20,7 @@ import {
   TurnoverTextWrapper,
   RequireWrapper,
   RequireAmount,
+  CurrencyHint
 } from "@/components/styled-component/WithdrawV2/Main";
 
 const MainDesktop = ({
@@ -41,6 +42,8 @@ const MainDesktop = ({
   handlePlayerNote,
   handleWithdrawalClick,
 }: MainProps) => {
+  const currencyRate = brandConfig[config.brand as BrandName]?.currencyRate;
+  
   useEffect(() => {
     getTransferLimit(cardList[selectedCardIndex].paymentchannelid);
   }, [cardList, getTransferLimit, selectedCardIndex]);
@@ -126,12 +129,20 @@ const MainDesktop = ({
                 type={"number"}
               />
             </FormControl>
-
+            
             <LimitPopupContainer>
-              {Common.formatCurrency(min, brandConfig[config.brand as BrandName]?.countryCode)} - {Common.formatCurrency(max, brandConfig[config.brand as BrandName]?.countryCode)}
+              {Common.formatCurrency(min)} - {Common.formatCurrency(max)}
             </LimitPopupContainer>
           </AmountWrapper>
-
+          {!!currencyRate && <CurrencyHint>
+            {
+              !isNaN(amount)?
+              `${Common.formatCurrency(amount * currencyRate)}` :
+              '0'
+            } {
+              config.currency
+            }
+          </CurrencyHint>}
           {/* if is USDT, need to show below infomation */}
           {(() => {
             if (cardList[selectedCardIndex] && cardList[selectedCardIndex].banktype === "Usdt") {

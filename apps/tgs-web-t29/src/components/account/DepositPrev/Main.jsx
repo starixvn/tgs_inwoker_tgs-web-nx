@@ -49,10 +49,15 @@ const TransferHint = styled.div`
   font-weight: bold;
 `;
 
+const CurrencyHint = styled.p`
+  margin-top: 5px;
+  color: red;
+`;
+
 class Main extends Component {
   render() {
     const depositTypeList = this.props.wallet.depositTypeList;
-
+    const currencyRate = brandConfig[config.brand]?.currencyRate;
     // 下方程式碼為針對客戶需求客製化修改 若要修改請先詢問 Sean 相關邏輯
     // ---- hardcode 結界 start ----
 
@@ -114,8 +119,6 @@ class Main extends Component {
     };
     const channel = selectedPaymentMethod.channel[this.props.selectedChannelIndex];
     const transferFee = channel.fees;
-    const transferLimitFrom = channel.transferlimit.from;
-    const transferLimitTo = channel.transferlimit.to;
     const channelExtend = channel.extended;
 
     return (
@@ -474,9 +477,9 @@ class Main extends Component {
               type={"number"}
               placeholder={
                 i18n.t("deposit.msgPleaseEnter") +
-                Common.formatCurrency(channel.transferlimit.from, brandConfig[config.brand].countryCode) +
+                Common.formatCurrency(channel.transferlimit.from) +
                 " - " +
-                Common.formatCurrency(channel.transferlimit.to, brandConfig[config.brand].countryCode) +
+                Common.formatCurrency(channel.transferlimit.to) +
                 i18n.t("deposit.dollor")
               }
             />
@@ -489,11 +492,20 @@ class Main extends Component {
               </FeeSpot>
             )}
             <TransferHint>
-                {Common.formatCurrency(channel.transferlimit.from, brandConfig[config.brand].countryCode) +
+                {Common.formatCurrency(channel.transferlimit.from) +
                 " - " +
-                Common.formatCurrency(channel.transferlimit.to, brandConfig[config.brand].countryCode) +
+                Common.formatCurrency(channel.transferlimit.to) +
                 i18n.t("deposit.dollor")}
             </TransferHint>
+            {currencyRate && <CurrencyHint>
+              {
+                !isNaN(this.props.amount) ?
+                `${Common.formatCurrency(this.props.amount * currencyRate)}` :
+                '0'
+              } {
+                config.currency
+              }
+            </CurrencyHint>}
           </AmountHint>
         </ItemContainer>
 

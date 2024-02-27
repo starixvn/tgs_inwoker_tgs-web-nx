@@ -140,7 +140,7 @@ const UserWalletInfo = () => {
               <span>-</span>
             ) : (
               <DynamicFont
-                content={mainSymbol + Common.formatCurrency(mainWalletBalance, brandConfig[config.brand as BrandName]?.countryCode)}
+                content={mainSymbol + Common.formatCurrency(mainWalletBalance)}
               />
             )}
             <RefreshButton
@@ -180,7 +180,7 @@ const UserWalletInfo = () => {
               <DynamicFont
                 content={
                   mainSymbol +
-                  Common.formatCurrency((mainWalletBalance + transferWalletBalance), brandConfig[config.brand as BrandName]?.countryCode)
+                  Common.formatCurrency((mainWalletBalance + transferWalletBalance))
                 }
               />
             )}
