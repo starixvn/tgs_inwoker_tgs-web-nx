@@ -14,7 +14,7 @@ const ForgotPasswordPage = () => {
 
   return (
     <FormContainerWithBG>
-      <BrandLogo style={{marginTop: "50px", maxWidth: "300px"}}/>
+      <BrandLogo style={{ marginTop: "94px", maxWidth: "300px" }} />
       <FormWrapper>
         <ForgotPasswordForm />
       </FormWrapper>
