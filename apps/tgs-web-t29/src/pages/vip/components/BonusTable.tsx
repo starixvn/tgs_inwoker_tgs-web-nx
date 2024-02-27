@@ -2,21 +2,18 @@ import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
 import { useBettingBonus, useVipBonusListV2 } from "@tgs-web-nx/core/hooks";
 
+import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
 
 const ScrollableContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  overflow-x: auto;
+  width: 800px;
+  overflow-x: scroll;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  gap: 12px;
 
   ${media.sm} {
     //overflow-x: hidden; // this will cause tablet display issue
-    margin: 0 auto;
     scroll-snap-type: unset;
 
     &::-webkit-scrollbar {
@@ -39,137 +36,77 @@ const ScrollableContainer = styled.div`
   }
 `;
 
-const BonusTableWrapper = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-width: 670px;
-  height: 100%;
-
-  ${media.sm} {
-    /* width: 100%; */
-    margin: 0 auto;
-  }
-`;
-
-const BonusTableHeader = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 48px;
-  padding: 0;
-  background-color: ${({ theme }) => theme.mainBackground};
-  border-bottom: 1px solid #23507d;
-  border-radius: 6px 0px 0px 0px;
-
-  ${media.sm} {
-    height: 67px;
-    border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
-  }
-  & *:nth-child(5) {
-    background: #e7f1fb;
-  }
-  *:nth-child(6) {
-    background: #e7f1fb;
-  }
-`;
-
-const VIPTitleTableHeader = styled(BonusTableHeader)`
-  justify-content: start;
-  ${media.sm} {
-    height: 60px;
-    padding: 20px 0;
-    border-radius: 8px 8px 0px 0px;
-    border-bottom: 1px solid ${(props) => props.theme.gray10};
-  }
-`;
-
-const HeaderItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 115px;
-  height: 100%;
-  flex: 1;
-  color: ${(props) => props.theme.text};
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  font-size: 0.75rem;
-  font-weight: 400;
-  text-align: center;
-  margin: 0px;
-
-  ${media.sm} {
-    max-width: 115px;
-    font-size: 1rem;
-    color: #23507d;
-  }
-`;
-
-const BonusTableBody = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  align-self: stretch;
-
-  ${media.sm} {
-    background: ${(props) => props.theme.mainBackground};
-  }
-`;
-
-const BonusTableRowWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid#23507D;
-
-  ${media.sm} {
-    border-bottom: unset;
-    color: #23507d;
-  }
-  & *:nth-child(5) {
-    background: #e7f1fb;
-  }
-  *:nth-child(6) {
-    background: #e7f1fb;
-  }
-`;
-
-const RowItem = styled(HeaderItem)`
-  display: flex;
-  min-height: 69px;
-  justify-content: center;
-  align-items: center;
-  min-width: 60px;
-  height: 100%;
-  flex: 1;
-  color: ${(props) => props.theme.black};
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  font-size: 0.75rem;
-  font-weight: 400;
-  text-align: center;
-  margin: 0px 0px;
-
-  ${media.sm} {
-    min-height: 106px;
-    width: 128px;
-    font-size: 1rem;
-    color: #23507d;
-  }
-`;
-
 const LevelIcon = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
 `;
+
+const VIPTable = styled.table`
+  table-layout: fixed;
+  width: 100%;
+  background: ${(props) => props.theme.mainBackground};
+  padding: 10px;
+  border-collapse: collapse;
+  
+`;
+
+const RowItem = styled.td`
+  color: ${(props) => props.theme.black};
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 400;
+  width: 200px;
+
+  ${media.sm} {
+    width: 100%;
+    width: 130px;
+    padding: 20px;
+    font-size: 1rem;
+    color: #23507d;
+  }
+`;
+
+const HeaderRowItem = styled(RowItem)<{ $width: string }>`
+  width: ${({ $width }) => $width};
+  font-weight: 700;
+`;
+
+const BorderRowItem = styled(RowItem)`
+  border-top: ${({ theme }) => `1px solid ${theme.gray10}`};
+  border-bottom: ${({ theme }) => `1px solid ${theme.gray10}`};
+`;
+
+const FixRowItem = styled(RowItem)`
+  width: 120px;
+  position: sticky;
+  left: 0;
+  background: ${(props) => props.theme.mainBackground};
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0em;
+`;
+const BorderFixRowItem = styled(FixRowItem)`
+  border-top: ${({ theme }) => `1px solid ${theme.gray10}`};
+  border-bottom: ${({ theme }) => `1px solid ${theme.gray10}`};
+`;
+
+const TopHeader = styled.tr`
+  & *:nth-child(2) {
+    background: ${({ theme }) => theme.blue20};
+  }
+`;
+
+const BottomHeader = styled.tr`
+  & *:nth-child(n + 4):nth-child(-n + 6) {
+    background: ${({ theme }) => theme.blue20};
+  }
+`;
+
+const Body = styled(BottomHeader)``;
 
 type Props = {
   vipSortingData: VipData[];
@@ -188,23 +125,34 @@ const BonusTable = ({ vipSortingData }: Props) => {
 
   return (
     <ScrollableContainer>
-      <BonusTableWrapper>
-        <VIPTitleTableHeader>
-          <HeaderItem>Bonus</HeaderItem>
-          <HeaderItem>Level Up</HeaderItem>
-          <HeaderItem>VIP Rebate</HeaderItem>
-        </VIPTitleTableHeader>
-        <BonusTableHeader>
-          {titleList.map((bonus) => (
-            <HeaderItem key={bonus.key}>{bonus.label}</HeaderItem>
-          ))}
-        </BonusTableHeader>
-
-        <BonusTableBody>
+      <VIPTable>
+        <thead>
+          <TopHeader>
+            <HeaderRowItem $width={"473px"} colSpan={3}>
+              {i18n.t("vip.bonus")}
+            </HeaderRowItem>
+            <HeaderRowItem $width={"320px"} colSpan={3}>
+              {i18n.t("vip.levelUp")}
+            </HeaderRowItem>
+            <HeaderRowItem $width={"756px"} colSpan={6}>
+              {i18n.t("vip.vipBenefit")}
+            </HeaderRowItem>
+          </TopHeader>
+          <BottomHeader>
+            {titleList.map((bonus) =>
+              bonus.key === "VIP" ? (
+                <BorderFixRowItem key={bonus.key}>{bonus.label}</BorderFixRowItem>
+              ) : (
+                <BorderRowItem key={bonus.key}>{bonus.label}</BorderRowItem>
+              ),
+            )}
+          </BottomHeader>
+        </thead>
+        <tbody>
           {vipSortingData.map((vipData) => {
             return (
-              <BonusTableRowWrapper key={vipData.level}>
-                <RowItem>
+              <Body key={vipData.level}>
+                <FixRowItem>
                   <LevelIcon>
                     <img
                       width={"50px"}
@@ -216,28 +164,23 @@ const BonusTable = ({ vipSortingData }: Props) => {
                     />
                     <span>VIP{vipData.level}</span>
                   </LevelIcon>
-                </RowItem>
-                {/* <RowItem>{vipData.levelKeepAccumulateBetAmount.toLocaleString()}</RowItem>
-                <RowItem>{vipData.levelKeepAccumulateDeposit.toLocaleString()}</RowItem>
-                <RowItem>{vipData.levelUpAccumulateBetAmount.toLocaleString()}</RowItem>
-                <RowItem>{vipData.levelUpAccumulateDeposit.toLocaleString()}</RowItem> */}
-                <RowItem>{vipData.birthBenefit}</RowItem>
+                </FixRowItem>
                 <RowItem>{vipData.promotionBenefit}</RowItem>
+                <RowItem>{vipData.birthBenefit}</RowItem>
                 <RowItem>{vipData.quarterlyBenefit}</RowItem>
                 <RowItem>{vipData.levelUpAccumulateDeposit}</RowItem>
                 <RowItem>{vipData.levelUpAccumulateBetAmount}</RowItem>
-
-                <RowItem>{`${vipData.liveDealerRebate} %`}</RowItem>
-                <RowItem>{`${vipData.slotRebate} %`}</RowItem>
-                <RowItem>{`${vipData.cardGameRebate} %`}</RowItem>
-                <RowItem>{`${vipData.sportsRebate} %`}</RowItem>
-                <RowItem>{`${vipData.virtualSportsRebate} %`}</RowItem>
-                <RowItem>{`${vipData.lotteryRebate} %`}</RowItem>
-              </BonusTableRowWrapper>
+                <RowItem>{`${vipData.liveDealerRebate}%`}</RowItem>
+                <RowItem>{`${vipData.slotRebate}%`}</RowItem>
+                <RowItem>{`${vipData.cardGameRebate}%`}</RowItem>
+                <RowItem>{`${vipData.sportsRebate}%`}</RowItem>
+                <RowItem>{`${vipData.virtualSportsRebate}%`}</RowItem>
+                <RowItem>{`${vipData.lotteryRebate}%`}</RowItem>
+              </Body>
             );
           })}
-        </BonusTableBody>
-      </BonusTableWrapper>
+        </tbody>
+      </VIPTable>
     </ScrollableContainer>
   );
 };

@@ -15,23 +15,23 @@ export const useVipBonusListV2 = () => {
       },
       {
         key: "Level Up Bonus",
-        label: "Level Up Bonus",
+        label: i18n.t("vip.levelUpBonus"),
       },
       {
         key: "Birthday Bonus",
-        label: "Birthday Bonus",
+        label: i18n.t("vip.birthBenefit"),
       },
       {
         key: "Quarterly Bonus",
-        label: "Quarterly Bonus",
+        label: i18n.t("vip.quarterlyBenefit"),
       },
       {
         key: "Total Deposit",
-        label: "Total Deposit",
+        label: i18n.t("vip.totalDeposit"),
       },
       {
         key: "Total Valid Bet",
-        label: "Total Valid Bet",
+        label: i18n.t("vip.totalVaildBet"),
       },
     ];
   }, []);
