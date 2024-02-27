@@ -127,6 +127,7 @@ export const Wrapper = styled.div`
 `;
 
 export const WalletsWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -136,6 +137,7 @@ export const WalletsWrapper = styled.div`
   background: ${({ theme }) => theme.mainBackground};
   padding: 20px;
   ${media.sm} {
+    width: 300px;
     padding: 0;
   }
 `;
@@ -145,9 +147,6 @@ export const MainWalletContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  ${media.sm} {
-    width: 260px;
-  }
 `;
 
 export const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
@@ -255,7 +254,9 @@ const UserWalletInfo = () => {
             </ProcessBarContainer>
 
             <ProcessBarContainer>
-              <VIPText>{`${i18n.t("vip.totalVaildBet")}: ${info.accumturnover}/${info.levelupaccumulatebetamount}`}</VIPText>
+              <VIPText>{`${i18n.t("vip.totalVaildBet")}: ${info.accumturnover}/${
+                info.levelupaccumulatebetamount
+              }`}</VIPText>
               <img src={turnoverIcon} alt="turnover" />
               <Wrapper>
                 <ProcessBar>

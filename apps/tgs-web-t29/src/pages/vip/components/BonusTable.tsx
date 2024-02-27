@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
-import { useBettingBonus, useVipBonusListV2 } from "@tgs-web-nx/core/hooks";
+import { useBettingBonus, useRwd, useVipBonusListV2 } from "@tgs-web-nx/core/hooks";
 
 import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
 
 const ScrollableContainer = styled.div`
-  width: 800px;
+  width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 
   ${media.sm} {
+    width: 800px;
     //overflow-x: hidden; // this will cause tablet display issue
     scroll-snap-type: unset;
 
@@ -58,25 +59,29 @@ const RowItem = styled.td`
   text-align: center;
   font-size: 0.75rem;
   font-weight: 400;
-  width: 200px;
-
+  width: 100%;
+  padding: 0px 20px;
+  color: #276aa5;
   ${media.sm} {
-    width: 100%;
-    width: 130px;
     padding: 20px;
     font-size: 1rem;
-    color: #23507d;
   }
 `;
 
 const HeaderRowItem = styled(RowItem)<{ $width: string }>`
   width: ${({ $width }) => $width};
   font-weight: 700;
+  padding-bottom: 20px;
+  ${media.sm} {
+    padding: 20px;
+  }
 `;
 
 const BorderRowItem = styled(RowItem)`
-  border-top: ${({ theme }) => `1px solid ${theme.gray10}`};
-  border-bottom: ${({ theme }) => `1px solid ${theme.gray10}`};
+  ${media.sm} {
+    border-top: ${({ theme }) => `1px solid ${theme.gray10}`};
+    border-bottom: ${({ theme }) => `1px solid ${theme.gray10}`};
+  }
 `;
 
 const FixRowItem = styled(RowItem)`
@@ -89,8 +94,10 @@ const FixRowItem = styled(RowItem)`
   letter-spacing: 0em;
 `;
 const BorderFixRowItem = styled(FixRowItem)`
-  border-top: ${({ theme }) => `1px solid ${theme.gray10}`};
-  border-bottom: ${({ theme }) => `1px solid ${theme.gray10}`};
+  ${media.sm} {
+    border-top: ${({ theme }) => `1px solid ${theme.gray10}`};
+    border-bottom: ${({ theme }) => `1px solid ${theme.gray10}`};
+  }
 `;
 
 const TopHeader = styled.tr`
@@ -100,7 +107,7 @@ const TopHeader = styled.tr`
 `;
 
 const BottomHeader = styled.tr`
-  & *:nth-child(n + 4):nth-child(-n + 6) {
+  & *:nth-child(n + 5):nth-child(-n + 6) {
     background: ${({ theme }) => theme.blue20};
   }
 `;
@@ -113,6 +120,7 @@ type Props = {
 
 const BonusTable = ({ vipSortingData }: Props) => {
   const { vipBonusList } = useVipBonusListV2();
+  const { isDesktopSize } = useRwd();
   const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
   const titleList = [...vipBonusList];
   productRebateByLevel.map((gametype) => {
@@ -127,13 +135,13 @@ const BonusTable = ({ vipSortingData }: Props) => {
       <VIPTable>
         <thead>
           <TopHeader>
-            <HeaderRowItem $width={"450px"} colSpan={3}>
+            <HeaderRowItem $width={isDesktopSize ? "473px" : "390px"} colSpan={4}>
               {i18n.t("vip.bonus")}
             </HeaderRowItem>
-            <HeaderRowItem $width={"320px"} colSpan={3}>
+            <HeaderRowItem $width={isDesktopSize ? "252px" : "230px"} colSpan={2}>
               {i18n.t("vip.levelUp")}
             </HeaderRowItem>
-            <HeaderRowItem $width={"756px"} colSpan={6}>
+            <HeaderRowItem $width={isDesktopSize ? "756px" : "630px"} colSpan={6}>
               {i18n.t("vip.vipBenefit")}
             </HeaderRowItem>
           </TopHeader>
