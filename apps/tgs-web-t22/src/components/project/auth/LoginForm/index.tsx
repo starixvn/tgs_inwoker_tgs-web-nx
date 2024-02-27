@@ -29,8 +29,6 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      <LoginTitle>{i18n.t("common.login")}</LoginTitle>
-
       <FormContainer>
         <FormikForm
           formInputList={formInputConfigList}
@@ -52,12 +50,12 @@ const LoginForm = () => {
           </FormSubContainer>
         </FormikForm>
       </FormContainer>
-      
-      <RedirectWrapper style={{marginBottom: "36px"}}>
-        <ForgotPasswordContainer onClick={handleClickForgotPassword} style={{margin: 0}}>
+
+      <RedirectWrapper style={{ marginBottom: "36px" }}>
+        <ForgotPasswordContainer onClick={handleClickForgotPassword} style={{ margin: 0 }}>
           {i18n.t("forgotPassword.title")}
         </ForgotPasswordContainer>
-        <RedirectToRegisterHint style={{justifyContent: "flex-end"}}/>
+        <RedirectToRegisterHint style={{ justifyContent: "flex-end" }} />
       </RedirectWrapper>
       <LanguageSwitch style={{ width: "100%", margin: "auto auto 0" }} />
     </AuthFormContainer>
