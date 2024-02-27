@@ -1,10 +1,11 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
-import { AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
+import { AuthFormContainer, FormContainer, LoginTitle } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import {
   ForgotPasswordContainer,
@@ -12,6 +13,7 @@ import {
   RememberMeContainer,
   TitleContainer,
 } from "@/components/styled-component/auth/Form";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const LoginForm = () => {
   const {
@@ -23,13 +25,15 @@ const LoginForm = () => {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   } = useLoginForm();
+  const { isMobileSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      <TitleContainer>
-        {i18n.t("common.login")}
-        <div className="bottom-border" />
-      </TitleContainer>
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+      )}
 
       <FormContainer>
         <FormikForm

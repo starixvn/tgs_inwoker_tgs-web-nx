@@ -35,7 +35,6 @@ const RegisterForm = () => {
         <>
           <BrandLogo style={{ maxHeight: "54px" }} />
           <LoginWrapper>
-            <LoginTitle>{i18n.t("common.register")}</LoginTitle>
             <FormContainer>
               <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
             </FormContainer>

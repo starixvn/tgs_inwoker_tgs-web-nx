@@ -1,17 +1,13 @@
 import styled from "styled-components";
-import { media } from "@/theme/breakpoints";
 
 export const AuthFormContainer = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: calc(100vh - 60px - 68px);
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  align-self: stretch;
+  padding: 30px 32px;
   overflow: auto;
-  gap: 24px;
-  padding: 0 24px;
 
   ::-webkit-scrollbar {
     visibility: hidden;
@@ -25,11 +21,16 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
+  margin: 0 auto 20px;
 `;
 
 export const LoginTitle = styled.div`
-  font-size: 50px;
+  font-size: 40px;
   white-space: nowrap;
-  font-weight: 400;
-  color: ${({ theme }) => theme.white};
+  font-weight: 700;
+  line-height: 55px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 50px;
+  color: ${({ theme }) => theme.primary};
 `;

@@ -24,3 +24,14 @@ export const FormContainer = styled.div`
   //max-width: 400px;
   margin: 0 auto 20px;
 `;
+
+export const LoginTitle = styled.div`
+  font-size: 40px;
+  white-space: nowrap;
+  font-weight: 700;
+  line-height: 55px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-bottom: 50px;
+  color: ${({ theme }) => theme.primary};
+`;

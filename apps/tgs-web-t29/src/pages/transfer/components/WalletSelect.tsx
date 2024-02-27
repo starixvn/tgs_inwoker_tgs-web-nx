@@ -1,6 +1,6 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import { Provider } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
+import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
@@ -47,7 +47,7 @@ const WalletSelect = ({ value, handleChange, providerList, mainAccountId }: Prop
             {gpNameSwitcher(provider)}
             {`(${providerList
               .filter((transferWallet) => transferWallet.abbreviation === provider.abbreviation)
-              .map((transferWallet) => Common.formatNumberWithThousand(transferWallet.balance))})`}
+              .map((transferWallet) => Common.formatCurrency(transferWallet.balance, brandConfig[config.brand as BrandName]?.countryCode))})`}
           </option>
         ))}
     </Select>

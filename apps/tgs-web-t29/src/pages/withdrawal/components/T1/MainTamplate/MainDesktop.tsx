@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
-import { useHistory } from "react-router";
-
+import config, { brandConfig, BrandName } from "@tgs-web-nx/config";
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
@@ -125,12 +123,12 @@ const MainDesktop = ({
                 variant="outlined"
                 autoComplete="off"
                 value={amount}
-                type={"number"}
+                type="tel"
               />
             </FormControl>
 
             <LimitPopupContainer>
-              {Common.formatNumberWithThousand(min)} - {Common.formatNumberWithThousand(max)}
+              {Common.formatCurrency(min, brandConfig[config.brand as BrandName]?.countryCode)} - {Common.formatCurrency(max, brandConfig[config.brand as BrandName]?.countryCode)}
             </LimitPopupContainer>
           </AmountWrapper>
 
@@ -148,9 +146,9 @@ const MainDesktop = ({
                     <TextField
                       variant="outlined"
                       autoComplete="off"
-                      value={isNaN(amount) === false ? (amount * exchangeRate).toFixed(2) : 0}
-                      type={"number"}
-                      disabled={true}
+                      value={isNaN(amount) === false ? (amount * exchangeRate).toFixed(0) : 0}
+                      type="tel"
+                      disabled
                     />
                   </FormControl>
                 </USDTWrapper>
@@ -203,12 +201,10 @@ const MainDesktop = ({
         )}
 
       <SubmitButton
-        disabled={Boolean(
-          isNaN(parseFloat(amount)) ||
-            parseFloat(amount) < min ||
-            parseFloat(amount) > max ||
-            disabled,
-        )}
+        disabled={
+          Boolean(isNaN(parseFloat(amount)) || disabled) ||
+          Common.validateDepositAndWithdrawAmount(amount, max, min)
+        }
         onClick={handleWithdrawalClick}
         sx={{
           width: "250px",

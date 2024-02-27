@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig, BrandName} from "@tgs-web-nx/config";
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { MainProps } from "./index";
 import {
@@ -47,7 +46,6 @@ const MainMobile = ({
   handlePlayerNote,
   handleWithdrawalClick,
 }: MainProps) => {
-  const history = useHistory();
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
     useWageringPage();
 
@@ -136,12 +134,12 @@ const MainMobile = ({
             fullWidth
             value={amount}
             onChange={handleAmountChange}
-            type={"number"}
+            type="tel"
             placeholder={`${
               selectedCardIndex != null
                 ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(
-                    max,
+                  ` (${Common.formatCurrency(min, brandConfig[config.brand as BrandName]?.countryCode)} - ${Common.formatCurrency(
+                    max, brandConfig[config.brand as BrandName]?.countryCode
                   )})`
                 : i18n.t("withdrawal.enterAmount")
             }`}
@@ -188,12 +186,10 @@ const MainMobile = ({
 
       <SubmitButton
         fullWidth
-        disabled={Boolean(
-          isNaN(parseFloat(amount)) ||
-            parseFloat(amount) < min ||
-            parseFloat(amount) > max ||
-            !!disabled,
-        )}
+        disabled={
+          Boolean(isNaN(parseFloat(amount)) || disabled) ||
+          Common.validateDepositAndWithdrawAmount(amount, max, min)
+        }
         onClick={handleWithdrawalClick}
       >
         {i18n.t("common.nextStep")}
