@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
-import iconReturn from "@/assets/t21/images/dialog/icon-return.svg";
+// import iconReturn from "@/assets/t21/images/dialog/icon-close.svg";
 import Icon from "@/components/project/Icon";
 import downloadImg from "@/assets/t21/images/header/icon-download.svg";
+import backIcon from "@/assets/t21/images/dialog/icon-close.svg";
 
 export const DIALOG_HEADER_HEIGHT = "50px";
 
@@ -13,10 +14,10 @@ const DialogHeaderContainer = styled.div`
   left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.white};
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  background: ${({ theme }) => theme.white};
   color: ${({ theme }) => theme.primary};
   font-size: 1.125rem;
   font-weight: 700;
@@ -27,6 +28,10 @@ const DialogHeaderContainer = styled.div`
 `;
 
 const ReturnIconContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 17px;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -46,12 +51,15 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
+        <Icon iconUrl={backIcon} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
+      {/* <ReturnIconContainer onClick={handleClose}>
+        <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
+      </ReturnIconContainer> */}
 
       {dialogHeaderTitle}
 
-      <Icon
+      {/* <Icon
         iconUrl={downloadImg}
         width={"30px"}
         height={"30px"}
@@ -59,7 +67,7 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
           cursor: "pointer",
         }}
         onClick={() => goToDownload()}
-      />
+      /> */}
     </DialogHeaderContainer>
   );
 };

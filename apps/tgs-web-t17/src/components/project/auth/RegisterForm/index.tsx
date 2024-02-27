@@ -11,6 +11,7 @@ import {
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import styled from "styled-components";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
@@ -29,21 +30,18 @@ const RegisterForm = () => {
 
   return (
     <>
-      {isMobileSize ? (
-        <LoginHeader>
-          <Title>{i18n.t("common.register")}</Title>
-        </LoginHeader>
-      ) : (
-        <Title>{i18n.t("common.register")}</Title>
-      )}
-
       <AuthFormContainer>
+        {isMobileSize ? (
+          <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
+        ) : (
+          <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
+        )}
         <FormContainer>
           <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
         </FormContainer>
 
         <RedirectToLoginHint />
-        {isMobileSize && <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />}
+        {isMobileSize && <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />}
       </AuthFormContainer>
     </>
   );

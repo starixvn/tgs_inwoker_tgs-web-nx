@@ -36,12 +36,11 @@ const ForgotPasswordForm = () => {
           <>
             <BrandLogo style={{ maxHeight: "54px" }} />
             <LoginWrapper>
-              <LoginTitle>{`${i18n.t("forgotPassword.title")}`}</LoginTitle>
               <FormContainer>
                 <ForgotPasswordFormStage />
               </FormContainer>
-
               <RedirectToLoginHint />
+              <LanguageSwitch style={{ width: "100%" }} />
             </LoginWrapper>
           </>
         }
