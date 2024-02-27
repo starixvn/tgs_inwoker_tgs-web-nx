@@ -25,6 +25,7 @@ import {
   GameWalletButton,
   SubHeaderContainer,
   Hint,
+  CurrencyHint,
 } from "@/components/styled-component/WithdrawV2/Main";
 
 const MainMobile = ({
@@ -47,8 +48,9 @@ const MainMobile = ({
   handleWithdrawalClick,
 }: MainProps) => {
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
-    useWageringPage();
-
+  useWageringPage();
+  
+  const currencyRate = brandConfig[config.brand as BrandName]?.currencyRate;
   useEffect(() => {
     fetchpPlayerBucket();
   }, []);
@@ -138,13 +140,20 @@ const MainMobile = ({
             placeholder={`${
               selectedCardIndex != null
                 ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatCurrency(min, brandConfig[config.brand as BrandName]?.countryCode)} - ${Common.formatCurrency(
-                    max, brandConfig[config.brand as BrandName]?.countryCode
-                  )})`
+                  ` (${Common.formatCurrency(min)} - ${Common.formatCurrency(max)})`
                 : i18n.t("withdrawal.enterAmount")
             }`}
           />
         </FormControl>
+        {!!currencyRate && <CurrencyHint>
+        {
+          !isNaN(amount) ?
+          `${Common.formatCurrency(amount * currencyRate)}` :
+          '0'
+        } {
+          config.currency
+        }
+        </CurrencyHint>}
       </ItemContainer>
 
       {/*玩家備註*/}

@@ -1,5 +1,5 @@
+import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
 import { i18n } from "../index";
-
 let newWindow: Window | undefined;
 
 function getCDNLanguagePrefix(): string {
@@ -143,8 +143,8 @@ const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minA
  * @param countryCode 國碼
  * @returns 貨幣格式
  */
-const formatCurrency = (amount: number, countryCode?: string) => {
-  return new Intl.NumberFormat(countryCode).format(amount);
+const formatCurrency = (amount: number) => {
+  return new Intl.NumberFormat(brandConfig[config.brand as BrandName].countryCode).format(amount);
 };
 
 const Common = {
