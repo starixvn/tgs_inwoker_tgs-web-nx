@@ -72,7 +72,6 @@ const LoginForm = () => {
       )}
 
       <AuthFormContainer>
-        <Title>{i18n.t("common.login")}</Title>
         <FormContainer>
           <FormikForm
             formInputList={formInputConfigList}

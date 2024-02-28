@@ -8,7 +8,6 @@ import { theme } from "@/theme";
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
 `;
 
 type Props = {
@@ -20,18 +19,6 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
 
   return (
     <ButtonContainer>
-      <HeaderButton
-        onClick={goToLogin}
-        sx={{
-          width: buttonWidth ?? "77px",
-          background: {
-            sm: "#0A79B0",
-          },
-        }}
-      >
-        {i18n.t("common.login")}
-      </HeaderButton>
-
       <HeaderButton
         color={"primary"}
         onClick={goToRegister}
@@ -47,6 +34,21 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         }}
       >
         {i18n.t("common.register")}
+      </HeaderButton>
+      <HeaderButton
+        onClick={goToLogin}
+        sx={{
+          width: buttonWidth ?? "59px",
+          background: {
+            sm: "#0A79B0",
+          },
+          color: {
+            xs: theme.secondary,
+            sm: theme.white,
+          },
+        }}
+      >
+        {i18n.t("common.login")}
       </HeaderButton>
     </ButtonContainer>
   );

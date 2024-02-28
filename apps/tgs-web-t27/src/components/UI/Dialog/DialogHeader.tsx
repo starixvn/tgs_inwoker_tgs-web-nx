@@ -14,8 +14,6 @@ const DialogHeaderContainer = styled.div`
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.white};
-  background-color: ${({ theme }) => theme.mainBackground};
-  font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
   z-index: 1300;
@@ -39,14 +37,13 @@ type Props = {
 };
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
-  const showDialogHeaderTitle = dialogHeaderTitle !== "Login" && dialogHeaderTitle !== "Register" && dialogHeaderTitle !== "ForgotPassword";
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
         <Icon iconUrl={closeIcon} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
 
-      {showDialogHeaderTitle && dialogHeaderTitle}
+      {dialogHeaderTitle}
     </DialogHeaderContainer>
   );
 };

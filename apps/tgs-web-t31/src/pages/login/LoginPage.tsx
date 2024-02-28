@@ -81,7 +81,6 @@ const LoginPage = () => {
     </MainWrapper>
   ) : (
     <MainWrapper>
-      <LoginTitle>{i18n.t("common.login").toLocaleUpperCase()}</LoginTitle>
       <LoginForm />
     </MainWrapper>
   );

@@ -68,7 +68,6 @@ const RegisterForm = () => {
       )}
 
       <AuthFormContainer>
-        <Title>{i18n.t("common.register")}</Title>
         <FormContainer>
           <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
         </FormContainer>

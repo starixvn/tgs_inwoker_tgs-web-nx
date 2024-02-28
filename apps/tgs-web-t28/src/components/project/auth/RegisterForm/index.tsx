@@ -13,11 +13,15 @@ import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 
 const RegisterForm = () => {
-  const { isMobileSize, isDesktopSize } = useRwd();
+  const { isMobileSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      {isDesktopSize && <LoginTitle>{`${i18n.t("common.register")}`}</LoginTitle>}
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "50px", maxWidth: "none" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
+      )}
 
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />

@@ -7,5 +7,4 @@ export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "0.875rem",
   fontWeight: 400,
   borderRadius: "2px",
-  minWidth: "106px",
 }));

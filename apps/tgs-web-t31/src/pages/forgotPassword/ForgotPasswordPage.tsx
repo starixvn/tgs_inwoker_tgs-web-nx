@@ -82,7 +82,6 @@ const ForgotPasswordPage = () => {
   ) : (
     <MainWrapper>
       <ForgetPasswordTitle>
-        {`${i18n.t("forgotPassword.title").toLocaleUpperCase()}`}
       </ForgetPasswordTitle>
       <ForgotPasswordForm />
     </MainWrapper>

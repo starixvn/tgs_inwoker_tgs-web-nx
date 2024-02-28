@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
+import { usePageName } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import { HEADER_HEIGHT } from "@/theme/constants";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
-  height: 100vh;
-  overflow: auto;
+  /* height: 100vh;
+  overflow: auto; */
 `;
 
 const ContentWrapper = styled.div`
@@ -25,6 +27,8 @@ type Props = {
 };
 const AuthDialogLayout = ({ children }: Props) => {
   const { isDesktopSize } = useRwd();
+  const { pageName } = usePageName();
+  const { handleCloseDialog } = useAuthDialogLayout();
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;
@@ -32,8 +36,9 @@ const AuthDialogLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <Header />
-      <MenuDrawer />
+      {/* <Header />
+      <MenuDrawer /> */}
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
 
       <ContentWrapper>{children}</ContentWrapper>
     </DialogLayoutContainer>

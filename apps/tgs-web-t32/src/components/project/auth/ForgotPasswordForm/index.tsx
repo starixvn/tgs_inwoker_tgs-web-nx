@@ -18,6 +18,11 @@ const ForgotPasswordForm = () => {
   return (
     <ForgotPasswordStageContextProvider>
       <AuthFormContainer>
+        {isMobileSize ? (
+          <BrandLogo style={{ marginBottom: "50px", maxWidth: "none" }} />
+        ) : (
+          <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+        )}
         <FormContainer
           style={{
             margin: "0 auto",

@@ -28,10 +28,15 @@ const LoginForm = () => {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   } = useLoginForm();
+  const { isMobileSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+      )}
 
       <FormContainer>
         <FormikForm
