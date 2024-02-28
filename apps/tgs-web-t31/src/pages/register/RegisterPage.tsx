@@ -78,7 +78,6 @@ const RegisterPage = () => {
     </MainWrapper>
   ) : (
     <MainWrapper>
-      <RegisterTitle>{i18n.t("common.register").toLocaleUpperCase()}</RegisterTitle>
       <RegisterForm />
     </MainWrapper>
   );

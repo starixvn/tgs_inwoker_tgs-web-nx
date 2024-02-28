@@ -15,6 +15,7 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const LoginForm = () => {
   const {
@@ -26,11 +27,15 @@ const LoginForm = () => {
     handleClickNeedToRemember,
     handleClickForgotPassword,
   } = useLoginForm();
-  const { isDesktopSize } = useRwd();
+  const { isMobileSize } = useRwd();
 
   return (
     <AuthFormContainer>
-      {isDesktopSize && <LoginTitle>{i18n.t("common.login")}</LoginTitle>}
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "50px", maxWidth: "none" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+      )}
       <FormContainer>
         <FormikForm
           formInputList={formInputConfigList}

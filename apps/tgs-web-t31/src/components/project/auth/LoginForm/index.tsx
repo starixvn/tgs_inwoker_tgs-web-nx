@@ -7,7 +7,7 @@ import { useHistory } from "react-router";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
-import { AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
+import { AuthFormContainer, FormContainer, LoginTitle } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import {
   ForgotPasswordContainer,
@@ -16,6 +16,7 @@ import {
 } from "@/components/styled-component/auth/Form";
 import checkedImg from "@/assets/t31/images/auth/checked.svg";
 import uncheckedImg from "@/assets/t31/images/auth/uncheck.svg";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const HintContainer = styled.div`
   display: flex;
@@ -38,6 +39,12 @@ const LoginForm = () => {
   };
   return (
     <AuthFormContainer>
+      {isMobileSize ? (
+        <BrandLogo style={{ marginTop: "40px", marginBottom: "40px", maxWidth: "none" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
+      )}
+
       <FormContainer>
         <FormikForm
           formInputList={formInputConfigList}
