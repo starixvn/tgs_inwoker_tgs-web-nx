@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
-import { Close as CloseIcon } from "@mui/icons-material";
+import { usePageName } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -19,25 +20,13 @@ const ContentWrapper = styled.div`
   z-index: 1;
 `;
 
-const CloseIconContainer = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: ${({ theme }) => theme["515c"]};
-`;
-
 type Props = {
   children: React.ReactNode;
 };
 const AuthDialogLayout = ({ children }: Props) => {
   const { handleCloseDialog } = useAuthDialogLayout();
   const { isDesktopSize } = useRwd();
+  const { pageName } = usePageName();
 
   if (isDesktopSize) {
     return <DefaultLayout>{children}</DefaultLayout>;
@@ -45,13 +34,7 @@ const AuthDialogLayout = ({ children }: Props) => {
 
   return (
     <DialogLayoutContainer>
-      <CloseIconContainer onClick={handleCloseDialog}>
-        <CloseIcon
-          style={{
-            color: "white",
-          }}
-        />
-      </CloseIconContainer>
+      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
       <ContentWrapper>{children}</ContentWrapper>
     </DialogLayoutContainer>
   );

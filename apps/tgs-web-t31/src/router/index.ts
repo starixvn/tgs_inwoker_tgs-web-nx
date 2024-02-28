@@ -91,19 +91,19 @@ const routes: RouteType[] = [
   {
     path: "/login",
     component: LoginPage,
-    layout: DialogLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/register",
     component: RegisterPage,
-    layout: DefaultLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/forgot-password",
     component: ForgotPasswordPage,
-    layout: DefaultLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   // TODO:these 4 params looks like is unused?
