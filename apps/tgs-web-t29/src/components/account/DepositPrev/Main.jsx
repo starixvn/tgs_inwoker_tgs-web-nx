@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import config, { brandConfig } from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
@@ -57,7 +57,7 @@ const CurrencyHint = styled.p`
 class Main extends Component {
   render() {
     const depositTypeList = this.props.wallet.depositTypeList;
-    const currencyRate = brandConfig[config.brand]?.currencyRate;
+    const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
     // 下方程式碼為針對客戶需求客製化修改 若要修改請先詢問 Sean 相關邏輯
     // ---- hardcode 結界 start ----
 

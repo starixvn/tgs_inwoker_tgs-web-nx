@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { BrandsSupport } from "@tgs-web-nx/types";
-import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
+import config, {brandConfig, mapBrandName} from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useContactCS } from "@tgs-web-nx/core/hooks";
 import SupportCard from "@/pages/contactUs/components/SupportCard";
@@ -41,7 +41,7 @@ const Support = () => {
   };
 
   const csLiveChatUrl = general?.livechat?.setting?.url || "www.google.com";
-  const isShowLiveChat = brandConfig[config.brand as BrandName]?.isShowLiveChat;
+  const isShowLiveChat = brandConfig[mapBrandName(config.brand)].isShowLiveChat;
   
   return (
     <SupportContainer>

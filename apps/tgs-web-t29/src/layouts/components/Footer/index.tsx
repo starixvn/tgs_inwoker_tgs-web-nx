@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProvider } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
@@ -102,8 +102,7 @@ const Footer = () => {
   const history = useHistory();
   const [isOpenChatQRcode, setIsOpenChatQRcode] = useState(false);
   const brand = config.brand;
-  const isShowDownloadApp = brandConfig[brand as BrandName]?.isShowDownloadApp;
-  const isShowChatCustomerService = brandConfig[brand as BrandName]?.isShowChatCustomerService;
+  const {isShowDownloadApp, isShowChatCustomerService} = brandConfig[mapBrandName(brand)];
 
   const partnerList = providerList.map((provider) => {
     return provider.name;

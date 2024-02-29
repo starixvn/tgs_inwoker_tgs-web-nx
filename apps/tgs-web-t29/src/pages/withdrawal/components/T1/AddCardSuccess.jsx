@@ -1,4 +1,4 @@
-import config, { brandConfig } from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
@@ -21,7 +21,7 @@ const AddCardSuccess = ({
   onhandleCSClick,
 }) => {
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
-  const isAllowMulitBankCards = brandConfig[config.brand]?.isAllowMulitBankCards;
+  const isAllowMulitBankCards = brandConfig[mapBrandName(config.brand)].isAllowMulitBankCards;
 
   return (
     <Container>

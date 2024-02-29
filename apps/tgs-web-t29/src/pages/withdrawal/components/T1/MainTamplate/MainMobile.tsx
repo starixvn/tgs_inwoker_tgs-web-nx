@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config, {brandConfig, BrandName} from "@tgs-web-nx/config";
+import config, {brandConfig, mapBrandName} from "@tgs-web-nx/config";
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { MainProps } from "./index";
 import {
@@ -50,7 +50,7 @@ const MainMobile = ({
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
   useWageringPage();
   
-  const currencyRate = brandConfig[config.brand as BrandName]?.currencyRate;
+  const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   useEffect(() => {
     fetchpPlayerBucket();
   }, []);
