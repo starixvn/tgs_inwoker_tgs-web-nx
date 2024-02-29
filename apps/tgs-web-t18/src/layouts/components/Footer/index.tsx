@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
+import { useProvider } from "@tgs-web-nx/core/features";
 import { media } from "@/theme/breakpoints";
 import SocialMedia from "@/components/project/SocialMedia";
 
@@ -33,14 +34,12 @@ const FooterGroup = styled.div`
 
 const GroupTitle = styled.h6`
   font-size: 1.25rem;
-  line-height: 0.875rem;
   font-weight: 500;
   margin-bottom: 20px;
 `;
 
 const GroupContent = styled.div`
   font-size: 0.875rem;
-  line-height: 1.025rem;
   font-weight: 400;
   margin-bottom: 10px;
 `;
@@ -64,35 +63,42 @@ const ParnterBadge = styled.div`
 
 const SocialMediaTitle = styled.h6`
   font-size: 1.25rem;
-  line-height: 0.875rem;
   font-weight: 500;
+  margin-bottom: 22px;
 `;
 
-const PartnerList = [
-  "Red Tiger",
-  "EVOLUTION",
-  "SV388",
-  "Saba Sports",
-  "BTi",
-  "365 Cards",
-  "PG Soft",
-  "KY",
-];
+const LogoWrapper = styled.div`
+  width: 200px;
+  height: 90px;
+`;
+
+const LogoImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+`;
+
 
 type Props = {};
 const Footer = (props: Props) => {
   const { general } = useGeneralStore();
+  const { providerList } = useProvider();
+  const partnerList = providerList.map((provider) => {
+    return provider.name;
+  });
+
 
   const brand = config.brand;
   return (
     <FooterContainer>
       <FooterGroups>
-        {/*<FooterGroup>*/}
-        {/*  <LogoImg src={general.brand && general.brand.loadingUrl} />*/}
-        {/*</FooterGroup>*/}
-
         <FooterGroup>
           <GroupTitle>Gaming License</GroupTitle>
+          <GroupContent>
+            <LogoWrapper>
+              <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} />
+            </LogoWrapper>
+          </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>
@@ -106,20 +112,19 @@ const Footer = (props: Props) => {
           <GroupContent>Privacy Policy</GroupContent>
           <GroupContent>Terms and Conditions</GroupContent>
           <GroupContent>Responsible Gaming</GroupContent>
+          <SocialMediaTitle>Follow Us</SocialMediaTitle>
+          <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>
           <GroupTitle>Partners</GroupTitle>
           <PartnersContainer>
-            {PartnerList.map((partner) => {
+            {partnerList.map((partner) => {
               return <ParnterBadge key={partner}>{partner}</ParnterBadge>;
             })}
           </PartnersContainer>
         </FooterGroup>
       </FooterGroups>
-
-      <SocialMediaTitle>Follow Us</SocialMediaTitle>
-      <SocialMedia />
     </FooterContainer>
   );
 };

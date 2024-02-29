@@ -9,12 +9,38 @@ import LoadingBlock from "@/components/project/LoadingBlock";
 import GameCard from "@/pages/home/components/GameCard";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import { useCategorySlider } from "@/pages/home/components/CategoryRenderer/components/HomeCategory/GameTypeCategory/hooks/useCategorySlider";
+import { media } from "@/theme/breakpoints";
 
 const CategorySliderContainer = styled.div`
   padding: 8px 0;
   display: flex;
   gap: 14px;
   overflow-x: auto;
+
+  margin-bottom: 15px;
+  ${media.sm} {
+    margin-bottom: unset;
+    border-radius: 10px;
+    padding: 4px;
+
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background: ${(props) => props.theme.tertiaryDark};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #53535375;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background: transparent;
+    }
+  }
 `;
 
 type Props = {
@@ -80,11 +106,9 @@ const CategorySlider = ({ gameType, gameList = [] }: Props) => {
             key={gameItem.id}
             gameItem={gameItem}
             isActive={gameItem.isactive}
-            imageUrl={`${
-              config.sourceUrl
-            }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-              gameItem.code
-            }.jpg`}
+            imageUrl={`${config.sourceUrl
+              }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
+              }.jpg`}
             style={{
               width: cardWidth,
               flexShrink: 0,
