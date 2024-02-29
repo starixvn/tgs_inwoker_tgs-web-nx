@@ -7,8 +7,7 @@ import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
-import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
-
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 const DialogLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
@@ -16,7 +15,7 @@ const DialogLayoutContainer = styled.div`
 
 const ContentWrapper = styled.div`
   min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`calc(${MOBILE_HEADER_HEIGHT} + ${DIALOG_HEADER_HEIGHT}) auto ${BOTTOM_APP_BAR_HEIGHT}`};
+  margin: ${`calc(${MOBILE_HEADER_HEIGHT} + ${MOBILE_HEADER_HEIGHT}) auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
 
