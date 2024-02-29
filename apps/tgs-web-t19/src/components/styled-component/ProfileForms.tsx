@@ -30,10 +30,11 @@ export const LabelContainer = styled.div`
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  height: "48px",
+  height: "40px",
   width: "100%",
   fontSize: "0.875rem",
   justifyContent: "center",
+  border: "1px solid #fff",
 
   "& fieldset": {
     border: "none",

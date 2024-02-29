@@ -1,11 +1,11 @@
 import React from "react";
 import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/material";
+import { borderRadius } from "@mui/system";
 
 const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: theme.palette.text.primary,
   fontSize: "0.937rem",
   fontWeight: 400,
-  border: "none",
   "&:focus": {
     background: "none",
   },
@@ -17,19 +17,23 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   },
   select: {
     color: theme.palette.text.primary,
-    padding: "14px",
+    padding: "10px",
+    borderRadius: "6px",
     "&:focus": {
       background: "none",
     },
     "&:active": {
       background: "none",
     },
+    "&:disabled": {
+      color: "#fff",
+    },
   },
   option: {
     background: "#1D1D1D !important",
     color: "#fff",
     "&:hover": {
-      background: "#828282 !important",
+      background: "#fff !important",
     },
   },
   "& .MuiSvgIcon-root": {
