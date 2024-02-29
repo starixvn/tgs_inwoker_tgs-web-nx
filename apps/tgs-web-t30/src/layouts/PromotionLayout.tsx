@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import { BOTTOM_APP_BAR_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
-import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import DefaultLayout from "@/layouts/DefaultLayout";
 
 const DialogLayoutContainer = styled.div`
@@ -16,7 +16,7 @@ const DialogLayoutContainer = styled.div`
 
 const ContentWrapper = styled.div`
   min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-  margin: ${`calc(${MOBILE_HEADER_HEIGHT} + ${DIALOG_HEADER_HEIGHT}) auto ${BOTTOM_APP_BAR_HEIGHT}`};
+  margin: ${`calc(${MOBILE_HEADER_HEIGHT}) auto ${BOTTOM_APP_BAR_HEIGHT}`};
   position: relative;
   z-index: 1;
 
@@ -43,7 +43,7 @@ const PromotionLayout = ({ children }: Props) => {
   return (
     <DialogLayoutContainer>
       <Header />
-      <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
+      {/* <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} /> */}
 
       <MenuDrawer />
 
