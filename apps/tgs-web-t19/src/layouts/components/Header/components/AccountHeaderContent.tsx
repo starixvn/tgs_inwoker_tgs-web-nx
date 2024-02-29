@@ -15,7 +15,7 @@ import Icon from "@/components/project/Icon";
 import iconAccount from "@/assets/t19/images/header/icon-account.svg";
 import iconBalance from "@/assets/t19/images/header/icon-balance.svg";
 import iconDeposit from "@/assets/t19/images/header/icon-deposit.svg";
-import accountBtn from "@/assets/t19/images/header/account-btn.svg";
+import accountBtn from "@/assets/t19/images/header/account-btn.png";
 import liveChatBtn from "@/assets/t19/images/header/live-chat-btn.svg";
 import signoutBtn from "@/assets/t19/images/header/sign-out.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
