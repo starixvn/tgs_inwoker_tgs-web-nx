@@ -1,6 +1,6 @@
 import styled, { css, DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
-import config, {brandConfig, BrandName} from "@tgs-web-nx/config";
+import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";

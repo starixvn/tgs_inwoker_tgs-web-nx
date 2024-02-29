@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { BankCard } from "@tgs-web-nx/types";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
@@ -29,7 +29,7 @@ const CardManage = ({
 }: Props) => {
   const { isDesktopSize } = useRwd();
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
-  const isAllowMulitBankCards = brandConfig[config.brand as BrandName]?.isAllowMulitBankCards;
+  const isAllowMulitBankCards = brandConfig[mapBrandName(config.brand)].isAllowMulitBankCards;
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
       return item.detail.phone.substring(item.detail.phone.length - 4);

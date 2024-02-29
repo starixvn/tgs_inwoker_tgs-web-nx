@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 import { Provider } from "@tgs-web-nx/types";
-import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
+import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";

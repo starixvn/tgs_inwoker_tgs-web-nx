@@ -1,6 +1,5 @@
 import React, { Suspense, useRef } from "react";
 import { Redirect, Route, Router, Switch } from "react-router-dom";
-import config from "@tgs-web-nx/config";
 import { ScrollToTop } from "@tgs-web-nx/utils";
 import { AppHistory } from "@tgs-web-nx/core";
 import { useInitSite } from "@tgs-web-nx/core/hooks";
@@ -17,7 +16,7 @@ import {
   UserWalletInfoContextProvider,
 } from "@tgs-web-nx/core/features";
 import { RouteType } from "@tgs-web-nx/types";
-import CustomConfig, { BrandName, brandConfig } from "@tgs-web-nx/config";
+import config, {mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import LiveChat from "./components/tools/LiveChat";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
@@ -41,7 +40,7 @@ const App: React.FC = () => {
 
   const currentRoute = routeRef.current;
   
-  const isDisableWebPinchAction = brandConfig[config.brand as BrandName]?.isDisableWebPinchAction;
+  const isDisableWebPinchAction = brandConfig[mapBrandName(config.brand)].isDisableWebPinchAction;
   if (isDisableWebPinchAction) {
     document.addEventListener(
       "touchstart",

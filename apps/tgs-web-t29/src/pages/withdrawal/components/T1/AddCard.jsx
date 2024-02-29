@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import config, {brandConfig} from "@tgs-web-nx/config";
+import config, {brandConfig, mapBrandName} from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { Select as CustomSelect } from "@/components/UI/Select";
@@ -238,7 +238,7 @@ const AddCard = ({
                 name="bankAccountName"
                 value={bankAccountName}
                 //for MOVN2 customization
-                disabled={brandConfig[config.brand]?.isDisabledBankHolderName ? true : disableBankAccountNameInput}
+                disabled={brandConfig[mapBrandName(config.brand)].isDisabledBankHolderName ? true : disableBankAccountNameInput}
               />
             </FormControl>
           </ItemContainer>
@@ -276,7 +276,7 @@ const AddCard = ({
               value={bankAccountName}
               //for MOVN2 customization
               disabled={
-                brandConfig[config.brand]?.isDisabledBankHolderName ? true : disableBankAccountNameInput
+                brandConfig[mapBrandName(config.brand)].isDisabledBankHolderName ? true : disableBankAccountNameInput
               }
             />
           </FormControl>
@@ -313,7 +313,7 @@ const AddCard = ({
               onChange={handleBankAccountNameChange}
               value={bankAccountName}
               //for MOVN2 customization
-              disabled={brandConfig[config.brand]?.isDisabledBankHolderName ? true : disableBankAccountNameInput}
+              disabled={brandConfig[mapBrandName(config.brand)].isDisabledBankHolderName ? true : disableBankAccountNameInput}
             />
           </FormControl>
         </ItemContainer>

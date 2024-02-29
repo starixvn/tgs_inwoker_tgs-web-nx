@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config, { brandConfig, BrandName } from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
@@ -42,7 +42,7 @@ const MainDesktop = ({
   handlePlayerNote,
   handleWithdrawalClick,
 }: MainProps) => {
-  const currencyRate = brandConfig[config.brand as BrandName]?.currencyRate;
+  const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   
   useEffect(() => {
     getTransferLimit(cardList[selectedCardIndex].paymentchannelid);
