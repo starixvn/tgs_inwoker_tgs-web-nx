@@ -144,7 +144,7 @@ const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minA
  * @returns 貨幣格式
  */
 const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat(brandConfig[config.brand as BrandName].countryCode).format(amount);
+  return new Intl.NumberFormat(brandConfig[config.brand as BrandName]?.countryCode).format(amount);
 };
 
 const Common = {
