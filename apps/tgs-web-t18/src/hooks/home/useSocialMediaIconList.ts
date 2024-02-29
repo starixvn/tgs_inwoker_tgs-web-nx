@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import fb from "@/assets/t18/images/home/social_media/fb.svg";
 import ig from "@/assets/t18/images/home/social_media/ig.svg";
-// import twitter from "@/assets/t18/images/home/social_media/twitter.svg";
+import twitter from "@/assets/t18/images/home/social_media/twitter.svg";
 
 type SocialMediaItem = {
   key: string;
@@ -26,11 +26,11 @@ export const useSocialMediaIconList = () => {
         icon: ig,
         link: "",
       },
-      // {
-      //   key: "twitter",
-      //   icon: twitter,
-      //   link: "",
-      // },
+      {
+        key: "twitter",
+        icon: twitter,
+        link: "",
+      },
     );
 
     setSocialMediaIconList(socialMediaIconList);

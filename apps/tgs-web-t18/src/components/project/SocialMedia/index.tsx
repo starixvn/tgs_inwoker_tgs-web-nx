@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useGoToHomePage } from "@/hooks/home/useGoToHomePage";
 import useSocialMediaIconList from "@/hooks/home/useSocialMediaIconList";
 
@@ -17,7 +16,7 @@ const SocialMediaIcon = styled.div<{ $imageUrl: string }>`
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-repeat: no-repeat;
   background-size: contain;
-  margin-right: 5px;
+  margin-right: 13px;
 `;
 
 const SocialMedia = () => {
