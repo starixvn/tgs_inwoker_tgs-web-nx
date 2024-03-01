@@ -2,12 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
-import { UserTypeEnum } from "@tgs-web-nx/core/features";
+import { FormikFormInput, UserTypeEnum } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 import { Select } from "@/components/UI/Select";
-import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { theme } from "@/theme";
 
 const FormPromotionCodeContainer = styled.div`

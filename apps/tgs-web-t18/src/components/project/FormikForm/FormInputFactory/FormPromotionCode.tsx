@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
-import { UserTypeEnum } from "@tgs-web-nx/core/features";
+import { FormikFormInput, UserTypeEnum } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { GrayInputWrapper, TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 
 const FormPromotionCodeContainer = styled.div`
@@ -50,6 +49,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
           inputProps={{
             autoComplete: "off",
           }}
+          disabled={true}
         />
 
         <DropdownContainer>
@@ -62,6 +62,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             value={formik.values["userType"]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
+            disabled={true}
             MenuProps={{
               PaperProps: {
                 sx: {

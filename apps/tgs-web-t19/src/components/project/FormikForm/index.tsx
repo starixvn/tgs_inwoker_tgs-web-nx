@@ -1,7 +1,6 @@
 import React from "react";
-import * as Yup from "yup";
 import styled from "styled-components";
-import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
+import { FormikFormInput } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
@@ -34,14 +33,6 @@ const SubmitButtonWrapper = styled.div`
     width: 100%;
   }
 `;
-
-export interface FormikFormInput {
-  type: FormInputTypeEnum;
-  label: string;
-  name: string;
-  initialValue: string;
-  validationSchema: Yup.Schema;
-}
 
 type Props = {
   formInputList: FormikFormInput[];

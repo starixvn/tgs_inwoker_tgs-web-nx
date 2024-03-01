@@ -12,6 +12,9 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   "&:active": {
     background: "none",
   },
+  "& > .Mui-disabled": {
+    WebkitTextFillColor: theme.palette.text.disabled,
+  },
   select: {
     color: theme.palette.black,
     padding: "14px",

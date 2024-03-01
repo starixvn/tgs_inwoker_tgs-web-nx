@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web-nx/types";
-import config, { brandConfig, type BrandName } from "@tgs-web-nx/config";
+import config, { brandConfig } from "@tgs-web-nx/config";
 import {
   UserTypeEnum,
   useAuthDialog,
   useConfirmAdult,
-  usePromotionCode,
   useGenerateRegisterCreatePlayerFormik,
 } from "../../../index";
 
@@ -16,7 +15,6 @@ export function useCreatePlayerStage() {
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
   const { registerV2CreatePlayer, registerV2SetRealName, accountLogin, getAccountInfo } =
     useAccountStore();
-  const { promotionData } = usePromotionCode();
   const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
@@ -37,9 +35,8 @@ export function useCreatePlayerStage() {
       const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
         username,
         pwd: values.pwd as string,
-        upper: userType === UserTypeEnum.PLAYER ? promoteCode || promotionData.upper : undefined,
-        invitationcode:
-          userType === UserTypeEnum.AGENT ? promoteCode || promotionData.promoId : undefined,
+        upper: userType === UserTypeEnum.PLAYER ? promoteCode : undefined,
+        invitationcode: userType === UserTypeEnum.AGENT ? promoteCode : undefined,
         //@ts-ignore
         testplayer: config.testplayer || false,
       };
@@ -58,7 +55,8 @@ export function useCreatePlayerStage() {
         throw new Error(i18n.t("common.msgAlreadyExist"));
       }
       //for MOVN2 customization
-      if (brandConfig[config.brand as BrandName]?.isAddRealNameFieldBrand) {
+      // @ts-ignore
+      if (brandConfig[config.brand]?.isAddRealNameFieldBrand) {
         //Set realname之前必須先login
         await accountLogin(values.username, values.pwd);
 

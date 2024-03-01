@@ -1,5 +1,5 @@
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 
 export enum InvitationTypeEnum {
   Agent = "a",
@@ -7,9 +7,7 @@ export enum InvitationTypeEnum {
 }
 
 export function usePromotionCodeV2() {
-  const { general, getInvitationCode } = useGeneralStore();
-  const [invitationType, setInvitationType] = useState<InvitationTypeEnum | null>(null);
-  const [promotionCode, setPromotionCode] = useState("");
+  const { getInvitationCode } = useGeneralStore();
 
   const initPromotionDataInLocalStorage = useCallback(() => {
     // url example: domain/a/invitationCode
@@ -41,26 +39,25 @@ export function usePromotionCodeV2() {
     }
   }, [getInvitationCode]);
 
-  const initPromotionCode = useCallback(async () => {
+  const initPromotionCode = async (hasInvitationCode: boolean) => {
     initPromotionDataInLocalStorage();
 
-    if (general.brand.hasInvitationCode) {
+    if (hasInvitationCode) {
       await fetchInvitationCode();
     }
+  };
 
-    setInvitationType((localStorage.getItem("invitationType") as InvitationTypeEnum) || null);
-    setPromotionCode(localStorage.getItem("promotionCode") || "");
-  }, [fetchInvitationCode, general.brand.hasInvitationCode, initPromotionDataInLocalStorage]);
+  const getInvitationType = () => {
+    return (localStorage.getItem("invitationType") as InvitationTypeEnum) || null;
+  };
 
-  const promotionData = {
-    upper: invitationType === InvitationTypeEnum.Player ? promotionCode : "",
-    promoId: invitationType === InvitationTypeEnum.Agent ? promotionCode : "",
+  const getPromotionCode = () => {
+    return localStorage.getItem("promotionCode") || "";
   };
 
   return {
-    promotionData,
     initPromotionCode,
-    invitationType,
-    promotionCode,
+    getInvitationType,
+    getPromotionCode,
   };
 }

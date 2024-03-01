@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
 import { FormInputTypeEnum, UserTypeEnum } from "../../types";
 import { FormikFormInput, useFormikInitValue } from "../useFormikInitValue";
 
@@ -12,8 +10,13 @@ type Props = {
 };
 
 export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Props) {
+  // console.log("============");
+  // console.log(invitationType);
+  // console.log(promotionCode);
   // ===== init form input config =====
   const formInputConfigList = useMemo<FormikFormInput[]>(() => {
+    const promotionCode = "123";
+
     return [
       {
         label: i18n.t("common.username"),
@@ -47,51 +50,10 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
           //@ts-ignore
           .oneOf([Yup.ref("pwd"), null], "Passwords must match"),
       },
-      (() => {
-        if (!config.features.Register_ShowPhone) return;
-
-        return {
-          label: i18n.t("forgotPassword.plsEnterPhoneNumber"),
-          name: "phone",
-          initialValue: "",
-          type: FormInputTypeEnum.PHONE,
-          validationSchema: Yup.string()
-            .required("Phone is required")
-            .matches(new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`), {
-              message: i18n
-                .t("common.noReachMin")
-                .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
-            }),
-        };
-      })(),
-      (() => {
-        if (!config.features.Register_ShowPhone) return;
-        return {
-          label: "",
-          name: "areaCode",
-          initialValue: config.features.PhonePrefix,
-          type: FormInputTypeEnum.AREA_CODE,
-        };
-      })(),
-      (() => {
-        if (!config.features.Register_ShowEmail) return;
-
-        return {
-          label: i18n.t("wap.register.email"),
-          name: "email",
-          initialValue: "",
-          type: FormInputTypeEnum.TEXT,
-          validationSchema: Yup.string()
-            .required("Email is required")
-            .matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, {
-              message: i18n.t("common.msgInvalidEmail"),
-            }),
-        };
-      })(),
       {
         label: i18n.t("wap.register.promoteCode"),
         name: "promoteCode",
-        initialValue: "",
+        initialValue: promotionCode || "",
         type: FormInputTypeEnum.PROMOTION_CODE,
       },
       {

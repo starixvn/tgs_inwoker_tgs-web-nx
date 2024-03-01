@@ -13,6 +13,10 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   "&:active": {
     background: "none",
   },
+  "& > .Mui-disabled": {
+    WebkitTextFillColor: theme.palette.tertiary.main,
+  },
+
   select: {
     color: theme.palette.white,
     padding: "14px",
@@ -21,10 +25,6 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
     "&:active": {
       background: "none",
-    },
-    "&:disabled": {
-      color: theme.palette.tertiary.main,
-      WebkitTextFillColor: `${theme.palette.common.white}`,
     },
   },
   "& .MuiSvgIcon-root": {
