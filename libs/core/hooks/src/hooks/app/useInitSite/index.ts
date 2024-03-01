@@ -1,7 +1,6 @@
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { useLanguageDetect } from "./useLanguageDetect";
-import { useHandleMaintenance } from "./useHandleMaintenance";
 import { useCheckRegisterProcess } from "./useCheckRegisterProcess";
 import { useInitSiteApiData } from "./useInitSiteApiData";
 

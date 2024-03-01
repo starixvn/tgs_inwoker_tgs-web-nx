@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import { useCreatePlayerStage } from "@tgs-web-nx/core/features";
 import { theme } from "@/theme";
-import { useCreatePlayerStage } from "@/hooks/stage/useCreatePlayerStage";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 
@@ -32,13 +32,13 @@ const CreatePlayerStage = () => {
       buttonText={i18n.t("createaccount")}
     >
       <VerifyAgeContainer>
-        <Checkbox 
+        <Checkbox
           value={isConfirmedAdult}
           onClick={handleClickConfirmAdult}
           style={{
             padding: "0px 5px 0px",
             color: theme.white,
-        }}
+          }}
         />
         {i18n.t("web.register.contract")}
       </VerifyAgeContainer>

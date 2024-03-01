@@ -1,7 +1,7 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
-import { useCreatePlayerStage } from "@/hooks/stage/useCreatePlayerStage";
+import { useCreatePlayerStage } from "@tgs-web-nx/core/features";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 

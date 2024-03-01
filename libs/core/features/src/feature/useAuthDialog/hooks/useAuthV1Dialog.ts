@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { usePageName } from "../../usePageName/index";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "../../game/useHomeGameContext";
 
 export function useAuthV1Dialog() {
   const history = useHistory();
@@ -47,7 +47,12 @@ export function useAuthV1Dialog() {
         }
       }
 
-      if (location.pathname === "/register" && !isOpen) {
+      if (
+        (location.pathname.includes("/register") ||
+          location.pathname.includes("/a/") ||
+          location.pathname.includes("/p/")) &&
+        !isOpen
+      ) {
         handleChangeGameType(GameTypeEnum.NONE);
         history.push("/");
       }

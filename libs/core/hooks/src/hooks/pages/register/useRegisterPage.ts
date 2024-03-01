@@ -5,22 +5,18 @@ import {
   useAuth,
   useAuthDialog,
   useHomeGameContext,
-  useRegisterForm,
   useUpdatePageName,
 } from "@tgs-web-nx/core/features";
-import { useParams } from "react-router";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useRwd } from "../../tools";
 
 export function useRegisterPage() {
   useUpdatePageName(i18n.t("common.register"));
-  const history = useHistory();
-  const { isLogin } = useAuth();
-  const { isDesktopSize } = useRwd();
 
-  const { playername } = useParams<{ playername: string }>();
+  const { isLogin } = useAuth();
+  const history = useHistory();
+  const { isDesktopSize } = useRwd();
   const { handleToggleRegisterDialog } = useAuthDialog();
-  const { handleClickConfirmAdult } = useRegisterForm();
   const { handleChangeGameType } = useHomeGameContext();
 
   useEffect(() => {
@@ -29,9 +25,8 @@ export function useRegisterPage() {
       history.push("/");
     }
 
-    if (playername && isDesktopSize) {
+    if (isDesktopSize) {
       handleToggleRegisterDialog(true);
-      handleClickConfirmAdult();
     }
   }, []);
 }

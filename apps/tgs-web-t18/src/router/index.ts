@@ -112,20 +112,7 @@ const routes: RouteType[] = [
     isAnonymousAllowed: true,
   },
   {
-    path: "/t/:promotionid",
-    component: RegisterPage,
-    layout: DefaultLayout,
-    isAnonymousAllowed: true,
-  },
-
-  {
-    path: "/f/:promotionid",
-    component: RegisterPage,
-    layout: DefaultLayout,
-    isAnonymousAllowed: true,
-  },
-  {
-    path: "/p/:playername",
+    path: "/p/:promotionid",
     component: RegisterPage,
     layout: DefaultLayout,
     isAnonymousAllowed: true,
