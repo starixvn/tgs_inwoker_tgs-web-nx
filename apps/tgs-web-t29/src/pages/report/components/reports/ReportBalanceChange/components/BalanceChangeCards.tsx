@@ -1,7 +1,6 @@
-import React from "react";
 import moment from "moment";
 import { TransactionLogViewModel } from "@tgs-web-nx/types";
-import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import { ErrorSwitcher, i18n, Common } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,
@@ -39,7 +38,7 @@ const BalanceChangeCards = ({ balanceChangeDetails }: Props) => {
               <ReportCardCol>
                 <>{i18n.t("report.balanceChanges.amount")}:</>
               </ReportCardCol>
-              <ReportCardCol>{amount}</ReportCardCol>
+              <ReportCardCol>{Common.formatCurrency(amount ? amount : 0)}</ReportCardCol>
             </ReportCardRow>
           </ReportCard>
         );

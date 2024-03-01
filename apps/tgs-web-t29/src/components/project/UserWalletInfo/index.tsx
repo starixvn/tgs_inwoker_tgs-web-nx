@@ -159,7 +159,7 @@ const UserWalletInfo = () => {
               {isTransferWalletLoading ? (
                 <span>-</span>
               ) : (
-                <DynamicFont content={mainSymbol + transferWalletBalance.toFixed(2)} />
+                <DynamicFont content={mainSymbol + Common.formatCurrency(transferWalletBalance)} />
               )}
               <RefreshButton
                 width={"44px"}

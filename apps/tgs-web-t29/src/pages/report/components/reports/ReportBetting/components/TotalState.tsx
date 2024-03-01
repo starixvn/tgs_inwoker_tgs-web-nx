@@ -1,6 +1,6 @@
 import { RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, Common } from "@tgs-web-nx/utils";
 import { TableBody, TableCell, TableRow } from "@mui/material";
 import {
   CustomWinLose
@@ -34,7 +34,7 @@ const TotalState = ({ roundTotal }: Props) => {
               fontWeight: 500,
             }}
           >
-            <> {betAmount}</>
+            {Common.formatCurrency(betAmount ? betAmount : 0)}
           </TableCell>
           <TableCell
             align={"right"}
@@ -43,7 +43,7 @@ const TotalState = ({ roundTotal }: Props) => {
               fontWeight: 500,
             }}
           >
-            <>{validBetAmount}</>
+            {Common.formatCurrency(validBetAmount ? validBetAmount : 0)}
           </TableCell>
           <TableCell
             align={"right"}
@@ -53,7 +53,7 @@ const TotalState = ({ roundTotal }: Props) => {
             }}
           >
             <CustomWinLose $value={roundTotal && winLoss}>
-              {winLoss}
+              {Common.formatCurrency(winLoss ? winLoss : 0)}
             </CustomWinLose>
           </TableCell>
         </TableRow>

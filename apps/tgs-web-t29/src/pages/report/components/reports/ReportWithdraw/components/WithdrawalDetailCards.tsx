@@ -1,7 +1,6 @@
-import React from "react";
 import moment from "moment";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, Common } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,
@@ -37,7 +36,7 @@ const WithdrawalDetailCards = ({ withdrawalDetails }: Props) => {
                 {i18n.t(`report.withdrawal.status${withdrawalDetail.status}`)}
               </ReportCardCol>
               <ReportCardCol style={{ width: "33%", textAlign: "right" }}>
-                {withdrawalDetail.amount}
+                {Common.formatCurrency(withdrawalDetail.amount ? withdrawalDetail.amount : 0)}
               </ReportCardCol>
             </ReportCardRow>
           </ReportCard>
