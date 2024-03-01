@@ -30,9 +30,12 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
   option: {
-    background: "#1D1D1D !important",
-    color: "#fff",
+    background: "#8C8998 !important",
+    color: '#fff',
     "&:hover": {
+      background: "#fff !important",
+    },
+    "&:active": {
       background: "#fff !important",
     },
   },
