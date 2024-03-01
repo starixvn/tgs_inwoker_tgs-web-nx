@@ -159,6 +159,7 @@ export const RequireAmount = styled.div`
 `;
 
 export const CurrencyHint = styled.p`
-  margin-top: 5px;
+  margin: 5px auto 0;
+  text-align: center;
   color: red;
 `;
