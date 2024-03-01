@@ -99,6 +99,8 @@ const PopupAnnouncement = () => {
 
   const { ui } = useUiStore();
   const { mains: announcementList } = ui;
+  const disableDialog =
+    window.sessionStorage && sessionStorage.getItem(doNotShowAnnouncementDialogKey) === "true";
 
   useEffect(() => {
     if (disableDialog) {
@@ -118,8 +120,7 @@ const PopupAnnouncement = () => {
   if (!needToShowPopupAnnouncement) return null;
 
   const isEmptyData = announcementList.length === 0;
-  const disableDialog =
-    window.sessionStorage && sessionStorage.getItem(doNotShowAnnouncementDialogKey) === "true";
+
   if (isEmptyData || disableDialog) return null;
 
   return (
