@@ -76,7 +76,7 @@ export const ProcessBarContainer = styled.div`
     top: 35%;
     width: 32px;
     height: 32px;
-    z-index: 100;
+    z-index: 2;
   }
 `;
 
