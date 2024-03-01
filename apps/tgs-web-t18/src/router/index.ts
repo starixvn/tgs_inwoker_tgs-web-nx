@@ -108,13 +108,13 @@ const routes: RouteType[] = [
   {
     path: "/a/:promotionid",
     component: RegisterPage,
-    layout: DialogLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/p/:promotionid",
     component: RegisterPage,
-    layout: DefaultLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
