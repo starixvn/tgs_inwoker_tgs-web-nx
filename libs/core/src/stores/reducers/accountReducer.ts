@@ -185,8 +185,8 @@ function mapToAccountState(state, data) {
     identityformstatus: data.identityformstatus,
     identityformid: data.identityformid ? data.identityformid : "",
     bankInfoAuthentication: data.bankinfoauthentication,
-    accumdeposit: data.accumturnover,
-    accumturnover: data.accumdeposit,
+    accumdeposit: data.accumdeposit,
+    accumturnover: data.accumturnover,
     levelupaccumulatebetamount: data.levelupaccumulatebetamount,
     levelupaccumulatedeposit: data.levelupaccumulatedeposit,
   };
