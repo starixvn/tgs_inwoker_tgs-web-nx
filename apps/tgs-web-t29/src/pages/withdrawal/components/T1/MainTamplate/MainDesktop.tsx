@@ -134,15 +134,17 @@ const MainDesktop = ({
               {Common.formatCurrency(min)} - {Common.formatCurrency(max)}
             </LimitPopupContainer>
           </AmountWrapper>
-          {!!currencyRate && <CurrencyHint>
-            {
-              !isNaN(amount)?
-              `${Common.formatCurrency(amount * currencyRate)}` :
-              '0'
-            } {
-              config.currency
-            }
-          </CurrencyHint>}
+          <div style={{maxWidth: '500px'}}>
+            {!!currencyRate && <CurrencyHint>
+              {
+                !isNaN(amount)?
+                `${Common.formatCurrency(amount * currencyRate)}` :
+                '0'
+              } {
+                config.currency
+              }
+            </CurrencyHint>}
+          </div>
           {/* if is USDT, need to show below infomation */}
           {(() => {
             if (cardList[selectedCardIndex] && cardList[selectedCardIndex].banktype === "Usdt") {
