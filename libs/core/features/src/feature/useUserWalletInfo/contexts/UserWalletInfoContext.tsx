@@ -86,6 +86,10 @@ const initialState: {
     updateCardResult: null,
     member: "",
     vip_progress_bar: 0,
+    accumdeposit: 0,
+    accumturnover: 0,
+    levelupaccumulatebetamount: 0,
+    levelupaccumulatedeposit: 0,
   } as AccountInfo,
   providerList: [],
 };

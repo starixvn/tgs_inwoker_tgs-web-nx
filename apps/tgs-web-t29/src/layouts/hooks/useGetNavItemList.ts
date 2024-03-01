@@ -4,7 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
-import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
@@ -53,7 +53,7 @@ export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
   const { handleChangeGameType, providerList } = useHomeGameContext();
   const history = useHistory();
-  const isShowVIP = brandConfig[config.brand as BrandName]?.isShowVIP;
+  const isShowVIP = brandConfig[mapBrandName(config.brand)].isShowVIP;
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 

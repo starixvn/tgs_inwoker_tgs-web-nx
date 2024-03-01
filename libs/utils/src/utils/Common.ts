@@ -1,4 +1,4 @@
-import config, { BrandName, brandConfig } from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { i18n } from "../index";
 let newWindow: Window | undefined;
 
@@ -144,7 +144,7 @@ const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minA
  * @returns 貨幣格式
  */
 const formatCurrency = (amount: number) => {
-  return new Intl.NumberFormat(brandConfig[config.brand as BrandName].countryCode).format(amount);
+  return new Intl.NumberFormat(brandConfig[mapBrandName(config.brand)].countryCode).format(amount);
 };
 
 const Common = {

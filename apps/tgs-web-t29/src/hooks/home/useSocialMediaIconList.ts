@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import config, { BrandName, brandConfig, defaultConfig} from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig} from "@tgs-web-nx/config";
 import fb from "@/assets/t29/images/home/social_media/fb.svg";
 import ig from "@/assets/t29/images/home/social_media/ig.svg";
 import twitter from "@/assets/t29/images/home/social_media/twitter.svg";
@@ -12,7 +12,7 @@ type SocialMediaItem = {
 
 export const useSocialMediaIconList = () => {
   const [socialMediaIconList, setSocialMediaIconList] = useState<SocialMediaItem[]>([]);
-  const socialMediaLink = brandConfig[config.brand as BrandName]?.socialMediaLink ?? defaultConfig.socialMediaLink;
+  const socialMediaLink = brandConfig[mapBrandName(config.brand)].socialMediaLink;
 
   useEffect(() => {
     const socialMediaIconList: SocialMediaItem[] = [

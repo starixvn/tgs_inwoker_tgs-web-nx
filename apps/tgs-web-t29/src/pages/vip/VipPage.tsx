@@ -64,7 +64,7 @@ const VIP = () => {
     <VipWrapper>
       <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.jpg`} />
       <BonusTable vipSortingData={vipSortingData} />
-      <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} />
+      {/* <LevelTable currentLevel={currentLevel} productRebateByLevel={productRebateByLevel} /> */}
     </VipWrapper>
   );
 };

@@ -2,7 +2,7 @@
 * 若有新增站台 先在這邊加入對應設定
 * Default BrandName: 'GPI'
 */
-export type BrandName = 'GPI' | 'MOVN2'
+type BrandName = 'GPI' | 'MOVN2' | 'MOMOTEST'
 
 type SocialMediaLink = {
   fb: string,
@@ -104,4 +104,32 @@ export const brandConfig: Record<BrandName, Config> = {
     currencyRate: 1000,
     isDisableWebPinchAction:true,
   },
+  MOMOTEST: {
+    ...defaultConfig,
+    isAddRealNameFieldBrand: true,
+    socialMediaLink: {
+      ...defaultConfig.socialMediaLink,
+      fb: "https://www.facebook.com/momobetvn/",
+      ig: "https://www.instagram.com/momobet.vn/",
+    },
+    isAutoFillBankHolderName: true,
+    isRegisterRealNameRequired: true,
+    isDisabledBankHolderName: true,
+    isShowLiveChat: false,
+    isShowDownloadApp: false,
+    isShowChatCustomerService: false,
+    isShowVIP: false,
+    isAllowMulitBankCards: false,
+    countryCode: "vi-VN",
+    currencyRate: 1000,
+    isDisableWebPinchAction:true,
+  }
+}
+
+export const mapBrandName = (brand: string): BrandName => {
+  if(Object.keys(brandConfig).includes(brand)) {
+    return brand as BrandName;
+  }
+
+  return "GPI";
 }

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { GetMinWithdrawLimitResDto } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useWalletStore, WalletService } from "@tgs-web-nx/core";
-import config, {brandConfig, BrandName} from "@tgs-web-nx/config";
 
 const CardContainer = styled.div`
   background: ${({ theme }) => theme.blue20};
