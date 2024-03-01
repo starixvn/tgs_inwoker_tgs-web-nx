@@ -1,7 +1,7 @@
 import moment from "moment";
 import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, Common } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import { theme } from "@/theme";
@@ -80,7 +80,7 @@ const DepositDetailTable = ({
                   <TableCell>
                     <>{i18n.t(`report.deposit.status${status}`)}</>
                   </TableCell>
-                  <TableCell align={"right"}>{amount}</TableCell>
+                  <TableCell align={"right"}>{Common.formatCurrency(amount ? amount : 0)}</TableCell>
                 </TableRow>
               );
             })}
