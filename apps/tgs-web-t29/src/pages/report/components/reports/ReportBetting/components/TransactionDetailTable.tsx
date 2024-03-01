@@ -3,7 +3,7 @@ import moment from "moment";
 import { TableBody, TableCell, TableHead, TableRow, TablePagination } from "@mui/material";
 import { TransactionDetail, RoundTotalDto } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, Common } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   CustomWinLose,
@@ -128,10 +128,10 @@ const TransactionDetailTable = ({
                       : ""}
                     - {gameName}
                   </TableCell>
-                  <TableCell align={"right"}>{betAmount}</TableCell>
-                  <TableCell align={"right"}>{validBetAmount}</TableCell>
+                  <TableCell align={"right"}>{Common.formatCurrency(betAmount ? betAmount : 0)}</TableCell>
+                  <TableCell align={"right"}>{Common.formatCurrency(validBetAmount ? validBetAmount : 0)}</TableCell>
                   <TableCell align={"right"}>
-                    <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
+                    <CustomWinLose $value={winLoss}>{Common.formatCurrency(winLoss ? winLoss : 0)}</CustomWinLose>
                   </TableCell>
                 </TableRow>
               );

@@ -3,7 +3,7 @@ import moment from "moment";
 import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { GameBalanceInfosViewModel } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, Common } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import { theme } from "@/theme";
@@ -82,7 +82,7 @@ const TransferDetailTable = ({
                 <TableCell>
                   {to ? (to === "BTI" && config.currency === "PHP" ? "PHSB" : to) : ""}
                 </TableCell>
-                <TableCell align={"right"}>{amount}</TableCell>
+                <TableCell align={"right"}>{Common.formatCurrency(amount ? amount : 0)}</TableCell>
               </TableRow>
             );
           })}

@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { GameBalanceInfosViewModel } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, Common } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import {
   ReportCard,
@@ -41,7 +41,7 @@ const TransferDetailCard = ({ transferDetails }: Props) => {
             </ReportCardRow>
 
             <ReportCardRow>
-              {i18n.t("report.amount")} : <ReportCardCol>{amount}</ReportCardCol>
+              {i18n.t("report.amount")} : <ReportCardCol>{Common.formatCurrency(amount ? amount : 0)}</ReportCardCol>
             </ReportCardRow>
 
             <ReportCardRow>

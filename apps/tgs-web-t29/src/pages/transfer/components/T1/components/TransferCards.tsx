@@ -1,10 +1,8 @@
-import React from "react";
 import config from "@tgs-web-nx/config";
 import DynamicFont from "react-dynamic-font";
 import { styled as muiStyled } from "@mui/material/styles";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
-import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { Button } from "@/components/UI/Button";
 
@@ -135,7 +133,7 @@ const TransferCards = ({ handleTransferIn }: Props) => {
                 <GameWalletAmount>
                   {provider.maintenance === 1
                     ? i18n.t("transfer.maintenance")
-                    : "$" + Common.formatNumberWithCommas(provider.balance)}
+                    : "$" + Common.formatCurrency(provider.balance)}
                 </GameWalletAmount>
               </GameTransferRighttWrap>
             </GameTransferWallet>

@@ -29,7 +29,7 @@ const Report = () => {
   const [selectedType, setSelectedType] = useState(
     tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2,
   );
-
+        
   const {
     dateRangeInfo,
     handleDateFromChange,

@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { TransactionLogViewModel } from "@tgs-web-nx/types";
-import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import { ErrorSwitcher, i18n, Common } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
 import { theme } from "@/theme";
@@ -67,7 +67,7 @@ const BalanceChangeTable = ({
               <TableRow key={id}>
                 <TableCell>{date}</TableCell>
                 <TableCell>{ErrorSwitcher.getTranslation(type)}</TableCell>
-                <TableCell align={"right"}>{amount}</TableCell>
+                <TableCell align={"right"}>{Common.formatCurrency(amount ? amount : 0)}</TableCell>
               </TableRow>
             );
           })}

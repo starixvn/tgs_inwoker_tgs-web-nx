@@ -1,8 +1,7 @@
-import React from "react";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, Common } from "@tgs-web-nx/utils";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { Button } from "@/components/UI/Button";
 import {
@@ -47,7 +46,7 @@ const DepositDetailCards = ({ transferDetails }: Props) => {
               <ReportCardRow>
                 <ReportCardCol>{i18n.t(`report.deposit.status${status}`)}</ReportCardCol>
 
-                <ReportCardCol>{amount}</ReportCardCol>
+                <ReportCardCol>{Common.formatCurrency(amount ? amount : 0)}</ReportCardCol>
 
                 <ReportCardCol style={{ marginLeft: "auto" }}>
                   {status === 1 && canuploadcerts && (
