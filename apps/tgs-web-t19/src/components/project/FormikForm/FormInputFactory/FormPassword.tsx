@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { FormikFormInput } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { theme } from "@/theme";
 
@@ -29,7 +29,8 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   const inputType = isShowPassword ? "text" : "password";
 
   return (
-    <>{isDesktopSize && label}
+    <>
+      {isDesktopSize && label}
       <GrayInputWrapper key={name}>
         <TextField
           type={inputType}

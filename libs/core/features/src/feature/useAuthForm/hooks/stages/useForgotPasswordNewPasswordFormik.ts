@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
-import { FormInputTypeEnum, UserTypeEnum } from "../../types";
+import { FormInputTypeEnum, InvitationType } from "../../types";
 import { FormikFormInput, useFormikInitValue } from "../useFormikInitValue";
 
 type Props = {

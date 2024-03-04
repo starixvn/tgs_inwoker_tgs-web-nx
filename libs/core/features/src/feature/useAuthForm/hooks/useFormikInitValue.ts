@@ -9,6 +9,7 @@ export interface FormikFormInput {
   name: string;
   initialValue: string;
   validationSchema: Yup.Schema;
+  isReadOnly?: boolean;
 }
 
 export function useFormikInitValue() {

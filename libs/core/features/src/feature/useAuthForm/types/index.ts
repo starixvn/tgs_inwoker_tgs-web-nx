@@ -8,7 +8,7 @@ export enum FormInputTypeEnum {
   "USER_TYPE",
 }
 
-export enum UserTypeEnum {
+export enum InvitationType {
   AGENT = "a",
   PLAYER = "p",
 }
