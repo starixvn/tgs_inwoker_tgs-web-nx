@@ -71,10 +71,7 @@ const RowItem = styled.td`
 const HeaderRowItem = styled(RowItem)<{ $width: string }>`
   width: ${({ $width }) => $width};
   font-weight: 700;
-  padding-bottom: 20px;
-  ${media.sm} {
-    padding: 20px;
-  }
+  padding: 20px;
 `;
 
 const BorderRowItem = styled(RowItem)`
