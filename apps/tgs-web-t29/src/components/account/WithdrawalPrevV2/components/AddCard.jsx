@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { Common, i18n, utility } from "@tgs-web-nx/utils";
-import config, {brandConfig, mapBrandName} from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import AddCardT1 from "@/pages/withdrawal/components/T1/AddCard";
 
 class AddCard extends Component {
@@ -26,6 +26,14 @@ class AddCard extends Component {
 
   async componentDidMount() {
     await this.formatChannelList();
+    //for MOVN2 customization
+    if (brandConfig[mapBrandName(config.brand)].isAutoFillBankHolderName) {
+      this.setState({
+        ...this.state,
+        bankAccountName: this.props.name,
+      });
+    }
+    //
     if (this.props.isDeposit && this.props.bankCardList.length > 0) {
       var defaultCard = this.props.bankCardList.filter((card) => card.default)[0];
       var name = "";
@@ -129,7 +137,9 @@ class AddCard extends Component {
       selectedBankTypeIndex: e.target.value,
       selectedChannelIndex: 0,
       //for MOVN2 customization
-      bankAccountName: brandConfig[mapBrandName(config.brand)].isAutoFillBankHolderName ? this.props.name : name,
+      bankAccountName: brandConfig[mapBrandName(config.brand)].isAutoFillBankHolderName
+        ? this.props.name
+        : name,
       disableBankAccountNameInput: disableBankAccountNameInput,
       number: "",
     });
