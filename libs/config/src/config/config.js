@@ -12,6 +12,7 @@ const config = {
   affiliateId: "",
   features: featureList["default"],
   brandTitle: "MOMO",
+  AgentAdminUrl:null
 };
 
 config.isPC = isMobileOnly ? 1 : 0;
