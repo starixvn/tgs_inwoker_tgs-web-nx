@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import { Common, i18n, utility } from "@tgs-web-nx/utils";
-import config, {brandConfig} from "@tgs-web-nx/config";
+import config, { brandConfig } from "@tgs-web-nx/config";
 import AddCardT1 from "@/pages/withdrawal/components/T1/AddCard";
 
 class AddCard extends Component {
@@ -26,6 +26,14 @@ class AddCard extends Component {
 
   async componentDidMount() {
     await this.formatChannelList();
+    //for MOVN2 customization
+    if (brandConfig[config.brand]?.isAutoFillBankHolderName) {
+      this.setState({
+        ...this.state,
+        bankAccountName: this.props.name,
+      });
+    }
+    //
     if (this.props.isDeposit && this.props.bankCardList.length > 0) {
       var defaultCard = this.props.bankCardList.filter((card) => card.default)[0];
       var name = "";
