@@ -33,6 +33,7 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
           inputProps={{
             autoComplete: "off",
           }}
+          sx={{ border: isDesktopSize ? "1px solid #8C8998" : "none", borderRadius: isDesktopSize ? "6px" : "12px" }}
         />
       </GrayInputWrapper>
     </>

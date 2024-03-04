@@ -55,7 +55,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
   const [securityKey, setSecurityKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const { isMobileSize } = useRwd();
+  const { isMobileSize, isDesktopSize } = useRwd();
 
   const handleChangePhone = (e: ChangeEvent<any>) => {
     setPhone(e.target.value);
@@ -156,9 +156,9 @@ function VerifyPhone({ handleUpdateStage }: Props) {
 
   return (
     <Wrapper>
-      <ItemContainer>
+      <ItemContainer style={{ marginBottom: "unset" }}>
         <PhoneContainer>
-          <FormControl variant="outlined" style={{ width: "40%" }}>
+          <FormControl variant="outlined" style={{ width: "40%", border: isDesktopSize ? "1px solid #8C8998" : "none", borderRadius: isDesktopSize ? "6px" : "12px" }}>
             <Select
               native
               value={areacode}
@@ -172,7 +172,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
               }
               sx={{
                 background: isMobileSize ? theme.black : theme.pureBlack,
-                borderRadius: isMobileSize ? "12px" : "0px",
+                borderRadius: isMobileSize ? "12px" : "6px",
                 borderBottom: isMobileSize ? "" : "1px solid #8C8998",
               }}
             >
@@ -182,7 +182,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
             </Select>
           </FormControl>
 
-          <FormControl variant="outlined">
+          <FormControl variant="outlined" style={{ border: isDesktopSize ? "1px solid #8C8998" : "none", borderRadius: isDesktopSize ? "6px" : "12px" }}>
             <TextField
               type={"number"}
               value={phone}
@@ -194,7 +194,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
               sx={{
                 background: isMobileSize ? theme.black : theme.pureBlack,
                 borderRadius: isMobileSize ? "12px" : "6px",
-                border: isMobileSize ? "" : "1px solid #8C8998",
+                border: isMobileSize ? "none" : "1px solid #8C8998",
               }}
             />
           </FormControl>
@@ -208,7 +208,8 @@ function VerifyPhone({ handleUpdateStage }: Props) {
             background: isMobileSize ? theme.black : "",
             borderRadius: isMobileSize ? "12px" : "6px",
             padding: isMobileSize ? "10px 8px 10px 20px" : "0px",
-            border: isMobileSize ? "" : "1px solid #8C8998",
+            border: isMobileSize ? "unset" : "1px solid #8C8998",
+            paddingRight: "6px",
           }}
         >
           <TextFieldWithButton
