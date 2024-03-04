@@ -116,7 +116,6 @@ const routes: RouteType[] = [
     layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
-  ,
   {
     path: ProfilePathEnum.PROFILE,
     component: ProfilePage,
