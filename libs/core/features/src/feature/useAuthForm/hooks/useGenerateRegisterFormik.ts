@@ -4,7 +4,7 @@ import { FormikValues, useFormik } from "formik";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { FormInputTypeEnum } from "../types";
-import { UserTypeEnum } from "../types";
+import { InvitationType } from "../types";
 import { FormikFormInput, useFormikInitValue } from "./useFormikInitValue";
 import { usePromotionCode } from "./usePromotionCode";
 
@@ -59,7 +59,7 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
       {
         label: i18n.t("wap.register.promoteCode"),
         name: "userType",
-        initialValue: UserTypeEnum.AGENT,
+        initialValue: InvitationType.AGENT,
         type: FormInputTypeEnum.USER_TYPE,
       },
     ].filter((item) => !!item) as FormikFormInput[];

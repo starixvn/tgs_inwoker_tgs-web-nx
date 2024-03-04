@@ -19,8 +19,6 @@ const Form = styled.form`
   flex-shrink: 0;
 `;
 
-const FormInputGroup = styled.div``;
-
 type Props = {
   formInputList: FormikFormInput[];
   formik: any;

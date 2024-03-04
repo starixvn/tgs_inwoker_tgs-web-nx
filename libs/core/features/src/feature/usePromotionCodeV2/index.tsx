@@ -1,10 +1,6 @@
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useCallback } from "react";
-
-export enum InvitationTypeEnum {
-  Agent = "a",
-  Player = "p",
-}
+import { InvitationType } from "../useAuthForm";
 
 export function usePromotionCodeV2() {
   const { getInvitationCode } = useGeneralStore();
@@ -13,10 +9,7 @@ export function usePromotionCodeV2() {
     // url example: domain/a/invitationCode
     const [, invitationType, promotionCode] = window.location.pathname.split("/");
 
-    if (
-      invitationType === InvitationTypeEnum.Agent ||
-      invitationType === InvitationTypeEnum.Player
-    ) {
+    if (invitationType === InvitationType.AGENT || invitationType === InvitationType.PLAYER) {
       localStorage.setItem("invitationType", invitationType);
       localStorage.setItem("promotionCode", promotionCode || "");
       return;
@@ -32,7 +25,7 @@ export function usePromotionCodeV2() {
 
       if (!result.IsSuccess || !result.data.invitationCode) return;
 
-      localStorage.setItem("invitationType", InvitationTypeEnum.Agent);
+      localStorage.setItem("invitationType", InvitationType.AGENT);
       localStorage.setItem("promotionCode", result.data.invitationCode || "");
     } catch (error) {
       console.error(error);
@@ -48,7 +41,7 @@ export function usePromotionCodeV2() {
   };
 
   const getInvitationType = () => {
-    return (localStorage.getItem("invitationType") as InvitationTypeEnum) || null;
+    return (localStorage.getItem("invitationType") as InvitationType) || null;
   };
 
   const getPromotionCode = () => {

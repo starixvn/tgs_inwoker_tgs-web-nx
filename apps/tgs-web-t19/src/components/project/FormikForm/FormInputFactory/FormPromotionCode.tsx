@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
-import { FormikFormInput, UserTypeEnum } from "@tgs-web-nx/core/features";
+import { FormikFormInput, InvitationType } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
@@ -26,7 +26,7 @@ type Props = {
 };
 
 const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
-  const { label, name, type } = formInput;
+  const { label, name, type, isReadOnly } = formInput;
   const { isDesktopSize } = useRwd();
 
   return (
@@ -47,6 +47,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
           inputProps={{
             autoComplete: "off",
           }}
+          disabled={isReadOnly}
         />
 
         <DropdownContainer>
@@ -60,6 +61,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             style={{ color: theme.white }}
+            disabled={isReadOnly}
             MenuProps={{
               PaperProps: {
                 sx: {
@@ -76,10 +78,10 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
               },
             }}
           >
-            <MenuItem value={UserTypeEnum.AGENT}>
+            <MenuItem value={InvitationType.AGENT}>
               <>{i18n.t("usertype.agent")}</>
             </MenuItem>
-            <MenuItem value={UserTypeEnum.PLAYER}>
+            <MenuItem value={InvitationType.PLAYER}>
               <>{i18n.t("usertype.player")}</>
             </MenuItem>
           </Select>

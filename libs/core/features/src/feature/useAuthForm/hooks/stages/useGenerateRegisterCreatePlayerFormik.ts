@@ -2,20 +2,21 @@ import { useMemo } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { i18n } from "@tgs-web-nx/utils";
-import { FormInputTypeEnum, UserTypeEnum } from "../../types";
+import { FormInputTypeEnum, InvitationType } from "../../types";
 import { FormikFormInput, useFormikInitValue } from "../useFormikInitValue";
+import { usePromotionCodeV2 } from "../../../usePromotionCodeV2";
 
 type Props = {
   handleClickSubmit: (values: any) => Promise<void>;
 };
 
 export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Props) {
-  // console.log("============");
-  // console.log(invitationType);
-  // console.log(promotionCode);
-  // ===== init form input config =====
+  const { getInvitationType, getPromotionCode } = usePromotionCodeV2();
+
   const formInputConfigList = useMemo<FormikFormInput[]>(() => {
-    const promotionCode = "123";
+    const invitationType = getInvitationType() || InvitationType.AGENT;
+    const promotionCode = getPromotionCode() || "";
+    const isPromotionCodeReadOnly = Boolean(invitationType && promotionCode);
 
     return [
       {
@@ -53,14 +54,16 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
       {
         label: i18n.t("wap.register.promoteCode"),
         name: "promoteCode",
-        initialValue: promotionCode || "",
+        initialValue: promotionCode,
         type: FormInputTypeEnum.PROMOTION_CODE,
+        isReadOnly: isPromotionCodeReadOnly,
       },
       {
         label: i18n.t("wap.register.promoteCode"),
         name: "userType",
-        initialValue: UserTypeEnum.AGENT,
+        initialValue: invitationType,
         type: FormInputTypeEnum.USER_TYPE,
+        isReadOnly: isPromotionCodeReadOnly,
       },
     ].filter((item) => !!item) as FormikFormInput[];
   }, []);

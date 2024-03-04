@@ -4,7 +4,7 @@ import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web-nx/types";
 import config, { brandConfig } from "@tgs-web-nx/config";
 import {
-  UserTypeEnum,
+  InvitationType,
   useAuthDialog,
   useConfirmAdult,
   useGenerateRegisterCreatePlayerFormik,
@@ -29,14 +29,14 @@ export function useCreatePlayerStage() {
     try {
       setIsLoading(true);
       const username = values.username as string;
-      const userType = values.userType as UserTypeEnum;
+      const userType = values.userType as InvitationType;
       const promoteCode = values.promoteCode as string;
 
       const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
         username,
         pwd: values.pwd as string,
-        upper: userType === UserTypeEnum.PLAYER ? promoteCode : undefined,
-        invitationcode: userType === UserTypeEnum.AGENT ? promoteCode : undefined,
+        upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
+        invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,
         //@ts-ignore
         testplayer: config.testplayer || false,
       };
