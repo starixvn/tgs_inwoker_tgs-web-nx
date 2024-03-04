@@ -6,7 +6,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
   input: {
     padding: "12px 20px",
-    color: theme.palette.gray,
+    color: theme.palette.white,
     fontSize: "0.875rem",
     fontWeight: 400,
 
