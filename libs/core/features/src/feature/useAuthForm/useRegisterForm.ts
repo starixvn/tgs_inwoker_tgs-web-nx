@@ -7,7 +7,7 @@ import { useAuthDialog } from "../useAuthDialog/hooks/useAuthDialog";
 import { useGenerateRegisterFormik } from "./hooks/useGenerateRegisterFormik";
 import { usePromotionCode } from "./hooks/usePromotionCode";
 import { useConfirmAdult } from "./hooks/useConfirmAdult";
-import { UserTypeEnum } from "./types";
+import { InvitationType } from "./types";
 
 export function useRegisterForm() {
   const { registerState, handleRegister, clearRegisterError } = useAuthContext();
@@ -26,14 +26,14 @@ export function useRegisterForm() {
       }
 
       const username = values.username as string;
-      const userType = values.userType as UserTypeEnum;
+      const userType = values.userType as InvitationType;
       try {
         await handleRegister({
           username: values.username as string,
           pwd: values.password as string,
           confirmpwd: values.confirmpwd as string,
-          upper: userType === UserTypeEnum.PLAYER ? promotionData.upper || "" : "",
-          invitationcode: userType === UserTypeEnum.AGENT ? promotionData.promoId : "",
+          upper: userType === InvitationType.PLAYER ? promotionData.upper || "" : "",
+          invitationcode: userType === InvitationType.AGENT ? promotionData.promoId : "",
         });
 
         handleToggleRegisterDialog(false);

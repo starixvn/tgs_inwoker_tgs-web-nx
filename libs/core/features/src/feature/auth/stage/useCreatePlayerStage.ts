@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
-import { RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
+import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web-nx/types";
+import config, { brandConfig } from "@tgs-web-nx/config";
 import {
+  InvitationType,
   useAuthDialog,
   useConfirmAdult,
   useGenerateRegisterCreatePlayerFormik,
-  usePromotionCode,
-  UserTypeEnum,
 } from "../../../index";
 
 export function useCreatePlayerStage() {
   const [isLoading, setIsLoading] = useState(false);
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
-  const { registerV2CreatePlayer } = useAccountStore();
-  const { promotionData } = usePromotionCode();
-  const { handleToggleLoginDialog, handleToggleRegisterDialog, updateStage } = useAuthDialog();
+  const { registerV2CreatePlayer, registerV2SetRealName, accountLogin, getAccountInfo } =
+    useAccountStore();
+  const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClickSubmit = async (values: any) => {
     if (!isConfirmedAdult) {
       setRegisterError(new Error(i18n.t("common.msgRegisterTermAndCondition")));
@@ -28,20 +28,19 @@ export function useCreatePlayerStage() {
 
     try {
       setIsLoading(true);
-
       const username = values.username as string;
-      const userType = values.userType as UserTypeEnum;
+      const userType = values.userType as InvitationType;
       const promoteCode = values.promoteCode as string;
 
       const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
         username,
         pwd: values.pwd as string,
-        upper: userType === UserTypeEnum.PLAYER ? promoteCode || promotionData.upper : undefined,
-        invitationcode:
-          userType === UserTypeEnum.AGENT ? promoteCode || promotionData.promoId : undefined,
+        upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
+        invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,
         //@ts-ignore
         testplayer: config.testplayer || false,
       };
+
       const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
 
       if (!newRegisterResDto) {
@@ -55,6 +54,19 @@ export function useCreatePlayerStage() {
       if (!newRegisterResDto.data.stepResponse.isnew) {
         throw new Error(i18n.t("common.msgAlreadyExist"));
       }
+      //for MOVN2 customization
+      // @ts-ignore
+      if (brandConfig[config.brand]?.isAddRealNameFieldBrand) {
+        //Set realname之前必須先login
+        await accountLogin(values.username, values.pwd);
+
+        const setRealNameReqDto: RegisterV2SetRealNameDto = {
+          realname: values.realName,
+        };
+        await registerV2SetRealName(setRealNameReqDto);
+        //update user info
+        await getAccountInfo();
+      }
 
       localStorage.setItem("remember", "true");
       localStorage.setItem("username", username);
@@ -62,6 +74,7 @@ export function useCreatePlayerStage() {
       handleToggleLoginDialog(true);
 
       // updateStage(newRegisterResDto.data.nextStepType);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error);
       setRegisterError(error);

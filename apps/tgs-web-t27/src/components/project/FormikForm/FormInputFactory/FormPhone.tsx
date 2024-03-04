@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
+import { FormikFormInput } from "@tgs-web-nx/core/features";
 import { Select } from "@/components/UI/Select";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 

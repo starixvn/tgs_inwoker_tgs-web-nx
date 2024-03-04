@@ -72,7 +72,8 @@ export function useRebateTable() {
     });
   }, [selectedRebateItem, rebateTableRows]);
 
-  const affiliateLink = `https://${window.location.hostname}/p/${account.info.playercode}?do=register`;
+  console.log(window.location.host);
+  const affiliateLink = `https://${window.location.host}/p/${account.info.playercode}?do=register`;
 
   return {
     rebateItemList,

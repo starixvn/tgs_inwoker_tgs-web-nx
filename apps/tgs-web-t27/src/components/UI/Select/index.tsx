@@ -13,6 +13,9 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   "&:active": {
     background: "none",
   },
+  "& > .Mui-disabled": {
+    WebkitTextFillColor: `${theme.palette.text.disabled} !important`,
+  },
   select: {
     color: theme.palette.text.primary,
     padding: "14px",
@@ -28,7 +31,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   },
   option: {
     background: "#1D1D1D !important",
-    color: '#fff',
+    color: "#fff",
     "&:hover": {
       background: "#828282 !important",
     },
@@ -61,9 +64,9 @@ export const Select = (props: SelectProps) => {
   return (
     <StyledSelect
       {...props}
-    // IconComponent={() => (
-    //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
-    // )}
+      // IconComponent={() => (
+      //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
+      // )}
     />
   );
 };

@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
-import { FormikFormInput } from "@/hooks/stage/useFormikInitValue";
 import iconUsername from "@/assets/t21/images/auth/icon-username.svg";
 import iconPassword from "@/assets/t21/images/auth/icon-password.svg";
 import iconEmail from "@/assets/t21/images/auth/icon-email.svg";

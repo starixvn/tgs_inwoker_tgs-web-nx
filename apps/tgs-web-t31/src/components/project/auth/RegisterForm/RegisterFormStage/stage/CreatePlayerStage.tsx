@@ -1,8 +1,8 @@
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
+import { useCreatePlayerStage } from "@tgs-web-nx/core/features";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
-import { useCreatePlayerStage } from "@/hooks/auth/stage/useCreatePlayerStage";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;

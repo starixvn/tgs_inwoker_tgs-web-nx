@@ -16,7 +16,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
       WebkitTextFillColor: `${theme.palette.common.white} !important`,
     },
     "&:disabled": {
-      WebkitTextFillColor: `${theme.palette.common.white}`,
+      WebkitTextFillColor: `${theme.palette.tertiary.main}`,
     },
   },
   label: {
