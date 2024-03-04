@@ -4,6 +4,7 @@
 */
 type BrandName = 'GPI' | 'MOVN2' | 'MOMOTEST'
 
+
 type SocialMediaLink = {
   fb: string, 
   ig: string,
