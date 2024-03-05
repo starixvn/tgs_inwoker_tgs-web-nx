@@ -37,6 +37,10 @@ const AccountPage = () => {
     }
   }, [history, isLogin]);
 
+  if (isDesktopSize) {
+    history.push("/profile");
+  }
+
   return (
     <AccountPageContainer>
       {isDesktopSize ? <UserWalletInfo /> : <InfoCard style={{ marginBottom: "30px" }} />}

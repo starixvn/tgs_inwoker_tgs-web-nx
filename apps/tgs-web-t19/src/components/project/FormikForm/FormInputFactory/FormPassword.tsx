@@ -46,7 +46,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
           InputProps={{
             autoComplete: "new-password",
             endAdornment: (
-              <InputAdornment position="end" style={{ height: "20px" }}>
+              <InputAdornment position="end" style={{ height: "20px", overflow: "visible" }}>
                 <IconButton
                   aria-label="toggle password visibility"
                   onClick={handleClickShowPassword}
@@ -58,6 +58,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
               </InputAdornment>
             ),
           }}
+          sx={{ border: isDesktopSize ? "1px solid #8C8998" : "none", borderRadius: isDesktopSize ? "6px" : "12px" }}
         />
       </GrayInputWrapper>
     </>

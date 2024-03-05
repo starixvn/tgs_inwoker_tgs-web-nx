@@ -12,7 +12,7 @@ const WaitingVerificationHint = styled.div`
   font-size: 15px;
   text-align: center;
   padding: 0 30px;
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.primary};
 `;
 
 function WaitingVerification() {

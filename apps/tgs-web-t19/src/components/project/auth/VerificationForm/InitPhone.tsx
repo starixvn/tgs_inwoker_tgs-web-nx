@@ -15,6 +15,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -258,7 +259,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
     <>
       <ItemContainer>
         <PhoneContainer>
-          <FormControl variant="outlined" style={{ width: "40%" }}>
+          <FormControl variant="outlined" style={{ width: "40%", borderRadius: "6px" }}>
             <Select
               native
               value={areacode}
@@ -275,7 +276,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
             </Select>
           </FormControl>
 
-          <FormControl variant="outlined">
+          <FormControl variant="outlined" style={{ borderRadius: "6px", padding: "10px" }}>
             <TextField
               type={"number"}
               value={phone}
@@ -298,7 +299,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
             !config.features.Profile_DisableVerifyPhone &&
             !config.features.InitPhone_WithoutVerify && (
               <ItemContainer>
-                <FormControl variant="outlined">
+                <FormControl variant="outlined" style={{ borderRadius: "6px", padding: "10px 4px 10px 20px" }}>
                   <TextFieldWithButton
                     buttonLabel={
                       countdownToken <= 0

@@ -50,7 +50,6 @@ const TextFieldWithButton = (
         inputProps={{
           autoComplete: "off",
         }}
-        sx={{ background: isMobileSize ? "transparent !important" : theme.pureBlack }}
       // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
       />
 
