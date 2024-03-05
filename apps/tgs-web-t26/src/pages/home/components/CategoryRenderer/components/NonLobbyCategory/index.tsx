@@ -137,6 +137,17 @@ const NonLobbyCategory = () => {
     handleChangeActiveProviderFilterTag(newFilterTag);
   };
 
+  const getProviderAbbreviation = (provider: string) => {
+    switch (provider) {
+      case "No Limit City":
+        return "NLC";
+      case "PragmaticPlay":
+        return "PP";
+      default:
+        return provider;
+    }
+  };
+
   return (
     <Wrapper>
       {isMobileSize && (
@@ -181,7 +192,7 @@ const NonLobbyCategory = () => {
                       return (
                         <ProviderTag
                           key={filterTag.name}
-                          text={filterTag.name}
+                          text={getProviderAbbreviation(filterTag.name)}
                           gpCode={filterTag.gpCode}
                           isActive={false}
                           onClick={() => onChangeProviderFilterTag(filterTag)}
@@ -210,7 +221,7 @@ const NonLobbyCategory = () => {
                 return (
                   <ProviderTag
                     key={filterTag.name}
-                    text={filterTag.name}
+                    text={getProviderAbbreviation(filterTag.name)}
                     gpCode={filterTag.gpCode}
                     isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
                     onClick={() => onChangeProviderFilterTag(filterTag)}
