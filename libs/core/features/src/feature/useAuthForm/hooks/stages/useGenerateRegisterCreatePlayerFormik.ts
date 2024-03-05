@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { i18n } from "@tgs-web-nx/utils";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { FormInputTypeEnum, InvitationType } from "../../types";
 import { FormikFormInput, useFormikInitValue } from "../useFormikInitValue";
 import { usePromotionCodeV2 } from "../../../usePromotionCodeV2";
@@ -51,6 +52,60 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
           //@ts-ignore
           .oneOf([Yup.ref("pwd"), null], "Passwords must match"),
       },
+      (() => {
+        //for MOVN2 customization
+        if (brandConfig[mapBrandName(config.brand)].isRegisterRealNameRequired) {
+          return {
+            label: i18n.t("common.realName"),
+            name: "realName",
+            type: FormInputTypeEnum.TEXT,
+            initialValue: "",
+            validationSchema: Yup.string().required("Realname is required"),
+          };
+        }
+      })(),
+      // TODO: is following feature toggle still available?
+      (() => {
+        if (!config.features.Register_ShowPhone) return;
+
+        return {
+          label: i18n.t("forgotPassword.plsEnterPhoneNumber"),
+          name: "phone",
+          initialValue: "",
+          type: FormInputTypeEnum.PHONE,
+          validationSchema: Yup.string()
+            .required("Phone is required")
+            .matches(new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`), {
+              message: i18n
+                .t("common.noReachMin")
+                .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
+            }),
+        };
+      })(),
+      (() => {
+        if (!config.features.Register_ShowPhone) return;
+        return {
+          label: "",
+          name: "areaCode",
+          initialValue: config.features.PhonePrefix,
+          type: FormInputTypeEnum.AREA_CODE,
+        };
+      })(),
+      (() => {
+        if (!config.features.Register_ShowEmail) return;
+
+        return {
+          label: i18n.t("wap.register.email"),
+          name: "email",
+          initialValue: "",
+          type: FormInputTypeEnum.TEXT,
+          validationSchema: Yup.string()
+            .required("Email is required")
+            .matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, {
+              message: i18n.t("common.msgInvalidEmail"),
+            }),
+        };
+      })(),
       {
         label: i18n.t("wap.register.promoteCode"),
         name: "promoteCode",
