@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { useHistory } from "react-router";
-
+import limitBg from "@/assets/t19/images/withdraw/limit-bg.png";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import BankCardGroup from "@/pages/withdrawal/components/Main/BankCardGroup";
@@ -20,6 +20,8 @@ import {
   USDTWrapper,
   DetailText,
   TurnoverTextWrapper,
+  LimitText,
+  LimitBg,
 } from "@/components/styled-component/WithdrawV2/Main";
 
 const MainDesktop = ({
@@ -49,7 +51,7 @@ const MainDesktop = ({
     <>
       {/* Please choose bank */}
       <ItemContainer>
-        {/* <StepTitle step={1} title={i18n.t("withdrawal.msgEnterBank")} /> */}
+        <StepTitle step={1} title={i18n.t("withdrawal.msgEnterBank")} />
 
         <SelectionContainer>
           <BankCardGroup
@@ -93,7 +95,7 @@ const MainDesktop = ({
 
         <SelectionContainer>
           <AmountWrapper>
-            <FormControl variant="outlined">
+            <FormControl variant="outlined" style={{ borderRadius: "6px" }}>
               <TextField
                 placeholder={i18n.t("withdrawal.enterAmount")}
                 onChange={handleAmountChange}
@@ -103,9 +105,9 @@ const MainDesktop = ({
                 type={"number"}
               />
             </FormControl>
-
             <LimitPopupContainer>
-              {Common.formatNumberWithThousand(min)} - {Common.formatNumberWithThousand(max)}
+              <LimitBg src={limitBg} alt={"Amount limit"} />
+              <LimitText>{Common.formatNumberWithThousand(min)} - {Common.formatNumberWithThousand(max)}</LimitText>
             </LimitPopupContainer>
           </AmountWrapper>
 
