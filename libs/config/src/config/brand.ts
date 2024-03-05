@@ -27,6 +27,7 @@ type MOVN2Config = {
   isDisableWebPinchAction: boolean; // 網站是否禁用縮放
   countryCode: string;
   currencyRate?: number;
+  isShowAgentAdminButton:boolean // 是否將transfer button改成agent amdin button https://raypro.atlassian.net/browse/TGS-4158
 }
 
 /*
@@ -73,6 +74,7 @@ export const defaultConfig: Config = {
   isAllowMulitBankCards: true,
   isDisableWebPinchAction:false,
   countryCode: "en-US",
+  isShowAgentAdminButton:false,
   // new brand config start here
   // NewBrand
 }
@@ -103,6 +105,7 @@ export const brandConfig: Record<BrandName, Config> = {
     countryCode: "vi-VN",
     currencyRate: 1000,
     isDisableWebPinchAction:true,
+    isShowAgentAdminButton:true,
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -123,6 +126,7 @@ export const brandConfig: Record<BrandName, Config> = {
     countryCode: "vi-VN",
     currencyRate: 1000,
     isDisableWebPinchAction:true,
+    isShowAgentAdminButton:true,
   }
 }
 
