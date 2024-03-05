@@ -53,6 +53,13 @@ const WithdrawalDetailTable = ({
                 border: "none",
               }}
             >
+              <>{i18n.t("remark")}</>
+            </TableCell>
+            <TableCell
+              sx={{
+                border: "none",
+              }}
+            >
               <>{i18n.t("report.status")}</>
             </TableCell>
             <TableCell
@@ -67,7 +74,7 @@ const WithdrawalDetailTable = ({
         </TableHead>
         <TableBody>
           {withdrawalDetails.map((balanceChange) => {
-            const { id, createdon, orderno, amount, status } = balanceChange;
+            const { id, createdon, orderno, amount, status, remark } = balanceChange;
 
             const date = moment(createdon).format("YYYY-MM-DD hh:mm a");
 
@@ -75,6 +82,7 @@ const WithdrawalDetailTable = ({
               <TableRow key={id}>
                 <TableCell>{date}</TableCell>
                 <TableCell>{orderno}</TableCell>
+                <TableCell>{remark}</TableCell>
                 <TableCell>
                   <>{i18n.t(`report.withdrawal.status${status}`)}</>
                 </TableCell>

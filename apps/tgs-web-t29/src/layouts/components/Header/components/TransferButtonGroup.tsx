@@ -1,8 +1,10 @@
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
+import config from "@tgs-web-nx/config";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -13,8 +15,10 @@ const ButtonContainer = styled.div`
 const TransferButtonGroup = () => {
   const history = useHistory();
 
-  const handleGotoTransfer = useCallback(() => {
-    history.push("/transfer");
+  const handleGotoAgentAdmin = useCallback(() => {
+    if (config.AgentAdminUrl) {
+      window.open(config.AgentAdminUrl, "_blank");
+    }
   }, []);
 
   const handleGotoWithdrawal = useCallback(() => {
@@ -27,12 +31,12 @@ const TransferButtonGroup = () => {
   return (
     <ButtonContainer>
       <HeaderButton
-        onClick={handleGotoTransfer}
+        onClick={handleGotoAgentAdmin}
         style={{
-          background: "#00B2B9",
+          background: theme.secondary,
         }}
       >
-        <>{i18n.t("common.transfer")}</>
+        <>{i18n.t("usertype.agent")}</>
       </HeaderButton>
 
       <HeaderButton

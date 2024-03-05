@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Drawer } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import config from "@tgs-web-nx/config";
 import { theme } from "@/theme";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import { Button } from "@/components/UI/Button";
@@ -37,18 +38,28 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
     handleDrawerToggle(false);
   };
 
-  const handleButtonClick = (routePath: string) => {
+  const handleButtonClick = (transferButton: TransferButton, routePath: string) => {
     handleDrawerToggle(false);
-    history.push(routePath);
+    if (transferButton.key === "agent") {
+      handleGotoAgentAdmin();
+    } else {
+      history.push(routePath);
+    }
   };
+
+  const handleGotoAgentAdmin = useCallback(() => {
+    if (config.AgentAdminUrl) {
+      window.open(config.AgentAdminUrl, "_blank");
+    }
+  }, []);
 
   const transferButtonList = useMemo<TransferButton[]>(() => {
     return [
       {
-        key: "transfer",
-        label: i18n.t("common.transfer"),
+        key: "agent",
+        label: i18n.t("usertype.agent"),
         background: theme.blueBtn,
-        routePath: "/transfer",
+        routePath: "/",
       },
       {
         key: "deposit",
@@ -94,7 +105,7 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
           return (
             <Button
               key={key}
-              onClick={() => handleButtonClick(routePath)}
+              onClick={() => handleButtonClick(transferButton, routePath)}
               sx={{
                 background,
                 borderRadius: "4px",
