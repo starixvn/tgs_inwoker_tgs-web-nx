@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web-nx/types";
-import config, { brandConfig } from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import {
   InvitationType,
   useAuthDialog,
@@ -55,8 +55,7 @@ export function useCreatePlayerStage() {
         throw new Error(i18n.t("common.msgAlreadyExist"));
       }
       //for MOVN2 customization
-      // @ts-ignore
-      if (brandConfig[config.brand]?.isAddRealNameFieldBrand) {
+      if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
         //Set realname之前必須先login
         await accountLogin(values.username, values.pwd);
 
