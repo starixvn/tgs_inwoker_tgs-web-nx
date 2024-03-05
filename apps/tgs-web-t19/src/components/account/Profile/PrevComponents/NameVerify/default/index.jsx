@@ -74,7 +74,7 @@ class Default extends BaseProfile {
 
         {config.features.ICVerificationUpload && (
           <ItemContainer>
-            <LabelContainer>{i18n.t("common.upload")}</LabelContainer>
+            {/* <LabelContainer>{i18n.t("common.upload")}</LabelContainer> */}
             <UploadFileButton
               variant={"outlined"}
               onClick={() => {

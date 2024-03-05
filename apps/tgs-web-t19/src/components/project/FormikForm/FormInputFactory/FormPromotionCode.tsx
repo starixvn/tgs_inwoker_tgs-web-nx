@@ -13,6 +13,8 @@ import { theme } from "@/theme";
 const DropdownContainer = styled.div`
   min-width: 104px;
   border: none;
+  position: absolute;
+  right: 0;
 
   .MuiOutlinedInput-notchedOutline {
     border: none !important;
@@ -32,7 +34,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
   return (
     <>
       {isDesktopSize && label}
-      <GrayInputWrapper key={name}>
+      <GrayInputWrapper key={name} style={{ border: isDesktopSize ? "1px solid #8C8998" : "none", borderRadius: isDesktopSize ? "6px" : "12px" }}>
         <TextField
           type={getFormInputType(type)}
           placeholder={label}
@@ -68,7 +70,6 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
                   backgroundColor: theme.mainBackground,
                   "& .MuiMenuItem-root": {
                     color: theme.white,
-                    backgroundColor: theme.mainBackground,
                     "&:hover": {
                       backgroundColor: theme.primary,
                       color: theme.mainBackground,
