@@ -64,11 +64,6 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
         <FormControl variant="outlined">
           <TextField
             value={displayedSubject}
-            sx={{
-              input: {
-                padding: "17px 0",
-              },
-            }}
             disabled={true}
           />
         </FormControl>
