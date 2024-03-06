@@ -1,24 +1,39 @@
-import { useWalletStore } from "@tgs-web-nx/core";
+import { useWalletStore, walletAction } from "@tgs-web-nx/core";
 import { useState, useEffect, useMemo } from "react";
-import { walletAction } from "@tgs-web-nx/core";
+import { groupBy } from "@tgs-web-nx/utils";
+import {groupCode} from "./config";
+import { RenderLayer, RenderLayerConfig, DepositFormData } from "./types";
 
-type DepositFormData = {
-  amount: string;
-  banktype: string;
-  paymentid: string;
-  promotionid: string
-  paymentcode: string
-  type: string
-}
 
 export const useDepositForm = () => {
   const [channelCode, setChannelCode] = useState('');
   const [channelId, setChannelId] = useState('');
+  const [providerCode, setProviderCode] = useState('');
+
   const [amount, setAmount] = useState('');
   const { wallet, performDeposit } = useWalletStore();
-  const depositChannelList = useMemo(() => wallet.depositChannelList ?? [], [wallet.depositChannelList]);
-  const filterList = useMemo(() => depositChannelList.find(row => row.channelCode === channelCode)?.channels ?? [], [depositChannelList, channelCode]);
-  const currentChannel = filterList.find(row => row.id === channelId);
+
+  const filterGroupList = useMemo(() => 
+    {
+      const result = wallet.depositChannelList.filter((row) => groupCode[row.channelCode]);
+      const bankList = {
+        channelCode: groupCode.Bank,
+        channels: wallet.depositList?.find(row => row.banktype === groupCode.Bank)?.channel ?? []
+      };
+      
+      return [bankList, ...result];
+    }
+  , [wallet.depositChannelList, wallet.depositList]);
+
+  const filterChannelList = useMemo(() => filterGroupList.find(row => row.channelCode === channelCode)?.channels ?? [], [filterGroupList, channelCode]);
+  
+  console.log(groupBy(filterChannelList, row => row.channelcode));
+  
+  const providerList = useMemo(() => {
+    
+  }, [channelCode])
+  
+  const currentChannel = filterChannelList.find(row => row.id === channelId);
   
   const transferlimit = currentChannel?.transferlimit;
   const depositFormData: DepositFormData = {
@@ -39,6 +54,10 @@ export const useDepositForm = () => {
     setAmount(e.target.value);
   };
 
+  const handleOnChangeProviderCode = (code: string) => {
+
+  }
+
   const handleOnChangeChannelCode = (code: string) => {
     setChannelCode(code);
   };
@@ -47,18 +66,60 @@ export const useDepositForm = () => {
     setChannelId(id);
   };
 
-  useEffect(() => {
-    if(depositChannelList.length > 0) {
-      setChannelCode(depositChannelList[0].channelCode)
+  const groupList = filterGroupList.map(row => {
+    return {
+      iconUrl: "/assets/images/deposit/momo.png",
+      isActive: row.channelCode === channelCode,
+      onClick: handleOnChangeChannelCode,
+      children: row.channelCode,
+      code: row.channelCode,
     }
-  }, [depositChannelList])
+  });
+
+  const channelList = filterChannelList.map(row => {
+    return {
+      iconUrl: "/assets/images/deposit/momo.webp",
+      isActive: row.id === channelId,
+      onClick: handleOnChangeChannelId,
+      children: row.channelname,
+      code: row.id,
+    }
+  });
+
+  useEffect(() => {
+    if(filterGroupList.length > 0) {
+      setChannelCode(filterGroupList[0].channelCode)
+    }
+  }, [filterGroupList])
   
   useEffect(()=> {
-    if(filterList.length > 0) {
-      setChannelId(filterList[0].id)
+    if(filterChannelList.length > 0) {
+      setChannelId(filterChannelList[0].id)
     }
-  }, [filterList])
+  }, [filterChannelList])
 
+  const [isShowGroupLayer, isShowProviderLayer, isShowChannelLayer] = [!!channelCode, !!providerCode, !!channelId]
+  
+  console.log(filterChannelList);
+    
+
+  const layers: RenderLayerConfig[] = [
+    {
+      isVisible: isShowProviderLayer,
+      i18nParam: "depositAndWithdrawalStatus.depositMode",
+      list: groupList,
+    },
+    {
+      isVisible: isShowGroupLayer,
+      i18nParam: "depositAndWithdrawalStatus.depositMode",
+      list: groupList,
+    },
+    {
+      isVisible: isShowChannelLayer,
+      i18nParam: "depositAndWithdrawalStatus.channel",
+      list: channelList,
+    },
+  ]
   return {
     channelCode,
     channelId,
@@ -67,8 +128,7 @@ export const useDepositForm = () => {
     handleOnChangeChannelCode,
     handleOnChangeChannelId,
     handleOnSubmit,
-    depositChannelList,
-    filterList,
-    transferlimit
+    transferlimit,
+    layers,
   }
 }

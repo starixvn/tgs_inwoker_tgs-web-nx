@@ -1,4 +1,5 @@
 //@ts-nocheck
+import { groupBy } from "@tgs-web-nx/utils";
 import {
   GETDEPOSITCHANNEL_BEGIN,
   GETDEPOSITCHANNEL_SUCCESS,
@@ -85,6 +86,7 @@ import {
 } from "../../api-services/constant/actionType";
 import config from "../../config/config";
 import { WalletType } from "../../api-services/utils/Enum";
+
 const initState = {
   loading: false,
   updateBalanceloading: false,
@@ -345,18 +347,6 @@ function mapDepositType(result) {
 
 function mapDepositChannelList (result) {
   const data = result.data ?? [];
-
-  function groupBy<T>(array: T[], fn: TGroupByFn<T>): Record<string | number, T[]> {
-    return array.reduce((result, item) => {
-        const key = fn(item);
-        if (!result[key]) {
-            result[key] = [];
-        }
-        result[key].push(item);
-        return result;
-    }, {} as Record<string | number, T[]>);
-  }
-
   const groupByData = groupBy(data, row => row.channelcode);
   const depositChannelList = Object.keys(groupByData).map((key)=> {
     return {

@@ -18,6 +18,7 @@ interface TransferChannel {
     from: number;
     to: number;
   };
+  channel: TransferChannel[]
 }
 
 interface DepositChannelList {

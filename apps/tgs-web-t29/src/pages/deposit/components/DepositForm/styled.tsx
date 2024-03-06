@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { FormContainerProps } from "./types";
 import {LabelContainer as ProfileLabelContainer} from "@/components/styled-component/ProfileForms";
 import { theme } from "@/theme";
+import {ItemContainer,} from "@/components/styled-component/ProfileForms";
 
 export const Icon = styled.img`
   width: 20px;
@@ -57,3 +59,17 @@ export const BadgeWrapper = styled.div`
   gap: 10px;
   flex-wrap: wrap;
 `;
+
+export const FormContainer = ({
+  children,
+  label,
+}: FormContainerProps) => (
+  <ItemContainer>
+    <LabelContainer>
+      {label}
+    </LabelContainer>
+    <BadgeWrapper>
+      {children}
+    </BadgeWrapper>
+  </ItemContainer> 
+);
