@@ -97,7 +97,9 @@ const DepositDetailTable = ({
         sx={{
           width: "100%",
           color: theme.white,
-          "& button": {},
+          '.MuiButtonBase-root': {
+            color: theme.white,
+          },
         }}
       />
     </ReportCardsContainer>
