@@ -25,7 +25,7 @@ const CategoryTab = styled.div<CategoryTabProps>`
   cursor: pointer;
   border-radius: 6px;
   border: ${({ $isActive, theme }: CategoryTabProps) =>
-    $isActive ? "transparent" : `1px solid ${theme.gray}`};
+    $isActive ? "transparent" : `1px solid ${theme.white}`};
 `;
 
 type Props = {

@@ -44,8 +44,10 @@ const InboxList = () => {
         rowsPerPageOptions={[]}
         sx={{
           width: "100%",
-          color: theme.text,
-          "& button": {},
+          color: theme.white,
+          '.MuiTablePagination-actions .MuiButtonBase-root': {
+            color: theme.white,
+          },
         }}
       />
 

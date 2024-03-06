@@ -16,10 +16,10 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: #23507d;
-  font-size: 0.875rem;
-  font-weight: 700;
-  margin-bottom: 16px;
+  color: ${({ theme }) => theme.white};
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 8px;
 `;
 
 type Props = {
@@ -54,6 +54,7 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
             sx={{
               input: {
                 padding: "17px 20px",
+                borderRadius: "6px",
               },
             }}
             disabled={true}
