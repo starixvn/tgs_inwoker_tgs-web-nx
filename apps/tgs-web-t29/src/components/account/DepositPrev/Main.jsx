@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
+import ResultPopupDialog from "@/pages/deposit/components/ResultPopupDialog";
 import {
   FormControl,
   InfoContainer,
@@ -17,7 +17,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
-import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
+import CopyIcon from "@/pages/deposit/components/CopyIcon";
 import {
   AmountHint,
   ExchangeRateContainer,
@@ -29,7 +29,7 @@ import {
   TransferLabel,
   TransferValue,
 } from "@/components/styled-component/Deposit";
-import {PaymentTabs, MethodTabs} from "@/pages/deposit/components/components/PaymentTabsHeader";
+import {PaymentTabs, MethodTabs} from "@/pages/deposit/components/PaymentTabsHeader";
 import { formatDepositTypeList } from "@/components/account/DepositPrev/utils";
 
 

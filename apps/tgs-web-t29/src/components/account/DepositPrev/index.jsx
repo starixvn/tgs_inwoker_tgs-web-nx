@@ -15,9 +15,9 @@ import Main from "./Main";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Loading from "@/components/UI/Loading";
-import DepositNotificationDialog from "@/pages/deposit/components/components/DepositNotificationDialog";
-import WalletMessagePopupDialog from "@/pages/deposit/components/components/WalletMessagePopupDialog";
-import DepositAddCard from "@/pages/deposit/components/components/DepositAddCard";
+import DepositNotificationDialog from "@/pages/deposit/components/DepositNotificationDialog";
+import WalletMessagePopupDialog from "@/pages/deposit/components/WalletMessagePopupDialog";
+import DepositAddCard from "@/pages/deposit/components/DepositAddCard";
 
 const Container = styled.div`
   position: relative;
@@ -467,6 +467,7 @@ class DepositPrev extends Component {
           );
         }
       }
+      
     } else {
       this.props.performDeposit(
         this.state.amount.replace(/,/g, ""),
@@ -475,6 +476,7 @@ class DepositPrev extends Component {
         payment.paymentcode,
         depositMethodSwitcher(method.methodcode.toLowerCase()),
       );
+      console.log('12321');
       // if (method.methodcode === "Crypto") {
       //   this.props.doCryptoDeposit(
       //     this.state.amount.replace(/,/g, ""),

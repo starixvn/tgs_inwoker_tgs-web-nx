@@ -1356,6 +1356,8 @@ export function useWalletStore() {
       });
       const result = WalletService.PerformDeposit(amount, paymentid, promotionid, paymentcode, type)
         .then((response) => {
+          console.log(response);
+          
           if (response?.IsSuccess) {
             dispatch({
               type: DODEPOSIT_SUCCESS,

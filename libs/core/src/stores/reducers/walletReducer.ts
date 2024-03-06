@@ -92,6 +92,7 @@ const initState = {
   message: "",
   depositList: [],
   depositTypeList: [],
+  depositChannelList: [],
   depositLoading: false,
   depositResult: null,
   cancelDepositResult: null,
@@ -341,6 +342,32 @@ function mapDepositType(result) {
     depositMaxLimit: depositMaxLimit,
   };
 }
+
+function mapDepositChannelList (result) {
+  const data = result.data ?? [];
+
+  function groupBy<T>(array: T[], fn: TGroupByFn<T>): Record<string | number, T[]> {
+    return array.reduce((result, item) => {
+        const key = fn(item);
+        if (!result[key]) {
+            result[key] = [];
+        }
+        result[key].push(item);
+        return result;
+    }, {} as Record<string | number, T[]>);
+  }
+
+  const groupByData = groupBy(data, row => row.channelcode);
+  const depositChannelList = Object.keys(groupByData).map((key)=> {
+    return {
+      channelCode: key,
+      channels: groupByData[key],
+    }
+  });
+
+  return {depositChannelList}
+}
+
 function mapBalanceList(data) {
   const balanceList = [];
   const mainBalance = data.main;
@@ -593,6 +620,7 @@ const walletReducer = (state = initState, action) => {
         ...state,
         ...mapDepositType(action.payload),
         ...mapDepositList(action.payload),
+        ...mapDepositChannelList(action.payload),
         loading: false,
       };
     case GETDEPOSITCHANNEL_FAIL:

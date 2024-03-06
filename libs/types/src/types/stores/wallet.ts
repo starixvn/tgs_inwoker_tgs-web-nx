@@ -1,15 +1,28 @@
 import { BankCard, DoTransferResDto } from "../dto";
 
 interface TransferChannel {
+  banktype: string;
   channelcode: string;
   channelid: string;
   channelname: string;
+  displayorder: number;
+  extended: unknown; //待確認
+  feepercentile: number;
+  methodcode: string;
+  methodid: string;
+  paymentcode: string;
+  paymentid: string;
   fees: number;
   id: string;
   transferlimit: {
     from: number;
     to: number;
   };
+}
+
+interface DepositChannelList {
+  channelCode: string;
+  channels: TransferChannel[];
 }
 
 export interface DepositType {
@@ -40,6 +53,7 @@ export interface WalletState {
   message: "";
   depositList: TransferChannel[];
   depositTypeList: DepositType[];
+  depositChannelList: DepositChannelList[];
   depositLoading: false;
   depositResult: null;
   cancelDepositResult: null;
