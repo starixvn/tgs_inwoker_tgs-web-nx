@@ -97,6 +97,10 @@ const AccountHeaderContent = () => {
     history.push("/profile");
   };
 
+  const handleGoToPContactUs = () => {
+    history.push("/support");
+  };
+
   const handleClickLogout = async () => {
     await handleLogout();
     handleChangeGameType(GameTypeEnum.NONE);
@@ -131,7 +135,7 @@ const AccountHeaderContent = () => {
           <IconContainer onClick={handleGoToProfile}>
             <Icon iconUrl={accountBtn} width={"35px"} height={"35px"} />
           </IconContainer>
-          <IconContainer>
+          <IconContainer onClick={handleGoToPContactUs}>
             <Icon iconUrl={liveChatBtn} width={"35px"} height={"35px"} />
           </IconContainer>
           <SignoutContainer onClick={handleClickLogout}>
