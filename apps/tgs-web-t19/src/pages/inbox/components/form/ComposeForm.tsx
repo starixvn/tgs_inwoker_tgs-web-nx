@@ -17,9 +17,9 @@ const InputWrapper = styled.div`
 
 const Label = styled.h6`
   color: ${({ theme }) => theme.white};
-  font-size: 0.875rem;
-  font-weight: 700;
-  margin-bottom: 16px;
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: 8px;
 `;
 
 const ComposeForm = () => {
@@ -50,7 +50,7 @@ const ComposeForm = () => {
     <InboxComposeFormContainer>
       <InputWrapper>
         <Label>{i18n.t("subject")}</Label>
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" style={{ borderRadius: "6px" }}>
           <TextField
             value={subject}
             onChange={updateSubject}
@@ -58,6 +58,7 @@ const ComposeForm = () => {
             sx={{
               input: {
                 padding: "17px 20px",
+                color: "white",
               },
             }}
           />
@@ -70,6 +71,11 @@ const ComposeForm = () => {
           value={content}
           onChange={updateMessage}
           placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("yourmessage")}`.toLowerCase()}`}
+          sx={{
+            '.MuiOutlinedInput-root': {
+              borderRadius: "6px",
+            },
+          }}
         />
       </InputWrapper>
 

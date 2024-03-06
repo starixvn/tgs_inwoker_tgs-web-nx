@@ -116,16 +116,21 @@ const MobileMenuDrawer = () => {
           <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
         </LanguageSwitchWrapper>
 
-        <LogoutBtnWrapper
-          onClick={handleClickLogout}
-        >
-          <Icon
-            iconUrl={logoutImg}
-            width={"18px"}
-            height={"17px"}
-          />
-          <Text>{i18n.t("web.header.logout")}</Text>
-        </LogoutBtnWrapper>
+        {
+          isLogin && (
+            <LogoutBtnWrapper
+              onClick={handleClickLogout}
+            >
+              <Icon
+                iconUrl={logoutImg}
+                width={"18px"}
+                height={"17px"}
+              />
+              <Text>{i18n.t("web.header.logout")}</Text>
+            </LogoutBtnWrapper>
+          )
+        }
+
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );

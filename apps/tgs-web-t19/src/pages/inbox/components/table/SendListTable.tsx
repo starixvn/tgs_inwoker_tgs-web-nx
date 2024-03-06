@@ -13,6 +13,7 @@ import {
   TableRow,
   TableSubjectCell,
 } from "@/components/styled-component/Inbox";
+import { theme } from "@/theme";
 
 type Props = {
   sendList: SendItem[];
@@ -21,8 +22,8 @@ type Props = {
 
 const SendListTable = ({ sendList, handleItemClick }: Props) => {
   return (
-    <Table>
-      <TableHead>
+    <Table style={{ backgroundColor: "transparent" }}>
+      <TableHead style={{ backgroundColor: theme.pureBlack, borderRadius: "10px" }}>
         <TableRow>
           <TableCell>{i18n.t("subject")}</TableCell>
           <TableCell align={"right"}>{i18n.t("date")}</TableCell>

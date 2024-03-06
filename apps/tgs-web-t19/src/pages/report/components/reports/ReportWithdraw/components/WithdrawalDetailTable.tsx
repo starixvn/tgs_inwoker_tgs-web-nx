@@ -102,8 +102,10 @@ const WithdrawalDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
-          "& button": {},
+          color: theme.white,
+          '.MuiButtonBase-root': {
+            color: theme.white,
+          },
         }}
       />
     </ReportCardsContainer>

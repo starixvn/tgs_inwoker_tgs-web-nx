@@ -36,7 +36,7 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
     top: "1px",
     right: "36px",
     height: "100%",
-    content: "'\x00'",
+    content: "''",
     display: "block",
     zIndex: "2",
     position: "absolute",
@@ -46,12 +46,16 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
     border: "none",
   },
   "& select": {
-    padding: 0,
     color: theme.palette.white,
     fontSize: "0.937rem",
+    height: "100% !important",
+    padding: "5px",
   },
-  "& .MuiSvgIcon-root": {
-    color: theme.palette.primary,
+  "& .MuiFormControl-root": {
+    height: "100%",
+  },
+  "& .MuiOutlinedInput-root-MuiSelect-root": {
+    height: "100%",
   },
 }));
 

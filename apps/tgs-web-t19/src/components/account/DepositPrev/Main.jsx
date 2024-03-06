@@ -28,8 +28,10 @@ import {
   QRCodeImg,
   TransferLabel,
   TransferValue,
+  TransferHintAmount
 } from "@/components/styled-component/Deposit";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
+import amountBg from "@/assets/t19/images/amount-bg.png";
 
 const BadgeContainer = styled.div`
   display: flex;
@@ -50,11 +52,37 @@ const WarningText = styled.div`
   color: ${({ theme }) => theme.red};
 `;
 
+const DepositLimitWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const AmountBg = styled.div`
+  height: 37px;
+`;
+
+const AmountBgIcon = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
 const TransferHint = styled.div`
   font-weight: bold;
+  width: 100%;
+  height: 100%;
+  padding: 10px 25px;
+  position: absolute;
+  top: 0;
+`;
+
+const LabelWrapper = styled.div`
+  display: flex;
 `;
 
 class Main extends Component {
+
   render() {
     const selectedDepositType = this.props.wallet.depositTypeList[this.props.selectedPaymentIndex];
     const selectedPaymentMethod = selectedDepositType.method[this.props.selectedMethodIndex];
@@ -432,36 +460,50 @@ class Main extends Component {
 
         {/*請輸入存款金額*/}
         <ItemContainer>
-          <LabelContainer>{i18n.t("deposit.depositAmount")}</LabelContainer>
-          <FormControl variant="outlined">
-            <TextField
-              fullWidth
-              value={this.props.amount}
-              onChange={this.props.handleAmountChange}
-              type={"number"}
-              placeholder={
-                i18n.t("deposit.msgPleaseEnter") +
-                Common.formatNumberWithThousand(channel.transferlimit.from) +
-                "-" +
-                Common.formatNumberWithThousand(channel.transferlimit.to) +
-                i18n.t("deposit.dollor")
-              }
-            />
-          </FormControl>
-
-          <AmountHint>
+          <LabelWrapper>
+            <LabelContainer>{i18n.t("deposit.depositAmount")}</LabelContainer>
             {transferFee === 0 ? null : (
               <FeeSpot>
                 {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
               </FeeSpot>
             )}
-            <TransferHint>
-              {`${Common.formatNumberWithThousand(
-                transferLimitFrom,
-              )} - ${Common.formatNumberWithThousand(transferLimitTo)}
-                ${i18n.t("deposit.dollor")}`}
-            </TransferHint>
-          </AmountHint>
+          </LabelWrapper>
+
+          <DepositLimitWrapper>
+            <FormControl variant="outlined" >
+              <TextField
+                fullWidth
+                value={this.props.amount}
+                onChange={this.props.handleAmountChange}
+                type={"number"}
+                placeholder={
+                  i18n.t("deposit.msgPleaseEnter") +
+                  Common.formatNumberWithThousand(channel.transferlimit.from) +
+                  "-" +
+                  Common.formatNumberWithThousand(channel.transferlimit.to) +
+                  i18n.t("deposit.dollor")
+                }
+              />
+            </FormControl>
+            <AmountHint>
+              <AmountBg>
+                <AmountBgIcon src={amountBg} alt={"Amount limit"} />
+              </AmountBg>
+              <TransferHint>
+                {`${Common.formatNumberWithThousand(
+                  transferLimitFrom,
+                )} - ${Common.formatNumberWithThousand(transferLimitTo)}
+                  ${i18n.t("deposit.dollor")}`}
+              </TransferHint>
+            </AmountHint>
+          </DepositLimitWrapper>
+
+          <TransferHintAmount>
+            {`${Common.formatNumberWithThousand(
+              transferLimitFrom,
+            )} - ${Common.formatNumberWithThousand(transferLimitTo)}
+                  ${i18n.t("deposit.dollor")}`}
+          </TransferHintAmount>
         </ItemContainer>
 
         {paymentCode("umpay") && <Remark>{i18n.t("deposit.ppRemark")}</Remark>}
@@ -487,8 +529,8 @@ class Main extends Component {
                   <LimitLabel>{i18n.t("deposit.totalAmount")}</LimitLabel>
                   {" :  "}
                   <LimitAmount>{` ${isNaN(this.props.amount) === false
-                      ? Common.formatNumberWithCommasNoRounding(this.props.amount / usdtRate)
-                      : 0
+                    ? Common.formatNumberWithCommasNoRounding(this.props.amount / usdtRate)
+                    : 0
                     }`}</LimitAmount>
                 </ExchangeRateContainer>
               );
@@ -506,8 +548,8 @@ class Main extends Component {
                     {i18n.t("deposit.expectedPayment")}
                   </LimitLabel>{" "}
                   <LimitAmount>{` ${isNaN(this.props.amount) === false
-                      ? (this.props.amount / this.props.exchangeRate.buyprice).toFixed(2)
-                      : 0
+                    ? (this.props.amount / this.props.exchangeRate.buyprice).toFixed(2)
+                    : 0
                     }`}</LimitAmount>
                 </ExchangeRateContainer>
               );
@@ -523,8 +565,8 @@ class Main extends Component {
                         {i18n.t("deposit.expectedPayment")}
                       </LimitLabel>{" "}
                       <LimitAmount>{` ${isNaN(this.props.amount) === false
-                          ? (this.props.amount / this.props.exchangeRate[key][key2].rate).toFixed(2)
-                          : 0
+                        ? (this.props.amount / this.props.exchangeRate[key][key2].rate).toFixed(2)
+                        : 0
                         }`}</LimitAmount>
                     </ExchangeRateContainer>
                   );
