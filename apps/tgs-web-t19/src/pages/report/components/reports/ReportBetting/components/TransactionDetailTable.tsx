@@ -44,6 +44,7 @@ const TransactionDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                padding: "10px !important",
               }}
             >
               <>{i18n.t("report.betDateTime")}</>
@@ -51,6 +52,7 @@ const TransactionDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                padding: "10px !important",
               }}
             >
               <>{i18n.t("report.betid")}</>
@@ -58,6 +60,7 @@ const TransactionDetailTable = ({
             <TableCell
               sx={{
                 border: "none",
+                padding: "10px !important",
               }}
             >
               <>{i18n.t("report.platformgamename")}</>
@@ -66,6 +69,7 @@ const TransactionDetailTable = ({
               align={"right"}
               sx={{
                 border: "none",
+                padding: "10px !important",
               }}
             >
               <>{i18n.t("report.totalBet")}</>
@@ -74,6 +78,7 @@ const TransactionDetailTable = ({
               align={"right"}
               sx={{
                 border: "none",
+                padding: "10px !important",
               }}
             >
               <>{i18n.t("report.validBet")}</>
@@ -82,6 +87,7 @@ const TransactionDetailTable = ({
               align={"right"}
               sx={{
                 border: "none",
+                padding: "10px !important",
               }}
             >
               <>{i18n.t("report.winloss")}</>
@@ -147,7 +153,7 @@ const TransactionDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.blue40,
+          color: theme.white,
           "& button": {},
         }}
       />
