@@ -5,6 +5,7 @@ import { TableBody, TableCell, TableRow } from "@mui/material";
 import {
   CustomWinLose
 } from "@/components/styled-component/Report";
+import { theme } from "@/theme";
 
 type Props = {
   roundTotal: RoundTotalDto;
@@ -16,11 +17,12 @@ const TotalState = ({ roundTotal }: Props) => {
     <>{config.features.Report_ShowRoundsTotal &&
       roundTotal &&
       <TableBody>
-        <TableRow>
+        <TableRow sx={{ background: theme.pureBlack, borderRadius: "10px", height: "37px" }}>
           <TableCell
             style={{
               fontSize: "0.875rem",
               fontWeight: 500,
+              padding: "10px 12px",
             }}
           >
             <>{i18n.t("report.total")}</>
@@ -32,6 +34,7 @@ const TotalState = ({ roundTotal }: Props) => {
             style={{
               fontSize: "0.875rem",
               fontWeight: 500,
+              padding: "10px 12px",
             }}
           >
             <> {betAmount}</>
@@ -41,6 +44,7 @@ const TotalState = ({ roundTotal }: Props) => {
             style={{
               fontSize: "0.875rem",
               fontWeight: 500,
+              padding: "10px 12px",
             }}
           >
             <>{validBetAmount}</>
@@ -50,6 +54,7 @@ const TotalState = ({ roundTotal }: Props) => {
             style={{
               fontSize: "0.875rem",
               fontWeight: 500,
+              padding: "10px 12px",
             }}
           >
             <CustomWinLose $value={roundTotal && winLoss}>

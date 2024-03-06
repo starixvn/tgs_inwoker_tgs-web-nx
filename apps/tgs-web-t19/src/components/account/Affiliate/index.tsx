@@ -17,6 +17,7 @@ import {
   FlexContainer,
   QRCodeContainer,
 } from "@/components/styled-component/Affiliate";
+import { theme } from "@/theme";
 
 const Affiliate = () => {
   const { account } = useAccountStore();
@@ -69,10 +70,9 @@ const Affiliate = () => {
           {i18n.t("rebateRate.title")}
         </AffiliateTitle>
 
-        <FormControl style={{ marginBottom: "20px" }}>
+        <FormControl style={{ marginBottom: "20px" }} sx={{ borderRadius: "6px" }}>
           <Select
             fullWidth
-            // disableUnderline
             native
             value={selectedRebateItem.value}
             onChange={(e) => handleChangeSelectItem(e)}
