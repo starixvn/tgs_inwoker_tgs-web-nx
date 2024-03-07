@@ -41,20 +41,25 @@ export function useTransferWallets() {
     );
 
     for (const provider of filteredProviderList) {
-      try {
-        const response = await getGameBalance(provider.gpcode);
+      //有token才打getGameBalance API,如果token被清除的話(ex:登出),跳出迴圈,不然網站會不斷re-render
+      if (localStorage.getItem("token0") || localStorage.getItem("token1")) {
+        try {
+          const response = await getGameBalance(provider.gpcode);
 
-        if (!response || !response.IsSuccess) {
-          console.log(provider.gpcode);
-          continue;
+          if (!response || !response.IsSuccess) {
+            console.log(provider.gpcode);
+            continue;
+          }
+
+          handleUpdateTransferWallet({
+            ...provider,
+            balance: response.data.balance,
+          });
+        } catch (error) {
+          console.error(`Error fetching balance for ${provider.gpcode}`, error);
         }
-
-        handleUpdateTransferWallet({
-          ...provider,
-          balance: response.data.balance,
-        });
-      } catch (error) {
-        console.error(`Error fetching balance for ${provider.gpcode}`, error);
+      } else {
+        break;
       }
     }
 

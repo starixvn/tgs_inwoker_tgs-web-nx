@@ -90,6 +90,7 @@ const initialState: {
     accumturnover: 0,
     levelupaccumulatebetamount: 0,
     levelupaccumulatedeposit: 0,
+    fulllevel: false,
   } as AccountInfo,
   providerList: [],
 };
@@ -126,7 +127,7 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
     if (!registercompleted) return;
     fetchBalance();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game.providerList.length, isLogin, registercompleted]);
+  }, [game.providerList.length, registercompleted]);
 
   const fetchBalance = async () => {
     const promiseList = [fetchMainWalletBalance(), fetchTransferWalletBalance()];

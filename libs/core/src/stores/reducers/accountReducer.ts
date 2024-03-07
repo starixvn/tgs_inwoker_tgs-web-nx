@@ -189,6 +189,7 @@ function mapToAccountState(state, data) {
     accumturnover: data.accumturnover,
     levelupaccumulatebetamount: data.levelupaccumulatebetamount,
     levelupaccumulatedeposit: data.levelupaccumulatedeposit,
+    fulllevel: data.fulllevel,
   };
 }
 export function accountReducer(state = initialState, action) {

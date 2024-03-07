@@ -9,6 +9,7 @@ import {
   useWalletStore,
 } from "@tgs-web-nx/core";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { GetBankCardListResDto } from "@tgs-web-nx/types";
 import { useAuthDialog } from "../../useAuthDialog";
 import { useHomeGameContext } from "../../game/useHomeGameContext";
 
@@ -76,17 +77,20 @@ export function useLogin() {
   };
 
   const handleLoginSuccess = async (username: string, needToRemember?: boolean) => {
-    await fetchData();
-    handleLocalStorage(needToRemember || false, username);
+    const inBlackList = await isInBlackList();
+    if (!inBlackList) {
+      await fetchData();
+      handleLocalStorage(needToRemember || false, username);
 
-    // handle return url
-    const urlParams = new URLSearchParams(location.search);
-    const returnUrl = urlParams.get("return_url");
-    if (returnUrl) {
-      return history.push(returnUrl);
+      // handle return url
+      const urlParams = new URLSearchParams(location.search);
+      const returnUrl = urlParams.get("return_url");
+      if (returnUrl) {
+        return history.push(returnUrl);
+      }
+
+      redirectToHome();
     }
-
-    redirectToHome();
   };
 
   const examineRegisterStatus = async (username: string) => {
@@ -98,6 +102,18 @@ export function useLogin() {
     updateStage(nextStep);
 
     return false;
+  };
+
+  const isInBlackList = async () => {
+    let result = false;
+    //判斷玩家是否為黑名單是依據後端API回傳code為210及errmsgid為AccessDenied
+    //註1:walletStore.getBankCardList()以此API當作判斷是否為黑名單
+    //註2:因在此呼叫getBankCardList()了,因此在fetchData函式就不再call一次
+    const response = (await walletStore.getBankCardList()) as GetBankCardListResDto;
+    if (response.code === 210) {
+      result = true;
+    }
+    return result;
   };
 
   const fetchData = async () => {
@@ -117,7 +133,8 @@ export function useLogin() {
      * */
 
     walletStore.getWithdrawalChannel();
-    walletStore.getBankCardList();
+    //已經在判斷玩家函式就呼叫,這邊就不重複call API
+    // walletStore.getBankCardList();
     walletStore.getBalanceList();
   };
 

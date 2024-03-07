@@ -28,12 +28,14 @@ import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import AppDownloadPage from "@/pages/download/DownloadPage";
 import HomeLayout from "@/layouts/HomeLayout";
 import VipLayout from "@/layouts/VipLayout";
+import BannedLayout from "@/layouts/BannedLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
 import Faq from "@/pages/Faq";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
+import BannedPage from "@/pages/banned/BannedPage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -289,11 +291,12 @@ const routes: RouteType[] = [
   //   component: SettingLanguage,
   //   screenHeight: true,
   // },
-  // {
-  //   path: "/banned",
-  //   component: Banned,
-  //   navigate: true,
-  // },
+  {
+    path: "/banned",
+    component: BannedPage,
+    isAnonymousAllowed: true,
+    layout: BannedLayout,
+  },
   {
     path: "/vip",
     component: VIPPage,
