@@ -71,6 +71,7 @@ export type AccountInfo = {
   accumturnover: number;
   levelupaccumulatebetamount: number;
   levelupaccumulatedeposit: number;
+  fulllevel: boolean;
 };
 // | {
 //     [key in string]: string;
