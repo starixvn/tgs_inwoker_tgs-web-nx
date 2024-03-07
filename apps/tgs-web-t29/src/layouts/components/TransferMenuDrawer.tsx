@@ -3,7 +3,7 @@ import { Drawer } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import config from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { theme } from "@/theme";
 import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
 import { Button } from "@/components/UI/Button";
@@ -33,6 +33,7 @@ type Props = {
 };
 const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
   const history = useHistory();
+  const isShowAgentAdminButton = brandConfig[mapBrandName(config.brand)].isShowAgentAdminButton;
 
   const handleDialogClose = () => {
     handleDrawerToggle(false);
@@ -55,12 +56,23 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
 
   const transferButtonList = useMemo<TransferButton[]>(() => {
     return [
-      {
-        key: "agent",
-        label: i18n.t("usertype.agent"),
-        background: theme.blueBtn,
-        routePath: "/",
-      },
+      (() => {
+        if (isShowAgentAdminButton) {
+          return {
+            key: "agent",
+            label: i18n.t("usertype.agent"),
+            background: theme.blueBtn,
+            routePath: "/",
+          };
+        } else {
+          return {
+            key: "transfer",
+            label: i18n.t("common.transfer"),
+            background: theme.blueBtn,
+            routePath: "/transfer",
+          };
+        }
+      })(),
       {
         key: "deposit",
         label: i18n.t("common.deposit"),

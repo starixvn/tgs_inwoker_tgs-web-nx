@@ -2,7 +2,7 @@
  * 若有新增站台 先在這邊加入對應設定
  * Default BrandName: 'GPI'
  */
-type BrandName = "GPI" | "MOVN2" | "MOMOTEST";
+type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH";
 
 type SocialMediaLink = {
   fb: string;
@@ -27,8 +27,8 @@ type MOVN2Config = {
   isDisableWebPinchAction: boolean; // 網站是否禁用縮放
   countryCode: string;
   currencyRate?: number;
-  isShowAgentAdminButton:boolean // 是否將transfer button改成agent amdin button https://raypro.atlassian.net/browse/TGS-4158
-}
+  isShowAgentAdminButton: boolean; // 是否將transfer button改成agent amdin button https://raypro.atlassian.net/browse/TGS-4158
+};
 
 /*
 * 新站台 客製化設定
@@ -73,7 +73,7 @@ export const defaultConfig: Config = {
   isAllowMulitBankCards: true,
   isDisableWebPinchAction: false,
   countryCode: "en-US",
-  isShowAgentAdminButton:false,
+  isShowAgentAdminButton: false,
   // new brand config start here
   // NewBrand
 };
@@ -103,8 +103,12 @@ export const brandConfig: Record<BrandName, Config> = {
     isAllowMulitBankCards: false,
     countryCode: "vi-VN",
     currencyRate: 1000,
-    isDisableWebPinchAction:true,
-    isShowAgentAdminButton:true,
+    isDisableWebPinchAction: true,
+    isShowAgentAdminButton: true,
+  },
+  MOPH: {
+    ...defaultConfig,
+    isShowAgentAdminButton: true,
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -124,10 +128,10 @@ export const brandConfig: Record<BrandName, Config> = {
     isAllowMulitBankCards: false,
     countryCode: "vi-VN",
     currencyRate: 1000,
-    isDisableWebPinchAction:true,
-    isShowAgentAdminButton:true,
-  }
-}
+    isDisableWebPinchAction: true,
+    isShowAgentAdminButton: true,
+  },
+};
 
 export const mapBrandName = (brand: string): BrandName => {
   if (Object.keys(brandConfig).includes(brand)) {
