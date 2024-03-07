@@ -9,6 +9,7 @@ import {
   useWalletStore,
 } from "@tgs-web-nx/core";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { GetBankCardListResDto } from "@tgs-web-nx/types";
 import { useAuthDialog } from "../../useAuthDialog";
 import { useHomeGameContext } from "../../game/useHomeGameContext";
 
@@ -108,8 +109,8 @@ export function useLogin() {
     //判斷玩家是否為黑名單是依據後端API回傳code為210及errmsgid為AccessDenied
     //註1:walletStore.getBankCardList()以此API當作判斷是否為黑名單
     //註2:因在此呼叫getBankCardList()了,因此在fetchData函式就不再call一次
-    const response = await walletStore.getBankCardList();
-    if (response.code === 210 && response.data.errmsgid === "AccessDenied") {
+    const response = (await walletStore.getBankCardList()) as GetBankCardListResDto;
+    if (response.code === 210) {
       result = true;
     }
     return result;
