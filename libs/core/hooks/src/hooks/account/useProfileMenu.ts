@@ -52,12 +52,11 @@ export function useProfileMenu() {
         isVerified: !!account.info.member_name,
         status: account.info.member_name
           ? i18n.t(
-              `${account.info.member_name} ${
-                config.features.ShowVerificationStatus
-                  ? `(` + i18n.t("verified." + getStatus()) + `)`
-                  : ""
-              }`,
-            )
+            `${account.info.member_name} ${config.features.ShowVerificationStatus
+              ? `(` + i18n.t("verified." + getStatus()) + `)`
+              : ""
+            }`,
+          )
           : i18n.t("profile.notSet"),
         routePath: "/profile/name",
         buttonText: account.info.member_name

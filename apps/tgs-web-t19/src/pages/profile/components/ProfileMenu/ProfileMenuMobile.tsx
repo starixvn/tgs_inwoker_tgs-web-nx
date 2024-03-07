@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
+import config from "@tgs-web-nx/config";
 import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
 
 const ProfileCard = styled.div`
@@ -41,16 +42,20 @@ const ProfileMenuMobile = () => {
       </ProfileCard>
 
       <ProfileCard>
-        <ProfileRowInMobile
-          key={profileItemDictionary["qq"].key}
-          profileItem={profileItemDictionary["qq"]}
-          handleClick={handleClickProfileItem}
-        />
-        <ProfileRowInMobile
-          key={profileItemDictionary["wechat"].key}
-          profileItem={profileItemDictionary["wechat"]}
-          handleClick={handleClickProfileItem}
-        />
+        {config.features.QQWeChat && (
+          <>
+            <ProfileRowInMobile
+              key={profileItemDictionary["qq"].key}
+              profileItem={profileItemDictionary["qq"]}
+              handleClick={handleClickProfileItem}
+            />
+            <ProfileRowInMobile
+              key={profileItemDictionary["wechat"].key}
+              profileItem={profileItemDictionary["wechat"]}
+              handleClick={handleClickProfileItem}
+            />
+          </>
+        )}
 
         {customMessagingList.map((messagingItem) => {
           return (
