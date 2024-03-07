@@ -90,6 +90,7 @@ const initialState: {
     accumturnover: 0,
     levelupaccumulatebetamount: 0,
     levelupaccumulatedeposit: 0,
+    fulllevel: false,
   } as AccountInfo,
   providerList: [],
 };
