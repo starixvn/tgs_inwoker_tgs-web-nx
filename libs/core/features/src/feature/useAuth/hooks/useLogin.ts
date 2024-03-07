@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import {
@@ -12,6 +12,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GetBankCardListResDto } from "@tgs-web-nx/types";
 import { useAuthDialog } from "../../useAuthDialog";
 import { useHomeGameContext } from "../../game/useHomeGameContext";
+import { useTransferWallets } from "../../useUserWalletInfo/hooks/useTransferWallets";
 
 export type LoginState = {
   data: any | null;
@@ -34,6 +35,13 @@ export function useLogin() {
   const generalStore = useGeneralStore();
   const { updateStage } = useAuthDialog();
   const { handleChangeGameType } = useHomeGameContext();
+  const { fetchTransferWalletBalance } = useTransferWallets();
+
+  useEffect(() => {
+    if (loginState.data) {
+      fetchTransferWalletBalance();
+    }
+  }, [loginState]);
 
   const handleLogin = async (username: string, password: string, needToRemember?: boolean) => {
     try {

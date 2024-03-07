@@ -126,7 +126,7 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
     if (!registercompleted) return;
     fetchBalance();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [game.providerList.length, registercompleted]);
+  }, [game.providerList.length]);
 
   const fetchBalance = async () => {
     const promiseList = [fetchMainWalletBalance(), fetchTransferWalletBalance()];
