@@ -70,7 +70,11 @@ export function useCreatePlayerStage() {
       localStorage.setItem("remember", "true");
       localStorage.setItem("username", username);
       handleToggleRegisterDialog(false);
-      handleToggleLoginDialog(true);
+
+      //Set realname時已經login,不需要再彈出登入視窗
+      if (!brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
+        handleToggleLoginDialog(true);
+      }
 
       // updateStage(newRegisterResDto.data.nextStepType);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
