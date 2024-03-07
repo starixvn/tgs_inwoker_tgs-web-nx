@@ -1,25 +1,25 @@
 /*
-* 若有新增站台 先在這邊加入對應設定
-* Default BrandName: 'GPI'
-*/
-type BrandName = 'GPI' | 'MOVN2' | 'MOMOTEST'
+ * 若有新增站台 先在這邊加入對應設定
+ * Default BrandName: 'GPI'
+ */
+type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH";
 
 type SocialMediaLink = {
-  fb: string,
-  ig: string,
-  twitter: string,
-}
+  fb: string;
+  ig: string;
+  twitter: string;
+};
 
 /*
-* MOVN2 客製化設定
-*/
+ * MOVN2 客製化設定
+ */
 type MOVN2Config = {
-  isAddRealNameFieldBrand: boolean // 是否需要新增姓名欄位
-  isAutoFillBankHolderName: boolean // 是否自動帶入姓名
-  isDisabledBankHolderName: boolean // 是否可以編輯姓名
-  isRegisterRealNameRequired: boolean // 註冊是否需要真實姓名
-  socialMediaLink: SocialMediaLink // 社群媒體連結
-  isShowLiveChat: boolean // 是否顯示 livechat
+  isAddRealNameFieldBrand: boolean; // 是否需要新增姓名欄位
+  isAutoFillBankHolderName: boolean; // 是否自動帶入姓名
+  isDisabledBankHolderName: boolean; // 是否可以編輯姓名
+  isRegisterRealNameRequired: boolean; // 註冊是否需要真實姓名
+  socialMediaLink: SocialMediaLink; // 社群媒體連結
+  isShowLiveChat: boolean; // 是否顯示 livechat
   isShowDownloadApp: boolean; // footer 是否顯示下載 app qrcode
   isShowChatCustomerService: boolean; // footer 是否顯示 Chat Customer Service
   isShowVIP: boolean; // Navbar 是否顯示 VIP
@@ -27,8 +27,8 @@ type MOVN2Config = {
   isDisableWebPinchAction: boolean; // 網站是否禁用縮放
   countryCode: string;
   currencyRate?: number;
-  isShowAgentAdminButton:boolean // 是否將transfer button改成agent amdin button https://raypro.atlassian.net/browse/TGS-4158
-}
+  isShowAgentAdminButton: boolean; // 是否將transfer button改成agent amdin button https://raypro.atlassian.net/browse/TGS-4158
+};
 
 /*
 * 新站台 客製化設定
@@ -43,7 +43,6 @@ type NewBrandConfig = {
 --- example end --- 
 */
 
-
 /*
 * 將所有客製化設定合併
 
@@ -54,7 +53,7 @@ type Config = MOVN2Config & NewBrandConfig
 --- example end --- 
 */
 
-type Config = MOVN2Config
+type Config = MOVN2Config;
 
 // 預設共用設定
 export const defaultConfig: Config = {
@@ -72,19 +71,19 @@ export const defaultConfig: Config = {
   isShowChatCustomerService: true,
   isShowVIP: true,
   isAllowMulitBankCards: true,
-  isDisableWebPinchAction:false,
+  isDisableWebPinchAction: false,
   countryCode: "en-US",
-  isShowAgentAdminButton:false,
+  isShowAgentAdminButton: false,
   // new brand config start here
   // NewBrand
-}
+};
 
 // 客製化設定
 export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
     countryCode: "vi-VN", //for QA testing TGS-4194 & TGS-4184
-    currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184 
+    currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
   },
   MOVN2: {
     ...defaultConfig,
@@ -104,8 +103,12 @@ export const brandConfig: Record<BrandName, Config> = {
     isAllowMulitBankCards: false,
     countryCode: "vi-VN",
     currencyRate: 1000,
-    isDisableWebPinchAction:true,
-    isShowAgentAdminButton:true,
+    isDisableWebPinchAction: true,
+    isShowAgentAdminButton: true,
+  },
+  MOPH: {
+    ...defaultConfig,
+    isShowAgentAdminButton: true,
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -125,15 +128,15 @@ export const brandConfig: Record<BrandName, Config> = {
     isAllowMulitBankCards: false,
     countryCode: "vi-VN",
     currencyRate: 1000,
-    isDisableWebPinchAction:true,
-    isShowAgentAdminButton:true,
-  }
-}
+    isDisableWebPinchAction: true,
+    isShowAgentAdminButton: true,
+  },
+};
 
 export const mapBrandName = (brand: string): BrandName => {
-  if(Object.keys(brandConfig).includes(brand)) {
+  if (Object.keys(brandConfig).includes(brand)) {
     return brand as BrandName;
   }
 
   return "GPI";
-}
+};
