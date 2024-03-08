@@ -49,6 +49,7 @@ const BannerWrapper = styled.div`
   ${media.sm} {
     height: 100%;
     max-height: 450px;
+    margin-top: 20px;
   }
 `;
 
@@ -77,7 +78,7 @@ const MainContentWrapper = styled.div`
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
   max-width: ${MAIN_CONTENT_MAX_WIDTH};
-  height: 450px;
+  height: 375px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;

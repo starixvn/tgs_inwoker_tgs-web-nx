@@ -26,7 +26,6 @@ const Wrapper = styled.div`
   gap: 6px;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     padding: 15px 0px;
   }

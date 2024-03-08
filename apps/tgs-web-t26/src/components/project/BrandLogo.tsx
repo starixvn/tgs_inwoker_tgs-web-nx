@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { media } from "@/theme/breakpoints";
 
 const LogoImgContainer = styled.div`
   height: 48px;
@@ -16,6 +17,11 @@ const LogoImgContainer = styled.div`
     object-fit: contain;
     display: block;
     margin: auto;
+  }
+
+  ${media.sm} {
+    height: 68px;
+    max-width: 190px;
   }
 `;
 

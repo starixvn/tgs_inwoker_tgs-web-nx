@@ -13,6 +13,7 @@ const HeaderGameTypesContainer = styled.div`
   margin-right: auto;
   display: flex;
   flex-wrap: nowrap;
+  gap: 20px;
   align-items: stretch;
   height: 100%;
   /* overflow-x: auto; */
@@ -40,12 +41,13 @@ const GameTypeNav = styled.div<{
   $isActive: boolean;
 }>`
   flex-shrink: 0;
-  font-size: 0.875rem;
-  font-weight: 700;
   white-space: nowrap;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 15px;
+  letter-spacing: 0em;
   display: flex;
   align-items: center;
-  padding: 5px;
   color: ${({ theme }) => theme.text};
   cursor: pointer;
   position: relative;
