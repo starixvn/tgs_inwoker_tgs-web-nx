@@ -7,6 +7,7 @@ import { useNotifications } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
 import { ForgotPasswordStageEnum, ValueOf } from "@tgs-web-nx/types";
 import { MenuItem, Select, styled as muiStyled } from "@mui/material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
@@ -15,6 +16,7 @@ import {
   VerifySubmitButton,
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
+import { theme } from "@/theme";
 // import { Select } from "@/components/UI/Select";
 
 const PhoneContainer = styled.div`
@@ -63,6 +65,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
   const [securityKey, setSecurityKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const { isMobileSize, isDesktopSize } = useRwd();
 
   const handleChangePhone = (e: ChangeEvent<any>) => {
     setPhone(e.target.value);
@@ -197,7 +200,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       </ItemContainer>
 
       <ItemContainer>
-        <FormControl variant="outlined">
+        <FormControl variant="outlined" style={{ marginRight: "8px" }}>
           <TextFieldWithButton
             buttonLabel={
               countdownToken <= 0

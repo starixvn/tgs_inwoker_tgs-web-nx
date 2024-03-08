@@ -12,9 +12,6 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   "&:active": {
     background: "none",
   },
-  "& > .Mui-disabled": {
-    WebkitTextFillColor: `${theme.palette.text.disabled} !important`,
-  },
   select: {
     color: theme.palette.text.primary,
     padding: "14px",
@@ -27,6 +24,9 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     "&:disabled": {
       color: "#828282",
     },
+    "&.Mui-disabled": {
+      WebkitTextFillColor: "#828282",
+    },
   },
   "& .MuiSvgIcon-root": {
     color: theme.palette.text.primary,
@@ -35,15 +35,28 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
   },
+  option: {
+    background: "#8C8998 !important",
+    color: `${theme.palette.white}`,
+    "&:hover": {
+      background: `${theme.palette.white} !important`,
+    },
+    "&:active": {
+      background: `${theme.palette.white} !important`,
+    },
+    "&.Mui-disabled": {
+      WebkitTextFillColor: `${theme.palette.white}`,
+    },
+  },
 }));
 
 export const Select = (props: SelectProps) => {
   return (
     <StyledSelect
       {...props}
-      // IconComponent={() => (
-      //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
-      // )}
+    // IconComponent={() => (
+    //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
+    // )}
     />
   );
 };
