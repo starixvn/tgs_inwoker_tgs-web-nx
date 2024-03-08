@@ -133,6 +133,7 @@ const MaintenanceBg = styled.div`
 const MaintenanceIcon = styled.img`
   width: 82.68px;
   height: 58.1px;
+  margin-bottom: 33px;
 `;
 
 type GameCardProps = {
@@ -232,7 +233,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         />
       )}
 
-      {isDesktopSize && (
+      {isDesktopSize && isActive && (
         <CardHoverBg onClick={launchGameHandler}>
           <PlayButton>PLAY</PlayButton>
         </CardHoverBg>

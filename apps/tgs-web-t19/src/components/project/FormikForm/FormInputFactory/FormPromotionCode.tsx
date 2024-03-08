@@ -72,8 +72,10 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
                     color: theme.white,
                     "&:hover": {
                       backgroundColor: theme.primary,
-                      color: theme.mainBackground,
                     },
+                  },
+                  "& .Mui-selected": {
+                    backgroundColor: "#fed45854",
                   },
                 },
               },

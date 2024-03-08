@@ -1,6 +1,7 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import maintenanceIcon from "@/assets/t26/images/home/maintenance.svg";
 
 const VendorName = styled.div`
@@ -15,7 +16,6 @@ const VendorName = styled.div`
 
 const Wrapper = styled.div<{
   $isActive: boolean;
-  $hoverImage?: string;
 }>`
   display: flex;
   flex-shrink: 0;
@@ -76,18 +76,20 @@ type Props = {
 
 const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
   const { activeGameTypeKey } = useHomeGameContext();
-  const hoverImage = `/assets/images/home/hover_provider_logo/${activeGameTypeKey}/${gpCode}.png`;
+  const { isDesktopSize } = useRwd();
+
+  const getImgURL = () => {
+    const prefix = import.meta.env.BASE_URL;
+    const whiteIcon = `${prefix}assets/images/home/provider_logo/all/${gpCode}.png`;
+    const colorIcon = `${prefix}assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`;
+    const res = isDesktopSize ? (isActive ? colorIcon : whiteIcon) : colorIcon;
+
+    return res;
+  };
 
   return (
-    <Wrapper $isActive={isActive} $hoverImage={hoverImage} onClick={onClick}>
-      {text !== "All" && (
-        <img
-          src={`${
-            import.meta.env.BASE_URL
-          }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-          alt={text}
-        />
-      )}
+    <Wrapper $isActive={isActive} onClick={onClick}>
+      {text !== "All" && <img src={getImgURL()} alt={text} />}
       {text === "All" && <AllText $isActive={isActive}>All</AllText>}
       {text !== "All" && <VendorName>{text}</VendorName>}
 

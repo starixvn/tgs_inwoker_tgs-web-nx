@@ -18,6 +18,7 @@ import ProfileViberPage from "@/components/account/Profile/ProfileViber";
 import ProfileWithdrawalPasswordPage from "@/components/account/Profile/ProfileWIthdrawalPassword";
 import ProfileWeChatPage from "@/components/account/Profile/ProfileWeChat";
 import ProfileWhatsappPage from "@/components/account/Profile/ProfileWhatsapp";
+import ProfileZALOPage from "@/components/account/Profile/ProfileZALO";
 
 export const profilePageDictionary: {
   [key in ValueOf<typeof ProfilePathEnum>]: any; // TODO: determine its type
@@ -25,6 +26,7 @@ export const profilePageDictionary: {
   [ProfilePathEnum.PROFILE]: ProfileMenuMobile,
   [ProfilePathEnum.NAME]: ProfileNamePage,
   [ProfilePathEnum.WECHAT]: ProfileWeChatPage,
+  [ProfilePathEnum.ZALO]: ProfileZALOPage,
   [ProfilePathEnum.BIRTHDATE]: ProfileBirthDatePage,
   [ProfilePathEnum.QQ]: ProfileQQPage,
   [ProfilePathEnum.FB]: ProfileFacebookMessengerPage,

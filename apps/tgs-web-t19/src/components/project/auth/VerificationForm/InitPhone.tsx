@@ -15,14 +15,11 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-import { theme } from "@/theme";
 
 const PhoneContainer = styled.div`
   display: flex;
   gap: 8px;
 `;
-
-const AREA_CODE = config.features.PhonePrefix;
 
 type Props = {
   handleCloseDialog: () => void;
@@ -35,6 +32,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const { updatePageName } = usePageName();
 
   const [countdownToken, setCountdownToken] = useState(0);
+  const AREA_CODE = config.features.PhonePrefix;
   const [areacode, setAreacode] = useState(AREA_CODE);
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
