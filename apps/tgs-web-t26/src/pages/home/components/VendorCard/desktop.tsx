@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
+import { i18n } from "@tgs-web-nx/utils";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
-import maintenanceIcon from "@/assets/t26/images/home/maintenance.svg";
 
 type Props = {
   bgUrl: string;
@@ -128,6 +128,14 @@ const PlayButton = styled.div`
   letter-spacing: 0em;
 `;
 
+const UMtext = styled.div`
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0em;
+  text-align: center;
+`;
+
 const DesktopVendorCard = ({
   bgUrl,
   imageUrl,
@@ -159,16 +167,16 @@ const DesktopVendorCard = ({
           <GameIcon $imageUrl={imageUrl}></GameIcon>
           {status === providerStatus.Maintenance && (
             <MaintenanceBg>
-              <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+              <UMtext>{i18n.t("undermaintenance").toLocaleUpperCase()}</UMtext>
             </MaintenanceBg>
           )}
         </VendorCardContent>
-        {
+        {status !== providerStatus.Maintenance && (
           <VendorCardHoverBg>
             <PlayButton onClick={launchGameHandler}>PLAY</PlayButton>
             {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
           </VendorCardHoverBg>
-        }
+        )}
       </VendorCardBg>
       <VenderName>{venderName}</VenderName>
     </MainWrapper>

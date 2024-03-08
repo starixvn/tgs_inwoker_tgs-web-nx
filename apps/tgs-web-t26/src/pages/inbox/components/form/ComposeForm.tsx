@@ -55,11 +55,6 @@ const ComposeForm = () => {
             value={subject}
             onChange={updateSubject}
             placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("subject")}`.toLowerCase()}`}
-            sx={{
-              input: {
-                padding: "17px 20px",
-              },
-            }}
           />
         </FormControl>
       </InputWrapper>
