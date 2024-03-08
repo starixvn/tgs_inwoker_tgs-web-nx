@@ -297,7 +297,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
             !config.features.Profile_DisableVerifyPhone &&
             !config.features.InitPhone_WithoutVerify && (
               <ItemContainer>
-                <FormControl variant="outlined">
+                <FormControl variant="outlined" style={{ marginRight: "8px" }}>
                   <TextFieldWithButton
                     buttonLabel={
                       countdownToken <= 0
