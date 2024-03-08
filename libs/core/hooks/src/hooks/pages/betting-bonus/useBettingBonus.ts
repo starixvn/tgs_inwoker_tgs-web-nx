@@ -29,7 +29,7 @@ export function useBettingBonus() {
     "E-game": i18n.t("vip.slotRebate"),
     "Card Game": i18n.t("vip.cardGameRebate"),
     "Sports": i18n.t("vip.sportsRebate"),
-    "Virtual Sports": i18n.t("vip.liveDealerRebate"),
+    "Virtual Sports": i18n.t("vip.virtualSportsRebate"),
     "Lottery": i18n.t("vip.lotteryRebate"),
   };
 
