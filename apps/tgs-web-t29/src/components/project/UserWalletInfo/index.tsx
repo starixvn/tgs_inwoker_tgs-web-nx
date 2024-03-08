@@ -218,7 +218,7 @@ const UserWalletInfo = () => {
     info,
   } = useUserWalletInfoContext();
   const { getAccountInfo } = useAccountStore();
-    
+
   return (
     <Container>
       <PlayerInfoContainer>
@@ -242,7 +242,7 @@ const UserWalletInfo = () => {
         <VIPInfo>
           <ProcessBarWrapper>
             <ProcessBarContainer>
-              <VIPText>{`${i18n.t("vip.totalDeposit")}: ${info.accumdeposit}/${
+              <VIPText>{`${i18n.t("vip.totalDeposit")}: ${info.accumdeposit} / ${
                 info.fulllevel ? "－" : info.levelupaccumulatedeposit
               }`}</VIPText>
               <img src={depositIcon} alt="deposit" />
@@ -255,7 +255,7 @@ const UserWalletInfo = () => {
             </ProcessBarContainer>
 
             <ProcessBarContainer>
-              <VIPText>{`${i18n.t("vip.totalVaildBet")}: ${info.accumturnover}/${
+              <VIPText>{`${i18n.t("vip.totalVaildBet")}: ${info.accumturnover} / ${
                 info.fulllevel ? "－" : info.levelupaccumulatebetamount
               }`}</VIPText>
               <img src={turnoverIcon} alt="turnover" />
