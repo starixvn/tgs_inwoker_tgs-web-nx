@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
 import BalanceTracker from "@/components/project/BalanceTracker";
 import {
   DepositBar,
@@ -64,7 +65,9 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
       <VIPInfo>
         <ProcessBarWrapper>
           <ProcessBarContainer>
-            <VIPText>{`Total Deposit: ${info.accumdeposit}/${info.levelupaccumulatedeposit}`}</VIPText>
+            <VIPText>{`${i18n.t("vip.totalDeposit")}: ${info.accumdeposit} / ${
+              info.fulllevel ? "－" : info.levelupaccumulatedeposit
+            }`}</VIPText>
             <img src={depositIcon} alt="deposit" />
             <Wrapper>
               <ProcessBar>
@@ -75,7 +78,9 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
           </ProcessBarContainer>
 
           <ProcessBarContainer>
-            <VIPText>{`Total Valid Bet: ${info.accumturnover}/${info.levelupaccumulatebetamount}`}</VIPText>
+            <VIPText>{`${i18n.t("vip.totalVaildBet")}: ${info.accumturnover} / ${
+              info.fulllevel ? "－" : info.levelupaccumulatebetamount
+            }`}</VIPText>
             <img src={turnoverIcon} alt="turnover" />
             <Wrapper>
               <ProcessBar>
