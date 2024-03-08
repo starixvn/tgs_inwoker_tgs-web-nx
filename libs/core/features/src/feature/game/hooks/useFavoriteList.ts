@@ -19,10 +19,8 @@ export function useFavoriteList(activeGameType: GameTypeEnum) {
   }, [activeGameType]);
 
   useEffect(() => {
-    if (account.token && activeGameType) {
-      fetchFavoriteList();
-    }
-  }, [account.token, activeGameType]);
+    fetchFavoriteList();
+  }, []);
 
   return {
     favoriteList,
