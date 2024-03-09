@@ -19,7 +19,7 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  padding: 22px 50px;
+  padding: 22px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,8 +37,8 @@ const PlayerInfoContainer = styled.div`
 `;
 
 const PlayerName = styled.div`
-  font-size: 2rem;
-  font-weight: 500;
+  font-size: 2.8125rem;
+  font-weight: 400;
   color: ${({ theme }) => theme.white};
 `;
 
@@ -85,7 +85,7 @@ type RefreshButtonProps = {
   $isLoading: boolean;
 };
 
-const RefreshButton = styled(Icon)<RefreshButtonProps>`
+const RefreshButton = styled(Icon) <RefreshButtonProps>`
   cursor: pointer;
 
   animation: ${({ $isLoading }: RefreshButtonProps) =>
@@ -106,9 +106,9 @@ const AmountText = styled.div`
 
 const VIPLabel = styled.div<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.activeNav};
-  font-size: 1.625rem;
-  margin-top: 11px;
-  font-weight: 700;
+  font-size: 1.857rem;
+  margin-top: 6px;
+  font-weight: 400;
 `;
 
 const UserWalletInfo = () => {
