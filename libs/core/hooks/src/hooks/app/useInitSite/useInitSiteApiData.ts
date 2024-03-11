@@ -11,7 +11,7 @@ import {
   useUiStore,
   useWalletStore,
 } from "@tgs-web-nx/core";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuth, usePromotionCodeV2 } from "@tgs-web-nx/core/features";
 
 export function useInitSiteApiData() {
   const {
@@ -32,6 +32,7 @@ export function useInitSiteApiData() {
   const { getProviderList } = useGameStore();
   const history = useHistory();
   const { isLogin } = useAuth();
+  const { initPromotionCode } = usePromotionCodeV2();
 
   const [isInitSiteLoading, setIsInitSiteLoading] = useState(true);
 
@@ -48,49 +49,29 @@ export function useInitSiteApiData() {
     //   Common.loadScript("/js/iovation.js", () => {});
     // });
 
-    saveUrlInfoToLocalStorage();
+    const getBrandResDto = await getBrand(); // this need to be first one
+    if (!getBrandResDto) {
+      throw new Error("no brand found");
+    }
+
+    await initPromotionCode(getBrandResDto.data.hasInvitationCode);
     await handleSiteDataFetching();
+
     handleGoto();
     handleTo();
     await handleAccountInfoFetching();
     setIsInitSiteLoading(false);
   };
 
-  const saveUrlInfoToLocalStorage = () => {
-    const urlPath = window.location.pathname.split("/");
-
-    if (urlPath.length !== 3) {
-      localStorage.setItem("invitationtype", "");
-      localStorage.setItem("upper", "");
-      localStorage.setItem("promotionId", "");
-      return;
-    }
-
-    if (urlPath[1] === "a") {
-      localStorage.setItem("promotionId", urlPath[2] || "");
-      localStorage.setItem("upper", "");
-      localStorage.setItem("invitationtype", "a");
-    }
-
-    if (urlPath[1] === "p") {
-      localStorage.setItem("upper", urlPath[2] || "");
-      localStorage.setItem("promotionId", "");
-      localStorage.setItem("invitationtype", "p");
-    }
-  };
-
   const handleSiteDataFetching = async () => {
     if (!general.token) {
       await getSiteToken();
-      //檢查是否在維護
-      await getBrand();
       return;
     }
 
     getMarquee(i18n.language);
     getAnnouncement(i18n.language);
     getBanner();
-    getBrand();
     getBrandCommunication();
     getLiveChatURL();
     getPromotion();

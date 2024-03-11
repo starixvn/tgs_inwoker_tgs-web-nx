@@ -4,6 +4,7 @@ import React from "react";
 
 export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: theme.palette.tertiary.main,
+  // background: theme.palette.primaryLight,
   fontSize: "0.937rem",
   fontWeight: 400,
   "&:focus": {
@@ -12,8 +13,12 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   "&:active": {
     background: "none",
   },
+  "& > .Mui-disabled": {
+    WebkitTextFillColor: `${theme.palette.tertiary.main} !important`,
+  },
+
   select: {
-    color: theme.palette.tertiary.main,
+    color: theme.palette.white,
     padding: "14px",
     "&:focus": {
       background: "none",
@@ -21,16 +26,16 @@ export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     "&:active": {
       background: "none",
     },
-    "&:disabled": {
-      color: theme.palette.tertiary.main,
-      WebkitTextFillColor: `${theme.palette.common.white}`,
-    },
   },
   "& .MuiSvgIcon-root": {
     color: theme.palette.tertiary.main,
   },
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
+  },
+  option: {
+    background: "#181F2B !important",
+    color: "#fff",
   },
 }));
 

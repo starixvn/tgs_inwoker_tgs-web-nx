@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useGoToHomePage, useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import {
   DESKTOP_HEADER_HEIGHT,
   MOBILE_HEADER_HEIGHT,
-  SUB_CONTENT_MAX_WIDTH,
+  MAIN_CONTENT_MAX_WIDTH,
 } from "@/theme/constants";
 import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 import { media } from "@/theme/breakpoints";
@@ -37,7 +37,7 @@ const ContentWrapper = styled.div`
   width: 100%;
   height: 100%;
   z-index: 2;
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  max-width: ${MAIN_CONTENT_MAX_WIDTH};
   margin: auto;
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@ const BlackHeaderRowContainer = styled.div`
   padding: 10px 12px;
   ${media.sm} {
     height: 108px;
-    padding: 0 50px;
+    padding: unset;
   }
 `;
 
@@ -78,7 +78,7 @@ const DesktopHeader = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isDesktopSize } = useRwd();
-  const { handleChangeGameType } = useHomeGameContext();
+  const goToHomePage = useGoToHomePage();
 
   return (
     <HeaderContainer>
@@ -86,7 +86,7 @@ const DesktopHeader = () => {
         <ContentWrapper>
           <ContentGroup>
             <Link to={""}>
-              <BrandLogo onClick={() => handleChangeGameType(GameTypeEnum.NONE)} />
+              <BrandLogo onClick={() => goToHomePage()} />
             </Link>
           </ContentGroup>
           <ContentGroup>

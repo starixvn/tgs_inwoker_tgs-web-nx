@@ -3,7 +3,7 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
-import { useNotifications } from "@tgs-web-nx/core/features";
+import { useNotifications, usePageName } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
@@ -31,6 +31,7 @@ type Props = {
 function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const { alert } = useNotifications();
+  const { updatePageName } = usePageName();
 
   const [countdownToken, setCountdownToken] = useState(0);
   const [areacode, setAreacode] = useState(AREA_CODE);
@@ -41,6 +42,10 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const [securityKey, setSecurityKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    updatePageName(i18n.t("web.register.activation"));
+  });
 
   useEffect(() => {
     const isConfigured = !!(account.info.check_pass_phone && account.info.member_phone);
@@ -272,9 +277,9 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
 
           <FormControl variant="outlined">
             <TextField
-              type={"text"}
+              type={"number"}
               value={phone}
-              placeholder={i18n.t("common.msgEnterPhone")}
+              placeholder={i18n.t("common.phoneNumber")}
               disabled={
                 (isConfigured ? isConfigured : false) || config.features.Profile_DisableVerifyPhone
               }
@@ -302,7 +307,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
                     }
                     value={code}
                     onChange={handleChangeCode}
-                    placeholder={i18n.t("common.msgEnterPhoneCode")}
+                    placeholder={i18n.t("common.token")}
                     type={"number"}
                     onClick={handleGetCodeClick}
                     buttonDisabled={countdownToken > 0}

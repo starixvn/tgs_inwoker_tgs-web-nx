@@ -131,7 +131,7 @@ function truncateString(str: string, n: number): string {
  * @param minAmount 最小金額
  * @returns isDisabled
  */
-export const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minAmount: number) : boolean => {
+const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minAmount: number) : boolean => {
   const regex = /^(?!0)[0-9]+$/;
   const isValid = regex.test(input) && Number(input) <= maxAmount && Number(input) >= minAmount;
   return !isValid;

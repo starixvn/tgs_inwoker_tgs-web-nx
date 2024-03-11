@@ -11,7 +11,6 @@ const StatusSelectWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-
 const StatusSelectContainer = styled.div`
   height: 47px;
   font-size: 0.937rem;
@@ -62,24 +61,25 @@ type Props = {
   statusDictionary: StatusDictionary;
   handleStatusChange: (e: any) => void;
   status: string;
+  type?: string;
 };
-const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) => {
+const StatusSelect = ({ statusDictionary, handleStatusChange, status, type }: Props) => {
   return (
     <StatusSelectWrapper>
       <SelectLabel>{i18n.t("report.status")}</SelectLabel>
       <StatusSelectContainer>
         {/* <SelectFormControl variant="outlined"> */}
-          <Select native onChange={handleStatusChange} value={status} fullWidth>
-            <option value={""}>{i18n.t("report.all")}</option>
+        <Select native onChange={handleStatusChange} value={status} fullWidth>
+          <option value={""}>{i18n.t("report.all")}</option>
 
-            {Object.keys(statusDictionary).map((key) => {
-              return (
-                <option key={key} value={key}>
-                  {i18n.t(`report.withdrawal.status${key}`)}
-                </option>
-              );
-            })}
-          </Select>
+          {Object.keys(statusDictionary).map((key) => {
+            return (
+              <option key={key} value={key}>
+                {i18n.t(`report.${type}.status${key}`)}
+              </option>
+            );
+          })}
+        </Select>
         {/* </SelectFormControl> */}
       </StatusSelectContainer>
     </StatusSelectWrapper>

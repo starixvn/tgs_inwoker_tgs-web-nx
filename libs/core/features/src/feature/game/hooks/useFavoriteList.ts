@@ -8,6 +8,7 @@ export function useFavoriteList(activeGameType: GameTypeEnum) {
   const [favoriteList, setFavoriteList] = useState<number[]>([]);
 
   const fetchFavoriteList = useCallback(async () => {
+    if (!account.token) return;
     const getFavoriteResDto = await getFavoriteGame(activeGameType);
 
     if (getFavoriteResDto?.IsSuccess) {
@@ -18,10 +19,8 @@ export function useFavoriteList(activeGameType: GameTypeEnum) {
   }, [activeGameType]);
 
   useEffect(() => {
-    if (account.token && activeGameType) {
-      fetchFavoriteList();
-    }
-  }, [account.token, activeGameType]);
+    fetchFavoriteList();
+  }, []);
 
   return {
     favoriteList,

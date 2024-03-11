@@ -16,7 +16,7 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: ${({ theme }) => theme.text};;
+  color: ${({ theme }) => theme.text};
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 16px;
@@ -64,11 +64,6 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
         <FormControl variant="outlined">
           <TextField
             value={displayedSubject}
-            sx={{
-              input: {
-                padding: "17px 0",
-              },
-            }}
             disabled={true}
           />
         </FormControl>

@@ -13,11 +13,9 @@ import LanguageSwitch from "@/components/project/LanguageSwitch";
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
-  
+
   return (
     <AuthFormContainer>
-      <LoginTitle>{`${i18n.t("common.register")}`}</LoginTitle>
-
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>

@@ -12,5 +12,5 @@ export * from "./inbox";
 export * from "./wagering/useWageringPage";
 export * from "./transfer/useTransferPage";
 export * from "./vip/useVipBonusList";
+export * from "./vip/useVipBonusListV2";
 export * from "./quickLinks";
-

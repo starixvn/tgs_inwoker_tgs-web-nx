@@ -91,45 +91,32 @@ const routes: RouteType[] = [
   {
     path: "/login",
     component: LoginPage,
-    layout: DialogLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/register",
     component: RegisterPage,
-    layout: DefaultLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
     path: "/forgot-password",
     component: ForgotPasswordPage,
-    layout: DefaultLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   // TODO:these 4 params looks like is unused?
   {
     path: "/a/:promotionid",
     component: RegisterPage,
-    layout: DialogLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
-    path: "/t/:promotionid",
+    path: "/p/:promotionid",
     component: RegisterPage,
-    layout: DefaultLayout,
-    isAnonymousAllowed: true,
-  },
-
-  {
-    path: "/f/:promotionid",
-    component: RegisterPage,
-    layout: DefaultLayout,
-    isAnonymousAllowed: true,
-  },
-  {
-    path: "/p/:playername",
-    component: RegisterPage,
-    layout: DefaultLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {

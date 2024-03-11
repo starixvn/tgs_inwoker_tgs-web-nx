@@ -109,26 +109,13 @@ const routes: RouteType[] = [
   {
     path: "/a/:promotionid",
     component: RegisterPage,
-    layout: DialogLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
-    path: "/t/:promotionid",
+    path: "/p/:promotionid",
     component: RegisterPage,
-    layout: DefaultLayout,
-    isAnonymousAllowed: true,
-  },
-
-  {
-    path: "/f/:promotionid",
-    component: RegisterPage,
-    layout: DefaultLayout,
-    isAnonymousAllowed: true,
-  },
-  {
-    path: "/p/:playername",
-    component: RegisterPage,
-    layout: DefaultLayout,
+    layout: AuthDialogLayout,
     isAnonymousAllowed: true,
   },
   {
@@ -143,6 +130,11 @@ const routes: RouteType[] = [
   },
   {
     path: ProfilePathEnum.WECHAT,
+    component: ProfilePage,
+    layout: DialogLayout,
+  },
+  {
+    path: ProfilePathEnum.ZALO,
     component: ProfilePage,
     layout: DialogLayout,
   },

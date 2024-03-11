@@ -16,13 +16,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* justify-content: center; */
   width: 100%;
-  /* height: 100%; */
   gap: 6px;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     padding: 15px 0px;
   }
@@ -46,7 +43,7 @@ const DesktopCategoryContentWrapper = styled.div`
   flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 40px;
   align-content: center;
 `;
 

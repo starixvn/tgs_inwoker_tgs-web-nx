@@ -31,25 +31,21 @@ const ForgotPasswordForm = () => {
 `;
 
   return (
-    <>
-      {isMobileSize ? (
-        <LoginHeader>
-          <Title>{i18n.t("forgotPassword.title")}</Title>
-        </LoginHeader>
-      ) : (
-        <Title>{i18n.t("forgotPassword.title")}</Title>
-      )}
-      <ForgotPasswordStageContextProvider>
-        <AuthFormContainer>
-          <FormContainer>
-            <ForgotPasswordFormStage />
-          </FormContainer>
+    <ForgotPasswordStageContextProvider>
+      <AuthFormContainer>
+        {isMobileSize ? (
+          <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
+        ) : (
+          <LoginTitle>{i18n.t("forgotPassword.title").toUpperCase()}</LoginTitle>
+        )}
+        <FormContainer>
+          <ForgotPasswordFormStage />
+        </FormContainer>
 
-          <RedirectToLoginHint />
-          {isMobileSize && <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />}
-        </AuthFormContainer>
-      </ForgotPasswordStageContextProvider>
-    </>
+        <RedirectToLoginHint />
+        {isMobileSize && <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />}
+      </AuthFormContainer>
+    </ForgotPasswordStageContextProvider>
   );
 };
 

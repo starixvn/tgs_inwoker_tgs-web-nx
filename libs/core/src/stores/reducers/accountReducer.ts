@@ -134,6 +134,10 @@ const initialState = {
       free_withdrawal_num: 0,
     },
   },
+  accumturnover: "0",
+  accumdeposit: "0",
+  levelupaccumulatebetamount: "0",
+  levelupaccumulatedeposit: "0",
   inbox: {
     items: [],
     totalcount: 0,
@@ -181,6 +185,11 @@ function mapToAccountState(state, data) {
     identityformstatus: data.identityformstatus,
     identityformid: data.identityformid ? data.identityformid : "",
     bankInfoAuthentication: data.bankinfoauthentication,
+    accumdeposit: data.accumdeposit,
+    accumturnover: data.accumturnover,
+    levelupaccumulatebetamount: data.levelupaccumulatebetamount,
+    levelupaccumulatedeposit: data.levelupaccumulatedeposit,
+    fulllevel: data.fulllevel,
   };
 }
 export function accountReducer(state = initialState, action) {

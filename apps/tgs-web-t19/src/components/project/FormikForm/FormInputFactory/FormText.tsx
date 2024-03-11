@@ -1,7 +1,7 @@
 import React from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { FormikFormInput } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 
@@ -16,7 +16,8 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
   const { isDesktopSize } = useRwd();
 
   return (
-    <>{isDesktopSize && label}
+    <>
+      {isDesktopSize && label}
       <GrayInputWrapper key={name}>
         <TextField
           type={getFormInputType(type)}
@@ -32,6 +33,7 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
           inputProps={{
             autoComplete: "off",
           }}
+          sx={{ border: isDesktopSize ? "1px solid #8C8998" : "none", borderRadius: isDesktopSize ? "6px" : "12px" }}
         />
       </GrayInputWrapper>
     </>

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const Container = styled.div`
   width: 100%;
@@ -19,12 +20,16 @@ type StepCircleProps = {
   theme: typeof theme;
 };
 const StepCircle = styled.div<StepCircleProps>`
-  color: ${({ $active, theme }: StepCircleProps) => ($active ? theme.primary : "#c3c3c3")};
+  color: ${({ $active, theme }: StepCircleProps) => ($active ? theme.iconLable : "#c3c3c3")};
   font-size: 1rem;
   font-weight: 600;
   text-align: center;
   border-radius: 50%;
   padding-top: 3px;
+
+  ${media.sm} {
+    color: ${({ $active, theme }: StepCircleProps) => ($active ? theme.primary : "#c3c3c3")};
+  }
 `;
 
 type StepLineProps = {
@@ -35,10 +40,14 @@ type StepLineProps = {
 };
 const StepLine = styled.div<StepLineProps>`
   height: 8px;
-  background-color: ${({ $active, theme }: StepLineProps) => ($active ? theme.primary : "#c3c3c3")};
+  background-color: ${({ $active, theme }: StepLineProps) => ($active ? theme.iconLable : "#c3c3c3")};
   ${({ $isFirst }: StepLineProps) => ($isFirst ? `border-radius: 4px 0 0 4px;` : "")};
   ${({ $isLast }: StepLineProps) => ($isLast ? `border-radius: 0 4px 4px 0;` : "")};
   margin-top: 14px;
+  
+  ${media.sm} {
+    background-color: ${({ $active, theme }: StepCircleProps) => ($active ? theme.primary : "#c3c3c3")};
+  }
 `;
 
 type StepLabelProps = {
@@ -47,11 +56,15 @@ type StepLabelProps = {
 };
 const StepLabel = styled.div<StepLabelProps>`
   font-size: 1rem;
-  color: ${({ $active, theme }: StepLabelProps) => ($active ? theme.primary : "#c3c3c3")};
+  color: ${({ $active, theme }: StepLabelProps) => ($active ? theme.iconLable : "#c3c3c3")};
   text-align: center;
   margin-top: 8px;
   width: 100%;
   font-weight: 600;
+
+  ${media.sm} {
+    color: ${({ $active, theme }: StepCircleProps) => ($active ? theme.primary : "#c3c3c3")};
+  }
 `;
 
 type Props = {

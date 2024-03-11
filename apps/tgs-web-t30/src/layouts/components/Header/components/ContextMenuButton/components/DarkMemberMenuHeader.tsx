@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import headerImg from "@/assets/t30/images/account/header.png";
 
 const DarkMemberMenuHeaderContainer = styled.div`
@@ -30,8 +31,10 @@ const DarkMemberMenuHeader = (props: Props) => {
   const { account } = useAccountStore();
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   return (
     <DarkMemberMenuHeaderContainer>
       <Username>{`${i18n.t("panel.liveChatWelcome")}, ${username}`}</Username>

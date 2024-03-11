@@ -82,8 +82,10 @@ const BalanceChangeTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.text,
-          "& button": {},
+          color: theme.white,
+          '.MuiButtonBase-root': {
+            color: theme.white,
+          },
         }}
       />
     </ReportCardsContainer>

@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuthContext, useAuthDialog } from "@tgs-web-nx/core/features";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
 import ProfileDialog from "@/components/UI/Dialog/ProfileDialog";

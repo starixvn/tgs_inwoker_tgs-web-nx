@@ -9,7 +9,7 @@ export const DialogTitle = styled.div`
 export const DialogContent = styled.div`
   font-size: 1rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   line-height: 1.2rem;
   margin-bottom: 20px;
 `;

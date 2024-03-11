@@ -1,6 +1,6 @@
 import React from "react";
+import { FormikFormInput } from "@tgs-web-nx/core/features";
 import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 

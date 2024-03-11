@@ -93,6 +93,16 @@ const TransferCards = ({ handleTransferIn }: Props) => {
     <TransferContainer>
       {providerList
         .filter((provider) => provider.status === 0 && provider.transferwallet)
+        .filter((provider) => {
+          if (config.features.MergeEVORTNT) {
+            return (
+              provider.gpcode !== "NTTF" &&
+              provider.gpcode !== "RTTF" &&
+              provider.gpcode !== "BTG" &&
+              provider.gpcode !== "NLC"
+            );
+          }
+        })
         .map((provider, index) => {
           const displayLogo = () => {
             if (provider.gpcode.toLowerCase() === "evotf" && config.features.MergeEVORTNT) {

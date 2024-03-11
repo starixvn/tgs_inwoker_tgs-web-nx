@@ -59,6 +59,8 @@ export const SearchInputWrapper = styled.div`
 const CommonSearchWrapper = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
   justify-content: space-between;
   align-items: center;
 `;

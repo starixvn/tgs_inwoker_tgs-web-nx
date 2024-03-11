@@ -9,6 +9,7 @@ const CustomText = styled.div`
   display: flex;
   align-items: center;
   overflow: visible;
+
   & .MuiInputAdornment-root {
     overflow: visible;
     border-radius: 5px;
@@ -52,8 +53,8 @@ const TextFieldWithButton = (
         inputProps={{
           autoComplete: "off",
         }}
-
-        // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+        style={{ marginRight: "8px" }}
+      // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
       />
 
       <ButtonContainer>

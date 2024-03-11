@@ -2,7 +2,7 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHeader } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import promotionIcon from "@/assets/t27/images/account/navItem/icon-promotion.svg";
 import downloadIcon from "@/assets/t27/images/account/navItem/icon-download.svg";
@@ -13,6 +13,8 @@ import Icon from "@/components/project/Icon";
 import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
+import BrandLogo from "@/components/project/BrandLogo";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 const DesktopMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.g4};
@@ -116,6 +118,7 @@ const DesktopMenuDrawer = () => {
   const { isDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
   const isShrink = isDesktopSize && !isMenuOpen;
+  const { handleChangeGameType } = useHomeGameContext();
 
   const handleDrawerClose = () => {
     if (isDesktopSize) return;
@@ -140,9 +143,10 @@ const DesktopMenuDrawer = () => {
           <MenuButton width={"20px"} height={"20px"} />
         </MenuButtonContainer>
         <Link to={"/"}>
-          <LogoImgContainer>
-            <img src={brand && brand.loadingUrl} alt={"logo"} />
-          </LogoImgContainer>
+          <BrandLogo
+            style={{ height: "27px" }}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
         </Link>
       </MenuHeaderContainer>
 

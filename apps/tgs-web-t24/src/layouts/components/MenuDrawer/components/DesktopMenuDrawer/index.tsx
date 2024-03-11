@@ -2,14 +2,16 @@ import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useHeader } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import iconPromotion from "@/assets/t23/images/account/navItem/icon-promotions.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuGameTypeList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTypeList";
 import Icon from "@/components/project/Icon";
 import { HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -90,19 +92,6 @@ const PromotionCard = styled.div<PromotionCardProps>`
   transition: all 0.2s ease-in-out;
 `;
 
-const LogoImgContainer = styled.div`
-  max-width: 100px;
-  height: 27px;
-  justify-self: start;
-  padding: 0 10px;
-
-  & > img {
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
-  }
-`;
-
 const DesktopMenuDrawer = () => {
   const {
     general: { brand },
@@ -112,6 +101,7 @@ const DesktopMenuDrawer = () => {
   const { isDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
   const isShrink = isDesktopSize && !isMenuOpen;
+  const { handleChangeGameType } = useHomeGameContext();
 
   const handleDrawerClose = () => {
     if (isDesktopSize) return;
@@ -127,9 +117,10 @@ const DesktopMenuDrawer = () => {
     <MobileMenuDrawerContainer>
       <MenuHeaderContainer>
         <Link to={"/"}>
-          <LogoImgContainer>
-            <img src={brand && brand.loadingUrl} alt={"logo"} />
-          </LogoImgContainer>
+          <BrandLogo
+            style={{ height: "27px" }}
+            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+          />
         </Link>
 
         <MenuButtonContainer>

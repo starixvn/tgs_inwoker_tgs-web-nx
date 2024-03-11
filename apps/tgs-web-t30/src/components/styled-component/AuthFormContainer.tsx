@@ -26,7 +26,7 @@ export const FormContainer = styled.div`
 `;
 
 export const LoginTitle = styled.div`
-  font-size: 3rem;
+  font-size: 2.2rem;
   white-space: nowrap;
   font-weight: 700;
   line-height: 55px;

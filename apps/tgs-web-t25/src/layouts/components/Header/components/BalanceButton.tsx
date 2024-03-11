@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Common } from "@tgs-web-nx/utils";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { media } from "@/theme/breakpoints";
 
 const BalanceButtonContainer = styled.div`
@@ -24,7 +25,9 @@ const BalanceButtonContainer = styled.div`
 
 const BalanceButton = () => {
   const { wallet } = useWalletStore();
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const history = useHistory();
 
   return (

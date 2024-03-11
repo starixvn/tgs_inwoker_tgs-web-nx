@@ -38,6 +38,7 @@ export function useFeatureToggle() {
           isPC: isMobileOnly ? 1 : 0,
           features: jsonData,
           brandTitle: jsonData.BrandTitle || config.brandTitle || "",
+          AgentAdminUrl: jsonData.AgentAdminUrl ? jsonData.AgentAdminUrl : null,
         };
 
         config.baseUrl = newConfig.baseUrl;
@@ -50,6 +51,7 @@ export function useFeatureToggle() {
         config.isPC = newConfig.isPC;
         config.features = { ...config.features, ...newConfig.features };
         config.brandTitle = newConfig.brandTitle;
+        config.AgentAdminUrl = newConfig.AgentAdminUrl;
       }
 
       setIsFeatureToggleFetched(true);

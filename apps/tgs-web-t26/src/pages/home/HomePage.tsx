@@ -49,6 +49,7 @@ const BannerWrapper = styled.div`
   ${media.sm} {
     height: 100%;
     max-height: 450px;
+    margin-top: 20px;
   }
 `;
 
@@ -77,7 +78,7 @@ const MainContentWrapper = styled.div`
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
   max-width: ${MAIN_CONTENT_MAX_WIDTH};
-  height: 450px;
+  height: 375px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
@@ -141,13 +142,10 @@ const HomePage = () => {
   const { activeGameType, activeGameTypeKey, handleChangeGameType, activeNavPopupGameType } =
     useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
-  const hasNavData = !!navPopupCategoryList.length;
   const history = useHistory();
   const gameTypeList = useGameTypeList();
 
   const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
-
-  const isNonLobby = isNonLobbyList.includes(activeGameType);
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -168,7 +166,8 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
+
   return (
     <MainWrapper>
       {/* {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />} */}
@@ -180,9 +179,8 @@ const HomePage = () => {
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  ? `${import.meta.env.BASE_URL
+                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
                   : ""
               }
             />

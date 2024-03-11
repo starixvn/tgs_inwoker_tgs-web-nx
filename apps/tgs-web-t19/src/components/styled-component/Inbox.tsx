@@ -14,7 +14,7 @@ export const Table = muiStyled(MuiTable)(({ theme }) => ({
 
 export const TableHead = muiStyled(MuiTableHead)(({ theme }) => ({
   "& .MuiTableCell-root": {
-    fontSize: "0.812rem",
+    fontSize: "1.375rem",
     lineHeight: "0.934rem",
     color: `${theme.palette.text.primary} !important`,
     borderBottom: "none",

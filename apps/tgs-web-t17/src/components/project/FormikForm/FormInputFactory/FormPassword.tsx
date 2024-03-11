@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
+import { FormikFormInput } from "@tgs-web-nx/core/features";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { theme } from "@/theme";
 
@@ -42,7 +42,15 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
         InputProps={{
           autoComplete: "new-password",
           endAdornment: (
-            <InputAdornment position="end" style={{ backgroundColor: theme.darkGray, marginLeft: "0px", height: "44px", paddingRight: "20px" }}>
+            <InputAdornment
+              position="end"
+              style={{
+                backgroundColor: theme.darkGray,
+                marginLeft: "0px",
+                height: "44px",
+                paddingRight: "20px",
+              }}
+            >
               <IconButton
                 aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}

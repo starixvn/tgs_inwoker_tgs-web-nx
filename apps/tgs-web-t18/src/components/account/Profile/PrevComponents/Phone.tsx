@@ -277,9 +277,9 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
 
           <FormControl variant="outlined">
             <TextField
-              type={"text"}
+              type={"number"}
               value={phone}
-              placeholder={i18n.t("common.msgEnterPhone")}
+              placeholder={i18n.t("common.phoneNumber")}
               disabled={
                 (isConfigured ? isConfigured : false) || config.features.Profile_DisableVerifyPhone
               }
@@ -308,7 +308,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
                     }
                     value={code}
                     onChange={handleChangeCode}
-                    placeholder={i18n.t("common.msgEnterPhoneCode")}
+                    placeholder={i18n.t("common.token")}
                     type={"number"}
                     onClick={handleGetCodeClick}
                     buttonDisabled={countdownToken > 0}

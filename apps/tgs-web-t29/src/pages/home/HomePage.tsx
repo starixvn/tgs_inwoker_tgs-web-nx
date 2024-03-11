@@ -144,7 +144,8 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
+
   return (
     <MainWrapper>
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
@@ -155,9 +156,8 @@ const HomePage = () => {
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
-                  ? `${
-                      import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  ? `${import.meta.env.BASE_URL
+                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
                   : ""
               }
             />
@@ -179,11 +179,10 @@ const HomePage = () => {
               <marquee>
                 {marquees.map((item, index) => {
                   const content = `
-      *${
-        item.localization !== null && item.localization.content
-          ? item.localization.content
-          : item.content
-      }
+      *${item.localization !== null && item.localization.content
+                      ? item.localization.content
+                      : item.content
+                    }
       `;
                   return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
                 })}

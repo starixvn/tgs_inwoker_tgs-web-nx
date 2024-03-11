@@ -16,7 +16,10 @@ const InboxDetailDialog = () => {
       fullscreenOnMobile={false}
       sx={{
         "& .MuiPaper-root": {
-          background: theme.primaryDark,
+          background: {
+            xs: theme.primaryDark,
+            sm: theme.primaryLight,
+          },
         },
       }}
     >

@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import config from "@tgs-web-nx/config";
+import { FormikFormInput } from "@tgs-web-nx/core/features";
 import { TextField, GrayInputWrapper } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
-import { FormikFormInput } from "@/components/project/FormikForm";
 
 const PhoneContainer = styled.div`
   display: flex;

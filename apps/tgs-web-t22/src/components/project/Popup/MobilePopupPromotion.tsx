@@ -50,7 +50,8 @@ const ButtonWrapper = styled.div`
 `;
 
 const MobilePopupPromotion = () => {
-  const { isShowPromotion, handleClosePromotion, needToShowPopupPromotion } = usePopup();
+  const { isShowPromotion, isOpenAnnouncement, handleClosePromotion, needToShowPopupPromotion } =
+    usePopup();
   const { displayPromotionList } = usePromotion();
 
   const [isCheck, setIsCheck] = useState(false);
@@ -73,7 +74,7 @@ const MobilePopupPromotion = () => {
 
   return (
     <StyledDialog
-      open={isShowPromotion}
+      open={isShowPromotion && !isOpenAnnouncement}
       TransitionComponent={UpTransition}
       onClose={handleCloseDialog}
     >

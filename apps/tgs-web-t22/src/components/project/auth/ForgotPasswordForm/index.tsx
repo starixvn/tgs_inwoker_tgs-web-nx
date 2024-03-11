@@ -14,15 +14,13 @@ const ForgotPasswordForm = () => {
   return (
     <ForgotPasswordStageContextProvider>
       <AuthFormContainer>
-        <LoginTitle>{`${i18n.t("forgotPassword.title")}`.toUpperCase()}</LoginTitle>
-
         <FormContainer>
           <ForgotPasswordFormStage />
           <RedirectToLoginHint style={{ margin: "16px 0" }} />
-          {/* <LanguageSwitch style={{ width: "100%"}} /> */}
+          <LanguageSwitch style={{ width: "100%" }} />
         </FormContainer>
       </AuthFormContainer>
-      
+
     </ForgotPasswordStageContextProvider>
   );
 };

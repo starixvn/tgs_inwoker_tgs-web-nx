@@ -75,10 +75,6 @@ export const SelectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  & input {
-    padding: 13px 20px !important;
-  }
 `;
 export const LimitPopupContainer = styled.div`
   white-space: nowrap;

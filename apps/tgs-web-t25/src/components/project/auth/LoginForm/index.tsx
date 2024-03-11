@@ -15,6 +15,7 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const LoginForm = () => {
   const {
@@ -29,7 +30,7 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      <AuthDialogTitle>{i18n.t("common.login")}</AuthDialogTitle>
+      <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
       <FormContainer>
         <FormikForm
           formInputList={formInputConfigList}

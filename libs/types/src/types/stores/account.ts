@@ -67,6 +67,11 @@ export type AccountInfo = {
   identityformstatus: number;
   identityformid: string;
   bankInfoAuthentication: boolean;
+  accumdeposit: number;
+  accumturnover: number;
+  levelupaccumulatebetamount: number;
+  levelupaccumulatedeposit: number;
+  fulllevel: boolean;
 };
 // | {
 //     [key in string]: string;

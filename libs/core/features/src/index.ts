@@ -15,4 +15,5 @@ export * from "./feature/withdraw";
 export * from "./feature/useForgotPasswordFormStage";
 export * from "./feature/auth";
 export * from "./feature/useJackpot";
+export * from "./feature/usePromotionCodeV2";
 export { useAuthDialog } from "./feature/useAuthDialog/hooks/useAuthDialog";

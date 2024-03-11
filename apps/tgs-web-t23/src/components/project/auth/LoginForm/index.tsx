@@ -16,6 +16,7 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const LoginForm = () => {
   const {
@@ -31,7 +32,7 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      {isMobileSize && <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>}
+      {isMobileSize && <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />}
 
       <FormContainer>
         <FormikForm

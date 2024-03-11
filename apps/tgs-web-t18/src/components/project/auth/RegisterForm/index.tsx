@@ -1,19 +1,23 @@
 import React from "react";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import RegisterFormStage from "./RegisterFormStage";
 import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
-import { AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
+import { AuthFormContainer, FormContainer, LoginTitle } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
-import { TitleContainer } from "@/components/styled-component/auth/Form";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const RegisterForm = () => {
+  const { isMobileSize } = useRwd();
+
   return (
     <AuthFormContainer>
-      <TitleContainer>
-        {i18n.t("common.register")}
-        <div className="bottom-border" />
-      </TitleContainer>
+      {isMobileSize ? (
+        <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
+      ) : (
+        <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
+      )}
 
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />

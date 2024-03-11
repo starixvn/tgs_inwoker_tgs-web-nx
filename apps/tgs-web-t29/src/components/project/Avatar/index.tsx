@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Common } from "@tgs-web-nx/utils";
-import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import VipMedal from "@/components/project/VipMedal";
 import Icon from "@/components/project/Icon";
 import iconMoney from "@/assets/t23/images/balanceTracker/icon_money.svg";
+
 
 const AvatarContainer = styled.div`
   display: flex;

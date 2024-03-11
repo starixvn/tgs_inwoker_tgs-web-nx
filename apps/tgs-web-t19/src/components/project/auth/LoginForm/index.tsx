@@ -51,7 +51,6 @@ const LoginForm = () => {
         <>
           <BrandLogo style={{ maxHeight: "54px" }} />
           <LoginWrapper>
-            <LoginTitle>{i18n.t("common.login")}</LoginTitle>
             <FormContainer>
               <FormikForm
                 formInputList={formInputConfigList}

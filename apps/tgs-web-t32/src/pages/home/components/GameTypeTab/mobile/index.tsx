@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { FilterTagTypeEnum, useHomeGameContext, GameTypeItem } from "@tgs-web-nx/core/features";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { media } from "@/theme/breakpoints";
@@ -44,10 +45,27 @@ type GameTypeTabProps = {
 
 const GameTypeTab = ({ activeLocalGameType, setActiveLocalGameType }: GameTypeTabProps) => {
   const gameTypeList = useGameTypeList();
-  const { providerList } = useHomeGameContext();
+  const history = useHistory();
+  const { handleChangeGameType, handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
 
-  const switchGameType = (gameType: GameTypeEnum) => {
-    setActiveLocalGameType(gameType);
+  const allTag = {
+    tagType: FilterTagTypeEnum.ALL,
+    name: "",
+  };
+
+  const switchGameType = (gameTypeItem: GameTypeItem) => {
+    // 把filter tag的狀態清空
+    handleChangeActiveProviderFilterTag(allTag);
+    handleChangeActiveFilterTag(allTag);
+    setActiveLocalGameType(gameTypeItem.gameType);
+
+    if (gameTypeItem.gameType === GameTypeEnum.NONE) {
+      handleChangeGameType(GameTypeEnum.NONE);
+      history.push(`/`);
+    } else {
+      handleChangeGameType(gameTypeItem.gameType);
+      history.push(`/main/${gameTypeItem.key}`);
+    }
   };
 
   const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
@@ -71,7 +89,7 @@ const GameTypeTab = ({ activeLocalGameType, setActiveLocalGameType }: GameTypeTa
             text={text}
             isActive={gameType === activeLocalGameType}
             fontSize={fontSize}
-            onClick={() => switchGameType(gameType)}
+            onClick={() => switchGameType(gameTypeItem)}
           >
             {React.createElement(iconComponent)}
           </Tab>

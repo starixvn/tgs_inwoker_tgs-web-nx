@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 export const LimitLabel = styled.span`
   color: ${({ theme }) => theme.white};
@@ -34,16 +35,34 @@ export const HintText = styled.div`
 `;
 
 export const AmountHint = styled.div`
-  color: ${({ theme }) => theme.text};
-  font-size: 0.937rem;
-  font-weight: 400;
-  margin-top: 9px;
-  text-align: center;
-  max-width: 500px;
+  display: none;
+
+  ${media.sm} {
+    display: block;
+    color: ${({ theme }) => theme.white};
+    font-size: 0.937rem;
+    font-weight: 400;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    margin-left: 12px;
+  }
 `;
 
-export const FeeSpot = styled.div`
-  margin-bottom: 17px;
+export const TransferHintAmount = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-size: 0.937rem;
+  font-weight: 400;
+
+  ${media.sm} {
+  display: none;
+  }
+`;
+
+export const FeeSpot: React.FC = styled.div`
+  margin-left: 20px;
+  color: ${({ theme }) => theme.text};
+
   span {
     font-weight: bold;
   }

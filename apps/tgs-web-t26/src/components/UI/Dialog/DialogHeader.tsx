@@ -3,7 +3,7 @@ import styled from "styled-components";
 import iconReturn from "@/assets/t29/images/dialog/icon-return.svg";
 import Icon from "@/components/project/Icon";
 
-export const DIALOG_HEADER_HEIGHT = "40px";
+export const DIALOG_HEADER_HEIGHT = "60px";
 
 const DialogHeaderContainer = styled.div`
   position: fixed;

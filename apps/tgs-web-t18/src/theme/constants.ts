@@ -1,5 +1,5 @@
 // Mobile
-export const MOBILE_HEADER_HEIGHT = "73px";
+export const MOBILE_HEADER_HEIGHT = "80px";
 export const MOBILE_BOTTOM_APP_BAR_HEIGHT = "82px";
 export const MOBILE_DRAWER_WIDTH = "258px";
 

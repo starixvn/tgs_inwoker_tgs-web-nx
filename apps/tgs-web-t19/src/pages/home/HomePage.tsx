@@ -97,7 +97,7 @@ const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   height: 520px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 `;
@@ -148,7 +148,7 @@ const HomePage = () => {
       handleChangeGameType(gameType);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType]);
+  }, [urlGameType, gameTypeList]);
 
   return (
     <MainWrapper>

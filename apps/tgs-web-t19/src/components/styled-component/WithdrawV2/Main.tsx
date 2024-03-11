@@ -2,7 +2,6 @@ import { styled as muiStyled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
 import { ListItem, ListItemText } from "@mui/material";
 import styled from "styled-components";
-import limitBg from "@/assets/t19/images/withdraw/limit-bg.png";
 import {
   FormControl as ProfileFormControl,
   ItemContainer as ProfileItemContainer,
@@ -73,29 +72,32 @@ export const SelectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
-  & input {
-    padding: 16px 0 !important;
-  }
 `;
 export const LimitPopupContainer = styled.div`
   white-space: nowrap;
-  background: url(${limitBg}) no-repeat;
-  background-size: cover;
-  background-position: center;
   font-size: 0.812rem;
   color: ${({ theme }) => theme.white};
-  padding: 10px 24px;
   border-radius: 4px;
   display: inline-block;
-  line-height: 25px;
+  margin-left: 18px;
+  position: relative;
+  flex-shrink: 0;
+`;
+export const LimitText = styled.div`
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  padding: 10px 25px;
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
 `;
 export const Turnover = styled.div`
   display: flex;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   span {
     margin-left: 5px;
-    color: ${({ theme }) => theme.secondary};
+    color: ${({ theme }) => theme.red};
     font-weight: bold;
   }
 `;
@@ -109,17 +111,14 @@ export const GameWalletButton = styled.div`
     return theme.primary;
   }};
   width: fit-content;
-
   text-align: center;
   padding: 5px;
-
   margin: 8px 5px 0 0;
-  color: #fff;
-
+  color: ${({ theme }) => theme.white};
   min-width: 79px;
   height: 28px;
   border-radius: 5px;
-  border: solid 1px #ffffff;
+  border: 1px solid ${({ theme }) => theme.white};;
 
   &:hover {
     cursor: pointer;
@@ -128,9 +127,10 @@ export const GameWalletButton = styled.div`
 `;
 export const AmountWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 5px;
+  margin-bottom: 24px;
+  width: 428px;
 `;
 export const USDTWrapper = styled.div``;
 export const SubHeaderContainer = styled.div`
@@ -148,8 +148,7 @@ export const DetailText = styled.div`
   font-size: 14px;
   font-weight: 700;
   line-height: 16px;
-  letter-spacing: 0em;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.gray};
   cursor: pointer;
 `;
 
@@ -159,5 +158,10 @@ export const Hint = styled.div`
   line-height: 16px;
   letter-spacing: 0em;
   margin: 10px 0;
-  color: ${({ theme }) => theme.gray50};
+  color: ${({ theme }) => theme.gray};
+`;
+
+export const LimitBg = styled.img`
+  width: 116px;
+  height: 37px;
 `;

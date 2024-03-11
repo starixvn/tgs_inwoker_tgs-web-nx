@@ -57,7 +57,7 @@ const ComposeForm = () => {
             placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("subject")}`.toLowerCase()}`}
             sx={{
               input: {
-                padding: "17px 0",
+                padding: "17px 20px",
               },
             }}
           />

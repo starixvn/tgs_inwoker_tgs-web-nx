@@ -8,14 +8,12 @@ const DialogHeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-    width: 100%;
+  width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.blue50};
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.white};
-  font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
   z-index: 1300;
@@ -40,9 +38,13 @@ type Props = {
 
 const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
   return (
-    <ReturnIconContainer onClick={handleClose}>
-      <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
-    </ReturnIconContainer>
+    <DialogHeaderContainer>
+      <ReturnIconContainer onClick={handleClose}>
+        <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
+      </ReturnIconContainer>
+
+      {dialogHeaderTitle}
+    </DialogHeaderContainer>
   );
 };
 

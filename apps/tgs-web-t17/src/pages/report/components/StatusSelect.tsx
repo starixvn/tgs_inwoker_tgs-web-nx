@@ -11,9 +11,8 @@ const StatusSelectWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-
 const StatusSelectContainer = styled.div`
-  border: 1px solid${({ theme }) => theme.white};
+  border: 1px solid ${({ theme }) => theme.white};
   height: 40px;
   background: transparent;
   font-size: 0.937rem;
@@ -52,7 +51,7 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
     color: theme.palette.white,
     fontSize: "0.937rem",
     height: "100% !important",
-    padding: "5px"
+    padding: "5px",
   },
   "& .MuiSvgIcon-root": {
     color: theme.palette.primary,
@@ -73,8 +72,9 @@ type Props = {
   statusDictionary: StatusDictionary;
   handleStatusChange: (e: any) => void;
   status: string;
+  type?: string;
 };
-const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) => {
+const StatusSelect = ({ statusDictionary, handleStatusChange, status, type }: Props) => {
   return (
     <StatusSelectWrapper>
       <SelectLabel>{i18n.t("report.status")}</SelectLabel>
@@ -86,7 +86,7 @@ const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) =
             {Object.keys(statusDictionary).map((key) => {
               return (
                 <option key={key} value={key}>
-                  {i18n.t(`report.withdrawal.status${key}`)}
+                  {i18n.t(`report.${type}.status${key}`)}
                 </option>
               );
             })}

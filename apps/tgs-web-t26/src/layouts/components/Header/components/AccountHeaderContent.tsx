@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useAuthContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Menu, MenuItem } from "@mui/material";
 import { NavCardKey } from "@tgs-web-nx/types";
@@ -86,6 +86,7 @@ const AccountHeaderContent = () => {
   const { wallet } = useWalletStore();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
   const NavItemList: NavItem[] = [
     {
       key: NavCardKey.PROFILE,
@@ -168,7 +169,8 @@ const AccountHeaderContent = () => {
       },
     },
   ];
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const currentBalance =
+    mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [activeNavitem, setActiveNavitem] = useState<NavCardKey | null>(null);

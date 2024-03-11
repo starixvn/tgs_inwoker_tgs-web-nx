@@ -8,6 +8,7 @@ import {
   useHomeGameContext,
 } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { providerStatus } from "@tgs-web-nx/constants";
 import ProviderTag from "../../../HomeGameFilterTag/ProviderTag";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
@@ -15,18 +16,15 @@ import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* justify-content: center; */
   width: 100%;
   gap: 6px;
 
   ${media.sm} {
-    max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     padding: 15px 0px;
   }
@@ -133,8 +131,30 @@ const NonLobbyCategory = () => {
     useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
 
+  const getProviderData = (targetProvider: FilterTag) => {
+    const matchedProvider = navPopupCategoryList.find(
+      (provider) => provider.code === targetProvider.gpCode,
+    );
+    return matchedProvider;
+  };
+
   const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
-    handleChangeActiveProviderFilterTag(newFilterTag);
+    const matchedProvider = getProviderData(newFilterTag);
+    const status = matchedProvider ? matchedProvider.status : -1;
+    if (status !== providerStatus.Maintenance) {
+      handleChangeActiveProviderFilterTag(newFilterTag);
+    }
+  };
+
+  const getProviderAbbreviation = (provider: string) => {
+    switch (provider) {
+      case "No Limit City":
+        return "NLC";
+      case "PragmaticPlay":
+        return "PP";
+      default:
+        return provider;
+    }
   };
 
   return (
@@ -181,7 +201,7 @@ const NonLobbyCategory = () => {
                       return (
                         <ProviderTag
                           key={filterTag.name}
-                          text={filterTag.name}
+                          text={getProviderAbbreviation(filterTag.name)}
                           gpCode={filterTag.gpCode}
                           isActive={false}
                           onClick={() => onChangeProviderFilterTag(filterTag)}
@@ -202,15 +222,13 @@ const NonLobbyCategory = () => {
           <DesktopCategoryContentWrapper>
             <ProviderTagContainer>
               {providerFilterTagList.map((filterTag) => {
-                const matchedProvider = navPopupCategoryList.find(
-                  (provider) => provider.code === filterTag.gpCode,
-                );
+                const matchedProvider = getProviderData(filterTag);
                 const status = matchedProvider ? matchedProvider.status : -1;
 
                 return (
                   <ProviderTag
                     key={filterTag.name}
-                    text={filterTag.name}
+                    text={getProviderAbbreviation(filterTag.name)}
                     gpCode={filterTag.gpCode}
                     isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
                     onClick={() => onChangeProviderFilterTag(filterTag)}

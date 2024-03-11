@@ -6,6 +6,7 @@ export interface WithdrawFormViewModel {
   createdon: string;
   updatedon: string | null;
   orderno: string | null;
+  remark: string | null;
 }
 
 export enum FlowState {

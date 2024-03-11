@@ -4,10 +4,12 @@ import RegisterFormStage from "./RegisterFormStage";
 import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
 import { AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
+import BrandLogo from "@/components/project/BrandLogo";
 
 const RegisterForm = () => {
   return (
     <AuthFormContainer>
+      <BrandLogo style={{ marginBottom: "64px", maxWidth: "none" }} />
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>

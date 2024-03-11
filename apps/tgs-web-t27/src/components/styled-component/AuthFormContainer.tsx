@@ -9,7 +9,7 @@ export const AuthFormContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  padding: 20px 0px;
+  padding: 24px 22px;
   overflow: auto;
   gap: 14px;
 
@@ -25,7 +25,8 @@ export const AuthFormContainer = styled.div`
 
 export const FormContainer = styled.div`
   width: 100%;
-
+  max-width: 400px;
+  margin: 0 auto 20px;
 `;
 
 export const LoginTitle = styled.div`

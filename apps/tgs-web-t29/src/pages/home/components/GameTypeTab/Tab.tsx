@@ -27,6 +27,7 @@ const Wrapper = styled.div<{
   user-select: none;
   border-radius: 6px;
   background: ${({ theme }) => theme.blue20};
+  border: 1px solid ${({ theme, $isActive }) => ($isActive ? theme.blue40 : "transparent")};
 
   ${media.sm} {
     min-width: 90px;

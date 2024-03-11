@@ -3,7 +3,7 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
-import { useNotifications } from "@tgs-web-nx/core/features";
+import { useNotifications, usePageName } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
@@ -21,8 +21,6 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
-const AREA_CODE = config.features.PhonePrefix;
-
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
@@ -31,8 +29,10 @@ type Props = {
 function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const { alert } = useNotifications();
+  const { updatePageName } = usePageName();
 
   const [countdownToken, setCountdownToken] = useState(0);
+  const AREA_CODE = config.features.PhonePrefix;
   const [areacode, setAreacode] = useState(AREA_CODE);
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
@@ -41,6 +41,10 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const [securityKey, setSecurityKey] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    updatePageName(i18n.t("web.register.activation"));
+  });
 
   useEffect(() => {
     const isConfigured = !!(account.info.check_pass_phone && account.info.member_phone);
@@ -253,7 +257,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
     <>
       <ItemContainer>
         <PhoneContainer>
-          <FormControl variant="outlined" style={{ width: "40%" }}>
+          <FormControl variant="outlined" style={{ width: "40%", borderRadius: "6px" }}>
             <Select
               native
               value={areacode}
@@ -270,11 +274,11 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
             </Select>
           </FormControl>
 
-          <FormControl variant="outlined">
+          <FormControl variant="outlined" style={{ borderRadius: "6px", padding: "10px" }}>
             <TextField
-              type={"text"}
+              type={"number"}
               value={phone}
-              placeholder={i18n.t("common.msgEnterPhone")}
+              placeholder={i18n.t("common.phoneNumber")}
               disabled={
                 (isConfigured ? isConfigured : false) || config.features.Profile_DisableVerifyPhone
               }
@@ -293,7 +297,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
             !config.features.Profile_DisableVerifyPhone &&
             !config.features.InitPhone_WithoutVerify && (
               <ItemContainer>
-                <FormControl variant="outlined">
+                <FormControl variant="outlined" style={{ borderRadius: "6px", padding: "10px 4px 10px 20px" }}>
                   <TextFieldWithButton
                     buttonLabel={
                       countdownToken <= 0
@@ -302,7 +306,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
                     }
                     value={code}
                     onChange={handleChangeCode}
-                    placeholder={i18n.t("common.msgEnterPhoneCode")}
+                    placeholder={i18n.t("common.token")}
                     type={"number"}
                     onClick={handleGetCodeClick}
                     buttonDisabled={countdownToken > 0}

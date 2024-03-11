@@ -11,9 +11,8 @@ const StatusSelectWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-
 const StatusSelectContainer = styled.div`
-  border: 1px solid${({ theme }) => theme.white};
+  border: 1px solid ${({ theme }) => theme.white};
   height: 40px;
   background: transparent;
   font-size: 0.937rem;
@@ -37,7 +36,7 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
     top: "1px",
     right: "36px",
     height: "100%",
-    content: "'\x00'",
+    content: "''",
     display: "block",
     zIndex: "2",
     position: "absolute",
@@ -47,12 +46,16 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
     border: "none",
   },
   "& select": {
-    padding: 0,
     color: theme.palette.white,
     fontSize: "0.937rem",
+    height: "100% !important",
+    padding: "5px",
   },
-  "& .MuiSvgIcon-root": {
-    color: theme.palette.primary,
+  "& .MuiFormControl-root": {
+    height: "100%",
+  },
+  "& .MuiOutlinedInput-root-MuiSelect-root": {
+    height: "100%",
   },
 }));
 
@@ -64,8 +67,9 @@ type Props = {
   statusDictionary: StatusDictionary;
   handleStatusChange: (e: any) => void;
   status: string;
+  type?: string;
 };
-const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) => {
+const StatusSelect = ({ statusDictionary, handleStatusChange, status, type }: Props) => {
   return (
     <StatusSelectWrapper>
       <SelectLabel>{i18n.t("report.status")}</SelectLabel>
@@ -77,7 +81,7 @@ const StatusSelect = ({ statusDictionary, handleStatusChange, status }: Props) =
             {Object.keys(statusDictionary).map((key) => {
               return (
                 <option key={key} value={key}>
-                  {i18n.t(`report.withdrawal.status${key}`)}
+                  {i18n.t(`report.${type}.status${key}`)}
                 </option>
               );
             })}

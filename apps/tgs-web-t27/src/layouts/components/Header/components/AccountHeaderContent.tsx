@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useAuthContext, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  useAuthContext,
+  useHeader,
+  useHomeGameContext,
+  useUserWalletInfoContext,
+} from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Icon from "@/components/project/Icon";
@@ -22,7 +27,7 @@ const ButtonContainer = styled.div`
   margin-right: 10px;
 
   ${media.sm} {
-   gap: 10px;
+    gap: 10px;
   }
 `;
 
@@ -92,9 +97,10 @@ const AccountHeaderContent = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
   const { handleToggleMenu } = useHeader();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
-
+  const currentBalance =
+    mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const handleGoToProfile = () => {
     history.push("/profile");
   };
@@ -117,52 +123,38 @@ const AccountHeaderContent = () => {
 
   return (
     <ButtonContainer>
-      {isDesktopSize &&
+      {isDesktopSize && (
         <>
           <BalanceContainer>
             {config.currency} ${currentBalance}
           </BalanceContainer>
           <DepositContainer onClick={handleGotoDeposit}>
-            <Icon
-              iconUrl={iconDeposit}
-              width={"24px"}
-              height={"24px"}
-            />
+            <Icon iconUrl={iconDeposit} width={"24px"} height={"24px"} />
             {i18n.t("common.deposit")}
           </DepositContainer>
           <IconContainer onClick={handleClickLogout}>
-            <Icon
-              iconUrl={signoutBtn}
-              width={"24px"}
-              height={"24px"}
-            />
+            <Icon iconUrl={signoutBtn} width={"24px"} height={"24px"} />
           </IconContainer>
           <IconContainer onClick={handleGotoPromotion}>
-            <Icon
-              iconUrl={iconPromotion}
-              width={"24px"}
-              height={"24px"}
-            />
+            <Icon iconUrl={iconPromotion} width={"24px"} height={"24px"} />
           </IconContainer>
           <IconContainer onClick={handleGoToProfile}>
-            <Icon
-              iconUrl={iconAccount}
-              width={"24px"}
-              height={"24px"}
-            />
+            <Icon iconUrl={iconAccount} width={"24px"} height={"24px"} />
           </IconContainer>
           <HeaderLanguageSwitch />
         </>
-      }
+      )}
 
-      {isMobileSize && <>
-        <BalanceContainer>
-          {config.currency} ${currentBalance}
-        </BalanceContainer>
-        <MobileDepositContainer onClick={handleGotoDeposit}>
-          {i18n.t("common.deposit")}
-        </MobileDepositContainer>
-      </>}
+      {isMobileSize && (
+        <>
+          <BalanceContainer>
+            {config.currency} ${currentBalance}
+          </BalanceContainer>
+          <MobileDepositContainer onClick={handleGotoDeposit}>
+            {i18n.t("common.deposit")}
+          </MobileDepositContainer>
+        </>
+      )}
     </ButtonContainer>
   );
 };

@@ -9,7 +9,7 @@ import { media } from "@/theme/breakpoints";
 export const Remark = styled.div`
   font-size: 0.937rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   margin-bottom: 24px;
 `;
 
@@ -30,24 +30,21 @@ export const LabelContainer = styled.div`
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
-  height: "48px",
+  height: "40px",
   width: "100%",
   fontSize: "0.875rem",
   justifyContent: "center",
+  border: "1px solid #fff",
 
   "& fieldset": {
     border: "none",
-  },
-
-  "& input": {
-    padding: "10px 0",
   },
 })) as typeof MuiFormControl;
 
 export const InfoContainer = styled.div`
   width: 100%;
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 
   display: flex;
   align-items: center;
@@ -64,7 +61,7 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
 export const UploadFileTag = styled.span`
   width: 100%;
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
 
   display: flex;
   align-items: center;

@@ -90,6 +90,16 @@ const TransferCards = ({ handleTransferIn }: Props) => {
     <TransferContainer>
       {providerList
         .filter((provider) => provider.status === 0 && provider.transferwallet)
+        .filter((provider) => {
+          if (config.features.MergeEVORTNT) {
+            return (
+              provider.gpcode !== "NTTF" &&
+              provider.gpcode !== "RTTF" &&
+              provider.gpcode !== "BTG" &&
+              provider.gpcode !== "NLC"
+            );
+          }
+        })
         .map((provider, index) => {
           const displayLogo = () => {
             if (provider.gpcode.toLowerCase() === "evotf" && config.features.MergeEVORTNT) {
@@ -103,7 +113,7 @@ const TransferCards = ({ handleTransferIn }: Props) => {
             <GameTransferWallet key={index}>
               <GameTransferLeftWrap>
                 <Logo
-                  src={`/assets/images/provider/${switchAlternateLogo(
+                  src={`/assets/images/provider/dark/${switchAlternateLogo(
                     //@ts-ignore
                     (config.features.UseAlternateLogo as boolean) || false,
                   )}${displayLogo()}.png`}

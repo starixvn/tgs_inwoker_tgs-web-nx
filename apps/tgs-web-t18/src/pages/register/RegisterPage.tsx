@@ -6,7 +6,6 @@ const RegisterPage = () => {
   useRegisterPage();
 
   const { isDesktopSize } = useRwd();
-
   if (isDesktopSize) {
     return null;
   }

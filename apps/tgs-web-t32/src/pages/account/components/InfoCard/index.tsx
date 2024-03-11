@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useAccountStore, useWalletStore } from "@tgs-web-nx/core";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import VipMedal from "@/components/project/VipMedal";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
@@ -68,8 +69,10 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
   const accountLevel = account.info.member_level_id;
 
   const { wallet } = useWalletStore();
-  const currentBalance = `${Common.formatNumberWithThousand(wallet.mainBalance)}`;
+  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
 
+  const currentBalance =
+    mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const handleGoToDeposit = () => {
     history.push("/deposit");
   };

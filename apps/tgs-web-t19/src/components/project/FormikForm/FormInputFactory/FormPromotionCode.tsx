@@ -2,10 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
-import { UserTypeEnum } from "@tgs-web-nx/core/features";
+import { FormikFormInput, InvitationType } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
-import { FormikFormInput } from "@/components/project/FormikForm";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 import { Select } from "@/components/UI/Select";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -14,6 +13,8 @@ import { theme } from "@/theme";
 const DropdownContainer = styled.div`
   min-width: 104px;
   border: none;
+  position: absolute;
+  right: 0;
 
   .MuiOutlinedInput-notchedOutline {
     border: none !important;
@@ -27,13 +28,13 @@ type Props = {
 };
 
 const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
-  const { label, name, type } = formInput;
+  const { label, name, type, isReadOnly } = formInput;
   const { isDesktopSize } = useRwd();
 
   return (
     <>
       {isDesktopSize && label}
-      <GrayInputWrapper key={name}>
+      <GrayInputWrapper key={name} style={{ border: isDesktopSize ? "1px solid #8C8998" : "none", borderRadius: isDesktopSize ? "6px" : "12px" }}>
         <TextField
           type={getFormInputType(type)}
           placeholder={label}
@@ -48,6 +49,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
           inputProps={{
             autoComplete: "off",
           }}
+          disabled={isReadOnly}
         />
 
         <DropdownContainer>
@@ -61,26 +63,28 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             style={{ color: theme.white }}
+            disabled={isReadOnly}
             MenuProps={{
               PaperProps: {
                 sx: {
                   backgroundColor: theme.mainBackground,
                   "& .MuiMenuItem-root": {
                     color: theme.white,
-                    backgroundColor: theme.mainBackground,
                     "&:hover": {
                       backgroundColor: theme.primary,
-                      color: theme.mainBackground,
-                    }
+                    },
+                  },
+                  "& .Mui-selected": {
+                    backgroundColor: "#fed45854",
                   },
                 },
               },
             }}
           >
-            <MenuItem value={UserTypeEnum.AGENT}>
+            <MenuItem value={InvitationType.AGENT}>
               <>{i18n.t("usertype.agent")}</>
             </MenuItem>
-            <MenuItem value={UserTypeEnum.PLAYER}>
+            <MenuItem value={InvitationType.PLAYER}>
               <>{i18n.t("usertype.player")}</>
             </MenuItem>
           </Select>

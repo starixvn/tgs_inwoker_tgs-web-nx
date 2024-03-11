@@ -6,15 +6,15 @@ import Icon from "@/components/project/Icon";
 export const DIALOG_HEADER_HEIGHT = "73px";
 
 const DialogHeaderContainer = styled.div`
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.mainBackground};
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   color: ${({ theme }) => theme.white};
-  font-size: 1.125rem;
   font-weight: 700;
   margin: 0;
   z-index: 1300;
@@ -23,6 +23,10 @@ const DialogHeaderContainer = styled.div`
 `;
 
 const ReturnIconContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 17px;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   cursor: pointer;
