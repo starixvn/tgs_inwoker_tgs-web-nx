@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useRoute } from "@tgs-web-nx/core/features";
-import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import {
   HomeIcon,
   DepositIcon,
@@ -31,7 +30,6 @@ export type BottomNavItem = {
 
 export function useGetBottomNavItemList() {
   const history = useHistory();
-  const goToHomePage = useGoToHomePage();
 
   const bottomNavItemList = useMemo<BottomNavItem[]>(() => {
     return [
@@ -41,7 +39,7 @@ export function useGetBottomNavItemList() {
         label: i18n.t("common.home"),
         icon: HomeIcon,
         handleClick: () => {
-          goToHomePage();
+          history.push("/");
         },
       },
       {

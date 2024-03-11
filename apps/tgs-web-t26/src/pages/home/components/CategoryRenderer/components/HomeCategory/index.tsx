@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { usePromotionPage, useRwd } from "@tgs-web-nx/core/hooks";
+import { usePromotionPage } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
-import { useGetHomeCategoryList, useHomeGameContext, useJackpot } from "@tgs-web-nx/core/features";
+import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
@@ -11,7 +11,6 @@ import CategoryLabel from "./components/CategoryLabel";
 import InfoCardList from "./components/InfoCardList";
 import WinnerCard from "@/pages/home/components//WinnerCard";
 import { useBettingHistory } from "@/pages/home/components/WinnerCard/hooks/useBettingHistory";
-import LobbyVendorCard from "@/pages/home/components/VendorCard/LobbyVendorCard";
 import GameCard from "@/pages/home/components/GameCard";
 import ButtonText from "@/pages/home/components/ButtonText";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
@@ -23,7 +22,7 @@ import game_home from "@/assets/t26/images/home/game_home.svg";
 import cardGameImg from "@/assets/t26/images/home/cardgame_home.png";
 import eGameImg from "@/assets/t26/images/home/egame_home.png";
 import fishImg from "@/assets/t26/images/home/fish_home.png";
-import cockfightImg from "@/assets/t26/images/home/cockfight_home.png";
+import liveImg from "@/assets/t26/images/home/live_home.png";
 import sportBG from "@/assets/t26/images/home/sportBG.png";
 import sportsImg from "@/assets/t26/images/home/sports_home.png";
 import soccerballImg from "@/assets/t26/images/home/soccerball.png";
@@ -207,7 +206,6 @@ const PromotionButon = styled.div`
 
 const HomeCategory = () => {
   const history = useHistory();
-  const { isDesktopSize } = useRwd();
   const { account } = useAccountStore();
   const { handleChangeGameType, providerList, activeGameType } = useHomeGameContext();
   const { hotGameList } = useGetHomeCategoryList();
@@ -343,12 +341,12 @@ const HomeCategory = () => {
               </GameTypeCard>
               <GameTypeCard>
                 <GameTextWrapper>
-                  <GameTypeTitle>{i18n.t("common.cockfight")}</GameTypeTitle>
-                  <GameButton onClick={() => handleActiveGametype(GameTypeEnum.COCKFIGHT)}>
+                  <GameTypeTitle>{i18n.t("common.live")}</GameTypeTitle>
+                  <GameButton onClick={() => handleActiveGametype(GameTypeEnum.LIVELOBBY)}>
                     Go Play
                   </GameButton>
                 </GameTextWrapper>
-                <img src={cockfightImg} alt="cockfight" />
+                <img src={liveImg} alt="live" />
               </GameTypeCard>
             </NonLobbyTypeContainer>
             <SportsCard>
