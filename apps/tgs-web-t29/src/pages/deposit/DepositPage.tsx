@@ -10,18 +10,21 @@ import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
 
 
+
 const DepositPage = () => {
   useDepositPage();
+  
   const history = useHistory();
   const { alert } = useNotifications();
   const { isDesktopSize } = useRwd();
   
-
+  
+  
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
       <AccountPaper pageName={i18n.t("common.deposit")} iconUrl={iconDeposit}>
-        {/* <DepositPrev appHistory={history} alert={alert} /> */}
+        <DepositPrev appHistory={history} alert={alert} />
         <DepositForm />
       </AccountPaper>
     </TransferPageContainer>

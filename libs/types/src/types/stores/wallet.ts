@@ -1,12 +1,13 @@
+import { string } from "yup";
 import { BankCard, DoTransferResDto } from "../dto";
 
-interface TransferChannel {
+export interface TransferChannel {
   banktype: string;
   channelcode: string;
   channelid: string;
   channelname: string;
   displayorder: number;
-  extended: unknown; //待確認
+  extended: unknown;
   feepercentile: number;
   methodcode: string;
   methodid: string;
@@ -21,10 +22,16 @@ interface TransferChannel {
   channel: TransferChannel[]
 }
 
-interface DepositChannelList {
-  channelCode: string;
+
+export interface FilterDepositList {
+  code: string;
   channels: TransferChannel[];
-}
+} 
+
+// export interface DepositChannelList {
+//   channelCode: string;
+//   channels: TransferChannel[];
+// }
 
 export interface DepositType {
   displayorder: number;
@@ -54,7 +61,7 @@ export interface WalletState {
   message: "";
   depositList: TransferChannel[];
   depositTypeList: DepositType[];
-  depositChannelList: DepositChannelList[];
+  depositChannelList: FilterDepositList[];
   depositLoading: false;
   depositResult: null;
   cancelDepositResult: null;

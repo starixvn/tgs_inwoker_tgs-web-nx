@@ -134,6 +134,8 @@ function mapDepositList(result) {
             channelcode: data[i].channelcode,
             transferlimit: data[i].transferlimit,
             fees: data[i].feepercentile,
+            paymentcode: data[i].paymentcode,
+            extended: data[i].extended,
           },
         ],
       });
@@ -145,12 +147,13 @@ function mapDepositList(result) {
           channelid: data[i].channelid,
           channelname: data[i].channelname,
           channelcode: data[i].channelcode,
+          paymentcode: data[i].paymentcode,
           transferlimit: data[i].transferlimit,
           fees: data[i].feepercentile,
         });
     }
   }
-
+  
   return { depositList };
 }
 function mapDepositType(result) {
@@ -350,7 +353,7 @@ function mapDepositChannelList (result) {
   const groupByData = groupBy(data, row => row.channelcode);
   const depositChannelList = Object.keys(groupByData).map((key)=> {
     return {
-      channelCode: key,
+      code: key,
       channels: groupByData[key],
     }
   });
