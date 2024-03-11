@@ -2,13 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import Icon from "@/components/project/Icon";
-import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
+import iconImg from "@/assets/t31/images/withdraw/manage-card-icon.png";
 
 const ButtonContainer = styled.div`
   cursor: pointer;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.15rem;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: center;
   color: ${({ theme }) => theme.neutralBlack};
   display: flex;
   align-items: center;

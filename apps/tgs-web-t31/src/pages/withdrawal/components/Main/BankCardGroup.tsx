@@ -2,10 +2,7 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
-import { useShowAddCardButton } from "@tgs-web-nx/core/features";
-import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";
-import iconCardActive from "@/assets/t29/images/withdraw/icon-card-active.svg";
-import iconManage from "@/assets/t29/images/withdraw/icon-manage.svg";
+import iconCard from "@/assets/t31/images/withdraw/icon-card.svg";
 import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
 
@@ -25,17 +22,28 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   align-items: center;
   gap: 8px;
   padding: 8px 11px;
+  border: ${({ $active, theme }) => `1px solid ${$active ? theme.accountLableText : theme.white}`};
+  border-radius: 4px;
   font-size: 14px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.white50)};
+  color: ${({ theme }) => theme.white};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.accountLableText : "unset"};
-  width: auto !important;
+    $active ? theme.accountLableText : theme.black30};
   cursor: pointer;
-  float: left;
+  height: 44px;
+`;
+
+const ManageBankButton = styled(BankCardButton)`
+  background: ${({ theme }) => theme.primaryGradient};
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  width: 132px;
+  height: 44px;
+  justify-content: center;
 `;
 
 const BankCardButtonLabel = styled.div`
-  //width: 86px;
   display: inline-block;
   white-space: nowrap;
 `;
@@ -75,7 +83,7 @@ const BankCardGroup = ({
               getTransferLimit(item.paymentchannelid);
             }}
           >
-            <Icon iconUrl={isActive ? iconCardActive : iconCard} width={"20px"} height={"20px"} />
+            <Icon iconUrl={iconCard} width={"20px"} height={"20px"} />
             <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
             <BankCardButtonCardNoHL>
               {(() => {
@@ -127,11 +135,9 @@ const BankCardGroup = ({
         );
       })}
 
-      <BankCardButton onClick={onhandleManageCardClick} $active={true}>
-        <Icon iconUrl={iconManage} width={"20px"} height={"20px"} />
-
+      <ManageBankButton onClick={onhandleManageCardClick} $active={true}>
         <Grid>{i18n.t("withdrawal.manageBank")}</Grid>
-      </BankCardButton>
+      </ManageBankButton>
     </BankCardGroupContainer>
   );
 };
