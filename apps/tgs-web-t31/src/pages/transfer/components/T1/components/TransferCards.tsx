@@ -12,19 +12,16 @@ const TransferContainer = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  justify-content: center;
+  gap: 24px;
 `;
 
 const GameTransferWallet = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  width: 340px;
   border-radius: 4px;
-  border: solid 1px ${({ theme }) => "#dddedf"};
-  background: ${({ theme }) => theme.blue20};
-  padding: 10px 10px 10px 3px;
-  gap: 10px;
+  background: ${({ theme }) => theme.black60};
+  padding: 20px 12px;
 `;
 const GameTransferLeftWrap = styled.div`
   max-width: 70px;
@@ -56,18 +53,22 @@ const GameWalletAmount = styled.div`
   letter-spacing: 0em;
   text-align: left;
   color: ${({ theme }) => theme.text};
-  text-align: center;
+  text-align: right;
   display: inline-block;
   margin-top: 3px;
 `;
 
 const TransferButton = muiStyled(Button)(({ theme }) => ({
+  width: "140px",
+  borderRadius: "4px",
   fontSize: "12px",
   fontWeight: "400",
   lineHeight: "14px",
   textAlign: "center",
   padding: "10px 12px",
-  background: theme.palette.priBTNOutline,
+  background: "transparent",
+  border: `1px solid ${theme.palette.accountLableText}`,
+  marginBottom: "14px",
   "&:hover": {
     background: theme.palette.priBTNOutline,
   },
@@ -130,7 +131,7 @@ const TransferCards = ({ handleTransferIn }: Props) => {
                   disabled={provider.maintenance === 1}
                   onClick={() => handleTransferIn(provider.gpcode)}
                 >
-                  {i18n.t("transfer.oneKeyTransferIn")}
+                  {i18n.t("transfer.oneKeyTransferIn").toLocaleUpperCase()}
                 </TransferButton>
                 <GameWalletAmount>
                   {provider.maintenance === 1

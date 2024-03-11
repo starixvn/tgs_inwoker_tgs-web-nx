@@ -84,7 +84,7 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
       {isLargeDesktopSize && (
         <ButtonWrapper>
           <Button
-            style={{ background: theme.priBTNOutline }}
+            style={{ background: theme.priBTNOutline, height: "44px" }}
             onClick={() => {
               performWithdrawFromEveryBrand();
             }}
