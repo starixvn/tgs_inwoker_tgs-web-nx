@@ -16,11 +16,11 @@ const QuickTransferContainer = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-
-  & > * {
+  align-items: center;
+  /* & > * {
     height: 50px;
     max-width: 200px;
-  }
+  } */
 
   ${media.lg} {
     flex-wrap: nowrap;
@@ -30,31 +30,34 @@ const QuickTransferContainer = styled.div`
 const QuickTransferArrow = styled.div`
   flex-shrink: 0;
   display: flex;
-  width: 23px;
-  height: 23px;
+  width: 14px;
+  height: 14px;
   align-self: center;
   margin: 0 10px;
 `;
 
 const AmountWrapper = styled.div`
+  width: 100%;
+  max-width: 300px;
   background: #12281e;
   padding: 17px 10px;
   display: flex;
   align-items: center;
+  gap: 10px;
 `;
 
 const AmountText = styled.div`
   flex-shrink: 0;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white50};
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
+  width: 100%;
   background: none;
-  text-align: right;
   border: none;
   color: ${({ theme }) => theme.text};
   ::placeholder {
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.white50};
   }
 `;
 
@@ -84,111 +87,107 @@ const QuickTransfer = ({
 
   return (
     <QuickTransferContainer>
-      <GrayInputWrapper>
-        <Select
-          native
-          fullWidth
-          variant="outlined"
-          value={transferFrom}
-          displayEmpty
-          onChange={handleTransferFromChange}
-          sx={{
-            color: theme.text,
-            background: "#12281E",
-            ".MuiSvgIcon-root ": {
-              fill: "white !important",
-            },
-          }}
-        >
-          <option style={{ background: theme.black }} value={mainAccountId}>
-            {i18n.t("transfer.mainAccount")}
-          </option>
-          {game.providerList
-            .filter((provider) => provider.status === 0 && provider.transferwallet === true)
-            .filter((provider) => {
-              if (config.features.MergeEVORTNT) {
-                if (
-                  !(
-                    provider.gpcode === "NTTF" ||
-                    provider.gpcode === "RTTF" ||
-                    provider.gpcode === "BTG" ||
-                    provider.gpcode === "NLC"
-                  )
-                ) {
-                  return provider;
-                }
-              } else {
+      <Select
+        native
+        fullWidth
+        variant="outlined"
+        value={transferFrom}
+        displayEmpty
+        onChange={handleTransferFromChange}
+        sx={{
+          maxWidth: "200px",
+          color: theme.text,
+          background: "#12281E",
+          ".MuiSvgIcon-root ": {
+            fill: "white !important",
+          },
+        }}
+      >
+        <option style={{ background: theme.black }} value={mainAccountId}>
+          {i18n.t("transfer.mainAccount")}
+        </option>
+        {game.providerList
+          .filter((provider) => provider.status === 0 && provider.transferwallet === true)
+          .filter((provider) => {
+            if (config.features.MergeEVORTNT) {
+              if (
+                !(
+                  provider.gpcode === "NTTF" ||
+                  provider.gpcode === "RTTF" ||
+                  provider.gpcode === "BTG" ||
+                  provider.gpcode === "NLC"
+                )
+              ) {
                 return provider;
               }
-            })
-            .map((item, index) => (
-              <option style={{ background: theme.black }} value={item.gpcode} key={index}>
-                {item.name}
-              </option>
-            ))}
-        </Select>
-      </GrayInputWrapper>
+            } else {
+              return provider;
+            }
+          })
+          .map((item, index) => (
+            <option style={{ background: theme.black }} value={item.gpcode} key={index}>
+              {item.name}
+            </option>
+          ))}
+      </Select>
 
       <QuickTransferArrow>
         <img src={ArrowRightImg} alt="arrow-right" />
       </QuickTransferArrow>
 
-      <GrayInputWrapper>
-        <Select
-          native
-          fullWidth
-          variant="outlined"
-          value={transferTo}
-          displayEmpty
-          onChange={handleTransferToChange}
-          sx={{
-            color: theme.text,
-            background: "#12281E",
-            ".MuiSvgIcon-root ": {
-              fill: "white !important",
-            },
-          }}
-        >
-          <option style={{ background: theme.black }} value={mainAccountId}>
-            {i18n.t("transfer.mainAccount")}
-          </option>
-          {game.providerList
-            .filter((item) => item.status === 0 && item.transferwallet === true)
-            .filter((e) => {
-              if (config.features.MergeEVORTNT) {
-                if (
-                  !(
-                    e.gpcode === "NTTF" ||
-                    e.gpcode === "RTTF" ||
-                    e.gpcode === "BTG" ||
-                    e.gpcode === "NLC"
-                  )
-                ) {
-                  return e;
-                }
-              } else {
+      <Select
+        native
+        fullWidth
+        variant="outlined"
+        value={transferTo}
+        displayEmpty
+        onChange={handleTransferToChange}
+        sx={{
+          maxWidth: "200px",
+          color: theme.text,
+          background: "#12281E",
+          ".MuiSvgIcon-root ": {
+            fill: "white !important",
+          },
+        }}
+      >
+        <option style={{ background: theme.black }} value={mainAccountId}>
+          {i18n.t("transfer.mainAccount")}
+        </option>
+        {game.providerList
+          .filter((item) => item.status === 0 && item.transferwallet === true)
+          .filter((e) => {
+            if (config.features.MergeEVORTNT) {
+              if (
+                !(
+                  e.gpcode === "NTTF" ||
+                  e.gpcode === "RTTF" ||
+                  e.gpcode === "BTG" ||
+                  e.gpcode === "NLC"
+                )
+              ) {
                 return e;
               }
-            })
-            .map((item, index) => (
-              <option style={{ background: theme.black }} value={item.gpcode} key={index}>
-                {item.name}
-              </option>
-            ))}
-        </Select>
-      </GrayInputWrapper>
+            } else {
+              return e;
+            }
+          })
+          .map((item, index) => (
+            <option style={{ background: theme.black }} value={item.gpcode} key={index}>
+              {item.name}
+            </option>
+          ))}
+      </Select>
 
       <AmountWrapper>
         <AmountText>{i18n.t("common.amount")}</AmountText>
-        <div>
-          <CurrencyTextFieldReplacement
-            value={transferAmount}
-            placeholder="0"
-            onChange={handleTransferAmountChange}
-            autoComplete="off"
-            type={"number"}
-          />
-        </div>
+        <CurrencyTextFieldReplacement
+          value={transferAmount}
+          placeholder="0"
+          onChange={handleTransferAmountChange}
+          autoComplete="off"
+          type={"number"}
+        />
       </AmountWrapper>
 
       <Button

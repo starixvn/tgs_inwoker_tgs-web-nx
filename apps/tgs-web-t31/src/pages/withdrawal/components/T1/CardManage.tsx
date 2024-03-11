@@ -9,7 +9,7 @@ import { SubmitButton } from "@/components/styled-component/ProfileForms";
 import Card from "@/pages/withdrawal/components/CardManage/Card";
 import { CardContainer } from "@/components/styled-component/WithdrawV2/CardManage";
 import CardAddCard from "@/pages/withdrawal/components/CardManage/CardAddCard";
-import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
+import CardAddButton from "@/pages/withdrawal/components/CardManage/CardAddButton";
 
 const CardManageContainer = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ const CardManage = ({
   onhandleAddCardClick,
   onhandleBackClick,
 }: Props) => {
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
 
   const getCardContent = (item: BankCard): string => {
@@ -59,14 +59,6 @@ const CardManage = ({
   };
   return (
     <CardManageContainer>
-      {isDesktopSize && (
-        <FormTitle
-          title={i18n.t("card.title")}
-          isShowAddCardButton={isShowAddCardButton}
-          handleClickAddCard={onhandleAddCardClick}
-        />
-      )}
-
       <CardContainer>
         {bankCardList.map((item, key) => {
           return (
@@ -85,11 +77,10 @@ const CardManage = ({
             />
           );
         })}
-        
-
-        {!isDesktopSize && isShowAddCardButton && (
-          <CardAddCard handleClick={onhandleAddCardClick} />
+        {isShowAddCardButton && isDesktopSize && (
+          <CardAddButton handleClick={onhandleAddCardClick} />
         )}
+        {isShowAddCardButton && isMobileSize && <CardAddCard handleClick={onhandleAddCardClick} />}
       </CardContainer>
 
       <SubmitButton fullWidth onClick={onhandleBackClick}>

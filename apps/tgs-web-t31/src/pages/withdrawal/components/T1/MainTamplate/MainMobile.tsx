@@ -147,11 +147,11 @@ const MainMobile = ({
         {i18n.t("withdrawal.turnover")}
         <TurnoverTextWrapper>
           <span>{Common.formatNumberWithThousand(minWithdrawLimit)}</span>
-          <DetailText
+          {/* <DetailText
             onClick={() => {
               history.push("/wagering");
             }}
-          >{`(${i18n.t("withdrawal.checkDetails")})`}</DetailText>
+          >{`(${i18n.t("withdrawal.checkDetails")})`}</DetailText> */}
         </TurnoverTextWrapper>
       </Turnover>
 

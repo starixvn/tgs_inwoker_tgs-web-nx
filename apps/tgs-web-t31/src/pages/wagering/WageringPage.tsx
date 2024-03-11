@@ -10,9 +10,7 @@ import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconWagering from "@/assets/t29/images/account/navItem/icon-wagering.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
-import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";
-import iconPlay from "@/assets/t29/images/wagering/icon-play.svg";
-import iconPlayActive from "@/assets/t29/images/wagering/icon-play_active.svg";
+import iconCard from "@/assets/t31/images/withdraw/icon-card.svg";
 
 import LiveDealerIcon from "@/assets/t29/images/wagering/LiveDealer.svg";
 import LiveDealerIconActive from "@/assets/t29/images/wagering/LiveDealerActive.svg";
