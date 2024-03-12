@@ -9,14 +9,14 @@ const CardContainer = styled.div`
   width: 100%;
   padding: 16px;
   background: ${({ theme }) => theme.iconLable};
-  /* border: 1px solid ${({ theme }) => theme.blue40}; */
   display: flex;
   flex-direction: column;
   gap: 8px;
   border-radius: 4px;
 
   ${media.md} {
-    width: calc((100% - 14px * 1) / 2);
+    width: calc((100% - 30px * 1) / 3);
+    background: ${({ theme }) => theme.black60};
   }
 `;
 
@@ -29,7 +29,6 @@ const CardTitle = styled.div`
 `;
 
 const CardContent = styled.div`
-  color: ${({ theme }) => theme.blue40};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -39,7 +38,7 @@ const ContentRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 8px;
 
   &:last-child {
     margin-bottom: 0;
@@ -49,11 +48,16 @@ const ContentRow = styled.div`
 const EndingInLabel = styled.div`
   font-size: 1.125rem;
   color: ${({ theme }) => theme.text};
+  ${media.md} {
+    color: ${({ theme }) => theme.white50};
+  }
 `;
 const EndingInValue = styled.div`
   font-size: 1.125rem;
-
   color: ${({ theme }) => theme.text};
+  ${media.md} {
+    color: ${({ theme }) => theme.white50};
+  }
 `;
 
 type Props = {

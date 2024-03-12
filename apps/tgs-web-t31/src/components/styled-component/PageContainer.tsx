@@ -9,6 +9,7 @@ export const PageContainer = styled.div`
   margin: 0 auto;
 
   ${media.sm} {
+    max-width: 1170px;
     padding: 10px;
     background: ${({ theme }) => theme.blue20};
   }
@@ -24,6 +25,7 @@ export const TransferPageContainer = styled.div`
   ${media.sm} {
     padding: 10px;
     background: ${({ theme }) => theme.blue20};
+    max-width: 1170px;
   }
 
   & .MuiButton-fullWidth {
@@ -42,6 +44,7 @@ export const DownloadPageContainer = styled.div`
   margin: 0 auto;
 
   ${media.sm} {
+    max-width: 1170px;
     padding: 10px;
     background: ${({ theme }) => theme.blue20};
   }
