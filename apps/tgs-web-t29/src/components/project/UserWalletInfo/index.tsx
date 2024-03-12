@@ -37,6 +37,7 @@ const PlayerInfoContainer = styled.div``;
 export const PlayerInfo = styled.div`
   display: flex;
   align-items: center;
+  min-width: 400px;
 `;
 
 export const PlayerName = styled.div`
@@ -238,44 +239,46 @@ const UserWalletInfo = () => {
             </VIPLabel>
           )}
         </PlayerInfo>
-        <VIPInfo>
-          <ProcessBarWrapper>
-            <ProcessBarContainer>
-              <VIPText>{`${i18n.t("vip.totalDeposit")}: ${info.accumdeposit} / ${
-                info.fulllevel ? "－" : info.levelupaccumulatedeposit
-              }`}</VIPText>
-              <img src={depositIcon} alt="deposit" />
-              <Wrapper>
-                <ProcessBar>
-                  <DepositBar $width={info.accumdeposit / info.levelupaccumulatedeposit} />
-                </ProcessBar>
-                <TotalBar />
-              </Wrapper>
-            </ProcessBarContainer>
+        {config.features.HaveVIPFeature && (
+          <VIPInfo>
+            <ProcessBarWrapper>
+              <ProcessBarContainer>
+                <VIPText>{`${i18n.t("vip.totalDeposit")}: ${info.accumdeposit} / ${
+                  info.fulllevel ? "－" : info.levelupaccumulatedeposit
+                }`}</VIPText>
+                <img src={depositIcon} alt="deposit" />
+                <Wrapper>
+                  <ProcessBar>
+                    <DepositBar $width={info.accumdeposit / info.levelupaccumulatedeposit} />
+                  </ProcessBar>
+                  <TotalBar />
+                </Wrapper>
+              </ProcessBarContainer>
 
-            <ProcessBarContainer>
-              <VIPText>{`${i18n.t("vip.totalVaildBet")}: ${info.accumturnover} / ${
-                info.fulllevel ? "－" : info.levelupaccumulatebetamount
-              }`}</VIPText>
-              <img src={turnoverIcon} alt="turnover" />
-              <Wrapper>
-                <ProcessBar>
-                  <TurnoverBar $width={info.accumturnover / info.levelupaccumulatebetamount} />
-                </ProcessBar>
-                <TotalBar />
-              </Wrapper>
-            </ProcessBarContainer>
-          </ProcessBarWrapper>
-          <RefreshContainer>
-            <RefreshButton
-              width={"44px"}
-              height={"44px"}
-              iconUrl={refreshIcon}
-              onClick={getAccountInfo}
-              $isLoading={isMainWalletLoading}
-            />
-          </RefreshContainer>
-        </VIPInfo>
+              <ProcessBarContainer>
+                <VIPText>{`${i18n.t("vip.totalVaildBet")}: ${info.accumturnover} / ${
+                  info.fulllevel ? "－" : info.levelupaccumulatebetamount
+                }`}</VIPText>
+                <img src={turnoverIcon} alt="turnover" />
+                <Wrapper>
+                  <ProcessBar>
+                    <TurnoverBar $width={info.accumturnover / info.levelupaccumulatebetamount} />
+                  </ProcessBar>
+                  <TotalBar />
+                </Wrapper>
+              </ProcessBarContainer>
+            </ProcessBarWrapper>
+            <RefreshContainer>
+              <RefreshButton
+                width={"44px"}
+                height={"44px"}
+                iconUrl={refreshIcon}
+                onClick={getAccountInfo}
+                $isLoading={isMainWalletLoading}
+              />
+            </RefreshContainer>
+          </VIPInfo>
+        )}
       </PlayerInfoContainer>
       <WalletsWrapper>
         <MainWalletContainer>
@@ -284,9 +287,7 @@ const UserWalletInfo = () => {
             {isMainWalletLoading ? (
               <span>-</span>
             ) : (
-              <DynamicFont
-                content={mainSymbol + Common.formatCurrency(mainWalletBalance)}
-              />
+              <DynamicFont content={mainSymbol + Common.formatCurrency(mainWalletBalance)} />
             )}
             <RefreshButton
               width={"44px"}
@@ -324,8 +325,7 @@ const UserWalletInfo = () => {
             ) : (
               <DynamicFont
                 content={
-                  mainSymbol +
-                  Common.formatCurrency((mainWalletBalance + transferWalletBalance))
+                  mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)
                 }
               />
             )}
