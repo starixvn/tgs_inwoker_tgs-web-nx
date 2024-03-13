@@ -136,6 +136,7 @@ function mapDepositList(result) {
             fees: data[i].feepercentile,
             paymentcode: data[i].paymentcode,
             extended: data[i].extended,
+            banktype: data[i].banktype,
           },
         ],
       });
@@ -150,6 +151,8 @@ function mapDepositList(result) {
           paymentcode: data[i].paymentcode,
           transferlimit: data[i].transferlimit,
           fees: data[i].feepercentile,
+          extended: data[i].extended,
+          banktype: data[i].banktype,
         });
     }
   }

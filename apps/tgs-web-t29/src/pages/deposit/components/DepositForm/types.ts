@@ -1,12 +1,13 @@
-import {ReactNode} from 'react';
-import { TransferChannel } from "@tgs-web-nx/types";
+import { ReactNode } from 'react';
 
 export type DepositFormData = {
   amount: string;
   paymentid: string;
+  id: string;
   promotionid: string;
   paymentcode: string;
   type: string;
+  manualBankName?: string;
 }
 
 export type FormContainerProps = {
@@ -20,11 +21,6 @@ export type Option = {
   onClick: (value: string) => void,
   children: ReactNode | string,
   code: string,
-}
-
-export type RenderLayerConfig = {
-  i18nParam: string,
-  list: Option[],
 }
 
 export enum DepositPromotionEnum {
@@ -51,24 +47,9 @@ export enum GroupCodeEnum {
   Momo = 'Momo',
   TRC= 'TRC',
   Pulsa= 'Pulsa',
-  EWallet= 'EWallet',
+  EWallet= 'E-wallet',
   GcashNative = 'GcashNative',
 
   // 特例
   Bank= 'Bank',
 }
-
-export type LayerSetting = {
-  layers: RenderLayerConfig[],
-  channelDep: string,
-  channels: TransferChannel[],
-};
-
-export type RenderLayer = (config: RenderLayerConfig, key: number) => ReactNode;
-
-// 自定義的 Layer
-export enum LayerTypeEnum {
-  Default = 'default',
-  BankLayer = 'bankLayer',
-}
-

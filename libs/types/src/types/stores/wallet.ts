@@ -1,5 +1,52 @@
-import { string } from "yup";
 import { BankCard, DoTransferResDto } from "../dto";
+
+export type BankExtended = {
+  bankAccount?: string,
+  eMoneyName?: string,
+  logo?: string,
+  phone?: string,
+  name?: string,
+}
+
+export type CoinsphExtended = {
+  phone?: string,
+  name?: string,
+  qrCode?: string,
+}
+
+export type EWalletExtended = {
+  bankAccount?: string,
+  eMoneyName?: string,
+  phone?: string,
+  name?: string,
+}
+
+export type FPSExtended = {
+  email?: string,
+  fpsId?: string,
+  phone?: string,
+  qrCodeRileUrl?: string,
+}
+
+export type PulsaExtended = {
+  phone?: string,
+}
+
+export type ThirdPartyExtended = {
+  qrCode?: string,
+  qrCodeFileUrl?: string,
+  QrCode?: string,
+}
+
+export type UsdtExtended = {
+  rate?: string,
+  qrCode?: string,
+  address?: string,
+}
+
+export type Extended = 
+  BankExtended & CoinsphExtended & EWalletExtended
+  & FPSExtended & PulsaExtended & ThirdPartyExtended
 
 export interface TransferChannel {
   banktype: string;
@@ -7,7 +54,7 @@ export interface TransferChannel {
   channelid: string;
   channelname: string;
   displayorder: number;
-  extended: unknown;
+  extended: Extended;
   feepercentile: number;
   methodcode: string;
   methodid: string;
@@ -42,7 +89,7 @@ export interface DepositType {
     methodcode: string;
     methodid: string;
     displayname: string;
-    extended: {};
+    extended: Extended;
     fees: number;
     id: string;
     transferlimit: {

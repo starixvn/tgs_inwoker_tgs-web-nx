@@ -1,28 +1,21 @@
-import { useWalletStore, walletAction } from "@tgs-web-nx/core";
-import { useState, useEffect, useMemo } from "react";
+import { useWalletStore, } from "@tgs-web-nx/core";
+import { useState, useEffect, useMemo, useContext} from "react";
 import { groupBy } from "@tgs-web-nx/utils";
 import { FilterDepositList } from "@tgs-web-nx/types";
-import { useGeneralStore } from "@tgs-web-nx/core";
-import { SelectChangeEvent } from "@mui/material";
-import { groupCodeConfig } from "./config";
-import { RenderLayerConfig, DepositFormData, Option } from "./types";
-import {LayerTypeEnum, GroupCodeEnum, LayerSetting, DepositPromotionEnum} from './types';
+import { Option, GroupCodeEnum } from './types';
+import { DepositFormContext } from "./components/DepositFormProvider";
+import { handleChangeCode, getFilterDepositList } from './utils';
 
-export const useDepositForm = () => {
+/**
+ * 第一層: Group
+ */
+export const useGroupList = () => {
   const [groupCode, setGroupCode] = useState('');
-  const [selectedID, setSelectedID] = useState('');
-  const [providerCode, setProviderCode] = useState('');
-  const [amount, setAmount] = useState('');
-  const [promotion, setPromotion] = useState('');
-
-  const {wallet, performDeposit} = useWalletStore();
-  const {general: { promotionList }} = useGeneralStore();
-  
-  // 第一層 Group
+  const {wallet} = useWalletStore();
   const filterGroupList: FilterDepositList[] = useMemo(() => 
     {
       const result = wallet.depositChannelList
-        .filter(row => groupCodeConfig[row.code as GroupCodeEnum])
+        .filter(row => Object.values(GroupCodeEnum).includes(row.code as GroupCodeEnum))
         .map(row => {
           return {
             code: row.code,
@@ -36,8 +29,6 @@ export const useDepositForm = () => {
         code: GroupCodeEnum.Bank,
         channels: wallet.depositList?.find(row => row.banktype ===  GroupCodeEnum.Bank)?.channel ?? []
       };
-    
-      console.log(wallet.depositList);
       
       return [bankList, ...result];
     }
@@ -53,9 +44,20 @@ export const useDepositForm = () => {
     }
   });
 
-  // 預設 最後一層 Channel
-  const filterDefaultChannelList = getFilterDepositList(filterGroupList, groupCode);
-  const defaultChannelList: Option[] = filterDefaultChannelList.map(row => {
+  useSelectFirst(groupList, setGroupCode);
+
+  return {groupCode, groupList, filterGroupList};
+}
+
+/**
+ * 最後一層: Channel
+ * @param list 上一層的 FilterDepositList[]
+ * @param code 上一層的 code
+ */
+export const useChannelList = (list: FilterDepositList[], code: string) => {
+  const [selectedID, setSelectedID] = useState('');
+  const filterChannelList = getFilterDepositList(list, code);
+  const channelList: Option[] = filterChannelList.map(row => {
     return {
       iconUrl: "/assets/images/deposit/momo.webp",
       isActive: row.id === selectedID,
@@ -64,23 +66,46 @@ export const useDepositForm = () => {
       code: row.id,
     }
   });
+  const currentChannel = filterChannelList.find(row => row.id === selectedID);
+  const {formData, setFormData} = useContext(DepositFormContext);
 
-  
-  /**
-   * BankLayer 特例 
-   * ----- START -----
-   */
-  const filterProviderList = useMemo(() => {
-      const groupByObject = groupBy(filterDefaultChannelList, row => row.paymentcode);
-      
-      return Object.keys(groupByObject).map(row => {
-        return {
-          code: row,
-          channels: groupByObject[row] ?? []
-        }
-      })
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      paymentcode: currentChannel?.paymentcode ?? '',
+      paymentid: currentChannel?.paymentid ?? '',
+      id: currentChannel?.id ?? '',
+      type: currentChannel?.banktype ?? '',
+      minAmount: currentChannel?.transferlimit.from ?? 0,
+      maxAmount: currentChannel?.transferlimit.to ?? 0,
+    })
+  }, [currentChannel?.id])
+
+  useSelectFirst(channelList, setSelectedID, [code]);
+
+  return {channelList, currentChannel};
+}
+
+
+/**
+ * 客製化 中間層 金流商
+ * @param list 上一層的 FilterDepositList[]
+ * @param code 上一層的 code
+ */
+export const useProviderList = (list: FilterDepositList[], code: string) => {
+  const [providerCode, setProviderCode] = useState('');
+  const filterProviderList: FilterDepositList[] = useMemo(() => {
+    const getChannelList = getFilterDepositList(list, code);
+    const groupByObject = groupBy(getChannelList, row => row.paymentcode);
+    
+    return Object.keys(groupByObject).map(row => {
+      return {
+        code: row,
+        channels: groupByObject[row] ?? []
+      }
+    })
     }
-  , [filterDefaultChannelList])
+  , [list])
 
   const providerList: Option[] = filterProviderList.map(row => {
     return {
@@ -92,133 +117,25 @@ export const useDepositForm = () => {
     }
   });
 
-  const bankChannelList = getFilterDepositList(filterProviderList, providerCode).map(row => {
-    return {
-      iconUrl: "/assets/images/deposit/momo.webp",
-      isActive: row.id === selectedID,
-      onClick: () => handleChangeCode(row.id, setSelectedID),
-      children: row.channelname,
-      code: row.id,
-    }
-  });
-
-  /**
-   * BankLayer 特例 
-   * ----- END -----
-   */
-
-  const groupLayer: RenderLayerConfig = {
-    i18nParam: "depositAndWithdrawalStatus.depositMode",
-    list: groupList,
-  };
-
-  const channelLayer: RenderLayerConfig = {
-    i18nParam: "depositAndWithdrawalStatus.channel",
-    list: defaultChannelList,
-  };
-
-  const defaultLayers: RenderLayerConfig[] = [groupLayer, channelLayer];
-  const bankLayers: RenderLayerConfig[] = [
-    groupLayer,
-    {
-      i18nParam: "depositAndWithdrawalStatus.depositMode",
-      list: providerList,
-    },
-    {
-      ...channelLayer,
-      list: bankChannelList,
-    },
-  ];
-
-  // 對應顯示
-  const mapLayers: Record<LayerTypeEnum, LayerSetting> = {
-    [LayerTypeEnum.Default]: {
-      layers: defaultLayers,
-      channelDep: groupCode,
-      channels: filterDefaultChannelList,
-    },
-    [LayerTypeEnum.BankLayer]: {
-      layers: bankLayers,
-      channelDep: providerCode,
-      channels: filterProviderList.find(row => row.code === providerCode)?.channels ?? [],
-    },
-  }
-
-  const currentLayers = mapLayers[groupCodeConfig[groupCode as  GroupCodeEnum]] ?? mapLayers[LayerTypeEnum.Default];
-  const layers: RenderLayerConfig[] = currentLayers?.layers ?? [];
-  const layersLastIndex = layers.length - 1;
-  const channelDep = currentLayers?.channelDep ?? '';
-  const mapChannelList = layers[layersLastIndex]?.list ?? defaultChannelList
+  useSelectFirst(providerList, setProviderCode, [code, providerList.length]);
   
-  // 最後選中的渠道
-  const currentChannel = currentLayers?.channels.find(row => row.id === selectedID);
-  const transferlimit = currentChannel?.transferlimit;
-  const depositFormData: DepositFormData = {
-    amount,
-    paymentcode: currentChannel?.paymentcode ?? '',
-    paymentid: currentChannel?.paymentid ?? '',
-    promotionid: promotion,
-    type: currentChannel?.banktype ?? '',
-  };
-
-  console.log(currentChannel);
-  
-
-  const filterPromotionList = promotionList.items.filter((row) => {
-    if(row.promotionType === DepositPromotionEnum.DepositReward) {
-      return Number(amount) >= row.campaignDetail.bonusAmountLimit
-    }
-    
-    return !!DepositPromotionEnum[row.promotionType as DepositPromotionEnum]
-  });
-                  
-  // 預設選第一個
-  useSelectFirst(groupList, setGroupCode);
-  useSelectFirst(providerList, setProviderCode, [groupCode, groupList.length]);
-  useSelectFirst(mapChannelList, setSelectedID, [channelDep]);
-
-  const handleOnSubmit = () => {
-    const {amount, paymentid, promotionid, paymentcode, type} = depositFormData;
-    performDeposit(Number(amount), paymentid, promotionid, paymentcode, type);
-  }
-
-  const handleOnChangeAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(e.target.value);
-  };
-
-  const handleOnSelectPromotion = (e: SelectChangeEvent<any>) => {
-    setPromotion(e.target.value);
-  }
-
   return {
-    amount,
-    promotion,
-    handleOnChangeAmount,
-    handleOnSelectPromotion,
-    handleOnSubmit,
-    transferlimit,
-    layers,
-    filterPromotionList,
+    providerList,
+    filterProviderList,
+    providerCode,
   }
 }
 
-// utils
-const getFilterDepositList = (list: FilterDepositList[], code: string) => {
-  return list.find(row => row.code === code)?.channels ?? [];
-};
-
-const useSelectFirst = (list: Option[], setCode: (code: string) => void, dep: unknown[] = []) => {
+/**
+ * 預設選第一個選項
+ * @param list 選項陣列
+ * @param setCode setState 方法
+ * @param depArr dependency array
+ */
+const useSelectFirst = (list: Option[], setCode: (code: string) => void, depArr: unknown[] = []) => {
   useEffect(()=> {
     if(list.length > 0) {
       setCode(list[0].code);
     }
-  }, dep)
-};
-
-const handleChangeCode = (code: string, setCode: (code: string) => void, callback?: () => void) => {
-  setCode(code);
-
-  if(callback) {
-    callback();
-  }
+  }, depArr)
 };
