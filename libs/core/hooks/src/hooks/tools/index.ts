@@ -7,3 +7,4 @@ export * from "./usePromotion";
 export * from "./useRwd";
 export * from "./useVipStore";
 export * from "./useGoToHomePage";
+export * from "./useDetectDialogClose";
