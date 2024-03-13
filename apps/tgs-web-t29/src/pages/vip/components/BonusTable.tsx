@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
 import { useBettingBonus, useRwd, useVipBonusListV2 } from "@tgs-web-nx/core/hooks";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 
 import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
@@ -103,8 +104,11 @@ const TopHeader = styled.tr`
   }
 `;
 
-const BottomHeader = styled.tr`
-  & *:nth-child(n + 5):nth-child(-n + 6) {
+const BottomHeader = styled.tr<{ $index: number }>`
+  & *:nth-child(${(props) => props.$index}) {
+    background: ${({ theme }) => theme.blue20};
+  }
+  & *:nth-child(${(props) => props.$index + 1}) {
     background: ${({ theme }) => theme.blue20};
   }
 `;
@@ -119,7 +123,11 @@ const BonusTable = ({ vipSortingData }: Props) => {
   const { vipBonusList } = useVipBonusListV2();
   const { isDesktopSize } = useRwd();
   const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
+  const hideBirthdayBonus = brandConfig[mapBrandName(config.brand)].isHideVIPBirthdayBonus;
+  const hideQuarterlyBonus = brandConfig[mapBrandName(config.brand)].isHideVIPQuarterlyBonus;
+
   const titleList = [...vipBonusList];
+  console.log(titleList);
   productRebateByLevel.map((gametype) => {
     titleList.push({
       key: gametype.name,
@@ -132,7 +140,10 @@ const BonusTable = ({ vipSortingData }: Props) => {
       <VIPTable>
         <thead>
           <TopHeader>
-            <HeaderRowItem $width={isDesktopSize ? "473px" : "390px"} colSpan={4}>
+            <HeaderRowItem
+              $width={isDesktopSize ? "473px" : "390px"}
+              colSpan={!hideBirthdayBonus && !hideQuarterlyBonus ? 4 : 2}
+            >
               {i18n.t("vip.bonus")}
             </HeaderRowItem>
             <HeaderRowItem $width={isDesktopSize ? "252px" : "230px"} colSpan={2}>
@@ -142,7 +153,7 @@ const BonusTable = ({ vipSortingData }: Props) => {
               {i18n.t("vip.vipBenefit")}
             </HeaderRowItem>
           </TopHeader>
-          <BottomHeader>
+          <BottomHeader $index={!hideBirthdayBonus && !hideQuarterlyBonus ? 5 : 3}>
             {titleList.map((bonus) =>
               bonus.key === "VIP" ? (
                 <BorderFixRowItem key={bonus.key}>{bonus.label}</BorderFixRowItem>
@@ -155,7 +166,7 @@ const BonusTable = ({ vipSortingData }: Props) => {
         <tbody>
           {vipSortingData.map((vipData) => {
             return (
-              <Body key={vipData.level}>
+              <Body key={vipData.level} $index={!hideBirthdayBonus && !hideQuarterlyBonus ? 5 : 3}>
                 <FixRowItem>
                   <LevelIcon>
                     <img
@@ -170,8 +181,8 @@ const BonusTable = ({ vipSortingData }: Props) => {
                   </LevelIcon>
                 </FixRowItem>
                 <RowItem>{vipData.promotionBenefit}</RowItem>
-                <RowItem>{vipData.birthBenefit}</RowItem>
-                <RowItem>{vipData.quarterlyBenefit}</RowItem>
+                {!hideBirthdayBonus && <RowItem>{vipData.birthBenefit}</RowItem>}
+                {!hideQuarterlyBonus && <RowItem>{vipData.quarterlyBenefit}</RowItem>}
                 <RowItem>
                   {vipData.level === vipSortingData.length ? "-" : vipData.levelUpAccumulateDeposit}
                 </RowItem>

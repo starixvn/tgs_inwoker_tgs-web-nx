@@ -52,7 +52,6 @@ const AccountHeaderContent = () => {
   const { isDesktopSize } = useRwd();
   const goToHomePage = useGoToHomePage();
   const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
-
   const currentBalance =
     mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance);
   const username = account.info.member_username;
