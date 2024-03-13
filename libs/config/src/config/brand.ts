@@ -27,6 +27,8 @@ type MOVN2Config = {
   countryCode: string;
   currencyRate?: number;
   isShowAgentAdminButton: boolean; // 是否將transfer button改成agent amdin button https://raypro.atlassian.net/browse/TGS-4158
+  isHideVIPBirthdayBonus: boolean; // 是否在vip 表格隱藏生日福利 https://raypro.atlassian.net/browse/TGS-4324
+  isHideVIPQuarterlyBonus: boolean; // 是否在vip 表格隱藏季度福利 https://raypro.atlassian.net/browse/TGS-4324
 };
 
 /*
@@ -72,6 +74,8 @@ export const defaultConfig: Config = {
   isDisableWebPinchAction: false,
   countryCode: "en-US",
   isShowAgentAdminButton: false,
+  isHideVIPBirthdayBonus: false,
+  isHideVIPQuarterlyBonus: false,
   // new brand config start here
   // NewBrand
 };
@@ -102,6 +106,8 @@ export const brandConfig: Record<BrandName, Config> = {
     currencyRate: 1000,
     isDisableWebPinchAction: true,
     isShowAgentAdminButton: true,
+    isHideVIPBirthdayBonus: true,
+    isHideVIPQuarterlyBonus: true,
   },
   MOPH: {
     ...defaultConfig,
@@ -126,6 +132,8 @@ export const brandConfig: Record<BrandName, Config> = {
     currencyRate: 1000,
     isDisableWebPinchAction: true,
     isShowAgentAdminButton: true,
+    isHideVIPBirthdayBonus: true,
+    isHideVIPQuarterlyBonus: true,
   },
 };
 
