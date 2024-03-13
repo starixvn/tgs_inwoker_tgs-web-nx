@@ -114,7 +114,7 @@ const TransferCards = ({ handleTransferIn }: Props) => {
             <GameTransferWallet key={index}>
               <GameTransferLeftWrap>
                 <Logo
-                  src={`/assets/images/provider/${switchAlternateLogo(
+                  src={`/assets/images/provider/dark/${switchAlternateLogo(
                     //@ts-ignore
                     (config.features.UseAlternateLogo as boolean) || false,
                   )}${displayLogo()}.png`}
