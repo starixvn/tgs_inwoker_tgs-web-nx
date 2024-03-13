@@ -14,3 +14,4 @@ export * from "./transfer/useTransferPage";
 export * from "./vip/useVipBonusList";
 export * from "./vip/useVipBonusListV2";
 export * from "./quickLinks";
+export * from "./affiliate/useRebateTable";
