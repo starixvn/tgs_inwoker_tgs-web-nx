@@ -29,6 +29,7 @@ type MOVN2Config = {
   isShowAgentAdminButton: boolean; // 是否將transfer button改成agent amdin button https://raypro.atlassian.net/browse/TGS-4158
   isHideVIPBirthdayBonus: boolean; // 是否在vip 表格隱藏生日福利 https://raypro.atlassian.net/browse/TGS-4324
   isHideVIPQuarterlyBonus: boolean; // 是否在vip 表格隱藏季度福利 https://raypro.atlassian.net/browse/TGS-4324
+  isShowVIP: boolean; // 是否在Navigation bar及profile頁面顯示VIP
 };
 
 /*
@@ -76,6 +77,7 @@ export const defaultConfig: Config = {
   isShowAgentAdminButton: false,
   isHideVIPBirthdayBonus: false,
   isHideVIPQuarterlyBonus: false,
+  isShowVIP: true,
   // new brand config start here
   // NewBrand
 };
@@ -108,6 +110,7 @@ export const brandConfig: Record<BrandName, Config> = {
     isShowAgentAdminButton: true,
     isHideVIPBirthdayBonus: true,
     isHideVIPQuarterlyBonus: true,
+    isShowVIP: false,
   },
   MOPH: {
     ...defaultConfig,
@@ -134,6 +137,7 @@ export const brandConfig: Record<BrandName, Config> = {
     isShowAgentAdminButton: true,
     isHideVIPBirthdayBonus: true,
     isHideVIPQuarterlyBonus: true,
+    isShowVIP: false,
   },
 };
 

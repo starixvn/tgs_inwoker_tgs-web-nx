@@ -72,7 +72,13 @@ export function useRebateTable() {
     });
   }, [selectedRebateItem, rebateTableRows]);
 
-  const affiliateLink = `https://${window.location.hostname}/p/${account.info.playercode}?do=register`;
+  /*
+   *  Note by Liyi:
+   *  1. If you want to test affiliate link in local, you need to use "http" instead of "https"
+   *  2. the "do=register" query param is deprecated (which is modified by SABA)
+   */
+  const affiliateLink = `https://${window.location.host}/p/${account.info.playercode}`;
+  // const affiliateLink = `https://${window.location.host}/p/${account.info.playercode}?do=register`;
 
   return {
     rebateItemList,

@@ -122,12 +122,11 @@ type Props = {
 const BonusTable = ({ vipSortingData }: Props) => {
   const { vipBonusList } = useVipBonusListV2();
   const { isDesktopSize } = useRwd();
-  const { isLoading, currentLevel, productRebateByLevel, vipData } = useBettingBonus();
+  const { productRebateByLevel } = useBettingBonus();
   const hideBirthdayBonus = brandConfig[mapBrandName(config.brand)].isHideVIPBirthdayBonus;
   const hideQuarterlyBonus = brandConfig[mapBrandName(config.brand)].isHideVIPQuarterlyBonus;
 
   const titleList = [...vipBonusList];
-  console.log(titleList);
   productRebateByLevel.map((gametype) => {
     titleList.push({
       key: gametype.name,
