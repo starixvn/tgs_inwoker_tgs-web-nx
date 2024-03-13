@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Promotion } from "@tgs-web-nx/types";
-import { usePromotion } from "@tgs-web-nx/core/hooks";
+import { useDetectDialogClose, usePromotion } from "@tgs-web-nx/core/hooks";
 import { usePopup } from "@tgs-web-nx/core/features";
 import IconCloseButton from "@/assets/t18/images/promotion/close_icon.svg";
 import TagBg from "@/assets/t18/images/promotion/tag_bg.svg";
@@ -131,6 +131,8 @@ const PromotionBanner = ({
 const PopupPromotion = () => {
   const { isShowPromotion, isOpenAnnouncement, handleClosePromotion, needToShowPopupPromotion } =
     usePopup();
+  useDetectDialogClose(isShowPromotion, () => handleClosePromotion());
+
   const disableDialog =
     window.sessionStorage && sessionStorage.getItem(doNotShowPromotionDialogKey) === "true";
 
@@ -171,7 +173,9 @@ const PopupPromotion = () => {
           ))}
         </Carousel>
         <PromotionTag>PROMOTIONS</PromotionTag>
-        <NotShowAgainHintWrapper><NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} /></NotShowAgainHintWrapper>
+        <NotShowAgainHintWrapper>
+          <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
+        </NotShowAgainHintWrapper>
         <CloseBtn onClick={handleCloseDialog}>
           <img src={IconCloseButton} />
         </CloseBtn>

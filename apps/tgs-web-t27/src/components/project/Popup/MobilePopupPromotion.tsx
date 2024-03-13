@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { Promotion } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { usePromotion } from "@tgs-web-nx/core/hooks";
+import { useDetectDialogClose, usePromotion } from "@tgs-web-nx/core/hooks";
 import { usePopup } from "@tgs-web-nx/core/features";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import Carousel from "@/components/UI/Carousel";
@@ -50,6 +50,8 @@ const ButtonWrapper = styled.div`
 const MobilePopupPromotion = () => {
   const { isShowPromotion, isOpenAnnouncement, handleClosePromotion, needToShowPopupPromotion } =
     usePopup();
+  useDetectDialogClose(isShowPromotion, () => handleClosePromotion());
+
   const { displayPromotionList } = usePromotion();
 
   const [isCheck, setIsCheck] = useState(false);

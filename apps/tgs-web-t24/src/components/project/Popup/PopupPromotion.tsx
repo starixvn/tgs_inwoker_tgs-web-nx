@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Promotion } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { usePromotion } from "@tgs-web-nx/core/hooks";
+import { useDetectDialogClose, usePromotion } from "@tgs-web-nx/core/hooks";
 import { usePopup } from "@tgs-web-nx/core/features";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import BannerImage from "@/pages/promotion/components/BannerImage";
@@ -76,6 +76,8 @@ const PromotionBanner = ({
 const PopupPromotion = () => {
   const { isShowPromotion, isOpenAnnouncement, handleClosePromotion, needToShowPopupPromotion } =
     usePopup();
+  useDetectDialogClose(isShowPromotion, () => handleClosePromotion());
+
   const { displayPromotionList } = usePromotion();
 
   const [isCheck, setIsCheck] = useState(false);
