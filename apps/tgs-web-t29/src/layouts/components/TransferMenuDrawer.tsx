@@ -33,7 +33,7 @@ type Props = {
 };
 const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
   const history = useHistory();
-  const isShowAgentAdminButton = brandConfig[mapBrandName(config.brand)].isShowAgentAdminButton;
+  const isHideTransferButton = brandConfig[mapBrandName(config.brand)].isHideTransferButton;
 
   const handleDialogClose = () => {
     handleDrawerToggle(false);
@@ -56,23 +56,12 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
 
   const transferButtonList = useMemo<TransferButton[]>(() => {
     return [
-      (() => {
-        if (isShowAgentAdminButton) {
-          return {
-            key: "agent",
-            label: i18n.t("usertype.agent"),
-            background: theme.blueBtn,
-            routePath: "/",
-          };
-        } else {
-          return {
-            key: "transfer",
-            label: i18n.t("common.transfer"),
-            background: theme.blueBtn,
-            routePath: "/transfer",
-          };
-        }
-      })(),
+      {
+        key: "transfer",
+        label: i18n.t("common.transfer"),
+        background: theme.blueBtn,
+        routePath: "/transfer",
+      },
       {
         key: "deposit",
         label: i18n.t("common.deposit"),
@@ -112,21 +101,29 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
       }}
     >
       <ButtonContainer>
-        {transferButtonList.map((transferButton) => {
-          const { key, label, background, routePath } = transferButton;
-          return (
-            <Button
-              key={key}
-              onClick={() => handleButtonClick(transferButton, routePath)}
-              sx={{
-                background,
-                borderRadius: "4px",
-              }}
-            >
-              {label}
-            </Button>
-          );
-        })}
+        {transferButtonList
+          .filter((transferButton) => {
+            if (isHideTransferButton) {
+              return transferButton.key !== "transfer";
+            } else {
+              return transferButton;
+            }
+          })
+          .map((transferButton) => {
+            const { key, label, background, routePath } = transferButton;
+            return (
+              <Button
+                key={key}
+                onClick={() => handleButtonClick(transferButton, routePath)}
+                sx={{
+                  background,
+                  borderRadius: "4px",
+                }}
+              >
+                {label}
+              </Button>
+            );
+          })}
       </ButtonContainer>
     </Drawer>
   );
