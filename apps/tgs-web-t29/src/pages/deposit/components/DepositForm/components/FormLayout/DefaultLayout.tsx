@@ -1,5 +1,5 @@
 import { useChannelList } from "../../hooks";
-import { Cards } from "../../components";
+import { Cards as ChannelCards, DepositAmountInput, DepositPromotion } from "../../components";
 import { LayoutProps } from "./index";
 
 /**
@@ -9,7 +9,7 @@ export const DefaultLayout = ({
   filterGroupList,
   groupCode,
 }: LayoutProps) => {
-  const {channelList} = useChannelList(filterGroupList, groupCode);
+  const {channelList, currentChannel} = useChannelList(filterGroupList, groupCode);
   
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
@@ -17,6 +17,14 @@ export const DefaultLayout = ({
   };
 
   return (
-    <Cards {...props} />
+    <>
+      <ChannelCards {...props} />
+      
+      {/* 請輸入存款金額 */}
+      <DepositAmountInput currentChannel={currentChannel} />
+      
+      {/* 選擇優惠活動 */}
+      <DepositPromotion />
+    </>
   )
 };

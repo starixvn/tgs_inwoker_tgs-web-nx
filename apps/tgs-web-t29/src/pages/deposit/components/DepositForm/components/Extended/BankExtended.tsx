@@ -1,28 +1,9 @@
 import { BankExtended as Props } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { LabelContainer } from "../../components";
-import {
-  FormControl,
-  InfoContainer,
-  ItemContainer,
-  LabelContainer as ProfileLabelContainer,
-  Remark,
-  SubmitButton,
-  UploadFileButton,
-  UploadFileTag,
-} from "@/components/styled-component/ProfileForms";
-import {
-  AmountHint,
-  ExchangeRateContainer,
-  FeeSpot,
-  HintText,
-  LimitAmount,
-  LimitLabel,
-  QRCodeImg,
-  TransferLabel,
-} from "@/components/styled-component/Deposit";
+import { DepositSelectBankName } from "../DepositSelectBankName";
+import { InfoContainer, ItemContainer, LabelContainer} from "@/components/styled-component/ProfileForms";
+import { QRCodeImg, TransferLabel } from "@/components/styled-component/Deposit";
 import CopyIcon from "@/pages/deposit/components/CopyIcon";
-import { TextField } from "@/components/UI/TextField";
 
 type Key = 'name' | 'bankAccount' | 'eMoneyName' | 'phone'
 
@@ -51,24 +32,16 @@ export const BankExtended = ({
 
   return (
     <>
-      <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer>
-
-      {logo && <QRCodeImg src={logo} alt={logo} style={{ marginBottom: "10px" }} />}
-      {renderLayout}
-      
-      {/*请输入银行名称*/}
       <ItemContainer>
-        <LabelContainer>{i18n.t("common.pleaseEnterAccountName")}</LabelContainer>
-        <FormControl variant="outlined">
-          <TextField
-            fullWidth
-            value=""
-            onChange={() => {}}
-            type="text"
-            placeholder=""
-          />
-        </FormControl>
+        <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer>
+        {logo && <QRCodeImg src={logo} alt={logo} style={{ marginBottom: "10px" }} />}
       </ItemContainer>
+      
+      <ItemContainer>
+        {renderLayout}
+      </ItemContainer>
+      
+      <DepositSelectBankName />
     </>
   );
 };

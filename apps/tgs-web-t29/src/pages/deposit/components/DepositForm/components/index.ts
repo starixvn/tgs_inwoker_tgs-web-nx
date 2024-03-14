@@ -5,6 +5,7 @@ import { DepositSubmitButton } from "./DepositSubmitButton";
 import FormLayout from "./FormLayout";
 import {Icon, WarningText, TransferHint, CurrencyHint, Form, LabelContainer, Badge, BadgeWrapper, FormContainer} from "./styled";
 import { Cards } from "./Cards";
+import { Upload } from "./Upload";
 
 export {
   DepositAmountInput,
@@ -23,4 +24,5 @@ export {
   BadgeWrapper,
   FormContainer,
   Cards,
+  Upload,
 }

@@ -1,7 +1,7 @@
 import { FilterDepositList } from "@tgs-web-nx/types";
 import { useGroupList } from "../../hooks";
 import { GroupCodeEnum } from "../../types";
-import { Cards } from "../../components";
+import { Cards as GroupCards } from "../../components";
 import { BankLayout } from "./BankLayout";
 import { DefaultLayout } from "./DefaultLayout";
 
@@ -39,7 +39,7 @@ const FormLayout = () => {
   return (
     <>
       {/* 自訂義 Group UI */}
-      <Cards {...props}/>
+      <GroupCards {...props}/>
 
       {/* 對應 UI */}
       {mapLayout()}

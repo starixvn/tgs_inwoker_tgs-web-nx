@@ -1,5 +1,5 @@
 import { useChannelList, useProviderList } from "../../hooks";
-import { Cards } from "../../components";
+import { Cards, DepositAmountInput, DepositPromotion, Upload } from "../../components";
 import { BankExtended } from "../Extended";
 import { LayoutProps } from "./index";
 
@@ -24,13 +24,18 @@ export const BankLayout = ({
   };
 
   const extended = currentChannel?.extended;
-  const isExtendedVisible = extended && !(Object.values(extended).every(value => value === undefined));
-
+  const isExtendedVisible = extended && (Object.keys(extended).length > 0);
+  const isManual = providerCode === 'Manual';
+  const [ProviderCards, ChannelCards] = [Cards, Cards];
+  
   return (
     <>
-      <Cards {...providerProps} />
-      <Cards {...channelProps} />
+      <ProviderCards {...providerProps} />
+      <ChannelCards {...channelProps} />
       {isExtendedVisible && <BankExtended {...extended}/>}
+      <DepositAmountInput currentChannel={currentChannel} />
+      <DepositPromotion />
+      {isManual && <Upload />}
     </>
   )
 };
