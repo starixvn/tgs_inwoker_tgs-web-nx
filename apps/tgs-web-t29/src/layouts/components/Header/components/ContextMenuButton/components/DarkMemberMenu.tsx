@@ -64,7 +64,7 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
     <MemberMenuContainer {...others}>
       {accountNavItemList.map((navItem: NavItem) => {
         if (navItem.key === NavCardKey.LANGUAGE_SWITCH) return null;
-
+        if (navItem.key === "agent") return null;
         return (
           <MemberMenuItem
             key={navItem.key}

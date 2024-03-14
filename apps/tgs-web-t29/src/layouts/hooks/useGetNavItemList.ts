@@ -5,6 +5,7 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
+import agentImg from "@/assets/t29/images/account/navItem/icon-agent.svg";
 import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
 import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
@@ -16,6 +17,7 @@ import languageImg from "@/assets/t29/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
 import wageringImg from "@/assets/t29/images/account/navItem/icon-wagering.svg";
+import agentWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-agent.svg";
 import profileWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-profile.svg";
 import depositWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-deposit.svg";
 import withdrawWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-withdraw.svg";
@@ -113,6 +115,19 @@ export function useGetNavItemList() {
 
   const accountNavItemList: NavItem[] = useMemo(() => {
     const navItems = [
+      brandConfig[mapBrandName(config.brand)].isShowAgentAdminButton && {
+        key: "agent",
+        label: i18n.t("usertype.agent"),
+        iconUrl: agentImg,
+        iconSecondaryUrl: agentWhiteImg,
+        routePath: null,
+        navType: "action",
+        callback: () => {
+          if (config.AgentAdminUrl) {
+            window.open(config.AgentAdminUrl, "_blank");
+          }
+        },
+      },
       {
         key: NavCardKey.PROFILE,
         label: i18n.t("wap.main.my"),
