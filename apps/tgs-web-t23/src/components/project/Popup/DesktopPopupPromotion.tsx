@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Promotion } from "@tgs-web-nx/types";
-import { usePromotion } from "@tgs-web-nx/core/hooks";
+import { useDetectDialogClose, usePromotion } from "@tgs-web-nx/core/hooks";
 import { usePopup } from "@tgs-web-nx/core/features";
 import IconStarUrl from "@/assets/t23/images/promotion/icon_star.svg";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
@@ -160,6 +160,8 @@ const LeftMenu = ({
 const PopupPromotion = () => {
   const { isShowPromotion, isOpenAnnouncement, handleClosePromotion, needToShowPopupPromotion } =
     usePopup();
+  useDetectDialogClose(isShowPromotion, () => handleClosePromotion());
+
   const { displayPromotionList } = usePromotion();
 
   const [isCheck, setIsCheck] = useState(false);

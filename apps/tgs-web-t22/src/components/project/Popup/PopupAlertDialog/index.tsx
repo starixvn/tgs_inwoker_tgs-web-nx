@@ -1,6 +1,7 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
+import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
 import { DialogContainer, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
 import { Button } from "@/components/UI/Button";
@@ -33,6 +34,7 @@ const ModalButtons = ({ handleClose, message, action }: ModalButtonsProps) => {
 
 const PopupAlertDialog = () => {
   const { isOpen, title, message, action, closeAlertPopup } = useNotifications();
+  useDetectDialogClose(isOpen, closeAlertPopup);
 
   return (
     <DialogPopup open={isOpen} onClose={closeAlertPopup}>
