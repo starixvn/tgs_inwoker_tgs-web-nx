@@ -60,12 +60,7 @@ const Content = styled.div`
 `;
 
 const AnnouncementCardContainer = styled.div`
-  //min-height: 120px;
   height: auto;
-
-  ${media.sm} {
-    //min-height: 150px;
-  }
 `;
 
 const ButtonWrapper = styled.div`
