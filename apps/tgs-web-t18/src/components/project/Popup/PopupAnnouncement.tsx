@@ -66,6 +66,7 @@ const Content = styled.div`
   color: #ffffff;
   margin-top: 20px;
   line-height: 1.2rem;
+  white-space: pre-line;
 
   ${media.sm} {
     font-size: 1.5rem;
