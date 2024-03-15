@@ -53,6 +53,7 @@ const Content = styled.div`
   font-size: 0.875rem;
   color: ${({ theme }) => theme.text};
   margin-top: 1rem;
+  white-space: pre-line;
 
   ${media.sm} {
     font-size: 1rem;
