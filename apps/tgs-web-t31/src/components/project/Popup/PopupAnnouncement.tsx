@@ -60,6 +60,7 @@ const Content = styled.div`
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
+  white-space: pre-line;
 
   ${media.sm} {
     font-size: 1rem;

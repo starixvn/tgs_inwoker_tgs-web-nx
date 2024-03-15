@@ -45,7 +45,7 @@ const Content = styled.div`
   color: ${({ theme }) => theme.black};
   margin-top: 1rem;
   line-height: 1.2rem;
-
+  white-space: pre-line;
   ${media.sm} {
     font-size: 1.5rem;
     line-height: 1.75rem;
