@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
 import sport from "@/assets/t29/images/home/home_sport.png";
