@@ -1,14 +1,14 @@
-import {MouseEvent, useState} from "react";
-import {useHistory} from "react-router";
+import { MouseEvent, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
-import {GameItem} from "@tgs-web-nx/types";
-import {Common} from "@tgs-web-nx/utils";
-import {useAccountStore, useGameStore} from "@tgs-web-nx/core";
-import {useHomeGameContext} from "@tgs-web-nx/core/features";
-import {useRwd} from "@tgs-web-nx/core/hooks";
+import { GameItem } from "@tgs-web-nx/types";
+import { Common } from "@tgs-web-nx/utils";
+import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
 import Favorite from "@/pages/home/components/Favorite";
-import {media} from "@/theme/breakpoints";
+import { media } from "@/theme/breakpoints";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -35,7 +35,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 12px;
+  border-radius: 15px;
 `;
 
 const NewTag = styled.div`
@@ -45,7 +45,7 @@ const NewTag = styled.div`
   width: 32px;
   height: 18px;
   padding: 10px;
-  border-radius: 12px 0px;
+  border-radius: 15px 0px;
   background: ${(props) => props.theme.primaryMix};
   color: ${(props) => props.theme.tagColor};
   display: flex;
@@ -62,7 +62,7 @@ const HotTag = styled.div`
   width: 32px;
   height: 18px;
   padding: 10px;
-  border-radius: 12px 0px;
+  border-radius: 15px 0px;
   background: #ff1727;
   color: ${(props) => props.theme.white};
   display: flex;
