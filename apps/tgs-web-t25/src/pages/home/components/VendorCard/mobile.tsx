@@ -13,7 +13,7 @@ const MobileVendorCardContainer = styled.div`
 
   ${media.sm} {
     width: calc(16.67% - 6px);
-
+  }
 `;
 
 const CardContainer = styled.div`
