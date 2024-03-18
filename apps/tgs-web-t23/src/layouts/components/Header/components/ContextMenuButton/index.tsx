@@ -34,7 +34,7 @@ const UsernameContainer = styled.div`
 
   ${media.sm} {
     display: block;
-    color: #596578;
+    color: ${({ theme }) => theme.lightGray};
     font-size: 1.125rem;
     font-weight: 400;
     line-height: 1.318rem;
