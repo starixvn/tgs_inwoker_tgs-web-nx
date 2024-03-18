@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
 import { useBettingBonus, useRwd, useVipBonusListV2 } from "@tgs-web-nx/core/hooks";
@@ -5,8 +6,11 @@ import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 
 import { i18n } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
+import rightArrow from "@/assets/t29/images/vip/VIP_right_arrow.png";
+import leftArrow from "@/assets/t29/images/vip/VIP_left_arrow.png";
 
 const ScrollableContainer = styled.div`
+  position: relative;
   width: 100%;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
@@ -14,8 +18,7 @@ const ScrollableContainer = styled.div`
   -webkit-overflow-scrolling: touch;
 
   ${media.sm} {
-    width: 800px;
-    //overflow-x: hidden; // this will cause tablet display issue
+    width: 100%;
     scroll-snap-type: unset;
 
     &::-webkit-scrollbar {
@@ -115,6 +118,32 @@ const BottomHeader = styled.tr<{ $index: number }>`
 
 const Body = styled(BottomHeader)``;
 
+const Arrow = styled.div<{ scrollLeft: number; scrollToMax: boolean }>`
+  position: absolute;
+  top: 50%;
+  right: ${({ scrollLeft }) => `${0 - scrollLeft}px`};
+  z-index: 100;
+  visibility: ${({ scrollToMax }) => (scrollToMax ? "hidden" : "visible")};
+  & img {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+  }
+`;
+
+const LeftArrow = styled.div<{ scrollLeft: number; scrollToMax: boolean }>`
+  position: absolute;
+  top: 50%;
+  left: ${({ scrollLeft }) => `${scrollLeft}px`};
+  z-index: 100;
+  visibility: ${({ scrollToMax }) => (scrollToMax ? "hidden" : "visible")};
+  & img {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+  }
+`;
+
 type Props = {
   vipSortingData: VipData[];
 };
@@ -125,8 +154,13 @@ const BonusTable = ({ vipSortingData }: Props) => {
   const { productRebateByLevel } = useBettingBonus();
   const hideBirthdayBonus = brandConfig[mapBrandName(config.brand)].isHideVIPBirthdayBonus;
   const hideQuarterlyBonus = brandConfig[mapBrandName(config.brand)].isHideVIPQuarterlyBonus;
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [scrollToRight, setScrollToRight] = useState(false);
+  const [scrollToLeft, setScrollToLeft] = useState(false);
 
   const titleList = [...vipBonusList];
+  const offset = 120;
   productRebateByLevel.map((gametype) => {
     titleList.push({
       key: gametype.name,
@@ -134,8 +168,56 @@ const BonusTable = ({ vipSortingData }: Props) => {
     });
   });
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        const isScrollToRight = scrollLeft + clientWidth >= scrollWidth;
+        const isScrollToLeft = scrollLeft === 0;
+        setScrollLeft(scrollLeft);
+        setScrollToRight(isScrollToRight);
+        setScrollToLeft(isScrollToLeft);
+      }
+    };
+
+    scrollRef.current?.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollRef.current?.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScrollTableToRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollLeft + offset;
+    }
+  };
+
+  const handleScrollTableToLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollLeft - offset;
+    }
+  };
+
   return (
-    <ScrollableContainer>
+    <ScrollableContainer ref={scrollRef}>
+      <Arrow scrollLeft={scrollLeft} scrollToMax={scrollToRight}>
+        <img
+          src={rightArrow}
+          alt="right"
+          onClick={() => {
+            handleScrollTableToRight();
+          }}
+        />
+      </Arrow>
+      <LeftArrow scrollLeft={scrollLeft} scrollToMax={scrollToLeft}>
+        <img
+          src={leftArrow}
+          alt="left"
+          onClick={() => {
+            handleScrollTableToLeft();
+          }}
+        />
+      </LeftArrow>
       <VIPTable>
         <thead>
           <TopHeader>
