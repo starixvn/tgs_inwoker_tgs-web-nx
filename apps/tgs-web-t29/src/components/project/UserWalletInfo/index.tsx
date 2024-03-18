@@ -59,7 +59,7 @@ export const RefreshContainer = styled.div`
 export const ProcessBarWrapper = styled.div`
   width: 280px;
   ${media.sm} {
-    width: 320px;
+    width: 370px;
   }
 `;
 
@@ -74,7 +74,7 @@ export const ProcessBarContainer = styled.div`
   & img {
     position: absolute;
     left: 0;
-    top: 35%;
+    top: 60%;
     width: 32px;
     height: 32px;
     z-index: 2;
@@ -120,6 +120,7 @@ export const VIPText = styled.div`
   line-height: 14px;
   letter-spacing: 0em;
   color: ${({ theme }) => theme.blueBtn};
+  margin-bottom: 5px;
 `;
 
 export const Wrapper = styled.div`
@@ -243,7 +244,8 @@ const UserWalletInfo = () => {
           <VIPInfo>
             <ProcessBarWrapper>
               <ProcessBarContainer>
-                <VIPText>{`${i18n.t("vip.totalDeposit")}: ${info.accumdeposit} / ${
+                <VIPText>{`${i18n.t("vip.totalDeposit")}`}</VIPText>
+                <VIPText>{`${info.accumdeposit} / ${
                   info.fulllevel ? "－" : info.levelupaccumulatedeposit
                 }`}</VIPText>
                 <img src={depositIcon} alt="deposit" />
@@ -256,9 +258,12 @@ const UserWalletInfo = () => {
               </ProcessBarContainer>
 
               <ProcessBarContainer>
-                <VIPText>{`${i18n.t("vip.totalVaildBet")}: ${info.accumturnover} / ${
-                  info.fulllevel ? "－" : info.levelupaccumulatebetamount
-                }`}</VIPText>
+                <VIPText>{`${i18n.t("vip.totalVaildBet")}`}</VIPText>
+                <VIPText>
+                  {`${info.accumturnover} / ${
+                    info.fulllevel ? "－" : info.levelupaccumulatebetamount
+                  }`}
+                </VIPText>
                 <img src={turnoverIcon} alt="turnover" />
                 <Wrapper>
                   <ProcessBar>
