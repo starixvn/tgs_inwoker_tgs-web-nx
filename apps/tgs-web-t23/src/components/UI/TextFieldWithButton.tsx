@@ -17,7 +17,7 @@ const CustomText = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  padding: 5px 20px;
+  padding: 5px 10px;
 
   & > button {
     height: 40px;
@@ -49,7 +49,7 @@ const TextFieldWithButton = (
           autoComplete: "off",
         }}
 
-        // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+      // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
       />
 
       <ButtonContainer>
