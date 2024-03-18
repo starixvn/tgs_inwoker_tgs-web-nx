@@ -21,7 +21,7 @@ const DashboardContainer = styled.div`
   display: flex;
   margin-top: ${MOBILE_HEADER_HEIGHT};
   height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
-
+  margin-bottom: ${BOTTOM_APP_BAR_HEIGHT};
   ${media.sm} {
     margin-top: ${DESKTOP_HEADER_HEIGHT};
     min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
