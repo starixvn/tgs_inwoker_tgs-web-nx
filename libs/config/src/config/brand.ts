@@ -112,7 +112,7 @@ export const brandConfig: Record<BrandName, Config> = {
     isShowAgentAdminButton: true,
     isHideVIPBirthdayBonus: true,
     isHideVIPQuarterlyBonus: true,
-    isShowVIP: false,
+    isShowVIP: true,
     isHideTransferButton: true,
   },
   MOPH: {
@@ -141,7 +141,7 @@ export const brandConfig: Record<BrandName, Config> = {
     isShowAgentAdminButton: true,
     isHideVIPBirthdayBonus: true,
     isHideVIPQuarterlyBonus: true,
-    isShowVIP: false,
+    isShowVIP: true,
     isHideTransferButton: true,
   },
 };
