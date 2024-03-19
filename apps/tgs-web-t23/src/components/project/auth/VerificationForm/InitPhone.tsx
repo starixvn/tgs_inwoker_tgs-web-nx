@@ -21,8 +21,6 @@ const PhoneContainer = styled.div`
   gap: 8px;
 `;
 
-const AREA_CODE = config.features.PhonePrefix;
-
 type Props = {
   handleCloseDialog: () => void;
   enqueueSnackbar: EnqueueSnackbar;
@@ -34,6 +32,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const { updatePageName } = usePageName();
 
   const [countdownToken, setCountdownToken] = useState(0);
+  const AREA_CODE = config.features.PhonePrefix;
   const [areacode, setAreacode] = useState(AREA_CODE);
   const [phone, setPhone] = useState("");
   const [code, setCode] = useState("");
