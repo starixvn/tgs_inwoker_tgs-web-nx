@@ -245,9 +245,7 @@ const UserWalletInfo = () => {
             <ProcessBarWrapper>
               <ProcessBarContainer>
                 <VIPText>{`${i18n.t("vip.totalDeposit")}`}</VIPText>
-                <VIPText>{`${info.accumdeposit} / ${
-                  info.fulllevel ? "－" : info.levelupaccumulatedeposit
-                }`}</VIPText>
+                <VIPText>{`${info.accumdeposit} / ${info.levelupaccumulatedeposit}`}</VIPText>
                 <img src={depositIcon} alt="deposit" />
                 <Wrapper>
                   <ProcessBar>
@@ -259,11 +257,7 @@ const UserWalletInfo = () => {
 
               <ProcessBarContainer>
                 <VIPText>{`${i18n.t("vip.totalVaildBet")}`}</VIPText>
-                <VIPText>
-                  {`${info.accumturnover} / ${
-                    info.fulllevel ? "－" : info.levelupaccumulatebetamount
-                  }`}
-                </VIPText>
+                <VIPText>{`${info.accumturnover} / ${info.levelupaccumulatebetamount}`}</VIPText>
                 <img src={turnoverIcon} alt="turnover" />
                 <Wrapper>
                   <ProcessBar>
