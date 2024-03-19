@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useHeader } from "@tgs-web-nx/core/features";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
@@ -13,7 +14,6 @@ import {
   TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
-import { useHeader } from "@tgs-web-nx/core/features";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;

@@ -1,40 +1,14 @@
 import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
-import Icon from "@/components/project/Icon";
-import {
-  NavTypeEnum,
-} from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
-import depositBg from "@/assets/t27/images/bottomAppBar/icon-deposit-bg.png";
+import { NavTypeEnum } from "@/layouts/components/BottomAppBar/hooks/useGetBottomNavItemList";
 import { theme } from "@/theme";
-
-const BigBottomNavContainer = styled.div<{ $isActive: boolean }>`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)};
-  padding: 0px 24.859px 11.02px 24.821px;
-  cursor: pointer;
-  gap:  2.13px;
-  flex-shrink: 0;
-`;
-
-const Wrapper = styled.div`
-  width: 48px;
-  height: 48px;
-  fill: ${({ theme }) => theme.g4};
-  background-image: url(${depositBg});
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
 const BottomNavContainer = styled.div<{ $isActive: boolean }>`
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.BTN02)};
   padding: 9.969px 8.55px 11.02px 8.56px;
   cursor: pointer;
   gap: 1.446px;
@@ -62,29 +36,12 @@ type IconComponentProps = {
 
 const BottomNav = ({ isActive, navType, label, onClick, children }: Props) => {
   const cloneChildrenWithProps = React.Children.map(children, (child) => {
-    if (React.isValidElement(child) && typeof child.type === 'function') {
+    if (React.isValidElement(child) && typeof child.type === "function") {
       const IconComponent = child.type as React.ComponentType<IconComponentProps>;
-
-      return (
-        <IconComponent
-          $color={!isActive ? theme.white : (isActive ? theme.primary : theme.g2)}
-        />
-      );
+      return <IconComponent $color={isActive ? theme.white : theme.BTN02} />;
     }
     return child;
   });
-
-  if (navType === NavTypeEnum.BIG_ITEM) {
-    return (
-      <BigBottomNavContainer onClick={onClick} $isActive={isActive}>
-        <Wrapper>
-          {cloneChildrenWithProps}
-        </Wrapper>
-
-        <NavLabel>{label}</NavLabel>
-      </BigBottomNavContainer>
-    );
-  }
 
   return (
     <BottomNavContainer onClick={onClick} $isActive={isActive}>
