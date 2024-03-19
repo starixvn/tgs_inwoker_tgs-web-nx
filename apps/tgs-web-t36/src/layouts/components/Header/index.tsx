@@ -23,11 +23,11 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.primaryGradient};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
-  box-shadow: 0px 4px 6px 0px rgba(17, 20, 21, 0.50);
+  box-shadow: 0px 4px 6px 0px rgba(17, 20, 21, 0.5);
 `;
 
 const HeaderWrapper = styled.div`
@@ -58,12 +58,12 @@ const SystemInfoContainer = styled.div`
 
   ${media.md} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-    $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
   }
 
   ${media.lg} {
     margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-    $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
   }
 `;
 
@@ -77,6 +77,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
+        {!isLargeDesktopSize && <MenuButton />}
         <Link to={""}>
           <BrandLogo
             style={{ height: "28px", marginLeft: isDesktopSize ? "70px" : "unset" }}
@@ -94,8 +95,6 @@ const Header = () => {
 
           {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
-        {/* header最右側那顆選單按鈕 */}
-        {!isLargeDesktopSize && <MenuButton />}
       </HeaderWrapper>
     </HeaderContainer>
   );

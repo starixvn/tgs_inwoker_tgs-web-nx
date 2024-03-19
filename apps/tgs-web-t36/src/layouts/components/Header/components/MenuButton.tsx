@@ -1,6 +1,6 @@
 import React from "react";
 import { useHeader } from "@tgs-web-nx/core/features";
-import menuIcon from "@/assets/t27/images/header/icon-menu.svg";
+import menuIcon from "@/assets/t36/images/header/icon-menu.svg";
 import Icon from "@/components/project/Icon";
 
 type Props = {
@@ -13,12 +13,12 @@ const MenuButton = ({ width, height }: Props) => {
   return (
     <Icon
       iconUrl={menuIcon}
-      width={width ?? "24px"}
-      height={height ?? "24px"}
+      width={width ?? "32px"}
+      height={height ?? "32px"}
       onClick={() => handleToggleMenu()}
       style={{
         cursor: "pointer",
-        marginLeft: "10px"
+        marginRight: "10px",
       }}
     />
   );

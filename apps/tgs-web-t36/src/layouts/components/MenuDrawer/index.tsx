@@ -30,7 +30,7 @@ const MenuDrawer = () => {
   return (
     <Drawer
       variant={isLargeDesktopSize ? "persistent" : "temporary"}
-      anchor={isLargeDesktopSize ? "left" : "right"}
+      anchor={isLargeDesktopSize ? "left" : "left"}
       open={isLargeDesktopSize ? true : isMenuOpen}
       onClose={() => handleToggleMenu(false)}
       sx={{
