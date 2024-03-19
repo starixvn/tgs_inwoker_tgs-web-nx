@@ -264,14 +264,8 @@ const BonusTable = ({ vipSortingData }: Props) => {
                 <RowItem>{vipData.promotionBenefit}</RowItem>
                 {!hideBirthdayBonus && <RowItem>{vipData.birthBenefit}</RowItem>}
                 {!hideQuarterlyBonus && <RowItem>{vipData.quarterlyBenefit}</RowItem>}
-                <RowItem>
-                  {vipData.level === vipSortingData.length ? "-" : vipData.levelUpAccumulateDeposit}
-                </RowItem>
-                <RowItem>
-                  {vipData.level === vipSortingData.length
-                    ? "-"
-                    : vipData.levelUpAccumulateBetAmount}
-                </RowItem>
+                <RowItem>{vipData.levelUpAccumulateDeposit}</RowItem>
+                <RowItem>{vipData.levelUpAccumulateBetAmount}</RowItem>
                 <RowItem>{`${vipData.liveDealerRebate}%`}</RowItem>
                 <RowItem>{`${vipData.slotRebate}%`}</RowItem>
                 <RowItem>{`${vipData.cardGameRebate}%`}</RowItem>
