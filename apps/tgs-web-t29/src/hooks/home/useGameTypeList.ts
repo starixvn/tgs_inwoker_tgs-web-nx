@@ -79,7 +79,7 @@ export const useGameTypeList = () => {
         iconUrl: lottery,
         text: i18n.t("common.lottery"),
         fontSize: "small",
-        gameType: GameTypeEnum.LOTTERYLOBBY,
+        gameType: GameTypeEnum.LOTTERY,
       },
       {
         key: "esports",
