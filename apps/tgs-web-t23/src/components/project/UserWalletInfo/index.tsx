@@ -19,7 +19,7 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  padding: 22px 50px;
+  padding-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,7 +82,7 @@ type RefreshButtonProps = {
   $isLoading: boolean;
 };
 
-const RefreshButton = styled(Icon)<RefreshButtonProps>`
+const RefreshButton = styled(Icon) <RefreshButtonProps>`
   &:hover {
     cursor: pointer;
     animation: ${rotateKeyFrame} 1s linear 0s infinite;

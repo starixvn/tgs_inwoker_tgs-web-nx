@@ -32,7 +32,7 @@ const ModalButtons = ({ handleClose, message, action }: ModalButtonsProps) => {
   } else {
     return (
       <div>
-        <Button fullWidth onClick={handleClose} style={{ color: theme.black }}>
+        <Button fullWidth onClick={handleClose} style={{ color: theme.black, fontSize: "25px", borderRadius: "30px", maxHeight: "50px", fontWeight: "400" }}>
           <>{i18n.t("common.confirm")}</>
         </Button>
 

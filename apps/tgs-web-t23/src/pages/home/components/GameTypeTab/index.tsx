@@ -20,9 +20,8 @@ const TabContainer = styled.div`
 const GameTypeTab = () => {
   const history = useHistory();
   const gameTypeList = useGameTypeList();
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType, providerList, handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
   const { isMobileSize } = useRwd();
-  const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag } = useHomeGameContext();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
@@ -43,9 +42,21 @@ const GameTypeTab = () => {
     }
   };
 
+  const filteredGameTypeList = gameTypeList.filter((gameTypeItem) => {
+    if (gameTypeItem.gameType === GameTypeEnum.NONE) return true;
+
+    if (providerList.length) {
+      const hasData = providerList.some((provider) => {
+        return provider.gametypes.includes(gameTypeItem.gameType);
+      });
+      return hasData;
+    }
+    return true;
+  });
+
   return (
     <TabContainer>
-      {gameTypeList.map((gameTypeItem) => {
+      {filteredGameTypeList.map((gameTypeItem) => {
         const { key, iconUrl, text, gameType } = gameTypeItem;
 
         if (isMobileSize && gameType === GameTypeEnum.NONE) {

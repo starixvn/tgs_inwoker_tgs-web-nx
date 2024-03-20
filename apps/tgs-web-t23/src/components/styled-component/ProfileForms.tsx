@@ -16,10 +16,7 @@ export const Remark = styled.div`
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
-  ${media.sm} {
-    max-width: 450px;
-  }
+  margin-bottom: 20px;
 `;
 
 export const LabelContainer = styled.div`

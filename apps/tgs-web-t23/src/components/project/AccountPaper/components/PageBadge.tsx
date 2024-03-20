@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 
 const PageBadgeContainer = styled.div`
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   border-radius: 50px;
   display: flex;
   align-items: center;
