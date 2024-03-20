@@ -19,7 +19,13 @@ const {
   Deposit_OriginAccount
 } = config.features;
 
-export const DepositSelectBankName = () => {
+type Props = {
+  banktype?: string
+}
+
+export const DepositSelectBankName = ({
+  banktype = ''
+}: Props) => {
   const {wallet: {bankCardList}} = useWalletStore();
   const {formData, setFormData} = useContext(DepositFormContext);
   const [selectedBankCard, setSelectedBankCard] = useState(defaultValue);
@@ -31,7 +37,7 @@ export const DepositSelectBankName = () => {
    */
   const handleSelectAccountChange = (e: SelectChangeEvent<any>) => {
     setSelectedBankCard(e.target.value);
-    setFormData({...formData, manualBankName: e.target.value});
+    setFormData({...formData, account: e.target.value});
   };
 
   if(isVisible) {
@@ -55,12 +61,13 @@ export const DepositSelectBankName = () => {
               {label}
             </option>
 
-            {bankCardList.map((item, index) => {
+            {bankCardList
+              .filter(item => item.banktype === banktype)
+              .map((item, index) => {
               const {detail} = item;
               return (
-                <option value={item.id} key={index}>
-                  {detail.bankAccount || detail.address || detail.phone} (
-                  {item.banktype})
+                <option value={detail.bankAccount || detail.address || detail.phone} key={index}>
+                  {detail.bankAccount || detail.address || detail.phone} {banktype}
                 </option>
               );
             })}

@@ -3,11 +3,16 @@ import { useGroupList } from "../../hooks";
 import { GroupCodeEnum } from "../../types";
 import { Cards as GroupCards } from "../../components";
 import { BankLayout } from "./BankLayout";
+import { FpsLayout } from "./FpsLayout";
 import { DefaultLayout } from "./DefaultLayout";
+import { TrcLayout } from "./TrcLayout";
+import { ALI2ALILayout } from "./ALI2ALILayout";
+import { EWalletLayout } from "./EWalletLayout";
 
 export type LayoutProps = {
   filterGroupList: FilterDepositList[]
   groupCode: string
+  handleSubmit?: () => void
 }
 
 /**
@@ -19,10 +24,11 @@ const FormLayout = () => {
   const props = {
     i18nParam: "depositAndWithdrawalStatus.depositMode",
     list: groupList,
+    hasIcon: true,
   };
 
   const layoutProps: LayoutProps = {groupCode, filterGroupList};
-
+  
   /**
  * 對應 UI
  */
@@ -30,7 +36,19 @@ const FormLayout = () => {
     switch (groupCode) {
       case GroupCodeEnum.Bank:
         return <BankLayout {...layoutProps} />
-    
+
+      case GroupCodeEnum.FPS:
+        return <FpsLayout {...layoutProps} />
+
+      case GroupCodeEnum.TRC:
+        return <TrcLayout {...layoutProps} />
+
+      case GroupCodeEnum.ALI2ALI:
+        return <ALI2ALILayout {...layoutProps} />
+
+      case GroupCodeEnum.EWallet:
+        return <EWalletLayout {...layoutProps} />
+
       default:
         return <DefaultLayout {...layoutProps} />
     }

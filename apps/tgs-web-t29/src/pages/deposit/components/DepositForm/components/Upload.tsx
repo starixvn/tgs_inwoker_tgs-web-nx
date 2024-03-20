@@ -1,7 +1,8 @@
-import { useRef, ChangeEvent, useState } from "react";
+import { useRef, ChangeEvent, useState, useContext } from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
+import { DepositFormContext } from "./DepositFormProvider";
 import {
   FormControl,
   ItemContainer,
@@ -18,6 +19,7 @@ export const Upload = () => {
   const [files, setFiles] = useState<FileList | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { alert } = useNotifications();
+  const {formData, setFormData} = useContext(DepositFormContext);
   const handleOnClickFileButton = () => {
     inputRef?.current?.click();
   };
@@ -42,6 +44,7 @@ export const Upload = () => {
         files = null;
       } else {
         setFiles(files);
+        setFormData({...formData, files})
       }
     }
   };

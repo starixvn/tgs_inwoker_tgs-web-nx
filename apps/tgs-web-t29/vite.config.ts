@@ -25,7 +25,14 @@ export default defineConfig({
     host: "localhost",
   },
 
-  plugins: [react(), nxViteTsPaths()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [['babel-plugin-styled-components',{}]]
+      }
+    }), 
+    nxViteTsPaths()
+  ],
 
   // Uncomment this if you are using workers.
   // worker: {

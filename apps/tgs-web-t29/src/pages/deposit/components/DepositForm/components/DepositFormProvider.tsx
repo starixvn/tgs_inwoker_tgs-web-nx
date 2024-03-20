@@ -21,10 +21,13 @@ const defaultState: FormState = {
   promotionid: '',
   paymentcode: '',
   type: '',
-  manualBankName: '',
   maxAmount: 0,
   minAmount: 0,
   id: '',
+  account: '',
+  name: '',
+  files: null,
+  phone: '',
 }
 
 export const DepositFormContext = createContext<DepositFormContextState>({

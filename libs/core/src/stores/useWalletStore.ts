@@ -167,7 +167,7 @@ export function useWalletStore() {
     async (
       name: string,
       account: string,
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -220,7 +220,7 @@ export function useWalletStore() {
   const doFPSDeposit = useCallback(
     async (
       account: string,
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -268,7 +268,7 @@ export function useWalletStore() {
     async (
       name: string,
       account: string,
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -316,7 +316,7 @@ export function useWalletStore() {
   );
 
   const doThirdPartyDeposit = useCallback(
-    async (amount: number, paymentid: string, promotionid: string, banktype: string) => {
+    async (amount: string, paymentid: string, promotionid: string, banktype: string) => {
       dispatch({
         type: DOTHIRDPARTYDEPOSIT_BEGIN,
         loading: true,
@@ -357,7 +357,7 @@ export function useWalletStore() {
   );
 
   const doUsdtDeposit = useCallback(
-    async (amount: number, paymentid: string, promotionid: string, banktype: string) => {
+    async (amount: string, paymentid: string, promotionid: string, banktype: string) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
         loading: true,
@@ -400,7 +400,7 @@ export function useWalletStore() {
 
   const doPulsaDeposit = useCallback(
     async (
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -451,13 +451,13 @@ export function useWalletStore() {
 
   const doEWalletDeposit = useCallback(
     async (
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
       note: string,
-      emoneyname: string,
-      phone: string,
+      emoneyname?: string,
+      phone?: string,
     ) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
@@ -1349,7 +1349,7 @@ export function useWalletStore() {
   );
 
   const performDeposit = useCallback(
-    (amount: number, paymentid: string, promotionid: string, paymentcode: string, type: string) => {
+    (amount: string, paymentid: string, promotionid: string, paymentcode: string, type: string) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
         loading: true,
@@ -1509,7 +1509,7 @@ export function useWalletStore() {
 
   const doPulsaDepositWithDetail = useCallback(
     (
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -1560,14 +1560,14 @@ export function useWalletStore() {
 
   const doEWalletDepositWithDetail = useCallback(
     (
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
       note: string,
       detail: string,
-      emoneyname: string,
-      phone: string,
+      emoneyname?: string,
+      phone?: string,
     ) => {
       dispatch({
         type: DODEPOSIT_BEGIN,

@@ -7,7 +7,10 @@ export type DepositFormData = {
   promotionid: string;
   paymentcode: string;
   type: string;
-  manualBankName?: string;
+  account: string;
+  name: string;
+  files: FileList | null;
+  phone: string;
 }
 
 export type FormContainerProps = {
@@ -49,7 +52,7 @@ export enum GroupCodeEnum {
   Pulsa= 'Pulsa',
   EWallet= 'E-wallet',
   GcashNative = 'GcashNative',
-
+  
   // 特例
   Bank= 'Bank',
 }

@@ -20,9 +20,7 @@ export const useGroupList = () => {
           return {
             code: row.code,
             channels: row.channels,
-          }
-        })
-        ;
+        }});
       
       // 特例
       const bankList = {
@@ -36,7 +34,7 @@ export const useGroupList = () => {
   
   const groupList: Option[] = filterGroupList.map(row => {
     return {
-      iconUrl: "/assets/images/deposit/momo.png",
+      iconUrl: `/assets/images/deposit/${row.code}.png`,
       isActive: row.code === groupCode,
       onClick: () => handleChangeCode(row.code, setGroupCode),
       children: row.code,
@@ -45,7 +43,7 @@ export const useGroupList = () => {
   });
 
   useSelectFirst(groupList, setGroupCode);
-
+  
   return {groupCode, groupList, filterGroupList};
 }
 
@@ -68,6 +66,9 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
   });
   const currentChannel = filterChannelList.find(row => row.id === selectedID);
   const {formData, setFormData} = useContext(DepositFormContext);
+  const extended = currentChannel?.extended;
+  const extendedKeys = extended ? Object.keys(extended) : [];
+  const hasExtended = extended && extendedKeys.length > 0;
 
   useEffect(() => {
     setFormData({
@@ -75,15 +76,17 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
       paymentcode: currentChannel?.paymentcode ?? '',
       paymentid: currentChannel?.paymentid ?? '',
       id: currentChannel?.id ?? '',
-      type: currentChannel?.banktype ?? '',
+      type: currentChannel?.banktype.toLowerCase() ?? '',
       minAmount: currentChannel?.transferlimit.from ?? 0,
       maxAmount: currentChannel?.transferlimit.to ?? 0,
+      phone: extended?.phone ?? '',
+      name: extended?.eMoneyName ? extended?.eMoneyName ?? '' : extended?.name ?? '',
     })
   }, [currentChannel?.id])
 
   useSelectFirst(channelList, setSelectedID, [code]);
-
-  return {channelList, currentChannel};
+    
+  return {channelList, currentChannel, hasExtended, extended};
 }
 
 

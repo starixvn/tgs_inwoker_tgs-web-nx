@@ -1,4 +1,4 @@
-import { BankExtended as Props } from "@tgs-web-nx/types";
+import { BankExtended as BankExtendedProps } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { DepositSelectBankName } from "../DepositSelectBankName";
 import { InfoContainer, ItemContainer, LabelContainer} from "@/components/styled-component/ProfileForms";
@@ -7,12 +7,17 @@ import CopyIcon from "@/pages/deposit/components/CopyIcon";
 
 type Key = 'name' | 'bankAccount' | 'eMoneyName' | 'phone'
 
+type Props = {
+  banktype?: string
+} & BankExtendedProps;
+
 export const BankExtended = ({
   bankAccount,
   eMoneyName,
   logo,
   phone,
   name,
+  banktype
 }: Props) => {
   const props = {name, bankAccount, eMoneyName, phone};
 
@@ -35,13 +40,10 @@ export const BankExtended = ({
       <ItemContainer>
         <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer>
         {logo && <QRCodeImg src={logo} alt={logo} style={{ marginBottom: "10px" }} />}
-      </ItemContainer>
-      
-      <ItemContainer>
         {renderLayout}
       </ItemContainer>
       
-      <DepositSelectBankName />
+      <DepositSelectBankName banktype={banktype} />
     </>
   );
 };

@@ -1,11 +1,13 @@
+export interface BankCardDetail {
+  phone: string;
+  address: string;
+  name: string;
+  bankAccount: string;
+}
+
 export interface BankCard {
   banktype: string;
-  detail: {
-    phone: string;
-    address: string;
-    name: string;
-    bankAccount: string;
-  };
+  detail: BankCardDetail;
   id: string;
   default: boolean;
   paymentchannelid: string;

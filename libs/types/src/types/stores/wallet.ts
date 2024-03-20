@@ -25,7 +25,7 @@ export type FPSExtended = {
   email?: string,
   fpsId?: string,
   phone?: string,
-  qrCodeRileUrl?: string,
+  qrCodeFileUrl?: string,
 }
 
 export type PulsaExtended = {
@@ -46,7 +46,7 @@ export type UsdtExtended = {
 
 export type Extended = 
   BankExtended & CoinsphExtended & EWalletExtended
-  & FPSExtended & PulsaExtended & ThirdPartyExtended
+  & FPSExtended & PulsaExtended & ThirdPartyExtended & UsdtExtended
 
 export interface TransferChannel {
   banktype: string;
