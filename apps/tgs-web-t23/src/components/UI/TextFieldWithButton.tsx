@@ -17,13 +17,15 @@ const CustomText = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  padding: 5px 10px;
+  padding: 5px 20px 5px 0;
+  margin-right: 20px;
 
   & > button {
     height: 40px;
     font-size: 1rem;
     padding: 10px 8px;
     background: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.tagColor};
   }
 `;
 
