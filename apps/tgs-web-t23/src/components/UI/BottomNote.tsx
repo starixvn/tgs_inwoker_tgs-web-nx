@@ -20,6 +20,7 @@ const LabelLink = styled(Link)`
 const LabelNormal = styled.span`
   color: ${({ theme }) => theme.primary};
   text-decoration: none;
+  cursor: pointer;
 `;
 
 type Props = {
@@ -37,9 +38,9 @@ const BottomNote = ({ empty, text1, toEdit, link, text2 }: Props) => {
   const GetSupportUrl = (userid: string, name: string, question: string, email: string) => {
     const newURL = general.livechat
       ? general.livechat.setting.url
-          .replace("{name}", name)
-          .replace("{lang}", i18n.language)
-          .replace("{email}", email || "")
+        .replace("{name}", name)
+        .replace("{lang}", i18n.language)
+        .replace("{email}", email || "")
       : "";
 
     if (newURL.length) {

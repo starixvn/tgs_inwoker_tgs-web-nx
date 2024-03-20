@@ -28,7 +28,7 @@ const MobileMenuDrawerContainer = styled.div`
 
 const ContentWrapper = styled.div`
   flex-shrink: 0;
-  padding: 30px 25px;
+  padding: 30px 35px;
   height: fit-content;
   display: flex;
   flex-direction: column;
@@ -136,7 +136,7 @@ const MobileMenuDrawer = () => {
 
         <LanguageSwitch style={{ marginBottom: "24px", alignSelf: "stretch" }} />
 
-        <Button
+        {isLogin && <Button
           fullWidth
           variant={"contained"}
           onClick={handleClickLogout}
@@ -146,10 +146,11 @@ const MobileMenuDrawer = () => {
             borderRadius: "30px",
             color: "white",
             background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
+            maxHeight: "50px"
           }}
         >
           {i18n.t("web.header.logout")}
-        </Button>
+        </Button>}
       </ContentWrapper>
     </MobileMenuDrawerContainer>
   );
