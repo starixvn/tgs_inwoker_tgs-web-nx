@@ -27,7 +27,7 @@ const GameIcon = styled.img`
 `;
 
 const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.white)};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.white)};
   font-size: 0.6rem;
   font-weight: 700;
 `;
