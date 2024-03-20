@@ -3,6 +3,7 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import HomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory";
 import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
 import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/components/NonLobbyCategory";
@@ -14,7 +15,10 @@ const CategoryRenderer = () => {
 
   useEffect(() => {
     if (history.location.pathname === "/" && isMobileSize) {
-      handleChangeGameType(GameTypeEnum.SPORTS);
+      const defaultGametype = brandConfig[mapBrandName(config.brand)].defaultActiveGametype
+        ? (brandConfig[mapBrandName(config.brand)].defaultActiveGametype as GameTypeEnum)
+        : GameTypeEnum.SPORTS;
+      handleChangeGameType(defaultGametype);
     } else {
       handleChangeGameType(activeGameType);
     }

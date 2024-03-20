@@ -1,3 +1,5 @@
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+
 /*
  * 若有新增站台 先在這邊加入對應設定
  * Default BrandName: 'GPI'
@@ -31,6 +33,8 @@ type MOVN2Config = {
   isHideVIPQuarterlyBonus: boolean; // 是否在vip 表格隱藏季度福利 https://raypro.atlassian.net/browse/TGS-4324
   isShowVIP: boolean; // 是否在Navigation bar及profile頁面顯示VIP https://raypro.atlassian.net/browse/TGS-4325
   isHideTransferButton: boolean; // 是否在BottomAppBar顯示TransferButton https://raypro.atlassian.net/browse/TGS-4333
+  customGametypeSort: string[]; // game type 是否有客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-3968
+  defaultActiveGametype: GameTypeEnum | null; //預設active的game type https://raypro.atlassian.net/browse/TGS-3968
 };
 
 /*
@@ -80,6 +84,8 @@ export const defaultConfig: Config = {
   isHideVIPQuarterlyBonus: false,
   isShowVIP: true,
   isHideTransferButton: false,
+  customGametypeSort: [],
+  defaultActiveGametype: null,
   // new brand config start here
   // NewBrand
 };
@@ -114,11 +120,35 @@ export const brandConfig: Record<BrandName, Config> = {
     isHideVIPQuarterlyBonus: true,
     isShowVIP: true,
     isHideTransferButton: true,
+    customGametypeSort: [
+      "slots",
+      "fishing",
+      "sports",
+      "liveCasino",
+      "egame",
+      "sabong",
+      "cardGame",
+      "lottery",
+      "esports",
+    ],
+    defaultActiveGametype: GameTypeEnum.SLOT,
   },
   MOPH: {
     ...defaultConfig,
     isShowAgentAdminButton: true,
     isHideTransferButton: true,
+    customGametypeSort: [
+      "slots",
+      "liveCasino",
+      "sports",
+      "fishing",
+      "egame",
+      "cardGame",
+      "esports",
+      "sabong",
+      "lottery",
+    ],
+    defaultActiveGametype: GameTypeEnum.SLOT,
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -143,6 +173,18 @@ export const brandConfig: Record<BrandName, Config> = {
     isHideVIPQuarterlyBonus: true,
     isShowVIP: true,
     isHideTransferButton: true,
+    customGametypeSort: [
+      "slots",
+      "fishing",
+      "sports",
+      "liveCasino",
+      "egame",
+      "sabong",
+      "cardGame",
+      "lottery",
+      "esports",
+    ],
+    defaultActiveGametype: GameTypeEnum.SLOT,
   },
 };
 
