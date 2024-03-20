@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import cardgame from "@/assets/t29/images/home/gameType/cardGame.svg";
 import egame from "@/assets/t29/images/home/gameType/egame.svg";
 import esports from "@/assets/t29/images/home/gameType/esports.svg";
@@ -96,6 +97,14 @@ export const useGameTypeList = () => {
 
     setTranslatedGameTypeList(translatedList);
   }, []);
+  const customSortGameType = brandConfig[mapBrandName(config.brand)].customGametypeSort;
+  //空陣列為沒有客製化排序
+  if (customSortGameType.length) {
+    const customSortGameType = brandConfig[mapBrandName(config.brand)].customGametypeSort;
+    translatedGameTypeList.sort((a, b) => {
+      return customSortGameType.indexOf(a.key) - customSortGameType.indexOf(b.key);
+    });
+  }
 
   return translatedGameTypeList;
 };
