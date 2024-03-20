@@ -18,7 +18,7 @@ const CustomText = styled.div`
 
 const ButtonContainer = styled.div`
   padding: 5px 20px 5px 0;
-  margin-right: 20px;
+  /* margin-right: 20px; */
 
   & > button {
     height: 40px;
