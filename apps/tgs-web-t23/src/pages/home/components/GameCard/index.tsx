@@ -158,9 +158,16 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
+  const isLogin = !!account.token;
 
+  const launchGameHandler = () => {
+    if (!isActive) {
+      return;
+    }
+    launchGame();
+  }
   const launchGame = () => {
-    if (!account.token) {
+    if (!isLogin) {
       history.push("/login");
     } else {
       Common.closePreviousPopup();
@@ -186,9 +193,9 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       setIsUpdatingFavorite(false);
     }
   };
-
+  console.log('isLogin', isLogin)
   return (
-    <GameCardBg onClick={launchGame}>
+    <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
@@ -208,7 +215,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg>
-          <TextButton text={"Go"} onClick={launchGame} />
+          <TextButton text={"Go"} onClick={launchGameHandler} />
         </CardHoverBg>
       )}
     </GameCardBg>
