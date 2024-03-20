@@ -24,6 +24,7 @@ import InboxSvg from "@/pages/account/components/AccountSvgIcon/Inbox";
 import DownloadSvg from "@/pages/account/components/AccountSvgIcon/Download";
 import LanguageSvg from "@/pages/account/components/AccountSvgIcon/Language";
 import LogoutSvg from "@/pages/account/components/AccountSvgIcon/Logout";
+import PromotionSvg from "@/pages/home/components/TabSvgIcon/Promotion";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -100,15 +101,28 @@ export function useGetNavItemList() {
     }
     navItemList.push({
       key: NavCardKey.PROMOTION,
-      label: "promotion",
+      label: i18n.t("common.promotion"),
       iconUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "",
       callback: () => {
-        history.push("/vip");
+        history.push("/promotion-list");
       },
-      iconComponent: VipSvg,
+      iconComponent: PromotionSvg,
+    });
+
+    navItemList.push({
+      key: NavCardKey.CONTACT_US,
+      label: i18n.t("common.contact"),
+      iconUrl: contactImg,
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "",
+      callback: () => {
+        history.push("/support");
+      },
+      iconComponent: ContactUsSvg,
     });
 
     // navItemList.push({
@@ -136,19 +150,6 @@ export function useGetNavItemList() {
     //   },
     //   iconComponent: AffiliateSvg,
     // });
-
-    navItemList.push({
-      key: NavCardKey.CONTACT_US,
-      label: i18n.t("common.contact"),
-      iconUrl: contactImg,
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "",
-      callback: () => {
-        history.push("/support");
-      },
-      iconComponent: ContactUsSvg,
-    });
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -186,15 +187,6 @@ export function useGetNavItemList() {
         },
         iconComponent: WithdrawSvg,
       },
-      // {
-      //   key: NavCardKey.WAGERING,
-      //   label: i18n.t("t29.wagering"),
-      //   iconUrl: wageringImg,
-      //   iconSecondaryUrl: wageringWhiteImg,
-      //   iconPrimaryUrl: wageringActiveImg,
-      //   navType: "route",
-      //   routePath: "/wagering",
-      // },
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),
@@ -215,16 +207,6 @@ export function useGetNavItemList() {
         },
         iconComponent: ReportSvg,
       },
-      // {
-      //   key: NavCardKey.MESSAGE_CENTER,
-      //   label: i18n.t("inbox.title"),
-      //   navType: "route",
-      //   routePath: "/message-center",
-      //   callback: () => {
-      //     history.push("/message-center");
-      //   },
-      //   iconComponent: InboxSvg,
-      // },
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),
