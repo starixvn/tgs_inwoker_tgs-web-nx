@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { useRwd } from "./useRwd";
 
 export function useGoToHomePage(withoutHomeIcon = true) {
@@ -11,7 +12,10 @@ export function useGoToHomePage(withoutHomeIcon = true) {
 
   return useCallback(() => {
     if (isMobileSize && withoutHomeIcon) {
-      handleChangeGameType(GameTypeEnum.SPORTS);
+      const defaultGametype = brandConfig[mapBrandName(config.brand)].defaultActiveGametype
+        ? (brandConfig[mapBrandName(config.brand)].defaultActiveGametype as GameTypeEnum)
+        : GameTypeEnum.SPORTS;
+      handleChangeGameType(defaultGametype);
     } else {
       handleChangeGameType(GameTypeEnum.NONE);
     }
