@@ -5,7 +5,6 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuth, useUpdatePageName } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import AccountNavigations from "./components/AccountNavigations";
-import InfoCard from "@/pages/account/components/InfoCard";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import MemberCenterBorder from "@/pages/account/components/MemberCenterBorder";
 import { PageContainer } from "@/components/styled-component/PageContainer";

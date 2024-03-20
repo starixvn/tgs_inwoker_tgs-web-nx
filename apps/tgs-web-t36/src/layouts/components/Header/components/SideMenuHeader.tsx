@@ -1,21 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useAuth, useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import Avatar from "@/components/project/Avatar";
 import HomeIcon from "./HomeIcon";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { theme } from "@/theme";
 
 const SideMenuHeaderContainer = styled.div`
   position: relative;
   flex-shrink: 0;
   width: 100%;
-  height: 80px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 20px;
 `;
 
 const Wrapper = styled.div`
@@ -55,34 +53,32 @@ const SideMenuHeader = () => {
   const {
     general: { brand },
   } = useGeneralStore();
-  const { isLogin } = useAuth();
   const { handleToggleMenu } = useHeader();
   const { setIsEnterGamePortal } = useHomeGameContext();
 
   const handleEnterGamePortal = () => {
     setIsEnterGamePortal(true);
     handleToggleMenu();
-  }
+  };
 
   return (
     <SideMenuHeaderContainer>
+      <CloseIconContainer onClick={() => handleToggleMenu(false)}>
+        <CloseIcon
+          style={{
+            color: theme.primary,
+            width: "24px",
+            height: "24px",
+          }}
+        />
+      </CloseIconContainer>
       <LogoImg src={brand && brand.loadingUrl} />
       <Wrapper>
         <HomeBtn onClick={() => handleEnterGamePortal()}>
           <HomeIcon $color={"#fff"} />
           <Text>Home</Text>
         </HomeBtn>
-        <CloseIconContainer onClick={() => handleToggleMenu(false)}>
-          <CloseIcon
-            style={{
-              color: "#67707B",
-              width: "20px",
-              height: "20px",
-            }}
-          />
-        </CloseIconContainer>
       </Wrapper>
-      {/* {isLogin ? <Avatar /> : <LogoImg src={brand && brand.loadingUrl} />} */}
     </SideMenuHeaderContainer>
   );
 };

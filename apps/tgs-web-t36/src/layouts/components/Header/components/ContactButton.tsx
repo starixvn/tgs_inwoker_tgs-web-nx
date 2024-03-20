@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Icon from "@/components/project/Icon";
-import ContactIcon from "@/assets/t18/images/header/contactIcon.svg";
+import ContactIcon from "@/assets/t36/images/header/contactIcon.svg";
 import { media } from "@/theme/breakpoints";
 
 const ContactButtonContainer = styled.div`

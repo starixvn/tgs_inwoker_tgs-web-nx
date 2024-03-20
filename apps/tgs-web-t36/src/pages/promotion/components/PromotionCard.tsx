@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Promotion } from "@tgs-web-nx/types";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import moreIcon from "@/assets/t19/images/home/moreIcon.png";
+import moreIcon from "@/assets/t36/images/home/moreIcon.png";
 
 type MoreOnclickProps = {
   onClick: (event: Event) => void;

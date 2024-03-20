@@ -7,8 +7,6 @@ import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
 import { Button } from "@/components/UI/Button";
-import iconLogout from "@/assets/t19/images/account/navItemWhite/icon-logout.svg";
-import ArrowRightPNG from "@/assets/t19/images/transfer/arrow-right.svg";
 import DesktopAccountMenuItem from "@/pages/account/components/AccountNavigations/DesktopAccountMenuItem";
 
 const MemberMenuContainer = styled.div`

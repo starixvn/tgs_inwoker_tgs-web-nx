@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import closeIcon from "@/assets/t29/images/qrcode/icon-close.svg";
+import closeIcon from "@/assets/t36/images/qrcode/icon-close.svg";
 import { media } from "@/theme/breakpoints";
 
 const PopupBg = styled.div`

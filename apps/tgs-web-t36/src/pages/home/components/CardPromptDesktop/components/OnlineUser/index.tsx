@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useOnlineUser } from "@tgs-web-nx/core/hooks";
-import member from "@/assets/t19/images/home/member.svg";
+import member from "@/assets/t36/images/home/member.svg";
 
 const Wrapper = styled.div`
   display: flex;

@@ -5,30 +5,22 @@ import { GameTypeItem, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import CategorySection from "./components/CategorySection";
 import CardPromptDesktop from "@/pages/home/components/CardPromptDesktop";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import bg from "@/assets/t19/images/home/home_bg.png";
+import bg from "@/assets/t36/images/home/home_bg.png";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import RegisterSection from "@/pages/home/components/RegisterSection";
 import DesktopRegisterSection from "@/pages/home/components/DesktopRegisterSection";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import CategorySection from "./components/CategorySection";
 import SocialMedia from "@/components/project/SocialMedia";
 import VendorLogo from "@/pages/home/components/VendorLogo";
-import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
-import ScrollableHomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
-import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
-import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
-import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
-import LatestRecordTable from "@/pages/home/components/Ranking/LatestRecordTable";
-import AffiliateProgram from "@/pages/home/components//AffiliateProgram";
-import DesktopAffiliateProgram from "@/pages/home/components/DesktopAffiliateProgram";
-import config from "@tgs-web-nx/config";
+
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -231,28 +223,6 @@ const HomePage = () => {
         <SliderWrapper>
           <Slider settings={settings} />
         </SliderWrapper>
-      }
-
-      {!isEnterGamePortal && !activeGameType &&
-        <>
-          <CategorySection />
-          <HomeCategoryContainer>
-            <ScrollableHomeRecommend />
-            <ScrollableHomeHot />
-            <HomeRanking>
-              <Title>Latest Bets & Wins</Title>
-              <LatestRecordTable betRecordList={betRecordList} />
-            </HomeRanking>
-            {isDesktopSize ? <DesktopAffiliateProgram /> : <AffiliateProgram />}
-            <ScrollableHomeNew />
-            <Introduction>
-              <Brand>{config.brand} : A Winning Casino!</Brand>
-              <IntroductionText>
-                {config.brand} is the leading destination for all online casino players who are looking for a touch of class and elegance in their gaming environment. Our casino provides you with over 400 online casino games – some traditional with modern twists, and some completely new, innovative, and exotic.
-              </IntroductionText>
-            </Introduction>
-          </HomeCategoryContainer>
-        </>
       }
 
       {isMobileSize && !isEnterGamePortal && !activeGameType && (

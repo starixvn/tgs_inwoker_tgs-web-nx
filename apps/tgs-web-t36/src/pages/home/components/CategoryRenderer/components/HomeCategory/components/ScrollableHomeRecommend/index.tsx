@@ -10,7 +10,6 @@ import label_icon from "@/assets/t27/images/home/label-icon.svg";
 import CategoryLabel from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/CategoryLabel";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { useHistory } from "react-router-dom";
-import BetRecordRow, { BetRecord } from "@/pages/home/components/Ranking/components/BetRecordRow";
 import { userList } from "@/pages/home/components/Ranking/mocks/userList";
 
 const HomeCategorySection = styled.div`

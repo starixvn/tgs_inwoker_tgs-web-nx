@@ -8,7 +8,7 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t19/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t36/images/home/maintenance.svg";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import gradientBg from "@/assets/t27/images/home/name-bg.png";
 import playIcon from "@/assets/t27/images/home/play-icon.png";

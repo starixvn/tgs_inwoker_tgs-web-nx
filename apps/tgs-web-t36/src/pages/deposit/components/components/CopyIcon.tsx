@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { i18n, utility } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import Icon from "@/components/project/Icon";
-import copyImg from "@/assets/t18/images/deposit/copy.png";
+import copyImg from "@/assets/t36/images/deposit/copy.png";
 
 const CopyIconContainer = styled.div`
   width: 30px;

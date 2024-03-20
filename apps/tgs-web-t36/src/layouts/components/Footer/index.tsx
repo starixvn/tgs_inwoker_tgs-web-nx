@@ -9,11 +9,11 @@ import ChatQRcodePopup from "./ChatQRcodePopup";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import QRcodeUrl from "@/assets/t29/images/home/QRcode.svg";
-import qrcode_skype from "@/assets/t29/images/qrcode/qrcode_skype.png";
-import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
-import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
-import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
+import QRcodeUrl from "@/assets/t36/images/home/QRcode.svg";
+import qrcode_skype from "@/assets/t36/images/qrcode/qrcode_skype.png";
+import qrcode_whatsapp from "@/assets/t36/images/qrcode/qrcode_whatsapp.png";
+import qrcode_telegram from "@/assets/t36/images/qrcode/qrcode_telegram.png";
+import qrcode_wechat from "@/assets/t36/images/qrcode/qrcode_wechat.png";
 
 const FooterContainer = styled.div`
   display: none;

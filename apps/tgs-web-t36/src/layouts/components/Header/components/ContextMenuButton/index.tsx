@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Drawer } from "@mui/material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import avatarImg from "@/assets/t33/images/account/avatar.svg";
+import avatarImg from "@/assets/t36/images/account/avatar.svg";
 
 const ContextMenuButtonContainer = styled.div`
   cursor: pointer;

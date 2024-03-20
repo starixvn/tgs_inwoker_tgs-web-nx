@@ -1,19 +1,19 @@
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import MenuGameTab from "./MenuGameTab";
-import React, { useState } from "react";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const TabContainer = styled.div<{
   $isShrink: boolean;
 }>`
-  width:100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
-  padding: 15px 0px;
+  /* padding: 15px 0px; */
 `;
 
 const MenuList = () => {

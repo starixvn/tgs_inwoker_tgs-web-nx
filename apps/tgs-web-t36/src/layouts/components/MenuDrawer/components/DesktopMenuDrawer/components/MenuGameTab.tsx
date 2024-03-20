@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { theme } from "@/theme";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
+import { theme } from "@/theme";
 
 type Props = {
   text: string;
@@ -17,7 +17,7 @@ type IconComponentProps = {
 };
 
 const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.primary)};
   font-size: 15.6px;
   font-weight: 400;
 `;
@@ -30,23 +30,17 @@ const Wrapper = styled.div<{
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: ${({ $isShrink }) => $isShrink ? "center" : "unset"};
-  height: 44.74px;;
-  background: ${({ theme, $isActive }) =>
-    $isActive
-      ? theme.g7
-      : theme.mainBackground};
+  justify-content: ${({ $isShrink }) => ($isShrink ? "center" : "unset")};
+  height: 44.74px;
+  background: ${({ theme, $isActive }) => ($isActive ? theme.g7 : theme.mainBackground)};
   align-self: stretch;
-  padding: ${({ $isShrink }) => $isShrink ? "unset" : "0px 24px"};
-  gap:  ${({ $isShrink }) => $isShrink ? "unset" : "24px"};
+  padding: ${({ $isShrink }) => ($isShrink ? "unset" : "0px 24px")};
+  gap: ${({ $isShrink }) => ($isShrink ? "unset" : "24px")};
 
   &:hover {
     background: ${({ theme }) => theme.g7};
     ${Text} {
-      color: ${({ theme, $isActive }) =>
-    $isActive
-      ? theme.primary
-      : theme.white};
+      color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.primary)};
     }
   }
 `;
@@ -70,12 +64,12 @@ const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
   };
 
   const cloneChildrenWithProps = React.Children.map(children, (child) => {
-    if (React.isValidElement(child) && typeof child.type === 'function') {
+    if (React.isValidElement(child) && typeof child.type === "function") {
       const IconComponent = child.type as React.ComponentType<IconComponentProps>;
 
       return (
         <IconComponent
-          $color={(!isActive && isHovered) ? theme.white : (isActive ? theme.primary : theme.g2)}
+          $color={!isActive && isHovered ? theme.primary : isActive ? theme.primary : theme.primary}
           isHovered={isHovered}
         />
       );
@@ -84,7 +78,11 @@ const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
   });
 
   return (
-    <Wrapper $isShrink={isShrink} $isActive={isActive} $text={text} onClick={onClick}
+    <Wrapper
+      $isShrink={isShrink}
+      $isActive={isActive}
+      $text={text}
+      onClick={onClick}
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
     >

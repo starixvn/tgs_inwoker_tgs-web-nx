@@ -4,6 +4,8 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { Logout } from "@mui/icons-material";
 import affiliateImg from "@/assets/t19/images/account/navItem/icon-affiliate.svg";
 import contactImg from "@/assets/t19/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t19/images/account/navItem/icon-vip.svg";
@@ -13,7 +15,6 @@ import VipSvg from "@/pages/home/components/TabSvgIcon/Vip";
 import AffiliateSvg from "@/pages/home/components/TabSvgIcon/Affiliate";
 import ContactUsSvg from "@/pages/home/components/TabSvgIcon/ContactUs";
 import HomeSvg from "@/pages/home/components/TabSvgIcon/Home";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import AccountSvg from "@/pages/account/components/AccountSvgIcon/Account";
 import DepositSvg from "@/pages/account/components/AccountSvgIcon/Deposit";
 import WithdrawSvg from "@/pages/account/components/AccountSvgIcon/Withdraw";
@@ -23,7 +24,6 @@ import InboxSvg from "@/pages/account/components/AccountSvgIcon/Inbox";
 import DownloadSvg from "@/pages/account/components/AccountSvgIcon/Download";
 import LanguageSvg from "@/pages/account/components/AccountSvgIcon/Language";
 import LogoutSvg from "@/pages/account/components/AccountSvgIcon/Logout";
-import { Logout } from "@mui/icons-material";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -35,17 +35,17 @@ export type NavItem = {
   isHide?: boolean;
   router?: string;
   routePath?: string;
-  iconComponent?: React.FC<{ $color: string }>
+  iconComponent?: React.FC<{ $color: string }>;
 } & (
-    | {
+  | {
       navType: "route";
       routePath: string;
     }
-    | {
+  | {
       navType: "action";
       callback: () => void;
     }
-  );
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -98,10 +98,9 @@ export function useGetNavItemList() {
         iconComponent: gameTypeItem.iconComponent,
       });
     }
-
     navItemList.push({
-      key: NavCardKey.VIP,
-      label: "Vip",
+      key: NavCardKey.PROMOTION,
+      label: "promotion",
       iconUrl: vipImg,
       navType: "action",
       gameType: GameTypeEnum.NONE,
@@ -112,18 +111,31 @@ export function useGetNavItemList() {
       iconComponent: VipSvg,
     });
 
-    navItemList.push({
-      key: NavCardKey.AFFILIATE,
-      label: i18n.t("wap.main.account.affiliate"),
-      iconUrl: affiliateImg,
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "",
-      callback: () => {
-        history.push("/affiliate");
-      },
-      iconComponent: AffiliateSvg,
-    });
+    // navItemList.push({
+    //   key: NavCardKey.VIP,
+    //   label: "Vip",
+    //   iconUrl: vipImg,
+    //   navType: "action",
+    //   gameType: GameTypeEnum.NONE,
+    //   router: "",
+    //   callback: () => {
+    //     history.push("/vip");
+    //   },
+    //   iconComponent: VipSvg,
+    // });
+
+    // navItemList.push({
+    //   key: NavCardKey.AFFILIATE,
+    //   label: i18n.t("wap.main.account.affiliate"),
+    //   iconUrl: affiliateImg,
+    //   navType: "action",
+    //   gameType: GameTypeEnum.NONE,
+    //   router: "",
+    //   callback: () => {
+    //     history.push("/affiliate");
+    //   },
+    //   iconComponent: AffiliateSvg,
+    // });
 
     navItemList.push({
       key: NavCardKey.CONTACT_US,

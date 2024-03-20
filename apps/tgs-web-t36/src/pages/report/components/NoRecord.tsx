@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import noResultImg from "@/assets/t18/images/report/no_result.svg";
+import noResultImg from "@/assets/t36/images/report/no_result.svg";
 
 const NoRecordWrapper = styled.div`
   display: flex;

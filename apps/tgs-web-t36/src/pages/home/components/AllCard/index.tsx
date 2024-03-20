@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import dots from "@/assets/t23/images/home/dots.svg";
+import dots from "@/assets/t36/images/home/dots.svg";
 import { media } from "@/theme/breakpoints";
 
 const AllCardBg = styled.div`

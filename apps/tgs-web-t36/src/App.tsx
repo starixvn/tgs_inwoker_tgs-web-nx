@@ -24,7 +24,6 @@ import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";
 import PopupPromotion from "@/components/project/Popup/PopupPromotion";
 
 import LayoutProvider from "@/layouts/LayoutProvider";
-import FloatingToolIcons from "@/components/project/FloatingToolIcons";
 import Loading from "@/components/UI/Loading";
 import LoginDialog from "@/components/project/auth/Dialogs/LoginDialog";
 import RegisterDialog from "@/components/project/auth/Dialogs/RegisterDialog";

@@ -23,7 +23,7 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  padding: 20px 10px;
+  /* padding: 20px 10px; */
   align-items: flex-start;
   flex-shrink: 0;
   background: ${({ theme }) => theme.g4};
@@ -50,28 +50,6 @@ const ContentWrapper = styled.div`
   }
 `;
 
-type PromotionCardProps = {
-  $isShrink: boolean;
-};
-
-const PromotionCard = styled.div<PromotionCardProps>`
-  cursor: pointer;
-  width: 100%;
-  background: ${({ $isShrink }: PromotionCardProps) =>
-    $isShrink ? theme.g5 : "transparent"};
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition: all 0.2s ease-in-out;
-`;
-
-const IconText = styled.div`
-  font-size: 15.6px;
-  font-weight: 700;
-`;
-
 const MobileMenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
   const { isLogin } = useAuth();
@@ -95,11 +73,6 @@ const MobileMenuDrawer = () => {
       <SideMenuHeader />
 
       <ContentWrapper>
-        <PromotionCard $isShrink={isShrink} onClick={handleClickPromotion}>
-          <Icon className={"promotion"} iconUrl={promotionIcon} width={"50px"} height={"50px"} />
-          <IconText>{!isShrink && i18n.t("common.promotion")}</IconText>
-        </PromotionCard>
-
         <MenuList />
       </ContentWrapper>
     </MobileMenuDrawerContainer>

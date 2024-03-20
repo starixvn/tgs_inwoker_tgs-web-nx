@@ -3,10 +3,8 @@ import config from "@tgs-web-nx/config";
 import { RouteType } from "@tgs-web-nx/types";
 import { ProfilePathEnum } from "@tgs-web-nx/core";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
-import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import MessageCenterPage from "@/pages/messageCenter/MessageCenterPage";
 import LoginPage from "@/pages/login/LoginPage";
 import MainPage from "@/pages/home/HomePage";
 import MaintenancePage from "@/pages/MaintenancePage";
@@ -17,7 +15,6 @@ import ReportPage from "@/pages/report/ReportPage";
 import TransferPage from "@/pages/transfer/TransferPage";
 import VIPPage from "@/pages/vip/VipPage";
 import WithdrawalPage from "@/pages/withdrawal/WithdrawalPage";
-import WageringPage from "@/pages/wagering/WageringPage";
 import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
@@ -75,16 +72,6 @@ const routes: RouteType[] = [
     path: "/withdrawal",
     component: WithdrawalPage,
     layout: DialogLayout,
-  },
-  {
-    path: "/wagering",
-    component: WageringPage,
-    layout: DialogLayout,
-  },
-  {
-    path: "/betting-bonus",
-    component: BettingBonusPage,
-    layout: DefaultLayout,
   },
   {
     path: "/login",
@@ -226,11 +213,6 @@ const routes: RouteType[] = [
     layout: DialogLayout,
     isAnonymousAllowed: true,
   },
-  // {
-  //   path: "/message-center",
-  //   component: MessageCenterPage,
-  //   layout: DialogLayout,
-  // },
   {
     path: "/inbox",
     component: InboxPage,
