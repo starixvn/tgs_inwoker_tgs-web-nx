@@ -7,6 +7,7 @@ import { TextField } from "@/components/UI/TextField";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 import { Select } from "@/components/UI/Select";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { theme } from "@/theme";
 
 const FormPromotionCodeContainer = styled.div`
   position: relative;
@@ -64,6 +65,22 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             disabled={isReadOnly}
+            MenuProps={{
+              PaperProps: {
+                sx: {
+                  backgroundColor: theme.mainBackground,
+                  "& .MuiMenuItem-root": {
+                    color: theme.white,
+                    "&:hover": {
+                      backgroundColor: theme.primary,
+                    },
+                  },
+                  "& .Mui-selected": {
+                    backgroundColor: "#ff637c",
+                  },
+                },
+              },
+            }}
           >
             <MenuItem value={InvitationType.AGENT}>
               <>{i18n.t("usertype.agent")}</>
