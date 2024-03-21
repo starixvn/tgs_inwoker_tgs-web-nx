@@ -16,7 +16,6 @@ const GameTypeNavPopupContent = () => {
     case GameTypeEnum.FISH:
     case GameTypeEnum.TABLEGAME:
     case GameTypeEnum.LOTTERYLOBBY:
-    case GameTypeEnum.LOTTERY:
       return <NavCategory />;
 
     default:
