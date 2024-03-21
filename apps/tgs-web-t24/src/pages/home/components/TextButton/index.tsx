@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
+import play from "@/assets/t24/images/home/play.svg";
 
 type Props = {
   text: string;
@@ -22,15 +23,19 @@ const StyledButton = styled.button<{
   align-items: center;
   width: ${({ $width }) => $width};
   height: ${({ $height }) => $height};
-  padding: 10px 6px;
+  padding: 5px 10px;
   border: none;
-  border-radius: 20px;
+  border-radius: 4px;
   background: ${({ $bgColor }) => $bgColor};
   color: ${({ $color }) => $color};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-size: 0.9375rem;
   line-height: 100%;
   font-weight: 700;
+
+  > img {
+    margin-right: 10px;
+  }
 
   ${media.sm} {
     cursor: pointer;
@@ -44,9 +49,9 @@ const StyledButton = styled.button<{
 const TextButton = ({
   text,
   onClick,
-  width = "76px",
-  height = "36px",
-  bgColor = theme.mainBackground,
+  width = "91px",
+  height = "30px",
+  bgColor = theme.primary,
   color = theme.white,
 }: Props) => {
   return (
@@ -57,6 +62,7 @@ const TextButton = ({
       $bgColor={bgColor}
       $color={color}
     >
+      <img src={play} alt="play" />
       {text}
     </StyledButton>
   );

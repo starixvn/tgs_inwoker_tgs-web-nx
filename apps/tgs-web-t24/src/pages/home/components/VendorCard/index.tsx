@@ -186,7 +186,7 @@ const VendorCard = ({ imageUrl, venderName, venderLogoUrl, launchGame, status }:
 
       {isDesktopSize && status !== providerStatus.Maintenance && (
         <VendorCardHoverBg>
-          <TextButton text={"Go"} onClick={launchGameHandler} />
+          <TextButton text={"PLAY"} onClick={launchGameHandler} />
         </VendorCardHoverBg>
       )}
     </VendorCardBg>

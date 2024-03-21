@@ -18,7 +18,7 @@ const CardHoverBg = styled.div`
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
-  border-radius: 15px;
+  border-radius: 10px;
   display: none;
   white-space: pre-line;
 
@@ -35,7 +35,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 12px;
+  border-radius: 10px;
 `;
 
 const NewTag = styled.div`
@@ -45,7 +45,7 @@ const NewTag = styled.div`
   width: 32px;
   height: 18px;
   padding: 10px;
-  border-radius: 12px 0px;
+  border-radius: 10px 0px;
   background: ${(props) => props.theme.primaryMix};
   color: ${(props) => props.theme.tagColor};
   display: flex;
@@ -62,7 +62,7 @@ const HotTag = styled.div`
   width: 32px;
   height: 18px;
   padding: 10px;
-  border-radius: 12px 0px;
+  border-radius: 10px 0px;
   background: #ff1727;
   color: ${(props) => props.theme.white};
   display: flex;
@@ -126,7 +126,7 @@ const MaintenanceBg = styled.div`
 
   ${media.sm} {
     height: 81%;
-    border-radius: 15px;
+    border-radius: 10px;
     z-index: 1;
   }
 `;
