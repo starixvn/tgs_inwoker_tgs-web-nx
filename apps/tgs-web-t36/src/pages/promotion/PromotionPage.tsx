@@ -50,7 +50,6 @@ const PromotionPage = () => {
   }
   return (
     <PageContainer>
-      {/* {isDesktopSize && <PromotionBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/promotion/promotion-banner.png`} />} */}
       <PromotionCardListContainer>
         {promotionList
           .sort((a, b) => a.order - b.order)
