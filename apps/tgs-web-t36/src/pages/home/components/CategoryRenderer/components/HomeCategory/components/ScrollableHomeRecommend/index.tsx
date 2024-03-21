@@ -1,16 +1,15 @@
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
-import { GameTypeEnum, SHOW_BIG_WINS_AMOUNT } from "@tgs-web-nx/constants";
-import { Common } from "@tgs-web-nx/utils";
+import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
 import BigWinsCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/BigWinsCard";
 import { media } from "@/theme/breakpoints";
-import label_icon from "@/assets/t27/images/home/label-icon.svg";
 import CategoryLabel from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/CategoryLabel";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
-import { useHistory } from "react-router-dom";
-import { userList } from "@/pages/home/components/Ranking/mocks/userList";
+import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
+import arrowRight from "@/assets/t36/images/home/arrow_right.png";
 
 const HomeCategorySection = styled.div`
   width: 100%;
@@ -23,13 +22,27 @@ const HomeCategorySection = styled.div`
 const CategoryTitle = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   align-self: stretch;
   color: ${({ theme }) => theme.white};
   font-size: 19.5px;
   font-weight: 400;
+`;
+
+const MoreButtonWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const MoreButton = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.grey05};
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 14px;
 `;
 
 const CategoryContent = styled.div`
@@ -72,46 +85,37 @@ const CategoryContent = styled.div`
 `;
 
 const ScrollableHomeRecommend = () => {
-  const history = useHistory();
-  const { handleChangeGameType } = useHomeGameContext();
   const { recommendGameList } = useGetHomeCategoryList();
   const hasMappingData = !!recommendGameList.length;
-  const gameTypeList = useGameTypeList();
-  const playerNameList = userList.slice(0, 12);
-
-  const updatedRecommendGameList = recommendGameList.map(game => ({
-    ...game,
-    player: playerNameList[Math.floor(Math.random() * playerNameList.length)],
-    amount: Math.floor(Math.random() * (3000 - 1000 + 1)) + 1000
-  }));
-
-  const handleViewAllClick = (gameType: GameTypeEnum) => {
-    handleChangeGameType(gameType);
-    const activeGameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
-    history.push(`/main/${activeGameTypeKey}`);
-  };
 
   return (
-    <>
-      <HomeCategorySection>
-        <CategoryTitle><CategoryLabel imageUrl={label_icon} text={"Big Wins"} /></CategoryTitle>
-        <CategoryContent>
-          {hasMappingData &&
-            updatedRecommendGameList.slice(0, SHOW_BIG_WINS_AMOUNT).map((gameItem) => (
-              <BigWinsCard
+    <HomeCategorySection>
+      <CategoryTitle>
+        <CategoryLabel text={i18n.t("slot.recommendGame")} />
+        <MoreButtonWrapper>
+          <MoreButton>{i18n.t("common.more")} </MoreButton>
+          <img src={arrowRight} alt="right" />
+        </MoreButtonWrapper>
+      </CategoryTitle>
+      <CategoryContent>
+        {hasMappingData &&
+          recommendGameList
+            .slice(0, SHOW_CATEGORY_AMOUNT)
+            .map((gameItem) => (
+              <HomeGameCard
                 key={gameItem.id}
                 gameItem={gameItem}
                 isActive={gameItem.isactive}
-                imageUrl={`${config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                  }.jpg`}
-                playerName={gameItem.player}
-                amount={gameItem.amount}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
+                tag={"new"}
               />
             ))}
-        </CategoryContent>
-      </HomeCategorySection>
-    </>
+      </CategoryContent>
+    </HomeCategorySection>
   );
 };
 

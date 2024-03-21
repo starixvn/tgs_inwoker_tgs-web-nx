@@ -21,7 +21,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.black};;
+  background-color: ${({ theme }) => theme.black};
 `;
 
 const GameCardContent = styled.div`
@@ -37,24 +37,6 @@ const GameCardBg = styled.div`
     width: calc(12.19% - 14px);
     min-width: 148px;
   }
-`;
-
-const NameBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 78%;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-`;
-
-const NameBgIcon = styled.img`
-  width: 100%;
-  position: absolute;
-  bottom: 0;
 `;
 
 const MaintenanceBg = styled.div`
@@ -80,8 +62,8 @@ const GameName = styled.div`
   width: 100%;
   position: absolute;
   bottom: 0;
-  color: ${(props) => props.theme.white};
-  font-size: 0.875rem;
+  color: ${(props) => props.theme.grey05};
+  font-size: 12px;
   font-weight: 400;
   text-align: center;
   margin: 4px 0 12px 0;
@@ -89,32 +71,6 @@ const GameName = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%; //利用最大寬度來限制文字長度
-`;
-
-const PlayBtnWrapper = styled.div`
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  padding: 4px 10px;
-`;
-
-const PlayBtn = styled.div<{ $tag: string }>`
-  padding: 10px 20px;
-  color: ${(props) => props.theme.white};
-  font-size: 0.875rem;
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background: ${({ theme, $tag }) => $tag === "hot" ? theme.secondaryGradient : theme.primaryGradient};
-  border-radius: 4px;
-
-  @media (max-width: 400px) {
-    padding: 7px;
-    font-size: 0.75rem;
-    font-weight: 400;
-  }
 `;
 
 type GameCardProps = {
@@ -141,7 +97,7 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl, tag }: GameCardProps) => {
       return;
     }
     launchGame();
-  }
+  };
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");
@@ -177,15 +133,10 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl, tag }: GameCardProps) => {
   }, [resizeText, gameNameRef.current]);
 
   return (
-    <GameCardBg>
+    <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        <NameBg>
-          <NameBgIcon src={gradientBg} alt={"game name"} />
-          {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
-        </NameBg>
-        <PlayBtnWrapper><PlayBtn onClick={launchGameHandler} $tag={tag}>Play Now</PlayBtn></PlayBtnWrapper>
-
+        <GameName>{gameItem.name}</GameName>
         {!isActive && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useUiStore } from "@tgs-web-nx/core";
-import notification from "@/assets/t27/images/home/notification.svg";
+import notification from "@/assets/t36/images/home/notification.svg";
 
 const Container = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const Marquee = () => {
 
   return (
     <Container>
-      <img src={notification} alt="marquee" />
+      <img src={notification} alt="marquee" width={"20px"} height={"20px"} />
       {hasData && (
         // Disable TypeScript check for unknown HTML elements
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -42,9 +42,10 @@ const Marquee = () => {
         <marquee>
           {marquees.map((item, index) => {
             const content = `
-              *${item.localization !== null && item.localization.content
-                ? item.localization.content
-                : item.content
+              *${
+                item.localization !== null && item.localization.content
+                  ? item.localization.content
+                  : item.content
               }
               `;
             return <Background key={index}>{content}</Background>;

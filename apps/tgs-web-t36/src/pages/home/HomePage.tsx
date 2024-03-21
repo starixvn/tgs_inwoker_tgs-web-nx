@@ -1,11 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { GameTypeItem, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  GameTypeItem,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory, useParams } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
+import config from "@tgs-web-nx/config";
 import CategorySection from "./components/CategorySection";
 import CardPromptDesktop from "@/pages/home/components/CardPromptDesktop";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
@@ -20,7 +25,10 @@ import DesktopRegisterSection from "@/pages/home/components/DesktopRegisterSecti
 import SocialMedia from "@/components/project/SocialMedia";
 import VendorLogo from "@/pages/home/components/VendorLogo";
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
-
+import ScrollableHomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
+import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
+import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
+import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -29,7 +37,7 @@ const MainWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.grey04};
 
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
@@ -68,7 +76,7 @@ const SlickDotWrapper = styled.div`
   margin-bottom: 30px;
 
   & ul li.slick-active ${SlickDot} {
-    background: #45D91E !important;
+    background: #45d91e !important;
   }
 `;
 
@@ -139,8 +147,8 @@ const Title = styled.div`
 `;
 
 const Introduction = styled.div`
- display: flex;
-  padding: 60px 42px;
+  display: flex;
+  padding: 10px;
   flex-direction: column;
   align-items: flex-start;
   gap: 21px;
@@ -150,19 +158,18 @@ const Introduction = styled.div`
 
 const Brand = styled.div`
   width: 100%;
-  font-size: 32px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 58.36px;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.white};
+  line-height: 14px;
+  color: ${({ theme }) => theme.grey05};
 `;
 
 const IntroductionText = styled.div`
-  width: 100%;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 30px;
-  color: ${({ theme }) => theme.g2};
+  line-height: 18px;
+  width: 100%;
+  color: ${({ theme }) => theme.grey04};
 `;
 
 const HomePage = () => {
@@ -192,7 +199,6 @@ const HomePage = () => {
     },
   };
 
-
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -212,27 +218,42 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      <CardPrompt />
       {/* 首頁但未進入遊戲大廳 */}
-      {!isEnterGamePortal && !activeGameType &&
-        <>
-          {isDesktopSize ? <DesktopRegisterSection /> : <RegisterSection />}
-        </>
-      }
-      {!!general.banner.length &&
+      {!isEnterGamePortal && !activeGameType && isDesktopSize && <DesktopRegisterSection />}
+      {!!general.banner.length && (
         <SliderWrapper>
           <Slider settings={settings} />
         </SliderWrapper>
-      }
-
-      {isMobileSize && !isEnterGamePortal && !activeGameType && (
+      )}
+      <CardPrompt />
+      {!isEnterGamePortal && !activeGameType && (
+        <>
+          <CategorySection />
+          <HomeCategoryContainer>
+            <ScrollableHomeHot />
+            <ScrollableHomeNew />
+            <ScrollableHomeRecommend />
+            <Introduction>
+              <Brand>{config.brand} : A Winning Casino!</Brand>
+              <IntroductionText>
+                {config.brand} is the leading destination for all online casino players who are
+                looking for a touch of class and elegance in their gaming environment. Our casino
+                provides you with over 400 online casino games – some traditional with modern
+                twists, and some completely new, innovative, and exotic.
+              </IntroductionText>
+            </Introduction>
+          </HomeCategoryContainer>
+        </>
+      )}
+      {/* {isMobileSize && !isEnterGamePortal && !activeGameType && (
         <>
           <SocialMedia />
           <VendorLogo />
         </>
-      )}
+      )} */}
 
-      {/* 首頁並且進入遊戲大廳 */}{/* 切換遊戲分頁 */}
+      {/* 首頁並且進入遊戲大廳 */}
+      {/* 切換遊戲分頁 */}
       {isEnterGamePortal && (
         <MainContentWrapper>
           <CategoryRenderer />

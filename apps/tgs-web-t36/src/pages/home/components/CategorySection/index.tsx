@@ -29,8 +29,8 @@ const CategorySection = () => {
         <CategoryCard
           key={item.key}
           bgUrl={item.bgUrl}
-          imageUrl={item.imageUrl}
-          iconUrl={item.iconUrl}
+          // imageUrl={item.imageUrl}
+          // iconUrl={item.iconUrl}
           text={item.text}
           gameType={item.gameType}
           type={item.key}

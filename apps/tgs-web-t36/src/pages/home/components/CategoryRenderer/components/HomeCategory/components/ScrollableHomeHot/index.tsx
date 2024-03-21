@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
 import Loading from "@/components/UI/Loading";
 import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
@@ -11,7 +12,7 @@ import { media } from "@/theme/breakpoints";
 import label_icon from "@/assets/t27/images/home/label-icon.svg";
 import CategoryLabel from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/CategoryLabel";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
-import { useHistory } from "react-router-dom";
+import arrowRight from "@/assets/t36/images/home/arrow_right.png";
 
 const HomeCategorySection = styled.div`
   width: 100%;
@@ -24,13 +25,27 @@ const HomeCategorySection = styled.div`
 const CategoryTitle = styled.div`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   align-self: stretch;
   color: ${({ theme }) => theme.white};
   font-size: 19.5px;
   font-weight: 400;
+`;
+
+const MoreButtonWrapper = styled.div`
+  display: flex;
+  gap: 5px;
+`;
+
+const MoreButton = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.grey05};
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 14px;
 `;
 
 const CategoryContent = styled.div`
@@ -86,30 +101,36 @@ const ScrollableHomeHot = () => {
   };
 
   return (
-    <>
-      <HomeCategorySection>
-        <CategoryTitle><CategoryLabel imageUrl={label_icon} text={"Hot"} /></CategoryTitle>
-        <CategoryContent>
-          {hasMappingData &&
-            hotGameList
-              .slice(0, SHOW_CATEGORY_AMOUNT)
-              .map((gameItem) => (
-                <HomeGameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                    }.jpg`}
-                  tag={"hot"}
-                />
-              ))}
-          {hotGameList.length > SHOW_CATEGORY_AMOUNT && (
-            <AllCard onClick={() => handleViewAllClick(GameTypeEnum.SLOT)} />
-          )}
-        </CategoryContent>
-      </HomeCategorySection>
-    </>
+    <HomeCategorySection>
+      <CategoryTitle>
+        <CategoryLabel text={i18n.t("slot.hotGame")} />
+        <MoreButtonWrapper>
+          <MoreButton>{i18n.t("common.more")} </MoreButton>
+          <img src={arrowRight} alt="right" />
+        </MoreButtonWrapper>
+      </CategoryTitle>
+      <CategoryContent>
+        {hasMappingData &&
+          hotGameList
+            .slice(0, SHOW_CATEGORY_AMOUNT)
+            .map((gameItem) => (
+              <HomeGameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
+                tag={"hot"}
+              />
+            ))}
+        {hotGameList.length > SHOW_CATEGORY_AMOUNT && (
+          <AllCard onClick={() => handleViewAllClick(GameTypeEnum.SLOT)} />
+        )}
+      </CategoryContent>
+    </HomeCategorySection>
   );
 };
 

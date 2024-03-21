@@ -1,27 +1,25 @@
 import { FC } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 type Props = {
-  imageUrl?: string;
   text: string;
-}
+};
 
 const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 `;
 
 const Text = styled.div`
-    color:${({ theme }) => theme.white};
-    /* margin-left: 10px; */
-    font-size: 19.5px;
-    font-weight: 400;
+  color: ${({ theme }) => theme.grey05};
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
 `;
 
-const CategoryLabel: FC<Props> = ({ imageUrl, text }) => {
+const CategoryLabel: FC<Props> = ({ text }) => {
   return (
     <Wrapper>
-      {imageUrl && <img src={imageUrl} alt={text} />}
       <Text>{text}</Text>
     </Wrapper>
   );

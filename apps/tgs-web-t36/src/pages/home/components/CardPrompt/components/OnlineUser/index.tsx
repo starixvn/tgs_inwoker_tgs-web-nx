@@ -1,16 +1,13 @@
 import styled from "styled-components";
 import { useOnlineUser } from "@tgs-web-nx/core/hooks";
-import member from "@/assets/t27/images/home/member.svg";
+import member from "@/assets/t36/images/home/member.svg";
 
 const Wrapper = styled.div`
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   font-size: 1rem;
   font-weight: 400;
-  min-width: 105px;
-  padding: 4px 10px;
-  gap: 6px;
   background: ${({ theme }) => theme.g4};
   border-radius: 3px;
 `;
