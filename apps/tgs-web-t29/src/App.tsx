@@ -16,7 +16,7 @@ import {
   UserWalletInfoContextProvider,
 } from "@tgs-web-nx/core/features";
 import { RouteType } from "@tgs-web-nx/types";
-import config, {mapBrandName, brandConfig } from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import LiveChat from "./components/tools/LiveChat";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
@@ -32,15 +32,21 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import RegisterV2InitPhoneDialog from "@/components/project/auth/Dialogs/RegisterV2InitPhoneDialog";
 import RegisterV2InitEmailDialog from "@/components/project/auth/Dialogs/RegisterV2InitEmailDialog";
 import RegisterV2SetRealNameDialog from "@/components/project/auth/Dialogs/RegisterV2SetRealName";
+import useLivechat from "@/hooks/livechat/useLivechat";
 
 const App: React.FC = () => {
   const { isLoading } = useInitSite();
+  const { initLivechat } = useLivechat();
   const gameTypeList = useGameTypeList();
   const routeRef = useRef<RouteType>();
 
   const currentRoute = routeRef.current;
-  
   const isDisableWebPinchAction = brandConfig[mapBrandName(config.brand)].isDisableWebPinchAction;
+  const activeLivechat = brandConfig[mapBrandName(config.brand)].activeLivechat;
+  if (activeLivechat) {
+    initLivechat();
+  }
+
   if (isDisableWebPinchAction) {
     document.addEventListener(
       "touchstart",
