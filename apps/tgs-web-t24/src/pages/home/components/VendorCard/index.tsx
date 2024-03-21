@@ -125,6 +125,10 @@ const MaintenanceBg = styled.div`
   align-items: center;
   justify-content: center;
 
+  &:hover {
+    cursor: not-allowed;
+    }
+
   ${media.sm} {
     height: 81%;
     border-radius: 15px;
@@ -149,6 +153,13 @@ const VendorCard = ({ imageUrl, venderName, venderLogoUrl, launchGame, status }:
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
+  const launchGameHandler = () => {
+    if (status === providerStatus.Maintenance) {
+      return;
+    }
+    launchGame();
+  }
+
   useEffect(() => {
     if (gameNameRef.current) {
       resizeText({ container: gameNameRef.current, text: gameNameRef.current });
@@ -159,7 +170,7 @@ const VendorCard = ({ imageUrl, venderName, venderLogoUrl, launchGame, status }:
   }, [resizeText, gameNameRef.current, venderNameRef.current]);
 
   return (
-    <VendorCardBg onClick={launchGame}>
+    <VendorCardBg onClick={launchGameHandler}>
       <VendorCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         <GradientBg>
@@ -173,9 +184,9 @@ const VendorCard = ({ imageUrl, venderName, venderLogoUrl, launchGame, status }:
         {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
       </VendorCardContent>
 
-      {isDesktopSize && (
+      {isDesktopSize && status !== providerStatus.Maintenance && (
         <VendorCardHoverBg>
-          <TextButton text={"Go"} onClick={launchGame} />
+          <TextButton text={"Go"} onClick={launchGameHandler} />
         </VendorCardHoverBg>
       )}
     </VendorCardBg>
