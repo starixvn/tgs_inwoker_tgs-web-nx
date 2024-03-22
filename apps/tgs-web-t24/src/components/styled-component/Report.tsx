@@ -51,6 +51,9 @@ export const ReportCardRow = styled.div`
 
 export const ReportCardCol = styled.span`
   font-weight: normal;
+  & > div {
+    margin-bottom: 5px;
+  }
 `;
 
 type CustomWinLoseProps = { $value: number | null };
