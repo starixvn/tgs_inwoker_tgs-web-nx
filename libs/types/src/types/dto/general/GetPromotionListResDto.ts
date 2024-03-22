@@ -1,7 +1,7 @@
-export class PromotionCampaignDetail {
-  percentage = 0;
-  bonusAmountLimit = 0;
-  turnoverMultiple = 0;
+export type PromotionCampaignDetail = {
+  percentage: number;
+  bonusAmountLimit: number;
+  turnoverMultiple: number;
 }
 
 interface PromotionLocalization {
@@ -14,7 +14,11 @@ interface PromotionLocalization {
 }
 
 export class Promotion {
-  campaignDetail: PromotionCampaignDetail[] = [];
+  campaignDetail: PromotionCampaignDetail = {
+    percentage: 0,
+    bonusAmountLimit: 0,
+    turnoverMultiple: 0,
+  };
   content = "";
   desktopBanner = "";
   from = "";

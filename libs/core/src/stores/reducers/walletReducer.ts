@@ -1,4 +1,5 @@
 //@ts-nocheck
+import { groupBy } from "@tgs-web-nx/utils";
 import {
   GETDEPOSITCHANNEL_BEGIN,
   GETDEPOSITCHANNEL_SUCCESS,
@@ -85,6 +86,7 @@ import {
 } from "../../api-services/constant/actionType";
 import config from "../../config/config";
 import { WalletType } from "../../api-services/utils/Enum";
+
 const initState = {
   loading: false,
   updateBalanceloading: false,
@@ -92,6 +94,7 @@ const initState = {
   message: "",
   depositList: [],
   depositTypeList: [],
+  depositChannelList: [],
   depositLoading: false,
   depositResult: null,
   cancelDepositResult: null,
@@ -131,6 +134,10 @@ function mapDepositList(result) {
             channelcode: data[i].channelcode,
             transferlimit: data[i].transferlimit,
             fees: data[i].feepercentile,
+            paymentcode: data[i].paymentcode,
+            paymentid: data[i].paymentid,
+            extended: data[i].extended,
+            banktype: data[i].banktype,
           },
         ],
       });
@@ -142,12 +149,16 @@ function mapDepositList(result) {
           channelid: data[i].channelid,
           channelname: data[i].channelname,
           channelcode: data[i].channelcode,
+          paymentcode: data[i].paymentcode,
+          paymentid: data[i].paymentid,
           transferlimit: data[i].transferlimit,
           fees: data[i].feepercentile,
+          extended: data[i].extended,
+          banktype: data[i].banktype,
         });
     }
   }
-
+  
   return { depositList };
 }
 function mapDepositType(result) {
@@ -341,6 +352,20 @@ function mapDepositType(result) {
     depositMaxLimit: depositMaxLimit,
   };
 }
+
+function mapDepositChannelList (result) {
+  const data = result.data ?? [];
+  const groupByData = groupBy(data, row => row.channelcode);
+  const depositChannelList = Object.keys(groupByData).map((key)=> {
+    return {
+      code: key,
+      channels: groupByData[key],
+    }
+  });
+
+  return {depositChannelList}
+}
+
 function mapBalanceList(data) {
   const balanceList = [];
   const mainBalance = data.main;
@@ -593,6 +618,7 @@ const walletReducer = (state = initState, action) => {
         ...state,
         ...mapDepositType(action.payload),
         ...mapDepositList(action.payload),
+        ...mapDepositChannelList(action.payload),
         loading: false,
       };
     case GETDEPOSITCHANNEL_FAIL:
