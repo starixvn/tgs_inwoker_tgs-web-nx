@@ -15,6 +15,7 @@ import {
   PerformManualThirdPartyDepositResDto,
   PerformPulsaDepositResDto,
   PerformUsdtDepositResDto,
+  PerformCoinsphDepositResDto,
   WalletState,
 } from "@tgs-web-nx/types";
 import {
@@ -238,7 +239,8 @@ export function useWalletStore() {
           paymentid,
           promotionid,
           banktype,
-        )) as PerformManualFPSDepositResDto;
+        )) as PerformManualFPSDepositWithNameResDto;
+
         //@ts-ignore
         if (response?.IsSuccess) {
           dispatch({
@@ -253,6 +255,8 @@ export function useWalletStore() {
             loading: false,
           });
         }
+        
+        return response;
       } catch (error: any) {
         dispatch({
           type: DOMANUALDEPOSIT_FAILED,
@@ -261,7 +265,7 @@ export function useWalletStore() {
         });
       }
     },
-    [dispatch],
+    [],
   );
 
   const doFPSDepositWithName = useCallback(
@@ -448,6 +452,61 @@ export function useWalletStore() {
     },
     [],
   );
+  const doCoinsphDeposit = useCallback(
+    async (
+      amount: string,
+      paymentid: string,
+      promotionid: string,
+      banktype: string,
+      note: string,
+      name: string,
+      phone: string,
+      address: string
+    ) => {
+      dispatch({
+        type: DODEPOSIT_BEGIN,
+        loading: true,
+      });
+
+      try {
+        //  @ts-ignore
+        const response = (await WalletService.PerformCoinsphDeposit(
+          amount,
+          paymentid,
+          promotionid,
+          banktype,
+          note,
+          name,
+          phone,
+          address
+        )) as PerformCoinsphDepositResDto;
+
+        if (response?.IsSuccess) {
+          dispatch({
+            type: DODEPOSIT_SUCCESS,
+            payload: response,
+            loading: true,
+          });
+        } else {
+          dispatch({
+            type: DODEPOSIT_FAILED,
+            payload: response,
+            loading: false,
+          });
+        }
+
+        return response;
+      } catch (error: any) {
+        dispatch({
+          type: DODEPOSIT_FAILED,
+          payload: error,
+          loading: false,
+        });
+      }
+    },
+    [],
+  );
+
 
   const doEWalletDeposit = useCallback(
     async (
@@ -808,7 +867,7 @@ export function useWalletStore() {
     [],
   );
 
-  const doUploadDepositProof = useCallback(async (id: string, file: File, payload: any) => {
+  const doUploadDepositProof = useCallback(async (id: string, file: File) => {
     dispatch({
       type: DOMANUALDEPOSITUPLOAD_BEGIN,
       loading: true,
@@ -816,7 +875,7 @@ export function useWalletStore() {
 
     try {
       const response = await WalletService.PerformUploadDepositProof(id, file);
-
+      
       //@ts-ignore
       if (response?.IsSuccess) {
         dispatch({
@@ -1611,6 +1670,8 @@ export function useWalletStore() {
     },
     [],
   );
+  
+  
 
   return {
     wallet,
@@ -1653,5 +1714,6 @@ export function useWalletStore() {
     doBankDepositWithDetail,
     doPulsaDepositWithDetail,
     doEWalletDepositWithDetail,
+    doCoinsphDeposit,
   };
 }

@@ -1,4 +1,4 @@
-import { useWalletStore, } from "@tgs-web-nx/core";
+import { useWalletStore, useAccountStore} from "@tgs-web-nx/core";
 import { useState, useEffect, useMemo, useContext} from "react";
 import { groupBy } from "@tgs-web-nx/utils";
 import { FilterDepositList } from "@tgs-web-nx/types";
@@ -53,6 +53,7 @@ export const useGroupList = () => {
  * @param code 上一層的 code
  */
 export const useChannelList = (list: FilterDepositList[], code: string) => {
+  const { account } = useAccountStore();
   const [selectedID, setSelectedID] = useState('');
   const filterChannelList = getFilterDepositList(list, code);
   const channelList: Option[] = filterChannelList.map(row => {
@@ -65,6 +66,7 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
     }
   });
   const currentChannel = filterChannelList.find(row => row.id === selectedID);
+  const isManual = currentChannel?.paymentcode === 'Manual';
   const {formData, setFormData} = useContext(DepositFormContext);
   const extended = currentChannel?.extended;
   const extendedKeys = extended ? Object.keys(extended) : [];
@@ -80,13 +82,15 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
       minAmount: currentChannel?.transferlimit.from ?? 0,
       maxAmount: currentChannel?.transferlimit.to ?? 0,
       phone: extended?.phone ?? '',
-      name: extended?.eMoneyName ? extended?.eMoneyName ?? '' : extended?.name ?? '',
+      name: account.info.member_username,
+      eMoneyName: extended?.eMoneyName ? extended?.eMoneyName ?? '' : extended?.name ?? '',
+      files: null,
     })
   }, [currentChannel?.id])
 
   useSelectFirst(channelList, setSelectedID, [code]);
     
-  return {channelList, currentChannel, hasExtended, extended};
+  return {channelList, currentChannel, hasExtended, extended, isManual};
 }
 
 

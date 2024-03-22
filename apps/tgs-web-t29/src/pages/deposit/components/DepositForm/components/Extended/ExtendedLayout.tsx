@@ -28,7 +28,7 @@ export const ExtendedLayout = ({
   banktype,
 }: Props) => {
   const props: Record<Key, string | undefined> = {name, bankAccount, eMoneyName, phone, email, fpsId, address};
-  const images: Record<ImageKey, string | undefined> = {logo, qrCode};
+  const imageProps: Record<ImageKey, string | undefined> = {logo, qrCode};
   
   const renderLayout = Object.keys(props).map((key) => {
     if (props[key as Key]) {
@@ -44,10 +44,10 @@ export const ExtendedLayout = ({
     return null;
   })
 
-  const renderQrCode = Object.keys(images).map((key) => {
-    if (images[key as ImageKey]) {
+  const renderQrCode = Object.keys(imageProps).map((key) => {
+    if (imageProps[key as ImageKey]) {
       return (
-        <QRCodeImg src={images[key as ImageKey]} alt={key} key={key} style={{ marginBottom: "10px" }} />
+        <QRCodeImg src={imageProps[key as ImageKey]} alt={key} key={key} style={{ marginBottom: "10px" }} />
       )
     }
 

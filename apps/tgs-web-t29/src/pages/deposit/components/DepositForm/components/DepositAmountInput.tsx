@@ -6,17 +6,7 @@ import { LabelContainer, CurrencyHint, TransferHint } from "../components";
 import { DepositFormContext } from "./DepositFormProvider";
 import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
-import {
-  AmountHint,
-  ExchangeRateContainer,
-  FeeSpot,
-  HintText,
-  LimitAmount,
-  LimitLabel,
-  QRCodeImg,
-  TransferLabel,
-  TransferValue,
-} from "@/components/styled-component/Deposit";
+import {AmountHint, FeeSpot} from "@/components/styled-component/Deposit";
 
 type Props = {
   currentChannel?: TransferChannel

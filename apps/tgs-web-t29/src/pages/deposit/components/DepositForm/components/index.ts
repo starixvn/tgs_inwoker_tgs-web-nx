@@ -3,7 +3,7 @@ import { DepositFormContext, DepositFormProvider } from "./DepositFormProvider";
 import { DepositPromotion } from "./DepositPromotion";
 import { DepositSubmitButton } from "./DepositSubmitButton";
 import FormLayout from "./FormLayout";
-import {Icon, WarningText, TransferHint, CurrencyHint, Form, LabelContainer, Badge, BadgeWrapper, FormContainer} from "./styled";
+import {Icon, WarningText, TransferHint, CurrencyHint, LabelContainer, Badge, BadgeWrapper, FormContainer} from "./styled";
 import { Cards } from "./Cards";
 import { Upload } from "./Upload";
 
@@ -18,7 +18,6 @@ export {
   WarningText,
   TransferHint,
   CurrencyHint,
-  Form,
   LabelContainer,
   Badge,
   BadgeWrapper,

@@ -476,7 +476,6 @@ class DepositPrev extends Component {
         payment.paymentcode,
         depositMethodSwitcher(method.methodcode.toLowerCase()),
       );
-      console.log('12321');
       // if (method.methodcode === "Crypto") {
       //   this.props.doCryptoDeposit(
       //     this.state.amount.replace(/,/g, ""),

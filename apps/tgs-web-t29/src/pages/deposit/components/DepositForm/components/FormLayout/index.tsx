@@ -8,11 +8,13 @@ import { DefaultLayout } from "./DefaultLayout";
 import { TrcLayout } from "./TrcLayout";
 import { ALI2ALILayout } from "./ALI2ALILayout";
 import { EWalletLayout } from "./EWalletLayout";
+import { CoinsphLayout } from "./CoinsphLayout";
 
 export type LayoutProps = {
   filterGroupList: FilterDepositList[]
   groupCode: string
-  handleSubmit?: () => void
+  isShowDepositSelectBankName?: boolean;
+  handleSubmit?: () => void;
 }
 
 /**
@@ -48,6 +50,9 @@ const FormLayout = () => {
 
       case GroupCodeEnum.EWallet:
         return <EWalletLayout {...layoutProps} />
+    
+      case GroupCodeEnum.Coinsph:
+        return <CoinsphLayout {...layoutProps} />
 
       default:
         return <DefaultLayout {...layoutProps} />

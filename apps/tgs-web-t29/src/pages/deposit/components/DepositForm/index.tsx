@@ -1,13 +1,13 @@
-import { FormLayout, Form } from "./components";
+import { FormLayout, DepositFormProvider } from "./components";
 
 /**
  * 存款表單
  */
 const DepositForm = () => (
-  <Form>
+  <DepositFormProvider>
     {/* 對應UI */}
     <FormLayout />
-  </Form>
+  </DepositFormProvider>
 );
 
 export default DepositForm;

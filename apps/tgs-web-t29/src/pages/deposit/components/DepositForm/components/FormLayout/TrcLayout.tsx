@@ -19,13 +19,9 @@ export const TrcLayout = ({
   filterGroupList,
   groupCode,
 }: LayoutProps) => {
-  const {channelList, currentChannel, extended, hasExtended} = useChannelList(filterGroupList, groupCode);
+  const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
-  const {doUsdtDeposit} = useWalletStore();
-  const isManual = currentChannel?.paymentcode === 'Manual';
-  const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
-  const isManualDisabled = config.features.Deposit_UploadRequired ? isDefaultDisabled || formData.files === null : isDefaultDisabled;
-  const isDisabled = isManual ? isManualDisabled : isDefaultDisabled;
+  const {doUsdtDeposit, doUploadDepositProof} = useWalletStore();
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
@@ -38,7 +34,11 @@ export const TrcLayout = ({
    * 送出表單
    */
   const handleOnSubmit = () => {
-    doUsdtDeposit(amount, id, promotionid, type);
+    doUsdtDeposit(amount, id, promotionid, type).then((res) => {
+      if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
+        doUploadDepositProof(res.data, formData.files[0])
+      }
+    });
   }
 
   return (
@@ -76,7 +76,7 @@ export const TrcLayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isDisabled={isDisabled} />
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} />
     </>
   )
 };

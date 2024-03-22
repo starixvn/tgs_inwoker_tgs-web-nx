@@ -28,6 +28,7 @@ const defaultState: FormState = {
   name: '',
   files: null,
   phone: '',
+  eMoneyName: '',
 }
 
 export const DepositFormContext = createContext<DepositFormContextState>({

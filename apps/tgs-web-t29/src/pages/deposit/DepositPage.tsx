@@ -3,7 +3,6 @@ import { useDepositPage, useRwd } from "@tgs-web-nx/core/hooks";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import DepositForm from "./components/DepositForm";
-import { DepositFormProvider } from "./components/DepositForm/components/DepositFormProvider";
 import DepositPrev from "@/components/account/DepositPrev";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import iconDeposit from "@/assets/t29/images/account/navItem/icon-deposit.svg";
@@ -24,9 +23,7 @@ const DepositPage = () => {
       {isDesktopSize && <UserWalletInfo />}
       <AccountPaper pageName={i18n.t("common.deposit")} iconUrl={iconDeposit}>
         <DepositPrev appHistory={history} alert={alert} />
-        <DepositFormProvider>
-          <DepositForm />
-        </DepositFormProvider>
+        <DepositForm />
       </AccountPaper>
     </TransferPageContainer>
   );

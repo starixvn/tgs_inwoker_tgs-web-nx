@@ -23,10 +23,6 @@ export const CurrencyHint = styled.p`
   color: red;
 `;
 
-export const Form = styled.form`
-  display: block;
-`;
-
 export const LabelContainer = styled(ProfileLabelContainer)`
   font-size: 14px;
   font-weight: 700;
@@ -54,7 +50,6 @@ export const Badge = styled.div<BadgeProps>`
 `;
 
 export const BadgeWrapper = styled.div`
-  margin-top: 16px;
   width: 100%;
   display: flex;
   gap: 10px;

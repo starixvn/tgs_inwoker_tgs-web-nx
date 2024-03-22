@@ -13,8 +13,7 @@ export const EWalletLayout = ({
   groupCode,
 }: LayoutProps) => {
   const {formData} = useContext(DepositFormContext);
-  const {doEWalletDeposit, doEWalletDepositWithDetail} = useWalletStore();
-  
+  const {doEWalletDeposit, doEWalletDepositWithDetail, doUploadDepositProof} = useWalletStore();
 
   /**
    * 送出表單
@@ -22,11 +21,22 @@ export const EWalletLayout = ({
   const handleOnSubmit = () => {
     const {amount, id, promotionid, name, type, phone} = formData;
     if(config.features.Deposit_AddCard) {
-      doEWalletDepositWithDetail(amount, id, promotionid, type, 'note', 'detail', name, phone);
+      doEWalletDepositWithDetail(amount, id, promotionid, type, 'note', 'detail', name, phone)
+        .then((res) => {
+          //@ts-ignore
+          if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
+            doUploadDepositProof(res.data, formData.files[0])
+          }
+        });
       return;
     }
 
-    doEWalletDeposit(amount, id, promotionid, type, 'note', name, phone);
+    doEWalletDeposit(amount, id, promotionid, type, 'note', name, phone)
+      .then((res) => {
+        if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
+          doUploadDepositProof(res.data, formData.files[0])
+        }
+      });
   }
 
   return (

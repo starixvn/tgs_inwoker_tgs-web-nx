@@ -24,7 +24,7 @@ type Props = {
 }
 
 export const DepositSelectBankName = ({
-  banktype = ''
+  banktype
 }: Props) => {
   const {wallet: {bankCardList}} = useWalletStore();
   const {formData, setFormData} = useContext(DepositFormContext);

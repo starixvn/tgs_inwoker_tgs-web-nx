@@ -10,6 +10,7 @@ export * from "./PerformManualFPSDepositWithNameResDto";
 export * from "./PerformManualThirdPartyDepositResDto";
 export * from "./PerformPulsaDepositResDto";
 export * from "./PerformUsdtDepositResDto";
+export * from "./PerformCoinsphDepositResDto";
 export * from "./GetAutoTransferStatusResDto";
 export * from "./GetBankCardListResDto";
 export * from "./GetPlayerBucketDto";

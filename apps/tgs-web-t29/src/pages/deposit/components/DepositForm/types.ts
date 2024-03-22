@@ -9,6 +9,7 @@ export type DepositFormData = {
   type: string;
   account: string;
   name: string;
+  eMoneyName: string;
   files: FileList | null;
   phone: string;
 }

@@ -11,11 +11,13 @@ type Props = {
 
 const defaultIconUrl = './assets/images/deposit/default.png';
 
-const Image = ({
+const CardIcon = ({
   iconUrl
 }: {iconUrl: string}) => {
   const [isError, setIsError] = useState(false);
-  return <Icon src={isError ? defaultIconUrl : iconUrl} onError={() => setIsError(true)}/>
+  return (
+    <Icon src={isError ? defaultIconUrl : iconUrl} onError={() => setIsError(true)}/>
+  );
 }
 
 
@@ -35,7 +37,7 @@ export const Cards = ({
             onClick={()=> row.onClick(row.code)}
             $isActive={row.isActive}
           >   
-            {hasIcon && <Image iconUrl={row.iconUrl}/>}
+            {hasIcon && <CardIcon iconUrl={row.iconUrl}/>}
             {row.children}
           </Badge>
         )}

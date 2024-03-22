@@ -1,4 +1,4 @@
-import { useRef, ChangeEvent, useState, useContext } from "react";
+import { useRef, ChangeEvent, useContext } from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
@@ -16,18 +16,21 @@ import {
  * 上傳憑證
  */
 export const Upload = () => {
-  const [files, setFiles] = useState<FileList | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { alert } = useNotifications();
   const {formData, setFormData} = useContext(DepositFormContext);
+  const {files} = formData;
   const handleOnClickFileButton = () => {
     inputRef?.current?.click();
   };
-
+  
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     let files = e.target?.files;
     const fileName = e.target.value.toLowerCase();
+    
     if (files) {
+      const fileSize = Math.round(files[0].size / 1024);
+
       if (
         !fileName.endsWith(".jpg") &&
         !fileName.endsWith(".jpeg") &&
@@ -36,16 +39,16 @@ export const Upload = () => {
       ) {
         alert("", i18n.t("deposit.msgInvalidFileType"));
         files = null;
-        return false;
+        return;
       }
-      const fileSize = Math.round(files[0].size / 1024);
+      
       if (fileSize > 10240) {
         alert("", i18n.t("deposit.msgInvalidFileSize"));
         files = null;
-      } else {
-        setFiles(files);
-        setFormData({...formData, files})
+        return;
       }
+
+      setFormData({...formData, files});
     }
   };
 

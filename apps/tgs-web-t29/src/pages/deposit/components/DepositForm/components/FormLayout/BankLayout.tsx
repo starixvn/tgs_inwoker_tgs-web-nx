@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
-import { Common } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
 import { useChannelList, useProviderList } from "../../hooks";
 import { Cards, DepositAmountInput, DepositPromotion, Upload, DepositSubmitButton, DepositFormContext } from "../../components";
 import { BankExtended } from "../Extended";
@@ -16,8 +14,8 @@ export const BankLayout = ({
   groupCode,
 }: LayoutProps) => {
   const {providerList, filterProviderList, providerCode} = useProviderList(filterGroupList, groupCode);
-  const {channelList, currentChannel, extended, hasExtended} = useChannelList(filterProviderList, providerCode);
-  const {performDeposit, doBankDeposit, doBankDepositWithDetail} = useWalletStore();
+  const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterProviderList, providerCode);
+  const {performDeposit, doBankDeposit, doUploadDepositProof} = useWalletStore();
   const {formData} = useContext(DepositFormContext);
 
   const channelProps = {
@@ -30,11 +28,7 @@ export const BankLayout = ({
     list: providerList,
   };
 
-  const isManual = providerCode === 'Manual';
   const [ProviderCards, ChannelCards] = [Cards, Cards];
-  const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
-  const isManualDisabled = config.features.Deposit_UploadRequired ? isDefaultDisabled || formData.files === null : isDefaultDisabled;
-  const isDisabled = isManual ? isManualDisabled : isDefaultDisabled;
   
 
   /**
@@ -46,13 +40,18 @@ export const BankLayout = ({
     // 預設銀行存款
     if(!isManual) {
       performDeposit(amount, id, promotionid, paymentcode, type);
+      return;
     }
 
     // 手動存款
-    if(isManual) {
-      doBankDeposit(name, account, amount, id, promotionid, type, '');
-    }
-
+    doBankDeposit(name, account, amount, id, promotionid, type, '')
+    .then((res) => {
+      // 上傳檔案
+      if(formData.files) {
+        doUploadDepositProof(res.data, formData.files[0])
+      }
+    });
+    
   }
 
   return (
@@ -65,7 +64,7 @@ export const BankLayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isDisabled={isDisabled} />
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} />
     </>
   )
 };
