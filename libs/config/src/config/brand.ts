@@ -35,7 +35,6 @@ type MOVN2Config = {
   isHideTransferButton: boolean; // 是否在BottomAppBar顯示TransferButton https://raypro.atlassian.net/browse/TGS-4333
   customGametypeSort: string[]; // game type 是否有客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-3968
   defaultActiveGametype: GameTypeEnum | null; //預設active的game type https://raypro.atlassian.net/browse/TGS-3968
-  activeLivechat: boolean;
 };
 
 /*
@@ -87,7 +86,6 @@ export const defaultConfig: Config = {
   isHideTransferButton: false,
   customGametypeSort: [],
   defaultActiveGametype: null,
-  activeLivechat: false,
   // new brand config start here
   // NewBrand
 };
@@ -134,7 +132,6 @@ export const brandConfig: Record<BrandName, Config> = {
       "esports",
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
-    activeLivechat: true,
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -171,7 +168,6 @@ export const brandConfig: Record<BrandName, Config> = {
       "esports",
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
-    activeLivechat: true,
   },
   MOPH: {
     ...defaultConfig,
@@ -189,7 +185,6 @@ export const brandConfig: Record<BrandName, Config> = {
       "lottery",
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
-    activeLivechat: true,
   },
 };
 
