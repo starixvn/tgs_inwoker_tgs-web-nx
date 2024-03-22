@@ -34,7 +34,8 @@ const WithdrawalDetailCards = ({ withdrawalDetails }: Props) => {
             <ReportCardRow>
               <ReportCardCol style={{ width: "33%" }}>{date}</ReportCardCol>
               <ReportCardCol style={{ width: "33%" }}>
-                {i18n.t(`report.withdrawal.status${withdrawalDetail.status}`)}
+                <div>{i18n.t(`report.withdrawal.status${withdrawalDetail.status}`)}</div>
+                <div>{withdrawalDetail.remark}</div>
               </ReportCardCol>
               <ReportCardCol style={{ width: "33%", textAlign: "right" }}>
                 {withdrawalDetail.amount}
