@@ -76,7 +76,7 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
                     },
                   },
                   "& .Mui-selected": {
-                    backgroundColor: "#ff637c",
+                    backgroundColor: "#f12c4da4",
                   },
                 },
               },
