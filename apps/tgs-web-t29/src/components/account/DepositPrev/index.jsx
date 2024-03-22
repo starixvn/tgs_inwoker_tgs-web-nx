@@ -15,9 +15,9 @@ import Main from "./Main";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Loading from "@/components/UI/Loading";
-import DepositNotificationDialog from "@/pages/deposit/components/components/DepositNotificationDialog";
-import WalletMessagePopupDialog from "@/pages/deposit/components/components/WalletMessagePopupDialog";
-import DepositAddCard from "@/pages/deposit/components/components/DepositAddCard";
+import DepositNotificationDialog from "@/pages/deposit/components/DepositNotificationDialog";
+import WalletMessagePopupDialog from "@/pages/deposit/components/WalletMessagePopupDialog";
+import DepositAddCard from "@/pages/deposit/components/DepositAddCard";
 
 const Container = styled.div`
   position: relative;
@@ -467,6 +467,7 @@ class DepositPrev extends Component {
           );
         }
       }
+      
     } else {
       this.props.performDeposit(
         this.state.amount.replace(/,/g, ""),

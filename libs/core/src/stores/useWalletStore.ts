@@ -15,6 +15,7 @@ import {
   PerformManualThirdPartyDepositResDto,
   PerformPulsaDepositResDto,
   PerformUsdtDepositResDto,
+  PerformCoinsphDepositResDto,
   WalletState,
 } from "@tgs-web-nx/types";
 import {
@@ -167,7 +168,7 @@ export function useWalletStore() {
     async (
       name: string,
       account: string,
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -220,7 +221,7 @@ export function useWalletStore() {
   const doFPSDeposit = useCallback(
     async (
       account: string,
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -238,7 +239,8 @@ export function useWalletStore() {
           paymentid,
           promotionid,
           banktype,
-        )) as PerformManualFPSDepositResDto;
+        )) as PerformManualFPSDepositWithNameResDto;
+
         //@ts-ignore
         if (response?.IsSuccess) {
           dispatch({
@@ -253,6 +255,8 @@ export function useWalletStore() {
             loading: false,
           });
         }
+        
+        return response;
       } catch (error: any) {
         dispatch({
           type: DOMANUALDEPOSIT_FAILED,
@@ -261,14 +265,14 @@ export function useWalletStore() {
         });
       }
     },
-    [dispatch],
+    [],
   );
 
   const doFPSDepositWithName = useCallback(
     async (
       name: string,
       account: string,
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -316,7 +320,7 @@ export function useWalletStore() {
   );
 
   const doThirdPartyDeposit = useCallback(
-    async (amount: number, paymentid: string, promotionid: string, banktype: string) => {
+    async (amount: string, paymentid: string, promotionid: string, banktype: string) => {
       dispatch({
         type: DOTHIRDPARTYDEPOSIT_BEGIN,
         loading: true,
@@ -357,7 +361,7 @@ export function useWalletStore() {
   );
 
   const doUsdtDeposit = useCallback(
-    async (amount: number, paymentid: string, promotionid: string, banktype: string) => {
+    async (amount: string, paymentid: string, promotionid: string, banktype: string) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
         loading: true,
@@ -400,7 +404,7 @@ export function useWalletStore() {
 
   const doPulsaDeposit = useCallback(
     async (
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -448,16 +452,71 @@ export function useWalletStore() {
     },
     [],
   );
-
-  const doEWalletDeposit = useCallback(
+  const doCoinsphDeposit = useCallback(
     async (
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
       note: string,
-      emoneyname: string,
+      name: string,
       phone: string,
+      address: string
+    ) => {
+      dispatch({
+        type: DODEPOSIT_BEGIN,
+        loading: true,
+      });
+
+      try {
+        //  @ts-ignore
+        const response = (await WalletService.PerformCoinsphDeposit(
+          amount,
+          paymentid,
+          promotionid,
+          banktype,
+          note,
+          name,
+          phone,
+          address
+        )) as PerformCoinsphDepositResDto;
+
+        if (response?.IsSuccess) {
+          dispatch({
+            type: DODEPOSIT_SUCCESS,
+            payload: response,
+            loading: true,
+          });
+        } else {
+          dispatch({
+            type: DODEPOSIT_FAILED,
+            payload: response,
+            loading: false,
+          });
+        }
+
+        return response;
+      } catch (error: any) {
+        dispatch({
+          type: DODEPOSIT_FAILED,
+          payload: error,
+          loading: false,
+        });
+      }
+    },
+    [],
+  );
+
+
+  const doEWalletDeposit = useCallback(
+    async (
+      amount: string,
+      paymentid: string,
+      promotionid: string,
+      banktype: string,
+      note: string,
+      emoneyname?: string,
+      phone?: string,
     ) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
@@ -808,7 +867,7 @@ export function useWalletStore() {
     [],
   );
 
-  const doUploadDepositProof = useCallback(async (id: string, file: File, payload: any) => {
+  const doUploadDepositProof = useCallback(async (id: string, file: File) => {
     dispatch({
       type: DOMANUALDEPOSITUPLOAD_BEGIN,
       loading: true,
@@ -816,7 +875,7 @@ export function useWalletStore() {
 
     try {
       const response = await WalletService.PerformUploadDepositProof(id, file);
-
+      
       //@ts-ignore
       if (response?.IsSuccess) {
         dispatch({
@@ -1349,13 +1408,15 @@ export function useWalletStore() {
   );
 
   const performDeposit = useCallback(
-    (amount: number, paymentid: string, promotionid: string, paymentcode: string, type: string) => {
+    (amount: string, paymentid: string, promotionid: string, paymentcode: string, type: string) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
         loading: true,
       });
       const result = WalletService.PerformDeposit(amount, paymentid, promotionid, paymentcode, type)
         .then((response) => {
+          console.log(response);
+          
           if (response?.IsSuccess) {
             dispatch({
               type: DODEPOSIT_SUCCESS,
@@ -1507,7 +1568,7 @@ export function useWalletStore() {
 
   const doPulsaDepositWithDetail = useCallback(
     (
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
@@ -1558,14 +1619,14 @@ export function useWalletStore() {
 
   const doEWalletDepositWithDetail = useCallback(
     (
-      amount: number,
+      amount: string,
       paymentid: string,
       promotionid: string,
       banktype: string,
       note: string,
       detail: string,
-      emoneyname: string,
-      phone: string,
+      emoneyname?: string,
+      phone?: string,
     ) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
@@ -1609,6 +1670,8 @@ export function useWalletStore() {
     },
     [],
   );
+  
+  
 
   return {
     wallet,
@@ -1651,5 +1714,6 @@ export function useWalletStore() {
     doBankDepositWithDetail,
     doPulsaDepositWithDetail,
     doEWalletDepositWithDetail,
+    doCoinsphDeposit,
   };
 }
