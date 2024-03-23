@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
-import config from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { accountAction, AccountService } from "@tgs-web-nx/core";
 import BaseProfile from "./BaseProfile";
@@ -64,15 +64,26 @@ class ChangePhone extends BaseProfile {
     if (this.state.countdownToken > 0) return;
     var expr = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`);
 
-    if (!expr.test(this.state.phone)) {
+    if (!brandConfig[mapBrandName(config.brand)] && !expr.test(this.state.phone)) {
       return this.showErrorMessage(
         i18n
           .t("common.noReachMin")
           .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
       );
     }
+
+    if(brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && (this.state.phone.length !== config.features.MAX_PHONE_LENGTH) || (this.state.phone.length === config.features.MAX_PHONE_LENGTH && this.state.phone[0] !== '0'))  {
+      alert(
+        "",
+        i18n
+          .t("common.noReachLength")
+          .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
+      );
+      return;
+    }
+
     this.showLoading(true);
-    AccountService.VerifyPhone(this.state.phone, this.state.areacode)
+    AccountService.VerifyPhone(brandConfig[mapBrandName(config.brand)].isFixedPhoneLength ? this.state.phone.slice(1) : this.state.phone, this.state.areacode)
       .then((response) => {
         if (response.IsSuccess) {
           this.showInfoMessage(i18n.t("common.msgTokenSent"));
