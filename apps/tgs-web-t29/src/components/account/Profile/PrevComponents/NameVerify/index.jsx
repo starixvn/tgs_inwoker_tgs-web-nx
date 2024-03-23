@@ -121,9 +121,9 @@ class NameVerify extends BaseProfile {
     if (!memberName) {
       return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterName"));
     }
-    if (!memberCard) {
-      return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterICNum"));
-    }
+    // if (!memberCard) {
+    //   return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterICNum"));
+    // }
 
     if (config.features.ICVerificationUpload && icUpload === "") {
       return this.props.alert("", i18n.t("deposit.msgPlsSelectFile"));
