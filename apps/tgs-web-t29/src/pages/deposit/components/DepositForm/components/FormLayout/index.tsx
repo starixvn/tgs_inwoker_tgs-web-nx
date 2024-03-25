@@ -13,7 +13,6 @@ import { CoinsphLayout } from "./CoinsphLayout";
 export type LayoutProps = {
   filterGroupList: FilterDepositList[]
   groupCode: string
-  isShowDepositSelectBankName?: boolean;
   handleSubmit?: () => void;
 }
 
@@ -26,11 +25,10 @@ const FormLayout = () => {
   const props = {
     i18nParam: "depositAndWithdrawalStatus.depositMode",
     list: groupList,
-    hasIcon: true,
   };
 
   const layoutProps: LayoutProps = {groupCode, filterGroupList};
-  
+
   /**
  * 對應 UI
  */
@@ -50,7 +48,7 @@ const FormLayout = () => {
 
       case GroupCodeEnum.EWallet:
         return <EWalletLayout {...layoutProps} />
-    
+
       case GroupCodeEnum.Coinsph:
         return <CoinsphLayout {...layoutProps} />
 

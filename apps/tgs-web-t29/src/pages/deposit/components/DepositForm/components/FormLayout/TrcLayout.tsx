@@ -11,6 +11,7 @@ import {
   LimitAmount,
   LimitLabel,
 } from "@/components/styled-component/Deposit";
+import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
 
 /**
  * TRC UI
@@ -28,7 +29,7 @@ export const TrcLayout = ({
   };
   const usdtRate = extended?.rate;
   const {amount, id, promotionid, type} = formData;
-  
+  const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
 
   /**
    * 送出表單
@@ -44,12 +45,12 @@ export const TrcLayout = ({
   return (
     <>
       <ChannelCards {...props} />
-      
-      {hasExtended && <ExtendedLayout {...extended} isShowDepositSelectBankName={false} banktype={currentChannel?.banktype}/>}
+
+      {hasExtended && <ExtendedLayout {...extended} isShowDepositSelectBankName={false} banktype={bankType}/>}
 
       {/* 請輸入存款金額 */}
       <DepositAmountInput currentChannel={currentChannel} />
-      
+
       <ExchangeRateContainer>
         <div>
           <LimitLabel>
@@ -63,7 +64,7 @@ export const TrcLayout = ({
           <LimitLabel>{i18n.t("deposit.totalAmount")}</LimitLabel>
           {" :  "}
           <LimitAmount>{` ${
-            isNaN(Number(amount)) === false
+            !isNaN(Number(amount))
               ? Common.formatNumberWithCommasNoRounding(Number(amount) / Number(usdtRate))
               : 0
           }`}</LimitAmount>
