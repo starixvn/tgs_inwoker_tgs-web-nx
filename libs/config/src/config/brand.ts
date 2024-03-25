@@ -177,6 +177,11 @@ export const brandConfig: Record<BrandName, Config> = {
   },
   MOPH: {
     ...defaultConfig,
+    socialMediaLink: {
+      ...defaultConfig.socialMediaLink,
+      fb: "https://www.facebook.com/Momobet.ph",
+      ig: "https://www.instagram.com/momobet.ph",
+    },
     isShowAgentAdminButton: true,
     isHideTransferButton: true,
     customGametypeSort: [
