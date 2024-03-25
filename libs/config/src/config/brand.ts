@@ -37,6 +37,10 @@ type MOVN2Config = {
   defaultActiveGametype: GameTypeEnum | null; //預設active的game type https://raypro.atlassian.net/browse/TGS-3968
 };
 
+type MOPHConfig = {
+  isFixedPhoneLength: boolean;
+}
+
 /*
 * 新站台 客製化設定
 * 建議以 boolean 為主, {key: value} 為輔 例如 socialMediaLink
@@ -60,7 +64,7 @@ type Config = MOVN2Config & NewBrandConfig
 --- example end ---
 */
 
-type Config = MOVN2Config;
+type Config = MOVN2Config & MOPHConfig;
 
 // 預設共用設定
 export const defaultConfig: Config = {
@@ -86,6 +90,7 @@ export const defaultConfig: Config = {
   isHideTransferButton: false,
   customGametypeSort: [],
   defaultActiveGametype: null,
+  isFixedPhoneLength: false,
   // new brand config start here
   // NewBrand
 };
@@ -96,6 +101,7 @@ export const brandConfig: Record<BrandName, Config> = {
     ...defaultConfig,
     countryCode: "vi-VN", //for QA testing TGS-4194 & TGS-4184
     currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
+    isFixedPhoneLength: true,
   },
   MOVN2: {
     ...defaultConfig,
@@ -185,6 +191,7 @@ export const brandConfig: Record<BrandName, Config> = {
       "lottery",
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
+    isFixedPhoneLength: true,
   },
 };
 

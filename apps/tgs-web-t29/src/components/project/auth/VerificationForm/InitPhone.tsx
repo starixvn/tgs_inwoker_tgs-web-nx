@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
-import config from "@tgs-web-nx/config";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications, usePageName } from "@tgs-web-nx/core/features";
@@ -76,7 +76,18 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
     if (countdownToken > 0) return;
 
     if (!phone) return showErrorMessage(i18n.t("common.msgEnterPhone"));
-    if (phone.length < 8 || phone.length > (config.features.MAX_PHONE_LENGTH || 10)) {
+
+    if(brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && (phone.length !== config.features.MAX_PHONE_LENGTH) || (phone.length === config.features.MAX_PHONE_LENGTH && phone[0] !== '0'))  {
+      alert(
+        "",
+        i18n
+          .t("common.noReachLength")
+          .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
+      );
+      return;
+    }
+    
+    if (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && phone.length < 8 || phone.length > (config.features.MAX_PHONE_LENGTH || 10)) {
       alert(
         "",
         i18n
@@ -92,7 +103,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
         input: "Init",
         data: {
           areacode: areacode,
-          phone: phone,
+          phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength ? phone.slice(1) : phone,
         },
       });
 
