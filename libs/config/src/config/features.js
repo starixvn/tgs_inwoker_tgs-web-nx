@@ -122,6 +122,7 @@ const featureList = {
     Withdrawal_WalletTransfer: false,
     Deposit_ManualDepositPassPhone: false,
     ShowVerificationStatus: false,
+    sendSMSInterval: 60,
   },
 };
 export default featureList;

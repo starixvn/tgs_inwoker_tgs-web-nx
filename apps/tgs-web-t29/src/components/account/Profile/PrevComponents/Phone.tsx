@@ -103,7 +103,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
 
       //@ts-ignore
       if (response.IsSuccess) {
-        setCountdownToken(60);
+        setCountdownToken(config.features.sendSMSInterval);
         //@ts-ignore
         setSecurityKey(response.data);
         showInfoMessage(i18n.t("common.msgTokenSent"));

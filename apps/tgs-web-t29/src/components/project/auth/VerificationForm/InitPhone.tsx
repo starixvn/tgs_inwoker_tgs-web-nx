@@ -109,7 +109,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
 
       //@ts-ignore
       if (response.IsSuccess) {
-        setCountdownToken(60);
+        setCountdownToken(config.features.sendSMSInterval);
         //@ts-ignore
         setSecurityKey(response.data.stepResponse);
         showInfoMessage(i18n.t("common.msgTokenSent"));
