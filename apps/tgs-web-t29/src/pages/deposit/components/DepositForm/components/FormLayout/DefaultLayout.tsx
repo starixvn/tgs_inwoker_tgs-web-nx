@@ -4,6 +4,7 @@ import { useChannelList } from "../../hooks";
 import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
 import { ExtendedLayout } from "../Extended";
 import { LayoutProps } from "./index";
+import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
 
 
 /**
@@ -13,15 +14,16 @@ export const DefaultLayout = ({
   filterGroupList,
   handleSubmit,
   groupCode,
-  isShowDepositSelectBankName = true,
 }: LayoutProps) => {
-  const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterGroupList, groupCode);
+  const {channelList, currentChannel, extended, isManual} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
   const {performDeposit} = useWalletStore();
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
   };
+
+  const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
 
     /**
    * 送出表單
@@ -31,7 +33,6 @@ export const DefaultLayout = ({
       handleSubmit();
       return;
     }
-    
 
     const {amount, id, promotionid, paymentcode, type} = formData;
     performDeposit(amount, id, promotionid, paymentcode, type);
@@ -40,12 +41,12 @@ export const DefaultLayout = ({
   return (
     <>
       <ChannelCards {...props} />
-      
-      {hasExtended && <ExtendedLayout {...extended} banktype={currentChannel?.banktype} isShowDepositSelectBankName={isShowDepositSelectBankName}/>}
+
+      {isManual && <ExtendedLayout {...extended} banktype={bankType} />}
 
       {/* 請輸入存款金額 */}
       <DepositAmountInput currentChannel={currentChannel} />
-      
+
       {/* 選擇優惠活動 */}
       <DepositPromotion />
 

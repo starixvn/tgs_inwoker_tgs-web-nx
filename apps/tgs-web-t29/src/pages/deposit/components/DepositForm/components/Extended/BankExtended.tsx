@@ -4,11 +4,12 @@ import { DepositSelectBankName } from "../DepositSelectBankName";
 import { InfoContainer, ItemContainer, LabelContainer} from "@/components/styled-component/ProfileForms";
 import { QRCodeImg, TransferLabel } from "@/components/styled-component/Deposit";
 import CopyIcon from "@/pages/deposit/components/CopyIcon";
+import {DepositBankType} from '@/pages/deposit/components/DepositForm/types';
 
 type Key = 'name' | 'bankAccount' | 'eMoneyName' | 'phone'
 
 type Props = {
-  banktype?: string
+  banktype: DepositBankType | null
 } & BankExtendedProps;
 
 export const BankExtended = ({
@@ -42,7 +43,7 @@ export const BankExtended = ({
         {logo && <QRCodeImg src={logo} alt={logo} style={{ marginBottom: "10px" }} />}
         {renderLayout}
       </ItemContainer>
-      
+
       <DepositSelectBankName banktype={banktype} />
     </>
   );
