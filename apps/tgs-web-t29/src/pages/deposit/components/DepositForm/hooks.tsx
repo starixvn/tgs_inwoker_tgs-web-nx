@@ -12,7 +12,7 @@ import { handleChangeCode, getFilterDepositList } from './utils';
 export const useGroupList = () => {
   const [groupCode, setGroupCode] = useState('');
   const {wallet} = useWalletStore();
-  const filterGroupList: FilterDepositList[] = useMemo(() => 
+  const filterGroupList: FilterDepositList[] = useMemo(() =>
     {
       const result = wallet.depositChannelList
         .filter(row => Object.values(GroupCodeEnum).includes(row.code as GroupCodeEnum))
@@ -21,17 +21,17 @@ export const useGroupList = () => {
             code: row.code,
             channels: row.channels,
         }});
-      
+
       // 特例
       const bankList = {
         code: GroupCodeEnum.Bank,
         channels: wallet.depositList?.find(row => row.banktype ===  GroupCodeEnum.Bank)?.channel ?? []
       };
-      
+
       return [bankList, ...result];
     }
   , [wallet.depositChannelList, wallet.depositList]);
-  
+
   const groupList: Option[] = filterGroupList.map(row => {
     return {
       iconUrl: `/assets/images/deposit/${row.code}.png`,
@@ -43,7 +43,7 @@ export const useGroupList = () => {
   });
 
   useSelectFirst(groupList, setGroupCode);
-  
+
   return {groupCode, groupList, filterGroupList};
 }
 
@@ -58,7 +58,6 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
   const filterChannelList = getFilterDepositList(list, code);
   const channelList: Option[] = filterChannelList.map(row => {
     return {
-      iconUrl: "/assets/images/deposit/momo.webp",
       isActive: row.id === selectedID,
       onClick: () => handleChangeCode(row.id, setSelectedID),
       children: row.channelname,
@@ -89,7 +88,7 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
   }, [currentChannel?.id])
 
   useSelectFirst(channelList, setSelectedID, [code]);
-    
+
   return {channelList, currentChannel, hasExtended, extended, isManual};
 }
 
@@ -104,7 +103,7 @@ export const useProviderList = (list: FilterDepositList[], code: string) => {
   const filterProviderList: FilterDepositList[] = useMemo(() => {
     const getChannelList = getFilterDepositList(list, code);
     const groupByObject = groupBy(getChannelList, row => row.paymentcode);
-    
+
     return Object.keys(groupByObject).map(row => {
       return {
         code: row,
@@ -116,7 +115,6 @@ export const useProviderList = (list: FilterDepositList[], code: string) => {
 
   const providerList: Option[] = filterProviderList.map(row => {
     return {
-      iconUrl: "/assets/images/deposit/momo.webp",
       isActive: row.code === providerCode,
       onClick: () => handleChangeCode(row.code, setProviderCode),
       children: row.code,
@@ -125,7 +123,7 @@ export const useProviderList = (list: FilterDepositList[], code: string) => {
   });
 
   useSelectFirst(providerList, setProviderCode, [code, providerList.length]);
-  
+
   return {
     providerList,
     filterProviderList,

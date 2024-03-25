@@ -4,6 +4,7 @@ import { useChannelList, useProviderList } from "../../hooks";
 import { Cards, DepositAmountInput, DepositPromotion, Upload, DepositSubmitButton, DepositFormContext } from "../../components";
 import { BankExtended } from "../Extended";
 import { LayoutProps } from "./index";
+import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
 
 
 /**
@@ -17,6 +18,8 @@ export const BankLayout = ({
   const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterProviderList, providerCode);
   const {performDeposit, doBankDeposit, doUploadDepositProof} = useWalletStore();
   const {formData} = useContext(DepositFormContext);
+  const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
+  const isShowProviderCards = providerList.length > 1;
 
   const channelProps = {
     i18nParam: "depositAndWithdrawalStatus.channel",
@@ -29,7 +32,7 @@ export const BankLayout = ({
   };
 
   const [ProviderCards, ChannelCards] = [Cards, Cards];
-  
+
 
   /**
    * 送出表單
@@ -51,14 +54,14 @@ export const BankLayout = ({
         doUploadDepositProof(res.data, formData.files[0])
       }
     });
-    
+
   }
 
   return (
     <>
-      <ProviderCards {...providerProps} />
+      {isShowProviderCards && <ProviderCards {...providerProps} />}
       <ChannelCards {...channelProps} />
-      {hasExtended && <BankExtended {...extended} banktype={currentChannel?.banktype} />}
+      {hasExtended && <BankExtended {...extended} banktype={bankType} />}
       <DepositAmountInput currentChannel={currentChannel} />
       <DepositPromotion />
       {isManual && <Upload />}

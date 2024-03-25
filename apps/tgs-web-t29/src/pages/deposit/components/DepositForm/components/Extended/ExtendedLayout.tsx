@@ -4,13 +4,14 @@ import { DepositSelectBankName } from "../DepositSelectBankName";
 import { InfoContainer, ItemContainer, LabelContainer} from "@/components/styled-component/ProfileForms";
 import { QRCodeImg, TransferLabel } from "@/components/styled-component/Deposit";
 import CopyIcon from "@/pages/deposit/components/CopyIcon";
+import {DepositBankType} from '@/pages/deposit/components/DepositForm/types';
 
 type Key = 'name' | 'bankAccount' | 'eMoneyName' | 'phone' | 'email' | 'fpsId' | 'address'
 type ImageKey = 'logo' | 'qrCode'
 
 type Props = {
   isShowDepositSelectBankName?: boolean
-  banktype?: string
+  banktype: DepositBankType | null
 } & Extended
 
 
@@ -29,7 +30,7 @@ export const ExtendedLayout = ({
 }: Props) => {
   const props: Record<Key, string | undefined> = {name, bankAccount, eMoneyName, phone, email, fpsId, address};
   const imageProps: Record<ImageKey, string | undefined> = {logo, qrCode};
-  
+
   const renderLayout = Object.keys(props).map((key) => {
     if (props[key as Key]) {
       return (
@@ -54,15 +55,22 @@ export const ExtendedLayout = ({
     return null;
   })
 
+  const getIsVisible = (object: typeof props | typeof imageProps) => {
+    return !Object.values(object).every(value => value === undefined || value === '')
+  }
+
+  const isVisible = getIsVisible(props) || getIsVisible(imageProps);
 
   return (
     <>
-      <ItemContainer>
-        <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer>
-        {renderQrCode}
-        {renderLayout}
-      </ItemContainer>
-      
+      {isVisible && (
+        <ItemContainer>
+          <LabelContainer>{i18n.t('deposit.transferAccount')}</LabelContainer>
+          {renderQrCode}
+          {renderLayout}
+        </ItemContainer>
+      )}
+
       {isShowDepositSelectBankName && <DepositSelectBankName banktype={banktype}/>}
     </>
   );

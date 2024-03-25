@@ -10,6 +10,7 @@ import {
   LabelContainer
 } from "@/components/styled-component/ProfileForms";
 import { Select } from "@/components/UI/Select";
+import {DepositBankType} from '@/pages/deposit/components/DepositForm/types';
 
 const defaultValue = '';
 const {
@@ -20,7 +21,7 @@ const {
 } = config.features;
 
 type Props = {
-  banktype?: string
+  banktype: DepositBankType | null
 }
 
 export const DepositSelectBankName = ({
@@ -64,10 +65,11 @@ export const DepositSelectBankName = ({
             {bankCardList
               .filter(item => item.banktype === banktype)
               .map((item, index) => {
-              const {detail} = item;
+              const {detail: {bankAccount, address, phone}} = item;
+              const value = bankAccount || address || phone;
               return (
-                <option value={detail.bankAccount || detail.address || detail.phone} key={index}>
-                  {detail.bankAccount || detail.address || detail.phone} {banktype}
+                <option value={value} key={index}>
+                  {value} {banktype}
                 </option>
               );
             })}
