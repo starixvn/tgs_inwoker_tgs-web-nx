@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
-import { useChannelList } from "../../hooks";
+import { useChannelList, useUploadFile, useAlertDepositSuccess } from "../../hooks";
 import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
 import { ExtendedLayout } from "../Extended";
 import { LayoutProps } from "./index";
@@ -13,9 +13,12 @@ export const FpsLayout = ({
   filterGroupList,
   groupCode,
 }: LayoutProps) => {
-  const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterGroupList, groupCode);
+  const {channelList, currentChannel, extended, isManual} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
-  const {doFPSDepositWithName, doFPSDeposit, doUploadDepositProof, performDeposit} = useWalletStore();
+  const {doFPSDepositWithName, doFPSDeposit, performDeposit} = useWalletStore();
+  const {handleUploadFile, isPending: isManualPending} = useUploadFile();
+  const {handleAlertDepositSuccess, isPending} = useAlertDepositSuccess();
+
   const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
@@ -29,26 +32,26 @@ export const FpsLayout = ({
   const handleOnSubmit = () => {
     const {amount, id, promotionid, account, type, name, paymentcode} = formData;
     if(!isManual) {
-      performDeposit(amount, id, promotionid, paymentcode, type);
+      performDeposit(amount, id, promotionid, paymentcode, type)
+        .then((res) => {
+          handleAlertDepositSuccess(res);
+        })
+
       return;
     }
 
     if(config.features.Deposit_FPSWithName) {
       doFPSDepositWithName(name, account, amount, id, promotionid, type)
-      .then((res) => {
-        if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
-          doUploadDepositProof(res.data, formData.files[0])
-        }
-      });
+        .then((res) => {
+          handleAlertDepositSuccess(res);
+        })
       return;
     }
 
     doFPSDeposit(account, amount, id, promotionid, type)
-    .then((res) => {
-      if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
-        doUploadDepositProof(res.data, formData.files[0])
-      }
-    });;
+      .then((res) => {
+        handleUploadFile(formData.files, res);
+      });
   }
 
 
@@ -59,7 +62,7 @@ export const FpsLayout = ({
     <>
       <ChannelCards {...props} />
 
-      {hasExtended && <ExtendedLayout {...extended} banktype={bankType} />}
+      {isManual && <ExtendedLayout {...extended} banktype={bankType} />}
 
       {/* 請輸入存款金額 */}
       <DepositAmountInput currentChannel={currentChannel} />
@@ -70,7 +73,7 @@ export const FpsLayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} />
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isManual ? isManualPending : isPending}/>
     </>
   )
 };

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { DepositFormContext } from "..";
+import { useUploadFile } from "../../hooks";
 import { DefaultLayout } from "./DefaultLayout";
 import { LayoutProps } from "./index";
 
@@ -12,23 +13,22 @@ export const CoinsphLayout = ({
   groupCode,
 }: LayoutProps) => {
   const {formData} = useContext(DepositFormContext);
-  const {doCoinsphDeposit, doUploadDepositProof} = useWalletStore();
+  const {doCoinsphDeposit} = useWalletStore();
+  const {handleUploadFile, isPending} = useUploadFile();
 
   /**
    * 送出表單
    */
   const handleOnSubmit = () => {
     const {amount, id, promotionid, name, type, account: phone} = formData;
-    
+
     doCoinsphDeposit(amount, id, promotionid, type, '', name, phone, '')
       .then((res) => {
-        if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
-          doUploadDepositProof(res.data, formData.files[0])
-        }
+        handleUploadFile(formData.files, res);
       });
   }
 
   return (
-    <DefaultLayout filterGroupList={filterGroupList} handleSubmit={handleOnSubmit} groupCode={groupCode}/>
+    <DefaultLayout filterGroupList={filterGroupList} handleSubmit={handleOnSubmit} groupCode={groupCode} isManualPending={isPending}/>
   )
 };
