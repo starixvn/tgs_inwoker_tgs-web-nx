@@ -67,7 +67,8 @@ function PopupCenter(url: string, title: string, w = 0, h = 0): Window | undefin
   left = left < 0 ? 0 : left;
   // closePreviousPopup();
   //@ts-ignore
-  newWindow = window.open(
+
+  window.open(
     url,
     "gamewindow",
     "scrollbars=yes, width=" +
@@ -80,14 +81,14 @@ function PopupCenter(url: string, title: string, w = 0, h = 0): Window | undefin
       left,
   );
 
-  if (!newWindow || newWindow.closed || typeof newWindow.closed == "undefined") {
-    // POPUP BLOCKED
-  } else {
-    // Puts focus on the newWindow
-    if (window.document.hasFocus()) newWindow.focus();
-    popup[title] = newWindow;
-    return newWindow;
-  }
+  // if (!newWindow || newWindow.closed || typeof newWindow.closed == "undefined") {
+  //   // POPUP BLOCKED
+  // } else {
+  //   // Puts focus on the newWindow
+  //   if (window.document.hasFocus()) newWindow.focus();
+  //   popup[title] = newWindow;
+  //   return newWindow;
+  // }
 }
 
 function closePreviousPopup() {
@@ -123,7 +124,7 @@ function truncateString(str: string, n: number): string {
 }
 
 /**
- * 檢查存提款輸入欄位 
+ * 檢查存提款輸入欄位
  * 1. 只能輸入純數字
  * 2. 須在區間內
  * @param input 輸入內容
@@ -131,14 +132,18 @@ function truncateString(str: string, n: number): string {
  * @param minAmount 最小金額
  * @returns isDisabled
  */
-const validateDepositAndWithdrawAmount = (input: string, maxAmount: number, minAmount: number) : boolean => {
+const validateDepositAndWithdrawAmount = (
+  input: string,
+  maxAmount: number,
+  minAmount: number,
+): boolean => {
   const regex = /^(?!0)[0-9]+$/;
   const isValid = regex.test(input) && Number(input) <= maxAmount && Number(input) >= minAmount;
   return !isValid;
 };
 
 /**
- * 取得貨幣格式 
+ * 取得貨幣格式
  * @param amount 金額
  * @param countryCode 國碼
  * @returns 貨幣格式
