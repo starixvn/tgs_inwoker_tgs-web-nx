@@ -39,7 +39,8 @@ type MOVN2Config = {
 
 type MOPHConfig = {
   isFixedPhoneLength: boolean;
-}
+  contractAge: number; //註冊時,合約文字顯示年齡 https://raypro.atlassian.net/browse/TGS-4435
+};
 
 /*
 * 新站台 客製化設定
@@ -91,6 +92,7 @@ export const defaultConfig: Config = {
   customGametypeSort: [],
   defaultActiveGametype: null,
   isFixedPhoneLength: false,
+  contractAge: 18,
   // new brand config start here
   // NewBrand
 };
@@ -192,6 +194,7 @@ export const brandConfig: Record<BrandName, Config> = {
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
     isFixedPhoneLength: true,
+    contractAge: 21,
   },
 };
 

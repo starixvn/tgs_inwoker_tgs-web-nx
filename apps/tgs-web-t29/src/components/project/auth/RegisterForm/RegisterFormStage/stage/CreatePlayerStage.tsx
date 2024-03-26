@@ -2,6 +2,7 @@ import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useCreatePlayerStage } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 
@@ -33,7 +34,9 @@ const CreatePlayerStage = () => {
     >
       <VerifyAgeContainer>
         <Checkbox value={isConfirmedAdult} onClick={handleClickConfirmAdult} />
-        {i18n.t("web.register.contract")}
+        {i18n
+          .t("web.register.contractWithAge")
+          .replace(/{age}/g, `${brandConfig[mapBrandName(config.brand)].contractAge}`)}
       </VerifyAgeContainer>
     </FormikForm>
   );
