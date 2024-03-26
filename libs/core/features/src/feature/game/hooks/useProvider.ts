@@ -33,7 +33,6 @@ export function useProvider() {
             return gpCustomSort.indexOf(a.code) - gpCustomSort.indexOf(b.code);
           });
         }
-        console.log(formattedProviderList);
         setProviderState({
           isLoading: false,
           providerList: formattedProviderList,
