@@ -7,7 +7,7 @@ const ContextMenuItemContainer = styled.div`
   font-weight: 700;
   cursor: pointer;
   color: ${({ theme }) => theme.gray60};
-  padding: 17px 34px;
+  padding: 10px 34px;
   gap: 10px;
   display: flex;
   align-items: center;

@@ -31,6 +31,8 @@ const StyledSelect = styled(MuiSelect)`
   border: 1px solid ${({ theme }) => theme.gray80};
   font-weight: 400 !important;
   font-size: 0.937rem !important;
+  border-radius: 4px;
+  min-width: 160px;
 
   .MuiOutlinedInput-input {
     padding: 12px !important;
