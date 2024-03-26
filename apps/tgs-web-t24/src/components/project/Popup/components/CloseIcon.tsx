@@ -4,15 +4,15 @@ import { Close } from "@mui/icons-material";
 
 const CloseIconContainer = styled.div`
   position: absolute;
-  top: 12.5px;
-  right: 12.5px;
-  width: 24px;
-  height: 24px;
-  border-radius: 12px;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.primary};
+  background: rgba(141, 146, 151, 0.3);
   cursor: pointer;
   z-index: 3;
 `;

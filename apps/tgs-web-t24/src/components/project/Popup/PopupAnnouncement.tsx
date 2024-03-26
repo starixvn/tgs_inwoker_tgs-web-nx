@@ -5,49 +5,63 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useUiStore } from "@tgs-web-nx/core";
 import { useDetectDialogClose, useRwd } from "@tgs-web-nx/core/hooks";
 import { usePopup } from "@tgs-web-nx/core/features";
+import { Close as CloseIcon } from "@mui/icons-material";
 import Carousel from "@/components/UI/Carousel";
 import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
 import { media } from "@/theme/breakpoints";
-import { Button } from "@/components/UI/Button";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
   & .MuiPaper-root {
-    background: ${({ theme }) => theme.mainBackground};
-    width: 321px;
-    height: 283px;
-    border-radius: 10px;
+    background: ${({ theme }) => theme.gray80};
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    border-radius: 4px;
+    padding: 20px;
 
     ${media.sm} {
-      width: 652px;
-      height: 386px;
+      max-width: 480px;
     }
   }
 `;
 
 const ChildContainer = styled.div`
   width: 100%;
-  height: 100%;
+  overflow: auto;
+`;
+
+const CloseIconContainer = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 8px;
   display: flex;
-  flex-direction: column;
-  padding: 36px 24px 18px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50px;
+  background: rgba(141, 146, 151, 0.3);
 `;
 
 const Title = styled.div`
-  font-size: 1.8rem;
+  font-size: 1.0625rem;
   font-weight: 700;
   color: ${({ theme }) => theme.white};
 `;
 
 const Content = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 0.875rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.white};
-  margin-top: 1rem;
-  line-height: 1.2rem;
+  margin-top: 20px;
   white-space: pre-line;
+  line-height: 1rem;
 
   ${media.sm} {
     font-size: 1.5rem;
@@ -55,9 +69,32 @@ const Content = styled.div`
   }
 `;
 
+const Button = styled.div`
+  cursor: pointer;
+  width: 90%;
+  height: 50px;
+  text-align: center;
+  font-size: 1.25rem;
+  color: ${({ theme }) => theme.white};
+  background:${({ theme }) => theme.primary};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin: auto;
+  font-weight: 700;
+  line-height: 1.5rem;
+
+  ${media.sm} {
+    font-size: 2rem;
+    width: 281px;
+    height: 53px;
+  }
+`;
+
 const AnnouncementCardContainer = styled.div`
   padding: 20px;
-  height: calc(283px - 52px - 20px - 20px);
+  /* height: calc(283px - 52px - 20px - 20px); */
 `;
 
 const doNotShowAnnouncementDialogKey = "doNotShowAnnouncementDialog";
@@ -129,39 +166,28 @@ const PopupAnnouncement = () => {
               return <AnnouncementCard key={index} subject={subject} content={content} />;
             })}
         </Carousel>
-
-        {!isDesktopSize && (
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              marginBottom: "18px",
-            }}
-          />
-        )}
-
-        <Button
-          onClick={handleCloseDialog}
-          style={{
-            margin: "0 auto",
-            width: "90%",
-          }}
-        >
-          <>{i18n.t("common.close")}</>
-        </Button>
-
-        {isDesktopSize && (
-          <NotShowAgainHint
-            onClick={handleClickCheckbox}
-            isCheck={isCheck}
-            style={{
-              margin: "0 auto 18px",
-            }}
-          />
-        )}
+        <Button onClick={handleCloseDialog}>Got It !</Button>
       </ChildContainer>
 
-      <CloseIcon onClick={handleCloseDialog} />
+      <NotShowAgainHint
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "100%",
+          transform: "translateX(-50%)",
+        }}
+        onClick={handleClickCheckbox}
+        isCheck={isCheck}
+      />
+
+      <CloseIconContainer>
+        <CloseIcon
+          onClick={handleCloseDialog}
+          style={{
+            color: "white",
+          }}
+        />
+      </CloseIconContainer>
     </StyledDialog>
   );
 };
