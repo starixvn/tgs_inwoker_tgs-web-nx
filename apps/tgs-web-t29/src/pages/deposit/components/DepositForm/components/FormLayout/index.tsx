@@ -9,6 +9,7 @@ import { TrcLayout } from "./TrcLayout";
 import { ALI2ALILayout } from "./ALI2ALILayout";
 import { EWalletLayout } from "./EWalletLayout";
 import { CoinsphLayout } from "./CoinsphLayout";
+import { PulsaLayout } from "./PulsaLayout";
 
 export type LayoutProps = {
   filterGroupList: FilterDepositList[]
@@ -51,6 +52,9 @@ const FormLayout = () => {
 
       case GroupCodeEnum.Coinsph:
         return <CoinsphLayout {...layoutProps} />
+
+      case GroupCodeEnum.Pulsa:
+        return <PulsaLayout {...layoutProps} />
 
       default:
         return <DefaultLayout {...layoutProps} />

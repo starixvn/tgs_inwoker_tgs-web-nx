@@ -4,6 +4,7 @@ import config from "@tgs-web-nx/config";
 import { DepositFormContext } from "..";
 import { DefaultLayout } from "./DefaultLayout";
 import { LayoutProps } from "./index";
+import {useUploadFile} from '@/pages/deposit/components/DepositForm/hooks';
 
 /**
  * EWallet UI
@@ -13,33 +14,30 @@ export const EWalletLayout = ({
   groupCode,
 }: LayoutProps) => {
   const {formData} = useContext(DepositFormContext);
-  const {doEWalletDeposit, doEWalletDepositWithDetail, doUploadDepositProof} = useWalletStore();
-
+  const {doEWalletDeposit, doEWalletDepositWithDetail} = useWalletStore();
+  const {handleUploadFile, isPending} = useUploadFile();
   /**
    * 送出表單
    */
   const handleOnSubmit = () => {
-    const {amount, id, promotionid, name, type, phone} = formData;
+    const {amount, id, promotionid, eMoneyName, type, phone} = formData;
     if(config.features.Deposit_AddCard) {
-      doEWalletDepositWithDetail(amount, id, promotionid, type, 'note', 'detail', name, phone)
+      doEWalletDepositWithDetail(amount, id, promotionid, type, 'note', 'detail', eMoneyName, phone)
         .then((res) => {
-          //@ts-ignore
-          if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
-            doUploadDepositProof(res.data, formData.files[0])
-          }
+          handleUploadFile(formData.files, res);
         });
       return;
     }
 
-    doEWalletDeposit(amount, id, promotionid, type, 'note', name, phone)
+    doEWalletDeposit(amount, id, promotionid, type, 'note', eMoneyName, phone)
       .then((res) => {
-        if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
-          doUploadDepositProof(res.data, formData.files[0])
+        if(formData.files && res?.IsSuccess) {
+          handleUploadFile(formData.files, res);
         }
-      });
+      })
   }
 
   return (
-    <DefaultLayout filterGroupList={filterGroupList} handleSubmit={handleOnSubmit} groupCode={groupCode}/>
+    <DefaultLayout filterGroupList={filterGroupList} handleSubmit={handleOnSubmit} groupCode={groupCode} isShowExtendedLayout={false} isManualPending={isPending}/>
   )
 };
