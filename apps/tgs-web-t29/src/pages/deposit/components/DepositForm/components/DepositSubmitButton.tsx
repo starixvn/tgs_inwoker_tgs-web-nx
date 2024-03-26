@@ -7,6 +7,7 @@ import { SubmitButton } from "@/components/styled-component/ProfileForms";
 type Props = {
   handleOnSubmit: () => void;
   isManual?: boolean;
+  isPending: boolean;
 }
 
 /**
@@ -15,6 +16,7 @@ type Props = {
 export const DepositSubmitButton = ({
   handleOnSubmit,
   isManual,
+  isPending,
 }: Props) => {
   const {formData} = useContext(DepositFormContext);
   const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
@@ -27,7 +29,7 @@ export const DepositSubmitButton = ({
       variant="contained"
       color="primary"
       fullWidth
-      disabled={isDisabled}
+      disabled={isPending ? isPending : isDisabled}
     >
         {i18n.t("common.submit")}
     </SubmitButton>

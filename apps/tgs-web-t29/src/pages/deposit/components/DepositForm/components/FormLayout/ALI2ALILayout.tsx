@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
-import { useChannelList } from "../../hooks";
+import { useChannelList, useUploadFile } from "../../hooks";
 import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
 import { ExtendedLayout } from "../Extended";
 import { LayoutProps } from "./index";
@@ -16,7 +16,8 @@ export const ALI2ALILayout = ({
 }: LayoutProps) => {
   const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
-  const {performDeposit, doThirdPartyDeposit, doUploadDepositProof} = useWalletStore();
+  const {performDeposit, doThirdPartyDeposit} = useWalletStore();
+  const {handleUploadFile, isPending} = useUploadFile();
   const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
@@ -31,9 +32,7 @@ export const ALI2ALILayout = ({
     if(isManual) {
       doThirdPartyDeposit(amount, id, promotionid, type)
         .then((res) => {
-          if(formData.files && res?.IsSuccess && typeof(res.data) === 'string') {
-            doUploadDepositProof(res.data, formData.files[0])
-          }
+          handleUploadFile(formData.files, res);
         });
       return;
     }
@@ -56,7 +55,7 @@ export const ALI2ALILayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} />
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isPending}/>
     </>
   )
 };

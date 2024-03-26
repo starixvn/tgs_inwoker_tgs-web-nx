@@ -31,7 +31,7 @@ export const DepositSelectBankName = ({
   const {formData, setFormData} = useContext(DepositFormContext);
   const [selectedBankCard, setSelectedBankCard] = useState(defaultValue);
   const isVisible = !(Deposit_RemoveAccount || Deposit_AddCard || Deposit_ManualApplePayHideBankAcc);
-  const label = i18n.t(Deposit_OriginAccount ? "idr1.pleaseEnterAccountName" : "common.pleaseEnterAccountName");
+  const label = i18n.t("idr1.msgPlsSelectAccount");
 
   /**
    * 處理銀行名稱切換選項

@@ -1,11 +1,15 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
-import { useChannelList } from "../../hooks";
+import {useAlertDepositSuccess, useChannelList} from '../../hooks';
 import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
 import { ExtendedLayout } from "../Extended";
 import { LayoutProps } from "./index";
 import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
 
+type Props = {
+  isShowExtendedLayout?: boolean;
+  isManualPending?: boolean;
+} & LayoutProps;
 
 /**
  * 預設 UI
@@ -14,10 +18,12 @@ export const DefaultLayout = ({
   filterGroupList,
   handleSubmit,
   groupCode,
-}: LayoutProps) => {
+  isManualPending,
+}: Props) => {
   const {channelList, currentChannel, extended, isManual} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
   const {performDeposit} = useWalletStore();
+  const {handleAlertDepositSuccess, isPending} = useAlertDepositSuccess();
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
@@ -35,7 +41,10 @@ export const DefaultLayout = ({
     }
 
     const {amount, id, promotionid, paymentcode, type} = formData;
-    performDeposit(amount, id, promotionid, paymentcode, type);
+    performDeposit(amount, id, promotionid, paymentcode, type)
+      .then((res) => {
+        handleAlertDepositSuccess(res);
+      })
   }
 
   return (
@@ -53,7 +62,7 @@ export const DefaultLayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} />
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isManualPending !== undefined ? isManualPending : isPending}/>
     </>
   )
 };

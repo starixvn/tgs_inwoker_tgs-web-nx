@@ -52,7 +52,7 @@ export enum GroupCodeEnum {
   TRC= 'TRC',
   Pulsa= 'Pulsa',
   EWallet= 'E-wallet',
-  GcashNative = 'GcashNative',
+  GcashNative = 'Gcash Native',
 
   // 特例
   Bank= 'Bank',

@@ -1,7 +1,8 @@
 import { useWalletStore, useAccountStore} from "@tgs-web-nx/core";
 import { useState, useEffect, useMemo, useContext} from "react";
-import { groupBy } from "@tgs-web-nx/utils";
-import { FilterDepositList } from "@tgs-web-nx/types";
+import { groupBy, i18n } from '@tgs-web-nx/utils';
+import { FilterDepositList } from '@tgs-web-nx/types';
+import { useNotifications } from '@tgs-web-nx/core/features';
 import { Option, GroupCodeEnum } from './types';
 import { DepositFormContext } from "./components/DepositFormProvider";
 import { handleChangeCode, getFilterDepositList } from './utils';
@@ -144,3 +145,51 @@ const useSelectFirst = (list: Option[], setCode: (code: string) => void, depArr:
     }
   }, depArr)
 };
+
+/**
+ * 上傳檔案成功後，開啟存款成功 dialog
+ */
+export const useUploadFile = () => {
+  const {doUploadDepositProof} = useWalletStore();
+  const [isPending, setIsPending] = useState(false);
+  const {alert} = useNotifications();
+  const handleUploadFile = (file: FileList | null, res: any) => {
+    setIsPending(true);
+    if(file && res?.IsSuccess) {
+      doUploadDepositProof(res.data, file[0])
+        .then(( res: any)=> {
+          if(res?.IsSuccess) {
+            setIsPending(false);
+            alert("", i18n.t("deposit.completeDeposit"));
+          }
+
+          if(!res?.IsSuccess) {
+            setIsPending(false);
+          }
+        })
+    }
+  }
+
+  return {handleUploadFile, isPending};
+}
+
+/**
+ * 存款成功後，開啟存款成功 dialog
+ */
+export const useAlertDepositSuccess = () => {
+  const {alert} = useNotifications();
+  const [isPending, setIsPending] = useState(false);
+  const handleAlertDepositSuccess = (res: any) => {
+    setIsPending(true);
+    if(res?.IsSuccess) {
+      setIsPending(false);
+      alert("", i18n.t("deposit.completeDeposit"));
+    }
+
+    if(!res?.IsSuccess) {
+      setIsPending(false);
+    }
+  }
+
+  return {handleAlertDepositSuccess, isPending};
+}
