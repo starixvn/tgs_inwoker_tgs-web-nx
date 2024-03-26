@@ -35,11 +35,12 @@ type MOVN2Config = {
   isHideTransferButton: boolean; // 是否在BottomAppBar顯示TransferButton https://raypro.atlassian.net/browse/TGS-4333
   customGametypeSort: string[]; // game type 是否有客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-3968
   defaultActiveGametype: GameTypeEnum | null; //預設active的game type https://raypro.atlassian.net/browse/TGS-3968
+  customGameProvirderSort: string[]; //game provider客製化排序 https://raypro.atlassian.net/browse/TGS-4420
 };
 
 type MOPHConfig = {
   isFixedPhoneLength: boolean;
-}
+};
 
 /*
 * 新站台 客製化設定
@@ -91,6 +92,7 @@ export const defaultConfig: Config = {
   customGametypeSort: [],
   defaultActiveGametype: null,
   isFixedPhoneLength: false,
+  customGameProvirderSort: [],
   // new brand config start here
   // NewBrand
 };
@@ -138,6 +140,35 @@ export const brandConfig: Record<BrandName, Config> = {
       "esports",
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
+    customGameProvirderSort: [
+      "JILITF",
+      "AWC_PGS",
+      "FACHAI",
+      "JDBTF",
+      "JOKER",
+      "BTG",
+      "EVOTF",
+      "PPTF",
+      "AWC_SG",
+      "WMTF",
+      "HABATF",
+      "RTTF",
+      "ENDOR",
+      "NLC",
+      "AWC_KM",
+      "NTTF",
+      "AWC_YESBINGO",
+      "AWC_BG",
+      "DGTF",
+      "VR",
+      "KY",
+      "365TF",
+      "OBET",
+      "PINNACLE",
+      "AWC_VENUS",
+      "AWC_YL",
+      "TFTF",
+    ],
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -174,6 +205,35 @@ export const brandConfig: Record<BrandName, Config> = {
       "esports",
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
+    customGameProvirderSort: [
+      "JILITF",
+      "AWC_PGS",
+      "FACHAI",
+      "JDBTF",
+      "JOKER",
+      "BTG",
+      "EVOTF",
+      "PPTF",
+      "AWC_SG",
+      "WMTF",
+      "HABATF",
+      "RTTF",
+      "ENDOR",
+      "NLC",
+      "AWC_KM",
+      "NTTF",
+      "AWC_YESBINGO",
+      "AWC_BG",
+      "DGTF",
+      "VR",
+      "KY",
+      "365TF",
+      "OBET",
+      "PINNACLE",
+      "AWC_VENUS",
+      "AWC_YL",
+      "TFTF",
+    ],
   },
   MOPH: {
     ...defaultConfig,
@@ -192,6 +252,35 @@ export const brandConfig: Record<BrandName, Config> = {
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
     isFixedPhoneLength: true,
+    customGameProvirderSort: [
+      "JILITF",
+      "AWC_PGS",
+      "FACHAI",
+      "JDBTF",
+      "JOKER",
+      "BTG",
+      "EVOTF",
+      "PPTF",
+      "AWC_SG",
+      "WMTF",
+      "HABATF",
+      "RTTF",
+      "ENDOR",
+      "NLC",
+      "AWC_KM",
+      "NTTF",
+      "AWC_YESBINGO",
+      "AWC_BG",
+      "DGTF",
+      "VR",
+      "KY",
+      "365TF",
+      "OBET",
+      "PINNACLE",
+      "AWC_VENUS",
+      "AWC_YL",
+      "TFTF",
+    ],
   },
 };
 
