@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ProviderDto } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
 
@@ -15,6 +15,7 @@ export function useProvider() {
     providerList: [],
     error: null,
   });
+  const gpCustomSort = brandConfig[mapBrandName(config.brand)].customGameProvirderSort;
 
   useEffect(() => {
     const getProviderList = async () => {
@@ -26,7 +27,12 @@ export function useProvider() {
         });
         const response = await GameService.GetProviderList();
         const formattedProviderList = getFormattedProviderList(response.data);
-
+        //空陣列為沒有客製化排序
+        if (gpCustomSort.length) {
+          formattedProviderList.sort((a, b) => {
+            return gpCustomSort.indexOf(a.code) - gpCustomSort.indexOf(b.code);
+          });
+        }
         setProviderState({
           isLoading: false,
           providerList: formattedProviderList,
