@@ -18,6 +18,9 @@ export const imageMap: { [key in string]: string } = {
   "th-TH": import.meta.env.BASE_URL + `assets/images/language/th-TH.png`,
   "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.png`,
   "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
+  "tgl-PH": import.meta.env.BASE_URL + `assets/images/language/tgl-PH.png`,
+  "hi-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
+  "ta-IN": import.meta.env.BASE_URL + `assets/images/language/ta-IN.png`,
 };
 
 const StyledSelect = styled(MuiSelect)`
@@ -28,6 +31,8 @@ const StyledSelect = styled(MuiSelect)`
   border: 1px solid ${({ theme }) => theme.gray80};
   font-weight: 400 !important;
   font-size: 0.937rem !important;
+  border-radius: 4px;
+  min-width: 160px;
 
   .MuiOutlinedInput-input {
     padding: 12px !important;

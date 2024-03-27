@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "@tgs-web-nx/core/features";
+import { useAccountStore } from "@tgs-web-nx/core";
 import IconLabel from "@/pages/home/components/HomePromotionCard/components/IconLabel";
 import google from "@/assets/t24/images/home/google.svg";
 import twitch from "@/assets/t24/images/home/twitch.svg";
@@ -34,6 +36,12 @@ const HomePromotionCardTitle = styled.div`
   font-size: 1.92rem;
   font-weight: 700;
   letter-spacing: 0.008rem;
+`;
+
+const WelcomeTitle = styled.div`
+  color: ${({ theme }) => theme.white};
+  font-size: 0.95rem;
+  font-weight: 400;
 `;
 
 const HomePromotionCardContent = styled.div`
@@ -98,35 +106,43 @@ const RightArrowIcon = styled.img`
 
 const HomePromotionCard = () => {
   const history = useHistory();
+  const { isLogin } = useAuth();
+  const { account } = useAccountStore();
+  const username = account.info.member_username;
 
   return (
     <Wrapper>
       <HomePromotionCardTitle>Welcome to PG!</HomePromotionCardTitle>
-      <HomePromotionCardContent>Register and receive<br />deposit bonus up to R$ <br />1,000!</HomePromotionCardContent>
-      <RegisterBtn onClick={() => history.push("/register")}>Register</RegisterBtn>
+      {isLogin
+        ? <WelcomeTitle>{`Welcome back ${username} `}!</WelcomeTitle>
+        :
+        <><HomePromotionCardContent>Register and receive<br />deposit bonus up to R$ <br />1,000!</HomePromotionCardContent>
+          <RegisterBtn onClick={() => history.push("/register")}>Register</RegisterBtn>
 
-      <LinkIconGroup>
-        <LinkIcon><img src={google} alt={"google"} /></LinkIcon>
-        <LinkIcon><img src={steam} alt={"steam"} /></LinkIcon>
-        <LinkIcon><img src={twitch} alt={"twitch"} /></LinkIcon>
-      </LinkIconGroup>
+          <LinkIconGroup>
+            <LinkIcon><img src={google} alt={"google"} /></LinkIcon>
+            <LinkIcon><img src={steam} alt={"steam"} /></LinkIcon>
+            <LinkIcon><img src={twitch} alt={"twitch"} /></LinkIcon>
+          </LinkIconGroup>
 
-      <IconLabelGroup>
-        <IconLabel
-          imageUrl={register}
-          text={"Register"}
-        />
-        <RightArrowIcon src={rightArrow} alt={"enter"} />
-        <IconLabel
-          imageUrl={deposit}
-          text={"Deposit"}
-        />
-        <img src={rightArrow} alt={"enter"} />
-        <IconLabel
-          imageUrl={star}
-          text={"Earn Bonus!"}
-        />
-      </IconLabelGroup>
+          <IconLabelGroup>
+            <IconLabel
+              imageUrl={register}
+              text={"Register"}
+            />
+            <RightArrowIcon src={rightArrow} alt={"enter"} />
+            <IconLabel
+              imageUrl={deposit}
+              text={"Deposit"}
+            />
+            <img src={rightArrow} alt={"enter"} />
+            <IconLabel
+              imageUrl={star}
+              text={"Earn Bonus!"}
+            />
+          </IconLabelGroup>
+        </>
+      }
     </Wrapper>
   );
 };

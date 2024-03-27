@@ -8,6 +8,8 @@ import ContextMenuItem from "./ContextMenuItem";
 import { useGetNavItemList } from "@/layouts/components/MenuDrawer/hooks/useGetNavItemList";
 import logoutIcon from "@/assets/t24/images/menuDrawer/icon-logout.svg";
 import { theme } from "@/theme";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
+import languageImg from "@/assets/t24/images/menuDrawer/icon-language.svg";
 
 const ContextMenuContainer = styled.div`
   background: ${({ theme }) => theme.white};
@@ -16,6 +18,7 @@ const ContextMenuContainer = styled.div`
   top: 44px;
   right: 25px;
   z-index: 99;
+  max-width: 84%;
 `;
 const ContextMenuItemWrapper = styled.div`
   display: flex;
@@ -23,6 +26,15 @@ const ContextMenuItemWrapper = styled.div`
   max-height: calc(100vh - 44px);
   gap: 10px;
 `;
+
+const MenuItemWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 15px;
+`;
+
 
 const ContextMenu = () => {
   const { handleLogout } = useAuthContext();
@@ -64,7 +76,6 @@ const ContextMenu = () => {
           const { label, iconUrl, routePath } = navItem;
 
           if (routePath === "/logout") return null;
-
           return (
             <ContextMenuItem
               key={label}
@@ -74,6 +85,15 @@ const ContextMenu = () => {
             />
           );
         })}
+
+        <MenuItemWrapper>
+          <ContextMenuItem
+            key={"language"}
+            label={i18n.t("common.language")}
+            iconUrl={languageImg}
+          />
+          <LanguageSwitch />
+        </MenuItemWrapper>
 
         <ContextMenuItem
           key={"logout"}

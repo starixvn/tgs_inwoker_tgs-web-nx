@@ -42,7 +42,7 @@ export function useGetBottomNavItemList() {
         routePath: "/promotion-list",
       },
       {
-        navType: NavTypeEnum.BIG_ITEM,
+        navType: NavTypeEnum.ITEM,
         key: "vip",
         label: "VIP",
         iconUrl: iconVip,

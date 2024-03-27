@@ -89,6 +89,10 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
     background: theme.palette.gray90,
     color: theme.palette.gray40,
   },
+
+  "&:hover": {
+    background: theme.palette.primary.main,
+  },
 })) as typeof MuiButton;
 
 export const VerifySubmitButton = styled(SubmitButton)`

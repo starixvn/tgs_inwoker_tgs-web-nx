@@ -1,4 +1,4 @@
-import CarouselArrow from "@/assets/t18/images/dialog/carousel-arrow.svg";
+import CarouselArrow from "@/assets/t24/images/dialog/right-arrow.svg";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
@@ -12,8 +12,8 @@ const NextArrowContainer = styled.div`
   cursor: pointer;
   z-index: 99;
   background: url(${CarouselArrow}) no-repeat center center;
-  width: 22px;
-  height: 44px;
+  width: 30px;
+  height: 30px;
 `;
 
 const PrevArrowContainer = styled(NextArrowContainer)`

@@ -15,6 +15,7 @@ import vipIcon from "@/assets/t24/images/menuDrawer/icon-vip.svg";
 import contactIcon from "@/assets/t24/images/menuDrawer/icon-contact.svg";
 import downloadIcon from "@/assets/t24/images/menuDrawer/icon-download.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import languageImg from "@/assets/t24/images/menuDrawer/icon-language.svg";
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -116,6 +117,14 @@ export function useGetNavItemList() {
         iconUrl: downloadIcon,
         navType: "route",
         routePath: "/appDownload",
+      },
+      {
+        key: NavCardKey.LANGUAGE_SWITCH,
+        label: i18n.t("common.language"),
+        iconUrl: languageImg,
+        navType: "action",
+        routePath: null,
+        callback: () => {},
       },
     ] as NavItem[];
   }, []);
