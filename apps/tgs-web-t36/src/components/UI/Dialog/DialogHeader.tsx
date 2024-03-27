@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import closeIcon from "@/assets/t27/images/dialog/icon-close.svg";
+import iconReturn from "@/assets/t36/images/dialog/icon-return.svg";
 import Icon from "@/components/project/Icon";
 import { DIALOG_HEADER_HEIGHT } from "@/theme/constants";
 
@@ -13,6 +13,7 @@ const DialogHeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.white};
   font-weight: 700;
   margin: 0;
@@ -24,7 +25,7 @@ const DialogHeaderContainer = styled.div`
 const ReturnIconContainer = styled.div`
   position: absolute;
   top: 50%;
-  right: 17px;
+  left: 17px;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
@@ -40,7 +41,7 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl={closeIcon} width={"20px"} height={"20px"} />
+        <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
       </ReturnIconContainer>
 
       {dialogHeaderTitle}

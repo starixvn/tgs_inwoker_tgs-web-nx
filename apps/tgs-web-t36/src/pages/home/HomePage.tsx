@@ -29,6 +29,7 @@ import ScrollableHomeCategory from "@/pages/home/components/CategoryRenderer/com
 import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
 import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
+import HomePromotionCard from "@/pages/home/components/HomePromotion";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -233,6 +234,7 @@ const HomePage = () => {
             <ScrollableHomeHot />
             <ScrollableHomeNew />
             <ScrollableHomeRecommend />
+            <HomePromotionCard />
             <Introduction>
               <Brand>{config.brand} : A Winning Casino!</Brand>
               <IntroductionText>

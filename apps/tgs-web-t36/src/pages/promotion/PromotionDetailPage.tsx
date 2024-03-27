@@ -10,13 +10,12 @@ import { PAGE_CONTAINER_WIDTH } from "@/theme/constants";
 const PromotionDetailContainer = styled.div`
   width: 100%;
   padding: 16px;
-  color: ${({ theme }) => theme.white};
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 22px;
   flex-shrink: 0;
-  
+
   ${media.sm} {
     width: ${PAGE_CONTAINER_WIDTH};
     margin: 0 auto;
@@ -46,22 +45,24 @@ const TextArea = styled.div`
 `;
 const Title = styled.h2`
   color: ${({ theme }) => theme.white};
-  font-size: 1.125rem;
+  font-size: 17px;
   font-weight: 700;
- 
+  line-height: 20.57px;
+  color: ${({ theme }) => theme.black};
   ${media.sm} {
     font-size: 2rem;
     margin-bottom: 40px;
   }
 `;
 const Description = styled.p`
-  color: #BCBFC7;
-  font-size: 0.875rem;
-  font-weight: 500;
-
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
+  color: ${({ theme }) => theme.grey05};
   ${media.sm} {
     font-size: 1.5rem;
-  } margin-bottom: 40px;
+  }
+  margin-bottom: 40px;
 `;
 
 const TermsAndConditions = styled(Description)`
