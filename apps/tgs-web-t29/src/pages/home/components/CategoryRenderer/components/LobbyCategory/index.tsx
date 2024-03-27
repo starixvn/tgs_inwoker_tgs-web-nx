@@ -112,11 +112,9 @@ const LobbyCategory = () => {
                     <MobileVendorCard
                       key={gpCode}
                       bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                      imageUrl={`/assets/images/home/mobile/${activeGameTypeKey}/${gpCode}.png`}
-                      venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+                      imageUrl={`/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
                       launchGame={() => launchLobbyGame(gpCode)}
                       status={status}
-                      venderName={name}
                     />
                   );
                 })}
@@ -139,11 +137,8 @@ const LobbyCategory = () => {
                     }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
                   imageUrl={`${import.meta.env.BASE_URL
                     }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
-                  venderLogoUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
-                  venderName={name}
                 />
               );
             })}
