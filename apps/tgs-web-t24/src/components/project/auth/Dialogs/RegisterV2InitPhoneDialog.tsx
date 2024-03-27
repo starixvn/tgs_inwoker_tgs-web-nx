@@ -18,7 +18,6 @@ const RegisterV2InitPhoneDialog = () => {
       onClose={handleClose}
       sx={{
         "& .MuiPaper-root": {
-          padding: "28px 0",
           maxWidth: "550px",
         },
       }}

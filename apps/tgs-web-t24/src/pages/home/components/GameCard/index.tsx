@@ -1,14 +1,14 @@
-import {MouseEvent, useState} from "react";
-import {useHistory} from "react-router";
+import { MouseEvent, useState } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
-import {GameItem} from "@tgs-web-nx/types";
-import {Common} from "@tgs-web-nx/utils";
-import {useAccountStore, useGameStore} from "@tgs-web-nx/core";
-import {useHomeGameContext} from "@tgs-web-nx/core/features";
-import {useRwd} from "@tgs-web-nx/core/hooks";
+import { GameItem } from "@tgs-web-nx/types";
+import { Common } from "@tgs-web-nx/utils";
+import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
 import Favorite from "@/pages/home/components/Favorite";
-import {media} from "@/theme/breakpoints";
+import { media } from "@/theme/breakpoints";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -18,7 +18,7 @@ const CardHoverBg = styled.div`
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 60%);
-  border-radius: 15px;
+  border-radius: 10px;
   display: none;
   white-space: pre-line;
 
@@ -35,7 +35,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 12px;
+  border-radius: 10px;
 `;
 
 const NewTag = styled.div`
@@ -45,7 +45,7 @@ const NewTag = styled.div`
   width: 32px;
   height: 18px;
   padding: 10px;
-  border-radius: 12px 0px;
+  border-radius: 10px 0px;
   background: ${(props) => props.theme.primaryMix};
   color: ${(props) => props.theme.tagColor};
   display: flex;
@@ -62,7 +62,7 @@ const HotTag = styled.div`
   width: 32px;
   height: 18px;
   padding: 10px;
-  border-radius: 12px 0px;
+  border-radius: 10px 0px;
   background: #ff1727;
   color: ${(props) => props.theme.white};
   display: flex;
@@ -126,7 +126,7 @@ const MaintenanceBg = styled.div`
 
   ${media.sm} {
     height: 81%;
-    border-radius: 15px;
+    border-radius: 10px;
     z-index: 1;
   }
 `;
@@ -157,9 +157,17 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
+  const isLogin = !!account.token;
+
+  const launchGameHandler = () => {
+    if (!isActive) {
+      return;
+    }
+    launchGame();
+  }
 
   const launchGame = () => {
-    if (!account.token) {
+    if (!isLogin) {
       history.push("/login");
     } else {
       Common.closePreviousPopup();
@@ -187,7 +195,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <GameCardBg onClick={launchGame}>
+    <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
@@ -207,7 +215,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg>
-          <TextButton text={"Go"} onClick={launchGame} />
+          <TextButton text={"Go"} onClick={launchGameHandler} />
         </CardHoverBg>
       )}
     </GameCardBg>

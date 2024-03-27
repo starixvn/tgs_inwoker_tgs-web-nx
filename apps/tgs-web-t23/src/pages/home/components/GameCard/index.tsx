@@ -166,6 +166,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     }
     launchGame();
   }
+
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");
@@ -193,7 +194,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       setIsUpdatingFavorite(false);
     }
   };
-  console.log('isLogin', isLogin)
+
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>

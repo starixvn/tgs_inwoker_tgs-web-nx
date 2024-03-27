@@ -4,6 +4,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import styled from "styled-components";
 import { useGetNavItemList } from "@/layouts/components/MenuDrawer/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
@@ -107,6 +108,8 @@ const MenuDrawerList = () => {
 
           <AccordionDetails>
             {accountNavItemList.map((navItem) => {
+              if (navItem.navType !== "route") return null;
+
               const { key, iconUrl, label } = navItem;
               return (
                 <MenuRow key={key} onClick={() => handleAccountNavClick(navItem)}>
