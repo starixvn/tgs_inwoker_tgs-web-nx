@@ -12,8 +12,6 @@ import BannerImage from "@/pages/promotion/components/BannerImage";
 import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { media } from "@/theme/breakpoints";
-// import { Button } from "@/components/UI/Button";
-// import CloseIcon from "@/components/project/Popup/components/CloseIcon";
 
 const doNotShowPromotionDialogKey = "doNotShowPromotionDialog";
 
@@ -32,7 +30,7 @@ const StyledDialog = styled(MuiDialog)`
     justify-content: center;
     overflow: visible;
     border-radius: 4px;
-    padding: 45px 24px;
+    padding: 45px 24px 20px 24px;
 
     ${media.sm} {
       max-width: 534px;
@@ -44,7 +42,12 @@ const StyledDialog = styled(MuiDialog)`
 
 const ChildContainer = styled.div`
   width: 100%;
+  max-width: 356px;
   height: auto;
+
+  ${media.sm} {
+    max-width: 454px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -67,7 +70,7 @@ const CloseIconContainer = styled.div`
 
 const Button = styled.div`
   cursor: pointer;
-  width: 90%;
+  width: 100%;
   height: 50px;
   text-align: center;
   font-size: 1.25rem;
@@ -82,9 +85,8 @@ const Button = styled.div`
   line-height: 1.5rem;
 
   ${media.sm} {
-    font-size: 2rem;
+    font-size: 1.25rem;
     width: 281px;
-    height: 53px;
   }
 `;
 
@@ -182,7 +184,7 @@ const PopupPromotion = () => {
         <CloseIcon
           onClick={handleCloseDialog}
           style={{
-            color: "white",
+            color: "#8C9099",
           }}
         />
       </CloseIconContainer>
