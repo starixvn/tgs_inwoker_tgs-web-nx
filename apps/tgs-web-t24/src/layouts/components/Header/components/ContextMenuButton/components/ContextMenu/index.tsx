@@ -8,8 +8,6 @@ import ContextMenuItem from "./ContextMenuItem";
 import { useGetNavItemList } from "@/layouts/components/MenuDrawer/hooks/useGetNavItemList";
 import logoutIcon from "@/assets/t24/images/menuDrawer/icon-logout.svg";
 import { theme } from "@/theme";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
-import languageImg from "@/assets/t24/images/menuDrawer/icon-language.svg";
 
 const ContextMenuContainer = styled.div`
   background: ${({ theme }) => theme.white};
@@ -85,15 +83,6 @@ const ContextMenu = () => {
             />
           );
         })}
-
-        <MenuItemWrapper>
-          <ContextMenuItem
-            key={"language"}
-            label={i18n.t("common.language")}
-            iconUrl={languageImg}
-          />
-          <LanguageSwitch />
-        </MenuItemWrapper>
 
         <ContextMenuItem
           key={"logout"}

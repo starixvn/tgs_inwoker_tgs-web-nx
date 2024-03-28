@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
-import { useChannelList, useUploadFile, useAlertDepositSuccess } from "../../hooks";
+import { useChannelList, useUploadFile } from "../../hooks";
 import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
 import { ExtendedLayout } from "../Extended";
 import { LayoutProps } from "./index";
@@ -12,12 +12,13 @@ import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/Deposit
 export const FpsLayout = ({
   filterGroupList,
   groupCode,
+  handlePerformDeposit,
+  isThirdPartyPending,
 }: LayoutProps) => {
   const {channelList, currentChannel, extended, isManual} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
-  const {doFPSDepositWithName, doFPSDeposit, performDeposit} = useWalletStore();
+  const {doFPSDepositWithName, doFPSDeposit} = useWalletStore();
   const {handleUploadFile, isPending: isManualPending} = useUploadFile();
-  const {handleAlertDepositSuccess, isPending} = useAlertDepositSuccess();
 
   const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
   const props = {
@@ -30,20 +31,16 @@ export const FpsLayout = ({
    * 送出表單
    */
   const handleOnSubmit = () => {
-    const {amount, id, promotionid, account, type, name, paymentcode} = formData;
-    if(!isManual) {
-      performDeposit(amount, id, promotionid, paymentcode, type)
-        .then((res) => {
-          handleAlertDepositSuccess(res);
-        })
-
+    const {amount, id, promotionid, account, type, name} = formData;
+    if(!isManual && handlePerformDeposit) {
+      handlePerformDeposit();
       return;
     }
 
     if(config.features.Deposit_FPSWithName) {
       doFPSDepositWithName(name, account, amount, id, promotionid, type)
         .then((res) => {
-          handleAlertDepositSuccess(res);
+          handleUploadFile(formData.files, res);
         })
       return;
     }
@@ -73,7 +70,7 @@ export const FpsLayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isManual ? isManualPending : isPending}/>
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={!!isManualPending || !!isThirdPartyPending}/>
     </>
   )
 };

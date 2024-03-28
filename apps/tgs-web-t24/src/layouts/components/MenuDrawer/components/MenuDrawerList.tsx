@@ -18,6 +18,21 @@ import {
   MenuRow,
   MenuRowLabel,
 } from "@/layouts/components/MenuDrawer/components/styled-components";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
+
+const MenuItemWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const MenuIconWrapper = styled.div`
+width: 100%;  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
 
 const MenuDrawerList = () => {
   const { gameTypeNavItemList, accountNavItemList } = useGetNavItemList();
@@ -108,9 +123,21 @@ const MenuDrawerList = () => {
 
           <AccordionDetails>
             {accountNavItemList.map((navItem) => {
-              if (navItem.navType !== "route") return null;
-
               const { key, iconUrl, label } = navItem;
+
+              if (label === i18n.t("common.language"))
+                return (
+                  <MenuRow key={key} onClick={() => handleAccountNavClick(navItem)}>
+                    <MenuItemWrapper>
+                      <MenuIconWrapper>
+                        <Icon iconUrl={iconUrl} width={"24px"} height={"24px"} />
+                        <MenuRowLabel>{isMenuOpen && <span>{label}</span>}</MenuRowLabel>
+                      </MenuIconWrapper>
+                      <LanguageSwitch />
+                    </MenuItemWrapper>
+                  </MenuRow>
+                );
+
               return (
                 <MenuRow key={key} onClick={() => handleAccountNavClick(navItem)}>
                   <Icon iconUrl={iconUrl} width={"24px"} height={"24px"} />

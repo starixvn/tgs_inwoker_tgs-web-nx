@@ -174,22 +174,50 @@ export const useUploadFile = () => {
 }
 
 /**
- * 存款成功後，開啟存款成功 dialog
+ * 第三方存款 dialog
  */
-export const useAlertDepositSuccess = () => {
-  const {alert} = useNotifications();
+export const useThirdPartyDeposit = () => {
+  const {performDeposit} = useWalletStore();
   const [isPending, setIsPending] = useState(false);
-  const handleAlertDepositSuccess = (res: any) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [url, setUrl] = useState(undefined);
+  const {formData} = useContext(DepositFormContext);
+
+  const handleOnClose = () => {
+    setIsDialogOpen(false);
+  } 
+  
+  
+  const handleOpenPopupUrl = () => {
+    if(url) {
+      window.open(url)
+      setIsDialogOpen(false);
+    }
+  }
+
+  const handleOnPending = (res: any) => {
     setIsPending(true);
     if(res?.IsSuccess) {
       setIsPending(false);
-      alert("", i18n.t("deposit.completeDeposit"));
+      setIsDialogOpen(true);
+      if(res?.data.paymenturl) {
+        setUrl(res?.data.paymenturl)
+      }
     }
 
     if(!res?.IsSuccess) {
       setIsPending(false);
     }
+  }  
+
+  const handlePerformDeposit = () => {
+    const {amount, id, promotionid, paymentcode, type} = formData;
+    performDeposit(amount, id, promotionid, paymentcode, type)
+      .then((res) => {
+        handleOnPending(res);
+      })
   }
 
-  return {handleAlertDepositSuccess, isPending};
+  return {handlePerformDeposit, isPending, handleOpenPopupUrl, handleOnClose, isDialogOpen};
 }
+ 

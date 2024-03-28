@@ -1,5 +1,5 @@
 import { FilterDepositList } from "@tgs-web-nx/types";
-import { useGroupList } from "../../hooks";
+import { useGroupList, useThirdPartyDeposit } from "../../hooks";
 import { GroupCodeEnum } from "../../types";
 import { Cards as GroupCards } from "../../components";
 import { BankLayout } from "./BankLayout";
@@ -9,12 +9,16 @@ import { TrcLayout } from "./TrcLayout";
 import { ALI2ALILayout } from "./ALI2ALILayout";
 import { EWalletLayout } from "./EWalletLayout";
 import { CoinsphLayout } from "./CoinsphLayout";
+import { GCashLayout } from "./GCashLayout";
 import { PulsaLayout } from "./PulsaLayout";
+import ResultPopupDialog from "@/pages/deposit/components/ResultPopupDialog";
 
 export type LayoutProps = {
   filterGroupList: FilterDepositList[]
   groupCode: string
   handleSubmit?: () => void;
+  handlePerformDeposit?: () => void;
+  isThirdPartyPending?: boolean;
 }
 
 /**
@@ -22,13 +26,13 @@ export type LayoutProps = {
  */
 const FormLayout = () => {
   const {groupCode, groupList, filterGroupList} = useGroupList();
-
+  const {handlePerformDeposit, isDialogOpen, handleOpenPopupUrl, handleOnClose, isPending} = useThirdPartyDeposit();
   const props = {
     i18nParam: "depositAndWithdrawalStatus.depositMode",
     list: groupList,
   };
 
-  const layoutProps: LayoutProps = {groupCode, filterGroupList};
+  const layoutProps: LayoutProps = {groupCode, filterGroupList, handlePerformDeposit, isThirdPartyPending: isPending};
 
   /**
  * 對應 UI
@@ -56,6 +60,9 @@ const FormLayout = () => {
       case GroupCodeEnum.Pulsa:
         return <PulsaLayout {...layoutProps} />
 
+      case GroupCodeEnum.GCash:
+        return <GCashLayout {...layoutProps} />
+        
       default:
         return <DefaultLayout {...layoutProps} />
     }
@@ -68,6 +75,12 @@ const FormLayout = () => {
 
       {/* 對應 UI */}
       {mapLayout()}
+
+      <ResultPopupDialog 
+        isDialogOpen={isDialogOpen}
+        handleClose={handleOnClose}
+        handleOpenPopupUrl={handleOpenPopupUrl}
+      />
     </>
   )
 }
