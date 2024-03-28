@@ -2,6 +2,7 @@ export type PromotionCampaignDetail = {
   percentage: number;
   bonusAmountLimit: number;
   turnoverMultiple: number;
+  depositMinimumLimit: number;
 }
 
 interface PromotionLocalization {
@@ -18,6 +19,7 @@ export class Promotion {
     percentage: 0,
     bonusAmountLimit: 0,
     turnoverMultiple: 0,
+    depositMinimumLimit: 0,
   };
   content = "";
   desktopBanner = "";

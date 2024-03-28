@@ -1,7 +1,5 @@
-import { useContext } from "react";
-import { useWalletStore } from "@tgs-web-nx/core";
-import {useAlertDepositSuccess, useChannelList} from '../../hooks';
-import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
+import {useChannelList} from '../../hooks';
+import { Cards as ChannelCards, DepositAmountInput, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
 import { ExtendedLayout } from "../Extended";
 import { LayoutProps } from "./index";
 import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
@@ -17,13 +15,12 @@ type Props = {
 export const DefaultLayout = ({
   filterGroupList,
   handleSubmit,
+  handlePerformDeposit,
   groupCode,
   isManualPending,
+  isThirdPartyPending,
 }: Props) => {
   const {channelList, currentChannel, extended, isManual} = useChannelList(filterGroupList, groupCode);
-  const {formData} = useContext(DepositFormContext);
-  const {performDeposit} = useWalletStore();
-  const {handleAlertDepositSuccess, isPending} = useAlertDepositSuccess();
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
@@ -40,11 +37,9 @@ export const DefaultLayout = ({
       return;
     }
 
-    const {amount, id, promotionid, paymentcode, type} = formData;
-    performDeposit(amount, id, promotionid, paymentcode, type)
-      .then((res) => {
-        handleAlertDepositSuccess(res);
-      })
+    if(handlePerformDeposit){
+      handlePerformDeposit();
+    }
   }
 
   return (
@@ -62,7 +57,7 @@ export const DefaultLayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isManualPending !== undefined ? isManualPending : isPending}/>
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={!!isManualPending || !!isThirdPartyPending}/>
     </>
   )
 };

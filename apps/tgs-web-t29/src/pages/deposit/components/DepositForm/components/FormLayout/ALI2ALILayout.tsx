@@ -13,10 +13,12 @@ import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/Deposit
 export const ALI2ALILayout = ({
   filterGroupList,
   groupCode,
+  handlePerformDeposit,
+  isThirdPartyPending,
 }: LayoutProps) => {
   const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
-  const {performDeposit, doThirdPartyDeposit} = useWalletStore();
+  const {doThirdPartyDeposit} = useWalletStore();
   const {handleUploadFile, isPending} = useUploadFile();
   const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
   const props = {
@@ -37,7 +39,9 @@ export const ALI2ALILayout = ({
       return;
     }
 
-    performDeposit(amount, id, promotionid, paymentcode, type);
+    if(handlePerformDeposit){
+      handlePerformDeposit();
+    }
   }
 
   return (
@@ -55,7 +59,7 @@ export const ALI2ALILayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isPending}/>
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isPending || !!isThirdPartyPending}/>
     </>
   )
 };
