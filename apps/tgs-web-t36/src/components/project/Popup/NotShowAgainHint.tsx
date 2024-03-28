@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
-import IconCheckBox from "@/assets/t27/images/dialog/icon_checkbox.svg";
+import checked from "@/assets/t36/images/dialog/checked.svg";
+import uncheck from "@/assets/t36/images/dialog/uncheck.svg";
 
 const NotShowAgainHintContainer = styled.div`
   width: fit-content;
@@ -10,8 +11,7 @@ const NotShowAgainHintContainer = styled.div`
   font-size: 1rem;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.white};
-  background-color: ${({ theme }) => theme.g4};
+  color: ${({ theme }) => theme.text};
 `;
 
 type CheckBoxProps = {
@@ -22,9 +22,11 @@ const CheckBox = styled.div<CheckBoxProps>`
   width: 18px;
   height: 18px;
   background: ${(props: CheckBoxProps) =>
-    props.$isCheck ? `url(${IconCheckBox}) no-repeat center center;` : null};
+    props.$isCheck
+      ? `url(${checked}) no-repeat center center;`
+      : `url(${uncheck}) no-repeat center center;`};
   margin-right: 10px;
-  border: ${(props) => (props.$isCheck ? "0" : "1px")} solid ${({ theme }) => theme.white};
+  border: ${(props) => (props.$isCheck ? "0" : "1px")} solid ${({ theme }) => theme.black};
   border-radius: 5px;
 `;
 

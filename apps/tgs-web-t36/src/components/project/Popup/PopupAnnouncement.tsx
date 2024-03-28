@@ -42,7 +42,7 @@ const ChildContainer = styled.div`
 const Title = styled.div`
   font-size: 1.062rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
 
   ${media.sm} {
     font-size: 1.5rem;
@@ -51,7 +51,7 @@ const Title = styled.div`
 
 const Content = styled.div`
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   margin-top: 1rem;
   white-space: pre-line;
 
