@@ -51,8 +51,14 @@ const CloseIconContainer = styled.div`
 
 const Title = styled.div`
   font-size: 1.0625rem;
+  line-height: 1.29rem;
   font-weight: 700;
   color: ${({ theme }) => theme.white};
+
+  ${media.sm} {
+    font-size: 1.5rem;
+    line-height: 1.82rem;
+  }
 `;
 
 const Content = styled.div`
@@ -64,14 +70,14 @@ const Content = styled.div`
   line-height: 1rem;
 
   ${media.sm} {
-    font-size: 1.5rem;
-    line-height: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.21rem;
   }
 `;
 
 const Button = styled.div`
   cursor: pointer;
-  width: 90%;
+  width: 100%;
   height: 50px;
   text-align: center;
   font-size: 1.25rem;
@@ -86,9 +92,8 @@ const Button = styled.div`
   line-height: 1.5rem;
 
   ${media.sm} {
-    font-size: 2rem;
+    font-size: 1.25rem;
     width: 281px;
-    height: 53px;
   }
 `;
 
@@ -184,7 +189,7 @@ const PopupAnnouncement = () => {
         <CloseIcon
           onClick={handleCloseDialog}
           style={{
-            color: "white",
+            color: "#8C9099",
           }}
         />
       </CloseIconContainer>
