@@ -160,7 +160,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
   const isLogin = !!account.token;
-
+  const url = imageUrl.replace(/\s+/g, ''); // 後端回傳之api有空格問題 先由前端處理 FUNKY
   const launchGameHandler = () => {
     if (!isActive) {
       return;
@@ -198,7 +198,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
-        <GameIcon $imageUrl={imageUrl}></GameIcon>
+        <GameIcon $imageUrl={url}></GameIcon>
         {gameItem.tag.new && <NewTag>New</NewTag>}
         {gameItem.tag.hot && <HotTag>Hot</HotTag>}
         {!isActive && (
