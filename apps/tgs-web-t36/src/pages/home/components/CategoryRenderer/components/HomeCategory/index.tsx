@@ -3,12 +3,12 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { Common, i18n } from "@tgs-web-nx/utils";
+import { GameService, useAccountStore } from "@tgs-web-nx/core";
+import CategoryLabel from "./components/CategoryLabel";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import ButtonText from "@/pages/home/components/ButtonText";
-import CategoryLabel from "./components/CategoryLabel";
 import LobbyVendorCard from "@/pages/home/components/VendorCard/LobbyVendorCard";
-import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
 

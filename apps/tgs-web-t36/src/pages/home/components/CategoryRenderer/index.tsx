@@ -8,11 +8,11 @@ import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/component
 const CategoryRenderer = () => {
   const { activeGameType } = useHomeGameContext();
 
-  switch (activeGameType) {
-    case GameTypeEnum.NONE:
-      return <HomeCategory />;
-    // 遊戲大廳 isEnterGamePortal
-  }
+  // switch (activeGameType) {
+  //   case GameTypeEnum.NONE:
+  //     return <HomeCategory />;
+  //   // 遊戲大廳 isEnterGamePortal
+  // }
 
   switch (activeGameType) {
     case GameTypeEnum.SLOT:

@@ -28,7 +28,7 @@ const CategoryContent = styled.div`
   width: 100%;
   align-self: stretch;
   gap: 10px;
-  max-height: 254px;
+  /* max-height: 254px; */
   overflow-x: hidden;
 
   ${media.sm} {
@@ -83,7 +83,7 @@ const LobbyCategory = () => {
 
   return (
     <>
-      <GameTypeTab />
+      {/* <GameTypeTab /> */}
       <CategoryContentWrapper>
         <CategoryContent>
           {hasMappingData &&

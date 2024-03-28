@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
 import Tag from "./Tag";
+import TextTag from "./TextTag";
 import { gameTagList } from "@/constants/gameTag";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
-import TextTag from "./TextTag";
+import SearchInput from "@/pages/home/components/SearchInput";
+import searchIcon from "@/assets/t36/images/home/search.svg";
 
 const FilterSection = styled.div`
   width: 100%;
@@ -13,6 +16,7 @@ const FilterSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 10px;
 `;
 
 const ProviderTagContainer = styled.div`
@@ -23,7 +27,8 @@ const ProviderTagContainer = styled.div`
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   align-self: stretch;
-
+  display: flex;
+  gap: 8px;
   ${media.sm} {
     &::-webkit-scrollbar {
       height: 10px;
@@ -51,6 +56,11 @@ const CommonContainer = styled.div`
   display: flex;
 `;
 
+const SearchInputWrapper = styled.div`
+  width: 100%;
+  height: 30px;
+`;
+
 const GameFilterTag = () => {
   const {
     activeFilterTag,
@@ -61,10 +71,11 @@ const GameFilterTag = () => {
     providerFilterTagList,
   } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
+  const { searchString, handleChangeSearch } = useHomeGameContext();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
-    name: "",
+    name: FilterTagTypeEnum.ALL,
   };
 
   const handleFilterClick = (filterTag: FilterTag) => {
@@ -96,11 +107,7 @@ const GameFilterTag = () => {
       <ProviderTagContainer>
         {providerFilterTagList.map((filterTag: FilterTag) => {
           const { name, gpCode } = filterTag;
-          const isActive =
-            filterTag.tagType === FilterTagTypeEnum.ALL ||
-            (filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
-              gpCode === activeProviderFilterTag.gpCode);
-
+          const isActive = name === activeProviderFilterTag.name;
           const tagCmp = gameTagList.find((tag) => tag.text === name);
 
           return (
@@ -108,13 +115,13 @@ const GameFilterTag = () => {
               key={name}
               text={name}
               isActive={isActive}
-              isShowIcon={gameTagList.some((tag) => tag.text === name)}
+              isShowIcon={false}
               onClick={() => handleFilterClick(filterTag)}
             >
               {tagCmp &&
                 tagCmp.iconComponent &&
                 React.createElement(tagCmp.iconComponent, {
-                  $color: isActive ? theme.primary : theme.text,
+                  $color: isActive ? theme.red : theme.grey10,
                 })}
             </Tag>
           );
@@ -127,20 +134,36 @@ const GameFilterTag = () => {
 
           const isActive =
             filterTag.tagType !== FilterTagTypeEnum.PROVIDER && tagType === activeFilterTag.tagType;
+          const tagCmp = gameTagList.find((tag) => tag.text === name);
 
-          // if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          //   return null;
-          // }
+          if (filterTag.tagType === FilterTagTypeEnum.ALL) {
+            return null;
+          }
 
           return (
-            <TextTag
+            <Tag
               key={name}
               text={name}
-              isActive={isActive}
+              isActive={false}
+              isShowIcon={true}
               onClick={() => handleFilterClick(filterTag)}
-            />
+            >
+              {tagCmp &&
+                tagCmp.iconComponent &&
+                React.createElement(tagCmp.iconComponent, {
+                  $color: isActive ? theme.primary : theme.grey03,
+                })}
+            </Tag>
           );
         })}
+        <SearchInputWrapper>
+          <SearchInput
+            placeholder={i18n.t("slot.search")}
+            imageUrl={searchIcon}
+            handleChange={handleChangeSearch}
+            value={searchString}
+          />
+        </SearchInputWrapper>
       </CommonContainer>
     </FilterSection>
   );

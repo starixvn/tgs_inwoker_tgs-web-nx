@@ -8,10 +8,8 @@ import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
+// import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t27/images/home/search.svg";
 
 const CategoryMainWrapper = styled.div`
   width: 100%;
@@ -35,37 +33,22 @@ const CategoryContent = styled.div`
   width: 100%;
   align-self: stretch;
   gap: 10px;
-
+  justify-content: center;
   ${media.sm} {
     max-height: unset;
     overflow-x: unset;
   }
 `;
 
-const SearchInputWrapper = styled.div`
-  width: 100%;
-  height: 47px;
-  margin: 8px 0 10px 0 ;
-`;
-
 const NonLobbyCategory = () => {
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
-  const { searchString, handleChangeSearch } = useHomeGameContext();
 
   return (
     <>
-      <GameTypeTab />
+      {/* <GameTypeTab /> */}
       <CategoryMainWrapper>
         <GameFilterTag />
-        <SearchInputWrapper>
-          <SearchInput
-            placeholder={i18n.t("slot.search")}
-            imageUrl={searchIcon}
-            handleChange={handleChangeSearch}
-            value={searchString}
-          />
-        </SearchInputWrapper>
         <CategoryContentWrapper>
           <CategoryContent>
             {hasMappingData &&
@@ -74,9 +57,11 @@ const NonLobbyCategory = () => {
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${config.sourceUrl
-                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${gameItem.code
-                    }.jpg`}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
                 />
               ))}
             {!hasMappingData && !isLoading && <div>No data</div>}

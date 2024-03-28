@@ -1,17 +1,12 @@
 import styled from "styled-components";
-import { GameItem } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
-import Loading from "@/components/UI/Loading";
-import AllCard from "@/pages/home/components/AllCard";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import { media } from "@/theme/breakpoints";
-import label_icon from "@/assets/t27/images/home/label-icon.svg";
 import CategoryLabel from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/CategoryLabel";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 import arrowRight from "@/assets/t36/images/home/arrow_right.png";
 
 const HomeCategorySection = styled.div`
@@ -92,12 +87,14 @@ const ScrollableHomeHot = () => {
   const { handleChangeGameType } = useHomeGameContext();
   const { hotGameList } = useGetHomeCategoryList();
   const hasMappingData = !!hotGameList.length;
-  const gameTypeList = useGameTypeList();
 
-  const handleViewAllClick = (gameType: GameTypeEnum) => {
-    handleChangeGameType(gameType);
-    const activeGameTypeKey = gameTypeList.find((item) => item.gameType === gameType)?.key;
-    history.push(`/main/${activeGameTypeKey}`);
+  const handleClick = () => {
+    const gameTypeItem = {
+      gameType: GameTypeEnum.SLOT,
+      key: "slots",
+    };
+    handleChangeGameType(gameTypeItem.gameType);
+    history.push(`/main/${gameTypeItem.key}`);
   };
 
   return (
@@ -105,7 +102,7 @@ const ScrollableHomeHot = () => {
       <CategoryTitle>
         <CategoryLabel text={i18n.t("slot.hotGame")} />
         <MoreButtonWrapper>
-          <MoreButton>{i18n.t("common.more")} </MoreButton>
+          <MoreButton onClick={handleClick}>{i18n.t("common.more")} </MoreButton>
           <img src={arrowRight} alt="right" />
         </MoreButtonWrapper>
       </CategoryTitle>
@@ -126,9 +123,6 @@ const ScrollableHomeHot = () => {
                 tag={"hot"}
               />
             ))}
-        {hotGameList.length > SHOW_CATEGORY_AMOUNT && (
-          <AllCard onClick={() => handleViewAllClick(GameTypeEnum.SLOT)} />
-        )}
       </CategoryContent>
     </HomeCategorySection>
   );

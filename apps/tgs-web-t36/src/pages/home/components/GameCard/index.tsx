@@ -35,25 +35,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.black};;
-`;
-
-const NameBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-`;
-
-const NameBgIcon = styled.img`
-  width: 100%;
-  position: absolute;
-  bottom: 0;
+  background-color: ${({ theme }) => theme.black};
 `;
 
 const TagBg = styled.div`
@@ -104,10 +86,10 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(50% - 5px);
+  width: calc(33.33% - 15px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 196 / 198;
+  aspect-ratio: 94 / 127;
 
   ${media.sm} {
     width: calc(16.67% - 36px);
@@ -144,10 +126,10 @@ const MaintenanceIcon = styled.img`
 `;
 
 const GameName = styled.div`
-width: 100%;
+  width: 100%;
   position: absolute;
   bottom: 0;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.grey05};
   font-size: 0.875rem;
   font-weight: 400;
   text-align: center;
@@ -186,7 +168,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       return;
     }
     launchGame();
-  }
+  };
   const launchGame = () => {
     if (!isLogin) {
       history.push("/login");
@@ -229,10 +211,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
           {gameItem.tag.new && <NewTag>New</NewTag>}
           {gameItem.tag.hot && <HotTag>Hot</HotTag>}
         </TagBg>
-        <NameBg>
-          <NameBgIcon src={gradientBg} alt={"game name"} />
-          {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
-        </NameBg>
+        {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
 
         {!isActive && (
           <MaintenanceBg>

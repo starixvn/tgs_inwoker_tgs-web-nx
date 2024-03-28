@@ -22,4 +22,5 @@ export const theme = {
   black20: "#00000033",
   white50: "#FFFFFF80",
   white20: "#FFFFFF33",
+  text: "#1B1B1B",
 };

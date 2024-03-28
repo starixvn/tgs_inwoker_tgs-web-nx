@@ -18,11 +18,10 @@ const Wrapper = styled.div<{
   margin-right: 4px;
   box-sizing: border-box;
   user-select: none;
-  background: ${({ theme, $isActive }) =>
-    $isActive ? theme.primaryGradient : theme.g5};
-  color: ${({ theme, $hasBackground }) =>
-    $hasBackground ? theme.white : theme.primary};
-  min-width: 60px;
+  background: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)};
+  color: ${({ theme, $hasBackground }) => ($hasBackground ? theme.white : theme.grey03)};
+  border: ${({ theme, $isActive }) => ($isActive ? `unset` : `1px solid ${theme.grey03}`)};
+  min-width: ${({ $isShowIcon }) => ($isShowIcon ? "23px" : "60px")};
   padding: 4px;
 
   ${media.sm} {
@@ -61,7 +60,8 @@ const Tag = ({ text, isActive, isShowIcon, children, onClick }: Props) => {
       $hasBackground={!isShowIcon && isActive}
       onClick={onClick}
     >
-      <Text $isActive={isActive}>{text}</Text>
+      {isShowIcon && children}
+      {!isShowIcon && <Text $isActive={isActive}>{text}</Text>}
     </Wrapper>
   );
 };

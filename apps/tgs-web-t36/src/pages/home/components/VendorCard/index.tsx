@@ -7,7 +7,7 @@ import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t27/images/home/maintenance.svg";
 import playIcon from "@/assets/t27/images/home/play-icon.png";
-import gradientBg from "@/assets/t27/images/home/name-bg.png";
+import gradientBg from "@/assets/t36/images/home/name-bg.png";
 
 type Props = {
   bgUrl: string;
@@ -23,7 +23,7 @@ type Props = {
 const VendorCardHoverBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 84%;
+  height: 100%;
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 50%);
@@ -46,7 +46,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
 const GradientBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 84%; //212/254
+  height: 100%;
   left: 0;
   top: 0;
   border-radius: 4px;
@@ -66,7 +66,7 @@ const VendorCardBg = styled.div`
   width: calc(50% - 5px);
   position: relative;
   cursor: pointer;
-  aspect-ratio: 198 / 254;
+  aspect-ratio: 240 / 254;
   background-color: ${(props) => props.theme.g4};
 
   ${media.sm} {
@@ -96,12 +96,12 @@ const VenderName = styled(VendorCardContent)`
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   position: absolute;
-  bottom: -30px;
+  bottom: 10px;
   left: 50%;
   transform: translate(-50%, -50%);
   display: inline-flex;
@@ -137,14 +137,7 @@ const MaintenanceIcon = styled.img`
   width: 140px;
   height: 90px;
 `;
-const VendorCard = ({
-  bgUrl,
-  imageUrl,
-  venderName,
-  venderLogoUrl,
-  launchGame,
-  status,
-}: Props) => {
+const VendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, status }: Props) => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
@@ -154,7 +147,7 @@ const VendorCard = ({
       return;
     }
     launchGame();
-  }
+  };
 
   useEffect(() => {
     if (venderNameRef.current) {
@@ -166,11 +159,12 @@ const VendorCard = ({
     <VendorCardBg onClick={launchGameHandler}>
       <VendorCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
+        {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+
         <GradientBg>
           <GradientBgIcon src={gradientBg} alt={"vendor name"} />
-          {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+          {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
         </GradientBg>
-        {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
         {status === providerStatus.Maintenance && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />

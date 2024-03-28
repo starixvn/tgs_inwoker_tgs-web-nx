@@ -12,8 +12,9 @@ const InputWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0px 24px;
-  background: #17191B;
+  padding: 0px 10px;
+  border: ${({ theme }) => `1px solid ${theme.grey03}`};
+  border-radius: 4px;
   gap: 10px;
 `;
 
@@ -26,9 +27,9 @@ const InputTextfield = styled.input`
   outline: none;
   width: 100%;
   font-size: 14px;
-  
+
   &::placeholder {
-    color: ${({ theme }) => theme.g8};
+    color: ${({ theme }) => theme.grey01};
   }
 
   &:focus {

@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { GameItem } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
-import BigWinsCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/BigWinsCard";
 import { media } from "@/theme/breakpoints";
 import CategoryLabel from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/CategoryLabel";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
@@ -87,13 +85,24 @@ const CategoryContent = styled.div`
 const ScrollableHomeRecommend = () => {
   const { recommendGameList } = useGetHomeCategoryList();
   const hasMappingData = !!recommendGameList.length;
+  const { handleChangeGameType } = useHomeGameContext();
+  const history = useHistory();
+
+  const handleClick = () => {
+    const gameTypeItem = {
+      gameType: GameTypeEnum.SLOT,
+      key: "slots",
+    };
+    handleChangeGameType(gameTypeItem.gameType);
+    history.push(`/main/${gameTypeItem.key}`);
+  };
 
   return (
     <HomeCategorySection>
       <CategoryTitle>
         <CategoryLabel text={i18n.t("slot.recommendGame")} />
         <MoreButtonWrapper>
-          <MoreButton>{i18n.t("common.more")} </MoreButton>
+          <MoreButton onClick={handleClick}>{i18n.t("common.more")} </MoreButton>
           <img src={arrowRight} alt="right" />
         </MoreButtonWrapper>
       </CategoryTitle>

@@ -180,9 +180,7 @@ const HomePage = () => {
 
   const { activeGameType, handleChangeGameType, isEnterGamePortal, setIsEnterGamePortal } =
     useHomeGameContext();
-  const history = useHistory();
   const gameTypeList = useGameTypeList();
-  const { betRecordList } = useBettingHistory();
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
@@ -212,7 +210,7 @@ const HomePage = () => {
     const gameType = getGameTypeFromKey(urlGameType);
     if (gameType) {
       handleChangeGameType(gameType);
-      setIsEnterGamePortal(true);
+      // setIsEnterGamePortal(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType, gameTypeList]);
@@ -227,7 +225,7 @@ const HomePage = () => {
         </SliderWrapper>
       )}
       <CardPrompt />
-      {!isEnterGamePortal && !activeGameType && (
+      {!activeGameType && (
         <>
           <CategorySection />
           <HomeCategoryContainer>
@@ -256,7 +254,7 @@ const HomePage = () => {
 
       {/* 首頁並且進入遊戲大廳 */}
       {/* 切換遊戲分頁 */}
-      {isEnterGamePortal && (
+      {activeGameType !== GameTypeEnum.NONE && (
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>
