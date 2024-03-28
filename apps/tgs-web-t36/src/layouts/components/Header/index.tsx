@@ -34,7 +34,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px 17px;
+  padding: 10px 10px;
   display: flex;
   align-items: center;
   z-index: 2;

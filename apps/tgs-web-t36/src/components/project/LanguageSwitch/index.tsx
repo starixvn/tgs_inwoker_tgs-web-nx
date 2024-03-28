@@ -31,7 +31,7 @@ const StyledSelect = styled(MuiSelect)`
   background: ${({ theme }) => theme.g4};
   font-weight: 700 !important;
   font-size: 1rem !important;
-  border: 1px solid ${({ theme }) => theme.g5} !important;
+  border: 1px solid ${({ theme }) => theme.grey10} !important;
 
   .MuiOutlinedInput-input {
     padding: 12px !important;
@@ -51,7 +51,7 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
   }
 `;
 
@@ -112,10 +112,9 @@ const LanguageSwitch = (props: SelectProps) => {
         PaperProps: {
           sx: {
             background: theme.mainBackground,
-
             "& .MuiMenuItem-root": {
               padding: 2,
-              width: 140,
+              color: theme.black,
             },
           },
         },

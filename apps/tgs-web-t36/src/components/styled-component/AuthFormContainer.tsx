@@ -9,7 +9,7 @@ export const AuthFormContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
-  padding: 24px 22px;
+  padding: 70px 20px 30px;
   overflow: auto;
   gap: 14px;
 

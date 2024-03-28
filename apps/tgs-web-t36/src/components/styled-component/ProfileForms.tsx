@@ -33,7 +33,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   height: "48px",
   width: "100%",
   fontSize: "0.875rem",
-  borderBottom: `1px solid ${theme.palette.gray}`,
+  borderBottom: `1px solid ${theme.palette.grey10}`,
   justifyContent: "center",
 
   "& fieldset": {
@@ -59,7 +59,7 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "50px",
   color: "#828282",
   background: theme.palette.mainBackground,
-  border: `1px solid ${theme.palette.gray}`,
+  border: `1px solid ${theme.palette.grey10}`,
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`
@@ -79,13 +79,13 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   lineHeight: 1,
   fontWeight: 700,
   color: theme.palette.white,
-  background: theme.palette.secondaryGradient,
+  background: theme.palette.primary.main,
   boxShadow: "none",
   borderRadius: "6px",
 
-  "&:hover": {
-    background: theme.palette.btnHover,
-  },
+  // "&:hover": {
+  //   background: theme.palette.primary.main,
+  // },
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,
@@ -105,9 +105,9 @@ export const CloseButton = muiStyled(MuiButton)(({ theme }) => ({
   boxShadow: "none",
   borderRadius: "6px",
 
-  "&:hover": {
-    background: theme.palette.btnHover,
-  },
+  // "&:hover": {
+  //   background: theme.palette.btnHover,
+  // },
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,

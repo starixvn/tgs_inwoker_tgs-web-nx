@@ -14,6 +14,7 @@ export const theme = {
   grey03: "#999999",
   grey04: "#656565",
   grey05: "#555555",
+  grey10: "#D6DBDD",
   supplierMask: "linear-gradient(180deg, rgba(0, 0, 0, 0) 53.12%, #000000 100%)",
   popupBG: "#00000099",
   black70: "#000000B2",

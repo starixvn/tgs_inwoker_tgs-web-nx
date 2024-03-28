@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { InvitationType } from "@tgs-web-nx/core/features";
-import { TextField } from "@/components/UI/TextField";
 import { FormikFormInput } from "@tgs-web-nx/core/features";
+import { TextField } from "@/components/UI/TextField";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 import { Select } from "@/components/UI/Select";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -65,13 +65,13 @@ const FormPromotionCode = ({ formInput, formik, showErrorOn }: Props) => {
             value={formik.values["userType"]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            style={{ color: theme.white }}
+            style={{ color: theme.black }}
             disabled={isReadOnly}
             MenuProps={{
               PaperProps: {
                 sx: {
                   "& .MuiMenuItem-root": {
-                    color: theme.white,
+                    color: theme.black,
                   },
                 },
               },

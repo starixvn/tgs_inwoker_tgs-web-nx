@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import memberIcon from "@/assets/t36/images/header/icon-account.svg";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 5px;
 `;
 
 type Props = {
@@ -25,24 +26,14 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       <HeaderButton
         onClick={goToLogin}
         style={{
-          color: theme.g2,
-          background: "transparent",
+          color: theme.white,
+          background: "#26304C",
         }}
       >
+        <img src={memberIcon} alt="memebr" />
         {i18n.t("common.login")}
       </HeaderButton>
-
-      <HeaderButton
-        onClick={goToRegister}
-        style={{
-          minWidth: "97px",
-          color: theme.white,
-          background: theme.primaryGradient,
-        }}
-      >
-        {i18n.t("common.register")}
-      </HeaderButton>
-      {isDesktopSize && <HeaderLanguageSwitch />}
+      <HeaderLanguageSwitch />
     </ButtonContainer>
   );
 };

@@ -11,14 +11,15 @@ import {
 } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import config from "@tgs-web-nx/config";
 import Icon from "@/components/project/Icon";
 import iconAccount from "@/assets/t27/images/header/icon-account.svg";
 import iconDeposit from "@/assets/t27/images/header/icon-deposit.svg";
 import iconPromotion from "@/assets/t27/images/header/icon-promotion.svg";
 import signoutBtn from "@/assets/t27/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import config from "@tgs-web-nx/config";
 import { media } from "@/theme/breakpoints";
+import memberIcon from "@/assets/t36/images/header/icon-account.svg";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -36,16 +37,16 @@ const IconContainer = styled.div`
 `;
 
 const BalanceContainer = styled.div`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 13.8px;
   display: flex;
   height: 36px;
-  padding: 4px 10px;
   align-items: center;
   gap: 5px;
   border-radius: 4px;
   background: ${({ theme }) => theme.g4};
   color: ${({ theme }) => theme.white};
-  font-size: 0.875rem;
-  font-weight: 700;
 `;
 
 const DepositContainer = styled.div`
@@ -147,12 +148,9 @@ const AccountHeaderContent = () => {
 
       {isMobileSize && (
         <>
-          <BalanceContainer>
-            {config.currency} ${currentBalance}
-          </BalanceContainer>
-          <MobileDepositContainer onClick={handleGotoDeposit}>
-            {i18n.t("common.deposit")}
-          </MobileDepositContainer>
+          <img src={memberIcon} alt="memebr" />
+          <BalanceContainer>${currentBalance}</BalanceContainer>
+          <HeaderLanguageSwitch />
         </>
       )}
     </ButtonContainer>

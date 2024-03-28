@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { TextFieldProps } from "@mui/material";
 import { TextField } from "@/components/UI/TextField";
@@ -18,11 +17,11 @@ const CustomText = styled.div`
 const ButtonContainer = styled.div`
   flex-shrink: 0;
   & > button {
-    height: 29px;
+    height: 31px;
     font-size: 0.75rem;
-    border-radius: 6px;
+    border-radius: 50px;
     padding: 6px 8px;
-    background: #1E6434;
+    background: #399FDA;
     color: #fff;
   }
 `;
