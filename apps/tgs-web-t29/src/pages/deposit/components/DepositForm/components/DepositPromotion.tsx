@@ -14,9 +14,10 @@ import { Select } from "@/components/UI/Select";
 export const DepositPromotion = () => {
   const {formData, setFormData} = useContext(DepositFormContext);
   const {general: { promotionList }} = useGeneralStore();
+  
   const filterPromotionList = promotionList.items.filter((row) => {
     if(row.promotionType === DepositPromotionEnum.DepositReward) {
-      return Number(formData.amount) >= row.campaignDetail.bonusAmountLimit
+      return Number(formData.amount) >= row.campaignDetail.depositMinimumLimit
     }
     
     return !!DepositPromotionEnum[row.promotionType as DepositPromotionEnum]

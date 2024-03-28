@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
-import { useChannelList, useProviderList, useUploadFile, useAlertDepositSuccess } from "../../hooks";
+import { useChannelList, useProviderList, useUploadFile } from "../../hooks";
 import { Cards, DepositAmountInput, DepositPromotion, Upload, DepositSubmitButton, DepositFormContext } from "../../components";
 import { BankExtended } from "../Extended";
 import { LayoutProps } from "./index";
 import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
+
 
 const limitAmount = 1;
 
@@ -14,16 +15,16 @@ const limitAmount = 1;
 export const BankLayout = ({
   filterGroupList,
   groupCode,
+  handlePerformDeposit,
+  isThirdPartyPending,
 }: LayoutProps) => {
   const {providerList, filterProviderList, providerCode} = useProviderList(filterGroupList, groupCode);
   const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterProviderList, providerCode);
-  const {performDeposit, doBankDeposit} = useWalletStore();
+  const {doBankDeposit} = useWalletStore();
   const {formData} = useContext(DepositFormContext);
   const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
   const isShowProviderCards = providerList.length > limitAmount; // 若金流商只有 1 個 => 不顯示
   const {handleUploadFile, isPending: isUploadFilePending} = useUploadFile();
-  const {handleAlertDepositSuccess, isPending: isDepositPending} = useAlertDepositSuccess();
-
   const channelProps = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
@@ -41,14 +42,11 @@ export const BankLayout = ({
    * 送出表單
    */
   const handleOnSubmit = () => {
-    const {amount, id, promotionid, paymentcode, type, name, account} = formData;
+    const {amount, id, promotionid, type, name, account} = formData;
 
     // 預設銀行存款
-    if(!isManual) {
-      performDeposit(amount, id, promotionid, paymentcode, type)
-        .then((res) => {
-          handleAlertDepositSuccess(res);
-        })
+    if(!isManual && handlePerformDeposit) {
+        handlePerformDeposit();
       return;
     }
 
@@ -71,7 +69,8 @@ export const BankLayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isManual ? isUploadFilePending : isDepositPending}/>
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isUploadFilePending || !!isThirdPartyPending}/>
+    
     </>
   )
 };

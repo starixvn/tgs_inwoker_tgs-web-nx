@@ -63,13 +63,18 @@ export const DepositSelectBankName = ({
             </option>
 
             {bankCardList
-              .filter(item => item.banktype === banktype)
+              .filter((item) => {
+                if(banktype) {
+                  return item.banktype === banktype
+                }
+                return item.banktype === 'ThirdParty' || item.banktype === 'Bank';
+              })
               .map((item, index) => {
               const {detail: {bankAccount, address, phone}} = item;
               const value = bankAccount || address || phone;
               return (
                 <option value={value} key={index}>
-                  {value} {banktype}
+                  {value} {item.banktype}
                 </option>
               );
             })}
