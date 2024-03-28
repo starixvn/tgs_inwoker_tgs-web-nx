@@ -67,7 +67,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       return;
     }
 
-    if (!brandConfig[mapBrandName(config.brand)] && phone.length < 8 || phone.length > (config.features.MAX_PHONE_LENGTH || 10)) {
+    if (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && phone.length < 8 || phone.length > (config.features.MAX_PHONE_LENGTH || 10)) {
       alert(
         "",
         i18n
