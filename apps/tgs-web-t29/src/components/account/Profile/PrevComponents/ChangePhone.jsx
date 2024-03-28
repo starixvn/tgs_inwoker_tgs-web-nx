@@ -64,7 +64,7 @@ class ChangePhone extends BaseProfile {
     if (this.state.countdownToken > 0) return;
     var expr = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`);
 
-    if (!brandConfig[mapBrandName(config.brand)] && !expr.test(this.state.phone)) {
+    if (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && !expr.test(this.state.phone)) {
       return this.showErrorMessage(
         i18n
           .t("common.noReachMin")
