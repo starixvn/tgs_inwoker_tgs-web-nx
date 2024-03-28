@@ -20,8 +20,10 @@ import signoutBtn from "@/assets/t27/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { media } from "@/theme/breakpoints";
 import memberIcon from "@/assets/t36/images/header/icon-account.svg";
+import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
+import { theme } from "@/theme";
 
-const ButtonContainer = styled.div`
+const MainContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -49,56 +51,75 @@ const BalanceContainer = styled.div`
   color: ${({ theme }) => theme.white};
 `;
 
-const DepositContainer = styled.div`
-  min-width: 110px;
+const ButtonContainer = styled.div`
+  padding: 10px 12px;
   height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.secondaryGradient};
+  border: 1.5px solid white;
   border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  text-align: center;
   cursor: pointer;
 `;
 
-const MobileDepositContainer = styled.div`
-  min-width: 97px;
-  height: 38px;
+const TransferButtonContainer = styled(ButtonContainer)`
+  background: ${({ theme }) => theme.BTN01};
+  border: unset;
+`;
+
+const UserInfoContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 12px;
+`;
+
+const GreetingText = styled.div`
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.primaryGradient};
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  cursor: pointer;
-`;
-
-const MobileIconContainer = styled.div`
-  cursor: pointer;
-  display: flex;
-  width: 42px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  align-self: stretch;
-  background: ${({ theme }) => theme.g4};
+  align-self: center;
+`;
+const BalanceText = styled(GreetingText)``;
+
+const UserName = styled.div`
+  font-weight: 400;
+  line-height: 29px;
+  letter-spacing: 0em;
+  color: ${({ theme }) => theme.yellow};
+`;
+const BalanceAmount = styled(UserName)`
+  margin-right: 4px;
+`;
+
+const DesktopBalanceContainer = styled.div`
+  display: flex;
+  margin-left: 12px;
+  align-items: center;
+`;
+
+const MemberContainer = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;
 
 const AccountHeaderContent = () => {
   const history = useHistory();
   const { account } = useAccountStore();
-  const { wallet } = useWalletStore();
+  const { wallet, getBalanceList } = useWalletStore();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize, isMobileSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
   const { handleToggleMenu } = useHeader();
   const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
+  const username = account.info.member_username;
 
   const currentBalance =
     mainSymbol + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
@@ -112,37 +133,54 @@ const AccountHeaderContent = () => {
     history.push("/");
   };
 
-  const handleGotoPromotion = async () => {
-    handleChangeGameType(GameTypeEnum.NONE);
-    history.push("/promotion-list");
-  };
-
   const handleGotoDeposit = useCallback(() => {
     handleToggleMenu(false);
     history.push("/deposit");
   }, []);
 
+  const handleGotoWithdraw = useCallback(() => {
+    handleToggleMenu(false);
+    history.push("/withdrawal");
+  }, []);
+
+  const handleGotoTransfer = useCallback(() => {
+    handleToggleMenu(false);
+    history.push("/transfer");
+  }, []);
+
+  const handleRefreshBalance = useCallback(async () => {
+    await getBalanceList();
+  }, [getBalanceList]);
+
   return (
-    <ButtonContainer>
+    <MainContainer>
       {isDesktopSize && (
         <>
-          <BalanceContainer>
-            {config.currency} ${currentBalance}
-          </BalanceContainer>
-          <DepositContainer onClick={handleGotoDeposit}>
-            <Icon iconUrl={iconDeposit} width={"24px"} height={"24px"} />
-            {i18n.t("common.deposit")}
-          </DepositContainer>
-          <IconContainer onClick={handleClickLogout}>
-            <Icon iconUrl={signoutBtn} width={"24px"} height={"24px"} />
-          </IconContainer>
-          <IconContainer onClick={handleGotoPromotion}>
-            <Icon iconUrl={iconPromotion} width={"24px"} height={"24px"} />
-          </IconContainer>
-          <IconContainer onClick={handleGoToProfile}>
-            <Icon iconUrl={iconAccount} width={"24px"} height={"24px"} />
-          </IconContainer>
+          <UserInfoContainer>
+            <MemberContainer onClick={handleGoToProfile}>
+              <img src={memberIcon} width={25} height={25} alt="memeber" />
+            </MemberContainer>
+            <GreetingText>Hello,</GreetingText>
+            <UserName>{username}</UserName>
+            <DesktopBalanceContainer>
+              <BalanceText>{i18n.t("web.account.header.total")}: </BalanceText>
+              <BalanceAmount>{currentBalance}</BalanceAmount>
+              <RefreshButton handleClick={() => handleRefreshBalance()} />
+            </DesktopBalanceContainer>
+          </UserInfoContainer>
           <HeaderLanguageSwitch />
+          <TransferButtonContainer onClick={handleGotoTransfer}>
+            {i18n.t("common.transfer").toLocaleUpperCase()}
+          </TransferButtonContainer>
+          <ButtonContainer onClick={handleGotoWithdraw}>
+            {i18n.t("common.withdrawal")}
+          </ButtonContainer>
+          <ButtonContainer onClick={handleGotoDeposit}>
+            {i18n.t("common.deposit").toLocaleUpperCase()}
+          </ButtonContainer>
+          <ButtonContainer onClick={handleClickLogout}>
+            {i18n.t("web.header.logout").toLocaleUpperCase()}
+          </ButtonContainer>
         </>
       )}
 
@@ -153,7 +191,7 @@ const AccountHeaderContent = () => {
           <HeaderLanguageSwitch />
         </>
       )}
-    </ButtonContainer>
+    </MainContainer>
   );
 };
 

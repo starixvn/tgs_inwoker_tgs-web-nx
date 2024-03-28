@@ -43,13 +43,11 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
   transition: all ease-in-out 0.2s;
 
   ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-    $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+    margin-left: unset;
   }
 
   ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-    $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
+    margin-left: unset;
   }
 `;
 
@@ -73,7 +71,8 @@ const DefaultLayout = ({ children }: Props) => {
       <Header />
 
       <DashboardContainer>
-        <MenuDrawer />
+        {isMobileSize && <MenuDrawer />}
+
         <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>

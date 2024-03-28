@@ -23,17 +23,46 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
 
   return (
     <ButtonContainer>
-      <HeaderButton
-        onClick={goToLogin}
-        style={{
-          color: theme.white,
-          background: "#26304C",
-        }}
-      >
-        <img src={memberIcon} alt="memebr" />
-        {i18n.t("common.login")}
-      </HeaderButton>
-      <HeaderLanguageSwitch />
+      {isDesktopSize ? (
+        <>
+          <HeaderLanguageSwitch />
+          <HeaderButton
+            onClick={goToLogin}
+            style={{
+              color: theme.white,
+              background: "#26304C",
+            }}
+          >
+            <img src={memberIcon} alt="memebr" />
+            {i18n.t("common.login")}
+          </HeaderButton>
+          <HeaderButton
+            onClick={goToRegister}
+            style={{
+              minHeight: "37px",
+              color: theme.white,
+              background: theme.BTN01,
+            }}
+          >
+            {i18n.t("common.register")}
+          </HeaderButton>
+        </>
+      ) : (
+        <>
+          <HeaderButton
+            onClick={goToLogin}
+            style={{
+              color: theme.white,
+              background: "#26304C",
+            }}
+          >
+            <img src={memberIcon} alt="memebr" />
+            {i18n.t("common.login")}
+          </HeaderButton>
+
+          <HeaderLanguageSwitch />
+        </>
+      )}
     </ButtonContainer>
   );
 };

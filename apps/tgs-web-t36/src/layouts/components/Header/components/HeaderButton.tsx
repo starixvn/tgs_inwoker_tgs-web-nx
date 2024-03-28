@@ -11,4 +11,5 @@ export const HeaderButton = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
 `;

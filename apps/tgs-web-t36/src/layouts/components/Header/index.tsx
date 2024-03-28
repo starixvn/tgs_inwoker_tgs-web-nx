@@ -18,6 +18,7 @@ import {
 import CurrentTime from "@/components/project/CurrentTime";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
+import SystemTime from "@/layouts/components/Header/components/SystemTime";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -28,6 +29,9 @@ const HeaderContainer = styled.div`
   width: 100%;
   z-index: 10;
   box-shadow: 0px 4px 6px 0px rgba(17, 20, 21, 0.5);
+  ${media.sm} {
+    background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -38,6 +42,9 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   z-index: 2;
+  ${media.sm} {
+    padding: 0 60px;
+  }
 `;
 
 const HeaderContentContainer = styled.div`
@@ -70,30 +77,26 @@ const SystemInfoContainer = styled.div`
 const Header = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
-  const { isDesktopSize, isLargeDesktopSize, isExtraLargeDesktopSize } = useRwd();
+  const { isMobileSize, isDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
   const { handleChangeGameType } = useHomeGameContext();
 
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        {!isLargeDesktopSize && <MenuButton />}
-        <Link to={""}>
-          <BrandLogo
-            style={{ height: "28px", marginLeft: isDesktopSize ? "70px" : "unset" }}
-            onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-          />
-        </Link>
+        {isMobileSize && <MenuButton />}
+        {isDesktopSize && <SystemTime />}
+        {isMobileSize && (
+          <Link to={""}>
+            <BrandLogo
+              style={{ height: "28px", marginLeft: isDesktopSize ? "70px" : "unset" }}
+              onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+            />
+          </Link>
+        )}
 
         <HeaderContentContainer>
-          {isExtraLargeDesktopSize && (
-            <SystemInfoContainer $isOpen={isDesktopSize && isMenuOpen}>
-              <CurrentTime />
-            </SystemInfoContainer>
-          )}
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-
-          {!isDesktopSize && <ContactButton />}
         </HeaderContentContainer>
       </HeaderWrapper>
     </HeaderContainer>
