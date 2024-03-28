@@ -105,7 +105,6 @@ export const brandConfig: Record<BrandName, Config> = {
     ...defaultConfig,
     countryCode: "vi-VN", //for QA testing TGS-4194 & TGS-4184
     currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
-    isFixedPhoneLength: true,
   },
   MOVN2: {
     ...defaultConfig,
