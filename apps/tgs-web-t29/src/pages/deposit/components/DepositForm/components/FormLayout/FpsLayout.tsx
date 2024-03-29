@@ -70,7 +70,7 @@ export const FpsLayout = ({
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={!!isManualPending || !!isThirdPartyPending}/>
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isManualPending || !!isThirdPartyPending}/>
     </>
   )
 };

@@ -31,7 +31,11 @@ export const DepositSelectBankName = ({
   const {formData, setFormData} = useContext(DepositFormContext);
   const [selectedBankCard, setSelectedBankCard] = useState(defaultValue);
   const isVisible = !(Deposit_RemoveAccount || Deposit_AddCard || Deposit_ManualApplePayHideBankAcc);
-  const label = i18n.t("idr1.msgPlsSelectAccount");
+  const mapLabel: Record<DepositBankType, string> = {
+    'Bank': "idr1.msgPlsSelectAccount",
+    'ThirdParty': "common.msgEnterPhone",
+  };
+  const label = i18n.t(banktype ? mapLabel[banktype] : mapLabel['Bank']);
 
   /**
    * 處理銀行名稱切換選項
