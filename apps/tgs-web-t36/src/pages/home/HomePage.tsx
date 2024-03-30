@@ -20,9 +20,7 @@ import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import SocialMedia from "@/components/project/SocialMedia";
-import VendorLogo from "@/pages/home/components/VendorLogo";
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
-import ScrollableHomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
 import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
@@ -134,13 +132,38 @@ const IntroductionText = styled.div`
   }
 `;
 
+const BannerWrapper = styled.div`
+  flex-shrink: 0;
+  width: 100%;
+
+  ${media.sm} {
+    height: 100%;
+    max-height: 800px;
+  }
+`;
+
+const GameTypeBanner = styled.div<{ $imageUrl: string }>`
+  width: 100%;
+  height: 350px;
+  margin: 0 auto;
+  background-image: url(${({ $imageUrl }) => $imageUrl});
+  background-size: contain;
+  background-repeat: no-repeat;
+`;
+
 const HomePage = () => {
   const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const { activeGameType, handleChangeGameType, isEnterGamePortal, setIsEnterGamePortal } =
-    useHomeGameContext();
+  const {
+    activeGameType,
+    handleChangeGameType,
+    activeGameTypeKey,
+    isEnterGamePortal,
+    setIsEnterGamePortal,
+  } = useHomeGameContext();
+
   const gameTypeList = useGameTypeList();
 
   const getGameTypeFromKey = (key: string) => {
@@ -178,39 +201,50 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {isDesktopSize && <CardPrompt />}
-      {!!general.banner.length && (
-        <SliderWrapper>
-          <Slider settings={settings} />
-        </SliderWrapper>
-      )}
-      {isMobileSize && <CardPrompt />}
-      {!activeGameType && (
+      {activeGameType === GameTypeEnum.NONE && (
         <>
-          <CategorySection />
-          <HomeCategoryContainer>
-            <ScrollableHomeHot />
-            <ScrollableHomeNew />
-            <ScrollableHomeRecommend />
-            {isMobileSize && <HomePromotionCard />}
-            <Introduction>
-              <Brand>{config.brand} : A Winning Casino!</Brand>
-              <IntroductionText>
-                {config.brand} is the leading destination for all online casino players who are
-                looking for a touch of class and elegance in their gaming environment. Our casino
-                provides you with over 400 online casino games – some traditional with modern
-                twists, and some completely new, innovative, and exotic.
-              </IntroductionText>
-            </Introduction>
-          </HomeCategoryContainer>
+          {isDesktopSize && <CardPrompt />}
+          {!!general.banner.length && (
+            <SliderWrapper>
+              <Slider settings={settings} />
+            </SliderWrapper>
+          )}
+          {isMobileSize && <CardPrompt />}
+          {!activeGameType && (
+            <>
+              <CategorySection />
+              <HomeCategoryContainer>
+                <ScrollableHomeHot />
+                <ScrollableHomeNew />
+                <ScrollableHomeRecommend />
+                {isMobileSize && <HomePromotionCard />}
+                <Introduction>
+                  <Brand>{config.brand} : A Winning Casino!</Brand>
+                  <IntroductionText>
+                    {config.brand} is the leading destination for all online casino players who are
+                    looking for a touch of class and elegance in their gaming environment. Our
+                    casino provides you with over 400 online casino games – some traditional with
+                    modern twists, and some completely new, innovative, and exotic.
+                  </IntroductionText>
+                </Introduction>
+              </HomeCategoryContainer>
+            </>
+          )}
         </>
       )}
-      {/* {isMobileSize && !isEnterGamePortal && !activeGameType && (
-        <>
-          <SocialMedia />
-          <VendorLogo />
-        </>
-      )} */}
+      <BannerWrapper>
+        {isDesktopSize && activeGameType && (
+          <GameTypeBanner
+            $imageUrl={
+              activeGameTypeKey
+                ? `${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                : ""
+            }
+          />
+        )}
+      </BannerWrapper>
 
       {/* 首頁並且進入遊戲大廳 */}
       {/* 切換遊戲分頁 */}

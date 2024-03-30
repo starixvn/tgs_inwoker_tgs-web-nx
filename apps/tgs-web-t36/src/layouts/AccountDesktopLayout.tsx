@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { useHeader } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
@@ -13,13 +15,15 @@ import {
 } from "@/theme/constants";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader } from "@tgs-web-nx/core/features";
 import AccountNavigations from "@/pages/account/components/AccountNavigations";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
+
+  ${media.sm} {
+    background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
+  }
 `;
 
 const DashboardContainer = styled.div`
@@ -28,7 +32,7 @@ const DashboardContainer = styled.div`
   min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
 
   ${media.sm} {
-    margin-top: ${MOBILE_HEADER_HEIGHT};
+    margin-top: 0;
     min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
     margin-bottom: unset;
   }
@@ -47,16 +51,6 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
   flex-grow: 1;
   margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
   transition: all ease-in-out 0.2s;
-
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-    $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-    $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
 `;
 
 const ChildrenWrapper = styled.div`
@@ -68,7 +62,6 @@ const ChildrenWrapper = styled.div`
 
   ${media.sm} {
     width: 100%;
-    padding: 30px 0px;
     gap: 20px;
   }
 `;
@@ -82,18 +75,20 @@ const AccountDesktopLayout = ({ children }: Props) => {
       <Header />
 
       <DashboardContainer>
-        <MenuDrawer />
         <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
           <>
             <ChildrenWrapper>
-              <DarkMemberMenu
-                handleCloseContextMenu={() => {}}
-                style={{
-                  width: "258px",
-                  flexShrink: 0,
-                  minHeight: "540px",
-                }}
-              />
+              {isMobileSize && (
+                <DarkMemberMenu
+                  handleCloseContextMenu={() => {}}
+                  style={{
+                    width: "258px",
+                    flexShrink: 0,
+                    minHeight: "540px",
+                  }}
+                />
+              )}
+
               {children}
             </ChildrenWrapper>
             <Footer />

@@ -18,7 +18,7 @@ const PromotionCardListContainer = styled.div`
     margin: 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 30px 80px;
+    gap: 30px
   }
 `;
 
@@ -26,13 +26,9 @@ const PromotionBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
   padding-top: 27%;
   background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-
-  ${media.sm} {
-    height: 520px;
-  }
 `;
 
 const TitleText = styled.h1`
@@ -50,6 +46,11 @@ const PromotionPage = () => {
   }
   return (
     <PageContainer>
+      {isDesktopSize && (
+        <PromotionBanner
+          $imageUrl={`${import.meta.env.BASE_URL}assets/images/promotion/promotion-banner.png`}
+        />
+      )}
       <PromotionCardListContainer>
         {promotionList
           .sort((a, b) => a.order - b.order)

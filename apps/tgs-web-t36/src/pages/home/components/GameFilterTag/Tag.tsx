@@ -26,9 +26,10 @@ const Wrapper = styled.div<{
 
   ${media.sm} {
     cursor: pointer;
-    & :hover {
-      color: ${({ theme }) => theme.white};
-    }
+    background: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.black50)};
+    color: ${({ theme, $hasBackground }) => ($hasBackground ? theme.white : theme.white20)};
+    padding: 10px;
+    border: unset;
   }
 `;
 

@@ -94,6 +94,7 @@ const GameCardBg = styled.div`
   ${media.sm} {
     width: calc(16.67% - 36px);
     min-width: 196px;
+    aspect-ratio: 100 / 127;
 
     &:hover {
       ${CardHoverBg} {
@@ -138,6 +139,9 @@ const GameName = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%; //利用最大寬度來限制文字長度
+  ${media.sm} {
+    color: ${(props) => props.theme.white};
+  }
 `;
 
 const PlayBtnIcon = styled.img`

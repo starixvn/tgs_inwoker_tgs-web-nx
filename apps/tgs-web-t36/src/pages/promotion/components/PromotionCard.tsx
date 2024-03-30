@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Promotion } from "@tgs-web-nx/types";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
@@ -23,17 +24,19 @@ const PromotionCardContainer = styled.div`
   }
 
   ${media.sm} {
-    width: calc((100% - 80px) / 2);
-    margin: 20px 0;
+    gap: 10px;
+    width: calc((100% - 100px) / 3);
+    background: transparent;
   }
 `;
 const BannerWrapper = styled.div`
   width: 100%;
-  cursor: pointer;
+  min-height: 120px;
 `;
 
 const PromotionTextContainer = styled.div`
   width: 100%;
+  min-height: 45px;
   position: relative;
   display: flex;
   align-items: center;
@@ -45,15 +48,34 @@ const TitleWrapper = styled.div`
   font-weight: 400;
   line-height: 22.83px;
   text-overflow: ellipsis;
+  margin-right: 5px;
+  ${media.sm} {
+    color: ${({ theme }) => theme.white};
+  }
 `;
 
 const ClickMoreContainer = styled.div`
   flex-shrink: 0;
   margin-left: auto;
 `;
+const MoreButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 105px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 14px;
+  border-radius: 4px;
+  color: ${({ theme }) => theme.white};
+  background: linear-gradient(180deg, #2286df 0%, #184c8b 100%);
+  cursor: pointer;
+`;
 
 const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
   const history = useHistory();
+  const { isDesktopSize } = useRwd();
 
   const handleEnterDetail: React.MouseEventHandler<HTMLDivElement> & ((event: Event) => void) = (
     event,
@@ -64,7 +86,7 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
   };
 
   return (
-    <PromotionCardContainer onClick={handleEnterDetail}>
+    <PromotionCardContainer onClick={(e) => !isDesktopSize && handleEnterDetail(e)}>
       <BannerWrapper>
         <BannerImage promotionData={promotionData} />
       </BannerWrapper>
@@ -72,7 +94,11 @@ const PromotionCard = ({ promotionData }: { promotionData: Promotion }) => {
       <PromotionTextContainer>
         <TitleWrapper>{promotionData.name}</TitleWrapper>
         <ClickMoreContainer>
-          <Icon iconUrl={rightArrow} width={"20px"} height={"20px"} />
+          {isDesktopSize ? (
+            <MoreButton onClick={handleEnterDetail}>{i18n.t("common.more")}</MoreButton>
+          ) : (
+            <Icon iconUrl={rightArrow} width={"20px"} height={"20px"} />
+          )}
         </ClickMoreContainer>
       </PromotionTextContainer>
     </PromotionCardContainer>

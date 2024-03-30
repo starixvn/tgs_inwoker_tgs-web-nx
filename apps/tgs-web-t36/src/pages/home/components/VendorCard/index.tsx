@@ -41,6 +41,15 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
   border-radius: 4px;
+
+  ${media.sm} {
+    height: 100%;
+    aspect-ratio: 260 / 145;
+    background-image: url(${({ $imageUrl }) => $imageUrl});
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+  }
 `;
 
 const GradientBg = styled.div`
@@ -58,6 +67,22 @@ const GradientBgIcon = styled.img`
   bottom: 0;
 `;
 
+const VenderNameShadowWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+`;
+
+const VenderNameShadow = styled.div`
+  background: #141b1fb2;
+  width: 100%;
+  height: 25px;
+  position: absolute;
+  bottom: 0;
+`;
+
 const VendorCardContent = styled.div`
   width: 100%;
 `;
@@ -70,9 +95,9 @@ const VendorCardBg = styled.div`
   background-color: ${(props) => props.theme.g4};
 
   ${media.sm} {
-    width: calc(14.28% - 10px);
-    min-width: 196px;
-    aspect-ratio: 196 / 254;
+    width: 260px;
+    height: 145px;
+    aspect-ratio: 260 / 145;
 
     &:hover {
       ${VendorCardHoverBg} {
@@ -87,7 +112,7 @@ const VendorCardBg = styled.div`
 
 const VenderName = styled(VendorCardContent)`
   width: 100%;
-  padding: 12px;
+  padding-bottom: 5px;
   position: absolute;
   bottom: 0;
   color: ${(props) => props.theme.white};
@@ -97,27 +122,33 @@ const VenderName = styled(VendorCardContent)`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${media.sm} {
+    height: 25px;
+    padding: 0;
+  }
 `;
 
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   position: absolute;
-  bottom: 10px;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%, -50%);
   display: inline-flex;
   width: 100%;
   max-width: 131px;
-  min-height: 68px;
+  min-height: 60px;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 10;
 `;
 
 const MaintenanceBg = styled.div`
   position: absolute;
   width: 100%;
-  height: 84%;
+  height: 100%;
   left: 0;
   top: 0;
   background: rgb(0 0 0 / 80%);
@@ -159,19 +190,29 @@ const VendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, st
     <VendorCardBg onClick={launchGameHandler}>
       <VendorCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
-        {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+        {isMobileSize && (
+          <>
+            {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+            <GradientBg>
+              <GradientBgIcon src={gradientBg} alt={"vendor name"} />
+              {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
+            </GradientBg>
+          </>
+        )}
+        {isDesktopSize && (
+          <VenderNameShadowWrapper>
+            <VenderNameShadow />
+            {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
+          </VenderNameShadowWrapper>
+        )}
 
-        <GradientBg>
-          <GradientBgIcon src={gradientBg} alt={"vendor name"} />
-          {venderName && <VenderName ref={venderNameRef}>{venderName}</VenderName>}
-        </GradientBg>
         {status === providerStatus.Maintenance && (
           <MaintenanceBg>
             <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
           </MaintenanceBg>
         )}
       </VendorCardContent>
-      {isDesktopSize && (
+      {isDesktopSize && status !== providerStatus.Maintenance && (
         <VendorCardHoverBg onClick={launchGameHandler}>
           <PlayBtnIcon src={playIcon} alt={"play"} />
         </VendorCardHoverBg>

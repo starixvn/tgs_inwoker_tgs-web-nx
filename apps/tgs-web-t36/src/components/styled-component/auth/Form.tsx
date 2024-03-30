@@ -31,7 +31,7 @@ export const RedirectContainer = styled.div`
   align-self: baseline;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 
   .link {
     color: ${({ theme }) => theme.primary};

@@ -17,7 +17,9 @@ const StyledButton = styled(SubmitButton)`
   gap: 10px;
   font-size: 1.25rem;
   cursor: pointer;
-
+  &:hover {
+    background: ${({ theme }) => `${theme.primary} !important`};
+  }
   ${media.sm} {
     max-width: 360px;
     padding: 12px 20px;

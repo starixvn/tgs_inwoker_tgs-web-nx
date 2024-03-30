@@ -17,7 +17,10 @@ import MenuDrawer from "@/layouts/components/MenuDrawer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
+  background: ${({ theme }) => theme.mainBackground};
+  ${media.sm} {
+    background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
+  }
 `;
 
 const DashboardContainer = styled.div`
