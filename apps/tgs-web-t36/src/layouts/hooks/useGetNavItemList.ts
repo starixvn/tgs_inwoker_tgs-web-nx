@@ -59,21 +59,21 @@ export function useGetNavItemList() {
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
-    if (isDesktopSize) {
-      navItemList.push({
-        key: NavCardKey.HOME,
-        label: "Home",
-        iconUrl: "",
-        navType: "action",
-        gameType: GameTypeEnum.NONE,
-        router: "",
-        callback: () => {
-          handleChangeGameType(GameTypeEnum.NONE);
-          history.push("/");
-        },
-        iconComponent: HomeSvg,
-      });
-    }
+    // if (isDesktopSize) {
+    //   navItemList.push({
+    //     key: NavCardKey.HOME,
+    //     label: "Home",
+    //     iconUrl: "",
+    //     navType: "action",
+    //     gameType: GameTypeEnum.NONE,
+    //     router: "",
+    //     callback: () => {
+    //       handleChangeGameType(GameTypeEnum.NONE);
+    //       history.push("/");
+    //     },
+    //     iconComponent: HomeSvg,
+    //   });
+    // }
 
     for (const gameTypeItem of gameTypeList) {
       if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
@@ -100,6 +100,18 @@ export function useGetNavItemList() {
       });
     }
     navItemList.push({
+      key: NavCardKey.VIP,
+      label: "VIP",
+      iconUrl: vipImg,
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "",
+      callback: () => {
+        history.push("/vip");
+      },
+      iconComponent: VipSvg,
+    });
+    navItemList.push({
       key: NavCardKey.PROMOTION,
       label: i18n.t("common.promotion"),
       iconUrl: vipImg,
@@ -112,30 +124,17 @@ export function useGetNavItemList() {
       iconComponent: PromotionSvg,
     });
 
-    navItemList.push({
-      key: NavCardKey.CONTACT_US,
-      label: i18n.t("common.contact"),
-      iconUrl: contactImg,
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "",
-      callback: () => {
-        history.push("/support");
-      },
-      iconComponent: ContactUsSvg,
-    });
-
     // navItemList.push({
-    //   key: NavCardKey.VIP,
-    //   label: "Vip",
-    //   iconUrl: vipImg,
+    //   key: NavCardKey.CONTACT_US,
+    //   label: i18n.t("common.contact"),
+    //   iconUrl: contactImg,
     //   navType: "action",
     //   gameType: GameTypeEnum.NONE,
     //   router: "",
     //   callback: () => {
-    //     history.push("/vip");
+    //     history.push("/support");
     //   },
-    //   iconComponent: VipSvg,
+    //   iconComponent: ContactUsSvg,
     // });
 
     // navItemList.push({

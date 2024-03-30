@@ -8,9 +8,9 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
-import gradientBg from "@/assets/t27/images/home/name-bg.png";
-import maintenanceIcon from "@/assets/t27/images/home/maintenance.svg";
+import maintenanceIcon from "@/assets/t36/images/home/maintenance.svg";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
+import playIcon from "@/assets/t36/images/home/play-icon.png";
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
   position: relative;
@@ -28,6 +28,19 @@ const GameCardContent = styled.div`
   width: 100%;
 `;
 
+const CardHoverBg = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgb(0 0 0 / 60%);
+  border-radius: 10px;
+  display: none;
+  white-space: pre-line;
+  cursor: pointer;
+`;
+
 const GameCardBg = styled.div`
   width: calc(40% - 13px);
   position: relative;
@@ -36,6 +49,15 @@ const GameCardBg = styled.div`
   ${media.sm} {
     width: calc(12.19% - 14px);
     min-width: 148px;
+  }
+  &:hover {
+    ${CardHoverBg} {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;
 
@@ -71,6 +93,15 @@ const GameName = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%; //利用最大寬度來限制文字長度
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.white};
+  }
+`;
+
+const PlayIcon = styled.img`
+  width: 65px;
+  height: 65px;
 `;
 
 type GameCardProps = {
@@ -150,6 +181,11 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl, tag }: GameCardProps) => {
           handleToggleFavorite={handleToggleFavorite}
           gameItemId={gameItem.id}
         />
+      )}
+      {isDesktopSize && isActive && (
+        <CardHoverBg onClick={launchGame}>
+          <PlayIcon src={playIcon} alt={"play"} />
+        </CardHoverBg>
       )}
     </GameCardBg>
   );

@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetHomeCategoryList, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  useGetHomeCategoryList,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import VendorCard from "@/pages/home/components/VendorCard/index";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -34,6 +38,13 @@ const CategoryContent = styled.div`
   ${media.sm} {
     max-height: unset;
     overflow-x: unset;
+  }
+`;
+
+const EmptyText = styled.div`
+  color: ${({ theme }) => theme.text};
+  ${media.sm} {
+    color: ${({ theme }) => theme.white};
   }
 `;
 
@@ -103,7 +114,7 @@ const LobbyCategory = () => {
                 />
               );
             })}
-          {!hasMappingData && <div>No data</div>}
+          {!hasMappingData && <EmptyText>No data</EmptyText>}
         </CategoryContent>
       </CategoryContentWrapper>
     </>

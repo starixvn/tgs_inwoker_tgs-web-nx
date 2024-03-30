@@ -5,8 +5,8 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
-import maintenanceIcon from "@/assets/t27/images/home/maintenance.svg";
-import playIcon from "@/assets/t27/images/home/play-icon.png";
+import maintenanceIcon from "@/assets/t36/images/home/maintenance.svg";
+import playIcon from "@/assets/t36/images/home/play-icon.png";
 import gradientBg from "@/assets/t36/images/home/name-bg.png";
 
 type Props = {

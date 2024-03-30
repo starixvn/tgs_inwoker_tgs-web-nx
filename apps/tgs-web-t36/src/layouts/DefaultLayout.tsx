@@ -17,7 +17,7 @@ import MenuDrawer from "@/layouts/components/MenuDrawer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
 `;
 
 const DashboardContainer = styled.div`
@@ -26,7 +26,7 @@ const DashboardContainer = styled.div`
   min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
 
   ${media.sm} {
-    margin-top: ${MOBILE_HEADER_HEIGHT};
+    margin-top: 0;
     min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
     margin-bottom: unset;
   }

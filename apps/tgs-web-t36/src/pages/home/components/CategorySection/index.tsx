@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-import CategoryCard from './CategoryCard';
-import useHomeCategoryList from '@/hooks/home/useHomeCategoryList';
-import { media } from '@/theme/breakpoints';
+import CategoryCard from "./CategoryCard";
+import useHomeCategoryList from "@/hooks/home/useHomeCategoryList";
+import { media } from "@/theme/breakpoints";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,8 +15,17 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 
   ${media.sm} {
-    padding: 12px 0px;
-    gap: 20px;
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    &::-webkit-scrollbar {
+      visibility: hidden;
+    }
   }
 `;
 
@@ -25,10 +34,12 @@ const CategorySection = () => {
 
   return (
     <Wrapper>
-      {homeCategoryList.map(item => (
+      {homeCategoryList.map((item) => (
         <CategoryCard
           key={item.key}
           bgUrl={item.bgUrl}
+          desktopBgUrl={item.desktopBgUrl}
+          introduction={item.introduction}
           // imageUrl={item.imageUrl}
           // iconUrl={item.iconUrl}
           text={item.text}

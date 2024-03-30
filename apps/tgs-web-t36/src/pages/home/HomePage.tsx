@@ -17,11 +17,8 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import bg from "@/assets/t36/images/home/home_bg.png";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import CardPrompt from "@/pages/home/components/CardPrompt";
-import RegisterSection from "@/pages/home/components/RegisterSection";
-import DesktopRegisterSection from "@/pages/home/components/DesktopRegisterSection";
 import SocialMedia from "@/components/project/SocialMedia";
 import VendorLogo from "@/pages/home/components/VendorLogo";
 import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
@@ -37,28 +34,17 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.grey04};
 
   ${media.sm} {
+    background: transparent;
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
     gap: unset;
     height: unset;
     padding: 0px 0px 0px 0px;
   }
-`;
-
-const DesktopBg = styled.div`
-  width: 100%;
-  min-height: 100%;
-  max-width: ${MAIN_CONTENT_MAX_WIDTH};
-  margin: 0 auto;
-  padding: 0px 0px 0px 0px;
-  background-image: url(${bg});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 `;
 
 const SliderWrapper = styled.div`
@@ -77,13 +63,8 @@ const SlickDotWrapper = styled.div`
   margin-bottom: 30px;
 
   & ul li.slick-active ${SlickDot} {
-    background: #45d91e !important;
+    background: ${({ theme }) => `${theme.primary}  !important`};
   }
-`;
-
-const NotificationWrapper = styled.div`
-  max-width: ${SUB_CONTENT_MAX_WIDTH};
-  margin: 30px auto 14px;
 `;
 
 const MainContentWrapper = styled.div`
@@ -112,41 +93,6 @@ const HomeCategoryContainer = styled.div`
   width: 100%;
 `;
 
-const HomeLobbyCategory = styled.div`
-  width: 100%;
-`;
-
-const CategoryTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 0px;
-`;
-
-const SlotCategoryContent = styled.div`
-  width: 100%;
-  row-gap: 15px;
-  column-gap: 31px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-`;
-
-const HomeRanking = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 16px 12px;
-`;
-
-const Title = styled.div`
-  width: 100%;
-  font-size: 17.5px;
-  font-weight: 400;
-  line-height: 22px;
-  color: ${({ theme }) => theme.white};
-`;
-
 const Introduction = styled.div`
   display: flex;
   padding: 10px;
@@ -163,6 +109,15 @@ const Brand = styled.div`
   font-weight: 700;
   line-height: 14px;
   color: ${({ theme }) => theme.grey05};
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.primary};
+    padding: 10px;
+    color: ${({ theme }) => theme.white};
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16.41px;
+  }
 `;
 
 const IntroductionText = styled.div`
@@ -171,6 +126,12 @@ const IntroductionText = styled.div`
   line-height: 18px;
   width: 100%;
   color: ${({ theme }) => theme.grey04};
+  ${media.sm} {
+    color: ${({ theme }) => theme.white};
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+  }
 `;
 
 const HomePage = () => {
@@ -217,14 +178,13 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {/* 首頁但未進入遊戲大廳 */}
-      {!isEnterGamePortal && !activeGameType && isDesktopSize && <DesktopRegisterSection />}
+      {isDesktopSize && <CardPrompt />}
       {!!general.banner.length && (
         <SliderWrapper>
           <Slider settings={settings} />
         </SliderWrapper>
       )}
-      <CardPrompt />
+      {isMobileSize && <CardPrompt />}
       {!activeGameType && (
         <>
           <CategorySection />
@@ -232,7 +192,7 @@ const HomePage = () => {
             <ScrollableHomeHot />
             <ScrollableHomeNew />
             <ScrollableHomeRecommend />
-            <HomePromotionCard />
+            {isMobileSize && <HomePromotionCard />}
             <Introduction>
               <Brand>{config.brand} : A Winning Casino!</Brand>
               <IntroductionText>

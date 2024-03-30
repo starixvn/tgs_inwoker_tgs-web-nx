@@ -4,10 +4,12 @@ import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
 import CategoryLabel from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/CategoryLabel";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
 import arrowRight from "@/assets/t36/images/home/arrow_right.png";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const HomeCategorySection = styled.div`
   width: 100%;
@@ -24,9 +26,13 @@ const CategoryTitle = styled.div`
   align-items: center;
   gap: 10px;
   align-self: stretch;
-  color: ${({ theme }) => theme.white};
   font-size: 19.5px;
   font-weight: 400;
+
+  ${media.sm} {
+    background: ${({ theme }) => theme.primary};
+    padding: 10px;
+  }
 `;
 
 const MoreButtonWrapper = styled.div`
@@ -41,6 +47,14 @@ const MoreButton = styled.div`
   font-size: 15px;
   font-weight: 400;
   line-height: 14px;
+
+  ${media.sm} {
+    border-radius: 3px;
+    color: ${({ theme }) => theme.white};
+    background: linear-gradient(180deg, #2286df 0%, #184c8b 100%);
+    padding: 10px;
+    cursor: pointer;
+  }
 `;
 
 const CategoryContent = styled.div`
@@ -58,27 +72,12 @@ const CategoryContent = styled.div`
   background-color: ${({ theme }) => theme.mainBackground};
 
   ${media.sm} {
-    gap: 14px;
-    scroll-snap-type: unset;
-    max-height: 234px;
+    justify-content: start;
+    background: transparent;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    height: 100%;
+    max-height: unset;
     flex-direction: row;
-
-    &::-webkit-scrollbar {
-      height: 12px;
-      background-color: ${({ theme }) => theme.g5};
-    }
-
-    &::-webkit-scrollbar-track {
-      -webkit-box-shadow: inset 0 0 6px rgba(32, 32, 32, 0.5);
-      border-radius: 8px;
-      background-color: ${({ theme }) => theme.g5};
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      -webkit-box-shadow: inset 0 0 6px ${({ theme }) => theme.g8};
-      background-color: ${(props) => props.theme.mainBackground};
-    }
   }
 `;
 
@@ -87,6 +86,7 @@ const ScrollableHomeRecommend = () => {
   const hasMappingData = !!recommendGameList.length;
   const { handleChangeGameType } = useHomeGameContext();
   const history = useHistory();
+  const { isMobileSize } = useRwd();
 
   const handleClick = () => {
     const gameTypeItem = {
@@ -103,7 +103,7 @@ const ScrollableHomeRecommend = () => {
         <CategoryLabel text={i18n.t("slot.recommendGame")} />
         <MoreButtonWrapper>
           <MoreButton onClick={handleClick}>{i18n.t("common.more")} </MoreButton>
-          <img src={arrowRight} alt="right" />
+          {isMobileSize && <img src={arrowRight} alt="right" />}
         </MoreButtonWrapper>
       </CategoryTitle>
       <CategoryContent>

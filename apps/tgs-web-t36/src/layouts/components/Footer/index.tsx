@@ -20,7 +20,7 @@ const FooterContainer = styled.div`
 
   ${media.sm} {
     width: 100%;
-    background: #050505;
+    background: transparent;
     color: ${({ theme }) => theme.white};
     display: flex;
     flex-direction: column;
@@ -129,7 +129,7 @@ const Footer = () => {
     {
       name: "WeChat",
       url: qrcode_wechat,
-    }
+    },
   ];
 
   return (
@@ -152,9 +152,9 @@ const Footer = () => {
 
         <FooterGroup>
           <GroupTitle>Quick Links</GroupTitle>
-          <GroupContent><Link onClick={() => setIsOpenChatQRcode(true)}>
-            {i18n.t("T13.quickLink.247")}
-          </Link></GroupContent>
+          <GroupContent>
+            <Link onClick={() => setIsOpenChatQRcode(true)}>{i18n.t("T13.quickLink.247")}</Link>
+          </GroupContent>
           <GroupContent>
             <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
           </GroupContent>
@@ -185,7 +185,12 @@ const Footer = () => {
         </FooterGroup>
       </FooterGroups>
 
-      {isOpenChatQRcode && <ChatQRcodePopup setIsOpenChatQRcode={setIsOpenChatQRcode} chatQRcodeList={chatQRcodeList} />}
+      {isOpenChatQRcode && (
+        <ChatQRcodePopup
+          setIsOpenChatQRcode={setIsOpenChatQRcode}
+          chatQRcodeList={chatQRcodeList}
+        />
+      )}
     </FooterContainer>
   );
 };

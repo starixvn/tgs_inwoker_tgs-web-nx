@@ -8,6 +8,7 @@ import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 
 const HeaderGameTypesContainer = styled.div`
   margin-right: auto;
+  margin-left: 30px;
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
@@ -45,7 +46,8 @@ const GameTypeNav = styled.div<{
   padding: 5px;
   cursor: pointer;
   position: relative;
-  color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)};
+  /* color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)}; */
+  color: ${({ theme }) => theme.primary};
 
   &:hover {
     color: ${({ theme }) => theme.primary};
@@ -91,20 +93,21 @@ const HeaderGameTypeNavs = () => {
 
   return (
     <HeaderGameTypesContainer>
-      {sideNavItemList && sideNavItemList.map((navItem, index) => {
-        return (
-          <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
-            <GameTypeNav
-              $isActive={navItem.router === currentRoute}
-              onMouseEnter={() => handleMouseEnter(navItem.gameType)}
-              onMouseLeave={handleMouseLeave}
-            >
-              {navItem.label}
-            </GameTypeNav>
-            {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
-          </Wrapper>
-        );
-      })}
+      {sideNavItemList &&
+        sideNavItemList.map((navItem, index) => {
+          return (
+            <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
+              <GameTypeNav
+                $isActive={navItem.router === currentRoute}
+                onMouseEnter={() => handleMouseEnter(navItem.gameType)}
+                onMouseLeave={handleMouseLeave}
+              >
+                {navItem.label}
+              </GameTypeNav>
+              {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
+            </Wrapper>
+          );
+        })}
     </HeaderGameTypesContainer>
   );
 };

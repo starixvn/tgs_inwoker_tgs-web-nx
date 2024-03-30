@@ -10,15 +10,18 @@ import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import ContactButton from "./components/ContactButton";
 import MenuButton from "./components/MenuButton";
 import {
+  DESKTOP_HEADER_HEIGHT,
   DESKTOP_DRAWER_WIDTH,
   DRAWER_SHRINK_WIDTH,
   MOBILE_HEADER_HEIGHT,
+  SUB_CONTENT_MAX_WIDTH,
   TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
 import CurrentTime from "@/components/project/CurrentTime";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";
+import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -30,11 +33,14 @@ const HeaderContainer = styled.div`
   z-index: 10;
   box-shadow: 0px 4px 6px 0px rgba(17, 20, 21, 0.5);
   ${media.sm} {
-    background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
+    position: relative;
+    max-width: ${SUB_CONTENT_MAX_WIDTH};
+    height: ${DESKTOP_HEADER_HEIGHT};
+    margin: 0 auto;
   }
 `;
 
-const HeaderWrapper = styled.div`
+const UseInfoHeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
@@ -42,6 +48,23 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   z-index: 2;
+  ${media.sm} {
+    height: 48px;
+    padding: 0 60px;
+    background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
+  }
+`;
+
+const NavHeaderWrapper = styled(UseInfoHeaderWrapper)`
+  position: relative;
+  width: 100%;
+  height: 72px;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  background: linear-gradient(180deg, #c3d8fa 0%, #ffffff 44.5%, #dce8fc 100%);
+
   ${media.sm} {
     padding: 0 60px;
   }
@@ -54,24 +77,17 @@ const HeaderContentContainer = styled.div`
   justify-content: end;
 `;
 
-type ContentWrapperProps = {
-  $isOpen: boolean;
-};
-
-const SystemInfoContainer = styled.div`
+const ContentWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  max-width: ${SUB_CONTENT_MAX_WIDTH};
+  margin: auto;
   display: flex;
   align-items: center;
-  margin-right: 30px;
-
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? TABLET_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) =>
-      $isOpen ? DESKTOP_DRAWER_WIDTH : DRAWER_SHRINK_WIDTH};
-  }
+  justify-content: space-between;
+  padding: 0 10px;
 `;
 
 const Header = () => {
@@ -83,7 +99,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <HeaderWrapper>
+      <UseInfoHeaderWrapper>
         {isMobileSize && <MenuButton />}
         {isDesktopSize && <SystemTime />}
         {isMobileSize && (
@@ -98,7 +114,21 @@ const Header = () => {
         <HeaderContentContainer>
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
         </HeaderContentContainer>
-      </HeaderWrapper>
+      </UseInfoHeaderWrapper>
+      {isDesktopSize && (
+        <NavHeaderWrapper>
+          <ContentWrapper>
+            <Link to={""}>
+              <BrandLogo
+                style={{ height: "27px" }}
+                onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
+              />
+            </Link>
+
+            <HeaderGameTypes />
+          </ContentWrapper>
+        </NavHeaderWrapper>
+      )}
     </HeaderContainer>
   );
 };

@@ -11,7 +11,7 @@ import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t36/images/home/maintenance.svg";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import gradientBg from "@/assets/t27/images/home/name-bg.png";
-import playIcon from "@/assets/t27/images/home/play-icon.png";
+import playIcon from "@/assets/t36/images/home/play-icon.png";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
