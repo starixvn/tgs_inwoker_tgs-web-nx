@@ -174,7 +174,7 @@ export function useGetNavItemList() {
         callback: () => {
           history.push("/deposit");
         },
-        iconComponent: DepositSvg,
+        iconComponent: WithdrawSvg,
       },
       {
         key: NavCardKey.WITHDRAW,
@@ -184,7 +184,7 @@ export function useGetNavItemList() {
         callback: () => {
           history.push("/withdrawal");
         },
-        iconComponent: WithdrawSvg,
+        iconComponent: DepositSvg,
       },
       {
         key: NavCardKey.TRANSFER,
@@ -195,6 +195,13 @@ export function useGetNavItemList() {
           history.push("/withdrawal");
         },
         iconComponent: TransferSvg,
+      },
+      {
+        key: NavCardKey.VIP,
+        label: "VIP",
+        navType: "route",
+        routePath: "/vip",
+        iconComponent: VipSvg,
       },
       {
         key: NavCardKey.REPORT,
@@ -226,15 +233,6 @@ export function useGetNavItemList() {
         },
         iconComponent: AffiliateSvg,
       },
-      // {
-      //   key: NavCardKey.VIP,
-      //   label: "VIP",
-      //   iconUrl: vipImg,
-      //   iconSecondaryUrl: vipWhiteImg,
-      //   iconPrimaryUrl: vipActiveImg,
-      //   navType: "route",
-      //   routePath: "/vip",
-      // },
       {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),

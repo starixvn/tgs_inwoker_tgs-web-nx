@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
 import slotsBg from "@/assets/t36/images/home/category/slots-bg.png";
+import liveBg from "@/assets/t36/images/home/category/live-bg.png";
 import lotteryBg from "@/assets/t36/images/home/category/lottery-bg.png";
 import cardGameBg from "@/assets/t36/images/home/category/cardGame-bg.png";
 import sportBg from "@/assets/t36/images/home/category/sport-bg.png";
@@ -45,7 +46,7 @@ export const useHomeCategoryList = () => {
         key: "liveCasino",
         text: i18n.t("common.live"),
         gameType: GameTypeEnum.LIVELOBBY,
-        bgUrl: cardGameBg,
+        bgUrl: liveBg,
         desktopBgUrl: liveBgDesktop,
         introduction: "Play Roulette, Blackjack, Baccarat, all with Live Dealers.",
       },

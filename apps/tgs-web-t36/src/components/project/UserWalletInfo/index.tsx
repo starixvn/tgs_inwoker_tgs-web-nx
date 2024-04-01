@@ -139,6 +139,7 @@ export const WalletsWrapper = styled.div`
   background: ${({ theme }) => theme.grey01};
   padding: 20px;
   ${media.sm} {
+    background: ${({ theme }) => theme.mainBackground};
     width: 300px;
     padding: 0;
   }
@@ -162,7 +163,7 @@ export const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
 export const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   font-size: 1.75rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.blue60};
+  color: ${({ theme }) => theme.primary};
   display: flex;
   align-items: center;
   justify-content: flex-end;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { theme } from "@/theme";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader } from "@tgs-web-nx/core/features";
+import { theme } from "@/theme";
 
 type Props = {
   text: string;
@@ -17,7 +17,7 @@ type IconComponentProps = {
 };
 
 const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.g2)};
+  color: ${({ theme }) => theme.white};
   font-size: 15.6px;
   font-weight: 400;
 `;
@@ -31,15 +31,14 @@ const Wrapper = styled.div<{
   cursor: pointer;
   display: flex;
   align-items: center;
-  height: 44.74px;;
+  height: 44.74px;
   align-self: stretch;
   padding: 0px 24px;
   gap: 24px;
-  border-radius: ${({ $isHovered }) => ($isHovered ? "4px" : "0px")};
-  background: ${({ $isActive, theme }) => ($isActive ? theme.black : theme.g7)};
+  background: ${({ $isActive, theme }) => ($isActive ? "#276AA5" : "transparent")};
 
   &:hover {
-    background:  ${({ theme }) => theme.black};
+    background: #276aa5;
     ${Text} {
       color: ${({ theme }) => theme.white};
     }
@@ -65,12 +64,12 @@ const DesktopAccountMenuItem = ({ text, isActive, onClick, children }: Props) =>
   };
 
   const cloneChildrenWithProps = React.Children.map(children, (child) => {
-    if (React.isValidElement(child) && typeof child.type === 'function') {
+    if (React.isValidElement(child) && typeof child.type === "function") {
       const IconComponent = child.type as React.ComponentType<IconComponentProps>;
 
       return (
         <IconComponent
-          $color={(!isActive && isHovered) ? theme.white : (isActive ? theme.white : theme.g2)}
+          $color={!isActive && isHovered ? theme.white : isActive ? theme.white : "#D0DAE3"}
           isHovered={isHovered}
         />
       );
@@ -79,7 +78,12 @@ const DesktopAccountMenuItem = ({ text, isActive, onClick, children }: Props) =>
   });
 
   return (
-    <Wrapper $isShrink={isShrink} $isActive={isActive} $text={text} onClick={onClick} $isHovered={isHovered}
+    <Wrapper
+      $isShrink={isShrink}
+      $isActive={isActive}
+      $text={text}
+      onClick={onClick}
+      $isHovered={isHovered}
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
     >

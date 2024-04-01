@@ -35,6 +35,7 @@ const DashboardContainer = styled.div`
     margin-top: 0;
     min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
     margin-bottom: unset;
+    margin-top: 20px;
   }
 `;
 
@@ -83,7 +84,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
                 style={{
                   width: "258px",
                   flexShrink: 0,
-                  minHeight: "540px",
+                  height: "100%",
                 }}
               />
               {children}

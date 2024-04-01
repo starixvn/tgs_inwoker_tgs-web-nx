@@ -1,24 +1,13 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import { useHistory, useLocation } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuthContext } from "@tgs-web-nx/core/features";
-import { NavCardKey } from "@tgs-web-nx/types";
+import { useHistory } from "react-router-dom";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
-import { Button } from "@/components/UI/Button";
 import AccountMenuItem from "@/pages/account/components/AccountNavigations/AccountMenuItem";
-import AppDownloadButton from "@/components/project/AppDownloadButton";
 import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { media } from "@/theme/breakpoints";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import MenuGameTab from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuGameTab";
-import { theme } from "@/theme";
-import Icon from "@/components/project/Icon";
 
 const AccountNavsContainer = styled.div`
-  padding: 12px 8px;
-
   ${media.sm} {
     & > div {
       margin-bottom: 20px;
@@ -29,67 +18,20 @@ const AccountNavsContainer = styled.div`
 const AccountNavCardsContainer = styled.div`
   display: flex;
   width: 100%;
-  padding: 15px 20px 0 20px;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const AccountNavCardsSubContainer = styled.div`
-  display: flex;
-  gap: 25px;
-
-  & > * {
-    flex: 1;
-  }
+  flex-wrap: wrap;
+  gap: 12px 10px;
+  margin-bottom: 20px;
 `;
 
 const LanguageSwitchWrapper = styled.div`
-  margin: 0 20px;
-  padding-left: 24px;
+  display: flex;
+  justify-content: center;
   background: ${({ theme }) => theme.mainBackground};
 `;
 
-const hideInDesktopDictionary = {
-  [NavCardKey.VIP]: true,
-  [NavCardKey.APP_DOWNLOAD]: true,
-  [NavCardKey.LOGOUT]: true,
-} as { [key in NavCardKey | string]: boolean };
-
-const MemberMenuItem = styled.div<MemberMenuItemProps>`
-  padding: 18.5px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: ${({ $isActive, theme }: MemberMenuItemProps) =>
-    $isActive ? theme.darkGray : theme.pureBlack};
-  color: ${({ theme }: MemberMenuItemProps) => theme.white};
-  cursor: pointer;
-
-  &:hover {
-    background: ${({ theme }) => theme.darkGray};
-    color: ${({ theme }) => theme.primary};
-    img {
-      content: url(${(props) => props.$hoverImage || ""});
-    }
-  }
-`;
-
-type MemberMenuItemProps = {
-  $isActive: boolean;
-  theme: typeof theme;
-  $hoverImage?: string;
-};
-
-type Props = {
-  handleCloseContextMenu: () => void;
-} & React.HTMLProps<HTMLDivElement>;
-
 const AccountNavigations = () => {
   const history = useHistory();
-  // const { navItemList, navItemDictionary } = useAccountNavigations();
-  const { handleLogout } = useAuthContext();
-  const { isDesktopSize } = useRwd();
-  const { sideNavItemList, accountNavItemList } = useGetNavItemList();
+  const { accountNavItemList } = useGetNavItemList();
   const [isSelected, setIsSelected] = useState();
 
   const handleClickNav = useCallback((navItem: NavItem) => {

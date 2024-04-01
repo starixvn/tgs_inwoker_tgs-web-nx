@@ -67,8 +67,8 @@ const AccountPage = () => {
         <UserWalletInfo />
       ) : (
         <>
-          <InfoCard style={{ marginBottom: "10px" }} />
-          <WalletsWrapper style={{ marginBottom: "10px" }}>
+          <InfoCard style={{ marginBottom: "20px" }} />
+          <WalletsWrapper style={{ marginBottom: "20px" }}>
             <MainWalletContainer>
               <MainAccountLabel>{i18n.t("web.account.header.mainWallet")}</MainAccountLabel>
               <AmountContainer>

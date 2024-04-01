@@ -17,7 +17,14 @@ type IconComponentProps = {
 };
 
 const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)};
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.g2)}; */
+  color: ${({ theme }) => theme.grey05};
+  background: ${({ theme }) => theme.grey02};
   font-size: 15.6px;
   font-weight: 400;
 `;
@@ -30,19 +37,27 @@ const Wrapper = styled.div<{
   cursor: pointer;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: ${({ $isShrink }) => ($isShrink ? "center" : "unset")};
-  height: 44.74px;
+  width: 110px;
+  height: 90px;
   background: ${({ theme, $isActive }) => ($isActive ? theme.g7 : theme.mainBackground)};
   align-self: stretch;
-  padding: ${({ $isShrink }) => ($isShrink ? "unset" : "0px 24px")};
-  gap: ${({ $isShrink }) => ($isShrink ? "unset" : "24px")};
-
   &:hover {
     background: ${({ theme }) => theme.g7};
     ${Text} {
       color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)};
     }
   }
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  background: ${({ theme }) => theme.grey01};
 `;
 
 const AccountMenuItem = ({ text, isActive, onClick, children }: Props) => {
@@ -69,7 +84,8 @@ const AccountMenuItem = ({ text, isActive, onClick, children }: Props) => {
 
       return (
         <IconComponent
-          $color={!isActive && isHovered ? theme.white : isActive ? theme.primary : theme.white}
+          $color={theme.grey05}
+          // $color={!isActive && isHovered ? theme.white : isActive ? theme.primary : theme.white}
           isHovered={isHovered}
         />
       );
@@ -86,7 +102,7 @@ const AccountMenuItem = ({ text, isActive, onClick, children }: Props) => {
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
     >
-      {cloneChildrenWithProps}
+      <IconWrapper>{cloneChildrenWithProps}</IconWrapper>
       <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );
