@@ -20,7 +20,7 @@ export const useGroupList = () => {
         .map(row => {
           return {
             code: row.code,
-            channels: row.channels,
+            channels: row.channels.filter(row => row.banktype !== GroupCodeEnum.Bank),
         }});
 
       // 特例
