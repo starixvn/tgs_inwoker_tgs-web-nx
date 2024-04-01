@@ -2,27 +2,38 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import maintenanceIcon from "@/assets/t29/images/home/maintenance.svg";
+import { media } from "@/theme/breakpoints";
 
 const Wrapper = styled.div<{
   $isActive: boolean;
+  $bgUrl: string;
 }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-width: 60px;
-  max-width: none;
+  min-width: 140px;
+  min-height: 135px;
   box-sizing: border-box;
   user-select: none;
-  background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
-  padding: 4px;
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
   position: relative;
-
+  background-image: url(${({ $bgUrl }) => $bgUrl});
+  border-radius: 10px;
   & > img {
     width: 100px;
+    min-height: 50px;
     &:hover {
       cursor: pointer;
     }
+  }
+  ${media.sm} {
+    background-image: unset;
+    min-width: 60px;
+    max-width: none;
+    min-height: unset;
+    position: relative;
+    padding: 4px;
+    background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
+    border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
   }
 `;
 
@@ -58,13 +69,14 @@ type Props = {
 const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
   const { activeGameTypeKey } = useHomeGameContext();
 
-  if (text !== "All") {
+  if (text !== "All" && text !== "FUNKY") {
     return (
-      <Wrapper $isActive={isActive}>
+      <Wrapper $isActive={isActive} $bgUrl={`/assets/images/home/mobile/mbg.png`}>
         <img
           onClick={onClick}
-          src={`${import.meta.env.BASE_URL
-            }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+          src={`${
+            import.meta.env.BASE_URL
+          }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
           alt={text}
         />
         {status === providerStatus.Maintenance && (
