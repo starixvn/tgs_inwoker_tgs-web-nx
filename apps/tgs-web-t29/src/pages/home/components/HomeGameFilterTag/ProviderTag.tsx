@@ -34,6 +34,7 @@ const Wrapper = styled.div<{
     padding: 4px;
     background-color: ${({ theme, $isActive }) => ($isActive ? theme.white : "none")};
     border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.blue60}` : "none")};
+    border-radius: 0;
   }
 `;
 
@@ -69,7 +70,7 @@ type Props = {
 const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
   const { activeGameTypeKey } = useHomeGameContext();
 
-  if (text !== "All" && text !== "FUNKY") {
+  if (text !== "All") {
     return (
       <Wrapper $isActive={isActive} $bgUrl={`/assets/images/home/mobile/mbg.png`}>
         <img
