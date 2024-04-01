@@ -85,7 +85,7 @@ export interface DepositType {
   method: {
     channelid: string;
     channelname: string;
-    displayorer: number;
+    displayorder: number;
     methodcode: string;
     methodid: string;
     displayname: string;
