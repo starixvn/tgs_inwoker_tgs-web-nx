@@ -12,26 +12,26 @@ import { handleChangeCode, getFilterDepositList } from './utils';
  */
 export const useGroupList = () => {
   const [groupCode, setGroupCode] = useState('');
-  const {wallet} = useWalletStore();
+  const {wallet: {depositChannelList, depositList}} = useWalletStore();
   const filterGroupList: FilterDepositList[] = useMemo(() =>
     {
-      const result = wallet.depositChannelList
+      const result = depositChannelList
         .filter(row => Object.values(GroupCodeEnum).includes(row.code as GroupCodeEnum))
         .map(row => {
           return {
             code: row.code,
-            channels: row.channels,
+            channels: row.channels.filter(row => row.banktype !== GroupCodeEnum.Bank),
         }});
 
       // 特例
       const bankList = {
         code: GroupCodeEnum.Bank,
-        channels: wallet.depositList?.find(row => row.banktype ===  GroupCodeEnum.Bank)?.channel ?? []
+        channels: depositList?.find(row => row.banktype ===  GroupCodeEnum.Bank)?.channel ?? []
       };
 
       return [bankList, ...result];
     }
-  , [wallet.depositChannelList, wallet.depositList]);
+  , [depositChannelList, depositList]);
 
   const groupList: Option[] = filterGroupList.map(row => {
     return {
@@ -114,6 +114,7 @@ export const useProviderList = (list: FilterDepositList[], code: string) => {
     }
   , [list])
 
+    
   const providerList: Option[] = filterProviderList.map(row => {
     return {
       isActive: row.code === providerCode,
@@ -220,4 +221,3 @@ export const useThirdPartyDeposit = () => {
 
   return {handlePerformDeposit, isPending, handleOpenPopupUrl, handleOnClose, isDialogOpen};
 }
- 

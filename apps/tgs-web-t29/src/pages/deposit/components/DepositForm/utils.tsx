@@ -4,7 +4,7 @@ import { FilterDepositList } from "@tgs-web-nx/types";
  * 篩選 Deposit List
  */
 export const getFilterDepositList = (list: FilterDepositList[], code: string) => {
-  return list.find(row => row.code === code)?.channels ?? [];
+  return list.find(row => row.code === code)?.channels.sort((prev, next) => prev.displayorder - next.displayorder) ?? [];
 };
 
 /**
