@@ -18,9 +18,7 @@ const TagContainer = styled.div`
   border-radius: 100px;
   border: 1px solid ${({ theme }) => theme.blue40};
   align-self: stretch;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
   ${media.sm} {
     &::-webkit-scrollbar {
       height: 10px;
@@ -73,11 +71,11 @@ const GameFilterTag = () => {
     } else {
       if (filterTag.tagType === prevFilterTag?.tagType) {
         handleChangeActiveFilterTag(allTag);
-        // handleChangeActiveProviderFilterTag(allTag);
+        handleChangeActiveProviderFilterTag(allTag);
         setPrevFilterTag(allTag);
       } else {
         handleChangeActiveFilterTag(filterTag);
-        // handleChangeActiveProviderFilterTag(allTag);
+        handleChangeActiveProviderFilterTag(allTag);
       }
     }
   };
@@ -115,7 +113,7 @@ const GameFilterTag = () => {
 
       {/* Provider list */}
 
-      {/* {providerFilterTagList.map((filterTag) => {
+      {providerFilterTagList.map((filterTag) => {
         const { name, gpCode } = filterTag;
 
         const isActive =
@@ -143,7 +141,7 @@ const GameFilterTag = () => {
               })}
           </Tag>
         );
-      })} */}
+      })}
     </TagContainer>
   );
 };
