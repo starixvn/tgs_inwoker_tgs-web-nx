@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { GeneralService } from "@tgs-web-nx/core";
 import { useConfirmDialog } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const InboxComposeFormContainer = styled.div`
   padding-top: 16px;
@@ -17,7 +17,7 @@ const InputWrapper = styled.div`
 `;
 
 const Label = styled.h6`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => "#23507D"};
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 16px;
