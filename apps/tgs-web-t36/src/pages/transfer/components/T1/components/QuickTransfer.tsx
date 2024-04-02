@@ -5,7 +5,7 @@ import config from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
-import ArrowRightPNG from "@/assets/t27/images/transfer/arrow-right.svg";
+import ArrowRightPNG from "@/assets/t36/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -26,7 +26,7 @@ const QuickTransferContainer = styled.div`
   & > div:nth-child(4) {
     max-width: 220px;
     height: 50px;
-  } 
+  }
 
   ${media.lg} {
     flex-wrap: nowrap;
@@ -53,16 +53,16 @@ const AmountWrapper = styled.div`
 
 const AmountText = styled.div`
   flex-shrink: 0;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
   background: none;
   text-align: right;
   border: none;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   ::placeholder {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
   }
 `;
 
@@ -187,8 +187,6 @@ const QuickTransfer = ({
         disabled={transferFrom === "" || transferTo === "" || disabled}
         onClick={() => handleTransferClick().then()}
         style={{
-          color: theme.white,
-          background: theme.secondaryGradient,
           minWidth: "307px",
           height: "50px",
           borderRadius: "3px",

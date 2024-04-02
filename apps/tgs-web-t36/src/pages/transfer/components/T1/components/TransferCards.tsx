@@ -20,8 +20,8 @@ const GameTransferWallet = styled.div`
   justify-content: space-between;
   width: calc(20% - 13px);
   border-radius: 3px;
-  background: ${({ theme }) => theme.g4};
   padding: 10px 20px 10px 10px;
+  border: 1px solid #4d8ab9;
 `;
 
 const GameTransferLeftWrap = styled.div`
@@ -44,7 +44,7 @@ const GameName = styled.div`
   font-size: 1rem;
   font-weight: 400;
   text-align: center;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.primary};
   margin-top: 10px;
 `;
 
@@ -52,7 +52,7 @@ const GameWalletAmount = styled.div`
   font-size: 1rem;
   font-weight: 400;
   text-align: left;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.primary};
   text-align: center;
   display: inline-block;
   margin-top: 9px;
@@ -64,12 +64,12 @@ const TransferButton = muiStyled(Button)(({ theme }) => ({
   lineHeight: "14px",
   textAlign: "center",
   borderRadius: "6px",
-  padding: "4px",
+  padding: "5px 10px",
   color: theme.palette.white,
   background: theme.palette.primaryGradient,
-  // "&:hover": {
-  //   background: theme.palette.goldGradient,
-  // },
+  "&:hover": {
+    background: "#526E1F",
+  },
 }));
 
 type Props = {

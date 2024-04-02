@@ -15,10 +15,10 @@ const TransferSwitch = muiStyled(Switch)(({ theme }) => ({
     padding: 2,
     "&.Mui-checked": {
       transform: "translateX(32px)",
-      color: theme.palette.g5,
+      color: theme.palette.white,
       "& + .MuiSwitch-track": {
         opacity: 1,
-        backgroundColor: theme.palette.primary,
+        backgroundColor: "#76B7EC",
       },
     },
   },
@@ -40,7 +40,7 @@ const Group = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   gap: 8px;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
 
   ${media.md} {
     flex-direction: row;
@@ -83,8 +83,9 @@ const AutoTransferSwitch = (props: React.HTMLProps<HTMLDivElement>) => {
         </Button>
       )}
       <Group>
-        {`${i18n.t("transfer.autoTransfer")} (${isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")
-          })`}
+        {`${i18n.t("transfer.autoTransfer")} (${
+          isChecked ? i18n.t("transfer.on") : i18n.t("transfer.off")
+        })`}
         <TransferSwitch checked={isChecked} onChange={handleSwitchAutoTransfer} />
       </Group>
 
