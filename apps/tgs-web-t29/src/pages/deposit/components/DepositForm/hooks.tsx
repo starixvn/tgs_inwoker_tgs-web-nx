@@ -7,6 +7,16 @@ import { Option, GroupCodeEnum } from './types';
 import { DepositFormContext } from "./components/DepositFormProvider";
 import { handleChangeCode, getFilterDepositList } from './utils';
 
+const clearedFormData = {
+  eMoneyName: '',
+  files: null,
+  amount: '',
+  account: '',
+  name: '',
+  phone: '',
+  address: '',
+}
+
 /**
  * 第一層: Group
  */
@@ -80,12 +90,7 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
       minAmount: currentChannel?.transferlimit.from ?? 0,
       maxAmount: currentChannel?.transferlimit.to ?? 0,
       realname: account.info.member_username,
-      eMoneyName: '',
-      files: null,
-      amount: '',
-      name: '',
-      phone: '',
-      address: '',
+      ...clearedFormData,
     })
   }, [currentChannel?.id])
 
@@ -155,6 +160,14 @@ export const useUploadFile = () => {
   const {doUploadDepositProof} = useWalletStore();
   const [isPending, setIsPending] = useState(false);
   const {alert} = useNotifications();
+  const {formData, setFormData} = useContext(DepositFormContext);
+  const handleClearFormData = () => {
+    setFormData({
+      ...formData,
+      ...clearedFormData,
+    })
+  }
+
   const handleUploadFile = (file: FileList | null, res: any) => {
     setIsPending(true);
     if(file && res?.IsSuccess) {
@@ -162,6 +175,7 @@ export const useUploadFile = () => {
         .then(( res: any)=> {
           if(res?.IsSuccess) {
             setIsPending(false);
+            handleClearFormData();
             alert("", i18n.t("deposit.completeDeposit"));
           }
 
@@ -189,8 +203,13 @@ export const useThirdPartyDeposit = () => {
   const [isPending, setIsPending] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [url, setUrl] = useState(undefined);
-  const {formData} = useContext(DepositFormContext);
-
+  const {formData, setFormData} = useContext(DepositFormContext);
+  const handleClearFormData = () => {
+    setFormData({
+      ...formData,
+      ...clearedFormData,
+    })
+  }
   const handleOnClose = () => {
     setIsDialogOpen(false);
   } 
@@ -207,6 +226,7 @@ export const useThirdPartyDeposit = () => {
     setIsPending(true);
     if(res?.IsSuccess) {
       setIsPending(false);
+      handleClearFormData();
       setIsDialogOpen(true);
       if(res?.data.paymenturl) {
         setUrl(res?.data.paymenturl)
