@@ -166,9 +166,15 @@ export const useUploadFile = () => {
           }
 
           if(!res?.IsSuccess) {
+            alert("", res.data.errmsg);
             setIsPending(false);
           }
         })
+    }
+
+    if(!res?.IsSuccess) {
+      alert("", res.data.errmsg);
+      setIsPending(false);
     }
   }
 
