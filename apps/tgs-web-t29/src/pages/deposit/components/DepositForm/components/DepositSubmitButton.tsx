@@ -1,13 +1,9 @@
-import { i18n, Common } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
-import { useContext } from "react";
-import { DepositFormContext } from "../components";
+import { i18n } from "@tgs-web-nx/utils";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 type Props = {
   handleOnSubmit: () => void;
-  isManual?: boolean;
-  isPending: boolean;
+  isDisabled: boolean;
 }
 
 /**
@@ -15,13 +11,8 @@ type Props = {
  */
 export const DepositSubmitButton = ({
   handleOnSubmit,
-  isManual,
-  isPending,
+  isDisabled
 }: Props) => {
-  const {formData} = useContext(DepositFormContext);
-  const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
-  const isManualDisabled = config.features.Deposit_UploadRequired ? isDefaultDisabled || formData.files === null : isDefaultDisabled;
-  const isDisabled = isManual ? isManualDisabled : isDefaultDisabled;
 
   return (
     <SubmitButton
@@ -29,7 +20,7 @@ export const DepositSubmitButton = ({
       variant="contained"
       color="primary"
       fullWidth
-      disabled={isPending ? isPending : isDisabled}
+      disabled={isDisabled}
     >
         {i18n.t("common.submit")}
     </SubmitButton>

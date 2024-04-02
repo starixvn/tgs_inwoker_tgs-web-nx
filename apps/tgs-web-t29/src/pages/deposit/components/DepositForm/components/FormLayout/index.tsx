@@ -6,17 +6,15 @@ import { BankLayout } from "./BankLayout";
 import { FpsLayout } from "./FpsLayout";
 import { DefaultLayout } from "./DefaultLayout";
 import { TrcLayout } from "./TrcLayout";
-import { ALI2ALILayout } from "./ALI2ALILayout";
+import { ThirdPartyLayout } from "./ThirdParty";
 import { EWalletLayout } from "./EWalletLayout";
 import { CoinsphLayout } from "./CoinsphLayout";
-import { GCashLayout } from "./GCashLayout";
 import { PulsaLayout } from "./PulsaLayout";
 import ResultPopupDialog from "@/pages/deposit/components/ResultPopupDialog";
 
 export type LayoutProps = {
   filterGroupList: FilterDepositList[]
   groupCode: string
-  handleSubmit?: () => void;
   handlePerformDeposit?: () => void;
   isThirdPartyPending?: boolean;
 }
@@ -32,7 +30,7 @@ const FormLayout = () => {
     list: groupList,
   };
 
-  const layoutProps: LayoutProps = {groupCode, filterGroupList, handlePerformDeposit, isThirdPartyPending: isPending};
+  const layoutProps: LayoutProps = {groupCode, filterGroupList};
 
   /**
  * 對應 UI
@@ -40,7 +38,7 @@ const FormLayout = () => {
   const mapLayout = () => {
     switch (groupCode) {
       case GroupCodeEnum.Bank:
-        return <BankLayout {...layoutProps} />
+        return <BankLayout {...layoutProps} handlePerformDeposit={handlePerformDeposit} isThirdPartyPending={isPending} />
 
       case GroupCodeEnum.FPS:
         return <FpsLayout {...layoutProps} />
@@ -49,7 +47,7 @@ const FormLayout = () => {
         return <TrcLayout {...layoutProps} />
 
       case GroupCodeEnum.ALI2ALI:
-        return <ALI2ALILayout {...layoutProps} />
+        return <ThirdPartyLayout {...layoutProps} />
 
       case GroupCodeEnum.EWallet:
         return <EWalletLayout {...layoutProps} />
@@ -60,11 +58,8 @@ const FormLayout = () => {
       case GroupCodeEnum.Pulsa:
         return <PulsaLayout {...layoutProps} />
 
-      case GroupCodeEnum.GCash:
-        return <GCashLayout {...layoutProps} />
-        
       default:
-        return <DefaultLayout {...layoutProps} />
+        return <DefaultLayout {...layoutProps} handlePerformDeposit={handlePerformDeposit} isThirdPartyPending={isPending}/>
     }
   }
 

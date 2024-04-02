@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
+import { i18n, Common } from "@tgs-web-nx/utils";
+import config from "@tgs-web-nx/config";
 import { useChannelList, useProviderList, useUploadFile } from "../../hooks";
-import { Cards, DepositAmountInput, DepositPromotion, Upload, DepositSubmitButton, DepositFormContext } from "../../components";
-import { BankExtended } from "../Extended";
+import { Cards, DepositAmountInput, DepositPromotion, Upload, DepositSubmitButton, DepositFormContext, DepositInput, DepositExtended } from "../../components";
 import { LayoutProps } from "./index";
-import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
-
+import { ItemContainer, LabelContainer} from "@/components/styled-component/ProfileForms";
 
 const limitAmount = 1;
 
@@ -19,12 +19,17 @@ export const BankLayout = ({
   isThirdPartyPending,
 }: LayoutProps) => {
   const {providerList, filterProviderList, providerCode} = useProviderList(filterGroupList, groupCode);
-  const {channelList, currentChannel, extended, hasExtended, isManual} = useChannelList(filterProviderList, providerCode);
+  const {channelList, currentChannel, extended, isManual} = useChannelList(filterProviderList, providerCode);
   const {doBankDeposit} = useWalletStore();
   const {formData} = useContext(DepositFormContext);
-  const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
-  const isShowProviderCards = providerList.length > limitAmount; // 若金流商只有 1 個 => 不顯示
   const {handleUploadFile, isPending: isUploadFilePending} = useUploadFile();
+
+  const [ProviderCards, ChannelCards] = [Cards, Cards];
+  const isShowProviderCards = providerList.length > limitAmount; // 若金流商只有 1 個 => 不顯示
+  const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
+  const isManualDisabled = (config.features.Deposit_UploadRequired ? isDefaultDisabled || formData.files === null : isDefaultDisabled) || !formData.account || !formData.name;
+  const isDisabled = isManual ? isManualDisabled : isDefaultDisabled;
+  const isPending = isUploadFilePending || !!isThirdPartyPending;
   const channelProps = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
@@ -34,9 +39,6 @@ export const BankLayout = ({
     i18nParam: "depositAndWithdrawalStatus.depositMode",
     list: providerList,
   };
-
-  const [ProviderCards, ChannelCards] = [Cards, Cards];
-
 
   /**
    * 送出表單
@@ -63,14 +65,25 @@ export const BankLayout = ({
     <>
       {isShowProviderCards && <ProviderCards {...providerProps} />}
       <ChannelCards {...channelProps} />
-      {hasExtended && <BankExtended {...extended} banktype={bankType} />}
+
+      {isManual && <ItemContainer>
+        <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer>
+        <DepositExtended qrcode={extended?.logo} />
+        <DepositExtended content={extended?.name} title="name"/>
+        <DepositExtended content={extended?.bankAccount} title="bankAccount"/>
+      </ItemContainer>}
+      
+      {isManual && <DepositInput label="deposit.msgPlsEnterAccount" formKey="name" />}
+      {isManual && <DepositInput label="deposit.msgEnterCard" formKey="account" type="number"/>}
       <DepositAmountInput currentChannel={currentChannel} />
       <DepositPromotion />
       {isManual && <Upload />}
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isUploadFilePending || !!isThirdPartyPending}/>
-    
+      <DepositSubmitButton 
+        handleOnSubmit={handleOnSubmit}
+        isDisabled={isPending || isDisabled}
+      />
     </>
   )
 };

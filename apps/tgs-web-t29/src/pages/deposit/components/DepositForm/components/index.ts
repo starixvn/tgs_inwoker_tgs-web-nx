@@ -6,8 +6,11 @@ import FormLayout from "./FormLayout";
 import {Icon, WarningText, TransferHint, CurrencyHint, LabelContainer, Badge, BadgeWrapper, FormContainer} from "./styled";
 import { Cards } from "./Cards";
 import { Upload } from "./Upload";
+import { DepositInput } from "./DepositIInput";
+import { DepositExtended } from "./DepositExtended";
 
 export {
+  DepositExtended,
   DepositAmountInput,
   DepositFormContext,
   DepositFormProvider,
@@ -24,4 +27,5 @@ export {
   FormContainer,
   Cards,
   Upload,
+  DepositInput,
 }

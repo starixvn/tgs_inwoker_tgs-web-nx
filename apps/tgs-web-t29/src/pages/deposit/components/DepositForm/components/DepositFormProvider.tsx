@@ -12,7 +12,7 @@ type Amount = {
 }
 
 
-type FormState = DepositFormData & Amount
+export type FormState = DepositFormData & Amount
 type DepositFormContextState = {formData: FormState, setFormData: DispatchFormData}
 
 const defaultState: FormState = {
@@ -29,6 +29,8 @@ const defaultState: FormState = {
   files: null,
   phone: '',
   eMoneyName: '',
+  realname: '',
+  address: '',
 }
 
 export const DepositFormContext = createContext<DepositFormContextState>({
