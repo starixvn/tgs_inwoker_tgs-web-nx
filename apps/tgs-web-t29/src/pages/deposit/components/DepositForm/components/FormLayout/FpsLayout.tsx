@@ -1,26 +1,27 @@
 import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
+import { i18n, Common } from "@tgs-web-nx/utils";
 import { useChannelList, useUploadFile } from "../../hooks";
-import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
-import { ExtendedLayout } from "../Extended";
+import { DepositInput, Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload, DepositExtended } from "../../components";
 import { LayoutProps } from "./index";
-import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
+import { ItemContainer, LabelContainer} from "@/components/styled-component/ProfileForms";
+
 /**
  * FPS UI
  */
 export const FpsLayout = ({
   filterGroupList,
   groupCode,
-  handlePerformDeposit,
-  isThirdPartyPending,
 }: LayoutProps) => {
-  const {channelList, currentChannel, extended, isManual} = useChannelList(filterGroupList, groupCode);
+  const {channelList, currentChannel, extended} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
-  const {doFPSDepositWithName, doFPSDeposit} = useWalletStore();
-  const {handleUploadFile, isPending: isManualPending} = useUploadFile();
+  const {doFPSDeposit} = useWalletStore();
+  const {handleUploadFile, isPending} = useUploadFile();
 
-  const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
+  const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
+  const isDisabled = (config.features.Deposit_UploadRequired ? isDefaultDisabled || formData.files === null : isDefaultDisabled) || !formData.account;
+
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
@@ -31,19 +32,7 @@ export const FpsLayout = ({
    * 送出表單
    */
   const handleOnSubmit = () => {
-    const {amount, id, promotionid, account, type, name} = formData;
-    if(!isManual && handlePerformDeposit) {
-      handlePerformDeposit();
-      return;
-    }
-
-    if(config.features.Deposit_FPSWithName) {
-      doFPSDepositWithName(name, account, amount, id, promotionid, type)
-        .then((res) => {
-          handleUploadFile(formData.files, res);
-        })
-      return;
-    }
+    const {amount, id, promotionid, account, type} = formData;
 
     doFPSDeposit(account, amount, id, promotionid, type)
       .then((res) => {
@@ -51,15 +40,19 @@ export const FpsLayout = ({
       });
   }
 
-
-
-
-
   return (
     <>
       <ChannelCards {...props} />
 
-      {isManual && <ExtendedLayout {...extended} banktype={bankType} />}
+      <ItemContainer>
+        <LabelContainer>{i18n.t('deposit.transferAccount')}</LabelContainer>
+        <DepositExtended qrcode={extended?.qrCodeFileUrl } />
+        <DepositExtended content={extended?.phone} title="phone" />
+        <DepositExtended content={extended?.fpsId} title="fpsId" />
+        <DepositExtended content={extended?.email} title="email" />
+      </ItemContainer>
+    
+      <DepositInput label="deposit.msgEnterCard" formKey="account" type="number"/>
 
       {/* 請輸入存款金額 */}
       <DepositAmountInput currentChannel={currentChannel} />
@@ -67,10 +60,10 @@ export const FpsLayout = ({
       {/* 選擇優惠活動 */}
       <DepositPromotion />
 
-      {isManual && <Upload />}
+      <Upload />
 
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={isManualPending || !!isThirdPartyPending}/>
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isDisabled={isDisabled || isPending}/>
     </>
   )
 };
