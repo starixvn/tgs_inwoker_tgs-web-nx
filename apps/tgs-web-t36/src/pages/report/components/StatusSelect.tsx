@@ -12,11 +12,11 @@ const StatusSelectWrapper = styled.div`
 `;
 
 const StatusSelectContainer = styled.div`
-  border: 1px solid ${({ theme }) => theme.g4};
+  border: 1px solid ${({ theme }) => theme.subNavSec};
   height: 40px;
-  background: ${({ theme }) => theme.g3};
+  /* background: ${({ theme }) => theme.g3}; */
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.black};
   border-radius: 3px;
   box-shadow: 0 4px 8px 0 rgba(35, 31, 27, 0.1);
   display: flex;
@@ -25,7 +25,7 @@ const StatusSelectContainer = styled.div`
 
 const SelectLabel = styled.div`
   margin-right: 5px;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.subNavSec};
 `;
 
 const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
@@ -40,14 +40,13 @@ const SelectFormControl = muiStyled(FormControl)(({ theme }) => ({
     display: "block",
     zIndex: "2",
     position: "absolute",
-    borderRight: "1px solid #1C1E22",
   },
   "& fieldset": {
     border: "none",
   },
   "& select": {
-    padding: 0,
-    color: theme.palette.white,
+    padding: "10px",
+    color: theme.palette.subNavSec,
     fontSize: "0.937rem",
   },
   "& .MuiSvgIcon-root": {

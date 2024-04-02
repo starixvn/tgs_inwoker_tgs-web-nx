@@ -18,7 +18,7 @@ import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
 
 const Title = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.subNavSec};
   font-size: 1.25rem;
   font-weight: 700;
 `;
@@ -42,7 +42,7 @@ const Report = () => {
     handleDateRangeChange(dateRangeEnum);
   };
 
-  const handleChangeTab = (e: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChangeTab = (e: React.ChangeEvent<any>, newValue: number) => {
     if (selectedType !== newValue) {
       window.scrollTo({ top: 0 });
       setSelectedType(newValue);

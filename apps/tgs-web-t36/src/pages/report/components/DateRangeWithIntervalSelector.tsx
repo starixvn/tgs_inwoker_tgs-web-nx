@@ -20,13 +20,13 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   cursor: pointer;
   white-space: nowrap;
   background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.green : theme.g3;
+    return $isSelected ? theme.subNavSec : "#D0DAE3";
   }};
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.white : theme.g2;
+    return $isSelected ? theme.white : theme.subNavSec;
   }};
   border: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? "transparent" : `1px solid ${theme.g4}`;
+    return $isSelected ? "transparent" : `1px solid ${theme.subNavSec}`;
   }};
   border-radius: 3px;
   padding: 12px 20px;

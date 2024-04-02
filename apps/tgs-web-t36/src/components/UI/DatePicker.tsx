@@ -57,8 +57,8 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
             "& input": {
               textAlign: "center",
               fontSize: "0.937rem",
+              padding: "14px 14px",
               lineHeight: 1,
-              color: theme.white,
             },
           }}
           slotProps={{
@@ -114,14 +114,12 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  background:${({ theme }) => theme.g5};
+  border: 1px solid #D6DBDD;
   position: relative;
-  border-radius: 3px;
-  height: 47px;
 
   .MuiInputBase-input {
-    color: ${({ theme }) => theme.white};
-    /* padding: 10px 10px; */
+    color: ${({ theme }) => theme.subNavSec};
+    padding: 10px 10px;
     text-align: left;
     cursor: pointer;
   }

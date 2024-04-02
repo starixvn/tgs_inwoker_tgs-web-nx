@@ -33,11 +33,12 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
             key={index}
             onClick={() => handleButtonClick(index)}
             sx={{
-              color: isSelected ? theme.white : theme.g2,
-              background: isSelected ? theme.green : theme.g5,
+              color: isSelected ? theme.white : theme.subNavSec,
+              background: isSelected ? theme.subNavSec : "#D0DAE3",
+              border: isSelected ? "unset" : `1px solid ${theme.subNavSec}`,
               "&:hover": {
-                color: isSelected ? theme.white : theme.white,
-                background: isSelected ? theme.green : theme.green,
+                color: theme.white,
+                background: theme.subNavSec,
               },
               whiteSpace: {
                 sx: "wrap",

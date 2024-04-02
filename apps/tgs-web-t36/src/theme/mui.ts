@@ -10,6 +10,7 @@ theme.lang = i18n.language;
 declare module "@mui/material/styles/createPalette" {
   interface Palette {
     white: string;
+    black: string;
     yellow: string;
     green: string;
     red: string;
@@ -53,6 +54,7 @@ const muiTheme = createTheme({
       disabled: theme.white,
     },
     white: theme.white,
+    black: theme.black,
     yellow: theme.yellow,
     green: theme.green,
     red: theme.red,
@@ -92,7 +94,7 @@ const muiTheme = createTheme({
       styleOverrides: {
         actions: {
           "& .MuiButtonBase-root": {
-            color: "#707070",
+            color: theme.black,
             "&:hover": {
               // backgroundColor: "#your_hover_color_here", // 设置鼠标悬停时的背景颜色
             },

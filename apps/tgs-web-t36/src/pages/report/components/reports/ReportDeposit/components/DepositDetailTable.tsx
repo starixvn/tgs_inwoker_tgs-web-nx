@@ -96,7 +96,7 @@ const DepositDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: "#BCBFC7",
+          color: theme.subNavSec,
           "& button": {},
         }}
       />
