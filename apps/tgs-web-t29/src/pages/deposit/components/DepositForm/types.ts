@@ -12,6 +12,8 @@ export type DepositFormData = {
   eMoneyName: string;
   files: FileList | null;
   phone: string;
+  realname: string;
+  address: string;
 }
 
 export type FormContainerProps = {
@@ -58,28 +60,4 @@ export enum GroupCodeEnum {
   Bank= 'Bank',
 }
 
-export type DepositBankType = 'Bank' | 'ThirdParty'
 
-type GroupCodeConfig = {
-  bankType: DepositBankType | null
-}
-
-export const groupCodeConfig: Record<GroupCodeEnum, GroupCodeConfig> = {
-  [GroupCodeEnum.GCash]: {bankType: 'ThirdParty'},
-  [GroupCodeEnum.Coinsph]: {bankType: 'ThirdParty'},
-  [GroupCodeEnum.FPS]: {bankType: 'ThirdParty'},
-  [GroupCodeEnum.OMNI]: {bankType: null},
-  [GroupCodeEnum.ETHEREUM]: {bankType: null},
-  [GroupCodeEnum.ALI2ALI]: {bankType: 'ThirdParty'},
-  [GroupCodeEnum.PayMaya]: {bankType: 'Bank'},
-  [GroupCodeEnum.TRON]: {bankType: null},
-  [GroupCodeEnum.MayaNative]: {bankType: null},
-  [GroupCodeEnum.GrabeNative]: {bankType: null},
-  [GroupCodeEnum.ViettelPay]: {bankType: null},
-  [GroupCodeEnum.Momo]: {bankType: null},
-  [GroupCodeEnum.TRC]: {bankType: null},
-  [GroupCodeEnum.Pulsa]: {bankType: 'ThirdParty'},
-  [GroupCodeEnum.EWallet]: {bankType:'Bank'},
-  [GroupCodeEnum.GcashNative]: {bankType: null},
-  [GroupCodeEnum.Bank]: {bankType: 'Bank'},
-}

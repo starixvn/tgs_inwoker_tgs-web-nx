@@ -1,8 +1,9 @@
+import { Common } from "@tgs-web-nx/utils";
+import { useContext } from "react";
 import {useChannelList} from '../../hooks';
-import { Cards as ChannelCards, DepositAmountInput, DepositPromotion, DepositSubmitButton, Upload } from "../../components";
-import { ExtendedLayout } from "../Extended";
+import { Cards as ChannelCards, DepositAmountInput, DepositPromotion, DepositSubmitButton } from "../../components";
+import { DepositFormContext } from "../DepositFormProvider";
 import { LayoutProps } from "./index";
-import {groupCodeConfig, GroupCodeEnum} from '@/pages/deposit/components/DepositForm/types';
 
 type Props = {
   isShowExtendedLayout?: boolean;
@@ -14,29 +15,22 @@ type Props = {
  */
 export const DefaultLayout = ({
   filterGroupList,
-  handleSubmit,
-  handlePerformDeposit,
   groupCode,
-  isManualPending,
   isThirdPartyPending,
+  handlePerformDeposit,
 }: Props) => {
-  const {channelList, currentChannel, extended, isManual} = useChannelList(filterGroupList, groupCode);
+  const {channelList, currentChannel} = useChannelList(filterGroupList, groupCode);
+  const {formData} = useContext(DepositFormContext);
+  const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
   };
 
-  const bankType = groupCode ? groupCodeConfig[groupCode as GroupCodeEnum].bankType : null;
-
     /**
    * 送出表單
    */
   const handleOnSubmit = () => {
-    if(handleSubmit) {
-      handleSubmit();
-      return;
-    }
-
     if(handlePerformDeposit){
       handlePerformDeposit();
     }
@@ -46,18 +40,14 @@ export const DefaultLayout = ({
     <>
       <ChannelCards {...props} />
 
-      {isManual && <ExtendedLayout {...extended} banktype={bankType} />}
-
       {/* 請輸入存款金額 */}
       <DepositAmountInput currentChannel={currentChannel} />
 
       {/* 選擇優惠活動 */}
       <DepositPromotion />
 
-      {isManual && <Upload />}
-
       {/* 提交表單 */}
-      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isManual={isManual} isPending={!!isManualPending || !!isThirdPartyPending}/>
+      <DepositSubmitButton handleOnSubmit={handleOnSubmit} isDisabled={isDefaultDisabled || !!isThirdPartyPending} />
     </>
   )
 };

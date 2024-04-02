@@ -69,8 +69,6 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
   const isManual = currentChannel?.paymentcode === 'Manual';
   const {formData, setFormData} = useContext(DepositFormContext);
   const extended = currentChannel?.extended;
-  const extendedKeys = extended ? Object.keys(extended) : [];
-  const hasExtended = extended && extendedKeys.length > 0;
 
   useEffect(() => {
     setFormData({
@@ -81,16 +79,19 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
       type: currentChannel?.banktype.toLowerCase() ?? '',
       minAmount: currentChannel?.transferlimit.from ?? 0,
       maxAmount: currentChannel?.transferlimit.to ?? 0,
-      phone: extended?.phone ?? '',
-      name: account.info.member_username,
-      eMoneyName: extended?.eMoneyName ? extended?.eMoneyName ?? '' : extended?.name ?? '',
+      realname: account.info.member_username,
+      eMoneyName: '',
       files: null,
+      amount: '',
+      name: '',
+      phone: '',
+      address: '',
     })
   }, [currentChannel?.id])
 
   useSelectFirst(channelList, setSelectedID, [code]);
 
-  return {channelList, currentChannel, hasExtended, extended, isManual};
+  return {channelList, currentChannel, extended, isManual};
 }
 
 
