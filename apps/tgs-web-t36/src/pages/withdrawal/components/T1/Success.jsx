@@ -1,6 +1,6 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import SuccessPNG from "@/assets/t27/images/withdraw/icon-check.png";
+import SuccessPNG from "@/assets/t36/images/withdraw/icon-check.png";
 import { Button as CustomButton } from "@/components/UI/Button";
 import {
   Container,

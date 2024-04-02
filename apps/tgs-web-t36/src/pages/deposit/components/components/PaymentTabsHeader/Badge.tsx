@@ -16,9 +16,10 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   border-radius: 3px;
   color: ${({ $isActive, theme }: BadgeContainerProps) =>
     $isActive ? theme.white : theme.primary};
-  background: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? "#276AA5" : "#D0DAE3")};
+  background: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? theme.subNavSec : "#D0DAE3"};
   border: 1px solid
-    ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? "transparent" : "#276AA5")};
+    ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? "transparent" : theme.subNavSec)};
   font-size: 0.812rem;
   font-weight: 400;
 

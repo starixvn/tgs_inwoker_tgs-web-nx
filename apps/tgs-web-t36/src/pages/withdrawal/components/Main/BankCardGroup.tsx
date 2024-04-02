@@ -26,15 +26,15 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   gap: 10px;
   padding: 12px 20px;
   font-size: 15px;
-  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.g2)};
+  color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.primary)};
   background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.green : theme.g3};
+    $active ? theme.subNavSec : "#D0DAE3"};
   width: auto !important;
   cursor: pointer;
   float: left;
   border-radius: 3px;
-  border: 1px solid ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? "transparent" : theme.g4};
+  border: 1px solid
+    ${({ $active, theme }: BankCardButtonProps) => ($active ? "transparent" : theme.subNavSec)};
 `;
 
 type ManageBankButtonProps = {
@@ -47,15 +47,12 @@ const ManageBankButton = styled.div<ManageBankButtonProps>`
   gap: 10px;
   padding: 12px 20px;
   font-size: 15px;
-  color: ${({ $active, theme }: ManageBankButtonProps) => ($active ? theme.white : theme.g2)};
-  background: ${({ $active, theme }: ManageBankButtonProps) =>
-    $active ? theme.primaryGradient : theme.g3};
+  color: ${({ $active, theme }: ManageBankButtonProps) => theme.white};
+  background: ${({ $active, theme }: ManageBankButtonProps) => theme.primaryGradient};
   width: auto !important;
   cursor: pointer;
   float: left;
   border-radius: 3px;
-  border: 1px solid ${({ $active, theme }: ManageBankButtonProps) =>
-    $active ? "transparent" : theme.g4};
 `;
 
 const BankCardButtonLabel = styled.div`

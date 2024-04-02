@@ -23,4 +23,5 @@ export const theme = {
   white50: "#FFFFFF80",
   white20: "#FFFFFF33",
   text: "#1B1B1B",
+  subNavSec: "#276AA5",
 };

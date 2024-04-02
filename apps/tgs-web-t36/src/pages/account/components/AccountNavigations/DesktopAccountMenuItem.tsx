@@ -35,10 +35,10 @@ const Wrapper = styled.div<{
   align-self: stretch;
   padding: 0px 24px;
   gap: 24px;
-  background: ${({ $isActive, theme }) => ($isActive ? "#276AA5" : "transparent")};
+  background: ${({ $isActive, theme }) => ($isActive ? theme.subNavSec : "transparent")};
 
   &:hover {
-    background: #276aa5;
+    background: ${({ theme }) => theme.subNavSec};
     ${Text} {
       color: ${({ theme }) => theme.white};
     }

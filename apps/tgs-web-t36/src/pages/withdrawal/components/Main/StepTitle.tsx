@@ -11,7 +11,7 @@ const NumberContainer = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 3.2px;
-  background-color: ${({ theme }) => theme.green};
+  background-color: ${({ theme }) => theme.subNavSec};
   font-family: Arial;
   font-size: 0.875rem;
   font-weight: 400;
@@ -24,7 +24,7 @@ const SubTitle = styled.div`
   font-size: 0.875rem;
   font-weight: 700;
   float: left;
-  color: ${({ theme }) => theme.g2};
+  color: ${({ theme }) => theme.primary};
   white-space: nowrap;
 `;
 

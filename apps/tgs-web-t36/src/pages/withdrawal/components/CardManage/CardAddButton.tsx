@@ -6,13 +6,16 @@ import Icon from "@/components/project/Icon";
 
 const CardAddButtonContainer = styled.div`
   margin-left: auto;
-  background: ${({ theme }) => theme.g4};
+  background: ${({ theme }) => theme.subNavSec};
   color: ${({ theme }) => theme.white};
   padding: 13px;
   cursor: pointer;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 8px;
+  border-radius: 5px;
+  width: 188px;
 `;
 
 type Props = {

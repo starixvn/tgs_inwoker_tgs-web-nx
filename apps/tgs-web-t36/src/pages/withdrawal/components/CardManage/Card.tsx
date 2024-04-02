@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import deleteIcon from "@/assets/t27/images/card/delete.svg";
+import deleteIcon from "@/assets/t36/images/card/delete.svg";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
 
 const CardContainer = styled.div`
   width: 100%;
   padding: 16px;
-  background: ${({ theme }) => theme.g4};
-  border: 1px solid ${({ theme }) => theme.green};
+  background: ${({ theme }) => "#d0dae3"};
+  border: 1px solid ${({ theme }) => theme.subNavSec};
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -21,7 +21,7 @@ const CardContainer = styled.div`
 `;
 
 const CardTitle = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.subNavSec};
   /* border-bottom: 1px solid rgba(255, 255, 255, 0.09); */
   padding-bottom: 10px;
   font-size: 1.25rem;
@@ -29,7 +29,7 @@ const CardTitle = styled.div`
 `;
 
 const CardContent = styled.div`
-  color: ${({ theme }) => theme.g2};
+  color: ${({ theme }) => theme.subNavSec};
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -2,7 +2,6 @@ import { styled as muiStyled } from "@mui/material/styles";
 import Modal from "@mui/material/Modal";
 import { ListItem, ListItemText } from "@mui/material";
 import styled from "styled-components";
-import limitBg from "@/assets/t27/images/withdraw/limit-bg.png";
 import {
   FormControl as ProfileFormControl,
   ItemContainer as ProfileItemContainer,
@@ -76,12 +75,8 @@ export const SelectionContainer = styled.div`
 `;
 export const LimitPopupContainer = styled.div`
   white-space: nowrap;
-  background: url(${limitBg}) no-repeat;
-  background-size: cover;
-  background-position: center;
   font-size: 0.812rem;
-  color: ${({ theme }) => theme.white};
-  padding: 10px 24px;
+  color: ${({ theme }) => theme.black};
   border-radius: 4px;
   display: inline-block;
   line-height: 25px;
@@ -126,6 +121,7 @@ export const AmountWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+  min-width: 500px;
 `;
 export const USDTWrapper = styled.div``;
 export const SubHeaderContainer = styled.div`

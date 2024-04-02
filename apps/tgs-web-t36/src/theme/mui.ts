@@ -30,6 +30,7 @@ declare module "@mui/material/styles/createPalette" {
     black20: string;
     white50: string;
     white20: string;
+    subNavSec: string;
   }
 }
 
@@ -75,6 +76,7 @@ const muiTheme = createTheme({
     text: {
       primary: theme.text,
     },
+    subNavSec: theme.subNavSec,
   },
   typography: {
     fontFamily: fontFamily,
