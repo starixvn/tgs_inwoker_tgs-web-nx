@@ -8,18 +8,15 @@ const StyledTable = styled(Table)`
 `;
 
 const StyledTableHead = styled(TableHead)`
-  background: ${({ theme }) => theme.green};
-  color: ${({ theme }) => theme.white}
-
+  background: ${({ theme }) => "#76B7EC"};
   & * {
-    color: ${({ theme }) => theme.black} !important;
+    color: ${({ theme }) => theme.subNavSec} !important;
   }
 `;
 
 const StyledTableBody = styled(TableBody)`
-  background: ${({ theme }) => theme.mainBackground};
   & * {
-    color: ${({ theme }) => theme.white} !important;
+    color: ${({ theme }) => theme.subNavSec} !important;
   }
 `;
 

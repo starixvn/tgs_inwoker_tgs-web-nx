@@ -35,14 +35,14 @@ export const AffiliateTitle = styled.h2`
   font-weight: 700;
   line-height: 1.758rem;
   margin-bottom: 14px;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.subNavSec};
 `;
 
 export const QRCodeContainer = styled.div`
-  background-color: ${({ theme }) => theme.white};
   padding: 16px;
   border-radius: 10px;
   margin-bottom: 18px;
+  border: ${({ theme }) => `1px solid ${theme.subNavSec}`};
 `;
 export const ActionButtonContainer = styled.div`
   width: 288px;
