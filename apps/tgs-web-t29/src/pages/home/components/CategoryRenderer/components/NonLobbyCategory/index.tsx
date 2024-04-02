@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useBottomScrollListener } from "react-bottom-scroll-listener";
+import { GameItem } from "@tgs-web-nx/types";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
@@ -84,18 +87,36 @@ const Text = styled.div`
   font-weight: 700;
 `;
 
+const preLoadAmount = 30;
+
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
+  const [gameIndex, setGameIndex] = useState(preLoadAmount);
+  const [displayGameList, setDisplayGameList] = useState<GameItem[]>([]);
+
   const hasMappingData = !!gameList.length;
   const { searchString, handleChangeSearch } = useHomeGameContext();
+
+  const handleLoadMoreGame = () => {
+    const arr = gameList.slice(gameIndex, gameIndex + preLoadAmount);
+    setDisplayGameList(displayGameList.concat(arr));
+    setGameIndex(gameIndex + preLoadAmount);
+  };
+
+  const containerRef = useBottomScrollListener(handleLoadMoreGame) as any;
+
+  useEffect(() => {
+    const arr = gameList.slice(0, gameIndex);
+    setDisplayGameList(arr);
+  }, [gameList]);
 
   return (
     <Wrapper>
       {isMobileSize && (
         <>
           <GameTypeTab />
-          <CategoryContentWrapper>
+          <CategoryContentWrapper ref={containerRef}>
             <FilterSection>
               <GameFilterTag />
               <SearchInputWrapper>
@@ -109,7 +130,7 @@ const NonLobbyCategory = () => {
             </FilterSection>
             <CategoryContent>
               {hasMappingData &&
-                gameList.map((gameItem) => (
+                displayGameList.map((gameItem) => (
                   <GameCard
                     key={gameItem.id}
                     gameItem={gameItem}
