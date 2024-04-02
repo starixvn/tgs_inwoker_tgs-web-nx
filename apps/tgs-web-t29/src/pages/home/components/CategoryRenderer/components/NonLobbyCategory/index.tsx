@@ -1,15 +1,11 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import {
-  FilterTag,
-  useGetLobbyCategoryList,
-  useGetNonLobbyCategoryList,
-  useHomeGameContext,
-} from "@tgs-web-nx/core/features";
+import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { providerStatus } from "@tgs-web-nx/constants";
-import ProviderTag from "../../../HomeGameFilterTag/ProviderTag";
+import { useBottomScrollListener } from "react-bottom-scroll-listener";
+import { GameItem } from "@tgs-web-nx/types";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
@@ -91,114 +87,63 @@ const Text = styled.div`
   font-weight: 700;
 `;
 
-const VenderListWarpper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  row-gap: 10px;
-  column-gap: 10px;
-`;
+const preLoadAmount = 30;
 
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
+  const [gameIndex, setGameIndex] = useState(preLoadAmount);
+  const [displayGameList, setDisplayGameList] = useState<GameItem[]>([]);
+
   const hasMappingData = !!gameList.length;
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
-  const {
-    searchString,
-    handleChangeSearch,
-    providerFilterTagList,
-    activeProviderFilterTag,
-    handleChangeActiveProviderFilterTag,
-  } = useHomeGameContext();
+  const { searchString, handleChangeSearch } = useHomeGameContext();
 
-  const getProviderAbbreviation = (provider: string) => {
-    switch (provider) {
-      case "No Limit City":
-        return "NLC";
-      case "PragmaticPlay":
-        return "PP";
-      default:
-        return provider;
-    }
+  const handleLoadMoreGame = () => {
+    const arr = gameList.slice(gameIndex, gameIndex + preLoadAmount);
+    setDisplayGameList(displayGameList.concat(arr));
+    setGameIndex(gameIndex + preLoadAmount);
   };
 
-  const getProviderData = (targetProvider: FilterTag) => {
-    const matchedProvider = navPopupCategoryList.find(
-      (provider) => provider.code === targetProvider.gpCode,
-    );
-    return matchedProvider;
-  };
+  const containerRef = useBottomScrollListener(handleLoadMoreGame) as any;
 
-  const onChangeProviderFilterTag = (newFilterTag: FilterTag) => {
-    const matchedProvider = getProviderData(newFilterTag);
-    const status = matchedProvider ? matchedProvider.status : -1;
-    if (status !== providerStatus.Maintenance) {
-      handleChangeActiveProviderFilterTag(newFilterTag);
-    }
-  };
+  useEffect(() => {
+    const arr = gameList.slice(0, gameIndex);
+    setDisplayGameList(arr);
+  }, [gameList]);
 
   return (
     <Wrapper>
       {isMobileSize && (
         <>
           <GameTypeTab />
-          <CategoryContentWrapper>
-            {activeProviderFilterTag.tagType !== "All" ? (
-              <>
-                <FilterSection>
-                  <GameFilterTag />
-                  <SearchInputWrapper>
-                    <SearchInput
-                      placeholder={i18n.t("slot.search")}
-                      imageUrl={searchIcon}
-                      handleChange={handleChangeSearch}
-                      value={searchString}
-                    />
-                  </SearchInputWrapper>
-                </FilterSection>
-                <CategoryContent>
-                  {hasMappingData &&
-                    gameList.map((gameItem) => (
-                      <GameCard
-                        key={gameItem.id}
-                        gameItem={gameItem}
-                        isActive={gameItem.isactive}
-                        imageUrl={`${
-                          config.sourceUrl
-                        }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                          gameItem.code
-                        }.jpg`}
-                      />
-                    ))}
-                  {!hasMappingData && !isLoading && <div>No data</div>}
-                </CategoryContent>
-              </>
-            ) : (
-              <CategoryContent>
-                <VenderListWarpper>
-                  {providerFilterTagList
-                    .filter((filterTag) => filterTag.name !== "All")
-                    .map((filterTag) => {
-                      const matchedProvider = navPopupCategoryList.find(
-                        (provider) => provider.code === filterTag.gpCode,
-                      );
-                      const status = matchedProvider ? matchedProvider.status : -1;
-
-                      return (
-                        <ProviderTag
-                          key={filterTag.name}
-                          text={getProviderAbbreviation(filterTag.name)}
-                          gpCode={filterTag.gpCode}
-                          isActive={false}
-                          onClick={() => onChangeProviderFilterTag(filterTag)}
-                          status={status}
-                        />
-                      );
-                    })}
-                </VenderListWarpper>
-              </CategoryContent>
-            )}
+          <CategoryContentWrapper ref={containerRef}>
+            <FilterSection>
+              <GameFilterTag />
+              <SearchInputWrapper>
+                <SearchInput
+                  placeholder={i18n.t("slot.search")}
+                  imageUrl={searchIcon}
+                  handleChange={handleChangeSearch}
+                  value={searchString}
+                />
+              </SearchInputWrapper>
+            </FilterSection>
+            <CategoryContent>
+              {hasMappingData &&
+                displayGameList.map((gameItem) => (
+                  <GameCard
+                    key={gameItem.id}
+                    gameItem={gameItem}
+                    isActive={gameItem.isactive}
+                    imageUrl={`${
+                      config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                      gameItem.code
+                    }.jpg`}
+                  />
+                ))}
+              {!hasMappingData && !isLoading && <div>No data</div>}
+            </CategoryContent>
           </CategoryContentWrapper>
         </>
       )}
