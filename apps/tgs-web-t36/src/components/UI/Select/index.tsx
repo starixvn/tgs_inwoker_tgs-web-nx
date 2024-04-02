@@ -29,8 +29,8 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
   option: {
-    background: "#1D1D1D !important",
-    color: "#fff",
+    background: "white !important",
+    color: "#black",
     "&:hover": {
       background: "#828282 !important",
     },

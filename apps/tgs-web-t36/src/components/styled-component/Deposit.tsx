@@ -9,11 +9,11 @@ export const LimitAmount = styled.span`
 `;
 
 export const TransferLabel = styled.div`
-color: ${({ theme }) => theme.white}; 
+color: ${({ theme }) => theme.black}; 
 `;
 
 export const TransferValue = styled.div`
-  color: ${({ theme }) => theme.white}; 
+  color: ${({ theme }) => theme.black}; 
 `;
 
 export const ExchangeRateContainer = styled.div`

@@ -6,7 +6,7 @@ import Affiliate from "@/components/account/Affiliate";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
-import iconAffiliate from "@/assets/t27/images/badge/icon-affiliate.svg";
+import iconAffiliate from "@/assets/t36/images/badge/icon-affiliate.svg";
 
 const AffiliatePage = () => {
   useUpdatePageName(i18n.t("affiliate.title"));

@@ -9,7 +9,7 @@ const CopyIconContainer = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.primary};
+  /* background-color: ${({ theme }) => theme.primary}; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,10 +17,10 @@ const CopyIconContainer = styled.div`
   margin-left: 10px;
 
   transition: all ease-in-out 0.2s;
-  &:hover {
+  /* &:hover {
     color: ${({ theme }) => theme.primary};
     background-color: ${({ theme }) => theme.white};
-  }
+  } */
 `;
 
 type Props = {

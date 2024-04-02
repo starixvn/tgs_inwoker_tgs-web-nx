@@ -14,11 +14,11 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   padding: 12px 20px;
   text-align: center;
   border-radius: 3px;
-  color: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? theme.white : theme.g2)};
-  background: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? theme.green : theme.g3};
-  border: 1px solid ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? "transparent" : theme.g4};
+  color: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? theme.white : theme.primary};
+  background: ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? "#276AA5" : "#D0DAE3")};
+  border: 1px solid
+    ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? "transparent" : "#276AA5")};
   font-size: 0.812rem;
   font-weight: 400;
 
