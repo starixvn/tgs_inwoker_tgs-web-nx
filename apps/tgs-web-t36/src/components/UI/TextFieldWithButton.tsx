@@ -19,10 +19,10 @@ const ButtonContainer = styled.div`
   & > button {
     height: 31px;
     font-size: 0.75rem;
-    border-radius: 50px;
     padding: 6px 8px;
-    background: #399FDA;
+    background: #399fda;
     color: #fff;
+    margin-right: 5px;
   }
 `;
 
@@ -48,7 +48,7 @@ const TextFieldWithButton = (
           autoComplete: "off",
         }}
 
-      // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+        // endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
       />
 
       <ButtonContainer>

@@ -1,6 +1,7 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
+import config from "@tgs-web-nx/config";
 import ProfileDivision from "@/pages/profile/components/ProfileMenu/ProfileDivision";
 import iconAccount from "@/assets/t27/images/badge/icon-account.svg";
 import ProfileRowInDesktop from "@/pages/profile/components/ProfileMenu/ProfileRowInDesktop";
@@ -31,17 +32,20 @@ const ProfileMenuDesktop = () => {
         handleClick={handleClickProfileItem}
       />
       <ProfileDivision />
-      <ProfileRowInDesktop
-        key={profileItemDictionary["qq"].key}
-        profileItem={profileItemDictionary["qq"]}
-        handleClick={handleClickProfileItem}
-      />
-      <ProfileDivision />
-      <ProfileRowInDesktop
-        key={profileItemDictionary["wechat"].key}
-        profileItem={profileItemDictionary["wechat"]}
-        handleClick={handleClickProfileItem}
-      />
+      {config.features.QQWeChat && (
+        <>
+          <ProfileRowInDesktop
+            key={profileItemDictionary["qq"].key}
+            profileItem={profileItemDictionary["qq"]}
+            handleClick={handleClickProfileItem}
+          />
+          <ProfileRowInDesktop
+            key={profileItemDictionary["wechat"].key}
+            profileItem={profileItemDictionary["wechat"]}
+            handleClick={handleClickProfileItem}
+          />
+        </>
+      )}
       <>
         {customMessagingList.map((messagingItem) => {
           return (

@@ -39,7 +39,7 @@ const ProfileDialogTitle = styled.div`
   margin: 0 auto 18px;
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.white};
+  color: #1a5684;
 `;
 
 type Props = {
@@ -76,7 +76,7 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
         <CloseIcon
           onClick={onClose}
           style={{
-            color: theme.white,
+            color: "#214061",
             width: "20px",
             height: "20px",
           }}

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
-import iconArrow from "@/assets/t27/images/profile/icon-arrow.svg";
+import iconArrow from "@/assets/t36/images/dialog/arrow_right.svg";
 import Icon from "@/components/project/Icon";
 
 const ProfileItemContainer = styled.div`
@@ -12,9 +12,10 @@ const ProfileItemContainer = styled.div`
   cursor: pointer;
 
   & .label {
-    color: ${({ theme }) => theme.white};
+    color: ${({ theme }) => theme.black};
     font-size: 1.25rem;
     font-weight: 400;
+    margin-bottom: 8px;
   }
 
   & .status {

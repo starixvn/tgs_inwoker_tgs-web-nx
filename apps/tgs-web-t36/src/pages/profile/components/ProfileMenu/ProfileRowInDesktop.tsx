@@ -6,11 +6,11 @@ import { theme } from "@/theme";
 
 const ProfileItemContainer = styled.div`
   width: 100%;
-  //padding: 9.5px 0;
+  /* padding: 9.5px 0; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* margin-bottom: 33px; */
+  margin-bottom: 33px;
 
   &:last-child {
     margin-bottom: 0;
@@ -18,12 +18,12 @@ const ProfileItemContainer = styled.div`
 `;
 
 const ProfileRowLabel = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.primary};
   font-size: 1.25rem;
   font-weight: 400;
 `;
 const ProfileStatus = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.text};
   font-size: 0.937rem;
   font-weight: 400;
 `;
@@ -51,7 +51,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         sx={{
           fontSize: "0.875rem",
           color: isVerified ? theme.white : theme.white,
-          background: isVerified ? theme.primaryGradient : "transparent",
+          background: isVerified ? theme.BTN01 : theme.BTN02,
           border: isVerified ? "none" : "1px solid #fff",
           width: "150px",
           height: "42px",

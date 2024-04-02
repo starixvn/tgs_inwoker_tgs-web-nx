@@ -6,14 +6,13 @@ import { media } from "@/theme/breakpoints";
 
 const AccountPaperContainer = styled.div`
   ${media.sm} {
-    background: ${({ theme }) => theme.g7};
+    background: ${({ theme }) => theme.mainBackground};
     border-radius: 4px;
     display: flex;
     padding: 24px 40px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 33px;
-    align-self: stretch;  
+    align-self: stretch;
   }
 `;
 
@@ -27,12 +26,7 @@ const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
 
   return (
     <AccountPaperContainer>
-      {isDesktopSize && (
-        <PageBadge
-          iconUrl={iconUrl}
-          text={pageName}
-        />
-      )}
+      {isDesktopSize && <PageBadge iconUrl={iconUrl} text={pageName} />}
       {children}
     </AccountPaperContainer>
   );

@@ -23,17 +23,17 @@ export const ItemContainer = styled.div`
 `;
 
 export const LabelContainer = styled.div`
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.white};
-  float: left;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16.41px;
+  color: #1a5684;
   margin-bottom: 16px;
 `;
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   height: "48px",
   width: "100%",
   fontSize: "0.875rem",
-  borderBottom: `1px solid ${theme.palette.grey10}`,
+  border: `1px solid ${theme.palette.grey10}`,
   justifyContent: "center",
 
   "& fieldset": {
@@ -79,13 +79,13 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   lineHeight: 1,
   fontWeight: 700,
   color: theme.palette.white,
-  background: theme.palette.primary.main,
+  background: theme.palette.primaryGradient,
   boxShadow: "none",
   borderRadius: "6px",
 
-  // "&:hover": {
-  //   background: theme.palette.primary.main,
-  // },
+  "&:hover": {
+    background: theme.palette.primaryGradient,
+  },
 
   "&:disabled": {
     background: theme.palette.action.disabledBackground,

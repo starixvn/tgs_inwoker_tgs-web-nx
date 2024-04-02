@@ -10,8 +10,6 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontWeight: 400,
     border: "none",
     // background: theme.palette.g5,
-
-
     "&:-webkit-autofill": {
       WebkitTextFillColor: `${theme.palette.text.primary} !important`,
     },
@@ -49,7 +47,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     borderBottom: "none",
   },
   "& .MuiOutlinedInput-root": {
-    width: "500px",
+    // width: "500px",
 
     "& fieldset": {
       border: "none",

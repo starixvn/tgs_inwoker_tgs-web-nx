@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
+import config from "@tgs-web-nx/config";
 import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
 
 const ProfileCard = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.g4};
+  background: ${({ theme }) => theme.grey01};
   padding: 20px;
   margin-bottom: 12px;
   display: flex;
@@ -42,17 +43,20 @@ const ProfileMenuMobile = () => {
       </ProfileCard>
 
       <ProfileCard>
-        <ProfileRowInMobile
-          key={profileItemDictionary["qq"].key}
-          profileItem={profileItemDictionary["qq"]}
-          handleClick={handleClickProfileItem}
-        />
-        <ProfileRowInMobile
-          key={profileItemDictionary["wechat"].key}
-          profileItem={profileItemDictionary["wechat"]}
-          handleClick={handleClickProfileItem}
-        />
-
+        {config.features.QQWeChat && (
+          <>
+            <ProfileRowInMobile
+              key={profileItemDictionary["qq"].key}
+              profileItem={profileItemDictionary["qq"]}
+              handleClick={handleClickProfileItem}
+            />
+            <ProfileRowInMobile
+              key={profileItemDictionary["wechat"].key}
+              profileItem={profileItemDictionary["wechat"]}
+              handleClick={handleClickProfileItem}
+            />
+          </>
+        )}
         {customMessagingList.map((messagingItem) => {
           return (
             <ProfileRowInMobile
