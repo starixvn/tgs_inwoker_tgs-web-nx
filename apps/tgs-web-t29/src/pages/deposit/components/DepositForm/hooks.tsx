@@ -15,6 +15,7 @@ const clearedFormData = {
   name: '',
   phone: '',
   address: '',
+  promotionid: '',
 }
 
 /**
@@ -157,6 +158,7 @@ const useSelectFirst = (list: Option[], setCode: (code: string) => void, depArr:
  * 上傳檔案成功後，開啟存款成功 dialog
  */
 export const useUploadFile = () => {
+  const [uploadKey, setUploadKey] = useState(0);
   const {doUploadDepositProof} = useWalletStore();
   const [isPending, setIsPending] = useState(false);
   const {alert} = useNotifications();
@@ -166,9 +168,10 @@ export const useUploadFile = () => {
       ...formData,
       ...clearedFormData,
     })
+    setUploadKey(prevKey => prevKey + 1);
   }
 
-  const handleUploadFile = (file: FileList | null, res: any) => {
+  const handleUploadFile = (file: FileList | null, res: any ) => {
     setIsPending(true);
     if(file && res?.IsSuccess) {
       doUploadDepositProof(res.data, file[0])
@@ -192,7 +195,7 @@ export const useUploadFile = () => {
     }
   }
 
-  return {handleUploadFile, isPending};
+  return {handleUploadFile, isPending, uploadKey};
 }
 
 /**
