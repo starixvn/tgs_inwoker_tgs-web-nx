@@ -55,7 +55,7 @@ const App: React.FC = () => {
   }
   if (isLoading) {
     return <Loading show={true} opacity={1} noShrink={true} />;
-  }
+  } 
   return (
     <Router history={AppHistory}>
       <RouteContextProvider route={currentRoute}>
