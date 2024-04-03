@@ -104,8 +104,7 @@ const NonLobbyCategory = () => {
     setGameIndex(gameIndex + preLoadAmount);
   };
 
-  const containerRef = useBottomScrollListener(handleLoadMoreGame) as any;
-
+  const containerRef = useBottomScrollListener(handleLoadMoreGame, { offset: 50 }) as any;
   useEffect(() => {
     const arr = gameList.slice(0, gameIndex);
     setDisplayGameList(arr);
