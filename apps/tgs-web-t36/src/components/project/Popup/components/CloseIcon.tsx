@@ -5,8 +5,8 @@ import { media } from "@/theme/breakpoints";
 
 const CloseIconContainer = styled.div`
   position: absolute;
-  right: 40.316px;
-  top: 40px;
+  top: 12.5px;
+  right: 12.5px;
   width: 24px;
   height: 24px;
   border-radius: 12px;

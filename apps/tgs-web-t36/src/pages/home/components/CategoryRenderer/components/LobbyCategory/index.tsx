@@ -3,16 +3,10 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import {
-  useGetHomeCategoryList,
-  useGetLobbyCategoryList,
-  useHomeGameContext,
-} from "@tgs-web-nx/core/features";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import VendorCard from "@/pages/home/components/VendorCard/index";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
 import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 
 const CategoryContentWrapper = styled.div`
   display: flex;

@@ -1,26 +1,19 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import {
-  GameTypeItem,
-  useGetLobbyCategoryList,
-  useHomeGameContext,
-} from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory, useParams } from "react-router-dom";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { useParams } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import CategorySection from "./components/CategorySection";
-import CardPromptDesktop from "@/pages/home/components/CardPromptDesktop";
+import MobileFooter from "./components/MobileFooter";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import Slider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import CardPrompt from "@/pages/home/components/CardPrompt";
-import SocialMedia from "@/components/project/SocialMedia";
-import { useBettingHistory } from "@/pages/home/components/Ranking/hooks/useBettingHistory";
 import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeHot";
 import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
 import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
@@ -156,13 +149,7 @@ const HomePage = () => {
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
 
-  const {
-    activeGameType,
-    handleChangeGameType,
-    activeGameTypeKey,
-    isEnterGamePortal,
-    setIsEnterGamePortal,
-  } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType, activeGameTypeKey } = useHomeGameContext();
 
   const gameTypeList = useGameTypeList();
 
@@ -172,6 +159,7 @@ const HomePage = () => {
   };
 
   const settings = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     appendDots: (dots: any) => (
       <SlickDotWrapper>
         <ul>{dots}</ul>
@@ -194,7 +182,6 @@ const HomePage = () => {
     const gameType = getGameTypeFromKey(urlGameType);
     if (gameType) {
       handleChangeGameType(gameType);
-      // setIsEnterGamePortal(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType, gameTypeList]);
@@ -228,6 +215,7 @@ const HomePage = () => {
                   </IntroductionText>
                 </Introduction>
               </HomeCategoryContainer>
+              {isMobileSize && <MobileFooter />}
             </>
           )}
         </>

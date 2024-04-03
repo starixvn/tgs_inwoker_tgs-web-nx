@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
 import { useAuth, useAuthContext, useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
 import MenuList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuList";
-import Icon from "@/components/project/Icon";
 import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
-import { theme } from "@/theme";
-import promotionIcon from "@/assets/t27/images/account/navItem/icon-promotion.svg";
 
 const MobileMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};

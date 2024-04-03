@@ -4,9 +4,8 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import promotionIcon from "@/assets/t27/images/account/navItem/icon-promotion.svg";
-import downloadIcon from "@/assets/t27/images/account/navItem/icon-download.svg";
-import iconVip from "@/assets/t27/images/account/navItem/icon-vip.svg";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import promotionIcon from "@/assets/t36/images/account/navItem/icon-promotion.svg";
 import MenuButton from "@/layouts/components/Header/components/MenuButton";
 import MenuList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuList";
 import Icon from "@/components/project/Icon";
@@ -14,7 +13,6 @@ import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 import MenuLanguageSwitch from "@/components/project/LanguageSwitch/MenuLanguageSwitch";
 import { theme } from "@/theme";
 import BrandLogo from "@/components/project/BrandLogo";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 const DesktopMenuDrawerContainer = styled.div`
   background: ${({ theme }) => theme.g4};
@@ -81,8 +79,6 @@ type PromotionCardProps = {
 const PromotionCard = styled.div<PromotionCardProps>`
   cursor: pointer;
   width: 100%;
-  background: ${({ $isShrink }: PromotionCardProps) =>
-    $isShrink ? theme.g5 : "transparent"};
   border-radius: 12px;
   display: flex;
   align-items: center;

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { makeStyles } from "@mui/styles";
 import SuccessPNG from "@/assets/t36/images/success.png";
 import DangerPNG from "@/assets/t36/images/warning.png";
-import InfoPNG from "@/assetsfo.png";
+import InfoPNG from "@/assets/t36/images/info.png";
 
 const Dismiss = styled.a`
   margin-right: 12px;

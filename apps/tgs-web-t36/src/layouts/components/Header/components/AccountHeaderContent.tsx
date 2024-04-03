@@ -11,17 +11,10 @@ import {
 } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import config from "@tgs-web-nx/config";
-import Icon from "@/components/project/Icon";
-import iconAccount from "@/assets/t27/images/header/icon-account.svg";
-import iconDeposit from "@/assets/t27/images/header/icon-deposit.svg";
-import iconPromotion from "@/assets/t27/images/header/icon-promotion.svg";
-import signoutBtn from "@/assets/t27/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { media } from "@/theme/breakpoints";
 import memberIcon from "@/assets/t36/images/header/icon-account.svg";
 import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
-import { theme } from "@/theme";
 
 const MainContainer = styled.div`
   display: flex;

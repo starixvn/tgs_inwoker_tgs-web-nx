@@ -15,6 +15,7 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import { Select } from "@/components/UI/Select";
+import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -144,23 +145,29 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       <ItemContainer>
         <PhoneContainer>
           <FormControl variant="outlined" style={{ width: "40%" }}>
-            <Select
-              native
-              value={areacode}
-              onChange={(e) => {
-                setAreacode(`${e.target.value}`);
-              }}
-              disabled={
-                (isConfigured ? isConfigured : false) ||
-                (config.features.Profile_DisableVerifyPhone &&
-                  !config.features.InitPhone_WithoutVerify)
-              }
-            >
-              <option value={AREA_CODE}>{AREA_CODE}</option>
-            </Select>
+            <GrayInputWrapper>
+              <Select
+                native
+                value={areacode}
+                onChange={(e) => {
+                  setAreacode(`${e.target.value}`);
+                }}
+                disabled={
+                  (isConfigured ? isConfigured : false) ||
+                  (config.features.Profile_DisableVerifyPhone &&
+                    !config.features.InitPhone_WithoutVerify)
+                }
+                sx={{
+                  width: "100%",
+                }}
+              >
+                <option value={AREA_CODE}>{AREA_CODE}</option>
+              </Select>
+            </GrayInputWrapper>
           </FormControl>
 
-          <FormControl variant="outlined">
+          {/* <FormControl variant="outlined"> */}
+          <GrayInputWrapper>
             <TextField
               type={"number"}
               value={phone}
@@ -170,7 +177,8 @@ function VerifyPhone({ handleUpdateStage }: Props) {
               }
               onChange={handleChangePhone}
             />
-          </FormControl>
+          </GrayInputWrapper>
+          {/* </FormControl> */}
         </PhoneContainer>
       </ItemContainer>
 

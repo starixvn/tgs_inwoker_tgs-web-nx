@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import TextButton from "../TextButton";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t36/images/home/maintenance.svg";

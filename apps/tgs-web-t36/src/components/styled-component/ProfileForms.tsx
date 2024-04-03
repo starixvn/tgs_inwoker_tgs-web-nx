@@ -33,7 +33,7 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   height: "48px",
   width: "100%",
   fontSize: "0.875rem",
-  border: `1px solid ${theme.palette.grey10}`,
+  borderBottom: `1px solid ${theme.palette.grey10}`,
   justifyContent: "center",
 
   "& fieldset": {
@@ -42,6 +42,9 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
 
   "& input": {
     padding: "10px 0",
+  },
+  [theme.breakpoints.up("sm")]: {
+    border: `1px solid ${theme.palette.grey10}`,
   },
 })) as typeof MuiFormControl;
 

@@ -13,7 +13,7 @@ import {
 
 const MenuDrawer = () => {
   const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isLargeDesktopSize, isXlSize } = useRwd();
+  const { isLargeDesktopSize, isXlSize, isMobileSize } = useRwd();
 
   const drawerWidth = useMemo(() => {
     if (isXlSize) {
@@ -42,7 +42,7 @@ const MenuDrawer = () => {
         },
       }}
     >
-      {isLargeDesktopSize ? <DesktopMenuDrawer /> : <MobileMenuDrawer />}
+      {isMobileSize && <MobileMenuDrawer />}
     </Drawer>
   );
 };
