@@ -1,6 +1,7 @@
-import React from "react";
 import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import contactGirlImg from "@/assets/t36/images/contact/contact.png";
+import contactGirlImgMobile from "@/assets/t36/images/contact/contact_mobile.png";
 
 const HeaderImageContainer = styled.div`
   width: 100%;
@@ -14,9 +15,10 @@ const HeaderImageContainer = styled.div`
 `;
 
 const HeaderImage = () => {
+  const { isDesktopSize } = useRwd();
   return (
     <HeaderImageContainer>
-      <img src={contactGirlImg} alt={"contact"} />
+      <img src={isDesktopSize ? contactGirlImg : contactGirlImgMobile} alt={"contact"} />
     </HeaderImageContainer>
   );
 };

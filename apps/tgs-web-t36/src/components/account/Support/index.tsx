@@ -17,6 +17,8 @@ const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  background: ${({ theme }) => theme.mainBackground};
+  padding: 10px;
 `;
 
 const Support = () => {
@@ -46,8 +48,8 @@ const Support = () => {
 
   return (
     <SupportContainer>
+      <HeaderImage />
       <CardsContainer>
-        <HeaderImage />
         {(config.features.LiveChatVendor || csLiveChatUrl) && (
           <SupportCard
             brandsSupport={{

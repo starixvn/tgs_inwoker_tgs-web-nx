@@ -26,7 +26,7 @@ export const AccountPageContainer = styled.div`
   max-width: calc(961px + 20px * 2);
   flex: 1;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px;
   ${media.sm} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
