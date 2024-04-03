@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import AppFlag from "@/pages/home/components/AppFlag";
-import android from "@/assets/t27/images/home/android.svg";
-import ios from "@/assets/t27/images/home/ios.svg";
+import android from "@/assets/t36/images/home/android.svg";
+import ios from "@/assets/t36/images/home/ios.svg";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
 
@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => "#D0DAE3"};
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -38,7 +38,7 @@ const AppContainer = styled.div`
 `;
 
 const Text = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => "#23507D"};
   font-family: Arial;
   font-size: 16px;
   font-weight: 700;

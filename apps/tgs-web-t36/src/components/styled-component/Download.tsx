@@ -12,13 +12,17 @@ export const GirlImage = styled.div`
   }
 `;
 
-export const IntroductionContainer = styled.div`
+export const Wrapper = styled.div`
   background: ${({ theme }) => theme.mainBackground};
+  padding: 10px;
+`;
+
+export const IntroductionContainer = styled.div`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => "#23507D"};
   font-family: Arial;
-  padding: 40px 20px;
+  padding: 0px;
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
@@ -29,12 +33,20 @@ export const IntroductionContainer = styled.div`
   border-radius: 10px;
 
   & span {
-    font-family: Arial;
     font-size: 18px;
     font-weight: 700;
     line-height: 21px;
     letter-spacing: 0em;
-    text-align: left;
+  }
+  & p {
+    color: "#44515C";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.41px;
+  }
+
+  ${media.sm} {
+    padding: 40px 20px;
   }
 `;
 export const InfoCardListContainer = styled.div`

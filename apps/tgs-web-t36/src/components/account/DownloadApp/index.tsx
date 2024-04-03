@@ -10,6 +10,7 @@ import {
   GirlImage,
   InfoCardListContainer,
   IntroductionContainer,
+  Wrapper,
 } from "@/components/styled-component/Download";
 
 const infoCardItemList: InfoCardItem[] = [
@@ -41,22 +42,23 @@ const DownloadApp = () => {
       <GirlImage>
         <img src={downloadGirlImg} alt={"download"} />
       </GirlImage>
+      <Wrapper>
+        <IntroductionContainer>
+          <span>Introduction</span>
+          <p>
+            The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
+            available for IOS and Android that features a multitude of entertaining games.
+          </p>
+        </IntroductionContainer>
 
-      <IntroductionContainer>
-        <span>Introduction</span>
-        <p>
-          The Mobile Casino App transfers all the powers of our site onto your fingertips. We are
-          available for IOS and Android that features a multitude of entertaining games.
-        </p>
-      </IntroductionContainer>
+        <InfoCardListContainer>
+          {infoCardItemList.map((infoCardItem) => {
+            return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
+          })}
+        </InfoCardListContainer>
 
-      <InfoCardListContainer>
-        {infoCardItemList.map((infoCardItem) => {
-          return <InfoCard key={infoCardItem.title} infoCardItem={infoCardItem} />;
-        })}
-      </InfoCardListContainer>
-
-      <DownloadButtonGroup />
+        <DownloadButtonGroup />
+      </Wrapper>
     </DownloadAppContainer>
   );
 };
