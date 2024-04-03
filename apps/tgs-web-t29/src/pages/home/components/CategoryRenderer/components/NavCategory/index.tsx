@@ -72,11 +72,8 @@ const NavCategory = () => {
                   }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
                 imageUrl={`${import.meta.env.BASE_URL
                   }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
                 launchGame={() => enterVendorFilter(gpCode)}
                 status={status}
-                venderName={name}
               />
             );
           })}
