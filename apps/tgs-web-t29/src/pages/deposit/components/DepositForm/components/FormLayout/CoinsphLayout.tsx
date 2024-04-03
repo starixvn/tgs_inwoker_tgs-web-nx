@@ -17,7 +17,7 @@ export const CoinsphLayout = ({
   const {channelList, currentChannel, extended} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
   const {doCoinsphDeposit} = useWalletStore();
-  const {handleUploadFile, isPending} = useUploadFile();
+  const {handleUploadFile, isPending, uploadKey} = useUploadFile();
 
   const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
   const isDisabled = (config.features.Deposit_UploadRequired ? isDefaultDisabled || formData.files === null : isDefaultDisabled);
@@ -60,7 +60,7 @@ export const CoinsphLayout = ({
       {/* 選擇優惠活動 */}
       <DepositPromotion />
 
-      <Upload />
+      <Upload key={uploadKey}/>
 
       {/* 提交表單 */}
       <DepositSubmitButton handleOnSubmit={handleOnSubmit} isDisabled={isPending || isDisabled} />

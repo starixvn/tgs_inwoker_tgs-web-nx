@@ -22,7 +22,7 @@ export const TrcLayout = ({
   const {channelList, currentChannel, extended} = useChannelList(filterGroupList, groupCode);
   const {formData} = useContext(DepositFormContext);
   const {doUsdtDeposit} = useWalletStore();
-  const {handleUploadFile, isPending} = useUploadFile();
+  const {handleUploadFile, isPending, uploadKey} = useUploadFile();
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
     list: channelList,
@@ -77,7 +77,7 @@ export const TrcLayout = ({
       {/* 選擇優惠活動 */}
       <DepositPromotion />
 
-      <Upload />
+      <Upload key={uploadKey}/>
 
       {/* 提交表單 */}
       <DepositSubmitButton handleOnSubmit={handleOnSubmit} isDisabled={isPending || isDisabled} />

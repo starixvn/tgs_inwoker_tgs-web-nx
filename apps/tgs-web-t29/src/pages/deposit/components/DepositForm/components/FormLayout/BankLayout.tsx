@@ -22,8 +22,7 @@ export const BankLayout = ({
   const {channelList, currentChannel, extended, isManual} = useChannelList(filterProviderList, providerCode);
   const {doBankDeposit} = useWalletStore();
   const {formData} = useContext(DepositFormContext);
-  const {handleUploadFile, isPending: isUploadFilePending} = useUploadFile();
-
+  const {handleUploadFile, isPending: isUploadFilePending, uploadKey} = useUploadFile();
   const [ProviderCards, ChannelCards] = [Cards, Cards];
   const isShowProviderCards = providerList.length > limitAmount; // 若金流商只有 1 個 => 不顯示
   const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
@@ -60,7 +59,7 @@ export const BankLayout = ({
     );
 
   }
-
+    
   return (
     <>
       {isShowProviderCards && <ProviderCards {...providerProps} />}
@@ -77,7 +76,7 @@ export const BankLayout = ({
       {isManual && <DepositInput label="deposit.msgEnterCard" formKey="account" type="number"/>}
       <DepositAmountInput currentChannel={currentChannel} />
       <DepositPromotion />
-      {isManual && <Upload />}
+      {isManual && <Upload key={uploadKey} />}
 
       {/* 提交表單 */}
       <DepositSubmitButton 
