@@ -108,7 +108,7 @@ const MarqueesBackground = styled.div`
   overflow: visible;
 `;
 
-const RouletteFloatingPanel = styled.div`
+const RouletteFloatingPanel = styled.div<{ position: any; orientation: any }>`
   position: fixed;
   z-index: 1300;
 
