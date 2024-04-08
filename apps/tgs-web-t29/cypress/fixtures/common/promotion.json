@@ -1,0 +1,427 @@
+{
+  "data": [
+      {
+          "campaignDetail": {
+              "gameType": "Sportsbook",
+              "percentage": 2.5,
+              "playerAutoJoin": true,
+              "gameProviderIds": [
+                  "39247048-e631-0aaa-4553-865bb86d27ec",
+                  "3c1f90a0-623e-4bf5-ac78-4c544a94e69c",
+                  "f7dbb956-1e83-40c2-ba01-ecd2a825c235",
+                  "015df3af-fd0a-448d-a622-1e0bc4740aa1",
+                  "93652880-1840-4240-9f2f-dff3a103e40b",
+                  "6dc1f3d8-31ab-4815-abe8-a84043342600",
+                  "9769a65b-09a4-43a5-9ae2-724d1740f438"
+              ],
+              "bonusAmountLimit": 1000000,
+              "turnoverMultiple": 3
+          },
+          "content": null,
+          "desktopBanner": null,
+          "from": "2023-10-20T16:00:00Z",
+          "id": "018b5060-5795-0000-0002-07e79ad23d81",
+          "localization": {
+              "en-US": {
+                  "terms": "<p>1.This promotion available for all members during their every time deposit of the day.&nbsp;<br />2.This bonus (plus deposit amount) is subject to a 3x turnover requirement prior to withdrawal.<br />3.All bonuses and winnings will be forfeited if the member fails to meet the stipulated rollover requirements within 30 days from when the bonus is granted.<br />4.This promotion cannot be used in conjunction with other promotions. &nbsp;&nbsp;<br />5.PG GAMING reserves the right to suspend or terminate any duplicate accounts or any account that does not adhere to the stipulated terms and conditions.<br />6.PG GAMING reserves the right to modify or cancel this promotion at any time without prior notice.<br />7.PG GAMING reserve the right to reclaim the bonus and any winnings and/or close an account in a situation of abuse or fraud.<br />8.General Promotional Terms &amp; Conditions apply.</p>",
+                  "content": "<p><span style=\"font-size: 24pt;\">Exlusive Sportsbook 2.5% Daily Rebate!!<br /></span></p>\n<div class=\"promo-detail-title-container\">\n<div class=\"promo-detail-title\">\n<div class=\"details-content\">\n<p class=\"details-desc\">Hurry up and withdraw your daily cash rebate now! Right now!</p>\n</div>\n</div>\n</div>\n<div id=\"promotion-popup2\" class=\"promo-detail-content\">\n<p><strong>Event Details:</strong></p>\n<table style=\"border-collapse: collapse; width: 92.1978%; height: 420px; background-color: #ecf0f1; border-color: #e67e23; border-style: double;\" border=\"1\" cellspacing=\"0\">\n<tbody>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Member Tier</strong></span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Sports Rebate</strong></span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>E-Sports Rebate</strong></span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Live Casino Rebate</strong></span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Slots Rebate</strong></span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Diamond</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.9%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">1%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Platinum</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.5%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Gold</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.5%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.4%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Silver</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.4%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Bronze</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.2%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">Normal</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.2%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n</tbody>\n</table>\n</div>\n<p><span style=\"font-size: 24pt;\">&nbsp;</span></p>",
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/Oe40MMDYJBwKbxvjaVPngWDbFvpLIGhP.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/Wrbt8DF4bExkz4b1mzyddUfszDZPY2QW.jpg"
+              },
+              "hi-IN": {},
+              "id-ID": {},
+              "ta-IN": {},
+              "th-TH": {},
+              "vi-VN": {},
+              "zh-CN": {
+                  "terms": "<p>1.所有会员在当日每次存款时均可享受此优惠。<br />2.在提取奖金（加上存款金额）之前，必须满足 3 倍的展期要求。<br />3.如果会员在获得奖金后 30 天内未达到规定的滚存要求，所有奖金和赢利将被没收。<br />4.本促销不可与其他促销同时使用。 &nbsp;<br />5.PG GAMING 保留暂停或终止任何重复账户或任何不遵守规定条款和条件的账户的权利。<br />6.PG GAMING 保留随时修改或取消本促销活动的权利，恕不另行通知。<br />7.PG GAMING 保留在出现滥用或欺诈的情况下收回奖金和任何奖金和/或关闭账户的权利。<br />8.适用一般促销条款和条件。</p>",
+                  "content": "<p><span style=\"font-size: 24pt;\">Exlusive Sportsbook 2.5% Daily Rebate!!<br /></span></p>\n<div class=\"promo-detail-title-container\">\n<div class=\"promo-detail-title\">\n<div class=\"details-content\">\n<p class=\"details-desc\">Hurry up and withdraw your daily cash rebate now! Right now!</p>\n</div>\n</div>\n</div>\n<div id=\"promotion-popup2\" class=\"promo-detail-content\">\n<p><strong>Event Details:</strong></p>\n<table style=\"border-collapse: collapse; width: 92.1978%; height: 420px; background-color: #ecf0f1; border-color: #e67e23; border-style: double;\" border=\"1\" cellspacing=\"0\">\n<tbody>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Member Tier</strong></span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Sports Rebate</strong></span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>E-Sports Rebate</strong></span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Live Casino Rebate</strong></span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Slots Rebate</strong></span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Diamond</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.9%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">1%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Platinum</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.5%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Gold</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.5%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.4%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Silver</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.4%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Bronze</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.2%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">Normal</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.2%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n</tbody>\n</table>\n</div>",
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/cgKB2vS0ucoPytD3iFcQVb5fkQgINQVg.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/Bjb476QQNC9u4Z0GdZVmWcY2Mr0gFNvW.jpg"
+              },
+              "zh-TW": {
+                  "terms": "<p>1.所有會員在當日每次存款時均可享受此優惠。<br />2.在提取獎金（加上存款金額）之前，必須滿足 3 倍的展期要求。<br />3.如果會員在獲得獎金後 30 天內未達到規定的滾存要求，所有獎金和贏利將被沒收。<br />4.本促銷不可與其他促銷同時使用。 &nbsp;<br />5.PG GAMING 保留暫停或終止任何重覆賬戶或任何不遵守規定條款和條件的賬戶的權利。<br />6.PG GAMING 保留隨時修改或取消本促銷活動的權利，恕不另行通知。<br />7.PG GAMING 保留在出現濫用或欺詐的情況下收回獎金和任何獎金和/或關閉賬戶的權利。<br />8.適用一般促銷條款和條件。</p>",
+                  "content": "<p><span style=\"font-size: 24pt;\">Exlusive Sportsbook 2.5% Daily Rebate!!<br /></span></p>\n<div class=\"promo-detail-title-container\">\n<div class=\"promo-detail-title\">\n<div class=\"details-content\">\n<p class=\"details-desc\">Hurry up and withdraw your daily cash rebate now! Right now!</p>\n</div>\n</div>\n</div>\n<div id=\"promotion-popup2\" class=\"promo-detail-content\">\n<p><strong>Event Details:</strong></p>\n<table style=\"border-collapse: collapse; width: 92.1978%; height: 420px; background-color: #ecf0f1; border-color: #e67e23; border-style: double;\" border=\"1\" cellspacing=\"0\">\n<tbody>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Member Tier</strong></span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Sports Rebate</strong></span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>E-Sports Rebate</strong></span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Live Casino Rebate</strong></span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px;\">\n<p><span style=\"color: #000000;\"><strong>Slots Rebate</strong></span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Diamond</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.9%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">1%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Platinum</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.5%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Gold</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.5%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.4%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.8%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Silver</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.4%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">VIP Bronze</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.2%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n<tr style=\"height: 60px;\">\n<td style=\"width: 19.4294%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">Normal</span></p>\n</td>\n<td style=\"width: 19.0763%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.3%</span></p>\n</td>\n<td style=\"width: 17.0911%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.6%</span></p>\n</td>\n<td style=\"width: 18.4992%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.2%</span></p>\n</td>\n<td style=\"width: 14.8838%; height: 60px; background-color: #ffffff;\">\n<p><span style=\"color: #000000;\">0.7%</span></p>\n</td>\n</tr>\n</tbody>\n</table>\n</div>",
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/u7omRnyHU2QYQJvHU1N1zmMzgnZ1VLjo.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/9NlBjNxNXFCnmNzXb976sxK4M1AlKnzw.jpg"
+              },
+              "tgl-PH": {}
+          },
+          "mobileBanner": null,
+          "name": "Sportsbook 2.5% Daily Rebate",
+          "order": 4,
+          "promotionType": "TurnoverRebate",
+          "subSubject": "Sportsbook 2.5% Daily Rebate",
+          "terms": null,
+          "to": "2025-11-07T16:00:00Z",
+          "vipLevels": [
+              6,
+              4,
+              8,
+              3,
+              1,
+              7,
+              2,
+              5,
+              9
+          ]
+      },
+      {
+          "campaignDetail": {
+              "percentage": 30,
+              "bucketTypes": [
+                  ""
+              ],
+              "bonusAmountLimit": 500,
+              "turnoverMultiple": 10
+          },
+          "content": null,
+          "desktopBanner": null,
+          "from": "2024-02-07T16:00:00Z",
+          "id": "018dd005-982b-0000-0002-07e805d4f155",
+          "localization": {
+              "en-US": {
+                  "content": "<h3><span style=\"font-family: helvetica, arial, sans-serif;\">Get up to $500 on your 1st Deposit! </span></h3>\n<h3><span style=\"font-family: helvetica, arial, sans-serif;\">Jumpstart the fun with an 30% up to $500 Welcome Bonus on your first deposit. </span></h3>\n<h3><span style=\"font-family: helvetica, arial, sans-serif;\">Choose your bet from trust-worthy game vendors we offer on the most exciting gaming events of the day!</span></h3>",
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/TPSoBcm3ybF9EPL8MMpEWEBRzciKRYQa.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/IetmPPaI5Vhebv7DyVUenahpERySTJoK.jpg"
+              },
+              "zh-CN": {
+                  "content": "<h3>首次存款最高可获 500 美元！<br />首次存款即可获得 30% 高达 500 美元的欢迎奖金，让您开始尽情玩乐。<br />从我们提供的值得信赖的游戏供应商中选择您要投注的游戏，投注当天最激动人心的游戏赛事！</h3>",
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/29ySmvFhqtQbKkfSjBeGlQS2k1lqJwnr.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/ltlbBqWALv71sS0whde3zXbFAO4b7QQA.jpg"
+              },
+              "tgl-PH": {
+                  "content": "<h3><span style=\"font-family: helvetica, arial, sans-serif;\">Get up to $500 on your 1st Deposit! </span></h3>\n<h3><span style=\"font-family: helvetica, arial, sans-serif;\">Jumpstart the fun with an 30% up to $500 Welcome Bonus on your first deposit. </span></h3>\n<h3><span style=\"font-family: helvetica, arial, sans-serif;\">Choose your bet from trust-worthy game vendors we offer on the most exciting gaming events of the day!</span></h3>",
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/w1vDf4FW5Mv1A81KxjiE2FXLXLPvRzgn.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/kRzyOAPyE67tAvp7kMjScdAq0BRDyOch.jpg"
+              }
+          },
+          "mobileBanner": null,
+          "name": "30% WELCOME BONUS主標",
+          "order": 1,
+          "promotionType": "FirstDeposit",
+          "subSubject": "30% WELCOME BONUS副標",
+          "terms": "<p><span data-sheets-value=\"{&quot;1&quot;:2,&quot;2&quot;:&quot;1. Each player has two balances &ndash; the real balance and the bonus balance. The player&rsquo;s real balance will be used first in the game.\\n2. The available bonuses for a particular player will be displayed in the &ldquo;My bonuses&rdquo; section of their profile. If a bonus is not available to the player, it will not be displayed in their profile.\\n3. All cash bonuses and gifted free spins are available to wager within 5 days from the date of receipt. If the bonuses have not been wagered after this period, they will be automatically voided. The exception is those bonuses with conditions that indicate a validity period.\\n4. After bonus wagering conditions are met, the bonus balance amount will be automatically converted to the real balance at the time of wagering the bonus, but no more than specified in the bonus conditions.\\n5. The player only starts playing with bonus funds when the amount in their real account is at zero.\\n6. All the winnings received when playing with bonus money will be credited to the player&rsquo;s bonus balance.\\n7. Some game providers may not be available in a particular jurisdiction. If the free spins that you received from any promotion are not available in your region, please contact the Support Service to replace the free spins.\\n8. The bonuses issued for the casino cannot be wagered in Insta games or Live casinos or used for sports bets.\\n9. In the &ldquo;Poker&rdquo;, &ldquo;Roulettes&rdquo; and &ldquo;Table Games&rdquo; sections, 15% of bets placed count towards the wagering requirement. For Slots, 100% of the bets count.&quot;}\" data-sheets-userformat=\"{&quot;2&quot;:897,&quot;3&quot;:{&quot;1&quot;:1},&quot;10&quot;:1,&quot;11&quot;:4,&quot;12&quot;:0}\">1. Each player has two balances &ndash; the real balance and the bonus balance. The player&rsquo;s real balance will be used first in the game.<br />2. The available bonuses for a particular player will be displayed in the &ldquo;My bonuses&rdquo; section of their profile. If a bonus is not available to the player, it will not be displayed in their profile.<br />3. All cash bonuses and gifted free spins are available to wager within 5 days from the date of receipt. If the bonuses have not been wagered after this period, they will be automatically voided. The exception is those bonuses with conditions that indicate a validity period.<br />4. After bonus wagering conditions are met, the bonus balance amount will be automatically converted to the real balance at the time of wagering the bonus, but no more than specified in the bonus conditions.<br />5. The player only starts playing with bonus funds when the amount in their real account is at zero.<br />6. All the winnings received when playing with bonus money will be credited to the player&rsquo;s bonus balance.<br />7. Some game providers may not be available in a particular jurisdiction. If the free spins that you received from any promotion are not available in your region, please contact the Support Service to replace the free spins.<br />8. The bonuses issued for the casino cannot be wagered in Insta games or Live casinos or used for sports bets.<br />9. In the &ldquo;Poker&rdquo;, &ldquo;Roulettes&rdquo; and &ldquo;Table Games&rdquo; sections, 15% of bets placed count towards the wagering requirement. For Slots, 100% of the bets count.</span></p>",
+          "to": "2027-11-04T16:00:00Z",
+          "vipLevels": [
+              1,
+              2
+          ]
+      },
+      {
+          "campaignDetail": {
+              "percentage": 1.1,
+              "bonusAmountLimit": 10,
+              "turnoverMultiple": 10
+          },
+          "content": "<p>Play and win &euro;500,000 worth of Cash Prizes every month!</p>\n<p>&nbsp;</p>\n<p>Participate in the Live Casino Drops and Wins Daily Prize Drops and Tournaments and play for a Share of the monthly &euro;500,000 Cash Prize Pool!</p>\n<p>&nbsp;</p>\n<p><iframe title=\"YouTube video player\" src=\"https://www.youtube.com/embed/7uNe3tC0F2M?si=uDp0f2fCmmr7sF4A\" width=\"560\" height=\"315\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe></p>",
+          "desktopBanner": null,
+          "from": "2024-02-01T16:00:00Z",
+          "id": "018d68b2-579a-0000-0002-07e8d8cd0dff",
+          "localization": {
+              "en-US": {
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/G27CGmjl0XGQzv3SapefWaHmxcw4CQRl.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/lLHvLEUbpLf5NxpDcrRtL8TS5DaBXcw6.jpg"
+              },
+              "hi-IN": {},
+              "id-ID": {},
+              "ta-IN": {},
+              "th-TH": {},
+              "vi-VN": {},
+              "zh-CN": {
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/0mkyFwhfkB8CovYlGfddMt254hljppMP.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/SYU6xWUJPjKzQ8TQYtnKTOpfmxKWBb3E.jpg"
+              },
+              "zh-TW": {
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/VYYhUxyF1DLlVXCVvKBWbKDi4ZsDefMF.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/sxU4d7IrvsX8GptiBt5JlOHtSAXWQY6y.jpg"
+              },
+              "tgl-PH": {}
+          },
+          "mobileBanner": null,
+          "name": "1.1% Live Dealer Weekly Rebate",
+          "order": 1,
+          "promotionType": "TurnoverRebateWeekly",
+          "subSubject": "1.1% Live Dealer Weekly Rebate",
+          "terms": "<p>Each player has two balances &ndash; the real balance and the bonus balance. The player&rsquo;s real balance will be used first in the game.</p>\n<p>&nbsp;</p>\n<p>2. The available bonuses for a particular player will be displayed in the &ldquo;My bonuses&rdquo; section of their profile. If a bonus is not available to the player, it will not be displayed in their profile.</p>\n<p>&nbsp;</p>\n<p>3. All cash bonuses and gifted free spins are available to wager within 5 days from the date of receipt. If the bonuses have not been wagered after this period, they will be automatically voided. The exception is those bonuses with conditions that indicate a validity period.</p>\n<p>&nbsp;</p>\n<p>4. After bonus wagering conditions are met, the bonus balance amount will be automatically converted to the real balance at the time of wagering the bonus, but no more than specified in the bonus conditions.</p>\n<p>&nbsp;</p>\n<p>5. The player only starts playing with bonus funds when the amount in their real account is at zero.</p>\n<p>&nbsp;</p>\n<p>6. All the winnings received when playing with bonus money will be credited to the player&rsquo;s bonus balance.</p>\n<p>&nbsp;</p>\n<p>7. Some game providers may not be available in a particular jurisdiction. If the free spins that you received from any promotion are not available in your region, please contact the Support Service to replace the free spins.</p>\n<p>&nbsp;</p>\n<p>8. The bonuses issued for the casino cannot be wagered in Insta games or Live casinos or used for sports bets.</p>\n<p>&nbsp;</p>\n<p>9. In the &ldquo;Poker&rdquo;, &ldquo;Roulettes&rdquo; and &ldquo;Table Games&rdquo; sections, 15% of bets placed count towards the wagering requirement. For Slots, 100% of the bets count.</p>",
+          "to": "2029-09-27T16:00:00Z",
+          "vipLevels": [
+              4,
+              3,
+              1,
+              2,
+              5
+          ]
+      },
+      {
+          "campaignDetail": {
+              "depositItems": [
+                  {
+                      "id": "fe611df3-1fd3-4115-9bf4-6516a8a772a3",
+                      "rouletteCount": 1,
+                      "accumulateAmount": 100
+                  },
+                  {
+                      "id": "8255a877-7015-4984-85eb-6f36ad549479",
+                      "rouletteCount": 2,
+                      "accumulateAmount": 200
+                  },
+                  {
+                      "id": "d00fb035-7b69-4efa-914a-4f5873436d4c",
+                      "rouletteCount": 3,
+                      "accumulateAmount": 300
+                  }
+              ],
+              "rouletteItems": [
+                  {
+                      "id": "cd2a9856-fa43-4a78-b664-ab3a6937f24a",
+                      "bonus": 1,
+                      "title": "1",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "1b2d9afb-6e4c-4ae9-b88f-f94033c7dd19",
+                      "bonus": 2,
+                      "title": "2",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.2
+                  },
+                  {
+                      "id": "8db5ac1c-db5a-4227-90a9-f5b7ab3f17fb",
+                      "bonus": 3,
+                      "title": "3",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.2
+                  },
+                  {
+                      "id": "d03ac4be-63c2-4eff-92fb-f035cd522c37",
+                      "bonus": 4,
+                      "title": "4",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "74965f1a-a220-4521-9353-5b6e60e801fc",
+                      "bonus": 5,
+                      "title": "5",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "ed765117-4e40-452a-9295-3d0669d744cb",
+                      "bonus": 6,
+                      "title": "6",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "6a2a63b4-e2c7-47bf-bc1d-0d80aaad51e5",
+                      "bonus": 7,
+                      "title": "7",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "fb0f727c-1c47-473f-abd3-d8c554c08b51",
+                      "bonus": 8,
+                      "title": "8",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.05
+                  },
+                  {
+                      "id": "bd747f05-e06c-4ce0-9f87-e2e9bab42333",
+                      "bonus": 9,
+                      "title": "9",
+                      "turnoverRate": 1,
+                      "winningProbability": 0.05
+                  },
+                  {
+                      "id": "4f92eb02-94d8-4a54-99f9-37be33327a13",
+                      "bonus": 10,
+                      "title": "10",
+                      "turnoverRate": 1,
+                      "winningProbability": 0
+                  },
+                  {
+                      "id": "a2902a09-3bd2-458c-99aa-93a657e952bb",
+                      "bonus": 11,
+                      "title": "11",
+                      "turnoverRate": 1,
+                      "winningProbability": 0
+                  },
+                  {
+                      "id": "461ef0d6-1426-41c3-bcdf-716596ebb3c7",
+                      "bonus": 12,
+                      "title": "12",
+                      "turnoverRate": 1,
+                      "winningProbability": 0
+                  }
+              ]
+          },
+          "content": null,
+          "desktopBanner": null,
+          "from": "2024-04-04T16:00:00Z",
+          "id": "018eade1-aad5-0000-0002-07e87004a82f",
+          "localization": {},
+          "mobileBanner": null,
+          "name": "222",
+          "order": 1,
+          "promotionType": "DepositAccumulateRoulette",
+          "subSubject": "111",
+          "terms": null,
+          "to": "2025-04-07T16:00:00Z",
+          "vipLevels": [
+              4,
+              3,
+              1,
+              2
+          ]
+      },
+      {
+          "campaignDetail": {
+              "depositItems": [
+                  {
+                      "id": "253f5dec-536c-4b01-a546-2ef1a5fb617f",
+                      "rouletteCount": 1,
+                      "accumulateAmount": 1
+                  },
+                  {
+                      "id": "a0885b03-3e21-4e2a-8b7c-25901b2832a0",
+                      "rouletteCount": 2,
+                      "accumulateAmount": 2
+                  },
+                  {
+                      "id": "4e872cf3-0289-4c52-b23f-96d2bfe5159a",
+                      "rouletteCount": 3,
+                      "accumulateAmount": 3
+                  }
+              ],
+              "rouletteItems": [
+                  {
+                      "id": "06668d12-e77b-432f-80ca-644e6dcfca14",
+                      "bonus": 1,
+                      "title": "1",
+                      "turnoverRate": 10,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "1fb68add-e3fc-4621-b14a-45725328438b",
+                      "bonus": 2,
+                      "title": "2",
+                      "turnoverRate": 20,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "d5881702-f229-4a9f-9113-b4635e2a97af",
+                      "bonus": 3,
+                      "title": "3",
+                      "turnoverRate": 30,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "f0e6f615-6410-4a59-b4dd-4dbeece125fc",
+                      "bonus": 4,
+                      "title": "4",
+                      "turnoverRate": 40,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "ddf7567a-cb23-4ebf-8e9d-7b74e44ada62",
+                      "bonus": 5,
+                      "title": "5",
+                      "turnoverRate": 50,
+                      "winningProbability": 0.1
+                  },
+                  {
+                      "id": "34a32d59-ab22-4d88-8894-7a015a29ce91",
+                      "bonus": 6,
+                      "title": "6",
+                      "turnoverRate": 60,
+                      "winningProbability": 0.5
+                  },
+                  {
+                      "id": "add305ee-85fe-43b7-b8e8-1d3ec3be46ea",
+                      "bonus": 0,
+                      "title": "7",
+                      "turnoverRate": 0,
+                      "winningProbability": 0
+                  },
+                  {
+                      "id": "2384339f-264e-4bc4-8174-aa3d8cde1cd5",
+                      "bonus": 0,
+                      "title": "00",
+                      "turnoverRate": 0,
+                      "winningProbability": 0
+                  },
+                  {
+                      "id": "89b21f35-a9ce-440c-a2c8-e0899340de33",
+                      "bonus": 0,
+                      "title": "0",
+                      "turnoverRate": 0,
+                      "winningProbability": 0
+                  },
+                  {
+                      "id": "f3c2dbac-e55c-4603-9e18-5326c2b980f2",
+                      "bonus": 0,
+                      "title": "0",
+                      "turnoverRate": 0,
+                      "winningProbability": 0
+                  },
+                  {
+                      "id": "2a8cece5-ea92-4779-a289-687c91e4089f",
+                      "bonus": 0,
+                      "title": "0",
+                      "turnoverRate": 0,
+                      "winningProbability": 0
+                  },
+                  {
+                      "id": "13acada9-fc16-4f93-b337-686215a593a5",
+                      "bonus": 0,
+                      "title": "0",
+                      "turnoverRate": 0,
+                      "winningProbability": 0
+                  }
+              ]
+          },
+          "content": "<p>test</p>",
+          "desktopBanner": null,
+          "from": "2024-04-07T16:00:00Z",
+          "id": "018ebb73-9f66-0000-0002-07e87004a82f",
+          "localization": {
+              "en-US": {
+                  "mobileBanner": "https://project.srvptt.com/staging-tgs-project/promotion/h9qkvRtfHBXGuzCcUSnoOCjqlqNeP1qD.jpg",
+                  "desktopBanner": "https://project.srvptt.com/staging-tgs-project/promotion/4aGTyzXGcULybkB3kD7xgSwuMHGI7LzD.jpg"
+              },
+              "hi-IN": {},
+              "ta-IN": {},
+              "th-TH": {},
+              "vi-VN": {},
+              "zh-CN": {},
+              "tgl-PH": {}
+          },
+          "mobileBanner": null,
+          "name": "jeffersontest",
+          "order": 1,
+          "promotionType": "DepositAccumulateRoulette",
+          "subSubject": "jeffersontest",
+          "terms": "<p>test</p>",
+          "to": "2024-05-04T16:00:00Z",
+          "vipLevels": [
+              6,
+              4,
+              10,
+              8,
+              3,
+              1,
+              7,
+              2,
+              5,
+              9
+          ]
+      }
+  ],
+  "err": 0,
+  "errmsg": "",
+  "errmsgid": null
+}

@@ -1,0 +1,31 @@
+{
+  "data": [
+      {
+          "desktopurl": "https://project.srvptt.com/staging-tgs-project/banner/AbG1ck7GFSFqtnNnXwyAkcPdWxvrcMGS.png",
+          "id": "f30b5104-5767-4d12-9a43-f9a28733f11d",
+          "mobileurl": "https://project.srvptt.com/staging-tgs-project/banner/Ruw2Rkn75yncpsPPSJLbdnlS9n2CzbKA.png",
+          "navurl": "www.google.com",
+          "alt": null,
+          "title": "10"
+      },
+      {
+          "desktopurl": "https://project.srvptt.com/staging-tgs-project/banner/BqT7bxGVdhS7nOXs4DNHEbqNYzMU9Ama.png",
+          "id": "42fe2c12-d6be-471c-a236-9b45da999cc0",
+          "mobileurl": "https://project.srvptt.com/staging-tgs-project/banner/V1wrAam8Do5ihReNwOG9FAbLCI4LW15i.png",
+          "navurl": "https://www.google.com/",
+          "alt": null,
+          "title": "12"
+      },
+      {
+          "desktopurl": "https://project.srvptt.com/staging-tgs-project/banner/f0XhsTXOGypOQDooQmqKNNMU4YSNb7i8.jpg",
+          "id": "383208a0-dbbd-447e-9c3e-3ed8dda2eee1",
+          "mobileurl": "https://project.srvptt.com/staging-tgs-project/banner/HKzodp64AjO9nMVHu5VVVuUP4vSLuMd9.jpg",
+          "navurl": "https://www.google.com/",
+          "alt": null,
+          "title": "main_demo_1"
+      }
+  ],
+  "err": 0,
+  "errmsg": "",
+  "errmsgid": null
+}

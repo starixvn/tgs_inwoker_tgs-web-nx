@@ -28,6 +28,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
     <ButtonContainer>
       <RoundHeaderButton
         onClick={goToLogin}
+        data-cy="login-button"
         style={{
           color: theme.white,
           background: theme.primary,

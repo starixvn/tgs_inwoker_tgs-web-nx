@@ -106,6 +106,7 @@ const MobilePopupPromotion = () => {
               margin: "0 auto",
               width: "100%",
             }}
+            data-cy="mobilePopupPromotion_close-button"
           >
             <>{i18n.t("common.close")}</>
           </Button>

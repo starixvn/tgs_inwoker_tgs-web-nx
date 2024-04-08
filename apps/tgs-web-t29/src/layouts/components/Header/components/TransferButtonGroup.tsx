@@ -62,6 +62,7 @@ const TransferButtonGroup = () => {
         style={{
           background: "#FFA84D",
         }}
+        data-cy="goToDeposit_button"
       >
         <>{i18n.t("common.deposit")}</>
       </HeaderButton>
