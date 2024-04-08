@@ -10,7 +10,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   background-color: transparent;
-  color: ${({ theme }) => theme.gray60};
+  color: ${({ theme }) => theme.white};
   padding: 20px;
   gap: 6px;
   flex-shrink: 0;
@@ -26,7 +26,7 @@ const Container = styled.div`
     font-weight: 400;
     margin: 10px 0;
   }
-  
+
   ${media.sm} {
     max-width: ${SUB_CONTENT_MAX_WIDTH};
     margin: 0 auto;
