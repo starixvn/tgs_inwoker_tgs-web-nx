@@ -34,7 +34,8 @@ export enum DepositPromotionEnum {
   DailySecondDeposit = "DailySecondDeposit",
   DailyFirstDeposit = "DailyFirstDeposit",
   DepositReward = "DepositReward",
-  DepositAccumulateRoulette = "DepositAccumulateRoulette"
+  DepositAccumulateRoulette = "DepositAccumulateRoulette",
+  AccountFirstDeposit = "AccountFirstDeposit",
 }
 
 // 自定義的 GroupCode，可依照需求新增對應類型
