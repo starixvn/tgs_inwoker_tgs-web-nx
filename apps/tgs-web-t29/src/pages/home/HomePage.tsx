@@ -113,7 +113,6 @@ const RouletteFloatingPanel = styled.div<{ position: any; orientation: any }>`
   z-index: 1300;
 
   ${({ position }) => {
-    console.log(position);
     //for each item in position object, map accordingly
     return position !== undefined
       ? Object.keys(position).map((key) => {
@@ -246,14 +245,22 @@ const HomePage = () => {
       {config.features.HomePage_PromoRoulette && (
         <RouletteFloatingPanel
           position={
-            config.features.RouletteSetting &&
-            config.features.RouletteSetting.wap &&
-            config.features.RouletteSetting.wap.position
+            isMobileSize
+              ? config.features.RouletteSetting &&
+                config.features.RouletteSetting.wap &&
+                config.features.RouletteSetting.wap.position
+              : config.features.RouletteSetting &&
+                config.features.RouletteSetting.web &&
+                config.features.RouletteSetting.web.position
           }
           orientation={
-            config.features.RouletteSetting &&
-            config.features.RouletteSetting.wap &&
-            config.features.RouletteSetting.wap.orientation
+            isMobileSize
+              ? config.features.RouletteSetting &&
+                config.features.RouletteSetting.wap &&
+                config.features.RouletteSetting.wap.orientation
+              : config.features.RouletteSetting &&
+                config.features.RouletteSetting.web &&
+                config.features.RouletteSetting.web.orientation
           }
         >
           {general.rouletteCount.length >= 0 &&
@@ -269,7 +276,7 @@ const HomePage = () => {
                     promotionDetail={{ id: roulette.promotionid }}
                   ></PromotionRoulette>
                 ) : (
-                  <React.Fragment></React.Fragment>
+                  <React.Fragment key={roulette.promotionid}></React.Fragment>
                 );
               })}
           {config.features.HomePage_PromoRoulette &&

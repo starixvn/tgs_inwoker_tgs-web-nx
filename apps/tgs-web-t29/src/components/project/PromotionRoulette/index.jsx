@@ -4,15 +4,13 @@ import { connect } from "react-redux";
 import DynamicFont from "react-dynamic-font";
 import { Textfit } from "react-textfit";
 import { Dialog } from "@mui/material";
-// import { generalAction } from "../../../api-services/actions/generalAction";
-// import { GeneralService } from "../../../api-services/services/GeneralService";
 import { generalAction, GeneralService } from "@tgs-web-nx/core";
-import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
+import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AppHistory } from "@tgs-web-nx/core";
 import moment from "moment";
 import { RESET_PROMOROULETTE, SHOW_LOGIN } from "@tgs-web-nx/core";
-import { useLocation } from "react-router";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import BtnRoulettePNG from "@/assets/t29/images/roulette/btn-roulette.png";
 import RoulettePointer from "@/assets/t29/images/roulette/roulette-pointer.png";
 import RouletteTurntable6 from "@/assets/t29/images/roulette/roulette-turntable-6.png";
@@ -23,6 +21,7 @@ import TabActivePNG from "@/assets/t29/images/roulette/tab-active.png";
 import TabPNG from "@/assets/t29/images/roulette/tab.png";
 import EmptyBackgroundPNG from "@/assets/t29/images/roulette/bg-empty.png";
 import RouletteStandPNG from "@/assets/t29/images/roulette/roulette-stand.png";
+import { media } from "@/theme/breakpoints";
 
 const RouletteEnum = {
   SIE: "ROULETTE",
@@ -48,11 +47,15 @@ const RouletteModal = styled(Dialog)`
   }
 
   .MuiDialog-paper {
-    min-width: 600px;
+    /* min-width: 600px; */
+    min-width: 300px;
     background: #fffdee;
     border-radius: 50px;
     min-height: ${({ rouletteType }) => (rouletteType === RouletteEnum.DAR ? `485px` : `458px`)};
-    margin-top: 100px;
+    ${media.sm} {
+      min-width: 600px;
+      min-height: ${({ rouletteType }) => (rouletteType === RouletteEnum.DAR ? `485px` : `458px`)};
+    }
   }
 `;
 
@@ -82,8 +85,11 @@ const ModalTitle = styled.div`
 
 const ModalTitleH1 = styled(ModalTitle)`
   font-size: 3em;
-  width: 518px;
+  width: 100%;
   margin: 0 auto;
+  ${media.sm} {
+    width: 518px;
+  }
 `;
 const ModalTitleH2 = styled(ModalTitle)`
   font-size: 2.5em;
@@ -112,58 +118,83 @@ const CloseButton = styled.div`
 `;
 
 const RouletteContainer = styled.div`
-  width: 600px;
-  height: ${({ rouletteType }) => (rouletteType === RouletteEnum.DAR ? `500px` : `458px`)};
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
   background: url(${ModalBackgroundPNG});
   background-size: ${({ rouletteType }) =>
     rouletteType === RouletteEnum.DAR ? `602px 500px` : `602px 458px`};
   background-position-x: -2px;
+  ${media.sm} {
+    width: 600px;
+    height: ${({ rouletteType }) => (rouletteType === RouletteEnum.DAR ? `500px` : `458px`)};
+  }
 `;
 
 const TabContainer = styled.div`
-  height: 50px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: self-end;
   position: relative;
   z-index: 5;
+  ${media.sm} {
+    height: 50px;
+  }
 `;
 
 const Stand = styled.div`
-  width: 200px;
-  height: ${({ rouletteType }) => (rouletteType === RouletteEnum.DAR ? `114px` : `72px`)};
+  width: 100px;
+  height: ${({ rouletteType }) => (rouletteType === RouletteEnum.DAR ? `57px` : `36px`)};
   background: url(${RouletteStandPNG}) no-repeat;
   background-size: ${({ rouletteType }) =>
-    rouletteType === RouletteEnum.DAR ? `200px 114px` : `cover`};
+    rouletteType === RouletteEnum.DAR ? `100px 57px` : `cover`};
   margin: 0 auto;
   position: absolute;
-  top: 386px;
-  left: 200px;
+  top: 270px;
+  left: 100px;
   z-index: 1;
+  ${media.sm} {
+    width: 200px;
+    height: ${({ rouletteType }) => (rouletteType === RouletteEnum.DAR ? `114px` : `72px`)};
+    top: 386px;
+    left: 200px;
+    background-size: ${({ rouletteType }) =>
+      rouletteType === RouletteEnum.DAR ? `200px 114px` : `cover`};
+  }
 `;
 const Tab = styled.div`
   cursor: pointer;
-  height: 39px;
-  width: 100px;
+  height: 20px;
+  width: 50px;
   padding: 0 10px;
-  margin: 0 10px;
+  margin: 0 5px;
   color: ${(props) => (props.active ? `#000` : `#fff`)};
   background: url(${(props) => (props.active ? `${TabActivePNG}` : `${TabPNG}`)}) no-repeat;
   background-size: contain;
+  ${media.sm} {
+    height: 39px;
+    width: 100px;
+    line-height: 40px;
+    margin: 0 10px;
+  }
 `;
 
 const TabTitle = styled.div`
-  line-height: 40px;
+  line-height: 20px;
   text-align: center;
+  ${media.sm} {
+    line-height: 40px;
+  }
 `;
 
 const Content = styled.div`
-  width: 600px;
+  width: 300px;
   height: 286px;
   padding: 20px;
   overflow: auto;
+  ${media.sm} {
+    width: 600px;
+  }
 `;
 
 const TableContent = styled.div`
@@ -175,6 +206,10 @@ const StyledTableHead = styled.th`
   position: sticky;
   top: 0;
   z-index: 1;
+  font-size: 12px;
+  ${media.sm} {
+    font-size: 1em;
+  }
 `;
 
 const StyledTableData = styled.td`
@@ -186,17 +221,19 @@ const StyledTable = styled.table`
   width: 100%;
   text-align: justify;
 
-  /* tr ${StyledTableHead}:first-child, tr ${StyledTableData}:first-child {
+  tr ${StyledTableHead}:first-child, tr ${StyledTableData}:first-child {
     width: 50%;
   }
-  tr ${StyledTableHead}:nth-child(2),
+  tr ${StyledTableHead}:nth-child(2) {
+  }
   tr ${StyledTableData}:nth-child(2) {
     width: 25%;
   }
-  tr ${StyledTableHead}:nth-child(3),
+  tr ${StyledTableHead}:nth-child(3) {
+  }
   tr ${StyledTableData}:nth-child(3) {
     width: 20%;
-  } */
+  }
 `;
 
 const RouletteWrapper = styled.div`
@@ -206,19 +243,24 @@ const RouletteWrapper = styled.div`
 `;
 
 const Turntable = styled.div`
-  width: 385px;
-  height: 385px;
+  width: 250px;
+  height: 250px;
   background: url(${(props) => props.turntableBG}) no-repeat;
   background-size: cover;
   margin: 0 auto;
+
+  ${media.sm} {
+    width: 385px;
+    height: 385px;
+  }
 `;
 const Pointer = styled.div`
   width: 116px;
   height: 116px;
   background: url(${RoulettePointer}) no-repeat;
   position: absolute;
-  left: 250px;
-  top: 165px;
+  left: 100px;
+  top: 95px;
   cursor: pointer;
   ${(props) =>
     props.disabled
@@ -226,6 +268,10 @@ const Pointer = styled.div`
   filter: grayscale(1);
   cursor: not-allowed;`
       : ``}
+  ${media.sm} {
+    left: 250px;
+    top: 165px;
+  }
 `;
 
 const RouletteItemContainer = styled.div`
@@ -238,9 +284,15 @@ const RouletteLabelContainer = styled.div`
   width: 500px;
   height: 500px;
   margin: 0 auto;
-  top: -32px;
-  left: 52px;
-  transform: scale(0.65);
+  top: -100px;
+  left: -100px;
+  transform: scale(0.5);
+
+  ${media.sm} {
+    top: -32px;
+    left: 52px;
+    transform: scale(0.65);
+  }
 `;
 const RouletteTtem1 = styled.div`
   color: #fef6ec;
@@ -325,6 +377,7 @@ const CloseIcon = styled.div`
   line-height: 19px;
   cursor: pointer;
   user-select: none;
+  color: #000;
 `;
 
 const ROULETTE_AREA_DEG_6 = [
@@ -603,7 +656,7 @@ const ROULETTE_ITEM_12 = [
 const BackgroundOverlay = styled.div`
   width: 100%;
   border-radius: 50px;
-  height: 500px;
+  height: 350px;
   background: rgba(0, 0, 0, 0.7);
   z-index: 3;
 
@@ -614,6 +667,9 @@ const BackgroundOverlay = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  ${media.sm} {
+    height: 500px;
+  }
 `;
 
 const NewTitle1 = styled(ModalTitleH1)`
@@ -622,9 +678,6 @@ const NewTitle1 = styled(ModalTitleH1)`
 `;
 
 const Roulette = (props) => {
-  const location = useLocation();
-  const isInHomePage = location.pathname === "/";
-
   const [startRotateDeg, setStartRotateDeg] = useState(0);
   useEffect(() => {
     if (props.itemIndex !== null && props.itemIndex >= 0) {
@@ -641,7 +694,7 @@ const Roulette = (props) => {
           {props.items.map((item, index) => {
             if (index % 2 !== 0) {
               return (
-                <RouletteSpan style={item.style.span}>
+                <RouletteSpan key={item.id} style={item.style.span}>
                   <RouletteTitle style={item.style.label}>
                     <DynamicFont content={item.label}></DynamicFont>
                   </RouletteTitle>
@@ -654,7 +707,7 @@ const Roulette = (props) => {
           {props.items.map((item, index) => {
             if (index % 2 === 0) {
               return (
-                <RouletteSpan style={item.style.span}>
+                <RouletteSpan key={item.id} style={item.style.span}>
                   <RouletteTitle style={item.style.label}>
                     <DynamicFont content={item.label}></DynamicFont>
                   </RouletteTitle>
@@ -795,6 +848,7 @@ const PromotionRoulette = (props) => {
   const [dialogContent, setDialogContent] = useState({});
   const [rouletteCount, setRouletteCount] = useState(null);
   const [rouletteHistory, setRouletteHistory] = useState([]);
+  const { isMobileSize } = useRwd();
 
   const [displayRoulette, setDisplayRoulette] = useState(true);
 
@@ -810,7 +864,7 @@ const PromotionRoulette = (props) => {
         return {
           turntableBG: RouletteTurntable12,
           rouletteAreaDeg: ROULETTE_AREA_DEG_12,
-          rouletteItems: ROULETTE_ITEM_12,
+          rouletteItems: isMobileSize ? ROULETTE_ITEM_12 : ROULETTE_ITEM_12,
         };
       default:
         return {
@@ -972,7 +1026,7 @@ const PromotionRoulette = (props) => {
   };
 
   const handleNavigateToPromotion = () => {
-    AppHistory.push("/promotion");
+    AppHistory.push("/promotion-list");
     performCloseEmptyModal();
   };
 
@@ -1120,9 +1174,13 @@ const PromotionRoulette = (props) => {
       <Container
         rouletteType={props.rouletteType}
         position={
-          config.features.RouletteSetting &&
-          config.features.RouletteSetting.web &&
-          config.features.RouletteSetting.web.position
+          isMobileSize
+            ? config.features.RouletteSetting &&
+              config.features.RouletteSetting.wap &&
+              config.features.RouletteSetting.wap.position
+            : config.features.RouletteSetting &&
+              config.features.RouletteSetting.web &&
+              config.features.RouletteSetting.web.position
         }
       >
         {displayRoulette && (
@@ -1136,9 +1194,13 @@ const PromotionRoulette = (props) => {
             </CloseIcon>
             <BtnRoulette
               size={
-                config.features.RouletteSetting &&
-                config.features.RouletteSetting.web &&
-                config.features.RouletteSetting.web.size
+                isMobileSize
+                  ? config.features.RouletteSetting &&
+                    config.features.RouletteSetting.wap &&
+                    config.features.RouletteSetting.wap.size
+                  : config.features.RouletteSetting &&
+                    config.features.RouletteSetting.web &&
+                    config.features.RouletteSetting.web.size
               }
               src={BtnRoulettePNG}
               onClick={() => {
@@ -1158,7 +1220,7 @@ const PromotionRoulette = (props) => {
           {props.rouletteType === RouletteEnum.DAR && rouletteCount === 0 && (
             <BackgroundOverlay>
               <NewTitle1>
-                <Textfit min={38} max={48}>
+                <Textfit min={12} max={isMobileSize ? 12 : 48}>
                   {i18n.t("promoRoulette.outOfCount")}
                 </Textfit>
               </NewTitle1>
