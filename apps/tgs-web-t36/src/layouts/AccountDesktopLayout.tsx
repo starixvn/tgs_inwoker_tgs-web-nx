@@ -7,15 +7,10 @@ import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
 import {
   BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_DRAWER_WIDTH,
-  DRAWER_SHRINK_WIDTH,
   MOBILE_HEADER_HEIGHT,
   SUB_CONTENT_MAX_WIDTH,
-  TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
-import MenuDrawer from "@/layouts/components/MenuDrawer";
-import AccountNavigations from "@/pages/account/components/AccountNavigations";
+import DarkMemberMenu from "@/layouts/components/Header/components/DarkMemberMenu";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;

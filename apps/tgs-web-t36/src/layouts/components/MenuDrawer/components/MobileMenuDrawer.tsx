@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import { useAuth, useAuthContext, useHeader } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import SideMenuHeader from "@/layouts/components/Header/components/SideMenuHeader";
-import MenuList from "@/layouts/components/MenuDrawer/components/DesktopMenuDrawer/components/MenuList";
+import MenuList from "@/layouts/components/MenuDrawer/components/MenuList";
 import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 
 const MobileMenuDrawerContainer = styled.div`
@@ -19,7 +16,6 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  /* padding: 20px 10px; */
   align-items: flex-start;
   flex-shrink: 0;
   background: ${({ theme }) => theme.g4};
@@ -47,27 +43,9 @@ const ContentWrapper = styled.div`
 `;
 
 const MobileMenuDrawer = () => {
-  const { isMenuOpen, handleToggleMenu } = useHeader();
-  const { isLogin } = useAuth();
-  const history = useHistory();
-  const { handleLogout } = useAuthContext();
-  const { isDesktopSize } = useRwd();
-  const isShrink = isDesktopSize && !isMenuOpen;
-
-  const handleDrawerClose = () => {
-    if (isDesktopSize) return;
-    handleToggleMenu(false);
-  };
-
-  const handleClickPromotion = () => {
-    history.push("/promotion-list");
-    handleDrawerClose();
-  };
-
   return (
     <MobileMenuDrawerContainer>
       <SideMenuHeader />
-
       <ContentWrapper>
         <MenuList />
       </ContentWrapper>

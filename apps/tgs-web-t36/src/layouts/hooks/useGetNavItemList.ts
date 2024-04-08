@@ -4,9 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 
-import vipImg from "@/assets/t36/images/account/navItem/icon-vip.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 // update svg icon
 import VipSvg from "@/pages/home/components/TabSvgIcon/Vip";
@@ -49,28 +47,10 @@ export function useGetNavItemList() {
   const { handleChangeGameType } = useHomeGameContext();
   const { providerList } = useHomeGameContext();
   const history = useHistory();
-  const { isDesktopSize } = useRwd();
   const { handleLogout } = useAuthContext();
 
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
-
-    // if (isDesktopSize) {
-    //   navItemList.push({
-    //     key: NavCardKey.HOME,
-    //     label: "Home",
-    //     iconUrl: "",
-    //     navType: "action",
-    //     gameType: GameTypeEnum.NONE,
-    //     router: "",
-    //     callback: () => {
-    //       handleChangeGameType(GameTypeEnum.NONE);
-    //       history.push("/");
-    //     },
-    //     iconComponent: HomeSvg,
-    //   });
-    // }
-
     for (const gameTypeItem of gameTypeList) {
       if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
 
@@ -80,7 +60,6 @@ export function useGetNavItemList() {
         });
         if (hasData.length === 0) continue;
       }
-
       navItemList.push({
         key: gameTypeItem.key,
         label: gameTypeItem.text as string,
@@ -98,7 +77,7 @@ export function useGetNavItemList() {
     navItemList.push({
       key: NavCardKey.VIP,
       label: "VIP",
-      iconUrl: vipImg,
+      iconUrl: "",
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "",
@@ -110,7 +89,7 @@ export function useGetNavItemList() {
     navItemList.push({
       key: NavCardKey.PROMOTION,
       label: i18n.t("common.promotion"),
-      iconUrl: vipImg,
+      iconUrl: "",
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "",
@@ -119,33 +98,6 @@ export function useGetNavItemList() {
       },
       iconComponent: PromotionSvg,
     });
-
-    // navItemList.push({
-    //   key: NavCardKey.CONTACT_US,
-    //   label: i18n.t("common.contact"),
-    //   iconUrl: contactImg,
-    //   navType: "action",
-    //   gameType: GameTypeEnum.NONE,
-    //   router: "",
-    //   callback: () => {
-    //     history.push("/support");
-    //   },
-    //   iconComponent: ContactUsSvg,
-    // });
-
-    // navItemList.push({
-    //   key: NavCardKey.AFFILIATE,
-    //   label: i18n.t("wap.main.account.affiliate"),
-    //   iconUrl: affiliateImg,
-    //   navType: "action",
-    //   gameType: GameTypeEnum.NONE,
-    //   router: "",
-    //   callback: () => {
-    //     history.push("/affiliate");
-    //   },
-    //   iconComponent: AffiliateSvg,
-    // });
-
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameTypeList, providerList]);
