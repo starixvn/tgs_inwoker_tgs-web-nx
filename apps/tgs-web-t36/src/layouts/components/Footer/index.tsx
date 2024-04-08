@@ -171,8 +171,8 @@ const Footer = () => {
               {i18n.t("T13.quickLink.reponsible")}
             </Link>
           </GroupContent>
-          <DownLoadText>Download App</DownLoadText>
-          <img src={QRcodeUrl} width={117} alt="QRcode" />
+          {/* <DownLoadText>Download App</DownLoadText>
+          <img src={QRcodeUrl} width={117} alt="QRcode" /> */}
         </FooterGroup>
 
         <FooterGroup>
