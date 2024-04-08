@@ -292,6 +292,7 @@ export const brandConfig: Record<BrandName, Config> = {
       "AWC_YL",
       "TFTF",
     ],
+    isShowDownloadApp: false,
   },
 };
 
