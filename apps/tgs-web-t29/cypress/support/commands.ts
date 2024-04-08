@@ -1,3 +1,4 @@
+import { MountReturn } from 'cypress/react'
 /// <reference types="cypress" />
 
 // ***********************************************
@@ -15,6 +16,9 @@ declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
     login(email: string, password: string): void;
+    mount(
+      component: React.ReactNode,
+    ): Cypress.Chainable<MountReturn>
   }
 }
 

@@ -1,0 +1,205 @@
+{
+  "data": [
+      {
+          "banktype": "ThirdParty",
+          "channelcode": "GCash",
+          "channelid": "9e0b2d0d-6e4e-4a31-b482-946d33565640",
+          "channelname": "123Pay_ThirdParty_GCash",
+          "displayorder": 99,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "a1502e5c-649d-4a4a-811a-6f9ffd67ad38",
+          "methodcode": "ThirdParty",
+          "methodid": "5501b945-9043-46b7-87b5-48330f002d0d",
+          "paymentcode": "123Pay",
+          "paymentid": "469c47b7-8598-455e-82ff-dfc701f1d31a",
+          "transferlimit": {
+              "from": 100.000000,
+              "to": 50000.000000
+          }
+      },
+      {
+          "banktype": "Bank",
+          "channelcode": "NamABank",
+          "channelid": "527ae8c1-ad97-46a1-afdd-52f5a7f49fa0",
+          "channelname": "U_Nam A Bank\t",
+          "displayorder": 2,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "6e560a5d-c3aa-4525-a15a-cbef1dc5f6f5",
+          "methodcode": "BankTransfer",
+          "methodid": "67252f3a-6826-45ce-8bbc-c53e2ca7cdcb",
+          "paymentcode": "U2Pay",
+          "paymentid": "c9209e2f-9a55-4ccb-9a1a-c4bb646f9210",
+          "transferlimit": {
+              "from": 100.000000,
+              "to": 100000.000000
+          }
+      },
+      {
+          "banktype": "Bank",
+          "channelcode": "中国光大银行",
+          "channelid": "9ba8107a-f638-42df-9550-97e6cf39635b",
+          "channelname": "QA測試",
+          "displayorder": 3,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "0e328d0f-8999-43fa-bd69-ff250733e0a7",
+          "methodcode": "BankTransfer",
+          "methodid": "67252f3a-6826-45ce-8bbc-c53e2ca7cdcb",
+          "paymentcode": "Manual",
+          "paymentid": "30cb4d17-2506-4d72-8470-65063b80f9c9",
+          "transferlimit": {
+              "from": 10.000000,
+              "to": 5000.000000
+          }
+      },
+      {
+          "banktype": "Bank",
+          "channelcode": "CustomBank",
+          "channelid": "3e3cc1eb-1a4e-413f-926c-1ad48707bc66",
+          "channelname": "自訂銀行1",
+          "displayorder": 5,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "4692f28f-f2f8-4aae-9ad9-5f31e337c756",
+          "methodcode": "BankTransfer",
+          "methodid": "67252f3a-6826-45ce-8bbc-c53e2ca7cdcb",
+          "paymentcode": "Manual",
+          "paymentid": "30cb4d17-2506-4d72-8470-65063b80f9c9",
+          "transferlimit": {
+              "from": 10.000000,
+              "to": 10000.000000
+          }
+      },
+      {
+          "banktype": "Crypto",
+          "channelcode": "TRON",
+          "channelid": "9d76809a-4611-457d-8f49-d341d3a464ea",
+          "channelname": "UBPay_Crypto_TRON",
+          "displayorder": 99,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "46877317-a15d-40ee-b9f4-c4f5f8596a54",
+          "methodcode": "Crypto",
+          "methodid": "798d21c6-9cf5-4fc0-bd09-8d67d2c9e7e1",
+          "paymentcode": "UBPay",
+          "paymentid": "d02b5c6e-970e-41c7-993b-9f49d923de0d",
+          "transferlimit": {
+              "from": 1.000000,
+              "to": 10000000000.000000
+          }
+      },
+      {
+          "banktype": "Bank",
+          "channelcode": "中国民生银行",
+          "channelid": "adb50cc2-f96f-4892-a555-93f2564af231",
+          "channelname": "shauntest",
+          "displayorder": 99,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "137b3bcf-0bda-4c08-a96e-c2f2f04b8e48",
+          "methodcode": "BankTransfer",
+          "methodid": "67252f3a-6826-45ce-8bbc-c53e2ca7cdcb",
+          "paymentcode": "Manual",
+          "paymentid": "30cb4d17-2506-4d72-8470-65063b80f9c9",
+          "transferlimit": {
+              "from": 10.000000,
+              "to": 10000.000000
+          }
+      },
+      {
+          "banktype": "Usdt",
+          "channelcode": "TRC",
+          "channelid": "6d3f1b6d-3769-4f4f-b6e0-b63d3d0a08f3",
+          "channelname": "Crypto-AH",
+          "displayorder": 99,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "3ddf1f6e-6e6b-4d56-92df-db55716f7df9",
+          "methodcode": "Usdt",
+          "methodid": "6eecb076-ad1e-423b-8da6-54d44199c2fa",
+          "paymentcode": "Manual",
+          "paymentid": "30cb4d17-2506-4d72-8470-65063b80f9c9",
+          "transferlimit": {
+              "from": 100.000000,
+              "to": 10000.000000
+          }
+      },
+      {
+          "banktype": "Bank",
+          "channelcode": "CustomBank",
+          "channelid": "3e3cc1eb-1a4e-413f-926c-1ad48707bc66",
+          "channelname": "最晚創立",
+          "displayorder": 3,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "aae66532-f023-4ada-8d68-3245e9715f2d",
+          "methodcode": "BankTransfer",
+          "methodid": "67252f3a-6826-45ce-8bbc-c53e2ca7cdcb",
+          "paymentcode": "Manual",
+          "paymentid": "30cb4d17-2506-4d72-8470-65063b80f9c9",
+          "transferlimit": {
+              "from": 10.000000,
+              "to": 1000.000000
+          }
+      },
+      {
+          "banktype": "Bank",
+          "channelcode": "CustomBank",
+          "channelid": "3e3cc1eb-1a4e-413f-926c-1ad48707bc66",
+          "channelname": "自訂銀行2",
+          "displayorder": 3,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "e9a693ce-38ef-4165-8c4b-32b39135580b",
+          "methodcode": "BankTransfer",
+          "methodid": "67252f3a-6826-45ce-8bbc-c53e2ca7cdcb",
+          "paymentcode": "Manual",
+          "paymentid": "30cb4d17-2506-4d72-8470-65063b80f9c9",
+          "transferlimit": {
+              "from": 10.000000,
+              "to": 10000.000000
+          }
+      },
+      {
+          "banktype": "ThirdParty",
+          "channelcode": "PayMaya",
+          "channelid": "ed975738-f259-4e1d-9f00-249bb1759c19",
+          "channelname": "123Pay_ThirdParty_Paymaya\t",
+          "displayorder": 99,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "f5631c20-fce4-4ac7-9cca-0cc29b7fb342",
+          "methodcode": "ThirdParty",
+          "methodid": "5501b945-9043-46b7-87b5-48330f002d0d",
+          "paymentcode": "123Pay",
+          "paymentid": "469c47b7-8598-455e-82ff-dfc701f1d31a",
+          "transferlimit": {
+              "from": 100.000000,
+              "to": 50000.000000
+          }
+      },
+      {
+          "banktype": "Usdt",
+          "channelcode": "TRC",
+          "channelid": "6d3f1b6d-3769-4f4f-b6e0-b63d3d0a08f3",
+          "channelname": "TRC",
+          "displayorder": 99,
+          "extended": {},
+          "feepercentile": 0,
+          "id": "dff8a6e4-ac15-4019-917a-e2cda65a62f6",
+          "methodcode": "Usdt",
+          "methodid": "6eecb076-ad1e-423b-8da6-54d44199c2fa",
+          "paymentcode": "Manual",
+          "paymentid": "30cb4d17-2506-4d72-8470-65063b80f9c9",
+          "transferlimit": {
+              "from": 20.000000,
+              "to": 30000.000000
+          }
+      }
+  ],
+  "err": 0,
+  "errmsg": "",
+  "errmsgid": null
+}

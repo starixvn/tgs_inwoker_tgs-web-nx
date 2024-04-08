@@ -1,0 +1,10 @@
+{
+  "data": {
+      "name": null,
+      "setting": {
+          "url": "https://secure.livechatinc.com/licence/16842558/v2/open_chat.cgi?name={name}&email={email}&group={lang}"
+      }
+  },
+  "err": 0,
+  "errmsg": ""
+}

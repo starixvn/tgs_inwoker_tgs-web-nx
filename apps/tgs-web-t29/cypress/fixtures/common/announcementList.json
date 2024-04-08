@@ -1,0 +1,32 @@
+{
+  "data": {
+    "deposits": [],
+    "mains": [
+      {
+        "subject": "WELCOME TO GPI",
+        "content": "Play live Blackjack, Live Poker or Live Baccarat and many other thrilling games at GPI online casino!",
+        "from": 1693843200000,
+        "to": 1725638400000,
+        "localization": {
+          "content": ""
+        },
+        "type": "Main"
+      }
+    ],
+    "marquees": [
+      {
+        "subject": "DEMO2",
+        "content": "欢迎来到ＰＧ平台，亚洲首选最佳线上博彩品牌！官方直营，实力老牌，安全无忧！新会员註册即送８８８新手大礼包，ＶＩＰ会员时时享３％业界最高反水，加入ＰＧ平台，即刻开启尊贵人生！",
+        "from": 1673884800000,
+        "to": 4072262400000,
+        "localization": {
+          "content": "歡迎來到ＰＧ平台，亞洲首選最佳線上博彩品牌！官方直營，實力老牌，安全無憂！新會員註冊即送８８８新手大禮包，ＶＩＰ會員時時享３％業界最高反水，加入ＰＧ平台，即刻開啟尊貴人生！"
+        },
+        "type": "Marquee"
+      }
+    ]
+  },
+  "err": 0,
+  "errmsg": "",
+  "errmsgid": null
+}

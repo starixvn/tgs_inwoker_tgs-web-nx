@@ -1,0 +1,180 @@
+{
+  "data": {
+      "items": [
+          {
+              "id": "3ffc6856-d0f5-4c2f-f564-08dc20aa43b7",
+              "createon": "2024-02-07T15:14:07.560537+00:00",
+              "subject": "123",
+              "content": "<p>1111</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "fee08559-add1-499f-523b-08dc1743085a",
+              "createon": "2024-01-17T09:59:45.015546+00:00",
+              "subject": "test",
+              "content": "<p>alantest</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "0da867d8-c547-4ef3-18d6-08dc05363551",
+              "createon": "2023-12-27T01:27:00.095459+00:00",
+              "subject": "1227!!!!!!",
+              "content": "<p>1227!!!!!!1227!!!!!!1227!!!!!!1227!!!!!!1227!!!!!!1227!!!!!!1227!!!!!!1227!!!!!!</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "7b28c232-e953-4c28-18d5-08dc05363551",
+              "createon": "2023-12-27T01:26:28.06101+00:00",
+              "subject": "QA測試1227",
+              "content": "<p>111</p>",
+              "isread": false,
+              "localization": {}
+          },
+          {
+              "id": "7cb0bfce-f4da-43ea-18d0-08dc05363551",
+              "createon": "2023-12-26T09:56:22.036713+00:00",
+              "subject": "jeffersonTest",
+              "content": "<p>jeffersontest</p>",
+              "isread": false,
+              "localization": {}
+          },
+          {
+              "id": "9bedcc70-8f2d-4db8-c1dc-08dbe193b6d2",
+              "createon": "2023-12-13T03:17:47.042872+00:00",
+              "subject": "【全部玩家】1213 QA測試-消息中心",
+              "content": "<p>&nbsp;</p>\n<p><img src=\"https://project.srvptt.com/staging-tgs-project/stationLetter/qnQiAWaRVwWb0GblSmTHKD0MPkEYCPV9.png\" alt=\"\" /></p>\n<p>&nbsp;</p>\n<p>【文／葉一秋】為幫助青年購屋，國民黨總統參選人侯友宜提出「青年購屋555方案」，讓40歲以下信用良好的首購族，享有1500萬元額度頭期款全額貸款優惠，並提供5年0.5%的利息補貼。專家指出，在5年的寬限期內，每月還款金額僅要1.9萬元左右，20年期的房貸，寬限期過後的還款金額將暴增到近10萬元。</p>\n<p>自備款是購屋族的第一個課題，以首購族來說，若沒有信用瑕疵，有固定收入，購買新建案大多能貸款到8成，即便是中古屋，只要物件地段不要太荒涼、屋況不要太差，也大致能貸款到7.5~8成，以總價1500萬元計算，光是房價的自備款就要準備300~375萬元，還沒計算上裝潢費、代書費、契稅、印花稅等其他費用，經常是首購族購屋一大門檻。</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "7dc6a244-f2d6-4fea-c1d4-08dbe193b6d2",
+              "createon": "2023-12-12T06:02:59.64455+00:00",
+              "subject": "QA測試-消息中心",
+              "content": "<p>QA測試-消息中心QA測試-消息中心QA測試-消息中心QA測試-消息中心QA測試-消息中心</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "93e8841a-5667-4efa-c1b6-08dbe193b6d2",
+              "createon": "2023-12-11T07:26:35.483337+00:00",
+              "subject": "jefferson",
+              "content": "<p>test</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "c722ccac-0b63-4d06-90b0-08dbd45c52a9",
+              "createon": "2023-11-02T07:33:49.993231+00:00",
+              "subject": "站內信-皮卡丘測試",
+              "content": "<p>&nbsp; &nbsp; &nbsp;</p>\n<p>站內信-皮卡丘測試\uD83D\uDCAF</p>\n<p><img src=\"https://project.srvptt.com/staging-tgs-project/stationLetter/SSTDi00v4RMQJZYWnMS0UcAacJ3Ma5sT.png\" alt=\"\" width=\"475\" height=\"276\" /></p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "6cb5631b-cc3a-489b-2d9b-08dbd12f10bd",
+              "createon": "2023-10-23T07:44:05.962549+00:00",
+              "subject": "testleo123",
+              "content": "<p>testleo123testleo123</p>",
+              "isread": true,
+              "localization": {
+                  "content": "<p>testleo123testleo123</p>",
+                  "subject": "testleo123"
+              }
+          },
+          {
+              "id": "cab8f9fa-c882-47b5-2d9a-08dbd12f10bd",
+              "createon": "2023-10-23T07:43:47.244874+00:00",
+              "subject": "jefftest",
+              "content": "<p>jefftest</p>",
+              "isread": true,
+              "localization": {
+                  "subject": ""
+              }
+          },
+          {
+              "id": "89e5490d-45a4-43c7-2d99-08dbd12f10bd",
+              "createon": "2023-10-23T07:41:19.652646+00:00",
+              "subject": "testleo",
+              "content": "<p>test</p>",
+              "isread": true,
+              "localization": {
+                  "content": "<p>test</p>"
+              }
+          },
+          {
+              "id": "cd21c9fb-d590-442b-2d98-08dbd12f10bd",
+              "createon": "2023-10-23T07:40:12.260606+00:00",
+              "subject": "testleo",
+              "content": "<p>testleo</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "2bdff3bd-6539-4541-2d97-08dbd12f10bd",
+              "createon": "2023-10-23T07:31:27.715769+00:00",
+              "subject": "TTEST",
+              "content": "<p>TTEST</p>",
+              "isread": true,
+              "localization": {
+                  "content": "<p>TTEST</p>",
+                  "subject": "TTEST"
+              }
+          },
+          {
+              "id": "124007d3-fab4-42db-2d96-08dbd12f10bd",
+              "createon": "2023-10-23T07:11:14.227683+00:00",
+              "subject": "TEST",
+              "content": "<p>TEST</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "d9444bd1-f301-4b60-38a0-08dbcfb0d2dc",
+              "createon": "2023-10-18T14:34:21.21289+00:00",
+              "subject": "text",
+              "content": "<p>text123</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "7b828437-78d5-4518-f5eb-08dbc632be47",
+              "createon": "2023-10-07T08:00:04.422758+00:00",
+              "subject": "shauntest",
+              "content": "<p>shauntest</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "da97ea85-4b3d-474c-f5e7-08dbc632be47",
+              "createon": "2023-10-06T10:39:43.377016+00:00",
+              "subject": "1006TEST",
+              "content": "<p>121111</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "506f2559-241e-48e6-044c-08dbbc95c4d7",
+              "createon": "2023-09-29T01:15:50.795684+00:00",
+              "subject": "shauntest",
+              "content": "<p>shauntest</p>",
+              "isread": true,
+              "localization": {}
+          },
+          {
+              "id": "770b9b29-ce9e-4cb5-044b-08dbbc95c4d7",
+              "createon": "2023-09-28T06:47:31.18706+00:00",
+              "subject": "test1111",
+              "content": "<p>123123123</p>",
+              "isread": true,
+              "localization": {}
+          }
+      ],
+      "totalcount": 20
+  },
+  "err": 0,
+  "errmsg": "",
+  "errmsgid": null
+}

@@ -1,0 +1,37 @@
+{
+  "data": [
+      {
+          "banktype": "ThirdParty",
+          "detail": {
+              "phone": "11111111",
+              "username": "test"
+          },
+          "id": "98242dc8-cb54-4c52-86e4-c35d709c9521",
+          "default": false,
+          "paymentchannelid": "9e0b2d0d-6e4e-4a31-b482-946d33565640"
+      },
+      {
+          "banktype": "ThirdParty",
+          "detail": {
+              "phone": "1231321123213",
+              "username": "1211"
+          },
+          "id": "fa155ba2-f1a8-4d24-a105-1f3de1ee084e",
+          "default": false,
+          "paymentchannelid": "9e0b2d0d-6e4e-4a31-b482-946d33565640"
+      },
+      {
+          "banktype": "ThirdParty",
+          "detail": {
+              "phone": "12321321321",
+              "username": "123123"
+          },
+          "id": "780a780f-040c-4451-9719-cf1a102fdadc",
+          "default": false,
+          "paymentchannelid": "9e0b2d0d-6e4e-4a31-b482-946d33565640"
+      }
+  ],
+  "err": 0,
+  "errmsg": "",
+  "errmsgid": null
+}
