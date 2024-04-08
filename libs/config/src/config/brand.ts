@@ -291,6 +291,7 @@ export const brandConfig: Record<BrandName, Config> = {
       "TFTF",
     ],
     contractAge: 21,
+    isShowDownloadApp: false,
   },
 };
 
