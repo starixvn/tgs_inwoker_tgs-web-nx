@@ -26,7 +26,7 @@ type Props = {
 const PopupHeader = ({ title, handleClose }: Props) => {
   return (
     <PopupHeaderContainer>
-      <IconContainer onClick={handleClose}>
+      <IconContainer onClick={handleClose} data-test="close-icon">
         <Icon iconUrl={iconClose} width={"20px"} height={"20px"} />
       </IconContainer>
     </PopupHeaderContainer>
