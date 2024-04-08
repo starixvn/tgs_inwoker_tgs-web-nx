@@ -7,7 +7,6 @@ import { NavCardKey } from "@tgs-web-nx/types";
 import { useAccountStore } from "@tgs-web-nx/core";
 import config from "@tgs-web-nx/config";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
 import { Button } from "@/components/UI/Button";
 import DesktopAccountMenuItem from "@/pages/account/components/AccountNavigations/DesktopAccountMenuItem";
@@ -17,7 +16,6 @@ import UserBanner from "@/assets/t36/images/account/banner.png";
 const MemberMenuContainer = styled.div`
   display: flex;
   width: 100%;
-  /* padding: 15px 10px; */
   flex-direction: column;
   align-items: flex-start;
   background: #1a5684;
@@ -33,13 +31,14 @@ const UserBannerContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: start;
+  gap: 10px;
+  padding: 10px;
   & > div {
     font-size: 14px;
     font-weight: 400;
     line-height: 14px;
     color: #76b7ec;
-    margin-bottom: 10px;
   }
 `;
 

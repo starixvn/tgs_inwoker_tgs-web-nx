@@ -23,10 +23,11 @@ const Wrapper = styled.div<{
   align-items: center;
   background: ${({ theme, $isActive }) => ($isActive ? theme.gray40 : "transparent")};
   padding: 9.87px 10px;
+  gap: 8px;
 `;
 
 const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.white : theme.white)};
+  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.primary)};
   font-size: 0.975rem;
   font-weight: 400;
 `;
@@ -34,9 +35,9 @@ const Text = styled.div<{ $isActive: boolean }>`
 const SideNavItem = ({ children, text, isActive, onClick }: Props) => {
   const cloneChildrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      if (typeof child.type === 'function') {
+      if (typeof child.type === "function") {
         const IconComponent = child.type as React.ComponentType<IconComponentProps>;
-        return <IconComponent $color={theme.white} />;
+        return <IconComponent $color={theme.primary} />;
       }
     }
     return child;
@@ -45,7 +46,6 @@ const SideNavItem = ({ children, text, isActive, onClick }: Props) => {
   return (
     <Wrapper $isActive={isActive} $text={text} onClick={onClick}>
       {cloneChildrenWithProps}
-      {/* <Icon iconUrl={imageUrl} width={"30px"} height={"30px"} style={{ marginRight: "10px" }} /> */}
       <Text $isActive={isActive}>{text}</Text>
     </Wrapper>
   );

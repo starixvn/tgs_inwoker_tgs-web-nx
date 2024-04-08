@@ -1,15 +1,16 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { Common } from "@tgs-web-nx/utils";
+import { useGetNonLobbyCategoryList } from "@tgs-web-nx/core/features";
+import { useLocation } from "react-router";
+import React, { useEffect, useState } from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
-import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { media } from "@/theme/breakpoints";
 import GameFilterTag from "@/pages/home/components/GameFilterTag";
-// import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import SideNavItem from "@/layouts/components/MenuDrawer/components/MenuDrawerList/components/SideNavItem";
 
 const CategoryMainWrapper = styled.div`
   width: 100%;
@@ -42,12 +43,36 @@ const CategoryContent = styled.div`
 
 const NonLobbyCategory = () => {
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
+  const { sideNavItemList } = useGetNavItemList();
+  const { isMobileSize } = useRwd();
+  const [currentGameType, setCurrentGameType] = useState<NavItem | null>(null);
   const hasMappingData = !!gameList.length;
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const currentRoute = pathSegments[pathSegments.length - 1];
+
+  useEffect(() => {
+    sideNavItemList.map((item) => {
+      if (item.key === currentRoute) {
+        setCurrentGameType(item);
+      }
+    });
+  }, [sideNavItemList]);
 
   return (
     <>
-      {/* <GameTypeTab /> */}
       <CategoryMainWrapper>
+        {isMobileSize && (
+          <SideNavItem
+            key={currentGameType?.key}
+            text={currentGameType?.label}
+            isActive={false}
+            onClick={() => {}}
+          >
+            {currentGameType?.iconComponent && React.createElement(currentGameType?.iconComponent)}
+          </SideNavItem>
+        )}
+
         <GameFilterTag />
         <CategoryContentWrapper>
           <CategoryContent>

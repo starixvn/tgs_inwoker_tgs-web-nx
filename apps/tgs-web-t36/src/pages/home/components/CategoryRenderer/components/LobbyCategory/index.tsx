@@ -1,12 +1,15 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import React, { useEffect, useState } from "react";
 import VendorCard from "@/pages/home/components/VendorCard/index";
 import { media } from "@/theme/breakpoints";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import SideNavItem from "@/layouts/components/MenuDrawer/components/MenuDrawerList/components/SideNavItem";
 
 const CategoryContentWrapper = styled.div`
   display: flex;
@@ -44,10 +47,24 @@ const EmptyText = styled.div`
 
 const LobbyCategory = () => {
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const { sideNavItemList } = useGetNavItemList();
   const { account } = useAccountStore();
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
-  const { isMobileSize, isDesktopSize } = useRwd();
+  const { isMobileSize } = useRwd();
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const currentRoute = pathSegments[pathSegments.length - 1];
+
+  const [currentGameType, setCurrentGameType] = useState<NavItem | null>(null);
+
+  useEffect(() => {
+    sideNavItemList.map((item) => {
+      if (item.key === currentRoute) {
+        setCurrentGameType(item);
+      }
+    });
+  }, [sideNavItemList, currentRoute]);
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -90,6 +107,16 @@ const LobbyCategory = () => {
     <>
       {/* <GameTypeTab /> */}
       <CategoryContentWrapper>
+        {isMobileSize && (
+          <SideNavItem
+            key={currentGameType?.key}
+            text={currentGameType?.label}
+            isActive={false}
+            onClick={() => {}}
+          >
+            {currentGameType?.iconComponent && React.createElement(currentGameType?.iconComponent)}
+          </SideNavItem>
+        )}
         <CategoryContent>
           {hasMappingData &&
             lobbyCategoryList.map((provider) => {
