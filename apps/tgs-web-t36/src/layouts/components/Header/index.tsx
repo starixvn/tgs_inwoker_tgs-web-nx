@@ -7,17 +7,12 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
-import ContactButton from "./components/ContactButton";
 import MenuButton from "./components/MenuButton";
 import {
   DESKTOP_HEADER_HEIGHT,
-  DESKTOP_DRAWER_WIDTH,
-  DRAWER_SHRINK_WIDTH,
   MOBILE_HEADER_HEIGHT,
   SUB_CONTENT_MAX_WIDTH,
-  TABLET_DRAWER_WIDTH,
 } from "@/theme/constants";
-import CurrentTime from "@/components/project/CurrentTime";
 import { media } from "@/theme/breakpoints";
 import BrandLogo from "@/components/project/BrandLogo";
 import SystemTime from "@/layouts/components/Header/components/SystemTime";

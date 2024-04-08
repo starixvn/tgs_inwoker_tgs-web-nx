@@ -247,6 +247,7 @@ const VIP = () => {
               .map((vip, index) => {
                 return (
                   <VIPIcon
+                    key={vip.level}
                     $active={vip.level - 1 === selectedLevel}
                     onClick={() => {
                       setSelectedLevel(index);
@@ -291,7 +292,7 @@ const VIP = () => {
           <TitleBlock $width={"360px"}>{i18n.t("vip.vipBenefit")}</TitleBlock>
           {productRebateByLevel.map((game) => {
             return (
-              <DataContainer>
+              <DataContainer key={game.name}>
                 <div>
                   <div>{game.label}</div>
                   <div>{`${game.rebate[selectedLevel]} %`}</div>

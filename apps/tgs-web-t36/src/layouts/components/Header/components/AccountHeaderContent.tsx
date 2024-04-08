@@ -14,7 +14,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { media } from "@/theme/breakpoints";
 import memberIcon from "@/assets/t36/images/header/icon-account.svg";
-import RefreshButton from "@/components/project/BalanceTracker/components/RefreshButton";
+import RefreshButton from "@/components/project/RefreshButton";
 
 const MainContainer = styled.div`
   display: flex;
