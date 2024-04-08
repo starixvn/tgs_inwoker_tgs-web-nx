@@ -83,6 +83,19 @@
           "ImageName": "tgs-web-t29"
         }
       }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/tgs-web-t29/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "tgs-web-t29:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "tgs-web-t29:serve:production"
+        }
+      }
     }
   },
   "tags": []

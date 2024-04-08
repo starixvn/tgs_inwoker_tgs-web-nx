@@ -28,7 +28,8 @@
       "inputs": ["default", "^production"]
     },
     "e2e": {
-      "cache": true
+      "cache": true,
+      "inputs": ["default", "^production"]
     }
   },
   "namedInputs": {
@@ -59,5 +60,16 @@
         "unitTestRunner": "none"
       }
     }
-  }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/cypress",
+      "options": {
+        "targetName": "e2e",
+        "ciTargetName": "e2e-ci",
+        "componentTestingTargetName": "component-test",
+        "openTargetName": "open-cypress"
+      }
+    }
+  ]
 }
