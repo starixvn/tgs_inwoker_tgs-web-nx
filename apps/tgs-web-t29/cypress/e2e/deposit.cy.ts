@@ -1,13 +1,17 @@
 import {common, deposit} from "../commands";
 
+
 describe("存款功能 E2E 測試", () => {
   beforeEach(() => {
-    common.setLang();
+    common.setAuthLocalStorage();
   });
 
-  it("visitDepositPage", () => {
-    common.interceptBaseApi();
-    deposit.enterLoginInfo();
+  it("前往存款頁面", () => {
     deposit.visitDepositPage();
+  });
+
+  it("銀行手動存款測試", () => {
+    deposit.visitDepositPage();
+    deposit.bank.manualBankDeposit();
   });
 });

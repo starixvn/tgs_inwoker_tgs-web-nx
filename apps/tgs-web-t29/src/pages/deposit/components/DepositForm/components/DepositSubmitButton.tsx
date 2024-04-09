@@ -16,6 +16,7 @@ export const DepositSubmitButton = ({
 
   return (
     <SubmitButton
+      data-cy="deposit_submit_button"
       onClick={handleOnSubmit}
       variant="contained"
       color="primary"
