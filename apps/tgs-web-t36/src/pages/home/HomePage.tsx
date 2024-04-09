@@ -221,7 +221,7 @@ const HomePage = () => {
         </>
       )}
       <BannerWrapper>
-        {isDesktopSize && activeGameType && (
+        {activeGameType !== GameTypeEnum.NONE && isDesktopSize && (
           <GameTypeBanner
             $imageUrl={
               activeGameTypeKey
