@@ -1,271 +1,271 @@
 {
-  "data": [
-      {
-          "code": "TFTF",
-          "description": null,
-          "gametypes": [
-              4
-          ],
-          "transferwallet": true,
-          "name": "TF",
-          "status": 0
-      },
-      {
-          "code": "KY",
-          "description": null,
-          "gametypes": [
-              7,
-              9,
-              8
-          ],
-          "transferwallet": true,
-          "name": "KY",
-          "status": 0
-      },
-      {
-          "code": "JOKER",
-          "description": null,
-          "gametypes": [
-              15,
-              9,
-              16
-          ],
-          "transferwallet": true,
-          "name": "Joker",
-          "status": 0
-      },
-      {
-          "code": "AWC_SG",
-          "description": null,
-          "gametypes": [
-              5,
-              6
-          ],
-          "transferwallet": true,
-          "name": "Sexy Gaming",
-          "status": 0
-      },
-      {
-          "code": "JILITF",
-          "description": null,
-          "gametypes": [
-              15,
-              9,
-              16
-          ],
-          "transferwallet": true,
-          "name": "JILI",
-          "status": 0
-      },
-      {
-          "code": "OBET",
-          "description": "OBET33",
-          "gametypes": [
-              1
-          ],
-          "transferwallet": true,
-          "name": "OBET",
-          "status": 0
-      },
-      {
-          "code": "BTG",
-          "description": "Big Time Gaming",
-          "gametypes": [
-              15
-          ],
-          "transferwallet": true,
-          "name": "BTG",
-          "status": 3
-      },
-      {
-          "code": "AWC_YL",
-          "description": null,
-          "gametypes": [
-              16,
-              9
-          ],
-          "transferwallet": true,
-          "name": "YL",
-          "status": 0
-      },
-      {
-          "code": "PPTF",
-          "description": null,
-          "gametypes": [
-              15,
-              16,
-              5,
-              2,
-              6
-          ],
-          "transferwallet": true,
-          "name": "PragmaticPlay",
-          "status": 0
-      },
-      {
-          "code": "FUNKY",
-          "description": null,
-          "gametypes": [
-              15
-          ],
-          "transferwallet": true,
-          "name": "FUNKY",
-          "status": 0
-      },
-      {
-          "code": "AWC_VENUS",
-          "description": null,
-          "gametypes": [
-              5,
-              6
-          ],
-          "transferwallet": true,
-          "name": "Venus",
-          "status": 0
-      },
-      {
-          "code": "AWC_PGS",
-          "description": null,
-          "gametypes": [
-              15,
-              16
-          ],
-          "transferwallet": true,
-          "name": "PGSoft",
-          "status": 0
-      },
-      {
-          "code": "RTTF",
-          "description": null,
-          "gametypes": [
-              15,
-              16
-          ],
-          "transferwallet": true,
-          "name": "Red Tiger",
-          "status": 3
-      },
-      {
-          "code": "DGTF",
-          "description": null,
-          "gametypes": [
-              5,
-              6
-          ],
-          "transferwallet": true,
-          "name": "DG",
-          "status": 0
-      },
-      {
-          "code": "ENDOR",
-          "description": null,
-          "gametypes": [
-              15
-          ],
-          "transferwallet": true,
-          "name": "Endorphina",
-          "status": 0
-      },
-      {
-          "code": "NLC",
-          "description": "No Limit City",
-          "gametypes": [
-              15
-          ],
-          "transferwallet": true,
-          "name": "No Limit City",
-          "status": 3
-      },
-      {
-          "code": "NTTF",
-          "description": null,
-          "gametypes": [
-              15,
-              5
-          ],
-          "transferwallet": true,
-          "name": "Netent",
-          "status": 3
-      },
-      {
-          "code": "EVOTF",
-          "description": "Evolution",
-          "gametypes": [
-              5,
-              6
-          ],
-          "transferwallet": true,
-          "name": "Evolution",
-          "status": 3
-      },
-      {
-          "code": "365TF",
-          "description": null,
-          "gametypes": [
-              8,
-              7
-          ],
-          "transferwallet": true,
-          "name": "365",
-          "status": 0
-      },
-      {
-          "code": "PINNACLE",
-          "description": "PINNACLE",
-          "gametypes": [
-              1
-          ],
-          "transferwallet": true,
-          "name": "PINNACLE",
-          "status": 0
-      },
-      {
-          "code": "FACHAI",
-          "description": null,
-          "gametypes": [
-              15,
-              16,
-              9
-          ],
-          "transferwallet": true,
-          "name": "FACHAI-Temmietest",
-          "status": 0
-      },
-      {
-          "code": "AWC_KM",
-          "description": null,
-          "gametypes": [
-              16
-          ],
-          "transferwallet": true,
-          "name": "KingMidas",
-          "status": 0
-      },
-      {
-          "code": "AWC_YESBINGO",
-          "description": null,
-          "gametypes": [
-              16,
-              9,
-              15
-          ],
-          "transferwallet": true,
-          "name": "YesBingo",
-          "status": 0
-      },
-      {
-          "code": "AWC_BG",
-          "description": null,
-          "gametypes": [
-              5,
-              6
-          ],
-          "transferwallet": true,
-          "name": "BG",
-          "status": 0
-      }
-  ],
-  "err": 0,
-  "errmsg": "",
-  "errmsgid": null
+    "data": [
+        {
+            "code": "TFTF",
+            "description": null,
+            "gametypes": [
+                4
+            ],
+            "transferwallet": true,
+            "name": "TF",
+            "status": 0
+        },
+        {
+            "code": "KY",
+            "description": null,
+            "gametypes": [
+                7,
+                9,
+                8
+            ],
+            "transferwallet": true,
+            "name": "KY",
+            "status": 0
+        },
+        {
+            "code": "JOKER",
+            "description": null,
+            "gametypes": [
+                15,
+                9,
+                16
+            ],
+            "transferwallet": true,
+            "name": "Joker",
+            "status": 0
+        },
+        {
+            "code": "AWC_SG",
+            "description": null,
+            "gametypes": [
+                5,
+                6
+            ],
+            "transferwallet": true,
+            "name": "Sexy Gaming",
+            "status": 0
+        },
+        {
+            "code": "JILITF",
+            "description": null,
+            "gametypes": [
+                15,
+                9,
+                16
+            ],
+            "transferwallet": true,
+            "name": "JILI",
+            "status": 0
+        },
+        {
+            "code": "OBET",
+            "description": "OBET33",
+            "gametypes": [
+                1
+            ],
+            "transferwallet": true,
+            "name": "OBET",
+            "status": 0
+        },
+        {
+            "code": "BTG",
+            "description": "Big Time Gaming",
+            "gametypes": [
+                15
+            ],
+            "transferwallet": true,
+            "name": "BTG",
+            "status": 3
+        },
+        {
+            "code": "AWC_YL",
+            "description": null,
+            "gametypes": [
+                16,
+                9
+            ],
+            "transferwallet": true,
+            "name": "YL",
+            "status": 0
+        },
+        {
+            "code": "PPTF",
+            "description": null,
+            "gametypes": [
+                15,
+                16,
+                5,
+                2,
+                6
+            ],
+            "transferwallet": true,
+            "name": "PragmaticPlay",
+            "status": 0
+        },
+        {
+            "code": "FUNKY",
+            "description": null,
+            "gametypes": [
+                15
+            ],
+            "transferwallet": true,
+            "name": "FUNKY",
+            "status": 0
+        },
+        {
+            "code": "AWC_VENUS",
+            "description": null,
+            "gametypes": [
+                5,
+                6
+            ],
+            "transferwallet": true,
+            "name": "Venus",
+            "status": 0
+        },
+        {
+            "code": "AWC_PGS",
+            "description": null,
+            "gametypes": [
+                15,
+                16
+            ],
+            "transferwallet": true,
+            "name": "PGSoft",
+            "status": 0
+        },
+        {
+            "code": "RTTF",
+            "description": null,
+            "gametypes": [
+                15,
+                16
+            ],
+            "transferwallet": true,
+            "name": "Red Tiger",
+            "status": 3
+        },
+        {
+            "code": "DGTF",
+            "description": null,
+            "gametypes": [
+                5,
+                6
+            ],
+            "transferwallet": true,
+            "name": "DG",
+            "status": 0
+        },
+        {
+            "code": "ENDOR",
+            "description": null,
+            "gametypes": [
+                15
+            ],
+            "transferwallet": true,
+            "name": "Endorphina",
+            "status": 0
+        },
+        {
+            "code": "NLC",
+            "description": "No Limit City",
+            "gametypes": [
+                15
+            ],
+            "transferwallet": true,
+            "name": "No Limit City",
+            "status": 3
+        },
+        {
+            "code": "NTTF",
+            "description": null,
+            "gametypes": [
+                15,
+                5
+            ],
+            "transferwallet": true,
+            "name": "Netent",
+            "status": 3
+        },
+        {
+            "code": "EVOTF",
+            "description": "Evolution",
+            "gametypes": [
+                5,
+                6
+            ],
+            "transferwallet": true,
+            "name": "Evolution",
+            "status": 3
+        },
+        {
+            "code": "365TF",
+            "description": null,
+            "gametypes": [
+                8,
+                7
+            ],
+            "transferwallet": true,
+            "name": "365",
+            "status": 0
+        },
+        {
+            "code": "PINNACLE",
+            "description": "PINNACLE",
+            "gametypes": [
+                1
+            ],
+            "transferwallet": true,
+            "name": "PINNACLE",
+            "status": 0
+        },
+        {
+            "code": "FACHAI",
+            "description": null,
+            "gametypes": [
+                15,
+                16,
+                9
+            ],
+            "transferwallet": true,
+            "name": "FACHAI-Temmietest",
+            "status": 0
+        },
+        {
+            "code": "AWC_KM",
+            "description": null,
+            "gametypes": [
+                16
+            ],
+            "transferwallet": true,
+            "name": "KingMidas",
+            "status": 0
+        },
+        {
+            "code": "AWC_YESBINGO",
+            "description": null,
+            "gametypes": [
+                16,
+                9,
+                15
+            ],
+            "transferwallet": true,
+            "name": "YesBingo",
+            "status": 0
+        },
+        {
+            "code": "AWC_BG",
+            "description": null,
+            "gametypes": [
+                5,
+                6
+            ],
+            "transferwallet": true,
+            "name": "BG",
+            "status": 0
+        }
+    ],
+    "err": 0,
+    "errmsg": "",
+    "errmsgid": null
 }

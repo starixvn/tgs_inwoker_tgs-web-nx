@@ -1,20 +1,20 @@
 {
-  "data": {
-      "brandId": "4e86719f-243f-46f6-b010-5c758b7285af",
-      "code": "GPI",
-      "desktopLogoUrl": "https://images.srvptt.com/Brand Logo/PGT2_logo.png",
-      "hasInvitationCode": false,
-      "loadingUrl": "https://images.srvptt.com/Brand Logo/PGT2_logo.png",
-      "mobileLogoUrl": "https://images.srvptt.com/Brand Logo/PGT2_logo.png",
-      "playerIdentityAuthenticationEnabled": false,
-      "playerRegisterFlowSettings": [
-          {
-              "type": "InitPhone"
-          }
-      ],
-      "smsEnable": true
-  },
-  "err": 0,
-  "errmsg": "",
-  "errmsgid": null
+    "data": {
+        "brandId": "4e86719f-243f-46f6-b010-5c758b7285af",
+        "code": "GPI",
+        "desktopLogoUrl": "https://images.srvptt.com/Brand Logo/PGT2_logo.png",
+        "hasInvitationCode": false,
+        "loadingUrl": "https://images.srvptt.com/Brand Logo/PGT2_logo.png",
+        "mobileLogoUrl": "https://images.srvptt.com/Brand Logo/PGT2_logo.png",
+        "playerIdentityAuthenticationEnabled": false,
+        "playerRegisterFlowSettings": [
+            {
+                "type": "InitPhone"
+            }
+        ],
+        "smsEnable": true
+    },
+    "err": 0,
+    "errmsg": "",
+    "errmsgid": null
 }
