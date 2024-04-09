@@ -1,24 +1,24 @@
 {
-  "data": [
-      {
-          "type": "Telegram",
-          "phone": "16713494701",
-          "appid": null,
-          "qrcodeurl": "https://project.srvptt.com/tgs-project/messengerQRCode/LCdD789hQrcE9k8RdblMsBVvcPH72nD5.png"
-      },
-      {
-          "type": "WeChat",
-          "phone": null,
-          "appid": "32123213213",
-          "qrcodeurl": "https://project.srvptt.com/tgs-project/messengerQRCode/GNh5OGHKKpb2Q496Phj7qz8GfJGseCuA.png"
-      },
-      {
-          "type": "WhatsApp",
-          "phone": null,
-          "appid": "123",
-          "qrcodeurl": "https://project.srvptt.com/tgs-project/messengerQRCode/78r0QnnLBE6WI0Bn36RzXOw0NjosJWvy.png"
-      }
-  ],
-  "err": 0,
-  "errmsg": ""
+    "data": [
+        {
+            "type": "Telegram",
+            "phone": "16713494701",
+            "appid": null,
+            "qrcodeurl": "https://project.srvptt.com/tgs-project/messengerQRCode/LCdD789hQrcE9k8RdblMsBVvcPH72nD5.png"
+        },
+        {
+            "type": "WeChat",
+            "phone": null,
+            "appid": "32123213213",
+            "qrcodeurl": "https://project.srvptt.com/tgs-project/messengerQRCode/GNh5OGHKKpb2Q496Phj7qz8GfJGseCuA.png"
+        },
+        {
+            "type": "WhatsApp",
+            "phone": null,
+            "appid": "123",
+            "qrcodeurl": "https://project.srvptt.com/tgs-project/messengerQRCode/78r0QnnLBE6WI0Bn36RzXOw0NjosJWvy.png"
+        }
+    ],
+    "err": 0,
+    "errmsg": ""
 }

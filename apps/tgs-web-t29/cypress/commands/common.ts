@@ -80,6 +80,11 @@ function interceptBaseApi() {
 }
 
 
+function setSessionStorage() {
+  sessionStorage.setItem('doNotShowAnnouncementDialog', 'true');
+  sessionStorage.setItem('doNotShowPromotionDialog', 'true');
+}
+
 /**
  * 設定未登入狀態的 localstorage
  */
@@ -87,6 +92,7 @@ function setNotAuthLocalStorage() {
   for(const key in mapLocalStorage) {
     localStorage.setItem(key, mapLocalStorage[key])
   }
+  
 };
 
 /**
@@ -112,4 +118,5 @@ export const common = {
   interceptBaseApi,
   setNotAuthLocalStorage,
   setAuthLocalStorage,
+  setSessionStorage,
 };

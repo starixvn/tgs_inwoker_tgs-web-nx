@@ -1,28 +1,28 @@
 {
-  "data": [
-      {
-          "culturecode": "en-US"
-      },
-      {
-          "culturecode": "hi-IN"
-      },
-      {
-          "culturecode": "ta-IN"
-      },
-      {
-          "culturecode": "tgl-PH"
-      },
-      {
-          "culturecode": "th-TH"
-      },
-      {
-          "culturecode": "vi-VN"
-      },
-      {
-          "culturecode": "zh-CN"
-      }
-  ],
-  "err": 0,
-  "errmsg": "",
-  "errmsgid": null
+    "data": [
+        {
+            "culturecode": "en-US"
+        },
+        {
+            "culturecode": "hi-IN"
+        },
+        {
+            "culturecode": "ta-IN"
+        },
+        {
+            "culturecode": "tgl-PH"
+        },
+        {
+            "culturecode": "th-TH"
+        },
+        {
+            "culturecode": "vi-VN"
+        },
+        {
+            "culturecode": "zh-CN"
+        }
+    ],
+    "err": 0,
+    "errmsg": "",
+    "errmsgid": null
 }

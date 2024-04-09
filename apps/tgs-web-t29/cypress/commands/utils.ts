@@ -5,7 +5,7 @@ export type api = {
   method?: 'GET' | 'POST';
 }
 
-type FixtureType = 'common' | 'login'; // fixtures 的資料夾
+type FixtureType = 'common' | 'login' | 'deposit'; // fixtures 的資料夾
 
 /**
  * 攔截 API
