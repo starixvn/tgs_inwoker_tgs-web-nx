@@ -84,10 +84,10 @@ const GameCardContent = styled.div`
   width: 100%;
 `;
 
-const GameCardBg = styled.div`
+const GameCardBg = styled.div<{ $isActive: boolean }>`
   width: calc(33.33% - 15px);
   position: relative;
-  cursor: pointer;
+  cursor: ${({ $isActive }) => ($isActive ? "pointer" : "unset")};
   aspect-ratio: 94 / 127;
 
   ${media.sm} {
@@ -207,7 +207,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   }, [resizeText, gameNameRef.current]);
 
   return (
-    <GameCardBg onClick={launchGameHandler}>
+    <GameCardBg onClick={launchGameHandler} $isActive={isActive}>
       <GameCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         <TagBg>
