@@ -103,7 +103,6 @@ export const defaultConfig: Config = {
 export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
-    countryCode: "vi-VN", //for QA testing TGS-4194 & TGS-4184
     currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
     isFixedPhoneLength: true,
   },
@@ -122,7 +121,6 @@ export const brandConfig: Record<BrandName, Config> = {
     isShowDownloadApp: false,
     isShowChatCustomerService: false,
     isAllowMulitBankCards: false,
-    countryCode: "vi-VN",
     currencyRate: 1000,
     isDisableWebPinchAction: true,
     isShowAgentAdminButton: true,
@@ -188,7 +186,6 @@ export const brandConfig: Record<BrandName, Config> = {
     isShowDownloadApp: false,
     isShowChatCustomerService: false,
     isAllowMulitBankCards: false,
-    countryCode: "vi-VN",
     currencyRate: 1000,
     isDisableWebPinchAction: true,
     isShowAgentAdminButton: true,
