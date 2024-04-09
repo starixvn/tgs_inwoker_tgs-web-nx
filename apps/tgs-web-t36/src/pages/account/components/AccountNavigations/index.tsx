@@ -70,31 +70,6 @@ const AccountNavigations = () => {
         <LanguageSwitchWrapper>
           <LanguageSwitch />
         </LanguageSwitchWrapper>
-
-        {/* 
-        {isDesktopSize && (
-          <AccountNavCardsSubContainer>
-            <AppDownloadButton
-              navItem={navItemDictionary[NavCardKey.APP_DOWNLOAD]}
-              handleClick={() => handleClickNav(navItemDictionary[NavCardKey.APP_DOWNLOAD])}
-            />
-
-            <LanguageSwitch />
-
-            <Button
-              variant={"contained"}
-              onClick={handleLogout}
-              sx={{
-                color: "white",
-                background: "linear-gradient(90deg, #40434C 49.31%, #363942 49.63%)",
-                fontSize: "1.125rem",
-                height: "44px",
-              }}
-            >
-              {i18n.t("web.header.logout")}
-            </Button>
-          </AccountNavCardsSubContainer>
-        )} */}
       </AccountNavsContainer>
 
       {/*<Loading show={logoutState.isLoading} />*/}
