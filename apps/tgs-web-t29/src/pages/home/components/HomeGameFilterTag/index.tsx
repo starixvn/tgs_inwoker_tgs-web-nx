@@ -102,8 +102,8 @@ const HomeGameFilterTag = () => {
     activeProviderFilterTag,
     searchString,
     handleChangeSearch,
+    providerList,
   } = useHomeGameContext();
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
 
   const onChangeCommonFilterTag = (newFilterTag: FilterTag) => {
     if (!isLogin && newFilterTag.tagType === FilterTagTypeEnum.FAVORITE) {
@@ -169,7 +169,7 @@ const HomeGameFilterTag = () => {
           </AllText>
           <div>
             {providerFilterTagList.map((filterTag) => {
-              const matchedProvider = navPopupCategoryList.find(
+              const matchedProvider = providerList.find(
                 (provider) => provider.code === filterTag.gpCode,
               );
               const status = matchedProvider ? matchedProvider.status : -1;
