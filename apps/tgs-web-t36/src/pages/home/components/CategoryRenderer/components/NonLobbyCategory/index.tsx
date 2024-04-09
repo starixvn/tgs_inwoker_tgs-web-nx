@@ -34,7 +34,6 @@ const CategoryContent = styled.div`
   width: 100%;
   align-self: stretch;
   gap: 10px;
-  justify-content: center;
   ${media.sm} {
     max-height: unset;
     overflow-x: unset;
