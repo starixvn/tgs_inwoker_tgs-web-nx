@@ -5,18 +5,22 @@ export type api = {
   method?: 'GET' | 'POST';
 }
 
-type FixtureType = 'common' | 'login'; // fixture 資料夾分類
+type FixtureType = 'common' | 'login'; // fixtures 的資料夾
 
+/**
+ * 攔截 API
+ * @param apis API陣列
+ * @param type fixtures 的資料夾
+ */
 export const interceptAPIs = (apis: api[], type: FixtureType) => {
   apis.forEach((row) => {
     cy.intercept({
-      method: row.method ? row.method : 'GET',
+      method: '+(GET|POST)',
       path: `**/${row.path}`,
     }, {
       fixture: `/${type}/${row.fixture}.json`
     }).as(row.as);
   });
-  console.log(apis);
   
   return {asApis: apis.map(row => `@${row.as}`)}
 } 

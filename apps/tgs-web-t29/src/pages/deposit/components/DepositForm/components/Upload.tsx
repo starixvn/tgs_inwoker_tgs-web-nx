@@ -1,16 +1,23 @@
 import { useRef, ChangeEvent, useContext } from "react";
+import styled from 'styled-components';
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { DepositFormContext } from "./DepositFormProvider";
 import {
-  FormControl,
   ItemContainer,
   LabelContainer,
   Remark,
   UploadFileButton,
   UploadFileTag,
 } from "@/components/styled-component/ProfileForms";
+
+
+const UploadTag = styled(UploadFileTag)`
+  margin-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #D6DBDD;
+`;
 
 /**
  * 上傳憑證
@@ -57,7 +64,6 @@ export const Upload = () => {
       <ItemContainer>
         <LabelContainer>{i18n.t("deposit.uploadReceipt")}</LabelContainer>
 
-        <FormControl>
           <UploadFileButton
             onClick={handleOnClickFileButton}
             variant={"outlined"}
@@ -70,19 +76,18 @@ export const Upload = () => {
             ref={inputRef}
             onChange={handleFileChange}
             accept="image/jpg, image/jpeg, image/png, image/tiff"
-            style={{ display: "none" }}
+            style={{ opacity: 0, height: '1px', padding: 0 }} // for e2e test click
           />
 
-          {files && <UploadFileTag>{files[0].name}</UploadFileTag>}
-        </FormControl>
+          {files && <UploadTag>{files[0].name}</UploadTag>}
       </ItemContainer>
-      <Remark>
+      {!files && <Remark>
         {i18n.t(
           config.features.Deposit_UploadRequired
             ? "deposit.msgPlsUploadProof"
             : "deposit.msgNotMustUploadProof",
         )}
-      </Remark>
+      </Remark>}
     </>
   );
 }

@@ -34,6 +34,7 @@ export const Cards = ({
             key={index}
             onClick={()=> row.onClick(row.code)}
             $isActive={row.isActive}
+            data-cy={row.code}
           >
             {row.iconUrl && <CardIcon iconUrl={row.iconUrl}/>}
             {row.children}

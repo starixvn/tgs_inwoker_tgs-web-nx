@@ -39,6 +39,7 @@ export const DepositInput = ({
         <FormControl variant="outlined">
           <TextField
             fullWidth
+            name={formKey}
             value={formData[formKey]}
             onChange={handleOnInput}
             type={type}
