@@ -16,6 +16,11 @@ describe("存款功能 E2E 測試", () => {
     deposit.bank.manualBankDeposit();
   });
 
+  it("DibaoPay", () => {
+    deposit.visitDepositPage();
+    deposit.bank.dibaoPay();
+  });
+
   it("Coinsph 手動存款測試", () => {
     deposit.visitDepositPage();
     deposit.coinsph.manualCoinsphDeposit();

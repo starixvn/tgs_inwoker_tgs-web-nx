@@ -1,8 +1,6 @@
 export type api = {
   path: string;
   fixture: string;
-  as: string;
-  method?: 'GET' | 'POST';
 }
 
 type FixtureType = 'common' | 'login' | 'deposit'; // fixtures 的資料夾
@@ -19,8 +17,6 @@ export const interceptAPIs = (apis: api[], type: FixtureType) => {
       path: `**/${row.path}`,
     }, {
       fixture: `/${type}/${row.fixture}.json`
-    }).as(row.as);
+    });
   });
-  
-  return {asApis: apis.map(row => `@${row.as}`)}
 } 

@@ -3,12 +3,12 @@ import {common} from "../common";
 import {bank} from './bank';
 import {coinsph} from './coinsph';
 
-
+const defaultUser = 'testFE1'; // STG環境 前端測試用帳密
 
 /**
  * 登入 目前未用到
  */
-function enterLoginInfo(username = 'testFE1', password = 'testFE1') {
+function enterLoginInfo(username = defaultUser, password = defaultUser) {
   cy.get('[name="username"]').type(username);
   cy.get('[name="password"]').type(password);
   cy.get('button[type="submit"]').click();
@@ -23,36 +23,34 @@ function interceptDepositApi() {
     {
       path: 'bankinfo',
       fixture: 'bankInfo',
-      as: 'playerInfo',
+    },
+    {
+      path: 'withdraw',
+      fixture: 'withdraw',
     },
     {
       path: 'Auth/jwt',
       fixture: 'jwt',
-      as: 'jwt',
     },
     {
       path: 'letter/en-US**',
       fixture: 'letter',
-      as: 'letter',
     },
     {
       path: '/promotion/roulette/count',
       fixture: 'rouletteCount',
-      as: 'rouletteCount',
     },
     {
       path: 'Wallet',
       fixture: 'wallet',
-      as: 'wallet',
     },
     {
       path: 'game/balance/**',
       fixture: 'balance',
-      as: 'balance',
     },
   ];
-  const {asApis} = interceptAPIs(commonApis, 'login');
-  return asApis;
+
+  interceptAPIs(commonApis, 'login');
 }
 
 /**
@@ -61,7 +59,7 @@ function interceptDepositApi() {
  */
 function visitLoginPage () {
   common.interceptBaseApi();
-  cy.visit(`${ Cypress.config().baseUrl }login` ?? '/');
+  cy.visit(`${Cypress.config().baseUrl}login` ?? '/');
   enterLoginInfo();
 }
 

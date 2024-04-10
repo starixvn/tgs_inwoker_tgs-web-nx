@@ -1,4 +1,4 @@
-import {interceptAPIs} from './utils';
+import {interceptAPIs, type api} from './utils';
 
 const clientToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZTg2NzE5Zi0yNDNmLTQ2ZjYtYjAxMC01Yzc1OGI3Mjg1YWYiLCJqdGkiOiJiYmQwZmRhNS0zNzI5LTRjYjUtODkwMC1iZDMyMjc4ZTQ0NmYiLCJjdXJyIjoiVk5EIiwibmJmIjoxNzEyNjMwNDQ1LCJleHAiOjE3MTI2MzQwNDUsImlhdCI6MTcxMjYzMDQ0NSwiaXNzIjoib3BlcmF0b3ItYXBpIn0.DUsbUywdLfm3EquIDlZpWP7MthnT-4kIjJ-rRHTKni0';
 const mapLocalStorage: Record<string, string> = {
@@ -11,72 +11,62 @@ const mapLocalStorage: Record<string, string> = {
  * @returns '@ API 別名'
  */
 function interceptBaseApi() {
-  const commonApis = [
+  const commonApis: api[] = [
       {
         path: 'translation/en**',
         fixture: 'translation/en-US',
-        as: 'translation',
       },
       {
         path: 'Player/info',
         fixture: 'info',
-        as: 'playerInfo',
       },
       {
         path: 'api/brand',
         fixture: 'brand',
-        as: 'brand',
       },
       {
         path: 'config_GPI.json',
         fixture: 'config',
-        as: 'config_GPI',
       },
       {
         path: 'brandlanguage',
         fixture: 'brandLanguage',
-        as: 'brandLanguage',
       },
       {
         path: 'localization',
         fixture: 'localization',
-        as: 'locallization',
       },
       {
         path: 'GameProvider/list**',
         fixture: 'gameProviderList',
-        as: 'gameProviderList',
       },
       {
         path: 'banner',
         fixture: 'banner',
-        as: 'banner',
       },
       {
         path: 'brandcommunication',
         fixture: 'brandCommunication',
-        as: 'brandCommunication',
       },
       {
         path: 'brandlivechat',
         fixture: 'brandLivechat',
-        as: 'brandLivechat',
       },
       {
         path: 'promotion',
         fixture: 'promotion',
-        as: 'promotion',
       },
       {
         path: 'brandallagent/check',
         fixture: 'brandAllAgent',
-        as: 'brandAllAgent',
       },
-      
+      {
+        path: 'announcement/list/en-US',
+        fixture: 'announcementList',
+      },
   ];
 
-  const {asApis} = interceptAPIs(commonApis, 'common');
-  return asApis;
+  interceptAPIs(commonApis, 'common');
 }
 
 
