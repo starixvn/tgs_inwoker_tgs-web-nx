@@ -21,10 +21,10 @@ const ResultPopupDialog = ({ isDialogOpen, handleClose, handleOpenPopupUrl }: Pr
         <DialogContent>{i18n.t("deposit.msgDialog")}</DialogContent>
 
         <TwoButtonWrapper>
-          <Button onClick={handleOpenPopupUrl} style={{ float: "left" }}>
+          <Button onClick={handleOpenPopupUrl} style={{ float: "left" }} data-cy="confirm_button">
             {i18n.t("common.confirm")}
           </Button>
-          <Button onClick={handleClose} style={{ float: "right" }}>
+          <Button onClick={handleClose} style={{ float: "right" }} data-cy="cancel">
             {i18n.t("common.cancel")}
           </Button>
         </TwoButtonWrapper>
