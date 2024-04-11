@@ -35,6 +35,7 @@ import RegisterV2SetRealNameDialog from "@/components/project/auth/Dialogs/Regis
 
 
 
+
 const App: React.FC = () => {
   const { isLoading } = useInitSite();
   const gameTypeList = useGameTypeList();
