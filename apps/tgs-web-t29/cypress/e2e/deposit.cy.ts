@@ -25,4 +25,29 @@ describe("存款功能 E2E 測試", () => {
     deposit.visitDepositPage();
     deposit.coinsph.manualCoinsphDeposit();
   });
+
+  it("ThirdParty 手動存款測試", () => {
+    deposit.visitDepositPage();
+    deposit.thirdParty.manualThirdPartyDeposit();
+  });
+
+  it("FPS 手動存款測試", () => {
+    deposit.visitDepositPage();
+    deposit.fps.manualFPSDeposit();
+  });
+
+  it("eWallet 手動存款測試", () => {
+    deposit.visitDepositPage();
+    deposit.eWallet.manualeWalletDeposit();
+  });
+
+  it("Pulsa 手動存款測試", () => {
+    deposit.visitDepositPage();
+    deposit.pulsa.manualPulsaDeposit();
+  });
+
+  it("USDT 手動存款測試", () => {
+    deposit.visitDepositPage();
+    deposit.trc.manualUsdtDeposit();
+  });
 });
