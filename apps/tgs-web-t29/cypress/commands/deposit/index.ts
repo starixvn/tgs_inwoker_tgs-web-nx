@@ -30,6 +30,10 @@ function interceptDepositApi() {
       fixture: 'bankInfo',
     },
     {
+      path: 'Player/Login',
+      fixture: 'token',
+    },
+    {
       path: 'withdraw',
       fixture: 'withdraw',
     },
