@@ -35,7 +35,7 @@ type MOVN2Config = {
   isHideTransferButton: boolean; // 是否在BottomAppBar顯示TransferButton https://raypro.atlassian.net/browse/TGS-4333
   customGametypeSort: string[]; // game type 是否有客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-3968
   defaultActiveGametype: GameTypeEnum | null; //預設active的game type https://raypro.atlassian.net/browse/TGS-3968
-  customGameProvirderSort: string[]; //game provider客製化排序 https://raypro.atlassian.net/browse/TGS-4420
+  customGameProviderSort: string[]; //game provider客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-4420
 };
 
 type MOPHConfig = {
@@ -94,7 +94,7 @@ export const defaultConfig: Config = {
   defaultActiveGametype: null,
   isFixedPhoneLength: false,
   contractAge: 18,
-  customGameProvirderSort: [],
+  customGameProviderSort: [],
   // new brand config start here
   // NewBrand
 };
@@ -140,11 +140,12 @@ export const brandConfig: Record<BrandName, Config> = {
       "esports",
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
-    customGameProvirderSort: [
+    customGameProviderSort: [
       "JILITF",
       "AWC_PGS",
       "FACHAI",
       "JDBTF",
+      "FUNKY",
       "AWC_FS",
       "JOKER",
       "BTG",
@@ -205,11 +206,12 @@ export const brandConfig: Record<BrandName, Config> = {
       "esports",
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
-    customGameProvirderSort: [
+    customGameProviderSort: [
       "JILITF",
       "AWC_PGS",
       "FACHAI",
       "JDBTF",
+      "FUNKY",
       "AWC_FS",
       "JOKER",
       "BTG",
@@ -259,11 +261,12 @@ export const brandConfig: Record<BrandName, Config> = {
     defaultActiveGametype: GameTypeEnum.SLOT,
     isFixedPhoneLength: true,
     contractAge: 21,
-    customGameProvirderSort: [
+    customGameProviderSort: [
       "JILITF",
       "AWC_PGS",
       "FACHAI",
       "JDBTF",
+      "FUNKY",
       "AWC_FS",
       "JOKER",
       "BTG",
