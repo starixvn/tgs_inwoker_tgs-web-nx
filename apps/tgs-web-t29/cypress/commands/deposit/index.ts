@@ -1,7 +1,12 @@
-import { interceptAPIs, type api } from "../utils";
+import {interceptAPIs, type api} from "../utils";
 import {common} from "../common";
 import {bank} from './bank';
 import {coinsph} from './coinsph';
+import {thirdParty} from "./thirdParty";
+import {fps} from "./fps";
+import {eWallet} from "./eWallet";
+import {pulsa} from "./pulsa";
+import {trc} from "./trc";
 
 const defaultUser = 'testFE1'; // STG環境 前端測試用帳密
 
@@ -98,4 +103,9 @@ export const deposit = {
   visitDepositPage,
   bank,
   coinsph,
+  thirdParty,
+  fps,
+  eWallet,
+  pulsa,
+  trc,
 }
