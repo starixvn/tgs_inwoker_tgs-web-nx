@@ -10,7 +10,7 @@ import egameBg from "@/assets/t36/images/home/category/egame-bg.png";
 import esportBg from "@/assets/t36/images/home/category/esport-bg.png";
 import fishingBg from "@/assets/t36/images/home/category/fishing-bg.png";
 
-import slotsBgDesktop from "@/assets/t36/images/home/category/cardGame-bg-desktop.png";
+import slotsBgDesktop from "@/assets/t36/images/home/category/slots-bg-desktop.png";
 import liveBgDesktop from "@/assets/t36/images/home/category/live-bg-desktop.png";
 import lotteryBgDesktop from "@/assets/t36/images/home/category/lottery-bg-desktop.png";
 import cardGameBgDesktop from "@/assets/t36/images/home/category/cardGame-bg-desktop.png";
