@@ -63,6 +63,7 @@ export const ManageBankCardButtonContainer = styled.div`
 export const ItemContainer = styled(ProfileItemContainer)`
   ${media.sm} {
     max-width: none;
+    width: 100%;
   }
 `;
 export const FormControl = styled(ProfileFormControl)`
@@ -121,7 +122,7 @@ export const AmountWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  min-width: 500px;
+  /* min-width: 500px; */
 `;
 export const USDTWrapper = styled.div``;
 export const SubHeaderContainer = styled.div`
