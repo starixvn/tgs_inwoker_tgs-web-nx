@@ -15,7 +15,7 @@ export function useProvider() {
     providerList: [],
     error: null,
   });
-  const gpCustomSort = brandConfig[mapBrandName(config.brand)].customGameProvirderSort;
+  const gpCustomSort = brandConfig[mapBrandName(config.brand)].customGameProviderSort;
 
   useEffect(() => {
     const getProviderList = async () => {
@@ -27,10 +27,14 @@ export function useProvider() {
         });
         const response = await GameService.GetProviderList();
         const formattedProviderList = getFormattedProviderList(response.data);
-        //空陣列為沒有客製化排序
+        //客製化排序不為空才做排序
         if (gpCustomSort.length) {
           formattedProviderList.sort((a, b) => {
-            return gpCustomSort.indexOf(a.code) - gpCustomSort.indexOf(b.code);
+            const indexA = gpCustomSort.indexOf(a.code);
+            const indexB = gpCustomSort.indexOf(b.code);
+            if (indexA === -1) return 1;
+            if (indexB === -1) return -1;
+            return indexA - indexB;
           });
         }
         setProviderState({
