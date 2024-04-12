@@ -86,10 +86,10 @@ const VendorCardContent = styled.div`
   width: 100%;
 `;
 
-const VendorCardBg = styled.div`
+const VendorCardBg = styled.div<{ $isActive: boolean }>`
   width: calc(50% - 5px);
   position: relative;
-  cursor: pointer;
+  cursor: ${({ $isActive }) => ($isActive ? "pointer" : "unset")};
   aspect-ratio: 240 / 254;
   background-color: ${(props) => props.theme.g4};
 
@@ -187,7 +187,10 @@ const VendorCard = ({ bgUrl, imageUrl, venderName, venderLogoUrl, launchGame, st
   }, [resizeText, venderNameRef.current]);
 
   return (
-    <VendorCardBg onClick={launchGameHandler}>
+    <VendorCardBg
+      onClick={launchGameHandler}
+      $isActive={status !== providerStatus.Maintenance ? true : false}
+    >
       <VendorCardContent>
         <GameIcon $imageUrl={imageUrl}></GameIcon>
         {isMobileSize && (
