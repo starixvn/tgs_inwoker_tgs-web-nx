@@ -74,14 +74,7 @@ const AccountDesktopLayout = ({ children }: Props) => {
         <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
           <>
             <ChildrenWrapper>
-              <DarkMemberMenu
-                handleCloseContextMenu={() => {}}
-                style={{
-                  width: "258px",
-                  flexShrink: 0,
-                  height: "100%",
-                }}
-              />
+              <DarkMemberMenu handleCloseContextMenu={() => {}} />
               {children}
             </ChildrenWrapper>
             <Footer />

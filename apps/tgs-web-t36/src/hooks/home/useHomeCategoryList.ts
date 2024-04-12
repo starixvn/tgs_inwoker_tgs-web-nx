@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import slotsBg from "@/assets/t36/images/home/category/slots-bg.png";
 import liveBg from "@/assets/t36/images/home/category/live-bg.png";
 import lotteryBg from "@/assets/t36/images/home/category/lottery-bg.png";
@@ -10,7 +11,7 @@ import egameBg from "@/assets/t36/images/home/category/egame-bg.png";
 import esportBg from "@/assets/t36/images/home/category/esport-bg.png";
 import fishingBg from "@/assets/t36/images/home/category/fishing-bg.png";
 
-import slotsBgDesktop from "@/assets/t36/images/home/category/cardGame-bg-desktop.png";
+import slotsBgDesktop from "@/assets/t36/images/home/category/slots-bg-desktop.png";
 import liveBgDesktop from "@/assets/t36/images/home/category/live-bg-desktop.png";
 import lotteryBgDesktop from "@/assets/t36/images/home/category/lottery-bg-desktop.png";
 import cardGameBgDesktop from "@/assets/t36/images/home/category/cardGame-bg-desktop.png";
@@ -32,6 +33,8 @@ type HomeCategoryItem = {
 
 export const useHomeCategoryList = () => {
   const [translatedGameTypeList, setTranslatedGameTypeList] = useState<HomeCategoryItem[]>([]);
+  const { providerList } = useHomeGameContext();
+
   useEffect(() => {
     const homeCategoryList: HomeCategoryItem[] = [
       {
@@ -100,13 +103,20 @@ export const useHomeCategoryList = () => {
       },
     ];
 
-    const translatedList: HomeCategoryItem[] = homeCategoryList.map((gameItem) => ({
+    let translatedList: HomeCategoryItem[] = homeCategoryList.map((gameItem) => ({
       ...gameItem,
       text: i18n.t(gameItem.text),
     }));
-
+    translatedList = translatedList.filter(checkHasData);
     setTranslatedGameTypeList(translatedList);
-  }, []);
+  }, [providerList]);
+
+  const checkHasData = (gameItem: HomeCategoryItem) => {
+    const hasData = providerList.filter((provider) => {
+      return provider.gametypes.includes(gameItem.gameType);
+    });
+    return hasData.length > 0;
+  };
 
   return translatedGameTypeList;
 };
