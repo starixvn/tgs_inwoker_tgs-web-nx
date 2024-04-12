@@ -4,7 +4,7 @@ import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   overflow: "visible",
   input: {
-    padding: "12px 20px",
+    padding: "12px 20px !important",
     color: theme.palette.text.primary,
     fontSize: "0.875rem",
     fontWeight: 400,
