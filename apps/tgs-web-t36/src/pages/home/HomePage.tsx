@@ -18,6 +18,7 @@ import ScrollableHomeHot from "@/pages/home/components/CategoryRenderer/componen
 import ScrollableHomeNew from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeNew";
 import ScrollableHomeRecommend from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/ScrollableHomeRecommend";
 import HomePromotionCard from "@/pages/home/components/HomePromotion";
+import PromotionRoulette from "@/components/project/PromotionRoulette";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -135,6 +136,28 @@ const BannerWrapper = styled.div`
   }
 `;
 
+const RouletteFloatingPanel = styled.div<{ position: any; orientation: any }>`
+  position: fixed;
+  z-index: 1300;
+
+  ${({ position }) => {
+    //for each item in position object, map accordingly
+    return position !== undefined
+      ? Object.keys(position).map((key) => {
+          return `${key}: ${position[key]}px;`;
+        })
+      : `  top: 0;
+    left: 0;
+    padding-top: 16%;
+    padding-left: 2%;`;
+  }}
+
+  display: flex;
+  flex-direction: ${({ orientation }) => {
+    return orientation ? orientation : "column";
+  }};
+`;
+
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
   height: 350px;
@@ -185,6 +208,16 @@ const HomePage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType, gameTypeList]);
+
+  const isRouletteAvailable = () => {
+    return (
+      general.promotionList.items &&
+      general.promotionList.items.length > 0 &&
+      general.promotionList.items.findIndex(
+        (item) => item.promotionType.toUpperCase() === "ROULETTE",
+      ) >= 0
+    );
+  };
 
   return (
     <MainWrapper>
@@ -240,6 +273,57 @@ const HomePage = () => {
         <MainContentWrapper>
           <CategoryRenderer />
         </MainContentWrapper>
+      )}
+      {config.features.HomePage_PromoRoulette && (
+        <RouletteFloatingPanel
+          position={
+            isMobileSize
+              ? config.features.RouletteSetting &&
+                config.features.RouletteSetting.wap &&
+                config.features.RouletteSetting.wap.position
+              : config.features.RouletteSetting &&
+                config.features.RouletteSetting.web &&
+                config.features.RouletteSetting.web.position
+          }
+          orientation={
+            isMobileSize
+              ? config.features.RouletteSetting &&
+                config.features.RouletteSetting.wap &&
+                config.features.RouletteSetting.wap.orientation
+              : config.features.RouletteSetting &&
+                config.features.RouletteSetting.web &&
+                config.features.RouletteSetting.web.orientation
+          }
+        >
+          {general.rouletteCount.length >= 0 &&
+            general.rouletteCount
+              .filter((item) => {
+                return item.promotiontype.toUpperCase() === "DEPOSITACCUMULATEROULETTE";
+              })
+              .map((roulette, index) => {
+                return roulette.roulettecount >= 0 && index === 0 ? (
+                  <PromotionRoulette
+                    key={roulette.promotionid}
+                    rouletteType={roulette.promotiontype.toUpperCase()}
+                    promotionDetail={{ id: roulette.promotionid }}
+                  ></PromotionRoulette>
+                ) : (
+                  <React.Fragment key={roulette.promotionid}></React.Fragment>
+                );
+              })}
+          {config.features.HomePage_PromoRoulette &&
+            !config.features.RouletteNewFlow &&
+            isRouletteAvailable() && (
+              <PromotionRoulette
+                rouletteType="ROULETTE"
+                promotionDetail={
+                  general.promotionList.items.filter(
+                    (item) => item.promotionType.toUpperCase() === "ROULETTE",
+                  )[0]
+                }
+              ></PromotionRoulette>
+            )}
+        </RouletteFloatingPanel>
       )}
     </MainWrapper>
   );

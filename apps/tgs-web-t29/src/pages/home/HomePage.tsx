@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useUiStore } from "@tgs-web-nx/core";
+import { useGeneralStore, useUiStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useParams } from "react-router-dom";
+import config from "@tgs-web-nx/config";
+import PromotionRoulette from "@/components/project/PromotionRoulette";
 import CardPrompt from "@/pages/home/components/CardPrompt";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
@@ -106,7 +108,30 @@ const MarqueesBackground = styled.div`
   overflow: visible;
 `;
 
+const RouletteFloatingPanel = styled.div<{ position: any; orientation: any }>`
+  position: fixed;
+  z-index: 1300;
+
+  ${({ position }) => {
+    //for each item in position object, map accordingly
+    return position !== undefined
+      ? Object.keys(position).map((key) => {
+          return `${key}: ${position[key]}px;`;
+        })
+      : `  top: 0;
+    left: 0;
+    padding-top: 16%;
+    padding-left: 2%;`;
+  }}
+
+  display: flex;
+  flex-direction: ${({ orientation }) => {
+    return orientation ? orientation : "column";
+  }};
+`;
+
 const HomePage = () => {
+  const { general } = useGeneralStore();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const {
@@ -130,6 +155,16 @@ const HomePage = () => {
     return matchingGameType ? matchingGameType.gameType : null;
   };
 
+  const isRouletteAvailable = () => {
+    return (
+      general.promotionList.items &&
+      general.promotionList.items.length > 0 &&
+      general.promotionList.items.findIndex(
+        (item) => item.promotionType.toUpperCase() === "ROULETTE",
+      ) >= 0
+    );
+  };
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -145,7 +180,6 @@ const HomePage = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType, gameTypeList]);
-
   return (
     <MainWrapper>
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
@@ -156,8 +190,9 @@ const HomePage = () => {
             <GameTypeBanner
               $imageUrl={
                 activeGameTypeKey
-                  ? `${import.meta.env.BASE_URL
-                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  ? `${
+                      import.meta.env.BASE_URL
+                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
                   : ""
               }
             />
@@ -179,10 +214,11 @@ const HomePage = () => {
               <marquee>
                 {marquees.map((item, index) => {
                   const content = `
-      *${item.localization !== null && item.localization.content
-                      ? item.localization.content
-                      : item.content
-                    }
+      *${
+        item.localization !== null && item.localization.content
+          ? item.localization.content
+          : item.content
+      }
       `;
                   return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
                 })}
@@ -206,6 +242,57 @@ const HomePage = () => {
       <MainContentWrapper>
         <CategoryRenderer />
       </MainContentWrapper>
+      {config.features.HomePage_PromoRoulette && (
+        <RouletteFloatingPanel
+          position={
+            isMobileSize
+              ? config.features.RouletteSetting &&
+                config.features.RouletteSetting.wap &&
+                config.features.RouletteSetting.wap.position
+              : config.features.RouletteSetting &&
+                config.features.RouletteSetting.web &&
+                config.features.RouletteSetting.web.position
+          }
+          orientation={
+            isMobileSize
+              ? config.features.RouletteSetting &&
+                config.features.RouletteSetting.wap &&
+                config.features.RouletteSetting.wap.orientation
+              : config.features.RouletteSetting &&
+                config.features.RouletteSetting.web &&
+                config.features.RouletteSetting.web.orientation
+          }
+        >
+          {general.rouletteCount.length >= 0 &&
+            general.rouletteCount
+              .filter((item) => {
+                return item.promotiontype.toUpperCase() === "DEPOSITACCUMULATEROULETTE";
+              })
+              .map((roulette, index) => {
+                return roulette.roulettecount >= 0 && index === 0 ? (
+                  <PromotionRoulette
+                    key={roulette.promotionid}
+                    rouletteType={roulette.promotiontype.toUpperCase()}
+                    promotionDetail={{ id: roulette.promotionid }}
+                  ></PromotionRoulette>
+                ) : (
+                  <React.Fragment key={roulette.promotionid}></React.Fragment>
+                );
+              })}
+          {config.features.HomePage_PromoRoulette &&
+            !config.features.RouletteNewFlow &&
+            isRouletteAvailable() && (
+              <PromotionRoulette
+                rouletteType="ROULETTE"
+                promotionDetail={
+                  general.promotionList.items.filter(
+                    (item) => item.promotionType.toUpperCase() === "ROULETTE",
+                  )[0]
+                }
+              ></PromotionRoulette>
+            )}
+        </RouletteFloatingPanel>
+      )}
     </MainWrapper>
   );
 };
