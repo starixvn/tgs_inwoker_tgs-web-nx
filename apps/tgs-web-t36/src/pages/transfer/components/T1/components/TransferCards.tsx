@@ -37,7 +37,7 @@ const GameTransferRighttWrap = styled.div`
 const Logo = styled.img`
   width: 66px;
   height: 34px;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 const GameName = styled.div`
