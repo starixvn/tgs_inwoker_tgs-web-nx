@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Dialog as MuiDialog } from "@mui/material";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useUiStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useDetectDialogClose, useRwd } from "@tgs-web-nx/core/hooks";
 import { usePopup } from "@tgs-web-nx/core/features";
 import Carousel from "@/components/UI/Carousel";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
@@ -116,6 +116,8 @@ const PopupAnnouncement = () => {
     needToShowPopupAnnouncement,
     handleOpenPromotion,
   } = usePopup();
+  useDetectDialogClose(isOpenAnnouncement, () => handleCloseAnnouncement());
+
   const disableDialog =
     window.sessionStorage && sessionStorage.getItem(doNotShowAnnouncementDialogKey) === "true";
 

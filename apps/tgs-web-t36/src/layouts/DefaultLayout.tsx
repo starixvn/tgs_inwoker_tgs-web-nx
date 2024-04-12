@@ -1,0 +1,92 @@
+import React from "react";
+import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useHeader } from "@tgs-web-nx/core/features";
+import BottomAppBar from "@/layouts/components/BottomAppBar";
+import Footer from "@/layouts/components/Footer";
+import Header from "@/layouts/components/Header";
+import { media } from "@/theme/breakpoints";
+import {
+  BOTTOM_APP_BAR_HEIGHT,
+  DESKTOP_DRAWER_WIDTH,
+  DRAWER_SHRINK_WIDTH,
+  MOBILE_HEADER_HEIGHT,
+  TABLET_DRAWER_WIDTH,
+} from "@/theme/constants";
+import MenuDrawer from "@/layouts/components/MenuDrawer";
+
+const DefaultLayoutContainer = styled.div`
+  position: relative;
+  background: ${({ theme }) => theme.mainBackground};
+  ${media.sm} {
+    background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
+  }
+`;
+
+const DashboardContainer = styled.div`
+  display: flex;
+  margin-top: ${MOBILE_HEADER_HEIGHT};
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+
+  ${media.sm} {
+    margin-top: 0;
+    min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
+    margin-bottom: unset;
+  }
+`;
+type ContentWrapperProps = {
+  $isOpen: boolean;
+  $isDesktop: boolean;
+};
+
+const ContentWrapper = styled.div<ContentWrapperProps>`
+  position: relative;
+  flex-grow: 1;
+  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
+  transition: all ease-in-out 0.2s;
+
+  ${media.md} {
+    margin-left: unset;
+  }
+
+  ${media.lg} {
+    margin-left: unset;
+  }
+`;
+
+const ChildrenWrapper = styled.div`
+  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
+
+  ${media.sm} {
+    padding-bottom: 0;
+  }
+`;
+
+type Props = {
+  children: React.ReactNode;
+};
+const DefaultLayout = ({ children }: Props) => {
+  const { isDesktopSize, isMobileSize } = useRwd();
+  const { isMenuOpen } = useHeader();
+
+  return (
+    <DefaultLayoutContainer>
+      <Header />
+
+      <DashboardContainer>
+        {isMobileSize && <MenuDrawer />}
+
+        <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
+          <>
+            <ChildrenWrapper>{children}</ChildrenWrapper>
+            <Footer />
+          </>
+        </ContentWrapper>
+      </DashboardContainer>
+
+      {isMobileSize && <BottomAppBar />}
+    </DefaultLayoutContainer>
+  );
+};
+
+export default DefaultLayout;
