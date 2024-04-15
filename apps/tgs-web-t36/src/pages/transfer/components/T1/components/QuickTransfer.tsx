@@ -1,4 +1,3 @@
-import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
@@ -7,7 +6,6 @@ import { useGameStore } from "@tgs-web-nx/core";
 import { Select } from "@/components/UI/Select";
 import ArrowRightPNG from "@/assets/t36/images/transfer/arrow-right.svg";
 import { Button } from "@/components/UI/Button";
-import { theme } from "@/theme";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { media } from "@/theme/breakpoints";
 
@@ -57,6 +55,8 @@ const AmountText = styled.div`
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
+  width: 100%;
+  max-width: 100px;
   background: none;
   text-align: right;
   border: none;

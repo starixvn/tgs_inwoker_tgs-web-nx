@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
 import AnonymousHeaderContent from "./components/AnonymousHeaderContent";
 import MenuButton from "./components/MenuButton";
@@ -89,7 +89,6 @@ const Header = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isMobileSize, isDesktopSize } = useRwd();
-  const { isMenuOpen } = useHeader();
   const { handleChangeGameType } = useHomeGameContext();
 
   return (
