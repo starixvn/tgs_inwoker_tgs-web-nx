@@ -10,6 +10,7 @@ const Wrapper = styled.div<{
 }>`
   vertical-align: middle;
   display: inline-flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   width: auto;

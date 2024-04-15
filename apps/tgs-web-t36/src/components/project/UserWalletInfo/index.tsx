@@ -18,7 +18,7 @@ const rotateKeyFrame = keyframes`
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(-359deg);
+    transform: rotate(359deg);
   }
 `;
 
