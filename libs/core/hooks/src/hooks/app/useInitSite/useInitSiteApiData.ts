@@ -160,8 +160,7 @@ export function useInitSiteApiData() {
   };
 
   const onFocus = () => {
-    if (!isLogin) return;
-
+    if (!localStorage.getItem("token0")) return;
     getBalanceList();
   };
 
