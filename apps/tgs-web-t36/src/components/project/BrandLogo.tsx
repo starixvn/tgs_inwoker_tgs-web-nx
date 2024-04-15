@@ -8,7 +8,7 @@ const LogoImgContainer = styled.div`
   justify-self: start;
   /* padding: 0 10px; */
   margin: 0 auto;
-
+  max-width: 100px;
   & > img {
     height: 100%;
     width: 100%;

@@ -48,35 +48,35 @@ const TagBg = styled.div`
 
 const NewTag = styled.div`
   position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+  top: 5px;
+  left: 3px;
+  width: 43px;
   height: 22px;
-  padding: 10px;
-  border-radius: 12px;
-  background: ${(props) => props.theme.goldGradient};
-  color: ${(props) => props.theme.black};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 400;
-`;
-
-const HotTag = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 53px;
-  height: 22px;
-  padding: 10px;
-  border-radius: 12px;
+  padding: 2px 5px;
+  border-radius: 50px;
   background: ${(props) => props.theme.red};
   color: ${(props) => props.theme.white};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+`;
+
+const HotTag = styled.div`
+  position: absolute;
+  bottom: 7px;
+  left: 0;
+  width: 43px;
+  height: 22px;
+  padding: 2px 5px;
+  border-radius: 50px;
+  background: ${(props) => props.theme.green};
+  color: ${(props) => props.theme.white};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
   font-weight: 400;
 `;
 
