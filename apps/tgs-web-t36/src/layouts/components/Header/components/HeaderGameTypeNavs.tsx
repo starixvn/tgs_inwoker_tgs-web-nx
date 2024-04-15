@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
@@ -9,6 +9,8 @@ import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 const HeaderGameTypesContainer = styled.div`
   margin-right: auto;
   margin-left: 30px;
+  margin-bottom: 5px;
+  gap: 10px;
   display: flex;
   flex-wrap: nowrap;
   align-items: stretch;
@@ -46,23 +48,16 @@ const GameTypeNav = styled.div<{
   padding: 5px;
   cursor: pointer;
   position: relative;
-  /* color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)}; */
-  color: ${({ theme }) => theme.primary};
-
+  color: ${({ theme, $isActive }) => ($isActive ? theme.subNavSec : theme.primary)};
+  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.primary}` : `none`)};
+  margin-top: ${({ $isActive }) => ($isActive ? "3px" : "0px")};
   &:hover {
-    color: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.grey10};
   }
 
   ${media.lg} {
     font-size: 1rem;
   }
-`;
-
-const GameTypeGrid = styled.div`
-  align-self: center;
-  height: 18px;
-  display: flex;
-  margin: 0 5px;
 `;
 
 const Wrapper = styled.div`
@@ -104,7 +99,6 @@ const HeaderGameTypeNavs = () => {
               >
                 {navItem.label}
               </GameTypeNav>
-              {index !== sideNavItemList.length - 1 && <GameTypeGrid />}
             </Wrapper>
           );
         })}

@@ -2,7 +2,11 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTagTypeEnum,
+  useGetHomeCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import HomeGameCard from "@/pages/home/components/CategoryRenderer/components/HomeCategory/components/HomeGameCard";
@@ -82,13 +86,16 @@ const CategoryContent = styled.div`
 
 const ScrollableHomeHot = () => {
   const history = useHistory();
-  const { handleChangeGameType } = useHomeGameContext();
+  const { handleChangeGameType, handleChangeActiveFilterTag } = useHomeGameContext();
   const { hotGameList } = useGetHomeCategoryList();
   const { isMobileSize } = useRwd();
 
   const hasMappingData = !!hotGameList.length;
 
   const handleClick = () => {
+    //active hot filter
+    handleChangeActiveFilterTag({ name: "Hot", tagType: FilterTagTypeEnum.HOT });
+
     const gameTypeItem = {
       gameType: GameTypeEnum.SLOT,
       key: "slots",

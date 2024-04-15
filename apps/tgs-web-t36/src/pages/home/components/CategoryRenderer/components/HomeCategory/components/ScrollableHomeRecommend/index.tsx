@@ -2,7 +2,11 @@ import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { GameTypeEnum, SHOW_CATEGORY_AMOUNT } from "@tgs-web-nx/constants";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTagTypeEnum,
+  useGetHomeCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@/theme/breakpoints";
@@ -84,11 +88,13 @@ const CategoryContent = styled.div`
 const ScrollableHomeRecommend = () => {
   const { recommendGameList } = useGetHomeCategoryList();
   const hasMappingData = !!recommendGameList.length;
-  const { handleChangeGameType } = useHomeGameContext();
+  const { handleChangeGameType, handleChangeActiveFilterTag } = useHomeGameContext();
   const history = useHistory();
   const { isMobileSize } = useRwd();
 
   const handleClick = () => {
+    //active recommend filter
+    handleChangeActiveFilterTag({ name: "Recommend", tagType: FilterTagTypeEnum.RECOMMEND });
     const gameTypeItem = {
       gameType: GameTypeEnum.SLOT,
       key: "slots",

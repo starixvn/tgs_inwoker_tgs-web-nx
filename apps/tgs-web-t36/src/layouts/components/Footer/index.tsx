@@ -146,8 +146,6 @@ const Footer = () => {
           <GroupContent>Co.Group</GroupContent>
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
-          <GroupTitle>Follow Us</GroupTitle>
-          <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>
@@ -173,6 +171,8 @@ const Footer = () => {
           </GroupContent>
           {/* <DownLoadText>Download App</DownLoadText>
           <img src={QRcodeUrl} width={117} alt="QRcode" /> */}
+          <GroupTitle>Follow Us</GroupTitle>
+          <SocialMedia />
         </FooterGroup>
 
         <FooterGroup>

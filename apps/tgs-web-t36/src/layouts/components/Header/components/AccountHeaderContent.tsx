@@ -166,7 +166,7 @@ const AccountHeaderContent = () => {
             {i18n.t("common.transfer").toLocaleUpperCase()}
           </TransferButtonContainer>
           <ButtonContainer onClick={handleGotoWithdraw}>
-            {i18n.t("common.withdrawal")}
+            {i18n.t("common.withdrawal").toLocaleUpperCase()}
           </ButtonContainer>
           <ButtonContainer onClick={handleGotoDeposit}>
             {i18n.t("common.deposit").toLocaleUpperCase()}

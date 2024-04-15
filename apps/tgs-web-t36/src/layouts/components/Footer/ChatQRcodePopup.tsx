@@ -40,7 +40,7 @@ const PopupHeader = styled.div`
   justify-content: space-between;
   padding: 0px 30px;
   position: relative;
-  background: ${({ theme }) => theme.gray60};
+  background: ${({ theme }) => theme.black};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 0px 30px;
   border-radius: 16px 16px 0px 0px;
@@ -83,7 +83,6 @@ const QrcodeImage = styled.img`
   max-width: 110px;
   height: 110px;
 
-  
   ${media.md} {
     max-width: 150px;
     height: 150px;
@@ -93,7 +92,7 @@ const QrcodeImage = styled.img`
 const QrcodeTitle = styled.div`
   font-size: 1.25rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.gray60};
+  color: ${({ theme }) => theme.black};
 `;
 
 type Props = {
@@ -120,7 +119,7 @@ const ChatQRcodePopup = ({ setIsOpenChatQRcode, chatQRcodeList }: Props) => {
                   <QrcodeImage src={item.url} />
                   <QrcodeTitle>{item.name}</QrcodeTitle>
                 </QrcodeContainer>
-              )
+              );
             })}
           </PopupContent>
         </PopupBox>

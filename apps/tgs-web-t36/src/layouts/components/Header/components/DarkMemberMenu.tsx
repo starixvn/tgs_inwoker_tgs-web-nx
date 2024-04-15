@@ -15,7 +15,8 @@ import UserBanner from "@/assets/t36/images/account/banner.png";
 
 const MemberMenuContainer = styled.div`
   display: flex;
-  width: 100%;
+  width: 258px;
+  flex-shrink: 0;
   flex-direction: column;
   align-items: flex-start;
   background: #1a5684;
@@ -24,7 +25,6 @@ const MemberMenuContainer = styled.div`
 
 const UserBannerContainer = styled.div`
   width: 100%;
-  height: 100%;
   background-image: url(${UserBanner});
   background-repeat: no-repeat;
   aspect-ratio: 258/100;
@@ -75,8 +75,8 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
     //@ts-ignore
     <MemberMenuContainer {...others}>
       <UserBannerContainer>
-        <div>{`Welcome, ${username}`}</div>
-        <div>{`${config.currency}$ ${currentBalance}`}</div>
+        {/* <div>{`Welcome, ${username}`}</div> */}
+        {/* <div>{`${config.currency}$ ${currentBalance}`}</div> */}
       </UserBannerContainer>
       {accountNavItemList.map((navItem: NavItem) => {
         if (navItem.key === NavCardKey.LOGOUT) return null;
