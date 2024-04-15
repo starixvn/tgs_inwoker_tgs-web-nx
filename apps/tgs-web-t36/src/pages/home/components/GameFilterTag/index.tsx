@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tag from "./Tag";
-import TextTag from "./TextTag";
 import { gameTagList } from "@/constants/gameTag";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
@@ -71,34 +71,33 @@ const GameFilterTag = () => {
     providerFilterTagList,
   } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
+  const [prevGPFilterTag, setGPPrevFilterTag] = useState<FilterTag | null>(activeProviderFilterTag);
+
   const { searchString, handleChangeSearch } = useHomeGameContext();
+  const { isMobileSize } = useRwd();
 
   const allTag = {
     tagType: FilterTagTypeEnum.ALL,
     name: FilterTagTypeEnum.ALL,
   };
 
+  const handleGPFilterClick = (filterTag: FilterTag) => {
+    setGPPrevFilterTag(filterTag);
+    if (filterTag.gpCode === prevGPFilterTag?.gpCode) {
+      handleChangeActiveProviderFilterTag(allTag);
+      setGPPrevFilterTag(allTag);
+    } else {
+      handleChangeActiveProviderFilterTag(filterTag);
+    }
+  };
+
   const handleFilterClick = (filterTag: FilterTag) => {
     setPrevFilterTag(filterTag);
-
-    if (filterTag.tagType === FilterTagTypeEnum.PROVIDER) {
-      if (filterTag.gpCode === prevFilterTag?.gpCode) {
-        handleChangeActiveProviderFilterTag(allTag);
-        handleChangeActiveFilterTag(allTag);
-        setPrevFilterTag(allTag);
-      } else {
-        handleChangeActiveProviderFilterTag(filterTag);
-        handleChangeActiveFilterTag(allTag);
-      }
+    if (filterTag.tagType === prevFilterTag?.tagType) {
+      handleChangeActiveFilterTag(allTag);
+      setPrevFilterTag(allTag);
     } else {
-      if (filterTag.tagType === prevFilterTag?.tagType) {
-        handleChangeActiveFilterTag(allTag);
-        handleChangeActiveProviderFilterTag(allTag);
-        setPrevFilterTag(allTag);
-      } else {
-        handleChangeActiveFilterTag(filterTag);
-        handleChangeActiveProviderFilterTag(allTag);
-      }
+      handleChangeActiveFilterTag(filterTag);
     }
   };
 
@@ -106,7 +105,7 @@ const GameFilterTag = () => {
     <FilterSection>
       <ProviderTagContainer>
         {providerFilterTagList.map((filterTag: FilterTag) => {
-          const { name, gpCode } = filterTag;
+          const { name } = filterTag;
           const isActive = name === activeProviderFilterTag.name;
           const tagCmp = gameTagList.find((tag) => tag.text === name);
 
@@ -116,7 +115,7 @@ const GameFilterTag = () => {
               text={name}
               isActive={isActive}
               isShowIcon={false}
-              onClick={() => handleFilterClick(filterTag)}
+              onClick={() => handleGPFilterClick(filterTag)}
             >
               {tagCmp &&
                 tagCmp.iconComponent &&
@@ -151,7 +150,13 @@ const GameFilterTag = () => {
               {tagCmp &&
                 tagCmp.iconComponent &&
                 React.createElement(tagCmp.iconComponent, {
-                  $color: isActive ? theme.primary : theme.grey03,
+                  $color: isActive
+                    ? isMobileSize
+                      ? theme.primary
+                      : "#25AAE1"
+                    : isMobileSize
+                    ? theme.grey03
+                    : theme.white,
                 })}
             </Tag>
           );
