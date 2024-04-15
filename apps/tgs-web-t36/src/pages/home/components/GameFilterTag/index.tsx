@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
-import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTag,
+  FilterTagTypeEnum,
+  filterTagAll,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Tag from "./Tag";
 import { gameTagList } from "@/constants/gameTag";
@@ -29,7 +34,11 @@ const ProviderTagContainer = styled.div`
   align-self: stretch;
   display: flex;
   gap: 8px;
+
   ${media.sm} {
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    height: 100%;
     &::-webkit-scrollbar {
       height: 10px;
     }
@@ -76,16 +85,11 @@ const GameFilterTag = () => {
   const { searchString, handleChangeSearch } = useHomeGameContext();
   const { isMobileSize } = useRwd();
 
-  const allTag = {
-    tagType: FilterTagTypeEnum.ALL,
-    name: FilterTagTypeEnum.ALL,
-  };
-
   const handleGPFilterClick = (filterTag: FilterTag) => {
     setGPPrevFilterTag(filterTag);
     if (filterTag.gpCode === prevGPFilterTag?.gpCode) {
-      handleChangeActiveProviderFilterTag(allTag);
-      setGPPrevFilterTag(allTag);
+      handleChangeActiveProviderFilterTag(filterTagAll);
+      setGPPrevFilterTag(filterTagAll);
     } else {
       handleChangeActiveProviderFilterTag(filterTag);
     }
@@ -94,8 +98,8 @@ const GameFilterTag = () => {
   const handleFilterClick = (filterTag: FilterTag) => {
     setPrevFilterTag(filterTag);
     if (filterTag.tagType === prevFilterTag?.tagType) {
-      handleChangeActiveFilterTag(allTag);
-      setPrevFilterTag(allTag);
+      handleChangeActiveFilterTag(filterTagAll);
+      setPrevFilterTag(filterTagAll);
     } else {
       handleChangeActiveFilterTag(filterTag);
     }
