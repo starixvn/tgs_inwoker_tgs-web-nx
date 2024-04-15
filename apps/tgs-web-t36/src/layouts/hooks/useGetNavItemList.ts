@@ -80,7 +80,7 @@ export function useGetNavItemList() {
       iconUrl: "",
       navType: "action",
       gameType: GameTypeEnum.NONE,
-      router: "",
+      router: "vip",
       callback: () => {
         history.push("/vip");
       },
@@ -92,7 +92,7 @@ export function useGetNavItemList() {
       iconUrl: "",
       navType: "action",
       gameType: GameTypeEnum.NONE,
-      router: "",
+      router: "promotion-list",
       callback: () => {
         history.push("/promotion-list");
       },
