@@ -75,8 +75,8 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
     //@ts-ignore
     <MemberMenuContainer {...others}>
       <UserBannerContainer>
-        <div>{`Welcome, ${username}`}</div>
-        <div>{`${config.currency}$ ${currentBalance}`}</div>
+        {/* <div>{`Welcome, ${username}`}</div> */}
+        {/* <div>{`${config.currency}$ ${currentBalance}`}</div> */}
       </UserBannerContainer>
       {accountNavItemList.map((navItem: NavItem) => {
         if (navItem.key === NavCardKey.LOGOUT) return null;
