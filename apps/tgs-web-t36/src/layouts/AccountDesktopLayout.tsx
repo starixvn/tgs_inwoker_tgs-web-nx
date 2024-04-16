@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useLocation } from "react-router";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
@@ -63,9 +64,11 @@ const ChildrenWrapper = styled.div`
 `;
 
 const AccountDesktopLayout = ({ children }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
+  const { isDesktopSize } = useRwd();
   const { isMenuOpen } = useHeader();
-
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  
   return (
     <DefaultLayoutContainer>
       <Header />
@@ -74,7 +77,10 @@ const AccountDesktopLayout = ({ children }: Props) => {
         <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
           <>
             <ChildrenWrapper>
-              <DarkMemberMenu handleCloseContextMenu={() => {}} />
+              {/* promotion detail page didn't  need side menu */}
+              {pathSegments[1] !== "promotion" && (
+                <DarkMemberMenu handleCloseContextMenu={() => {}} />
+              )}
               {children}
             </ChildrenWrapper>
             <Footer />
