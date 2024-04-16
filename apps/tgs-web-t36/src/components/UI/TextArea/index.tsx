@@ -9,7 +9,6 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
     fontSize: "0.875rem",
     fontWeight: 400,
     border: "none",
-    height: "100% !important",
     minHeight: "100px",
 
     "&:-webkit-autofill": {

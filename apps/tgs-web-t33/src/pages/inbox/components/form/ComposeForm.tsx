@@ -32,6 +32,8 @@ const ComposeForm = () => {
 
   const updateMessage = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setContent(event.target.value);
+    setSubject("");
+    setContent("");
   };
 
   // Submit
@@ -39,8 +41,10 @@ const ComposeForm = () => {
     await GeneralService.ComposeInboxItem({ subject, content });
   };
 
-  const { isSubmitted, isConfirmDialogOpen, handleSubmit, handleConfirm, handleCancel } =
+  const { isConfirmDialogOpen, handleSubmit, handleConfirm, handleCancel } =
     useConfirmDialog(submitCallback);
+
+  const isSubmitButtonDisabled = !subject || !content;
 
   return (
     <InboxComposeFormContainer>
@@ -74,7 +78,7 @@ const ComposeForm = () => {
         variant={"contained"}
         color={"primary"}
         fullWidth
-        disabled={isSubmitted}
+        disabled={isSubmitButtonDisabled}
       >
         {i18n.t("common.submit")}
       </SubmitButton>
