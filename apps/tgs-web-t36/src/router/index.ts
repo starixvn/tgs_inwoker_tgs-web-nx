@@ -119,6 +119,11 @@ const routes: RouteType[] = [
     layout: DialogLayout,
   },
   {
+    path: ProfilePathEnum.ZALO,
+    component: ProfilePage,
+    layout: DialogLayout,
+  },
+  {
     path: ProfilePathEnum.BIRTHDATE,
     component: ProfilePage,
     layout: DialogLayout,
