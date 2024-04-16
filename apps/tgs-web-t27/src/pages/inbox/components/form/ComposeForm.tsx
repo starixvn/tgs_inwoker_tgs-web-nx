@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { GeneralService } from "@tgs-web-nx/core";
 import { useConfirmDialog } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { TextField } from "@/components/UI/TextField";
 import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
 import { TextArea } from "@/components/UI/TextArea";
 import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const InboxComposeFormContainer = styled.div`
   padding-top: 16px;
@@ -43,10 +43,10 @@ const ComposeForm = () => {
     setContent("");
   };
 
-  const { isSubmitted, isConfirmDialogOpen, handleSubmit, handleConfirm, handleCancel } =
+  const { isConfirmDialogOpen, handleSubmit, handleConfirm, handleCancel } =
     useConfirmDialog(submitCallback);
 
-  const isSubmitButtonDisabled = isSubmitted || !subject || !content;
+  const isSubmitButtonDisabled = !subject || !content;
 
   return (
     <InboxComposeFormContainer>
