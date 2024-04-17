@@ -8,7 +8,7 @@ export const SameLine = styled.div`
 `;
 
 export const Container = styled.div`
-  padding-top: 50px;
+  width: 100%;
 `;
 export const ImgSuccess = styled.img`
   display: block;
@@ -18,7 +18,7 @@ export const ImgSuccess = styled.img`
 export const SuccessMessage = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: #23507d;
   text-align: center;
   margin-bottom: 16px;
 `;
