@@ -36,9 +36,10 @@ const Wrapper = styled.div<{
   padding: 0px 24px;
   gap: 24px;
   background: ${({ $isActive, theme }) => ($isActive ? theme.subNavSec : "transparent")};
-
+  border-left: ${({ $isActive, theme }) => ($isActive ? `2px solid ${theme.BTN02}` : "none")};
   &:hover {
     background: ${({ theme }) => theme.subNavSec};
+    border-left: ${({ theme }) => `2px solid ${theme.BTN02}`};
     ${Text} {
       color: ${({ theme }) => theme.white};
     }
