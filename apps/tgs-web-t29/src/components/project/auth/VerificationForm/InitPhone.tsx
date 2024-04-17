@@ -77,7 +77,11 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
 
     if (!phone) return showErrorMessage(i18n.t("common.msgEnterPhone"));
 
-    if(brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && (phone.length !== config.features.MAX_PHONE_LENGTH) || (phone.length === config.features.MAX_PHONE_LENGTH && phone[0] !== '0'))  {
+    if (
+      (brandConfig[mapBrandName(config.brand)].isFixedPhoneLength &&
+        phone.length !== config.features.MAX_PHONE_LENGTH) ||
+      (phone.length === config.features.MAX_PHONE_LENGTH && phone[0] !== "0")
+    ) {
       alert(
         "",
         i18n
@@ -86,8 +90,11 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
       );
       return;
     }
-    
-    if (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && phone.length < 8 || phone.length > (config.features.MAX_PHONE_LENGTH || 10)) {
+
+    if (
+      (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && phone.length < 8) ||
+      phone.length > (config.features.MAX_PHONE_LENGTH || 10)
+    ) {
       alert(
         "",
         i18n
@@ -103,7 +110,9 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
         input: "Init",
         data: {
           areacode: areacode,
-          phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength ? phone.slice(1) : phone,
+          phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
+            ? phone.slice(1)
+            : phone,
         },
       });
 
@@ -161,7 +170,6 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
 
   const handleSubmitClicked = async () => {
     setIsLoading(true);
-
     try {
       if (shouldHandlePhoneSubmission()) {
         const getRegisterStatusResDto = await getRegisterStatus();
