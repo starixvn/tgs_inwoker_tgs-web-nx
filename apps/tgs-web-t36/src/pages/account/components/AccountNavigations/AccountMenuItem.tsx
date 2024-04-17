@@ -39,10 +39,11 @@ const Wrapper = styled.div<{
   align-items: center;
   flex-direction: column;
   justify-content: ${({ $isShrink }) => ($isShrink ? "center" : "unset")};
-  width: 110px;
+  width: calc((100% - 3 * 12px ) / 3);
   height: 90px;
   background: ${({ theme, $isActive }) => ($isActive ? theme.g7 : theme.mainBackground)};
   align-self: stretch;
+  text-align: center;
   &:hover {
     background: ${({ theme }) => theme.g7};
     ${Text} {
