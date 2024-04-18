@@ -106,6 +106,7 @@ export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
     currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
+    isInitYuriJs: true,
   },
   MOVN2: {
     ...defaultConfig,
