@@ -105,7 +105,6 @@ export const defaultConfig: Config = {
 export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
-    isInitYuriJs: true,
     currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
     isFixedPhoneLength: true,
   },
