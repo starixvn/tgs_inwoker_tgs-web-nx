@@ -43,9 +43,7 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
 
       const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
 
-      if(newRegisterResDto?.data.isCompleted && handleRegisterSuccess) {
-        handleRegisterSuccess();
-      } 
+      
 
       if (!newRegisterResDto) {
         throw new Error("No newRegisterResDto found");
@@ -66,7 +64,11 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
         const setRealNameReqDto: RegisterV2SetRealNameDto = {
           realname: values.realName,
         };
-        await registerV2SetRealName(setRealNameReqDto);
+        const setRealNameDto = await registerV2SetRealName(setRealNameReqDto);
+        
+        if(setRealNameDto?.data.isCompleted && handleRegisterSuccess) {
+          handleRegisterSuccess();
+        } 
         //update user info
         await getAccountInfo();
       }
