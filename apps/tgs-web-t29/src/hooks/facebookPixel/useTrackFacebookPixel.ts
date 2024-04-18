@@ -23,7 +23,7 @@ const useTrackFacebookPixel = () => {
         //@ts-ignore
         if(_yuri_track && typeof _yuri_track === 'function') {
             //@ts-ignore
-            _yuri_track("AddToCart");
+            _yuri_track("AddToCart"); 
         }
     }
 
