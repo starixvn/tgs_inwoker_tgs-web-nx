@@ -36,6 +36,7 @@ type MOVN2Config = {
   customGametypeSort: string[]; // game type 是否有客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-3968
   defaultActiveGametype: GameTypeEnum | null; //預設active的game type https://raypro.atlassian.net/browse/TGS-3968
   customGameProviderSort: string[]; //game provider客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-4420
+  isInitYuriJs: boolean; // FB推廣碼埋點需求 TGS-4265
 };
 
 type MOPHConfig = {
@@ -95,6 +96,7 @@ export const defaultConfig: Config = {
   isFixedPhoneLength: false,
   contractAge: 18,
   customGameProviderSort: [],
+  isInitYuriJs: false,
   // new brand config start here
   // NewBrand
 };
@@ -103,6 +105,7 @@ export const defaultConfig: Config = {
 export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
+    isInitYuriJs: true,
     currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
   },
   MOVN2: {
@@ -170,6 +173,7 @@ export const brandConfig: Record<BrandName, Config> = {
       "AWC_YL",
       "TFTF",
     ],
+    isInitYuriJs: true,
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -244,6 +248,7 @@ export const brandConfig: Record<BrandName, Config> = {
       fb: "https://www.facebook.com/Momobet.ph",
       ig: "https://www.instagram.com/momobet.ph",
     },
+    isInitYuriJs: true,
     isShowAgentAdminButton: true,
     isHideTransferButton: true,
     customGametypeSort: [
