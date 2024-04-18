@@ -18,6 +18,7 @@ import {
 import { RouteType } from "@tgs-web-nx/types";
 import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import LiveChat from "./components/tools/LiveChat";
+import FacebookPixel from "./components/project/FacebookPixel";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
 import PopupAnnouncement from "@/components/project/Popup/PopupAnnouncement";
@@ -69,6 +70,7 @@ const App: React.FC = () => {
                 <AuthDialogContextProvider>
                   <UserWalletInfoContextProvider>
                     <HomeGameContextProvider gameTypeList={gameTypeList}>
+                      <FacebookPixel />
                       <ScrollToTop />
                       <Switch>
                         {routes.map((route, index) => {
