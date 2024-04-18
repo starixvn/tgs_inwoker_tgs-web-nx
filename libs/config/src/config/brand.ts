@@ -196,6 +196,7 @@ export const brandConfig: Record<BrandName, Config> = {
     isHideVIPQuarterlyBonus: true,
     isShowVIP: true,
     isHideTransferButton: true,
+    isInitYuriJs: true,
     customGametypeSort: [
       "slots",
       "fishing",
