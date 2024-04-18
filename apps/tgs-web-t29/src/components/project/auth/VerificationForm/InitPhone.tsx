@@ -1,10 +1,11 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications, usePageName } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
+import useTrackFacebookPixel from "@/hooks/facebookPixel/useTrackFacebookPixel";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
@@ -27,6 +28,7 @@ type Props = {
 };
 
 function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
+  const {sendFbTrack} = useTrackFacebookPixel();
   const AREA_CODE = config.features.PhonePrefix;
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const { alert } = useNotifications();
@@ -165,7 +167,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
     try {
       if (shouldHandlePhoneSubmission()) {
         const getRegisterStatusResDto = await getRegisterStatus();
-
+        
         if (getRegisterStatusResDto?.IsSuccess) {
           const currentStepKey = getRegisterStatusResDto.data;
           if (currentStepKey === "SetPhoneDontCareDuplicate") {
@@ -190,7 +192,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
       config.features.InitPhone_WithoutVerify
     );
   };
-
+  
   const handleSetPhoneDontCareDuplicate = async () => {
     const responseSetPhone = await newRegister("SetPhoneDontCareDuplicate", {
       areacode: areacode,
@@ -237,6 +239,10 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const handleUpdatePhone = async (securityKey: string, code: string) => {
     const response = await AccountService.UpdatePhoneV2(securityKey, code);
 
+    if(response?.data.isCompleted) {
+      sendFbTrack('AddToCart');
+    }
+    
     if (response?.IsSuccess) {
       await handleGetAccountInfo();
       handleSubmitSucceed();
