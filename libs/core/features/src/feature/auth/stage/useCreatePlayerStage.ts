@@ -43,6 +43,8 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
 
       const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
 
+      
+
       if (!newRegisterResDto) {
         throw new Error("No newRegisterResDto found");
       }
