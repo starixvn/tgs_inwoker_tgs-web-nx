@@ -10,7 +10,7 @@ import {
   useGenerateRegisterCreatePlayerFormik,
 } from "../../../index";
 
-export function useCreatePlayerStage() {
+export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
   const [isLoading, setIsLoading] = useState(false);
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
   const { registerV2CreatePlayer, registerV2SetRealName, accountLogin, getAccountInfo } =
@@ -42,6 +42,10 @@ export function useCreatePlayerStage() {
       };
 
       const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
+
+      if(newRegisterResDto?.data.isCompleted && handleRegisterSuccess) {
+        handleRegisterSuccess();
+      } 
 
       if (!newRegisterResDto) {
         throw new Error("No newRegisterResDto found");
