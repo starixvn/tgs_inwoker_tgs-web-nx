@@ -69,6 +69,7 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
         if(setRealNameDto?.data.isCompleted && handleRegisterSuccess) {
           handleRegisterSuccess();
         } 
+        
         //update user info
         await getAccountInfo();
       }
