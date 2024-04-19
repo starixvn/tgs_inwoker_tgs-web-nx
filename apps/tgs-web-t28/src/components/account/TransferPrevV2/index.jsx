@@ -13,7 +13,7 @@ class Transfer extends Component {
     loading: false,
     transferFrom: "",
     transferTo: 0,
-    transferAmount: "0",
+    transferAmount: "",
     mainAccountId: "0",
     disabled: false,
   };
