@@ -118,6 +118,7 @@ stages:
                 -H "Authorization: Bearer $token" \
                 -H "Content-Type: application/json")
             zoneid=echo ${response} | jq '.result' | jq  '.[0] | .id'
+            echo "zoneid=$zoneid"
             response_create_rule=$(curl -X POST "https://api.cloudflare.com/client/v4/zones/${zoneid}/firewall/rules" \
                 -H "Authorization: Bearer $token" \
                 -H "Content-Type: application/json" \
