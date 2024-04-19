@@ -28,7 +28,7 @@ import {
   QRCodeImg,
   TransferLabel,
   TransferValue,
-  TransferHintAmount
+  TransferHintAmount,
 } from "@/components/styled-component/Deposit";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import amountBg from "@/assets/t19/images/amount-bg.png";
@@ -82,7 +82,6 @@ const LabelWrapper = styled.div`
 `;
 
 class Main extends Component {
-
   render() {
     const selectedDepositType = this.props.wallet.depositTypeList[this.props.selectedPaymentIndex];
     const selectedPaymentMethod = selectedDepositType.method[this.props.selectedMethodIndex];
@@ -105,8 +104,9 @@ class Main extends Component {
       let detail = "";
       switch (data.banktype.toUpperCase()) {
         case "BANK":
-          detail = `${data.detail.bankName || ""} - ${data.detail.name || ""} - ${data.detail.bankAccount || ""
-            }`;
+          detail = `${data.detail.bankName || ""} - ${data.detail.name || ""} - ${
+            data.detail.bankAccount || ""
+          }`;
           break;
         case "EWALLET":
         case "E-WALLET":
@@ -150,8 +150,8 @@ class Main extends Component {
                         key={item.methodid}
                         text={
                           config.features.CustomKING8Deposit &&
-                            (paymentCode("manual") || alteredPaymentCode("manual")) &&
-                            i18n.exists(`king8.${item.methodcode}`)
+                          (paymentCode("manual") || alteredPaymentCode("manual")) &&
+                          i18n.exists(`king8.${item.methodcode}`)
                             ? i18n.t(`king8.${item.methodcode}`)
                             : i18n.t(item.methodcode)
                         }
@@ -357,101 +357,101 @@ class Main extends Component {
                     methodCode("USDT") ||
                     config.features.Deposit_AddCard
                   ) && (
-                      <>
-                        {this.props.wallet.bankCardList.length > 1 &&
-                          !config.features.Deposit_AccountNameManualInput ? (
-                          <ItemContainer>
-                            <LabelContainer>
-                              {config.features.Deposit_OriginAccount
-                                ? i18n.t("idr1.pleaseEnterAccountName")
-                                : i18n.t("common.pleaseEnterAccountName")}
-                            </LabelContainer>
-                            <FormControl variant="outlined">
-                              <Select
-                                native
-                                id="customSelect"
-                                value={this.props.selectedBankCard}
-                                onChange={(e) => this.props.handleSelectAccountChange(e)}
-                              >
-                                <option value="" disabled>
-                                  {config.features.Deposit_OriginAccount
-                                    ? i18n.t("idr1.pleaseEnterAccountName")
-                                    : i18n.t("common.pleaseEnterAccountName")}
-                                </option>
-                                {this.props.wallet.bankCardList.map((item, index) => {
-                                  const detail = item.detail;
-                                  return (
-                                    <option value={item.id} key={index}>
-                                      {detail.bankAccount || detail.address || detail.phone} (
-                                      {item.banktype})
-                                    </option>
-                                  );
-                                })}
-                              </Select>
-                            </FormControl>
-                          </ItemContainer>
-                        ) : (
-                          <ItemContainer>
-                            <LabelContainer>
-                              {config.features.Deposit_OriginAccount ? (
-                                i18n.t("idr1.pleaseEnterAccountName")
-                              ) : (
-                                <>
-                                  <div>{i18n.t("common.pleaseEnterAccountName")}</div>
-                                  <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText>
-                                </>
-                              )}
-                            </LabelContainer>
-                            <FormControl variant="outlined">
-                              <TextField
-                                type={"text"}
-                                placeholder={
-                                  config.features.Deposit_OriginAccount
-                                    ? i18n.t("idr1.pleaseEnterAccountName")
-                                    : i18n.t("common.pleaseEnterAccountName")
-                                }
-                                value={this.props.account}
-                                disabled={
-                                  !config.features.Deposit_AccountNameManualInput &&
-                                  config.features.Deposit_AutofillFirstCard &&
-                                  this.props.wallet.bankCardList.length > 1
-                                }
-                                onChange={(e) => this.props.handleAccountChange(e)}
-                              />
-                            </FormControl>
-                          </ItemContainer>
-                        )}
-                      </>
-                    )}
+                    <>
+                      {this.props.wallet.bankCardList.length > 1 &&
+                      !config.features.Deposit_AccountNameManualInput ? (
+                        <ItemContainer>
+                          <LabelContainer>
+                            {config.features.Deposit_OriginAccount
+                              ? i18n.t("idr1.pleaseEnterAccountName")
+                              : i18n.t("common.pleaseEnterAccountName")}
+                          </LabelContainer>
+                          <FormControl variant="outlined">
+                            <Select
+                              native
+                              id="customSelect"
+                              value={this.props.selectedBankCard}
+                              onChange={(e) => this.props.handleSelectAccountChange(e)}
+                            >
+                              <option value="" disabled>
+                                {config.features.Deposit_OriginAccount
+                                  ? i18n.t("idr1.pleaseEnterAccountName")
+                                  : i18n.t("common.pleaseEnterAccountName")}
+                              </option>
+                              {this.props.wallet.bankCardList.map((item, index) => {
+                                const detail = item.detail;
+                                return (
+                                  <option value={item.id} key={index}>
+                                    {detail.bankAccount || detail.address || detail.phone} (
+                                    {item.banktype})
+                                  </option>
+                                );
+                              })}
+                            </Select>
+                          </FormControl>
+                        </ItemContainer>
+                      ) : (
+                        <ItemContainer>
+                          <LabelContainer>
+                            {config.features.Deposit_OriginAccount ? (
+                              i18n.t("idr1.pleaseEnterAccountName")
+                            ) : (
+                              <>
+                                <div>{i18n.t("common.pleaseEnterAccountName")}</div>
+                                <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText>
+                              </>
+                            )}
+                          </LabelContainer>
+                          <FormControl variant="outlined">
+                            <TextField
+                              type={"text"}
+                              placeholder={
+                                config.features.Deposit_OriginAccount
+                                  ? i18n.t("idr1.pleaseEnterAccountName")
+                                  : i18n.t("common.pleaseEnterAccountName")
+                              }
+                              value={this.props.account}
+                              disabled={
+                                !config.features.Deposit_AccountNameManualInput &&
+                                config.features.Deposit_AutofillFirstCard &&
+                                this.props.wallet.bankCardList.length > 1
+                              }
+                              onChange={(e) => this.props.handleAccountChange(e)}
+                            />
+                          </FormControl>
+                        </ItemContainer>
+                      )}
+                    </>
+                  )}
                   {(!(config.features.Deposit_RemoveName || methodCode("fps")) ||
                     config.features.Deposit_FPSWithName) && (
-                      <>
-                        {/*请输入银行账户名称*/}
-                        <TextField
-                          style={{ margin: "20px auto 20px auto" }}
-                          type={"text"}
-                          placeholder={
-                            config.features.Deposit_CustomBankNameTranslation
-                              ? i18n.t("mgm.msgPlsEnterAccount")
-                              : config.features.Deposit_EnglishName
-                                ? i18n.t("bet28.msgEnterBankAccountName")
-                                : i18n.t("deposit.msgPlsEnterAccount")
-                          }
-                          label={
-                            (config.features.Deposit_CustomBankNameTranslation
-                              ? i18n.t("mgm.msgPlsEnterAccount")
-                              : config.features.Deposit_EnglishName
-                                ? i18n.t("bet28.BankAccountName")
-                                : i18n.t("deposit.msgPlsEnterAccount")) +
-                            (config.features.Deposit_AddTips
-                              ? " *" + i18n.t("mgm.nameDepositTips")
-                              : "")
-                          }
-                          value={this.props.name}
-                          onChange={(e) => this.props.handleNameChange(e)}
-                        />
-                      </>
-                    )}
+                    <>
+                      {/*请输入银行账户名称*/}
+                      <TextField
+                        style={{ margin: "20px auto 20px auto" }}
+                        type={"text"}
+                        placeholder={
+                          config.features.Deposit_CustomBankNameTranslation
+                            ? i18n.t("mgm.msgPlsEnterAccount")
+                            : config.features.Deposit_EnglishName
+                            ? i18n.t("bet28.msgEnterBankAccountName")
+                            : i18n.t("deposit.msgPlsEnterAccount")
+                        }
+                        label={
+                          (config.features.Deposit_CustomBankNameTranslation
+                            ? i18n.t("mgm.msgPlsEnterAccount")
+                            : config.features.Deposit_EnglishName
+                            ? i18n.t("bet28.BankAccountName")
+                            : i18n.t("deposit.msgPlsEnterAccount")) +
+                          (config.features.Deposit_AddTips
+                            ? " *" + i18n.t("mgm.nameDepositTips")
+                            : "")
+                        }
+                        value={this.props.name}
+                        onChange={(e) => this.props.handleNameChange(e)}
+                      />
+                    </>
+                  )}
                 </>
               );
             }
@@ -470,19 +470,13 @@ class Main extends Component {
           </LabelWrapper>
 
           <DepositLimitWrapper>
-            <FormControl variant="outlined" >
+            <FormControl variant="outlined">
               <TextField
                 fullWidth
                 value={this.props.amount}
                 onChange={this.props.handleAmountChange}
                 type={"number"}
-                placeholder={
-                  i18n.t("deposit.msgPleaseEnter") +
-                  Common.formatNumberWithThousand(channel.transferlimit.from) +
-                  "-" +
-                  Common.formatNumberWithThousand(channel.transferlimit.to) +
-                  i18n.t("deposit.dollor")
-                }
+                placeholder={i18n.t("deposit.msgPleaseEnter") + i18n.t("deposit.depositAmount")}
               />
             </FormControl>
             <AmountHint>
@@ -528,10 +522,11 @@ class Main extends Component {
                   {/*上分金额*/}
                   <LimitLabel>{i18n.t("deposit.totalAmount")}</LimitLabel>
                   {" :  "}
-                  <LimitAmount>{` ${isNaN(this.props.amount) === false
-                    ? Common.formatNumberWithCommasNoRounding(this.props.amount / usdtRate)
-                    : 0
-                    }`}</LimitAmount>
+                  <LimitAmount>{` ${
+                    isNaN(this.props.amount) === false
+                      ? Common.formatNumberWithCommasNoRounding(this.props.amount / usdtRate)
+                      : 0
+                  }`}</LimitAmount>
                 </ExchangeRateContainer>
               );
             }
@@ -547,10 +542,11 @@ class Main extends Component {
                   <LimitLabel style={{ marginLeft: "26px" }}>
                     {i18n.t("deposit.expectedPayment")}
                   </LimitLabel>{" "}
-                  <LimitAmount>{` ${isNaN(this.props.amount) === false
-                    ? (this.props.amount / this.props.exchangeRate.buyprice).toFixed(2)
-                    : 0
-                    }`}</LimitAmount>
+                  <LimitAmount>{` ${
+                    isNaN(this.props.amount) === false
+                      ? (this.props.amount / this.props.exchangeRate.buyprice).toFixed(2)
+                      : 0
+                  }`}</LimitAmount>
                 </ExchangeRateContainer>
               );
             } else {
@@ -564,10 +560,11 @@ class Main extends Component {
                       <LimitLabel style={{ marginLeft: "26px" }}>
                         {i18n.t("deposit.expectedPayment")}
                       </LimitLabel>{" "}
-                      <LimitAmount>{` ${isNaN(this.props.amount) === false
-                        ? (this.props.amount / this.props.exchangeRate[key][key2].rate).toFixed(2)
-                        : 0
-                        }`}</LimitAmount>
+                      <LimitAmount>{` ${
+                        isNaN(this.props.amount) === false
+                          ? (this.props.amount / this.props.exchangeRate[key][key2].rate).toFixed(2)
+                          : 0
+                      }`}</LimitAmount>
                     </ExchangeRateContainer>
                   );
                 });
@@ -664,7 +661,7 @@ class Main extends Component {
               value={this.props.playerNote}
               onChange={this.props.handlePlayerNoteChange}
               placeholder={i18n.t("deposit.plsEnterPlayerNote")}
-            // label={i18n.t("deposit.playerNote")}
+              // label={i18n.t("deposit.playerNote")}
             />
           )}
 

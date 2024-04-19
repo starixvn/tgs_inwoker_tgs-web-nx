@@ -155,10 +155,9 @@ const VIP = () => {
   const [selectedLevel, setSelectedLevel] = useState<number>(0);
   useUpdatePageName("VIP");
 
-  if (isLoading) return <Loading show={true} />;
-
   return (
     <PageContainer>
+      {isLoading && <Loading show={true} />}
       <VipBannerWrapper>
         <VipBanner
           $imageUrl={

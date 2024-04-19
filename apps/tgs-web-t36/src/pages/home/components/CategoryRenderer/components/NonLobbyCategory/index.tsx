@@ -82,7 +82,7 @@ const NonLobbyCategory = () => {
     const arr = gameList.slice(0, preLoadAmount);
     setGameIndex(preLoadAmount);
     setDisplayGameList(arr);
-  }, [gameList]);
+  }, [gameList, currentGameType]);
 
   useEffect(() => {
     handleChangeActiveProviderFilterTag(filterTagAll);

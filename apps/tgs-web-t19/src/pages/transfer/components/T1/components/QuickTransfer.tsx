@@ -174,6 +174,7 @@ const QuickTransfer = ({
           <AmountText>{i18n.t("common.amount")}</AmountText>
           <TextField
             value={transferAmount}
+            placeholder="0"
             onChange={handleTransferAmountChange}
             autoComplete="off"
             type={"number"}

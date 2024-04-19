@@ -60,7 +60,7 @@ const routes: RouteType[] = [
   {
     path: "/account",
     component: AccountPage,
-    layout: DefaultLayout,
+    layout: DialogLayout,
   },
   {
     path: "/deposit",
@@ -115,6 +115,11 @@ const routes: RouteType[] = [
   },
   {
     path: ProfilePathEnum.WECHAT,
+    component: ProfilePage,
+    layout: DialogLayout,
+  },
+  {
+    path: ProfilePathEnum.ZALO,
     component: ProfilePage,
     layout: DialogLayout,
   },
