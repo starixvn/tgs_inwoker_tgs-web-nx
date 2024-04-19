@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config, {brandConfig, mapBrandName} from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
+import styled from "styled-components";
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
 import { MainProps } from "./index";
 import {
@@ -28,6 +29,14 @@ import {
   CurrencyHint,
 } from "@/components/styled-component/WithdrawV2/Main";
 
+const TransferHint = styled.div`
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
+
 const MainMobile = ({
   amount,
   playerNote,
@@ -48,8 +57,8 @@ const MainMobile = ({
   handleWithdrawalClick,
 }: MainProps) => {
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
-  useWageringPage();
-  
+    useWageringPage();
+
   const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   useEffect(() => {
     fetchpPlayerBucket();
@@ -137,23 +146,19 @@ const MainMobile = ({
             value={amount}
             onChange={handleAmountChange}
             type="tel"
-            placeholder={`${
-              selectedCardIndex != null
-                ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatCurrency(min)} - ${Common.formatCurrency(max)})`
-                : i18n.t("withdrawal.enterAmount")
-            }`}
+            placeholder={i18n.t("withdrawal.enterAmount")}
           />
         </FormControl>
-        {!!currencyRate && <CurrencyHint>
-        {
-          !isNaN(amount) ?
-          `${Common.formatCurrency(amount * currencyRate)}` :
-          '0'
-        } {
-          config.currency
-        }
-        </CurrencyHint>}
+        <TransferHint>
+          {selectedCardIndex != null &&
+            `${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(max)}`}
+        </TransferHint>
+        {!!currencyRate && (
+          <CurrencyHint>
+            {!isNaN(amount) ? `${Common.formatCurrency(amount * currencyRate)}` : "0"}{" "}
+            {config.currency}
+          </CurrencyHint>
+        )}
       </ItemContainer>
 
       {/*玩家備註*/}

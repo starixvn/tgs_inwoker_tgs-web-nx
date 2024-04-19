@@ -26,7 +26,7 @@ const QuickTransferContainer = styled.div`
   & > div:nth-child(4) {
     max-width: 360px;
     height: 40px;
-  } 
+  }
 
   ${media.lg} {
     flex-wrap: nowrap;
@@ -173,7 +173,7 @@ const QuickTransfer = ({
           <AmountText>{i18n.t("common.amount")}</AmountText>
           <div>
             <CurrencyTextFieldReplacement
-              value={transferAmount || 0}
+              value={transferAmount}
               placeholder="0"
               onChange={handleTransferAmountChange}
               autoComplete="off"

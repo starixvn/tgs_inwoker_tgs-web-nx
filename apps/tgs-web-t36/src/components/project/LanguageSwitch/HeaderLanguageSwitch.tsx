@@ -68,7 +68,7 @@ const StyledMenuItem = styled(MuiMenuItem)`
 
 const NameContainer = styled.div`
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 14px;
 `;
 
 const HeaderLanguageSwitch = (props: SelectProps) => {

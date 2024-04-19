@@ -62,7 +62,7 @@ const CurrencyTextFieldReplacement = styled.input`
   border: none;
   color: ${({ theme }) => theme.black};
   ::placeholder {
-    color: ${({ theme }) => theme.black};
+    color: ${({ theme }) => theme.grey03};
   }
 `;
 
@@ -89,7 +89,6 @@ const QuickTransfer = ({
   handleTransferClick,
 }: Props) => {
   const { game } = useGameStore();
-
   return (
     <QuickTransferContainer>
       <GrayInputWrapper>
@@ -173,7 +172,7 @@ const QuickTransfer = ({
           <AmountText>{i18n.t("common.amount")}</AmountText>
           <div>
             <CurrencyTextFieldReplacement
-              value={transferAmount || 0}
+              value={transferAmount}
               placeholder="0"
               onChange={handleTransferAmountChange}
               autoComplete="off"
