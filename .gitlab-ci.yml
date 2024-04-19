@@ -195,7 +195,7 @@ stages:
         作者: $GITLAB_USER_LOGIN",
           "parse_mode": "HTML"
         }
-      EOF
+        EOF
       fi
 
 docker-build-dev:
