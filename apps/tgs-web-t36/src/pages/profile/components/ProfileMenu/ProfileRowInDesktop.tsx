@@ -53,7 +53,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
           color: isVerified ? theme.white : theme.white,
           background: isVerified ? theme.BTN01 : theme.BTN02,
           border: isVerified ? "none" : "1px solid #fff",
-          width: "150px",
+          width: "180px",
           height: "42px",
           borderRadius: "6px",
         }}
