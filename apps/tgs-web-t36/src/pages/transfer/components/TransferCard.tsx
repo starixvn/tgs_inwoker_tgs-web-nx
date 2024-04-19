@@ -97,8 +97,8 @@ const TransferCard = ({
         <ColContainer>
           <TextField
             type={"number"}
-            placeholder={i18n.t("transfer.msgEnterAmount")}
-            value={transferAmount || 0}
+            placeholder={"0"}
+            value={transferAmount}
             onChange={handleChangeTransferAmount}
             sx={{
               background: theme.grey02,
