@@ -37,9 +37,12 @@ const QuickTransferArrow = styled.div`
 `;
 
 const AmountWrapper = styled.div`
-  padding: 17px 10px;
+  padding: 10px 20px;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  height: 40px;
 `;
 
 const AmountText = styled.div`
@@ -48,12 +51,14 @@ const AmountText = styled.div`
 `;
 
 const CurrencyTextFieldReplacement = styled.input`
+  width: 100%;
+  max-width: 100px;
   background: none;
   text-align: right;
   border: none;
-  color: ${({ theme }) => theme.text};
-  &::placeholder {
-    color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.black};
+  ::placeholder {
+    color: ${({ theme }) => theme.gray30};
   }
 `;
 
@@ -80,6 +85,7 @@ const QuickTransfer = ({
   handleTransferClick,
 }: Props) => {
   const { game } = useGameStore();
+  console.log(transferAmount);
   return (
     <QuickTransferContainer>
       <GrayInputWrapper>
@@ -161,17 +167,15 @@ const QuickTransfer = ({
       <GrayInputWrapper>
         <AmountWrapper>
           <AmountText>{i18n.t("common.amount")}</AmountText>
-          <TextField
-            value={transferAmount}
-            onChange={handleTransferAmountChange}
-            autoComplete="off"
-            type={"number"}
-            inputProps={{
-              style: {
-                textAlign: "right",
-              },
-            }}
-          />
+          <div>
+            <CurrencyTextFieldReplacement
+              value={transferAmount}
+              placeholder="0"
+              onChange={handleTransferAmountChange}
+              autoComplete="off"
+              type={"number"}
+            />
+          </div>
         </AmountWrapper>
       </GrayInputWrapper>
 

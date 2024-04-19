@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
+import styled from "styled-components";
 import { MainProps } from "./index";
 import {
   FormControl,
@@ -25,6 +26,14 @@ import {
   SubHeaderContainer,
   Hint,
 } from "@/components/styled-component/WithdrawV2/Main";
+
+const TransferHint = styled.div`
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
 
 const MainMobile = ({
   amount,
@@ -113,16 +122,13 @@ const MainMobile = ({
             value={amount}
             onChange={handleAmountChange}
             type={"number"}
-            placeholder={`${
-              selectedCardIndex != null
-                ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(
-                    max,
-                  )})`
-                : i18n.t("withdrawal.enterAmount")
-            }`}
+            placeholder={i18n.t("withdrawal.enterAmount")}
           />
         </FormControl>
+        <TransferHint>
+          {selectedCardIndex != null &&
+            `${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(max)}`}
+        </TransferHint>
       </ItemContainer>
 
       {/*玩家備註*/}

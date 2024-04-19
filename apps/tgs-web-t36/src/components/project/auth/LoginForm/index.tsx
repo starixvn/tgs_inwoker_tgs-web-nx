@@ -89,7 +89,7 @@ const LoginForm = () => {
 
         <RedirectToRegisterHint />
 
-        <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />
+        <LanguageSwitch style={{ width: "150px", margin: "0 auto" }} />
       </AuthFormContainer>
     </>
   );

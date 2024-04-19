@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
+import styled from "styled-components";
 import { MainProps } from "./index";
 import {
   FormControl,
@@ -26,6 +27,14 @@ import {
   Hint,
 } from "@/components/styled-component/WithdrawV2/Main";
 import { theme } from "@/theme";
+
+const TransferHint = styled.div`
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+`;
 
 const MainMobile = ({
   amount,
@@ -74,7 +83,12 @@ const MainMobile = ({
             </option>
             {cardList.map((item, index) => {
               return (
-                <option style={{ background: theme.black }} key={index} value={index} id={`optionValue-${index}`}>
+                <option
+                  style={{ background: theme.black }}
+                  key={index}
+                  value={index}
+                  id={`optionValue-${index}`}
+                >
                   {item.banktype} (
                   {item.detail.address || item.detail.bankAccount || item.detail.phone})
                 </option>
@@ -114,16 +128,13 @@ const MainMobile = ({
             value={amount}
             onChange={handleAmountChange}
             type={"number"}
-            placeholder={`${
-              selectedCardIndex != null
-                ? i18n.t("withdrawal.enterAmount") +
-                  ` (${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(
-                    max,
-                  )})`
-                : i18n.t("withdrawal.enterAmount")
-            }`}
+            placeholder={i18n.t("withdrawal.enterAmount")}
           />
         </FormControl>
+        <TransferHint>
+          {selectedCardIndex != null &&
+            `${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(max)}`}
+        </TransferHint>
       </ItemContainer>
 
       {/*玩家備註*/}
