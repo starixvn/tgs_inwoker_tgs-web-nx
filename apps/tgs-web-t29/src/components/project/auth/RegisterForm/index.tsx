@@ -24,7 +24,7 @@ const RegisterForm = () => {
       )}
 
       <FormContainer>
-        <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
+        <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayeWithSMSVerify} />
       </FormContainer>
 
       <RedirectToLoginHint style={{ marginBottom: "20px" }} />

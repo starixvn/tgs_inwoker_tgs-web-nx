@@ -3,6 +3,7 @@ export const RegisterStageEnum = {
   InitPhone: "InitPhone",
   InitEmail: "InitEmail",
   SetRealName: "SetRealName",
+  CreatePlayeWithSMSVerify: "CreatePlayeWithSMSVerify",
 };
 
 export const ForgotPasswordStageEnum = {

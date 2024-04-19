@@ -14,6 +14,7 @@ export function useAuthV1Dialog() {
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
   const [isForgotPasswordDialogOpen, setIsForgotPasswordDialogOpen] = useState(false);
+  const [isfetching, setIsfetching] = useState<boolean | undefined>(false);
 
   const handleToggleLoginDialog = useCallback(
     (isOpen?: boolean) => {
@@ -80,6 +81,10 @@ export function useAuthV1Dialog() {
     [history, location.pathname, updatePageName],
   );
 
+  const handleChangeFetching = (value: boolean | undefined) => {
+    setIsfetching(value);
+  };
+
   return {
     isLoginDialogOpen,
     isRegisterDialogOpen,
@@ -87,5 +92,7 @@ export function useAuthV1Dialog() {
     handleToggleLoginDialog,
     handleToggleRegisterDialog,
     handleToggleForgotPasswordDialog,
+    isfetching,
+    handleChangeFetching,
   };
 }

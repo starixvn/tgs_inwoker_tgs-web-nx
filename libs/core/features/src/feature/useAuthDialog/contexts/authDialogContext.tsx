@@ -20,6 +20,8 @@ const initialState: {
   handleToggleInitEmailDialog: (isOpen?: boolean) => void;
   isRegisterV2SetRealNameDialogOpen: boolean;
   handleToggleSetRealNameDialog: (isOpen?: boolean) => void;
+  isfetching: boolean | undefined;
+  handleChangeFetching: (value?: boolean | undefined) => void;
 } = {
   isLoginDialogOpen: false,
   isRegisterDialogOpen: false,
@@ -35,6 +37,8 @@ const initialState: {
   handleToggleInitEmailDialog: () => {},
   isRegisterV2SetRealNameDialogOpen: false,
   handleToggleSetRealNameDialog: () => {},
+  isfetching: false,
+  handleChangeFetching: () => {},
 };
 
 export const AuthDialogContext = createContext({
@@ -53,6 +57,8 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     handleToggleLoginDialog,
     handleToggleRegisterDialog,
     handleToggleForgotPasswordDialog,
+    isfetching,
+    handleChangeFetching,
   } = useAuthV1Dialog();
   const { getAccountInfo } = useAccountStore();
   const { isLogin } = useAuth();
@@ -73,13 +79,15 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
   }, [getAccountInfo, isLogin]);
 
   const updateStage = (newStage: ValueOf<typeof RegisterStageEnum>) => {
+    console.log(newStage);
     switch (newStage) {
       case RegisterStageEnum.InitPhone:
         handleToggleLoginDialog(false);
-        handleToggleRegisterDialog(false);
+        //todo:加判斷是否開關
+        handleToggleRegisterDialog(true);
         handleToggleInitEmailDialog(false);
-
-        handleToggleInitPhoneDialog(true);
+        handleToggleInitPhoneDialog(false);
+        //
         break;
 
       case RegisterStageEnum.InitEmail:
@@ -128,6 +136,9 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         handleToggleInitEmailDialog,
         isRegisterV2SetRealNameDialogOpen,
         handleToggleSetRealNameDialog,
+        //fetching
+        isfetching,
+        handleChangeFetching,
       }}
     >
       {children}
