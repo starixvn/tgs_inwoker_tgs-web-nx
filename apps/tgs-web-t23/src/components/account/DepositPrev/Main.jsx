@@ -440,13 +440,7 @@ class Main extends Component {
               value={this.props.amount}
               onChange={this.props.handleAmountChange}
               type={"number"}
-              placeholder={
-                i18n.t("deposit.msgPleaseEnter") +
-                Common.formatNumberWithThousand(channel.transferlimit.from) +
-                "-" +
-                Common.formatNumberWithThousand(channel.transferlimit.to) +
-                i18n.t("deposit.dollor")
-              }
+              placeholder={i18n.t("deposit.msgPleaseEnter") + i18n.t("deposit.depositAmount")}
             />
           </FormControl>
 
