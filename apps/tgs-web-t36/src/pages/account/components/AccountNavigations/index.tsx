@@ -68,7 +68,7 @@ const AccountNavigations = () => {
           })}
         </AccountNavCardsContainer>
         <LanguageSwitchWrapper>
-          <LanguageSwitch />
+          <LanguageSwitch style={{ width: "150px", margin: "0 auto" }} />
         </LanguageSwitchWrapper>
       </AccountNavsContainer>
 
