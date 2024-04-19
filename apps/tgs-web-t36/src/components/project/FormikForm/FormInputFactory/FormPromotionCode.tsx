@@ -15,7 +15,7 @@ const FormPromotionCodeContainer = styled.div`
   overflow: visible;
 `;
 const DropdownContainer = styled.div`
-  width: 90px;
+  width: 100px;
   position: absolute;
   top: 50%;
   right: 0;
