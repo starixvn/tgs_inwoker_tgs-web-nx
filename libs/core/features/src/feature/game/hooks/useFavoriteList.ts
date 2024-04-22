@@ -20,7 +20,7 @@ export function useFavoriteList(activeGameType: GameTypeEnum) {
 
   useEffect(() => {
     fetchFavoriteList();
-  }, []);
+  }, [activeGameType]);
 
   return {
     favoriteList,
