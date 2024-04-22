@@ -11,7 +11,7 @@ const config = {
   defaultLanguage: "en-US",
   affiliateId: "",
   features: featureList["default"],
-  brandTitle: "MOMO",
+  brandTitle: "",
   AgentAdminUrl:null
 };
 

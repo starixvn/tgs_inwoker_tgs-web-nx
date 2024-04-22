@@ -97,11 +97,11 @@ const Introduction = styled.div`
 
 const Brand = styled.div`
   width: 100%;
+  padding: 5px 0;
   font-size: 18px;
   font-weight: 700;
   line-height: 14px;
   color: ${({ theme }) => theme.grey05};
-
   ${media.sm} {
     background: ${({ theme }) => theme.primary};
     padding: 10px;

@@ -78,7 +78,7 @@ export function useGetNonLobbyCategoryList() {
 
   const filteredGameListByTag = useMemo(() => {
     return getFilteredGameListByTag(gameListState.gameList, activeFilterTag, favoriteList);
-  }, [JSON.stringify(gameListState.gameList), activeFilterTag]);
+  }, [JSON.stringify(gameListState.gameList), activeFilterTag, favoriteList]);
 
   const filteredGameListByProvider = useMemo(() => {
     return getFilteredGameListByProvider(filteredGameListByTag, activeProviderFilterTag);
