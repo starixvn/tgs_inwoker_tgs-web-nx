@@ -90,7 +90,7 @@ export const useGameTypeList = () => {
       {
         key: "egame",
         iconUrl: egame,
-        text: i18n.t("common.egame"),
+        text: i18n.t("common.table"),
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
         iconComponent: Egame,

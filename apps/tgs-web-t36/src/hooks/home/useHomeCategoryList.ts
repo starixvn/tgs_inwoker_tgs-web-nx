@@ -79,7 +79,7 @@ export const useHomeCategoryList = () => {
       },
       {
         key: "egame",
-        text: i18n.t("common.egame"),
+        text: i18n.t("common.table"),
         gameType: GameTypeEnum.TABLEGAME,
         bgUrl: egameBg,
         desktopBgUrl: egameBgDesktop,
