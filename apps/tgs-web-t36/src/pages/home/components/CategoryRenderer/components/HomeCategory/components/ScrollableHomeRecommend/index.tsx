@@ -42,6 +42,7 @@ const CategoryTitle = styled.div`
 const MoreButtonWrapper = styled.div`
   display: flex;
   gap: 5px;
+  align-items: center;
 `;
 
 const MoreButton = styled.div`
@@ -51,7 +52,8 @@ const MoreButton = styled.div`
   font-size: 15px;
   font-weight: 400;
   line-height: 14px;
-
+  height: 30px;
+  
   ${media.sm} {
     border-radius: 3px;
     color: ${({ theme }) => theme.white};
@@ -109,7 +111,7 @@ const ScrollableHomeRecommend = () => {
         <CategoryLabel text={i18n.t("slot.recommendGame")} />
         <MoreButtonWrapper>
           <MoreButton onClick={handleClick}>{i18n.t("common.more")} </MoreButton>
-          {isMobileSize && <img src={arrowRight} alt="right" />}
+          {isMobileSize && <img width={9} height={14} src={arrowRight} alt="right" />}
         </MoreButtonWrapper>
       </CategoryTitle>
       <CategoryContent>
