@@ -55,9 +55,9 @@ export const DepositAmountInput = ({
             {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
           </FeeSpot>
         )}
-        <TransferHint>
+        {/* <TransferHint>
           {`${Common.formatCurrency(formData.minAmount)} - ${Common.formatCurrency(formData.maxAmount)}${i18n.t("deposit.dollor")}`}
-        </TransferHint>
+        </TransferHint> */}
         {currencyRate && <CurrencyHint>
           {
             !isNaN(amount) ?
