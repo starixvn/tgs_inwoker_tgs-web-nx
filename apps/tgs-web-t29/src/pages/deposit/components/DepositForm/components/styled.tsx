@@ -29,6 +29,7 @@ export const LabelContainer = styled(ProfileLabelContainer)`
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+  margin-bottom: 10px;
 `;
 
 type BadgeProps = {
@@ -39,24 +40,35 @@ export const Badge = styled.div<BadgeProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   gap: 10px;
-  padding: 10px;
+  padding: 5px;
   background: ${({$isActive, theme}) => $isActive ? theme.blue40 : theme.blue20};
   font-size: 0.812rem;
   font-weight: 400;
   color: ${({$isActive, theme}) => ($isActive ? theme.white : theme.black)};
   text-align: center;
   cursor: pointer;
+  word-break: break-word;
+
+  ${media.sm} {
+    padding: 10px;
+  }
 `;
 
 export const BadgeWrapper = styled.div`
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  flex-wrap: wrap;
+
+  ${media.md} {
+    grid-template-columns: repeat(5, 1fr);
+  }
 `;
 
 const Item = styled(ItemContainer)`
+  margin-bottom: 10px;
   ${media.md} {
     max-width: 100%;
   }
