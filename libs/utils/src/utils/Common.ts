@@ -18,6 +18,7 @@ function getCDNLanguagePrefix(): string {
 
   return prefix;
 }
+
 function readFileDataAsBinary(e: { files: FileList }): Promise<ArrayBuffer> {
   const file = e.files[0];
 
