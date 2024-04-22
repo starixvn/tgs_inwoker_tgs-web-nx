@@ -29,7 +29,7 @@ import {
   TransferLabel,
   TransferValue,
 } from "@/components/styled-component/Deposit";
-import { PaymentTabs, MethodTabs } from "@/pages/deposit/components/components/PaymentTabsHeader";
+import { PaymentTabs, MethodTabs } from "@/pages/deposit/components/PaymentTabsHeader";
 import { formatDepositTypeList } from "@/components/account/DepositPrev/utils";
 
 const LabelContainer = styled(ProfileLabelContainer)`
