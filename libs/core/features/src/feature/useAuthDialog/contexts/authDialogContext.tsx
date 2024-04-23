@@ -22,6 +22,8 @@ const initialState: {
   handleToggleSetRealNameDialog: (isOpen?: boolean) => void;
   isfetching: boolean | undefined;
   handleChangeFetching: (value?: boolean | undefined) => void;
+  securitykey: string;
+  handleChangeSecuritykey: (value: string) => void;
 } = {
   isLoginDialogOpen: false,
   isRegisterDialogOpen: false,
@@ -39,6 +41,8 @@ const initialState: {
   handleToggleSetRealNameDialog: () => {},
   isfetching: false,
   handleChangeFetching: () => {},
+  securitykey: "",
+  handleChangeSecuritykey: () => {},
 };
 
 export const AuthDialogContext = createContext({
@@ -59,6 +63,8 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     handleToggleForgotPasswordDialog,
     isfetching,
     handleChangeFetching,
+    securitykey,
+    handleChangeSecuritykey,
   } = useAuthV1Dialog();
   const { getAccountInfo } = useAccountStore();
   const { isLogin } = useAuth();
@@ -139,6 +145,9 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         //fetching
         isfetching,
         handleChangeFetching,
+        //securitykey
+        securitykey,
+        handleChangeSecuritykey,
       }}
     >
       {children}

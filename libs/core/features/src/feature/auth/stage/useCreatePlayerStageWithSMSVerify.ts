@@ -17,6 +17,7 @@ export function useCreatePlayerStageWithSMSVerify() {
   const { handleChangeFetching } = useAuthDialog();
   const { alert } = useNotifications();
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
+
   const {
     registerV2CreatePlayer,
     registerV2SetRealName,
@@ -25,74 +26,40 @@ export function useCreatePlayerStageWithSMSVerify() {
     newRegister,
   } = useAccountStore();
 
-  const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
+  const {
+    handleToggleLoginDialog,
+    handleToggleRegisterDialog,
+    securitykey,
+    handleChangeSecuritykey,
+  } = useAuthDialog();
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClickSubmit = async (values: any) => {
+    console.log(values);
     if (!isConfirmedAdult) {
       setRegisterError(new Error(i18n.t("common.msgRegisterTermAndCondition")));
       return;
     }
-
+    if (values.verifyCode.length === 0) {
+      setRegisterError(new Error(i18n.t("common.msgEnterCode")));
+      return;
+    }
     try {
-      setIsLoading(true);
-      const username = values.username as string;
-      const userType = values.userType as InvitationType;
-      const promoteCode = values.promoteCode as string;
-
-      const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
-        username,
-        pwd: values.pwd as string,
-        upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
-        invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,
-        //@ts-ignore
-        testplayer: config.testplayer || false,
-      };
-
-      const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
-
-      if (!newRegisterResDto) {
-        throw new Error("No newRegisterResDto found");
+      console.log(securitykey);
+      handleChangeFetching(true);
+      const response = await AccountService.UpdatePhoneV2(securitykey, formik.values.verifyCode);
+      if (response?.IsSuccess) {
+        // handleChangeFetching(false);
+        handleToggleRegisterDialog(false);
+      } else {
+        alert("", response?.info || "");
       }
-
-      if (!newRegisterResDto.IsSuccess) {
-        throw new Error(ErrorSwitcher.getTranslation(newRegisterResDto.info));
-      }
-
-      if (!newRegisterResDto.data.stepResponse.isnew) {
-        throw new Error(i18n.t("common.msgAlreadyExist"));
-      }
-      //for MOVN2 customization
-      if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
-        //Set realname之前必須先login
-        await accountLogin(values.username, values.pwd);
-
-        const setRealNameReqDto: RegisterV2SetRealNameDto = {
-          realname: values.realName,
-        };
-        await registerV2SetRealName(setRealNameReqDto);
-        //update user info
-        await getAccountInfo();
-      }
-
-      localStorage.setItem("remember", "true");
-      localStorage.setItem("username", username);
-      handleToggleRegisterDialog(false);
-
-      //Set realname時已經login,不需要再彈出登入視窗
-      if (!brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
-        handleToggleLoginDialog(true);
-      }
-
-      // updateStage(newRegisterResDto.data.nextStepType);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.error(error);
       setRegisterError(error);
     } finally {
-      setIsLoading(false);
+      handleChangeFetching(false);
     }
   };
 
@@ -104,17 +71,16 @@ export function useCreatePlayerStageWithSMSVerify() {
     setRegisterError(null);
   }, [formik.errors]);
 
-  const handleClickSend = async () => {
-    console.log(formik);
+  const handleClickSend = async (values: any) => {
     handleChangeFetching(true);
     try {
-      const username = formik.values.username as string;
-      const userType = formik.values.userType as InvitationType;
-      const promoteCode = formik.values.promoteCode as string;
+      const username = values.username as string;
+      const userType = values.userType as InvitationType;
+      const promoteCode = values.promoteCode as string;
 
       const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
         username,
-        pwd: formik.values.pwd as string,
+        pwd: values.pwd as string,
         upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
         invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,
         //@ts-ignore
@@ -135,20 +101,37 @@ export function useCreatePlayerStageWithSMSVerify() {
         alert("", i18n.t("common.msgAlreadyExist"));
         throw new Error(i18n.t("common.msgAlreadyExist"));
       }
-      await accountLogin(formik.values.username, formik.values.pwd);
+      await accountLogin(values.username, values.pwd);
+
       const responseInitPhone = await newRegister("InitPhone", {
         input: "Init",
         data: {
           areacode: config.features.PhonePrefix,
-          phone: formik.values.phone,
+          phone: values.phone,
         },
       });
+      alert("", i18n.t("common.msgTokenSent"));
+      handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);
       handleChangeFetching(false);
-      console.log(responseInitPhone);
     } catch (error: any) {
       handleChangeFetching(false);
       setRegisterError(error);
     }
+  };
+
+  const handleClickResend = async (values: any) => {
+    handleChangeFetching(true);
+
+    const responseInitPhone = await newRegister("InitPhone", {
+      input: "Init",
+      data: {
+        areacode: config.features.PhonePrefix,
+        phone: values.phone,
+      },
+    });
+    alert("", i18n.t("common.msgTokenSent"));
+    handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);
+    handleChangeFetching(false);
   };
 
   return {
@@ -160,5 +143,6 @@ export function useCreatePlayerStageWithSMSVerify() {
     isConfirmedAdult,
     handleClickConfirmAdult,
     handleClickSend,
+    handleClickResend,
   };
 }

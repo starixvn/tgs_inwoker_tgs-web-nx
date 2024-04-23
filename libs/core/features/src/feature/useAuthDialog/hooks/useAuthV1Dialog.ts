@@ -15,6 +15,7 @@ export function useAuthV1Dialog() {
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
   const [isForgotPasswordDialogOpen, setIsForgotPasswordDialogOpen] = useState(false);
   const [isfetching, setIsfetching] = useState<boolean | undefined>(false);
+  const [securitykey, setSecuritykey] = useState<string>("");
 
   const handleToggleLoginDialog = useCallback(
     (isOpen?: boolean) => {
@@ -85,6 +86,10 @@ export function useAuthV1Dialog() {
     setIsfetching(value);
   };
 
+  const handleChangeSecuritykey = (value: string) => {
+    setSecuritykey(value);
+  };
+
   return {
     isLoginDialogOpen,
     isRegisterDialogOpen,
@@ -94,5 +99,7 @@ export function useAuthV1Dialog() {
     handleToggleForgotPasswordDialog,
     isfetching,
     handleChangeFetching,
+    securitykey,
+    handleChangeSecuritykey,
   };
 }

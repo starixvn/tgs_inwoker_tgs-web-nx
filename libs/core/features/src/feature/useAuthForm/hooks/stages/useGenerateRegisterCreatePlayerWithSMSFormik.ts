@@ -23,7 +23,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
       {
         label: i18n.t("common.username"),
         name: "username",
-        initialValue: "test0246",
+        initialValue: "",
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required("Username is required")
@@ -64,10 +64,25 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
           };
         }
       })(),
+
+      {
+        label: i18n.t("wap.register.promoteCode"),
+        name: "promoteCode",
+        initialValue: promotionCode,
+        type: FormInputTypeEnum.PROMOTION_CODE,
+        isReadOnly: isPromotionCodeReadOnly,
+      },
+      {
+        label: i18n.t("wap.register.promoteCode"),
+        name: "userType",
+        initialValue: invitationType,
+        type: FormInputTypeEnum.USER_TYPE,
+        isReadOnly: isPromotionCodeReadOnly,
+      },
       {
         label: i18n.t("forgotPassword.plsEnterPhoneNumber"),
         name: "phone",
-        initialValue: "01234567891",
+        initialValue: "01234567893",
         type: FormInputTypeEnum.PHONE,
         validationSchema: Yup.string()
           .required("Phone is required")
@@ -88,20 +103,6 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
         name: "verifyCode",
         initialValue: "",
         type: FormInputTypeEnum.VERIFY_CODE,
-      },
-      {
-        label: i18n.t("wap.register.promoteCode"),
-        name: "promoteCode",
-        initialValue: promotionCode,
-        type: FormInputTypeEnum.PROMOTION_CODE,
-        isReadOnly: isPromotionCodeReadOnly,
-      },
-      {
-        label: i18n.t("wap.register.promoteCode"),
-        name: "userType",
-        initialValue: invitationType,
-        type: FormInputTypeEnum.USER_TYPE,
-        isReadOnly: isPromotionCodeReadOnly,
       },
     ].filter((item) => !!item) as FormikFormInput[];
   }, []);

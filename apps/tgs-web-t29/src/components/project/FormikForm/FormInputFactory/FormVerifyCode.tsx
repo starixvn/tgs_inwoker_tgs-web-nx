@@ -21,7 +21,7 @@ type Props = {
 };
 
 const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
-  const { handleClickSend } = useCreatePlayerStageWithSMSVerify();
+  const { handleClickSend, handleClickResend } = useCreatePlayerStageWithSMSVerify();
 
   const { label, name, type } = formInput;
   const [isSent, setIssent] = useState(false);
@@ -38,14 +38,13 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
     formik.validateForm().then((errors: any) => {
       if (Object.keys(errors).length === 0) {
         setIssent(true);
-        handleClickSend();
+        handleClickSend(formik.values);
       }
     });
-    //   .catch((err) => {});
   };
 
   const handleResend = () => {
-    console.log("resend");
+    handleClickResend(formik.values);
   };
 
   return (
