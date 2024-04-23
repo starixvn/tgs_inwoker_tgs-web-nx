@@ -11,7 +11,7 @@ const VipMedal = ({ vipLevel }: Props) => {
   useEffect(() => {
     const loadImage = async () => {
       try {
-        const dynamicImage = `/assets/images/vip/level_${vipLevel}.png`;
+        const dynamicImage = `/assets/images/vip/level_${vipLevel}.webp`;
         setImage(dynamicImage);
       } catch (error) {
         console.error("Error loading image:", error);

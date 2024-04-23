@@ -53,7 +53,7 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
             <img
               width={"50px"}
               height={"50px"}
-              src={`${import.meta.env.BASE_URL}assets/images/vip/level_${accountLevel}.png`}
+              src={`${import.meta.env.BASE_URL}assets/images/vip/level_${accountLevel}.webp`}
               alt={`level_${accountLevel}`}
             />
             VIP
