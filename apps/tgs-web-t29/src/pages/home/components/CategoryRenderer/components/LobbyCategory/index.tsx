@@ -111,7 +111,7 @@ const LobbyCategory = () => {
                   return (
                     <MobileVendorCard
                       key={gpCode}
-                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
+                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.webp`}
                       imageUrl={`/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
                       launchGame={() => launchLobbyGame(gpCode)}
                       status={status}
