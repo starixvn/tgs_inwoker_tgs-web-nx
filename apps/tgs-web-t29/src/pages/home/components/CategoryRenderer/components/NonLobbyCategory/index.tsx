@@ -50,14 +50,14 @@ const FilterSection = styled.div`
 const DesktopCategoryContentWrapper = styled.div`
   width: 100%;
   gap: 10px 6px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   align-content: center;
 `;
 
 const CategoryContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-content: center;
   width: 100%;
   row-gap: 10px;
@@ -94,7 +94,7 @@ const NonLobbyCategory = () => {
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const [gameIndex, setGameIndex] = useState(preLoadAmount);
   const [displayGameList, setDisplayGameList] = useState<GameItem[]>([]);
-
+  const [footerHeight, setFooterHeight] = useState(0);
   const hasMappingData = !!gameList.length;
   const { searchString, handleChangeSearch } = useHomeGameContext();
 
@@ -103,11 +103,19 @@ const NonLobbyCategory = () => {
     setDisplayGameList(displayGameList.concat(arr));
     setGameIndex(gameIndex + preLoadAmount);
   };
+    
+  // 桌面版在每次 scrollbar 距離底部為 footer 高度時觸發
+  const offset = isDesktopSize ? footerHeight : 100;
+  const containerRef = useBottomScrollListener(handleLoadMoreGame, {offset}) as any;
 
-  const containerRef = useBottomScrollListener(handleLoadMoreGame, { offset: 50 }) as any;
   useEffect(() => {
     const arr = gameList.slice(0, gameIndex);
     setDisplayGameList(arr);
+    // 桌面版 取得 footer 的高度
+    const getFooterHeight = document.querySelector('footer')?.offsetHeight;
+    if(getFooterHeight) {
+      setFooterHeight(getFooterHeight);
+    }
   }, [gameList]);
 
   return (
@@ -151,18 +159,18 @@ const NonLobbyCategory = () => {
         <DesktopWrapper>
           <HomeGameFilterTag />
           <DesktopCategoryContentWrapper>
-            {hasMappingData &&
-              gameList.map((gameItem) => (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
-                />
+              {hasMappingData &&
+                displayGameList.map((gameItem) => (
+                  <GameCard
+                    key={gameItem.id}
+                    gameItem={gameItem}
+                    isActive={gameItem.isactive}
+                    imageUrl={`${
+                      config.sourceUrl
+                    }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                      gameItem.code
+                    }.jpg`}
+                  />
               ))}
             {!hasMappingData && !isLoading && <Text>No data</Text>}
           </DesktopCategoryContentWrapper>

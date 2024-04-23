@@ -116,7 +116,7 @@ const TransferCards = ({ handleTransferIn }: Props) => {
                   src={`/assets/images/provider/${switchAlternateLogo(
                     //@ts-ignore
                     (config.features.UseAlternateLogo as boolean) || false,
-                  )}${displayLogo()}.png`}
+                  )}${displayLogo()}.webp`}
                   alt={displayLogo()}
                 />
                 <GameName>

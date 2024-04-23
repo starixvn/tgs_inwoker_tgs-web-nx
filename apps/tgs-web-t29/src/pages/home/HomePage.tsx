@@ -192,7 +192,7 @@ const HomePage = () => {
                 activeGameTypeKey
                   ? `${
                       import.meta.env.BASE_URL
-                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                    }assets/images/home/gameType_banner/${activeGameTypeKey}.webp`
                   : ""
               }
             />

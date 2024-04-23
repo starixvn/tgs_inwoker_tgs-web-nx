@@ -8,7 +8,7 @@ type Props = {
   list: Option[],
 }
 
-const defaultIconUrl = './assets/images/deposit/default.png';
+const defaultIconUrl = './assets/images/deposit/default.webp';
 
 const CardIcon = ({
   iconUrl

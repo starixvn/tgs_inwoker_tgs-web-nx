@@ -111,8 +111,8 @@ const LobbyCategory = () => {
                   return (
                     <MobileVendorCard
                       key={gpCode}
-                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.png`}
-                      imageUrl={`/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                      bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.webp`}
+                      imageUrl={`/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.webp`}
                       launchGame={() => launchLobbyGame(gpCode)}
                       status={status}
                     />
@@ -136,7 +136,7 @@ const LobbyCategory = () => {
                   bgUrl={`${import.meta.env.BASE_URL
                     }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
                   imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
+                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.webp`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                 />

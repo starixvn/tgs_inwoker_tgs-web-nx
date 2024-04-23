@@ -15,7 +15,7 @@ import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
 import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
 
-const FooterContainer = styled.div`
+const FooterContainer = styled.footer`
   display: none;
 
   ${media.sm} {

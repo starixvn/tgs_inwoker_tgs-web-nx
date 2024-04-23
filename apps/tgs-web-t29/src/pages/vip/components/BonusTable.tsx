@@ -255,7 +255,7 @@ const BonusTable = ({ vipSortingData }: Props) => {
                       height={"50px"}
                       src={`${import.meta.env.BASE_URL}assets/images/vip/level_${
                         vipData.level
-                      }.png`}
+                      }.webp`}
                       alt={`level_${vipData.level}`}
                     />
                     <span>VIP{vipData.level}</span>

@@ -232,7 +232,7 @@ const UserWalletInfo = () => {
                 height={"50px"}
                 src={`${import.meta.env.BASE_URL}assets/images/vip/level_${
                   info.member_level_id
-                }.png`}
+                }.webp`}
                 alt={`level_${info.member_level_id}`}
               />
               VIP

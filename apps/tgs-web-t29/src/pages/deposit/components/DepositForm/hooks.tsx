@@ -46,7 +46,7 @@ export const useGroupList = () => {
 
   const groupList: Option[] = filterGroupList.map(row => {
     return {
-      iconUrl: `/assets/images/deposit/${row.code}.png`,
+      iconUrl: `/assets/images/deposit/${row.code}.webp`,
       isActive: row.code === groupCode,
       onClick: () => handleChangeCode(row.code, setGroupCode),
       children: row.code,

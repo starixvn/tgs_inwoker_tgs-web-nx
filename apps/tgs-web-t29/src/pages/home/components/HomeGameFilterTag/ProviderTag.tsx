@@ -65,7 +65,7 @@ const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
           onClick={onClick}
           src={`${
             import.meta.env.BASE_URL
-          }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+          }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.webp`}
           alt={text}
         />
         {status === providerStatus.Maintenance && (
