@@ -4,7 +4,7 @@ import MenuList from "@/layouts/components/MenuDrawer/components/MenuList";
 import { DESKTOP_HEADER_HEIGHT } from "@/theme/constants";
 
 const MobileMenuDrawerContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background: #263042;
   width: 100%;
   height: 100vh;
 `;
