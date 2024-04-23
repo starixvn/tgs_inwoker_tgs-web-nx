@@ -17,7 +17,7 @@ type IconComponentProps = {
 };
 
 const Text = styled.div<{ $isActive: boolean }>`
-  color: ${({ $isActive, theme }) => ($isActive ? theme.primary : theme.primary)};
+  color: ${({ $isActive, theme }) => theme.white};
   font-size: 15.6px;
   font-weight: 400;
 `;
@@ -32,17 +32,9 @@ const Wrapper = styled.div<{
   align-items: center;
   justify-content: ${({ $isShrink }) => ($isShrink ? "center" : "unset")};
   height: 44.74px;
-  background: ${({ theme, $isActive }) => ($isActive ? theme.g7 : theme.mainBackground)};
   align-self: stretch;
   padding: ${({ $isShrink }) => ($isShrink ? "unset" : "0px 24px")};
   gap: ${({ $isShrink }) => ($isShrink ? "unset" : "24px")};
-
-  &:hover {
-    background: ${({ theme }) => theme.g7};
-    ${Text} {
-      color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.primary)};
-    }
-  }
 `;
 
 const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
@@ -69,7 +61,7 @@ const MenuGameTab = ({ text, isActive, onClick, children }: Props) => {
 
       return (
         <IconComponent
-          $color={!isActive && isHovered ? theme.primary : isActive ? theme.primary : theme.primary}
+          $color={!isActive && isHovered ? theme.primary : isActive ? theme.white : theme.white}
           isHovered={isHovered}
         />
       );

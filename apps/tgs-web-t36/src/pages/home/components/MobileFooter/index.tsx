@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   gap: 12px;
   padding: 15px;
+  background: #26304c;
 `;
 
 const FooterGroup = styled.div`
@@ -23,6 +24,7 @@ const GroupTitle = styled.h6`
   font-weight: 700;
   line-height: 14px;
   margin-bottom: 10px;
+  color: ${({ theme }) => theme.white};
 `;
 
 const GroupContent = styled.div`
