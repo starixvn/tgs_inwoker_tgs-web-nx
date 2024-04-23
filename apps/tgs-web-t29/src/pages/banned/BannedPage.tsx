@@ -16,14 +16,14 @@ const BannedBg = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: url(${import.meta.env.BASE_URL}assets/images/banned/banned_bg.png);
+  background-image: url(${import.meta.env.BASE_URL}assets/images/banned/banned_bg.webp);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   ${media.sm} {
     width: 100%;
     height: 740px;
-    background-image: url(${import.meta.env.BASE_URL}assets/images/banned/banned_desktop_bg.png);
+    background-image: url(${import.meta.env.BASE_URL}assets/images/banned/banned_desktop_bg.webp);
   }
 `;
 
