@@ -71,7 +71,7 @@ const NavCategory = () => {
                 bgUrl={`${import.meta.env.BASE_URL
                   }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
                 imageUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
+                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.webp`}
                 launchGame={() => enterVendorFilter(gpCode)}
                 status={status}
               />
