@@ -58,7 +58,7 @@ const NavHeaderWrapper = styled(UseInfoHeaderWrapper)`
   display: flex;
   align-items: center;
   z-index: 2;
-  background: linear-gradient(180deg, #c3d8fa 0%, #ffffff 44.5%, #dce8fc 100%);
+  background: linear-gradient(180deg, #5174b8 0%, #16326a 100%);
 
   ${media.sm} {
     padding: 0 60px;
