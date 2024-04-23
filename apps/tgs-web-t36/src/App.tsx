@@ -33,7 +33,6 @@ import RegisterV2InitPhoneDialog from "@/components/project/auth/Dialogs/Registe
 import RegisterV2InitEmailDialog from "@/components/project/auth/Dialogs/RegisterV2InitEmailDialog";
 
 
-
 const App: React.FC = () => {
   const { isLoading } = useInitSite();
   const gameTypeList = useGameTypeList();
