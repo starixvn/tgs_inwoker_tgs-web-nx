@@ -48,11 +48,13 @@ const GameTypeNav = styled.div<{
   padding: 5px;
   cursor: pointer;
   position: relative;
-  color: ${({ theme, $isActive }) => ($isActive ? theme.subNavSec : theme.primary)};
-  border-bottom: ${({ theme, $isActive }) => ($isActive ? `3px solid ${theme.primary}` : `none`)};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.primary : theme.white)};
   margin-top: ${({ $isActive }) => ($isActive ? "3px" : "0px")};
+  background: ${({ theme, $isActive }) => ($isActive ? theme.grey02 : "transparent")};
+
   &:hover {
-    background: ${({ theme }) => theme.grey10};
+    background: ${({ theme }) => theme.grey02};
+    color: ${({ theme }) => theme.primary};
   }
 
   ${media.lg} {
