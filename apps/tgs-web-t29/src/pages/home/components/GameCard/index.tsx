@@ -24,15 +24,9 @@ const CardHoverBg = styled.div`
   white-space: pre-line;
 `;
 
-const GameIcon = styled.div<{ $imageUrl: string }>`
-  position: absolute;
+const GameIcon = styled.img`
   width: 100%;
-  padding-top: 100%;
-  left: 0;
-  top: 0;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  border-radius: 10px;
+  object-fit: cover;
 `;
 
 const NewTag = styled.div`
@@ -70,19 +64,16 @@ const HotTag = styled.div`
 `;
 
 const GameCardContent = styled.div`
-  width: 100%;
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 6px);
+  width: 100%;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 161 / 161;
+  aspect-ratio: 1;
   border-radius: 10px;
-
+  overflow: hidden;
   ${media.sm} {
-    width: calc(16.67% - 6px);
-
     &:hover {
       ${CardHoverBg} {
         z-index: 1;
@@ -95,19 +86,6 @@ const GameCardBg = styled.div`
   }
 `;
 
-const GameName = styled.div`
-  position: absolute;
-  bottom: 0;
-  color: ${(props) => props.theme.white};
-  font-size: 0.875rem;
-  font-weight: 400;
-  text-align: center;
-  margin: 4px 0 12px 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%; //利用最大寬度來限制文字長度
-`;
 
 const MaintenanceBg = styled.div`
   position: absolute;
@@ -198,7 +176,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
-        <GameIcon $imageUrl={url}></GameIcon>
+        <GameIcon src={url} alt={gameItem.code} loading="lazy" />
         {gameItem.tag.new && <NewTag>New</NewTag>}
         {gameItem.tag.hot && <HotTag>Hot</HotTag>}
         {!isActive && (
