@@ -86,7 +86,7 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       );
 
       if (verifyForgotPasswordResDto.IsSuccess) {
-        setCountdownToken(60);
+        setCountdownToken(config.features.sendSMSInterval);
         setSecurityKey(verifyForgotPasswordResDto.data);
         showInfoMessage(i18n.t("common.msgTokenSent"));
       } else {
