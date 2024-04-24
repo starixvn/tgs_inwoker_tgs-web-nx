@@ -21,7 +21,7 @@ const InitRealNameStage = () => {
   const { handleToggleSetRealNameDialog, handleToggleInitPhoneDialog, handleToggleRegisterDialog } =
     useAuthDialog();
 
-  const [name, setName] = useState("test valu213e");
+  const [name, setName] = useState("");
   const handleVerify = async () => {
     const setRealNameReqDto: RegisterV2SetRealNameDto = {
       realname: name,

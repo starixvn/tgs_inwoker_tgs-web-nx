@@ -23,7 +23,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
       {
         label: i18n.t("common.username"),
         name: "username",
-        initialValue: "",
+        initialValue: "test0255",
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required("Username is required")
@@ -86,11 +86,6 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
         type: FormInputTypeEnum.PHONE,
         validationSchema: Yup.string()
           .required("Phone is required")
-          .matches(new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}`), {
-            message: i18n
-              .t("common.noReachMin")
-              .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
-          }),
       },
       {
         label: "",

@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { RegisterStageEnum, ValueOf } from "@tgs-web-nx/types";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { useRegisterV2Dialog } from "../hooks/useRegisterV2Dialog";
 import { useAuthV1Dialog } from "../hooks/useAuthV1Dialog";
 import { useAuth, useAuthContext } from "../../useAuth";
@@ -24,6 +25,10 @@ const initialState: {
   handleChangeFetching: (value?: boolean | undefined) => void;
   securitykey: string;
   handleChangeSecuritykey: (value: string) => void;
+  isSendCodeSuccess: boolean;
+  handleChangeSendCodeSuccess: (value: boolean) => void;
+  countdownToken: number;
+  handleChangeCountdownToken: (value: number) => void;
 } = {
   isLoginDialogOpen: false,
   isRegisterDialogOpen: false,
@@ -43,6 +48,10 @@ const initialState: {
   handleChangeFetching: () => {},
   securitykey: "",
   handleChangeSecuritykey: () => {},
+  isSendCodeSuccess: false,
+  handleChangeSendCodeSuccess: () => {},
+  countdownToken: 0,
+  handleChangeCountdownToken: () => {},
 };
 
 export const AuthDialogContext = createContext({
@@ -65,6 +74,10 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     handleChangeFetching,
     securitykey,
     handleChangeSecuritykey,
+    isSendCodeSuccess,
+    handleChangeSendCodeSuccess,
+    countdownToken,
+    handleChangeCountdownToken,
   } = useAuthV1Dialog();
   const { getAccountInfo } = useAccountStore();
   const { isLogin } = useAuth();
@@ -85,15 +98,12 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
   }, [getAccountInfo, isLogin]);
 
   const updateStage = (newStage: ValueOf<typeof RegisterStageEnum>) => {
-    console.log(newStage);
     switch (newStage) {
       case RegisterStageEnum.InitPhone:
         handleToggleLoginDialog(false);
-        //todo:加判斷是否開關
-        handleToggleRegisterDialog(true);
+        handleToggleRegisterDialog(false);
         handleToggleInitEmailDialog(false);
-        handleToggleInitPhoneDialog(false);
-        //
+        handleToggleInitPhoneDialog(true);
         break;
 
       case RegisterStageEnum.InitEmail:
@@ -148,6 +158,12 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         //securitykey
         securitykey,
         handleChangeSecuritykey,
+        //sendCode
+        isSendCodeSuccess,
+        handleChangeSendCodeSuccess,
+        //countdownToken
+        countdownToken,
+        handleChangeCountdownToken
       }}
     >
       {children}

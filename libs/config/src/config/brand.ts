@@ -4,7 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
  * 若有新增站台 先在這邊加入對應設定
  * Default BrandName: 'GPI'
  */
-type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH";
+type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH" | "MOMOVN";
 
 type SocialMediaLink = {
   fb: string;
@@ -36,6 +36,7 @@ type MOVN2Config = {
   customGametypeSort: string[]; // game type 是否有客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-3968
   defaultActiveGametype: GameTypeEnum | null; //預設active的game type https://raypro.atlassian.net/browse/TGS-3968
   customGameProviderSort: string[]; //game provider客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-4420
+  SMSVerifyInRegister: boolean; //是否在註冊時候就進行SMS驗證 https://raypro.atlassian.net/browse/TGS-4417
 };
 
 type MOPHConfig = {
@@ -95,6 +96,7 @@ export const defaultConfig: Config = {
   isFixedPhoneLength: false,
   contractAge: 18,
   customGameProviderSort: [],
+  SMSVerifyInRegister: true,
   // new brand config start here
   // NewBrand
 };
@@ -103,8 +105,73 @@ export const defaultConfig: Config = {
 export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
-    currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
-    isFixedPhoneLength: true,
+  },
+  MOMOVN: {
+    ...defaultConfig,
+    isAddRealNameFieldBrand: true,
+    socialMediaLink: {
+      ...defaultConfig.socialMediaLink,
+      fb: "https://www.facebook.com/momobetvn/",
+      ig: "https://www.instagram.com/momobet.vn/",
+    },
+    isAutoFillBankHolderName: true,
+    isRegisterRealNameRequired: true,
+    isDisabledBankHolderName: true,
+    isShowLiveChat: false,
+    isShowDownloadApp: false,
+    isShowChatCustomerService: false,
+    isAllowMulitBankCards: false,
+    currencyRate: 1000,
+    isDisableWebPinchAction: true,
+    isShowAgentAdminButton: true,
+    isHideVIPBirthdayBonus: true,
+    isHideVIPQuarterlyBonus: true,
+    isShowVIP: true,
+    isHideTransferButton: true,
+    customGametypeSort: [
+      "slots",
+      "fishing",
+      "sports",
+      "liveCasino",
+      "egame",
+      "sabong",
+      "cardGame",
+      "lottery",
+      "esports",
+    ],
+    defaultActiveGametype: GameTypeEnum.SLOT,
+    customGameProviderSort: [
+      "JILITF",
+      "AWC_PGS",
+      "FACHAI",
+      "JDBTF",
+      "FUNKY",
+      "AWC_FS",
+      "JOKER",
+      "BTG",
+      "EVOTF",
+      "PPTF",
+      "AWC_SG",
+      "WMTF",
+      "HABATF",
+      "RTTF",
+      "ENDOR",
+      "NLC",
+      "AWC_KM",
+      "NTTF",
+      "AWC_YESBINGO",
+      "AWC_BG",
+      "DGTF",
+      "VR",
+      "KY",
+      "365TF",
+      "OBET",
+      "PINNACLE",
+      "AWC_VENUS",
+      "AWC_YL",
+      "TFTF",
+    ],
+    SMSVerifyInRegister: true,
   },
   MOVN2: {
     ...defaultConfig,
@@ -171,6 +238,7 @@ export const brandConfig: Record<BrandName, Config> = {
       "AWC_YL",
       "TFTF",
     ],
+    SMSVerifyInRegister: true,
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -293,6 +361,7 @@ export const brandConfig: Record<BrandName, Config> = {
       "TFTF",
     ],
     isShowDownloadApp: false,
+    SMSVerifyInRegister: true,
   },
 };
 

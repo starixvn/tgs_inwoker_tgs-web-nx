@@ -31,13 +31,152 @@ export function useCreatePlayerStageWithSMSVerify() {
     handleToggleRegisterDialog,
     securitykey,
     handleChangeSecuritykey,
+    handleChangeSendCodeSuccess,
+    handleChangeCountdownToken,
   } = useAuthDialog();
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
 
+  const checkPhoneNumber = (values: any) => {
+    let res = false;
+    if (
+      (brandConfig[mapBrandName(config.brand)].isFixedPhoneLength &&
+        values.phone.length !== config.features.MAX_PHONE_LENGTH) ||
+      (values.phone.length === config.features.MAX_PHONE_LENGTH && values.phone[0] !== "0")
+    ) {
+      alert(
+        "",
+        i18n
+          .t("common.noReachLength")
+          .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
+      );
+      res = true;
+    }
+
+    if (
+      (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && values.phone.length < 8) ||
+      values.phone.length > (config.features.MAX_PHONE_LENGTH || 10)
+    ) {
+      alert(
+        "",
+        i18n
+          .t("common.noReachMin")
+          .replace(/{maxlength}/g, `${config.features.MAX_PHONE_LENGTH || 10}`),
+      );
+      res = true;
+    }
+    return res;
+  };
+
+  const createPlayer = async (values: any) => {
+    const username = values.username as string;
+    const userType = values.userType as InvitationType;
+    const promoteCode = values.promoteCode as string;
+    const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
+      username,
+      pwd: values.pwd as string,
+      upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
+      invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,
+      //@ts-ignore
+      testplayer: config.testplayer || false,
+    };
+    const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
+    if (!newRegisterResDto) {
+      throw new Error("No newRegisterResDto found");
+    }
+
+    if (!newRegisterResDto.IsSuccess) {
+      alert("", ErrorSwitcher.getTranslation(newRegisterResDto.info));
+      throw new Error(ErrorSwitcher.getTranslation(newRegisterResDto.info));
+    }
+
+    if (!newRegisterResDto.data.stepResponse.isnew) {
+      alert("", i18n.t("common.msgAlreadyExist"));
+      throw new Error(i18n.t("common.msgAlreadyExist"));
+    }
+  };
+
+  const setRealName = async (values: any) => {
+    const setRealNameReqDto: RegisterV2SetRealNameDto = {
+      realname: values.realName,
+    };
+    const responseSetRealName = await registerV2SetRealName(setRealNameReqDto);
+    if (!responseSetRealName?.IsSuccess) {
+      handleChangeFetching(false);
+      alert("", i18n.t("common.msgRequestFailed"));
+      return;
+    }
+  };
+
+  const sendVerificationcode = async (values: any) => {
+    const responseInitPhone = await newRegister("InitPhone", {
+      input: "Init",
+      data: {
+        areacode: config.features.PhonePrefix,
+        phone: values.phone,
+      },
+    });
+    if (!responseInitPhone?.IsSuccess) {
+      handleChangeFetching(false);
+      alert("", i18n.t("common.msgRequestFailed"));
+      return;
+    }
+    alert("", i18n.t("common.msgTokenSent"));
+    handleChangeSendCodeSuccess(true);
+    handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);
+    handleChangeFetching(false);
+  };
+
+  const handleClickSend = async (values: any) => {
+    if (checkPhoneNumber(values)) {
+      return;
+    }
+    //讓畫面進入loading
+    handleChangeFetching(true);
+
+    try {
+      //create player
+      await createPlayer(values);
+
+      //login
+      await AccountService.Login(values.username, values.pwd);
+
+      //如有開啟set real name功能,call set realName API(register)
+      if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
+        setRealName(values);
+      }
+
+      //send Verification code
+      sendVerificationcode(values);
+    } catch (error: any) {
+      handleChangeFetching(false);
+      setRegisterError(error);
+    }
+  };
+
+  const handleClickResend = async (values: any) => {
+    if (checkPhoneNumber(values)) {
+      return;
+    }
+    handleChangeFetching(true);
+
+    const responseInitPhone = await newRegister("InitPhone", {
+      input: "Init",
+      data: {
+        areacode: config.features.PhonePrefix,
+        phone: values.phone,
+      },
+    });
+    handleChangeFetching(false);
+    if (responseInitPhone?.IsSuccess) {
+      handleChangeCountdownToken(10);
+      alert("", i18n.t("common.msgTokenSent"));
+      handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);
+    }
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClickSubmit = async (values: any) => {
-    console.log(values);
     if (!isConfirmedAdult) {
       setRegisterError(new Error(i18n.t("common.msgRegisterTermAndCondition")));
       return;
@@ -47,12 +186,13 @@ export function useCreatePlayerStageWithSMSVerify() {
       return;
     }
     try {
-      console.log(securitykey);
       handleChangeFetching(true);
       const response = await AccountService.UpdatePhoneV2(securitykey, formik.values.verifyCode);
       if (response?.IsSuccess) {
-        // handleChangeFetching(false);
+        //update user info
+        await accountLogin(values.username, values.pwd);
         handleToggleRegisterDialog(false);
+        handleChangeSendCodeSuccess(false);
       } else {
         alert("", response?.info || "");
       }
@@ -70,69 +210,6 @@ export function useCreatePlayerStageWithSMSVerify() {
   useEffect(() => {
     setRegisterError(null);
   }, [formik.errors]);
-
-  const handleClickSend = async (values: any) => {
-    handleChangeFetching(true);
-    try {
-      const username = values.username as string;
-      const userType = values.userType as InvitationType;
-      const promoteCode = values.promoteCode as string;
-
-      const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
-        username,
-        pwd: values.pwd as string,
-        upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
-        invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,
-        //@ts-ignore
-        testplayer: config.testplayer || false,
-      };
-
-      const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
-      if (!newRegisterResDto) {
-        throw new Error("No newRegisterResDto found");
-      }
-
-      if (!newRegisterResDto.IsSuccess) {
-        alert("", ErrorSwitcher.getTranslation(newRegisterResDto.info));
-        throw new Error(ErrorSwitcher.getTranslation(newRegisterResDto.info));
-      }
-
-      if (!newRegisterResDto.data.stepResponse.isnew) {
-        alert("", i18n.t("common.msgAlreadyExist"));
-        throw new Error(i18n.t("common.msgAlreadyExist"));
-      }
-      await accountLogin(values.username, values.pwd);
-
-      const responseInitPhone = await newRegister("InitPhone", {
-        input: "Init",
-        data: {
-          areacode: config.features.PhonePrefix,
-          phone: values.phone,
-        },
-      });
-      alert("", i18n.t("common.msgTokenSent"));
-      handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);
-      handleChangeFetching(false);
-    } catch (error: any) {
-      handleChangeFetching(false);
-      setRegisterError(error);
-    }
-  };
-
-  const handleClickResend = async (values: any) => {
-    handleChangeFetching(true);
-
-    const responseInitPhone = await newRegister("InitPhone", {
-      input: "Init",
-      data: {
-        areacode: config.features.PhonePrefix,
-        phone: values.phone,
-      },
-    });
-    alert("", i18n.t("common.msgTokenSent"));
-    handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);
-    handleChangeFetching(false);
-  };
 
   return {
     formInputConfigList,

@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { MenuItem } from "@mui/material";
 import config from "@tgs-web-nx/config";
-import { FormikFormInput, useCreatePlayerStageWithSMSVerify } from "@tgs-web-nx/core/features";
+import {
+  FormikFormInput,
+  useAuthDialog,
+  useCreatePlayerStageWithSMSVerify,
+} from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { TextField } from "@/components/UI/TextField";
 import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
@@ -14,17 +18,22 @@ const PhoneContainer = styled.div`
   gap: 14px;
 `;
 
+const Text = styled.span`
+  margin-left: 3px;
+`;
+
 type Props = {
   formInput: FormikFormInput;
   formik: any;
   showErrorOn?: "bottom" | "input";
 };
 
+const countdown = 10;
+
 const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
   const { handleClickSend, handleClickResend } = useCreatePlayerStageWithSMSVerify();
-
+  const { isSendCodeSuccess, countdownToken, handleChangeCountdownToken } = useAuthDialog();
   const { label, name, type } = formInput;
-  const [isSent, setIssent] = useState(false);
 
   const handleSendCode = () => {
     //觸發表單驗證
@@ -37,7 +46,6 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
     });
     formik.validateForm().then((errors: any) => {
       if (Object.keys(errors).length === 0) {
-        setIssent(true);
         handleClickSend(formik.values);
       }
     });
@@ -46,6 +54,20 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
   const handleResend = () => {
     handleClickResend(formik.values);
   };
+
+  useEffect(() => {
+    handleChangeCountdownToken(countdown);
+  }, [isSendCodeSuccess]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (countdownToken > 0) {
+        handleChangeCountdownToken(countdownToken - 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [countdownToken]);
 
   return (
     <PhoneContainer>
@@ -66,8 +88,11 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
           }}
         />
       </GrayInputWrapper>
-      {isSent ? (
-        <SendButton onClick={handleResend}>{i18n.t("common.btnTokenResendLabel")}</SendButton>
+      {isSendCodeSuccess ? (
+        <SendButton disabled={countdownToken > 0} onClick={handleResend}>
+          <span>{i18n.t("common.btnTokenResendLabel")}</span>
+          {countdownToken > 0 && <Text>{`(${countdownToken}s)`}</Text>}
+        </SendButton>
       ) : (
         <SendButton onClick={handleSendCode}>{i18n.t("common.msgSendToken")}</SendButton>
       )}
