@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo, useContext} from "react";
 import { groupBy, i18n } from '@tgs-web-nx/utils';
 import { FilterDepositList } from '@tgs-web-nx/types';
 import { useNotifications } from '@tgs-web-nx/core/features';
-import { Option, GroupCodeEnum } from './types';
+import { Option, GroupCodeEnum, MovnCodeEnum } from './types';
 import { DepositFormContext } from "./components/DepositFormProvider";
 import { handleChangeCode, getFilterDepositList } from './utils';
 
@@ -43,20 +43,61 @@ export const useGroupList = () => {
       return [bankList, ...result];
     }
   , [depositChannelList, depositList]);
-
-  const groupList: Option[] = filterGroupList.map(row => {
-    return {
-      iconUrl: `/assets/images/deposit/${row.code}.webp`,
-      isActive: row.code === groupCode,
-      onClick: () => handleChangeCode(row.code, setGroupCode),
-      children: row.code,
-      code: row.code,
-    }
+    
+  const groupList: Option[] = filterGroupList
+    .filter(row => row.channels.length > 0)
+    .map(row => {
+      return {
+        iconUrl: `/assets/images/deposit/${row.code}.webp`,
+        isActive: row.code === groupCode,
+        onClick: () => handleChangeCode(row.code, setGroupCode),
+        children: row.code,
+        code: row.code,
+      }
   });
 
-  useSelectFirst(groupList, setGroupCode);
+  useSelectFirst(groupList, setGroupCode, [groupList.length]);
 
   return {groupCode, groupList, filterGroupList};
+}
+
+/**
+ * 第一層: 網關 直連 掃碼
+ * @alias MOVN 客製化
+ */
+export const useMOVNList = () => {
+  const [movnCode, setMovnCode] = useState('');
+  const {wallet: {depositData}} = useWalletStore();
+  const filterMovnList: FilterDepositList[] = useMemo(() =>
+    {
+      return Object.values(MovnCodeEnum)
+        .map(key => {
+          return {
+            code: key,
+            channels: depositData?.filter(row => row.channelname.includes(`${key}_`)) ?? [],
+        }});
+
+    }
+  , [depositData]);
+    
+  const movnList: Option[] = filterMovnList
+    .filter(row => row.channels.length > 0)
+    .map(row => {
+      return {
+        isActive: row.code === movnCode,
+        onClick: () => handleChangeCode(row.code, setMovnCode),
+        children: row.code,
+        code: row.code,
+      }
+    });
+
+  useSelectFirst(movnList, setMovnCode, [movnList.length]);
+
+  return {
+    filterMovnList,
+    movnCode,
+    movnList,
+  }
 }
 
 /**
@@ -72,7 +113,7 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
     return {
       isActive: row.id === selectedID,
       onClick: () => handleChangeCode(row.id, setSelectedID),
-      children: row.channelname,
+      children: MovnCodeEnum[code as MovnCodeEnum] ? row.channelname.replace(`${code}_`, "") : row.channelname,
       code: row.id,
     }
   });
@@ -95,7 +136,7 @@ export const useChannelList = (list: FilterDepositList[], code: string) => {
     })
   }, [currentChannel?.id])
 
-  useSelectFirst(channelList, setSelectedID, [code]);
+  useSelectFirst(channelList, setSelectedID, [code, channelList.length]);
 
   return {channelList, currentChannel, extended, isManual};
 }

@@ -61,4 +61,9 @@ export enum GroupCodeEnum {
   Bank= 'Bank',
 }
 
-
+// 自定義的 MovnCode
+export enum MovnCodeEnum {
+  NET = 'NET',
+  QR = 'QR',
+  DR = 'DR',
+}

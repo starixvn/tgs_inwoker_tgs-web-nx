@@ -3,6 +3,7 @@ import { DepositFormContext, DepositFormProvider } from "./DepositFormProvider";
 import { DepositPromotion } from "./DepositPromotion";
 import { DepositSubmitButton } from "./DepositSubmitButton";
 import FormLayout from "./FormLayout";
+import MovnFormLayout from "./MovnFormLayout";
 import {Icon, WarningText, TransferHint, CurrencyHint, LabelContainer, Badge, BadgeWrapper, FormContainer} from "./styled";
 import { Cards } from "./Cards";
 import { Upload } from "./Upload";
@@ -28,4 +29,5 @@ export {
   Cards,
   Upload,
   DepositInput,
+  MovnFormLayout,
 }
