@@ -24,10 +24,11 @@ const CategoryCardBg = styled.div<{ $bgUrl: string }>`
   }
 `;
 
-const CategoryCardContent = styled.div`
+const CategoryCardContent = styled.div<{ $gameType: number }>`
   height: 100%;
   position: absolute;
-  left: 58%;
+  //COCKFIGHT 字段較長,會導致破版
+  left: ${({ theme, $gameType }) => ($gameType === GameTypeEnum.COCKFIGHT ? "48%" : "58%")};
   top: 0;
   display: flex;
   align-items: center;
@@ -105,7 +106,7 @@ const CategoryCard = ({
 
   return isMobileSize ? (
     <CategoryCardBg onClick={handleClick} $bgUrl={bgUrl}>
-      <CategoryCardContent>
+      <CategoryCardContent $gameType={gameType}>
         <Text>{text}</Text>
       </CategoryCardContent>
     </CategoryCardBg>
