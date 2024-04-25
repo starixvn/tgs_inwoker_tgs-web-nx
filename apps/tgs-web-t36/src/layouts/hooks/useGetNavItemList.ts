@@ -13,6 +13,7 @@ import ContactUsSvg from "@/pages/home/components/TabSvgIcon/ContactUs";
 import AccountSvg from "@/pages/account/components/AccountSvgIcon/Account";
 import DepositSvg from "@/pages/account/components/AccountSvgIcon/Deposit";
 import WithdrawSvg from "@/pages/account/components/AccountSvgIcon/Withdraw";
+import WageringSvg from "@/pages/account/components/AccountSvgIcon/Wagering";
 import TransferSvg from "@/pages/account/components/AccountSvgIcon/Transfer";
 import ReportSvg from "@/pages/account/components/AccountSvgIcon/Report";
 import InboxSvg from "@/pages/account/components/AccountSvgIcon/Inbox";
@@ -122,7 +123,7 @@ export function useGetNavItemList() {
         callback: () => {
           history.push("/deposit");
         },
-        iconComponent: WithdrawSvg,
+        iconComponent: DepositSvg,
       },
       {
         key: NavCardKey.WITHDRAW,
@@ -132,7 +133,17 @@ export function useGetNavItemList() {
         callback: () => {
           history.push("/withdrawal");
         },
-        iconComponent: DepositSvg,
+        iconComponent: WithdrawSvg,
+      },
+      {
+        key: NavCardKey.WAGERING,
+        label: i18n.t("t29.wagering"),
+        navType: "route",
+        routePath: "/wagering",
+        callback: () => {
+          history.push("/wagering");
+        },
+        iconComponent: WageringSvg,
       },
       {
         key: NavCardKey.TRANSFER,
