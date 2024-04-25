@@ -106,6 +106,7 @@ export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
   },
+  
   MOMOVN: {
     ...defaultConfig,
     isAddRealNameFieldBrand: true,
