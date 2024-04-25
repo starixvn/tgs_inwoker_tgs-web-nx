@@ -23,7 +23,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
       {
         label: i18n.t("common.username"),
         name: "username",
-        initialValue: "test0255",
+        initialValue: "",
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required("Username is required")
@@ -35,7 +35,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
         label: i18n.t("common.password"),
         name: "pwd",
         type: FormInputTypeEnum.PASSWORD,
-        initialValue: "12345678",
+        initialValue: "",
         validationSchema: Yup.string()
           .required("Password is required")
           .matches(/^.{6,20}$/, {
@@ -46,7 +46,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
         label: i18n.t("wap.register.confirmPassword"),
         name: "confirmPassword",
         type: FormInputTypeEnum.PASSWORD,
-        initialValue: "12345678",
+        initialValue: "",
         validationSchema: Yup.string()
           .required()
           //@ts-ignore
@@ -82,7 +82,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
       {
         label: i18n.t("forgotPassword.plsEnterPhoneNumber"),
         name: "phone",
-        initialValue: "01234567893",
+        initialValue: "",
         type: FormInputTypeEnum.PHONE,
         validationSchema: Yup.string()
           .required("Phone is required")
