@@ -1,5 +1,6 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
 import RegisterFormStage from "./RegisterFormStage";
@@ -24,7 +25,13 @@ const RegisterForm = () => {
       )}
 
       <FormContainer>
-        <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
+        <RegisterFormStage
+          currentStage={
+            brandConfig[mapBrandName(config.brand)].SMSVerifyInRegister
+              ? RegisterStageEnum.CreatePlayeWithSMSVerify
+              : RegisterStageEnum.CreatePlayer
+          }
+        />
       </FormContainer>
 
       <RedirectToLoginHint style={{ marginBottom: "20px" }} />
