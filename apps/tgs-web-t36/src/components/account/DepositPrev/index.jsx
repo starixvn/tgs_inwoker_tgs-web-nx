@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig, mapBrandName} from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import {
   generalAction,
@@ -176,7 +176,11 @@ class DepositPrev extends Component {
             if (url !== "") {
               window.open(url, "_blank");
             }
-
+            // eslint-disable-next-line no-undef
+            if(brandConfig[mapBrandName(config.brand)].isInitYuriJs && _yuri_track) {
+              // eslint-disable-next-line no-undef
+              _yuri_track("Purchase"); 
+            }
             this.props.alert("", i18n.t("deposit.completeDeposit"));
           }
         }

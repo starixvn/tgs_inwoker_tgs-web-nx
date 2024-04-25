@@ -4,7 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
  * 若有新增站台 先在這邊加入對應設定
  * Default BrandName: 'GPI'
  */
-type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH" | "MOMOVN";
+type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH" | "MOMOVN" | "SBO";
 
 type SocialMediaLink = {
   fb: string;
@@ -368,6 +368,10 @@ export const brandConfig: Record<BrandName, Config> = {
     isShowDownloadApp: false,
     SMSVerifyInRegister: true,
   },
+  SBO: {
+    ...defaultConfig,
+    isInitYuriJs: true,
+  }
 };
 
 export const mapBrandName = (brand: string): BrandName => {
