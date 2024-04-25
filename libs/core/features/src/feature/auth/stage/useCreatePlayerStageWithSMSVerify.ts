@@ -7,7 +7,6 @@ import {
   InvitationType,
   useAuthDialog,
   useConfirmAdult,
-  useGenerateRegisterCreatePlayerFormik,
   useGenerateRegisterCreatePlayerWithSMSFormik,
 } from "../../../index";
 import { useNotifications } from "../../useNotifications/index";
@@ -18,16 +17,10 @@ export function useCreatePlayerStageWithSMSVerify() {
   const { alert } = useNotifications();
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
 
-  const {
-    registerV2CreatePlayer,
-    registerV2SetRealName,
-    accountLogin,
-    getAccountInfo,
-    newRegister,
-  } = useAccountStore();
+  const { registerV2CreatePlayer, registerV2SetRealName, accountLogin, newRegister } =
+    useAccountStore();
 
   const {
-    handleToggleLoginDialog,
     handleToggleRegisterDialog,
     securitykey,
     handleChangeSecuritykey,
@@ -37,6 +30,7 @@ export function useCreatePlayerStageWithSMSVerify() {
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const checkPhoneNumber = (values: any) => {
     let res = false;
     if (
@@ -68,6 +62,7 @@ export function useCreatePlayerStageWithSMSVerify() {
     return res;
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createPlayer = async (values: any) => {
     const username = values.username as string;
     const userType = values.userType as InvitationType;
@@ -96,6 +91,7 @@ export function useCreatePlayerStageWithSMSVerify() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const setRealName = async (values: any) => {
     const setRealNameReqDto: RegisterV2SetRealNameDto = {
       realname: values.realName,
@@ -108,11 +104,12 @@ export function useCreatePlayerStageWithSMSVerify() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sendVerificationcode = async (values: any) => {
     const responseInitPhone = await newRegister("InitPhone", {
       input: "Init",
       data: {
-        areacode: config.features.PhonePrefix,
+        areacode: values.areaCode,
         phone: values.phone,
       },
     });
@@ -123,10 +120,12 @@ export function useCreatePlayerStageWithSMSVerify() {
     }
     alert("", i18n.t("common.msgTokenSent"));
     handleChangeSendCodeSuccess(true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);
     handleChangeFetching(false);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClickSend = async (values: any) => {
     if (checkPhoneNumber(values)) {
       return;
@@ -148,12 +147,14 @@ export function useCreatePlayerStageWithSMSVerify() {
 
       //send Verification code
       sendVerificationcode(values);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       handleChangeFetching(false);
       setRegisterError(error);
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClickResend = async (values: any) => {
     if (checkPhoneNumber(values)) {
       return;
@@ -163,14 +164,15 @@ export function useCreatePlayerStageWithSMSVerify() {
     const responseInitPhone = await newRegister("InitPhone", {
       input: "Init",
       data: {
-        areacode: config.features.PhonePrefix,
+        areacode: values.areaCode,
         phone: values.phone,
       },
     });
     handleChangeFetching(false);
     if (responseInitPhone?.IsSuccess) {
-      handleChangeCountdownToken(10);
+      handleChangeCountdownToken(config.sendSMSInterval);
       alert("", i18n.t("common.msgTokenSent"));
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);
     }
   };
@@ -196,6 +198,7 @@ export function useCreatePlayerStageWithSMSVerify() {
       } else {
         alert("", response?.info || "");
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setRegisterError(error);
     } finally {
