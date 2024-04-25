@@ -59,6 +59,7 @@ const FormikForm = ({
 
   return (
     <Form onSubmit={formik.handleSubmit}>
+      <Loading show={isfetching as boolean} />
       {formInputList.map((formInput) => {
         const FormInput = FormInputFactory[formInput.type];
         if (!FormInput) return null;
