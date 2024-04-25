@@ -140,6 +140,7 @@ const featureList = {
 				}
 			}
 		},
+    sendSMSInterval: 60,
   },
 };
 export default featureList;
