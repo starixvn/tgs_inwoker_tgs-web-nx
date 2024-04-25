@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { FormikFormInput } from "@tgs-web-nx/core/features";
+import { FormikFormInput, useAuthDialog } from "@tgs-web-nx/core/features";
+import { Loading } from "@tgs-web-nx/core";
 import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
@@ -54,8 +55,11 @@ const FormikForm = ({
 
   const bottomFormErrorMsg = showErrorOn === "bottom" && getBottomErrorMessage();
 
+  const { isfetching } = useAuthDialog();
+
   return (
     <Form onSubmit={formik.handleSubmit}>
+      <Loading show={isfetching} />
       {formInputList.map((formInput) => {
         const FormInput = FormInputFactory[formInput.type];
         if (!FormInput) return null;
