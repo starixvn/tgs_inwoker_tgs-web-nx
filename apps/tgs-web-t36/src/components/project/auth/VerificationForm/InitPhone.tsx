@@ -2,6 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
+import {useTrackFacebookPixel} from "@tgs-web-nx/core/hooks";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications, usePageName } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
@@ -28,6 +29,7 @@ type Props = {
 };
 
 function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
+  const {sendFbTrack} = useTrackFacebookPixel();
   const AREA_CODE = config.features.PhonePrefix;
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const { alert } = useNotifications();
@@ -226,6 +228,10 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
 
   const handleUpdatePhone = async (securityKey: string, code: string) => {
     const response = await AccountService.UpdatePhoneV2(securityKey, code);
+
+    if(response?.data.isCompleted) {
+      sendFbTrack('AddToCart');
+    }
 
     if (response?.IsSuccess) {
       await handleGetAccountInfo();

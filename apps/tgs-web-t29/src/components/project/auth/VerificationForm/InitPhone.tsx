@@ -5,7 +5,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications, usePageName } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
-import useTrackFacebookPixel from "@/hooks/facebookPixel/useTrackFacebookPixel";
+import {useTrackFacebookPixel} from "@tgs-web-nx/core/hooks";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
