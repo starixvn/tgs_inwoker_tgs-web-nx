@@ -57,7 +57,11 @@ function VerifyPhone({ handleUpdateStage }: Props) {
 
     if (!phone) return showErrorMessage(i18n.t("common.msgEnterPhone"));
 
-    if(brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && (phone.length !== config.features.MAX_PHONE_LENGTH) || (phone.length === config.features.MAX_PHONE_LENGTH && phone[0] !== '0'))  {
+    if (
+      (brandConfig[mapBrandName(config.brand)].isFixedPhoneLength &&
+        phone.length !== config.features.MAX_PHONE_LENGTH) ||
+      (phone.length === config.features.MAX_PHONE_LENGTH && phone[0] !== "0")
+    ) {
       alert(
         "",
         i18n
@@ -67,7 +71,10 @@ function VerifyPhone({ handleUpdateStage }: Props) {
       return;
     }
 
-    if (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && phone.length < 8 || phone.length > (config.features.MAX_PHONE_LENGTH || 10)) {
+    if (
+      (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && phone.length < 8) ||
+      phone.length > (config.features.MAX_PHONE_LENGTH || 10)
+    ) {
       alert(
         "",
         i18n
