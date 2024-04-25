@@ -17,6 +17,7 @@ import {
   UserWalletInfoContextProvider,
 } from "@tgs-web-nx/core/features";
 import { RouteType } from "@tgs-web-nx/types";
+import FacebookPixel from "./components/project/FacebookPixel";
 import LiveChat from "./components/tools/LiveChat";
 import { routes } from "@/router";
 import PopupAlertModal from "@/components/project/Popup/PopupAlertDialog";
@@ -54,6 +55,7 @@ const App: React.FC = () => {
                 <AuthDialogContextProvider>
                   <UserWalletInfoContextProvider>
                     <HomeGameContextProvider gameTypeList={gameTypeList}>
+                      <FacebookPixel />
                       <ScrollToTop />
                       <Switch>
                         {routes.map((route, index) => {
