@@ -3,3 +3,4 @@ export * from "./hooks/app";
 export * from "./hooks/pages";
 export * from "./hooks/tools";
 export * from "./hooks/layouts";
+export * from "./hooks/facebookPixel";

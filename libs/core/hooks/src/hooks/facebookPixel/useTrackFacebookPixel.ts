@@ -12,7 +12,7 @@ type YuriJsParam = 'AddToCart' | 'Purchase';
  * @param key 追蹤項目
  * @returns 追蹤方法
  */
-const useTrackFacebookPixel = () => {
+export const useTrackFacebookPixel = () => {
     const sendFbTrack = (key: YuriJsParam) => {
 
         // MOMO 客製化設定
@@ -23,7 +23,7 @@ const useTrackFacebookPixel = () => {
         //@ts-ignore
         if(_yuri_track && typeof _yuri_track === 'function') {
             //@ts-ignore
-            _yuri_track("AddToCart"); 
+            _yuri_track(key); 
         }
     }
 
@@ -31,5 +31,3 @@ const useTrackFacebookPixel = () => {
         sendFbTrack,
     };
 }
-
-export default useTrackFacebookPixel;
