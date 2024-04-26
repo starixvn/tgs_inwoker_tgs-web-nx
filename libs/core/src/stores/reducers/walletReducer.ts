@@ -116,6 +116,11 @@ const initState = {
   depositMinLimit: 0,
   depositMaxLimit: 0,
 };
+
+function mapDepositData(result) {
+  return {depositData: result.data}
+}
+
 function mapDepositList(result) {
   const data = result.data;
 
@@ -621,6 +626,7 @@ const walletReducer = (state = initState, action) => {
         ...mapDepositType(action.payload),
         ...mapDepositList(action.payload),
         ...mapDepositChannelList(action.payload),
+        ...mapDepositData(action.payload),
         loading: false,
       };
     case GETDEPOSITCHANNEL_FAIL:

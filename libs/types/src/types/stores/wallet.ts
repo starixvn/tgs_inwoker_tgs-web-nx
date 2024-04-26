@@ -109,6 +109,7 @@ export interface WalletState {
   depositList: TransferChannel[];
   depositTypeList: DepositType[];
   depositChannelList: FilterDepositList[];
+  depositData: TransferChannel[];
   depositLoading: false;
   depositResult: null;
   cancelDepositResult: null;
