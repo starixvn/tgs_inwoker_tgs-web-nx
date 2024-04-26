@@ -6,6 +6,7 @@ import AccountMenuItem from "@/pages/account/components/AccountNavigations/Accou
 import { NavItem } from "@/hooks/account/useAccountNavigations";
 import { media } from "@/theme/breakpoints";
 import { useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { theme } from "@/theme";
 
 const AccountNavsContainer = styled.div`
   ${media.sm} {
@@ -68,7 +69,7 @@ const AccountNavigations = () => {
           })}
         </AccountNavCardsContainer>
         <LanguageSwitchWrapper>
-          <LanguageSwitch style={{ width: "150px", margin: "0 auto" }} />
+          <LanguageSwitch style={{ width: "150px", margin: "0 auto", color: theme.black }} />
         </LanguageSwitchWrapper>
       </AccountNavsContainer>
 

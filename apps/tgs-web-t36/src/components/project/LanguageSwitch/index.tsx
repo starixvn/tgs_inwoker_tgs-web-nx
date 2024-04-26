@@ -49,10 +49,6 @@ const StyledSelect = styled(MuiSelect)`
   & .MuiOutlinedInput-notchedOutline {
     border: none;
   }
-
-  & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.black};
-  }
 `;
 
 const StyledMenuItem = styled(MuiMenuItem)`
@@ -108,6 +104,14 @@ const LanguageSwitch = (props: SelectProps) => {
       type={"string"}
       value={culturecode}
       onChange={handleChange}
+      sx={{
+        "& .MuiSelect-select": {
+          color: props.style?.color ? props.style?.color : theme.white,
+        },
+        "& .MuiSvgIcon-root": {
+          color: props.style?.color ? props.style?.color : theme.white,
+        },
+      }}
       MenuProps={{
         PaperProps: {
           sx: {
