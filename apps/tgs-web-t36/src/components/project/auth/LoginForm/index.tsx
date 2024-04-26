@@ -31,11 +31,14 @@ const LoginForm = () => {
   } = useLoginForm();
   const { isMobileSize } = useRwd();
 
+  const Wrapper = styled.div`
+    padding-top: 20px;
+  `;
+
   const LoginHeader = styled.div`
     position: relative;
     display: flex;
     width: 100%;
-    padding-top: 70px;
     justify-content: center;
     align-items: flex-end;
     flex-shrink: 0;
@@ -43,15 +46,8 @@ const LoginForm = () => {
     background-size: cover;
   `;
 
-
-  const Title = styled(LoginTitle)`
-    font-size: 15.6px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.white};
-  `;
-
   return (
-    <>
+    <Wrapper>
       {isMobileSize ? (
         <LoginHeader>
           <BrandLogo style={{ maxHeight: "55px", zIndex: "1" }} />
@@ -91,7 +87,7 @@ const LoginForm = () => {
 
         <LanguageSwitch style={{ width: "150px", margin: "0 auto" }} />
       </AuthFormContainer>
-    </>
+    </Wrapper>
   );
 };
 
