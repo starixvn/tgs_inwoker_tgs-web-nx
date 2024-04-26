@@ -35,7 +35,7 @@ export const BankLayout = ({
   };
 
   const providerProps = {
-    i18nParam: "depositAndWithdrawalStatus.depositMode",
+    i18nParam: "depositAndWithdrawalStatus.bankType",
     list: providerList,
   };
 
