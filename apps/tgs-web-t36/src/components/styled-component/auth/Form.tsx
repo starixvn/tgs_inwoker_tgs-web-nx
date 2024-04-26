@@ -10,13 +10,13 @@ export const RememberMeContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   cursor: pointer;
   //margin: 8px 0;
 `;
 export const ForgotPasswordContainer = styled.span`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   font-weight: 400;
   white-space: nowrap;
@@ -24,7 +24,7 @@ export const ForgotPasswordContainer = styled.span`
 `;
 export const RedirectContainer = styled.div`
   width: 100%;
-  color: ${({ theme }) => theme.text};
+  color: ${({ theme }) => theme.white};
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.245;
@@ -34,7 +34,7 @@ export const RedirectContainer = styled.div`
   justify-content: center;
 
   .link {
-    color: ${({ theme }) => theme.primary};
+    color: #3281d0;
     margin-left: 8px;
     cursor: pointer;
     font-weight: 700;

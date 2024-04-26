@@ -8,6 +8,7 @@ const CustomText = styled.div`
   display: flex;
   align-items: center;
   overflow: visible;
+  background-color: white;
   & .MuiInputAdornment-root {
     overflow: visible;
     border-radius: 5px;
