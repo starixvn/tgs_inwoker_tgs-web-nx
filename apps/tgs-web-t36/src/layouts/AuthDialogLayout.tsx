@@ -3,13 +3,17 @@ import styled from "styled-components";
 import { useAuthDialogLayout, useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { DESKTOP_HEADER_HEIGHT, BOTTOM_APP_BAR_HEIGHT, DIALOG_HEADER_HEIGHT } from "@/theme/constants";
+import {
+  DESKTOP_HEADER_HEIGHT,
+  BOTTOM_APP_BAR_HEIGHT,
+  DIALOG_HEADER_HEIGHT,
+} from "@/theme/constants";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import { media } from "@/theme/breakpoints";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background: #26304c;
   height: 100vh;
   overflow: auto;
 `;
