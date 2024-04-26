@@ -10,7 +10,7 @@ const DepositForm = () =>{
   const renderLayout = () => {
     const brandName: BrandName = config.brand;
     switch (brandName) {
-      // case 'GPI':
+      case 'MOMOVN':
       case 'MOVN2':
         return <MovnFormLayout />
     

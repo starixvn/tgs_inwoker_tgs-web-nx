@@ -48,7 +48,7 @@ export const useGroupList = () => {
     .filter(row => row.channels.length > 0)
     .map(row => {
       return {
-        iconUrl: `/assets/images/deposit/${row.code}.webp`,
+        iconUrl: `/assets/images/deposit/${row.code.toLocaleLowerCase()}.webp`,
         isActive: row.code === groupCode,
         onClick: () => handleChangeCode(row.code, setGroupCode),
         children: row.code,
@@ -84,6 +84,7 @@ export const useMOVNList = () => {
     .filter(row => row.channels.length > 0)
     .map(row => {
       return {
+        iconUrl: `/assets/images/deposit/${row.code.toLocaleLowerCase()}.webp`,
         isActive: row.code === movnCode,
         onClick: () => handleChangeCode(row.code, setMovnCode),
         children: i18n.t(`MOVN2.${row.code}`),
