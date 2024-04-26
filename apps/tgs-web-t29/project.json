@@ -72,8 +72,7 @@
       "defaultConfiguration": "production",
       "options": {
         "commands": [
-          "export tag=$(date +%Y-%m%d-%H%M);docker build -f {args.AppPath}/Dockerfile . -t {args.DockerContainerRegistry}{args.ImageName}:$tag",
-          "docker tag {args.DockerContainerRegistry}{args.ImageName}:$tag {args.DockerContainerRegistry}{args.ImageName}:$tag:latest"
+          "docker build -f {args.AppPath}/Dockerfile . -t {args.DockerContainerRegistry}{args.ImageName}:`date +%Y-%m%d-%H%M`"
         ],
         "parallel": false
       },
