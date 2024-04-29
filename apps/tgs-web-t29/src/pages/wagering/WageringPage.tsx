@@ -128,7 +128,7 @@ const WageringPage = () => {
       case "Sportsbook":
         return i18n.t("common.sports");
       case "Slot":
-        return i18n.t("common.slot");
+        return i18n.t("common.table");
       case "CardGame":
         return i18n.t("common.chess");
       case "Lottery":
