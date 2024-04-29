@@ -31,23 +31,17 @@ const LoginForm = () => {
   } = useLoginForm();
   const { isMobileSize } = useRwd();
 
+
   const LoginHeader = styled.div`
     position: relative;
     display: flex;
     width: 100%;
-    padding-top: 70px;
     justify-content: center;
     align-items: flex-end;
     flex-shrink: 0;
     background-repeat: no-repeat;
     background-size: cover;
-  `;
-
-
-  const Title = styled(LoginTitle)`
-    font-size: 15.6px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.white};
+    padding-top: 20px;
   `;
 
   return (

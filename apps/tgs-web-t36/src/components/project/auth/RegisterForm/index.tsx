@@ -15,7 +15,7 @@ const RegisterForm = () => {
     position: relative;
     height: 100%;
     overflow: scroll;
-    padding-top: 70px;
+    padding-top: 20px;
     ${media.sm} {
       overflow: unset;
     }

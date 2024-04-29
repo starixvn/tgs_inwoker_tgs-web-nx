@@ -6,3 +6,4 @@ export * from "./useVerifyEmail";
 export * from "./useVerifyPhone";
 export * from "./useSetRealNameStage";
 export * from "./useCreatePlayerStageWithSMSVerify";
+export * from "./useNewPasswordStageV2";
