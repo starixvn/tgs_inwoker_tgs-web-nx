@@ -26,7 +26,7 @@ export function useForgotPasswordNewPasswordFormikV2({ handleClickSubmit }: Prop
         label: i18n.t("common.msgEnterCode"),
         name: "verifyCode",
         initialValue: "",
-        type: "VERIFY_CODE",
+        type:FormInputTypeEnum.VERIFY_CODE,
         validationSchema: Yup.string().required("validation code is required"),
       },
       {

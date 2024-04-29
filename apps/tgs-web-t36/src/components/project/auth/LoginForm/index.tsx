@@ -31,9 +31,6 @@ const LoginForm = () => {
   } = useLoginForm();
   const { isMobileSize } = useRwd();
 
-  const Wrapper = styled.div`
-    padding-top: 20px;
-  `;
 
   const LoginHeader = styled.div`
     position: relative;
@@ -44,10 +41,11 @@ const LoginForm = () => {
     flex-shrink: 0;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 20px;
   `;
 
   return (
-    <Wrapper>
+    <>
       {isMobileSize ? (
         <LoginHeader>
           <BrandLogo style={{ maxHeight: "55px", zIndex: "1" }} />
@@ -87,7 +85,7 @@ const LoginForm = () => {
 
         <LanguageSwitch style={{ width: "150px", margin: "0 auto" }} />
       </AuthFormContainer>
-    </Wrapper>
+    </>
   );
 };
 
