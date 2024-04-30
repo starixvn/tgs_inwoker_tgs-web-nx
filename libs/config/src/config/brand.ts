@@ -301,6 +301,7 @@ export const brandConfig: Record<BrandName, Config> = {
   SBO: {
     ...defaultConfig,
     isInitYuriJs: true,
+    currencyRate: 1000,
   }
 };
 

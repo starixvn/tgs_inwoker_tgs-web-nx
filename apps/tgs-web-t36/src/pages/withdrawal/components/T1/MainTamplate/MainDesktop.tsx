@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { useHistory } from "react-router";
 
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -22,6 +22,7 @@ import {
   DetailText,
   TurnoverTextWrapper,
 } from "@/components/styled-component/WithdrawV2/Main";
+import {CurrencyHint} from '../../../../../../../tgs-web-t29/src/components/styled-component/WithdrawV2/Main';
 
 const MainDesktop = ({
   amount,
@@ -42,6 +43,7 @@ const MainDesktop = ({
   handlePlayerNote,
   handleWithdrawalClick,
 }: MainProps) => {
+  const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   useEffect(() => {
     getTransferLimit(cardList[selectedCardIndex].paymentchannelid);
   }, [cardList, getTransferLimit, selectedCardIndex]);
@@ -111,7 +113,17 @@ const MainDesktop = ({
               {Common.formatNumberWithThousand(min)} - {Common.formatNumberWithThousand(max)}
             </LimitPopupContainer>
           </AmountWrapper>
-
+          <div style={{maxWidth: '500px'}}>
+            {!!currencyRate && <CurrencyHint>
+              {
+                !isNaN(amount)?
+                  `${Common.formatCurrency(amount * currencyRate)}` :
+                  '0'
+              } {
+              config.currency
+            }
+            </CurrencyHint>}
+          </div>
           {/* if is USDT, need to show below infomation */}
           {(() => {
             if (cardList[selectedCardIndex] && cardList[selectedCardIndex].banktype === "Usdt") {

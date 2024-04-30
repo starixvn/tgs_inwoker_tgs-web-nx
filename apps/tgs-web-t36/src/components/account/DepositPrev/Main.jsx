@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig, mapBrandName} from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
@@ -54,11 +54,17 @@ const TransferHint = styled.div`
   font-weight: bold;
 `;
 
+const CurrencyHint = styled.p`
+  margin-top: 5px;
+  color: red;
+`;
+
+
 class Main extends Component {
   render() {
     const selectedDepositType = this.props.wallet.depositTypeList[this.props.selectedPaymentIndex];
     const selectedPaymentMethod = selectedDepositType.method[this.props.selectedMethodIndex];
-
+    const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
     const methodCode = (method) => {
       return selectedPaymentMethod.methodcode.toUpperCase() === method.toUpperCase();
     };
@@ -456,6 +462,14 @@ class Main extends Component {
               )} - ${Common.formatNumberWithThousand(transferLimitTo)}
                 ${i18n.t("deposit.dollor")}`}
             </TransferHint>
+            {currencyRate && (
+              <CurrencyHint>
+                {!isNaN(this.props.amount)
+                  ? `${Common.formatCurrency(this.props.amount * currencyRate)}`
+                  : "0"}{" "}
+                {config.currency}
+              </CurrencyHint>
+            )}
           </AmountHint>
         </ItemContainer>
 
