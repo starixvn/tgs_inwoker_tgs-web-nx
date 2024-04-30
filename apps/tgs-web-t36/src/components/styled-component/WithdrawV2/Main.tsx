@@ -153,3 +153,10 @@ export const Hint = styled.div`
   margin: 10px 0;
   color: ${({ theme }) => theme.gray50};
 `;
+
+export const CurrencyHint = styled.p`
+  margin: 5px auto 0;
+  text-align: center;
+  color: red;
+`;
+
