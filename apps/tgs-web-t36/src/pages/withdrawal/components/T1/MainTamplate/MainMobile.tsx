@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig, mapBrandName} from '@tgs-web-nx/config';
 import styled from "styled-components";
 import { MainProps } from "./index";
 import {
@@ -25,6 +25,7 @@ import {
   GameWalletButton,
   SubHeaderContainer,
   Hint,
+  CurrencyHint,
 } from "@/components/styled-component/WithdrawV2/Main";
 
 const TransferHint = styled.div`
@@ -55,7 +56,7 @@ const MainMobile = ({
   handleWithdrawalClick,
 }: MainProps) => {
   const history = useHistory();
-
+  const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   return (
     <>
       <WithdrawInfoCard />
@@ -129,6 +130,12 @@ const MainMobile = ({
           {selectedCardIndex != null &&
             `${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(max)}`}
         </TransferHint>
+        {!!currencyRate && (
+          <CurrencyHint>
+            {!isNaN(amount) ? `${Common.formatCurrency(amount * currencyRate)}` : "0"}{" "}
+            {config.currency}
+          </CurrencyHint>
+        )}
       </ItemContainer>
 
       {/*玩家備註*/}
