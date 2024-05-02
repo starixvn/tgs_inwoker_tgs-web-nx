@@ -8,6 +8,7 @@ import telegram from "@/assets/t36/images/home/social_media/telegram.svg";
 import wechat from "@/assets/t36/images/home/social_media/wechat.svg";
 import whatsapp from "@/assets/t36/images/home/social_media/whatapp.svg";
 
+
 const socialMediaLink = brandConfig[mapBrandName(config.brand)].socialMediaLink;
 export const socialMediaList = [
   {
