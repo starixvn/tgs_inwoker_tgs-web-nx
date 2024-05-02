@@ -33,6 +33,18 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
   const { phone, areaCode } = formik.values;
   const { alert } = useNotifications();
   const { handleSetLoading, isLoading } = useNewPasswordStageV2();
+  const [countdownToken, setCountdownToken] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (countdownToken > 0) {
+        setCountdownToken((prev) => prev - 1);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [countdownToken]);
+
   const checkPhoneNumber = () => {
     let res = true;
     if (
@@ -77,6 +89,7 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
 
         if (verifyForgotPasswordResDto.IsSuccess) {
           formik.setFieldValue("securityKey", verifyForgotPasswordResDto.data);
+          setCountdownToken(config.features.sendSMSInterval);
           alert("", i18n.t("common.msgTokenSent"));
         } else {
           let errorCode = verifyForgotPasswordResDto.info || "";
@@ -113,7 +126,9 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
           }}
         />
       </GrayInputWrapper>
-      <SendButton onClick={handleSendCode}>{i18n.t("common.msgSendToken")}</SendButton>
+      <SendButton disabled={countdownToken > 0} onClick={handleSendCode}>
+        {`${i18n.t("common.msgSendToken")} ${countdownToken > 0 ? `(${countdownToken})` : ""}`}
+      </SendButton>
     </PhoneContainer>
   );
 };
