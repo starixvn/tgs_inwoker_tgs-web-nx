@@ -7,9 +7,14 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH" | "SBO";
 
 type SocialMediaLink = {
-  fb: string;
-  ig: string;
-  twitter: string;
+  fb?: string;
+  ig?: string;
+  twitter?: string;
+  telegram?: string;
+  wechat?: string;
+  whatsapp?: string;
+  talk?: string;
+  mail?: string;
 };
 
 /*
@@ -20,7 +25,7 @@ type MOVN2Config = {
   isAutoFillBankHolderName: boolean; // 是否自動帶入姓名
   isDisabledBankHolderName: boolean; // 是否可以編輯姓名
   isRegisterRealNameRequired: boolean; // 註冊是否需要真實姓名
-  socialMediaLink: SocialMediaLink; // 社群媒體連結
+  socialMediaLink?: SocialMediaLink; // 社群媒體連結
   isShowLiveChat: boolean; // 是否顯示 livechat
   isShowDownloadApp: boolean; // footer 是否顯示下載 app qrcode
   isShowChatCustomerService: boolean; // footer 是否顯示 Chat Customer Service
@@ -73,9 +78,14 @@ type Config = MOVN2Config & MOPHConfig;
 export const defaultConfig: Config = {
   isAddRealNameFieldBrand: false,
   socialMediaLink: {
-    fb: "",
-    ig: "",
-    twitter: "",
+    fb: "https://www.google.com",
+    ig: "https://www.google.com",
+    twitter: "https://www.google.com",
+    telegram: "https://www.google.com",
+    wechat: "https://www.google.com",
+    whatsapp: "https://www.google.com",
+    talk: "https://www.google.com",
+    mail: "https://www.google.com",
   },
   isAutoFillBankHolderName: false,
   isDisabledBankHolderName: false,
@@ -105,14 +115,77 @@ export const defaultConfig: Config = {
 export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
-    currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
-    isInitYuriJs: true,
+  },
+  MOMOVN: {
+    ...defaultConfig,
+    isAddRealNameFieldBrand: true,
+    socialMediaLink: {
+      fb: "https://www.facebook.com/momobetvn/",
+      ig: "https://www.instagram.com/momobet.vn/",
+    },
+    isAutoFillBankHolderName: true,
+    isRegisterRealNameRequired: true,
+    isDisabledBankHolderName: true,
+    isShowLiveChat: false,
+    isShowDownloadApp: false,
+    isShowChatCustomerService: false,
+    isAllowMulitBankCards: false,
+    currencyRate: 1000,
+    isDisableWebPinchAction: true,
+    isShowAgentAdminButton: true,
+    isHideVIPBirthdayBonus: true,
+    isHideVIPQuarterlyBonus: true,
+    isShowVIP: true,
+    isHideTransferButton: true,
+    customGametypeSort: [
+      "slots",
+      "fishing",
+      "sports",
+      "liveCasino",
+      "egame",
+      "sabong",
+      "cardGame",
+      "lottery",
+      "esports",
+    ],
+    defaultActiveGametype: GameTypeEnum.SLOT,
+    customGameProviderSort: [
+      "JILITF",
+      "AWC_PGS",
+      "FACHAI",
+      "JDBTF",
+      "FUNKY",
+      "AWC_FS",
+      "JOKER",
+      "BTG",
+      "EVOTF",
+      "PPTF",
+      "AWC_SG",
+      "WMTF",
+      "HABATF",
+      "RTTF",
+      "ENDOR",
+      "NLC",
+      "AWC_KM",
+      "NTTF",
+      "AWC_YESBINGO",
+      "AWC_BG",
+      "DGTF",
+      "VR",
+      "KY",
+      "365TF",
+      "OBET",
+      "PINNACLE",
+      "AWC_VENUS",
+      "AWC_YL",
+      "TFTF",
+    ],
+    SMSVerifyInRegister: true,
   },
   MOVN2: {
     ...defaultConfig,
     isAddRealNameFieldBrand: true,
     socialMediaLink: {
-      ...defaultConfig.socialMediaLink,
       fb: "https://www.facebook.com/momobetvn/",
       ig: "https://www.instagram.com/momobet.vn/",
     },
@@ -179,7 +252,6 @@ export const brandConfig: Record<BrandName, Config> = {
     ...defaultConfig,
     isAddRealNameFieldBrand: true,
     socialMediaLink: {
-      ...defaultConfig.socialMediaLink,
       fb: "https://www.facebook.com/momobetvn/",
       ig: "https://www.instagram.com/momobet.vn/",
     },
@@ -244,7 +316,6 @@ export const brandConfig: Record<BrandName, Config> = {
   MOPH: {
     ...defaultConfig,
     socialMediaLink: {
-      ...defaultConfig.socialMediaLink,
       fb: "https://www.facebook.com/Momobet.ph",
       ig: "https://www.instagram.com/momobet.ph",
     },
@@ -302,6 +373,11 @@ export const brandConfig: Record<BrandName, Config> = {
     ...defaultConfig,
     isInitYuriJs: true,
     currencyRate: 1000,
+    socialMediaLink: {
+      fb: 'https://www.facebook.com/people/SBO-Cash/61558870387114/',
+      ig: 'https://www.instagram.com/sbocash88/',
+      telegram: 'https://direct.lc.chat/17487456/2',
+    },
   }
 };
 
