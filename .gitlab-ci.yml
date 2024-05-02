@@ -23,7 +23,8 @@ stages:
       git submodule sync
       git submodule update --remote
       git status
-      yarn add -D @nx/react
+      
+      ## yarn add -D @nx/react
 
       if [[ $app != "" ]]; then 
           yarn docker-build:single $app
