@@ -9,6 +9,7 @@ import iconDeposit from "@/assets/t36/images/badge/icon-deposit.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
+
 const DepositPage = () => {
   useDepositPage();
   const history = useHistory();
