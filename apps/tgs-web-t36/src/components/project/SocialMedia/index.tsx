@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { socialMediaList } from "@/constants/socialMedia";
+import {useSocialMediaList} from '@/constants/socialMedia';
 
 const SocialMediaContainer = styled.div`
   width: 100%;
@@ -18,10 +18,11 @@ const SocialMediaIcon = styled.a<{ $imageUrl: string }>`
 `;
 
 const SocialMedia = () => {
+  const socialMediaList = useSocialMediaList();
   return (
     <SocialMediaContainer>
       {socialMediaList.map((row, i) => {
-        const hasSocialMedia = !!(row.link && row.icon);
+        const hasSocialMedia = row.link !== undefined;
         if(hasSocialMedia) return (
           <SocialMediaIcon key={i} $imageUrl={row.icon} target="_blank" href={row.link} />
         );
