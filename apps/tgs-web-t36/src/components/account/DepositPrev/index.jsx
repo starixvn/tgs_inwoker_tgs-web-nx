@@ -179,7 +179,7 @@ class DepositPrev extends Component {
             // eslint-disable-next-line no-undef
             if(brandConfig[mapBrandName(config.brand)].isInitYuriJs && _yuri_track) {
               // eslint-disable-next-line no-undef
-              _yuri_track("Purchase"); 
+              _yuri_track("Purchase");
             }
             this.props.alert("", i18n.t("deposit.completeDeposit"));
           }
@@ -297,7 +297,7 @@ class DepositPrev extends Component {
   handleAmountChange = (e) => {
     this.setState({
       ...this.state,
-      amount: e.target.value.replace(/,/g, ""),
+      amount: e.target.value.replace(/[,.]/g, ""),
     });
   };
 

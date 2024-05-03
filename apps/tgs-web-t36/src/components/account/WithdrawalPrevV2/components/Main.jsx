@@ -28,7 +28,7 @@ const Main = (props) => {
   }, []);
 
   const handleAmountChange = useCallback((e) => {
-    setAmount(e.target.value);
+    setAmount(e.target.value.replace(/[.]/g, ""));
   }, []);
 
   const handlePlayerNote = useCallback((e) => {
