@@ -30,6 +30,7 @@ const FormLayout = () => {
     list: groupList,
   };
 
+
   const layoutProps: LayoutProps = {groupCode, filterGroupList};
 
   /**
@@ -71,7 +72,7 @@ const FormLayout = () => {
       {/* 對應 UI */}
       {mapLayout()}
 
-      <ResultPopupDialog 
+      <ResultPopupDialog
         isDialogOpen={isDialogOpen}
         handleClose={handleOnClose}
         handleOpenPopupUrl={handleOpenPopupUrl}
