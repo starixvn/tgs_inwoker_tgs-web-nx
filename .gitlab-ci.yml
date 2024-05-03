@@ -23,6 +23,10 @@ stages:
       git submodule sync
       git submodule update --remote
       git status
+      node --version
+      npm --version
+      yarn --version
+      nx --version
       
       yarn add -D @nx/react
 
