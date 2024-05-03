@@ -77,16 +77,6 @@ type Config = MOVN2Config & MOPHConfig;
 // 預設共用設定
 export const defaultConfig: Config = {
   isAddRealNameFieldBrand: false,
-  socialMediaLink: {
-    fb: "https://www.google.com",
-    ig: "https://www.google.com",
-    twitter: "https://www.google.com",
-    telegram: "https://www.google.com",
-    wechat: "https://www.google.com",
-    whatsapp: "https://www.google.com",
-    talk: "https://www.google.com",
-    mail: "https://www.google.com",
-  },
   isAutoFillBankHolderName: false,
   isDisabledBankHolderName: false,
   isRegisterRealNameRequired: false,
@@ -115,6 +105,16 @@ export const defaultConfig: Config = {
 export const brandConfig: Record<BrandName, Config> = {
   GPI: {
     ...defaultConfig,
+    socialMediaLink: {
+      fb: "https://www.google.com",
+      ig: "https://www.google.com",
+      twitter: "https://www.google.com",
+      telegram: "https://www.google.com",
+      wechat: "https://www.google.com",
+      whatsapp: "https://www.google.com",
+      talk: "https://www.google.com",
+      mail: "https://www.google.com",
+    },
   },
   MOMOVN: {
     ...defaultConfig,
