@@ -23,6 +23,10 @@ stages:
       git submodule sync
       git submodule update --remote
       git status
+
+      nvm install 16.14.0
+      nvm use 16.14.0
+
       yarn add -D @nx/react
 
       if [[ $app != "" ]]; then 
