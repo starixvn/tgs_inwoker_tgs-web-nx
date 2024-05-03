@@ -44,4 +44,3 @@ export const socialMediaList = [
     link: socialMediaLink && socialMediaLink['telegram'],
   }
 ]
-

@@ -393,3 +393,4 @@ export const mapBrandName = (brand: string): BrandName => {
 
   return "GPI";
 };
+
