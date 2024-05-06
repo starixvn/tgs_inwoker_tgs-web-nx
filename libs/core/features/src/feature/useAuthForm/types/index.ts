@@ -6,6 +6,7 @@ export enum FormInputTypeEnum {
   "AREA_CODE",
   "PROMOTION_CODE",
   "USER_TYPE",
+  "VERIFY_CODE",
 }
 
 export enum InvitationType {
