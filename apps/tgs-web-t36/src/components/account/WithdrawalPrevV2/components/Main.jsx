@@ -28,7 +28,12 @@ const Main = (props) => {
   }, []);
 
   const handleAmountChange = useCallback((e) => {
-    setAmount(e.target.value.replace(/[.]/g, ""));
+    setAmount(e.target.value);
+  }, []);
+
+  const handleAmountInputOnBlur = useCallback((e) => {
+    // console.log(`${Number(e.target.value).toFixed(0)}`)
+    setAmount(`${Number(e.target.value).toFixed(0)}`);
   }, []);
 
   const handlePlayerNote = useCallback((e) => {
@@ -102,6 +107,7 @@ const Main = (props) => {
       performWithdrawFromEveryBrand={props.performWithdrawFromEveryBrand}
       onhandleRefreshClick={props.onhandleRefreshClick}
       handleAmountChange={handleAmountChange}
+      handleAmountInputOnBlur={handleAmountInputOnBlur}
       handlePlayerNote={handlePlayerNote}
       handleWithdrawalClick={handleWithdrawalClick}
     />

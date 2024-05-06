@@ -445,6 +445,7 @@ class Main extends Component {
               fullWidth
               value={this.props.amount}
               onChange={this.props.handleAmountChange}
+              onBlur={this.props.handleAmountInputOnBlur}
               type={"number"}
               placeholder={i18n.t("deposit.msgPleaseEnter") + i18n.t("deposit.depositAmount")}
             />
