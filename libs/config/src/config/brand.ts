@@ -4,7 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
  * 若有新增站台 先在這邊加入對應設定
  * Default BrandName: 'GPI'
  */
-type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH" | "SBO";
+type BrandName = "GPI" | "MOVN2" | "MOMOTEST" | "MOPH" | "MOMOVN" | "SBO";
 
 type SocialMediaLink = {
   fb?: string;
@@ -42,6 +42,7 @@ type MOVN2Config = {
   defaultActiveGametype: GameTypeEnum | null; //預設active的game type https://raypro.atlassian.net/browse/TGS-3968
   customGameProviderSort: string[]; //game provider客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-4420
   isInitYuriJs: boolean; // FB推廣碼埋點需求 TGS-4265
+  SMSVerifyInRegister: boolean; //是否在註冊時候就進行SMS驗證 https://raypro.atlassian.net/browse/TGS-4417
 };
 
 type MOPHConfig = {
@@ -97,6 +98,7 @@ export const defaultConfig: Config = {
   contractAge: 18,
   customGameProviderSort: [],
   isInitYuriJs: false,
+  SMSVerifyInRegister: false,
   // new brand config start here
   // NewBrand
 };
@@ -247,6 +249,7 @@ export const brandConfig: Record<BrandName, Config> = {
       "TFTF",
     ],
     isInitYuriJs: true,
+    SMSVerifyInRegister: true,
   },
   MOMOTEST: {
     ...defaultConfig,
@@ -335,7 +338,6 @@ export const brandConfig: Record<BrandName, Config> = {
     ],
     defaultActiveGametype: GameTypeEnum.SLOT,
     isFixedPhoneLength: true,
-    contractAge: 21,
     customGameProviderSort: [
       "JILITF",
       "AWC_PGS",
@@ -367,7 +369,9 @@ export const brandConfig: Record<BrandName, Config> = {
       "AWC_YL",
       "TFTF",
     ],
+    contractAge: 21,
     isShowDownloadApp: false,
+    SMSVerifyInRegister: true,
   },
   SBO: {
     ...defaultConfig,
