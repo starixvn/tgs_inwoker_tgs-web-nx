@@ -297,9 +297,16 @@ class DepositPrev extends Component {
   handleAmountChange = (e) => {
     this.setState({
       ...this.state,
-      amount: e.target.value.replace(/[,.]/g, ""),
+      amount: e.target.value,
     });
   };
+
+  handleAmountInputOnBlur = () => {
+    this.setState({
+      ...this.state,
+      amount: `${Number(this.state.amount).toFixed(0)}`,
+    });
+  }
 
   handleBackClick = () => {
     this.props.appHistory.goBack();
@@ -309,6 +316,7 @@ class DepositPrev extends Component {
   };
 
   handleDepositClick = () => {
+    console.log(this.state.amount)
     this.setState({ ...this.state, disabled: true });
     var payment = this.props.wallet.depositTypeList[this.state.selectedPaymentIndex];
     var method = payment.method[this.state.selectedMethodIndex];
@@ -653,6 +661,7 @@ class DepositPrev extends Component {
                 handleAccountChange={this.handleAccountChange}
                 handlePromotionChange={this.handlePromotionChange}
                 handleAmountChange={this.handleAmountChange}
+                handleAmountInputOnBlur={this.handleAmountInputOnBlur}
                 handleDepositClick={this.handleDepositClick}
                 handleSelectAccountChange={this.handleSelectAccountChange}
                 selectedPaymentIndex={this.state.selectedPaymentIndex}

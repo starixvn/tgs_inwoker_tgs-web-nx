@@ -54,6 +54,7 @@ const MainMobile = ({
   handleAmountChange,
   handlePlayerNote,
   handleWithdrawalClick,
+  handleAmountInputOnBlur,
 }: MainProps) => {
   const history = useHistory();
   const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
@@ -122,6 +123,7 @@ const MainMobile = ({
             fullWidth
             value={amount}
             onChange={handleAmountChange}
+            onBlur={handleAmountInputOnBlur}
             type={"number"}
             placeholder={i18n.t("withdrawal.enterAmount")}
           />

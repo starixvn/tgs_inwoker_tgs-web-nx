@@ -42,6 +42,7 @@ const MainDesktop = ({
   handleAmountChange,
   handlePlayerNote,
   handleWithdrawalClick,
+  handleAmountInputOnBlur,
 }: MainProps) => {
   const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   useEffect(() => {
@@ -102,6 +103,7 @@ const MainDesktop = ({
               <TextField
                 placeholder={i18n.t("withdrawal.enterAmount")}
                 onChange={handleAmountChange}
+                onBlur={handleAmountInputOnBlur}
                 variant="outlined"
                 autoComplete="off"
                 value={amount}
