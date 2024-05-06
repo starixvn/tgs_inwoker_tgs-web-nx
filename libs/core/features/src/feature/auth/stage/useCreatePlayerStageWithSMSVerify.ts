@@ -13,6 +13,7 @@ import { useNotifications } from "../../useNotifications/index";
 
 export function useCreatePlayerStageWithSMSVerify() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isCreatedAccount, setIsCreatedAccount] = useState(false);
   const { handleChangeFetching } = useAuthDialog();
   const { alert } = useNotifications();
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
@@ -135,20 +136,33 @@ export function useCreatePlayerStageWithSMSVerify() {
     //讓畫面進入loading
     handleChangeFetching(true);
     try {
-      //create player
-      await createPlayer(values);
+      if (!isCreatedAccount) {
+        //create player
+        await createPlayer(values);
 
-      //login
-      await AccountService.Login(values.username, values.pwd);
-
-      //如有開啟set real name功能,call set realName API(register)
-      if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
-        await setRealName(values);
+        //login
+        await AccountService.Login(values.username, values.pwd);
       }
 
-      //send Verification code
-      sendVerificationcode(values);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // 檢查phone number是否被使用過
+      const chechPhoneRes = (await AccountService.checkPhoneDuplicate(
+        values.areaCode,
+        values.phone,
+      )) as any;
+
+      if (chechPhoneRes.data) {
+        //如有開啟set real name功能,call set realName API(register)
+        if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
+          await setRealName(values);
+        }
+        //send Verification code
+        sendVerificationcode(values);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } else {
+        setIsCreatedAccount(true);
+        handleChangeFetching(false);
+        alert("", i18n.t("Phone number is exist."));
+      }
     } catch (error: any) {
       handleChangeFetching(false);
       setRegisterError(error);
