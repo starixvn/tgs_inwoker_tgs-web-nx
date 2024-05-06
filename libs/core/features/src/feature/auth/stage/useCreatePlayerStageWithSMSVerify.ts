@@ -10,6 +10,7 @@ import {
   useGenerateRegisterCreatePlayerWithSMSFormik,
 } from "../../../index";
 import { useNotifications } from "../../useNotifications/index";
+import { boolean } from "yup";
 
 export function useCreatePlayerStageWithSMSVerify() {
   const [isLoading, setIsLoading] = useState(false);
@@ -129,6 +130,7 @@ export function useCreatePlayerStageWithSMSVerify() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClickSend = async (values: any) => {
+    console.log(values);
     if (checkPhoneNumber(values)) {
       return;
     }
@@ -140,15 +142,24 @@ export function useCreatePlayerStageWithSMSVerify() {
 
       //login
       await AccountService.Login(values.username, values.pwd);
+      // 檢查phone number是否被使用過
+      const chechPhoneRes = (await AccountService.checkPhoneDuplicate(
+        values.areaCode,
+        values.phone,
+      )) as any;
+      console.log(chechPhoneRes);
 
-      //如有開啟set real name功能,call set realName API(register)
-      if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
-        await setRealName(values);
+      if (!chechPhoneRes.data) {
+        //如有開啟set real name功能,call set realName API(register)
+        if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
+          await setRealName(values);
+        }
+        //send Verification code
+        sendVerificationcode(values);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } else {
+        alert("", i18n.t("common.msgTokenSent"));
       }
-
-      //send Verification code
-      sendVerificationcode(values);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       handleChangeFetching(false);
       setRegisterError(error);
