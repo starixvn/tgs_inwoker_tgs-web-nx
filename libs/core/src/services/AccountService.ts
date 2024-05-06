@@ -297,6 +297,13 @@ function UpdateEmailV2(securitykey: string, code: string) {
   }) as unknown as Promise<UpdatePhoneResDto>;
 }
 
+function checkPhoneDuplicate(area: string, phone: string) {
+  return ApiService.post("player/phone/check", {
+    area: area,
+    phone: phone,
+  }) as unknown;
+}
+
 export const AccountService = {
   CheckUserName,
   Login,
@@ -334,4 +341,5 @@ export const AccountService = {
   UpdatePhoneV2,
   UpdateEmailV2,
   registerV2SetRealName,
+  checkPhoneDuplicate,
 };

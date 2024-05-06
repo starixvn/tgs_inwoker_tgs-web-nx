@@ -5,7 +5,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications, usePageName } from "@tgs-web-nx/core/features";
 import { EnqueueSnackbar } from "notistack";
-import {useTrackFacebookPixel} from "@tgs-web-nx/core/hooks";
+import { useTrackFacebookPixel } from "@tgs-web-nx/core/hooks";
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
@@ -28,7 +28,7 @@ type Props = {
 };
 
 function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
-  const {sendFbTrack} = useTrackFacebookPixel();
+  const { sendFbTrack } = useTrackFacebookPixel();
   const AREA_CODE = config.features.PhonePrefix;
   const { account, newRegister, getRegisterStatus, getAccountInfo } = useAccountStore();
   const { alert } = useNotifications();
@@ -108,25 +108,37 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
 
     setIsLoading(true);
     try {
-      const response = await newRegister("InitPhone", {
-        input: "Init",
-        data: {
-          areacode: areacode,
-          phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
-            ? phone.slice(1)
-            : phone,
-        },
-      });
+      // 檢查phone number是否被使用過
+  
+      const chechPhoneRes = (await AccountService.checkPhoneDuplicate(
+        areacode,
+        brandConfig[mapBrandName(config.brand)].isFixedPhoneLength ? phone.slice(1) : phone,
+      )) as any;
 
-      //@ts-ignore
-      if (response.IsSuccess) {
-        setCountdownToken(config.features.sendSMSInterval);
+      if (chechPhoneRes.data) {
+        const response = await newRegister("InitPhone", {
+          input: "Init",
+          data: {
+            areacode: areacode,
+            phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
+              ? phone.slice(1)
+              : phone,
+          },
+        });
+
         //@ts-ignore
-        setSecurityKey(response.data.stepResponse);
-        showInfoMessage(i18n.t("common.msgTokenSent"));
+        if (response.IsSuccess) {
+          setCountdownToken(config.features.sendSMSInterval);
+          //@ts-ignore
+          setSecurityKey(response.data.stepResponse);
+          showInfoMessage(i18n.t("common.msgTokenSent"));
+        } else {
+          //@ts-ignore
+          showErrorMessage(response.info);
+        }
       } else {
-        //@ts-ignore
-        showErrorMessage(response.info);
+        setIsLoading(false);
+        alert("", i18n.t("Phone number is exist."));
       }
     } catch (error: any) {
       showErrorMessage(error.message);
@@ -175,7 +187,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
     try {
       if (shouldHandlePhoneSubmission()) {
         const getRegisterStatusResDto = await getRegisterStatus();
-        
+
         if (getRegisterStatusResDto?.IsSuccess) {
           const currentStepKey = getRegisterStatusResDto.data;
           if (currentStepKey === "SetPhoneDontCareDuplicate") {
@@ -200,7 +212,7 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
       config.features.InitPhone_WithoutVerify
     );
   };
-  
+
   const handleSetPhoneDontCareDuplicate = async () => {
     const responseSetPhone = await newRegister("SetPhoneDontCareDuplicate", {
       areacode: areacode,
@@ -247,10 +259,10 @@ function InitPhone({ enqueueSnackbar, handleCloseDialog }: Props) {
   const handleUpdatePhone = async (securityKey: string, code: string) => {
     const response = await AccountService.UpdatePhoneV2(securityKey, code);
 
-    if(response?.data.isCompleted) {
-      sendFbTrack('AddToCart');
+    if (response?.data.isCompleted) {
+      sendFbTrack("AddToCart");
     }
-    
+
     if (response?.IsSuccess) {
       await handleGetAccountInfo();
       handleSubmitSucceed();
