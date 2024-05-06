@@ -10,10 +10,10 @@ import {
   useGenerateRegisterCreatePlayerWithSMSFormik,
 } from "../../../index";
 import { useNotifications } from "../../useNotifications/index";
-import { boolean } from "yup";
 
 export function useCreatePlayerStageWithSMSVerify() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isCreatedAccount, setIsCreatedAccount] = useState(false);
   const { handleChangeFetching } = useAuthDialog();
   const { alert } = useNotifications();
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
@@ -130,26 +130,27 @@ export function useCreatePlayerStageWithSMSVerify() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClickSend = async (values: any) => {
-    console.log(values);
     if (checkPhoneNumber(values)) {
       return;
     }
     //讓畫面進入loading
     handleChangeFetching(true);
     try {
-      //create player
-      await createPlayer(values);
+      if (!isCreatedAccount) {
+        //create player
+        await createPlayer(values);
 
-      //login
-      await AccountService.Login(values.username, values.pwd);
+        //login
+        await AccountService.Login(values.username, values.pwd);
+      }
+
       // 檢查phone number是否被使用過
       const chechPhoneRes = (await AccountService.checkPhoneDuplicate(
         values.areaCode,
         values.phone,
       )) as any;
-      console.log(chechPhoneRes);
 
-      if (!chechPhoneRes.data) {
+      if (chechPhoneRes.data) {
         //如有開啟set real name功能,call set realName API(register)
         if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
           await setRealName(values);
@@ -158,7 +159,9 @@ export function useCreatePlayerStageWithSMSVerify() {
         sendVerificationcode(values);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } else {
-        alert("", i18n.t("common.msgTokenSent"));
+        setIsCreatedAccount(true);
+        handleChangeFetching(false);
+        alert("", i18n.t("Phone number is exist."));
       }
     } catch (error: any) {
       handleChangeFetching(false);
