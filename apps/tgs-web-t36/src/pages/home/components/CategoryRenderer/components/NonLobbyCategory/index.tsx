@@ -40,6 +40,7 @@ const CategoryContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
+  justify-content: center;
   width: 100%;
   align-self: stretch;
   gap: 10px;
