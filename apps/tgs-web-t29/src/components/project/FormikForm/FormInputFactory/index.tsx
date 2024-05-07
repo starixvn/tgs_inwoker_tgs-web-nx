@@ -4,6 +4,7 @@ import FormPassword from "@/components/project/FormikForm/FormInputFactory/FormP
 import FormPhone from "@/components/project/FormikForm/FormInputFactory/FormPhone";
 import FormPromotionCode from "@/components/project/FormikForm/FormInputFactory/FormPromotionCode";
 import FormVerifyCode from "@/components/project/FormikForm/FormInputFactory/FormVerifyCode";
+import FormVerifyCodeWithNewRegisterFlow from "@/components/project/FormikForm/FormInputFactory/FormVerifyCodeWithNewRegisterFlow";
 
 export const FormInputFactory = {
   [FormInputTypeEnum.TEXT]: FormText,
@@ -14,4 +15,5 @@ export const FormInputFactory = {
   [FormInputTypeEnum.PROMOTION_CODE]: FormPromotionCode,
   [FormInputTypeEnum.USER_TYPE]: null,
   [FormInputTypeEnum.VERIFY_CODE]: FormVerifyCode,
+  "verifyCodeWithNewRegisterFlow": FormVerifyCodeWithNewRegisterFlow,
 };
