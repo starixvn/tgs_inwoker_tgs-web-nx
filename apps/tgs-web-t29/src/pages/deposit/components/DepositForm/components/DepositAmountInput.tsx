@@ -2,7 +2,7 @@ import { i18n, Common } from "@tgs-web-nx/utils";
 import { TransferChannel } from "@tgs-web-nx/types";
 import { useContext, ChangeEvent } from "react";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
-import { LabelContainer, CurrencyHint, TransferHint } from "../components";
+import { LabelContainer, CurrencyHint } from "../components";
 import { DepositFormContext } from "./DepositFormProvider";
 import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
@@ -22,7 +22,10 @@ export const DepositAmountInput = ({
   const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   const amount = Number(formData.amount);
   const transferFee = currentChannel?.fees;
-  
+  const isUsdt = currentChannel?.banktype === 'Usdt';
+  const isShowCurrencyRate = currencyRate && !isUsdt;
+  const placeHolder = `${i18n.t("deposit.msgPleaseEnter")} ${isUsdt ? i18n.t("withdrawal.usdtAmount") : ''} ${Common.formatCurrency(formData.minAmount)} - ${Common.formatCurrency(formData.maxAmount)} ${i18n.t("deposit.dollor")}`
+
   /**
    * 處理輸入金額
    */
@@ -39,13 +42,7 @@ export const DepositAmountInput = ({
           value={formData.amount}
           onChange={handleOnChangeAmount}
           type="tel"
-          placeholder={
-            i18n.t("deposit.msgPleaseEnter") +
-            Common.formatCurrency(formData.minAmount) +
-            " - " +
-            Common.formatCurrency(formData.maxAmount) +
-            i18n.t("deposit.dollor")
-          }
+          placeholder={placeHolder}
         />
       </FormControl>
 
@@ -55,10 +52,8 @@ export const DepositAmountInput = ({
             {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
           </FeeSpot>
         )}
-        {/* <TransferHint>
-          {`${Common.formatCurrency(formData.minAmount)} - ${Common.formatCurrency(formData.maxAmount)}${i18n.t("deposit.dollor")}`}
-        </TransferHint> */}
-        {currencyRate && <CurrencyHint>
+
+        {isShowCurrencyRate && <CurrencyHint>
           {
             !isNaN(amount) ?
             `${Common.formatCurrency(amount * currencyRate)}` :
