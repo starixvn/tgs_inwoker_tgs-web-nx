@@ -1,10 +1,10 @@
 import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNewPasswordStage } from "@tgs-web-nx/core/features";
+import { useNewPasswordStageV2 } from "@tgs-web-nx/core/features";
 import FormikForm from "@/components/project/FormikForm";
 
 const NewPasswordStage = () => {
-  const { formInputConfigList, formik, isLoading, forgotPasswordError } = useNewPasswordStage();
+  const { formInputConfigList, formik, isLoading, forgotPasswordError } = useNewPasswordStageV2();
 
   return (
     <FormikForm

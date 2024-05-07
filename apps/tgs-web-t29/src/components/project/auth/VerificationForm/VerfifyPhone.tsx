@@ -42,6 +42,13 @@ function VerifyPhone({ handleUpdateStage }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    handleUpdateStage(ForgotPasswordStageEnum.NewPassword, {
+      securityKey,
+      code,
+    });
+  }, []);
+
   const handleChangePhone = (e: ChangeEvent<any>) => {
     setPhone(e.target.value);
     onTextChanged();

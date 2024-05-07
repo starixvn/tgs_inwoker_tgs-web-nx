@@ -24,7 +24,7 @@ type ProviderProps = {
 export const ForgotPasswordStageContextProvider = ({ children }: ProviderProps) => {
   //因修改密碼流程重構,不再有VerifyPhone這個stage https://raypro.atlassian.net/browse/TGS-4619
   //避免影響舊有的修改密碼流程code,在各個templete決定顯示哪個Stage(VerifyPhone.tsx這個檔案)
-  //如果沒有在useEffect呼叫handleUpdateStage(ex:t36),預設會是VerifyPhone(line 29)
+  //如果沒有在useEffect呼叫handleUpdateStage(ex:t36),預設會是VerifyPhone
   //todo:全templete修改至新的修改密碼流程
   const initialStage = useMemo(() => {
     return ForgotPasswordStageEnum.VerifyPhone;
