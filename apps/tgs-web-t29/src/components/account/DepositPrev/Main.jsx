@@ -29,9 +29,8 @@ import {
   TransferLabel,
   TransferValue,
 } from "@/components/styled-component/Deposit";
-import {PaymentTabs, MethodTabs} from "@/pages/deposit/components/components/PaymentTabsHeader";
+import { PaymentTabs, MethodTabs } from "@/pages/deposit/components/components/PaymentTabsHeader";
 import { formatDepositTypeList } from "@/components/account/DepositPrev/utils";
-
 
 const LabelContainer = styled(ProfileLabelContainer)`
   font-size: 14px;
@@ -65,20 +64,30 @@ class Main extends Component {
     const formatTypeList = formatDepositTypeList(depositTypeList);
 
     // 預設選第一個 method
-    const activeMethod = this.props.activeMethod ? this.props.activeMethod : formatTypeList[0].methodcode;
-    
+    const activeMethod = this.props.activeMethod
+      ? this.props.activeMethod
+      : formatTypeList[0].methodcode;
+
     // 預設選第一個method的第一個 payment
-    const isPaymentInclude = !!(formatTypeList.find(row => row.methodcode === activeMethod)?.paymentList.find(p => p.paymentcode === this.props.activePayment));
-    const defaultList = formatTypeList.find(row => row.methodcode === activeMethod)?.paymentList.sort((a, b) => a.displayorder - b.displayorder);
+    const isPaymentInclude = !!formatTypeList
+      .find((row) => row.methodcode === activeMethod)
+      ?.paymentList.find((p) => p.paymentcode === this.props.activePayment);
+    const defaultList = formatTypeList
+      .find((row) => row.methodcode === activeMethod)
+      ?.paymentList.sort((a, b) => a.displayorder - b.displayorder);
     const defaultPayment = defaultList[0].paymentcode;
 
     const activePayment = isPaymentInclude ? this.props.activePayment : defaultPayment;
-    
+
     // 將選擇後的 method, payment 轉回原本的格式
-    const selectedPaymentIndex = depositTypeList.findIndex(list => list.paymentcode === activePayment)
+    const selectedPaymentIndex = depositTypeList.findIndex(
+      (list) => list.paymentcode === activePayment,
+    );
     const selectedDepositType = depositTypeList[selectedPaymentIndex];
 
-    const selectedMethodIndex = selectedDepositType.method.findIndex(m => m.methodcode === activeMethod);
+    const selectedMethodIndex = selectedDepositType.method.findIndex(
+      (m) => m.methodcode === activeMethod,
+    );
     const selectedPaymentMethod = selectedDepositType.method[selectedMethodIndex];
 
     // ---- hardcode 結界 end ----
@@ -147,8 +156,8 @@ class Main extends Component {
             {/* legacy code start */}
 
             {/* <ItemContainer> */}
-              {/* <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer> */}
-              {/* <BadgeContainer>
+            {/* <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer> */}
+            {/* <BadgeContainer>
                 {depositTypeList.length > 0 &&
                   selectedDepositType.method.map((item, index) => {
                     return (
@@ -475,13 +484,7 @@ class Main extends Component {
               value={this.props.amount}
               onChange={this.props.handleAmountChange}
               type="tel"
-              placeholder={
-                i18n.t("deposit.msgPleaseEnter") +
-                Common.formatCurrency(channel.transferlimit.from) +
-                " - " +
-                Common.formatCurrency(channel.transferlimit.to) +
-                i18n.t("deposit.dollor")
-              }
+              placeholder={i18n.t("deposit.msgPleaseEnter") + i18n.t("deposit.depositAmount")}
             />
           </FormControl>
 
@@ -492,20 +495,19 @@ class Main extends Component {
               </FeeSpot>
             )}
             <TransferHint>
-                {Common.formatCurrency(channel.transferlimit.from) +
+              {Common.formatCurrency(channel.transferlimit.from) +
                 " - " +
                 Common.formatCurrency(channel.transferlimit.to) +
                 i18n.t("deposit.dollor")}
             </TransferHint>
-            {currencyRate && <CurrencyHint>
-              {
-                !isNaN(this.props.amount) ?
-                `${Common.formatCurrency(this.props.amount * currencyRate)}` :
-                '0'
-              } {
-                config.currency
-              }
-            </CurrencyHint>}
+            {currencyRate && (
+              <CurrencyHint>
+                {!isNaN(this.props.amount)
+                  ? `${Common.formatCurrency(this.props.amount * currencyRate)}`
+                  : "0"}{" "}
+                {config.currency}
+              </CurrencyHint>
+            )}
           </AmountHint>
         </ItemContainer>
 

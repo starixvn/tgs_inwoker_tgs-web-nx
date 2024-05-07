@@ -42,10 +42,10 @@ const ComposeForm = () => {
     setContent("");
   };
 
-  const { isSubmitted, isConfirmDialogOpen, handleSubmit, handleConfirm, handleCancel } =
+  const { isConfirmDialogOpen, handleSubmit, handleConfirm, handleCancel } =
     useConfirmDialog(submitCallback);
 
-  const isSubmitButtonDisabled = isSubmitted || !subject || !content;
+  const isSubmitButtonDisabled = !subject || !content;
 
   return (
     <InboxComposeFormContainer>

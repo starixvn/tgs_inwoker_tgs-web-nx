@@ -8,7 +8,7 @@ import BrandLogo from "@/components/project/BrandLogo";
 
 const ForgotPasswordForm = () => {
   return (
-    <AuthFormContainer>
+    <>
       <BrandLogo style={{ maxHeight: "55px" }} />
       <ForgotPasswordStageContextProvider>
         <AuthFormContainer>
@@ -17,10 +17,10 @@ const ForgotPasswordForm = () => {
           </FormContainer>
 
           <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-          <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
+          <LanguageSwitch style={{ width: "150px", margin: "auto auto 0" }} />
         </AuthFormContainer>
       </ForgotPasswordStageContextProvider>
-    </AuthFormContainer>
+    </>
   );
 };
 

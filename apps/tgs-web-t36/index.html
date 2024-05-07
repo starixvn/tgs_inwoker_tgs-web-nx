@@ -1,45 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <base href="/" />
 
-<head>
-  <meta charset="utf-8" />
-  <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.png" />
+    <title id="title"></title>
+    <meta name="description" id="description" content="" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <title id="title"></title>
-  <meta name="description" id="description" content="" />
+    <script language="javascript">
+      String.prototype.includes = function (str) {
+        var returnValue = false;
 
-  <script language="javascript">
-    String.prototype.includes = function (str) {
-      var returnValue = false;
+        if (this.indexOf(str) !== -1) {
+          returnValue = true;
+        }
 
-      if (this.indexOf(str) !== -1) {
-        returnValue = true;
-      }
+        return returnValue;
+      };
+    </script>
+  </head>
 
-      return returnValue;
-    };
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+
+  <link rel="stylesheet" href="/css/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap"
+    rel="stylesheet"
+  />
+  <script>
+    if (navigator.userAgent.indexOf("iPhone") > -1) {
+      document
+        .querySelector("[name=viewport]")
+        .setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1");
+    }
   </script>
-</head>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
-
-<link rel="stylesheet" href="/css/animate.min.css" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap" rel="stylesheet" />
-
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-  gtag("js", new Date());
-
-  gtag("config", "UA-156359717-1");
-</script>
+    gtag("config", "UA-156359717-1");
+  </script>
 </html>

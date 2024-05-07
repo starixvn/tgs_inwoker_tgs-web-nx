@@ -15,7 +15,7 @@ const RegisterForm = () => {
     position: relative;
     height: 100%;
     overflow: scroll;
-    padding-top: 70px;
+    padding-top: 20px;
     ${media.sm} {
       overflow: unset;
     }
@@ -31,7 +31,7 @@ const RegisterForm = () => {
         </FormContainer>
 
         <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-        <LanguageSwitch style={{ width: "129px", margin: "0 auto" }} />
+        <LanguageSwitch style={{ width: "150px", margin: "0 auto" }} />
       </AuthFormContainer>
     </Wrapper>
   );

@@ -2,7 +2,7 @@ import { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import config from "@tgs-web-nx/config";
+import config, {brandConfig, mapBrandName} from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import {
   generalAction,
@@ -622,6 +622,12 @@ class DepositPrev extends Component {
     this.setState({ ...this.state, openPopup: false });
   };
   handleOpenPopupUrl = () => {
+    // eslint-disable-next-line no-undef
+    if(brandConfig[mapBrandName(config.brand)].isInitYuriJs && _yuri_track) {
+      // eslint-disable-next-line no-undef
+      _yuri_track("Purchase"); 
+    }
+
     if (this.state.url !== "") {
       window.open(this.state.url, "_blank");
     } else {

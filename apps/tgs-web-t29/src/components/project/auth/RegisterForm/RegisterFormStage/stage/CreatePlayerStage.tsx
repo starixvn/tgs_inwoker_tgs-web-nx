@@ -1,10 +1,10 @@
-import React from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { useCreatePlayerStage } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
+import useTrackFacebookPixel from "@/hooks/facebookPixel/useTrackFacebookPixel";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
@@ -15,6 +15,7 @@ const VerifyAgeContainer = styled.div`
 `;
 
 const CreatePlayerStage = () => {
+  const {sendFbTrack} = useTrackFacebookPixel();
   const {
     formInputConfigList,
     formik,
@@ -23,7 +24,9 @@ const CreatePlayerStage = () => {
     //  confirmAdult
     isConfirmedAdult,
     handleClickConfirmAdult,
-  } = useCreatePlayerStage();
+  } = useCreatePlayerStage(() => {
+    sendFbTrack('AddToCart'); // movn register success
+  });
   return (
     <FormikForm
       formInputList={formInputConfigList}

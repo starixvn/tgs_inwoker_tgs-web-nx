@@ -8,7 +8,6 @@ type BadgeContainerProps = {
   theme: typeof theme;
 };
 const BadgeContainer = styled.div<BadgeContainerProps>`
-  width: calc((100% - 8px * 3) / 4);
   height: fit-content;
   cursor: pointer;
   padding: 12px 20px;
@@ -22,7 +21,6 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
     ${({ $isActive, theme }: BadgeContainerProps) => ($isActive ? "transparent" : theme.subNavSec)};
   font-size: 0.812rem;
   font-weight: 400;
-
   ${media.md} {
     width: auto;
   }

@@ -10,6 +10,7 @@ import sportBg from "@/assets/t36/images/home/category/sport-bg.png";
 import egameBg from "@/assets/t36/images/home/category/egame-bg.png";
 import esportBg from "@/assets/t36/images/home/category/esport-bg.png";
 import fishingBg from "@/assets/t36/images/home/category/fishing-bg.png";
+import sabongBg from "@/assets/t36/images/home/category/sabong-bg.png";
 
 import slotsBgDesktop from "@/assets/t36/images/home/category/slots-bg-desktop.png";
 import liveBgDesktop from "@/assets/t36/images/home/category/live-bg-desktop.png";
@@ -19,6 +20,7 @@ import sportBgDesktop from "@/assets/t36/images/home/category/sport-bg-desktop.p
 import egameBgDesktop from "@/assets/t36/images/home/category/egame-bg-desktop.png";
 import esportBgDesktop from "@/assets/t36/images/home/category/esport-bg-desktop.png";
 import fishingBgDesktop from "@/assets/t36/images/home/category/fishing-bg-desktop.png";
+import sabongBgDesktop from "@/assets/t36/images/home/category/sabong-bg-desktop.png";
 
 type HomeCategoryItem = {
   key: string;
@@ -79,7 +81,7 @@ export const useHomeCategoryList = () => {
       },
       {
         key: "egame",
-        text: i18n.t("common.egame"),
+        text: i18n.t("common.table"),
         gameType: GameTypeEnum.TABLEGAME,
         bgUrl: egameBg,
         desktopBgUrl: egameBgDesktop,
@@ -100,6 +102,14 @@ export const useHomeCategoryList = () => {
         bgUrl: fishingBg,
         desktopBgUrl: fishingBgDesktop,
         introduction: "Shoot the fish online and start winning real money!",
+      },
+      {
+        key: "sabong",
+        text: i18n.t("common.cockfight"),
+        gameType: GameTypeEnum.COCKFIGHT,
+        bgUrl: sabongBg,
+        desktopBgUrl: sabongBgDesktop,
+        introduction: "Most popular cockfight matches, why wait? Bet and win now!",
       },
     ];
 

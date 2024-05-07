@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
 import { usePromotionPage, useRwd } from "@tgs-web-nx/core/hooks";
-import EmptyPage from "@/pages/promotion/components/EmptyPage";
 import PromotionCard from "@/pages/promotion/components/PromotionCard";
 import { media } from "@/theme/breakpoints";
 import { PageContainer } from "@/components/styled-component/PageContainer";
@@ -18,7 +16,7 @@ const PromotionCardListContainer = styled.div`
     margin: 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 30px
+    gap: 30px;
   }
 `;
 
@@ -31,19 +29,10 @@ const PromotionBanner = styled.div<{ $imageUrl: string }>`
   background-position: center;
 `;
 
-const TitleText = styled.h1`
-  font-size: 1.25rem;
-  font-weight: 400;
-  color: ${({ theme }) => theme.white};
-`;
-
 const PromotionPage = () => {
-  const { promotionList, isEmpty } = usePromotionPage();
+  const { promotionList } = usePromotionPage();
   const { isDesktopSize } = useRwd();
 
-  if (isEmpty) {
-    return <EmptyPage />;
-  }
   return (
     <PageContainer>
       {isDesktopSize && (
