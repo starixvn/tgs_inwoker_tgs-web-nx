@@ -28,8 +28,6 @@ type Props = {
   showErrorOn?: "bottom" | "input";
 };
 
-const countdown = 10;
-
 const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
   const { handleClickSend, handleClickResend } = useCreatePlayerStageWithSMSVerify();
   const { isSendCodeSuccess, countdownToken, handleChangeCountdownToken } = useAuthDialog();
@@ -56,7 +54,7 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
   };
 
   useEffect(() => {
-    handleChangeCountdownToken(countdown);
+    handleChangeCountdownToken(config.features.sendSMSInterval);
   }, [isSendCodeSuccess]);
 
   useEffect(() => {

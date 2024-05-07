@@ -103,6 +103,7 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         handleToggleLoginDialog(false);
         handleToggleRegisterDialog(false);
         handleToggleInitEmailDialog(false);
+        
         handleToggleInitPhoneDialog(true);
         break;
 

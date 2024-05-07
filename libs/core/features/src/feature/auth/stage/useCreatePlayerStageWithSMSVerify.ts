@@ -33,6 +33,7 @@ export function useCreatePlayerStageWithSMSVerify() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const checkPhoneNumber = (values: any) => {
     let res = false;
+
     if (
       (brandConfig[mapBrandName(config.brand)].isFixedPhoneLength &&
         values.phone.length !== config.features.MAX_PHONE_LENGTH) ||
@@ -49,7 +50,8 @@ export function useCreatePlayerStageWithSMSVerify() {
 
     if (
       (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && values.phone.length < 8) ||
-      values.phone.length > (config.features.MAX_PHONE_LENGTH || 10)
+      (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength &&
+        values.phone.length > (config.features.MAX_PHONE_LENGTH || 10))
     ) {
       alert(
         "",
@@ -132,7 +134,6 @@ export function useCreatePlayerStageWithSMSVerify() {
     }
     //讓畫面進入loading
     handleChangeFetching(true);
-
     try {
       //create player
       await createPlayer(values);
@@ -142,7 +143,7 @@ export function useCreatePlayerStageWithSMSVerify() {
 
       //如有開啟set real name功能,call set realName API(register)
       if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
-        setRealName(values);
+        await setRealName(values);
       }
 
       //send Verification code
@@ -170,7 +171,7 @@ export function useCreatePlayerStageWithSMSVerify() {
     });
     handleChangeFetching(false);
     if (responseInitPhone?.IsSuccess) {
-      handleChangeCountdownToken(config.sendSMSInterval);
+      handleChangeCountdownToken(config.features.sendSMSInterval);
       alert("", i18n.t("common.msgTokenSent"));
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       handleChangeSecuritykey(responseInitPhone?.data.stepResponse as any);

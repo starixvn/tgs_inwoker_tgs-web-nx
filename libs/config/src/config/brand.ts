@@ -96,7 +96,7 @@ export const defaultConfig: Config = {
   isFixedPhoneLength: false,
   contractAge: 18,
   customGameProviderSort: [],
-  SMSVerifyInRegister: true,
+  SMSVerifyInRegister: false,
   // new brand config start here
   // NewBrand
 };
