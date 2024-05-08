@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { i18n, Common } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
+import { useNotifications } from "@tgs-web-nx/core/features";
 import { useChannelList, useUploadFile } from "../../hooks";
 import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload, DepositInput, DepositExtended } from "..";
 import { LayoutProps } from "./index";
@@ -18,7 +19,8 @@ export const EWalletLayout = ({
   const {formData} = useContext(DepositFormContext);
   const {doEWalletDeposit} = useWalletStore();
   const {handleUploadFile, isPending, uploadKey} = useUploadFile();
-
+  const {alert} = useNotifications();
+  
   const isDefaultDisabled = Common.validateDepositAndWithdrawAmount(formData.amount, formData.maxAmount, formData.minAmount);
   const isDisabled = (config.features.Deposit_UploadRequired ? isDefaultDisabled || formData.files === null : isDefaultDisabled);
   
@@ -37,6 +39,10 @@ export const EWalletLayout = ({
       .then((res) => {
         if(formData.files && res?.IsSuccess) {
           handleUploadFile(formData.files, res);
+        }
+
+        if(!res?.IsSuccess) {
+          alert("", res?.data.errmsg ?? '');
         }
       })
   }
