@@ -245,6 +245,7 @@ export const useUploadFile = () => {
  */
 export const useThirdPartyDeposit = () => {
   const {performDeposit} = useWalletStore();
+  const {alert} = useNotifications();
   const [isPending, setIsPending] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [url, setUrl] = useState(undefined);
@@ -279,6 +280,7 @@ export const useThirdPartyDeposit = () => {
     }
 
     if(!res?.IsSuccess) {
+      alert("", res.data.errmsg);
       setIsPending(false);
     }
   }  

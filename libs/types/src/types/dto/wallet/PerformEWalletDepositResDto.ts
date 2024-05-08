@@ -6,6 +6,7 @@ class DataDto {
   note = "";
   emoneyname = "";
   phone = "";
+  errmsg = "";
 }
 
 export class PerformEWalletDepositResDto {
