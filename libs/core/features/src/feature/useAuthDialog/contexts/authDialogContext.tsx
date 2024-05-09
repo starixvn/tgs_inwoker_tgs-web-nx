@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { RegisterStageEnum, ValueOf } from "@tgs-web-nx/types";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
+import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { useRegisterV2Dialog } from "../hooks/useRegisterV2Dialog";
 import { useAuthV1Dialog } from "../hooks/useAuthV1Dialog";
 import { useAuth, useAuthContext } from "../../useAuth";
@@ -20,6 +21,14 @@ const initialState: {
   handleToggleInitEmailDialog: (isOpen?: boolean) => void;
   isRegisterV2SetRealNameDialogOpen: boolean;
   handleToggleSetRealNameDialog: (isOpen?: boolean) => void;
+  isfetching: boolean | undefined;
+  handleChangeFetching: (value?: boolean | undefined) => void;
+  securitykey: string;
+  handleChangeSecuritykey: (value: string) => void;
+  isSendCodeSuccess: boolean;
+  handleChangeSendCodeSuccess: (value: boolean) => void;
+  countdownToken: number;
+  handleChangeCountdownToken: (value: number) => void;
 } = {
   isLoginDialogOpen: false,
   isRegisterDialogOpen: false,
@@ -35,6 +44,14 @@ const initialState: {
   handleToggleInitEmailDialog: () => {},
   isRegisterV2SetRealNameDialogOpen: false,
   handleToggleSetRealNameDialog: () => {},
+  isfetching: false,
+  handleChangeFetching: () => {},
+  securitykey: "",
+  handleChangeSecuritykey: () => {},
+  isSendCodeSuccess: false,
+  handleChangeSendCodeSuccess: () => {},
+  countdownToken: 0,
+  handleChangeCountdownToken: () => {},
 };
 
 export const AuthDialogContext = createContext({
@@ -53,6 +70,14 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     handleToggleLoginDialog,
     handleToggleRegisterDialog,
     handleToggleForgotPasswordDialog,
+    isfetching,
+    handleChangeFetching,
+    securitykey,
+    handleChangeSecuritykey,
+    isSendCodeSuccess,
+    handleChangeSendCodeSuccess,
+    countdownToken,
+    handleChangeCountdownToken,
   } = useAuthV1Dialog();
   const { getAccountInfo } = useAccountStore();
   const { isLogin } = useAuth();
@@ -78,7 +103,7 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         handleToggleLoginDialog(false);
         handleToggleRegisterDialog(false);
         handleToggleInitEmailDialog(false);
-
+        
         handleToggleInitPhoneDialog(true);
         break;
 
@@ -128,6 +153,18 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         handleToggleInitEmailDialog,
         isRegisterV2SetRealNameDialogOpen,
         handleToggleSetRealNameDialog,
+        //fetching
+        isfetching,
+        handleChangeFetching,
+        //securitykey
+        securitykey,
+        handleChangeSecuritykey,
+        //sendCode
+        isSendCodeSuccess,
+        handleChangeSendCodeSuccess,
+        //countdownToken
+        countdownToken,
+        handleChangeCountdownToken
       }}
     >
       {children}

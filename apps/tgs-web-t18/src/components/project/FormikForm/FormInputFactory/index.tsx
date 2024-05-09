@@ -11,6 +11,7 @@ export enum FormInputTypeEnum {
   "AREA_CODE",
   "PROMOTION_CODE",
   "USER_TYPE",
+  "VERIFY_CODE"
 }
 
 export const FormInputFactory = {
@@ -21,4 +22,5 @@ export const FormInputFactory = {
   [FormInputTypeEnum.AREA_CODE]: null,
   [FormInputTypeEnum.PROMOTION_CODE]: FormPromotionCode,
   [FormInputTypeEnum.USER_TYPE]: null,
+  [FormInputTypeEnum.VERIFY_CODE]: null,
 };

@@ -122,6 +122,7 @@ export const brandConfig: Record<BrandName, Config> = {
     ...defaultConfig,
     isAddRealNameFieldBrand: true,
     socialMediaLink: {
+      ...defaultConfig.socialMediaLink,
       fb: "https://www.facebook.com/momobetvn/",
       ig: "https://www.instagram.com/momobet.vn/",
     },

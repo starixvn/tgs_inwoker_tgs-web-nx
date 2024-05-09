@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { usePageName } from "../../usePageName/index";
@@ -14,6 +14,10 @@ export function useAuthV1Dialog() {
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [isRegisterDialogOpen, setIsRegisterDialogOpen] = useState(false);
   const [isForgotPasswordDialogOpen, setIsForgotPasswordDialogOpen] = useState(false);
+  const [isfetching, setIsfetching] = useState<boolean | undefined>(false);
+  const [securitykey, setSecuritykey] = useState<string>("");
+  const [isSendCodeSuccess, setiIsSendCodeSuccess] = useState<boolean>(false);
+  const [countdownToken, setCountdownToken] = useState<number>(0);
 
   const handleToggleLoginDialog = useCallback(
     (isOpen?: boolean) => {
@@ -34,6 +38,10 @@ export function useAuthV1Dialog() {
     },
     [history, location.pathname, updatePageName],
   );
+
+  useEffect(() => {
+    setiIsSendCodeSuccess(false);
+  }, [isRegisterDialogOpen]);
 
   const handleToggleRegisterDialog = useCallback(
     (isOpen?: boolean) => {
@@ -80,6 +88,20 @@ export function useAuthV1Dialog() {
     [history, location.pathname, updatePageName],
   );
 
+  const handleChangeFetching = (value: boolean | undefined) => {
+    setIsfetching(value);
+  };
+
+  const handleChangeSecuritykey = (value: string) => {
+    setSecuritykey(value);
+  };
+  const handleChangeSendCodeSuccess = (value: boolean) => {
+    setiIsSendCodeSuccess(value);
+  };
+  const handleChangeCountdownToken = (value: number) => {
+    setCountdownToken(value);
+  };
+
   return {
     isLoginDialogOpen,
     isRegisterDialogOpen,
@@ -87,5 +109,13 @@ export function useAuthV1Dialog() {
     handleToggleLoginDialog,
     handleToggleRegisterDialog,
     handleToggleForgotPasswordDialog,
+    isfetching,
+    handleChangeFetching,
+    securitykey,
+    handleChangeSecuritykey,
+    isSendCodeSuccess,
+    handleChangeSendCodeSuccess,
+    countdownToken,
+    handleChangeCountdownToken,
   };
 }

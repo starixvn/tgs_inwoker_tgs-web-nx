@@ -254,8 +254,6 @@ function UploadIC(file: File) {
 
 // register v2
 function RegisterV2CreatePlayer(createPlayerReqDto: RegisterV2CreatePlayerReqDto) {
-  console.log(createPlayerReqDto);
-
   return ApiService.post("player/register", {
     type: "CreatePlayer",
     input: createPlayerReqDto,
