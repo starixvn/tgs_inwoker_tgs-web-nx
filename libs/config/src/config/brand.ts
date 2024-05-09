@@ -117,7 +117,10 @@ export const brandConfig: Record<BrandName, Config> = {
       talk: "https://www.google.com",
       mail: "https://www.google.com",
     },
+    currencyRate: 1000, //for QA testing TGS-4194 & TGS-4184
+    isInitYuriJs: true,
   },
+  
   MOMOVN: {
     ...defaultConfig,
     isAddRealNameFieldBrand: true,
