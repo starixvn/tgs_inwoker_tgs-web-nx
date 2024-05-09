@@ -2,7 +2,8 @@ import { i18n, Common } from "@tgs-web-nx/utils";
 import { TransferChannel } from "@tgs-web-nx/types";
 import { useContext, ChangeEvent } from "react";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
-import { LabelContainer, CurrencyHint } from "../components";
+import styled from "styled-components";
+import { LabelContainer, CurrencyHint, WarningText } from "../components";
 import { DepositFormContext } from "./DepositFormProvider";
 import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
@@ -23,8 +24,10 @@ export const DepositAmountInput = ({
   const amount = Number(formData.amount);
   const transferFee = currentChannel?.fees;
   const isUsdt = currentChannel?.banktype === 'Usdt';
+  const isShowCoinsphFee = currentChannel?.banktype === "Coinsph" && currentChannel?.feepercentile > 0;
   const isShowCurrencyRate = currencyRate && !isUsdt;
   const placeHolder = `${i18n.t("deposit.msgPleaseEnter")} ${isUsdt ? i18n.t("withdrawal.usdtAmount") : ''} ${Common.formatCurrency(formData.minAmount)} - ${Common.formatCurrency(formData.maxAmount)} ${i18n.t("deposit.dollor")}`
+  const coinsphFee = `${i18n.t("fees.deposit")}: ${currentChannel?.feepercentile} %`;
 
   /**
    * 處理輸入金額
@@ -35,7 +38,10 @@ export const DepositAmountInput = ({
 
   return (
     <ItemContainer>
-      <LabelContainer>{i18n.t("deposit.depositAmount")}</LabelContainer>
+      <LabelWrapper>
+        <LabelContainer>{i18n.t("deposit.depositAmount")}</LabelContainer>
+        {isShowCoinsphFee && <WarningText style={{marginBottom: '10px'}}>{coinsphFee}</WarningText>}
+      </LabelWrapper>
       <FormControl variant="outlined">
         <TextField
           fullWidth
@@ -66,3 +72,9 @@ export const DepositAmountInput = ({
     </ItemContainer>
   );
 };
+
+const LabelWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
