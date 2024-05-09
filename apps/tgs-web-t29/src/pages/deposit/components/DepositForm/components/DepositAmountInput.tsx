@@ -23,12 +23,27 @@ export const DepositAmountInput = ({
   const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   const amount = Number(formData.amount);
   const transferFee = currentChannel?.fees;
+  const feePercentile = currentChannel?.feepercentile;
+  const renderFee = () => {
+    if(transferFee) {
+      return (
+        <WarningText style={{marginBottom: '10px'}}>{`${i18n.t("fees.deposit")}: ${transferFee} %`}</WarningText>
+      )
+    }
+
+    if(feePercentile) {
+      return (
+        <WarningText style={{marginBottom: '10px'}}>{`${i18n.t("fees.deposit")}: ${feePercentile} %`}</WarningText>
+      )
+    }
+    
+    return null;
+  }
+
   const isUsdt = currentChannel?.banktype === 'Usdt';
-  const isShowCoinsphFee = currentChannel?.banktype === "Coinsph" && currentChannel?.feepercentile > 0;
   const isShowCurrencyRate = currencyRate && !isUsdt;
   const placeHolder = `${i18n.t("deposit.msgPleaseEnter")} ${isUsdt ? i18n.t("withdrawal.usdtAmount") : ''} ${Common.formatCurrency(formData.minAmount)} - ${Common.formatCurrency(formData.maxAmount)} ${i18n.t("deposit.dollor")}`
-  const coinsphFee = `${i18n.t("fees.deposit")}: ${currentChannel?.feepercentile} %`;
-
+  
   /**
    * 處理輸入金額
    */
@@ -40,7 +55,7 @@ export const DepositAmountInput = ({
     <ItemContainer>
       <LabelWrapper>
         <LabelContainer>{i18n.t("deposit.depositAmount")}</LabelContainer>
-        {isShowCoinsphFee && <WarningText style={{marginBottom: '10px'}}>{coinsphFee}</WarningText>}
+        {renderFee()}
       </LabelWrapper>
       <FormControl variant="outlined">
         <TextField
@@ -53,12 +68,6 @@ export const DepositAmountInput = ({
       </FormControl>
 
       <AmountHint>
-        {!!transferFee && (
-          <FeeSpot>
-            {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
-          </FeeSpot>
-        )}
-
         {isShowCurrencyRate && <CurrencyHint>
           {
             !isNaN(amount) ?
