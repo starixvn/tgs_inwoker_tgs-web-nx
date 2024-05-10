@@ -141,6 +141,8 @@ const featureList = {
 				}
 			}
 		},
+    SMSVerifyInRegister:false,
+    isRegisterRealNameRequired:false
   },
 };
 export default featureList;

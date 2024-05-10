@@ -54,7 +54,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
       },
       (() => {
         //for MOVN2 customization
-        if (brandConfig[mapBrandName(config.brand)].isRegisterRealNameRequired) {
+        if (config.features.isRegisterRealNameRequired) {
           return {
             label: i18n.t("common.realName"),
             name: "realName",
