@@ -133,7 +133,9 @@ const TransferCards = ({ handleTransferIn }: Props) => {
                 <GameWalletAmount>
                   {provider.maintenance === 1
                     ? i18n.t("transfer.maintenance")
-                    : "$" + Common.formatCurrency(provider.balance)}
+                    : `${config.features.currencySymbol} ${Common.formatCurrency(
+                        provider.balance,
+                      )}`}
                 </GameWalletAmount>
               </GameTransferRighttWrap>
             </GameTransferWallet>
