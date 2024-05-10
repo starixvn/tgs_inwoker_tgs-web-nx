@@ -141,6 +141,8 @@ const featureList = {
 			}
 		},
     sendSMSInterval: 60,
+    SMSVerifyInRegister:false,
+    isRegisterRealNameRequired:false
   },
 };
 export default featureList;

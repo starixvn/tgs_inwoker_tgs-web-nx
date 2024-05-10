@@ -27,7 +27,7 @@ const RegisterForm = () => {
       <FormContainer>
         <RegisterFormStage
           currentStage={
-            brandConfig[mapBrandName(config.brand)].SMSVerifyInRegister
+            config.features.SMSVerifyInRegister
               ? RegisterStageEnum.CreatePlayeWithSMSVerify
               : RegisterStageEnum.CreatePlayer
           }
