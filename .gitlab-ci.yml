@@ -32,7 +32,7 @@ stages:
       yarn --version
       nx --version
 
-      yarn add -D @nx/react
+      yarn add -D @nx/react@17.0.2
 
       if [[ $app != "" ]]; then 
           yarn docker-build:single $app
