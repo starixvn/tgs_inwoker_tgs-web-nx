@@ -85,7 +85,7 @@ const QuickTransfer = ({
   handleTransferClick,
 }: Props) => {
   const { game } = useGameStore();
-  console.log(transferAmount);
+  
   return (
     <QuickTransferContainer>
       <GrayInputWrapper>
