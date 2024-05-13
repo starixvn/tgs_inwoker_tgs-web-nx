@@ -145,7 +145,6 @@ export function useCreatePlayerStageWithSMSVerify() {
         //login
         await AccountService.Login(values.username, values.pwd);
       }
-      console.log(brandConfig[mapBrandName(config.brand)].isFixedPhoneLength);
       // 檢查phone number是否被使用過
       const chechPhoneRes = (await AccountService.checkPhoneDuplicate(
         values.areaCode,
