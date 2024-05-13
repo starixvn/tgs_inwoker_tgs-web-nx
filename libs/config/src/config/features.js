@@ -122,27 +122,28 @@ const featureList = {
     Withdrawal_WalletTransfer: false,
     Deposit_ManualDepositPassPhone: false,
     ShowVerificationStatus: false,
-    RouletteSetting:{
-			"web":{
-				"size":250,
-				"orientation":"row",
-				"position": {
-					"top":80,
-					"right":0
-				}
-			},
-			"wap":{
-				"size":100,
-				"orientation":"column",
-				"position": {
-					"bottom":250,
-					"right":0
-				}
-			}
-		},
+    RouletteSetting: {
+      web: {
+        size: 250,
+        orientation: "row",
+        position: {
+          top: 80,
+          right: 0,
+        },
+      },
+      wap: {
+        size: 100,
+        orientation: "column",
+        position: {
+          bottom: 250,
+          right: 0,
+        },
+      },
+    },
     sendSMSInterval: 60,
     SMSVerifyInRegister:false,
-    isRegisterRealNameRequired:false
+    isRegisterRealNameRequired:false,
+    currencySymbol: "$",
   },
 };
 export default featureList;
