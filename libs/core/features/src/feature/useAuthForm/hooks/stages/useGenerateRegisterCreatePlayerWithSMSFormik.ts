@@ -84,8 +84,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
         name: "phone",
         initialValue: "",
         type: FormInputTypeEnum.PHONE,
-        validationSchema: Yup.string()
-          .required("Phone is required")
+        validationSchema: Yup.string().required("Phone is required"),
       },
       {
         label: "",
@@ -97,7 +96,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
         label: i18n.t("common.msgEnterCode"),
         name: "verifyCode",
         initialValue: "",
-        type: FormInputTypeEnum.VERIFY_CODE,
+        type: "verifyCodeWithNewRegisterFlow",
       },
     ].filter((item) => !!item) as FormikFormInput[];
   }, []);
