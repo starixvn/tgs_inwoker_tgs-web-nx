@@ -3,7 +3,7 @@ import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
-import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
+import { useUserWalletInfoContext, useAutoTransferSwitch } from "@tgs-web-nx/core/features";
 import refreshIcon from "@/assets/t29/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
@@ -219,6 +219,15 @@ const UserWalletInfo = () => {
     info,
   } = useUserWalletInfoContext();
   const { getAccountInfo } = useAccountStore();
+  const {performWithdrawFromEveryBrand } = useAutoTransferSwitch();
+  const handleOnClickRefreshMainWallet = () => {
+    performWithdrawFromEveryBrand().then(
+      () => {
+        fetchMainWalletBalance();
+      }
+    );
+  }
+
 
   return (
     <Container>
@@ -292,7 +301,7 @@ const UserWalletInfo = () => {
               width={"44px"}
               height={"44px"}
               iconUrl={refreshIcon}
-              onClick={fetchMainWalletBalance}
+              onClick={handleOnClickRefreshMainWallet}
               $isLoading={isMainWalletLoading}
             />
           </AmountContainer>
