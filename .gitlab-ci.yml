@@ -27,7 +27,7 @@ stages:
       nvm install 16.14.0
       nvm use 16.14.0
 
-      yarn add -D @nx/react
+      yarn add -D @nx/react@17.0.2
 
       if [[ $app != "" ]]; then 
           yarn docker-build:single $app
