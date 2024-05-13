@@ -113,7 +113,9 @@ export function useCreatePlayerStageWithSMSVerify() {
       input: "Init",
       data: {
         areacode: values.areaCode,
-        phone: values.phone,
+        phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
+          ? values.phone.slice(1)
+          : values.phone,
       },
     });
     if (!responseInitPhone?.IsSuccess) {
@@ -143,11 +145,12 @@ export function useCreatePlayerStageWithSMSVerify() {
         //login
         await AccountService.Login(values.username, values.pwd);
       }
-
       // 檢查phone number是否被使用過
       const chechPhoneRes = (await AccountService.checkPhoneDuplicate(
         values.areaCode,
-        values.phone,
+        brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
+          ? values.phone.slice(1)
+          : values.phone,
       )) as any;
 
       if (chechPhoneRes.data) {
@@ -180,7 +183,9 @@ export function useCreatePlayerStageWithSMSVerify() {
       input: "Init",
       data: {
         areacode: values.areaCode,
-        phone: values.phone,
+        phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
+          ? values.phone.slice(1)
+          : values.phone,
       },
     });
     handleChangeFetching(false);
