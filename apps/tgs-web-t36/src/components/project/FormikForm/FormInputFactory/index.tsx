@@ -1,4 +1,5 @@
 import { FormInputTypeEnum } from "@tgs-web-nx/core/features";
+import FormVerifyCodeWithNewRegisterFlow from "./FormVerifyCodeWithNewRegisterFlow";
 import FormText from "@/components/project/FormikForm/FormInputFactory/FormText";
 import FormPassword from "@/components/project/FormikForm/FormInputFactory/FormPassword";
 import FormPhone from "@/components/project/FormikForm/FormInputFactory/FormPhone";
@@ -14,4 +15,5 @@ export const FormInputFactory = {
   [FormInputTypeEnum.PROMOTION_CODE]: FormPromotionCode,
   [FormInputTypeEnum.USER_TYPE]: null,
   [FormInputTypeEnum.VERIFY_CODE]: FormVerifyCode,
+  verifyCodeWithNewRegisterFlow: FormVerifyCodeWithNewRegisterFlow,
 };
