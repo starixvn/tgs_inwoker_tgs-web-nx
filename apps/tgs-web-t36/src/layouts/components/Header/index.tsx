@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useAccountStore } from "@tgs-web-nx/core";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import AccountHeaderContent from "./components/AccountHeaderContent";
@@ -85,11 +85,25 @@ const ContentWrapper = styled.div`
   padding: 0 10px;
 `;
 
+const Logo = styled.div`
+  object-fit: contain;
+  display: block;
+  margin: auto;
+
+  & img {
+    max-height: 60px;
+  }
+`;
+
 const Header = () => {
   const { account } = useAccountStore();
   const noLoginAccount = account.token !== account.info.token;
   const { isMobileSize, isDesktopSize } = useRwd();
   const { handleChangeGameType } = useHomeGameContext();
+  const {
+    general: { brand },
+  } = useGeneralStore();
+  if (!brand.loadingUrl) return null;
 
   return (
     <HeaderContainer>
@@ -113,10 +127,11 @@ const Header = () => {
         <NavHeaderWrapper>
           <ContentWrapper>
             <Link to={""}>
-              <BrandLogo
-                style={{ height: "27px" }}
-                onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
-              />
+              {brand.loadingUrl && (
+                <Logo onClick={() => handleChangeGameType(GameTypeEnum.NONE)}>
+                  <img src={brand.loadingUrl} alt="logo" />
+                </Logo>
+              )}
             </Link>
 
             <HeaderGameTypes />
