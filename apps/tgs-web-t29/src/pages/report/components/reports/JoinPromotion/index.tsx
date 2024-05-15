@@ -50,9 +50,9 @@ const ReportJoinPromotion = ({ dateRangeInfo }: Props) => {
           : getJoinedPromoReportRes.data.items;
 
       setPromotionDetails(getJoinedPromoReportRes.data.items);
-      setPromotionDetailsForMobile(newPromotionDetails);
+      await setPromotionDetailsForMobile(newPromotionDetails);
       setTotalCount(getJoinedPromoReportRes.data.totalcount || 0);
-      setIsMaxPage(getJoinedPromoReportRes.data.totalcount == newPromotionDetails.length);
+      setIsMaxPage(getJoinedPromoReportRes.data.totalcount === promotionDetailsForMobile.length);
     } else {
       alert("", getJoinedPromoReportRes?.info || JSON.stringify(getJoinedPromoReportRes));
     }
@@ -65,10 +65,12 @@ const ReportJoinPromotion = ({ dateRangeInfo }: Props) => {
     setPage(currentPage);
     fetchReports(currentPage);
     setIsMaxPage(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(dateRangeInfo)]);
 
   const handleLoadMore = async () => {
     if (isMaxPage) return;
+    if (isLoading) return;
 
     const nextPage = page + 1;
     setPage(nextPage);
