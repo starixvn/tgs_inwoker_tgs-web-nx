@@ -47,9 +47,9 @@ const ReportBalanceChange = ({ dateRangeInfo }: Props) => {
           : getBalanceChangeRes.data.items;
 
       setBalanceChangeDetails(getBalanceChangeRes.data.items);
-      setBalanceChangeDetailsForMobile(newDataList);
+      await setBalanceChangeDetailsForMobile(newDataList);
       setTotalCount(getBalanceChangeRes.data.totalcount || 0);
-      setIsMaxPage(getBalanceChangeRes.data.totalcount == newDataList.length);
+      setIsMaxPage(getBalanceChangeRes.data.totalcount === balanceChangeDetailsForMobile.length);
     } else {
       alert("", getBalanceChangeRes?.info || JSON.stringify(getBalanceChangeRes));
     }
@@ -62,10 +62,12 @@ const ReportBalanceChange = ({ dateRangeInfo }: Props) => {
     setPage(currentPage);
     fetchReports(currentPage);
     setIsMaxPage(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(dateRangeInfo)]);
 
   const handleLoadMore = async () => {
     if (isMaxPage) return;
+    if (isLoading) return;
 
     const nextPage = page + 1;
     setPage(nextPage);
