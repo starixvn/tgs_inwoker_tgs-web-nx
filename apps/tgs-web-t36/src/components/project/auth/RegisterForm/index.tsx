@@ -1,6 +1,5 @@
 import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import config from "@tgs-web-nx/config";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
 import styled from "styled-components";
 import RegisterFormStage from "./RegisterFormStage";
@@ -27,7 +26,13 @@ const RegisterForm = () => {
 
       <AuthFormContainer>
         <FormContainer>
-          <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
+          <RegisterFormStage
+            currentStage={
+              config.features.SMSVerifyInRegister
+                ? RegisterStageEnum.CreatePlayeWithSMSVerify
+                : RegisterStageEnum.CreatePlayer
+            }
+          />
         </FormContainer>
 
         <RedirectToLoginHint style={{ marginBottom: "20px" }} />

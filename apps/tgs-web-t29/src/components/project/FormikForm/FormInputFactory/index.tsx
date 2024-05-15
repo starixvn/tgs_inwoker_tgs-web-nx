@@ -15,5 +15,5 @@ export const FormInputFactory = {
   [FormInputTypeEnum.PROMOTION_CODE]: FormPromotionCode,
   [FormInputTypeEnum.USER_TYPE]: null,
   [FormInputTypeEnum.VERIFY_CODE]: FormVerifyCode,
-  "verifyCodeWithNewRegisterFlow": FormVerifyCodeWithNewRegisterFlow,
+  verifyCodeWithNewRegisterFlow: FormVerifyCodeWithNewRegisterFlow,
 };
