@@ -40,7 +40,7 @@ export const useGroupList = () => {
         channels: depositList?.find(row => row.banktype ===  GroupCodeEnum.Bank)?.channel ?? []
       };
 
-      return [bankList, ...result];
+      return [...result, bankList];
     }
   , [depositChannelList, depositList]);
     
