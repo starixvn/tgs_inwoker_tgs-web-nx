@@ -56,7 +56,8 @@ export enum GroupCodeEnum {
   Pulsa= 'Pulsa',
   EWallet= 'E-wallet',
   GcashNative = 'Gcash Native',
-
+  Grabpay = 'Grabpay',
+  
   // 特例
   Bank= 'Bank',
 }
