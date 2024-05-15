@@ -54,9 +54,9 @@ const ReportDeposit = ({ dateRangeInfo }: Props) => {
           : getDepositDetailsRes.data.items;
 
       setDepositDetails(getDepositDetailsRes.data.items);
-      setDepositDetailsForMobile(newDepositDetails);
+      await setDepositDetailsForMobile(newDepositDetails);
       setTotalCount(getDepositDetailsRes.data.totalCount || 0);
-      setIsMaxPage(getDepositDetailsRes.data.totalCount == newDepositDetails.length);
+      setIsMaxPage(getDepositDetailsRes.data.totalCount === depositDetailsForMobile.length);
     } else {
       alert("", getDepositDetailsRes?.info || JSON.stringify(getDepositDetailsRes));
     }
@@ -70,10 +70,12 @@ const ReportDeposit = ({ dateRangeInfo }: Props) => {
     setPage(currentPage);
     fetchReports(currentPage);
     setIsMaxPage(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(dateRangeInfo), status]);
 
   const handleLoadMore = async () => {
     if (isMaxPage) return;
+    if (isLoading) return;
 
     const nextPage = page + 1;
     setPage(nextPage);

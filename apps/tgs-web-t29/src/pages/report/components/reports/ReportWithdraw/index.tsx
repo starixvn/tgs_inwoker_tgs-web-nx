@@ -54,9 +54,9 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
           ? withdrawalDetailsForMobile.concat(getWithdrawalDetailsRes.data.items)
           : getWithdrawalDetailsRes.data.items;
       setWithdrawalDetails(getWithdrawalDetailsRes.data.items);
-      setWithdrawalDetailsForMobile(newWithdrawalDetails);
+      await setWithdrawalDetailsForMobile(newWithdrawalDetails);
       setTotalCount(getWithdrawalDetailsRes.data.totalCount || 0);
-      setIsMaxPage(getWithdrawalDetailsRes.data.totalCount == newWithdrawalDetails.length);
+      setIsMaxPage(getWithdrawalDetailsRes.data.totalCount === withdrawalDetailsForMobile.length);
     } else {
       alert("", getWithdrawalDetailsRes?.info || JSON.stringify(getWithdrawalDetailsRes));
     }
@@ -74,7 +74,8 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
 
   const handleLoadMore = async () => {
     if (isMaxPage) return;
-
+    if (isLoading) return;
+    
     const nextPage = page + 1;
     setPage(nextPage);
     await fetchReports(nextPage);

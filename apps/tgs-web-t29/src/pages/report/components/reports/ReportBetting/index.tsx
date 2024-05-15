@@ -55,10 +55,9 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
         page > 1
           ? transactionDetailsForMobile.concat(getTransactionDetailsRes.data.items)
           : getTransactionDetailsRes.data.items;
-
       setTransactionDetails(getTransactionDetailsRes.data.items);
-      setTransactionDetailsForMobile(newDataList);
-      setIsMaxPage(getTransactionDetailsRes.data.totalcount == newDataList.length);
+      await setTransactionDetailsForMobile(newDataList);
+      setIsMaxPage(getTransactionDetailsRes.data.totalcount === transactionDetailsForMobile.length);
       setTotalCount(getTransactionDetailsRes.data.totalcount || 0);
     } else {
       alert("", getTransactionDetailsRes?.info || JSON.stringify(getTransactionDetailsRes));
@@ -85,11 +84,12 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     setPage(currentPage);
     fetchReports(currentPage);
     setIsMaxPage(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(dateRangeInfo)]);
 
   const handleLoadMore = async () => {
     if (isMaxPage) return;
-
+    if (isLoading) return;
     const nextPage = page + 1;
     setPage(nextPage);
     await fetchReports(nextPage);

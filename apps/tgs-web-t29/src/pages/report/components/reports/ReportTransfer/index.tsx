@@ -50,9 +50,9 @@ const ReportTransfer = ({ dateRangeInfo }: Props) => {
           : getTransferReportRes.data.items;
 
       setTransferDetails(getTransferReportRes.data.items);
-      setTransferDetailsForMobile(newTransferDetails);
+      await setTransferDetailsForMobile(newTransferDetails);
       setTotalCount(getTransferReportRes.data.totalCount || 0);
-      setIsMaxPage(getTransferReportRes.data.totalCount == newTransferDetails.length);
+      setIsMaxPage(getTransferReportRes.data.totalCount === transferDetailsForMobile.length);
     } else {
       alert("", getTransferReportRes?.info || JSON.stringify(getTransferReportRes));
     }
@@ -65,10 +65,12 @@ const ReportTransfer = ({ dateRangeInfo }: Props) => {
     setPage(currentPage);
     fetchReports(currentPage);
     setIsMaxPage(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(dateRangeInfo)]);
 
   const handleLoadMore = async () => {
     if (isMaxPage) return;
+    if (isLoading) return;
 
     const nextPage = page + 1;
     setPage(nextPage);
