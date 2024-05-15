@@ -24,26 +24,35 @@ const clearedFormData = {
 export const useGroupList = () => {
   const [groupCode, setGroupCode] = useState('');
   const {wallet: {depositChannelList, depositList}} = useWalletStore();
+  const groudCodeVales = Object.values(GroupCodeEnum);
+  const getIndex = (code: GroupCodeEnum) => groudCodeVales.indexOf(code);
+
   const filterGroupList: FilterDepositList[] = useMemo(() =>
     {
       const result = depositChannelList
-        .filter(row => Object.values(GroupCodeEnum).includes(row.code as GroupCodeEnum))
+        .filter(row => groudCodeVales.includes(row.code as GroupCodeEnum))
         .map(row => {
           return {
             code: row.code,
             channels: row.channels.filter(row => row.banktype !== GroupCodeEnum.Bank),
-        }});
-
+        }})
+        
+      
       // 特例
       const bankList = {
         code: GroupCodeEnum.Bank,
         channels: depositList?.find(row => row.banktype ===  GroupCodeEnum.Bank)?.channel ?? []
       };
 
-      return [...result, bankList];
+      const sortedResult = [...result, bankList].sort((prev, curr) => {
+        return getIndex(prev.code as GroupCodeEnum) - getIndex(curr.code as GroupCodeEnum)
+      })
+
+      return sortedResult;
     }
   , [depositChannelList, depositList]);
-    
+  
+
   const groupList: Option[] = filterGroupList
     .filter(row => row.channels.length > 0)
     .map(row => {

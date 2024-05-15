@@ -39,27 +39,26 @@ export enum DepositPromotionEnum {
 }
 
 // 自定義的 GroupCode，可依照需求新增對應類型
+// 前台會依照此順序顯示
 export enum GroupCodeEnum {
   GCash = 'GCash',
+  PayMaya = 'PayMaya',
+  Bank= 'Bank',
+  Grabpay = 'Grabpay',
   Coinsph = 'Coinsph',
   FPS = 'FPS',
   OMNI = 'OMNI',
   ETHEREUM = 'ETHEREUM',
   ALI2ALI = 'ALI2ALI',
-  PayMaya = 'PayMaya',
   TRON = 'TRON',
-  MayaNative = 'Maya Native',
-  GrabeNative = 'Grabe Native',
   ViettelPay = 'ViettelPay',
   Momo = 'Momo',
   TRC= 'TRC',
   Pulsa= 'Pulsa',
   EWallet= 'E-wallet',
   GcashNative = 'Gcash Native',
-  Grabpay = 'Grabpay',
-  
-  // 特例
-  Bank= 'Bank',
+  MayaNative = 'Maya Native',
+  GrabeNative = 'Grabe Native',
 }
 
 // 自定義的 MovnCode
