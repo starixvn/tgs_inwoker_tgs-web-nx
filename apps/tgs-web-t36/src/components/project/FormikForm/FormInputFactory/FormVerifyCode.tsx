@@ -84,7 +84,7 @@ const FormVerifyCode = ({ formInput, formik, showErrorOn }: Props) => {
         const verifyForgotPasswordResDto = await AccountService.VerifyForgotPassword(
           "",
           areaCode,
-          phone,
+          brandConfig[mapBrandName(config.brand)].isFixedPhoneLength ? phone.slice(1) : phone,
         );
 
         if (verifyForgotPasswordResDto.IsSuccess) {
