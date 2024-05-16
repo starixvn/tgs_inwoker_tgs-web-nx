@@ -6,6 +6,10 @@ stages:
   - deploy-domain
   - deploy
 
+cache:
+  paths:
+    - node_modules/
+
 .docker-build-template: &docker-build-template
   stage: docker-build
   before_script:
@@ -23,7 +27,7 @@ stages:
       git submodule sync
       git submodule update --remote
       git status
-      
+
       nvm install 16.14.0
       nvm use 16.14.0
 
@@ -39,7 +43,7 @@ stages:
       else 
           yarn docker-build:${tgs_env}
       fi
-      
+
       docker image ls  
       image_count=$(docker image ls | wc  -l)
 
@@ -158,7 +162,7 @@ stages:
           }
           EOF
       fi
-    
+
 .deploy-template: &deploy-template
   stage: deploy
   before_script:
@@ -169,7 +173,7 @@ stages:
     - export KUBECONFIG=${!KUBECONFIG_TEMP}
     - echo "KUBECONFIG=$KUBECONFIG"
   script:
-    - | 
+    - |
       if [[ -e image.txt && $domain == "" && $brand == "" ]]; then 
           cat image.txt
           for image in $(cat image.txt); do
@@ -209,17 +213,17 @@ stages:
 
 docker-build-dev:
   <<: *docker-build-template
-  only: 
+  only:
     - develop
 
 docker-build-staging:
   <<: *docker-build-template
-  only: 
+  only:
     - release/current
 
 docker-build-prod:
   <<: *docker-build-template
-  only: 
+  only:
     - master
 
 deploy-domain-dev:
@@ -227,7 +231,7 @@ deploy-domain-dev:
   needs:
     - job: docker-build-dev
       artifacts: true
-  only: 
+  only:
     - develop
 
 deploy-domain-staging:
@@ -235,7 +239,7 @@ deploy-domain-staging:
   needs:
     - job: docker-build-staging
       artifacts: true
-  only: 
+  only:
     - release/current
 
 deploy-domain-prod:
@@ -243,9 +247,9 @@ deploy-domain-prod:
   needs:
     - job: docker-build-prod
       artifacts: true
-  only: 
+  only:
     - master
-    
+
 deploy-dev:
   <<: *deploy-template
   needs:
@@ -253,7 +257,7 @@ deploy-dev:
       artifacts: true
   environment:
     name: dev
-  only: 
+  only:
     - develop
 
 deploy-staging:
@@ -263,7 +267,7 @@ deploy-staging:
       artifacts: true
   environment:
     name: staging
-  only: 
+  only:
     - release/current
 
 deploy-prod:
@@ -273,6 +277,6 @@ deploy-prod:
       artifacts: true
   environment:
     name: prod
-  only: 
+  only:
     - master
-  #when: manual  
+  #when: manual
