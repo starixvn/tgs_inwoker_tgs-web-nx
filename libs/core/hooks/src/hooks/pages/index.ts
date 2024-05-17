@@ -15,3 +15,4 @@ export * from "./vip/useVipBonusList";
 export * from "./vip/useVipBonusListV2";
 export * from "./quickLinks";
 export * from "./affiliate/useRebateTable";
+export * from "./agent/useAgentPage";

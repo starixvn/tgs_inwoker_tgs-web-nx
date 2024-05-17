@@ -36,6 +36,7 @@ import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 import BannedPage from "@/pages/banned/BannedPage";
+import AgentPgae from "@/pages/agent/agentPage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -346,6 +347,11 @@ const routes: RouteType[] = [
     path: "/responsiblegaming",
     component: Responsiblegaming,
     isAnonymousAllowed: true,
+  },
+  {
+    path: "/agent",
+    component: AgentPgae,
+    layout: DialogLayout,
   },
 ];
 
