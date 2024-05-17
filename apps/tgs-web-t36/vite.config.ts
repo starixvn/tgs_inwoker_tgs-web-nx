@@ -13,7 +13,7 @@ export default defineConfig({
   },
   server: {
     port: 3000, // change your favorite port
-    host: "localhost",
+    host: "0.0.0.0",
     fs: {
       allow: [searchForWorkspaceRoot(process.cwd())],
     },

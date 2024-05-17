@@ -6,6 +6,7 @@ import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React, { useEffect, useState } from "react";
+import WebviewModal from "../../../WebviewModal";
 import VendorCard from "@/pages/home/components/VendorCard/index";
 import { media } from "@/theme/breakpoints";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
@@ -46,6 +47,8 @@ const EmptyText = styled.div`
 `;
 
 const LobbyCategory = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [code, setCode] = useState('');
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { sideNavItemList } = useGetNavItemList();
   const { account } = useAccountStore();
@@ -96,6 +99,13 @@ const LobbyCategory = () => {
       if (audioElement) {
         audioElement.volume = 0;
       }
+
+      if(Common.isWebview()) {
+        setCode(gpcode);
+        setIsOpen(true);
+        return;
+      }
+
       Common.closePreviousPopup();
       Common.PopupCenter(`/joinlobbygame/${activeGameType}/${gpcode}`, "gamewindow");
     }
@@ -105,7 +115,11 @@ const LobbyCategory = () => {
 
   return (
     <>
-      {/* <GameTypeTab /> */}
+      <WebviewModal 
+        isOpen={isOpen} 
+        onClose={() => setIsOpen(false)} 
+        url={`/joinlobbygame/${activeGameType}/${code}`} 
+      />
       <CategoryContentWrapper>
         {isMobileSize && (
           <SideNavItem

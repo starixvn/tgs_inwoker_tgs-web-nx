@@ -116,7 +116,7 @@ const Header = () => {
               style={{ height: "28px", marginLeft: isDesktopSize ? "70px" : "unset" }}
               onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
             />
-          </Link>
+          </Link> 
         )}
 
         <HeaderContentContainer>

@@ -153,6 +153,17 @@ const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat(brandConfig[mapBrandName(config.brand)].countryCode).format(amount);
 };
 
+/**
+ * 判斷當前瀏覽器是否為 webview
+ * @notice useragent 會有被改的風險 但是機率不高
+ */
+function isWebview() {
+  const useragent = navigator.userAgent;
+  const rules = ['WebView','(iPhone|iPod|iPad)(?!.*Safari/)','Android.*(wv|.0.0.0)'];
+  const regex = new RegExp(`(${rules.join('|')})`, 'ig');
+  return Boolean(useragent.match(regex));
+}
+
 const Common = {
   formatNumberWithCommas,
   formatNumberWithThousand,
@@ -165,6 +176,7 @@ const Common = {
   truncateString,
   validateDepositAndWithdrawAmount,
   formatCurrency,
+  isWebview,
 };
 
 export default Common;

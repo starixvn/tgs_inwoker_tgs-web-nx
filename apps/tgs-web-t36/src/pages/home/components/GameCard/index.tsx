@@ -6,6 +6,7 @@ import { Common } from "@tgs-web-nx/utils";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import WebviewModal from "../WebviewModal";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t36/images/home/maintenance.svg";
@@ -165,6 +166,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const isLogin = !!account.token;
   const gameNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
+  const [isOpen, setIsOpen] = useState(false);
 
   const launchGameHandler = () => {
     if (!isActive) {
@@ -176,6 +178,11 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     if (!isLogin) {
       history.push("/login");
     } else {
+      if(Common.isWebview()) {
+        setIsOpen(true);
+        return;
+      }
+
       Common.closePreviousPopup();
       Common.PopupCenter(`/joingame/${gameItem.id}/${gameItem.gpcode}`, "gamewindow");
     }
@@ -207,36 +214,43 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   }, [resizeText, gameNameRef.current]);
 
   return (
-    <GameCardBg onClick={launchGameHandler} $isActive={isActive}>
-      <GameCardContent>
-        <GameIcon $imageUrl={imageUrl}></GameIcon>
-        <TagBg>
-          {gameItem.tag.new && <NewTag>New</NewTag>}
-          {gameItem.tag.hot && <HotTag>Hot</HotTag>}
-        </TagBg>
-        {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
+    <>
+      <WebviewModal 
+        isOpen={isOpen} 
+        onClose={() => setIsOpen(false)} 
+        url={`/joingame/${gameItem.id}/${gameItem.gpcode}`} 
+      />
+      <GameCardBg onClick={launchGameHandler} $isActive={isActive}>
+        <GameCardContent>
+          <GameIcon $imageUrl={imageUrl}></GameIcon>
+          <TagBg>
+            {gameItem.tag.new && <NewTag>New</NewTag>}
+            {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+          </TagBg>
+          {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
 
-        {!isActive && (
-          <MaintenanceBg>
-            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-          </MaintenanceBg>
+          {!isActive && (
+            <MaintenanceBg>
+              <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+            </MaintenanceBg>
+          )}
+        </GameCardContent>
+
+        {isLogin && (
+          <Favorite
+            isFavorite={isFavorite}
+            handleToggleFavorite={handleToggleFavorite}
+            gameItemId={gameItem.id}
+          />
         )}
-      </GameCardContent>
 
-      {isLogin && (
-        <Favorite
-          isFavorite={isFavorite}
-          handleToggleFavorite={handleToggleFavorite}
-          gameItemId={gameItem.id}
-        />
-      )}
-
-      {isDesktopSize && isActive && (
-        <CardHoverBg onClick={launchGameHandler}>
-          <PlayBtnIcon src={playIcon} alt={"play"} />
-        </CardHoverBg>
-      )}
-    </GameCardBg>
+        {isDesktopSize && isActive && (
+          <CardHoverBg onClick={launchGameHandler}>
+            <PlayBtnIcon src={playIcon} alt={"play"} />
+          </CardHoverBg>
+        )}
+      </GameCardBg>
+    </>
   );
 };
 
