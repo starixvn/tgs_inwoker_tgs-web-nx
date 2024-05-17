@@ -1,10 +1,10 @@
 FROM node:16.14.2-stretch-slim AS dependencies
-WORKDIR /apps
+WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 FROM node:16.14.2-stretch-slim AS builder
-WORKDIR /apps
+WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 RUN yarn nx build tgs-web-t29
