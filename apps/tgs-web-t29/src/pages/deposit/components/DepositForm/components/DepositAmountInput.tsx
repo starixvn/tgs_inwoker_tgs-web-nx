@@ -7,7 +7,7 @@ import { LabelContainer, CurrencyHint, WarningText } from "../components";
 import { DepositFormContext } from "./DepositFormProvider";
 import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
-import {AmountHint, FeeSpot} from "@/components/styled-component/Deposit";
+import {AmountHint} from "@/components/styled-component/Deposit";
 
 type Props = {
   currentChannel?: TransferChannel
