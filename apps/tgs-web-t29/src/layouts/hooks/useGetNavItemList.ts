@@ -140,7 +140,7 @@ export function useGetNavItemList() {
         key: NavCardKey.AGENT,
         label: i18n.t("usertype.agent"),
         iconUrl: agentImg,
-        iconSecondaryUrl: profileWhiteImg,
+        iconSecondaryUrl: agentWhiteImg,
         navType: "route",
         routePath: "/agent",
       },

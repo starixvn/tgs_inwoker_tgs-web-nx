@@ -36,7 +36,7 @@ import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 import BannedPage from "@/pages/banned/BannedPage";
-import AgentPgae from "@/pages/agent/agentPage";
+import AgentPgae from "@/pages/agent/AgentPage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
