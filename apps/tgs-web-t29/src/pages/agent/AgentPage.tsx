@@ -3,7 +3,8 @@ import { AgentCategoryKeyEnum, useAgentPage, useRwd } from "@tgs-web-nx/core/hoo
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import CategoryTab from "./components/CategoryTab";
-import AgentInfo from "./components/AgentInfo.tsx";
+import AgentInfo from "./components/AgentInfo";
+import AgentPlayerList from "./components/AgentPlayerList";
 import Loading from "@/components/UI/Loading";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import AccountPaper from "@/components/project/AccountPaper";
@@ -61,7 +62,7 @@ const AgentPage = () => {
                 case AgentCategoryKeyEnum.AGENTINFO:
                   return <AgentInfo />;
                 case AgentCategoryKeyEnum.PLAYERLIST:
-                  return null;
+                  return <AgentPlayerList />;
                 case AgentCategoryKeyEnum.AGENTLIST:
                   return null;
                 case AgentCategoryKeyEnum.WINLOSSREPORT:
