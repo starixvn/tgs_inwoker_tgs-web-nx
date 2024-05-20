@@ -7,7 +7,7 @@ import AgentPlayerList from "./index";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 
-const PlayListPage = () => {
+const PlayerListPage = () => {
   useUpdatePageName(i18n.t("agent.playerList"));
   const history = useHistory();
 
@@ -26,4 +26,4 @@ const PlayListPage = () => {
   );
 };
 
-export default PlayListPage;
+export default PlayerListPage;

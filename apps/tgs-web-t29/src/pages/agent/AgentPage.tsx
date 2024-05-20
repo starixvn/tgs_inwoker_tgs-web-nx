@@ -5,6 +5,7 @@ import styled from "styled-components";
 import CategoryTab from "./components/CategoryTab";
 import AgentInfo from "./components/AgentInfo";
 import AgentPlayerList from "./components/AgentPlayerList";
+import AgentList from "./components/AgentList";
 import Loading from "@/components/UI/Loading";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import AccountPaper from "@/components/project/AccountPaper";
@@ -64,7 +65,7 @@ const AgentPage = () => {
                 case AgentCategoryKeyEnum.PLAYERLIST:
                   return <AgentPlayerList />;
                 case AgentCategoryKeyEnum.AGENTLIST:
-                  return null;
+                  return <AgentList />;
                 case AgentCategoryKeyEnum.WINLOSSREPORT:
                   return null;
                 case AgentCategoryKeyEnum.PROFITSHAREREPORT:
