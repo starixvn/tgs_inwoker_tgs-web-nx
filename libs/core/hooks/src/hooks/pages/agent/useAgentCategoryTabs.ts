@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 
 export enum AgentCategoryKeyEnum {
@@ -6,12 +6,13 @@ export enum AgentCategoryKeyEnum {
   "PLAYERLIST",
   "AGENTLIST",
   "WINLOSSREPORT",
-  "PROFITSHAREREPORT"
+  "PROFITSHAREREPORT",
 }
 export type AgentCategoryTab = {
   key: AgentCategoryKeyEnum;
-  label: string
-}
+  label: string;
+  path: string;
+};
 
 export function useAgentCategoryTabs() {
   const tabList = useMemo<AgentCategoryTab[]>(() => {
@@ -19,27 +20,32 @@ export function useAgentCategoryTabs() {
       {
         key: AgentCategoryKeyEnum.AGENTINFO,
         label: i18n.t("agent.agentInfo"),
+        path: "/agent/agentInfo",
       },
       {
         key: AgentCategoryKeyEnum.PLAYERLIST,
         label: i18n.t("agent.playerList"),
+        path: "/agent/playerList",
       },
       {
         key: AgentCategoryKeyEnum.AGENTLIST,
         label: i18n.t("agent.agentList"),
+        path: "/agent/agentList",
       },
       {
         key: AgentCategoryKeyEnum.WINLOSSREPORT,
         label: i18n.t("agent.winlossReport"),
+        path: "/agent/winlossReport",
       },
       {
         key: AgentCategoryKeyEnum.PROFITSHAREREPORT,
         label: i18n.t("agent.profitShareReport"),
+        path: "/agent/profitShareReport",
       },
-    ]
+    ];
   }, []);
 
   return {
-    tabList
+    tabList,
   };
 }
