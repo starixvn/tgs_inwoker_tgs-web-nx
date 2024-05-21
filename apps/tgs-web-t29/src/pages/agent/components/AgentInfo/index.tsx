@@ -108,7 +108,7 @@ const AgentInfo = () => {
     <AgentInfoContainer>
       <BasicDataCard>
         <SharingContent>
-          <DataText>{i18n.t("agent.P/T")}</DataText>
+          <DataText>分红比例</DataText>
           <DataAmount>10%</DataAmount>
         </SharingContent>
         <SharingContent>

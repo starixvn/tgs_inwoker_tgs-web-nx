@@ -92,8 +92,8 @@ const AgentList = () => {
                 <TableCell>{i18n.t("agent.agentName")}</TableCell>
                 <TableCell>{i18n.t("common.realName")}</TableCell>
                 <TableCell>{i18n.t("agent.registeredTime")}</TableCell>
-                <TableCell>{i18n.t("agent.P/T")}</TableCell>
-                <TableCell>{i18n.t("agent.teamSize")}</TableCell>
+                <TableCell>分红比例</TableCell>
+                <TableCell>团队人数</TableCell>
                 <TableCell>{i18n.t("agent.status")}</TableCell>
               </TableRow>
             </TableHead>

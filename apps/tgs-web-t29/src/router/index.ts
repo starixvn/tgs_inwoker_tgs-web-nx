@@ -40,6 +40,7 @@ import AgentPgae from "@/pages/agent/AgentPage";
 import AgentInfoPgae from "@/pages/agent/components/AgentInfo/MobilePage";
 import AgentPlayerListPgae from "@/pages/agent/components/AgentPlayerList/MobilePage";
 import AgentListPgae from "@/pages/agent/components/AgentList/MobilePage";
+import WinlossReport from "@/pages/agent/components/WinlossReport/MobilePage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -369,6 +370,11 @@ const routes: RouteType[] = [
   {
     path: "/agent/agentList",
     component: AgentListPgae,
+    layout: DialogLayout,
+  },
+  {
+    path: "/agent/winlossReport",
+    component: WinlossReport,
     layout: DialogLayout,
   },
 ];

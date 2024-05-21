@@ -55,7 +55,7 @@ const AgentPlayerList = () => {
         <TextField
           // value={subject}
           // onChange={updateSubject}
-          placeholder={i18n.t("agent.playerName")}
+          placeholder="玩家用户名"
           sx={{
             input: {
               width: "400px",
@@ -90,7 +90,7 @@ const AgentPlayerList = () => {
           <Table>
             <TableHead>
               <TableRow sx={{ background: theme.blue10 }}>
-                <TableCell>{i18n.t("agent.playerName")}</TableCell>
+                <TableCell>玩家用户名</TableCell>
                 <TableCell>{i18n.t("agent.vipLevel")}</TableCell>
                 <TableCell>{i18n.t("agent.registeredTime")}</TableCell>
                 <TableCell>{i18n.t("agent.latestLogin")}</TableCell>

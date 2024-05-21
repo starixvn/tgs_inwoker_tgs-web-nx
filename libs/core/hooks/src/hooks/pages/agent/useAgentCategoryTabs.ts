@@ -19,7 +19,7 @@ export function useAgentCategoryTabs() {
     return [
       {
         key: AgentCategoryKeyEnum.AGENTINFO,
-        label: i18n.t("agent.agentInfo"),
+        label: "代理資訊",
         path: "/agent/agentInfo",
       },
       {

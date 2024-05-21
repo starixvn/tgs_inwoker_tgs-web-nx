@@ -92,7 +92,6 @@ const PlayerInfoValue = styled.div`
 `;
 
 const AgentInfoCard = () => {
-  useUpdatePageName(i18n.t("agent.playerList"));
   const history = useHistory();
 
   const { isDesktopSize } = useRwd();
@@ -122,11 +121,11 @@ const AgentInfoCard = () => {
             <PlayerInfoValue>{registerData}</PlayerInfoValue>
           </PlayInfo>
           <PlayInfo>
-            <PlayerInfoTitle>{i18n.t("common.P/T")}</PlayerInfoTitle>
+            <PlayerInfoTitle>分红比例</PlayerInfoTitle>
             <PlayerInfoValue>{player.pt}</PlayerInfoValue>
           </PlayInfo>
           <PlayInfo>
-            <PlayerInfoTitle>{i18n.t("agent.teamSize")}</PlayerInfoTitle>
+            <PlayerInfoTitle>团队人数</PlayerInfoTitle>
             <PlayerInfoValue>{player.teamSize}</PlayerInfoValue>
           </PlayInfo>
           <PlayInfo>
