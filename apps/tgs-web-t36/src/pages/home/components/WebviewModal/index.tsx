@@ -15,7 +15,11 @@ const WebviewModal = ({
     onClose,
 }: Props) => {
     return (
-        <Modal open={isOpen} onClose={onClose}>
+        <Modal 
+            open={isOpen}
+            onClose={onClose} 
+            style={{zIndex: "9999999999"}} // 需大於 livechat 的 zIndex
+        >
             <IFrameWrapper>
                 <ButtonWrapper>
                     <CloseButton onClick={onClose}>{i18n.t("common.close")}</CloseButton>
