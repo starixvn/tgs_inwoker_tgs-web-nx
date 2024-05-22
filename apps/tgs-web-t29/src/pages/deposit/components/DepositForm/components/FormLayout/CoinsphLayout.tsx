@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { i18n, Common } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
-import { useChannelList, useUploadFile } from "../../hooks";
-import { Cards as ChannelCards, DepositAmountInput, DepositFormContext, DepositPromotion, DepositSubmitButton, Upload, DepositInput, DepositExtended } from "../../components";
+import { DepositFormContext, useChannelList, useUploadFile  } from "@tgs-web-nx/core/hooks";
+import { Cards as ChannelCards, DepositAmountInput, DepositPromotion, DepositSubmitButton, Upload, DepositInput, DepositExtended } from "../../components";
 import { LayoutProps } from "./index";
 import { ItemContainer, LabelContainer} from "@/components/styled-component/ProfileForms";
 

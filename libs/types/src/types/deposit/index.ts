@@ -1,5 +1,15 @@
 import { ReactNode } from 'react';
 
+export type DispatchFormData = (value: DepositFormState) => void
+export type DepositAmountRange = {
+  maxAmount: number;
+  minAmount: number;
+}
+
+
+export type DepositFormState = DepositFormData & DepositAmountRange
+export type DepositFormContextState = {formData: DepositFormState, setFormData: DispatchFormData}
+
 export type DepositFormData = {
   amount: string;
   paymentid: string;

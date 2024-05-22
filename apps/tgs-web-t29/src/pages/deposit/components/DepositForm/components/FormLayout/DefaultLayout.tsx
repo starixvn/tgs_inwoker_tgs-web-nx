@@ -1,8 +1,7 @@
 import { Common } from "@tgs-web-nx/utils";
 import { useContext } from "react";
-import {useChannelList} from '../../hooks';
+import { DepositFormContext, useChannelList } from "@tgs-web-nx/core/hooks";
 import { Cards as ChannelCards, DepositAmountInput, DepositPromotion, DepositSubmitButton } from "../../components";
-import { DepositFormContext } from "../DepositFormProvider";
 import { LayoutProps } from "./index";
 
 type Props = {

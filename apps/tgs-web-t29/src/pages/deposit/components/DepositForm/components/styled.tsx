@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FormContainerProps } from "../types";
+import { FormContainerProps } from "@tgs-web-nx/types";
 import {LabelContainer as ProfileLabelContainer} from "@/components/styled-component/ProfileForms";
 import { theme } from "@/theme";
 import {ItemContainer,} from "@/components/styled-component/ProfileForms";

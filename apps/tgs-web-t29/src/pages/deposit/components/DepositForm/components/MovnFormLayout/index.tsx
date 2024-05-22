@@ -1,5 +1,5 @@
 import { FilterDepositList } from "@tgs-web-nx/types";
-import { useThirdPartyDeposit, useMOVNList } from "../../hooks";
+import { useThirdPartyDeposit, useMOVNList } from "@tgs-web-nx/core/hooks";
 import { DefaultLayout } from "../FormLayout/DefaultLayout";
 import { Cards } from "../../components";
 import ResultPopupDialog from "@/pages/deposit/components/ResultPopupDialog";

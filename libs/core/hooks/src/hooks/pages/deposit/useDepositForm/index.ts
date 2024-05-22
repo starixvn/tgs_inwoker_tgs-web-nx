@@ -1,10 +1,8 @@
 import { useWalletStore, useAccountStore} from "@tgs-web-nx/core";
-import { useState, useEffect, useMemo, useContext} from "react";
+import { useState, useEffect, useMemo, useContext, createContext} from "react";
 import { groupBy, i18n } from '@tgs-web-nx/utils';
-import { FilterDepositList } from '@tgs-web-nx/types';
+import { FilterDepositList, Option, GroupCodeEnum, MovnCodeEnum, DepositFormState, DepositFormContextState } from '@tgs-web-nx/types';
 import { useNotifications } from '@tgs-web-nx/core/features';
-import { Option, GroupCodeEnum, MovnCodeEnum } from './types';
-import { DepositFormContext } from "./components/DepositFormProvider";
 import { handleChangeCode, getFilterDepositList } from './utils';
 
 const clearedFormData = {
@@ -17,6 +15,29 @@ const clearedFormData = {
   address: '',
   promotionid: '',
 }
+
+export const defaultState: DepositFormState = {
+    amount: '',
+    paymentid: '',
+    promotionid: '',
+    paymentcode: '',
+    type: '',
+    maxAmount: 0,
+    minAmount: 0,
+    id: '',
+    account: '',
+    name: '',
+    files: null,
+    phone: '',
+    eMoneyName: '',
+    realname: '',
+    address: '',
+}
+
+export const DepositFormContext = createContext<DepositFormContextState>({
+    formData: defaultState,
+    setFormData: () => {},
+});
 
 /**
  * 第一層: Group

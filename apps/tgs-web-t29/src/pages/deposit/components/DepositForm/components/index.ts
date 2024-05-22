@@ -1,5 +1,5 @@
 import { DepositAmountInput } from "./DepositAmountInput";
-import { DepositFormContext, DepositFormProvider } from "./DepositFormProvider";
+import { DepositFormProvider } from "./DepositFormProvider";
 import { DepositPromotion } from "./DepositPromotion";
 import { DepositSubmitButton } from "./DepositSubmitButton";
 import FormLayout from "./FormLayout";
@@ -13,7 +13,6 @@ import { DepositExtended } from "./DepositExtended";
 export {
   DepositExtended,
   DepositAmountInput,
-  DepositFormContext,
   DepositFormProvider,
   DepositPromotion,
   DepositSubmitButton,
