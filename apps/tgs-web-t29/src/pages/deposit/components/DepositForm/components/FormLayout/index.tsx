@@ -1,6 +1,6 @@
 import { FilterDepositList } from "@tgs-web-nx/types";
-import { useGroupList, useThirdPartyDeposit } from "../../hooks";
-import { GroupCodeEnum } from "../../types";
+import { useGroupList, useThirdPartyDeposit } from "@tgs-web-nx/core/hooks";
+import { GroupCodeEnum } from "@tgs-web-nx/types";
 import { Cards as GroupCards } from "../../components";
 import { BankLayout } from "./BankLayout";
 import { FpsLayout } from "./FpsLayout";

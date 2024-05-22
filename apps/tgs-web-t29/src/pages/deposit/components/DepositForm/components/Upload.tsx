@@ -2,7 +2,7 @@ import { useRef, ChangeEvent, useContext } from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
-import { DepositFormContext } from "./DepositFormProvider";
+import { DepositFormContext } from "@tgs-web-nx/core/hooks";
 import {
   FormControl,
   ItemContainer,

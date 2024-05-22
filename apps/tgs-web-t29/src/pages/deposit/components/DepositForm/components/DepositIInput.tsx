@@ -1,6 +1,7 @@
 import { i18n } from "@tgs-web-nx/utils";
 import { useContext, ChangeEvent } from "react";
-import { DepositFormContext, FormState } from "./DepositFormProvider";
+import { DepositFormContext } from "@tgs-web-nx/core/hooks";
+import { DepositFormState } from "@tgs-web-nx/types";
 import {
   FormControl,
   ItemContainer,
@@ -10,7 +11,7 @@ import { TextField } from "@/components/UI/TextField";
 
 type Props = {
   label: string;
-  formKey: keyof FormState;
+  formKey: keyof DepositFormState;
   type?: string;
 }
 

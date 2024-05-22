@@ -3,11 +3,11 @@ import { TransferChannel } from "@tgs-web-nx/types";
 import { useContext, ChangeEvent } from "react";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import styled from "styled-components";
+import { DepositFormContext } from "@tgs-web-nx/core/hooks";
 import { LabelContainer, CurrencyHint, WarningText } from "../components";
-import { DepositFormContext } from "./DepositFormProvider";
 import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
-import {AmountHint, FeeSpot} from "@/components/styled-component/Deposit";
+import {AmountHint} from "@/components/styled-component/Deposit";
 
 type Props = {
   currentChannel?: TransferChannel

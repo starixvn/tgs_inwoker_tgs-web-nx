@@ -1,5 +1,6 @@
 import { i18n } from "@tgs-web-nx/utils";
 import { Extended } from "@tgs-web-nx/types";
+import styled from "styled-components";
 import { InfoContainer} from "@/components/styled-component/ProfileForms";
 import { TransferLabel } from "@/components/styled-component/Deposit";
 import CopyIcon from "@/pages/deposit/components/CopyIcon";
@@ -10,6 +11,13 @@ type Props = {
   content?: string;
   qrcode?: string;
 }
+
+const Content = styled.p`
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
 
 export const DepositExtended = ({
   title,
@@ -26,9 +34,9 @@ export const DepositExtended = ({
   if(content && title) {
     return (
       <InfoContainer>
-        <TransferLabel>{i18n.t(`extended.${title}`)}:</TransferLabel>
-          {content}
-        <CopyIcon copyContent={content} />
+        <TransferLabel style={{flexShrink: "0"}}>{i18n.t(`extended.${title}`)}:</TransferLabel>
+        <Content>{content}</Content>
+        <CopyIcon copyContent={content} style={{flexShrink: "0"}}/>
       </InfoContainer>
     )
   }

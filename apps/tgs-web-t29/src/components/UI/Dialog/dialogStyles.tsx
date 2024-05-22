@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
-export const DialogContainer = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-`;
+
 
 export const DialogTitle = styled.div`
   font-size: 1.5rem;
@@ -33,6 +27,14 @@ export const ButtonConfirm = styled.div`
   margin: 10px auto;
   background: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.white};
+`;
+
+export const DialogContainer = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
 `;
 
 export const TwoButtonWrapper = styled.div`

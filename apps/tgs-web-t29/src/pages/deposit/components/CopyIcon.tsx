@@ -25,8 +25,9 @@ const CopyIconContainer = styled.div`
 
 type Props = {
   copyContent: any;
+  style?: React.CSSProperties;
 };
-const CopyIcon = ({ copyContent }: Props) => {
+const CopyIcon = ({ copyContent, style }: Props) => {
   const { alert } = useNotifications();
 
   const performCopy = (content: any) => {
@@ -40,6 +41,7 @@ const CopyIcon = ({ copyContent }: Props) => {
       onClick={() => {
         performCopy(copyContent);
       }}
+      style={style}
     >
       <Icon iconUrl={copyImg} width={"20px"} height={"20px"} />
     </CopyIconContainer>

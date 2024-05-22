@@ -1,7 +1,7 @@
 import { i18n } from "@tgs-web-nx/utils";
+import { Option } from "@tgs-web-nx/types";
 import { useState } from "react";
 import { Badge, Icon, FormContainer} from "../components";
-import { Option } from "../types";
 
 type Props = {
   i18nParam: string,

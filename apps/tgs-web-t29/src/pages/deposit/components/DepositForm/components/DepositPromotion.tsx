@@ -2,8 +2,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useContext } from "react";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { SelectChangeEvent } from "@mui/material";
-import { DepositFormContext, LabelContainer } from "../components";
-import { DepositPromotionEnum } from "../types";
+import { DepositFormContext } from "@tgs-web-nx/core/hooks";
+import { DepositPromotionEnum } from "@tgs-web-nx/types";
+import { LabelContainer } from "../components";
 import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
 import { Select } from "@/components/UI/Select";
 
