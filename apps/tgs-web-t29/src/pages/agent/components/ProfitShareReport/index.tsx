@@ -46,10 +46,6 @@ const TitleTableCell = muiStyled(NonBorderTableCell)(({ theme }) => ({
   fontWeight: 700,
 }));
 
-// const NonBorderTableCell = styled(TableCell)`
-//   border-bottom: none;
-// `;
-
 const ProfitShareReport = () => {
   const { imageId } = useImageActions();
   const { affiliateLink } = useRebateTable();

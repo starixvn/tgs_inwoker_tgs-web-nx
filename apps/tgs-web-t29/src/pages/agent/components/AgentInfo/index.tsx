@@ -2,7 +2,7 @@ import QRCode from "react-qr-code";
 import { useImageActions, useRebateTable, useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
-import { Button } from "@mui/material";
+import { Button, styled as muiStyled } from "@mui/material";
 import { theme } from "@/theme";
 import { QRCodeContainer } from "@/components/styled-component/Affiliate";
 import { media } from "@/theme/breakpoints";
@@ -15,6 +15,7 @@ const AgentInfoContainer = styled.div`
 const ContentCard = styled.div`
   background: ${({ theme }) => theme.blue20};
   margin-bottom: 20px;
+  gap: 20px;
 `;
 
 const BasicDataCard = styled(ContentCard)`
@@ -38,25 +39,29 @@ const DataText = styled.div`
   color: ${({ theme }) => theme.gray50};
 `;
 
-const DataAmount = styled(DataText)`
+const ValueText = styled(DataText)`
   color: #23507d;
 `;
 
 const ProductChargeCard = styled(BasicDataCard)`
   flex-direction: column;
-  justify-content: start;
-  gap: 10px;
-  & > div {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 18.4px;
-    color: #23507d;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    ${media.sm} {
-      gap: 50px;
-    }
+`;
+
+const GameTypeContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
+
+const GameType = styled.div`
+  flex: 0 1 140px;
+  min-width: 120px;
+  color: #23507d;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 19.55px;
+  ${media.sm} {
+    flex: 0 1 200px;
   }
 `;
 
@@ -81,15 +86,24 @@ const AgentPlayerAmountCard = styled(ProductChargeCard)`
 
 const AffiliateCard = styled(ProductChargeCard)`
   & > div {
-    & > span {
-      width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & > div {
+      max-width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 `;
 
 const QRcodeCard = styled(ProductChargeCard)`
   & > div {
+    display: flex;
     align-items: start;
+    gap: 20px;
   }
 `;
 
@@ -98,6 +112,16 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
+
+const StyledButton = muiStyled(Button)(({ theme }) => ({
+  width: "100px",
+  color: theme.palette.white,
+  background: theme.palette.blue30,
+  "&:hover": {
+    background: theme.palette.blue30, // 保持背景色不变
+    boxShadow: "none", // 去除阴影效果
+  },
+}));
 
 const AgentInfo = () => {
   const { imageId } = useImageActions();
@@ -109,34 +133,36 @@ const AgentInfo = () => {
       <BasicDataCard>
         <SharingContent>
           <DataText>分红比例</DataText>
-          <DataAmount>10%</DataAmount>
+          <ValueText>10%</ValueText>
         </SharingContent>
         <SharingContent>
           <DataText>{i18n.t("agent.cumulativenegativeDividendAmount")}</DataText>
-          <DataAmount>-100</DataAmount>
+          <ValueText>-100</ValueText>
         </SharingContent>
-        <SharingContent>
-          <DataText>{i18n.t("agent.negativeDividend")}</DataText>
-          <DataAmount>{i18n.t("agent.liable")}</DataAmount>
-        </SharingContent>
-        <SharingContent>
-          <DataText>{i18n.t("agent.platformFee")}</DataText>
-          <DataAmount>0%</DataAmount>
-        </SharingContent>
+        {isDesktopSize && (
+          <>
+            <SharingContent>
+              <DataText>{i18n.t("agent.negativeDividend")}</DataText>
+              <ValueText>{i18n.t("agent.liable")}</ValueText>
+            </SharingContent>
+            <SharingContent>
+              <DataText>{i18n.t("agent.platformFee")}</DataText>
+              <ValueText>0%</ValueText>
+            </SharingContent>
+          </>
+        )}
       </BasicDataCard>
 
       <ProductChargeCard>
         <span>{i18n.t("agent.productCharges")}</span>
-        <div>
-          <div>{`${i18n.t("common.live")}:1%`}</div>
-          <div>{`${i18n.t("common.sport")}:1%`}</div>
-          <div>{`${i18n.t("common.table")}:1%`}</div>
-        </div>
-        <div>
-          <div>{`${i18n.t("common.qipai")}:1%`}</div>
-          <div>{`${i18n.t("common.lottery")}:1%`}</div>
-          <div>{`${i18n.t("common.virtualsports")}:1%`}</div>
-        </div>
+        <GameTypeContainer>
+          <GameType>{`${i18n.t("common.live")}:1%`}</GameType>
+          <GameType>{`${i18n.t("common.sport")}:1%`}</GameType>
+          <GameType>{`${i18n.t("common.table")}:1%`}</GameType>
+          <GameType>{`${i18n.t("common.qipai")}:1%`}</GameType>
+          <GameType>{`${i18n.t("common.lottery")}:1%`}</GameType>
+          <GameType>{`${i18n.t("common.virtualsports")}:1%`}</GameType>
+        </GameTypeContainer>
       </ProductChargeCard>
 
       <AgentPlayerAmountCard>
@@ -149,47 +175,20 @@ const AgentInfo = () => {
       </AgentPlayerAmountCard>
 
       <AffiliateCard>
-        <span>{i18n.t("affiliate.promoId")}</span>
         <div>
-          <span>dkhdio730902</span>
-          <Button
-            className={"button"}
-            onClick={() => {}}
-            variant={"outlined"}
-            sx={{
-              width: "70px",
-              color: theme.white,
-              background: theme.blue30,
-              "&:hover": {
-                color: theme.white,
-                background: theme.blue30,
-                border: `1px solid ${theme.blue30}`,
-              },
-            }}
-          >
-            {i18n.t("common.copy")}
-          </Button>
+          <span>{i18n.t("affiliate.promoId")}</span>
+          <div>
+            <ValueText>dkhdio730902</ValueText>
+            <StyledButton>{i18n.t("common.copy")}</StyledButton>
+          </div>
         </div>
-        <span>{i18n.t("affiliate.promoLink")}</span>
+
         <div>
-          <span>https: tw.news.yahoo.com/</span>
-          <Button
-            className={"button"}
-            onClick={() => {}}
-            variant={"outlined"}
-            sx={{
-              width: "70px",
-              color: theme.white,
-              background: theme.blue30,
-              "&:hover": {
-                color: theme.white,
-                background: theme.blue30,
-                border: `1px solid ${theme.blue30}`,
-              },
-            }}
-          >
-            {i18n.t("common.copy")}
-          </Button>
+          <span>{i18n.t("affiliate.promoLink")}</span>
+          <div>
+            <ValueText>https: tw.news.yahoo.com/</ValueText>
+            <StyledButton>{i18n.t("common.copy")}</StyledButton>
+          </div>
         </div>
       </AffiliateCard>
 
@@ -200,40 +199,8 @@ const AgentInfo = () => {
             <QRCode value={affiliateLink} size={isDesktopSize ? 256 : 128} />
           </QRCodeContainer>
           <ButtonContainer>
-            <Button
-              className={"button"}
-              onClick={() => {}}
-              variant={"outlined"}
-              sx={{
-                width: "70px",
-                color: theme.white,
-                background: theme.blue30,
-                "&:hover": {
-                  color: theme.white,
-                  background: theme.blue30,
-                  border: `1px solid ${theme.blue30}`,
-                },
-              }}
-            >
-              {i18n.t("common.copy")}
-            </Button>
-            <Button
-              className={"button"}
-              onClick={() => {}}
-              variant={"outlined"}
-              sx={{
-                width: "70px",
-                color: theme.white,
-                background: theme.blue30,
-                "&:hover": {
-                  color: theme.white,
-                  background: theme.blue30,
-                  border: `1px solid ${theme.blue30}`,
-                },
-              }}
-            >
-              {i18n.t("common.download")}
-            </Button>
+            <StyledButton>{i18n.t("common.copy")}</StyledButton>
+            <StyledButton>{i18n.t("common.download")}</StyledButton>
           </ButtonContainer>
         </div>
       </QRcodeCard>
