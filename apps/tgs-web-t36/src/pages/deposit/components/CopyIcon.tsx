@@ -9,7 +9,6 @@ const CopyIconContainer = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 5px;
-  /* background-color: ${({ theme }) => theme.primary}; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,16 +16,16 @@ const CopyIconContainer = styled.div`
   margin-left: 10px;
 
   transition: all ease-in-out 0.2s;
-  /* &:hover {
+  &:hover {
     color: ${({ theme }) => theme.primary};
-    background-color: ${({ theme }) => theme.white};
-  } */
+  }
 `;
 
 type Props = {
   copyContent: any;
+  style?: React.CSSProperties;
 };
-const CopyIcon = ({ copyContent }: Props) => {
+const CopyIcon = ({ copyContent, style }: Props) => {
   const { alert } = useNotifications();
 
   const performCopy = (content: any) => {
@@ -40,6 +39,7 @@ const CopyIcon = ({ copyContent }: Props) => {
       onClick={() => {
         performCopy(copyContent);
       }}
+      style={style}
     >
       <Icon iconUrl={copyImg} width={"20px"} height={"20px"} />
     </CopyIconContainer>
