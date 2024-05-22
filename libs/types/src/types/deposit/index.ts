@@ -69,6 +69,10 @@ export enum GroupCodeEnum {
   GcashNative = 'Gcash Native',
   MayaNative = 'Maya Native',
   GrabeNative = 'Grabe Native',
+  MANDIRI = 'MANDIRI',
+  DANA = 'DANA',
+  BCA = 'BCA',
+  QRIS = 'QRIS',
 }
 
 // 自定義的 MovnCode
