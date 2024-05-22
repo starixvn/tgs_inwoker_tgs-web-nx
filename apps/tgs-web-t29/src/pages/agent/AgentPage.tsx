@@ -7,6 +7,7 @@ import AgentInfo from "./components/AgentInfo";
 import AgentPlayerList from "./components/AgentPlayerList";
 import AgentList from "./components/AgentList";
 import WinlossReport from "./components/WinlossReport";
+import ProfitShareReport from "./components/ProfitShareReport";
 import Loading from "@/components/UI/Loading";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import AccountPaper from "@/components/project/AccountPaper";
@@ -70,7 +71,7 @@ const AgentPage = () => {
                 case AgentCategoryKeyEnum.WINLOSSREPORT:
                   return <WinlossReport />;
                 case AgentCategoryKeyEnum.PROFITSHAREREPORT:
-                  return null;
+                  return <ProfitShareReport />;
                 default:
                   return null;
               }
