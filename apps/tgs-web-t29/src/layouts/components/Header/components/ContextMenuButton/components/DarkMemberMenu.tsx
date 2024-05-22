@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -41,6 +42,7 @@ type Props = {
 
 const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
   const { accountNavItemList } = useGetNavItemList();
+  const { account } = useAccountStore();
   const { handleLogout } = useAuthContext();
   const history = useHistory();
   const { isLogin } = useAuth();
@@ -65,6 +67,7 @@ const DarkMemberMenu = ({ handleCloseContextMenu, ...others }: Props) => {
       {accountNavItemList.map((navItem: NavItem) => {
         if (navItem.key === NavCardKey.LANGUAGE_SWITCH) return null;
         if (navItem.key === "agent") return null;
+        if (navItem.key === NavCardKey.AGENT && account.info.playerisagentid === null) return null;
         return (
           <MemberMenuItem
             key={navItem.key}

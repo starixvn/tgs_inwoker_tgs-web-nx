@@ -154,6 +154,7 @@ const initialState = {
   logintime: null,
   error: null,
   loading: false,
+  playerisagentid: null,
 };
 function mapToAccountState(state, data) {
   return {
@@ -190,6 +191,7 @@ function mapToAccountState(state, data) {
     levelupaccumulatebetamount: data.levelupaccumulatebetamount,
     levelupaccumulatedeposit: data.levelupaccumulatedeposit,
     fulllevel: data.fulllevel,
+    playerisagentid: data.playerisagentid,
   };
 }
 export function accountReducer(state = initialState, action) {

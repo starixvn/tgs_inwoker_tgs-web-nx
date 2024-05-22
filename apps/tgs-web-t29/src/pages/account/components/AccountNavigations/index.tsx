@@ -5,6 +5,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
+import { useAccountStore } from "@tgs-web-nx/core";
 import NavRow from "@/pages/account/components/AccountNavigations/NavRow";
 import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import NavRowLanguage from "@/pages/account/components/AccountNavigations/NavRowLanguage";
@@ -42,6 +43,7 @@ const AccountNavigations = () => {
   const { accountNavItemList } = useGetNavItemList();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
+  const { account } = useAccountStore();
 
   const handleClickNav = useCallback((navItem: NavItem) => {
     switch (navItem.navType) {
@@ -61,7 +63,7 @@ const AccountNavigations = () => {
           {/* Cards */}
           {accountNavItemList.map((navItem) => {
             if (hideInDesktopDictionary[navItem.key] && isDesktopSize) return null;
-
+            if (navItem.key === NavCardKey.AGENT && account.info.playerisagentid === null) return null;
             if (navItem.key === NavCardKey.LANGUAGE_SWITCH) {
               return (
                 <NavRowLanguage key={navItem.key} navItem={navItem} handleClick={handleClickNav} />

@@ -72,6 +72,7 @@ export type AccountInfo = {
   levelupaccumulatebetamount: number;
   levelupaccumulatedeposit: number;
   fulllevel: boolean;
+  playerisagentid: string | null;
 };
 // | {
 //     [key in string]: string;
