@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Button,
   FormControl,
   MenuItem,
   SelectChangeEvent,
+  
   Table,
   TableBody,
   TableCell,
@@ -15,37 +19,19 @@ import {
   TableRow,
 } from "@mui/material";
 import { TextField, Select } from "@mui/material";
-import * as dayjs from 'dayjs'
-import { WinLostReport } from "@tgs-web-nx/core";
+import moment from "moment";
+import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
+import { AgentContext } from "../AgentContextProvider";
 import ReportCard from "./components/ReportCard";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
 import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWithIntervalSelector";
-import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import InfoIcon from "@/assets/t18/images/info.png";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";
 import Dialog from "@/components/UI/Dialog/Dialog";
 
-const fakeData = {
-  items: [
-    {
-      id: "018f8b81-7302-0000-0001-07e871937e08",
-      userName: "testFE1",
-      type: "agent",
-      totalOrders: 10000,
-      validBet: 200000,
-      aWinLoss: 400000,
-      aSpecial: 50000,
-      aProfit: 20000,
-      pWinLoss: 40000,
-      pSpecial: 60000,
-      pProfit: 80000,
-    },
-  ],
-  totalcount: 21,
-};
 
 const WinlossReportContainer = styled.div`
   display: flex;
@@ -87,7 +73,7 @@ const HintIconWrapper = styled.div`
   }
 `;
 
-const NoData = styled.p`
+const NoData = styled.div`
   padding: 10px;
   margin-top: -20px;
   text-align: center;
@@ -97,23 +83,28 @@ const WinlossReport = () => {
   const { isDesktopSize } = useRwd();
   const [modalOpen, setModalOpen] = useState(false);
   const [memberType, setMemberType] = useState("agent");
-  const {
+  const [searchValue, setSearchValue] = useState("");
+  const { account } = useAccountStore();
+  const username = account.info.member_username;
+  const {winLossReport: {
     dateRangeInfo,
     handleDateFromChange,
     handleDateToChange,
     handleDateRangeChange,
     isSelectedDateRange,
-  } = useDateRange();
+  }} = useContext(AgentContext);
 
-  const config = {
-    from: dayjs(dateRangeInfo.dateFrom).format('YYYY-MM-DD'),
-    to: dayjs(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
+  const config: WinLostConfig = {
+    from: moment(dateRangeInfo.dateFrom).format('YYYY-MM-DD'),
+    to: moment(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
     memberType,
-    username: "stgqa1"
+    username: searchValue ? searchValue : username,
+    downline: !!searchValue
   };
   const {getWinLossReport, queryKey} = WinLostReport(config);
-  const {refetch, data, isSuccess} = useQuery({queryKey, queryFn: getWinLossReport, enabled: false});
-
+  const {refetch, data, isSuccess, isFetching, isFetched} = useQuery({queryKey, queryFn: getWinLossReport, enabled: false});
+  const hasData = data && data.data.items.length > 0;
+  
   const handleOnChange = (e: SelectChangeEvent) => {
     setMemberType(e.target.value);
   }
@@ -122,32 +113,36 @@ const WinlossReport = () => {
     refetch()
   }
 
-  console.log(data);
-  
+  const handleOnSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
+  }
+
   const renderData = () => {
     if(isSuccess) {
-      return fakeData.items.map((transactionDetail) => {
+      return data.data.items.map((transactionDetail) => {
         const {
-          id,
-          userName,
-          type,
-          totalOrders,
-          validBet,
-          aWinLoss,
-          aSpecial,
-          aProfit,
-          pWinLoss,
-          pSpecial,
-          pProfit,
+            agentSpecial,
+            agentTotal,
+            agentWinLoss,
+            companySpecial,
+            companyTotal,
+            companyWinLoss,
+            id,
+            memberType,
+            roundCount,
+            special,
+            turnover,
+            username,
+            winLoss,
         } = transactionDetail;
   
         return (
           <TableRow key={id}>
-            <TableCell>{userName}</TableCell>
-            <TableCell>{type}</TableCell>
-            <TableCell>{totalOrders}</TableCell>
-            <TableCell>{validBet}</TableCell>
-            <TableCell>{aWinLoss}</TableCell>
+            <TableCell>{username}</TableCell>
+            <TableCell>{memberType}</TableCell>
+            <TableCell>{agentTotal}</TableCell>
+            {/* <TableCell>{validBet}</TableCell> */}
+            <TableCell>{winLoss}</TableCell>
             <TableCell>
               <HintIconWrapper>
                 <img
@@ -157,13 +152,13 @@ const WinlossReport = () => {
                     setModalOpen(true);
                   }}
                 />
-                <span>{aSpecial}</span>
+                <span>{agentSpecial}</span>
               </HintIconWrapper>
             </TableCell>
-            <TableCell>{aProfit}</TableCell>
-            <TableCell>{pWinLoss}</TableCell>
-            <TableCell>{pSpecial}</TableCell>
-            <TableCell>{pProfit}</TableCell>
+            <TableCell>{agentWinLoss}</TableCell>
+            <TableCell>{companyWinLoss}</TableCell>
+            <TableCell>{companySpecial}</TableCell>
+            <TableCell>{companyTotal}</TableCell>
           </TableRow>
         );
       })
@@ -171,6 +166,8 @@ const WinlossReport = () => {
 
     return null;
   }
+
+  
 
   return (
     <WinlossReportContainer>
@@ -180,8 +177,8 @@ const WinlossReport = () => {
           <MenuItem value={"player"}>{i18n.t("usertype.player")} </MenuItem>
         </Select>
         <TextField
-          // value={subject}
-          // onChange={updateSubject}
+          value={searchValue}
+          onChange={handleOnSearchValue}
           placeholder={i18n.t("common.username")}
           sx={{
             marginLeft: "10px",
@@ -213,6 +210,7 @@ const WinlossReport = () => {
               },
             }}
             onClick={handleOnSearch}
+            disabled={isFetching}
           >
             {i18n.t("common.search")}
           </Button>
@@ -228,18 +226,29 @@ const WinlossReport = () => {
         />
       </Wrapper>
       <FormulaWrapper>
-        <img src={InfoIcon} width={24} height={24} alt="info" />
-        <FormulaContainer>
-          <div>{`- ${i18n.t("agent.formula.noOfTickets")}`}</div>
-          <div>{`- ${i18n.t("agent.formula.turnover")}`}</div>
-          <div>{`- ${i18n.t("agent.formula.playerWinloss")}`}</div>
-          <div>{`- 玩家特别: 该代理线全部玩家的"红利金额" + "调帐"(公司、代理、优惠)。`}</div>
-          <div>{`- ${i18n.t("agent.formula.bonusAmount")}`}</div>
-          <div>{`- 红利金额: VIP福利 + VIP返水 + 活动的优惠金额。`}</div>
-          <div>{`- ${i18n.t("agent.formula.agentWinloss")}`}</div>
-          <div>{`- ${i18n.t("agent.formula.agentSpecial")}`}</div>
-          <div>{`- 代理盈虧: 代理輸贏 - 代理特別。`}</div>
-        </FormulaContainer>
+        <Accordion>
+          <AccordionSummary
+            aria-controls="panel1-content"
+            id="panel1-header"
+          >
+            <img src={InfoIcon} width={24} height={24} alt="info" />
+          </AccordionSummary>
+          <AccordionDetails>
+            <FormulaContainer>
+              <div>{`- ${i18n.t("agent.formula.noOfTickets")}`}</div>
+              <div>{`- ${i18n.t("agent.formula.turnover")}`}</div>
+              <div>{`- ${i18n.t("agent.formula.playerWinloss")}`}</div>
+              <div>{`- 玩家特别: 该代理线全部玩家的"红利金额" + "调帐"(公司、代理、优惠)。`}</div>
+              <div>{`- ${i18n.t("agent.formula.bonusAmount")}`}</div>
+              <div>{`- 红利金额: VIP福利 + VIP返水 + 活动的优惠金额。`}</div>
+              <div>{`- ${i18n.t("agent.formula.agentWinloss")}`}</div>
+              <div>{`- ${i18n.t("agent.formula.agentSpecial")}`}</div>
+            <div>{`- 代理盈虧: 代理輸贏 - 代理特別。`}</div>
+          </FormulaContainer>
+          </AccordionDetails>
+        </Accordion>
+        
+        
       </FormulaWrapper>
       <UserNameBreadcrumbs>Username</UserNameBreadcrumbs>
       {isDesktopSize ? (
@@ -273,7 +282,7 @@ const WinlossReport = () => {
       ) : (
         <ReportCard />
       )}
-      {!isSuccess && <NoData>沒有資料</NoData>}
+      {!hasData && <NoData>沒有資料</NoData>}
       <Dialog
         open={modalOpen}
         onClose={() => {

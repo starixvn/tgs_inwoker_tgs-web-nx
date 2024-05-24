@@ -1,8 +1,7 @@
-import { QueryFunction } from "@tanstack/react-query";
 import { WinLossReportDto, AgentInfotDto } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 
-type WinLostConfig = {
+export type WinLostConfig = {
   username: string;
   from: string;
   to: string;
@@ -24,7 +23,7 @@ export function WinLostReport({
   const apiUrl = `AgentWinLossReport/agentWinLoss?username=${username}&from=${from}T16:00:00.000Z&to=${to}T16:00:00.000Z&downline=${downline}&page=${page}&rows=${rows}&memberType=${memberType}`;
 
   const getWinLossReport = () => {
-    return ApiService.get(apiUrl) as unknown as QueryFunction<WinLossReportDto>;
+    return ApiService.get(apiUrl) as unknown as Promise<WinLossReportDto>;
   };
 
   const queryKey = ["getWinLossReport"];

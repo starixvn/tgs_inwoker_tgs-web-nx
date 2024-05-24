@@ -8,6 +8,7 @@ import AgentPlayerList from "./components/AgentPlayerList";
 import AgentList from "./components/AgentList";
 import WinlossReport from "./components/WinlossReport";
 import ProfitShareReport from "./components/ProfitShareReport";
+import { AgentContextProvider } from "./components/AgentContextProvider";
 import Loading from "@/components/UI/Loading";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import AccountPaper from "@/components/project/AccountPaper";
@@ -42,43 +43,45 @@ const AgentPage = () => {
   if (loading) return <Loading show={true} />;
 
   return (
-    <PageContainer>
-      <AccountPaper pageName={i18n.t("usertype.agent")} iconUrl={iconAgent}>
-        <AgentTabContainer>
-          {tabList.map((category) => {
-            return (
-              <CategoryTab
-                selected={category.key === selectedTab.key}
-                category={category}
-                key={category.key}
-                handleClickTab={() => {
-                  setSelectedTab(category);
-                }}
-              />
-            );
-          })}
-        </AgentTabContainer>
-        <AgentContent>
-          {isDesktopSize &&
-            (() => {
-              switch (selectedTab.key) {
-                case AgentCategoryKeyEnum.AGENTINFO:
-                  return <AgentInfo />;
-                case AgentCategoryKeyEnum.PLAYERLIST:
-                  return <AgentPlayerList />;
-                case AgentCategoryKeyEnum.AGENTLIST:
-                  return <AgentList />;
-                case AgentCategoryKeyEnum.WINLOSSREPORT:
-                  return <WinlossReport />;
-                case AgentCategoryKeyEnum.PROFITSHAREREPORT:
-                  return <ProfitShareReport />;
-                default:
-                  return null;
-              }
-            })()}
-        </AgentContent>
-      </AccountPaper>
-    </PageContainer>
+    <AgentContextProvider>
+      <PageContainer>
+        <AccountPaper pageName={i18n.t("usertype.agent")} iconUrl={iconAgent}>
+          <AgentTabContainer>
+            {tabList.map((category) => {
+              return (
+                <CategoryTab
+                  selected={category.key === selectedTab.key}
+                  category={category}
+                  key={category.key}
+                  handleClickTab={() => {
+                    setSelectedTab(category);
+                  }}
+                />
+              );
+            })}
+          </AgentTabContainer>
+          <AgentContent>
+            {isDesktopSize &&
+              (() => {
+                switch (selectedTab.key) {
+                  case AgentCategoryKeyEnum.AGENTINFO:
+                    return <AgentInfo />;
+                  case AgentCategoryKeyEnum.PLAYERLIST:
+                    return <AgentPlayerList />;
+                  case AgentCategoryKeyEnum.AGENTLIST:
+                    return <AgentList />;
+                  case AgentCategoryKeyEnum.WINLOSSREPORT:
+                    return <WinlossReport />;
+                  case AgentCategoryKeyEnum.PROFITSHAREREPORT:
+                    return <ProfitShareReport />;
+                  default:
+                    return null;
+                }
+              })()}
+          </AgentContent>
+        </AccountPaper>
+      </PageContainer>
+    </AgentContextProvider>
   );
 };
 
