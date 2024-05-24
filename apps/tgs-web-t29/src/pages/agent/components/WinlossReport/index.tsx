@@ -6,6 +6,7 @@ import {
   Button,
   FormControl,
   MenuItem,
+  SelectChangeEvent,
   Table,
   TableBody,
   TableCell,
@@ -14,6 +15,9 @@ import {
   TableRow,
 } from "@mui/material";
 import { TextField, Select } from "@mui/material";
+import * as dayjs from 'dayjs'
+import { WinLostReport } from "@tgs-web-nx/core";
+import { useQuery } from "@tanstack/react-query";
 import ReportCard from "./components/ReportCard";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
@@ -83,9 +87,16 @@ const HintIconWrapper = styled.div`
   }
 `;
 
+const NoData = styled.p`
+  padding: 10px;
+  margin-top: -20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(83, 88, 103, 0.3);
+`;
 const WinlossReport = () => {
   const { isDesktopSize } = useRwd();
   const [modalOpen, setModalOpen] = useState(false);
+  const [memberType, setMemberType] = useState("agent");
   const {
     dateRangeInfo,
     handleDateFromChange,
@@ -94,10 +105,77 @@ const WinlossReport = () => {
     isSelectedDateRange,
   } = useDateRange();
 
+  const config = {
+    from: dayjs(dateRangeInfo.dateFrom).format('YYYY-MM-DD'),
+    to: dayjs(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
+    memberType,
+    username: "stgqa1"
+  };
+  const {getWinLossReport, queryKey} = WinLostReport(config);
+  const {refetch, data, isSuccess} = useQuery({queryKey, queryFn: getWinLossReport, enabled: false});
+
+  const handleOnChange = (e: SelectChangeEvent) => {
+    setMemberType(e.target.value);
+  }
+
+  const handleOnSearch = () => {
+    refetch()
+  }
+
+  console.log(data);
+  
+  const renderData = () => {
+    if(isSuccess) {
+      return fakeData.items.map((transactionDetail) => {
+        const {
+          id,
+          userName,
+          type,
+          totalOrders,
+          validBet,
+          aWinLoss,
+          aSpecial,
+          aProfit,
+          pWinLoss,
+          pSpecial,
+          pProfit,
+        } = transactionDetail;
+  
+        return (
+          <TableRow key={id}>
+            <TableCell>{userName}</TableCell>
+            <TableCell>{type}</TableCell>
+            <TableCell>{totalOrders}</TableCell>
+            <TableCell>{validBet}</TableCell>
+            <TableCell>{aWinLoss}</TableCell>
+            <TableCell>
+              <HintIconWrapper>
+                <img
+                  src={HintIcon}
+                  alt="hint"
+                  onClick={() => {
+                    setModalOpen(true);
+                  }}
+                />
+                <span>{aSpecial}</span>
+              </HintIconWrapper>
+            </TableCell>
+            <TableCell>{aProfit}</TableCell>
+            <TableCell>{pWinLoss}</TableCell>
+            <TableCell>{pSpecial}</TableCell>
+            <TableCell>{pProfit}</TableCell>
+          </TableRow>
+        );
+      })
+    }
+
+    return null;
+  }
+
   return (
     <WinlossReportContainer>
       <Wrapper>
-        <Select defaultValue={"agent"} sx={{ width: "150px" }}>
+        <Select defaultValue={memberType} sx={{ width: "150px" }} onChange={handleOnChange}>
           <MenuItem value={"agent"}>{i18n.t("usertype.agent")} </MenuItem>
           <MenuItem value={"player"}>{i18n.t("usertype.player")} </MenuItem>
         </Select>
@@ -134,6 +212,7 @@ const WinlossReport = () => {
                 background: theme.primary,
               },
             }}
+            onClick={handleOnSearch}
           >
             {i18n.t("common.search")}
           </Button>
@@ -188,53 +267,13 @@ const WinlossReport = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {fakeData.items.map((transactionDetail) => {
-              const {
-                id,
-                userName,
-                type,
-                totalOrders,
-                validBet,
-                aWinLoss,
-                aSpecial,
-                aProfit,
-                pWinLoss,
-                pSpecial,
-                pProfit,
-              } = transactionDetail;
-
-              return (
-                <TableRow key={id}>
-                  <TableCell>{userName}</TableCell>
-                  <TableCell>{type}</TableCell>
-                  <TableCell>{totalOrders}</TableCell>
-                  <TableCell>{validBet}</TableCell>
-                  <TableCell>{aWinLoss}</TableCell>
-                  <TableCell>
-                    <HintIconWrapper>
-                      <img
-                        src={HintIcon}
-                        alt="hint"
-                        onClick={() => {
-                          setModalOpen(true);
-                        }}
-                      />
-                      <span>{aSpecial}</span>
-                    </HintIconWrapper>
-                  </TableCell>
-                  <TableCell>{aProfit}</TableCell>
-                  <TableCell>{pWinLoss}</TableCell>
-                  <TableCell>{pSpecial}</TableCell>
-                  <TableCell>{pProfit}</TableCell>
-                </TableRow>
-              );
-            })}
+            {renderData()}
           </TableBody>
         </Table>
       ) : (
         <ReportCard />
       )}
-
+      {!isSuccess && <NoData>沒有資料</NoData>}
       <Dialog
         open={modalOpen}
         onClose={() => {

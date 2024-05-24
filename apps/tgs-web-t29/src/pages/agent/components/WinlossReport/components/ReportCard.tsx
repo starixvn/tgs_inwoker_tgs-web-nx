@@ -116,14 +116,12 @@ const PlayerSpecialTitle = styled(PlayName)`
 
 const ReportCard = () => {
   const history = useHistory();
-
   const { isDesktopSize } = useRwd();
-  useEffect(() => {
-    if (isDesktopSize) {
-      history.push("/agent");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  
+  if (isDesktopSize) {
+    history.push("/agent");
+  }
 
   return fakeData.items.map((player) => {
     return (

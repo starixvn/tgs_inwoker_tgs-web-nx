@@ -8,3 +8,4 @@ export * from "./ReportService";
 export * from "./SupportService";
 export * from "./UiService";
 export * from "./WalletService";
+export * from "./AgentService";
