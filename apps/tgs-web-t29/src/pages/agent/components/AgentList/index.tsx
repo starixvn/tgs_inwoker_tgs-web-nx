@@ -2,7 +2,6 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import {
-  Button,
   FormControl,
   MenuItem,
   Table,
@@ -14,6 +13,7 @@ import {
 } from "@mui/material";
 import { TextField, Select } from "@mui/material";
 import moment from "moment";
+import { AgentButton } from "../AgentButton";
 import AgentInfoCard from "./Components/AgentInfoCard";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
@@ -68,20 +68,9 @@ const AgentList = () => {
           <MenuItem value={"inBlacklist"}>{i18n.t("agent.inBlacklist")} </MenuItem>
         </Select>
         {isDesktopSize && (
-          <Button
-            variant={"outlined"}
-            sx={{
-              width: "100px",
-              color: theme.white,
-              background: theme.primary,
-              "&:hover": {
-                color: theme.white,
-                background: theme.primary,
-              },
-            }}
-          >
+          <AgentButton>
             {i18n.t("common.search")}
-          </Button>
+          </AgentButton>
         )}
       </FilterContainer>
       <PlayerList>

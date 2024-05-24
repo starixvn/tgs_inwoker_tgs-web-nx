@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { TextField, Select } from "@mui/material";
 import moment from "moment";
+import { AgentButton } from "../AgentButton";
 import PlayerInfoCards from "./Components/PlayerInfoCards";
 import { theme } from "@/theme";
 
@@ -67,20 +68,9 @@ const AgentPlayerList = () => {
           <MenuItem value={"inBlacklist"}>{i18n.t("agent.inBlacklist")} </MenuItem>
         </Select>
         {isDesktopSize && (
-          <Button
-            variant={"outlined"}
-            sx={{
-              width: "100px",
-              color: theme.white,
-              background: theme.primary,
-              "&:hover": {
-                color: theme.white,
-                background: theme.primary,
-              },
-            }}
-          >
+          <AgentButton>
             {i18n.t("common.search")}
-          </Button>
+          </AgentButton>
         )}
       </FilterContainer>
       <PlayerList>
