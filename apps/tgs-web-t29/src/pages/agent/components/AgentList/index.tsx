@@ -107,7 +107,7 @@ const AgentList = () => {
                   <TableRow key={id}>
                     <TableCell>{agentName}</TableCell>
                     <TableCell>{realName}</TableCell>
-                    <TableCell>{registerData}</TableCell>
+                    <TableCell sx={{ width: "120px" }}>{registerData}</TableCell>
                     <TableCell>{pt}</TableCell>
                     <TableCell>{teamSize}</TableCell>
                     <TableCell>{status}</TableCell>

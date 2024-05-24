@@ -28,6 +28,56 @@ const fakeData = {
       totalVaildBet: 400,
       status: "qwe",
     },
+    {
+      id: "018f8b81-7302-0000-0002-07e871937e34",
+      playerName: "playerA",
+      currentLevel: 3,
+      registeredTime: "2024-05-19T10:35:15.123456+00:00",
+      latestLogin: "2024-05-20T14:22:47.654321+00:00",
+      totalDeposit: 500,
+      totalVaildBet: 1000,
+      status: "active",
+    },
+    {
+      id: "018f8b81-7302-0000-0003-07e871937e35",
+      playerName: "playerB",
+      currentLevel: 1,
+      registeredTime: "2024-05-20T09:25:30.987654+00:00",
+      latestLogin: "2024-05-21T13:15:12.345678+00:00",
+      totalDeposit: 100,
+      totalVaildBet: 150,
+      status: "inactive",
+    },
+    {
+      id: "018f8b81-7302-0000-0004-07e871937e36",
+      playerName: "playerC",
+      currentLevel: 4,
+      registeredTime: "2024-05-17T08:45:25.234567+00:00",
+      latestLogin: "2024-05-22T16:40:58.876543+00:00",
+      totalDeposit: 800,
+      totalVaildBet: 1200,
+      status: "active",
+    },
+    {
+      id: "018f8b81-7302-0000-0005-07e871937e37",
+      playerName: "playerD",
+      currentLevel: 2,
+      registeredTime: "2024-05-21T12:15:45.345678+00:00",
+      latestLogin: "2024-05-21T12:15:45.345678+00:00",
+      totalDeposit: 300,
+      totalVaildBet: 450,
+      status: "suspended",
+    },
+    {
+      id: "018f8b81-7302-0000-0006-07e871937e38",
+      playerName: "playerE",
+      currentLevel: 5,
+      registeredTime: "2024-05-16T11:00:00.111111+00:00",
+      latestLogin: "2024-05-22T17:30:30.222222+00:00",
+      totalDeposit: 1000,
+      totalVaildBet: 2000,
+      status: "active",
+    },
   ],
   totalcount: 21,
 };
@@ -65,6 +115,7 @@ const PlayName = styled.div`
 
 const PlayerInfoContainer = styled.div`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
 `;

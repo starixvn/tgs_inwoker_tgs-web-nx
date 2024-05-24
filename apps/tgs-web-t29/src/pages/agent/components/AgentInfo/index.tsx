@@ -1,9 +1,10 @@
+import { useCallback, useState } from "react";
 import QRCode from "react-qr-code";
-import { useImageActions, useRebateTable, useRwd } from "@tgs-web-nx/core/hooks";
+import { ImageActionEnum, useImageActions, useRebateTable, useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { Button, styled as muiStyled } from "@mui/material";
-import { theme } from "@/theme";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { QRCodeContainer } from "@/components/styled-component/Affiliate";
 import { media } from "@/theme/breakpoints";
 
@@ -41,6 +42,7 @@ const DataText = styled.div`
 
 const ValueText = styled(DataText)`
   color: #23507d;
+  text-overflow: ellipsis;
 `;
 
 const ProductChargeCard = styled(BasicDataCard)`
@@ -89,9 +91,9 @@ const AffiliateCard = styled(ProductChargeCard)`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-width: 400px;
 
     & > div {
-      max-width: 300px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -124,34 +126,88 @@ const StyledButton = muiStyled(Button)(({ theme }) => ({
 }));
 
 const AgentInfo = () => {
-  const { imageId } = useImageActions();
+  const { account } = useAccountStore();
+  const { imageId, handleQrAction, isCopied } = useImageActions();
   const { affiliateLink } = useRebateTable();
   const { isDesktopSize } = useRwd();
 
+  const [idIsCopied, setIdIsCopied] = useState(false);
+  const [linkIsCopied, setLinkIsCopied] = useState(false);
+
+  const handleCopyIdText = useCallback(() => {
+    if (idIsCopied) return;
+
+    navigator.clipboard.writeText(account.info.playercode);
+    setIdIsCopied(true);
+
+    setTimeout(() => {
+      setIdIsCopied(false);
+    }, 2000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [account.info.playercode]);
+
+  const handleCopyLinkText = useCallback(() => {
+    if (linkIsCopied) return;
+
+    navigator.clipboard.writeText(affiliateLink);
+    setLinkIsCopied(true);
+
+    setTimeout(() => {
+      setLinkIsCopied(false);
+    }, 2000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [affiliateLink]);
+
   return (
     <AgentInfoContainer>
-      <BasicDataCard>
-        <SharingContent>
-          <DataText>分红比例</DataText>
-          <ValueText>10%</ValueText>
-        </SharingContent>
-        <SharingContent>
-          <DataText>{i18n.t("agent.cumulativenegativeDividendAmount")}</DataText>
-          <ValueText>-100</ValueText>
-        </SharingContent>
-        {isDesktopSize && (
-          <>
+      {isDesktopSize ? (
+        <BasicDataCard>
+          <SharingContent>
+            <DataText>分红比例</DataText>
+            <ValueText>10%</ValueText>
+          </SharingContent>
+
+          <SharingContent>
+            <DataText>{i18n.t("agent.cumulativenegativeDividendAmount")}</DataText>
+            <ValueText>-100</ValueText>
+          </SharingContent>
+
+          <SharingContent>
+            <DataText>{i18n.t("agent.negativeDividend")}</DataText>
+            <ValueText>{i18n.t("agent.liable")}</ValueText>
+          </SharingContent>
+
+          <SharingContent>
+            <DataText>{i18n.t("agent.platformFee")}</DataText>
+            <ValueText>0%</ValueText>
+          </SharingContent>
+        </BasicDataCard>
+      ) : (
+        <>
+          <BasicDataCard>
             <SharingContent>
-              <DataText>{i18n.t("agent.negativeDividend")}</DataText>
-              <ValueText>{i18n.t("agent.liable")}</ValueText>
+              <DataText>分红比例</DataText>
+              <ValueText>10%</ValueText>
             </SharingContent>
+
             <SharingContent>
               <DataText>{i18n.t("agent.platformFee")}</DataText>
               <ValueText>0%</ValueText>
             </SharingContent>
-          </>
-        )}
-      </BasicDataCard>
+          </BasicDataCard>
+          <BasicDataCard>
+            <SharingContent>
+              <DataText>{i18n.t("agent.negativeDividend")}</DataText>
+              <ValueText>{i18n.t("agent.liable")}</ValueText>
+            </SharingContent>
+
+            <SharingContent>
+              <DataText>{i18n.t("agent.cumulativenegativeDividendAmount")}</DataText>
+              <ValueText>-100</ValueText>
+            </SharingContent>
+          </BasicDataCard>
+        </>
+      )}
 
       <ProductChargeCard>
         <span>{i18n.t("agent.productCharges")}</span>
@@ -178,16 +234,20 @@ const AgentInfo = () => {
         <div>
           <span>{i18n.t("affiliate.promoId")}</span>
           <div>
-            <ValueText>dkhdio730902</ValueText>
-            <StyledButton>{i18n.t("common.copy")}</StyledButton>
+            <ValueText>{account.info.playercode}</ValueText>
+            <StyledButton onClick={handleCopyIdText}>
+              {idIsCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
+            </StyledButton>
           </div>
         </div>
 
         <div>
           <span>{i18n.t("affiliate.promoLink")}</span>
           <div>
-            <ValueText>https: tw.news.yahoo.com/</ValueText>
-            <StyledButton>{i18n.t("common.copy")}</StyledButton>
+            <ValueText>{affiliateLink}</ValueText>
+            <StyledButton onClick={handleCopyLinkText}>
+              {linkIsCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
+            </StyledButton>
           </div>
         </div>
       </AffiliateCard>
@@ -199,8 +259,12 @@ const AgentInfo = () => {
             <QRCode value={affiliateLink} size={isDesktopSize ? 256 : 128} />
           </QRCodeContainer>
           <ButtonContainer>
-            <StyledButton>{i18n.t("common.copy")}</StyledButton>
-            <StyledButton>{i18n.t("common.download")}</StyledButton>
+            <StyledButton onClick={() => handleQrAction(ImageActionEnum.COPY)}>
+              {isCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
+            </StyledButton>
+            <StyledButton onClick={() => handleQrAction(ImageActionEnum.DOWNLOAD)}>
+              {i18n.t("common.download")}
+            </StyledButton>
           </ButtonContainer>
         </div>
       </QRcodeCard>

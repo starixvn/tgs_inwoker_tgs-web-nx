@@ -3,7 +3,6 @@ import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import {
   Button,
-  FormControl,
   MenuItem,
   Table,
   TableBody,
@@ -14,9 +13,8 @@ import {
 } from "@mui/material";
 import { TextField, Select } from "@mui/material";
 import moment from "moment";
-import PlayerInfoCard from "./Components/PlayerInfoCards";
+import PlayerInfoCards from "./Components/PlayerInfoCards";
 import { theme } from "@/theme";
-import { media } from "@/theme/breakpoints";
 
 const fakeData = {
   items: [
@@ -58,7 +56,7 @@ const AgentPlayerList = () => {
           placeholder="玩家用户名"
           sx={{
             input: {
-              width: "400px",
+              width: isDesktopSize ? "400px" : "300px",
             },
           }}
         />
@@ -118,8 +116,8 @@ const AgentPlayerList = () => {
                   <TableRow key={id}>
                     <TableCell>{playerName}</TableCell>
                     <TableCell>{currentLevel}</TableCell>
-                    <TableCell>{registerData}</TableCell>
-                    <TableCell>{latestLoginData}</TableCell>
+                    <TableCell sx={{ width: "120px" }}>{registerData}</TableCell>
+                    <TableCell sx={{ width: "120px" }}>{latestLoginData}</TableCell>
                     <TableCell>{totalDeposit}</TableCell>
                     <TableCell>{totalVaildBet}</TableCell>
                     <TableCell>{status}</TableCell>
@@ -129,7 +127,7 @@ const AgentPlayerList = () => {
             </TableBody>
           </Table>
         ) : (
-          <PlayerInfoCard />
+          <PlayerInfoCards />
         )}
         {isDesktopSize && (
           <TablePagination
