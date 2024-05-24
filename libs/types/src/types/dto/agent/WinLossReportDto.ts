@@ -8,8 +8,8 @@ type Total = {
     companySpecial: number,
     agentTotal: number,
     companyTotal: number,
+    agentWinLoss: number,
 }
-
 
 type Item = {
     id: string,
@@ -18,11 +18,16 @@ type Item = {
 } & Total;
 
 export type WinLossReportDto = {
-    items: Item[] | null,
-    total: Total | null,
-    totalCount: number,
-    errors: any[],
-    message: string,
-    valid: boolean,
+    data: {
+        items: Item[],
+        total: Total,
+        totalCount: number,
+        errors: any[],
+        message: string,
+        valid: boolean,
+    }
+    err: number,
+    errmsg: string,
+    errmsgid: string,
 }
 
