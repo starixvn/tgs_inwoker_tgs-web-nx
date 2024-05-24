@@ -1,12 +1,14 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import QRCode from "react-qr-code";
-import { ImageActionEnum, useImageActions, useRebateTable, useRwd } from "@tgs-web-nx/core/hooks";
+import { ImageActionEnum, useImageActions, useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { Button, styled as muiStyled } from "@mui/material";
-import { useAccountStore } from "@tgs-web-nx/core";
+import { useQuery } from "@tanstack/react-query";
+import { AgentInfo as AgentInfoService } from "@tgs-web-nx/core";
 import { QRCodeContainer } from "@/components/styled-component/Affiliate";
 import { media } from "@/theme/breakpoints";
+import Loading from "@/components/UI/Loading";
 
 const AgentInfoContainer = styled.div`
   display: flex;
@@ -126,84 +128,110 @@ const StyledButton = muiStyled(Button)(({ theme }) => ({
 }));
 
 const AgentInfo = () => {
-  const { account } = useAccountStore();
   const { imageId, handleQrAction, isCopied } = useImageActions();
-  const { affiliateLink } = useRebateTable();
   const { isDesktopSize } = useRwd();
 
+  const [loading, setloading] = useState(true);
+  const [invitationLink, setInvitationLink] = useState("");
   const [idIsCopied, setIdIsCopied] = useState(false);
   const [linkIsCopied, setLinkIsCopied] = useState(false);
+
+  const { GetAgentInfo, queryKey } = AgentInfoService();
+  const { refetch, data, isSuccess } = useQuery({
+    queryKey,
+    queryFn: GetAgentInfo,
+    enabled: false,
+  });
+
+  useEffect(() => {
+    refetch();
+    if (isSuccess) {
+      setloading(false);
+      setInvitationLink(`https://${window.location.host}/a/${data?.data.invitationCode}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   const handleCopyIdText = useCallback(() => {
     if (idIsCopied) return;
 
-    navigator.clipboard.writeText(account.info.playercode);
+    navigator.clipboard.writeText(data?.data.invitationCode as string);
     setIdIsCopied(true);
 
     setTimeout(() => {
       setIdIsCopied(false);
     }, 2000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account.info.playercode]);
+  }, [data?.data.invitationCode]);
 
   const handleCopyLinkText = useCallback(() => {
     if (linkIsCopied) return;
 
-    navigator.clipboard.writeText(affiliateLink);
+    navigator.clipboard.writeText(invitationLink);
     setLinkIsCopied(true);
 
     setTimeout(() => {
       setLinkIsCopied(false);
     }, 2000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [affiliateLink]);
+  }, [invitationLink]);
+
+  if (loading) return <Loading show={true} />;
 
   return (
     <AgentInfoContainer>
       {isDesktopSize ? (
         <BasicDataCard>
           <SharingContent>
-            <DataText>分红比例</DataText>
-            <ValueText>10%</ValueText>
+            <DataText>{i18n.t("agent.profitShareP/T")}</DataText>
+            <ValueText>{`${data?.data.dividendPercentage}%`}</ValueText>
           </SharingContent>
 
           <SharingContent>
             <DataText>{i18n.t("agent.cumulativenegativeDividendAmount")}</DataText>
-            <ValueText>-100</ValueText>
+            <ValueText>{data?.data.negativeAgentDividend}</ValueText>
           </SharingContent>
 
           <SharingContent>
             <DataText>{i18n.t("agent.negativeDividend")}</DataText>
-            <ValueText>{i18n.t("agent.liable")}</ValueText>
+            <ValueText>
+              {i18n.t(
+                data?.data.negativeAgentDividendCarryForward ? "agent.liable" : "agent.notLiable",
+              )}
+            </ValueText>
           </SharingContent>
 
           <SharingContent>
             <DataText>{i18n.t("agent.platformFee")}</DataText>
-            <ValueText>0%</ValueText>
+            <ValueText>{`${data?.data.platformChargePercentage}%`}</ValueText>
           </SharingContent>
         </BasicDataCard>
       ) : (
         <>
           <BasicDataCard>
             <SharingContent>
-              <DataText>分红比例</DataText>
-              <ValueText>10%</ValueText>
+              <DataText>{i18n.t("agent.profitShareP/T")}</DataText>
+              <ValueText>{`${data?.data.dividendPercentage}%`}</ValueText>
             </SharingContent>
 
             <SharingContent>
               <DataText>{i18n.t("agent.platformFee")}</DataText>
-              <ValueText>0%</ValueText>
+              <ValueText>{`${data?.data.platformChargePercentage}%`}</ValueText>
             </SharingContent>
           </BasicDataCard>
           <BasicDataCard>
             <SharingContent>
               <DataText>{i18n.t("agent.negativeDividend")}</DataText>
-              <ValueText>{i18n.t("agent.liable")}</ValueText>
+              <ValueText>
+                {i18n.t(
+                  data?.data.negativeAgentDividendCarryForward ? "agent.liable" : "agent.notLiable",
+                )}
+              </ValueText>
             </SharingContent>
 
             <SharingContent>
               <DataText>{i18n.t("agent.cumulativenegativeDividendAmount")}</DataText>
-              <ValueText>-100</ValueText>
+              <ValueText>{data?.data.negativeAgentDividend}</ValueText>
             </SharingContent>
           </BasicDataCard>
         </>
@@ -212,12 +240,13 @@ const AgentInfo = () => {
       <ProductChargeCard>
         <span>{i18n.t("agent.productCharges")}</span>
         <GameTypeContainer>
-          <GameType>{`${i18n.t("common.live")}:1%`}</GameType>
-          <GameType>{`${i18n.t("common.sport")}:1%`}</GameType>
-          <GameType>{`${i18n.t("common.table")}:1%`}</GameType>
-          <GameType>{`${i18n.t("common.qipai")}:1%`}</GameType>
-          <GameType>{`${i18n.t("common.lottery")}:1%`}</GameType>
-          <GameType>{`${i18n.t("common.virtualsports")}:1%`}</GameType>
+          <GameType>{`${i18n.t("common.live")}: ${data?.data.liveDealerPercentage}%`}</GameType>
+          <GameType>{`${i18n.t("common.sport")}: ${data?.data.sportsPercentage}%`}</GameType>
+          <GameType>{`${i18n.t("common.table")}: ${data?.data.slotPercentage}%`}</GameType>
+          <GameType>{`${i18n.t("common.qipai")}: ${data?.data.cardGamePercentage}%`}</GameType>
+          <GameType>{`${i18n.t("common.lottery")}: ${data?.data.lotteryPercentage}%`}</GameType>
+          <GameType>{`${i18n.t("common.virtualsports")}:${data?.data
+            .virtualSportsPercentage}%`}</GameType>
         </GameTypeContainer>
       </ProductChargeCard>
 
@@ -232,9 +261,9 @@ const AgentInfo = () => {
 
       <AffiliateCard>
         <div>
-          <span>{i18n.t("affiliate.promoId")}</span>
+          <span>{i18n.t("agent.referralCode")}</span>
           <div>
-            <ValueText>{account.info.playercode}</ValueText>
+            <ValueText>{data?.data.invitationCode}</ValueText>
             <StyledButton onClick={handleCopyIdText}>
               {idIsCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
             </StyledButton>
@@ -244,7 +273,7 @@ const AgentInfo = () => {
         <div>
           <span>{i18n.t("affiliate.promoLink")}</span>
           <div>
-            <ValueText>{affiliateLink}</ValueText>
+            <ValueText>{invitationLink}</ValueText>
             <StyledButton onClick={handleCopyLinkText}>
               {linkIsCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
             </StyledButton>
@@ -256,7 +285,7 @@ const AgentInfo = () => {
         <span>{i18n.t("affiliate.qrCode")}</span>
         <div>
           <QRCodeContainer id={imageId}>
-            <QRCode value={affiliateLink} size={isDesktopSize ? 256 : 128} />
+            <QRCode value={invitationLink} size={isDesktopSize ? 256 : 128} />
           </QRCodeContainer>
           <ButtonContainer>
             <StyledButton onClick={() => handleQrAction(ImageActionEnum.COPY)}>
