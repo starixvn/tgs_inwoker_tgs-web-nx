@@ -11,7 +11,7 @@ type Total = {
     agentWinLoss: number,
 }
 
-type Item = {
+type WinLossReportItem = {
     id: string,
     username: string,
     memberType: string,
@@ -19,7 +19,7 @@ type Item = {
 
 export type WinLossReportDto = {
     data: {
-        items: Item[],
+        items: WinLossReportItem[],
         total: Total,
         totalCount: number,
         errors: any[],
@@ -31,3 +31,10 @@ export type WinLossReportDto = {
     errmsgid: string,
 }
 
+export type WinLostBreadcrumbDto = {
+    data: {
+        username: string,
+        id: string,
+        memberType: string,
+    }[]
+}

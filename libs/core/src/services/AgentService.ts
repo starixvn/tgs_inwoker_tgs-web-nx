@@ -1,33 +1,47 @@
-import { WinLossReportDto } from '@tgs-web-nx/types';
+import { WinLossReportDto, WinLostBreadcrumbDto } from '@tgs-web-nx/types';
 import { ApiService } from "../api-services/services/ApiService";
 
-export type WinLostConfig = {
+type BreadcrumbConfig = {
     username: string,
-    from: string,
-    to: string,
-    downline?: boolean,
-    page?: number,
-    rows?: number,
     memberType?: string,
 }
 
+export type WinLostConfig = {
+    from: string,
+    to: string,
+    downline: boolean,
+    page?: number,
+    rows?: number,
+} & BreadcrumbConfig
 
-export function WinLostReport({
+
+const getReport = ({
     username,
     from,
     to,
-    downline = false,
+    downline,
     page = 1,
     rows = 20,
     memberType = 'agent',
-}: WinLostConfig) {
+}: WinLostConfig) => {
+    console.log({downline, username});
+    
     const apiUrl = `AgentWinLossReport/agentWinLoss?username=${username}&from=${from}T16:00:00.000Z&to=${to}T16:00:00.000Z&downline=${downline}&page=${page}&rows=${rows}&memberType=${memberType}`;
 
-    const getWinLossReport = () => {
-        return ApiService.get(apiUrl) as unknown as Promise<WinLossReportDto>
-    };
+    return ApiService.get(apiUrl) as unknown as Promise<WinLossReportDto>
+};
 
-    const queryKey = ['getWinLossReport'];
 
-    return {getWinLossReport, queryKey};    
+const getBreadcrumb = ({
+    username,
+    memberType = 'agent',
+}: BreadcrumbConfig) => {
+    const apiUrl = `AgentWinLossReport/breadcrumb?&username=${username}&memberType=${memberType}`;
+    return ApiService.get(apiUrl) as unknown as Promise<WinLostBreadcrumbDto>
+};
+
+
+export const WinLostReport = {
+    getReport,
+    getBreadcrumb
 }

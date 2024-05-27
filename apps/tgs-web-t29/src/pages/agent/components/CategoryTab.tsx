@@ -40,8 +40,7 @@ const CategoryTab = (props: Props) => {
         whiteSpace: "no-wrap",
         padding: "12px",
         borderRadius: "4px",
-        width: "auto",
-        minWidth: "calc((100% - 5 * 9px) / 6)",
+        width: "100%",
       }}
     >
       {category.label}
