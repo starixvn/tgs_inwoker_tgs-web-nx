@@ -17,6 +17,7 @@ import moment from "moment";
 import { UserConfig, PlayerList as PlayerListService } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { AgentButton } from "../AgentButton";
 import PlayerInfoCards from "./Components/PlayerInfoCards";
 import { theme } from "@/theme";
 import LoadingBlock from "@/components/project/LoadingBlock";
@@ -112,21 +113,9 @@ const AgentPlayerList = () => {
           <MenuItem value={PlayerStatus.INBLACKLIST}>{i18n.t("agent.inBlacklist")} </MenuItem>
         </Select>
         {isDesktopSize && (
-          <Button
-            onClick={handleOnSearch}
-            variant={"outlined"}
-            sx={{
-              width: "100px",
-              color: theme.white,
-              background: theme.primary,
-              "&:hover": {
-                color: theme.white,
-                background: theme.primary,
-              },
-            }}
-          >
+          <AgentButton>
             {i18n.t("common.search")}
-          </Button>
+          </AgentButton>
         )}
       </FilterContainer>
       <PlayerList>

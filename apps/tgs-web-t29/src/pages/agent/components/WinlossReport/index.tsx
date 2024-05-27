@@ -23,6 +23,7 @@ import moment from "moment";
 import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
 import { AgentContext } from "../AgentContextProvider";
+import { AgentButton } from "../AgentButton";
 import ReportCard from "./components/ReportCard";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
@@ -75,10 +76,33 @@ const HintIconWrapper = styled.div`
 
 const NoData = styled.div`
   padding: 10px;
-  margin-top: -20px;
   text-align: center;
   border-bottom: 1px solid rgba(83, 88, 103, 0.3);
 `;
+
+const TableWrapper = styled.div`
+  min-width: 890px;
+`;
+
+const ScrollArea = styled.div`
+  width: 100%;
+  overflow-x: auto;
+
+  &::-webkit-scrollbar{
+      height: 4px;
+    }
+  &::-webkit-scrollbar-track {
+    background-color: #E7F1FB;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #535867;
+  }
+`;
+
+
+
 const WinlossReport = () => {
   const { isDesktopSize } = useRwd();
   const [modalOpen, setModalOpen] = useState(false);
@@ -197,23 +221,15 @@ const WinlossReport = () => {
           selectedType={0}
         />
         {isDesktopSize && (
-          <Button
-            variant={"outlined"}
+          <AgentButton
             sx={{
               marginLeft: "20px",
-              width: "100px",
-              color: theme.white,
-              background: theme.primary,
-              "&:hover": {
-                color: theme.white,
-                background: theme.primary,
-              },
             }}
             onClick={handleOnSearch}
             disabled={isFetching}
           >
             {i18n.t("common.search")}
-          </Button>
+          </AgentButton>
         )}
       </Wrapper>
       <Wrapper>
@@ -230,6 +246,7 @@ const WinlossReport = () => {
           <AccordionSummary
             aria-controls="panel1-content"
             id="panel1-header"
+            style={{width: "fit-content", padding: "0"}}
           >
             <img src={InfoIcon} width={24} height={24} alt="info" />
           </AccordionSummary>
@@ -252,37 +269,42 @@ const WinlossReport = () => {
       </FormulaWrapper>
       <UserNameBreadcrumbs>Username</UserNameBreadcrumbs>
       {isDesktopSize ? (
-        <Table>
-          <TableHead>
-            <TableRow sx={{ background: theme.blue20 }}>
-              <TableCell colSpan={7} sx={{ textAlign: "center" }}>
-                {i18n.t("usertype.player")}
-              </TableCell>
-              <TableCell colSpan={3} sx={{ textAlign: "center" }}>
-                {i18n.t("usertype.agent")}
-              </TableCell>
-            </TableRow>
-            <TableRow sx={{ background: theme.blue10 }}>
-              <TableCell>{i18n.t("common.username")}</TableCell>
-              <TableCell>类型</TableCell>
-              <TableCell>订单数</TableCell>
-              <TableCell>有效投注</TableCell>
-              <TableCell>{i18n.t("report.winloss")}</TableCell>
-              <TableCell>特别</TableCell>
-              <TableCell>盈亏</TableCell>
-              <TableCell>{i18n.t("report.winloss")}</TableCell>
-              <TableCell>特别</TableCell>
-              <TableCell>盈亏</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {renderData()}
-          </TableBody>
-        </Table>
+        <ScrollArea>
+          <TableWrapper>
+            <Table>
+              <TableHead>
+                <TableRow sx={{ background: theme.blue20 }}>
+                  <TableCell colSpan={7} sx={{ textAlign: "center" }}>
+                    {i18n.t("usertype.player")}
+                  </TableCell>
+                  <TableCell colSpan={3} sx={{ textAlign: "center" }}>
+                    {i18n.t("usertype.agent")}
+                  </TableCell>
+                </TableRow>
+                <TableRow sx={{ background: theme.blue10 }}>
+                  <TableCell>{i18n.t("common.username")}</TableCell>
+                  <TableCell>类型</TableCell>
+                  <TableCell>订单数</TableCell>
+                  <TableCell>有效投注</TableCell>
+                  <TableCell>{i18n.t("report.winloss")}</TableCell>
+                  <TableCell>特别</TableCell>
+                  <TableCell>盈亏</TableCell>
+                  <TableCell>{i18n.t("report.winloss")}</TableCell>
+                  <TableCell>特别</TableCell>
+                  <TableCell>盈亏</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {renderData()}
+              </TableBody>
+            </Table>
+            {!hasData && <NoData>沒有資料</NoData>}
+          </TableWrapper>
+        </ScrollArea>
       ) : (
         <ReportCard />
       )}
-      {!hasData && <NoData>沒有資料</NoData>}
+      
       <Dialog
         open={modalOpen}
         onClose={() => {
