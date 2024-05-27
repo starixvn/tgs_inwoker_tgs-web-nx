@@ -9,6 +9,7 @@ import ScrollToTop from "./utils/ScrollToTop";
 export * from "./utils/formatAmount";
 export * from "./utils/regex";
 export * from "./utils/updateHtmlTitleDescription";
+export * from "./utils/getFavicon";
 export * from "./utils/utility";
 export * from "./utils/getGameTypeName";
 export * from "./utils/groupBy";
