@@ -2,7 +2,6 @@ import { useAgentPage, useRwd, PlayerStatus } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import {
-  Button,
   MenuItem,
   SelectChangeEvent,
   Table,
@@ -16,11 +15,12 @@ import { TextField, Select } from "@mui/material";
 import moment from "moment";
 import { UserConfig, PlayerList as PlayerListService } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AgentButton } from "../AgentButton";
 import PlayerInfoCards from "./Components/PlayerInfoCards";
 import { theme } from "@/theme";
 import LoadingBlock from "@/components/project/LoadingBlock";
+import { media } from "@/theme/breakpoints";
 
 const FilterContainer = styled.div`
   display: flex;
@@ -35,13 +35,20 @@ const PlayerList = styled.div`
 `;
 
 const NoData = styled.div`
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 19.55px;
   padding: 10px;
   text-align: center;
-  border-bottom: 1px solid rgba(83, 88, 103, 0.3);
+  border-bottom: none;
+  ${media.sm} {
+    border-bottom: 1px solid rgba(83, 88, 103, 0.3);
+  }
 `;
 
 const AgentPlayerList = () => {
-  const { isDesktopSize } = useRwd();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { isDesktopSize, isMobileSize } = useRwd();
   const [userName, setUserName] = useState("");
   const [userStatus, setUserStatus] = useState("all");
   const [page, setPage] = useState(1);
@@ -75,12 +82,25 @@ const AgentPlayerList = () => {
     }
   }, [data]);
 
-  const handleSelectStatus = (event: SelectChangeEvent) => {
-    setUserStatus(event.target.value);
+  const handleSelectStatus = async (event: SelectChangeEvent) => {
+    await setUserStatus(event.target.value);
+    if (isMobileSize) {
+      handleOnSearch();
+    }
   };
 
   const handleChangeUserName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleOnSearch();
+      //按下enter後,將手機鍵盤關閉
+      if (inputRef.current) {
+        inputRef.current.blur();
+      }
+    }
   };
 
   const handleOnSearch = async () => {
@@ -99,12 +119,14 @@ const AgentPlayerList = () => {
         <TextField
           value={userName}
           onChange={handleChangeUserName}
+          onKeyDown={handleKeyDown}
           placeholder={i18n.t("usertype.player")}
           sx={{
             input: {
               width: isDesktopSize ? "400px" : "300px",
             },
           }}
+          inputRef={inputRef}
         />
         <Select value={userStatus} sx={{ width: "200px" }} onChange={handleSelectStatus}>
           <MenuItem value={"all"}>{i18n.t("agent.status")} </MenuItem>
@@ -113,7 +135,7 @@ const AgentPlayerList = () => {
           <MenuItem value={PlayerStatus.INBLACKLIST}>{i18n.t("agent.inBlacklist")} </MenuItem>
         </Select>
         {isDesktopSize && (
-          <AgentButton>
+          <AgentButton onClick={handleOnSearch} disabled={isFetching}>
             {i18n.t("common.search")}
           </AgentButton>
         )}
@@ -161,7 +183,7 @@ const AgentPlayerList = () => {
             </TableBody>
           </Table>
         ) : (
-          <PlayerInfoCards />
+          <PlayerInfoCards playerInfo={data} feching={isFetching} />
         )}
         {!isFetching && !hasData && <NoData>{i18n.t("common.nodata")}</NoData>}
         {isSuccess && isDesktopSize && (
@@ -172,7 +194,6 @@ const AgentPlayerList = () => {
             rowsPerPage={20}
             page={page - 1}
             onPageChange={handleChangePage}
-            // onRowsPerPageChange={handleChangeRowsPerPage}
             sx={{
               width: "100%",
               color: theme.blue40,
