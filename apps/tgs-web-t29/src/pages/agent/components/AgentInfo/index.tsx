@@ -136,10 +136,10 @@ const AgentInfo = () => {
   const [idIsCopied, setIdIsCopied] = useState(false);
   const [linkIsCopied, setLinkIsCopied] = useState(false);
 
-  const { GetAgentInfo, queryKey } = AgentInfoService();
+  const { getAgentInfo, queryKey } = AgentInfoService();
   const { refetch, data, isSuccess } = useQuery({
     queryKey,
-    queryFn: GetAgentInfo,
+    queryFn: getAgentInfo,
     enabled: false,
   });
 

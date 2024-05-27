@@ -1,9 +1,10 @@
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAgentPage, useRwd, PlayerStatus } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import {
   Button,
   MenuItem,
+  SelectChangeEvent,
   Table,
   TableBody,
   TableCell,
@@ -13,24 +14,12 @@ import {
 } from "@mui/material";
 import { TextField, Select } from "@mui/material";
 import moment from "moment";
+import { UserConfig, PlayerList as PlayerListService } from "@tgs-web-nx/core";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import PlayerInfoCards from "./Components/PlayerInfoCards";
 import { theme } from "@/theme";
-
-const fakeData = {
-  items: [
-    {
-      id: "018f8b81-7302-0000-0001-07e871937e08",
-      playerName: "testFE1",
-      currentLevel: 1,
-      registeredTime: "2024-05-18T11:41:07.715302+00:00",
-      latestLogin: "2024-05-18T11:41:07.715302+00:00",
-      totalDeposit: 200,
-      totalVaildBet: 400,
-      status: "qwe",
-    },
-  ],
-  totalcount: 21,
-};
+import LoadingBlock from "@/components/project/LoadingBlock";
 
 const FilterContainer = styled.div`
   display: flex;
@@ -44,30 +33,87 @@ const PlayerList = styled.div`
   line-height: 16.1px;
 `;
 
+const NoData = styled.div`
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid rgba(83, 88, 103, 0.3);
+`;
+
 const AgentPlayerList = () => {
   const { isDesktopSize } = useRwd();
+  const [userName, setUserName] = useState("");
+  const [userStatus, setUserStatus] = useState("all");
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+
+  const { getStatusTranslation } = useAgentPage();
+
+  const config: UserConfig = {
+    username: userName,
+    status: userStatus === "all" ? "" : userStatus,
+    page: page,
+  };
+
+  const { getPlayerList, queryKey } = PlayerListService(config);
+
+  const { refetch, data, isSuccess, isFetching } = useQuery({
+    queryKey,
+    queryFn: getPlayerList,
+    enabled: false,
+  });
+  const hasData = data && data.data.items.length > 0;
+
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setTotalCount(data.data.totalCount);
+    }
+  }, [data]);
+
+  const handleSelectStatus = (event: SelectChangeEvent) => {
+    setUserStatus(event.target.value);
+  };
+
+  const handleChangeUserName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(event.target.value);
+  };
+
+  const handleOnSearch = async () => {
+    await setPage(1);
+    refetch();
+  };
+
+  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
+    setPage(newPage + 1);
+    refetch();
+  };
 
   return (
     <>
       <FilterContainer>
         <TextField
-          // value={subject}
-          // onChange={updateSubject}
-          placeholder="玩家用户名"
+          value={userName}
+          onChange={handleChangeUserName}
+          placeholder={i18n.t("usertype.player")}
           sx={{
             input: {
               width: isDesktopSize ? "400px" : "300px",
             },
           }}
         />
-        <Select defaultValue={"status"} sx={{ width: "200px" }}>
-          <MenuItem value={"status"}>{i18n.t("agent.status")} </MenuItem>
-          <MenuItem value={"enabled"}>{i18n.t("agent.enabled")} </MenuItem>
-          <MenuItem value={"disabled"}>{i18n.t("agent.disabled")} </MenuItem>
-          <MenuItem value={"inBlacklist"}>{i18n.t("agent.inBlacklist")} </MenuItem>
+        <Select value={userStatus} sx={{ width: "200px" }} onChange={handleSelectStatus}>
+          <MenuItem value={"all"}>{i18n.t("agent.status")} </MenuItem>
+          <MenuItem value={PlayerStatus.ENABLED}>{i18n.t("agent.enabled")} </MenuItem>
+          <MenuItem value={PlayerStatus.DISABLED}>{i18n.t("agent.disabled")} </MenuItem>
+          <MenuItem value={PlayerStatus.INBLACKLIST}>{i18n.t("agent.inBlacklist")} </MenuItem>
         </Select>
         {isDesktopSize && (
           <Button
+            onClick={handleOnSearch}
             variant={"outlined"}
             sx={{
               width: "100px",
@@ -88,7 +134,7 @@ const AgentPlayerList = () => {
           <Table>
             <TableHead>
               <TableRow sx={{ background: theme.blue10 }}>
-                <TableCell>玩家用户名</TableCell>
+                <TableCell>{i18n.t("usertype.player")}</TableCell>
                 <TableCell>{i18n.t("agent.vipLevel")}</TableCell>
                 <TableCell>{i18n.t("agent.registeredTime")}</TableCell>
                 <TableCell>{i18n.t("agent.latestLogin")}</TableCell>
@@ -98,45 +144,46 @@ const AgentPlayerList = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {fakeData.items.map((transactionDetail) => {
-                const {
-                  id,
-                  playerName,
-                  currentLevel,
-                  registeredTime,
-                  latestLogin,
-                  totalDeposit,
-                  totalVaildBet,
-                  status,
-                } = transactionDetail;
-
-                const registerData = moment(registeredTime).format("YYYY-MM-DD hh:mm a");
-                const latestLoginData = moment(latestLogin).format("YYYY-MM-DD hh:mm a");
-                return (
-                  <TableRow key={id}>
-                    <TableCell>{playerName}</TableCell>
-                    <TableCell>{currentLevel}</TableCell>
-                    <TableCell sx={{ width: "120px" }}>{registerData}</TableCell>
-                    <TableCell sx={{ width: "120px" }}>{latestLoginData}</TableCell>
-                    <TableCell>{totalDeposit}</TableCell>
-                    <TableCell>{totalVaildBet}</TableCell>
-                    <TableCell>{status}</TableCell>
-                  </TableRow>
-                );
-              })}
+              {isFetching ? (
+                <TableRow>
+                  <TableCell colSpan={7}>
+                    <LoadingBlock size={30} style={{ margin: "10px 0" }} />
+                  </TableCell>
+                </TableRow>
+              ) : (
+                data?.data.items
+                  .filter((player) => player.playerStatus !== PlayerStatus.REGISTERING)
+                  .map((player, index) => {
+                    const registerData = moment(player.registeredOn).format("YYYY-MM-DD hh:mm a");
+                    const latestLoginData = moment(player.lastLoginOn).format("YYYY-MM-DD hh:mm a");
+                    return (
+                      <TableRow key={index}>
+                        <TableCell>{player.playerUsername}</TableCell>
+                        <TableCell>{player.vipLevel}</TableCell>
+                        <TableCell sx={{ width: "120px" }}>{registerData}</TableCell>
+                        <TableCell sx={{ width: "120px" }}>{latestLoginData}</TableCell>
+                        <TableCell>{player.totalDepositAmount}</TableCell>
+                        <TableCell>{player.totalWithdrawAmount}</TableCell>
+                        <TableCell>{getStatusTranslation(player.playerStatus)}</TableCell>
+                      </TableRow>
+                    );
+                  })
+              )}
             </TableBody>
           </Table>
         ) : (
           <PlayerInfoCards />
         )}
-        {isDesktopSize && (
+        {!isFetching && !hasData && <NoData>{i18n.t("common.nodata")}</NoData>}
+        {isSuccess && isDesktopSize && (
           <TablePagination
             component="div"
             rowsPerPageOptions={[]}
-            count={100}
+            count={totalCount}
             rowsPerPage={20}
-            page={1}
-            onPageChange={() => {}}
+            page={page - 1}
+            onPageChange={handleChangePage}
+            // onRowsPerPageChange={handleChangeRowsPerPage}
             sx={{
               width: "100%",
               color: theme.blue40,
