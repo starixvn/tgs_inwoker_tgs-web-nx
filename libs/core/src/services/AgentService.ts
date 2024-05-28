@@ -1,4 +1,4 @@
-import { WinLossReportDto } from '@tgs-web-nx/types';
+import { WinLossReportDto, ProfitShareDto } from '@tgs-web-nx/types';
 import { ApiService } from "../api-services/services/ApiService";
 
 export type WinLostConfig = {
@@ -30,4 +30,9 @@ export function WinLostReport({
     const queryKey = ['getWinLossReport'];
 
     return {getWinLossReport, queryKey};    
+}
+
+
+export const ProfitShare = {
+    getProfitShare: () => ApiService.get('AgentDividendReport/beforehand') as unknown as Promise<ProfitShareDto>
 }
