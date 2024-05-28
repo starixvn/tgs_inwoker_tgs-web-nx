@@ -68,61 +68,21 @@
       }
     }
   },
-  "tags": [],
-  "docker-build": {
-    "executor": "nx:run-commands",
-    "defaultConfiguration": "production",
-    "options": {
-      "commands": [
-      ],
-      "parallel": false
-    },
-    "serve": {
-      "executor": "@nx/vite:dev-server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "tgs-web-t22:build"
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "tgs-web-t22:build:development",
-          "hmr": true
-        },
-        "production": {
-          "buildTarget": "tgs-web-t22:build:production",
-          "hmr": false
-        }
-      }
-    },
-    "preview": {
-      "executor": "@nx/vite:preview-server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "tgs-web-t22:build"
-      },
-      "configurations": {
-        "development": {
-          "buildTarget": "tgs-web-t22:build:development"
-        },
-        "production": {
-          "buildTarget": "tgs-web-t22:build:production"
-        }
-      }
-    },
-    "test": {
-      "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
-      "options": {
-        "passWithNoTests": true,
-        "reportsDirectory": "../../coverage/apps/tgs-web-t22"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/tgs-web-t22/**/*.{ts,tsx,js,jsx}"]
-      }
-    }
-  }
+  "tags": []
+  // "docker-build": {
+  //   "executor": "nx:run-commands",
+  //   "defaultConfiguration": "production",
+  //   "options": {
+  //     "commands": [
+  //     ],
+  //     "parallel": false
+  //   },
+  //   "configurations": {
+  //     "production": {
+  //       "DockerContainerRegistry": "pgtgs/",
+  //       "AppPath": "./apps/tgs-web-template",
+  //       "ImageName": "tgs-web-template"
+  //     }
+  //   }
+  // }
 }
