@@ -66,24 +66,24 @@
       "options": {
         "lintFilePatterns": ["apps/tgs-web-t26/**/*.{ts,tsx,js,jsx}"]
       }
-    },
-    "docker-build": {
-      "executor": "nx:run-commands",
-      "defaultConfiguration": "production",
-      "options": {
-        "commands": [
-          "docker build -f {args.AppPath}/Dockerfile . -t {args.DockerContainerRegistry}{args.ImageName}:`date +%Y-%m%d-%H%M`"
-        ],
-        "parallel": false
-      },
-      "configurations": {
-        "production": {
-          "DockerContainerRegistry": "pgtgs/",
-          "AppPath": "./apps/tgs-web-t26",
-          "ImageName": "tgs-web-t26"
-        }
-      }
     }
+    // "docker-build": {
+    //   "executor": "nx:run-commands",
+    //   "defaultConfiguration": "production",
+    //   "options": {
+    //     "commands": [
+    //       "docker build -f {args.AppPath}/Dockerfile . -t {args.DockerContainerRegistry}{args.ImageName}:`date +%Y-%m%d-%H%M`"
+    //     ],
+    //     "parallel": false
+    //   },
+    //   "configurations": {
+    //     "production": {
+    //       "DockerContainerRegistry": "pgtgs/",
+    //       "AppPath": "./apps/tgs-web-t26",
+    //       "ImageName": "tgs-web-t26"
+    //     }
+    //   }
+    // }
   },
   "tags": []
 }
