@@ -33,7 +33,6 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import RegisterV2InitPhoneDialog from "@/components/project/auth/Dialogs/RegisterV2InitPhoneDialog";
 import RegisterV2InitEmailDialog from "@/components/project/auth/Dialogs/RegisterV2InitEmailDialog";
 
-
 const App: React.FC = () => {
   const { isLoading } = useInitSite();
   const gameTypeList = useGameTypeList();
