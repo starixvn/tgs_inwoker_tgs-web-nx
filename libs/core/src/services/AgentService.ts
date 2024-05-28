@@ -1,4 +1,4 @@
-import { WinLossReportDto, AgentInfotDto, PlayerInfoDto } from "@tgs-web-nx/types";
+import { WinLossReportDto, AgentInfotDto, PlayerInfoDto, AgentListInfoDto } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 
 export type WinLostConfig = {
@@ -58,4 +58,16 @@ export function PlayerList({ username, page, status }: UserConfig) {
   const queryKey = ["getPlayerList"];
 
   return { getPlayerList, queryKey };
+}
+
+export function AgentList({ username, page, status }: UserConfig) {
+  const apiUrl = `agent/direct-agent?AgentUsername=${username}&AgentStatus=${status}&page=${page}&rows=${20}`;
+
+  const getAgentList = () => {
+    return ApiService.get(apiUrl) as unknown as Promise<AgentListInfoDto>;
+  };
+
+  const queryKey = ["getAgentList"];
+
+  return { getAgentList, queryKey };
 }

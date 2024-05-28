@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAgentPage, useRwd } from "@tgs-web-nx/core/hooks";
+import { PlayerStatus, useAgentPage, useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 // import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router";
@@ -94,44 +94,46 @@ const PlayerInfoCards = (props: PropsType) => {
   return feching ? (
     <LoadingBlock size={30} />
   ) : (
-    playerInfo?.data.items.map((player, index) => {
-      const registerData = moment(player.registeredOn).format("YYYY-MM-DD hh:mm a");
-      const latestLoginData = moment(player.lastLoginOn).format("YYYY-MM-DD hh:mm a");
-      return (
-        <CardContainer key={index}>
-          <PlayerNameContainer>
-            <PlayNameTitle>玩家用户名</PlayNameTitle>
-            <PlayName>{player.playerUsername}</PlayName>
-          </PlayerNameContainer>
-          <PlayerInfoContainer>
-            <PlayInfo>
-              <PlayerInfoTitle>{i18n.t("agent.vipLevel")}</PlayerInfoTitle>
-              <PlayerInfoValue>{player.vipLevel}</PlayerInfoValue>
-            </PlayInfo>
-            <PlayInfo>
-              <PlayerInfoTitle>{i18n.t("agent.registeredTime")}</PlayerInfoTitle>
-              <PlayerInfoValue>{registerData}</PlayerInfoValue>
-            </PlayInfo>
-            <PlayInfo>
-              <PlayerInfoTitle>{i18n.t("agent.latestLogin")}</PlayerInfoTitle>
-              <PlayerInfoValue>{latestLoginData}</PlayerInfoValue>
-            </PlayInfo>
-            <PlayInfo>
-              <PlayerInfoTitle>{i18n.t("vip.totalDeposit")}</PlayerInfoTitle>
-              <PlayerInfoValue>{player.totalDepositAmount}</PlayerInfoValue>
-            </PlayInfo>
-            <PlayInfo>
-              <PlayerInfoTitle>{i18n.t("vip.totalVaildBet")}</PlayerInfoTitle>
-              <PlayerInfoValue>{player.totalWithdrawAmount}</PlayerInfoValue>
-            </PlayInfo>
-            <PlayInfo>
-              <PlayerInfoTitle>{i18n.t("agent.status")}</PlayerInfoTitle>
-              <PlayerInfoValue>{getStatusTranslation(player.playerStatus)}</PlayerInfoValue>
-            </PlayInfo>
-          </PlayerInfoContainer>
-        </CardContainer>
-      );
-    })
+    playerInfo?.data.items
+      .filter((player) => player.playerStatus !== PlayerStatus.REGISTERING)
+      .map((player, index) => {
+        const registerData = moment(player.registeredOn).format("YYYY-MM-DD hh:mm a");
+        const latestLoginData = moment(player.lastLoginOn).format("YYYY-MM-DD hh:mm a");
+        return (
+          <CardContainer key={index}>
+            <PlayerNameContainer>
+              <PlayNameTitle>{i18n.t("usertype.player")}</PlayNameTitle>
+              <PlayName>{player.playerUsername}</PlayName>
+            </PlayerNameContainer>
+            <PlayerInfoContainer>
+              <PlayInfo>
+                <PlayerInfoTitle>{i18n.t("agent.vipLevel")}</PlayerInfoTitle>
+                <PlayerInfoValue>{player.vipLevel}</PlayerInfoValue>
+              </PlayInfo>
+              <PlayInfo>
+                <PlayerInfoTitle>{i18n.t("agent.registeredTime")}</PlayerInfoTitle>
+                <PlayerInfoValue>{registerData}</PlayerInfoValue>
+              </PlayInfo>
+              <PlayInfo>
+                <PlayerInfoTitle>{i18n.t("agent.latestLogin")}</PlayerInfoTitle>
+                <PlayerInfoValue>{latestLoginData}</PlayerInfoValue>
+              </PlayInfo>
+              <PlayInfo>
+                <PlayerInfoTitle>{i18n.t("vip.totalDeposit")}</PlayerInfoTitle>
+                <PlayerInfoValue>{player.totalDepositAmount}</PlayerInfoValue>
+              </PlayInfo>
+              <PlayInfo>
+                <PlayerInfoTitle>{i18n.t("vip.totalVaildBet")}</PlayerInfoTitle>
+                <PlayerInfoValue>{player.totalWithdrawAmount}</PlayerInfoValue>
+              </PlayInfo>
+              <PlayInfo>
+                <PlayerInfoTitle>{i18n.t("agent.status")}</PlayerInfoTitle>
+                <PlayerInfoValue>{getStatusTranslation(player.playerStatus)}</PlayerInfoValue>
+              </PlayInfo>
+            </PlayerInfoContainer>
+          </CardContainer>
+        );
+      })
   );
 };
 
