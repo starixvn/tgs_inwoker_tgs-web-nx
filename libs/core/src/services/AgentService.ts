@@ -1,4 +1,8 @@
-import { WinLossReportDto, WinLostBreadcrumbDto } from '@tgs-web-nx/types';
+<<<<<<< HEAD
+import { ProfitShareDto, WinLossReportDto, WinLostBreadcrumbDto } from '@tgs-web-nx/types';
+=======
+import { WinLossReportDto, ProfitShareDto } from '@tgs-web-nx/types';
+>>>>>>> t29/agent-sean-v2
 import { ApiService } from "../api-services/services/ApiService";
 
 type BreadcrumbConfig = {
@@ -44,4 +48,8 @@ const getBreadcrumb = ({
 export const WinLostReport = {
     getReport,
     getBreadcrumb
+}
+
+export const ProfitShare = {
+    getProfitShare: () => ApiService.get('AgentDividendReport/beforehand') as unknown as Promise<ProfitShareDto>
 }
