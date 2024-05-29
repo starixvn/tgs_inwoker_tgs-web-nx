@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  FilterTagTypeEnum,
+  useGetLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -37,7 +42,12 @@ const NoDataText = styled.div`
 `;
 
 const NavCategory = () => {
-  const { activeNavPopupGameType, activeNavPopupGameTypeKey, handleChangeGameType, handleChangeActiveProviderFilterTag } = useHomeGameContext();
+  const {
+    activeNavPopupGameType,
+    activeNavPopupGameTypeKey,
+    handleChangeGameType,
+    handleChangeActiveProviderFilterTag,
+  } = useHomeGameContext();
   const history = useHistory();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
 
@@ -56,7 +66,6 @@ const NavCategory = () => {
   const hasMappingData = !!navPopupCategoryList.length;
 
   // activeNavPopupGameType just for nav popup displays vendor list
-
   return (
     <Wrapper>
       <DesktopCategoryContentWrapper>
@@ -65,13 +74,16 @@ const NavCategory = () => {
             const { code: gpCode, status, name } = provider;
 
             if (gpCode === "BC") return null;
+            if (config.brand === "MOPH" && gpCode === "PPTF") return null;
             return (
               <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
-                imageUrl={`${import.meta.env.BASE_URL
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.webp`}
+                bgUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
+                imageUrl={`${
+                  import.meta.env.BASE_URL
+                }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.webp`}
                 launchGame={() => enterVendorFilter(gpCode)}
                 status={status}
               />
