@@ -108,8 +108,11 @@ const AgentPlayerList = () => {
     refetch();
   };
 
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage + 1);
+  const handleChangePage = async (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    await setPage(newPage + 1);
     refetch();
   };
 
@@ -149,8 +152,8 @@ const AgentPlayerList = () => {
                 <TableCell>{i18n.t("agent.vipLevel")}</TableCell>
                 <TableCell>{i18n.t("agent.registeredTime")}</TableCell>
                 <TableCell>{i18n.t("agent.latestLogin")}</TableCell>
-                <TableCell>{i18n.t("vip.totalDeposit")}</TableCell>
-                <TableCell>{i18n.t("vip.totalVaildBet")}</TableCell>
+                <TableCell>{i18n.t("agent.totalDeposit")}</TableCell>
+                <TableCell>{i18n.t("agent.totalWithdraw")}</TableCell>
                 <TableCell>{i18n.t("agent.status")}</TableCell>
               </TableRow>
             </TableHead>

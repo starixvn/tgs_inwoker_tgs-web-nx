@@ -107,8 +107,11 @@ const AgentList = () => {
     refetch();
   };
 
-  const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage + 1);
+  const handleChangePage = async (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    await setPage(newPage + 1);
     refetch();
   };
 

@@ -63,6 +63,7 @@ const PlayerInfoTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 `;
 
 const PlayerInfoValue = styled.div`
@@ -119,11 +120,11 @@ const PlayerInfoCards = (props: PropsType) => {
                 <PlayerInfoValue>{latestLoginData}</PlayerInfoValue>
               </PlayInfo>
               <PlayInfo>
-                <PlayerInfoTitle>{i18n.t("vip.totalDeposit")}</PlayerInfoTitle>
+                <PlayerInfoTitle>{i18n.t("agent.totalDeposit")}</PlayerInfoTitle>
                 <PlayerInfoValue>{player.totalDepositAmount}</PlayerInfoValue>
               </PlayInfo>
               <PlayInfo>
-                <PlayerInfoTitle>{i18n.t("vip.totalVaildBet")}</PlayerInfoTitle>
+                <PlayerInfoTitle>{i18n.t("agent.totalWithdraw")}</PlayerInfoTitle>
                 <PlayerInfoValue>{player.totalWithdrawAmount}</PlayerInfoValue>
               </PlayInfo>
               <PlayInfo>

@@ -7,7 +7,7 @@ import AgentInfo from "./index";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const AgentPage = () => {
-  useUpdatePageName("代理資訊");
+  useUpdatePageName(i18n.t("agent.agentInfo"));
   const history = useHistory();
 
   const { isDesktopSize } = useRwd();

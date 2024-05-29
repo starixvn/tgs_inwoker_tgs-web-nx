@@ -40,8 +40,13 @@ const PlayName = styled.div`
 
 const PlayerInfoContainer = styled.div`
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+  ::after {
+    content: "";
+    flex: 0 1 100px;
+  }
 `;
 
 const PlayInfo = styled.div`
@@ -61,6 +66,7 @@ const PlayerInfoTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 `;
 
 const PlayerInfoValue = styled.div`
