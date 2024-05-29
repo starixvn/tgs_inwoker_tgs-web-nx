@@ -1,12 +1,10 @@
-import { ChangeEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
-import styled from "styled-components";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Button,
   FormControl,
   MenuItem,
   SelectChangeEvent,
@@ -18,98 +16,24 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import { TextField, Select } from "@mui/material";
-import moment from "moment";
-import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core";
-import { useQuery } from "@tanstack/react-query";
+import { TextField, Select, Breadcrumbs } from "@mui/material";
 import { AgentContext } from "../AgentContextProvider";
 import { AgentButton } from "../AgentButton";
 import ReportCard from "./components/ReportCard";
+import { TableKey, mapTable } from "./config";
+import { HintIconWrapper, WinlossReportContainer, FormulaWrapper, FormulaContainer, ScrollArea, TableWrapper, NoData, Wrapper, UserName } from "./components";
+import { useWinlossReport } from "./hooks";
 import { theme } from "@/theme";
-import { media } from "@/theme/breakpoints";
 import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
 import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWithIntervalSelector";
 import InfoIcon from "@/assets/t18/images/info.png";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";
 import Dialog from "@/components/UI/Dialog/Dialog";
 
-
-const WinlossReportContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-`;
-
-const FormulaWrapper = styled(Wrapper)`
-  flex-direction: column;
-  gap: 10px;
-  ${media.sm} {
-    flex-direction: row;
-  }
-`;
-
-const FormulaContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const UserNameBreadcrumbs = styled.div`
-  color: ${({ theme }) => theme.blue50};
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 23px;
-`;
-
-const HintIconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-
-  & > img {
-    cursor: pointer;
-  }
-`;
-
-const NoData = styled.div`
-  padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid rgba(83, 88, 103, 0.3);
-`;
-
-const TableWrapper = styled.div`
-  min-width: 890px;
-`;
-
-const ScrollArea = styled.div`
-  width: 100%;
-  overflow-x: auto;
-
-  &::-webkit-scrollbar{
-      height: 4px;
-    }
-  &::-webkit-scrollbar-track {
-    background-color: #E7F1FB;
-    border-radius: 10px;
-  }
-  &::-webkit-scrollbar-thumb{
-    border-radius: 10px;
-    background-color: #535867;
-  }
-`;
-
-
-
 const WinlossReport = () => {
   const { isDesktopSize } = useRwd();
   const [modalOpen, setModalOpen] = useState(false);
-  const [memberType, setMemberType] = useState("agent");
-  const [searchValue, setSearchValue] = useState("");
-  const { account } = useAccountStore();
-  const username = account.info.member_username;
+  
   const {winLossReport: {
     dateRangeInfo,
     handleDateFromChange,
@@ -118,71 +42,88 @@ const WinlossReport = () => {
     isSelectedDateRange,
   }} = useContext(AgentContext);
 
-  const config: WinLostConfig = {
-    from: moment(dateRangeInfo.dateFrom).format('YYYY-MM-DD'),
-    to: moment(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
+  const {
     memberType,
-    username: searchValue ? searchValue : username,
-    downline: !!searchValue
-  };
-  const {getWinLossReport, queryKey} = WinLostReport(config);
-  const {refetch, data, isSuccess, isFetching, isFetched} = useQuery({queryKey, queryFn: getWinLossReport, enabled: false});
-  const hasData = data && data.data.items.length > 0;
-  
-  const handleOnChange = (e: SelectChangeEvent) => {
-    setMemberType(e.target.value);
-  }
-
-  const handleOnSearch = () => {
-    refetch()
-  }
-
-  const handleOnSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value)
-  }
+    searchValue,
+    setSearchValue, 
+    setMemberType, 
+    handleOnClickUsername,
+    report,
+    breadCrumb,
+    usernames,
+    handleOnSearch
+  } = useWinlossReport(dateRangeInfo);
 
   const renderData = () => {
-    if(isSuccess) {
-      return data.data.items.map((transactionDetail) => {
+    if(report.hasData) {
+      return report.items?.map((transactionDetail) => {
         const {
+            username,
             agentSpecial,
-            agentTotal,
             agentWinLoss,
-            companySpecial,
-            companyTotal,
-            companyWinLoss,
             id,
             memberType,
             roundCount,
             special,
             turnover,
-            username,
             winLoss,
         } = transactionDetail;
-  
+        
+        const cells: Record<TableKey, string | number> = {
+          username,
+          memberType, 
+          roundCount, 
+          turnover, 
+          winLoss, 
+          special, 
+          profit: winLoss - special, 
+          agentWinLoss, 
+          agentSpecial, 
+          agentProfit: agentWinLoss - agentSpecial
+        };
+        
         return (
           <TableRow key={id}>
-            <TableCell>{username}</TableCell>
-            <TableCell>{memberType}</TableCell>
-            <TableCell>{agentTotal}</TableCell>
-            {/* <TableCell>{validBet}</TableCell> */}
-            <TableCell>{winLoss}</TableCell>
-            <TableCell>
-              <HintIconWrapper>
-                <img
-                  src={HintIcon}
-                  alt="hint"
-                  onClick={() => {
-                    setModalOpen(true);
+            {Object.keys(mapTable).map((row, i) => {
+              
+              if(row === 'username' && cells['memberType'] === 'agent') {
+                return (
+                <TableCell 
+                  key={i} 
+                  onClick={() => handleOnClickUsername(cells.username as string, memberType)}
+                  sx={{
+                    color: "#23507D",
+                    textDecoration: "underline",
+                    cursor: "pointer",
                   }}
-                />
-                <span>{agentSpecial}</span>
-              </HintIconWrapper>
-            </TableCell>
-            <TableCell>{agentWinLoss}</TableCell>
-            <TableCell>{companyWinLoss}</TableCell>
-            <TableCell>{companySpecial}</TableCell>
-            <TableCell>{companyTotal}</TableCell>
+                >
+                  {cells.username}
+                </TableCell>
+              )
+              }
+
+
+              if (row === 'special') {
+                return (
+                  <TableCell key={i}>
+                    <HintIconWrapper>
+                      <img
+                        src={HintIcon}
+                        alt="hint"
+                        onClick={() => {
+                          setModalOpen(true);
+                        }}
+                      />
+                      <span>{cells[row]}</span>
+                    </HintIconWrapper>
+                </TableCell>
+                )
+              }
+
+              return (
+                <TableCell key={i}>{cells[row as TableKey]}</TableCell>
+              )
+            })}
           </TableRow>
         );
       })
@@ -191,18 +132,20 @@ const WinlossReport = () => {
     return null;
   }
 
-  
-
   return (
     <WinlossReportContainer>
       <Wrapper>
-        <Select defaultValue={memberType} sx={{ width: "150px" }} onChange={handleOnChange}>
+        <Select 
+          defaultValue={memberType} 
+          sx={{ width: "150px" }} 
+          onChange={(e)=> setMemberType(e.target.value)}
+        >
           <MenuItem value={"agent"}>{i18n.t("usertype.agent")} </MenuItem>
           <MenuItem value={"player"}>{i18n.t("usertype.player")} </MenuItem>
         </Select>
         <TextField
           value={searchValue}
-          onChange={handleOnSearchValue}
+          onChange={e => setSearchValue(e.target.value)}
           placeholder={i18n.t("common.username")}
           sx={{
             marginLeft: "10px",
@@ -226,7 +169,7 @@ const WinlossReport = () => {
               marginLeft: "20px",
             }}
             onClick={handleOnSearch}
-            disabled={isFetching}
+            disabled={report.isFetching || breadCrumb.isFetching}
           >
             {i18n.t("common.search")}
           </AgentButton>
@@ -242,11 +185,11 @@ const WinlossReport = () => {
         />
       </Wrapper>
       <FormulaWrapper>
-        <Accordion>
+        <Accordion sx={{'display': 'flex', 'alignItems': 'flex-start'}}>
           <AccordionSummary
             aria-controls="panel1-content"
             id="panel1-header"
-            style={{width: "fit-content", padding: "0"}}
+            sx={{flexShrink: '0'}}
           >
             <img src={InfoIcon} width={24} height={24} alt="info" />
           </AccordionSummary>
@@ -264,41 +207,47 @@ const WinlossReport = () => {
           </FormulaContainer>
           </AccordionDetails>
         </Accordion>
-        
-        
       </FormulaWrapper>
-      <UserNameBreadcrumbs>Username</UserNameBreadcrumbs>
+      <Breadcrumbs sx={{color: theme.blue50}}>
+          {usernames.map((name, i) => <UserName key={i}>{name}</UserName>)}
+      </Breadcrumbs>
       {isDesktopSize ? (
         <ScrollArea>
           <TableWrapper>
             <Table>
               <TableHead>
+                {/* 玩家、代理 */}
                 <TableRow sx={{ background: theme.blue20 }}>
-                  <TableCell colSpan={7} sx={{ textAlign: "center" }}>
+                  <TableCell colSpan={7} sx={{ textAlign: "center", borderRight: "1px solid #e0e0e0" }}>
                     {i18n.t("usertype.player")}
                   </TableCell>
                   <TableCell colSpan={3} sx={{ textAlign: "center" }}>
                     {i18n.t("usertype.agent")}
                   </TableCell>
                 </TableRow>
+
+                {/* 分類 */}
                 <TableRow sx={{ background: theme.blue10 }}>
-                  <TableCell>{i18n.t("common.username")}</TableCell>
-                  <TableCell>类型</TableCell>
-                  <TableCell>订单数</TableCell>
-                  <TableCell>有效投注</TableCell>
-                  <TableCell>{i18n.t("report.winloss")}</TableCell>
-                  <TableCell>特别</TableCell>
-                  <TableCell>盈亏</TableCell>
-                  <TableCell>{i18n.t("report.winloss")}</TableCell>
-                  <TableCell>特别</TableCell>
-                  <TableCell>盈亏</TableCell>
+                  {Object.values(mapTable).map((t, i) => {
+                    if (i === 6) {
+                      return (
+                        <TableCell key={i} sx={{borderRight: "1px solid #e0e0e0"}}>
+                          {t}
+                        </TableCell>
+                      )
+                    }
+
+                    return <TableCell key={i}>{t}</TableCell>
+                  })}
                 </TableRow>
+
               </TableHead>
               <TableBody>
+                {/* 報表資料 */}
                 {renderData()}
               </TableBody>
             </Table>
-            {!hasData && <NoData>沒有資料</NoData>}
+            {!report.hasData && <NoData>沒有資料</NoData>}
           </TableWrapper>
         </ScrollArea>
       ) : (

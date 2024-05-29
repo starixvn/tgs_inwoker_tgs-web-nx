@@ -16,16 +16,11 @@ import iconAgent from "@/assets/t29/images/account/navItem/icon-agent.svg";
 import { media } from "@/theme/breakpoints";
 
 const AgentTabContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  gap: 0px;
+  display: grid;
+  gap: 20px;
   ${media.sm} {
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 1fr;
   }
 `;
 
