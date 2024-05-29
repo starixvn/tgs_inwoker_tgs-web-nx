@@ -33,7 +33,7 @@ const ChildContainer = styled.div`
   padding: 36px 24px;
 `;
 
-type Props = {
+export type CommonDialogProps = {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
@@ -41,7 +41,7 @@ type Props = {
   fullscreenOnMobile?: boolean;
 } & DialogProps;
 
-const Dialog = ({ open, onClose, children, fullscreenOnMobile = true, ...others }: Props) => {
+const Dialog = ({ open, onClose, children, fullscreenOnMobile = true, ...others }: CommonDialogProps) => {
   const { isDesktopSize } = useRwd();
 
   return (

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { ProfitShareDto, WinLossReportDto, WinLostBreadcrumbDto } from '@tgs-web-nx/types';
-=======
-import { WinLossReportDto, ProfitShareDto } from '@tgs-web-nx/types';
->>>>>>> t29/agent-sean-v2
+import { ProfitShareDto, WinLossReportDto, WinLostBreadcrumbDto, } from '@tgs-web-nx/types';
 import { ApiService } from "../api-services/services/ApiService";
 
 type BreadcrumbConfig = {
@@ -28,8 +24,6 @@ const getReport = ({
     rows = 20,
     memberType = 'agent',
 }: WinLostConfig) => {
-    console.log({downline, username});
-    
     const apiUrl = `AgentWinLossReport/agentWinLoss?username=${username}&from=${from}T16:00:00.000Z&to=${to}T16:00:00.000Z&downline=${downline}&page=${page}&rows=${rows}&memberType=${memberType}`;
 
     return ApiService.get(apiUrl) as unknown as Promise<WinLossReportDto>

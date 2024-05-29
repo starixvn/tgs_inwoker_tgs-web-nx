@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
-import { useAccountStore, WinLostConfig, WinLostReport, WinLostBreadcrumb } from "@tgs-web-nx/core";
+import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
 import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 
@@ -52,8 +52,7 @@ export const useWinlossReport = (dateRangeInfo: DateRangeInfo) => {
 
     const breadCrumb = {
         refetch: refetchBreadCrumb,
-        items: breadCrumbData?.data,
-        hasData: breadCrumbData?.data && breadCrumbData?.data.length > 0,
+        data: breadCrumbData?.data,
         isFetching: isFetchingBreadCrumbData,
         update: () => setUsernames(breadCrumbData?.data.map(row => row.username) ?? [])
     }
@@ -62,13 +61,6 @@ export const useWinlossReport = (dateRangeInfo: DateRangeInfo) => {
         config.username = searchValue ? searchValue : username;
         report.refetch();
         breadCrumb.refetch();
- 
-        if(breadCrumb.hasData) {
-            breadCrumb.update();
-            return;
-        }
-
-        setUsernames([]);
     }
 
     const handleOnClickUsername = (username: string, memberType: string) => {
@@ -80,6 +72,10 @@ export const useWinlossReport = (dateRangeInfo: DateRangeInfo) => {
 
         setUsernames([...usernames, username])
     }
+
+    useEffect(() => {
+        breadCrumb.update();
+    }, [breadCrumb.data])
 
     return {
         setSearchValue,
