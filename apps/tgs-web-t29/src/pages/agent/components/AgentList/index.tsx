@@ -46,6 +46,8 @@ const NoData = styled.div`
   }
 `;
 
+const pageSize = 20;
+
 const AgentList = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { isDesktopSize, isMobileSize } = useRwd();
@@ -60,12 +62,17 @@ const AgentList = () => {
     username: userName,
     status: userStatus === "all" ? "" : userStatus,
     page: page,
+    pageSize: pageSize,
   };
 
-  const { getAgentList, queryKey } = AgentListService(config);
-  const { refetch, data, isSuccess, isFetching } = useQuery({
-    queryKey,
-    queryFn: getAgentList,
+  const mobileConfig = {
+    ...config,
+    pageSize: 999,
+  };
+
+  const { data, refetch, isSuccess, isFetching } = useQuery({
+    queryKey: ["getAgentList"],
+    queryFn: () => AgentListService.getAgentList(isDesktopSize ? config : mobileConfig),
     enabled: false,
   });
   const hasData = data && data.data.items.length > 0;
@@ -191,7 +198,7 @@ const AgentList = () => {
             component="div"
             rowsPerPageOptions={[]}
             count={totalCount}
-            rowsPerPage={20}
+            rowsPerPage={pageSize}
             page={page - 1}
             onPageChange={handleChangePage}
             sx={{
