@@ -1,4 +1,4 @@
-import { ProfitShareDto, WinLossReportDto, WinLostBreadcrumbDto, } from '@tgs-web-nx/types';
+import { AgentInfotDto, AgentListInfoDto, PlayerInfoDto, ProfitShareDto, WinLossReportDto, WinLostBreadcrumbDto, } from '@tgs-web-nx/types';
 import { ApiService } from "../api-services/services/ApiService";
 
 type BreadcrumbConfig = {
@@ -14,6 +14,15 @@ export type WinLostConfig = {
     rows?: number,
 } & BreadcrumbConfig
 
+
+export type UserConfig = {
+    username?: string;
+    status?: string | null;
+    page?: number;
+    rows?: number;
+  };
+  
+  
 
 const getReport = ({
     username,
