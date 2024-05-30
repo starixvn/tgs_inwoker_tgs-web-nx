@@ -6,6 +6,8 @@ import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/featu
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useGoToHomePage } from "@tgs-web-nx/core/hooks";
 import config from "@tgs-web-nx/config";
+import { Avatar, IconButton, Menu } from "@mui/material";
+import React, { useRef } from "react";
 import Icon from "@/components/project/Icon";
 import TransferButtonGroup from "@/layouts/components/Header/components/TransferButtonGroup";
 import iconAccount from "@/assets/t29/images/header/icon-account.svg";
@@ -14,6 +16,8 @@ import iconInboxBlue from "@/assets/t29/images/header/icon-inbox-blue.svg";
 import iconLogout from "@/assets/t29/images/header/icon-logout.svg";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { media } from "@/theme/breakpoints";
+import SocialMediaV2 from "@/components/project/SocialMediaV2";
+import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -50,7 +54,7 @@ const AccountHeaderContent = () => {
   const history = useHistory();
   const { account } = useAccountStore();
   const { handleLogout } = useAuthContext();
-  const { isDesktopSize } = useRwd();
+  const { isDesktopSize, isMobileSize } = useRwd();
   const goToHomePage = useGoToHomePage();
   const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
   const currentBalance =
@@ -68,9 +72,43 @@ const AccountHeaderContent = () => {
     await handleLogout();
     goToHomePage();
   };
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const menuRef = useRef(null);
 
   return (
     <ButtonContainer>
+      {isMobileSize && (
+        <>
+          <IconButton onClick={handleClick} size="small">
+            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+          </IconButton>
+          <div ref={menuRef} style={{ display: "none" }} />
+          <Menu
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl && anchorEl !== menuRef.current)}
+            onClose={handleClose}
+            onClick={handleClose}
+            slotProps={{
+              paper: {
+                sx: {
+                  borderRadius: "32px",
+                  background: theme.blue20,
+                },
+              },
+            }}
+          >
+            <SocialMediaV2 />
+          </Menu>
+        </>
+      )}
+
       <UsernameContainer onClick={() => history.push("/account")}>{username}</UsernameContainer>
       <Balance>{`${config.features.currencySymbol}${currentBalance}`}</Balance>
 

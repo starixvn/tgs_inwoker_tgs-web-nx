@@ -1,4 +1,4 @@
-import { GerMaintenanceResDto, GetMarqueeResDto } from "@tgs-web-nx/types";
+import { GerMaintenanceResDto, GetMarqueeResDto, SocialMediaResDto } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 
 function GetMarquee(language: string) {
@@ -9,7 +9,12 @@ function GetMaintenance() {
   return ApiService.get(`brand/maintenance`) as unknown as Promise<GerMaintenanceResDto>;
 }
 
+function GetSocialMediaList() {
+  return ApiService.get(`brand/social`) as unknown as Promise<SocialMediaResDto>;
+}
+
 export const UiService = {
   GetMarquee,
   GetMaintenance,
+  GetSocialMediaList,
 };

@@ -14,6 +14,7 @@ import qrcode_skype from "@/assets/t29/images/qrcode/qrcode_skype.png";
 import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
 import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
+import SocialMediaV2 from "@/components/project/SocialMediaV2";
 
 const FooterContainer = styled.footer`
   display: none;
@@ -102,13 +103,11 @@ const Footer = () => {
   const history = useHistory();
   const [isOpenChatQRcode, setIsOpenChatQRcode] = useState(false);
   const brand = config.brand;
-  const {isShowDownloadApp, isShowChatCustomerService} = brandConfig[mapBrandName(brand)];
+  const { isShowDownloadApp, isShowChatCustomerService } = brandConfig[mapBrandName(brand)];
 
   const partnerList = providerList.map((provider) => {
     return provider.name;
   });
-
-  
 
   const navigateTo = (pageName: string) => {
     history.push("/" + pageName);
@@ -131,7 +130,7 @@ const Footer = () => {
     {
       name: "WeChat",
       url: qrcode_wechat,
-    }
+    },
   ];
 
   return (
@@ -150,17 +149,16 @@ const Footer = () => {
           <GroupContent>V1.1.3795703</GroupContent>
           <GroupTitle>Follow Us</GroupTitle>
           <SocialMedia />
+          <SocialMediaV2 style={{ padding: "0px", justifyContent: "start" }} />
         </FooterGroup>
 
         <FooterGroup>
           <GroupTitle>Quick Links</GroupTitle>
-          {isShowChatCustomerService &&
+          {isShowChatCustomerService && (
             <GroupContent>
-              <Link onClick={() => setIsOpenChatQRcode(true)}>
-                {i18n.t("T13.quickLink.247")}
-              </Link>
+              <Link onClick={() => setIsOpenChatQRcode(true)}>{i18n.t("T13.quickLink.247")}</Link>
             </GroupContent>
-          }
+          )}
           <GroupContent>
             <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
           </GroupContent>
@@ -177,12 +175,12 @@ const Footer = () => {
               {i18n.t("T13.quickLink.reponsible")}
             </Link>
           </GroupContent>
-          {isShowDownloadApp &&
+          {isShowDownloadApp && (
             <>
               <DownLoadText>Download App</DownLoadText>
               <img src={QRcodeUrl} width={117} alt="QRcode" />
             </>
-          }
+          )}
         </FooterGroup>
 
         <FooterGroup>
@@ -195,7 +193,12 @@ const Footer = () => {
         </FooterGroup>
       </FooterGroups>
 
-      {isOpenChatQRcode && <ChatQRcodePopup setIsOpenChatQRcode={setIsOpenChatQRcode} chatQRcodeList={chatQRcodeList} />}
+      {isOpenChatQRcode && (
+        <ChatQRcodePopup
+          setIsOpenChatQRcode={setIsOpenChatQRcode}
+          chatQRcodeList={chatQRcodeList}
+        />
+      )}
     </FooterContainer>
   );
 };
