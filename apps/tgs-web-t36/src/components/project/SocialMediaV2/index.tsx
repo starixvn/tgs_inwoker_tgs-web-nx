@@ -9,6 +9,7 @@ const SocialMediaContainer = styled.div`
   gap: 10px;
   padding: 10px;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 interface Props {
