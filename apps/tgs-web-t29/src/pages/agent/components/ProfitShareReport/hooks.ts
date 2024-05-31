@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { ProfitShare } from "@tgs-web-nx/core";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { groupBy } from "@tgs-web-nx/utils";
 import { TProfitShare } from "@tgs-web-nx/types";
 import { SelectChangeEvent } from "@mui/material";
 import moment from "moment";
+import { AgentContext } from "../AgentContextProvider";
 
 type Config = {
   keys: string[],
@@ -21,13 +22,16 @@ const formatSentOn = (date: string | null) => date ? '已派發' : '未派發';
 export const useProfitShareReport = () => {
   const [previousKey, setPreviousKey] = useState('');
   const [currentKey, setCurrentKey] = useState('');
-
+  const {dialog} = useContext(AgentContext);
   const {data, refetch, isFetched} = useQuery({
     queryKey: ['profitShare'],
     queryFn: ProfitShare.getProfitShare,
     enabled: false,
   })
-
+  
+  console.log(data?.data.errmsgid);
+  
+  
 
   const [previous, current] = [data?.data?.previous ?? [], data?.data?.current ?? []];
 
@@ -68,11 +72,17 @@ export const useProfitShareReport = () => {
     };
   }, [lists.current.keys.length, lists.previous.keys.length])
 
-
+  useEffect(() => {
+    if(data?.data.errmsgid) {
+      dialog.onOpen(data?.data.errmsgid);
+    }
+  }, [data?.data.errmsgid])
 
   return {
     lists,
     formatDate,
-    formatSentOn
+    formatSentOn,
+    data,
+    isFetched
   }
 }

@@ -12,6 +12,8 @@ import {
 import { useProfitShareReport } from "./hooks";
 import { AgentSelect } from "./components";
 import Loading from "@/components/UI/Loading";
+import { useContext } from "react";
+import { AgentContext } from "../AgentContextProvider";
 
 
 const ProfitShareContainer = styled.div`
@@ -47,12 +49,12 @@ const ProfitShareReport = () => {
   const { imageId } = useImageActions();
   const { affiliateLink } = useRebateTable();
   const { isDesktopSize } = useRwd();
-  const {lists: {current, previous}, formatDate, formatSentOn} = useProfitShareReport();
+  
+  const {lists: {current, previous}, formatDate, formatSentOn, data, isFetched} = useProfitShareReport();
   const currentData = current.data[current.currentKey] && current.data[current.currentKey][0];
   const previousData = previous.data[previous.currentKey] && previous.data[previous.currentKey][0];
 
-
-  if(!current.data[current.currentKey] || !previous.data[previous.currentKey]) {
+  if(!isFetched) {
     return <Loading show /> 
   }
 
