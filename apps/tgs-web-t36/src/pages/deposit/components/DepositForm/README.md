@@ -10,10 +10,7 @@
 │   ├── DepositPromotion.tsx // 存款活動下拉選單
 │   ├── DepositSelectBankName.tsx // 存款 請選擇 電話號碼 / 帳號 選單
 │   ├── DepositSubmitButton.tsx // 存款送出表單按鈕
-│   ├── Extended // Deposit api 回傳的 channel.extended UI
-│   │   ├── BankExtended.tsx // Bank 相關 channel.extended UI
-│   │   ├── ExtendedLayout.tsx // 預設 channel.extended UI
-│   │   └── index.tsx
+│   ├── DepositExtended.tsx // Deposit api 回傳的 channel.extended UI
 │   ├── FormLayout // 存款表單對應 UI
 │   │   ├── ALI2ALILayout.tsx 
 │   │   ├── BankLayout.tsx
@@ -28,10 +25,7 @@
 │   ├── Upload.tsx // 上傳檔案
 │   ├── index.ts
 │   └── styled.tsx 
-├── hooks.tsx // DepositForm 共用 hooks
-├── index.tsx
-├── types.ts // DepositForm 共用 type
-└── utils.tsx // DepositForm 共用 utils
+└── index.tsx
 ```
 
 ## Intro
@@ -48,3 +42,8 @@
 1. 部分代碼因原本邏輯幾乎不可考，加上 toggle feature 簡直是五金大賣場，若有遇到類似 config.feature 的判斷只能先採用複製貼上大絕招，待有朝一日能優化得更直觀，若有遇到相關 issue 請先比對 S3 上面的設定檔。
 2. 引用 ./components 中的所有元件時，請統一由 ./components 中 import，可以保持其他檔案在 import 時的簡潔（畢竟專案內已經夠多 import ）
 3. 其餘若有不懂的部分請找 Sean
+
+## 共用檔案路徑
+
+1. types: libs\types\src\types\deposit
+2. hooks: libs\core\hooks\src\hooks\pages\deposit\useDepositForm

@@ -1,4 +1,9 @@
+/**
+ * @fileoverview 存款共用型別
+ */
+
 import { ReactNode } from 'react';
+
 
 export type DispatchFormData = (value: DepositFormState) => void
 export type DepositAmountRange = {
@@ -10,6 +15,7 @@ export type DepositAmountRange = {
 export type DepositFormState = DepositFormData & DepositAmountRange
 export type DepositFormContextState = {formData: DepositFormState, setFormData: DispatchFormData}
 
+// 存款表單狀態
 export type DepositFormData = {
   amount: string;
   paymentid: string;
@@ -31,6 +37,7 @@ export type FormContainerProps = {
   label: string;
 }
 
+// 存款選項
 export type Option = {
   iconUrl?: string,
   isActive: boolean,
@@ -39,6 +46,7 @@ export type Option = {
   code: string,
 }
 
+// 存款活動
 export enum DepositPromotionEnum {
   FirstDeposit = "FirstDeposit",
   DailySecondDeposit = "DailySecondDeposit",
@@ -75,7 +83,7 @@ export enum GroupCodeEnum {
   QRIS = 'QRIS',
 }
 
-// 自定義的 MovnCode
+// 自定義的 MovnCode 此為 t29 完全客製化
 export enum MovnCodeEnum {
   NET = 'NET', // 網關
   QR = 'QR', // 掃碼

@@ -1,5 +1,9 @@
-import { useWalletStore, useAccountStore} from "@tgs-web-nx/core";
+/**
+ * @fileoverview 存款共用 hooks
+ * 此為所有 template 共用的存款方法
+ */
 import { useState, useEffect, useMemo, useContext, createContext} from "react";
+import { useWalletStore, useAccountStore} from "@tgs-web-nx/core";
 import { groupBy, i18n } from '@tgs-web-nx/utils';
 import { FilterDepositList, Option, GroupCodeEnum, MovnCodeEnum, DepositFormState, DepositFormContextState } from '@tgs-web-nx/types';
 import { useNotifications } from '@tgs-web-nx/core/features';
@@ -271,7 +275,7 @@ export const useUploadFile = () => {
 }
 
 /**
- * 第三方存款 dialog
+ * 第三方存款
  */
 export const useThirdPartyDeposit = () => {
   const {performDeposit} = useWalletStore();
