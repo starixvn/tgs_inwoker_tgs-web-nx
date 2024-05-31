@@ -24,11 +24,16 @@ const FormulaContainer = styled.div`
   flex-direction: column;
 `;
 
-const UserName = styled.p`
+const UserName = styled.button<{
+  $isDisable: boolean;
+}>`
+  cursor: ${props => props.$isDisable ? 'auto' : 'pointer'};
   color: ${({ theme }) => theme.blue50};
   font-size: 20px;
   font-weight: 700;
   line-height: 23px;
+  background: none;
+  border: none;
 `;
 
 const HintIconWrapper = styled.div`

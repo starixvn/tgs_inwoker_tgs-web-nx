@@ -53,6 +53,9 @@ export function useDateRange() {
       case 2:
         newDateFrom = addMonths(today, -1);
         break;
+      case 3:
+        newDateFrom = addDays(today, -1);
+        break;
     }
     setIsSelectedDateRange(false);
 

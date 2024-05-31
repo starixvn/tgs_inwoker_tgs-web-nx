@@ -51,6 +51,7 @@ const ProfitShareReport = () => {
   const currentData = current.data[current.currentKey] && current.data[current.currentKey][0];
   const previousData = previous.data[previous.currentKey] && previous.data[previous.currentKey][0];
 
+
   if(!current.data[current.currentKey] || !previous.data[previous.currentKey]) {
     return <Loading show /> 
   }

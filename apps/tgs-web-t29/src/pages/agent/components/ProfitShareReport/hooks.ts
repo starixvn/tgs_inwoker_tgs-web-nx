@@ -28,6 +28,7 @@ export const useProfitShareReport = () => {
     enabled: false,
   })
 
+
   const [previous, current] = [data?.data?.previous ?? [], data?.data?.current ?? []];
 
   const getData = (list: TProfitShare[]) => groupBy(list, row => row.dividendPercentage);
