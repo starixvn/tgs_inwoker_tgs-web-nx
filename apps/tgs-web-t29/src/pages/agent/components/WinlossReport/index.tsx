@@ -8,7 +8,6 @@ import {
   FormControl,
   MenuItem,
   SelectChangeEvent,
-  
   Table,
   TableBody,
   TableCell,
@@ -19,40 +18,41 @@ import {
 import { TextField, Select, Breadcrumbs } from "@mui/material";
 import { AgentContext } from "../AgentContextProvider";
 import { AgentButton } from "../AgentButton";
+import DateRangeWithDatePicker from "../DateRangeWithDatePicker";
+import DateRangeWithIntervalSelector from "../DateRangeWithIntervalSelector";
 import ReportCard from "./components/ReportCard";
 import { TableKey, mapTable } from "./config";
 import { HintIconWrapper, WinlossReportContainer, FormulaWrapper, FormulaContainer, ScrollArea, TableWrapper, NoData, Wrapper, UserName } from "./components";
 import { useWinlossReport } from "./hooks";
 import { theme } from "@/theme";
-import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
-import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWithIntervalSelector";
 import InfoIcon from "@/assets/t18/images/info.png";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";
 import Dialog from "@/components/UI/Dialog/Dialog";
+
 
 const WinlossReport = () => {
   const { isDesktopSize } = useRwd();
   const [modalOpen, setModalOpen] = useState(false);
   
-  const {winLossReport: {
-    dateRangeInfo,
-    handleDateFromChange,
-    handleDateToChange,
-    handleDateRangeChange,
-    isSelectedDateRange,
-  }} = useContext(AgentContext);
-
   const {
     memberType,
     searchValue,
     setSearchValue, 
     setMemberType, 
     handleOnClickUsername,
+    handleOnClickBreadcrumb,
     report,
     breadCrumb,
     usernames,
-    handleOnSearch
-  } = useWinlossReport(dateRangeInfo);
+    handleOnSearch,
+    dateRangeInfo,
+    handleDateFromChange,
+    handleDateToChange,
+    handleDateRangeChange,
+    isSelectedDateRange,
+    page,
+    handleChangePage
+  } = useWinlossReport();
 
   const renderData = () => {
     if(report.hasData) {
@@ -131,7 +131,7 @@ const WinlossReport = () => {
 
     return null;
   }
-
+  
   return (
     <WinlossReportContainer>
       <Wrapper>
@@ -169,7 +169,7 @@ const WinlossReport = () => {
               marginLeft: "20px",
             }}
             onClick={handleOnSearch}
-            disabled={report.isFetching || breadCrumb.isFetching}
+            disabled={!searchValue ? !searchValue : (report.isFetching || breadCrumb.isFetching)}
           >
             {i18n.t("common.search")}
           </AgentButton>
@@ -209,7 +209,18 @@ const WinlossReport = () => {
         </Accordion>
       </FormulaWrapper>
       <Breadcrumbs sx={{color: theme.blue50}}>
-          {usernames.map((name, i) => <UserName key={i}>{name}</UserName>)}
+          {
+            usernames.map((name, i) => {
+              const isDisable = i === usernames.length - 1;
+              return (
+                <UserName $isDisable={isDisable}
+                  onClick={() => handleOnClickBreadcrumb(name, isDisable)} 
+                  key={i}>
+                    {name}
+                </UserName>
+              );
+            })
+          }
       </Breadcrumbs>
       {isDesktopSize ? (
         <ScrollArea>
@@ -246,9 +257,23 @@ const WinlossReport = () => {
                 {/* 報表資料 */}
                 {renderData()}
               </TableBody>
+              
             </Table>
+            
             {!report.hasData && <NoData>沒有資料</NoData>}
           </TableWrapper>
+          {(report.items && report.items?.length >= 20) && <TablePagination
+            component="div"
+            count={report.items?.length ?? 0}
+            rowsPerPage={20}
+            page={page}
+            onPageChange={handleChangePage}
+            sx={{
+              ".MuiTablePagination-selectLabel, .MuiTablePagination-selectRoot, .MuiTablePagination-input": {
+                display: "none"
+              },
+            }}
+          />}
         </ScrollArea>
       ) : (
         <ReportCard />

@@ -48,10 +48,20 @@ const getBreadcrumb = ({ username, memberType = "agent" }: BreadcrumbConfig) => 
   return ApiService.get(apiUrl) as unknown as Promise<WinLostBreadcrumbDto>;
 };
 
+const getPlayerDetail = ({
+  username,
+  from,
+  to,
+}) => {
+  const apiUrl = `agentWinLossReport/agentPlayerSpecialDetail?&username=${username}&from=${from}&to=${to}`;
+  return ApiService.get(apiUrl) as unknown as Promise<WinLostBreadcrumbDto>
+}
+
 export const WinLostReport = {
-  getReport,
-  getBreadcrumb,
-};
+    getReport,
+    getBreadcrumb,
+    getPlayerDetail
+}
 
 export const ProfitShare = {
   getProfitShare: () =>

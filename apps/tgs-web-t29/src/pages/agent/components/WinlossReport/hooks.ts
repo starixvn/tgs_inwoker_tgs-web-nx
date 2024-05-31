@@ -1,29 +1,51 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
-import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
+import { AgentContext } from "../AgentContextProvider";
+import { useDateRange } from "../useDateRange";
 
-export const useWinlossReport = (dateRangeInfo: DateRangeInfo) => {
+
+
+export const useWinlossReport = () => {
     const { account } = useAccountStore();
     const username = account.info.member_username;
     const {getReport, getBreadcrumb} = WinLostReport;
     const [memberType, setMemberType] = useState("agent");
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState(username);
     const [usernames, setUsernames] = useState<string[]>([]);
+    const [page, setPage] = useState(0);
+
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        setPage(newPage);
+    };
+
+    const {
+        dateRangeInfo,
+        handleDateFromChange,
+        handleDateToChange,
+        handleDateRangeChange,
+        isSelectedDateRange,
+      } = useDateRange();
 
     const config: WinLostConfig = {
         from: moment(dateRangeInfo.dateFrom).format('YYYY-MM-DD'),
         to: moment(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
         memberType,
-        username,
+        username: searchValue,
         downline: false,
+        page,
+        rows: 20,
     };
     
     const {
         refetch: refetchReport,
         data: reportData, 
-        isFetching: isFetchingReportData
+        isFetching: isFetchingReportData,
+        isFetched: isFetchedReport,
     } = useQuery({
         queryKey: ['report'], 
         queryFn: () => getReport(config),
@@ -58,12 +80,12 @@ export const useWinlossReport = (dateRangeInfo: DateRangeInfo) => {
     }
 
     const handleOnSearch = () => {
-        config.username = searchValue ? searchValue : username;
+        setUsernames([]);
         report.refetch();
         breadCrumb.refetch();
     }
 
-    const handleOnClickUsername = (username: string, memberType: string) => {
+    const handleOnClickUsername = (username: string, memberType = 'agent') => {
         config.downline = true;
         config.username = username;
         config.memberType = memberType;
@@ -73,9 +95,34 @@ export const useWinlossReport = (dateRangeInfo: DateRangeInfo) => {
         setUsernames([...usernames, username])
     }
 
+    const handleOnClickBreadcrumb = (username: string, isDisable: boolean) => {
+        if(isDisable) {
+            return;
+        }
+
+        config.downline = true;
+        config.username = username;
+        config.memberType = 'agent';
+
+        const currentIndex = usernames.indexOf(username);
+        if (currentIndex !== -1) {
+            const newUsernames = usernames.slice(0, currentIndex + 1);
+            setUsernames(newUsernames);
+        }
+
+        report.refetch();
+    }
+
+
     useEffect(() => {
         breadCrumb.update();
     }, [breadCrumb.data])
+
+    useEffect(() => {
+        config.downline =false;
+        handleDateRangeChange(0);
+        setTimeout(handleOnSearch, 100)
+    }, [isFetchedReport])
 
     return {
         setSearchValue,
@@ -83,10 +130,38 @@ export const useWinlossReport = (dateRangeInfo: DateRangeInfo) => {
         setUsernames,
         handleOnSearch,
         handleOnClickUsername,
+        handleOnClickBreadcrumb,
         searchValue,
         memberType,
         report,
         breadCrumb,
-        usernames
+        usernames,
+        dateRangeInfo,
+        page, 
+        handleChangePage,
+        handleDateFromChange,
+        handleDateToChange,
+        handleDateRangeChange,
+        isSelectedDateRange,
     }
 }
+
+export const usePlayerDetail = ({
+    from,
+    to,
+    username
+}) => {
+    const {getPlayerDetail} = WinLostReport;
+    const {
+        refetch: refetchReport,
+        data, 
+        isFetching: isFetchingReportData,
+        isFetched: isFetchedReport,
+    } = useQuery({
+        queryKey: ['getPlayerDetail'], 
+        queryFn: () => getPlayerDetail({from, to, username}),
+        // enabled: false
+    });
+
+    
+};
