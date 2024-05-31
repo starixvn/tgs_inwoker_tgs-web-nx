@@ -25,6 +25,7 @@ import {
   JoinPromotionResDto,
   ReadMemoResDto,
   ReplyMemoResDto,
+  SocialMediaResDto,
 } from "@tgs-web-nx/types";
 import {
   COMPOSEMEMO_BEGIN,
@@ -83,6 +84,9 @@ import {
   REPLYMEMO_BEGIN,
   REPLYMEMO_FAIL,
   REPLYMEMO_SUCCESS,
+  SOCIALMEDIA_BEGIN,
+  SOCIALMEDIA_SUCCESS,
+  SOCIALMEDIA_FAIL,
 } from "@tgs-web-nx/core";
 
 export function useGeneralStore() {
@@ -734,6 +738,34 @@ export function useGeneralStore() {
     // }
   }, []);
 
+  const getSocialMedia = useCallback(async () => {
+    dispatch({
+      type: SOCIALMEDIA_BEGIN,
+    });
+
+    try {
+      //  @ts-ignore
+      const response = (await GeneralService.GetSocialMediaList()) as SocialMediaResDto;
+      if (response.IsSuccess) {
+        dispatch({
+          type: SOCIALMEDIA_SUCCESS,
+          payload: response,
+        });
+      } else {
+        dispatch({
+          type: SOCIALMEDIA_FAIL,
+          payload: response,
+        });
+      }
+      return response;
+    } catch (error: any) {
+      dispatch({
+        type: SOCIALMEDIA_FAIL,
+        payload: error,
+      });
+    }
+  }, []);
+
   return {
     general,
     getMobilePrefix,
@@ -761,5 +793,6 @@ export function useGeneralStore() {
     composeMemo,
     readMemo,
     deliveryBox,
+    getSocialMedia,
   };
 }

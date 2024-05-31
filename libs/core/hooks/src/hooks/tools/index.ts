@@ -8,4 +8,3 @@ export * from "./useRwd";
 export * from "./useVipStore";
 export * from "./useGoToHomePage";
 export * from "./useDetectDialogClose";
-export * from "./useSocialMedia";

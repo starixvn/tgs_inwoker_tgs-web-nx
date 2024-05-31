@@ -14,6 +14,7 @@ import {
   ReadInboxItemResDto,
   ReplyInboxItemReqDto,
   ReplyInboxItemResDto,
+  SocialMediaResDto,
 } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 import { GeneralService as PrevGeneralService } from "../api-services/services/GeneralService";
@@ -28,6 +29,7 @@ export const GeneralService = {
   ReplyInboxItem,
   ComposeInboxItem,
   ReadInboxItem,
+  GetSocialMediaList,
 };
 
 function GetLocalization() {
@@ -79,4 +81,8 @@ function ReadInboxItem({ letterId }: ReadInboxItemReqDto) {
   return ApiService.patch(
     `station-letter/${letterId}:read`,
   ) as unknown as Promise<ReadInboxItemResDto>;
+}
+
+function GetSocialMediaList() {
+  return ApiService.get(`brand/social`) as unknown as Promise<SocialMediaResDto>;
 }

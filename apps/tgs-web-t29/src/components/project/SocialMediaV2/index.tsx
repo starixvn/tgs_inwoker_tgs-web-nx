@@ -1,9 +1,6 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { UiService } from "@tgs-web-nx/core";
-import { SocialMediaInfo } from "@tgs-web-nx/types";
-import { useSocialMedia } from "@tgs-web-nx/core/hooks";
-import LoadingBlock from "../LoadingBlock";
+import { useGeneralStore } from "@tgs-web-nx/core";
+import { useSocialMedia } from "./hooks/useSocialMedia";
 
 const SocialMediaContainer = styled.div`
   display: flex;
@@ -19,27 +16,11 @@ interface Props {
 }
 
 const SocialMediaV2 = ({ style }: Props) => {
-  const [socialMediaList, setSocialMediaList] = useState<SocialMediaInfo[]>([]);
-  const { GetSocialMediaList } = UiService;
   const { getSocialMediaIcon } = useSocialMedia();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    const fetchSocialMediaList = async () => {
-      const result = await GetSocialMediaList();
-      setLoading(false);
-      if (result.IsSuccess) {
-        setSocialMediaList(result.data);
-      }
-    };
-
-    fetchSocialMediaList();
-  }, [GetSocialMediaList]);
-
-  return loading ? (
-    <LoadingBlock size={30} />
-  ) : (
+  const {
+    general: { socialMediaList },
+  } = useGeneralStore();
+  return (
     <SocialMediaContainer style={style}>
       {socialMediaList.map((socialMedia) => {
         return (

@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import { useState } from "react";
 import ChatQRcodePopup from "./ChatQRcodePopup";
-import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import QRcodeUrl from "@/assets/t29/images/home/QRcode.svg";
@@ -148,7 +147,6 @@ const Footer = () => {
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
           <GroupTitle>Follow Us</GroupTitle>
-          <SocialMedia />
           <SocialMediaV2 style={{ padding: "0px", justifyContent: "start" }} />
         </FooterGroup>
 

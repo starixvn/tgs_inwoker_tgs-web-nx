@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { useAccountStore } from "@tgs-web-nx/core";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { Common } from "@tgs-web-nx/utils";
 import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -18,6 +18,7 @@ import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLang
 import { media } from "@/theme/breakpoints";
 import SocialMediaV2 from "@/components/project/SocialMediaV2";
 import { theme } from "@/theme";
+import SocialMediaIcon from "@/assets/t29/images/home/social_media/socialMediaIcon.svg";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -51,8 +52,13 @@ const Balance = styled.div`
 `;
 
 const AccountHeaderContent = () => {
+  const menuRef = useRef(null);
   const history = useHistory();
   const { account } = useAccountStore();
+  const {
+    general: { socialMediaList },
+  } = useGeneralStore();
+
   const { handleLogout } = useAuthContext();
   const { isDesktopSize, isMobileSize } = useRwd();
   const goToHomePage = useGoToHomePage();
@@ -79,14 +85,13 @@ const AccountHeaderContent = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const menuRef = useRef(null);
 
   return (
     <ButtonContainer>
-      {isMobileSize && (
+      {isMobileSize && socialMediaList.length > 0 && (
         <>
           <IconButton onClick={handleClick} size="small">
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            <img src={SocialMediaIcon} alt="social_media" />
           </IconButton>
           <div ref={menuRef} style={{ display: "none" }} />
           <Menu
