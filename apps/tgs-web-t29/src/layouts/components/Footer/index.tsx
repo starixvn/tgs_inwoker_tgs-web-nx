@@ -147,7 +147,7 @@ const Footer = () => {
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
           <GroupTitle>Follow Us</GroupTitle>
-          <SocialMediaV2 style={{ padding: "0px", justifyContent: "start" }} />
+          <SocialMediaV2 style={{ padding: "0px", justifyContent: "start",flexWrap:"wrap" }} />
         </FooterGroup>
 
         <FooterGroup>

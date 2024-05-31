@@ -36,7 +36,7 @@ const RegisterForm = () => {
       </FormContainer>
 
       <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-      <SocialMediaV2 />
+      <SocialMediaV2 style={{ justifyContent: "center", flexWrap: "wrap" }} />
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );
