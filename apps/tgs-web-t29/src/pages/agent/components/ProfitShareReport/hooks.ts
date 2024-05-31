@@ -28,10 +28,6 @@ export const useProfitShareReport = () => {
     queryFn: ProfitShare.getProfitShare,
     enabled: false,
   })
-  
-  console.log(data?.data.errmsgid);
-  
-  
 
   const [previous, current] = [data?.data?.previous ?? [], data?.data?.current ?? []];
 

@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
-import { AgentContext } from "../AgentContextProvider";
 import { useDateRange } from "../useDateRange";
 
 
+const rows = 20;
 
 export const useWinlossReport = () => {
     const { account } = useAccountStore();
@@ -15,13 +15,6 @@ export const useWinlossReport = () => {
     const [searchValue, setSearchValue] = useState(username);
     const [usernames, setUsernames] = useState<string[]>([]);
     const [page, setPage] = useState(0);
-
-    const handleChangePage = (
-        event: React.MouseEvent<HTMLButtonElement> | null,
-        newPage: number,
-    ) => {
-        setPage(newPage);
-    };
 
     const {
         dateRangeInfo,
@@ -37,8 +30,8 @@ export const useWinlossReport = () => {
         memberType,
         username: searchValue,
         downline: false,
-        page,
-        rows: 20,
+        page: page + 1,
+        rows,
     };
     
     const {
@@ -79,13 +72,33 @@ export const useWinlossReport = () => {
         update: () => setUsernames(breadCrumbData?.data.map(row => row.username) ?? [])
     }
 
+    const resetPage = () => {
+        config.page = 1;
+        setPage(0);
+    };
+
+    const handleChangePage = (
+        event: React.MouseEvent<HTMLButtonElement> | null,
+        newPage: number,
+    ) => {
+        setPage(newPage);
+
+        config.downline = true;
+        config.page = newPage + 1
+
+        refetchReport();
+    };
+
     const handleOnSearch = () => {
+        resetPage();
+
         setUsernames([]);
         report.refetch();
         breadCrumb.refetch();
     }
 
     const handleOnClickUsername = (username: string, memberType = 'agent') => {
+        resetPage();
         config.downline = true;
         config.username = username;
         config.memberType = memberType;
@@ -143,25 +156,48 @@ export const useWinlossReport = () => {
         handleDateToChange,
         handleDateRangeChange,
         isSelectedDateRange,
+        totalCount: reportData?.data.totalCount,
+        config,
     }
 }
 
 export const usePlayerDetail = ({
     from,
     to,
-    username
+}: {
+    from: string,
+    to: string,
 }) => {
+    const [username, setUsername] = useState('');
+    const [modalOpen, setModalOpen] = useState(false);
     const {getPlayerDetail} = WinLostReport;
     const {
-        refetch: refetchReport,
-        data, 
-        isFetching: isFetchingReportData,
-        isFetched: isFetchedReport,
+        refetch,
+        data: playerDetailData, 
     } = useQuery({
         queryKey: ['getPlayerDetail'], 
         queryFn: () => getPlayerDetail({from, to, username}),
-        // enabled: false
+        enabled: false
     });
 
+    const handleGetPlayerDetail = (name: string) => {
+        setUsername(name);
+        setModalOpen(true);
+    }
+
+    const handleOnCloseModal = () => {
+        setModalOpen(false);
+    }
+
+    useEffect(() => {
+        refetch();
+    }, [username])
+    
+    return {
+        playerDetailData,
+        handleGetPlayerDetail,
+        modalOpen,
+        handleOnCloseModal
+    }
     
 };

@@ -5,15 +5,13 @@ import {
   TableBody,
   TableCell,
   TableHead,
-  TablePagination,
   TableRow,
   styled as muiStyled,
 } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
 import { useProfitShareReport } from "./hooks";
 import { AgentSelect } from "./components";
 import Loading from "@/components/UI/Loading";
-import { useContext } from "react";
-import { AgentContext } from "../AgentContextProvider";
 
 
 const ProfitShareContainer = styled.div`
@@ -56,6 +54,10 @@ const ProfitShareReport = () => {
 
   if(!isFetched) {
     return <Loading show /> 
+  }
+  
+  if(!currentData || !previousData) {
+    return <div>{i18n.t("common.nodata")}</div>
   }
 
   return (
@@ -103,10 +105,10 @@ const ProfitShareReport = () => {
             {/* 代理承擔紅利: 分紅金額 * 分紅比例 */}
             <TitleTableCell>代理承擔紅利</TitleTableCell>
             <NonBorderTableCell>
-              {previousData?.directDividendAmount * previousData?.dividendPercentage}
+              {previousData?.totalDividendAmount * previousData?.dividendPercentage}
             </NonBorderTableCell>
             <NonBorderTableCell>
-              {currentData?.directDividendAmount * currentData?.dividendPercentage}
+              {currentData?.totalDividendAmount * currentData?.dividendPercentage}
             </NonBorderTableCell>
           </TableRow>
           <TableRow>
@@ -142,57 +144,57 @@ const ProfitShareReport = () => {
           <TableRow>
             {/* 直屬玩家貢獻: 淨盈利*分紅比例(這個代理的) */}
             <TitleTableCell>直屬玩家貢獻</TitleTableCell>
-            <NonBorderTableCell>333,333,333</NonBorderTableCell>
-            <NonBorderTableCell>400</NonBorderTableCell>
+            <NonBorderTableCell>{previousData?.directDividendAmount}</NonBorderTableCell>
+            <NonBorderTableCell>{currentData?.directDividendAmount}</NonBorderTableCell>
           </TableRow>
           <TableRow>
             {/* 淨盈利 */}
             <FillTableCell sx={{ textAlign: "right" }}>淨盈利</FillTableCell>
-            <FillTableCell>222,222,222</FillTableCell>
-            <FillTableCell>410</FillTableCell>
+            <FillTableCell>{previousData?.companyWinLossAmount - (previousData?.bonusAdjustAmount + previousData?.bonus)}</FillTableCell>
+            <FillTableCell>{currentData?.companyWinLossAmount - (currentData?.bonusAdjustAmount + currentData?.bonus)}</FillTableCell>
           </TableRow>
           <TableRow>
             {/* 分紅比例: 該名代理後台設定的"分紅比例"%數 */}
             <FillTableCell sx={{ textAlign: "right" }}>*分紅比例</FillTableCell>
-            <FillTableCell>111,111,111</FillTableCell>
-            <FillTableCell>10</FillTableCell>
+            <FillTableCell>{previousData?.dividendPercentage}</FillTableCell>
+            <FillTableCell>{currentData?.dividendPercentage}</FillTableCell>
           </TableRow>
 
           <TableRow>
             {/* 分紅金額: 直屬玩家貢獻+團隊貢獻+累計負分紅-代理調帳-平台費用-產品費用會等於後台"代理分紅派發"的實際分紅金額 */}
             <TitleTableCell>分紅金額</TitleTableCell>
-            <NonBorderTableCell>333,333,333</NonBorderTableCell>
-            <NonBorderTableCell>400</NonBorderTableCell>
+            <NonBorderTableCell>{previousData?.totalDividendAmount}</NonBorderTableCell>
+            <NonBorderTableCell>{currentData?.totalDividendAmount}</NonBorderTableCell>
           </TableRow>
           <TableRow>
             {/* 直屬玩家貢獻 */}
             <FillTableCell sx={{ textAlign: "right" }}>+ 直屬玩家貢獻</FillTableCell>
-            <FillTableCell>222,222,222</FillTableCell>
-            <FillTableCell>410</FillTableCell>
+            <FillTableCell>{previousData?.directDividendAmount}</FillTableCell>
+            <FillTableCell>{currentData?.directDividendAmount}</FillTableCell>
           </TableRow>
           <TableRow>
             {/* 產品費用: 真人+體育+電子+棋牌+彩票+虛擬體育的產品費用加總, 代理贏才做計算，若代理輸為負數則=0 */}
             <FillTableCell sx={{ textAlign: "right" }}>-產品費用</FillTableCell>
-            <FillTableCell>111,111,111</FillTableCell>
-            <FillTableCell>10</FillTableCell>
+            <FillTableCell>{previousData?.productFeeAmount}</FillTableCell>
+            <FillTableCell>{currentData?.productFeeAmount}</FillTableCell>
           </TableRow>
           <TableRow>
             {/* 團隊貢獻: 下級代理淨盈利 * (該名代理分紅% - 下級代理分紅%) */}
             <FillTableCell sx={{ textAlign: "right" }}>+ 團隊貢獻</FillTableCell>
-            <FillTableCell>111,111,111</FillTableCell>
-            <FillTableCell>10</FillTableCell>
+            <FillTableCell>{previousData?.teamContributionAmount}</FillTableCell>
+            <FillTableCell>{currentData?.teamContributionAmount}</FillTableCell>
           </TableRow>
           <TableRow>
             {/* 累計負分紅: 該名代理的當期累計的累計負分紅(只會有0和負值), 會等於後台"代理分紅派發"的累計負分紅金額 */}
             <FillTableCell sx={{ textAlign: "right" }}>累計負分紅</FillTableCell>
-            <FillTableCell>111,111,111</FillTableCell>
-            <FillTableCell>10</FillTableCell>
+            <FillTableCell>{previousData?.negativeAgentDividendAmount}</FillTableCell>
+            <FillTableCell>{currentData?.negativeAgentDividendAmount}</FillTableCell>
           </TableRow>
           <TableRow>
             {/* 代理調帳: 代理調帳金額(僅顯示有勾"算入凈盈利"的優惠調帳金額) */}
             <FillTableCell sx={{ textAlign: "right" }}>- 代理調帳</FillTableCell>
-            <FillTableCell>111,111,111</FillTableCell>
-            <FillTableCell>10</FillTableCell>
+            <FillTableCell>{previousData?.agentAdjustAmount}</FillTableCell>
+            <FillTableCell>{currentData?.agentAdjustAmount}</FillTableCell>
           </TableRow>
         </TableBody>
       </Table>

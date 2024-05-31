@@ -1,6 +1,7 @@
 import {
   AgentInfotDto,
   AgentListInfoDto,
+  PlayerDetailDto,
   PlayerInfoDto,
   ProfitShareDto,
   WinLossReportDto,
@@ -20,6 +21,12 @@ export type WinLostConfig = {
   page?: number;
   rows?: number;
 } & BreadcrumbConfig;
+
+export type PlayerDetailConfig = {
+  from: string;
+  to: string;
+  username: string;
+}
 
 export type UserConfig = {
   username?: string;
@@ -52,9 +59,9 @@ const getPlayerDetail = ({
   username,
   from,
   to,
-}) => {
+}: PlayerDetailConfig) => {
   const apiUrl = `agentWinLossReport/agentPlayerSpecialDetail?&username=${username}&from=${from}&to=${to}`;
-  return ApiService.get(apiUrl) as unknown as Promise<WinLostBreadcrumbDto>
+  return ApiService.get(apiUrl) as unknown as Promise<PlayerDetailDto>
 }
 
 export const WinLostReport = {

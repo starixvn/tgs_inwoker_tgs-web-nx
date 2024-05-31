@@ -33,8 +33,8 @@ export type ProfitShareDto = {
   data: {
       previous: TProfitShare[],
       current: TProfitShare[],
+      err: number,
+      errmsg: string,
+      errmsgid: null | string,
   },
-  err: number,
-  errmsg: string,
-  errmsgid: null | string,
 }

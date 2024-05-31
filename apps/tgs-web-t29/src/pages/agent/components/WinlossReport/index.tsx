@@ -1,13 +1,10 @@
-import { useContext, useState } from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  FormControl,
   MenuItem,
-  SelectChangeEvent,
   Table,
   TableBody,
   TableCell,
@@ -16,14 +13,13 @@ import {
   TableRow,
 } from "@mui/material";
 import { TextField, Select, Breadcrumbs } from "@mui/material";
-import { AgentContext } from "../AgentContextProvider";
 import { AgentButton } from "../AgentButton";
 import DateRangeWithDatePicker from "../DateRangeWithDatePicker";
 import DateRangeWithIntervalSelector from "../DateRangeWithIntervalSelector";
 import ReportCard from "./components/ReportCard";
 import { TableKey, mapTable } from "./config";
 import { HintIconWrapper, WinlossReportContainer, FormulaWrapper, FormulaContainer, ScrollArea, TableWrapper, NoData, Wrapper, UserName } from "./components";
-import { useWinlossReport } from "./hooks";
+import { usePlayerDetail, useWinlossReport } from "./hooks";
 import { theme } from "@/theme";
 import InfoIcon from "@/assets/t18/images/info.png";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";
@@ -32,7 +28,6 @@ import Dialog from "@/components/UI/Dialog/Dialog";
 
 const WinlossReport = () => {
   const { isDesktopSize } = useRwd();
-  const [modalOpen, setModalOpen] = useState(false);
   
   const {
     memberType,
@@ -51,8 +46,20 @@ const WinlossReport = () => {
     handleDateRangeChange,
     isSelectedDateRange,
     page,
-    handleChangePage
+    handleChangePage,
+    totalCount,
+    config,
   } = useWinlossReport();
+
+  const {
+    playerDetailData, 
+    handleGetPlayerDetail,
+    modalOpen, 
+    handleOnCloseModal
+  } = usePlayerDetail({
+    from: config.from,
+    to: config.to,
+  })
 
   const renderData = () => {
     if(report.hasData) {
@@ -81,7 +88,7 @@ const WinlossReport = () => {
           agentSpecial, 
           agentProfit: agentWinLoss - agentSpecial
         };
-        
+
         return (
           <TableRow key={id}>
             {Object.keys(mapTable).map((row, i) => {
@@ -95,23 +102,24 @@ const WinlossReport = () => {
                     color: "#23507D",
                     textDecoration: "underline",
                     cursor: "pointer",
+                    textAlign: "center",
                   }}
                 >
-                  {cells.username}
+                  {cells["username"]}
                 </TableCell>
               )
               }
 
 
-              if (row === 'special') {
+              if (row === 'special' && cells['memberType'] === 'agent') {
                 return (
-                  <TableCell key={i}>
+                  <TableCell key={i} sx={{textAlign: 'center'}}>
                     <HintIconWrapper>
                       <img
                         src={HintIcon}
                         alt="hint"
                         onClick={() => {
-                          setModalOpen(true);
+                          handleGetPlayerDetail(username)
                         }}
                       />
                       <span>{cells[row]}</span>
@@ -120,8 +128,12 @@ const WinlossReport = () => {
                 )
               }
 
+              const data = cells[row as TableKey];
+
               return (
-                <TableCell key={i}>{cells[row as TableKey]}</TableCell>
+                <TableCell key={i} sx={{textAlign: 'center'}}>
+                  {typeof data === 'number' ? data.toFixed(2) : data}
+                </TableCell>
               )
             })}
           </TableRow>
@@ -184,6 +196,14 @@ const WinlossReport = () => {
           isSelectedDateRange={isSelectedDateRange}
         />
       </Wrapper>
+      {!isDesktopSize && (
+          <AgentButton
+            onClick={handleOnSearch}
+            disabled={!searchValue ? !searchValue : (report.isFetching || breadCrumb.isFetching)}
+          >
+            {i18n.t("common.search")}
+          </AgentButton>
+        )}
       <FormulaWrapper>
         <Accordion sx={{'display': 'flex', 'alignItems': 'flex-start'}}>
           <AccordionSummary
@@ -223,67 +243,68 @@ const WinlossReport = () => {
           }
       </Breadcrumbs>
       {isDesktopSize ? (
-        <ScrollArea>
-          <TableWrapper>
-            <Table>
-              <TableHead>
-                {/* 玩家、代理 */}
-                <TableRow sx={{ background: theme.blue20 }}>
-                  <TableCell colSpan={7} sx={{ textAlign: "center", borderRight: "1px solid #e0e0e0" }}>
-                    {i18n.t("usertype.player")}
-                  </TableCell>
-                  <TableCell colSpan={3} sx={{ textAlign: "center" }}>
-                    {i18n.t("usertype.agent")}
-                  </TableCell>
-                </TableRow>
+        <>
+          <ScrollArea>  
+            <TableWrapper>
+              <Table>
+                <TableHead>
+                  {/* 玩家、代理 */}
+                  <TableRow sx={{ background: theme.blue20 }}>
+                    <TableCell colSpan={7} sx={{ textAlign: "center", borderRight: "1px solid #e0e0e0" }}>
+                      {i18n.t("usertype.player")}
+                    </TableCell>
+                    <TableCell colSpan={3} sx={{ textAlign: "center" }}>
+                      {i18n.t("usertype.agent")}
+                    </TableCell>
+                  </TableRow>
 
-                {/* 分類 */}
-                <TableRow sx={{ background: theme.blue10 }}>
-                  {Object.values(mapTable).map((t, i) => {
-                    if (i === 6) {
-                      return (
-                        <TableCell key={i} sx={{borderRight: "1px solid #e0e0e0"}}>
-                          {t}
-                        </TableCell>
-                      )
-                    }
+                  {/* 分類 */}
+                  <TableRow sx={{ background: theme.blue10 }}>
+                    {Object.keys(mapTable).map((key, i) => {
+                      if (i === 6) {
+                        return (
+                          <TableCell key={i} sx={{borderRight: "1px solid #e0e0e0"}}>
+                            {i18n.t(mapTable[key as TableKey])}
+                          </TableCell>
+                        )
+                      }
 
-                    return <TableCell key={i}>{t}</TableCell>
-                  })}
-                </TableRow>
+                      return <TableCell key={i}>{i18n.t(mapTable[key as TableKey])}</TableCell>
+                    })}
+                  </TableRow>
 
-              </TableHead>
-              <TableBody>
-                {/* 報表資料 */}
-                {renderData()}
-              </TableBody>
+                </TableHead>
+                <TableBody>
+                  {/* 報表資料 */}
+                  {renderData()}
+                </TableBody>
+                
+              </Table>
               
-            </Table>
-            
-            {!report.hasData && <NoData>沒有資料</NoData>}
-          </TableWrapper>
-          {(report.items && report.items?.length >= 20) && <TablePagination
+              {!report.hasData && <NoData>{i18n.t("common.nodata")}</NoData>}
+            </TableWrapper>
+          </ScrollArea>
+          <TablePagination
             component="div"
-            count={report.items?.length ?? 0}
-            rowsPerPage={20}
+            count={totalCount ?? 0}
+            rowsPerPage={config.rows ?? 20}
             page={page}
             onPageChange={handleChangePage}
+            rowsPerPageOptions={[20, 40, 60]}
             sx={{
               ".MuiTablePagination-selectLabel, .MuiTablePagination-selectRoot, .MuiTablePagination-input": {
                 display: "none"
               },
-            }}
-          />}
-        </ScrollArea>
+          }}/>
+        </>
       ) : (
-        <ReportCard />
+        // 手機版
+        <ReportCard report={report} handleOnClickUsername={handleOnClickUsername} />
       )}
       
       <Dialog
         open={modalOpen}
-        onClose={() => {
-          setModalOpen(false);
-        }}
+        onClose={handleOnCloseModal}
       >
         <Table sx={{ width: "250px" }}>
           <TableHead>
@@ -294,16 +315,18 @@ const WinlossReport = () => {
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>红利</TableCell>
-              <TableCell>125</TableCell>
+              <TableCell>{i18n.t("agent.bonus")}</TableCell>
+              <TableCell>{playerDetailData?.data.bonus}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>調帳</TableCell>
-              <TableCell>125</TableCell>
+              <TableCell>{i18n.t("agent.adjust")}</TableCell>
+              <TableCell>{playerDetailData?.data.bonusAdjust}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>總計</TableCell>
-              <TableCell>250</TableCell>
+              <TableCell>{i18n.t("agent.total")}</TableCell>
+              <TableCell>
+                {(playerDetailData?.data.bonus ?? 0) + (playerDetailData?.data.bonusAdjust ?? 0)}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>

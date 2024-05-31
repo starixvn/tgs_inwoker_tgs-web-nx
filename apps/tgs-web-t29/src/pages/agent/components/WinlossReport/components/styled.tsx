@@ -53,7 +53,7 @@ const NoData = styled.div`
 `;
 
 const TableWrapper = styled.div`
-  min-width: 890px;
+  min-width: 1200px;
 `;
 
 const ScrollArea = styled.div`
@@ -73,6 +73,96 @@ const ScrollArea = styled.div`
   }
 `;
 
+const CardContainer = styled.div`
+  padding: 10px;
+  border: ${({ theme }) => `1px solid ${theme.blue40}`};
+  margin-bottom: 20px;
+`;
+
+const PlayerNameContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+`;
+
+const PlayNameTitle = styled.div`
+  background: ${({ theme }) => theme.blue30};
+  color: ${({ theme }) => theme.white};
+  width: 120px;
+  padding: 6px 10px;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.1px;
+`;
+
+const PlayName = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23px;
+  color: ${({ theme }) => theme.blue30};
+`;
+
+const PlayerInfoContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+`;
+
+const PlayInfo = styled.div`
+  width: 150px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 18px;
+`;
+
+const PlayerInfoTitle = styled.div`
+  height: 48px;
+  background: ${({ theme }) => theme.blue20};
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PlayerInfoValue = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 3px;
+`;
+
+const InfoTextContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  line-height: 1.5;
+`;
+
+const InfoText = styled.div`
+  display: flex;
+  justify-content: start;
+  min-width: 80px;
+`;
+
+const InfoAmount = styled(InfoText)`
+  min-width: 30px;
+  justify-content: end;
+  align-items: end;
+`;
+
+const PlayerSpecialTitle = styled(PlayName)`
+  margin: 10px 0;
+`;
+
+
 export {
     ScrollArea,
     TableWrapper,
@@ -83,4 +173,16 @@ export {
     FormulaWrapper,
     Wrapper,
     WinlossReportContainer,
+    CardContainer,
+    PlayerSpecialTitle,
+    InfoAmount,
+    InfoText,
+    InfoTextContainer,
+    PlayerInfoValue,
+    PlayerInfoTitle,
+    PlayInfo,
+    PlayerInfoContainer,
+    PlayName,
+    PlayNameTitle,
+    PlayerNameContainer,
 }
