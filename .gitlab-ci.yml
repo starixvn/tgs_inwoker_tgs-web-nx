@@ -18,21 +18,27 @@ stages:
     - echo "brand=$brand"
     - echo "token=$token"
   script:
-    - |
+    - |    
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+      export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+      nvm install 16.14.0
+      nvm use 16.14.0
+      node --version
+      npm --version
+      yarn --version
+      npm add --global nx@latest
+      npx nx init
+      nx --version
+
+      yarn add -D @nx/react@17.0.2
+
       git submodule init
       git submodule sync
       git submodule update --remote
       git status
-      
-      nvm install 16.14.0
-      nvm use 16.14.0
-
-      node --version
-      npm --version
-      yarn --version
-      nx --version
-
-      yarn add -D @nx/react@17.0.2
 
       if [[ $app != "" ]]; then 
           yarn docker-build:single $app
