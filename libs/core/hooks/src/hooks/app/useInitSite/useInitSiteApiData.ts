@@ -24,6 +24,7 @@ export function useInitSiteApiData() {
     getPromotion,
     getAffiliateStatus,
     getPromotionRouletteCount,
+    getSocialMedia,
   } = useGeneralStore();
   const { getBalanceList } = useWalletStore();
   const { account, checkTokenIsValid, getAccountProfile } = useAccountStore();
@@ -76,6 +77,7 @@ export function useInitSiteApiData() {
     getLiveChatURL();
     getPromotion();
     getAffiliateStatus();
+    getSocialMedia();
   };
 
   const handleGoto = () => {
@@ -197,6 +199,7 @@ export function useInitSiteApiData() {
     getLiveChatURL();
     getPromotion();
     getAffiliateStatus();
+    getSocialMedia();
   };
 
   return {
