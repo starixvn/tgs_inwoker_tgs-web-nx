@@ -96,10 +96,17 @@ const AccountHeaderContent = () => {
           <div ref={menuRef} style={{ display: "none" }} />
           <Menu
             anchorEl={anchorEl}
-            keepMounted
             open={Boolean(anchorEl && anchorEl !== menuRef.current)}
             onClose={handleClose}
             onClick={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
             slotProps={{
               paper: {
                 sx: {
