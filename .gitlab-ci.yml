@@ -18,12 +18,7 @@ stages:
     - echo "brand=$brand"
     - echo "token=$token"
   script:
-    - |
-      git submodule init
-      git submodule sync
-      git submodule update --remote
-      git status
-      
+    - |    
       npm add --global nx@latest
       npx nx init
 
@@ -42,6 +37,11 @@ stages:
 
       yarn add -D @nx/react@17.0.2
 
+      git submodule init
+      git submodule sync
+      git submodule update --remote
+      git status
+      
       if [[ $app != "" ]]; then 
           yarn docker-build:single $app
       else 
