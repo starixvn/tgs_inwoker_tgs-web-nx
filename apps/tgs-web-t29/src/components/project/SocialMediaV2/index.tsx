@@ -8,7 +8,13 @@ const SocialMediaContainer = styled.div`
   cursor: pointer;
   gap: 10px;
   padding: 10px;
-  justify-content: center;
+  justify-content: start;
+  overflow: auto;
+  /* &::before, */
+  /* &::after {
+    content: "";
+    flex: 1 0 auto;
+  } */
 `;
 
 interface Props {
