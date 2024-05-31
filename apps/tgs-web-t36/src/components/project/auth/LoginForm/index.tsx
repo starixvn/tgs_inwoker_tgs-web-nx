@@ -18,6 +18,7 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+import SocialMediaV2 from "@/components/project/SocialMediaV2";
 
 const LoginForm = () => {
   const {
@@ -30,7 +31,6 @@ const LoginForm = () => {
     handleClickForgotPassword,
   } = useLoginForm();
   const { isMobileSize } = useRwd();
-
 
   const LoginHeader = styled.div`
     position: relative;
@@ -82,7 +82,7 @@ const LoginForm = () => {
         </FormContainer>
 
         <RedirectToRegisterHint />
-
+        <SocialMediaV2 style={{ width: "100%", justifyContent: "center" }} />
         <LanguageSwitch style={{ width: "150px", margin: "0 auto" }} />
       </AuthFormContainer>
     </>
