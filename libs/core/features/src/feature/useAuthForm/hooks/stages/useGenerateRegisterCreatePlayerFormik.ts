@@ -27,7 +27,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required("Username is required")
-          .matches(/^[a-zA-Z0-9]{6,16}$/, {
+          .matches(/^[a-z0-9]{6,16}$/, {
             message: i18n.t("common.msgRegisterUserNameInvalid"),
           }),
       },
