@@ -3,9 +3,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router";
 import { RefetchOptions, QueryObserverResult } from "@tanstack/react-query";
 import { WinLossReportDto, WinLossReportItem } from "@tgs-web-nx/types";
-import { CardContainer, PlayerNameContainer, PlayNameTitle, PlayName, PlayerInfoContainer, PlayInfo, PlayerInfoTitle, PlayerInfoValue, InfoTextContainer, InfoText, InfoAmount, PlayerSpecialTitle } from "./styled";
-
-
+import { CardContainer, PlayerNameContainer, PlayNameTitle, PlayName, PlayerInfoContainer, PlayInfo, PlayerInfoTitle, PlayerInfoValue, InfoTextContainer, InfoText, InfoAmount, HintIconWrapper, NoData } from "./styled";
+import HintIcon from "@/assets/t29/images/agent/hint.svg";
+import LoadingBlock from "@/components/project/LoadingBlock";
 
 type Props = {
   report: {
@@ -14,11 +14,13 @@ type Props = {
     hasData: boolean | undefined;
     isFetching: boolean;
   },
-  handleOnClickUsername: (username: string, memberType?: string) => void
+  handleOnClickUsername: (username: string, memberType?: string) => void,
+  handleGetPlayerDetail: (username: string) => void,
 }
 
 const ReportCard = ({
   report,
+  handleGetPlayerDetail,
   handleOnClickUsername
 }: Props) => {
   const history = useHistory();
@@ -29,28 +31,42 @@ const ReportCard = ({
     history.push("/agent");
   }
 
+  if (report.isFetching) {
+    return <LoadingBlock size={30}/>
+  }
+
+  if (!report.isFetching && !report.hasData) {
+    return <NoData>{i18n.t("common.nodata")}</NoData>
+  }
+
   return report.items && report.items.map((player) => {
+    const playNameTitle = player.memberType === 'agent' ? i18n.t("usertype.agent") : i18n.t("usertype.player");
+
     return (
       <CardContainer key={player.id}>
         <PlayerNameContainer>
-          {/* Todo:判斷是player還是agent */}
-          <PlayNameTitle>{i18n.t("usertype.agent")}</PlayNameTitle>
-          <PlayName onClick={() => handleOnClickUsername(player.username, player.memberType)}>{player.username}</PlayName>
+          <PlayNameTitle>{playNameTitle}</PlayNameTitle>
+          <PlayName 
+            onClick={() => handleOnClickUsername(player.username, player.memberType)}
+            $isActive={player.memberType === 'agent'}
+          >
+            {player.username}
+          </PlayName>
         </PlayerNameContainer>
         <PlayerInfoContainer>
           <PlayInfo>
             <PlayerInfoTitle>{i18n.t("usertype.agent")}</PlayerInfoTitle>
             <PlayerInfoValue>
               <InfoTextContainer>
-                <InfoText>{i18n.t("agent.agentWinLoss")}</InfoText>
+                <InfoText>{i18n.t("agent.winLoss")}</InfoText>
                 <InfoAmount>{player.agentWinLoss}</InfoAmount>
               </InfoTextContainer>
               <InfoTextContainer>
-                <InfoText>{i18n.t("agent.agentSpecial")}</InfoText>
+                <InfoText>{i18n.t("agent.special")}</InfoText>
                 <InfoAmount>{player.agentSpecial}</InfoAmount>
               </InfoTextContainer>
               <InfoTextContainer>
-                <InfoText>{i18n.t("agent.agentPL")}</InfoText>
+                <InfoText>{i18n.t("agent.pL")}</InfoText>
                 <InfoAmount>{player.agentTotal}</InfoAmount>
               </InfoTextContainer>
             </PlayerInfoValue>
@@ -70,8 +86,16 @@ const ReportCard = ({
                 <InfoText>{i18n.t("agent.winLoss")}</InfoText>
                 <InfoAmount>{player.winLoss}</InfoAmount>
               </InfoTextContainer>
-              <InfoTextContainer>
-                <InfoText>{i18n.t("agent.special")}</InfoText>
+              <InfoTextContainer 
+                $isActive
+                onClick={() => {
+                  handleGetPlayerDetail(player.username)
+              }}
+              >
+                <HintIconWrapper>
+                  <img src={HintIcon} alt="hint" />
+                  <InfoText>{i18n.t("agent.special")}</InfoText>
+                </HintIconWrapper>
                 <InfoAmount>{player.special}</InfoAmount>
               </InfoTextContainer>
               <InfoTextContainer>
@@ -82,37 +106,6 @@ const ReportCard = ({
           </PlayInfo>
         </PlayerInfoContainer>
 
-        <PlayerSpecialTitle>{i18n.t("agent.playerSpecial")}</PlayerSpecialTitle>
-        <PlayerInfoContainer>
-          <PlayInfo>
-            <PlayerInfoValue>
-              <InfoTextContainer>
-                <InfoText>{i18n.t("agent.bonus")}</InfoText>
-                <InfoAmount>10</InfoAmount>
-              </InfoTextContainer>
-              <InfoTextContainer>
-                <InfoText>{i18n.t("agent.adjust")}</InfoText>
-                <InfoAmount>41</InfoAmount>
-              </InfoTextContainer>
-              <InfoTextContainer>
-                <InfoText>{i18n.t("agent.total")}</InfoText>
-                <InfoAmount>10</InfoAmount>
-              </InfoTextContainer>
-            </PlayerInfoValue>
-          </PlayInfo>
-          <PlayInfo>
-            <PlayerInfoValue>
-              <InfoTextContainer>
-                <InfoText>{i18n.t("agent.platformFee")}</InfoText>
-                <InfoAmount>123</InfoAmount>
-              </InfoTextContainer>
-              <InfoTextContainer>
-                <InfoText>{i18n.t("agent.productCharges")}</InfoText>
-                <InfoAmount>122111313</InfoAmount>
-              </InfoTextContainer>
-            </PlayerInfoValue>
-          </PlayInfo>
-        </PlayerInfoContainer>
       </CardContainer>
     );
   });

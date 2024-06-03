@@ -4,9 +4,11 @@ import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core"
 import { useQuery } from "@tanstack/react-query";
 import { useDateRange } from "../useDateRange";
 
-
 const rows = 20;
 
+/**
+ * 處理輸贏報表相關邏輯
+ */
 export const useWinlossReport = () => {
     const { account } = useAccountStore();
     const username = account.info.member_username;
@@ -16,6 +18,7 @@ export const useWinlossReport = () => {
     const [usernames, setUsernames] = useState<string[]>([]);
     const [page, setPage] = useState(0);
 
+    // 日期範圍 hook
     const {
         dateRangeInfo,
         handleDateFromChange,
@@ -23,15 +26,16 @@ export const useWinlossReport = () => {
         handleDateRangeChange,
         isSelectedDateRange,
       } = useDateRange();
-
+    
+    // 取得輸贏報表 payload
     const config: WinLostConfig = {
         from: moment(dateRangeInfo.dateFrom).format('YYYY-MM-DD'),
         to: moment(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
         memberType,
         username: searchValue,
         downline: false,
-        page: page + 1,
-        rows,
+        page: page + 1, //payload 從1開始, state 從0開始
+        rows, //固定為20
     };
     
     const {
@@ -45,11 +49,20 @@ export const useWinlossReport = () => {
         enabled: false
     });
 
+    /**
+     * 報表
+     * @refetch 重新呼叫api
+     * @items 當前資料
+     * @hasData 是否有資料
+     * @isFetching 是否正在呼叫 API
+     */
     const report = {
         refetch: refetchReport,
         items: reportData && reportData.data.items,
         hasData: reportData?.data.items && reportData.data.items.length > 0,
         isFetching: isFetchingReportData,
+        fee: {
+        }
     }
     
     const {
@@ -65,6 +78,13 @@ export const useWinlossReport = () => {
         enabled: false
     });
 
+    /**
+     * 麵包屑
+     * @refetch 重新呼叫api
+     * @data 當前麵包屑資料
+     * @isFetching 是否正在呼叫 api
+     * @update 更新 UI 狀態
+     */
     const breadCrumb = {
         refetch: refetchBreadCrumb,
         data: breadCrumbData?.data,
@@ -72,11 +92,17 @@ export const useWinlossReport = () => {
         update: () => setUsernames(breadCrumbData?.data.map(row => row.username) ?? [])
     }
 
+    /**
+     * 重置當前page
+     */
     const resetPage = () => {
         config.page = 1;
         setPage(0);
     };
 
+    /**
+     * 處理 paginator 換頁行為
+     */
     const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,
         newPage: number,
@@ -89,6 +115,9 @@ export const useWinlossReport = () => {
         refetchReport();
     };
 
+    /**
+     * 處理搜尋使用者名稱
+     */
     const handleOnSearch = () => {
         resetPage();
 
@@ -97,22 +126,38 @@ export const useWinlossReport = () => {
         breadCrumb.refetch();
     }
 
+    /**
+     * 處理點擊搜尋結果的使用者名稱
+     * @param username 被點擊的使用者名稱 
+     * @param memberType 使用者的狀態
+     * @returns 
+     */
     const handleOnClickUsername = (username: string, memberType = 'agent') => {
+        if(report.isFetching || memberType === 'player') {
+            return;
+        }
+        
         resetPage();
         config.downline = true;
         config.username = username;
         config.memberType = memberType;
-
         report.refetch();
-
+        
+        
         setUsernames([...usernames, username])
     }
 
+    /**
+     * 處理點擊麵包屑
+     * @param username 被點擊的使用者名稱 
+     * @param isDisable 麵包屑的最後一層不觸發任何行為
+     * @returns 
+     */
     const handleOnClickBreadcrumb = (username: string, isDisable: boolean) => {
         if(isDisable) {
             return;
         }
-
+        
         config.downline = true;
         config.username = username;
         config.memberType = 'agent';
@@ -126,15 +171,16 @@ export const useWinlossReport = () => {
         report.refetch();
     }
 
-
+    //麵包屑資料更新時，同步更新麵包屑 UI
     useEffect(() => {
         breadCrumb.update();
     }, [breadCrumb.data])
 
+    // 預設進頁面搜尋當天資料
     useEffect(() => {
         config.downline =false;
         handleDateRangeChange(0);
-        setTimeout(handleOnSearch, 100)
+        setTimeout(handleOnSearch, 100) //須等日期更新完成才搜尋
     }, [isFetchedReport])
 
     return {
@@ -161,6 +207,9 @@ export const useWinlossReport = () => {
     }
 }
 
+/**
+ * 處理玩家細節相關邏輯
+ */
 export const usePlayerDetail = ({
     from,
     to,
@@ -180,15 +229,23 @@ export const usePlayerDetail = ({
         enabled: false
     });
 
+    /**
+     * 取得特定玩家細節
+     * @param name 被取得資料的username
+     */
     const handleGetPlayerDetail = (name: string) => {
         setUsername(name);
         setModalOpen(true);
     }
 
+    /**
+     * 處理關閉 modal
+     */
     const handleOnCloseModal = () => {
         setModalOpen(false);
     }
 
+    // username 被改變時，重新取得對應資料
     useEffect(() => {
         refetch();
     }, [username])

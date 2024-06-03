@@ -73,8 +73,6 @@ const DateRangeWithDatePicker = ({
     <DateContainer {...others}>
       <FlatStraightLine>
         <DateInner>
-          {/*<DateLabel>{i18n.t("report.startDate")}</DateLabel>*/}
-
           <DatePickerForReport
             disableFuture
             minDate={minDateFrom}
@@ -88,8 +86,6 @@ const DateRangeWithDatePicker = ({
         <DateSpliter>-</DateSpliter>
 
         <DateInner>
-          {/*<DateLabel>{i18n.t("report.endDate")}</DateLabel>*/}
-
           <DatePickerForReport
             disableFuture
             minDate={dateFrom}
@@ -100,7 +96,6 @@ const DateRangeWithDatePicker = ({
           />
         </DateInner>
       </FlatStraightLine>
-      {/*<div className="clear"></div>*/}
     </DateContainer>
   );
 };

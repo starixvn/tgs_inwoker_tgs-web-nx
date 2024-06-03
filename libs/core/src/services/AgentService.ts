@@ -9,11 +9,13 @@ import {
 } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 
+// 麵包屑 payload
 type BreadcrumbConfig = {
   username: string;
   memberType?: string;
 };
 
+// 輸贏報表 payload
 export type WinLostConfig = {
   from: string;
   to: string;
@@ -22,12 +24,14 @@ export type WinLostConfig = {
   rows?: number;
 } & BreadcrumbConfig;
 
+// 玩家細節 payload
 export type PlayerDetailConfig = {
   from: string;
   to: string;
   username: string;
 }
 
+// 玩家列表、代理列表 payload
 export type UserConfig = {
   username?: string;
   status?: string | null;
@@ -36,6 +40,11 @@ export type UserConfig = {
   rows?: number;
 };
 
+/**
+ * 取得輸贏報表
+ * @param payload WinLostConfig
+ * @returns  
+ */
 const getReport = ({
   username,
   from,
@@ -50,11 +59,21 @@ const getReport = ({
   return ApiService.get(apiUrl) as unknown as Promise<WinLossReportDto>;
 };
 
+/**
+ * 取得輸贏報表麵包屑
+ * @param payload BreadcrumbConfig
+ * @returns  
+ */
 const getBreadcrumb = ({ username, memberType = "agent" }: BreadcrumbConfig) => {
   const apiUrl = `AgentWinLossReport/breadcrumb?&username=${username}&memberType=${memberType}`;
   return ApiService.get(apiUrl) as unknown as Promise<WinLostBreadcrumbDto>;
 };
 
+/**
+ * 取得玩家細節
+ * @param payload PlayerDetailConfig
+ * @returns  
+ */
 const getPlayerDetail = ({
   username,
   from,
@@ -64,33 +83,46 @@ const getPlayerDetail = ({
   return ApiService.get(apiUrl) as unknown as Promise<PlayerDetailDto>
 }
 
-export const WinLostReport = {
+
+const WinLostReport = {
     getReport,
     getBreadcrumb,
     getPlayerDetail
 }
 
-export const ProfitShare = {
+
+const ProfitShare = {
   getProfitShare: () =>
     ApiService.get("AgentDividendReport/beforehand") as unknown as Promise<ProfitShareDto>,
 };
 
-export const AgentInfo = {
+
+const AgentInfo = {
   getAgentInfo: async () => {
     return ApiService.get("agent/info") as unknown as Promise<AgentInfotDto>;
   },
 };
 
-export const PlayerList = {
+
+const PlayerList = {
   getPlayerList: async ({ username, page, status, pageSize }: UserConfig) => {
     const apiUrl = `agent/direct-player?playerUsername=${username}&playerStatus=${status}&page=${page}&rows=${pageSize}`;
     return ApiService.get(apiUrl) as unknown as Promise<PlayerInfoDto>;
   },
 };
 
-export const AgentList = {
+
+const AgentList = {
   getAgentList: async ({ username, page, status, pageSize }: UserConfig) => {
     const apiUrl = `agent/direct-agent?AgentUsername=${username}&AgentStatus=${status}&page=${page}&rows=${pageSize}`;
     return ApiService.get(apiUrl) as unknown as Promise<AgentListInfoDto>;
   },
 };
+
+export {
+  AgentInfo, // 代理資訊
+  PlayerList, // 玩家列表
+  WinLostReport, // 輸贏報表
+  AgentList, // 代理列表
+  ProfitShare, // 分紅報表
+}

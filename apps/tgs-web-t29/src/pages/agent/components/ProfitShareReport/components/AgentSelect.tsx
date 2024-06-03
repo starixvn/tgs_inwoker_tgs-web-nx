@@ -34,6 +34,7 @@ export const AgentSelect = ({
             value={value}
             label="simple-select-label"
             onChange={onChange}
+            disabled
           >
             {
               options.map((option) => 

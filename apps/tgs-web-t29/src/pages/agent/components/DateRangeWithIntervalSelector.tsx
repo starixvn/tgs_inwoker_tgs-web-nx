@@ -2,13 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const DateRangContainer = styled.div`
-  display: flex;
-  //align-items: center;
-  justify-content: center;
-  gap: 13px;
-  height: 47px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 50px;
+  gap: 10px;
+
+  ${media.sm} {
+    max-width: 320px;
+  }
 `;
 
 type DateRangSelectionTypes = {
@@ -16,6 +21,10 @@ type DateRangSelectionTypes = {
   theme: typeof theme;
 };
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
+  padding: 12px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   cursor: pointer;
   white-space: nowrap;
@@ -25,10 +34,8 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
     return $isSelected ? theme.white : theme.text;
   }};
-  padding: 12px 20px;
+  text-align: center;
   font-size: 0.812rem;
-  display: flex;
-  align-items: center;
 `;
 
 export enum DateRangeEnum {

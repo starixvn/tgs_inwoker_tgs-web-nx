@@ -196,6 +196,7 @@ const WinlossReport = () => {
           isSelectedDateRange={isSelectedDateRange}
         />
       </Wrapper>
+
       {!isDesktopSize && (
           <AgentButton
             onClick={handleOnSearch}
@@ -203,9 +204,13 @@ const WinlossReport = () => {
           >
             {i18n.t("common.search")}
           </AgentButton>
-        )}
+      )}
+
       <FormulaWrapper>
-        <Accordion sx={{'display': 'flex', 'alignItems': 'flex-start'}}>
+        <Accordion sx={{
+          'display': 'flex',
+          'alignItems': 'flex-start',
+          'flexDirection': isDesktopSize ? 'row' : 'column'}}>
           <AccordionSummary
             aria-controls="panel1-content"
             id="panel1-header"
@@ -228,7 +233,7 @@ const WinlossReport = () => {
           </AccordionDetails>
         </Accordion>
       </FormulaWrapper>
-      <Breadcrumbs sx={{color: theme.blue50}}>
+      {usernames.length > 0 && <Breadcrumbs sx={{color: theme.blue50}}>
           {
             usernames.map((name, i) => {
               const isDisable = i === usernames.length - 1;
@@ -241,90 +246,95 @@ const WinlossReport = () => {
               );
             })
           }
-      </Breadcrumbs>
+      </Breadcrumbs>}
       {isDesktopSize ? (
-        <>
-          <ScrollArea>  
-            <TableWrapper>
-              <Table>
-                <TableHead>
-                  {/* 玩家、代理 */}
-                  <TableRow sx={{ background: theme.blue20 }}>
-                    <TableCell colSpan={7} sx={{ textAlign: "center", borderRight: "1px solid #e0e0e0" }}>
-                      {i18n.t("usertype.player")}
-                    </TableCell>
-                    <TableCell colSpan={3} sx={{ textAlign: "center" }}>
-                      {i18n.t("usertype.agent")}
-                    </TableCell>
-                  </TableRow>
+        <ScrollArea>  
+          <TableWrapper>
+            <Table>
+              <TableHead>
+                {/* 玩家、代理 */}
+                <TableRow sx={{ background: theme.blue20 }}>
+                  <TableCell colSpan={7} sx={{ textAlign: "center", borderRight: "1px solid #e0e0e0" }}>
+                    {i18n.t("usertype.player")}
+                  </TableCell>
+                  <TableCell colSpan={3} sx={{ textAlign: "center" }}>
+                    {i18n.t("usertype.agent")}
+                  </TableCell>
+                </TableRow>
 
-                  {/* 分類 */}
-                  <TableRow sx={{ background: theme.blue10 }}>
-                    {Object.keys(mapTable).map((key, i) => {
-                      if (i === 6) {
-                        return (
-                          <TableCell key={i} sx={{borderRight: "1px solid #e0e0e0"}}>
-                            {i18n.t(mapTable[key as TableKey])}
-                          </TableCell>
-                        )
-                      }
+                {/* 分類 */}
+                <TableRow sx={{ background: theme.blue10 }}>
+                  {Object.keys(mapTable).map((key, i) => {
+                    if (i === 6) {
+                      return (
+                        <TableCell key={i} sx={{borderRight: "1px solid #e0e0e0"}}>
+                          {i18n.t(mapTable[key as TableKey])}
+                        </TableCell>
+                      )
+                    }
 
-                      return <TableCell key={i}>{i18n.t(mapTable[key as TableKey])}</TableCell>
-                    })}
-                  </TableRow>
+                    return <TableCell key={i}>{i18n.t(mapTable[key as TableKey])}</TableCell>
+                  })}
+                </TableRow>
 
-                </TableHead>
-                <TableBody>
-                  {/* 報表資料 */}
-                  {renderData()}
-                </TableBody>
-                
-              </Table>
+              </TableHead>
+              <TableBody>
+                {/* 報表資料 */}
+                {renderData()}
+              </TableBody>
               
-              {!report.hasData && <NoData>{i18n.t("common.nodata")}</NoData>}
-            </TableWrapper>
-          </ScrollArea>
-          <TablePagination
-            component="div"
-            count={totalCount ?? 0}
-            rowsPerPage={config.rows ?? 20}
-            page={page}
-            onPageChange={handleChangePage}
-            rowsPerPageOptions={[20, 40, 60]}
-            sx={{
-              ".MuiTablePagination-selectLabel, .MuiTablePagination-selectRoot, .MuiTablePagination-input": {
-                display: "none"
-              },
-          }}/>
-        </>
+            </Table>
+            
+            {!report.hasData && <NoData>{i18n.t("common.nodata")}</NoData>}
+          </TableWrapper>
+        </ScrollArea>
       ) : (
         // 手機版
-        <ReportCard report={report} handleOnClickUsername={handleOnClickUsername} />
+        <ReportCard 
+          report={report} 
+          handleOnClickUsername={handleOnClickUsername}
+          handleGetPlayerDetail={handleGetPlayerDetail}
+        />
       )}
-      
+      <TablePagination
+          component="div"
+          count={totalCount ?? 0}
+          rowsPerPage={config.rows ?? 20}
+          page={page}
+          onPageChange={handleChangePage}
+          rowsPerPageOptions={[20, 40, 60]}
+          sx={{
+            ".MuiTablePagination-selectLabel, .MuiTablePagination-selectRoot, .MuiTablePagination-input": {
+              display: "none"
+            },
+      }}/>
+
+      {/* 玩家特別 */}
       <Dialog
         open={modalOpen}
         onClose={handleOnCloseModal}
+        fullscreenOnMobile={false}
       >
+        <UserName $isDisable style={{margin: "20px auto", display: "block"}}>{i18n.t("agent.playerSpecial")}</UserName>
         <Table sx={{ width: "250px" }}>
           <TableHead>
             <TableRow sx={{ background: theme.blue20 }}>
               <TableCell></TableCell>
-              <TableCell>{i18n.t("common.amount")}</TableCell>
+              <TableCell sx={{textAlign: "center"}}>{i18n.t("common.amount")}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>{i18n.t("agent.bonus")}</TableCell>
-              <TableCell>{playerDetailData?.data.bonus}</TableCell>
+              <TableCell  sx={{textAlign: "center"}}>{i18n.t("agent.bonus")}</TableCell>
+              <TableCell  sx={{textAlign: "center"}}>{playerDetailData?.data.bonus}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>{i18n.t("agent.adjust")}</TableCell>
-              <TableCell>{playerDetailData?.data.bonusAdjust}</TableCell>
+              <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.adjust")}</TableCell>
+              <TableCell sx={{textAlign: "center"}}>{playerDetailData?.data.bonusAdjust}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>{i18n.t("agent.total")}</TableCell>
-              <TableCell>
+              <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.total")}</TableCell>
+              <TableCell sx={{textAlign: "center"}}>
                 {(playerDetailData?.data.bonus ?? 0) + (playerDetailData?.data.bonusAdjust ?? 0)}
               </TableCell>
             </TableRow>

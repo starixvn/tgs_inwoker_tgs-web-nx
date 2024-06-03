@@ -1,4 +1,4 @@
-import { useImageActions, useRebateTable, useRwd } from "@tgs-web-nx/core/hooks";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
 import {
   Table,
@@ -9,6 +9,7 @@ import {
   styled as muiStyled,
 } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
+import { NoData } from "../NoData";
 import { useProfitShareReport } from "./hooks";
 import { AgentSelect } from "./components";
 import Loading from "@/components/UI/Loading";
@@ -44,11 +45,10 @@ const TitleTableCell = muiStyled(NonBorderTableCell)(({ theme }) => ({
 
 
 const ProfitShareReport = () => {
-  const { imageId } = useImageActions();
-  const { affiliateLink } = useRebateTable();
   const { isDesktopSize } = useRwd();
   
   const {lists: {current, previous}, formatDate, formatSentOn, data, isFetched} = useProfitShareReport();
+
   const currentData = current.data[current.currentKey] && current.data[current.currentKey][0];
   const previousData = previous.data[previous.currentKey] && previous.data[previous.currentKey][0];
 
@@ -57,7 +57,7 @@ const ProfitShareReport = () => {
   }
   
   if(!currentData || !previousData) {
-    return <div>{i18n.t("common.nodata")}</div>
+    return <NoData />
   }
 
   return (

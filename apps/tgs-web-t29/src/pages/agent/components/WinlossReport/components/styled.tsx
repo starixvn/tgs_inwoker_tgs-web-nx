@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { media } from "@/theme/breakpoints";
 
 const WinlossReportContainer = styled.div`
@@ -27,13 +27,19 @@ const FormulaContainer = styled.div`
 const UserName = styled.button<{
   $isDisable: boolean;
 }>`
-  cursor: ${props => props.$isDisable ? 'auto' : 'pointer'};
+  background: none;
+  border: none;
   color: ${({ theme }) => theme.blue50};
   font-size: 20px;
   font-weight: 700;
   line-height: 23px;
-  background: none;
-  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+
+  ${props => props.$isDisable && css`
+    cursor: auto;
+    text-decoration: none;
+  `}
 `;
 
 const HintIconWrapper = styled.div`
@@ -95,24 +101,30 @@ const PlayNameTitle = styled.div`
   font-size: 14px;
   font-weight: 400;
   line-height: 16.1px;
+  text-align: center;
 `;
 
-const PlayName = styled.div`
+const PlayName = styled.div<{
+  $isActive?: boolean;
+}>`
   font-size: 20px;
   font-weight: 700;
   line-height: 23px;
   color: ${({ theme }) => theme.blue30};
+
+  ${props => props.$isActive && css`
+    text-decoration: underline;
+  `}
 `;
 
 const PlayerInfoContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 10px;
-  justify-content: center;
 `;
 
 const PlayInfo = styled.div`
-  width: 150px;
+  width: 100%;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
@@ -120,7 +132,7 @@ const PlayInfo = styled.div`
 `;
 
 const PlayerInfoTitle = styled.div`
-  height: 48px;
+  padding: 2px 10px;
   background: ${({ theme }) => theme.blue20};
   font-size: 14px;
   font-weight: 400;
@@ -138,24 +150,26 @@ const PlayerInfoValue = styled.div`
   gap: 3px;
 `;
 
-const InfoTextContainer = styled.div`
+const InfoTextContainer = styled.div<{
+  $isActive?: boolean
+}>`
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: center;
+  gap: 5px;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
   line-height: 1.5;
+  color: #535867;
+  ${props => props.$isActive && css`
+    color: #399FDA;
+  `}
 `;
 
-const InfoText = styled.div`
-  display: flex;
-  justify-content: start;
-  min-width: 80px;
+const InfoText = styled.p`
 `;
 
 const InfoAmount = styled(InfoText)`
-  min-width: 30px;
-  justify-content: end;
-  align-items: end;
+  text-align: end;
 `;
 
 const PlayerSpecialTitle = styled(PlayName)`

@@ -131,25 +131,22 @@ const AgentInfo = () => {
   const { imageId, handleQrAction, isCopied } = useImageActions();
   const { isDesktopSize } = useRwd();
 
-  const [loading, setloading] = useState(true);
   const [invitationLink, setInvitationLink] = useState("");
   const [idIsCopied, setIdIsCopied] = useState(false);
   const [linkIsCopied, setLinkIsCopied] = useState(false);
 
-  const { data, refetch, isSuccess } = useQuery({
+  const { data, refetch, isFetched, isFetching } = useQuery({
     queryKey: ["agentInfo"],
     queryFn: AgentInfoService.getAgentInfo,
     enabled: false,
   });
 
   useEffect(() => {
-    refetch();
-    if (isSuccess) {
-      setloading(false);
+    if(!isFetched) {
+      refetch();
       setInvitationLink(`https://${window.location.host}/a/${data?.data.invitationCode}`);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
+  }, [isFetched]);
 
   const handleCopyIdText = useCallback(() => {
     if (idIsCopied) return;
@@ -175,7 +172,7 @@ const AgentInfo = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [invitationLink]);
 
-  if (loading) return <Loading show={true} />;
+  if (isFetching) return <Loading show={true} />;
 
   return (
     <AgentInfoContainer>
