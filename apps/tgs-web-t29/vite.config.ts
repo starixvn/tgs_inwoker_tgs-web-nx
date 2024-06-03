@@ -34,7 +34,6 @@ export default defineConfig({
   // worker: {
   //  plugins: [ nxViteTsPaths() ],
   // },
-  
   // @ts-ignore
   test: {
     globals: true,
