@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import Icon from "@/components/project/Icon";
-import iconImg from "@/assets/t18/images/withdraw/manage-card-icon.svg";
+import iconImg from "@/assets/t29/images/withdraw/manage-card-icon.svg";
 
 const ButtonContainer = styled.div`
   cursor: pointer;
