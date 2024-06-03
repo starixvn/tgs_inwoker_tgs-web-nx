@@ -3,7 +3,6 @@ import config from "@tgs-web-nx/config";
 import { RouteType } from "@tgs-web-nx/types";
 import { ProfilePathEnum } from "@tgs-web-nx/core";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
-import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
 import MessageCenterPage from "@/pages/messageCenter/MessageCenterPage";
@@ -89,11 +88,6 @@ const routes: RouteType[] = [
     path: "/wagering",
     component: WageringPage,
     layout: DialogLayout,
-  },
-  {
-    path: "/betting-bonus",
-    component: BettingBonusPage,
-    layout: DefaultLayout,
   },
   {
     path: "/login",

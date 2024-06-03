@@ -21,7 +21,7 @@ import { TableKey, mapTable } from "./config";
 import { HintIconWrapper, WinlossReportContainer, FormulaWrapper, FormulaContainer, ScrollArea, TableWrapper, NoData, Wrapper, UserName } from "./components";
 import { usePlayerDetail, useWinlossReport } from "./hooks";
 import { theme } from "@/theme";
-import InfoIcon from "@/assets/t18/images/info.png";
+import InfoIcon from "@/assets/t29/images/info.png";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";
 import Dialog from "@/components/UI/Dialog/Dialog";
 
