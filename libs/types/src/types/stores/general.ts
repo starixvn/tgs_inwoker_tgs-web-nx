@@ -1,4 +1,4 @@
-import { Promotion } from "../dto";
+import { Promotion, SocialMediaInfo } from "../dto";
 
 export interface GeneralState {
   banner: any[];
@@ -29,6 +29,7 @@ export interface GeneralState {
   rouletteHistory: any[];
   token: string;
   joinPromoResult: JoinPromoResult;
+  socialMediaList: SocialMediaInfo[];
 }
 
 export interface BrandsSupport {

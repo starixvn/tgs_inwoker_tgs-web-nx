@@ -8,6 +8,7 @@ import { AuthFormContainer, FormContainer } from "@/components/styled-component/
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
 import { media } from "@/theme/breakpoints";
+import SocialMediaV2 from "@/components/project/SocialMediaV2";
 
 const RegisterForm = () => {
   const Wrapper = styled.div`
@@ -36,6 +37,7 @@ const RegisterForm = () => {
         </FormContainer>
 
         <RedirectToLoginHint style={{ marginBottom: "20px" }} />
+        <SocialMediaV2 style={{ width: "100%", justifyContent: "center" }} />
         <LanguageSwitch style={{ width: "150px", margin: "0 auto" }} />
       </AuthFormContainer>
     </Wrapper>

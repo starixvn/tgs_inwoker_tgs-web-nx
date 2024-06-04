@@ -2,9 +2,9 @@ import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import styled from "styled-components";
 import { useHistory } from "react-router";
-import SocialMedia from "@/components/project/SocialMedia";
 import android from "@/assets/t36/images/home/android.svg";
 import ios from "@/assets/t36/images/home/ios.svg";
+import SocialMediaV2 from "@/components/project/SocialMediaV2";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -62,7 +62,7 @@ const WinnerCard = () => {
   return (
     <Wrapper>
       <GroupTitle>Follow Us</GroupTitle>
-      <SocialMedia />
+      <SocialMediaV2 style={{ padding: "0px", justifyContent: "start" }} />
       <FooterGroup>
         <GroupTitle>Gaming License</GroupTitle>
         <GroupContent>

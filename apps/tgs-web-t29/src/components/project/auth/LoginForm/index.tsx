@@ -17,6 +17,7 @@ import {
   FormSubContainer,
   RememberMeContainer,
 } from "@/components/styled-component/auth/Form";
+import SocialMediaV2 from "@/components/project/SocialMediaV2";
 
 const LoginForm = () => {
   const {
@@ -65,7 +66,7 @@ const LoginForm = () => {
       </FormContainer>
 
       <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
-
+      <SocialMediaV2 style={{ justifyContent: "center", flexWrap: "wrap" }} />
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );

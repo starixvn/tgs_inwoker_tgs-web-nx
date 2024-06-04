@@ -1,4 +1,4 @@
-import { GerMaintenanceResDto, GetMarqueeResDto } from "@tgs-web-nx/types";
+import { GerMaintenanceResDto, GetMarqueeResDto, SocialMediaResDto } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 
 function GetMarquee(language: string) {

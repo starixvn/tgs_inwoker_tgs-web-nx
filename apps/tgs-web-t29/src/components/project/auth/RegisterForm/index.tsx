@@ -12,6 +12,7 @@ import {
 } from "@/components/styled-component/AuthFormContainer";
 import LanguageSwitch from "@/components/project/LanguageSwitch";
 import BrandLogo from "@/components/project/BrandLogo";
+import SocialMediaV2 from "@/components/project/SocialMediaV2";
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
@@ -35,6 +36,7 @@ const RegisterForm = () => {
       </FormContainer>
 
       <RedirectToLoginHint style={{ marginBottom: "20px" }} />
+      <SocialMediaV2 style={{ justifyContent: "center", flexWrap: "wrap" }} />
       <LanguageSwitch style={{ width: "129px", margin: "auto auto 0" }} />
     </AuthFormContainer>
   );
