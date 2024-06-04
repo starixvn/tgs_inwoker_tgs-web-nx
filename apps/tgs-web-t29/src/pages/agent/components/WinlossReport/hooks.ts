@@ -268,18 +268,22 @@ export const useDragToScrollX = (
     const positionOnClick = useRef({ elementScrollLeft: 0, mouseX: 0 });
 
     const onMouseMove = useCallback(
-        (e) => {
+        (e: MouseEvent) => {
             const moveX = e.clientX - positionOnClick.current.mouseX;
-            elementRef.current!.scrollLeft =
-                positionOnClick.current.elementScrollLeft - moveX;
+
+            if(elementRef.current) {
+                elementRef.current.scrollLeft = positionOnClick.current.elementScrollLeft - moveX;
+            }
         },
         [elementRef],
     );
 
     const onMouseMoveFinish = useCallback(() => {
-        elementRef.current!.removeEventListener("mousemove", onMouseMove);
-        elementRef.current!.removeEventListener("mouseup", onMouseMoveFinish);
-        elementRef.current!.removeEventListener("mouseleave", onMouseMoveFinish);
+        if(elementRef.current){
+            elementRef.current.removeEventListener("mousemove", onMouseMove);
+            elementRef.current.removeEventListener("mouseup", onMouseMoveFinish);
+            elementRef.current.removeEventListener("mouseleave", onMouseMoveFinish);
+        }
     }, [elementRef, onMouseMove]);
 
     useEffect(() => {
