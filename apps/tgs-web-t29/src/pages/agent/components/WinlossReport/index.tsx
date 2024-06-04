@@ -13,22 +13,25 @@ import {
   TableRow,
 } from "@mui/material";
 import { TextField, Select, Breadcrumbs } from "@mui/material";
+import { useRef } from "react";
 import { AgentButton } from "../AgentButton";
 import DateRangeWithDatePicker from "../DateRangeWithDatePicker";
 import DateRangeWithIntervalSelector from "../DateRangeWithIntervalSelector";
 import ReportCard from "./components/ReportCard";
 import { TableKey, mapTable } from "./config";
 import { HintIconWrapper, WinlossReportContainer, FormulaWrapper, FormulaContainer, ScrollArea, TableWrapper, NoData, Wrapper, UserName } from "./components";
-import { usePlayerDetail, useWinlossReport } from "./hooks";
+import { usePlayerDetail, useWinlossReport, useDragToScrollX } from "./hooks";
 import { theme } from "@/theme";
 import InfoIcon from "@/assets/t29/images/info.png";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";
 import Dialog from "@/components/UI/Dialog/Dialog";
-
+import LoadingBlock from "@/components/project/LoadingBlock";
 
 const WinlossReport = () => {
   const { isDesktopSize } = useRwd();
-  
+  const scrollAreaRef = useRef(null);
+  useDragToScrollX(scrollAreaRef);
+
   const {
     memberType,
     searchValue,
@@ -62,6 +65,13 @@ const WinlossReport = () => {
   })
 
   const renderData = () => {
+
+    if(report.isFetching) {
+      return (
+        <LoadingBlock size={30} style={{margin: "20px auto"}}/>
+      )
+    }
+
     if(report.hasData) {
       return report.items?.map((transactionDetail) => {
         const {
@@ -248,7 +258,7 @@ const WinlossReport = () => {
           }
       </Breadcrumbs>}
       {isDesktopSize ? (
-        <ScrollArea>  
+        <ScrollArea ref={scrollAreaRef}>  
           <TableWrapper>
             <Table>
               <TableHead>
@@ -285,7 +295,7 @@ const WinlossReport = () => {
               
             </Table>
             
-            {!report.hasData && <NoData>{i18n.t("common.nodata")}</NoData>}
+            {(!report.hasData && !report.isFetching) && <NoData>{i18n.t("common.nodata")}</NoData>}
           </TableWrapper>
         </ScrollArea>
       ) : (

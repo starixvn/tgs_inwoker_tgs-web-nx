@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import moment from "moment";
 import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
 import { useDateRange } from "../useDateRange";
-
 const rows = 20;
 
 /**
@@ -258,3 +257,46 @@ export const usePlayerDetail = ({
     }
     
 };
+
+
+/**
+ * 處理X軸滑動問題
+ */
+export const useDragToScrollX = (
+    elementRef: React.MutableRefObject<HTMLElement | null>,
+) => {
+    const positionOnClick = useRef({ elementScrollLeft: 0, mouseX: 0 });
+
+    const onMouseMove = useCallback(
+        (e) => {
+            const moveX = e.clientX - positionOnClick.current.mouseX;
+            elementRef.current!.scrollLeft =
+                positionOnClick.current.elementScrollLeft - moveX;
+        },
+        [elementRef],
+    );
+
+    const onMouseMoveFinish = useCallback(() => {
+        elementRef.current!.removeEventListener("mousemove", onMouseMove);
+        elementRef.current!.removeEventListener("mouseup", onMouseMoveFinish);
+        elementRef.current!.removeEventListener("mouseleave", onMouseMoveFinish);
+    }, [elementRef, onMouseMove]);
+
+    useEffect(() => {
+        if (elementRef.current) {
+            const element = elementRef.current;
+
+            element.addEventListener("mousedown", (e) => {
+                positionOnClick.current = {
+                    elementScrollLeft: element.scrollLeft,
+                    mouseX: e.clientX,
+                };
+
+                element.addEventListener("mousemove", onMouseMove);
+                element.addEventListener("mouseup", onMouseMoveFinish);
+                element.addEventListener("mouseleave", onMouseMoveFinish);
+            });
+        }
+    }, [elementRef, onMouseMove, onMouseMoveFinish]);
+};
+

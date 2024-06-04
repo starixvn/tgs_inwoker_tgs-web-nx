@@ -31,10 +31,18 @@ export type TProfitShare = {
 
 export type ProfitShareDto = {
   data: {
+      settlementIntervalType: ProfitShareStatus,
       previous: TProfitShare[],
       current: TProfitShare[],
       err: number,
       errmsg: string,
       errmsgid: null | string,
   },
+}
+
+export enum ProfitShareStatus {
+  Daily = 1,
+  Weekly = 2,
+  Monthly = 3,
+  DoubleWeekly = 4,
 }

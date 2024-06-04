@@ -17,9 +17,12 @@ const TransferButtonGroup = () => {
   const isShowAgentAdminButton = brandConfig[mapBrandName(config.brand)].isShowAgentAdminButton;
 
   const handleGotoTransfer = useCallback(() => {
-    history.push("/transfer");
+     
   }, []);
 
+  /**
+   * @todo /agent?
+   */
   const handleGotoAgentAdmin = useCallback(() => {
     if (config.AgentAdminUrl) {
       window.open(config.AgentAdminUrl, "_blank");
