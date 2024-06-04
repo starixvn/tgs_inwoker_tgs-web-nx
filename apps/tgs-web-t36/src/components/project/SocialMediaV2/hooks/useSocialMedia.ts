@@ -5,6 +5,7 @@ import x from "@/assets/t36/images/home/social_media/x.svg";
 import threads from "@/assets/t36/images/home/social_media/threads.svg";
 import tiktok from "@/assets/t36/images/home/social_media/tiktok.svg";
 import telegram from "@/assets/t36/images/home/social_media/telegram.svg";
+import whatapp from "@/assets/t36/images/home/social_media/whatapp.svg";
 
 export const useSocialMedia = () => {
   const getSocialMediaIcon = (type: SocialMediaEnum) => {
@@ -21,6 +22,8 @@ export const useSocialMedia = () => {
         return tiktok;
       case SocialMediaEnum.Telegram:
         return telegram;
+      case SocialMediaEnum.WhatsApp:
+        return whatapp;
       default:
         break;
     }
