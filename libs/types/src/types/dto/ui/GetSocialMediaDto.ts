@@ -12,6 +12,7 @@ export enum SocialMediaEnum {
   Threads = 4,
   Tiktok = 5,
   Telegram = 6,
+  WhatsApp = 7,
 }
 
 export type SocialMediaResDto = {
