@@ -137,6 +137,14 @@ export function useGetNavItemList() {
         routePath: "/profile",
       },
       {
+        key: NavCardKey.AGENT,
+        label: i18n.t("usertype.agent"),
+        iconUrl: agentImg,
+        iconSecondaryUrl: agentWhiteImg,
+        navType: "route",
+        routePath: "/agent",
+      },
+      {
         key: NavCardKey.DEPOSIT,
         label: i18n.t("common.deposit"),
         iconUrl: depositImg,

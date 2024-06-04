@@ -15,4 +15,5 @@ export enum NavCardKey {
   PROMOTION,
   INBOX,
   LANGUAGE_SWITCH,
+  AGENT
 }

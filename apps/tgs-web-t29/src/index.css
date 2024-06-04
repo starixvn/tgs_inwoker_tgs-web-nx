@@ -398,15 +398,6 @@ code {
     animation: anim 0.5s linear;
 }
 
-.flips section span span span {
-    background: url("assets/t18/images/slot/number-frame.png") no-repeat;
-
-    background-position: center;
-    font-size: 60px !important;
-    font-weight: bold !important;
-    display: flex !important;
-}
-
 .innerJackpotContainer div {
     display: inherit;
     margin: 100px auto 0px auto !important;
