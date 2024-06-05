@@ -33,7 +33,7 @@ type MOVN2Config = {
   isDisableWebPinchAction: boolean; // 網站是否禁用縮放
   countryCode: string;
   currencyRate?: number;
-  isShowAgentAdminButton: boolean; // 是否將transfer button改成agent amdin button https://raypro.atlassian.net/browse/TGS-4158
+  isShowTransferButton: boolean; // 是否顯示 Transfer Button
   isHideVIPBirthdayBonus: boolean; // 是否在vip 表格隱藏生日福利 https://raypro.atlassian.net/browse/TGS-4324
   isHideVIPQuarterlyBonus: boolean; // 是否在vip 表格隱藏季度福利 https://raypro.atlassian.net/browse/TGS-4324
   isShowVIP: boolean; // 是否在Navigation bar及profile頁面顯示VIP https://raypro.atlassian.net/browse/TGS-4325
@@ -87,7 +87,7 @@ export const defaultConfig: Config = {
   isAllowMulitBankCards: true,
   isDisableWebPinchAction: false,
   countryCode: "en-US",
-  isShowAgentAdminButton: false,
+  isShowTransferButton: true,
   isHideVIPBirthdayBonus: false,
   isHideVIPQuarterlyBonus: false,
   isShowVIP: true,
@@ -136,7 +136,7 @@ export const brandConfig: Record<BrandName, Config> = {
     isAllowMulitBankCards: false,
     currencyRate: 1000,
     isDisableWebPinchAction: true,
-    isShowAgentAdminButton: true,
+    isShowTransferButton: false,
     isHideVIPBirthdayBonus: true,
     isHideVIPQuarterlyBonus: true,
     isShowVIP: true,
@@ -202,7 +202,7 @@ export const brandConfig: Record<BrandName, Config> = {
     isAllowMulitBankCards: false,
     currencyRate: 1000,
     isDisableWebPinchAction: true,
-    isShowAgentAdminButton: true,
+    isShowTransferButton: false,
     isHideVIPBirthdayBonus: true,
     isHideVIPQuarterlyBonus: true,
     isShowVIP: true,
@@ -269,7 +269,7 @@ export const brandConfig: Record<BrandName, Config> = {
     isAllowMulitBankCards: false,
     currencyRate: 1000,
     isDisableWebPinchAction: true,
-    isShowAgentAdminButton: true,
+    isShowTransferButton: false,
     isHideVIPBirthdayBonus: true,
     isHideVIPQuarterlyBonus: true,
     isShowVIP: true,
@@ -326,7 +326,7 @@ export const brandConfig: Record<BrandName, Config> = {
       ig: "https://www.instagram.com/momobet.ph",
     },
     isInitYuriJs: true,
-    isShowAgentAdminButton: true,
+    isShowTransferButton: false,
     isHideTransferButton: true,
     customGametypeSort: [
       "slots",
