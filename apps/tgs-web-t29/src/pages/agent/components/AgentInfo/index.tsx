@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AgentInfo as AgentInfoService } from "@tgs-web-nx/core";
 import { QRCodeContainer } from "@/components/styled-component/Affiliate";
 import { media } from "@/theme/breakpoints";
-import Loading from "@/components/UI/Loading";
+import LoadingBlock from "@/components/project/LoadingBlock";
 
 const AgentInfoContainer = styled.div`
   display: flex;
@@ -58,7 +58,7 @@ const GameTypeContainer = styled.div`
 `;
 
 const GameType = styled.div`
-  flex: 0 1 140px;
+  flex: 1 1 140px;
   min-width: 120px;
   color: #23507d;
   font-size: 17px;
@@ -131,22 +131,18 @@ const AgentInfo = () => {
   const { imageId, handleQrAction, isCopied } = useImageActions();
   const { isDesktopSize } = useRwd();
 
-  const [invitationLink, setInvitationLink] = useState("");
   const [idIsCopied, setIdIsCopied] = useState(false);
   const [linkIsCopied, setLinkIsCopied] = useState(false);
 
-  const { data, refetch, isFetched, isFetching } = useQuery({
+  const { data, refetch, isFetching } = useQuery({
     queryKey: ["agentInfo"],
     queryFn: AgentInfoService.getAgentInfo,
     enabled: false,
   });
 
   useEffect(() => {
-    if(!isFetched) {
-      refetch();
-      setInvitationLink(`https://${window.location.host}/a/${data?.data.invitationCode}`);
-    }
-  }, [isFetched]);
+    refetch();
+  }, [refetch]);
 
   const handleCopyIdText = useCallback(() => {
     if (idIsCopied) return;
@@ -162,19 +158,18 @@ const AgentInfo = () => {
 
   const handleCopyLinkText = useCallback(() => {
     if (linkIsCopied) return;
-
-    navigator.clipboard.writeText(invitationLink);
+    navigator.clipboard.writeText(`https://${window.location.host}/a/${data?.data.invitationCode}`);
     setLinkIsCopied(true);
 
     setTimeout(() => {
       setLinkIsCopied(false);
     }, 2000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [invitationLink]);
+  }, [data?.data.invitationCode]);
 
-  if (isFetching) return <Loading show={true} />;
-
-  return (
+  return isFetching ? (
+    <LoadingBlock size={30} />
+  ) : (
     <AgentInfoContainer>
       {isDesktopSize ? (
         <BasicDataCard>
@@ -196,11 +191,6 @@ const AgentInfo = () => {
               )}
             </ValueText>
           </SharingContent>
-
-          <SharingContent>
-            <DataText>{i18n.t("agent.platformFee")}</DataText>
-            <ValueText>{`${data?.data.platformChargePercentage}%`}</ValueText>
-          </SharingContent>
         </BasicDataCard>
       ) : (
         <>
@@ -208,11 +198,6 @@ const AgentInfo = () => {
             <SharingContent>
               <DataText>{i18n.t("agent.profitShareP/T")}</DataText>
               <ValueText>{`${data?.data.dividendPercentage}%`}</ValueText>
-            </SharingContent>
-
-            <SharingContent>
-              <DataText>{i18n.t("agent.platformFee")}</DataText>
-              <ValueText>{`${data?.data.platformChargePercentage}%`}</ValueText>
             </SharingContent>
           </BasicDataCard>
           <BasicDataCard>
@@ -269,7 +254,7 @@ const AgentInfo = () => {
         <div>
           <span>{i18n.t("affiliate.promoLink")}</span>
           <div>
-            <ValueText>{invitationLink}</ValueText>
+            <ValueText>{`https://${window.location.host}/a/${data?.data.invitationCode}`}</ValueText>
             <StyledButton onClick={handleCopyLinkText}>
               {linkIsCopied ? i18n.t("affiliate.copied") : i18n.t("common.copy")}
             </StyledButton>
@@ -281,7 +266,10 @@ const AgentInfo = () => {
         <span>{i18n.t("affiliate.qrCode")}</span>
         <div>
           <QRCodeContainer id={imageId}>
-            <QRCode value={invitationLink} size={isDesktopSize ? 256 : 128} />
+            <QRCode
+              value={`https://${window.location.host}/a/${data?.data.invitationCode}`}
+              size={isDesktopSize ? 256 : 128}
+            />
           </QRCodeContainer>
           <ButtonContainer>
             <StyledButton onClick={() => handleQrAction(ImageActionEnum.COPY)}>
