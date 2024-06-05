@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
-import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -14,19 +13,10 @@ const ButtonContainer = styled.div`
 
 const TransferButtonGroup = () => {
   const history = useHistory();
-  const isShowAgentAdminButton = brandConfig[mapBrandName(config.brand)].isShowAgentAdminButton;
+  const {isShowTransferButton} = brandConfig[mapBrandName(config.brand)];
 
   const handleGotoTransfer = useCallback(() => {
-     
-  }, []);
-
-  /**
-   * @todo /agent?
-   */
-  const handleGotoAgentAdmin = useCallback(() => {
-    if (config.AgentAdminUrl) {
-      window.open(config.AgentAdminUrl, "_blank");
-    }
+    history.push("/transfer");
   }, []);
 
   const handleGotoWithdrawal = useCallback(() => {
@@ -39,16 +29,7 @@ const TransferButtonGroup = () => {
 
   return (
     <ButtonContainer>
-      {isShowAgentAdminButton ? (
-        <HeaderButton
-          onClick={handleGotoAgentAdmin}
-          style={{
-            background: theme.secondary,
-          }}
-        >
-          <>{i18n.t("usertype.agent")}</>
-        </HeaderButton>
-      ) : (
+      {isShowTransferButton && (
         <HeaderButton
           onClick={handleGotoTransfer}
           style={{

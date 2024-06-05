@@ -5,6 +5,7 @@ import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
+import { useAccountStore } from "@tgs-web-nx/core";
 import agentImg from "@/assets/t29/images/account/navItem/icon-agent.svg";
 import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
 import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
@@ -53,8 +54,11 @@ export type NavItem = {
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
+  const { account } = useAccountStore();
   const { handleChangeGameType, providerList } = useHomeGameContext();
   const history = useHistory();
+  const isAgent = account.info.playerisagentid !== null;
+  
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
@@ -115,19 +119,6 @@ export function useGetNavItemList() {
 
   const accountNavItemList: NavItem[] = useMemo(() => {
     const navItems = [
-      brandConfig[mapBrandName(config.brand)].isShowAgentAdminButton && {
-        key: "agent",
-        label: i18n.t("usertype.agent"),
-        iconUrl: agentImg,
-        iconSecondaryUrl: agentWhiteImg,
-        routePath: null,
-        navType: "action",
-        callback: () => {
-          if (config.AgentAdminUrl) {
-            window.open(config.AgentAdminUrl, "_blank");
-          }
-        },
-      },
       {
         key: NavCardKey.PROFILE,
         label: i18n.t("wap.main.my"),
@@ -136,7 +127,7 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/profile",
       },
-      {
+      isAgent && {
         key: NavCardKey.AGENT,
         label: i18n.t("usertype.agent"),
         iconUrl: agentImg,
