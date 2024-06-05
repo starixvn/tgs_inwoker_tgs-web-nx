@@ -26,6 +26,7 @@ export const imageMap: { [key in string]: string } = {
 const StyledSelect = styled(MuiSelect)`
   //width: 140px;
   //margin-right: 10px;
+  height: 48px;
   overflow: visible;
   background: ${({ theme }) => theme.white};
   font-weight: 400 !important;
