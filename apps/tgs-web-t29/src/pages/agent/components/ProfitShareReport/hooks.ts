@@ -108,9 +108,7 @@ export const useProfitShareReport = () => {
   }
   
   useEffect(() => {
-    if(!isFetched) {
-      refetch();
-    }
+    refetch();
   }, [])
 
   // 上期、本期預設選第一個分紅 % 數
