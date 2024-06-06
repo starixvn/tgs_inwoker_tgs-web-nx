@@ -70,11 +70,11 @@ const Dot = styled.span`
 
 
 const ProfitShareReport = () => {
-  const {lists: {current, previous}, isFetched, period} = useProfitShareReport();
+  const {lists: {current, previous}, isFetching, period} = useProfitShareReport();
   const currentData = current.data[current.currentKey] && current.data[current.currentKey][0];
   const previousData = previous.data[previous.currentKey] && previous.data[previous.currentKey][0];
 
-  if(!isFetched) {
+  if(isFetching) {
     return <Loading show /> 
   }
   

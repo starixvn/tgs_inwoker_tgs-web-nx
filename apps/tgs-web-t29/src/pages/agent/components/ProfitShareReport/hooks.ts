@@ -84,7 +84,7 @@ export const formatNaN = (number: number) => isNaN(number) ? '-' : number;
 export const useProfitShareReport = () => {
   const [previousKey, setPreviousKey] = useState('');
   const [currentKey, setCurrentKey] = useState('');
-  const {data, refetch, isFetched} = useQuery({
+  const {data, refetch, isFetching} = useQuery({
     queryKey: ['profitShare'],
     queryFn: ProfitShare.getProfitShare,
     enabled: false,
@@ -127,7 +127,7 @@ export const useProfitShareReport = () => {
   return {
     lists,
     data,
-    isFetched,
+    isFetching,
     period: getPeriod(data?.data.settlementIntervalType)
   }
 }
