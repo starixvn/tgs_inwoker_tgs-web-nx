@@ -24,7 +24,7 @@ export const ItemContainer = styled.div`
 
 export const LabelContainer = styled.div`
   font-size: 0.875rem;
-  font-weight: 400;
+  font-weight: 700;
   color: ${({ theme }) => theme.text};
   float: left;
   margin-bottom: 16px;

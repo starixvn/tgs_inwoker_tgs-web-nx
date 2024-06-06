@@ -33,3 +33,13 @@ export const ButtonConfirm = styled.div`
   background: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.white};
 `;
+
+export const TwoButtonWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+
+  & > * {
+    flex: 1;
+  }
+`;

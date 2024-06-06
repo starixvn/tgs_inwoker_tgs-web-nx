@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { i18n, utility } from "@tgs-web-nx/utils";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import Icon from "@/components/project/Icon";
-import copyImg from "@/assets/t18/images/deposit/copy.png";
+import copyImg from "@/assets/t31/images/deposit/copy.svg";
 
 const CopyIconContainer = styled.div`
   width: 30px;
   height: 30px;
   border-radius: 5px;
-  background-color: ${({ theme }) => theme.primary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,14 +18,14 @@ const CopyIconContainer = styled.div`
   transition: all ease-in-out 0.2s;
   &:hover {
     color: ${({ theme }) => theme.primary};
-    background-color: ${({ theme }) => theme.white};
   }
 `;
 
 type Props = {
   copyContent: any;
+  style?: React.CSSProperties;
 };
-const CopyIcon = ({ copyContent }: Props) => {
+const CopyIcon = ({ copyContent, style }: Props) => {
   const { alert } = useNotifications();
 
   const performCopy = (content: any) => {
@@ -40,6 +39,7 @@ const CopyIcon = ({ copyContent }: Props) => {
       onClick={() => {
         performCopy(copyContent);
       }}
+      style={style}
     >
       <Icon iconUrl={copyImg} width={"20px"} height={"20px"} />
     </CopyIconContainer>
