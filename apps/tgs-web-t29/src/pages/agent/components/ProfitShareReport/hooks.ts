@@ -23,6 +23,15 @@ type Period = 'daily' | 'monthly' | 'biWeekly' | 'weekly';
  */
 export const formatDate = (date?: Date) => moment(date).format("YYYY/MM/DD");
 
+export const getDateRange = (from: Date, to: Date) => {
+  if(!from || !to) {
+    return '-'
+  }
+
+  return `${formatDate(from)} - ${formatDate(to)}`
+}
+
+
 /**
  * 依派發時間區分狀態處理派發狀態
  * @param date 時間
@@ -65,6 +74,11 @@ const getPeriod = (code?: ProfitShareStatus): Period => {
 }
 
 /**
+ * 處理 NaN
+ */
+export const formatNaN = (number: number) => isNaN(number) ? '-' : number;
+
+/**
  * 處理分紅報表
  */
 export const useProfitShareReport = () => {
@@ -92,7 +106,7 @@ export const useProfitShareReport = () => {
       currentKey: currentKey,
     }
   }
-
+  
   useEffect(() => {
     if(!isFetched) {
       refetch();

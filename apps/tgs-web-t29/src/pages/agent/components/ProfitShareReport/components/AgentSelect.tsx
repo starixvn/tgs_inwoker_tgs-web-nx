@@ -50,10 +50,9 @@ export const AgentSelect = ({
   value,
   children,
 }: Props) => {
-  const hasOptions = options.length > 1;
-  return (
-    <Wrapper>
-      {hasOptions && <FormControl sx={{overflow: 'visible'}}>
+  const renderSelect = () => {
+    if(options.length > 1) {
+      return (<FormControl sx={{overflow: 'visible'}}>
           <InputLabel id="simple-select-label">{children}</InputLabel>
           <Select
             labelId="simple-select-label"
@@ -70,8 +69,19 @@ export const AgentSelect = ({
               )
             }
           </Select>
-      </FormControl>}
-      {!hasOptions && <Text>{options[0]}%</Text>}
+      </FormControl>)
+    }
+
+    if(options.length === 1) {
+      return (<Text>{options[0]}%</Text>)
+    }
+
+    return null;
+  }
+
+  return (
+    <Wrapper>
+      {renderSelect()}
       {children}
     </Wrapper>
   )
