@@ -182,8 +182,8 @@ const ProfitShareReport = () => {
           <TableRow>
             {/* 紅利金額: VIP福利+VIP返水+活動優惠金額的加總 */}
             <FillTableCell sx={{ textAlign: "right" }}>- {i18n.t("agent.bonus")}</FillTableCell>
-            <FillTableCell>{previousData?.bonus}</FillTableCell>
-            <FillTableCell>{currentData?.bonus}</FillTableCell>
+            <FillTableCell>{formatNaN(previousData?.bonus)}</FillTableCell>
+            <FillTableCell>{formatNaN(currentData?.bonus)}</FillTableCell>
           </TableRow>
 
           {/* 淨盈利: 週期盈虧 - 優惠調帳(bonusAdjustAmount)*/}
