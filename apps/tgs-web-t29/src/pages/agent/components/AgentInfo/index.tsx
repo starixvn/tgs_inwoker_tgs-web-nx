@@ -233,10 +233,10 @@ const AgentInfo = () => {
 
       <AgentPlayerAmountCard>
         <div>
-          <div>{`${i18n.t("agent.directAgent")}:1`}</div>
-          <div>{`${i18n.t("agent.indirectAgent")}:1`}</div>
-          <div>{`${i18n.t("agent.diectPlayer")}:1`}</div>
-          <div>{`${i18n.t("agent.indirectPlayer")}:1`}</div>
+          <div>{`${i18n.t("agent.directAgent")}:${data?.data.directAgentCount}`}</div>
+          <div>{`${i18n.t("agent.indirectAgent")}:${data?.data.indirectAgentCount}`}</div>
+          <div>{`${i18n.t("agent.diectPlayer")}:${data?.data.directPlayerCount}`}</div>
+          <div>{`${i18n.t("agent.indirectPlayer")}:${data?.data.indirectPlayerCount}`}</div>
         </div>
       </AgentPlayerAmountCard>
 
