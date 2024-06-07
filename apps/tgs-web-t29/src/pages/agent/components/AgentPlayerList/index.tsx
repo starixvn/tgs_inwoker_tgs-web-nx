@@ -17,6 +17,7 @@ import { UserConfig, PlayerList as PlayerListService } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 import { AgentButton } from "../AgentButton";
+import { NoData as RequestFailHint } from "../NoData";
 import PlayerInfoCards from "./Components/PlayerInfoCards";
 import { theme } from "@/theme";
 import LoadingBlock from "@/components/project/LoadingBlock";
@@ -55,6 +56,7 @@ const AgentPlayerList = () => {
   const [userStatus, setUserStatus] = useState("all");
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
+  const [isRequestFail, setIsRequestFail] = useState(false);
 
   const { getStatusTranslation } = useAgentPage();
 
@@ -75,7 +77,7 @@ const AgentPlayerList = () => {
     queryFn: () => PlayerListService.getPlayerList(isDesktopSize ? config : mobileConfig),
     enabled: false,
   });
-  const hasData = data && data.data.items.length > 0;
+  const hasData = data?.data?.items && data.data.items.length > 0;
 
   useEffect(() => {
     refetch();
@@ -85,6 +87,9 @@ const AgentPlayerList = () => {
   useEffect(() => {
     if (data) {
       setTotalCount(data.data.totalCount);
+      if (data?.IsSuccess === false) {
+        setIsRequestFail(true);
+      }
     }
   }, [data]);
 
@@ -122,7 +127,9 @@ const AgentPlayerList = () => {
     refetch();
   };
 
-  return (
+  return isRequestFail ? (
+    <RequestFailHint />
+  ) : (
     <>
       <FilterContainer>
         <TextField
@@ -171,6 +178,7 @@ const AgentPlayerList = () => {
                   </TableCell>
                 </TableRow>
               ) : (
+                data?.data.items &&
                 data?.data.items
                   .filter((player) => player.playerStatus !== PlayerStatus.REGISTERING)
                   .map((player, index) => {

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { Button, styled as muiStyled } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { AgentInfo as AgentInfoService } from "@tgs-web-nx/core";
+import { NoData as RequestFailHint } from "../NoData";
 import { QRCodeContainer } from "@/components/styled-component/Affiliate";
 import { media } from "@/theme/breakpoints";
 import LoadingBlock from "@/components/project/LoadingBlock";
@@ -169,7 +170,7 @@ const AgentInfo = () => {
 
   return isFetching ? (
     <LoadingBlock size={30} />
-  ) : (
+  ) : data?.IsSuccess ? (
     <AgentInfoContainer>
       {isDesktopSize ? (
         <BasicDataCard>
@@ -282,6 +283,8 @@ const AgentInfo = () => {
         </div>
       </QRcodeCard>
     </AgentInfoContainer>
+  ) : (
+    <RequestFailHint />
   );
 };
 
