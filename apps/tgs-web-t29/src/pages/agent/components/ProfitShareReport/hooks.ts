@@ -121,12 +121,11 @@ export const useProfitShareReport = () => {
       setPreviousKey(lists.previous.keys[0])
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lists.current.keys.length, lists.previous.keys.length])
+  }, [isFetching])
 
 
   return {
     lists,
-    data,
     isFetching,
     period: getPeriod(data?.data.settlementIntervalType)
   }

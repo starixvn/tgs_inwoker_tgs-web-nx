@@ -1,4 +1,3 @@
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
 import {
   Table,
