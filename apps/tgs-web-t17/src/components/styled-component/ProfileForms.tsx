@@ -9,7 +9,7 @@ import { media } from "@/theme/breakpoints";
 export const Remark = styled.div`
   font-size: 0.937rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.text};
+  color: #fff;
   margin-bottom: 24px;
 `;
 
@@ -65,7 +65,7 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
 export const UploadFileTag = styled.span`
   width: 100%;
   font-size: 0.937rem;
-  color: ${({ theme }) => theme.text};
+  color: #fff;
 
   display: flex;
   align-items: center;
