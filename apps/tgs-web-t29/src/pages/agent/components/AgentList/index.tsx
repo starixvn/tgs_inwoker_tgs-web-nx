@@ -1,0 +1,224 @@
+import { PlayerStatus, useAgentPage, useRwd } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
+import {
+  MenuItem,
+  SelectChangeEvent,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TablePagination,
+  TableRow,
+} from "@mui/material";
+import { TextField, Select } from "@mui/material";
+import moment from "moment";
+import { useEffect, useRef, useState } from "react";
+import { UserConfig, AgentList as AgentListService } from "@tgs-web-nx/core";
+import { useQuery } from "@tanstack/react-query";
+import { AgentButton } from "../AgentButton";
+import { NoData as RequestFailHint } from "../NoData";
+import AgentInfoCards from "./Components/AgentInfoCards";
+import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
+import LoadingBlock from "@/components/project/LoadingBlock";
+
+const FilterContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+`;
+
+const PlayerList = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.1px;
+`;
+
+const NoData = styled.div`
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 19.55px;
+  padding: 10px;
+  text-align: center;
+  border-bottom: none;
+  ${media.sm} {
+    border-bottom: 1px solid rgba(83, 88, 103, 0.3);
+  }
+`;
+
+const pageSize = 20;
+
+const AgentList = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { isDesktopSize, isMobileSize } = useRwd();
+  const [userName, setUserName] = useState("");
+  const [userStatus, setUserStatus] = useState("all");
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [isRequestFail, setIsRequestFail] = useState(false);
+
+  const { getStatusTranslation } = useAgentPage();
+
+  const config: UserConfig = {
+    username: userName,
+    status: userStatus === "all" ? "" : userStatus,
+    page: page,
+    pageSize: pageSize,
+  };
+
+  const mobileConfig = {
+    ...config,
+    pageSize: 999,
+  };
+
+  const { data, refetch, isSuccess, isFetching } = useQuery({
+    queryKey: ["getAgentList"],
+    queryFn: () => AgentListService.getAgentList(isDesktopSize ? config : mobileConfig),
+    enabled: false,
+  });
+  const hasData = data?.data?.items && data.data.items.length > 0;
+
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setTotalCount(data.data.totalCount);
+      if (data?.IsSuccess === false) {
+        setIsRequestFail(true);
+      }
+    }
+  }, [data]);
+
+  const handleSelectStatus = async (event: SelectChangeEvent) => {
+    await setUserStatus(event.target.value);
+    if (isMobileSize) {
+      handleOnSearch();
+    }
+  };
+
+  const handleChangeUserName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserName(event.target.value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleOnSearch();
+      //按下enter後,將手機鍵盤關閉
+      if (inputRef.current) {
+        inputRef.current.blur();
+      }
+    }
+  };
+
+  const handleOnSearch = async () => {
+    await setPage(1);
+    refetch();
+  };
+
+  const handleChangePage = async (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    await setPage(newPage + 1);
+    refetch();
+  };
+
+  return isRequestFail ? (
+    <RequestFailHint />
+  ) : (
+    <>
+      <FilterContainer>
+        <TextField
+          value={userName}
+          onChange={handleChangeUserName}
+          onKeyDown={handleKeyDown}
+          placeholder={i18n.t("usertype.agent")}
+          sx={{
+            input: {
+              width: isDesktopSize ? "400px" : "300px",
+            },
+          }}
+          inputRef={inputRef}
+        />
+        <Select value={userStatus} sx={{ width: "200px" }} onChange={handleSelectStatus}>
+          <MenuItem value={"all"}>{i18n.t("agent.status")} </MenuItem>
+          <MenuItem value={PlayerStatus.ENABLED}>{i18n.t("agent.enabled")} </MenuItem>
+          <MenuItem value={PlayerStatus.DISABLED}>{i18n.t("agent.disabled")} </MenuItem>
+          <MenuItem value={PlayerStatus.INBLACKLIST}>{i18n.t("agent.inBlacklist")} </MenuItem>
+        </Select>
+        {isDesktopSize && (
+          <AgentButton onClick={handleOnSearch} disabled={isFetching}>
+            {i18n.t("common.search")}
+          </AgentButton>
+        )}
+      </FilterContainer>
+      <PlayerList>
+        {isDesktopSize ? (
+          <Table>
+            <TableHead>
+              <TableRow sx={{ background: theme.blue10 }}>
+                <TableCell>{i18n.t("usertype.agent")}</TableCell>
+                <TableCell>{i18n.t("common.realName")}</TableCell>
+                <TableCell>{i18n.t("agent.registeredTime")}</TableCell>
+                <TableCell>{i18n.t("agent.profitShareP/T")}</TableCell>
+                <TableCell>{i18n.t("agent.teamSize")}</TableCell>
+                <TableCell>{i18n.t("agent.status")}</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {isFetching ? (
+                <TableRow>
+                  <TableCell colSpan={7}>
+                    <LoadingBlock size={30} style={{ margin: "10px 0" }} />
+                  </TableCell>
+                </TableRow>
+              ) : (
+                data?.data.items &&
+                data?.data.items
+                  .filter((agent) => agent.agentStatus !== PlayerStatus.REGISTERING)
+                  .map((agent, index) => {
+                    const registerData = moment(agent.registeredOn).format("YYYY-MM-DD hh:mm a");
+                    return (
+                      <TableRow key={index}>
+                        <TableCell>{agent.agentUsername}</TableCell>
+                        <TableCell>{agent.realName}</TableCell>
+                        <TableCell sx={{ width: "120px" }}>{registerData}</TableCell>
+                        <TableCell>{`${agent.agentDividendPercentage}%`}</TableCell>
+                        <TableCell>{agent.directPlayerWithAgentCount}</TableCell>
+                        <TableCell>{getStatusTranslation(agent.agentStatus)}</TableCell>
+                      </TableRow>
+                    );
+                  })
+              )}
+            </TableBody>
+          </Table>
+        ) : (
+          <AgentInfoCards AgentInfo={data} feching={isFetching} />
+        )}
+        {!isFetching && !hasData && <NoData>{i18n.t("common.nodata")}</NoData>}
+
+        {isSuccess && isDesktopSize && (
+          <TablePagination
+            component="div"
+            rowsPerPageOptions={[]}
+            count={totalCount}
+            rowsPerPage={pageSize}
+            page={page - 1}
+            onPageChange={handleChangePage}
+            sx={{
+              width: "100%",
+              color: theme.blue40,
+              "& button": {},
+            }}
+          />
+        )}
+      </PlayerList>
+    </>
+  );
+};
+
+export default AgentList;

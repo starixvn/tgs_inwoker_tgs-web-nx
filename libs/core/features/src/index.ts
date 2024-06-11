@@ -17,3 +17,4 @@ export * from "./feature/auth";
 export * from "./feature/useJackpot";
 export * from "./feature/usePromotionCodeV2";
 export { useAuthDialog } from "./feature/useAuthDialog/hooks/useAuthDialog";
+export * from "./feature/queryClient";

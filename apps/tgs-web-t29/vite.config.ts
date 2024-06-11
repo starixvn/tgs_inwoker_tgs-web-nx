@@ -26,8 +26,20 @@ export default defineConfig({
   },
 
   plugins: [
-    react(),
-    nxViteTsPaths()
+    react({
+      babel: {
+        plugins: [
+          [
+            "babel-plugin-styled-components",
+            {
+              displayName: true,
+              fileName: false,
+            },
+          ],
+        ],
+      },
+    }),
+    nxViteTsPaths(),
   ],
 
   // Uncomment this if you are using workers.

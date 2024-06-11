@@ -91,6 +91,7 @@ const initialState: {
     levelupaccumulatebetamount: 0,
     levelupaccumulatedeposit: 0,
     fulllevel: false,
+    playerisagentid: null,
   } as AccountInfo,
   providerList: [],
 };

@@ -2,9 +2,9 @@ import React from "react";
 import { ClassNameMap, CombinedClassKey, SnackbarProvider } from "notistack";
 import styled from "styled-components";
 import { makeStyles } from "@mui/styles";
-import SuccessPNG from "@/assets/t18/images/success.png";
-import DangerPNG from "@/assets/t18/images/warning.png";
-import InfoPNG from "@/assets/t18/images/info.png";
+import SuccessPNG from "@/assets/t29/images/success.png";
+import DangerPNG from "@/assets/t29/images/warning.png";
+import InfoPNG from "@/assets/t29/images/info.png";
 
 const Dismiss = styled.a`
   margin-right: 12px;

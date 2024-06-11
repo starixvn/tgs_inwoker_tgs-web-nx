@@ -3,7 +3,6 @@ import config from "@tgs-web-nx/config";
 import { RouteType } from "@tgs-web-nx/types";
 import { ProfilePathEnum } from "@tgs-web-nx/core";
 import AffiliatePage from "@/pages/affiliate/AffiliatePage";
-import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
 import MessageCenterPage from "@/pages/messageCenter/MessageCenterPage";
@@ -36,6 +35,12 @@ import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 import BannedPage from "@/pages/banned/BannedPage";
+import AgentPgae from "@/pages/agent/AgentPage";
+import AgentInfoPgae from "@/pages/agent/components/AgentInfo/MobilePage";
+import AgentPlayerListPgae from "@/pages/agent/components/AgentPlayerList/MobilePage";
+import AgentListPgae from "@/pages/agent/components/AgentList/MobilePage";
+import WinlossReport from "@/pages/agent/components/WinlossReport/MobilePage";
+import ProfitShareReport from "@/pages/agent/components/ProfitShareReport/MobilePage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -83,11 +88,6 @@ const routes: RouteType[] = [
     path: "/wagering",
     component: WageringPage,
     layout: DialogLayout,
-  },
-  {
-    path: "/betting-bonus",
-    component: BettingBonusPage,
-    layout: DefaultLayout,
   },
   {
     path: "/login",
@@ -346,6 +346,36 @@ const routes: RouteType[] = [
     path: "/responsiblegaming",
     component: Responsiblegaming,
     isAnonymousAllowed: true,
+  },
+  {
+    path: "/agent",
+    component: AgentPgae,
+    layout: DialogLayout,
+  },
+  {
+    path: "/agent/agentInfo",
+    component: AgentInfoPgae,
+    layout: DialogLayout,
+  },
+  {
+    path: "/agent/playerList",
+    component: AgentPlayerListPgae,
+    layout: DialogLayout,
+  },
+  {
+    path: "/agent/agentList",
+    component: AgentListPgae,
+    layout: DialogLayout,
+  },
+  {
+    path: "/agent/winlossReport",
+    component: WinlossReport,
+    layout: DialogLayout,
+  },
+  {
+    path: "/agent/profitShareReport",
+    component: ProfitShareReport,
+    layout: DialogLayout,
   },
 ];
 

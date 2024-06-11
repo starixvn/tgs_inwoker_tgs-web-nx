@@ -7,3 +7,4 @@ export * from "./report";
 export * from "./ui";
 export * from "./wallet";
 export * from "./withdraw";
+export * from "./agent";
