@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import styled from "styled-components";
-import { useWageringPage } from "@tgs-web-nx/core/hooks";
+import { useGetChannelCode, useWageringPage } from "@tgs-web-nx/core/hooks";
 import { MainProps } from "./index";
 import {
   FormControl,
@@ -59,6 +59,8 @@ const MainMobile = ({
   const { wageringRequirement, playerBuckets, fetchpPlayerBucket, activeType, setActiveType } =
     useWageringPage();
 
+  const { getChannelCode } = useGetChannelCode();
+
   const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
   useEffect(() => {
     fetchpPlayerBucket();
@@ -107,8 +109,13 @@ const MainMobile = ({
             {cardList.map((item, index) => {
               return (
                 <option key={index} value={index} id={`optionValue-${index}`}>
-                  {item.banktype} (
-                  {item.detail.address || item.detail.bankAccount || item.detail.phone})
+                  {config.features.isShowChannelCode
+                    ? `${getChannelCode(item)} - (${
+                        item.detail.address || item.detail.bankAccount || item.detail.phone
+                      })`
+                    : `${item.banktype} (${
+                        item.detail.address || item.detail.bankAccount || item.detail.phone
+                      })`}
                 </option>
               );
             })}

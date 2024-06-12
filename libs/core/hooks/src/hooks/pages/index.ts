@@ -7,6 +7,7 @@ export * from "./joinGame/useJoinGamePage";
 export * from "./joinLobbyGame/useJoinLobbyGamePage";
 export * from "./deposit/useDepositPage";
 export * from "./withdrawal/useWithdrawalPage";
+export * from "./withdrawal/useGetChannelCode";
 export * from "./forgotPassword/useForgotPasswordPage";
 export * from "./inbox";
 export * from "./wagering/useWageringPage";

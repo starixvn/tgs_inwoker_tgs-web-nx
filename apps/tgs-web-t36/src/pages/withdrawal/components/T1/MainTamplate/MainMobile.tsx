@@ -1,8 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config, {brandConfig, mapBrandName} from '@tgs-web-nx/config';
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import styled from "styled-components";
+import { useGetChannelCode } from "@tgs-web-nx/core/hooks";
 import { MainProps } from "./index";
 import {
   FormControl,
@@ -58,6 +59,8 @@ const MainMobile = ({
 }: MainProps) => {
   const history = useHistory();
   const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
+  const { getChannelCode } = useGetChannelCode();
+
   return (
     <>
       <WithdrawInfoCard />
@@ -85,8 +88,13 @@ const MainMobile = ({
             {cardList.map((item, index) => {
               return (
                 <option key={index} value={index} id={`optionValue-${index}`}>
-                  {item.banktype} (
-                  {item.detail.address || item.detail.bankAccount || item.detail.phone})
+                  {config.features.isShowChannelCode
+                    ? `${getChannelCode(item)} - (${
+                        item.detail.address || item.detail.bankAccount || item.detail.phone
+                      })`
+                    : `${item.banktype} (${
+                        item.detail.address || item.detail.bankAccount || item.detail.phone
+                      })`}
                 </option>
               );
             })}
