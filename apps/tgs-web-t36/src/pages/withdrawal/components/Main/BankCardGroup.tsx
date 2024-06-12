@@ -1,6 +1,8 @@
 import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
+import { useGetChannelCode } from "@tgs-web-nx/core/hooks";
+import config from "@tgs-web-nx/config";
 import iconCard from "@/assets/t36/images/withdraw/icon-card.svg";
 import iconCardActive from "@/assets/t36/images/withdraw/icon-card-active.svg";
 import iconManage from "@/assets/t36/images/withdraw/icon-manage.svg";
@@ -65,6 +67,8 @@ const BankCardButtonCardNoHL = styled(BankCardButtonCardNo)`
   font-weight: bold;
 `;
 
+const ChannelCode = styled(BankCardButtonCardNoHL)``;
+
 type Props = {
   //TODO: cardList type
   cardList: any[];
@@ -81,6 +85,8 @@ const BankCardGroup = ({
   getTransferLimit,
   onhandleManageCardClick,
 }: Props) => {
+  const { getChannelCode } = useGetChannelCode();
+
   return (
     <BankCardGroupContainer>
       {cardList.map((item, index) => {
@@ -95,7 +101,9 @@ const BankCardGroup = ({
             }}
           >
             <Icon iconUrl={isActive ? iconCardActive : iconCard} width={"20px"} height={"20px"} />
-            <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
+            {!config.features.isShowChannelCode && (
+              <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
+            )}
             <BankCardButtonCardNoHL>
               {(() => {
                 if (
@@ -142,6 +150,7 @@ const BankCardGroup = ({
               })()}
             </BankCardButtonCardNoHL>
             <BankCardButtonCardNo>{i18n.t("withdrawal.tail")}</BankCardButtonCardNo>
+            {config.features.isShowChannelCode && <ChannelCode>{getChannelCode(item)}</ChannelCode>}
           </BankCardButton>
         );
       })}
