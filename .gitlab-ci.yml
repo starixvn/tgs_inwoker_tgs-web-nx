@@ -5,6 +5,12 @@ stages:
   - docker-build
   - deploy-domain
   - deploy
+  - clean
+
+.clean_job: &clean_job
+  stage: clean
+  script:
+    - sudo docker system prune -a -f
 
 .docker-build-template: &docker-build-template
   stage: docker-build
@@ -18,7 +24,7 @@ stages:
     - echo "brand=$brand"
     - echo "token=$token"
   script:
-    - |    
+    - |
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -45,7 +51,7 @@ stages:
       else 
           yarn docker-build:${tgs_env}
       fi
-      
+
       docker image ls  
       image_count=$(docker image ls | wc  -l)
 
@@ -105,7 +111,7 @@ stages:
             echo "gitlab_token=$gitlab_token"
             curl --request POST --header "PRIVATE-TOKEN: $gitlab_token" "$url" 
             echo "variable $key created"
-        elif [[ ! ${_value} == *"$brand"* ]]; then 
+        elif [[ ! ${_value} == "$brand" ]]; then 
             new_value="${_value},${brand}"
             url="https://gitlab.com/api/v4/projects/$CI_PROJECT_ID/variables/${key}?value=${new_value}"
             curl --request PUT --header "PRIVATE-TOKEN: $gitlab_token" "$url" 
@@ -164,7 +170,7 @@ stages:
           }
           EOF
       fi
-    
+
 .deploy-template: &deploy-template
   stage: deploy
   before_script:
@@ -175,7 +181,7 @@ stages:
     - export KUBECONFIG=${!KUBECONFIG_TEMP}
     - echo "KUBECONFIG=$KUBECONFIG"
   script:
-    - | 
+    - |
       if [[ -e image.txt && $domain == "" && $brand == "" ]]; then 
           cat image.txt
           for image in $(cat image.txt); do
@@ -215,43 +221,53 @@ stages:
 
 docker-build-dev:
   <<: *docker-build-template
-  only: 
+  only:
     - develop
+  except:
+    - schedules
 
 docker-build-staging:
   <<: *docker-build-template
-  only: 
+  only:
     - release/current
+  except:
+    - schedules
 
 docker-build-prod:
   <<: *docker-build-template
-  only: 
+  only:
     - master
+  except:
+    - schedules
 
 deploy-domain-dev:
   <<: *deploy-domain-template
   needs:
     - job: docker-build-dev
       artifacts: true
-  only: 
+  only:
     - develop
+  except:
+    - schedules
 
 deploy-domain-staging:
   <<: *deploy-domain-template
   needs:
     - job: docker-build-staging
       artifacts: true
-  only: 
+  only:
     - release/current
+  except:
+    - schedules
 
 deploy-domain-prod:
   <<: *deploy-domain-template
   needs:
     - job: docker-build-prod
       artifacts: true
-  only: 
+  only:
     - master
-    
+
 deploy-dev:
   <<: *deploy-template
   needs:
@@ -259,8 +275,10 @@ deploy-dev:
       artifacts: true
   environment:
     name: dev
-  only: 
+  only:
     - develop
+  except:
+    - schedules
 
 deploy-staging:
   <<: *deploy-template
@@ -269,8 +287,10 @@ deploy-staging:
       artifacts: true
   environment:
     name: staging
-  only: 
+  only:
     - release/current
+  except:
+    - schedules
 
 deploy-prod:
   <<: *deploy-template
@@ -279,6 +299,13 @@ deploy-prod:
       artifacts: true
   environment:
     name: prod
-  only: 
+  only:
     - master
-  #when: manual  
+  except:
+    - schedules
+  #when: manual
+
+clean_job:
+  <<: *clean_job
+  only:
+    - schedules
