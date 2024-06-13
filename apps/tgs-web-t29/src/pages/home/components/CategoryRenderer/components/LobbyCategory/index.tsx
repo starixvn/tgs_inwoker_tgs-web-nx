@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { FilterTag, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { ProviderDto } from "@tgs-web-nx/types";
 import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import GameTypeTab from "@/pages/home/components/GameTypeTab";
@@ -53,11 +54,36 @@ const CategoryContent = styled.div`
 `;
 
 const LobbyCategory = () => {
-  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const {
+    activeGameType,
+    activeGameTypeKey,
+    handleChangeGameType,
+    handleChangeActiveProviderFilterTag,
+  } = useHomeGameContext();
   const { account } = useAccountStore();
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
   const { isMobileSize, isDesktopSize } = useRwd();
+
+  const isVirtualSports = (provider: ProviderDto) => {
+    //如果遊戲商包含體育和虛擬體育,當作體育來處理
+    return (
+      !provider.gametypes.includes(GameTypeEnum.SPORTS) &&
+      provider.gametypes.includes(GameTypeEnum.RNGSPORTS)
+    );
+  };
+
+  const handleClickVirtualSport = (provider: ProviderDto) => {
+    //只顯示選擇到的遊戲商的遊戲
+    const { code: gpCode, name } = provider;
+    const filterTag = {
+      gpCode: gpCode,
+      name: name,
+      tagType: "PROVIDER",
+    } as FilterTag;
+    handleChangeActiveProviderFilterTag(filterTag);
+    handleChangeGameType(GameTypeEnum.RNGSPORTS);
+  };
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -113,7 +139,12 @@ const LobbyCategory = () => {
                       key={gpCode}
                       bgUrl={`/assets/images/home/mobile/${activeGameTypeKey}/mbg.webp`}
                       imageUrl={`/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.webp`}
-                      launchGame={() => launchLobbyGame(gpCode)}
+                      launchGame={() => {
+                        //體育底下的虛擬體育要另外導向到虛擬體育頁面
+                        activeGameType === GameTypeEnum.SPORTS && isVirtualSports(provider)
+                          ? handleClickVirtualSport(provider)
+                          : launchLobbyGame(gpCode);
+                      }}
                       status={status}
                     />
                   );
@@ -133,11 +164,18 @@ const LobbyCategory = () => {
               return (
                 <DesktopVendorCard
                   key={gpCode}
-                  bgUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
-                  imageUrl={`${import.meta.env.BASE_URL
-                    }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.webp`}
-                  launchGame={() => launchLobbyGame(gpCode)}
+                  bgUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
+                  imageUrl={`${
+                    import.meta.env.BASE_URL
+                  }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.webp`}
+                  launchGame={() => {
+                    //體育底下的虛擬體育要另外導向到虛擬體育頁面
+                    activeGameType === GameTypeEnum.SPORTS && isVirtualSports(provider)
+                      ? handleClickVirtualSport(provider)
+                      : launchLobbyGame(gpCode);
+                  }}
                   status={status}
                 />
               );

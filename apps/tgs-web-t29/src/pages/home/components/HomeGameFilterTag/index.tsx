@@ -11,6 +11,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useHistory } from "react-router-dom";
 import { useCallback } from "react";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import CommonTag from "./CommonTag";
 import Tag from "./ProviderTag";
 import SearchInput from "@/pages/home/components/SearchInput";
@@ -103,6 +104,7 @@ const HomeGameFilterTag = () => {
     searchString,
     handleChangeSearch,
     providerList,
+    activeGameType,
   } = useHomeGameContext();
 
   const onChangeCommonFilterTag = (newFilterTag: FilterTag) => {
@@ -154,40 +156,42 @@ const HomeGameFilterTag = () => {
 
   return (
     <FilterTagWrapper>
-      <ProviderTagContainer>
-        <ProviderTagContent>
-          <AllText
-            onClick={() =>
-              onChangeProviderFilterTag({
-                name: FilterTagTypeEnum.ALL,
-                tagType: FilterTagTypeEnum.ALL,
-              })
-            }
-            $isActive={activeProviderFilterTag.tagType === FilterTagTypeEnum.ALL}
-          >
-            ALL
-          </AllText>
-          <div>
-            {providerFilterTagList.map((filterTag) => {
-              const matchedProvider = providerList.find(
-                (provider) => provider.code === filterTag.gpCode,
-              );
-              const status = matchedProvider ? matchedProvider.status : -1;
+      {activeGameType !== GameTypeEnum.RNGSPORTS && (
+        <ProviderTagContainer>
+          <ProviderTagContent>
+            <AllText
+              onClick={() =>
+                onChangeProviderFilterTag({
+                  name: FilterTagTypeEnum.ALL,
+                  tagType: FilterTagTypeEnum.ALL,
+                })
+              }
+              $isActive={activeProviderFilterTag.tagType === FilterTagTypeEnum.ALL}
+            >
+              ALL
+            </AllText>
+            <div>
+              {providerFilterTagList.map((filterTag) => {
+                const matchedProvider = providerList.find(
+                  (provider) => provider.code === filterTag.gpCode,
+                );
+                const status = matchedProvider ? matchedProvider.status : -1;
 
-              return (
-                <Tag
-                  key={filterTag.name}
-                  text={filterTag.name}
-                  gpCode={filterTag.gpCode}
-                  isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
-                  onClick={() => onChangeProviderFilterTag(filterTag)}
-                  status={status}
-                />
-              );
-            })}
-          </div>
-        </ProviderTagContent>
-      </ProviderTagContainer>
+                return (
+                  <Tag
+                    key={filterTag.name}
+                    text={filterTag.name}
+                    gpCode={filterTag.gpCode}
+                    isActive={filterTag.gpCode === activeProviderFilterTag.gpCode}
+                    onClick={() => onChangeProviderFilterTag(filterTag)}
+                    status={status}
+                  />
+                );
+              })}
+            </div>
+          </ProviderTagContent>
+        </ProviderTagContainer>
+      )}
 
       <CommonSearchWrapper>
         <CommonTagContainer>

@@ -18,6 +18,9 @@ const CategoryRenderer = () => {
     case GameTypeEnum.SLOT:
     case GameTypeEnum.FISH:
     case GameTypeEnum.TABLEGAME:
+    // 虛擬體育雖是歸類在體育底下,但呈現方式是和NonLobby一樣
+    // eslint-disable-next-line no-fallthrough
+    case GameTypeEnum.RNGSPORTS:
       return <NonLobbyCategory />;
 
     default:

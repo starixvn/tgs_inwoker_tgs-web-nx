@@ -254,17 +254,19 @@ const HomePage = () => {
         </>
       )}
       <BannerWrapper>
-        {activeGameType !== GameTypeEnum.NONE && isDesktopSize && (
-          <GameTypeBanner
-            $imageUrl={
-              activeGameTypeKey
-                ? `${
-                    import.meta.env.BASE_URL
-                  }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
-                : ""
-            }
-          />
-        )}
+        {activeGameType !== GameTypeEnum.NONE &&
+          activeGameType !== GameTypeEnum.RNGSPORTS &&
+          isDesktopSize && (
+            <GameTypeBanner
+              $imageUrl={
+                activeGameTypeKey
+                  ? `${
+                      import.meta.env.BASE_URL
+                    }assets/images/home/gameType_banner/${activeGameTypeKey}.png`
+                  : ""
+              }
+            />
+          )}
       </BannerWrapper>
 
       {/* 首頁並且進入遊戲大廳 */}
