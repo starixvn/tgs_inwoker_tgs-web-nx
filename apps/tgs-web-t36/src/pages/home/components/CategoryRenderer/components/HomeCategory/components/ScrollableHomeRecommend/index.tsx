@@ -117,7 +117,7 @@ const ScrollableHomeRecommend = () => {
       <CategoryContent>
         {hasMappingData &&
           recommendGameList
-            .slice(0, 8)
+            .slice(0, SHOW_CATEGORY_AMOUNT)
             .map((gameItem) => (
               <HomeGameCard
                 key={gameItem.id}
