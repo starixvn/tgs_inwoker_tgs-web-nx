@@ -93,10 +93,10 @@ const WinlossReport = () => {
           turnover, 
           winLoss, 
           special, 
-          profit: winLoss - special, 
+          profit: winLoss + special, 
           agentWinLoss, 
           agentSpecial, 
-          agentProfit: agentWinLoss - agentSpecial
+          agentProfit: agentWinLoss + agentSpecial
         };
 
         return (
@@ -220,7 +220,9 @@ const WinlossReport = () => {
         <Accordion sx={{
           'display': 'flex',
           'alignItems': 'flex-start',
-          'flexDirection': isDesktopSize ? 'row' : 'column'}}>
+          'flexDirection': isDesktopSize ? 'row' : 'column',
+          boxShadow: 'none',
+          }}>
           <AccordionSummary
             aria-controls="panel1-content"
             id="panel1-header"
@@ -233,13 +235,13 @@ const WinlossReport = () => {
               <div>{`- ${i18n.t("agent.formula.noOfTickets")}`}</div>
               <div>{`- ${i18n.t("agent.formula.turnover")}`}</div>
               <div>{`- ${i18n.t("agent.formula.playerWinloss")}`}</div>
-              <div>{`- 玩家特别: 该代理线全部玩家的"红利金额" + "调帐"(公司、代理、优惠)。`}</div>
+              <div>{`- ${i18n.t("agent.formula.playerSpecial")}`}</div>
               <div>{`- ${i18n.t("agent.formula.bonusAmount")}`}</div>
-              <div>{`- 红利金额: VIP福利 + VIP返水 + 活动的优惠金额。`}</div>
+              <div>{`- ${i18n.t("agent.formula.playerPL")}`}</div>
               <div>{`- ${i18n.t("agent.formula.agentWinloss")}`}</div>
               <div>{`- ${i18n.t("agent.formula.agentSpecial")}`}</div>
-            <div>{`- 代理盈虧: 代理輸贏 - 代理特別。`}</div>
-          </FormulaContainer>
+              <div>{`- ${i18n.t("agent.formula.agentPL")}`}</div>
+            </FormulaContainer>
           </AccordionDetails>
         </Accordion>
       </FormulaWrapper>
