@@ -80,7 +80,7 @@ export const AgentSelect = ({
   }
 
   return (
-    <Wrapper>
+    <Wrapper style={{alignItems: 'center'}}>
       {renderSelect()}
       {children}
     </Wrapper>

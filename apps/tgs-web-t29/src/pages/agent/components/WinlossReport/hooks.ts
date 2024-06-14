@@ -9,7 +9,7 @@ const rows = 20;
  * 送出給後端之前，from的日期必須減一天(同BO輸贏報表邏輯)
  * https://raypro.atlassian.net/browse/TGS-4885
  * @param today 今天
- * @returns 今天 - 1天
+ * @returns 今天 - 1天 = 昨天
  */
 const getYesterday = (today: Date) => {
     const yesterday = new Date(today);
@@ -132,7 +132,8 @@ export const useWinlossReport = () => {
      */
     const handleOnSearch = () => {
         resetPage();
-
+        
+        config.downline = false;
         setUsernames([]);
         report.refetch();
         breadCrumb.refetch();
@@ -190,7 +191,6 @@ export const useWinlossReport = () => {
 
     // 預設進頁面搜尋當天資料
     useEffect(() => {
-        config.downline =false;
         handleDateRangeChange(0);
         setTimeout(handleOnSearch, 100) //須等日期更新完成才搜尋
     }, [isFetchedReport])
