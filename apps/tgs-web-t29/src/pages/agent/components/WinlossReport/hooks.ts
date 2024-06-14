@@ -5,12 +5,18 @@ import { useQuery } from "@tanstack/react-query";
 import { useDateRange } from "../useDateRange";
 const rows = 20;
 
-const getTomorrow = (today: Date) => {
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
+/**
+ * 送出給後端之前，from的日期必須減一天(同BO輸贏報表邏輯)
+ * https://raypro.atlassian.net/browse/TGS-4885
+ * @param today 今天
+ * @returns 今天 - 1天
+ */
+const getYesterday = (today: Date) => {
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
   
-    return tomorrow;
-  }
+    return yesterday;
+}
 
 /**
  * 處理輸贏報表相關邏輯
@@ -35,8 +41,8 @@ export const useWinlossReport = () => {
     
     // 取得輸贏報表 payload
     const config: WinLostConfig = {
-        from: moment(dateRangeInfo.dateFrom).format('YYYY-MM-DD'),
-        to: moment(getTomorrow(dateRangeInfo.dateTo)).format('YYYY-MM-DD'),
+        from: moment(getYesterday(dateRangeInfo.dateFrom)).format('YYYY-MM-DD'),
+        to: moment(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
         memberType,
         username: searchValue,
         downline: false,
