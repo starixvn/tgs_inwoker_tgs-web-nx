@@ -28,7 +28,7 @@ export type WinLostConfig = {
 export type PlayerDetailConfig = {
   from: string;
   to: string;
-  username: string;
+  agentId: string;
 }
 
 // 玩家列表、代理列表 payload
@@ -75,11 +75,11 @@ const getBreadcrumb = ({ username, memberType = "agent" }: BreadcrumbConfig) => 
  * @returns  
  */
 const getPlayerDetail = ({
-  username,
+  agentId,
   from,
   to,
 }: PlayerDetailConfig) => {
-  const apiUrl = `agentWinLossReport/agentPlayerSpecialDetail?&username=${username}&from=${from}&to=${to}`;
+  const apiUrl = `agentWinLossReport/agentPlayerSpecialDetail?&agentId=${agentId}&from=${from}T16:00:00.000Z&to=${to}T16:00:00.000Z`;
   return ApiService.get(apiUrl) as unknown as Promise<PlayerDetailDto>
 }
 

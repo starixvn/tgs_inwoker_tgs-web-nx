@@ -129,7 +129,7 @@ const WinlossReport = () => {
                         src={HintIcon}
                         alt="hint"
                         onClick={() => {
-                          handleGetPlayerDetail(username)
+                          handleGetPlayerDetail(id)
                         }}
                       />
                       <span>{cells[row]}</span>
