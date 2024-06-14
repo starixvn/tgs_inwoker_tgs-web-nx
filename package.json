@@ -24,7 +24,7 @@
     "t34": "nx serve tgs-web-t34",
     "t36": "nx serve tgs-web-t36",
     "build": "nx build",
-    "docker-build:dev": "nx affected --target=docker-build --base=origin/develop~1 --head=origin/develop --parallel=1",
+    "docker-build:dev": "nx affected --target=docker-build --base=origin/develop~1 --head=origin/develop --parallel=3",
     "docker-build:staging": "nx affected --target=docker-build --base=origin/release/current~1 --head=origin/release/current --parallel=3",
     "docker-build:prod": "nx affected --target=docker-build --base=origin/master~1 --head=origin/master --parallel=3",
     "docker-build:force": "nx run-many --target=docker-build",
