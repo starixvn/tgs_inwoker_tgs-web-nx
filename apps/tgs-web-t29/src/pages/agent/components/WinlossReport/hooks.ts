@@ -5,6 +5,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useDateRange } from "../useDateRange";
 const rows = 20;
 
+const getTomorrow = (today: Date) => {
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+  
+    return tomorrow;
+  }
+
 /**
  * 處理輸贏報表相關邏輯
  */
@@ -29,7 +36,7 @@ export const useWinlossReport = () => {
     // 取得輸贏報表 payload
     const config: WinLostConfig = {
         from: moment(dateRangeInfo.dateFrom).format('YYYY-MM-DD'),
-        to: moment(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
+        to: moment(getTomorrow(dateRangeInfo.dateTo)).format('YYYY-MM-DD'),
         memberType,
         username: searchValue,
         downline: false,
@@ -216,7 +223,7 @@ export const usePlayerDetail = ({
     from: string,
     to: string,
 }) => {
-    const [username, setUsername] = useState('');
+    const [agentId, setAgentId] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const {getPlayerDetail} = WinLostReport;
     const {
@@ -224,16 +231,16 @@ export const usePlayerDetail = ({
         data: playerDetailData, 
     } = useQuery({
         queryKey: ['getPlayerDetail'], 
-        queryFn: () => getPlayerDetail({from, to, username}),
+        queryFn: () => getPlayerDetail({from, to, agentId}),
         enabled: false
     });
 
     /**
      * 取得特定玩家細節
-     * @param name 被取得資料的username
+     * @param id 被取得資料的 agentId
      */
-    const handleGetPlayerDetail = (name: string) => {
-        setUsername(name);
+    const handleGetPlayerDetail = (id: string) => {
+        setAgentId(id);
         setModalOpen(true);
     }
 
@@ -244,10 +251,10 @@ export const usePlayerDetail = ({
         setModalOpen(false);
     }
 
-    // username 被改變時，重新取得對應資料
+    // agentId 被改變時，重新取得對應資料
     useEffect(() => {
         refetch();
-    }, [username])
+    }, [agentId])
     
     return {
         playerDetailData,

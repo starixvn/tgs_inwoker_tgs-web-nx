@@ -20,7 +20,7 @@ export function useDateRange() {
   const [dateRangeInfo, setDateRangeInfo] = useState<DateRangeInfo>({
     dateFrom: today,
     dateTo: today,
-    dateRange: -1
+    dateRange: 0
   });
 
   const handleDateFromChange = (e?: Date) => {
@@ -46,7 +46,7 @@ export function useDateRange() {
 
     switch (dateRangeEnum) {
       case 0:
-        newDateFrom = addDays(today, -1);
+        newDateFrom = addDays(today, 0);
         break;
       case 1:
         newDateFrom = addDays(today, -7);

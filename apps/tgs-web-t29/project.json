@@ -74,7 +74,7 @@
         "commands": [
           "docker build -f {args.AppPath}/Dockerfile . -t {args.DockerContainerRegistry}{args.ImageName}:`date +%Y-%m%d-%H%M`"
         ],
-        "parallel": true
+        "parallel": false
       },
       "configurations": {
         "production": {
