@@ -141,13 +141,13 @@ const ProfitShareReport = () => {
             </NonBorderTableCell>
           </TableRow>
           <TableRow>
-            {/* 代理承擔紅利: 分紅金額 * 分紅比例 */}
+            {/* 代理承擔紅利: 紅利金額 * 分紅比例 */}
             <TitleTableCell>{i18n.t("agent.agentCoveredBonus")}</TitleTableCell>
             <NonBorderTableCell>
-              {formatNaN(previousData?.totalDividendAmount * previousData?.dividendPercentage)}
+              {formatNaN(previousData?.bonus * previousData?.dividendPercentage)}
             </NonBorderTableCell>
             <NonBorderTableCell>
-              {formatNaN(currentData?.totalDividendAmount * currentData?.dividendPercentage)}
+              {formatNaN(currentData?.bonus * currentData?.dividendPercentage)}
             </NonBorderTableCell>
           </TableRow>
           <TableRow>
