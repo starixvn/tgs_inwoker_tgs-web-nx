@@ -259,7 +259,9 @@ export const usePlayerDetail = ({
 
     // agentId 被改變時，重新取得對應資料
     useEffect(() => {
-        refetch();
+        if(agentId){
+            refetch();
+        }
     }, [agentId])
     
     return {
