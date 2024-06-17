@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import iconReturn from "@/assets/t23/images/layout/icon-return.svg";
+import iconReturn from "@/assets/t34/images/layout/icon-return.svg";
 import Icon from "@/components/project/Icon";
 
 export const DIALOG_HEADER_HEIGHT = "60px";
