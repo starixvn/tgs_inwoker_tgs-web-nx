@@ -2,7 +2,7 @@ import styled, { css, keyframes } from "styled-components";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
-import refreshIcon from "@/assets/t23/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t34/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 
 const VipProgressWidgetWrapper = styled.div`

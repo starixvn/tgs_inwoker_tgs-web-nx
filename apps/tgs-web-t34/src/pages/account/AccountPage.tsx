@@ -16,7 +16,7 @@ import UserWalletInfo, {
   RefreshButton,
   WalletsWrapper,
 } from "@/components/project/UserWalletInfo";
-import refreshIcon from "@/assets/t23/images/account/icon-refresh.svg";
+import refreshIcon from "@/assets/t34/images/account/icon-refresh.svg";
 
 const AccountPage = () => {
   useUpdatePageName(i18n.t("TIGER.my"));
