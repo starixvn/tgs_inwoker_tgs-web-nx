@@ -44,6 +44,7 @@ const App: React.FC = () => {
   const currentRoute = routeRef.current;
   const isDisableWebPinchAction = brandConfig[mapBrandName(config.brand)].isDisableWebPinchAction;
 
+  
   if (isDisableWebPinchAction) {
     document.addEventListener(
       "touchstart",

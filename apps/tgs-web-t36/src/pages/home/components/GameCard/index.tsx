@@ -2,7 +2,7 @@ import { MouseEvent, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -178,7 +178,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     if (!isLogin) {
       history.push("/login");
     } else {
-      if(Common.isWebview()) {
+      if (Common.isWebview()) {
         setIsOpen(true);
         return;
       }
@@ -215,17 +215,17 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
   return (
     <>
-      <WebviewModal 
-        isOpen={isOpen} 
-        onClose={() => setIsOpen(false)} 
-        url={`/joingame/${gameItem.id}/${gameItem.gpcode}`} 
+      <WebviewModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        url={`/joingame/${gameItem.id}/${gameItem.gpcode}`}
       />
       <GameCardBg onClick={launchGameHandler} $isActive={isActive}>
         <GameCardContent>
           <GameIcon $imageUrl={imageUrl}></GameIcon>
           <TagBg>
-            {gameItem.tag.new && <NewTag>New</NewTag>}
-            {gameItem.tag.hot && <HotTag>Hot</HotTag>}
+            {gameItem.tag.new && <NewTag>{i18n.t("slot.new")}</NewTag>}
+            {gameItem.tag.hot && <HotTag>{i18n.t("slot.hot")}</HotTag>}
           </TagBg>
           {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
 
