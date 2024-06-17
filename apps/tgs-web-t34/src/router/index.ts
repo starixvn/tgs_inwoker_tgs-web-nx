@@ -281,6 +281,11 @@ const routes: RouteType[] = [
     component: VIPPage,
     layout: VipLayout,
   },
+  {
+    path: "/profile_vip",
+    component: VIPPage,
+    layout: VipLayout,
+  },
   // {
   //   path: "/sports/:platform",
   //   component: CustomSportPage,
