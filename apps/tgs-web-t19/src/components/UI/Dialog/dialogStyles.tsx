@@ -25,3 +25,21 @@ export const ButtonConfirm = styled.div`
   background: ${({ theme }) => theme.primary};
   color: ${({ theme }) => theme.white};
 `;
+
+export const TwoButtonWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+
+  & > * {
+    flex: 1;
+  }
+`;
+
+export const DialogContainer = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+`;

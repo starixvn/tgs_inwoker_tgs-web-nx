@@ -18,7 +18,6 @@ export const TransferValue = styled.div`
 `;
 
 export const ExchangeRateContainer = styled.div`
-  margin: 20px auto;
   font-size: 0.937rem;
   font-weight: 400;
 `;
