@@ -145,7 +145,7 @@ const AgentList = () => {
           inputRef={inputRef}
         />
         <Select value={userStatus} sx={{ width: "200px" }} onChange={handleSelectStatus}>
-          <MenuItem value={"all"}>{i18n.t("agent.status")} </MenuItem>
+          <MenuItem value={"all"}>{i18n.t("report.status")} </MenuItem>
           <MenuItem value={PlayerStatus.ENABLED}>{i18n.t("agent.enabled")} </MenuItem>
           <MenuItem value={PlayerStatus.DISABLED}>{i18n.t("agent.disabled")} </MenuItem>
           <MenuItem value={PlayerStatus.INBLACKLIST}>{i18n.t("agent.inBlacklist")} </MenuItem>
@@ -166,7 +166,7 @@ const AgentList = () => {
                 <TableCell>{i18n.t("agent.registeredTime")}</TableCell>
                 <TableCell>{i18n.t("agent.profitShareP/T")}</TableCell>
                 <TableCell>{i18n.t("agent.teamSize")}</TableCell>
-                <TableCell>{i18n.t("agent.status")}</TableCell>
+                <TableCell>{i18n.t("report.status")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

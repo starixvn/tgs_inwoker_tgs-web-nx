@@ -124,7 +124,7 @@ const AgentInfoCards = (props: PropsType) => {
                 <PlayerInfoValue>{agent.directPlayerWithAgentCount}</PlayerInfoValue>
               </PlayInfo>
               <PlayInfo>
-                <PlayerInfoTitle>{i18n.t("agent.status")}</PlayerInfoTitle>
+                <PlayerInfoTitle>{i18n.t("report.status")}</PlayerInfoTitle>
                 <PlayerInfoValue>{getStatusTranslation(agent.agentStatus)}</PlayerInfoValue>
               </PlayInfo>
             </PlayerInfoContainer>
