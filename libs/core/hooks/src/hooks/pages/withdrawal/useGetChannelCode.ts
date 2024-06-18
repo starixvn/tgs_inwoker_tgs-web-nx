@@ -11,7 +11,7 @@ export function useGetChannelCode() {
     const targetChannel = targetType?.channel.find(
       (channel) => channel.channelid === item.paymentchannelid,
     );
-    return (targetChannel?.channelcode && `${targetChannel?.channelcode}`) || "";
+    return targetChannel?.channelcode || null;
   };
 
   return {
