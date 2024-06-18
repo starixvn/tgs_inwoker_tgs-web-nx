@@ -128,7 +128,7 @@ const PlayerInfoCards = (props: PropsType) => {
                 <PlayerInfoValue>{player.totalWithdrawAmount}</PlayerInfoValue>
               </PlayInfo>
               <PlayInfo>
-                <PlayerInfoTitle>{i18n.t("agent.status")}</PlayerInfoTitle>
+                <PlayerInfoTitle>{i18n.t("report.status")}</PlayerInfoTitle>
                 <PlayerInfoValue>{getStatusTranslation(player.playerStatus)}</PlayerInfoValue>
               </PlayInfo>
             </PlayerInfoContainer>
