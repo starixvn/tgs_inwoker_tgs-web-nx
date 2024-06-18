@@ -9,11 +9,10 @@ import {
 } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { NoData } from "../NoData";
-import { useProfitShareReport, formatNaN, formatSentOn, getDateRange,getStatus } from "./hooks";
+import { useProfitShareReport, formatNaN, formatSentOn, getDateRange, getStatus } from "./hooks";
 import { AgentSelect } from "./components";
 import Loading from "@/components/UI/Loading";
 import { media } from "@/theme/breakpoints";
-
 
 const ProfitShareContainer = styled.div`
   display: flex;
@@ -29,25 +28,25 @@ const ProfitShareTitle = styled.div`
 `;
 
 const NonBorderTableCell = muiStyled(TableCell)(({ theme }) => ({
-  padding: '8px',
+  padding: "8px",
   border: "none",
   fontSize: "14px",
   [media.sm]: {
-    fontSize: "16px"
+    fontSize: "16px",
   },
-  textAlign: 'end',
+  textAlign: "end",
 }));
 
 const FillTableCell = muiStyled(NonBorderTableCell)(({ theme }) => ({
   border: "none",
   background: theme.palette.blue20,
-  textAlign: 'end',
+  textAlign: "end",
 }));
 
 const TitleTableCell = muiStyled(NonBorderTableCell)(({ theme }) => ({
   color: "#23507D",
   fontWeight: 700,
-  textAlign: 'left',
+  textAlign: "left",
 }));
 
 const ListTableCell = muiStyled(TitleTableCell)(({ theme }) => ({
@@ -56,39 +55,41 @@ const ListTableCell = muiStyled(TitleTableCell)(({ theme }) => ({
   gap: "10px",
 }));
 
-
 const Dot = styled.span`
   display: block;
   flex-shrink: 0;
   width: 8px;
   aspect-ratio: 1;
-  background: #3281D0;
+  background: #3281d0;
   border-radius: 100%;
   transform: translateY(-1px);
 `;
 
-
 const ProfitShareReport = () => {
-  const {lists: {current, previous}, isFetching, period} = useProfitShareReport();
+  const {
+    lists: { current, previous },
+    isFetching,
+    period,
+  } = useProfitShareReport();
   const currentData = current.data[current.currentKey] && current.data[current.currentKey][0];
   const previousData = previous.data[previous.currentKey] && previous.data[previous.currentKey][0];
 
-  if(isFetching) {
-    return <Loading show /> 
+  if (isFetching) {
+    return <Loading show />;
   }
-  
-  if(!currentData && !previousData) {
-    return <NoData />
+
+  if (!currentData && !previousData) {
+    return <NoData />;
   }
 
   // 週期盈虧
   const previousPeriodPL = previousData?.companyWinLossAmount - previousData?.bonus;
   const currentPeriodPL = currentData?.companyWinLossAmount - currentData?.bonus;
-  
+
   // 淨營利
   const previousNetProfit = previousPeriodPL - previousData?.bonusAdjustAmount;
   const currentNetProfit = currentPeriodPL - currentData?.bonusAdjustAmount;
-  
+
   // 直屬玩家貢獻
   const previousPlayerContribution = previousData?.directDividendAmount;
   const currentPlayerContribution = currentData?.directDividendAmount;
@@ -106,28 +107,36 @@ const ProfitShareReport = () => {
             <NonBorderTableCell></NonBorderTableCell>
             <TitleTableCell>
               {/* 上期 */}
-              <AgentSelect options={previous.keys} onChange={previous.onChange} value={previous.currentKey}>
+              <AgentSelect
+                options={previous.keys}
+                onChange={previous.onChange}
+                value={previous.currentKey}
+              >
                 {i18n.t("agent.previousPeriod")}
               </AgentSelect>
             </TitleTableCell>
             <TitleTableCell>
               {/* 本期 */}
-              <AgentSelect options={current.keys} onChange={current.onChange} value={current.currentKey}>
+              <AgentSelect
+                options={current.keys}
+                onChange={current.onChange}
+                value={current.currentKey}
+              >
                 {i18n.t("agent.currentPeriod")}
               </AgentSelect>
             </TitleTableCell>
           </TableRow>
         </TableHead>
-        
+
         <TableBody>
           <TableRow>
             {/* 週期日期: 顯示日期:YYYY/MM/DD */}
             <TitleTableCell>{i18n.t("agent.startEndDate")}</TitleTableCell>
             <NonBorderTableCell>
-              {getDateRange((previousData?.from), (previousData?.to))}
+              {getDateRange(previousData?.from, previousData?.to)}
             </NonBorderTableCell>
             <NonBorderTableCell>
-              {getDateRange((currentData?.from), (currentData?.to))}
+              {getDateRange(currentData?.from, currentData?.to)}
             </NonBorderTableCell>
           </TableRow>
           <TableRow>
@@ -135,11 +144,15 @@ const ProfitShareReport = () => {
             <TitleTableCell>{i18n.t("agent.status")}</TitleTableCell>
             <NonBorderTableCell>
               {/* {previousData ? i18n.t(`agent.${formatSentOn(previousData?.sentOn)}`) : "-"} */}
-              {previousData?.status ? i18n.t(`agent.${getStatus(previousData.status)}`)  : "－"}
+              {previousData?.status !== null
+                ? i18n.t(`agent.${getStatus(previousData.status)}`)
+                : "-"}
             </NonBorderTableCell>
             <NonBorderTableCell>
               {/* {currentData ? i18n.t(`agent.${formatSentOn(currentData?.sentOn)}`) : "-"} */}
-              {currentData?.status ? i18n.t(`agent.${getStatus(currentData.status)}`) : "－"}
+              {currentData?.status !== null
+                ? i18n.t(`agent.${getStatus(currentData.status)}`)
+                : "-"}
             </NonBorderTableCell>
           </TableRow>
           <TableRow>
@@ -180,7 +193,9 @@ const ProfitShareReport = () => {
           </TableRow>
           <TableRow>
             {/* 公司輸贏: 公司贏玩家輸的加總(正數時) */}
-            <FillTableCell sx={{ textAlign: "right" }}>+ {i18n.t("agent.companyWinLoss")}</FillTableCell>
+            <FillTableCell sx={{ textAlign: "right" }}>
+              + {i18n.t("agent.companyWinLoss")}
+            </FillTableCell>
             <FillTableCell>{formatNaN(previousData?.companyWinLossAmount)}</FillTableCell>
             <FillTableCell>{formatNaN(currentData?.companyWinLossAmount)}</FillTableCell>
           </TableRow>
@@ -208,7 +223,9 @@ const ProfitShareReport = () => {
           </TableRow>
           {/* 優惠調帳 */}
           <TableRow>
-            <FillTableCell sx={{ textAlign: "right" }}>- {i18n.t("agent.bonusAdjust")}</FillTableCell>
+            <FillTableCell sx={{ textAlign: "right" }}>
+              - {i18n.t("agent.bonusAdjust")}
+            </FillTableCell>
             <FillTableCell>{formatNaN(previousData?.bonusAdjustAmount)}</FillTableCell>
             <FillTableCell>{formatNaN(currentData?.bonusAdjustAmount)}</FillTableCell>
           </TableRow>
@@ -230,7 +247,9 @@ const ProfitShareReport = () => {
           </TableRow>
           {/* 分紅比例 */}
           <TableRow>
-            <FillTableCell sx={{ textAlign: "right" }}>*{i18n.t("agent.profitSharePT")}</FillTableCell>
+            <FillTableCell sx={{ textAlign: "right" }}>
+              *{i18n.t("agent.profitSharePT")}
+            </FillTableCell>
             <FillTableCell>{formatNaN(previousData?.dividendPercentage)}</FillTableCell>
             <FillTableCell>{formatNaN(currentData?.dividendPercentage)}</FillTableCell>
           </TableRow>
@@ -246,31 +265,41 @@ const ProfitShareReport = () => {
           </TableRow>
           {/* 直屬玩家貢獻 */}
           <TableRow>
-            <FillTableCell sx={{ textAlign: "right" }}>+{i18n.t("agent.playerContribution")}</FillTableCell>
+            <FillTableCell sx={{ textAlign: "right" }}>
+              +{i18n.t("agent.playerContribution")}
+            </FillTableCell>
             <FillTableCell>{formatNaN(previousPlayerContribution)}</FillTableCell>
             <FillTableCell>{formatNaN(currentPlayerContribution)}</FillTableCell>
           </TableRow>
           {/* 產品費用 */}
           <TableRow>
-            <FillTableCell sx={{ textAlign: "right" }}>-{i18n.t("agent.productCharges")}</FillTableCell>
+            <FillTableCell sx={{ textAlign: "right" }}>
+              -{i18n.t("agent.productCharges")}
+            </FillTableCell>
             <FillTableCell>{formatNaN(previousData?.productFeeAmount)}</FillTableCell>
             <FillTableCell>{formatNaN(currentData?.productFeeAmount)}</FillTableCell>
           </TableRow>
           {/* 團隊貢獻 */}
           <TableRow>
-            <FillTableCell sx={{ textAlign: "right" }}>+{i18n.t("agent.teamContribution")}</FillTableCell>
+            <FillTableCell sx={{ textAlign: "right" }}>
+              +{i18n.t("agent.teamContribution")}
+            </FillTableCell>
             <FillTableCell>{formatNaN(previousData?.teamContributionAmount)}</FillTableCell>
             <FillTableCell>{formatNaN(currentData?.teamContributionAmount)}</FillTableCell>
           </TableRow>
           {/* 累計負分紅 */}
           <TableRow>
-            <FillTableCell sx={{ textAlign: "right" }}>+{i18n.t("agent.cumulativeNegativeDividendAmount")}</FillTableCell>
+            <FillTableCell sx={{ textAlign: "right" }}>
+              +{i18n.t("agent.cumulativeNegativeDividendAmount")}
+            </FillTableCell>
             <FillTableCell>{formatNaN(previousData?.negativeAgentDividendAmount)}</FillTableCell>
             <FillTableCell>{formatNaN(currentData?.negativeAgentDividendAmount)}</FillTableCell>
           </TableRow>
           {/* 代理調帳 */}
           <TableRow>
-            <FillTableCell sx={{ textAlign: "right" }}>-{i18n.t("agent.agentAdjust")}</FillTableCell>
+            <FillTableCell sx={{ textAlign: "right" }}>
+              -{i18n.t("agent.agentAdjust")}
+            </FillTableCell>
             <FillTableCell>{formatNaN(previousData?.agentAdjustAmount)}</FillTableCell>
             <FillTableCell>{formatNaN(currentData?.agentAdjustAmount)}</FillTableCell>
           </TableRow>
