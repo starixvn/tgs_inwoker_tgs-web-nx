@@ -12,6 +12,8 @@
  * @productFeeAmount : 產品費用
  * @negativeAgentDividendAmount : 負分紅金額
  * @sentOn : 派發時間
+ * @agentCoveredBonus  :代理承擔紅利
+ * @agentCoveredBonusAdjust :代理承擔優惠調帳
  */
 export type TProfitShare = {
   from: Date,
@@ -27,6 +29,9 @@ export type TProfitShare = {
   productFeeAmount: number,
   negativeAgentDividendAmount : number,
   sentOn : string | null,
+  status: number | null,
+  agentCoveredBonus:number,
+  agentCoveredBonusAdjust:number
 }
 
 export type ProfitShareDto = {

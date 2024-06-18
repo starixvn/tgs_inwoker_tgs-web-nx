@@ -51,6 +51,23 @@ export const formatSentOn = (date?: string | null): SentOnStatus => {
 }
 
 /**
+ * 取得狀態
+ */
+
+export const getStatus = (status: number | null): SentOnStatus => {
+  switch (status) {
+    case 0:
+      return "review";
+    case 1:
+      return "reject";
+    case 2:
+      return "distributed";
+    default:
+      return "review";
+  }
+};
+
+/**
  * 將資料以分紅 % 數分類
  */
 const getData = (list: TProfitShare[]) => groupBy(list, row => row.dividendPercentage);

@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { NoData } from "../NoData";
-import { useProfitShareReport, formatNaN, formatSentOn, getDateRange } from "./hooks";
+import { useProfitShareReport, formatNaN, formatSentOn, getDateRange,getStatus } from "./hooks";
 import { AgentSelect } from "./components";
 import Loading from "@/components/UI/Loading";
 import { media } from "@/theme/breakpoints";
@@ -134,30 +134,36 @@ const ProfitShareReport = () => {
             {/* 派發狀態: 審核中 已派發 已拒絕三種 */}
             <TitleTableCell>{i18n.t("agent.status")}</TitleTableCell>
             <NonBorderTableCell>
-              {previousData ? i18n.t(`agent.${formatSentOn(previousData?.sentOn)}`) : '-'}
+              {/* {previousData ? i18n.t(`agent.${formatSentOn(previousData?.sentOn)}`) : "-"} */}
+              {previousData?.status ? i18n.t(`agent.${getStatus(previousData.status)}`)  : "－"}
             </NonBorderTableCell>
             <NonBorderTableCell>
-            {currentData ? i18n.t(`agent.${formatSentOn(currentData?.sentOn)}`) : '-'}
+              {/* {currentData ? i18n.t(`agent.${formatSentOn(currentData?.sentOn)}`) : "-"} */}
+              {currentData?.status ? i18n.t(`agent.${getStatus(currentData.status)}`) : "－"}
             </NonBorderTableCell>
           </TableRow>
           <TableRow>
-            {/* 代理承擔紅利: 紅利金額 * 分紅比例 */}
+            {/* 代理承擔紅利*/}
             <TitleTableCell>{i18n.t("agent.agentCoveredBonus")}</TitleTableCell>
             <NonBorderTableCell>
-              {formatNaN(previousData?.bonus * previousData?.dividendPercentage)}
+              {/* {formatNaN(previousData?.bonus * previousData?.dividendPercentage)} */}
+              {formatNaN(previousData?.agentCoveredBonus)}
             </NonBorderTableCell>
             <NonBorderTableCell>
-              {formatNaN(currentData?.bonus * currentData?.dividendPercentage)}
+              {/* {formatNaN(currentData?.bonus * currentData?.dividendPercentage)} */}
+              {formatNaN(currentData?.agentCoveredBonus)}
             </NonBorderTableCell>
           </TableRow>
           <TableRow>
-            {/* 代理承擔優惠調帳: 優惠調帳 * 分紅比例 */}
+            {/* 代理承擔優惠調帳*/}
             <TitleTableCell>{i18n.t("agent.agentCoveredBonusAdjust")}</TitleTableCell>
             <NonBorderTableCell>
-              {formatNaN(previousData?.bonusAdjustAmount * previousData?.dividendPercentage)}
+              {/* {formatNaN(previousData?.bonusAdjustAmount * previousData?.dividendPercentage)} */}
+              {formatNaN(previousData?.agentCoveredBonusAdjust)}
             </NonBorderTableCell>
             <NonBorderTableCell>
-              {formatNaN(currentData?.bonusAdjustAmount * currentData?.dividendPercentage)}
+              {formatNaN(currentData?.agentCoveredBonusAdjust)}
+              {/* {formatNaN(currentData?.bonusAdjustAmount * currentData?.dividendPercentage)} */}
             </NonBorderTableCell>
           </TableRow>
 
