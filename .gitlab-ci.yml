@@ -15,7 +15,7 @@ stages:
 .docker-build-template: &docker-build-template
   stage: docker-build
   before_script:
-    - sudo docker prune -a -f
+    - sudo docker image prune -a -f
     - source get_tgs-env.sh
     - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
     - echo "tgs_env=$tgs_env"
