@@ -74,7 +74,6 @@ const NavCategory = () => {
             const { code: gpCode, status, name } = provider;
 
             if (gpCode === "BC") return null;
-            if (config.brand === "MOPH" && gpCode === "PPTF") return null;
             return (
               <DesktopVendorCard
                 key={gpCode}
