@@ -1,11 +1,12 @@
 import styled from "styled-components";
+import { theme } from "@/theme";
 
 export const LimitLabel = styled.span`
-  color: ${({ theme }) => theme.gray50};
+  color: ${theme.text};
 `;
 
 export const LimitAmount = styled.span`
-  color: ${({ theme }) => theme.text};
+  color: ${theme.text};
 `;
 
 export const TransferLabel = styled.div``;
@@ -25,11 +26,11 @@ export const QRCodeImg = styled.img`
 `;
 
 export const HintText = styled.div`
-  color: ${({ theme }) => theme.primary};
+  color: ${theme.primary};
 `;
 
 export const AmountHint = styled.div`
-  color: ${({ theme }) => theme.text};
+  color:${theme.text};
   font-size: 0.937rem;
   font-weight: 400;
   margin-top: 9px;

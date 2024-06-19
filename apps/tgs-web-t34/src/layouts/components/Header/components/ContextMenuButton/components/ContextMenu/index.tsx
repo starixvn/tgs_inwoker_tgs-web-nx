@@ -5,9 +5,9 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext, useHeader } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import ContextMenuItem from "./ContextMenuItem";
-import accountImg from "@/assets/t23/images/header/contextMenu/icon_my_account.svg";
-import supportImg from "@/assets/t23/images/header/contextMenu/icon_service_support.svg";
-import logoutImg from "@/assets/t23/images/header/contextMenu/icon_logout.svg";
+import accountImg from "@/assets/t34/images/header/contextMenu/icon_my_account.svg";
+import supportImg from "@/assets/t34/images/header/contextMenu/icon_service_support.svg";
+import logoutImg from "@/assets/t34/images/header/contextMenu/icon_logout.svg";
 import { Button } from "@/components/UI/Button";
 
 const ContextMenuContainer = styled.div`
