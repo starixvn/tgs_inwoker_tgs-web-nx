@@ -14,14 +14,6 @@ stages:
 
 .docker-build-template: &docker-build-template
   stage: docker-build
-  cache:
-    key:
-      files:
-        - yarn.lock
-    paths:
-      - node_modules
-      - .yarn
-      - .yarn-cache
   before_script:
     - docker image prune -a -f
     - source get_tgs-env.sh
@@ -47,7 +39,7 @@ stages:
       # npx nx init
       nx --version
 
-      yarn add -D @nx/react@17.0.2 --cache-folder .yarn-cache --immutable --immutable-cache --check-cache
+      yarn add -D @nx/react@17.0.2
 
       git submodule init
       git submodule sync
@@ -72,9 +64,9 @@ stages:
               docker push $image
           done
       fi
-  # artifacts:
-  #   paths:
-  #     - image.txt
+  artifacts:
+    paths:
+      - image.txt
 
 .deploy-domain-template: &deploy-domain-template
   stage: deploy-domain
