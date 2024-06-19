@@ -54,7 +54,7 @@ export const formatSentOn = (date?: string | null): SentOnStatus => {
  * 取得狀態
  */
 
-export const getStatus = (status: number | null): SentOnStatus => {
+export const getStatus = (status: number): SentOnStatus => {
   switch (status) {
     case 0:
       return "review";

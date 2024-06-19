@@ -143,14 +143,12 @@ const ProfitShareReport = () => {
             {/* 派發狀態: 審核中 已派發 已拒絕三種 */}
             <TitleTableCell>{i18n.t("agent.status")}</TitleTableCell>
             <NonBorderTableCell>
-              {/* {previousData ? i18n.t(`agent.${formatSentOn(previousData?.sentOn)}`) : "-"} */}
-              {previousData?.status !== null
+              {previousData?.status !== undefined
                 ? i18n.t(`agent.${getStatus(previousData.status)}`)
                 : "-"}
             </NonBorderTableCell>
             <NonBorderTableCell>
-              {/* {currentData ? i18n.t(`agent.${formatSentOn(currentData?.sentOn)}`) : "-"} */}
-              {currentData?.status !== null
+              {currentData?.status !== undefined
                 ? i18n.t(`agent.${getStatus(currentData.status)}`)
                 : "-"}
             </NonBorderTableCell>
@@ -159,11 +157,9 @@ const ProfitShareReport = () => {
             {/* 代理承擔紅利*/}
             <TitleTableCell>{i18n.t("agent.agentCoveredBonus")}</TitleTableCell>
             <NonBorderTableCell>
-              {/* {formatNaN(previousData?.bonus * previousData?.dividendPercentage)} */}
               {formatNaN(previousData?.agentCoveredBonus)}
             </NonBorderTableCell>
             <NonBorderTableCell>
-              {/* {formatNaN(currentData?.bonus * currentData?.dividendPercentage)} */}
               {formatNaN(currentData?.agentCoveredBonus)}
             </NonBorderTableCell>
           </TableRow>
@@ -171,12 +167,10 @@ const ProfitShareReport = () => {
             {/* 代理承擔優惠調帳*/}
             <TitleTableCell>{i18n.t("agent.agentCoveredBonusAdjust")}</TitleTableCell>
             <NonBorderTableCell>
-              {/* {formatNaN(previousData?.bonusAdjustAmount * previousData?.dividendPercentage)} */}
               {formatNaN(previousData?.agentCoveredBonusAdjust)}
             </NonBorderTableCell>
             <NonBorderTableCell>
               {formatNaN(currentData?.agentCoveredBonusAdjust)}
-              {/* {formatNaN(currentData?.bonusAdjustAmount * currentData?.dividendPercentage)} */}
             </NonBorderTableCell>
           </TableRow>
 

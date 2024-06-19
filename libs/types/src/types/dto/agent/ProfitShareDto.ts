@@ -29,7 +29,7 @@ export type TProfitShare = {
   productFeeAmount: number,
   negativeAgentDividendAmount : number,
   sentOn : string | null,
-  status: number | null,
+  status: number,
   agentCoveredBonus:number,
   agentCoveredBonusAdjust:number
 }
