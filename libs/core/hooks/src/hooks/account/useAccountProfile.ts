@@ -2,25 +2,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { UPDATE_INFO } from "@tgs-web-nx/core";
 
-function duplicateText(count: number): string {
-  let value = "";
-  for (let i = 0; i < count; i++) {
-    value += "*";
-  }
-  return value;
-}
-
-function maskString(value: string, start: number, end: number): string {
-  let newValue = value;
-  if (end > start) {
-    if (value.length > end) {
-      newValue =
-        value.substring(0, start) + duplicateText(end - start) + value.substring(end, value.length);
-    }
-  }
-  return newValue;
-}
-
 export function useBaseProfile() {
   const dispatch = useDispatch();
 
