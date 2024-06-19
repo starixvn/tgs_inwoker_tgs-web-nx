@@ -72,9 +72,9 @@ stages:
               docker push $image
           done
       fi
-  artifacts:
-    paths:
-      - image.txt
+  # artifacts:
+  #   paths:
+  #     - image.txt
 
 .deploy-domain-template: &deploy-domain-template
   stage: deploy-domain
