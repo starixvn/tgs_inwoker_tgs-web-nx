@@ -38,13 +38,13 @@ stages:
       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-      nvm install 16.14.0
+      # nvm install 16.14.0
       nvm use 16.14.0
       node --version
       npm --version
       yarn --version
-      npm add --global nx@latest
-      npx nx init
+      # npm add --global nx@latest
+      # npx nx init
       nx --version
 
       yarn add -D @nx/react@17.0.2
