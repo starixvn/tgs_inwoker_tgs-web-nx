@@ -8,6 +8,7 @@ import {
   useHomeGameContext,
 } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Tag from "./Tag";
 import { gameTagList } from "@/constants/gameTag";
 import { theme } from "@/theme";
@@ -78,6 +79,7 @@ const GameFilterTag = () => {
     activeProviderFilterTag,
     handleChangeActiveProviderFilterTag,
     providerFilterTagList,
+    activeGameType,
   } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
   const [prevGPFilterTag, setGPPrevFilterTag] = useState<FilterTag | null>(activeProviderFilterTag);
@@ -107,29 +109,32 @@ const GameFilterTag = () => {
 
   return (
     <FilterSection>
-      <ProviderTagContainer>
-        {providerFilterTagList.map((filterTag: FilterTag) => {
-          const { name } = filterTag;
-          const isActive = name === activeProviderFilterTag.name;
-          const tagCmp = gameTagList.find((tag) => tag.text === name);
+      {/* 虛擬體育不顯示  providerFilter */}
+      {activeGameType !== GameTypeEnum.RNGSPORTS && (
+        <ProviderTagContainer>
+          {providerFilterTagList.map((filterTag: FilterTag) => {
+            const { name } = filterTag;
+            const isActive = name === activeProviderFilterTag.name;
+            const tagCmp = gameTagList.find((tag) => tag.text === name);
 
-          return (
-            <Tag
-              key={name}
-              text={name}
-              isActive={isActive}
-              isShowIcon={false}
-              onClick={() => handleGPFilterClick(filterTag)}
-            >
-              {tagCmp &&
-                tagCmp.iconComponent &&
-                React.createElement(tagCmp.iconComponent, {
-                  $color: isActive ? theme.red : theme.grey10,
-                })}
-            </Tag>
-          );
-        })}
-      </ProviderTagContainer>
+            return (
+              <Tag
+                key={name}
+                text={name}
+                isActive={isActive}
+                isShowIcon={false}
+                onClick={() => handleGPFilterClick(filterTag)}
+              >
+                {tagCmp &&
+                  tagCmp.iconComponent &&
+                  React.createElement(tagCmp.iconComponent, {
+                    $color: isActive ? theme.red : theme.grey10,
+                  })}
+              </Tag>
+            );
+          })}
+        </ProviderTagContainer>
+      )}
 
       <CommonContainer>
         {filterTagList.map((filterTag) => {
