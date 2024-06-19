@@ -1,8 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { Common, i18n } from "@tgs-web-nx/utils";
-import config, {brandConfig, mapBrandName} from '@tgs-web-nx/config';
+import { MenuItem } from "@mui/material";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import styled from "styled-components";
+import { useGetChannelCode } from "@tgs-web-nx/core/hooks";
 import { MainProps } from "./index";
 import {
   FormControl,
@@ -58,6 +60,8 @@ const MainMobile = ({
 }: MainProps) => {
   const history = useHistory();
   const currencyRate = brandConfig[mapBrandName(config.brand)].currencyRate;
+  const { getChannelCode } = useGetChannelCode();
+
   return (
     <>
       <WithdrawInfoCard />
@@ -72,22 +76,32 @@ const MainMobile = ({
         <FormControl variant="outlined">
           <Select
             value={selectedCardIndex}
-            native
             onChange={(e) => {
               const index = e.target.value;
               handleSelectCardChange(index);
               // getTransferLimit(cardList[index].paymentchannelid);
             }}
           >
-            <option disabled value="">
+            <MenuItem disabled value="">
               {i18n.t("withdrawal.msgEnterBank")}
-            </option>
+            </MenuItem>
             {cardList.map((item, index) => {
+              const channelCode = getChannelCode(item) === null ? "" : getChannelCode(item);
               return (
-                <option key={index} value={index} id={`optionValue-${index}`}>
-                  {item.banktype} (
-                  {item.detail.address || item.detail.bankAccount || item.detail.phone})
-                </option>
+                <MenuItem
+                  key={index}
+                  value={index}
+                  id={`optionValue-${index}`}
+                  disabled={!channelCode}
+                >
+                  {config.features.isShowChannelCode
+                    ? `${channelCode} - (${
+                        item.detail.address || item.detail.bankAccount || item.detail.phone
+                      })`
+                    : `${item.banktype} (${
+                        item.detail.address || item.detail.bankAccount || item.detail.phone
+                      })`}
+                </MenuItem>
               );
             })}
           </Select>

@@ -1,6 +1,8 @@
 import { i18n } from "@tgs-web-nx/utils";
 import { Grid } from "@mui/material";
 import styled from "styled-components";
+import { useGetChannelCode } from "@tgs-web-nx/core/hooks";
+import config from "@tgs-web-nx/config";
 import iconCard from "@/assets/t36/images/withdraw/icon-card.svg";
 import iconCardActive from "@/assets/t36/images/withdraw/icon-card-active.svg";
 import iconManage from "@/assets/t36/images/withdraw/icon-manage.svg";
@@ -16,7 +18,22 @@ const BankCardGroupContainer = styled.div`
 
 type BankCardButtonProps = {
   $active: boolean;
+  $disabled?: boolean;
   theme: typeof theme;
+};
+const getBackgroundColor = (props: BankCardButtonProps) => {
+  const { $active, $disabled, theme } = props;
+  //顯示channel code功能開啟且拿不到channel code時disabled
+  if ($disabled) {
+    return "#D9D9D9";
+  } else return $active ? theme.subNavSec : "#D0DAE3";
+};
+const getBorder = (props: BankCardButtonProps) => {
+  const { $active, $disabled, theme } = props;
+  //顯示channel code功能開啟且拿不到channel code時拿掉框線
+  if ($disabled) {
+    return "transparent";
+  } else return $active ? "transparent" : theme.subNavSec;
 };
 const BankCardButton = styled.div<BankCardButtonProps>`
   display: flex;
@@ -25,14 +42,12 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   padding: 12px 20px;
   font-size: 15px;
   color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.primary)};
-  background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.subNavSec : "#D0DAE3"};
+  background: ${(props: BankCardButtonProps) => getBackgroundColor(props)};
   width: auto !important;
-  cursor: pointer;
+  cursor: ${({ $disabled }: BankCardButtonProps) => ($disabled ? "not-allowed" : "pointer")};
   float: left;
   border-radius: 3px;
-  border: 1px solid
-    ${({ $active, theme }: BankCardButtonProps) => ($active ? "transparent" : theme.subNavSec)};
+  border: ${(props: BankCardButtonProps) => `1px solid ${getBorder(props)}`};
 `;
 
 type ManageBankButtonProps = {
@@ -65,6 +80,8 @@ const BankCardButtonCardNoHL = styled(BankCardButtonCardNo)`
   font-weight: bold;
 `;
 
+const ChannelCode = styled(BankCardButtonCardNoHL)``;
+
 type Props = {
   //TODO: cardList type
   cardList: any[];
@@ -81,21 +98,29 @@ const BankCardGroup = ({
   getTransferLimit,
   onhandleManageCardClick,
 }: Props) => {
+  const { getChannelCode } = useGetChannelCode();
+
   return (
     <BankCardGroupContainer>
       {cardList.map((item, index) => {
         const isActive = index === selectedCardIndex;
+        const channelCode = getChannelCode(item);
+        const disabled = config.features.isShowChannelCode && !channelCode;
         return (
           <BankCardButton
             key={index}
             $active={isActive}
+            $disabled={disabled}
             onClick={() => {
+              if (disabled) return;
               handleSelectCardChange(index);
               getTransferLimit(item.paymentchannelid);
             }}
           >
             <Icon iconUrl={isActive ? iconCardActive : iconCard} width={"20px"} height={"20px"} />
-            <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
+            {!config.features.isShowChannelCode && (
+              <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
+            )}
             <BankCardButtonCardNoHL>
               {(() => {
                 if (
@@ -142,6 +167,7 @@ const BankCardGroup = ({
               })()}
             </BankCardButtonCardNoHL>
             <BankCardButtonCardNo>{i18n.t("withdrawal.tail")}</BankCardButtonCardNo>
+            {config.features.isShowChannelCode && <ChannelCode>{channelCode}</ChannelCode>}
           </BankCardButton>
         );
       })}
