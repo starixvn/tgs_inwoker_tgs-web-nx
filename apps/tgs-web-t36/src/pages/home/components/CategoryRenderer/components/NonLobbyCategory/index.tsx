@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useBottomScrollListener } from "react-bottom-scroll-listener";
 import { GameItem } from "@tgs-web-nx/types";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import { media } from "@/theme/breakpoints";
@@ -37,14 +38,14 @@ const CategoryContentWrapper = styled.div`
 `;
 
 const CategoryContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
   width: 100%;
-  align-self: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  align-items: center;
+  justify-items: center;
   ${media.sm} {
+    grid-template-columns: repeat(5, 1fr);
     max-height: unset;
     overflow-x: unset;
   }
@@ -86,7 +87,8 @@ const NonLobbyCategory = () => {
   }, [gameList, currentGameType]);
 
   useEffect(() => {
-    handleChangeActiveProviderFilterTag(filterTagAll);
+    //虛擬體育不做初始化filter,因虛擬體育在點選時就會過濾Provider,如果初始化會與結果不相符
+    activeGameType !== GameTypeEnum.RNGSPORTS && handleChangeActiveProviderFilterTag(filterTagAll);
   }, [activeGameType]);
 
   return (

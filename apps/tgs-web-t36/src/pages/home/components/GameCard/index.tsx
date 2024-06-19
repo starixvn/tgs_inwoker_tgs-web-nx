@@ -86,15 +86,13 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div<{ $isActive: boolean }>`
-  width: calc(33.33% - 15px);
+  width: 100%;
   position: relative;
   cursor: ${({ $isActive }) => ($isActive ? "pointer" : "unset")};
   aspect-ratio: 94 / 127;
 
   ${media.sm} {
-    width: calc(16.67% - 36px);
-    min-width: 196px;
-    aspect-ratio: 100 / 127;
+    aspect-ratio: 100 / 120;
 
     &:hover {
       ${CardHoverBg} {
