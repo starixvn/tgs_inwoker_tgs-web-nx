@@ -19,7 +19,15 @@ const BankCardGroupContainer = styled.div`
 
 type BankCardButtonProps = {
   $active: boolean;
+  $disabled?: boolean;
   theme: typeof theme;
+};
+const getBackgroundColor = (props: BankCardButtonProps) => {
+  const { $active, $disabled, theme } = props;
+  //顯示channel code功能開啟且拿不到channel code時disabled
+  if ($disabled) {
+    return "#D9D9D9";
+  } else return $active ? theme.blue40 : theme.blue20;
 };
 const BankCardButton = styled.div<BankCardButtonProps>`
   display: flex;
@@ -28,10 +36,9 @@ const BankCardButton = styled.div<BankCardButtonProps>`
   padding: 8px 11px;
   font-size: 14px;
   color: ${({ $active, theme }: BankCardButtonProps) => ($active ? theme.white : theme.gray50)};
-  background: ${({ $active, theme }: BankCardButtonProps) =>
-    $active ? theme.blue40 : theme.blue20};
+  background: ${(props: BankCardButtonProps) => getBackgroundColor(props)};
   width: auto !important;
-  cursor: pointer;
+  cursor: ${({ $disabled }: BankCardButtonProps) => ($disabled ? "not-allowed" : "pointer")};
   float: left;
 `;
 
@@ -72,11 +79,15 @@ const BankCardGroup = ({
     <BankCardGroupContainer>
       {cardList.map((item, index) => {
         const isActive = index === selectedCardIndex;
+        const channelCode = getChannelCode(item);
+        const disabled = config.features.isShowChannelCode && !channelCode;
         return (
           <BankCardButton
             key={index}
             $active={isActive}
+            $disabled={disabled}
             onClick={() => {
+              if (disabled) return;
               handleSelectCardChange(index);
               getTransferLimit(item.paymentchannelid);
             }}
@@ -131,7 +142,7 @@ const BankCardGroup = ({
               })()}
             </BankCardButtonCardNoHL>
             <BankCardButtonCardNo>{i18n.t("withdrawal.tail")}</BankCardButtonCardNo>
-            {config.features.isShowChannelCode && <ChannelCode>{getChannelCode(item)}</ChannelCode>}
+            {config.features.isShowChannelCode && <ChannelCode>{channelCode}</ChannelCode>}
           </BankCardButton>
         );
       })}

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Common, i18n } from "@tgs-web-nx/utils";
+import { MenuItem } from "@mui/material";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import styled from "styled-components";
 import { useGetChannelCode, useWageringPage } from "@tgs-web-nx/core/hooks";
@@ -96,27 +97,32 @@ const MainMobile = ({
         <FormControl variant="outlined">
           <Select
             value={selectedCardIndex}
-            native
             onChange={(e) => {
               const index = e.target.value;
               handleSelectCardChange(index);
               // getTransferLimit(cardList[index].paymentchannelid);
             }}
           >
-            <option disabled value="">
+            <MenuItem disabled value="">
               {i18n.t("withdrawal.msgEnterBank")}
-            </option>
+            </MenuItem>
             {cardList.map((item, index) => {
+              const channelCode = getChannelCode(item) === null ? "" : getChannelCode(item);
               return (
-                <option key={index} value={index} id={`optionValue-${index}`}>
+                <MenuItem
+                  key={index}
+                  value={index}
+                  id={`optionValue-${index}`}
+                  disabled={!channelCode}
+                >
                   {config.features.isShowChannelCode
-                    ? `${getChannelCode(item)} - (${
+                    ? `${channelCode} - (${
                         item.detail.address || item.detail.bankAccount || item.detail.phone
                       })`
                     : `${item.banktype} (${
                         item.detail.address || item.detail.bankAccount || item.detail.phone
                       })`}
-                </option>
+                </MenuItem>
               );
             })}
           </Select>
