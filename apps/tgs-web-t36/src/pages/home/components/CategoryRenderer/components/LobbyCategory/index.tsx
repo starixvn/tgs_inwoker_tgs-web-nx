@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { FilterTag, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React, { useEffect, useState } from "react";
+import { ProviderDto } from "@tgs-web-nx/types";
 import WebviewModal from "../../../WebviewModal";
 import VendorCard from "@/pages/home/components/VendorCard/index";
 import { media } from "@/theme/breakpoints";
@@ -48,8 +49,13 @@ const EmptyText = styled.div`
 
 const LobbyCategory = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [code, setCode] = useState('');
-  const { activeGameType, activeGameTypeKey } = useHomeGameContext();
+  const [code, setCode] = useState("");
+  const {
+    activeGameType,
+    activeGameTypeKey,
+    handleChangeActiveProviderFilterTag,
+    handleChangeGameType,
+  } = useHomeGameContext();
   const { sideNavItemList } = useGetNavItemList();
   const { account } = useAccountStore();
   const history = useHistory();
@@ -68,6 +74,26 @@ const LobbyCategory = () => {
       }
     });
   }, [sideNavItemList, currentRoute]);
+
+  const isVirtualSports = (provider: ProviderDto) => {
+    //如果遊戲商包含體育和虛擬體育,當作體育來處理
+    return (
+      !provider.gametypes.includes(GameTypeEnum.SPORTS) &&
+      provider.gametypes.includes(GameTypeEnum.RNGSPORTS)
+    );
+  };
+
+  const handleClickVirtualSport = (provider: ProviderDto) => {
+    //只顯示選擇到的遊戲商的遊戲;
+    const { code: gpCode, name } = provider;
+    const filterTag = {
+      gpCode: gpCode,
+      name: name,
+      tagType: "PROVIDER",
+    } as FilterTag;
+    handleChangeActiveProviderFilterTag(filterTag);
+    handleChangeGameType(GameTypeEnum.RNGSPORTS);
+  };
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
@@ -100,7 +126,7 @@ const LobbyCategory = () => {
         audioElement.volume = 0;
       }
 
-      if(Common.isWebview()) {
+      if (Common.isWebview()) {
         setCode(gpcode);
         setIsOpen(true);
         return;
@@ -115,10 +141,10 @@ const LobbyCategory = () => {
 
   return (
     <>
-      <WebviewModal 
-        isOpen={isOpen} 
-        onClose={() => setIsOpen(false)} 
-        url={`/joinlobbygame/${activeGameType}/${code}`} 
+      <WebviewModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        url={`/joinlobbygame/${activeGameType}/${code}`}
       />
       <CategoryContentWrapper>
         {isMobileSize && (
@@ -147,7 +173,12 @@ const LobbyCategory = () => {
                       : `/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`
                   }
                   venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
-                  launchGame={() => launchLobbyGame(gpCode)}
+                  launchGame={() => {
+                    //體育底下的虛擬體育要另外導向到虛擬體育頁面
+                    activeGameType === GameTypeEnum.SPORTS && isVirtualSports(provider)
+                      ? handleClickVirtualSport(provider)
+                      : launchLobbyGame(gpCode);
+                  }}
                   status={status}
                   venderName={name}
                 />

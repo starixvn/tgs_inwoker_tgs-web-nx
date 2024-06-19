@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { FilterTag, FilterTagTypeEnum, useHomeGameContext } from "@tgs-web-nx/core/features";
 import Tag from "./Tag";
 import { gameTagList } from "@/constants/gameTag";
@@ -48,6 +49,7 @@ const GameFilterTag = () => {
     activeProviderFilterTag,
     handleChangeActiveProviderFilterTag,
     providerFilterTagList,
+    activeGameType,
   } = useHomeGameContext();
   const [prevFilterTag, setPrevFilterTag] = useState<FilterTag | null>(activeFilterTag);
 
@@ -112,36 +114,37 @@ const GameFilterTag = () => {
       })}
 
       {/* Provider list */}
+      {/*虛擬體育不顯示  providerFilter*/}
+      {activeGameType !== GameTypeEnum.RNGSPORTS &&
+        providerFilterTagList.map((filterTag) => {
+          const { name, gpCode } = filterTag;
 
-      {providerFilterTagList.map((filterTag) => {
-        const { name, gpCode } = filterTag;
+          const isActive =
+            filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
+            gpCode === activeProviderFilterTag.gpCode;
 
-        const isActive =
-          filterTag.tagType === FilterTagTypeEnum.PROVIDER &&
-          gpCode === activeProviderFilterTag.gpCode;
+          const tagCmp = gameTagList.find((tag) => tag.text === name);
 
-        const tagCmp = gameTagList.find((tag) => tag.text === name);
+          if (filterTag.tagType === FilterTagTypeEnum.ALL) {
+            return null;
+          }
 
-        if (filterTag.tagType === FilterTagTypeEnum.ALL) {
-          return null;
-        }
-
-        return (
-          <Tag
-            key={name}
-            text={name}
-            isActive={isActive}
-            isShowIcon={gameTagList.some((tag) => tag.text === name)}
-            onClick={() => handleFilterClick(filterTag)}
-          >
-            {tagCmp &&
-              tagCmp.iconComponent &&
-              React.createElement(tagCmp.iconComponent, {
-                $color: isActive ? theme.primary : theme.text,
-              })}
-          </Tag>
-        );
-      })}
+          return (
+            <Tag
+              key={name}
+              text={name}
+              isActive={isActive}
+              isShowIcon={gameTagList.some((tag) => tag.text === name)}
+              onClick={() => handleFilterClick(filterTag)}
+            >
+              {tagCmp &&
+                tagCmp.iconComponent &&
+                React.createElement(tagCmp.iconComponent, {
+                  $color: isActive ? theme.primary : theme.text,
+                })}
+            </Tag>
+          );
+        })}
     </TagContainer>
   );
 };

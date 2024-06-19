@@ -113,14 +113,18 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
     updateGpCodeList,
   } = useProviderFilter(providerList);
 
-  const { favoriteList, fetchFavoriteList } = useFavoriteList(activeGameType ? activeGameType : GameTypeEnum.SLOT);
+  const { favoriteList, fetchFavoriteList } = useFavoriteList(
+    activeGameType ? activeGameType : GameTypeEnum.SLOT,
+  );
   const { searchString, handleChangeSearch } = useGameSearch();
-
-  const activeGameTypeKey = gameTypeList.find((item) => item.gameType === activeGameType)?.key;
+  const SportsType = gameTypeList.find((item) => item.gameType === GameTypeEnum.SPORTS);
+  const activeGameTypeKey = gameTypeList.find((item) =>
+    //虛擬體育歸類在體育底下
+    activeGameType === GameTypeEnum.RNGSPORTS ? SportsType?.key : item.gameType === activeGameType,
+  )?.key;
   const activeNavPopupGameTypeKey = gameTypeList.find(
     (item) => item.gameType === activeNavPopupGameType,
   )?.key;
-
 
   const [isEnterGamePortal, setIsEnterGamePortal] = useState<boolean>(false);
 
@@ -158,7 +162,7 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         searchString,
         handleChangeSearch,
         setIsEnterGamePortal,
-        isEnterGamePortal
+        isEnterGamePortal,
       }}
     >
       {children}

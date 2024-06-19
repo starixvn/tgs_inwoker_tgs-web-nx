@@ -63,6 +63,13 @@ export function useGetNavItemList() {
 
       if (providerList.length) {
         const hasData = providerList.filter((provider) => {
+          //因虛擬體育是歸類在體育底下,體育分類有無資料的判斷要加上虛擬體育
+          if (gameTypeItem.gameType === GameTypeEnum.SPORTS) {
+            return (
+              provider.gametypes.includes(GameTypeEnum.SPORTS) ||
+              provider.gametypes.includes(GameTypeEnum.RNGSPORTS)
+            );
+          }
           return provider.gametypes.includes(gameTypeItem.gameType);
         });
         if (hasData.length === 0) continue;

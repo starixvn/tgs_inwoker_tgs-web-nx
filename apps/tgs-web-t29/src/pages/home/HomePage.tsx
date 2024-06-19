@@ -146,7 +146,12 @@ const HomePage = () => {
   const hasNavData = !!navPopupCategoryList.length;
   const gameTypeList = useGameTypeList();
 
-  const isNonLobbyList: number[] = [GameTypeEnum.SLOT, GameTypeEnum.FISH, GameTypeEnum.TABLEGAME];
+  const isNonLobbyList: number[] = [
+    GameTypeEnum.SLOT,
+    GameTypeEnum.FISH,
+    GameTypeEnum.TABLEGAME,
+    GameTypeEnum.RNGSPORTS,
+  ];
 
   const isNonLobby = isNonLobbyList.includes(activeGameType);
 
