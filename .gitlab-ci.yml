@@ -47,7 +47,7 @@ stages:
       # npx nx init
       nx --version
 
-      yarn add -D @nx/react@17.0.2
+      yarn add -D @nx/react@17.0.2 --cache-folder .yarn-cache --immutable --immutable-cache --check-cache
 
       git submodule init
       git submodule sync
