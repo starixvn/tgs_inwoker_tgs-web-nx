@@ -64,6 +64,9 @@ stages:
               docker push $image
           done
       fi
+  cache:
+    paths:
+      - node_modules/  # 缓存 node_modules 目录
   artifacts:
     paths:
       - image.txt
