@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useHistory, useLocation } from "react-router";
 import { BOTTOM_APP_BAR_HEIGHT, HEADER_HEIGHT } from "@/theme/constants";
 import Header from "@/layouts/components/Header";
 import MenuDrawer from "@/layouts/components/MenuDrawer";
 import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -26,7 +29,24 @@ type Props = {
   children: React.ReactNode;
 };
 const DialogLayout = ({ children }: Props) => {
+  const history = useHistory();
+  const location = useLocation();
+  const { pageName } = usePageName();
   const { isDesktopSize } = useRwd();
+  const pathname = location.pathname;
+
+  const handleCloseDialog = useCallback(() => {
+    const profileRegex = /\/profile\//;
+    if (profileRegex.test(pathname)) {
+      return history.push("/profile");
+    }
+
+    if (pathname === "/profile") {
+      return history.push("/account");
+    }
+
+    history.goBack();
+  }, [history, pathname]);
 
   if (isDesktopSize) {
     return <AccountDesktopLayout>{children}</AccountDesktopLayout>;
