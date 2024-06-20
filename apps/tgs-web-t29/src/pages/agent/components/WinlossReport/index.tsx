@@ -33,6 +33,15 @@ const WinlossReport = () => {
   useDragToScrollX(scrollAreaRef);
 
   const {
+    playerDetailData, 
+    modalOpen,
+    isFetchingPlayerDetail,
+    handleGetPlayerDetail,
+    handleOnCloseModal,
+    handlePlayerDetailDateRange,
+  } = usePlayerDetail()
+
+  const {
     memberType,
     searchValue,
     setSearchValue, 
@@ -52,17 +61,9 @@ const WinlossReport = () => {
     handleChangePage,
     totalCount,
     config,
-  } = useWinlossReport();
+  } = useWinlossReport(handlePlayerDetailDateRange);
 
-  const {
-    playerDetailData, 
-    handleGetPlayerDetail,
-    modalOpen, 
-    handleOnCloseModal
-  } = usePlayerDetail({
-    from: config.from,
-    to: config.to,
-  })
+  
 
   const renderData = () => {
 
@@ -328,30 +329,32 @@ const WinlossReport = () => {
         fullscreenOnMobile={false}
       >
         <UserName $isDisable style={{margin: "20px auto", display: "block"}}>{i18n.t("agent.playerSpecial")}</UserName>
-        <Table sx={{ width: "250px" }}>
-          <TableHead>
-            <TableRow sx={{ background: theme.blue20 }}>
-              <TableCell></TableCell>
-              <TableCell sx={{textAlign: "center"}}>{i18n.t("common.amount")}</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell  sx={{textAlign: "center"}}>{i18n.t("agent.bonus")}</TableCell>
-              <TableCell  sx={{textAlign: "center"}}>{playerDetailData?.data.bonus}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.adjust")}</TableCell>
-              <TableCell sx={{textAlign: "center"}}>{playerDetailData?.data.bonusAdjust}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.total")}</TableCell>
-              <TableCell sx={{textAlign: "center"}}>
-                {(playerDetailData?.data.bonus ?? 0) + (playerDetailData?.data.bonusAdjust ?? 0)}
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        {isFetchingPlayerDetail ? <LoadingBlock size={30} style={{margin: "20px auto"}}/> :
+            <Table sx={{ width: "250px" }}>
+              <TableHead>
+                <TableRow sx={{ background: theme.blue20 }}>
+                  <TableCell></TableCell>
+                  <TableCell sx={{textAlign: "center"}}>{i18n.t("common.amount")}</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell  sx={{textAlign: "center"}}>{i18n.t("agent.bonus")}</TableCell>
+                  <TableCell  sx={{textAlign: "center"}}>{playerDetailData?.data.bonus}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.adjust")}</TableCell>
+                  <TableCell sx={{textAlign: "center"}}>{playerDetailData?.data.bonusAdjust}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.total")}</TableCell>
+                  <TableCell sx={{textAlign: "center"}}>
+                    {(playerDetailData?.data.bonus ?? 0) + (playerDetailData?.data.bonusAdjust ?? 0)}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+        }
       </Dialog>
     </WinlossReportContainer>
   );
