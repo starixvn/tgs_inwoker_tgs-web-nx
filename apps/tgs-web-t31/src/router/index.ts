@@ -293,7 +293,7 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: DialogLayout,
+    layout: VipLayout,
     isAnonymousAllowed: true,
   },
   {
