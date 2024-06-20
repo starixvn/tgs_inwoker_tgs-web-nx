@@ -198,7 +198,7 @@ export function useGetNavItemList() {
         iconUrl: vipImg,
         iconSecondaryUrl: vipWhiteImg,
         navType: "route",
-        routePath: "/vip",
+        routePath: "/profile_vip",
       },
       {
         key: NavCardKey.CONTACT_US,
