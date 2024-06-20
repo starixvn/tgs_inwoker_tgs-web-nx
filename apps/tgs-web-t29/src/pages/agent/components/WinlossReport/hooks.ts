@@ -18,10 +18,15 @@ const getYesterday = (today: Date) => {
     return yesterday;
 }
 
+type DateRange = {
+    from: string,
+    to: string
+}
+
 /**
  * 處理輸贏報表相關邏輯
  */
-export const useWinlossReport = () => {
+export const useWinlossReport = (handlePlayerDetailDateRange: (dateRange: DateRange) => void) => {
     const { account } = useAccountStore();
     const username = account.info.member_username;
     const {getReport, getBreadcrumb} = WinLostReport;
@@ -137,6 +142,12 @@ export const useWinlossReport = () => {
         setUsernames([]);
         report.refetch();
         breadCrumb.refetch();
+
+        handlePlayerDetailDateRange({
+            from: config.from,
+            to: config.to,
+        })
+        
     }
 
     /**
@@ -222,22 +233,21 @@ export const useWinlossReport = () => {
 /**
  * 處理玩家細節相關邏輯
  */
-export const usePlayerDetail = ({
-    from,
-    to,
-}: {
-    from: string,
-    to: string,
-}) => {
+export const usePlayerDetail = () => {
+    const [dateRange, setDateRange] = useState<DateRange>({
+        from: "",
+        to: "",
+    })
     const [agentId, setAgentId] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const {getPlayerDetail} = WinLostReport;
     const {
         refetch,
-        data: playerDetailData, 
+        data: playerDetailData,
+        isFetching
     } = useQuery({
         queryKey: ['getPlayerDetail'], 
-        queryFn: () => getPlayerDetail({from, to, agentId}),
+        queryFn: () => getPlayerDetail({from: dateRange.from, to: dateRange.to, agentId}),
         enabled: false
     });
 
@@ -257,19 +267,29 @@ export const usePlayerDetail = ({
         setModalOpen(false);
         setAgentId('');
     }
+    
+    /**
+     * 按下搜尋才更新日期
+     * @param dateRange 
+     */
+    const handlePlayerDetailDateRange = (dateRange: DateRange) => {
+        setDateRange(dateRange);
+    }
 
-    // agentId 被改變時，重新取得對應資料
+    // agentId 或日期被改變時，重新取得對應資料
     useEffect(() => {
-        if(agentId){
+        if(agentId && dateRange.from && dateRange.to){
             refetch();
         }
-    }, [agentId, from, to])
+    }, [agentId, dateRange.from, dateRange.to])
     
     return {
         playerDetailData,
-        handleGetPlayerDetail,
         modalOpen,
-        handleOnCloseModal
+        isFetchingPlayerDetail: isFetching,
+        handleGetPlayerDetail,
+        handleOnCloseModal,
+        handlePlayerDetailDateRange,
     }
     
 };
