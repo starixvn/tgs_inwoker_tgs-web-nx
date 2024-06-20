@@ -63,6 +63,7 @@ const WinlossReport = () => {
     config,
   } = useWinlossReport(handlePlayerDetailDateRange);
 
+  const playerDetailTotal: number = (playerDetailData?.data.bonus ?? 0) + (playerDetailData?.data.bonusAdjust ?? 0)
   
 
   const renderData = () => {
@@ -349,7 +350,7 @@ const WinlossReport = () => {
                 <TableRow>
                   <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.total")}</TableCell>
                   <TableCell sx={{textAlign: "center"}}>
-                    {(playerDetailData?.data.bonus ?? 0) + (playerDetailData?.data.bonusAdjust ?? 0)}
+                    {playerDetailTotal.toFixed(2)}
                   </TableCell>
                 </TableRow>
               </TableBody>
