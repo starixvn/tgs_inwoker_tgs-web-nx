@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAuth, useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import promotionImg from "@/assets/t32/images/header/icon-promotion.svg";
@@ -33,6 +33,7 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
   key: NavCardKey | string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   label: string | any;
   iconUrl: string;
   iconActiveUrl?: string;
@@ -40,17 +41,17 @@ export type NavItem = {
   isHide?: boolean;
   router?: string;
   routePath?: string;
-  iconComponent?: React.FC<{ $color: string }>
+  iconComponent?: React.FC<{ $color: string }>;
 } & (
-    | {
+  | {
       navType: "route";
       routePath: string;
     }
-    | {
+  | {
       navType: "action";
       callback: () => void;
     }
-  );
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -87,18 +88,18 @@ export function useGetNavItemList() {
       });
     }
 
-    // navItemList.push({
-    //   key: NavCardKey.VIP,
-    //   label: "VIP",
-    //   iconUrl: vipImg,
-    //   iconActiveUrl: vipImg,
-    //   navType: "action",
-    //   gameType: GameTypeEnum.NONE,
-    //   router: "vip",
-    //   callback: () => {
-    //     history.push("/vip");
-    //   },
-    // });
+    navItemList.push({
+      key: NavCardKey.VIP,
+      label: "VIP",
+      iconUrl: vipImg,
+      iconActiveUrl: vipImg,
+      navType: "action",
+      gameType: GameTypeEnum.NONE,
+      router: "vip",
+      callback: () => {
+        history.push("/vip");
+      },
+    });
 
     navItemList.push({
       key: NavCardKey.PROMOTION,
@@ -196,7 +197,7 @@ export function useGetNavItemList() {
         iconUrl: vipImg,
         iconSecondaryUrl: vipWhiteImg,
         navType: "route",
-        routePath: "/vip",
+        routePath: "/profile_vip",
       },
       {
         key: NavCardKey.CONTACT_US,
@@ -235,6 +236,7 @@ export function useGetNavItemList() {
         },
       },
     ] as NavItem[];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

@@ -40,8 +40,9 @@ const VipLayout = ({ children }: Props) => {
   const handleCloseDialog = useCallback(() => {
     handleChangeGameType(GameTypeEnum.NONE);
     history.push("/");
-  }, []);
+  }, [handleChangeGameType, history]);
   const location = useLocation();
+
   if (isDesktopSize) {
     return location.pathname === "/vip" ? (
       <DefaultLayout>{children}</DefaultLayout>
