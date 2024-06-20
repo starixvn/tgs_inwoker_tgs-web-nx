@@ -255,6 +255,7 @@ export const usePlayerDetail = ({
      */
     const handleOnCloseModal = () => {
         setModalOpen(false);
+        setAgentId('');
     }
 
     // agentId 被改變時，重新取得對應資料
@@ -262,7 +263,7 @@ export const usePlayerDetail = ({
         if(agentId){
             refetch();
         }
-    }, [agentId])
+    }, [agentId, from, to])
     
     return {
         playerDetailData,
