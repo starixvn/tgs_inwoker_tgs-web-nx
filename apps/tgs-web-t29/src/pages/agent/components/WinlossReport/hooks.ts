@@ -258,13 +258,19 @@ export const usePlayerDetail = () => {
     const {getPlayerDetail} = WinLostReport;
     const {
         refetch,
-        data: playerDetailData,
+        data,
         isFetching
     } = useQuery({
         queryKey: ['getPlayerDetail'], 
         queryFn: () => getPlayerDetail({from: dateRange.from, to: dateRange.to, agentId}),
         enabled: false
     });
+
+    const playerDetailData = {
+        bonus: formatNumber(data?.data.bonus ?? 0),
+        bonusAdjust: formatNumber(data?.data.bonusAdjust ?? 0),
+        total: formatNumber((data?.data.bonus ?? 0) + (data?.data.bonusAdjust ?? 0)),
+    }
 
     /**
      * 取得特定玩家細節

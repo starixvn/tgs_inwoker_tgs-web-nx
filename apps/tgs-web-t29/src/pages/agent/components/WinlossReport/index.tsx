@@ -63,9 +63,6 @@ const WinlossReport = () => {
     config,
   } = useWinlossReport(handlePlayerDetailDateRange);
 
-  const playerDetailTotal: number = (playerDetailData?.data.bonus ?? 0) + (playerDetailData?.data.bonusAdjust ?? 0)
-  
-
   const renderData = () => {
 
     if(report.isFetching) {
@@ -341,16 +338,16 @@ const WinlossReport = () => {
               <TableBody>
                 <TableRow>
                   <TableCell  sx={{textAlign: "center"}}>{i18n.t("agent.bonus")}</TableCell>
-                  <TableCell  sx={{textAlign: "center"}}>{playerDetailData?.data.bonus}</TableCell>
+                  <TableCell  sx={{textAlign: "center"}}>{playerDetailData.bonus}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.adjust")}</TableCell>
-                  <TableCell sx={{textAlign: "center"}}>{playerDetailData?.data.bonusAdjust}</TableCell>
+                  <TableCell sx={{textAlign: "center"}}>{playerDetailData.bonusAdjust}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.total")}</TableCell>
                   <TableCell sx={{textAlign: "center"}}>
-                    {playerDetailTotal}
+                    {playerDetailData.total}
                   </TableCell>
                 </TableRow>
               </TableBody>
