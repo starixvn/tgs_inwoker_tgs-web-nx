@@ -33,6 +33,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
+import VipLayout from "@/layouts/VipLayout";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -296,7 +297,13 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: HomeDialogLayout,
+    layout: VipLayout,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/profile_vip",
+    component: VIPPage,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",
