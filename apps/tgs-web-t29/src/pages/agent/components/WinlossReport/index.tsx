@@ -101,8 +101,9 @@ const WinlossReport = () => {
         return (
           <TableRow key={id}>
             {Object.keys(mapTable).map((row, i) => {
-              
-              if(row === 'username' && cells['memberType'] === 'agent') {
+              const isAgent = cells['memberType'] === 'agent';
+
+              if(row === 'username' && isAgent) {
                 return (
                 <TableCell 
                   key={i} 
@@ -120,7 +121,7 @@ const WinlossReport = () => {
               }
 
 
-              if (row === 'special' && cells['memberType'] === 'agent') {
+              if (row === 'special' && isAgent) {
                 return (
                   <TableCell key={i} sx={{textAlign: 'center'}}>
                     <HintIconWrapper>
@@ -137,6 +138,15 @@ const WinlossReport = () => {
                 )
               }
 
+              if(row === 'memberType') {
+                return (
+                  <TableCell key={i} sx={{textAlign: 'center'}}>
+                    {i18n.t(`usertype.${cells['memberType']}`)}
+                  </TableCell>
+                )
+              };
+              
+              
               const data = cells[row as TableKey];
 
               return (
