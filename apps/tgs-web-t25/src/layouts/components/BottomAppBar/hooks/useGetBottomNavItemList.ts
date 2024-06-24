@@ -87,7 +87,7 @@ export function useGetBottomNavItemList() {
         iconUrl: withdrawIcon,
         iconActiveUrl: withdrawActiveIcon,
         handleClick: () => {
-          history.push("/profile");
+          history.push("/account");
         },
       },
     ];

@@ -11,7 +11,6 @@ import NavRowLanguage from "@/pages/account/components/AccountNavigations/NavRow
 
 const AccountNavsContainer = styled.div`
   padding: 12px 14px;
-  background: ${({ theme }) => theme.white};
   overflow: visible;
 `;
 
@@ -22,8 +21,8 @@ const AccountNavCardsContainer = styled.div`
 `;
 
 const LogoutRegion = styled.div`
-  background: ${({ theme }) => theme.white};
-  color: ${({ theme }) => theme.red};
+  background: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.black};
   font-size: 1.25rem;
   padding: 15px;
   text-align: center;
