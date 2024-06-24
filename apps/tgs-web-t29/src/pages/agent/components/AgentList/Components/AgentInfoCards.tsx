@@ -117,7 +117,7 @@ const AgentInfoCards = (props: PropsType) => {
               </PlayInfo>
               <PlayInfo>
                 <PlayerInfoTitle>{i18n.t("agent.profitShareP/T")}</PlayerInfoTitle>
-                <PlayerInfoValue>{agent.agentDividendPercentage}</PlayerInfoValue>
+                <PlayerInfoValue>{agent.agentDividendPercentage}%</PlayerInfoValue>
               </PlayInfo>
               <PlayInfo>
                 <PlayerInfoTitle>{i18n.t("agent.teamSize")}</PlayerInfoTitle>

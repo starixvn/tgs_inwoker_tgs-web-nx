@@ -20,7 +20,7 @@ import DateRangeWithIntervalSelector from "../DateRangeWithIntervalSelector";
 import ReportCard from "./components/ReportCard";
 import { TableKey, mapTable } from "./config";
 import { HintIconWrapper, WinlossReportContainer, FormulaWrapper, FormulaContainer, ScrollArea, TableWrapper, NoData, Wrapper, UserName } from "./components";
-import { usePlayerDetail, useWinlossReport, useDragToScrollX } from "./hooks";
+import { usePlayerDetail, useWinlossReport, useDragToScrollX, formatNumber } from "./hooks";
 import { theme } from "@/theme";
 import InfoIcon from "@/assets/t29/images/info.png";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";
@@ -92,13 +92,13 @@ const WinlossReport = () => {
           username,
           memberType, 
           roundCount, 
-          turnover, 
-          winLoss, 
-          special, 
-          profit: winLoss + special, 
-          agentWinLoss, 
-          agentSpecial, 
-          agentProfit: agentWinLoss + agentSpecial
+          turnover: formatNumber(turnover), 
+          winLoss: formatNumber(winLoss), 
+          special: formatNumber(special), 
+          profit: formatNumber(winLoss + special), 
+          agentWinLoss: formatNumber(agentWinLoss), 
+          agentSpecial: formatNumber(agentSpecial), 
+          agentProfit: formatNumber(agentWinLoss + agentSpecial)
         };
 
         return (
@@ -144,7 +144,7 @@ const WinlossReport = () => {
 
               return (
                 <TableCell key={i} sx={{textAlign: 'center'}}>
-                  {typeof data === 'number' ? data.toFixed(2) : data}
+                  {data}
                 </TableCell>
               )
             })}
@@ -350,7 +350,7 @@ const WinlossReport = () => {
                 <TableRow>
                   <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.total")}</TableCell>
                   <TableCell sx={{textAlign: "center"}}>
-                    {playerDetailTotal.toFixed(2)}
+                    {playerDetailTotal}
                   </TableCell>
                 </TableRow>
               </TableBody>

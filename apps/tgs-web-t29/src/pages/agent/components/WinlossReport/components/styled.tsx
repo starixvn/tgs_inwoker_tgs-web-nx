@@ -163,6 +163,10 @@ const InfoTextContainer = styled.div<{
   ${props => props.$isActive && css`
     color: #399FDA;
   `}
+
+  ${props => !props.$isActive && css`
+    pointer-events: none;
+  `}
 `;
 
 const InfoText = styled.p`
