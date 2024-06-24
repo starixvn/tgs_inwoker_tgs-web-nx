@@ -46,6 +46,10 @@ const HintIconWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+  
+  ${media.sm} {
+    justify-content: center;
+  }
 
   & > img {
     cursor: pointer;
