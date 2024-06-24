@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css, DefaultTheme, keyframes } from "styled-components";
+import styled, { DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
@@ -8,79 +8,140 @@ import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import refreshIcon from "@/assets/t21/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
+import VipProgressBar from "@/components/account/VipProgressBar";
 
 const rotateKeyFrame = keyframes`
   0% {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotate(359deg);
   }
 `;
 
 const Container = styled.div`
-  padding: 40px 30px;
+  padding: 22px 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 60px;
   flex-wrap: wrap;
-  background: ${({ theme }) => theme.mainBackground};
-  border-radius: 5px 0;
+  background: ${({ theme }) => theme.white};;
 `;
 
-const PlayerInfoContainer = styled.div`
-  ${media.md} {
-    flex: 1;
-    min-width: 184px;
+const PlayerInfoContainer = styled.div``;
+
+export const VIPLabel = styled.div<{ theme: DefaultTheme }>`
+  color: ${({ theme }) => theme.secondary};
+  font-size: 1.625rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  & img {
+    width: 30px;
+    height: 30px;
   }
 `;
 
-const PlayerName = styled.div`
-  font-size: 2rem;
-  font-weight: 500;
-  color: ${({ theme }) => theme.blue60};
+export const PlayerInfo = styled.div`
+  display: flex;
+  align-items: center;
+  min-width: 400px;
 `;
 
-const WalletsWrapper = styled.div`
+export const VIPInfo = styled.div`
   display: flex;
+  gap: 5px;
+`;
+
+export const RefreshContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const ProcessBarWrapper = styled.div`
+  width: 280px;
+  ${media.sm} {
+    width: 370px;
+  }
+`;
+
+export const ProcessBarContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  width: 100%;
+
+  & img {
+    position: absolute;
+    left: 0;
+    top: 60%;
+    width: 32px;
+    height: 32px;
+    z-index: 2;
+  }
+`;
+export const PlayerName = styled.div`
+  font-size: 32px;
+  line-height: 3.261rem;
+  font-weight: 400;
+  color: ${({ theme }) => theme.text};
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
+`;
+
+export const WalletsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
   flex-wrap: wrap;
-
-  ${media.lg} {
-    gap: 60px;
+  background: ${({ theme }) => theme.white};
+  padding: 20px;
+  ${media.sm} {
+    background: ${({ theme }) => theme.white};
+    width: 300px;
+    padding: 0;
   }
 `;
 
-const MainWalletContainer = styled.div`
-  //width: 128px;
+export const MainWalletContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 `;
 
-const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0em;
+export const MainAccountLabel = styled.div<{ theme: DefaultTheme }>`
+  font-size: 1.062rem;
+  font-weight: 700;
+  line-height: 1.245rem;
   color: ${({ theme }) => theme.text};
   white-space: nowrap;
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
+  }
 `;
 
-const AmountContainer = styled.div<{ theme: DefaultTheme }>`
-  font-size: 34px;
-  font-weight: 400;
-  line-height: 39px;
-  letter-spacing: 0em;
-  color: ${({ theme }) => theme.black};
+export const AmountContainer = styled.div<{ theme: DefaultTheme }>`
+  font-size: 2.125rem;
+  color: ${({ theme }) => theme.text};
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 9px;
-  padding-top: 19px;
 
   & *:first-child {
     flex-grow: 1;
+  }
+
+  ${media.sm} {
+    color: ${({ theme }) => theme.text};
   }
 `;
 
@@ -88,26 +149,11 @@ type RefreshButtonProps = {
   $isLoading: boolean;
 };
 
-const RefreshButton = styled(Icon)<RefreshButtonProps>`
-  cursor: pointer;
-
-  animation: ${({ $isLoading }: RefreshButtonProps) =>
-    $isLoading
-      ? css`
-          ${rotateKeyFrame} 1s linear 0s infinite
-        `
-      : "none"};
-
+export const RefreshButton = styled(Icon)<RefreshButtonProps>`
   &:hover {
+    cursor: pointer;
     animation: ${rotateKeyFrame} 1s linear 0s infinite;
   }
-`;
-
-const VIPLabel = styled.div<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.primary};
-  font-size: 1.625rem;
-  margin-top: 11px;
-  font-weight: 700;
 `;
 
 const UserWalletInfo = () => {
@@ -127,13 +173,24 @@ const UserWalletInfo = () => {
   return (
     <Container>
       <PlayerInfoContainer>
-        <PlayerName>{info.member_username}</PlayerName>
-        {config.features.HaveVIPFeature && (
-          <VIPLabel>
-            VIP
-            {info.member_level_id}
-          </VIPLabel>
-        )}
+        <PlayerInfo>
+          <PlayerName>{info.member_username}</PlayerName>
+          {config.features.HaveVIPFeature && (
+            <VIPLabel>
+              <img
+                width={"50px"}
+                height={"50px"}
+                src={`${import.meta.env.BASE_URL}assets/images/vip/level_${
+                  info.member_level_id
+                }.png`}
+                alt={`level_${info.member_level_id}`}
+              />
+              VIP
+              {info.member_level_id}
+            </VIPLabel>
+          )}
+        </PlayerInfo>
+        <VipProgressBar />
       </PlayerInfoContainer>
 
       <WalletsWrapper>
@@ -143,9 +200,7 @@ const UserWalletInfo = () => {
             {isMainWalletLoading ? (
               <span>-</span>
             ) : (
-              <DynamicFont
-                content={mainSymbol + Common.formatNumberWithThousand(mainWalletBalance)}
-              />
+              <DynamicFont content={mainSymbol + Common.formatCurrency(mainWalletBalance)} />
             )}
             <RefreshButton
               width={"44px"}
@@ -163,7 +218,7 @@ const UserWalletInfo = () => {
               {isTransferWalletLoading ? (
                 <span>-</span>
               ) : (
-                <DynamicFont content={mainSymbol + transferWalletBalance.toFixed(2)} />
+                <DynamicFont content={mainSymbol + Common.formatCurrency(transferWalletBalance)} />
               )}
               <RefreshButton
                 width={"44px"}
@@ -183,8 +238,7 @@ const UserWalletInfo = () => {
             ) : (
               <DynamicFont
                 content={
-                  mainSymbol +
-                  Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance)
+                  mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)
                 }
               />
             )}

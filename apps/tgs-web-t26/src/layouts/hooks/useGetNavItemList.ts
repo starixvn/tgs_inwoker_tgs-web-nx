@@ -200,14 +200,13 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/affiliate",
       },
-      // {
-      //   key: NavCardKey.VIP,
-      //   label: "VIP",
-      //   iconUrl: vipImg,
-      //   iconSecondaryUrl: vipWhiteImg,
-      //   navType: "route",
-      //   routePath: "/vip",
-      // },
+      {
+        key: NavCardKey.VIP,
+        label: "VIP",
+        Icon: VipIcon,
+        navType: "route",
+        routePath: "/profile_vip",
+      },
       {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),

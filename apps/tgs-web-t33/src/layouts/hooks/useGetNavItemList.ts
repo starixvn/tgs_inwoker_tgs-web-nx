@@ -4,7 +4,6 @@ import { i18n } from "@tgs-web-nx/utils";
 import { useAuthContext, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
-import { NavItem } from "@/hooks/account/useAccountNavigations";
 import accountIcon from "@/assets/t33/images/menuDrawer/icon-account.svg";
 import promotionIcon from "@/assets/t33/images/menuDrawer/icon-promotion.svg";
 import depositIcon from "@/assets/t33/images/menuDrawer/icon-deposit.svg";
@@ -29,6 +28,26 @@ import contactIconDark from "@/assets/t33/images/menuDrawer/dark/icon-contact-da
 import downloadIconDark from "@/assets/t33/images/menuDrawer/dark/icon-download-dark.svg";
 import logoutIconDark from "@/assets/t33/images/menuDrawer/dark/icon-logout-dark.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+
+export type NavItem = {
+  key: NavCardKey | string;
+  label: string | any;
+  iconUrl: string;
+  iconActiveUrl?: string;
+  iconSecondaryUrl?: string;
+  isHide?: boolean;
+  router?: string;
+  routePath?: string;
+} & (
+  | {
+      navType: "route";
+      routePath: string;
+    }
+  | {
+      navType: "action";
+      callback: () => void;
+    }
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -147,7 +166,7 @@ export function useGetNavItemList() {
         iconUrl: vipIcon,
         iconActiveUrl: vipIconDark,
         navType: "route",
-        routePath: "/vip",
+        routePath: "/profile_vip",
       },
       {
         key: NavCardKey.CONTACT_US,

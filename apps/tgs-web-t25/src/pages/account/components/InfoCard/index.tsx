@@ -1,52 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
-import BalanceTracker from "@/components/project/BalanceTracker";
+import config from "@tgs-web-nx/config";
+import { PlayerInfo, PlayerName, VIPLabel } from "@/components/project/UserWalletInfo/index";
+import VipProgressBar from "@/components/account/VipProgressBar";
 
 const InfoCardContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
+  background-size: cover;
   width: 100%;
-  height: 105px;
-  padding: 15.5px;
-  color: ${({ theme }) => theme.text};
+  color: white;
+  padding: 20px;
+  background: ${({ theme }) => theme.black02};
+  border-radius: 6px;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 37px;
-`;
-
-const NameContainer = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
-`;
-
-const VipLevel = styled.div`
-  background: #92581a;
-  width: 75px;
-  height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.white};
-  font-size: 3rem;
-  font-weight: 500;
-  border-radius: 50%;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
   const { account } = useAccountStore();
+
   const username = account.info.member_username;
   const accountLevel = account.info.member_level_id;
-
   return (
     //@ts-ignore
     <InfoCardContainer {...props}>
-      <VipLevel>{`V${accountLevel}`}</VipLevel>
-
-      <NameContainer>{username}</NameContainer>
-
-      <BalanceTracker size={"small"} />
+      <PlayerInfo>
+        <PlayerName>{username}</PlayerName>
+        {config.features.HaveVIPFeature && (
+          <VIPLabel>
+            <img
+              width={"50px"}
+              height={"50px"}
+              src={`${import.meta.env.BASE_URL}assets/images/vip/level_${accountLevel}.png`}
+              alt={`level_${accountLevel}`}
+            />
+            VIP
+            {accountLevel}
+          </VIPLabel>
+        )}
+      </PlayerInfo>
+      <VipProgressBar />
     </InfoCardContainer>
   );
 };

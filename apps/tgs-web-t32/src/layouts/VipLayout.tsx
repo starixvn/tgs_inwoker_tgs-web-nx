@@ -2,7 +2,9 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { usePageName } from "@tgs-web-nx/core/features";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import AccountDesktopLayout from "./AccountDesktopLayout";
+import DefaultLayout from "./DefaultLayout";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
@@ -12,7 +14,6 @@ import {
   MOBILE_HEADER_HEIGHT,
   SUB_CONTENT_MAX_WIDTH,
 } from "@/theme/constants";
-import DarkMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/DarkMemberMenu";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 
@@ -67,6 +68,15 @@ const VipLayout = ({ children }: Props) => {
   const handleCloseDialog = useCallback(() => {
     history.goBack();
   }, [history]);
+  const location = useLocation();
+
+  if (isDesktopSize) {
+    return location.pathname === "/vip" ? (
+      <DefaultLayout>{children}</DefaultLayout>
+    ) : (
+      <AccountDesktopLayout>{children}</AccountDesktopLayout>
+    );
+  }
 
   return (
     <DefaultLayoutContainer>
@@ -77,19 +87,7 @@ const VipLayout = ({ children }: Props) => {
           <DialogHeader handleClose={handleCloseDialog} dialogHeaderTitle={pageName} />
         )}
         <ContentWrapper>
-          <ChildrenWrapper>
-            {isDesktopSize && (
-              <DarkMemberMenu
-                handleCloseContextMenu={() => {}}
-                style={{
-                  width: "200px",
-                  flexShrink: 0,
-                  minHeight: "800px",
-                }}
-              />
-            )}
-            {children}
-          </ChildrenWrapper>
+          <ChildrenWrapper>{children}</ChildrenWrapper>
         </ContentWrapper>
       </DashboardContainer>
       <Footer />
