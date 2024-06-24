@@ -4,6 +4,7 @@ import { useAccountStore } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import refreshIcon from "@/assets/t25/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
+import { theme } from "@/theme";
 
 const VipProgressWidgetWrapper = styled.div`
   display: grid;
@@ -253,14 +254,14 @@ const VipProgressWidget = () => {
               <ProgressBar
                 current={info?.accumdeposit}
                 require={info?.levelupaccumulatedeposit}
-                color="#F4BD29"
+                color="#FB9900"
                 title="vip.totalDeposit"
                 icon="coin"
               />
               <ProgressBar
                 current={info?.accumturnover}
                 require={info?.levelupaccumulatebetamount}
-                color="#34C75C"
+                color={theme.primary}
                 title="vip.totalVaildBet"
                 icon="dice"
               />
