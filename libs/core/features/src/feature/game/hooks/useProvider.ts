@@ -73,8 +73,13 @@ function getFormattedProviderList(providerList: ProviderDto[]): ProviderDto[] {
           name: "PHSB",
         };
       }
-
-      if (provider.code === "AWC_COCKFIGHT" || provider.code === "SM01") {
+      //因系統沒有鬥雞類別,API回傳的type會是體育,故下列廠商要特別判斷加入鬥雞類別
+      //todo:需考慮廠商如果有鬥雞以外的遊戲類別
+      if (
+        provider.code === "AWC_COCKFIGHT" ||
+        provider.code === "SM01" ||
+        provider.code === "GA28"
+      ) {
         return {
           ...provider,
           gametypes: [GameTypeEnum.COCKFIGHT],
