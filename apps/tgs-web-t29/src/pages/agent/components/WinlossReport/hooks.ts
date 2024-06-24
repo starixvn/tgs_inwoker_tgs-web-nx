@@ -23,6 +23,23 @@ type DateRange = {
     to: string
 }
 
+export function formatNumber(num: number) {
+    // 使用 toFixed(2) 來確保小數點後兩位
+    let formatted = num.toFixed(2);
+    
+    // 如果格式化後的數字末尾是 .00，則刪除
+    if (formatted.endsWith('.00')) {
+        formatted = formatted.slice(0, -3);
+    }
+    
+    // 如果格式化後的數字末尾是 .X0，則刪除多餘的 0
+    else if (formatted.endsWith('0')) {
+        formatted = formatted.slice(0, -1);
+    }
+    
+    return formatted;
+}
+
 /**
  * 處理輸贏報表相關邏輯
  */
@@ -78,8 +95,6 @@ export const useWinlossReport = (handlePlayerDetailDateRange: (dateRange: DateRa
         items: reportData && reportData.data.items,
         hasData: reportData?.data.items && reportData.data.items.length > 0,
         isFetching: isFetchingReportData,
-        fee: {
-        }
     }
     
     const {
