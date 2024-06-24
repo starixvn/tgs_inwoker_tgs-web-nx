@@ -144,6 +144,7 @@ const featureList = {
     SMSVerifyInRegister: false,
     isRegisterRealNameRequired: false,
     currencySymbol: "$",
+    isShowChannelCode: false,
   },
 };
 export default featureList;
