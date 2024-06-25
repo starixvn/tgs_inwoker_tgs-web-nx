@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import { NoData } from "../NoData";
-import { useProfitShareReport, formatNaN, formatSentOn, getDateRange, getStatus } from "./hooks";
+import { useProfitShareReport, formatNaN, getDateRange, getStatus } from "./hooks";
 import { AgentSelect } from "./components";
 import Loading from "@/components/UI/Loading";
 import { media } from "@/theme/breakpoints";

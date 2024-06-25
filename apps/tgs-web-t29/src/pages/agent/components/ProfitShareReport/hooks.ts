@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { ProfitShare } from "@tgs-web-nx/core";
 import { useEffect, useState } from "react";
-import { groupBy } from "@tgs-web-nx/utils";
+import { Common, groupBy } from "@tgs-web-nx/utils";
 import { ProfitShareStatus, TProfitShare } from "@tgs-web-nx/types";
 import { SelectChangeEvent } from "@mui/material";
 import moment from "moment";
@@ -93,7 +93,7 @@ const getPeriod = (code?: ProfitShareStatus): Period => {
 /**
  * 處理 NaN
  */
-export const formatNaN = (number: number) => isNaN(number) ? '-' : number;
+export const formatNaN = (num: number) => isNaN(num) ? '-' : Common.formatCurrency(num);
 
 /**
  * 處理分紅報表

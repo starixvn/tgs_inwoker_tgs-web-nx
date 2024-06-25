@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { PlayerStatus, useAgentPage, useRwd } from "@tgs-web-nx/core/hooks";
-import { i18n } from "@tgs-web-nx/utils";
-// import { useUpdatePageName } from "@tgs-web-nx/core/features";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import moment from "moment";
@@ -121,11 +120,11 @@ const PlayerInfoCards = (props: PropsType) => {
               </PlayInfo>
               <PlayInfo>
                 <PlayerInfoTitle>{i18n.t("agent.totalDeposit")}</PlayerInfoTitle>
-                <PlayerInfoValue>{player.totalDepositAmount}</PlayerInfoValue>
+                <PlayerInfoValue>{Common.formatCurrency(player.totalDepositAmount)}</PlayerInfoValue>
               </PlayInfo>
               <PlayInfo>
                 <PlayerInfoTitle>{i18n.t("agent.totalWithdraw")}</PlayerInfoTitle>
-                <PlayerInfoValue>{player.totalWithdrawAmount}</PlayerInfoValue>
+                <PlayerInfoValue>{Common.formatCurrency(player.totalWithdrawAmount)}</PlayerInfoValue>
               </PlayInfo>
               <PlayInfo>
                 <PlayerInfoTitle>{i18n.t("report.status")}</PlayerInfoTitle>

@@ -1,5 +1,5 @@
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { i18n } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import {
   Accordion,
   AccordionDetails,
@@ -88,14 +88,14 @@ const WinlossReport = () => {
         const cells: Record<TableKey, string | number> = {
           username,
           memberType, 
-          roundCount, 
-          turnover: formatNumber(turnover), 
-          winLoss: formatNumber(winLoss), 
-          special: formatNumber(special), 
-          profit: formatNumber(winLoss + special), 
-          agentWinLoss: formatNumber(agentWinLoss), 
-          agentSpecial: formatNumber(agentSpecial), 
-          agentProfit: formatNumber(agentWinLoss + agentSpecial)
+          roundCount: Common.formatCurrency(roundCount), 
+          turnover: Common.formatCurrency(formatNumber(turnover)), 
+          winLoss: Common.formatCurrency(formatNumber(winLoss)), 
+          special: Common.formatCurrency(formatNumber(special)), 
+          profit: Common.formatCurrency(formatNumber(winLoss + special)), 
+          agentWinLoss: Common.formatCurrency(formatNumber(agentWinLoss)), 
+          agentSpecial: Common.formatCurrency(formatNumber(agentSpecial)), 
+          agentProfit: Common.formatCurrency(formatNumber(agentWinLoss + agentSpecial))
         };
 
         return (
@@ -348,16 +348,16 @@ const WinlossReport = () => {
               <TableBody>
                 <TableRow>
                   <TableCell  sx={{textAlign: "center"}}>{i18n.t("agent.bonus")}</TableCell>
-                  <TableCell  sx={{textAlign: "center"}}>{playerDetailData.bonus}</TableCell>
+                  <TableCell  sx={{textAlign: "center"}}>{Common.formatCurrency(playerDetailData.bonus)}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.adjust")}</TableCell>
-                  <TableCell sx={{textAlign: "center"}}>{playerDetailData.bonusAdjust}</TableCell>
+                  <TableCell sx={{textAlign: "center"}}>{Common.formatCurrency(playerDetailData.bonusAdjust)}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.total")}</TableCell>
                   <TableCell sx={{textAlign: "center"}}>
-                    {playerDetailData.total}
+                    {Common.formatCurrency(playerDetailData.total)}
                   </TableCell>
                 </TableRow>
               </TableBody>
