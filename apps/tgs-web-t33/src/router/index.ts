@@ -24,8 +24,11 @@ import DialogLayout from "@/layouts/DialogLayout";
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
+import VipLayout from "@/layouts/VipLayout";
 import ProfileLayout from "@/layouts/ProfileLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
+
+const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
 const routes: RouteType[] = [
   {
@@ -46,7 +49,11 @@ const routes: RouteType[] = [
     layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
-
+  {
+    path: "/account",
+    component: AccountPage,
+    layout: DialogLayout,
+  },
   {
     path: "/deposit",
     component: DepositPage,
@@ -272,7 +279,13 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: DialogLayout,
+    layout: VipLayout,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/profile_vip",
+    component: VIPPage,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",

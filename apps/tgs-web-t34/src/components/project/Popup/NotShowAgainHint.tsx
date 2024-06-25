@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
-import IconCheckBox from "@/assets/t23/images/icon_checkbox.svg";
+import IconCheckBox from "@/assets/t34/images/icon_checkbox.svg";
 
 const NotShowAgainHintContainer = styled.div`
   height: 38px;

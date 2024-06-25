@@ -26,7 +26,8 @@ const MemberMenuItem = styled.div<MemberMenuItemProps>`
   &:hover {
     background: ${({ $isActive, theme }: MemberMenuItemProps) =>
       $isActive ? theme.grey02 : theme.black};
-    color: ${({ theme }) => theme.white}
+    color: ${({ theme }) => theme.white};
+  }
 `;
 type Props = {
   handleCloseContextMenu: () => void;

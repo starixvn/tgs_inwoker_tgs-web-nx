@@ -24,6 +24,7 @@ import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import InboxPage from "@/pages/inbox/InboxPage";
+import VipLayout from "@/layouts/VipLayout";
 
 const routes: RouteType[] = [
   {
@@ -275,7 +276,13 @@ const routes: RouteType[] = [
   {
     path: "/vip",
     component: VIPPage,
-    layout: DialogLayout,
+    layout: VipLayout,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/profile_vip",
+    component: VIPPage,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",

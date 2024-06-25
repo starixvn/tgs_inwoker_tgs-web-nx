@@ -88,7 +88,7 @@ export function useAccountNavigations() {
         label: "VIP",
         iconUrl: vipSecondaryImg,
         iconSecondaryUrl: vipSecondaryImg,
-        routePath: "/transfer",
+        routePath: "/profile_vip",
       },
       {
         key: NavCardKey.REPORT,

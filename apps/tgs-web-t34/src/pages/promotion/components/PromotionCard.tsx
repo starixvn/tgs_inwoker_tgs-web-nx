@@ -6,7 +6,6 @@ import { i18n } from "@tgs-web-nx/utils";
 import BannerImage from "./BannerImage";
 import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
-import iconMore from "@/assets/t23/images/promotion/iconMore.svg";
 import { Button } from "@/components/UI/Button";
 
 type PromotionCardContainerProps = {

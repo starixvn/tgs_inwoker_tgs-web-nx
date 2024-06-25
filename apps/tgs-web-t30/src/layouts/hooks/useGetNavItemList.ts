@@ -41,7 +41,7 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
-  const { handleChangeGameType } = useHomeGameContext();
+  const { handleChangeGameType, providerList } = useHomeGameContext();
   const { handleLogout } = useAuthContext();
 
   const history = useHistory();
@@ -51,7 +51,12 @@ export function useGetNavItemList() {
 
     for (const gameTypeItem of gameTypeList) {
       if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
-
+      if (providerList.length) {
+        const hasData = providerList.filter((provider) => {
+          return provider.gametypes.includes(gameTypeItem.gameType);
+        });
+        if (hasData.length === 0) continue;
+      }
       navItemList.push({
         key: gameTypeItem.key,
         label: gameTypeItem.text as string,
@@ -65,26 +70,26 @@ export function useGetNavItemList() {
       });
     }
 
-    // navItemList.push({
-    //   key: NavCardKey.VIP,
-    //   label: "VIP",
-    //   iconUrl: vipIcon,
-    //   iconActiveUrl: vipIcon,
-    //   navType: "action",
-    //   callback: () => {
-    //     history.push("/vip");
-    //   },
-    // });
+    navItemList.push({
+      key: NavCardKey.VIP,
+      label: "VIP",
+      iconUrl: vipIcon,
+      iconActiveUrl: vipIcon,
+      navType: "action",
+      callback: () => {
+        history.push("/vip");
+      },
+    });
 
-    // navItemList.push({
-    //   key: NavCardKey.PROMOTION,
-    //   label: i18n.t("common.promotion"),
-    //   iconUrl: promotionIcon,
-    //   navType: "action",
-    //   callback: () => {
-    //     history.push("/promotion-list");
-    //   },
-    // });
+    navItemList.push({
+      key: NavCardKey.PROMOTION,
+      label: i18n.t("common.promotion"),
+      iconUrl: "",
+      navType: "action",
+      callback: () => {
+        history.push("/promotion-list");
+      },
+    });
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -171,7 +176,7 @@ export function useGetNavItemList() {
         iconSecondaryUrl: vipSecondaryIcon,
         iconGrayUrl: vipGrayIcon,
         navType: "route",
-        routePath: "/vip",
+        routePath: "/profile_vip",
       },
       {
         key: NavCardKey.CONTACT_US,
@@ -203,6 +208,7 @@ export function useGetNavItemList() {
         },
       },
     ] as NavItem[];
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

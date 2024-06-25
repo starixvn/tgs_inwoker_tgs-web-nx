@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import AccountDesktopLayout from "./AccountDesktopLayout";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import DialogHeader from "@/components/UI/Dialog/VipDialogHeader";
 import DefaultLayout from "@/layouts/DefaultLayout";
@@ -39,10 +40,15 @@ const VipLayout = ({ children }: Props) => {
   const handleCloseDialog = useCallback(() => {
     handleChangeGameType(GameTypeEnum.NONE);
     history.push("/");
-  }, []);
+  }, [handleChangeGameType, history]);
+  const location = useLocation();
 
   if (isDesktopSize) {
-    return <DefaultLayout>{children}</DefaultLayout>;
+    return location.pathname === "/vip" ? (
+      <DefaultLayout>{children}</DefaultLayout>
+    ) : (
+      <AccountDesktopLayout>{children}</AccountDesktopLayout>
+    );
   }
 
   return (

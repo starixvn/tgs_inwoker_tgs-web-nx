@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import gc from "@/assets/t23/images/home/gc.png";
 import SocialMedia from "@/components/project/SocialMedia";
 import { media } from "@/theme/breakpoints";
 
@@ -94,7 +93,6 @@ const Footer = () => {
         <FooterGroup>
           <GroupTitle>Gaming License</GroupTitle>
           <GroupContent>
-            <img src={gc} alt="gc" />
           </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
           <GroupContent>Co.Group</GroupContent>

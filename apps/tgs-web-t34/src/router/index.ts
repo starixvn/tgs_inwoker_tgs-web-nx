@@ -280,6 +280,12 @@ const routes: RouteType[] = [
     path: "/vip",
     component: VIPPage,
     layout: VipLayout,
+     isAnonymousAllowed: true,
+  },
+  {
+    path: "/profile_vip",
+    component: VIPPage,
+    layout: VipLayout,
   },
   // {
   //   path: "/sports/:platform",

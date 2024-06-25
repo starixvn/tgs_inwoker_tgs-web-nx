@@ -5,8 +5,6 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import { usePageName } from "@tgs-web-nx/core/features";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
-import AuthDialogImage from "@/components/UI/Dialog/AuthDialog/components/AuthDialogImage";
-import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import PopupHeader from "@/components/project/Popup/components/PopupHeader";
 
 const StyledDialog = styled(MuiDialog)`
