@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import { ImageActionEnum, useImageActions, useRwd } from "@tgs-web-nx/core/hooks";
-import { i18n } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import { Button, styled as muiStyled } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
@@ -141,6 +141,8 @@ const AgentInfo = () => {
     enabled: false,
   });
 
+  const negativeAgentDividend = Common.formatCurrency(data?.data.negativeAgentDividend ?? 0);
+
   useEffect(() => {
     refetch();
   }, [refetch]);
@@ -181,7 +183,7 @@ const AgentInfo = () => {
 
           <SharingContent>
             <DataText>{i18n.t("agent.cumulativenegativeDividendAmount")}</DataText>
-            <ValueText>{data?.data.negativeAgentDividend}</ValueText>
+            <ValueText>{negativeAgentDividend}</ValueText>
           </SharingContent>
 
           <SharingContent>
@@ -213,7 +215,7 @@ const AgentInfo = () => {
 
             <SharingContent>
               <DataText>{i18n.t("agent.cumulativenegativeDividendAmount")}</DataText>
-              <ValueText>{data?.data.negativeAgentDividend}</ValueText>
+              <ValueText>{negativeAgentDividend}</ValueText>
             </SharingContent>
           </BasicDataCard>
         </>

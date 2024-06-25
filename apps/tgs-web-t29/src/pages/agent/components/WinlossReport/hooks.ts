@@ -23,7 +23,7 @@ type DateRange = {
     to: string
 }
 
-export function formatNumber(num: number) {
+export function formatNumber(num: number): number {
     // 使用 toFixed(2) 來確保小數點後兩位
     let formatted = num.toFixed(2);
     
@@ -37,7 +37,7 @@ export function formatNumber(num: number) {
         formatted = formatted.slice(0, -1);
     }
     
-    return formatted;
+    return Number(formatted);
 }
 
 /**

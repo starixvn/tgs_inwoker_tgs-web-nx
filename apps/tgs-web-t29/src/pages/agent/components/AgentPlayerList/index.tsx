@@ -1,5 +1,5 @@
 import { useAgentPage, useRwd, PlayerStatus } from "@tgs-web-nx/core/hooks";
-import { i18n } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 import {
   MenuItem,
@@ -190,8 +190,8 @@ const AgentPlayerList = () => {
                         <TableCell>{player.vipLevel}</TableCell>
                         <TableCell sx={{ width: "120px" }}>{registerData}</TableCell>
                         <TableCell sx={{ width: "120px" }}>{latestLoginData}</TableCell>
-                        <TableCell>{player.totalDepositAmount}</TableCell>
-                        <TableCell>{player.totalWithdrawAmount}</TableCell>
+                        <TableCell>{Common.formatCurrency(player.totalDepositAmount)}</TableCell>
+                        <TableCell>{Common.formatCurrency(player.totalWithdrawAmount)}</TableCell>
                         <TableCell>{getStatusTranslation(player.playerStatus)}</TableCell>
                       </TableRow>
                     );
