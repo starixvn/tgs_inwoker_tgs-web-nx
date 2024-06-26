@@ -2,18 +2,22 @@ import { Wagering } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import { GameTypeEnum, useRwd } from "@tgs-web-nx/core/hooks";
 import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWagering from "@/assets/t29/images/account/navItem/icon-wagering.svg";
+import iconWagering from "@/assets/t34/images/account/navItem/icon-report.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import live from "@/assets/t34/images/home/gameType/liveCasino.svg";
+import lottery from "@/assets/t34/images/home/gameType/lottery.svg";
+import slot from "@/assets/t34/images/home/gameType/slot.svg";
+import sports from "@/assets/t34/images/home/gameType/sports.svg";
+import cardgame from "@/assets/t34/images/home/gameType/cardGame.svg";
 
-//傳入的image path只能是絕對路徑
 const wageringImages = {
-  [GameTypeEnum.LiveDealer]: "/src/assets/t34/images/home/gameType/liveCasino.svg",
-  [GameTypeEnum.Sportsbook]: "/src/assets/t34/images/home/gameType/sports.svg",
-  [GameTypeEnum.Slot]: "/src/assets/t34/images/home/gameType/slot.svg",
-  [GameTypeEnum.CardGame]: "/src/assets/t34/images/home/gameType/cardGame.svg",
-  [GameTypeEnum.Lottery]: "/src/assets/t34/images/home/gameType/lottery.svg",
-  [GameTypeEnum.VirtualSports]: "/src/assets/t34/images/home/gameType/sports.svg",
+  [GameTypeEnum.LiveDealer]: live,
+  [GameTypeEnum.Sportsbook]: sports,
+  [GameTypeEnum.Slot]: slot,
+  [GameTypeEnum.CardGame]: cardgame,
+  [GameTypeEnum.Lottery]: lottery,
+  [GameTypeEnum.VirtualSports]: sports,
 };
 const mainBucketIcon = "/src/assets/t34/images/withdraw/icon-card.svg";
 

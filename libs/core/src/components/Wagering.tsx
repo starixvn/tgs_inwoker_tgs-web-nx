@@ -1,14 +1,15 @@
 import { media } from "@tgs-web-nx/constants";
-import { GameTypeEnum, useRwd, useWageringPage } from "@tgs-web-nx/core/hooks";
+import { GameTypeEnum, useWageringPage } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import { useEffect } from "react";
 import styled from "styled-components";
 
-const WageringContainer = styled.div`
+const WageringContainer = styled.div<{ $textColor?: string }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: ${({ $textColor }) => ($textColor ? $textColor : "black")};
 `;
 
 type CardProps = {
@@ -94,6 +95,7 @@ type WageringProps = {
   wageringImages: Record<GameTypeEnum, string>;
   mainBucketIcon: string;
   cardBG: string;
+  textColor?: string;
 };
 
 const Wagering = (props: WageringProps) => {
@@ -105,7 +107,7 @@ const Wagering = (props: WageringProps) => {
   }, [fetchpPlayerBucket]);
 
   return (
-    <WageringContainer>
+    <WageringContainer $textColor={props.textColor}>
       <Requirement $cardBG={props.cardBG}>
         <img width={30} height={30} src={props.mainBucketIcon} alt={"main"} />
         <TitleItem>{i18n.t("wagering.main")} </TitleItem>
