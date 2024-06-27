@@ -44,8 +44,8 @@ export type PlayerDetailDto = {
     data: {
         bonus: number, 
         bonusAdjust: number,
-        platformCharge: number, 
-        productFee: number
+        companyAdjust: number, 
+        agentAdjust: number
         err: number,
         errmsg: string,
         errmsgid: null | string,
