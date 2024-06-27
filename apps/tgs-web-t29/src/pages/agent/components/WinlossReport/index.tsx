@@ -355,6 +355,14 @@ const WinlossReport = () => {
                   <TableCell sx={{textAlign: "center"}}>{Common.formatCurrency(playerDetailData.bonusAdjust)}</TableCell>
                 </TableRow>
                 <TableRow>
+                  <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.companyAdjust")}</TableCell>
+                  <TableCell sx={{textAlign: "center"}}>{Common.formatCurrency(playerDetailData.companyAdjust)}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.agentAdjust")}</TableCell>
+                  <TableCell sx={{textAlign: "center"}}>{Common.formatCurrency(playerDetailData.agentAdjust)}</TableCell>
+                </TableRow>
+                <TableRow>
                   <TableCell sx={{textAlign: "center"}}>{i18n.t("agent.total")}</TableCell>
                   <TableCell sx={{textAlign: "center"}}>
                     {Common.formatCurrency(playerDetailData.total)}

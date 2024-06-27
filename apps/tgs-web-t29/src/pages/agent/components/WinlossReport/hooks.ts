@@ -269,7 +269,9 @@ export const usePlayerDetail = () => {
     const playerDetailData = {
         bonus: formatNumber(data?.data.bonus ?? 0),
         bonusAdjust: formatNumber(data?.data.bonusAdjust ?? 0),
-        total: formatNumber((data?.data.bonus ?? 0) + (data?.data.bonusAdjust ?? 0)),
+        agentAdjust: formatNumber(data?.data.agentAdjust ?? 0),
+        companyAdjust: formatNumber(data?.data.companyAdjust ?? 0),
+        total: formatNumber((data?.data.bonus ?? 0) + (data?.data.bonusAdjust ?? 0)) + formatNumber(data?.data.agentAdjust ?? 0) + formatNumber(data?.data.companyAdjust ?? 0),
     }
 
     /**
