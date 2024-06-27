@@ -6,5 +6,5 @@ export const MOBILE_DRAWER_WIDTH = "258px";
 // Desktop
 export const MAIN_CONTENT_MAX_WIDTH = "1920px";
 export const SUB_CONTENT_MAX_WIDTH = "1200px";
-
+export const DESKTOP_HEADER_HEIGHT = "0px";
 export const DESKTOP_DRAWER_WIDTH = "310px"; // Loading component used this value

@@ -81,7 +81,7 @@ const VipProgressWidgetWrapper = styled.div`
         .icon {
           width: 32px;
           height: 32px;
-          margin-right: -10px;
+          margin-right: -15px;
           z-index: 2;
         }
         .progressbar {

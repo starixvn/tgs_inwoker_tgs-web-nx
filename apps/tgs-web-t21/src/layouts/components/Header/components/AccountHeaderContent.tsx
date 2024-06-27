@@ -66,7 +66,7 @@ const AccountHeaderContent = () => {
     <ButtonContainer>
       <VipMedal vipLevel={accountLevel} width="35px" height="35px" />
       <UserInfo>
-        <Username onClick={() => history.push("/account")}>
+        <Username onClick={() => history.push("/profile")}>
           <span> {username}</span>
           <span> {`(${config.currency})`}</span>
         </Username>
