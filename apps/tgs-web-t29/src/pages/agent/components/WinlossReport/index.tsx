@@ -1,4 +1,4 @@
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useDragToScrollX, useRwd } from "@tgs-web-nx/core/hooks";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import {
   Accordion,
@@ -20,7 +20,7 @@ import DateRangeWithIntervalSelector from "../DateRangeWithIntervalSelector";
 import ReportCard from "./components/ReportCard";
 import { TableKey, mapTable } from "./config";
 import { HintIconWrapper, WinlossReportContainer, FormulaWrapper, FormulaContainer, ScrollArea, TableWrapper, NoData, Wrapper, UserName } from "./components";
-import { usePlayerDetail, useWinlossReport, useDragToScrollX, formatNumber } from "./hooks";
+import { usePlayerDetail, useWinlossReport, formatNumber } from "./hooks";
 import { theme } from "@/theme";
 import InfoIcon from "@/assets/t29/images/info.png";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";

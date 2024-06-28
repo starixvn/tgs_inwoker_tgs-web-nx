@@ -7,6 +7,7 @@ export enum AgentCategoryKeyEnum {
   "AGENTLIST",
   "WINLOSSREPORT",
   "PROFITSHAREREPORT",
+  "AGENTCONTRIBUTION"
 }
 export type AgentCategoryTab = {
   key: AgentCategoryKeyEnum;
@@ -41,6 +42,11 @@ export function useAgentCategoryTabs() {
         key: AgentCategoryKeyEnum.PROFITSHAREREPORT,
         label: i18n.t("agent.profitShareReport"),
         path: "/agent/profitShareReport",
+      },
+      {
+        key: AgentCategoryKeyEnum.AGENTCONTRIBUTION,
+        label: "代理貢獻",
+        path: "/agent/contribution",
       },
     ];
   }, []);

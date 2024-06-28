@@ -9,6 +9,7 @@ import AgentList from "./components/AgentList";
 import WinlossReport from "./components/WinlossReport";
 import ProfitShareReport from "./components/ProfitShareReport";
 import { AgentContextProvider } from "./components/AgentContextProvider";
+import Contribution from "./components/Contribution";
 import Loading from "@/components/UI/Loading";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import AccountPaper from "@/components/project/AccountPaper";
@@ -19,7 +20,7 @@ const AgentTabContainer = styled.div`
   display: grid;
   gap: 20px;
   ${media.sm} {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 1fr;
   }
 `;
@@ -69,6 +70,8 @@ const AgentPage = () => {
                     return <WinlossReport />;
                   case AgentCategoryKeyEnum.PROFITSHAREREPORT:
                     return <ProfitShareReport />;
+                  case AgentCategoryKeyEnum.AGENTCONTRIBUTION:
+                    return <Contribution />;
                   default:
                     return null;
                 }

@@ -1,6 +1,7 @@
 import {
   AgentInfotDto,
   AgentListInfoDto,
+  ContributionDto,
   PlayerDetailDto,
   PlayerInfoDto,
   ProfitShareDto,
@@ -119,10 +120,44 @@ const AgentList = {
   },
 };
 
+export type ContributionConfig = {
+  sort?: "agent" | "player"
+  from: string,
+  to: string,
+  desc: string,
+  page: number,
+  rows: number,
+  all: boolean,
+}
+
+/**
+ * 取得代理貢獻
+ * @param payload WinLostConfig
+ * @returns  
+ */
+const getContribution = ({
+  sort,
+  from,
+  to,
+  desc,
+  page = 1,
+  rows = 10,
+  all = false,
+}: ContributionConfig) => {
+  const apiUrl = `agentreport/contributions?From=${from}T16:00:00.000Z&To=${to}T16:00:00.000Z&page=${page}&rows=${rows}&desc=${desc}&sort=${sort}&all=${sort}`;
+
+  return ApiService.get(apiUrl) as unknown as Promise<ContributionDto>;
+};
+
+const Contribution = {
+  getContribution,
+}
+
 export {
   AgentInfo, // 代理資訊
   PlayerList, // 玩家列表
   WinLostReport, // 輸贏報表
   AgentList, // 代理列表
   ProfitShare, // 分紅報表
+  Contribution, // 代理貢獻
 }
