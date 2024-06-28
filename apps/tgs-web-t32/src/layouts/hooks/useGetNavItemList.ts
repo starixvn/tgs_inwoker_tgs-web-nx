@@ -145,7 +145,7 @@ export function useGetNavItemList() {
       },
       {
         key: NavCardKey.WAGERING,
-        label: i18n.t("t29.wagering"),
+        label: i18n.t("common.wagering"),
         iconUrl: wageringImg,
         iconSecondaryUrl: wageringWhiteImg,
         navType: "route",
