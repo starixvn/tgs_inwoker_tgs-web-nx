@@ -10,6 +10,7 @@ import lottery from "@/assets/t34/images/home/gameType/lottery.svg";
 import slot from "@/assets/t34/images/home/gameType/slot.svg";
 import sports from "@/assets/t34/images/home/gameType/sports.svg";
 import cardgame from "@/assets/t34/images/home/gameType/cardGame.svg";
+import mainBucketIcon from "/src/assets/t34/images/withdraw/icon-card.svg";
 
 const wageringImages = {
   [GameTypeEnum.LiveDealer]: live,
@@ -19,7 +20,6 @@ const wageringImages = {
   [GameTypeEnum.Lottery]: lottery,
   [GameTypeEnum.VirtualSports]: sports,
 };
-const mainBucketIcon = "/src/assets/t34/images/withdraw/icon-card.svg";
 
 const WageringPage = () => {
   const { isDesktopSize } = useRwd();

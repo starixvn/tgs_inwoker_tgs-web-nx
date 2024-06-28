@@ -11,6 +11,8 @@ import slot from "@/assets/t31/images/home/gameType/desktop/Slot.svg";
 import sports from "@/assets/t31/images/home/gameType/desktop/Sports.svg";
 import cardgame from "@/assets/t31/images/home/gameType/desktop/Card.svg";
 import MenuTabs from "@/components/project/MenuTabs";
+import mainBucketIcon from "/src/assets/t31/images/withdraw/icon-card.svg";
+
 import { theme } from "@/theme";
 
 const wageringImages = {
@@ -21,7 +23,6 @@ const wageringImages = {
   [GameTypeEnum.Lottery]: lottery,
   [GameTypeEnum.VirtualSports]: sports,
 };
-const mainBucketIcon = "/src/assets/t31/images/withdraw/icon-card.svg";
 
 const WageringPage = () => {
   const { isDesktopSize } = useRwd();
