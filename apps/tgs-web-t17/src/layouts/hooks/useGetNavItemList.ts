@@ -28,17 +28,17 @@ export type NavItem = {
   isHide?: boolean;
   router?: string;
   routePath?: string;
-  iconComponent?: React.FC<{ $color: string }>
+  iconComponent?: React.FC<{ $color: string }>;
 } & (
-    | {
+  | {
       navType: "route";
       routePath: string;
     }
-    | {
+  | {
       navType: "action";
       callback: () => void;
     }
-  );
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -166,16 +166,16 @@ export function useGetNavItemList() {
         },
         iconComponent: WithdrawSvg,
       },
-      // {
-      //   key: NavCardKey.WAGERING,
-      //   //todo: 新增 Wagering t18 翻譯
-      //   label: "Wagering",
-      //   iconUrl: wageringImg,
-      //   iconSecondaryUrl: wageringWhiteImg,
-      //   iconPrimaryUrl: wageringActiveImg,
-      //   navType: "route",
-      //   routePath: "/wagering",
-      // },
+      {
+        key: NavCardKey.WAGERING,
+        label: "Wagering",
+        navType: "route",
+        routePath: "/wagering",
+        callback: () => {
+          history.push("/wagering");
+        },
+        iconComponent: ReportSvg,
+      },
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),

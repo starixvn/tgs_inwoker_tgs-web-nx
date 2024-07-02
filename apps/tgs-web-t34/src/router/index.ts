@@ -27,6 +27,7 @@ import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import VipLayout from "@/layouts/VipLayout";
 import InboxPage from "@/pages/inbox/InboxPage";
 import HomeLayout from "@/layouts/HomeLayout";
+import WageringPage from "@/pages/wagering/WageringPage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -62,6 +63,11 @@ const routes: RouteType[] = [
   {
     path: "/withdrawal",
     component: WithdrawalPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/wagering",
+    component: WageringPage,
     layout: DialogLayout,
   },
   {

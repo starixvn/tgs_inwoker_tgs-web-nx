@@ -1,56 +1,59 @@
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import { WalletService } from "@tgs-web-nx/core";
 import { useCallback, useState } from "react";
 import { i18n } from "@tgs-web-nx/utils";
-interface PlayerBucket {
-  key: string;
-  amount: number;
-  iconUrl: string;
-  activeIconUrl: string;
+
+export enum GameTypeEnum {
+  LiveDealer = "LiveDealer",
+  Sportsbook = "Sportsbook",
+  Slot = "Slot",
+  CardGame = "CardGame",
+  Lottery = "Lottery",
+  VirtualSports = "VirtualSports",
 }
 
-const initBucketList: PlayerBucket[] = [
-  {
-    key: "LiveDealer",
-    amount: 0,
-    iconUrl: `/src/assets/t29/images/wagering/LiveDealer.svg`,
-    activeIconUrl: `/src/assets/t29/images/wagering/LiveDealeractive.svg`,
-  },
-  {
-    key: "Sportsbook",
-    amount: 0,
-    iconUrl: `/src/assets/t29/images/wagering/Sportsbook.svg`,
-    activeIconUrl: `/src/assets/t29/images/wagering/SportsbookActive.svg`,
-  },
-  {
-    key: "Slot",
-    amount: 0,
-    iconUrl: `/src/assets/t29/images/wagering/Slot.svg`,
-    activeIconUrl: `/src/assets/t29/images/wagering/SlotActive.svg`,
-  },
-  {
-    key: "CardGame",
-    amount: 0,
-    iconUrl: `/src/assets/t29/images/wagering/CardGame.svg`,
-    activeIconUrl: `/src/assets/t29/images/wagering/CardGameActive.svg`,
-  },
-  {
-    key: "Lottery",
-    amount: 0,
-    iconUrl: `/src/assets/t29/images/wagering/Lottery.svg`,
-    activeIconUrl: `/src/assets/t29/images/wagering/LotteryActive.svg`,
-  },
-  {
-    key: "VirtualSports",
-    amount: 0,
-    iconUrl: `/src/assets/t29/images/wagering/VirtualSports.svg`,
-    activeIconUrl: `/src/assets/t29/images/wagering/VirtualSportsActive.svg`,
-  },
-];
+type PlayerBucket = {
+  key: GameTypeEnum;
+  amount: number;
+  lable: any;
+  iconUrl?: string;
+  activeIconUrl?: string;
+};
 
 export function useWageringPage() {
-  useUpdatePageName(i18n.t("t29.wageringrequirement"));
+  const initBucketList: PlayerBucket[] = [
+    {
+      key: GameTypeEnum.LiveDealer,
+      amount: 0,
+      lable: i18n.t("common.live"),
+    },
+    {
+      key: GameTypeEnum.Sportsbook,
+      amount: 0,
+      lable: i18n.t("common.sports"),
+    },
+    {
+      key: GameTypeEnum.Slot,
+      amount: 0,
+      lable: i18n.t("common.table"),
+    },
+    {
+      key: GameTypeEnum.CardGame,
+      amount: 0,
+      lable: i18n.t("common.chess"),
+    },
+    {
+      key: GameTypeEnum.Lottery,
+      amount: 0,
+      lable: i18n.t("common.lottery"),
+    },
+    {
+      key: GameTypeEnum.VirtualSports,
+      amount: 0,
+      lable: i18n.t("common.virtualsports"),
+    },
+  ];
+  useUpdatePageName(i18n.t("wagering.wageringrequirement"));
 
   const [playerBuckets, setPlayerBuckets] = useState<PlayerBucket[]>(initBucketList);
   const [wageringRequirement, setWageringRequirement] = useState<number>(0);
@@ -59,8 +62,9 @@ export function useWageringPage() {
     try {
       const playerBucketResDto = await WalletService.GetPlayerBucket();
       const newBucketList: PlayerBucket[] = [];
-      playerBuckets.map((bucket) => {
+      initBucketList.map((bucket) => {
         playerBucketResDto.data.map((data) => {
+          //buckettype = null 為主水桶
           if (data.buckettype === null) {
             setWageringRequirement(data.amount);
           }

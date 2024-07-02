@@ -176,23 +176,18 @@ export function useGetNavItemList() {
         },
         iconComponent: WithdrawSvg,
       },
-      // {
-      //   key: NavCardKey.WAGERING,
-      //   label: i18n.t("t29.wagering"),
-      //   iconUrl: wageringImg,
-      //   iconSecondaryUrl: wageringWhiteImg,
-      //   iconPrimaryUrl: wageringActiveImg,
-      //   navType: "route",
-      //   routePath: "/wagering",
-      // },
+      {
+        key: NavCardKey.WAGERING,
+        label: i18n.t("common.wagering"),
+        navType: "route",
+        routePath: "/wagering",
+        iconComponent: ReportSvg,
+      },
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),
         navType: "route",
         routePath: "/transfer",
-        callback: () => {
-          history.push("/withdrawal");
-        },
         iconComponent: TransferSvg,
       },
       {
@@ -200,9 +195,6 @@ export function useGetNavItemList() {
         label: i18n.t("report.title"),
         navType: "route",
         routePath: "/report",
-        callback: () => {
-          history.push("/withdrawal");
-        },
         iconComponent: ReportSvg,
       },
       // {

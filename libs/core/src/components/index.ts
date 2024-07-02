@@ -1,3 +1,4 @@
 import Loading from "./Loading";
+import Wagering from "./Wagering";
 
-export { Loading };
+export { Loading, Wagering };
