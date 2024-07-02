@@ -75,6 +75,14 @@ export function useAccountNavigations() {
         routePath: "/withdrawal",
       },
       {
+        key: NavCardKey.WAGERING,
+        navType: "route",
+        label: i18n.t("common.wagering"),
+        iconUrl: reportImg,
+        iconSecondaryUrl: reportSecondaryImg,
+        routePath: "/wagering",
+      },
+      {
         key: NavCardKey.VIP,
         navType: "route",
         label: "VIP",
