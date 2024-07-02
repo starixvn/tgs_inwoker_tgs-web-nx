@@ -11,9 +11,8 @@ const AccountPaperContainer = styled.div`
     display: flex;
     padding: 24px 40px;
     flex-direction: column;
-    align-items: flex-start;
     gap: 33px;
-    align-self: stretch;  
+    align-self: stretch;
   }
 `;
 
@@ -27,12 +26,7 @@ const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
 
   return (
     <AccountPaperContainer>
-      {isDesktopSize && (
-        <PageBadge
-          iconUrl={iconUrl}
-          text={pageName}
-        />
-      )}
+      {isDesktopSize && <PageBadge iconUrl={iconUrl} text={pageName} />}
       {children}
     </AccountPaperContainer>
   );
