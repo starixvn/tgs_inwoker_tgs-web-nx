@@ -3,7 +3,7 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router";
 import { RefetchOptions, QueryObserverResult } from "@tanstack/react-query";
 import { WinLossReportDto, WinLossReportItem } from "@tgs-web-nx/types";
-import { formatNumber } from "../hooks";
+import { formatNumber } from "../../utils";
 import { CardContainer, PlayerNameContainer, PlayNameTitle, PlayName, PlayerInfoContainer, PlayInfo, PlayerInfoTitle, PlayerInfoValue, InfoTextContainer, InfoText, InfoAmount, HintIconWrapper, NoData } from "./styled";
 import HintIcon from "@/assets/t29/images/agent/hint.svg";
 import LoadingBlock from "@/components/project/LoadingBlock";

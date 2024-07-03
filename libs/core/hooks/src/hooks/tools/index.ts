@@ -9,3 +9,4 @@ export * from "./useVipStore";
 export * from "./useGoToHomePage";
 export * from "./useDetectDialogClose";
 export * from "./useGetCountryFlagImg";
+export * from "./useDragToScrollX";
