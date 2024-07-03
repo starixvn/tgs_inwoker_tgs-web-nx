@@ -9,8 +9,8 @@ import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { imageMap } from "@/components/project/LanguageSwitch/index";
 import { theme } from "@/theme";
+import { useGetCountryFlagImg } from "@tgs-web-nx/core/hooks";
 
 const StyledSelect = styled(MuiSelect)`
   min-width: 130px;
@@ -118,7 +118,7 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
               <FlagContainer>
-                <img src={imageMap[culturecode] || ""} alt={culturecode} />
+                <img src={useGetCountryFlagImg(culturecode) || ""} alt={culturecode} />
               </FlagContainer>
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
