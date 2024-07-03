@@ -45,7 +45,7 @@ export function useAgentCategoryTabs() {
       },
       {
         key: AgentCategoryKeyEnum.AGENTCONTRIBUTION,
-        label: "代理貢獻",
+        label: i18n.t("agent.contribution"),
         path: "/agent/contribution",
       },
     ];

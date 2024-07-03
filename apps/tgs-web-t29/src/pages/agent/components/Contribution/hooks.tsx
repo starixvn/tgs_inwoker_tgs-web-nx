@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import { Contribution, useAccountStore, ContributionConfig } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
+import { ContributionItem } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
 import { useDateRange } from "../useDateRange";
 const rows = 20;
 
@@ -18,21 +20,42 @@ const getYesterday = (today: Date) => {
     return yesterday;
 }
 
-export function formatNumber(num: number): number {
-    // 使用 toFixed(2) 來確保小數點後兩位
-    let formatted = num.toFixed(2);
-    
-    // 如果格式化後的數字末尾是 .00，則刪除
-    if (formatted.endsWith('.00')) {
-        formatted = formatted.slice(0, -3);
-    }
-    
-    // 如果格式化後的數字末尾是 .X0，則刪除多餘的 0
-    else if (formatted.endsWith('0')) {
-        formatted = formatted.slice(0, -1);
-    }
-    
-    return Number(formatted);
+
+function calculatePageTotal(items: ContributionItem[]): ContributionItem {
+    const totals = {
+        username: i18n.t("agent.pageTotal"),
+        type: 0,
+        depositAmount: 0,
+        depositHandlingFee: 0,
+        withdrawalAmount: 0,
+        companyAdjustAmount: 0,
+        agentAdjustAmount: 0,
+        bonusAdjustAmount: 0,
+        bonusAmount: 0,
+        betAmount: 0,
+        validBetAmount: 0,
+        turnover: 0,
+        winLossAmount: 0,
+        netProfit: 0
+    };
+
+    // 計算總和
+    items.forEach(item => {
+        totals.depositAmount += item.depositAmount;
+        totals.depositHandlingFee += item.depositHandlingFee;
+        totals.withdrawalAmount += item.withdrawalAmount;
+        totals.companyAdjustAmount += item.companyAdjustAmount;
+        totals.agentAdjustAmount += item.agentAdjustAmount;
+        totals.bonusAdjustAmount += item.bonusAdjustAmount;
+        totals.bonusAmount += item.bonusAmount;
+        totals.betAmount += item.betAmount;
+        totals.validBetAmount += item.validBetAmount;
+        totals.turnover += item.turnover;
+        totals.winLossAmount += item.winLossAmount;
+        totals.netProfit += item.netProfit;
+    });
+
+    return totals;
 }
 
 /**
@@ -60,9 +83,7 @@ export const useContribution = () => {
     const config: ContributionConfig = {
         from: moment(getYesterday(dateRangeInfo.dateFrom)).format('YYYY-MM-DD'),
         to: moment(dateRangeInfo.dateTo).format('YYYY-MM-DD'),
-        sort: undefined,
-        desc: "",
-        all: false,
+        desc: true,
         page: page + 1, //payload 從1開始, state 從0開始
         rows, //固定為20
     };
@@ -88,6 +109,9 @@ export const useContribution = () => {
     const report = {
         refetch: refetchReport,
         items: reportData && reportData.data.items,
+        total: reportData && {username: i18n.t("agent.total"), type: 0, ...reportData.data.total},
+        pageTotal: reportData && calculatePageTotal(reportData.data.items),
+        totalCount: reportData && reportData.data.totalCount,
         hasData: reportData?.data.items && reportData.data.items.length > 0,
         isFetching: isFetchingReportData,
     }
@@ -121,9 +145,6 @@ export const useContribution = () => {
         setUsernames([]);
         report.refetch();
     }
-
-
-
 
     // 預設進頁面搜尋當天資料
     useEffect(() => {

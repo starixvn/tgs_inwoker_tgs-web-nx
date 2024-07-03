@@ -6,7 +6,7 @@ import Contribution from "./index";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 
 const ContributionPage = () => {
-  useUpdatePageName("代理貢獻");
+  useUpdatePageName(i18n.t("agent.contribution"));
   const history = useHistory();
   const { isDesktopSize } = useRwd();
 

@@ -121,13 +121,11 @@ const AgentList = {
 };
 
 export type ContributionConfig = {
-  sort?: "agent" | "player"
   from: string,
   to: string,
-  desc: string,
+  desc: boolean,
   page: number,
   rows: number,
-  all: boolean,
 }
 
 /**
@@ -136,15 +134,13 @@ export type ContributionConfig = {
  * @returns  
  */
 const getContribution = ({
-  sort,
   from,
   to,
   desc,
   page = 1,
   rows = 10,
-  all = false,
 }: ContributionConfig) => {
-  const apiUrl = `agentreport/contributions?From=${from}T16:00:00.000Z&To=${to}T16:00:00.000Z&page=${page}&rows=${rows}&desc=${desc}&sort=${sort}&all=${sort}`;
+  const apiUrl = `agentContributionReport?from=${from}T16:00:00.000Z&to=${to}T16:00:00.000Z&page=${page}&rows=${rows}&desc=${desc}`;
 
   return ApiService.get(apiUrl) as unknown as Promise<ContributionDto>;
 };
