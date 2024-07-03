@@ -42,7 +42,7 @@ const UseInfoHeaderWrapper = styled.div`
   padding: 10px 10px;
   display: flex;
   align-items: center;
-  z-index: 2;
+  z-index: 10;
   ${media.sm} {
     height: 48px;
     padding: 0 60px;
