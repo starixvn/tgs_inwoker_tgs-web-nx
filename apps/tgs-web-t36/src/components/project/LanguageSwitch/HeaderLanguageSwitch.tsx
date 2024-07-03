@@ -9,7 +9,6 @@ import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { imageMap } from "@/components/project/LanguageSwitch/index";
 import { theme } from "@/theme";
 
 const StyledSelect = styled(MuiSelect)`
@@ -117,9 +116,6 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
-              {/* <FlagContainer>
-                <img src={imageMap[culturecode] || ""} alt={culturecode} />
-              </FlagContainer> */}
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
           );

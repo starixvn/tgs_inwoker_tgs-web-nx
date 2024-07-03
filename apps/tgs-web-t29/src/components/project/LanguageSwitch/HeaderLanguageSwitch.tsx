@@ -9,7 +9,6 @@ import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { imageMap } from "@/components/project/LanguageSwitch/index";
 import { theme } from "@/theme";
 import { useGetCountryFlagImg } from "@tgs-web-nx/core/hooks";
 
