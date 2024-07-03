@@ -10,18 +10,7 @@ import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { theme } from "@/theme";
-
-export const imageMap: { [key in string]: string } = {
-  "zh-CN": import.meta.env.BASE_URL + `assets/images/language/zh-CN.webp`,
-  "zh-TW": import.meta.env.BASE_URL + `assets/images/language/zh-TW.webp`,
-  "en-US": import.meta.env.BASE_URL + `assets/images/language/en-US.webp`,
-  "th-TH": import.meta.env.BASE_URL + `assets/images/language/th-TH.webp`,
-  "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.webp`,
-  "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.webp`,
-  "tgl-PH": import.meta.env.BASE_URL + `assets/images/language/tgl-PH.webp`,
-  "hi-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.webp`,
-  "ta-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.webp`,
-};
+import { useGetCountryFlagImg } from "@tgs-web-nx/core/hooks";
 
 const StyledSelect = styled(MuiSelect)`
   //width: 140px;
@@ -130,7 +119,7 @@ const LanguageSwitch = (props: SelectProps) => {
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
               <FlagContainer>
-                <img src={imageMap[culturecode] || ""} alt={culturecode} />
+                <img src={useGetCountryFlagImg(culturecode) || ""} alt={culturecode} />
               </FlagContainer>
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
