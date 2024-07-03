@@ -77,7 +77,7 @@ stages:
       echo "tgs_env=$tgs_env"
       if [[ "${tgs_env}" == "dev" ]]; then
         echo "change tgs_env"
-        export tgs_env="local"
+        export tgs_env="devops"
       fi
       echo "tgs_env=$tgs_env"
       export KUBECONFIG="${config}_${tgs_env}"
@@ -186,7 +186,7 @@ stages:
       echo "tgs_env=$tgs_env"
       if [[ "${tgs_env}" == "dev" ]]; then
         echo "change tgs_env"
-        tgs_env="local"
+        tgs_env="devops"
       fi
       echo "tgs_env=$tgs_env"
       export KUBECONFIG_TEMP="${config}_${tgs_env}"
