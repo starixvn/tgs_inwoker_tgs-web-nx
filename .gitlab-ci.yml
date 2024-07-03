@@ -75,7 +75,7 @@ stages:
       source get_tgs-env.sh
       export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
       echo "tgs_env=$tgs_env"
-      if [ "${tgs_env}" == "dev"]; then
+      if [[ "${tgs_env}" == "dev" ]]; then
         echo "change tgs_env"
         export tgs_env="local"
       fi
@@ -184,7 +184,7 @@ stages:
       source get_tgs-env.sh
       export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
       echo "tgs_env=$tgs_env"
-      if [ "${tgs_env}" == "dev"]; then
+      if [[ "${tgs_env}" == "dev" ]]; then
         echo "change tgs_env"
         tgs_env="local"
       fi
