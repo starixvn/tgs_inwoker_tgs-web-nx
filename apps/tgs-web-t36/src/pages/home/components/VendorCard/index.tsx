@@ -141,7 +141,7 @@ const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 10;
+  z-index: 2;
 `;
 
 const MaintenanceBg = styled.div`
@@ -156,7 +156,7 @@ const MaintenanceBg = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  z-index: 100;
+  z-index: 3;
 `;
 
 const PlayBtnIcon = styled.img`
