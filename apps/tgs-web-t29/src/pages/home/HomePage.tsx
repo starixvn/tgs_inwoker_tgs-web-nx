@@ -76,7 +76,7 @@ const MainContentWrapper = styled.div`
 
 const GameTypeBanner = styled.div<{ $imageUrl: string }>`
   width: 100%;
-  height: 450px;
+  min-height: 600px;
   margin: 0 auto;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
