@@ -159,9 +159,21 @@ const formatCurrency = (amount: number) => {
  */
 function isWebview() {
   const useragent = navigator.userAgent;
-  const rules = ['WebView','(iPhone|iPod|iPad)(?!.*Safari/)','Android.*(wv|.0.0.0)'];
-  const regex = new RegExp(`(${rules.join('|')})`, 'ig');
+  const rules = ["WebView", "(iPhone|iPod|iPad)(?!.*Safari/)", "Android.*(wv|.0.0.0)"];
+  const regex = new RegExp(`(${rules.join("|")})`, "ig");
   return Boolean(useragent.match(regex));
+}
+
+/**
+ * 格式化金額無條件進位至小數第二位
+ */
+function roundUpToTwoDecimals(amount: number) {
+  //無條件進位到小數點後兩位
+  let rounded = Math.ceil(amount * 100) / 100;
+  return formatNumberWithCommas(
+    // 如果數字是整數，返回整數部分，否則返回保留兩位小數的字符串
+    rounded % 1 === 0 ? rounded.toString() : rounded.toFixed(2).replace(/\.?0+$/, ""),
+  );
 }
 
 const Common = {
@@ -177,6 +189,7 @@ const Common = {
   validateDepositAndWithdrawAmount,
   formatCurrency,
   isWebview,
+  roundUpToTwoDecimals,
 };
 
 export default Common;
