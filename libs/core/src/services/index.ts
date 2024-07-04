@@ -9,3 +9,4 @@ export * from "./SupportService";
 export * from "./UiService";
 export * from "./WalletService";
 export * from "./AgentService";
+export * from "./DepositService"

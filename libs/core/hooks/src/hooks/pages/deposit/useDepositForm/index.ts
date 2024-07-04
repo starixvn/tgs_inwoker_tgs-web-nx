@@ -3,10 +3,11 @@
  * 此為所有 template 共用的存款方法
  */
 import { useState, useEffect, useMemo, useContext, createContext} from "react";
-import { useWalletStore, useAccountStore} from "@tgs-web-nx/core";
+import { useWalletStore, useAccountStore, getUbpayRate} from "@tgs-web-nx/core";
 import { groupBy, i18n } from '@tgs-web-nx/utils';
 import { FilterDepositList, Option, GroupCodeEnum, MovnCodeEnum, DepositFormState, DepositFormContextState } from '@tgs-web-nx/types';
 import { useNotifications } from '@tgs-web-nx/core/features';
+import { useQuery } from "@tanstack/react-query";
 import { handleChangeCode, getFilterDepositList } from './utils';
 
 const clearedFormData = {
@@ -328,4 +329,33 @@ export const useThirdPartyDeposit = () => {
   }
 
   return {handlePerformDeposit, isPending, handleOpenPopupUrl, handleOnClose, isDialogOpen};
+}
+
+/**
+ * 取得 Ubpay 匯率
+ * 一個莫名其妙的客製化
+ * 當 paymentcode === "UbPay" 顯示對應匯率
+ * @param id brandPaymentId
+ */
+export const useUbPay = (id?: string) => {
+  const {
+    data,
+    refetch,
+    isFetching
+  } = useQuery({
+      queryKey: ['ubpay'], 
+      queryFn: () => getUbpayRate(id),
+      enabled: false,
+  });
+  
+  useEffect(() => {
+    if(id) {
+      refetch()
+    }
+  }, [id])
+
+  return {
+    data,
+    isFetching
+  }
 }
