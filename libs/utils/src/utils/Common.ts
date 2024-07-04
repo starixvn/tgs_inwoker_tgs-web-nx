@@ -164,6 +164,7 @@ function isWebview() {
   return Boolean(useragent.match(regex));
 }
 
+
 /**
  * 格式化金額無條件進位至小數第二位
  */
