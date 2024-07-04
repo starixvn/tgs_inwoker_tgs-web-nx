@@ -60,7 +60,7 @@ export const TronLayout = ({
           {" :  "}
           <LimitAmount>{` ${
             !isNaN(Number(amount))
-              ? Common.formatNumberWithCommasNoRounding(Number(amount) / Number(rate))
+              ? Common.formatCurrency(Number(amount) / Number(rate))
               : 0
           }`}</LimitAmount>
         </div>
