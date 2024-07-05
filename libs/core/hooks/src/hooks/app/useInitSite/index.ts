@@ -4,17 +4,20 @@ import { getFavicon } from "@tgs-web-nx/utils";
 import { useLanguageDetect } from "./useLanguageDetect";
 import { useCheckRegisterProcess } from "./useCheckRegisterProcess";
 import { useInitSiteApiData } from "./useInitSiteApiData";
+import { useEffect } from "react";
 
 export function useInitSite() {
-  const { general } = useGeneralStore();
+  const { general, getAffiliateStatus } = useGeneralStore();
 
   useLanguageDetect();
   // useHandleMaintenance();
   // useUpdateProviderBalance();
   useCheckRegisterProcess();
-  getFavicon();
 
-
+  useEffect(() => {
+    getFavicon();
+    getAffiliateStatus();
+  }, []);
   const { isInitSiteLoading } = useInitSiteApiData();
   const { isAuthLoading } = useAuthContext();
 

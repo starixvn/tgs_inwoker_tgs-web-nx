@@ -7,6 +7,7 @@ import {
   GetTransferReportResDto,
   GetWithdrawalDetailsResDto,
   GetWithdrawalStatusResDto,
+  GetAgentReportResDto,
 } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 
@@ -19,6 +20,7 @@ export const ReportService = {
   GetTransferReport,
   GetRoundsTotal,
   GetBalanceChanges,
+  GetAgentReport,
 };
 
 function GetTransactionDetails(
@@ -100,4 +102,10 @@ function GetBalanceChanges(from: string, to: string, page: number, rows: number)
   return ApiService.get(
     `transaction?from=${from}&to=${to}&page=${page}&rows=${rows}`,
   ) as unknown as Promise<GetBalanceChangesResDto>;
+}
+
+function GetAgentReport(from: string, to: string, page: number, rows: number) {
+  return ApiService.get(
+    `playerAllAgentReport?from=${from}&to=${to}&page=${page}&rows=${rows}`,
+  ) as unknown as Promise<GetAgentReportResDto>;
 }
