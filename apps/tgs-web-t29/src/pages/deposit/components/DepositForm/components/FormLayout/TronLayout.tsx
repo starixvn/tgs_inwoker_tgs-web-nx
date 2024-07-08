@@ -48,10 +48,10 @@ export const TronLayout = ({
     return brandPaymentId && (<>
         <div>
           <LimitLabel>
-            {i18n.t("deposit.exchangeRate")} 1 {`${config.currency}`} :{" "}
+            {i18n.t("deposit.exchangeRate")}: {`${rate} ${config.currency}`} :
           </LimitLabel>
-          <LimitAmount>{` ${rate} `}</LimitAmount>
-          <LimitLabel>USDT</LimitLabel>
+          <LimitAmount> 1</LimitAmount>
+          <LimitLabel> USDT</LimitLabel>
         </div>
 
         {/*上分金额*/}
