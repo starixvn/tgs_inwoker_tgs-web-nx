@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGameStore } from "@tgs-web-nx/core";
+import { useGameStore, useGeneralStore } from "@tgs-web-nx/core";
 
 export enum ReportTabIndexEnum {
   "PLATFORM" = 1,
@@ -19,7 +19,7 @@ export interface ReportTab {
 
 export function useReportTypeTabs() {
   const { game } = useGameStore();
-
+  const { general } = useGeneralStore();
   const displayedTabList = useMemo<ReportTab[]>(() => {
     return [
       {
@@ -50,6 +50,14 @@ export function useReportTypeTabs() {
         index: ReportTabIndexEnum.JOIN_PROMOTION,
         label: i18n.t("report.joinedPromo.title"),
       },
+      (() => {
+        if (general.haveAffiliate) {
+          return {
+            index: ReportTabIndexEnum.REBATE,
+            label: i18n.t("report.agentRebateReport"),
+          };
+        }
+      })(),
     ].filter((reportTab) => !!reportTab) as ReportTab[];
   }, [game.containTransferWallet]);
 

@@ -14,6 +14,7 @@ import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion
 import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
 import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
+import ReportRebate from "@/pages/report/components/reports/ReportRebate";
 
 const Title = styled.div`
   color: ${({ theme }) => theme.blue50};
@@ -27,7 +28,7 @@ const Report = () => {
   const [selectedType, setSelectedType] = useState(
     tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2,
   );
-        
+
   const {
     dateRangeInfo,
     handleDateFromChange,
@@ -82,8 +83,8 @@ const Report = () => {
             return <ReportWithdraw dateRangeInfo={dateRangeInfo} />;
           case 4:
             return <ReportDeposit dateRangeInfo={dateRangeInfo} />;
-          // case 5:
-          //   return <ReportRebate dateRangeInfo={dateRangeInfo} />;
+          case 5:
+            return <ReportRebate dateRangeInfo={dateRangeInfo} />;
           case 6:
             return <ReportTransfer dateRangeInfo={dateRangeInfo} />;
           case 7:
