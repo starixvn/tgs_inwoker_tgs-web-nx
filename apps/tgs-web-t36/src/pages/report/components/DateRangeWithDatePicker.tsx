@@ -7,7 +7,7 @@ import { media } from "@/theme/breakpoints";
 
 const DateContainer = styled.div`
   width: 100%;
- 
+
   ${media.sm} {
     width: auto;
     height: 47px;
@@ -53,6 +53,8 @@ const DateRangeWithDatePicker = ({
     switch (selectedType) {
       case 8:
         return addDays(new Date(dateTo), -44);
+      case 5:
+        return addDays(new Date(dateTo), -90);
       default:
         return undefined;
     }

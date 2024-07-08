@@ -45,11 +45,13 @@ type Props = {
   dateRange: DateRangeEnum;
   handleDateRangeChange: (dateRange: DateRangeEnum) => void;
   isSelectedDateRange: boolean;
+  selectedType: number;
 };
 const DateRangeWithIntervalSelector = ({
   dateRange,
   handleDateRangeChange,
   isSelectedDateRange,
+  selectedType,
 }: Props) => {
   return (
     <DateRangContainer>

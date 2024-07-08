@@ -6,3 +6,4 @@ export * from "./GetTransactionDetailsResDto";
 export * from "./GetTransferReportResDto";
 export * from "./GetWithdrawalStatusResDto";
 export * from "./GetWithdrawalDetailsResDto";
+export * from "./GetAgentReportResDto";
