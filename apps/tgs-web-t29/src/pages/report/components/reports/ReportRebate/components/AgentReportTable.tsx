@@ -58,7 +58,7 @@ const AgentReportTable = ({ agentReport, totalCount, page, pageSize, onPageChang
               }}
             >
               <>{i18n.t("report.agentRebate.totalRebates")}</>
-              </TableCell>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -88,7 +88,7 @@ const AgentReportTable = ({ agentReport, totalCount, page, pageSize, onPageChang
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.subNavSec,
+          color: theme.blue40,
           "& button": {},
         }}
       />
