@@ -10,6 +10,7 @@ import { ThirdPartyLayout } from "./ThirdParty";
 import { EWalletLayout } from "./EWalletLayout";
 import { CoinsphLayout } from "./CoinsphLayout";
 import { PulsaLayout } from "./PulsaLayout";
+import { TronLayout } from "./TronLayout";
 import ResultPopupDialog from "@/pages/deposit/components/ResultPopupDialog";
 
 export type LayoutProps = {
@@ -43,6 +44,9 @@ const FormLayout = () => {
 
       case GroupCodeEnum.FPS:
         return <FpsLayout {...layoutProps} />
+
+      case GroupCodeEnum.TRON:
+        return <TronLayout {...layoutProps} handlePerformDeposit={handlePerformDeposit} />
 
       case GroupCodeEnum.TRC:
         return <TrcLayout {...layoutProps} />

@@ -73,13 +73,19 @@ stages:
 .deploy-domain-template: &deploy-domain-template
   stage: deploy-domain
   before_script:
-    - source get_tgs-env.sh
-    - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
-    - echo "tgs_env=$tgs_env"
-    - export KUBECONFIG="${config}_${tgs_env}"
-    - echo "kubeconfig=$KUBECONFIG"
-    - export KUBECONFIG=${!KUBECONFIG}
-    - echo "KUBECONFIG=$KUBECONFIG"
+    - | 
+      source get_tgs-env.sh
+      export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+      echo "tgs_env=$tgs_env"
+      if [[ "${tgs_env}" == "dev" ]]; then
+        echo "change tgs_env"
+        export tgs_env="devops"
+      fi
+      echo "tgs_env=$tgs_env"
+      export KUBECONFIG="${config}_${tgs_env}"
+      echo "kubeconfig=$KUBECONFIG"
+      export KUBECONFIG=${!KUBECONFIG}
+      echo "KUBECONFIG=$KUBECONFIG"
   script:
     - |
       echo "domain=$domain"
@@ -176,12 +182,19 @@ stages:
 .deploy-template: &deploy-template
   stage: deploy
   before_script:
-    - source get_tgs-env.sh
-    - export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
-    - echo "tgs_env=$tgs_env"
-    - export KUBECONFIG_TEMP="${config}_${tgs_env}"
-    - export KUBECONFIG=${!KUBECONFIG_TEMP}
-    - echo "KUBECONFIG=$KUBECONFIG"
+    - |
+      source get_tgs-env.sh
+      export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+      echo "tgs_env=$tgs_env"
+      kube_tgs_env=$tgs_env
+      if [[ "${tgs_env}" == "dev" ]]; then
+        echo "change tgs_env"
+        kube_tgs_env="devops"
+      fi
+      echo "tgs_env=$tgs_env"
+      export KUBECONFIG_TEMP="${config}_${kube_tgs_env}"
+      export KUBECONFIG=${!KUBECONFIG_TEMP}
+      echo "KUBECONFIG=$KUBECONFIG"
   script:
     - |
       if [[ -e image.txt && $domain == "" && $brand == "" ]]; then 

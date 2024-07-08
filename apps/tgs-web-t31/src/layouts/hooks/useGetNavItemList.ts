@@ -15,7 +15,7 @@ import downloadImg from "@/assets/t31/images/account/navItem/icon-download.svg";
 import languageImg from "@/assets/t31/images/account/navItem/icon-language.svg";
 import contactImg from "@/assets/t31/images/account/navItem/icon-contact.svg";
 import vipImg from "@/assets/t31/images/account/navItem/icon-vip.svg";
-import wageringImg from "@/assets/t29/images/account/navItem/icon-wagering.svg";
+import wageringImg from "@/assets/t31/images/account/navItem/icon-report.svg";
 
 import profileWhiteImg from "@/assets/t31/images/account/navItemWhite/icon-profile.svg";
 import depositWhiteImg from "@/assets/t31/images/account/navItemWhite/icon-deposit.svg";
@@ -27,7 +27,7 @@ import affiliateWhiteImg from "@/assets/t31/images/account/navItemWhite/icon-aff
 import downloadWhiteImg from "@/assets/t31/images/account/navItemWhite/icon-download.svg";
 import contactWhiteImg from "@/assets/t31/images/account/navItemWhite/icon-contact.svg";
 import vipWhiteImg from "@/assets/t31/images/account/navItemWhite/icon-vip.svg";
-import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
+import wageringWhiteImg from  "@/assets/t31/images/account/navItemWhite/icon-report.svg";
 import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 //desktop header icon
 import headerVipImg from "@/assets/t31/images/home/gameType/desktop/VIP.svg";
@@ -144,14 +144,14 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/withdrawal",
       },
-      // {
-      //   key: NavCardKey.WAGERING,
-      //   label: i18n.t("t29.wagering"),
-      //   iconUrl: wageringImg,
-      //   iconSecondaryUrl: wageringWhiteImg,
-      //   navType: "route",
-      //   routePath: "/wagering",
-      // },
+      {
+        key: NavCardKey.WAGERING,
+        label: i18n.t("common.wagering"),
+        iconUrl: wageringImg,
+        iconSecondaryUrl: wageringWhiteImg,
+        navType: "route",
+        routePath: "/wagering",
+      },
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),

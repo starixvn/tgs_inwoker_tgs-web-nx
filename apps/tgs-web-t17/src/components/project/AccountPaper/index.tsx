@@ -11,7 +11,7 @@ const AccountPaperContainer = styled.div`
     display: flex;
     padding: 24px 40px;
     flex-direction: column;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     gap: 24px;
     align-self: stretch;
   }

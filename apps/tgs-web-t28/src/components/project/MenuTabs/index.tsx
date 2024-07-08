@@ -79,6 +79,12 @@ const MenuTabs = () => {
       icon: WithdrawIcon,
     },
     {
+      key: NavCardKey.WAGERING,
+      label: i18n.t("common.wagering"),
+      router: "/wagering",
+      icon: ReportIcon,
+    },
+    {
       key: NavCardKey.TRANSFER,
       label: i18n.t("common.transfer"),
       router: "/transfer",

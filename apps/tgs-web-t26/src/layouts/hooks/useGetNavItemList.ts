@@ -157,14 +157,13 @@ export function useGetNavItemList() {
         navType: "route",
         routePath: "/withdrawal",
       },
-      // {
-      //   key: NavCardKey.WAGERING,
-      //   label: i18n.t("t29.wagering"),
-      //   iconUrl: wageringImg,
-      //   iconSecondaryUrl: wageringWhiteImg,
-      //   navType: "route",
-      //   routePath: "/wagering",
-      // },
+      {
+        key: NavCardKey.WAGERING,
+        label: i18n.t("t29.wagering"),
+        Icon: ReportIcon,
+        navType: "route",
+        routePath: "/wagering",
+      },
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),

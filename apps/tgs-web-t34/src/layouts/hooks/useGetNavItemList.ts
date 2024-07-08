@@ -26,6 +26,7 @@ import vipActiveIcon from "@/assets/t34/images/menuDrawer/icon-vip-active.svg";
 import contactActiveIcon from "@/assets/t34/images/menuDrawer/icon-contact-active.svg";
 import downloadActiveIcon from "@/assets/t34/images/menuDrawer/icon-download-active.svg";
 import logoutIcon from "@/assets/t34/images/menuDrawer/icon-logout-active.svg";
+import wageringIcon from "@/assets/t34/images/menuDrawer/icon-wagering.svg";
 
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 
@@ -87,6 +88,14 @@ export function useGetNavItemList() {
         iconActiveUrl: withdrawActiveIcon,
         navType: "route",
         routePath: "/withdrawal",
+      },
+      {
+        key: NavCardKey.WAGERING,
+        label: i18n.t("common.wagering"),
+        iconUrl: wageringIcon,
+        iconActiveUrl: wageringIcon,
+        navType: "route",
+        routePath: "/wagering",
       },
       {
         key: NavCardKey.TRANSFER,

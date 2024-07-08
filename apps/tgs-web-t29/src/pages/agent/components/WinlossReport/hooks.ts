@@ -3,6 +3,7 @@ import moment from "moment";
 import { useAccountStore, WinLostConfig, WinLostReport } from "@tgs-web-nx/core";
 import { useQuery } from "@tanstack/react-query";
 import { useDateRange } from "../useDateRange";
+import { formatNumber } from "../utils";
 const rows = 20;
 
 /**
@@ -21,23 +22,6 @@ const getYesterday = (today: Date) => {
 type DateRange = {
     from: string,
     to: string
-}
-
-export function formatNumber(num: number): number {
-    // 使用 toFixed(2) 來確保小數點後兩位
-    let formatted = num.toFixed(2);
-    
-    // 如果格式化後的數字末尾是 .00，則刪除
-    if (formatted.endsWith('.00')) {
-        formatted = formatted.slice(0, -3);
-    }
-    
-    // 如果格式化後的數字末尾是 .X0，則刪除多餘的 0
-    else if (formatted.endsWith('0')) {
-        formatted = formatted.slice(0, -1);
-    }
-    
-    return Number(formatted);
 }
 
 /**
@@ -316,50 +300,3 @@ export const usePlayerDetail = () => {
     }
     
 };
-
-
-/**
- * 處理X軸滑動問題
- */
-export const useDragToScrollX = (
-    elementRef: React.MutableRefObject<HTMLElement | null>,
-) => {
-    const positionOnClick = useRef({ elementScrollLeft: 0, mouseX: 0 });
-
-    const onMouseMove = useCallback(
-        (e: MouseEvent) => {
-            const moveX = e.clientX - positionOnClick.current.mouseX;
-
-            if(elementRef.current) {
-                elementRef.current.scrollLeft = positionOnClick.current.elementScrollLeft - moveX;
-            }
-        },
-        [elementRef],
-    );
-
-    const onMouseMoveFinish = useCallback(() => {
-        if(elementRef.current){
-            elementRef.current.removeEventListener("mousemove", onMouseMove);
-            elementRef.current.removeEventListener("mouseup", onMouseMoveFinish);
-            elementRef.current.removeEventListener("mouseleave", onMouseMoveFinish);
-        }
-    }, [elementRef, onMouseMove]);
-
-    useEffect(() => {
-        if (elementRef.current) {
-            const element = elementRef.current;
-
-            element.addEventListener("mousedown", (e) => {
-                positionOnClick.current = {
-                    elementScrollLeft: element.scrollLeft,
-                    mouseX: e.clientX,
-                };
-
-                element.addEventListener("mousemove", onMouseMove);
-                element.addEventListener("mouseup", onMouseMoveFinish);
-                element.addEventListener("mouseleave", onMouseMoveFinish);
-            });
-        }
-    }, [elementRef, onMouseMove, onMouseMoveFinish]);
-};
-
