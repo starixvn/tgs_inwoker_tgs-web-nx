@@ -56,7 +56,7 @@ export const TronLayout = ({
 
         {/*上分金额*/}
         <div>
-          <LimitLabel>{i18n.t("deposit.totalAmount")}</LimitLabel>
+          <LimitLabel>USDT</LimitLabel>
           {" :  "}
           <LimitAmount>{` ${
             !isNaN(Number(amount))
