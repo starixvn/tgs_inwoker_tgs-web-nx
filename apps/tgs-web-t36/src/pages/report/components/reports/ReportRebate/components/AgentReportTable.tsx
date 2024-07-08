@@ -15,7 +15,6 @@ type Props = {
   pageSize: number;
 };
 const AgentReportTable = ({ agentReport, totalCount, page, pageSize, onPageChange }: Props) => {
-  console.log("modify")
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     onPageChange(newPage);
   };
@@ -30,32 +29,36 @@ const AgentReportTable = ({ agentReport, totalCount, page, pageSize, onPageChang
           <TableRow>
             <TableCell
               sx={{
+                width: "15%",
                 border: "none",
               }}
             >
-              <>{i18n.t("結算日期")}</>
+              <>{i18n.t("report.agentRebate.settlementDate")}</>
             </TableCell>
             <TableCell
+              align={"right"}
               sx={{
                 border: "none",
               }}
             >
-              <>{i18n.t("最大活躍人數")}</>
+              <>{i18n.t("report.agentRebate.maxActivePlayer")}</>
             </TableCell>
             <TableCell
+              align={"right"}
               sx={{
                 border: "none",
               }}
             >
-              <>{i18n.t("團隊有效投注")}</>
+              <>{i18n.t("report.totalValidBet")}</>
             </TableCell>
             <TableCell
+              align={"right"}
               sx={{
                 border: "none",
               }}
             >
-              <>{i18n.t("返水金額")}</>
-            </TableCell>
+              <>{i18n.t("report.agentRebate.totalRebates")}</>
+              </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -68,10 +71,9 @@ const AgentReportTable = ({ agentReport, totalCount, page, pageSize, onPageChang
             return (
               <TableRow key={index}>
                 <TableCell>{settleDate}</TableCell>
-                <TableCell>{maxActivePlayerNumber}</TableCell>
-                <TableCell>{validBet}</TableCell>
-                <TableCell>{rebate}</TableCell>
-                {/* <TableCell>{SentOn}</TableCell> */}
+                <TableCell align={"right"}>{maxActivePlayerNumber}</TableCell>
+                <TableCell align={"right"}>{validBet}</TableCell>
+                <TableCell align={"right"}>{rebate}</TableCell>
               </TableRow>
             );
           })}

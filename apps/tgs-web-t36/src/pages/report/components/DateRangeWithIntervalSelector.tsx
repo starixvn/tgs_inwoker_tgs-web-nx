@@ -53,7 +53,6 @@ const DateRangeWithIntervalSelector = ({
   isSelectedDateRange,
   selectedType,
 }: Props) => {
-  console.log("modify")
   return (
     <DateRangContainer>
       <DateRangSelection
@@ -68,15 +67,12 @@ const DateRangeWithIntervalSelector = ({
       >
         {i18n.t("report.oneWeek")}
       </DateRangSelection>
-      {/* 5 = 全民反水,只能查詢14天內的資料,所以把查詢當月選項隱藏 */}
-      {selectedType !== 5 && (
-        <DateRangSelection
-          onClick={() => handleDateRangeChange(DateRangeEnum.MONTHLY)}
-          $isSelected={dateRange === DateRangeEnum.MONTHLY && !isSelectedDateRange}
-        >
-          {i18n.t("report.oneMonth")}
-        </DateRangSelection>
-      )}
+      <DateRangSelection
+        onClick={() => handleDateRangeChange(DateRangeEnum.MONTHLY)}
+        $isSelected={dateRange === DateRangeEnum.MONTHLY && !isSelectedDateRange}
+      >
+        {i18n.t("report.oneMonth")}
+      </DateRangSelection>
     </DateRangContainer>
   );
 };

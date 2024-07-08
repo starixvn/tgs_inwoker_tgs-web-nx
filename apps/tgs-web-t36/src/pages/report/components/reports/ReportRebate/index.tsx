@@ -31,11 +31,9 @@ const ReportRebate = ({ dateRangeInfo }: Props) => {
   const [totalCount, setTotalCount] = useState(0);
 
   const fetchReports = async (page: number) => {
-    console.log("modify");
-    console.log(differenceInDays(dateRangeInfo.dateTo, dateRangeInfo.dateFrom));
-    // if (differenceInDays(dateRangeInfo.dateTo, dateRangeInfo.dateFrom) > 14) {
-    //   return alert("", "test");
-    // }
+    if (differenceInDays(dateRangeInfo.dateTo, dateRangeInfo.dateFrom) > 30) {
+      return alert("", i18n.t("report.agentRebate.intervalDays").replace(/{maxdays}/g, "30"));
+    }
     setIsLoading(true);
     const agentReportRes = await ReportService.GetAgentReport(
       moment(dateRangeInfo.dateFrom).utc().format(),

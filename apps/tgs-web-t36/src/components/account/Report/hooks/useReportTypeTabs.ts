@@ -20,7 +20,6 @@ export interface ReportTab {
 export function useReportTypeTabs() {
   const { game } = useGameStore();
   const { general } = useGeneralStore();
-  console.log("modify")
   const displayedTabList = useMemo<ReportTab[]>(() => {
     return [
       {
@@ -55,7 +54,7 @@ export function useReportTypeTabs() {
         if (general.haveAffiliate) {
           return {
             index: ReportTabIndexEnum.REBATE,
-            label: "全民代理反水",
+            label: i18n.t("report.agentRebateReport"),
           };
         }
       })(),
