@@ -160,9 +160,9 @@ const LobbyCategory = () => {
         <CategoryContent>
           {hasMappingData &&
             lobbyCategoryList.map((provider) => {
-              const { code: gpCode, status, name } = provider;
-
-              if (gpCode === "BC") return null;
+              const { status, name } = provider;
+              const gpCode = "GT_PT"
+              // if (gpCode === "BC") return null;
               return (
                 <VendorCard
                   key={gpCode}
