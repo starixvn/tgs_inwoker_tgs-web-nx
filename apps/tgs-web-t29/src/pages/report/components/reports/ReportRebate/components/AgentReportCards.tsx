@@ -26,19 +26,19 @@ const AgentReportCards = ({ agentReport }: Props) => {
         return (
           <ReportCard key={index}>
             <ReportCardRow>
-              <ReportCardCol>{i18n.t("結算日期")} : </ReportCardCol>
+              <ReportCardCol>{i18n.t("report.agentRebate.settlementDate")} : </ReportCardCol>
               <ReportCardCol>{settleDate}</ReportCardCol>
             </ReportCardRow>
             <ReportCardRow>
-              <ReportCardCol>{i18n.t("最大活躍人數")} :</ReportCardCol>
+              <ReportCardCol>{i18n.t("report.agentRebate.maxActivePlayer")} :</ReportCardCol>
               <ReportCardCol>{maxActivePlayerNumber}</ReportCardCol>
             </ReportCardRow>
             <ReportCardRow>
-              <ReportCardCol>{i18n.t("團隊有效投注")} :</ReportCardCol>
+              <ReportCardCol>{i18n.t("report.totalValidBet")} :</ReportCardCol>
               <ReportCardCol>{validBet}</ReportCardCol>
             </ReportCardRow>
             <ReportCardRow>
-              <ReportCardCol>{i18n.t("返水金額")} :</ReportCardCol>
+              <ReportCardCol>{i18n.t("report.agentRebate.totalRebates")} :</ReportCardCol>
               <ReportCardCol>{rebate}</ReportCardCol>
             </ReportCardRow>
           </ReportCard>
