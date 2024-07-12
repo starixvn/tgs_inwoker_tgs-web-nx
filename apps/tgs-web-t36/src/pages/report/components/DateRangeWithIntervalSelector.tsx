@@ -1,14 +1,19 @@
-import React from "react";
 import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const DateRangContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex;
   gap: 12px;
-  height: 47px;
+  flex-wrap: wrap;
+  justify-content: start;
+  ${media.sm} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `;
 
 type DateRangSelectionTypes = {
