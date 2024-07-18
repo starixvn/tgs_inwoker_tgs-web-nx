@@ -30,6 +30,7 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
+import {DepositPayment, DepositPaymentLayout} from "@/pages/deposit/DepositPayment";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -67,6 +68,12 @@ const routes: RouteType[] = [
     path: "/deposit",
     component: DepositPage,
     layout: DialogLayout,
+  },
+  {
+    path: "/deposit/transaction/:paymentcode",
+    component: DepositPayment,
+    layout: DepositPaymentLayout,
+    isAnonymousAllowed: false,
   },
   {
     path: "/withdrawal",
