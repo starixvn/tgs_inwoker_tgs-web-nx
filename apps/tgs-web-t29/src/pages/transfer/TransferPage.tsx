@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications } from "@tgs-web-nx/core/features";
+import { useNotifications, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd, useTransferPage } from "@tgs-web-nx/core/hooks";
 import { useSnackbar } from "notistack";
 import TransferPrevV2 from "@/components/account/TransferPrevV2";
@@ -17,6 +17,7 @@ const TransferPage = () => {
   const { alert } = useNotifications();
   const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
+  const { setMainWalletLoading, setTransferWalletLoading } = useUserWalletInfoContext();
 
   return (
     <PageContainer>
@@ -27,6 +28,10 @@ const TransferPage = () => {
           history={history}
           getAllGameBalance={getAllGameBalance}
           enqueueSnackbar={enqueueSnackbar}
+          handleSetWalletLoading={(status: boolean) => {
+            setMainWalletLoading(status);
+            setTransferWalletLoading(status);
+          }}
         />
       </AccountPaper>
     </PageContainer>

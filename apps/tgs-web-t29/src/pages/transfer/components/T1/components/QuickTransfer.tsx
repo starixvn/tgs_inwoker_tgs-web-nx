@@ -85,7 +85,7 @@ const QuickTransfer = ({
   handleTransferClick,
 }: Props) => {
   const { game } = useGameStore();
-  
+
   return (
     <QuickTransferContainer>
       <GrayInputWrapper>
@@ -181,7 +181,7 @@ const QuickTransfer = ({
 
       <Button
         disabled={transferFrom === "" || transferTo === "" || disabled}
-        onClick={() => handleTransferClick().then()}
+        onClick={() => handleTransferClick()}
         style={{
           color: theme.white,
           background: theme.primary,

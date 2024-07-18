@@ -16,12 +16,16 @@ const initialState: {
   mainSymbol: string;
   info: AccountInfo;
   providerList: Provider[];
+  setMainWalletLoading: (status: boolean) => void;
+  setTransferWalletLoading: (status: boolean) => void;
 } = {
   mainWalletBalance: 0,
   transferWalletBalance: 0,
   fetchMainWalletBalance: () => Promise.resolve(),
   fetchTransferWalletBalance: () => Promise.resolve(),
   fetchBalance: () => Promise.resolve(),
+  setMainWalletLoading: () => {},
+  setTransferWalletLoading: () => {},
   mainSymbol: "",
   isMainWalletLoading: false,
   isTransferWalletLoading: false,
@@ -115,12 +119,14 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
     fetchMainWalletBalance,
     mainSymbol,
     isLoading: isMainWalletLoading,
+    setMainWalletLoading,
   } = useMainWallet();
   const {
     transferWalletBalance,
     fetchTransferWalletBalance,
     isLoading: isTransferWalletLoading,
     providerList,
+    setTransferWalletLoading,
   } = useTransferWallets();
 
   useEffect(() => {
@@ -156,6 +162,8 @@ export const UserWalletInfoContextProvider = ({ children }: ProviderProps) => {
         providerList,
         isMainWalletLoading,
         isTransferWalletLoading,
+        setMainWalletLoading,
+        setTransferWalletLoading,
       }}
     >
       {children}
