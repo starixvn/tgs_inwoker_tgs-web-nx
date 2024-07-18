@@ -23,9 +23,13 @@ export function useMainWallet() {
     }
   }, [updateBalanceList]);
 
+  const setMainWalletLoading = (status: boolean) => {
+    setIsLoading(status);
+  };
   return {
     mainWalletBalance: mainBalance,
     fetchMainWalletBalance,
+    setMainWalletLoading,
     isLoading,
     mainSymbol,
   };
