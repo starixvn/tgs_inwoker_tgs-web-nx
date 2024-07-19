@@ -9,6 +9,24 @@ type UbpayDto = {
     }
 }
 
+type S88PayDto = {
+    data: {
+        err?: number,
+        errmsg?: string,
+        errmsgid: string,
+        formId?: string,
+        amount?: number,
+        expired?: string,
+        payInfo?: {
+            matchCode: string,
+            qr: string,
+            account: string,
+            accountName: string,
+            bankName: string,
+        }
+    }
+}
+
 /**
  * 取得玩家細節
  * @param payload PlayerDetailConfig
@@ -20,5 +38,11 @@ export const getUbpayRate = (
     if(brandPaymentId) {
         const apiUrl = `deposit/crypto/ubpay/exchangerate/${brandPaymentId}`;
         return ApiService.get(apiUrl) as unknown as Promise<UbpayDto>
+    }
+}
+
+export const getS88Pay = (tokenId: string | null) => {
+    if(tokenId) {
+        return ApiService.get(`deposit/s88pay/pay-data/${tokenId}`) as unknown as Promise<S88PayDto>
     }
 }

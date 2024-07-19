@@ -87,9 +87,14 @@ export const ScanFieldText = styled.p<{
     `}
 `;
 
-export const QrCode = styled.div`
+export const QrCode = styled.div<{
+    $bgUrl?: string
+}>`
     margin: 0 auto;
     width: 250px;
     aspect-ratio: 1;
-    background: #fff;
+    ${props => props.$bgUrl && css`
+        background: url(${props.$bgUrl}) no-repeat center;
+    `}
+    background-size: contain;
 `;
