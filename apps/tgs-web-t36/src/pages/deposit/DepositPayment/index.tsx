@@ -37,10 +37,10 @@ const DepositPayment = () => {
         recordingContent: i18n.t("s88pay.recordingContent"),
         warn: i18n.t("s88pay.warn"),
         notes: i18n.t("s88pay.notes"),
-        list1: i18n.t("s88pay.list1"),
-        list2: i18n.t("s88pay.list2"),
+        list1: i18n.t("s88pay.list1").replace(/{matchCodeLength}/g, `${data?.data.payInfo?.matchCode?.length}` ?? ""),
+        list2: i18n.t("s88pay.list2").replace(/{matchCodeLength}/g, `${data?.data.payInfo?.matchCode?.length}` ?? ""),
         list3: i18n.t("s88pay.list3"),
-        list4: i18n.t("s88pay.list4"),
+        list4: i18n.t("s88pay.list4").replace(/{matchCodeLength}/g, `${data?.data.payInfo?.matchCode?.length}` ?? ""),
         expired: i18n.t("s88pay.expired"),
         download: i18n.t("s88pay.download"),
     };
@@ -65,7 +65,7 @@ const DepositPayment = () => {
     ]
 
     useEffect(() => {
-        // 如果有錯誤 倒回存款頁面
+        // 如果有錯誤 導回存款頁面
         if(data?.data.err) {
             history.push("/deposit");
         }
@@ -116,7 +116,13 @@ const DepositPayment = () => {
                 }
                 {!isExpired ? <QrCode $bgUrl={data?.data.payInfo?.qr}/> : <p style={{color: "red"}}>{i18nData.expired}</p>}
                 {!isExpired && <Button>
-                    <a href={data?.data.payInfo?.qr} download>{i18nData.download}</a>
+                    <a
+                        style={{width: "100%", display: "block"}} 
+                        href={data?.data.payInfo?.qr}
+                        download
+                    >
+                        {i18nData.download}
+                    </a>
                 </Button>}
                 <p>{i18nData.warn}</p>
                 <ScanTitle>{i18nData.notes}</ScanTitle>
