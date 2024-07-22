@@ -12,9 +12,14 @@ export function useTransferPage() {
   const { game } = useGameStore();
   const { fetchTransferWalletBalance, fetchBalance } = useUserWalletInfoContext();
   const { isLogin } = useAuthContext();
+  const { setMainWalletLoading, setTransferWalletLoading } = useUserWalletInfoContext();
 
-  const getAllGameBalance = () => {
-    fetchTransferWalletBalance();
+  const getAllGameBalance = async () => {
+    setMainWalletLoading(true);
+    setTransferWalletLoading(true);
+    await fetchTransferWalletBalance();
+    setMainWalletLoading(false);
+    setTransferWalletLoading(false);
   };
 
   useEffect(() => {

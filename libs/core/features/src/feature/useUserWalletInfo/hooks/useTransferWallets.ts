@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import { useGameStore, useWalletStore } from "@tgs-web-nx/core";
-import { Provider } from "@tgs-web-nx/types";
+import { GetGameBalanceResDto, Provider } from "@tgs-web-nx/types";
 import { useAuth } from "../../useAuth/index";
 
 export function useTransferWallets() {
@@ -32,25 +32,22 @@ export function useTransferWallets() {
     });
   };
 
+  const setTransferWalletLoading = (status: boolean) => {
+    setIsLoading(status);
+  };
+
   const fetchTransferWallets = async (providerList: Provider[]) => {
-    const filteredProviderList = providerList.filter(
-      (provider) =>
-        provider.status === 0 &&
-        provider.transferwallet &&
-        !["NTTF", "RTTF", "BTG", "NLC"].includes(provider.gpcode),
-    );
-
-    for (const provider of filteredProviderList) {
-      //有token才打getGameBalance API,如果token被清除的話(ex:登出),跳出迴圈,不然網站會不斷re-render
-      if (localStorage.getItem("token0") || localStorage.getItem("token1")) {
+    //有token才打getGameBalance API,如果token被清除的話(ex:登出),跳出迴圈,不然網站會不斷re-render
+    if (localStorage.getItem("token0") || localStorage.getItem("token1")) {
+      const filteredProviderList = providerList.filter(
+        (provider) =>
+          provider.status === 0 &&
+          provider.transferwallet &&
+          !["NTTF", "RTTF", "BTG", "NLC"].includes(provider.gpcode),
+      );
+      const fetchPromises = filteredProviderList.map(async (provider) => {
+        const response = (await getGameBalance(provider.gpcode)) as GetGameBalanceResDto;
         try {
-          const response = await getGameBalance(provider.gpcode);
-
-          if (!response || !response.IsSuccess) {
-            console.log(provider.gpcode);
-            continue;
-          }
-
           handleUpdateTransferWallet({
             ...provider,
             balance: response.data.balance,
@@ -58,19 +55,17 @@ export function useTransferWallets() {
         } catch (error) {
           console.error(`Error fetching balance for ${provider.gpcode}`, error);
         }
-      } else {
-        break;
-      }
+        return response;
+      });
+      await Promise.all(fetchPromises);
     }
-
-    // return transferWalletList.filter((wallet) => wallet !== null) as TransferWallet[];
   };
 
   const fetchTransferWalletBalance = useCallback(async () => {
     if (!isLogin) return;
     if (!game.providerList.length) return;
 
-    fetchTransferWallets(game.providerList);
+    await fetchTransferWallets(game.providerList);
   }, [fetchTransferWallets, game.providerList.length]);
 
   const transferWalletBalance = useMemo(() => {
@@ -86,6 +81,7 @@ export function useTransferWallets() {
   return {
     transferWalletBalance,
     fetchTransferWalletBalance,
+    setTransferWalletLoading,
     isLoading,
     providerList,
   };
