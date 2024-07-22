@@ -11,6 +11,7 @@ import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import TransactionDetailCards from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailCards";
 import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
 import { ReportContainer } from "@/components/styled-component/Report";
+import { i18n } from "@tgs-web-nx/utils";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
@@ -48,6 +49,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
       true,
       "",
       false,
+      i18n.language,
     );
 
     if (getTransactionDetailsRes.IsSuccess) {
