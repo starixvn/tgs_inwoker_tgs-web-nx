@@ -31,9 +31,10 @@ function GetTransactionDetails(
   desc: boolean,
   sort: string,
   all: boolean,
+  culture: string,
 ) {
   return ApiService.get(
-    `playerreport/rounds?From=${from}&To=${to}&page=${page}&rows=${rows}&desc=${desc}&sort=${sort}&all=${all}`,
+    `playerreport/rounds?From=${from}&To=${to}&page=${page}&rows=${rows}&desc=${desc}&sort=${sort}&all=${all}&culture=${culture}`,
   ) as unknown as Promise<GetTransactionDetailsResDto>;
 }
 
