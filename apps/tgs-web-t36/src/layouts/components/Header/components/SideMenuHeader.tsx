@@ -3,6 +3,7 @@ import { Close as CloseIcon } from "@mui/icons-material";
 import { useHeader } from "@tgs-web-nx/core/features";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { theme } from "@/theme";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const SideMenuHeaderContainer = styled.div`
   position: relative;
@@ -30,6 +31,8 @@ const SideMenuHeader = () => {
     general: { brand },
   } = useGeneralStore();
   const { handleToggleMenu } = useHeader();
+  const { isMobileSize } = useRwd();
+  const logoUrl = isMobileSize ? brand.mobileLogoUrl : brand.desktopLogoUrl;
 
   return (
     <SideMenuHeaderContainer>
@@ -42,7 +45,7 @@ const SideMenuHeader = () => {
           }}
         />
       </CloseIconContainer>
-      <LogoImg src={brand && brand.loadingUrl} />
+      <LogoImg src={brand && logoUrl} />
     </SideMenuHeaderContainer>
   );
 };

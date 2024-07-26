@@ -103,7 +103,7 @@ const Header = () => {
   const {
     general: { brand },
   } = useGeneralStore();
-  if (!brand.loadingUrl) return null;
+  const logoUrl = isMobileSize ? brand.mobileLogoUrl : brand.desktopLogoUrl;
 
   return (
     <HeaderContainer>
@@ -116,7 +116,7 @@ const Header = () => {
               style={{ height: "28px", marginLeft: isDesktopSize ? "70px" : "unset" }}
               onClick={() => handleChangeGameType(GameTypeEnum.NONE)}
             />
-          </Link> 
+          </Link>
         )}
 
         <HeaderContentContainer>
@@ -127,9 +127,9 @@ const Header = () => {
         <NavHeaderWrapper>
           <ContentWrapper>
             <Link to={""}>
-              {brand.loadingUrl && (
+              {logoUrl && (
                 <Logo onClick={() => handleChangeGameType(GameTypeEnum.NONE)}>
-                  <img src={brand.loadingUrl} alt="logo" />
+                  <img src={logoUrl} alt="logo" />
                 </Logo>
               )}
             </Link>

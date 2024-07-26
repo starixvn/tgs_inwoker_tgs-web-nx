@@ -14,6 +14,7 @@ import qrcode_whatsapp from "@/assets/t29/images/qrcode/qrcode_whatsapp.png";
 import qrcode_telegram from "@/assets/t29/images/qrcode/qrcode_telegram.png";
 import qrcode_wechat from "@/assets/t29/images/qrcode/qrcode_wechat.png";
 import SocialMediaV2 from "@/components/project/SocialMediaV2";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const FooterContainer = styled.footer`
   display: none;
@@ -103,6 +104,7 @@ const Footer = () => {
   const [isOpenChatQRcode, setIsOpenChatQRcode] = useState(false);
   const brand = config.brand;
   const { isShowDownloadApp, isShowChatCustomerService } = brandConfig[mapBrandName(brand)];
+  const { isMobileSize } = useRwd();
 
   const partnerList = providerList.map((provider) => {
     return provider.name;
@@ -139,7 +141,14 @@ const Footer = () => {
           <GroupTitle>Gaming License</GroupTitle>
           <GroupContent>
             <LogoWrapper>
-              <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} />
+              <LogoImg
+                src={
+                  general.brand && isMobileSize
+                    ? general.brand.mobileLogoUrl
+                    : general.brand.desktopLogoUrl
+                }
+                alt={`${brand}`}
+              />
             </LogoWrapper>
           </GroupContent>
           <GroupContent>{`${brand} Copyright© 2020 ${brand} Casino `}</GroupContent>
@@ -147,7 +156,7 @@ const Footer = () => {
           <GroupContent>All Rights Reserved</GroupContent>
           <GroupContent>V1.1.3795703</GroupContent>
           <GroupTitle>Follow Us</GroupTitle>
-          <SocialMediaV2 style={{ padding: "0px", justifyContent: "start",flexWrap:"wrap" }} />
+          <SocialMediaV2 style={{ padding: "0px", justifyContent: "start", flexWrap: "wrap" }} />
         </FooterGroup>
 
         <FooterGroup>
