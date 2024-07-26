@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 import android from "@/assets/t36/images/home/android.svg";
 import ios from "@/assets/t36/images/home/ios.svg";
 import SocialMediaV2 from "@/components/project/SocialMediaV2";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -58,6 +59,7 @@ const WinnerCard = () => {
   const history = useHistory();
   const { general } = useGeneralStore();
   const brand = config.brand;
+  const { isMobileSize } = useRwd();
 
   return (
     <Wrapper>
@@ -71,7 +73,14 @@ const WinnerCard = () => {
               history.push("/");
             }}
           >
-            <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} />
+            <LogoImg
+              src={
+                general.brand && isMobileSize
+                  ? general.brand.mobileLogoUrl
+                  : general.brand.desktopLogoUrl
+              }
+              alt={`${brand}`}
+            />
           </LogoWrapper>
         </GroupContent>
         <GroupTitle>Download App</GroupTitle>

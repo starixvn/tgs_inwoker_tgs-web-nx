@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
 const LogoImgContainer = styled.div`
   height: 48px;
@@ -23,8 +24,8 @@ const BrandLogo = (props: React.HTMLProps<HTMLDivElement>) => {
   const {
     general: { brand },
   } = useGeneralStore();
-
-  const logoUrl = brand.loadingUrl;
+  const { isMobileSize } = useRwd();
+  const logoUrl = isMobileSize ? brand.mobileLogoUrl : brand.desktopLogoUrl;
   // const logoUrl = "https://images.srvptt.com/Brand%20Logo/MOMOVN.png";
   if (!logoUrl) return null;
 
