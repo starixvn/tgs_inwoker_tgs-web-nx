@@ -11,6 +11,7 @@ import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
 import TransactionDetailCards from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailCards";
 import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
 import { ReportContainer } from "@/components/styled-component/Report";
+import { i18n } from "@tgs-web-nx/utils";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
@@ -21,7 +22,6 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
   const { alert } = useNotifications();
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
-
   const [transactionDetails, setTransactionDetails] = useState<TransactionDetail[]>([]);
   const [transactionDetailsForMobile, setTransactionDetailsForMobile] = useState<
     TransactionDetail[]
@@ -48,6 +48,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
       true,
       "",
       false,
+      i18n.language,
     );
 
     if (getTransactionDetailsRes.IsSuccess) {
@@ -84,7 +85,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
     setPage(currentPage);
     fetchReports(currentPage);
     setIsMaxPage(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(dateRangeInfo)]);
 
   const handleLoadMore = async () => {
