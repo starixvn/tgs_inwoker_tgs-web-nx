@@ -47,7 +47,7 @@ const WalletSelect = ({ value, handleChange, providerList, mainAccountId }: Prop
             {gpNameSwitcher(provider)}
             {`(${providerList
               .filter((transferWallet) => transferWallet.abbreviation === provider.abbreviation)
-              .map((transferWallet) => Common.formatCurrency(transferWallet.balance))})`}
+              .map((transferWallet) => Common.roundUpToTwoDecimals(transferWallet.balance))})`}
           </option>
         ))}
     </Select>
