@@ -52,6 +52,7 @@ export enum DepositPromotionEnum {
   DailySecondDeposit = "DailySecondDeposit",
   DailyFirstDeposit = "DailyFirstDeposit",
   DepositReward = "DepositReward",
+  DepositRewardV2 = "DepositRewardV2",
   DepositAccumulateRoulette = "DepositAccumulateRoulette",
   AccountFirstDeposit = "AccountFirstDeposit",
 }
