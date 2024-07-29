@@ -85,15 +85,19 @@ const GameCardContent = styled.div`
   width: 100%;
 `;
 
+const GameWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 const GameCardBg = styled.div<{ $isActive: boolean }>`
   width: 100%;
   position: relative;
   cursor: ${({ $isActive }) => ($isActive ? "pointer" : "unset")};
-  aspect-ratio: 94 / 127;
-
+  aspect-ratio: 1/ 1;
+  border-radius: 10px;
   ${media.sm} {
-    aspect-ratio: 100 / 120;
-
+    border-radius: 23px;
     &:hover {
       ${CardHoverBg} {
         z-index: 1;
@@ -126,17 +130,14 @@ const MaintenanceIcon = styled.img`
 
 const GameName = styled.div`
   width: 100%;
-  position: absolute;
-  bottom: 0;
+  margin: 15px 0;
   color: ${(props) => props.theme.grey05};
   font-size: 0.875rem;
   font-weight: 400;
   text-align: center;
-  margin: 4px 0 12px 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 100%; //利用最大寬度來限制文字長度
   ${media.sm} {
     color: ${(props) => props.theme.white};
   }
@@ -218,36 +219,38 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         onClose={() => setIsOpen(false)}
         url={`/joingame/${gameItem.id}/${gameItem.gpcode}`}
       />
-      <GameCardBg onClick={launchGameHandler} $isActive={isActive}>
-        <GameCardContent>
-          <GameIcon $imageUrl={imageUrl}></GameIcon>
-          <TagBg>
-            {gameItem.tag.new && <NewTag>{i18n.t("slot.new")}</NewTag>}
-            {gameItem.tag.hot && <HotTag>{i18n.t("slot.hot")}</HotTag>}
-          </TagBg>
-          {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
+      <GameWrapper>
+        <GameCardBg onClick={launchGameHandler} $isActive={isActive}>
+          <GameCardContent>
+            <GameIcon $imageUrl={imageUrl}></GameIcon>
+            <TagBg>
+              {gameItem.tag.new && <NewTag>{i18n.t("slot.new")}</NewTag>}
+              {gameItem.tag.hot && <HotTag>{i18n.t("slot.hot")}</HotTag>}
+            </TagBg>
 
-          {!isActive && (
-            <MaintenanceBg>
-              <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-            </MaintenanceBg>
+            {!isActive && (
+              <MaintenanceBg>
+                <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+              </MaintenanceBg>
+            )}
+          </GameCardContent>
+
+          {isLogin && (
+            <Favorite
+              isFavorite={isFavorite}
+              handleToggleFavorite={handleToggleFavorite}
+              gameItemId={gameItem.id}
+            />
           )}
-        </GameCardContent>
 
-        {isLogin && (
-          <Favorite
-            isFavorite={isFavorite}
-            handleToggleFavorite={handleToggleFavorite}
-            gameItemId={gameItem.id}
-          />
-        )}
-
-        {isDesktopSize && isActive && (
-          <CardHoverBg onClick={launchGameHandler}>
-            <PlayBtnIcon src={playIcon} alt={"play"} />
-          </CardHoverBg>
-        )}
-      </GameCardBg>
+          {isDesktopSize && isActive && (
+            <CardHoverBg onClick={launchGameHandler}>
+              <PlayBtnIcon src={playIcon} alt={"play"} />
+            </CardHoverBg>
+          )}
+        </GameCardBg>
+        {gameItem.name && <GameName ref={gameNameRef}>{gameItem.name}</GameName>}
+      </GameWrapper>
     </>
   );
 };
