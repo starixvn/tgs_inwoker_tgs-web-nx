@@ -48,8 +48,10 @@ type Props = {
   dateRange: DateRangeEnum;
   handleDateRangeChange: (dateRange: DateRangeEnum) => void;
   isSelectedDateRange: boolean;
+  isShowMonth?: boolean;
+
 };
-const DateRangeWithIntervalSelector = ({ dateRange, handleDateRangeChange, isSelectedDateRange }: Props) => {
+const DateRangeWithIntervalSelector = ({ dateRange, handleDateRangeChange, isSelectedDateRange, isShowMonth = true }: Props) => {
   return (
     <DateRangContainer>
       <DateRangSelection
@@ -64,12 +66,15 @@ const DateRangeWithIntervalSelector = ({ dateRange, handleDateRangeChange, isSel
       >
         {i18n.t("report.oneWeek")}
       </DateRangSelection>
-      <DateRangSelection
-        onClick={() => handleDateRangeChange(DateRangeEnum.MONTHLY)}
-        $isSelected={dateRange === DateRangeEnum.MONTHLY && !isSelectedDateRange}
-      >
-        {i18n.t("report.oneMonth")}
-      </DateRangSelection>
+      {
+        isShowMonth && (
+          <DateRangSelection
+            onClick={() => handleDateRangeChange(DateRangeEnum.MONTHLY)}
+            $isSelected={dateRange === DateRangeEnum.MONTHLY && !isSelectedDateRange}
+          >
+            {i18n.t("report.oneMonth")}
+          </DateRangSelection>
+      )}
     </DateRangContainer>
   );
 };

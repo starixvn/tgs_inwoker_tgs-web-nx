@@ -41,7 +41,8 @@ export const DepositAmountInput = ({
   }
 
   const isUsdt = currentChannel?.banktype === 'Usdt';
-  const isShowCurrencyRate = currencyRate && !isUsdt;
+  const isCrypto = currentChannel?.banktype === "Crypto";
+  const isShowCurrencyRate = currencyRate && !isUsdt && !isCrypto;
   const placeHolder = `${i18n.t("deposit.msgPleaseEnter")} ${isUsdt ? i18n.t("withdrawal.usdtAmount") : ''} ${Common.formatCurrency(formData.minAmount)} - ${Common.formatCurrency(formData.maxAmount)} ${i18n.t("deposit.dollor")}`
   
   /**
