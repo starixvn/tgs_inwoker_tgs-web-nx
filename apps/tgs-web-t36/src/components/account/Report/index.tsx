@@ -9,6 +9,7 @@ import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWi
 import ReportBetting from "@/pages/report/components/reports/ReportBetting";
 import ReportWithdraw from "@/pages/report/components/reports/ReportWithdraw";
 import ReportDeposit from "@/pages/report/components/reports/ReportDeposit";
+import ReportRebate from "@/pages/report/components/reports/ReportRebate";
 import Index from "@/pages/report/components/reports/ReportTransfer";
 import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion";
 import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
@@ -66,6 +67,7 @@ const Report = () => {
           selectedType={selectedType}
         />
         <DateRangeWithIntervalSelector
+          selectedType={selectedType}
           dateRange={dateRangeInfo.dateRange}
           handleDateRangeChange={changeDateRange}
           isSelectedDateRange={isSelectedDateRange}
@@ -82,8 +84,8 @@ const Report = () => {
             return <ReportWithdraw dateRangeInfo={dateRangeInfo} />;
           case 4:
             return <ReportDeposit dateRangeInfo={dateRangeInfo} />;
-          // case 5:
-          //   return <ReportRebate dateRangeInfo={dateRangeInfo} />;
+          case 5:
+            return <ReportRebate dateRangeInfo={dateRangeInfo} />;
           case 6:
             return <Index dateRangeInfo={dateRangeInfo} />;
           case 7:
