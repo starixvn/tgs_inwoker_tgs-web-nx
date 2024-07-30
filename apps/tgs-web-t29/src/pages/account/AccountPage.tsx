@@ -3,7 +3,12 @@ import DynamicFont from "react-dynamic-font";
 import { useHistory } from "react-router-dom";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useAuth, useUpdatePageName, useUserWalletInfoContext, useAutoTransferSwitch } from "@tgs-web-nx/core/features";
+import {
+  useAuth,
+  useUpdatePageName,
+  useUserWalletInfoContext,
+  useAutoTransferSwitch,
+} from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
 import AccountNavigations from "./components/AccountNavigations";
@@ -50,16 +55,18 @@ const AccountPage = () => {
   if (isDesktopSize) {
     history.push("/profile");
   }
+  const { setMainWalletLoading, setTransferWalletLoading } = useUserWalletInfoContext();
 
-  const {performWithdrawFromEveryBrand } = useAutoTransferSwitch();
+  const { performWithdrawFromEveryBrand } = useAutoTransferSwitch();
   const handleOnClickRefreshMainWallet = () => {
-    performWithdrawFromEveryBrand().then(
-      () => {
-        fetchTransferWalletBalance();
-        fetchMainWalletBalance();
-      }
-    );
-  }
+    setMainWalletLoading(true);
+    setTransferWalletLoading(true);
+    performWithdrawFromEveryBrand().then(async () => {
+      await fetchTransferWalletBalance();
+      setMainWalletLoading(false);
+      setTransferWalletLoading(false);
+    });
+  };
 
   useEffect(() => {
     if (!isLogin) {

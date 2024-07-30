@@ -50,10 +50,19 @@ const AccountPage = () => {
     isMainWalletLoading,
     isTransferWalletLoading,
   } = useUserWalletInfoContext();
+  const { setMainWalletLoading, setTransferWalletLoading } = useUserWalletInfoContext();
 
   if (isDesktopSize) {
     history.push("/profile");
   }
+
+  const handleOnClickRefreshMainWallet = async () => {
+    setMainWalletLoading(true);
+    setTransferWalletLoading(true);
+    await fetchTransferWalletBalance();
+    setMainWalletLoading(false);
+    setTransferWalletLoading(false);
+  };
 
   useEffect(() => {
     if (!isLogin) {
@@ -83,7 +92,7 @@ const AccountPage = () => {
                   width={"44px"}
                   height={"44px"}
                   iconUrl={refreshIcon}
-                  onClick={fetchMainWalletBalance}
+                  onClick={handleOnClickRefreshMainWallet}
                   $isLoading={isMainWalletLoading}
                 />
               </AmountContainer>

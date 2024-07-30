@@ -220,6 +220,15 @@ const UserWalletInfo = () => {
     info,
   } = useUserWalletInfoContext();
   const { getAccountInfo } = useAccountStore();
+  const { setMainWalletLoading, setTransferWalletLoading } = useUserWalletInfoContext();
+
+  const handleOnClickRefreshMainWallet = async () => {
+    setMainWalletLoading(true);
+    setTransferWalletLoading(true);
+    await fetchTransferWalletBalance();
+    setMainWalletLoading(false);
+    setTransferWalletLoading(false);
+  };
 
   return (
     <Container>
@@ -299,7 +308,7 @@ const UserWalletInfo = () => {
               width={"44px"}
               height={"44px"}
               iconUrl={refreshIcon}
-              onClick={fetchMainWalletBalance}
+              onClick={handleOnClickRefreshMainWallet}
               $isLoading={isMainWalletLoading}
             />
           </AmountContainer>

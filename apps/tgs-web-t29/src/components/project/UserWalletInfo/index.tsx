@@ -218,16 +218,19 @@ const UserWalletInfo = () => {
     isTransferWalletLoading,
     info,
   } = useUserWalletInfoContext();
+  const { setMainWalletLoading, setTransferWalletLoading } = useUserWalletInfoContext();
   const { getAccountInfo } = useAccountStore();
-  const {performWithdrawFromEveryBrand } = useAutoTransferSwitch();
-  const handleOnClickRefreshMainWallet = () => {
-    performWithdrawFromEveryBrand().then(
-      () => {
-        fetchMainWalletBalance();
-      }
-    );
-  }
+  const { performWithdrawFromEveryBrand } = useAutoTransferSwitch();
 
+  const handleOnClickRefreshMainWallet = () => {
+    setMainWalletLoading(true);
+    setTransferWalletLoading(true);
+    performWithdrawFromEveryBrand().then(async () => {
+      await fetchTransferWalletBalance();
+      setMainWalletLoading(false);
+      setTransferWalletLoading(false);
+    });
+  };
 
   return (
     <Container>
