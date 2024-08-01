@@ -43,11 +43,11 @@ export function useAgentCategoryTabs() {
         label: i18n.t("agent.profitShareReport"),
         path: "/agent/profitShareReport",
       },
-      {
-        key: AgentCategoryKeyEnum.AGENTCONTRIBUTION,
-        label: i18n.t("agent.contribution"),
-        path: "/agent/contribution",
-      },
+      // {
+      //   key: AgentCategoryKeyEnum.AGENTCONTRIBUTION,
+      //   label: i18n.t("agent.contribution"),
+      //   path: "/agent/contribution",
+      // },
     ];
   }, []);
 

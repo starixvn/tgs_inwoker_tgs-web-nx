@@ -20,7 +20,8 @@ const AgentTabContainer = styled.div`
   display: grid;
   gap: 20px;
   ${media.sm} {
-    grid-template-columns: repeat(6, 1fr);
+    /* grid-template-columns: repeat(6, 1fr); */
+    grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: 1fr;
   }
 `;
@@ -70,8 +71,8 @@ const AgentPage = () => {
                     return <WinlossReport />;
                   case AgentCategoryKeyEnum.PROFITSHAREREPORT:
                     return <ProfitShareReport />;
-                  case AgentCategoryKeyEnum.AGENTCONTRIBUTION:
-                    return <Contribution />;
+                  // case AgentCategoryKeyEnum.AGENTCONTRIBUTION:
+                  //   return <Contribution />;
                   default:
                     return null;
                 }

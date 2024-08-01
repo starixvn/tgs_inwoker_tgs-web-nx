@@ -378,11 +378,11 @@ const routes: RouteType[] = [
     component: ProfitShareReport,
     layout: DialogLayout,
   },
-  {
-    path: "/agent/contribution",
-    component: ContributionPage,
-    layout: DialogLayout,
-  },
+  // {
+  //   path: "/agent/contribution",
+  //   component: ContributionPage,
+  //   layout: DialogLayout,
+  // },
 ];
 
 if (!config.features.NewTransferUI) {
