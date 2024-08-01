@@ -149,7 +149,9 @@ const validateDepositAndWithdrawAmount = (
  * @param countryCode 國碼
  * @returns 貨幣格式
  */
-const formatCurrency = (amount: number) => {
+const formatCurrency = (amount?: number) => {
+  if(amount === undefined) return "";
+  
   return new Intl.NumberFormat(brandConfig[mapBrandName(config.brand)].countryCode).format(amount);
 };
 

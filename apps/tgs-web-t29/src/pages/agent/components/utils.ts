@@ -1,4 +1,6 @@
-export function formatNumber(num: number): number {
+export function formatNumber(num?: number): number {
+    if (num === undefined) return 0;
+
     // 使用 toFixed(2) 來確保小數點後兩位
     let formatted = num.toFixed(2);
     
