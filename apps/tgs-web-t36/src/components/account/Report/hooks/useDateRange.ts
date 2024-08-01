@@ -1,6 +1,5 @@
 import { useState } from "react";
 import addDays from "date-fns/addDays";
-import addMonths from "date-fns/addMonths";
 
 export interface DateRangeInfo {
   dateFrom: Date;
@@ -20,7 +19,7 @@ export function useDateRange() {
   const [dateRangeInfo, setDateRangeInfo] = useState<DateRangeInfo>({
     dateFrom: today,
     dateTo: today,
-    dateRange: -1
+    dateRange: -1,
   });
 
   const handleDateFromChange = (e?: Date) => {
@@ -51,7 +50,7 @@ export function useDateRange() {
         newDateFrom = addDays(today, -7);
         break;
       case 2:
-        newDateFrom = addMonths(today, -1);
+        newDateFrom = addDays(today, -30);
         break;
     }
     setIsSelectedDateRange(false);
@@ -68,6 +67,6 @@ export function useDateRange() {
     handleDateFromChange,
     handleDateToChange,
     handleDateRangeChange,
-    isSelectedDateRange
+    isSelectedDateRange,
   };
 }
