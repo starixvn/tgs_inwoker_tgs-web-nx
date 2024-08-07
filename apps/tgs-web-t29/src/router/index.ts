@@ -385,6 +385,7 @@ const routes: RouteType[] = [
   },
 ];
 
+
 if (!config.features.NewTransferUI) {
   routes.push({
     path: "/transfer",
