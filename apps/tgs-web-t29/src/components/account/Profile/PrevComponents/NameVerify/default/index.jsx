@@ -48,7 +48,7 @@ class Default extends BaseProfile {
           </FormControl>
         </ItemContainer>
 
-        {config.features.ICVerification && (
+        {this.props.general.brand.playerIdentityAuthenticationEnabled && (
           <ItemContainer>
             <LabelContainer>
               {config.features.Profile_CustomIdentityPageTranslation
@@ -72,7 +72,7 @@ class Default extends BaseProfile {
           </ItemContainer>
         )}
 
-        {config.features.ICVerificationUpload && (
+        {this.props.general.brand.playerIdentityAuthenticationEnabled && (
           <ItemContainer>
             <LabelContainer>{i18n.t("common.upload")}</LabelContainer>
             <UploadFileButton
@@ -102,6 +102,7 @@ class Default extends BaseProfile {
 const mapStateToProps = (state) => {
   return {
     account: state.account,
+    general: state.general,
   };
 };
 const mapDispatchToProps = (dispatch) => {
