@@ -5,14 +5,12 @@ import DepositPopupAnnouncement from "./DepositPopupAnnouncement";
 
 const DepositNotificationDialog = () => {
   const { ui } = useUiStore();
-  console.log(ui);
   const [isDialogOpen, setIsDialogOpen] = useState(config.features.DepositNotification);
 
   const hasDepositNotification =
     config.features.DepositNotification && ui.deposits && ui.deposits.length;
 
   useEffect(() => {
-    console.log(hasDepositNotification);
     if (hasDepositNotification) {
       setIsDialogOpen(true);
     }
@@ -31,7 +29,7 @@ const DepositNotificationDialog = () => {
     row.localization !== null && row.localization.content ? row.localization.content : row.content;
   const header =
     row.localization !== null && row.localization.subject ? row.localization.subject : row.subject;
-  
+
   return (
     <DepositPopupAnnouncement
       open={isDialogOpen}
