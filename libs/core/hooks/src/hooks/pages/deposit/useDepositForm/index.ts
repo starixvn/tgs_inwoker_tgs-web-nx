@@ -4,7 +4,7 @@
  */
 import { useState, useEffect, useMemo, useContext, createContext} from "react";
 import { useWalletStore, useAccountStore, getUbpayRate} from "@tgs-web-nx/core";
-import { groupBy, i18n } from '@tgs-web-nx/utils';
+import { ErrorSwitcher, groupBy, i18n } from '@tgs-web-nx/utils';
 import { FilterDepositList, Option, GroupCodeEnum, MovnCodeEnum, DepositFormState, DepositFormContextState } from '@tgs-web-nx/types';
 import { useNotifications } from '@tgs-web-nx/core/features';
 import { useQuery } from "@tanstack/react-query";
@@ -260,14 +260,14 @@ export const useUploadFile = () => {
           }
 
           if(!res?.IsSuccess) {
-            alert("", res.data.errmsg);
+            alert("",ErrorSwitcher.getTranslation(res.data.errmsgid));
             setIsPending(false);
           }
         })
     }
 
     if(!res?.IsSuccess) {
-      alert("", res.data.errmsg);
+      alert("", ErrorSwitcher.getTranslation(res.data.errmsgid));     
       setIsPending(false);
     }
   }
@@ -315,7 +315,7 @@ export const useThirdPartyDeposit = () => {
     }
 
     if(!res?.IsSuccess) {
-      alert("", res.data.errmsg);
+      alert("", ErrorSwitcher.getTranslation(res.data.errmsgid));
       setIsPending(false);
     }
   }  
