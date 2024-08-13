@@ -1,6 +1,7 @@
 import {
   ComposeInboxItemReqDto,
   ComposeInboxItemResDto,
+  CustomMessagingDto,
   GetInboxItemDetailReqDto,
   GetInboxItemDetailResDto,
   GetInboxListReqDto,
@@ -30,6 +31,7 @@ export const GeneralService = {
   ComposeInboxItem,
   ReadInboxItem,
   GetSocialMediaList,
+  GetCustomMessaging,
 };
 
 function GetLocalization() {
@@ -85,4 +87,8 @@ function ReadInboxItem({ letterId }: ReadInboxItemReqDto) {
 
 function GetSocialMediaList() {
   return ApiService.get(`brand/social`) as unknown as Promise<SocialMediaResDto>;
+}
+
+function GetCustomMessaging() {
+  return ApiService.get(`brand/player-contract`) as unknown as Promise<CustomMessagingDto>;
 }

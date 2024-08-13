@@ -1,4 +1,4 @@
-import { Promotion, SocialMediaInfo } from "../dto";
+import { CustomMessaging, Promotion, SocialMediaInfo } from "../dto";
 
 export interface GeneralState {
   banner: any[];
@@ -32,6 +32,7 @@ export interface GeneralState {
   token: string;
   joinPromoResult: JoinPromoResult;
   socialMediaList: SocialMediaInfo[];
+  customMessagingList: CustomMessaging[];
 }
 
 export interface BrandsSupport {

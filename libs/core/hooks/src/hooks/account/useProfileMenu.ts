@@ -1,9 +1,9 @@
-//@ts-nocheck
 import { useHistory } from "react-router-dom";
 import { useCallback, useMemo } from "react";
 import config from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
-import { useAccountStore } from "@tgs-web-nx/core";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { AccountInfo } from "@tgs-web-nx/types";
 
 export interface ProfileItem {
   key: string;
@@ -16,6 +16,7 @@ export interface ProfileItem {
 
 export function useProfileMenu() {
   const { account } = useAccountStore();
+  const { general } = useGeneralStore();
   const history = useHistory();
 
   const getStatus = useCallback(() => {
@@ -52,11 +53,12 @@ export function useProfileMenu() {
         isVerified: !!account.info.member_name,
         status: account.info.member_name
           ? i18n.t(
-            `${account.info.member_name} ${config.features.ShowVerificationStatus
-              ? `(` + i18n.t("verified." + getStatus()) + `)`
-              : ""
-            }`,
-          )
+              `${account.info.member_name} ${
+                config.features.ShowVerificationStatus
+                  ? `(` + i18n.t("verified." + getStatus()) + `)`
+                  : ""
+              }`,
+            )
           : i18n.t("profile.notSet"),
         routePath: "/profile/name",
         buttonText: account.info.member_name
@@ -129,22 +131,24 @@ export function useProfileMenu() {
     };
   }, []);
 
-  const customMessagingList = useMemo<ProfileItem[]>(() => {
-    return config.features.CustomMessaging.map((platform: string) => {
-      return {
-        key: platform,
-        label: i18n.t("common." + platform),
-        isVerified: !!account.info["member_" + platform],
-        status: account.info["member_" + platform]
-          ? account.info["member_" + platform].substring(0, 1) + "**"
-          : i18n.t("profile.notSet"),
-        routePath: `/profile/${platform}`,
-        buttonText: account.info["member_" + platform]
-          ? i18n.t("profile.details")
-          : i18n.t("profile.setNow"),
-      };
-    });
-  }, []);
+  const customMessagingList = useMemo(() => {
+    return general.customMessagingList
+      .filter((platform) => platform.isVisualized === true)
+      .map((platform) => {
+        const key = `member_${platform.name}` as keyof AccountInfo;
+        const value = account.info[key];
+        const status =
+          typeof value === "string" ? value.substring(0, 1) + "**" : i18n.t("profile.notSet");
+        return {
+          key: platform.name,
+          label: i18n.t("common." + platform.name),
+          isVerified: !!account.info[key],
+          status: status,
+          routePath: `/profile/${platform.name}`,
+          buttonText: account.info[key] ? i18n.t("profile.details") : i18n.t("profile.setNow"),
+        };
+      });
+  }, [account]);
 
   const handleClickProfileItem = useCallback((newProfileItem: ProfileItem) => {
     history.push(newProfileItem.routePath);
