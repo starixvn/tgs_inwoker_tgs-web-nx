@@ -14,6 +14,17 @@ export interface ProfileItem {
   buttonText: string;
 }
 
+enum CustomMessagingEnum {
+  FacebookMessenger = "fb",
+  Line = "line",
+  Telegram = "telegram",
+  WhatsApp = "whatsapp",
+  Wechat = "wechat",
+  Viber = "viber",
+  Qq = "qq",
+  Zalo = "zalo",
+}
+
 export function useProfileMenu() {
   const { account } = useAccountStore();
   const { general } = useGeneralStore();
@@ -132,22 +143,21 @@ export function useProfileMenu() {
   }, []);
 
   const customMessagingList = useMemo(() => {
-    return general.customMessagingList
-      .filter((platform) => platform.isVisualized === true)
-      .map((platform) => {
-        const key = `member_${platform.name}` as keyof AccountInfo;
-        const value = account.info[key];
-        const status =
-          typeof value === "string" ? value.substring(0, 1) + "**" : i18n.t("profile.notSet");
-        return {
-          key: platform.name,
-          label: i18n.t("common." + platform.name),
-          isVerified: !!account.info[key],
-          status: status,
-          routePath: `/profile/${platform.name}`,
-          buttonText: account.info[key] ? i18n.t("profile.details") : i18n.t("profile.setNow"),
-        };
-      });
+    return general.customMessagingList.map((platform) => {
+      const name = CustomMessagingEnum[platform.name as keyof typeof CustomMessagingEnum];
+      const key = `member_${name}` as keyof AccountInfo;
+      const value = account.info[key];
+      const status =
+        typeof value === "string" ? value.substring(0, 1) + "**" : i18n.t("profile.notSet");
+      return {
+        key: name,
+        label: i18n.t("common." + name),
+        isVerified: !!account.info[key],
+        status: status,
+        routePath: `/profile/${name}`,
+        buttonText: account.info[key] ? i18n.t("profile.details") : i18n.t("profile.setNow"),
+      };
+    });
   }, [account]);
 
   const handleClickProfileItem = useCallback((newProfileItem: ProfileItem) => {
