@@ -25,6 +25,7 @@ export function useInitSiteApiData() {
     getAffiliateStatus,
     getPromotionRouletteCount,
     getSocialMedia,
+    getCustomMessaging,
   } = useGeneralStore();
   const { getBalanceList } = useWalletStore();
   const { account, checkTokenIsValid, getAccountProfile } = useAccountStore();
@@ -78,6 +79,7 @@ export function useInitSiteApiData() {
     getPromotion();
     getAffiliateStatus();
     getSocialMedia();
+    getCustomMessaging(); // TGS-5207
   };
 
   const handleGoto = () => {
@@ -200,6 +202,7 @@ export function useInitSiteApiData() {
     getPromotion();
     getAffiliateStatus();
     getSocialMedia();
+    getCustomMessaging(); // TGS-5207
   };
 
   return {

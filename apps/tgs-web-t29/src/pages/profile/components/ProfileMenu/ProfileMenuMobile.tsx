@@ -42,7 +42,7 @@ const ProfileMenuMobile = () => {
       </ProfileCard>
 
       <ProfileCard>
-        {config.features.QQWeChat && (
+        {/* {config.features.QQWeChat && (
           <>
             <ProfileRowInMobile
               key={profileItemDictionary["qq"].key}
@@ -55,7 +55,7 @@ const ProfileMenuMobile = () => {
               handleClick={handleClickProfileItem}
             />
           </>
-        )}
+        )} */}
         {customMessagingList.map((messagingItem) => {
           return (
             <ProfileRowInMobile

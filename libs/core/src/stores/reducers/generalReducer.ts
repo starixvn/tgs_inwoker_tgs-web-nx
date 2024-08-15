@@ -49,7 +49,7 @@ import {
   GETAFFILIATESTATUS_SUCCESS,
   GETAFFILIATESTATUS_FAIL,
 } from "../../api-services/constant/actionType";
-import { SOCIALMEDIA_SUCCESS } from "../../constants/index";
+import { SOCIALMEDIA_SUCCESS, CUSTOMESSAGING_SUCCESS } from "../../constants/index";
 
 const initialState = {
   isIPRestrict: false,
@@ -76,6 +76,7 @@ const initialState = {
   rebates: [],
   haveAffiliate: false,
   socialMediaList: [],
+  customMessagingList: [],
 };
 function mapPromotionList(data) {
   const items = [];
@@ -327,6 +328,11 @@ export function generalReducer(state = initialState, action) {
       return {
         ...state,
         socialMediaList: action.payload.data,
+      };
+    case CUSTOMESSAGING_SUCCESS:
+      return {
+        ...state,
+        customMessagingList: action.payload.data,
       };
     default:
       return state;

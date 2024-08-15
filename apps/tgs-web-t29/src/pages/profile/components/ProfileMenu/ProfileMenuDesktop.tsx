@@ -26,7 +26,7 @@ const ProfileMenuDesktop = () => {
         profileItem={profileItemDictionary["birth"]}
         handleClick={handleClickProfileItem}
       />
-      {config.features.QQWeChat && (
+      {/* {config.features.QQWeChat && (
         <>
           <ProfileRowInDesktop
             key={profileItemDictionary["qq"].key}
@@ -39,7 +39,7 @@ const ProfileMenuDesktop = () => {
             handleClick={handleClickProfileItem}
           />
         </>
-      )}
+      )} */}
       <>
         {customMessagingList.map((messagingItem) => {
           return (
