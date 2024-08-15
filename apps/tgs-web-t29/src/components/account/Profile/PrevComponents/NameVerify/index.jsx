@@ -121,9 +121,9 @@ class NameVerify extends BaseProfile {
     if (!memberName) {
       return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterName"));
     }
-    // if (!memberCard) {
-    //   return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterICNum"));
-    // }
+    if (this.props.general.brand.playerIdentityAuthenticationEnabled && !memberCard) {
+      return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterICNum"));
+    }
 
     if (this.props.general.brand.playerIdentityAuthenticationEnabled && icUpload === "") {
       return this.props.alert("", i18n.t("deposit.msgPlsSelectFile"));
