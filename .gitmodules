@@ -1,4 +1,3 @@
 [submodule "libs/core/src/api-services"]
 	path = libs/core/src/api-services
 	url = ../tgs-services-api.git
-	branch = develop
