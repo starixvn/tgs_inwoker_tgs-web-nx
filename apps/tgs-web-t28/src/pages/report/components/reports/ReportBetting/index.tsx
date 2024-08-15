@@ -48,6 +48,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
       true,
       "",
       false,
+      ""
     );
 
     if (getTransactionDetailsRes.IsSuccess) {
