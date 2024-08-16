@@ -3,7 +3,7 @@ import featureList from "./features";
 
 const config = {
   // baseUrl: import.meta.env.PROD ? "/api/" : "https://stg-t1.rpgp.cc/api/",
-  baseUrl: "https://stg-t1.rpgp.cc/api/",
+  baseUrl: "/api/",
   client: "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
   currency: "HKD",
   brand: import.meta.env.VITE_APP_BRAND || "PGG",
@@ -13,7 +13,7 @@ const config = {
   affiliateId: "",
   features: featureList["default"],
   brandTitle: "",
-  AgentAdminUrl:null
+  AgentAdminUrl: null,
 };
 
 config.isPC = isMobileOnly ? 1 : 0;
