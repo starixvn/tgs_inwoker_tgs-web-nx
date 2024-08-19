@@ -93,7 +93,7 @@ class NameVerify extends BaseProfile {
   }
   checkisConfigure = () => {
     var check_pass_account = false;
-    if (config.features.ICVerification) {
+    if (this.props.general.brand.playerIdentityAuthenticationEnabled) {
       if (
         this.props.account.info.member_name !== "" &&
         this.props.account.info.member_name !== null
@@ -121,11 +121,11 @@ class NameVerify extends BaseProfile {
     if (!memberName) {
       return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterName"));
     }
-    // if (!memberCard) {
-    //   return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterICNum"));
-    // }
+    if (this.props.general.brand.playerIdentityAuthenticationEnabled && !memberCard) {
+      return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterICNum"));
+    }
 
-    if (config.features.ICVerificationUpload && icUpload === "") {
+    if (this.props.general.brand.playerIdentityAuthenticationEnabled && icUpload === "") {
       return this.props.alert("", i18n.t("deposit.msgPlsSelectFile"));
     }
 
@@ -134,7 +134,7 @@ class NameVerify extends BaseProfile {
       const response = await AccountService.UpdateMemberNameAndIC(
         memberName,
         memberCard,
-        config.features.ICVerificationUpload ? icUpload[0] : "",
+        this.props.general.brand.playerIdentityAuthenticationEnabled ? icUpload[0] : "",
       );
       if (response.IsSuccess) {
         this.updateInfo({
@@ -157,7 +157,9 @@ class NameVerify extends BaseProfile {
     const name = this.state.name || "";
     const ic = this.state.ic || "";
 
-    const isDisableButton = config.features.ICVerification ? !(name && ic) : name === "";
+    const isDisableButton = this.props.general.brand.playerIdentityAuthenticationEnabled
+      ? !(name && ic)
+      : name === "";
     return isDisableButton;
   };
 
@@ -259,7 +261,7 @@ class NameVerify extends BaseProfile {
       i18n.t("profile.nameVerify.title"),
       this.sceneSwitcher(this.state.scene),
       this.state.isConfigured &&
-        config.features.ICVerification &&
+        this.props.general.brand.playerIdentityAuthenticationEnabled &&
         this.state.scene !== "waiting-submit"
         ? i18n.t("common.configured")
         : i18n.t("common.submit"),
@@ -273,6 +275,7 @@ class NameVerify extends BaseProfile {
 const mapStateToProps = (state) => {
   return {
     account: state.account,
+    general: state.general,
   };
 };
 const mapDispatchToProps = (dispatch) => {
