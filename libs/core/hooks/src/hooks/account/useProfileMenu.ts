@@ -54,7 +54,7 @@ export function useProfileMenu() {
         status: account.info.member_name
           ? i18n.t(
               `${account.info.member_name} ${
-                general.brand.playerIdentityAuthenticationEnabled
+                account.info.identityformstatus && account.info.identityformid
                   ? `(` + i18n.t("verified." + getStatus()) + `)`
                   : ""
               }`,
