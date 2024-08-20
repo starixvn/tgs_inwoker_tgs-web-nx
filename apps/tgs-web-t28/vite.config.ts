@@ -18,6 +18,32 @@ export default defineConfig({
     fs: {
       allow: [searchForWorkspaceRoot(process.cwd())],
     },
+    proxy: {
+      "/api/brand/maintenance": {
+        target: "http://localhost:5006",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      "/api/brand/brandlivechat": {
+        target: "http://localhost:5006",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      "/api/brand/brandcommunication": {
+        target: "http://localhost:5006",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+      "/api": {
+        target: "https://localhost:7001",
+        changeOrigin: true,
+        secure: false,
+        ws: true,
+      },
+    }
   },
   preview: {
     port: 4300,
