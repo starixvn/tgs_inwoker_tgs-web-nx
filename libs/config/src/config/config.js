@@ -3,8 +3,10 @@ import featureList from "./features";
 
 const config = {
   // baseUrl: import.meta.env.PROD ? "/api/" : "https://stg-t1.rpgp.cc/api/",
-  baseUrl: "/api/", // LOCAL
-  //baseUrl: "https://localhost:7001/api/", //dev
+  baseUrl: "", // LOCAL
+  //baseUrl: "https://player-site-t28.nexentgame.com", //dev
+  operatorPath: "/operator/api/",
+  brandPath: "/brand/api/",
   client: "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
   currency: "HKD",
   brand: "GPI", //TODO: Need dynamic here

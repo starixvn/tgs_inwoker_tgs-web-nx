@@ -18,7 +18,9 @@ export function useFeatureToggle() {
     const apiUrl = config.baseUrl;
 
     async function fetchFeatureToggle() {
-      const res = (await axios.get(`${apiUrl}brand`, { headers: { "b-id": config.brandId } })) as GetBrandResDto;
+      const res = (await axios.get(`${apiUrl}${config.operatorPath}brand`, {
+        headers: { "b-id": config.brandId },
+      })) as GetBrandResDto;
       if (res.info !== "UnderMaintenance") {
         const branId = res.data.brandId;
         const brandName = res.data.code;
