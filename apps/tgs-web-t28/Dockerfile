@@ -7,6 +7,7 @@ FROM node:16.14.2-stretch-slim AS builder
 WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
+COPY missing-config.js apps/tgs-web-t28/public/c.js
 RUN yarn nx build tgs-web-t28
 
 FROM caddy:2.1.1-alpine AS runner

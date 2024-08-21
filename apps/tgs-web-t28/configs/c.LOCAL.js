@@ -1,0 +1,15 @@
+window.envConfig = {
+  baseUrl: "",
+  operatorPath: "/operator/api/",
+  brandPath: "/brand/api/",
+  client: "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
+  currency: "HKD",
+  brand: "GPI",
+  brandId: "4e86719f-243f-46f6-b010-5c758b7285af",
+  brandName: "GPI",
+  sourceUrl: "https://images.srvptt.com/",
+  defaultLanguage: "en-US",
+  affiliateId: "",
+  brandTitle: "",
+  AgentAdminUrl: null,
+};
