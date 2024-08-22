@@ -6,10 +6,8 @@ import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
 import {
   ProfileIcon,
-  AffiliateIcon,
   ContactIcon,
   DepositIcon,
-  DownloadIcon,
   InoboxIcon,
   ReportIcon,
   TransferIcon,
@@ -78,12 +76,13 @@ const MenuTabs = () => {
       router: "/withdrawal",
       icon: WithdrawIcon,
     },
-    {
-      key: NavCardKey.WAGERING,
-      label: i18n.t("common.wagering"),
-      router: "/wagering",
-      icon: ReportIcon,
-    },
+    //TODO: remove for phase 1
+    // {
+    //   key: NavCardKey.WAGERING,
+    //   label: i18n.t("common.wagering"),
+    //   router: "/wagering",
+    //   icon: ReportIcon,
+    // },
     {
       key: NavCardKey.TRANSFER,
       label: i18n.t("common.transfer"),
@@ -102,24 +101,26 @@ const MenuTabs = () => {
       router: "/inbox",
       icon: InoboxIcon,
     },
-    {
-      key: NavCardKey.AFFILIATE,
-      label: i18n.t("wap.main.account.affiliate"),
-      router: "/affiliate",
-      icon: AffiliateIcon,
-    },
+    //TODO: remove for phase 1
+    // {
+    //   key: NavCardKey.AFFILIATE,
+    //   label: i18n.t("wap.main.account.affiliate"),
+    //   router: "/affiliate",
+    //   icon: AffiliateIcon,
+    // },
     {
       key: NavCardKey.CONTACT_US,
       label: i18n.t("common.contact"),
       router: "/support",
       icon: ContactIcon,
     },
-    {
-      key: NavCardKey.APP_DOWNLOAD,
-      label: i18n.t("wap.main.account.appDownload"),
-      router: "/appDownload",
-      icon: DownloadIcon,
-    },
+    //TODO: remove for phase 1
+    // {
+    //   key: NavCardKey.APP_DOWNLOAD,
+    //   label: i18n.t("wap.main.account.appDownload"),
+    //   router: "/appDownload",
+    //   icon: DownloadIcon,
+    // },
   ];
   return (
     <TabContainer>

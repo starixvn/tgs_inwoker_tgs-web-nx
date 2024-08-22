@@ -163,7 +163,8 @@ const DesktopMenuDrawer = () => {
           );
         })}
       </HeaderContentContainer>
-      <DownloadWrapper>
+      {/* TODO: remove for phase 1 */}
+      {/* <DownloadWrapper>
         <DownloadButton>
           <DownloadIconWrapper
             onClick={() => {
@@ -174,7 +175,7 @@ const DesktopMenuDrawer = () => {
           </DownloadIconWrapper>
           {i18n.t("common.download")}
         </DownloadButton>
-      </DownloadWrapper>
+      </DownloadWrapper> */}
 
       <SocialMediaWrapper>
         <SocialMediaTitle>Official Channel</SocialMediaTitle>
