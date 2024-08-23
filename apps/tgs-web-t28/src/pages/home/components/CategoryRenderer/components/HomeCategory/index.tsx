@@ -138,7 +138,7 @@ const HomeCategory = () => {
   //   history.push(`/main/${gameTypeItem.key}`);
   // };
 
-  const launchLobbyGame = (gpcode: string) => {
+  const launchLobbyGame = (gpcode: string, gtype: GameTypeEnum = GameTypeEnum.SPORTS) => {
     if (!account.token) {
       history.push("/login");
       return;
@@ -160,7 +160,7 @@ const HomeCategory = () => {
         }
       } else {
         Common.closePreviousPopup();
-        Common.PopupCenter(`/joinlobbygame/${GameTypeEnum.SPORTS}/${gpcode}`, "gamewindow");
+        Common.PopupCenter(`/joinlobbygame/${gtype}/${gpcode}`, "gamewindow");
       }
     } else {
       const audioElement = document.getElementById("audio") as HTMLAudioElement | null;
@@ -168,7 +168,7 @@ const HomeCategory = () => {
         audioElement.volume = 0;
       }
       Common.closePreviousPopup();
-      Common.PopupCenter(`/joinlobbygame/${activeGameType}/${gpcode}`, "gamewindow");
+      Common.PopupCenter(`/joinlobbygame/${gtype}/${gpcode}`, "gamewindow");
     }
   };
 
@@ -236,7 +236,7 @@ const HomeCategory = () => {
                 venderLogoUrl={`${
                   import.meta.env.BASE_URL
                 }assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
-                launchGame={() => launchLobbyGame(gpCode)}
+                launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.LIVE)}
                 status={status}
                 venderName={name}
               />
@@ -262,7 +262,7 @@ const HomeCategory = () => {
                 venderLogoUrl={`${
                   import.meta.env.BASE_URL
                 }assets/images/home/provider_logo/sports/${gpCode}.png`}
-                launchGame={() => launchLobbyGame(gpCode)}
+                launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.SPORTS)}
                 status={status}
                 venderName={name}
               />
