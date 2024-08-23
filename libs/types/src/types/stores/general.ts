@@ -8,6 +8,7 @@ export interface GeneralState {
     desktopLogoUrl: string;
     mobileLogoUrl: string;
     code: string;
+    playerIdentityAuthenticationEnabled: boolean;
   };
   brandLanguage: BrandLanguage[];
   brandsSupport: BrandsSupport[];
