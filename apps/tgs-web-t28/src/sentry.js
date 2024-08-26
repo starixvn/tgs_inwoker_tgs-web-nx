@@ -1,0 +1,30 @@
+import * as Sentry from "@sentry/react";
+
+Sentry.init({
+  dsn: "https://131857795c713ddb8e03feda9e928c2d@sentry-s1.nexentgame.com/9",
+  integrations: [
+    // See docs for support of different versions of variation of react router
+    // https://docs.sentry.io/platforms/javascript/guides/react/configuration/integrations/react-router/
+    // Sentry.reactRouterV5BrowserTracingIntegration({
+    //   useEffect,
+    //   useLocation,
+    //   useNavigationType,
+    //   createRoutesFromChildren,
+    //   matchRoutes,
+    // }),
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration(),
+  ],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for tracing.
+  tracesSampleRate: 1.0,
+
+  // Set `tracePropagationTargets` to control for which URLs trace propagation should be enabled
+  tracePropagationTargets: [/^\//, /^https:\/\/yourserver\.io\/api/],
+
+  // Capture Replay for 10% of all sessions,
+  // plus for 100% of sessions with an error
+  replaysSessionSampleRate: 0.1,
+  replaysOnErrorSampleRate: 1.0,
+});
