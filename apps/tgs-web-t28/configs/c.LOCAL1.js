@@ -1,0 +1,15 @@
+window.envConfig = {
+  baseUrl: "",
+  operatorPath: "/operator/api/",
+  brandPath: "/brand/api/",
+  client: "XJY9uX5RarE5wrOkTHAgkQoGKMuNFxKIXF4A6zR4BfgCHNs1tC7zDv",
+  currency: "HKD",
+  brand: "GMO",
+  brandId: "8acacf5a-d808-4a55-8302-d832ee3da6dc",
+  brandName: "GMO",
+  sourceUrl: "https://images.srvptt.com/",
+  defaultLanguage: "en-US",
+  affiliateId: "",
+  brandTitle: "",
+  AgentAdminUrl: null,
+};
