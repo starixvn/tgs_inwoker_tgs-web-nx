@@ -1,4 +1,4 @@
 [submodule "libs/core/src/api-services"]
 	path = libs/core/src/api-services
-	url = ../tgs-services-api.git
+	url = https://git3.nexdev.net/tgs/inwoker/tgs-services-api.git
   branch = m2
