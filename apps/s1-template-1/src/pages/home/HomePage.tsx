@@ -74,48 +74,50 @@ const MainContentWrapper = styled.div`
 `;
 
 const GameTypesContainer = styled.div`
-  display: flex;
-  padding: 12px 24px;
+  position: relative;
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
   width: 100%;
   height: 100%;
-  position: relative;
-  gap: 24px;
-  overflow: auto;
-  ::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
-const GameTypeNav = styled.div<{
-  $isActive: boolean;
-}>`
+const GameTypeNav = styled.div`
   flex-shrink: 0;
-  font-size: 0.875rem;
-  font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 500;
   white-space: nowrap;
   display: flex;
   align-items: center;
-  padding: 5px;
-  color: ${({ theme }) => theme.text};
+  padding: 4px;
   cursor: pointer;
   position: relative;
-  color: ${({ theme, $isActive }) => ($isActive ? theme.text : theme.gray50)};
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{
+  $isActive: boolean;
+}>`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
+  height: 60px;
+  padding: 8px 16px;
   cursor: pointer;
+  border-radius: 10px;
+  background: ${({ theme, $isActive }) =>
+    $isActive ? theme.categoryBackgroundActive : theme.categoryBackground};
+
   ${media.sm} {
     flex-direction: unset;
     background: ${({ theme }) => theme.mainBackground};
   }
+
   & img {
-    width: 48px;
-    height: 48px;
+    width: 24px;
+    height: 24px;
   }
 `;
 
@@ -178,17 +180,16 @@ const HomePage = () => {
       <GameTypesContainer>
         {sideNavItemList &&
           sideNavItemList.map((navItem, index) => {
+            const isActive = navItem.gameType === activeGameType;
+
             return (
-              <Wrapper key={navItem.key} onClick={() => handleClickNav(navItem)}>
-                <img
-                  src={
-                    navItem.gameType === activeGameType ? navItem.iconActiveUrl : navItem.iconUrl
-                  }
-                  alt={navItem.label}
-                />
-                <GameTypeNav $isActive={navItem.gameType === activeGameType}>
-                  {navItem.label}
-                </GameTypeNav>
+              <Wrapper
+                $isActive={isActive}
+                key={navItem.key}
+                onClick={() => handleClickNav(navItem)}
+              >
+                <img src={navItem.iconUrl} alt={navItem.label} />
+                <GameTypeNav>{navItem.label}</GameTypeNav>
               </Wrapper>
             );
           })}
