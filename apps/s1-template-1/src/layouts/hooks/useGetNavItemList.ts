@@ -1,36 +1,26 @@
+import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
+import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
+import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
+import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
+import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
+import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
+import transferImg from "@/assets/t29/images/account/navItem/icon-transfer.svg";
+import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
+import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
+import depositWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-deposit.svg";
+import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
+import inboxWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-inbox.svg";
+import profileWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-profile.svg";
+import reportWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-report.svg";
+import transferWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-transfer.svg";
+import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { NavCardKey } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { NavCardKey } from "@tgs-web-nx/types";
-import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
-import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
-import withdrawImg from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
-import transferImg from "@/assets/t29/images/account/navItem/icon-transfer.svg";
-import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
-import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
-import affiliateImg from "@/assets/t29/images/account/navItem/icon-affiliate.svg";
-import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
-import languageImg from "@/assets/t29/images/account/navItem/icon-language.svg";
-import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
-import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
-import wageringImg from "@/assets/t29/images/account/navItem/icon-wagering.svg";
-import profileWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-profile.svg";
-import depositWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-deposit.svg";
-import withdrawWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-withdraw.svg";
-import transferWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-transfer.svg";
-import reportWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-report.svg";
-import inboxWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-inbox.svg";
-import affiliateWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-affiliate.svg";
-import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
-import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
-import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
-import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
-import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
-import homeImg from "@/assets/t28/images/home/gameType/home.svg";
-import activehomeImg from "@/assets/t28/images/home/gameType/homeActvie.svg";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -89,8 +79,8 @@ export function useGetNavItemList() {
     navItemList.unshift({
       key: NavCardKey.HOME,
       label: "home",
-      iconUrl: homeImg,
-      iconActiveUrl: activehomeImg,
+      iconUrl: "/assets/images/common/icon-home.svg",
+      iconActiveUrl: "",
       navType: "action",
       gameType: GameTypeEnum.NONE,
       router: "",
@@ -98,18 +88,6 @@ export function useGetNavItemList() {
         history.push("/");
       },
     });
-
-    // navItemList.push({
-    //   key: NavCardKey.PROMOTION,
-    //   label: i18n.t("common.promotion"),
-    //   iconUrl: "",
-    //   navType: "action",
-    //   gameType: GameTypeEnum.NONE,
-    //   router: "promotion-list",
-    //   callback: () => {
-    //     history.push("/promotion-list");
-    //   },
-    // });
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps
