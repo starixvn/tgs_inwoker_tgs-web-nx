@@ -1,6 +1,6 @@
+import { useGeneralStore } from "@tgs-web-nx/core";
 import React from "react";
 import styled from "styled-components";
-import { useGeneralStore } from "@tgs-web-nx/core";
 
 const LogoImgContainer = styled.div`
   height: 48px;
@@ -24,8 +24,12 @@ const BrandLogo = (props: React.HTMLProps<HTMLDivElement>) => {
     general: { brand },
   } = useGeneralStore();
 
-  const logoUrl = brand.loadingUrl;
-  // const logoUrl = "https://images.srvptt.com/Brand%20Logo/MOMOVN.png";
+  // Todo
+  // using asset site
+  // const logoUrl = brand.loadingUrl;
+
+  const logoUrl = "/assets/images/common/logo.svg";
+
   if (!logoUrl) return null;
 
   return (

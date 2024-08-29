@@ -1,13 +1,13 @@
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 
 export const RoundHeaderButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "44px",
-  padding: "10px 12px",
-  borderRadius: "8px",
-  fontSize: "14px",
-  fontWeight: "590",
-  lineHeight: "17px",
+  height: "28px",
+  padding: "0 12px",
+  borderRadius: "7px",
+  fontSize: "13px",
+  lineHeight: "28px",
   flexShrink: 0,
+  background: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
 }));
 
 export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({

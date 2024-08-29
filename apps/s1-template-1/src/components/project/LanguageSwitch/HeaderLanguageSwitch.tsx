@@ -1,32 +1,29 @@
-import React, { useState } from "react";
+import { theme } from "@/theme";
 import {
   MenuItem as MuiMenuItem,
   Select as MuiSelect,
   SelectChangeEvent,
   SelectProps,
 } from "@mui/material";
-import styled from "styled-components";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { useGeneralStore } from "@tgs-web-nx/core";
-import { imageMap } from "@/components/project/LanguageSwitch/index";
-import { theme } from "@/theme";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const StyledSelect = styled(MuiSelect)`
   width: 100%;
-  padding: 5px;
-  overflow: visible;
-  font-weight: 400 !important;
-  font-size: 0.812rem !important;
-  border: 1px solid ${({ theme }) => theme.gray20};
+  height: 28px;
+  padding: 0 8px;
+  background: ${({ theme }) => theme.changeLanguage};
+  font-size: 1.3rem !important;
+  border-radius: 7px;
+
   .MuiOutlinedInput-input {
-    padding: 5px !important;
-    border-radius: 0;
-    border-left: 1px solid ${({ theme }) => theme.mainBackground};
-    border-right: 1px solid ${({ theme }) => theme.mainBackground};
+    padding-right: 16px !important;
   }
 
-  & .MuiSelect-select {
+  &.MuiSelect-select {
     display: flex;
     align-items: center;
     color: ${({ theme }) => theme.white} !important;
@@ -46,8 +43,6 @@ const StyledSelect = styled(MuiSelect)`
 `;
 
 const StyledMenuItem = styled(MuiMenuItem)`
-  //border-radius: 8px;
-
   & > img {
     margin-right: 10px;
   }
@@ -67,8 +62,7 @@ const FlagContainer = styled.div`
 `;
 
 const NameContainer = styled.div`
-  font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.3rem;
 `;
 
 const HeaderLanguageSwitch = (props: SelectProps) => {
@@ -102,7 +96,7 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: theme.mainBackground,
+            background: "red",
 
             "& .MuiMenuItem-root": {
               padding: 2,

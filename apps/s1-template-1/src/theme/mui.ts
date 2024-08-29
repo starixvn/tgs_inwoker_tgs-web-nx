@@ -1,8 +1,7 @@
+import { theme } from "@/theme";
+import { breakpoints } from "@/theme/breakpoints";
 import { createTheme, ThemeOptions } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
-import { breakpoints } from "@/theme/breakpoints";
-import { fontFamily } from "@/theme/fontFamily";
-import { theme } from "@/theme";
 
 //@ts-ignore
 theme.lang = i18n.language;
@@ -18,7 +17,7 @@ declare module "@mui/material/styles/createPalette" {
     darkPurple: string;
     middlePurple: string;
     lightPurple: string;
-    mainBackground:string;
+    mainBackground: string;
     memberSection: string;
     NavBGC: string;
     secBTNBGC: string;
@@ -81,7 +80,6 @@ const muiTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: fontFamily,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,

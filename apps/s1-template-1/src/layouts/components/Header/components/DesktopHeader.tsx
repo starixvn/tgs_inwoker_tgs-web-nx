@@ -1,27 +1,16 @@
-import React from "react";
-import { Link, useHistory } from "react-router-dom";
-import styled from "styled-components";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import SystemTime from "@/layouts/components/Header/components/SystemTime";
+import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
+import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader, useHomeGameContext } from "@tgs-web-nx/core/features";
+import React from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 import MenuButton from "./MenuButton";
-import {
-  DESKTOP_DRAWER_WIDTH,
-  DESKTOP_HEADER_HEIGHT,
-  DRAWER_SHRINK_WIDTH,
-  MOBILE_HEADER_HEIGHT,
-  SUB_CONTENT_MAX_WIDTH,
-  TABLET_DRAWER_WIDTH,
-} from "@/theme/constants";
-import HeaderGameTypes from "@/layouts/components/Header/components/HeaderGameTypeNavs";
-import { media } from "@/theme/breakpoints";
-import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
-import SystemTime from "@/layouts/components/Header/components/SystemTime";
-import BrandLogo from "@/components/project/BrandLogo";
-import { theme } from "@/theme";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -42,7 +31,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 10px 17px;
+  padding: 0 0.8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,16 +46,9 @@ const MenuButonnWrapper = styled.div`
 `;
 
 const LogoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  flex-shrink: 0;
   & > img {
-    height: 48px;
-    /* width: 100%; */
-    object-fit: contain;
     display: block;
-    margin: auto;
+    height: 2.9rem;
     cursor: pointer;
   }
 `;
@@ -86,7 +68,10 @@ const DesktopHeader = () => {
   const history = useHistory();
   const noLoginAccount = account.token !== account.info.token;
   const { isLargeDesktopSize, isDesktopSize } = useRwd();
-  const logoUrl = brand.loadingUrl;
+  // Todo
+  // using asset site
+  // const logoUrl = brand.loadingUrl;
+  const logoUrl = "/assets/images/common/logo.svg";
   if (!logoUrl) return null;
   return (
     <HeaderContainer>
@@ -98,7 +83,8 @@ const DesktopHeader = () => {
               <img
                 src={logoUrl}
                 alt={"logo"}
-                height={48}
+                width={45}
+                height={29}
                 onClick={() => {
                   history.push("/");
                 }}
@@ -111,8 +97,8 @@ const DesktopHeader = () => {
             <img
               src={logoUrl}
               alt={"logo"}
-              width={94}
-              height={44}
+              width={45}
+              height={29}
               onClick={() => {
                 history.push("/");
               }}
