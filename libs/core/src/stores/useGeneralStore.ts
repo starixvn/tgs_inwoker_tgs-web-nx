@@ -87,6 +87,8 @@ import {
   SOCIALMEDIA_BEGIN,
   SOCIALMEDIA_SUCCESS,
   SOCIALMEDIA_FAIL,
+  CUSTOMESSAGING_SUCCESS,
+  CUSTOMESSAGING_FAIL,
 } from "@tgs-web-nx/core";
 
 export function useGeneralStore() {
@@ -766,6 +768,30 @@ export function useGeneralStore() {
     }
   }, []);
 
+  const getCustomMessaging = useCallback(async () => {
+    try {
+      //  @ts-ignore
+      const response = (await GeneralService.GetCustomMessaging()) as CustomMessagingDto;
+      if (response.IsSuccess) {
+        dispatch({
+          type: CUSTOMESSAGING_SUCCESS,
+          payload: response,
+        });
+      } else {
+        dispatch({
+          type: CUSTOMESSAGING_FAIL,
+          payload: response,
+        });
+      }
+      return response;
+    } catch (error: any) {
+      dispatch({
+        type: CUSTOMESSAGING_FAIL,
+        payload: error,
+      });
+    }
+  }, []);
+
   return {
     general,
     getMobilePrefix,
@@ -794,5 +820,6 @@ export function useGeneralStore() {
     readMemo,
     deliveryBox,
     getSocialMedia,
+    getCustomMessaging,
   };
 }
