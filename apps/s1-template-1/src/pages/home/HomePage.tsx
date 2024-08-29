@@ -1,23 +1,21 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
+import BN from "@/assets/t28/images/home/BN.png";
+import useBanner from "@/hooks/home/useBanner";
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import Banner from "@/pages/home/components/Banner";
+import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
+import MobileSlider from "@/pages/home/components/Slider";
+import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useUiStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import MobileSlider from "@/pages/home/components/Slider";
-import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import Banner from "@/pages/home/components/Banner";
-import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
-import notification from "@/assets/t28/images/home/notify.svg";
-import useBanner from "@/hooks/home/useBanner";
-import OnlineUser from "@/pages/home/components/CardPrompt/components/OnlineUser";
-import { theme } from "@/theme";
-import BN from "@/assets/t28/images/home/BN.png";
-import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import styled from "styled-components";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -73,33 +71,6 @@ const MainContentWrapper = styled.div`
     margin: 0 auto;
     gap: unset;
   }
-`;
-
-const MarqueeContainer = styled.div`
-  position: relative;
-  overflow: visible;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.875rem;
-  padding: 10px;
-  color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.darkPurple};
-  ${media.sm} {
-    background: ${({ theme }) => theme.mainBackground};
-  }
-`;
-
-const MarqueeContent = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const MarqueesBackground = styled.div`
-  display: inline;
-  overflow: visible;
 `;
 
 const GameTypesContainer = styled.div`
@@ -197,32 +168,7 @@ const HomePage = () => {
           <img src={BN} alt="homeImg" width={"100%"} height={"100%"} />
         </HomepageImgWrapper>
       )}
-      {
-        <MarqueeContainer>
-          <MarqueeContent>
-            <OnlineUser color={theme.text} />
-            <img src={notification} alt="marquee" />
-            {hasData && (
-              // Disable TypeScript check for unknown HTML elements
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              // eslint-disable-next-line jsx-a11y/no-distracting-elements
-              <marquee>
-                {marquees.map((item, index) => {
-                  const content = `
-      *${item.localization !== null && item.localization.content
-                      ? item.localization.content
-                      : item.content
-                    }
-      `;
-                  return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
-                })}
-                {/*@ts-ignore*/}
-              </marquee>
-            )}
-          </MarqueeContent>
-        </MarqueeContainer>
-      }
+
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (

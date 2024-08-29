@@ -12,7 +12,7 @@ export const theme = {
   lightPurple: "#935FFC",
   mainBackground: "#050505",
   memberSection: "#141414",
-  NavBGC: "#191919",
+  NavBGC: "#19212C",
   secBTNBGC: "#242424",
   gray: "#8C8C8C",
   gray20: "#FFFFFF33",
@@ -23,4 +23,7 @@ export const theme = {
   popupMask: "#000000A8",
   secPopupMask: "#00000040",
   text: "#FFFFFF",
+  // New template
+  signUp: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
+  changeLanguage: "linear-gradient(180deg, #344863 0%, #27384f 100%)",
 };

@@ -1,25 +1,9 @@
-import { createGlobalStyle } from "styled-components";
-import "./assets/fonts/notosans/notosans-sc/css.css";
-import "./assets/fonts/notosans/notosans-tc/css.css";
-import { i18n } from "@tgs-web-nx/utils";
+import "./assets/fonts/inter/font.css";
 
-const languageSwitcher = (language) => {
-  switch (language) {
-    case "en-US":
-      return `Arial, sans-serif`;
-    // case "zh-CN":
-    //     return `'Roboto', 'Noto Sans SC', Microsoft Yahei, '微软雅黑', STXihei, '华文细黑'`;
-    // case "zh-TW":
-    //     return `'Roboto', 'Noto Sans TC', Tahoma, Helvetica, Arial, sans-serif, '微軟正黑粗'`;
-    // case "th-TH":
-    //     return ``;
-    default:
-      return `Arial, sans-serif`;
-  }
-};
+import { createGlobalStyle } from "styled-components";
+
 export const GlobalStyles = createGlobalStyle`
   * {
-    font-family: ${languageSwitcher(i18n.language)};
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -27,9 +11,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    margin: 0;
     background: ${({ theme }) => theme.body};
     background-size: 100%;
+    font-family: Inter, Arial, sans-serif;
     font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
   .headerSubmenu .slick-track,
