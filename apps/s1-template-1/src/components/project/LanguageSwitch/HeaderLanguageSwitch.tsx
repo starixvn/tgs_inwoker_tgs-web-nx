@@ -1,10 +1,5 @@
 import { theme } from "@/theme";
-import {
-  MenuItem as MuiMenuItem,
-  Select as MuiSelect,
-  SelectChangeEvent,
-  SelectProps,
-} from "@mui/material";
+import { MenuItem as MuiMenuItem, Select as MuiSelect, SelectChangeEvent, SelectProps } from "@mui/material";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
@@ -96,7 +91,7 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            background: "red",
+            background: theme.languageDropDownBackground,
 
             "& .MuiMenuItem-root": {
               padding: 2,

@@ -26,6 +26,9 @@ export const theme = {
   // New template
   signUp: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   changeLanguage: "linear-gradient(180deg, #344863 0%, #27384f 100%)",
+  languageDropDownBackground: "#1C2532",
   categoryBackground: "linear-gradient(180deg, #2b3f5b 0%, #203757 100%)",
   categoryBackgroundActive: "linear-gradient(180deg, #A0B60F 0%, #6C7B0A 100%)",
+  playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
+  viewAllLinkColor: "#E2FE26",
 };

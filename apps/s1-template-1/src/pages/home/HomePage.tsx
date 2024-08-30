@@ -10,7 +10,6 @@ import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useUiStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React, { useEffect } from "react";
@@ -125,11 +124,7 @@ const HomePage = () => {
   const { sideNavItemList } = useGetNavItemList();
   const { isMobileSize, isDesktopSize } = useRwd();
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const {
-    ui: { marquees },
-  } = useUiStore();
   const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
-  const hasData = marquees && marquees.length > 0;
 
   const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
