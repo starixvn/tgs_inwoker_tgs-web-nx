@@ -68,11 +68,11 @@ const NavCategory = () => {
             return (
               <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`${import.meta.env.BASE_URL
+                bgUrl={`${window.envConfig.assetsPath
                   }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
-                imageUrl={`${import.meta.env.BASE_URL
+                imageUrl={`${window.envConfig.assetsPath
                   }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${import.meta.env.BASE_URL
+                venderLogoUrl={`${window.envConfig.assetsPath
                   }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
                 launchGame={() => enterVendorFilter(gpCode)}
                 status={status}

@@ -97,6 +97,7 @@ const LobbyCategory = () => {
 
   const hasMappingData = !!lobbyCategoryList.length;
 
+  console.log(window.envConfig.assetsPath);
   return (
     <Wrapper>
       {isMobileSize && (
@@ -136,13 +137,13 @@ const LobbyCategory = () => {
                 <DesktopVendorCard
                   key={gpCode}
                   bgUrl={`${
-                    import.meta.env.BASE_URL
+                    window.envConfig.assetsPath
                   }assets/images/home/desktop/${activeGameTypeKey}/bg.png`}
                   imageUrl={`${
-                    import.meta.env.BASE_URL
+                    window.envConfig.assetsPath
                   }assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
                   venderLogoUrl={`${
-                    import.meta.env.BASE_URL
+                    window.envConfig.assetsPath
                   }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}

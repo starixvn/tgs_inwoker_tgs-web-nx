@@ -64,7 +64,7 @@ const CheckboxCircle = styled.div<CheckboxCircleProps>`
   ${(props: CheckboxCircleProps) =>
     props.checked
       ? `background: url(${
-          import.meta.env.BASE_URL + `assets/images/wapp/icon-inbox-checked.png`
+          window.envConfig.assetsPath + `assets/images/wapp/icon-inbox-checked.png`
         }) no-repeat;`
       : `border-radius: 23px;
     border: 2px solid #949494;`}

@@ -8,7 +8,7 @@ const SvgIcon = ({ pathname, alt }: { pathname: string; alt?: string }) => {
   return (
     <SvgIconContainer>
       <img
-        // src={`${import.meta.env.BASE_URL}assets/images/mobile/${pathname}`}
+        // src={`${window.envConfig.assetsPath}assets/images/mobile/${pathname}`}
         src={pathname}
         alt={alt || ""}
         width={"100%"}

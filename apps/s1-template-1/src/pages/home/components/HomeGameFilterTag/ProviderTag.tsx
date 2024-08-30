@@ -63,7 +63,7 @@ const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
       <Wrapper $isActive={isActive}>
         <img
           onClick={onClick}
-          src={`${import.meta.env.BASE_URL
+          src={`${window.envConfig.assetsPath
             }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
           alt={text}
         />
