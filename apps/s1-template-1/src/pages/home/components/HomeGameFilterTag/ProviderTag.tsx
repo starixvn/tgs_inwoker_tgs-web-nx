@@ -1,6 +1,7 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 import { providerStatus } from "@tgs-web-nx/constants";
+import { utility } from "@tgs-web-nx/utils";
 import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
 
 const Wrapper = styled.div<{
@@ -63,8 +64,9 @@ const ProviderTag = ({ text, gpCode, isActive, onClick, status }: Props) => {
       <Wrapper $isActive={isActive}>
         <img
           onClick={onClick}
-          src={`${window.envConfig.assetsPath
-            }assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
+          src={`${utility.imagePathGenerator(
+            `home/provider_logo/${activeGameTypeKey}/${gpCode}.png`,
+          )}`}
           alt={text}
         />
         {status === providerStatus.Maintenance && (

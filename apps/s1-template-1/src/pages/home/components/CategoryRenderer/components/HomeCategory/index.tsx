@@ -3,7 +3,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHistory } from "react-router-dom";
 import { useGetHomeCategoryList, useHomeGameContext, useJackpot } from "@tgs-web-nx/core/features";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import GameCard from "../../../GameCard";
@@ -229,13 +229,11 @@ const HomeCategory = () => {
             return (
               <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`${window.envConfig.assetsPath}assets/images/home/desktop/liveCasino/bg.png`}
+                bgUrl={`${utility.imagePathGenerator("home/desktop/liveCasino/bg.png")}`}
                 imageUrl={`${
-                  window.envConfig.assetsPath
-                }assets/images/home/desktop/liveCasino/${gpCode}.png`}
+                  utility.imagePathGenerator(`home/desktop/liveCasino/${gpCode}.png`)}`}
                 venderLogoUrl={`${
-                  window.envConfig.assetsPath
-                }assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
+                 utility.imagePathGenerator(`home/provider_logo/liveCasino/${gpCode}.png`)}`}
                 launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.LIVE)}
                 status={status}
                 venderName={name}
@@ -255,13 +253,11 @@ const HomeCategory = () => {
             return (
               <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`${window.envConfig.assetsPath}assets/images/home/desktop/sports/bg.png`}
+                bgUrl={`${utility.imagePathGenerator("assets/images/home/desktop/sports/bg.png")}`}
                 imageUrl={`${
-                  window.envConfig.assetsPath
-                }assets/images/home/desktop/sports/${gpCode}.png`}
+                  utility.imagePathGenerator(`home/desktop/sports/${gpCode}.png`)}`}
                 venderLogoUrl={`${
-                  window.envConfig.assetsPath
-                }assets/images/home/provider_logo/sports/${gpCode}.png`}
+                  utility.imagePathGenerator(`home/provider_logo/sports/${gpCode}.png`)}`}
                 launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.SPORTS)}
                 status={status}
                 venderName={name}

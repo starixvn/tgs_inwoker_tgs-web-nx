@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, utility } from "@tgs-web-nx/utils";
 import refreshIcon from "@/assets/t28/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
@@ -140,7 +140,7 @@ const VipProgressWidgetWrapper = styled.div`
       .icon {
         width: 30px;
         height: 30px;
-        mask: url(${window.envConfig.assetsPath + "/assets/images/iconpack/reload.png"}) no-repeat
+        mask: url(${utility.imagePathGenerator("iconpack/reload.png")}) no-repeat
           center;
         mask-size: contain;
         background: ${({ theme }) => theme.primaryText};
@@ -230,14 +230,14 @@ const VipProgressWidget = () => {
         <div className="outer-progressbar">
           <img
             className="icon"
-            src={`${window.envConfig.assetsPath}assets/images/vip/${icon}.png`}
+            src={`${utility.imagePathGenerator(`vip/${icon}.png`)}`}
             alt={icon}
           />
           <div className="progressbar">
             <div className="fill" style={{ width: fill + "%", background: color }} />
             <img
               className="slashed"
-              src={`${window.envConfig.assetsPath}assets/images/vip/slashed.png`}
+              src={`${utility.imagePathGenerator("vip/slashed.png")}`}
               alt="lines"
             />
           </div>

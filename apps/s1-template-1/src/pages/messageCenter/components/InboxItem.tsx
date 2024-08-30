@@ -3,6 +3,7 @@ import moment from "moment";
 import { useState } from "react";
 import styled from "styled-components";
 import { InboxMessage } from "@tgs-web-nx/types";
+import { utility } from "@tgs-web-nx/utils";
 
 const InboxItemContainer = styled.div`
   width: 100%;
@@ -64,8 +65,7 @@ const CheckboxCircle = styled.div<CheckboxCircleProps>`
   ${(props: CheckboxCircleProps) =>
     props.checked
       ? `background: url(${
-          window.envConfig.assetsPath + `assets/images/wapp/icon-inbox-checked.png`
-        }) no-repeat;`
+        utility.imagePathGenerator("wapp/icon-inbox-checked.png")}) no-repeat;`
       : `border-radius: 23px;
     border: 2px solid #949494;`}
 `;

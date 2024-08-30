@@ -4,6 +4,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { utility } from "@tgs-web-nx/utils";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -68,12 +69,9 @@ const NavCategory = () => {
             return (
               <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`${window.envConfig.assetsPath
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/bg.png`}
-                imageUrl={`${window.envConfig.assetsPath
-                  }assets/images/home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`}
-                venderLogoUrl={`${window.envConfig.assetsPath
-                  }assets/images/home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`}
+                bgUrl={`${utility.imagePathGenerator(`home/desktop/${activeNavPopupGameTypeKey}/bg.png`)}`}
+                imageUrl={`${utility.imagePathGenerator(`home/desktop/${activeNavPopupGameTypeKey}/${gpCode}.png`)}`}
+                venderLogoUrl={`${utility.imagePathGenerator(`home/provider_logo/${activeNavPopupGameTypeKey}/${gpCode}.png`)}`}
                 launchGame={() => enterVendorFilter(gpCode)}
                 status={status}
                 venderName={name}

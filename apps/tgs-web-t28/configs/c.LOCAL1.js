@@ -2,6 +2,7 @@ window.envConfig = {
   baseUrl: "",
   operatorPath: "/operator/api/",
   brandPath: "/brand/api/",
+  assetsPath: "/repository/",
   client: "XJY9uX5RarE5wrOkTHAgkQoGKMuNFxKIXF4A6zR4BfgCHNs1tC7zDv",
   currency: "HKD",
   brand: "GMO",

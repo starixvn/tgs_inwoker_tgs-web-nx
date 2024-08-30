@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import { UiService, useGeneralStore } from "@tgs-web-nx/core";
 import { useLocation } from "react-router";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
@@ -23,12 +23,12 @@ const MaintenanceBg = styled.div`
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url(${window.envConfig.assetsPath}assets/images/maintenance/maintenance_bg.png) center;
+  background: url(${utility.imagePathGenerator("assets/images/maintenance/maintenance_bg.png")}) center;
   background-size: cover;
   //background-position: center;
 
   ${media.sm} {
-    background: url(${window.envConfig.assetsPath}assets/images/maintenance/maintenance_desktop_bg.png)
+    background: url(${utility.imagePathGenerator("assets/images/maintenance/maintenance_desktop_bg.png")})
       center;
   }
 `;

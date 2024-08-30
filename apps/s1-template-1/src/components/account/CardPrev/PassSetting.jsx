@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { Modal, styled as muiStyled } from "@mui/material";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, utility } from "@tgs-web-nx/utils";
 import { accountAction, AccountService, UPDATE_INFO } from "@tgs-web-nx/core";
 import Loading from "@/components/UI/Loading";
 import { Button } from "@/components/UI/Button";
@@ -20,13 +20,13 @@ const SubTitle = styled.div`
   color: #4a4a4a;
 `;
 
+const BottomLogo = utility.imagePathGenerator("/wapp/icon-red-info.png");
 const BottomInfo = styled.div`
   font-size: 22px;
   font-weight: 600;
   height: 30px;
   color: #e23a3f;
-  background: url(${window.envConfig.assetsPath + `assets/images/wapp/icon-red-info.png`}) no-repeat
-    left center;
+  background: url(${BottomLogo}) no-repeat left center;
   padding-left: 40px;
   display: table;
   margin: 0 auto;
