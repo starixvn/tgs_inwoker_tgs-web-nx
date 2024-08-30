@@ -9,8 +9,8 @@ const config = {
   // operatorPath: "https://localhost:7001/api/", //dev
   brandPath: "/brand/api/",
   // brandPath: "http://localhost:5006/api/", // dev
-  //assetsPath: "https://assets-repository.nexentgame.com/", //dev
-  assetsPath: "/repository/",
+  assetsPath: "https://assets-repository.nexentgame.com/", //dev
+  //assetsPath: "/repository/",
   client: "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
   currency: "HKD",
   brand: "GPI", //TODO: Need dynamic here
