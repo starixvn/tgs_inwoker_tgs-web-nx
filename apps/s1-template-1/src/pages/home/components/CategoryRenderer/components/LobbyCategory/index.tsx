@@ -1,17 +1,12 @@
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
+import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
+import { media } from "@/theme/breakpoints";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { Common } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { utility } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import MobileFooter from "../../../MobileFooter";
-import MobileVendorCard from "@/pages/home/components/VendorCard/mobile";
-import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
-import GameTypeTab from "@/pages/home/components/GameTypeTab";
-import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { Common, utility } from "@tgs-web-nx/utils";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -112,7 +107,9 @@ const LobbyCategory = () => {
                   //t28 image與component desktop和mobile可共用
                   <DesktopVendorCard
                     key={gpCode}
-                    bgUrl={`${utility.imagePathGenerator(`assets/images/home/desktop/${activeGameTypeKey}/mbg.png`)}`}
+                    bgUrl={`${utility.imagePathGenerator(
+                      `assets/images/home/desktop/${activeGameTypeKey}/mbg.png`,
+                    )}`}
                     imageUrl={`/assets/images/home/desktop/${activeGameTypeKey}/${gpCode}.png`}
                     venderLogoUrl={`/assets/images/home/provider_logo/${activeGameTypeKey}/${gpCode}.png`}
                     launchGame={() => launchLobbyGame(gpCode)}
@@ -123,7 +120,6 @@ const LobbyCategory = () => {
               })}
             {!hasMappingData && <div>No data</div>}
           </CategoryContent>
-          {<MobileFooter />}
         </CategoryContentWrapper>
       )}
       {isDesktopSize && (
@@ -136,9 +132,15 @@ const LobbyCategory = () => {
               return (
                 <DesktopVendorCard
                   key={gpCode}
-                  bgUrl={`${utility.imagePathGenerator(`home/desktop/${activeGameTypeKey}/bg.png`)}`}
-                  imageUrl={`${utility.imagePathGenerator(`home/desktop/${activeGameTypeKey}/${gpCode}.png`)}`}
-                  venderLogoUrl={`${utility.imagePathGenerator(`home/provider_logo/${activeGameTypeKey}/${gpCode}.png`)}`}
+                  bgUrl={`${utility.imagePathGenerator(
+                    `home/desktop/${activeGameTypeKey}/bg.png`,
+                  )}`}
+                  imageUrl={`${utility.imagePathGenerator(
+                    `home/desktop/${activeGameTypeKey}/${gpCode}.png`,
+                  )}`}
+                  venderLogoUrl={`${utility.imagePathGenerator(
+                    `home/provider_logo/${activeGameTypeKey}/${gpCode}.png`,
+                  )}`}
                   launchGame={() => launchLobbyGame(gpCode)}
                   status={status}
                   venderName={name}

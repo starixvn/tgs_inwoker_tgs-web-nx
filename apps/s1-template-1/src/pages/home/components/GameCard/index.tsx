@@ -1,15 +1,15 @@
-import { MouseEvent, useState } from "react";
-import { useHistory } from "react-router";
-import styled from "styled-components";
-import { GameItem } from "@tgs-web-nx/types";
-import { Common } from "@tgs-web-nx/utils";
+import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
+import playIcon from "@/assets/t28/images/home/play.svg";
+import Favorite from "@/pages/home/components/Favorite";
+import { media } from "@/theme/breakpoints";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import Favorite from "@/pages/home/components/Favorite";
-import { media } from "@/theme/breakpoints";
-import playIcon from "@/assets/t28/images/home/play.svg";
-import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
+import { GameItem } from "@tgs-web-nx/types";
+import { Common } from "@tgs-web-nx/utils";
+import { MouseEvent, useState } from "react";
+import { useHistory } from "react-router";
+import styled from "styled-components";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -79,8 +79,9 @@ const GameCardBg = styled.div`
   flex-shrink: 0;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 161 / 161;
-  border-radius: 10px;
+  aspect-ratio: 140 / 189;
+  border-radius: 1rem;
+  background-color: grey;
 
   ${media.sm} {
     width: calc(16.67% - 6px);
