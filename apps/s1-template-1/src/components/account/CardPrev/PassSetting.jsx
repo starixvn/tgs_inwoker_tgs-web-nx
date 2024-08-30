@@ -25,7 +25,7 @@ const BottomInfo = styled.div`
   font-weight: 600;
   height: 30px;
   color: #e23a3f;
-  background: url(${import.meta.env.BASE_URL + `assets/images/wapp/icon-red-info.png`}) no-repeat
+  background: url(${window.envConfig.assetsPath + `assets/images/wapp/icon-red-info.png`}) no-repeat
     left center;
   padding-left: 40px;
   display: table;

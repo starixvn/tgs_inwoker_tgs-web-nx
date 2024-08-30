@@ -12,15 +12,15 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 import { theme } from "@/theme";
 
 export const imageMap: { [key in string]: string } = {
-  "zh-CN": import.meta.env.BASE_URL + `assets/images/language/zh-CN.png`,
-  "zh-TW": import.meta.env.BASE_URL + `assets/images/language/zh-TW.png`,
-  "en-US": import.meta.env.BASE_URL + `assets/images/language/en-US.png`,
-  "th-TH": import.meta.env.BASE_URL + `assets/images/language/th-TH.png`,
-  "vi-VN": import.meta.env.BASE_URL + `assets/images/language/vi-VN.png`,
-  "id-ID": import.meta.env.BASE_URL + `assets/images/language/id-ID.png`,
-  "tgl-PH": import.meta.env.BASE_URL + `assets/images/language/tgl-PH.png`,
-  "hi-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
-  "ta-IN": import.meta.env.BASE_URL + `assets/images/language/hi-IN.png`,
+  "zh-CN": window.envConfig.assetsPath + `assets/images/language/zh-CN.png`,
+  "zh-TW": window.envConfig.assetsPath + `assets/images/language/zh-TW.png`,
+  "en-US": window.envConfig.assetsPath + `assets/images/language/en-US.png`,
+  "th-TH": window.envConfig.assetsPath + `assets/images/language/th-TH.png`,
+  "vi-VN": window.envConfig.assetsPath + `assets/images/language/vi-VN.png`,
+  "id-ID": window.envConfig.assetsPath + `assets/images/language/id-ID.png`,
+  "tgl-PH": window.envConfig.assetsPath + `assets/images/language/tgl-PH.png`,
+  "hi-IN": window.envConfig.assetsPath + `assets/images/language/hi-IN.png`,
+  "ta-IN": window.envConfig.assetsPath + `assets/images/language/hi-IN.png`,
 };
 
 const StyledSelect = styled(MuiSelect)`

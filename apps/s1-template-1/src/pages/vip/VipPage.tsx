@@ -167,7 +167,7 @@ const VIP = () => {
     <PageContainer>
       {isLoading && <Loading show={true} />}
       <VipBannerWrapper>
-        <VipBanner $imageUrl={`${import.meta.env.BASE_URL}assets/images/vip/vip-banner.png`} />
+        <VipBanner $imageUrl={`${window.envConfig.assetsPath}assets/images/vip/vip-banner.png`} />
       </VipBannerWrapper>
       <VipContentContainer>
         <VIPIconWrapper>
@@ -183,7 +183,7 @@ const VIP = () => {
                   }}
                 >
                   <img
-                    src={`${import.meta.env.BASE_URL}assets/images/vip/level_${vip.level}.png`}
+                    src={`${window.envConfig.assetsPath}assets/images/vip/level_${vip.level}.png`}
                     alt={`VIP${vip.level}`}
                   />
                   <VIPText>{`VIP${vip.level}`}</VIPText>

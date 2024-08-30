@@ -229,12 +229,12 @@ const HomeCategory = () => {
             return (
               <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/liveCasino/bg.png`}
+                bgUrl={`${window.envConfig.assetsPath}assets/images/home/desktop/liveCasino/bg.png`}
                 imageUrl={`${
-                  import.meta.env.BASE_URL
+                  window.envConfig.assetsPath
                 }assets/images/home/desktop/liveCasino/${gpCode}.png`}
                 venderLogoUrl={`${
-                  import.meta.env.BASE_URL
+                  window.envConfig.assetsPath
                 }assets/images/home/provider_logo/liveCasino/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.LIVE)}
                 status={status}
@@ -255,12 +255,12 @@ const HomeCategory = () => {
             return (
               <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/sports/bg.png`}
+                bgUrl={`${window.envConfig.assetsPath}assets/images/home/desktop/sports/bg.png`}
                 imageUrl={`${
-                  import.meta.env.BASE_URL
+                  window.envConfig.assetsPath
                 }assets/images/home/desktop/sports/${gpCode}.png`}
                 venderLogoUrl={`${
-                  import.meta.env.BASE_URL
+                  window.envConfig.assetsPath
                 }assets/images/home/provider_logo/sports/${gpCode}.png`}
                 launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.SPORTS)}
                 status={status}

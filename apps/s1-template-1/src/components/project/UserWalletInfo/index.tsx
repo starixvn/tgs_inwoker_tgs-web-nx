@@ -180,7 +180,7 @@ const UserWalletInfo = () => {
               <img
                 width={"50px"}
                 height={"50px"}
-                src={`${import.meta.env.BASE_URL}assets/images/vip/level_${
+                src={`${window.envConfig.assetsPath}assets/images/vip/level_${
                   info.member_level_id
                 }.png`}
                 alt={`level_${info.member_level_id}`}

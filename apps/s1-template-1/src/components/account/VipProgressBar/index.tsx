@@ -140,7 +140,7 @@ const VipProgressWidgetWrapper = styled.div`
       .icon {
         width: 30px;
         height: 30px;
-        mask: url(${import.meta.env.BASE_URL + "/assets/images/iconpack/reload.png"}) no-repeat
+        mask: url(${window.envConfig.assetsPath + "/assets/images/iconpack/reload.png"}) no-repeat
           center;
         mask-size: contain;
         background: ${({ theme }) => theme.primaryText};
@@ -230,14 +230,14 @@ const VipProgressWidget = () => {
         <div className="outer-progressbar">
           <img
             className="icon"
-            src={`${import.meta.env.BASE_URL}assets/images/vip/${icon}.png`}
+            src={`${window.envConfig.assetsPath}assets/images/vip/${icon}.png`}
             alt={icon}
           />
           <div className="progressbar">
             <div className="fill" style={{ width: fill + "%", background: color }} />
             <img
               className="slashed"
-              src={`${import.meta.env.BASE_URL}assets/images/vip/slashed.png`}
+              src={`${window.envConfig.assetsPath}assets/images/vip/slashed.png`}
               alt="lines"
             />
           </div>
