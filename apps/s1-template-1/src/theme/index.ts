@@ -10,7 +10,7 @@ export const theme = {
   darkPurple: "#170A2F",
   middlePurple: "#1A0B39",
   lightPurple: "#935FFC",
-  mainBackground: "#050505",
+  mainBackground: "#0D131C",
   memberSection: "#141414",
   NavBGC: "#19212C",
   secBTNBGC: "#242424",
@@ -31,4 +31,8 @@ export const theme = {
   categoryBackgroundActive: "linear-gradient(180deg, #A0B60F 0%, #6C7B0A 100%)",
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
   viewAllLinkColor: "#E2FE26",
+  recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
+  recentBigWinsBottomBackground:
+    "linear-gradient(180deg, rgba(22, 75, 153, 0) 4.38%, #065cdc 169.37%)",
+  bigWinsAmountColor: "#e2fe26",
 };

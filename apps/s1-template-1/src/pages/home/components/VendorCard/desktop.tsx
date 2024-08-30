@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react";
-import styled from "styled-components";
-import { providerStatus } from "@tgs-web-nx/constants";
-import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
-import { media } from "@/theme/breakpoints";
 import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
 import playIcon from "@/assets/t28/images/home/play.svg";
+import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
+import { media } from "@/theme/breakpoints";
+import { providerStatus } from "@tgs-web-nx/constants";
+import { useEffect, useRef } from "react";
+import styled from "styled-components";
 
 type Props = {
   bgUrl: string;
@@ -24,6 +24,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   height: 100%;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
+  border-radius: 1.2rem;
 `;
 
 const VendorCardHoverBg = styled.div`
@@ -43,7 +44,7 @@ const VendorCardBg = styled.div`
   min-width: 121px;
   width: calc(33.33% - 8px);
   height: 100%;
-  aspect-ratio: 248 / 315;
+  aspect-ratio: 140 / 189;
   position: relative;
   flex-shrink: 0;
   transition: transform 0.6s ease 0s;
@@ -67,16 +68,17 @@ const VendorCardBg = styled.div`
 const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   z-index: 100;
   position: absolute;
-  left: 20%;
-  top: 75%;
-  border-radius: 15px;
+  left: 50%;
+  top: 70%;
   display: inline-flex;
   width: 100%;
-  max-width: 85px;
-  min-height: 38px;
+  max-width: 8.5rem;
+  min-height: 3rem;
   background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-50%, -50%);
   ${media.sm} {
     left: 40%;
     top: 85%;
@@ -110,7 +112,8 @@ const GradientOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 30%;
-  background: linear-gradient(180deg, rgba(86, 20, 183, 0) 0%, #5614b7 80.21%);
+  background: linear-gradient(180deg, rgba(244, 47, 47, 0) 0%, rgba(244, 47, 47, 1) 80.21%);
+  border-radius: 0 0 1.2rem 1.2rem;
 `;
 
 const PlayIcon = styled.img`
@@ -139,13 +142,15 @@ const DesktopVendorCard = ({ imageUrl, venderLogoUrl, launchGame, status }: Prop
   return (
     <VendorCardBg onClick={launchGameHandler}>
       <GameIcon $imageUrl={imageUrl}></GameIcon>
-      {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
-      {status === providerStatus.Maintenance && (
-        <MaintenanceBg>
-          <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-        </MaintenanceBg>
-      )}
-      <GradientOverlay />
+
+      <GradientOverlay>
+        {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
+        {status === providerStatus.Maintenance && (
+          <MaintenanceBg>
+            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+          </MaintenanceBg>
+        )}
+      </GradientOverlay>
       <VendorCardHoverBg onClick={launchGameHandler}>
         <PlayIcon src={playIcon} alt={"play"} />
       </VendorCardHoverBg>

@@ -2,6 +2,8 @@ import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 import { getFormatAmount } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
+import { theme } from "../../../../../../../../theme";
+
 const RecentBigWinsSection = styled.div`
   position: relative;
   width: 100%;
@@ -10,7 +12,7 @@ const RecentBigWinsSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  background: linear-gradient(180deg, #1c2532 0%, #1c2532 100%);
+  background: ${({ theme }) => theme.recentBigWinsBackground};
   border-radius: 1rem;
 
   &:after {
@@ -20,7 +22,7 @@ const RecentBigWinsSection = styled.div`
     right: 0;
     bottom: 0;
     height: 8rem;
-    background: linear-gradient(180deg, rgba(22, 75, 153, 0) 4.38%, #065cdc 169.37%);
+    background: ${({ theme }) => theme.recentBigWinsBottomBackground};
   }
 `;
 
@@ -34,11 +36,11 @@ const Row = styled.div`
 `;
 
 const GameName = styled.div`
-  color: #fff;
+  color: ${({ theme }) => theme.white};
 `;
 
 const BigWinsAmount = styled.div`
-  color: #e2fe26;
+  color: ${({ theme }) => theme.bigWinsAmountColor};
   text-align: right;
 `;
 
@@ -48,7 +50,7 @@ const PlayNowButton = muiStyled(MuiButton)(({ theme }) => ({
   alignItems: "center",
   gap: "0.4rem",
   background: theme.palette.playNowButtonBackground,
-  height: "2.8rem",
+  height: "3.6rem",
   padding: "0.6rem",
   color: theme.palette.white,
   fontFamily: "inherit",
