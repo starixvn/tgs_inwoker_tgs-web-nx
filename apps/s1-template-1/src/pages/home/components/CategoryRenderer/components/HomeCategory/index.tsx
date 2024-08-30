@@ -163,6 +163,8 @@ const HomeCategory = () => {
     { name: "PERDITA", amount: 666465825, code: "perdita" },
   ];
 
+  console.log(utility.imagePathGenerator("home/desktop/liveCasino/bg.png"));
+
   return (
     <DesktopContainer>
       <GameTypeContainer>
@@ -187,13 +189,9 @@ const HomeCategory = () => {
             return (
               <DesktopVendorCard
                 key={gpCode}
-                bgUrl={`${import.meta.env.BASE_URL}assets/images/home/desktop/sports/bg.png`}
-                imageUrl={`${
-                  import.meta.env.BASE_URL
-                }assets/images/home/desktop/sports/${gpCode}.png`}
-                venderLogoUrl={`${
-                  import.meta.env.BASE_URL
-                }assets/images/home/provider_logo/sports/${gpCode}.png`}
+                bgUrl={`${utility.imagePathGenerator("home/desktop/sports/bg.png")}`}
+                imageUrl={`${utility.imagePathGenerator(`home/desktop/sports/${gpCode}.png`)}`}
+                venderLogoUrl={`${utility.imagePathGenerator(`home/provider_logo/sports/${gpCode}.png`)}`}
                 launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.SPORTS)}
                 status={status}
                 venderName={name}
