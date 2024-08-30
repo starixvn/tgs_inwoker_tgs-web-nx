@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import styled from "styled-components";
 import { BrandsSupport } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, utility } from "@tgs-web-nx/utils";
 import Icon from "@/components/project/Icon";
 import { media } from "@/theme/breakpoints";
 import { Button } from "@/components/UI/Button";
@@ -76,9 +76,9 @@ const SupportCard = ({ brandsSupport, handleClick }: Props) => {
   return (
     <SupportCardContainer onClick={handleClickCard}>
       <Icon
-        iconUrl={`${window.envConfig.assetsPath}assets/images/support/${iconSwitcher(
+        iconUrl={`${utility.imagePathGenerator(`support/${iconSwitcher(
           brandsSupport.type,
-        )}`}
+        )}`)}`}
         width={"55px"}
         height={"55px"}
       />

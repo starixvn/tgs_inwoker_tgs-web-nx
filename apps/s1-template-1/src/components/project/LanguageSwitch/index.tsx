@@ -7,20 +7,20 @@ import {
 } from "@mui/material";
 import styled from "styled-components";
 import { BrandLanguage } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, utility } from "@tgs-web-nx/utils";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { theme } from "@/theme";
 
 export const imageMap: { [key in string]: string } = {
-  "zh-CN": window.envConfig.assetsPath + `assets/images/language/zh-CN.png`,
-  "zh-TW": window.envConfig.assetsPath + `assets/images/language/zh-TW.png`,
-  "en-US": window.envConfig.assetsPath + `assets/images/language/en-US.png`,
-  "th-TH": window.envConfig.assetsPath + `assets/images/language/th-TH.png`,
-  "vi-VN": window.envConfig.assetsPath + `assets/images/language/vi-VN.png`,
-  "id-ID": window.envConfig.assetsPath + `assets/images/language/id-ID.png`,
-  "tgl-PH": window.envConfig.assetsPath + `assets/images/language/tgl-PH.png`,
-  "hi-IN": window.envConfig.assetsPath + `assets/images/language/hi-IN.png`,
-  "ta-IN": window.envConfig.assetsPath + `assets/images/language/hi-IN.png`,
+  "zh-CN": utility.imagePathGenerator("language/zh-CN.png"),
+  "zh-TW": utility.imagePathGenerator("language/zh-TW.png"),
+  "en-US": utility.imagePathGenerator("language/en-US.png"),
+  "th-TH": utility.imagePathGenerator("language/th-TH.png"),
+  "vi-VN": utility.imagePathGenerator("language/vi-VN.png"),
+  "id-ID": utility.imagePathGenerator("language/id-ID.png"),
+  "tgl-PH": utility.imagePathGenerator("language/tgl-PH.png"),
+  "hi-IN": utility.imagePathGenerator("language/hi-IN.png"),
+  "ta-IN": utility.imagePathGenerator("language/hi-IN.png")
 };
 
 const StyledSelect = styled(MuiSelect)`

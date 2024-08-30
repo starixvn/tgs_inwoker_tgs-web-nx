@@ -2,7 +2,7 @@ import React from "react";
 import styled, { DefaultTheme, keyframes } from "styled-components";
 import DynamicFont from "react-dynamic-font";
 import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import refreshIcon from "@/assets/t28/images/account/icon-refresh.svg";
@@ -180,9 +180,7 @@ const UserWalletInfo = () => {
               <img
                 width={"50px"}
                 height={"50px"}
-                src={`${window.envConfig.assetsPath}assets/images/vip/level_${
-                  info.member_level_id
-                }.png`}
+                src={utility.imagePathGenerator(`vip/level_${info.member_level_id}.png`)}
                 alt={`level_${info.member_level_id}`}
               />
               VIP

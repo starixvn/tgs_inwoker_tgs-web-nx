@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { VipData } from "@tgs-web-nx/types";
 import { useVipBonusList } from "@tgs-web-nx/core/hooks";
+import { utility } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
 
 const ScrollableContainer = styled.div`
@@ -165,9 +166,7 @@ const BonusTable = ({ vipSortingData }: Props) => {
                     <img
                       width={"50px"}
                       height={"50px"}
-                      src={`${window.envConfig.assetsPath}assets/images/vip/level_${
-                        vipData.level
-                      }.png`}
+                      src={utility.imagePathGenerator(`vip/level_${vipData.level}.png`)}
                       alt={`level_${vipData.level}`}
                     />
                     <span>VIP{vipData.level}</span>

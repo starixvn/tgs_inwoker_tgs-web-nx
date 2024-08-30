@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { utility } from "@tgs-web-nx/utils";
 import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
 import Arrow from "@/assets/t18/images/bettingBonus/icon_arrow.svg";
 import LevelIcon from "@/components/UI/LevelIcon";
 import { media } from "@/theme/breakpoints";
+
 
 const CurrentLevelBannerContainer = styled.div`
   width: 100%;
@@ -15,9 +17,7 @@ const CurrentLevelBannerContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 17px;
-  background-image: url(${`${
-    window.envConfig.assetsPath
-  }assets/images/mobile/bettingBonus/current_level_bg.png`});
+  background-image: url(${utility.imagePathGenerator("mobile/bettingBonus/current_level_bg.png")});
   background-position: left center;
 `;
 const LevelIconContainer = styled.div`

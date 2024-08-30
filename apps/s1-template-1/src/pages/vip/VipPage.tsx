@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { useBettingBonus, useRwd } from "@tgs-web-nx/core/hooks";
 import { useUpdatePageName } from "@tgs-web-nx/core/features";
-import { i18n } from "@tgs-web-nx/utils";
+import { i18n, utility } from "@tgs-web-nx/utils";
 import { media } from "@/theme/breakpoints";
 import Loading from "@/components/UI/Loading";
 import { PageContainer } from "@/components/styled-component/PageContainer";
@@ -167,7 +167,7 @@ const VIP = () => {
     <PageContainer>
       {isLoading && <Loading show={true} />}
       <VipBannerWrapper>
-        <VipBanner $imageUrl={`${window.envConfig.assetsPath}assets/images/vip/vip-banner.png`} />
+        <VipBanner $imageUrl={utility.imagePathGenerator("vip/vip-banner.png")} />
       </VipBannerWrapper>
       <VipContentContainer>
         <VIPIconWrapper>
@@ -183,7 +183,8 @@ const VIP = () => {
                   }}
                 >
                   <img
-                    src={`${window.envConfig.assetsPath}assets/images/vip/level_${vip.level}.png`}
+                  
+                    src={utility.imagePathGenerator(`vip/level_${vip.level}.png`)}
                     alt={`VIP${vip.level}`}
                   />
                   <VIPText>{`VIP${vip.level}`}</VIPText>

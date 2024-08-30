@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { utility } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
 import { PlayerInfo, PlayerName, VIPLabel } from "@/components/project/UserWalletInfo/index";
 import VipProgressBar from "@/components/account/VipProgressBar";
@@ -33,7 +34,7 @@ const InfoCard = (props: React.HTMLProps<HTMLDivElement>) => {
             <img
               width={"50px"}
               height={"50px"}
-              src={`${window.envConfig.assetsPath}assets/images/vip/level_${accountLevel}.png`}
+              src={`${utility.imagePathGenerator(`assets/images/vip/level_${accountLevel}.png`)}`}
               alt={`level_${accountLevel}`}
             />
             VIP
