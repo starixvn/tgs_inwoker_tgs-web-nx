@@ -29,6 +29,7 @@ declare module "@mui/material/styles/createPalette" {
     inputBGC: string;
     popupMask: string;
     secPopupMask: string;
+    playNowButtonBackground: string;
   }
 }
 
@@ -78,6 +79,7 @@ const muiTheme = createTheme({
       primary: theme.white,
       secondary: theme.gray50,
     },
+    playNowButtonBackground: theme.playNowButtonBackground,
   },
   typography: {
     fontWeightLight: 300,
