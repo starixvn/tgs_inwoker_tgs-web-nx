@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import {
   AccountService,
   useAccountStore,
@@ -29,7 +30,7 @@ export function useLogin() {
 
   const history = useHistory();
   const location = useLocation();
-  const { accountLogin, getAccountInfo } = useAccountStore();
+  const { accountLogin, accountLoginGoogle, getAccountInfo } = useAccountStore();
   const walletStore = useWalletStore();
   const inboxStore = useInboxStore();
   const generalStore = useGeneralStore();
@@ -64,6 +65,39 @@ export function useLogin() {
         }
 
         await handleLoginSuccess(username, needToRemember);
+        setLoginState({
+          isLoading: false,
+          data: result,
+          error: null,
+        });
+      }
+    } catch (error: any) {
+      handleLoginError(error);
+      throw error;
+    }
+  };
+
+  const handleLoginGoogle = async (token: string) => {
+    try {
+      setLoginState({ isLoading: true, data: null, error: null });
+
+      const result = await accountLoginGoogle(token);
+
+      if (!result?.IsSuccess) {
+        handleLoginFailure(result?.code);
+      } else {
+        // validate if register completed
+        const isRegisterStateComplete = await examineRegisterStatus("");
+        if (!isRegisterStateComplete) {
+          setLoginState({
+            isLoading: false,
+            data: null,
+            error: null,
+          });
+          return;
+        }
+
+        await handleLoginSuccess("", false);
         setLoginState({
           isLoading: false,
           data: result,
@@ -184,6 +218,7 @@ export function useLogin() {
   return {
     loginState,
     handleLogin,
+    handleLoginGoogle,
     clearLoginError,
   };
 }

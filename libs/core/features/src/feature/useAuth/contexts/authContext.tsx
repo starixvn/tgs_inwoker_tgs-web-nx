@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import { RegisterReqDto, RegisterV2CreatePlayerReqDto } from "@tgs-web-nx/types";
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { useAccountStore } from "@tgs-web-nx/core";
 import { LoginState, useLogin } from "../hooks/useLogin";
 import { LogoutState, useLogout } from "../hooks/useLogout";
@@ -9,6 +10,7 @@ const initialState: {
   loginState: LoginState;
   logoutState: LogoutState;
   registerState: RegisterState;
+  handleLoginGoogle: (token: string) => Promise<void>;
   handleLogin: (username: string, password: string, needToRemember?: boolean) => Promise<void>;
   handleLogout: () => Promise<void>;
   handleRegister: (registerReqDto: RegisterReqDto) => Promise<void>;
@@ -33,6 +35,7 @@ const initialState: {
     error: null,
   },
   handleLogin: (username: string, password: string, needToRemember?: boolean) => Promise.resolve(),
+  handleLoginGoogle: (token: string) => Promise.resolve(),
   handleLogout: () => Promise.resolve(),
   handleRegister: () => Promise.resolve(),
   isAuthLoading: false,
@@ -50,7 +53,7 @@ type ProviderProps = {
 };
 
 export const AuthContextProvider = ({ children }: ProviderProps) => {
-  const { loginState, handleLogin, clearLoginError } = useLogin();
+  const { loginState, handleLogin, handleLoginGoogle, clearLoginError } = useLogin();
   const { logoutState, handleLogout } = useLogout();
   const { registerState, handleRegister, clearRegisterError } = useRegister();
   const { account } = useAccountStore();
@@ -63,6 +66,7 @@ export const AuthContextProvider = ({ children }: ProviderProps) => {
       value={{
         loginState,
         handleLogin,
+        handleLoginGoogle,
         logoutState,
         handleLogout,
         registerState,

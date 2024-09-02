@@ -107,6 +107,37 @@ export function useAccountStore() {
     }
   }, []);
 
+  const accountLoginGoogle = useCallback(async (token: string) => {
+    dispatch({
+      type: LOGIN_BEGIN,
+      loading: true,
+    });
+    try {
+      const response = await AccountService.LoginGoogle(token);
+      if (response?.IsSuccess) {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: response,
+          loading: false,
+        });
+      } else {
+        dispatch({
+          type: LOGIN_FAILURE,
+          payload: response,
+          loading: false,
+        });
+      }
+
+      return response;
+    } catch (e: any) {
+      dispatch({
+        type: UPDATECARDNO_FAILURE,
+        payload: e.status,
+        loading: false,
+      });
+    }
+  }, []);
+
   const accountLogout = useCallback(async (token: string) => {
     dispatch({
       type: LOGOUT_BEGIN,
@@ -404,6 +435,7 @@ export function useAccountStore() {
     account,
     updateMemberCardNo,
     accountLogin,
+    accountLoginGoogle,
     accountLogout,
     checkTokenIsValid,
     getAccountInfo,

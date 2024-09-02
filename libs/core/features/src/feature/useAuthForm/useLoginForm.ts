@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { FormikValues } from "formik";
 import { useHistory } from "react-router-dom";
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthContext } from "../useAuth";
 import { useAuthDialog } from "../useAuthDialog/hooks/useAuthDialog";
 import { useGenerateLoginFormik } from "./hooks/useGenerateLoginFormik";
 
 export function useLoginForm() {
-  const { loginState, handleLogin, clearLoginError } = useAuthContext();
+  const { loginState, handleLogin, handleLoginGoogle, clearLoginError } = useAuthContext();
   const [needToRemember, setNeedToRemember] = useState<boolean>(getNeedToRememberInitValue());
   const { handleToggleLoginDialog, handleToggleForgotPasswordDialog } = useAuthDialog();
   const { isDesktopSize } = useRwd();
@@ -55,6 +56,7 @@ export function useLoginForm() {
 
   return {
     formInputConfigList,
+    handleLoginGoogle,
     formik,
     isLoading: loginState.isLoading,
     loginError: loginState.error,

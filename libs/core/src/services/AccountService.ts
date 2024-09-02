@@ -26,6 +26,13 @@ function CheckUserName(username: string) {
   return ApiService.get(`Player/checkUsername?=${username}`);
 }
 
+function LoginGoogle(token: string) {
+  return ApiService.post("Player/login-google", {
+    token: token,
+    platformtype: config.isPC
+  }) as unknown as Promise<LoginResDto>;
+}
+
 function Login(username: string, password: string) {
   return ApiService.post("Player/Login", {
     username: username,
@@ -307,6 +314,7 @@ function checkPhoneDuplicate(area: string, phone: string) {
 export const AccountService = {
   CheckUserName,
   Login,
+  LoginGoogle,
   Register,
   Activation,
   VerifyActivation,

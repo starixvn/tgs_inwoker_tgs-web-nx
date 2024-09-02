@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { FormikValues } from "formik";
 import { i18n } from "@tgs-web-nx/utils";
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useAuthContext } from "../useAuth";
 import { useAuthDialog } from "../useAuthDialog/hooks/useAuthDialog";

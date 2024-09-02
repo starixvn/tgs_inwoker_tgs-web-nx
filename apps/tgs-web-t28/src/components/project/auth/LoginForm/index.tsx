@@ -1,6 +1,9 @@
 import { i18n } from "@tgs-web-nx/utils";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { AccountService } from "@tgs-web-nx/core";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 import FormikForm from "@/components/project/FormikForm";
 import { Checkbox } from "@/components/UI/Checkbox";
 import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
@@ -20,6 +23,7 @@ import BrandLogo from "@/components/project/BrandLogo";
 const LoginForm = () => {
   const {
     formInputConfigList,
+    handleLoginGoogle,
     formik,
     isLoading,
     loginError,
@@ -64,6 +68,11 @@ const LoginForm = () => {
 
       <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
 
+      <GoogleOAuthProvider clientId="1047762405070-iv1v8c4iuu9i1vgjifeem9evd7vqgfi0.apps.googleusercontent.com">
+        <GoogleLogin
+          onSuccess={(response: any) => {handleLoginGoogle(response.credential)}}
+          onError={()=>{ alert('Failed to login.')}} />
+      </GoogleOAuthProvider>
       <LanguageSwitch />
     </AuthFormContainer>
   );
