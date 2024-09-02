@@ -1,7 +1,7 @@
 window.envConfig = {
-  baseUrl: "https://localhost:7001/api/",
-  operatorPath: "",
-  brandPath: "",
+  baseUrl: "https://player-site-t28.nexentgame.com",
+  operatorPath: "/operator/api/",
+  brandPath: "/brand/api/",
   client: "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
   currency: "HKD",
   brand: "GPI",
