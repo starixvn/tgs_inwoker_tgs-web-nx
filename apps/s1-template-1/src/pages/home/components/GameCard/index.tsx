@@ -20,7 +20,7 @@ const CardHoverBg = styled.div`
   left: 0;
   top: 0;
   backdrop-filter: blur(3px);
-  border-radius: 10px;
+  border-radius: 1rem;
   display: none;
   white-space: pre-line;
 `;
@@ -33,7 +33,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 10px;
+  border-radius: 1rem;
 `;
 
 const NewTag = styled.div`
@@ -75,7 +75,7 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: calc(33.33% - 6px);
+  width: var(--min-width);
   flex-shrink: 0;
   position: relative;
   cursor: pointer;
@@ -84,7 +84,6 @@ const GameCardBg = styled.div`
   background-color: grey;
 
   ${media.sm} {
-    width: calc(16.67% - 6px);
     flex-shrink: 0;
     &:hover {
       ${CardHoverBg} {

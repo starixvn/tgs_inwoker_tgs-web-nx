@@ -1,4 +1,3 @@
-import SystemTime from "@/layouts/components/Header/components/SystemTime";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
@@ -10,7 +9,6 @@ import styled from "styled-components";
 
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
-import MenuButton from "./MenuButton";
 
 const HeaderContainer = styled.div`
   position: fixed;
@@ -36,6 +34,11 @@ const HeaderWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   z-index: 2;
+
+  ${media.lg} {
+    margin: 0 auto;
+    max-width: 1200px;
+  }
 `;
 
 const MenuButonnWrapper = styled.div`
@@ -76,35 +79,17 @@ const DesktopHeader = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
-        {isDesktopSize ? (
-          <MenuButonnWrapper>
-            <MenuButton />
-            <LogoWrapper>
-              <img
-                src={logoUrl}
-                alt={"logo"}
-                width={45}
-                height={29}
-                onClick={() => {
-                  history.push("/");
-                }}
-              />
-              <SystemTime />
-            </LogoWrapper>
-          </MenuButonnWrapper>
-        ) : (
-          <LogoWrapper>
-            <img
-              src={logoUrl}
-              alt={"logo"}
-              width={45}
-              height={29}
-              onClick={() => {
-                history.push("/");
-              }}
-            />
-          </LogoWrapper>
-        )}
+        <LogoWrapper>
+          <img
+            src={logoUrl}
+            alt={"logo"}
+            width={45}
+            height={29}
+            onClick={() => {
+              history.push("/");
+            }}
+          />
+        </LogoWrapper>
         <HeaderContentContainer>
           {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
         </HeaderContentContainer>

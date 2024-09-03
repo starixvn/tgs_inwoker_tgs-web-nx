@@ -1,3 +1,4 @@
+import { imageMap } from "@/components/project/LanguageSwitch";
 import { theme } from "@/theme";
 import { MenuItem as MuiMenuItem, Select as MuiSelect, SelectChangeEvent, SelectProps } from "@mui/material";
 import { useGeneralStore } from "@tgs-web-nx/core";
@@ -7,15 +8,26 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const StyledSelect = styled(MuiSelect)`
-  width: 100%;
-  height: 28px;
+  position: relative;
+  width: 3.4rem;
+  height: 2.8rem;
   padding: 0 8px;
   background: ${({ theme }) => theme.changeLanguage};
   font-size: 1.3rem !important;
-  border-radius: 7px;
+  border-radius: 7px !important;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: flex;
+    background: url("/assets/images/common/icon-language.svg");
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
 
   .MuiOutlinedInput-input {
-    padding-right: 16px !important;
+    opacity: 0;
   }
 
   &.MuiSelect-select {
@@ -33,7 +45,7 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   & .MuiSvgIcon-root {
-    color: ${({ theme }) => theme.white};
+    opacity: 0;
   }
 `;
 
@@ -88,6 +100,7 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
       type={"string"}
       value={culturecode}
       onChange={handleChange}
+      displayEmpty={true}
       MenuProps={{
         PaperProps: {
           sx: {
@@ -106,9 +119,9 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
           const { culturecode } = languageItem;
           return (
             <StyledMenuItem key={culturecode} value={culturecode}>
-              {/* <FlagContainer>
+              <FlagContainer>
                 <img src={imageMap[culturecode] || ""} alt={culturecode} />
-              </FlagContainer> */}
+              </FlagContainer>
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
             </StyledMenuItem>
           );

@@ -51,7 +51,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
       >
         {i18n.t("common.register").toLocaleUpperCase()}
       </RoundHeaderButton>
-      {isMobileSize && <HeaderLanguageSwitch />}
+      <HeaderLanguageSwitch />
     </ButtonContainer>
   );
 };
