@@ -39,12 +39,6 @@ const BannerWrapper = styled.div`
   }
 `;
 
-const HomepageImgWrapper = styled(BannerWrapper)`
-  max-height: 450px;
-  width: auto;
-  height: auto;
-`;
-
 const MainContentWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -68,13 +62,14 @@ const GameTypesContainer = styled.div`
   display: grid;
   flex-wrap: wrap;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.6rem;
+  gap: 0.8rem;
   width: 100%;
   height: 100%;
 
   ${media.lg} {
     display: flex;
     flex-wrap: nowrap;
+    gap: 1rem;
   }
 `;
 
@@ -85,7 +80,7 @@ const GameTypeNav = styled.div`
   white-space: nowrap;
   display: flex;
   align-items: center;
-  padding: 4px;
+  padding: 0.4rem;
   cursor: pointer;
   position: relative;
 `;
