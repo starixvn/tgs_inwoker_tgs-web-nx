@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
-import { GameItem } from "@tgs-web-nx/types";
 import { BetRecord } from "@/pages/home/components/WinnerCard/components/BetRecordRow";
 import { useAutoBettingToggle } from "@/pages/home/components/WinnerCard/hooks/useAutoBettingToggle";
 import { mockBetRecordList } from "@/pages/home/components/WinnerCard/mocks/betRecordList";
 import { userList } from "@/pages/home/components/WinnerCard/mocks/userList";
+import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
+import { GameItem } from "@tgs-web-nx/types";
+import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function getRandomBetAmount() {
   const amountStatus = Math.floor(Math.random() * 10);
@@ -41,11 +41,11 @@ export function useAutoBet() {
     initialBetRecordList[initialBetRecordList.length - 1],
   );
 
-  const { hotGameList } = useGetHomeCategoryList();
+  const { hotSlotGameList: hotGameList } = useGetHomeCategoryList();
 
   const generateSingleBetRecord = (): BetRecord => {
     const key = uuidv4();
-    const gameName = getRandomGameName(hotGameList) || '';
+    const gameName = getRandomGameName(hotGameList) || "";
     const playerName = userList[Math.floor(Math.random() * userList.length)];
     const betAmount = getRandomBetAmount();
 

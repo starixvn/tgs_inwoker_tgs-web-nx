@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
-import { GameItem } from "@tgs-web-nx/types";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
-import { useHomeGameContext } from "./useHomeGameContext";
+import { GameItem } from "@tgs-web-nx/types";
+import { useCallback, useEffect, useState } from "react";
+
 import { FilterTag, FilterTagTypeEnum } from "./types";
+import { useHomeGameContext } from "./useHomeGameContext";
 
 interface GetGameListState {
   isLoading: boolean;
@@ -28,7 +29,39 @@ export function useGetHomeCategoryList() {
     error: null,
   });
 
+  const [allGameListState, setAllGameListState] = useState<GetGameListState>({
+    isLoading: false,
+    gameList: [],
+    error: null,
+  });
+
   const { activeGameType, activeFilterTag } = useHomeGameContext();
+
+  const getAllGameList = async () => {
+    try {
+      setAllGameListState({
+        isLoading: true,
+        gameList: [],
+        error: null,
+      });
+      const response = await GameService.GetGameList("");
+
+      setAllGameListState({
+        isLoading: false,
+        gameList: response.data,
+        error: null,
+      });
+
+      return response;
+    } catch (error: any) {
+      console.error(error);
+      setAllGameListState({
+        isLoading: false,
+        gameList: [],
+        error: error,
+      });
+    }
+  };
 
   const getTableGameList = async () => {
     try {
@@ -85,10 +118,12 @@ export function useGetHomeCategoryList() {
 
   useEffect(() => {
     getSlotGameList();
+    getAllGameList();
+    getTableGameList();
   }, [activeGameType]);
 
   // filter
-  const [gameListDictionary, setGameListDictionary] = useState<GameListDictionary>({
+  const [slotGameListDictionary, setSlotGameListDictionary] = useState<GameListDictionary>({
     [FilterTagTypeEnum.ALL]: [],
     [FilterTagTypeEnum.FAVORITE]: [],
     [FilterTagTypeEnum.HOT]: [],
@@ -96,6 +131,16 @@ export function useGetHomeCategoryList() {
     [FilterTagTypeEnum.RECOMMEND]: [],
     [FilterTagTypeEnum.PROVIDER]: [],
   });
+
+  const [allGameListDictionary, setAllGameListDictionary] = useState<GameListDictionary>({
+    [FilterTagTypeEnum.ALL]: [],
+    [FilterTagTypeEnum.FAVORITE]: [],
+    [FilterTagTypeEnum.HOT]: [],
+    [FilterTagTypeEnum.NEW]: [],
+    [FilterTagTypeEnum.RECOMMEND]: [],
+    [FilterTagTypeEnum.PROVIDER]: [],
+  });
+
   const [isFilterLoading, setIsFilterLoading] = useState(false);
 
   const getDictionary = useCallback(async (gameList: GameItem[], activeFilterTag: FilterTag) => {
@@ -142,21 +187,30 @@ export function useGetHomeCategoryList() {
     if (!slotGameListState.gameList.length) return;
 
     getDictionary(slotGameListState.gameList, activeFilterTag).then((res) => {
-      setGameListDictionary(res);
+      setSlotGameListDictionary(res);
     });
   }, [JSON.stringify(slotGameListState.gameList), activeFilterTag.gpCode]);
+
+  useEffect(() => {
+    if (!allGameListState.gameList.length) return;
+
+    getDictionary(allGameListState.gameList, activeFilterTag).then((res) => {
+      setAllGameListDictionary(res);
+    });
+  }, [JSON.stringify(allGameListState.gameList), activeFilterTag.gpCode]);
 
   return {
     isLoading: slotGameListState.isLoading || isFilterLoading,
     error: slotGameListState.error,
-    gameList: gameListDictionary[activeFilterTag.tagType] || [],
-    allGameList: gameListDictionary[FilterTagTypeEnum.ALL] || [],
-    favoriteGameList: gameListDictionary[FilterTagTypeEnum.FAVORITE] || [],
-    hotGameList: gameListDictionary[FilterTagTypeEnum.HOT] || [],
-    newGameList: gameListDictionary[FilterTagTypeEnum.NEW] || [],
-    recommendGameList: gameListDictionary[FilterTagTypeEnum.RECOMMEND] || [],
-    providerGameList: gameListDictionary[FilterTagTypeEnum.PROVIDER] || [],
-    getTableGameList,
+    slotGameList: slotGameListDictionary[activeFilterTag.tagType] || [],
+    allGameList: slotGameListDictionary[FilterTagTypeEnum.ALL] || [],
+    favoriteGameList: slotGameListDictionary[FilterTagTypeEnum.FAVORITE] || [],
+    hotSlotGameList: slotGameListDictionary[FilterTagTypeEnum.HOT] || [],
+    recommendSlotGameList: slotGameListDictionary[FilterTagTypeEnum.RECOMMEND] || [],
+    providerGameList: slotGameListDictionary[FilterTagTypeEnum.PROVIDER] || [],
+    hotTableGameList: tableGameListState.gameList || [],
+    hotGameList: allGameListDictionary[FilterTagTypeEnum.HOT] || [],
+    newGameList: allGameListDictionary[FilterTagTypeEnum.NEW] || [],
     tableGameListState,
     isTableGameLoading: tableGameListState.isLoading,
   };
