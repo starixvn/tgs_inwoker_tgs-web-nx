@@ -2,7 +2,6 @@ import config from "@tgs-web-nx/config";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import useEmblaCarousel from "embla-carousel-react";
 import { useHistory } from "react-router-dom";
@@ -75,12 +74,18 @@ const ProvideItem = styled.div`
   }
 `;
 
+const NoGame = styled.div`
+  border: 1px solid grey;
+  width: 14rem;
+  height: 18.9rem;
+  border-radius: 1rem;
+`;
+
 const HomeCategory = () => {
   const history = useHistory();
   const { account } = useAccountStore();
-  const { isMobileSize } = useRwd();
   const { providerList, activeGameType } = useHomeGameContext();
-  const { hotGameList, newGameList } = useGetHomeCategoryList();
+  const { hotSlotGameList, newGameList, hotGameList, hotTableGameList } = useGetHomeCategoryList();
   const liveCasinoList = providerList.filter((provider) => {
     return provider.gametypes.includes(GameTypeEnum.LIVELOBBY);
   });
@@ -187,7 +192,7 @@ const HomeCategory = () => {
         <section className="embla">
           <div className="embla__viewport" ref={emblaPopularSlotsRef}>
             <div className="embla__container two-rows">
-              {hotGameList.map((item, index) => {
+              {hotSlotGameList.map((item, index) => {
                 return (
                   <div className="embla__slide" key={index}>
                     <GameCard
@@ -296,6 +301,35 @@ const HomeCategory = () => {
         </section>
 
         <GameTypeTitle>
+          <img src="/assets/images/common/icon-table-game-group.svg" alt="hot" />
+          Table Game
+          <ViewAll>View All</ViewAll>
+        </GameTypeTitle>
+        <section className="embla">
+          <div className="embla__viewport" ref={emblaHotGamesRef}>
+            <div className="embla__container">
+              {hotTableGameList.length === 0 && <NoGame></NoGame>}
+              {hotTableGameList.map((gameItem, index) => {
+                return (
+                  <div className="embla__slide" key={index}>
+                    <GameCard
+                      key={gameItem.id}
+                      gameItem={gameItem}
+                      isActive={gameItem.isactive}
+                      imageUrl={`${
+                        config.sourceUrl
+                      }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                        gameItem.code
+                      }.jpg`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <GameTypeTitle>
           <img src="/assets/images/common/icon-new-release.svg" alt="hot" />
           Hot Games
           <ViewAll>View All</ViewAll>
@@ -303,7 +337,7 @@ const HomeCategory = () => {
         <section className="embla">
           <div className="embla__viewport" ref={emblaHotGamesRef}>
             <div className="embla__container">
-              {newGameList.slice(0, 20).map((gameItem, index) => {
+              {hotGameList.map((gameItem, index) => {
                 return (
                   <div className="embla__slide" key={index}>
                     <GameCard

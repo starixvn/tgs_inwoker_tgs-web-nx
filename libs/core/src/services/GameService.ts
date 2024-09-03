@@ -1,11 +1,7 @@
-import {
-  GetGameListResDto,
-  GetProviderListResDto,
-  JoinGameResDto,
-  JoinLobbyGameResDto,
-} from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
+import { GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+
 import { ApiService } from "../api-services/services/ApiService";
 import { GameService as PrevGameService } from "../api-services/services/GameService";
 
@@ -50,9 +46,11 @@ function GetProviderList() {
   ) as unknown as Promise<GetProviderListResDto>;
 }
 
-function GetGameList(gpCode: string, gametypes: number) {
+function GetGameList(gpCode: string, gametypes?: number) {
   return ApiService.get(
     //@ts-ignore
-    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}&gametypes=${gametypes}`,
+    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${
+      config.currency
+    }${gametypes ? `&gametypes=${gametypes}` : ""}`,
   ) as unknown as Promise<GetGameListResDto>;
 }
