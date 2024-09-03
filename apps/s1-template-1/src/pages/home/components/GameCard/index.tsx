@@ -75,7 +75,7 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
-  width: var(--min-width);
+  width: 14rem;
   flex-shrink: 0;
   position: relative;
   cursor: pointer;

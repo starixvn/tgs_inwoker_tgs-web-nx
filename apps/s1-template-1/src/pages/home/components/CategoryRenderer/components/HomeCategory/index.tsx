@@ -1,9 +1,10 @@
 import config from "@tgs-web-nx/config";
-import { GameTypeEnum, media } from "@tgs-web-nx/constants";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Common, i18n, utility } from "@tgs-web-nx/utils";
+import useEmblaCarousel from "embla-carousel-react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -24,7 +25,7 @@ const GameContainer = styled.div`
   overflow: auto;
   display: flex;
   gap: 0.8rem;
-  margin-bottom: 2.4rem;
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -36,8 +37,13 @@ const GameTypeTitle = styled.div`
   line-height: 1.5;
   display: flex;
   align-items: center;
+  margin-top: 2.4rem;
   margin-bottom: 0.8rem;
   gap: 0.8rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
 
   & > img {
     width: 2.4rem;
@@ -56,27 +62,6 @@ const ViewAll = styled.div`
 const GameTypeContainer = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const TwoRowsContainer = styled.div`
-  --grid-num: 2.2;
-  --grid-rows: 2;
-  --grid-gap: 0.8rem;
-  --min-width: 140px;
-
-  width: 100%;
-  display: grid;
-  grid-template-rows: repeat(var(--grid-rows), 1fr);
-  grid-auto-flow: column;
-  grid-auto-columns: calc(
-    100% / var(--grid-num) -(var(--grid-num) - 1) * var(--grid-gap) / var(--grid-num)
-  );
-  gap: var(--grid-gap);
-
-  ${media.sm} {
-    --grid-num: 5;
-    --grid-rows: 1;
-  }
 `;
 
 const ProvideItem = styled.div`
@@ -102,6 +87,13 @@ const HomeCategory = () => {
   const sportList = providerList.filter((provider) => {
     return provider.gametypes.includes(GameTypeEnum.SPORTS);
   });
+
+  const [emblaSportRef] = useEmblaCarousel({ dragFree: true });
+  const [emblaPopularSlotsRef] = useEmblaCarousel({ dragFree: true });
+  const [emblaLiveCasinoRef] = useEmblaCarousel({ dragFree: true });
+  const [emblaNewReleaseRef] = useEmblaCarousel({ dragFree: true });
+  const [emblaGameProvidersRef] = useEmblaCarousel({ dragFree: true });
+  const [emblaHotGamesRef] = useEmblaCarousel({ dragFree: true });
 
   const launchLobbyGame = (gpcode: string, gtype: GameTypeEnum = GameTypeEnum.SPORTS) => {
     if (!account.token) {
@@ -143,8 +135,6 @@ const HomeCategory = () => {
     { name: "PERDITA", amount: 666465825, code: "perdita" },
   ];
 
-  console.log(utility.imagePathGenerator("home/desktop/liveCasino/bg.png"));
-
   return (
     <DesktopContainer>
       <GameTypeContainer>
@@ -160,139 +150,178 @@ const HomeCategory = () => {
           {i18n.t("common.sports")}
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
-        <GameContainer>
-          {sportList.map((provider) => {
-            const { code: gpCode, status, name } = provider;
 
-            if (gpCode === "BC") return null;
-            return (
-              <DesktopVendorCard
-                key={gpCode}
-                bgUrl={`${utility.imagePathGenerator("home/desktop/sports/bg.png")}`}
-                imageUrl={`${utility.imagePathGenerator(`home/desktop/sports/${gpCode}.png`)}`}
-                venderLogoUrl={`${utility.imagePathGenerator(
-                  `home/provider_logo/sports/${gpCode}.png`,
-                )}`}
-                launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.SPORTS)}
-                status={status}
-                venderName={name}
-              />
-            );
-          })}
-        </GameContainer>
+        <section className="embla">
+          <div className="embla__viewport" ref={emblaSportRef}>
+            <div className="embla__container">
+              {sportList.map((item, index) => {
+                const { code: gpCode, status, name } = item;
+
+                if (gpCode === "BC") return null;
+                return (
+                  <div className="embla__slide" key={index}>
+                    <DesktopVendorCard
+                      key={gpCode}
+                      bgUrl={`${utility.imagePathGenerator("home/desktop/sports/bg.png")}`}
+                      imageUrl={`${utility.imagePathGenerator(
+                        `home/desktop/sports/${gpCode}.png`,
+                      )}`}
+                      venderLogoUrl={`${utility.imagePathGenerator(
+                        `home/provider_logo/sports/${gpCode}.png`,
+                      )}`}
+                      launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.SPORTS)}
+                      status={status}
+                      venderName={name}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
         <GameTypeTitle>
           <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
-          {/* {i18n.t("common.slots")} */}
           Popular Slots
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
-        <GameContainer>
-          <TwoRowsContainer>
-            {hotGameList.slice(0, 20).map((gameItem) => {
-              return (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
-                />
-              );
-            })}
-          </TwoRowsContainer>
-        </GameContainer>
+        <section className="embla">
+          <div className="embla__viewport" ref={emblaPopularSlotsRef}>
+            <div className="embla__container two-rows">
+              {hotGameList.map((item, index) => {
+                return (
+                  <div className="embla__slide" key={index}>
+                    <GameCard
+                      key={item.id}
+                      gameItem={item}
+                      isActive={item.isactive}
+                      imageUrl={`${
+                        config.sourceUrl
+                      }${item.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                        item.code
+                      }.jpg`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <GameTypeTitle>
           <img src="/assets/images/common/icon-live-casino-group.svg" alt="slot" />
           {i18n.t("common.live")}
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
-        <GameContainer>
-          {liveCasinoList.map((provider) => {
-            const { code: gpCode, status, name } = provider;
+        <section className="embla">
+          <div className="embla__viewport" ref={emblaLiveCasinoRef}>
+            <div className="embla__container">
+              {liveCasinoList.map((item, index) => {
+                const { code: gpCode, status, name } = item;
 
-            if (gpCode === "BC") return null;
-            return (
-              <DesktopVendorCard
-                key={gpCode}
-                bgUrl={`${utility.imagePathGenerator("home/desktop/liveCasino/bg.png")}`}
-                imageUrl={`${utility.imagePathGenerator(`home/desktop/liveCasino/${gpCode}.png`)}`}
-                venderLogoUrl={`${utility.imagePathGenerator(
-                  `home/provider_logo/liveCasino/${gpCode}.png`,
-                )}`}
-                launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.LIVE)}
-                status={status}
-                venderName={name}
-              />
-            );
-          })}
-        </GameContainer>
+                if (gpCode === "BC") return null;
+                return (
+                  <div className="embla__slide" key={index}>
+                    <DesktopVendorCard
+                      key={gpCode}
+                      bgUrl={`${utility.imagePathGenerator("home/desktop/liveCasino/bg.png")}`}
+                      imageUrl={`${utility.imagePathGenerator(
+                        `home/desktop/liveCasino/${gpCode}.png`,
+                      )}`}
+                      venderLogoUrl={`${utility.imagePathGenerator(
+                        `home/provider_logo/liveCasino/${gpCode}.png`,
+                      )}`}
+                      launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.LIVE)}
+                      status={status}
+                      venderName={name}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <GameTypeTitle>
           <img src="/assets/images/common/icon-new-release.svg" alt="hot" />
           New Release
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
-        <GameContainer>
-          {newGameList.slice(0, 20).map((gameItem) => {
-            return (
-              <GameCard
-                key={gameItem.id}
-                gameItem={gameItem}
-                isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
-              />
-            );
-          })}
-        </GameContainer>
+        <section className="embla">
+          <div className="embla__viewport" ref={emblaNewReleaseRef}>
+            <div className="embla__container">
+              {newGameList.map((item, index) => {
+                return (
+                  <div className="embla__slide" key={index}>
+                    <GameCard
+                      key={item.id}
+                      gameItem={item}
+                      isActive={item.isactive}
+                      imageUrl={`${
+                        config.sourceUrl
+                      }${item.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                        item.code
+                      }.jpg`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <GameTypeTitle>
           <img src="/assets/images/common/icon-game-providers.svg" alt="hot" />
           Game Providers
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
-        <GameContainer>
-          <TwoRowsContainer>
-            {providerList &&
-              providerList.map((provider) => {
+        <section className="embla">
+          <div className="embla__viewport" ref={emblaGameProvidersRef}>
+            <div className="embla__container providers two-rows">
+              {providerList.map((provider, index) => {
                 return (
-                  <ProvideItem>
-                    <img
-                      src={utility.imagePathGenerator(
-                        `provider/dark/${provider.code.toLowerCase()}.png`,
-                      )}
-                      alt="Provider"
-                    />
-                  </ProvideItem>
+                  <div className="embla__slide " key={index}>
+                    <ProvideItem>
+                      <img
+                        src={utility.imagePathGenerator(
+                          `provider/dark/${provider.code.toLowerCase()}.png`,
+                        )}
+                        alt="Provider"
+                      />
+                    </ProvideItem>
+                  </div>
                 );
               })}
-          </TwoRowsContainer>
-        </GameContainer>
+            </div>
+          </div>
+        </section>
+
         <GameTypeTitle>
           <img src="/assets/images/common/icon-new-release.svg" alt="hot" />
           Hot Games
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
-        <GameContainer>
-          {newGameList.slice(0, 20).map((gameItem) => {
-            return (
-              <GameCard
-                key={gameItem.id}
-                gameItem={gameItem}
-                isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
-              />
-            );
-          })}
-        </GameContainer>
+        <section className="embla">
+          <div className="embla__viewport" ref={emblaHotGamesRef}>
+            <div className="embla__container">
+              {newGameList.slice(0, 20).map((gameItem, index) => {
+                return (
+                  <div className="embla__slide" key={index}>
+                    <GameCard
+                      key={gameItem.id}
+                      gameItem={gameItem}
+                      isActive={gameItem.isactive}
+                      imageUrl={`${
+                        config.sourceUrl
+                      }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                        gameItem.code
+                      }.jpg`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
       </GameTypeContainer>
     </DesktopContainer>
   );
