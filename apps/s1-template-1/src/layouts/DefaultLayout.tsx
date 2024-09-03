@@ -1,28 +1,18 @@
-import React from "react";
-import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useHeader } from "@tgs-web-nx/core/features";
-import MenuDrawer from "./components/MenuDrawer";
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
-import {
-  BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_DRAWER_WIDTH,
-  DESKTOP_HEADER_HEIGHT,
-  MOBILE_HEADER_HEIGHT,
-  TABLET_DRAWER_WIDTH,
-} from "@/theme/constants";
-import bg from "@/assets/t29/images/bg.png";
+import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_DRAWER_WIDTH, DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT, TABLET_DRAWER_WIDTH } from "@/theme/constants";
+import { useHeader } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import React from "react";
+import styled from "styled-components";
+
+import MenuDrawer from "./components/MenuDrawer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
-
-  ${media.sm} {
-    background: url(${bg});
-  }
 `;
 
 const DashboardContainer = styled.div`
@@ -30,10 +20,10 @@ const DashboardContainer = styled.div`
   margin-top: ${MOBILE_HEADER_HEIGHT};
   min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
 
-  ${media.sm} {
-    margin-top: ${DESKTOP_HEADER_HEIGHT};
+  ${media.lg} {
     min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
-    margin-bottom: unset;
+    margin: ${DESKTOP_HEADER_HEIGHT} auto 0;
+    max-width: 1200px;
   }
 `;
 

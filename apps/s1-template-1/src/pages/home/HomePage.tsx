@@ -1,4 +1,3 @@
-import BN from "@/assets/t28/images/home/BN.png";
 import useBanner from "@/hooks/home/useBanner";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
@@ -8,7 +7,6 @@ import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -24,27 +22,20 @@ const MainWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  padding: 0px 8px 12px 8px;
+  padding: 1.2rem 0.8rem;
   gap: 6px;
   flex-shrink: 0;
   flex: 1;
-
-  ${media.sm} {
-    /* max-width: ${MAIN_CONTENT_MAX_WIDTH}; */
-    /* margin: 0 auto; */
-    gap: unset;
-    height: unset;
-    padding: 24px;
-  }
 `;
 
 const BannerWrapper = styled.div`
   flex-shrink: 0;
   width: 100%;
 
-  ${media.sm} {
+  ${media.lg} {
     height: 100%;
     max-height: 450px;
+    BannerWrapper
   }
 `;
 
@@ -77,9 +68,14 @@ const GameTypesContainer = styled.div`
   display: grid;
   flex-wrap: wrap;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.8rem;
+  gap: 1.6rem;
   width: 100%;
   height: 100%;
+
+  ${media.lg} {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 `;
 
 const GameTypeNav = styled.div`
@@ -111,12 +107,11 @@ const Wrapper = styled.div<{
 
   ${media.sm} {
     flex-direction: unset;
-    background: ${({ theme }) => theme.mainBackground};
   }
 
   & img {
-    width: 24px;
-    height: 24px;
+    width: 2.4rem;
+    height: 2.4rem;
   }
 `;
 
@@ -160,12 +155,6 @@ const HomePage = () => {
 
   return (
     <MainWrapper>
-      {isDesktopSize && (
-        <HomepageImgWrapper>
-          <img src={BN} alt="homeImg" width={"100%"} height={"100%"} />
-        </HomepageImgWrapper>
-      )}
-
       {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
       {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
       {hasActiveDesktopBanner() ? (

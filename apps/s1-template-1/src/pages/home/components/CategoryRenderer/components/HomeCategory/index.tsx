@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { GameTypeEnum, media } from "@tgs-web-nx/constants";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -23,7 +23,7 @@ const GameContainer = styled.div`
   width: 100%;
   overflow: auto;
   display: flex;
-  gap: 1.6rem;
+  gap: 0.8rem;
   margin-bottom: 2.4rem;
   ::-webkit-scrollbar {
     display: none;
@@ -58,11 +58,25 @@ const GameTypeContainer = styled.div`
   flex-direction: column;
 `;
 
-const ProviderContainer = styled.div`
+const TwoRowsContainer = styled.div`
+  --grid-num: 2.2;
+  --grid-rows: 2;
+  --grid-gap: 0.8rem;
+  --min-width: 140px;
+
   width: 100%;
-  display: flex;
-  gap: 0.6rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-rows: repeat(var(--grid-rows), 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: calc(
+    100% / var(--grid-num) -(var(--grid-num) - 1) * var(--grid-gap) / var(--grid-num)
+  );
+  gap: var(--grid-gap);
+
+  ${media.sm} {
+    --grid-num: 5;
+    --grid-rows: 1;
+  }
 `;
 
 const ProvideItem = styled.div`
@@ -173,20 +187,22 @@ const HomeCategory = () => {
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
         <GameContainer>
-          {hotGameList.slice(0, 20).map((gameItem) => {
-            return (
-              <GameCard
-                key={gameItem.id}
-                gameItem={gameItem}
-                isActive={gameItem.isactive}
-                imageUrl={`${
-                  config.sourceUrl
-                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                  gameItem.code
-                }.jpg`}
-              />
-            );
-          })}
+          <TwoRowsContainer>
+            {hotGameList.slice(0, 20).map((gameItem) => {
+              return (
+                <GameCard
+                  key={gameItem.id}
+                  gameItem={gameItem}
+                  isActive={gameItem.isactive}
+                  imageUrl={`${
+                    config.sourceUrl
+                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                    gameItem.code
+                  }.jpg`}
+                />
+              );
+            })}
+          </TwoRowsContainer>
         </GameContainer>
         <GameTypeTitle>
           <img src="/assets/images/common/icon-live-casino-group.svg" alt="slot" />
@@ -234,13 +250,13 @@ const HomeCategory = () => {
             );
           })}
         </GameContainer>
-
         <GameTypeTitle>
           <img src="/assets/images/common/icon-game-providers.svg" alt="hot" />
           Game Providers
+          <ViewAll>View All</ViewAll>
         </GameTypeTitle>
         <GameContainer>
-          <ProviderContainer>
+          <TwoRowsContainer>
             {providerList &&
               providerList.map((provider) => {
                 return (
@@ -254,7 +270,28 @@ const HomeCategory = () => {
                   </ProvideItem>
                 );
               })}
-          </ProviderContainer>
+          </TwoRowsContainer>
+        </GameContainer>
+        <GameTypeTitle>
+          <img src="/assets/images/common/icon-new-release.svg" alt="hot" />
+          Hot Games
+          <ViewAll>View All</ViewAll>
+        </GameTypeTitle>
+        <GameContainer>
+          {newGameList.slice(0, 20).map((gameItem) => {
+            return (
+              <GameCard
+                key={gameItem.id}
+                gameItem={gameItem}
+                isActive={gameItem.isactive}
+                imageUrl={`${
+                  config.sourceUrl
+                }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
+                  gameItem.code
+                }.jpg`}
+              />
+            );
+          })}
         </GameContainer>
       </GameTypeContainer>
     </DesktopContainer>

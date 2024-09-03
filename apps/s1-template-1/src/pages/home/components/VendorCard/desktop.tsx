@@ -41,8 +41,7 @@ const VendorCardHoverBg = styled.div`
 `;
 
 const VendorCardBg = styled.div`
-  min-width: 121px;
-  width: calc(33.33% - 8px);
+  width: 14rem;
   height: 100%;
   aspect-ratio: 140 / 189;
   position: relative;
@@ -50,9 +49,6 @@ const VendorCardBg = styled.div`
   transition: transform 0.6s ease 0s;
 
   ${media.sm} {
-    width: 248px;
-    height: 315px;
-    aspect-ratio: 248 / 315;
     cursor: pointer;
     &:hover {
       ${VendorCardHoverBg} {
