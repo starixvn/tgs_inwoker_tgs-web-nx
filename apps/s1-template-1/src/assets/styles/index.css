@@ -327,9 +327,6 @@ code {
 
 @media (min-width: 961px) {
   /* tablet, landscape iPad, lo-res laptops ands desktops */
-  body {
-    font-family: Arial, sans-serif;
-  }
 
   html {
     -moz-text-size-adjust: inherit;
@@ -435,82 +432,6 @@ body.cke_editable p {
 .fontsforweb_fontid_9785 {
   font-family: "CenturyGothic" !important;
 }
-
-/*
-
-div[class^="SnackbarItem-variantError-"],
-div[class*=" SnackbarItem-variantError-"],
-div[class^="SnackbarItem-variantWarning-"],
-div[class*=" SnackbarItem-variantWarning-"],
-div[class^="SnackbarItem-variantSuccess-"],
-div[class*=" SnackbarItem-variantSuccess-"],
-div[class^="SnackbarItem-variantInfo-"],
-div[class*=" SnackbarItem-variantInfo-"] {
-  background: white;
-  color: black;
-}
-
-div[class^="SnackbarItem-variantError-"] .MuiSvgIcon-root,
-div[class*=" SnackbarItem-variantError-"] .MuiSvgIcon-root,
-div[class^="SnackbarItem-variantWarning-"] .MuiSvgIcon-root,
-div[class*=" SnackbarItem-variantWarning-"] .MuiSvgIcon-root,
-div[class^="SnackbarItem-variantSuccess-"] .MuiSvgIcon-root,
-div[class*=" SnackbarItem-variantSuccess-"] .MuiSvgIcon-root,
-div[class^="SnackbarItem-variantInfo-"] .MuiSvgIcon-root,
-div[class*=" SnackbarItem-variantInfo-"] .MuiSvgIcon-root {
-  display: none;
-}
-
-div[class^="SnackbarItem-variantError-"]:before,
-div[class*=" SnackbarItem-variantError-"]:before {
-  background-image: url(../src/assets/images/warning.png);
-  background-size: 25px 20px;
-  background-repeat: no-repeat;
-  display: inline-block;
-  width: 25px;
-  margin-right: 10px;
-  height: 20px;
-  content: "";
-}
-
-div[class^="SnackbarItem-variantWarning-"]:before,
-div[class*=" SnackbarItem-variantWarning-"]:before {
-  background-image: url(../src/assets/images/warning.png);
-  background-size: 25px 20px;
-  background-repeat: no-repeat;
-  display: inline-block;
-  width: 25px;
-  margin-right: 10px;
-  height: 20px;
-  content: "";
-}
-
-div[class^="SnackbarItem-variantSuccess-"]:before,
-div[class*=" SnackbarItem-variantSuccess-"]:before {
-  background-image: url(../src/assets/images/success.png);
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  display: inline-block;
-  width: 25px;
-  margin-right: 10px;
-  height: 20px;
-  content: "";
-}
-
-div[class^="SnackbarItem-variantInfo-"]:before,
-div[class*=" SnackbarItem-variantInfo-"]:before {
-  background-image: url(../src/assets/images/info.png);
-  background-size: 20px 20px;
-  background-repeat: no-repeat;
-  display: inline-block;
-  width: 25px;
-  margin-right: 10px;
-  height: 20px;
-  content: "";
-}
-
-
-*/
 
 .numberGenerator {
   width: 20px;

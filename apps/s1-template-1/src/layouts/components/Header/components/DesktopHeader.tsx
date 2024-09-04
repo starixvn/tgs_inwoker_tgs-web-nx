@@ -2,7 +2,6 @@ import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -14,14 +13,13 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.NavBGC};
+  background: ${({ theme }) => theme.secondary};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
   z-index: 10;
 
   ${media.sm} {
     height: ${DESKTOP_HEADER_HEIGHT};
-    padding: 4px 12px;
   }
 `;
 
@@ -37,15 +35,8 @@ const HeaderWrapper = styled.div`
 
   ${media.lg} {
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 120rem;
   }
-`;
-
-const MenuButonnWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  left: 0;
 `;
 
 const LogoWrapper = styled.div`
@@ -70,11 +61,12 @@ const DesktopHeader = () => {
   } = useGeneralStore();
   const history = useHistory();
   const noLoginAccount = account.token !== account.info.token;
-  const { isLargeDesktopSize, isDesktopSize } = useRwd();
+
   // Todo
   // using asset site
   // const logoUrl = brand.loadingUrl;
   const logoUrl = "/assets/images/common/logo.svg";
+
   if (!logoUrl) return null;
   return (
     <HeaderContainer>
