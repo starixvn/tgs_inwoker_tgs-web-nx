@@ -2,7 +2,7 @@ window.envConfig = {
   baseUrl: "",
   operatorPath: "/operator/api/",
   brandPath: "/brand/api/",
-  assetsPath: "https://assets-repository.nexentgame.com/",
+  assetsPath: "https://assets.nexentgame.com/",
   client: "I7nKiimrZQOqnJ6ryjUw74c0Hi64KC6Myunhob4cHh8VOUIuZh4p63czefxyyzbZ",
   currency: "HKD",
   brand: "GPI",
