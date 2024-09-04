@@ -118,11 +118,11 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
               color: theme.text,
               borderRadius: "1rem",
             },
-            ".Mui-selected": {
-              background: theme.dropDownItemSelectedBackground,
-            },
-            ".Mui-selected:hover": {
-              background: theme.dropDownItemSelectedBackground,
+            "& .Mui-selected": {
+              background: `${theme.dropDownItemSelectedBackground} !important`,
+              "&:hover": {
+                background: `${theme.dropDownItemSelectedBackground} !important`,
+              },
             },
           },
         },

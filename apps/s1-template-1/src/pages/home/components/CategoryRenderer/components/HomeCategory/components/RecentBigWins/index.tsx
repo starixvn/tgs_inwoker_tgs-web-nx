@@ -1,61 +1,7 @@
-import { Button as MuiButton, styled as muiStyled } from "@mui/material";
-import { getFormatAmount } from "@tgs-web-nx/utils";
-import styled from "styled-components";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 
-import { theme } from "../../../../../../../../theme";
-
-const RecentBigWinsSection = styled.div`
-  position: relative;
-  width: 100%;
-  min-width: 37.5rem;
-  padding: 0.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  background: ${({ theme }) => theme.recentBigWinsBackground};
-  border-radius: 1rem;
-
-  &:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 8rem;
-    background: ${({ theme }) => theme.recentBigWinsBottomBackground};
-  }
-`;
-
-const Row = styled.div`
-  display: grid;
-  grid-template-columns: 3.8rem 1fr 1fr 9rem;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: 1.3rem;
-  font-weight: 500;
-`;
-
-const GameName = styled.div`
-  color: ${({ theme }) => theme.white};
-`;
-
-const BigWinsAmount = styled.div`
-  color: ${({ theme }) => theme.bigWinsAmountColor};
-  text-align: right;
-`;
-
-const PlayNowButton = muiStyled(MuiButton)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: "0.4rem",
-  background: theme.palette.playNowButtonBackground,
-  height: "3.6rem",
-  padding: "0.6rem",
-  color: theme.palette.white,
-  fontFamily: "inherit",
-  fontSize: "1.3rem",
-}));
+import DesktopRecentBigWins from "./DesktopRecentBigWins";
+import MobileRecentBigWins from "./MobileRecentBigWins";
 
 type BigWinType = {
   name: string;
@@ -64,23 +10,12 @@ type BigWinType = {
 };
 
 const RecentBigWins: React.FC<{ recentBigWins: BigWinType[] }> = ({ recentBigWins }) => {
-  return (
-    <RecentBigWinsSection>
-      {recentBigWins &&
-        recentBigWins.map((item, index) => {
-          return (
-            <Row>
-              <img src={`/assets/images/big-wins/${item.code}.png`} alt={item.name} />
-              <GameName>{item.name}</GameName>
-              <BigWinsAmount>{`đ${getFormatAmount(item.amount)}`}</BigWinsAmount>
-              <PlayNowButton>
-                Play now
-                <img src={`/assets/images/big-wins/icon-arrow-right.svg`} alt="arrow right" />
-              </PlayNowButton>
-            </Row>
-          );
-        })}
-    </RecentBigWinsSection>
+  const { isMobileSize } = useRwd();
+
+  return isMobileSize ? (
+    <MobileRecentBigWins recentBigWins={recentBigWins} />
+  ) : (
+    <DesktopRecentBigWins recentBigWins={recentBigWins} />
   );
 };
 
