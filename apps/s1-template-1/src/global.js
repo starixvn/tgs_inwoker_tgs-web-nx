@@ -51,6 +51,22 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.primary};
   }
 
+  /* Custom scrollbar */
 
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+    background-color: ${({ theme }) => theme.scrollbarBackground};
+  }
+
+  ::-webkit-scrollbar {
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: ${({ theme }) => theme.scrollbarBackground};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 1.6rem;
+    background-color: ${({ theme }) => theme.scrollbarThumbBackground};
+  }
 
 `;

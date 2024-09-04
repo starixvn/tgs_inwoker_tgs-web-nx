@@ -3,7 +3,6 @@ import { RoundHeaderButton } from "@/layouts/components/Header/components/Header
 import { theme } from "@/theme";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { i18n } from "@tgs-web-nx/utils";
 import React, { useCallback } from "react";
 import styled from "styled-components";
 
@@ -38,7 +37,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
           color: theme.white,
         }}
       >
-        {i18n.t("common.login").toLocaleUpperCase()}
+        Sign in
       </LoginButton>
 
       <RoundHeaderButton
@@ -46,10 +45,10 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         onClick={goToRegister}
         style={{
           color: theme.white,
-          background: theme.signUp,
+          background: theme.signUpButtonBackground,
         }}
       >
-        {i18n.t("common.register").toLocaleUpperCase()}
+        Sign up
       </RoundHeaderButton>
       <HeaderLanguageSwitch />
     </ButtonContainer>

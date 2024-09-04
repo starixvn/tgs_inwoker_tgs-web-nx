@@ -2,13 +2,10 @@ import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_DRAWER_WIDTH, DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT, TABLET_DRAWER_WIDTH } from "@/theme/constants";
-import { useHeader } from "@tgs-web-nx/core/features";
+import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
-
-import MenuDrawer from "./components/MenuDrawer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -27,24 +24,11 @@ const DashboardContainer = styled.div`
   }
 `;
 
-type ContentWrapperProps = {
-  $isOpen: boolean;
-  $isDesktop: boolean;
-};
-
-const ContentWrapper = styled.div<ContentWrapperProps>`
+const ContentWrapper = styled.div`
   position: relative;
   flex-grow: 1;
-  margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? 0 : 0)};
+  margin: 0 auto;
   transition: all ease-in-out 0.2s;
-
-  ${media.md} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? TABLET_DRAWER_WIDTH : 0)};
-  }
-
-  ${media.lg} {
-    margin-left: ${({ $isOpen }: ContentWrapperProps) => ($isOpen ? DESKTOP_DRAWER_WIDTH : 0)};
-  }
 `;
 
 const ChildrenWrapper = styled.div`
@@ -59,15 +43,13 @@ type Props = {
   children: React.ReactNode;
 };
 const DefaultLayout = ({ children }: Props) => {
-  const { isMobileSize, isDesktopSize } = useRwd();
-  const { isMenuOpen } = useHeader();
+  const { isMobileSize } = useRwd();
   return (
     <DefaultLayoutContainer>
       <Header />
 
       <DashboardContainer>
-        {isDesktopSize && <MenuDrawer />}
-        <ContentWrapper $isOpen={isDesktopSize && isMenuOpen} $isDesktop={isDesktopSize}>
+        <ContentWrapper>
           <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
             <Footer />

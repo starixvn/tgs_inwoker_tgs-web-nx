@@ -1,6 +1,6 @@
-import "./embla.css";
-import "./index.css";
 import "./sentry";
+import "@/assets/styles/embla.css";
+import "@/assets/styles/index.css";
 
 import App from "@/App";
 import Loading from "@/components/UI/Loading";

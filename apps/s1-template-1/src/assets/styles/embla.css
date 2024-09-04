@@ -22,10 +22,17 @@
 }
 
 .embla__container.two-rows {
+  --row-size: 2;
   display: grid;
   grid-auto-columns: var(--slide-size);
   grid-auto-flow: column;
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(var(--row-size), 1fr);
+}
+
+@media screen and (min-width: 600px) {
+  .embla__container.two-rows {
+    --row-size: 1;
+  }
 }
 
 .embla__slide {

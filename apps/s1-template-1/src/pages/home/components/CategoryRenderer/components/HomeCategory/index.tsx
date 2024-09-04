@@ -53,7 +53,7 @@ const GameTypeTitle = styled.div`
 const ViewAll = styled.div`
   position: absolute;
   right: 0.8rem;
-  color: ${({ theme }) => theme.viewAllLinkColor};
+  color: ${({ theme }) => theme.linkColor};
   font-size: 1.3rem;
   cursor: pointer;
 `;
