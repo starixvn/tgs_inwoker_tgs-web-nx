@@ -2,7 +2,7 @@ window.envConfig = {
   baseUrl: "",
   operatorPath: "/operator/api/",
   brandPath: "/brand/api/",
-  assetsPath: "https://assets-repository.nexentgame.com/",
+  assetsPath: "https://assets.nexentgame.com/",
   client: "XJY9uX5RarE5wrOkTHAgkQoGKMuNFxKIXF4A6zR4BfgCHNs1tC7zDv",
   currency: "HKD",
   brand: "GMO",
