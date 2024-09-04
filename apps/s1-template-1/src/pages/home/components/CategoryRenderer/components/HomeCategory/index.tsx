@@ -19,7 +19,7 @@ const DesktopContainer = styled.div`
   padding: 1.8rem 0;
 `;
 
-const GameContainer = styled.div`
+export const GameContainer = styled.div`
   width: 100%;
   overflow: auto;
   display: flex;
@@ -30,9 +30,9 @@ const GameContainer = styled.div`
   }
 `;
 
-const GameTypeTitle = styled.div`
+export const GameTypeTitle = styled.div`
   font-size: 2rem;
-  font-weight: 510;
+  font-weight: 700;
   line-height: 1.5;
   display: flex;
   align-items: center;
@@ -143,13 +143,7 @@ const HomeCategory = () => {
   return (
     <DesktopContainer>
       <GameTypeContainer>
-        <GameTypeTitle>
-          <img src="/assets/images/common/icon-big-wins.svg" alt="hot" />
-          Recent Big Wins
-        </GameTypeTitle>
-        <GameContainer>
-          <RecentBigWins recentBigWins={recentBigWins}></RecentBigWins>
-        </GameContainer>
+        <RecentBigWins recentBigWins={recentBigWins}></RecentBigWins>
         <GameTypeTitle>
           <img src="/assets/images/common/icon-sports-group.svg" alt="hot" />
           {i18n.t("common.sports")}
@@ -277,7 +271,6 @@ const HomeCategory = () => {
         <GameTypeTitle>
           <img src="/assets/images/common/icon-game-providers.svg" alt="hot" />
           Game Providers
-          <ViewAll>View All</ViewAll>
         </GameTypeTitle>
         <section className="embla">
           <div className="embla__viewport" ref={emblaGameProvidersRef}>
