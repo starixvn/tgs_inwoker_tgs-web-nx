@@ -3,6 +3,7 @@ import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
 import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
@@ -43,7 +44,11 @@ type Props = {
   children: React.ReactNode;
 };
 const DefaultLayout = ({ children }: Props) => {
+  const { account } = useAccountStore();
   const { isMobileSize } = useRwd();
+
+  const loginAccount = account.token === account.info.token;
+
   return (
     <DefaultLayoutContainer>
       <Header />
@@ -57,7 +62,7 @@ const DefaultLayout = ({ children }: Props) => {
         </ContentWrapper>
       </DashboardContainer>
 
-      {isMobileSize && <BottomAppBar />}
+      {isMobileSize && loginAccount && <BottomAppBar />}
     </DefaultLayoutContainer>
   );
 };
