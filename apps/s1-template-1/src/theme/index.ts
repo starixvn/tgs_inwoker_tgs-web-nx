@@ -7,7 +7,7 @@ export const theme = {
   darkPurple: "#170A2F",
   middlePurple: "#1A0B39",
   lightPurple: "#935FFC",
-  mainBackground: "#0D131C",
+
   memberSection: "#141414",
   NavBGC: "#19212C",
   secBTNBGC: "#242424",
@@ -48,4 +48,13 @@ export const theme = {
   secondary: "#19212C",
   white: "#FFFFFF",
   gray: "#6E7E92",
+
+  mainBackground: "#0D131C",
+
+  tabColor: "#6E7E92",
+  tabActiveLineColor: "radial-gradient(circle, rgba(226,254,38,1) 5%, rgba(226,254,38,0) 95%)",
+  tabActiveColor: "#fff",
+
+  footerBackground: "#19212C",
+  footerColor: "#97a2b0",
 };
