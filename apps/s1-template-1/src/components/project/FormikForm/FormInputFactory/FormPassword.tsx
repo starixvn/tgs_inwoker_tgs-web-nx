@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-import { IconButton, InputAdornment } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { FormikFormInput } from "@tgs-web-nx/core/features";
-import { TextField } from "@/components/UI/TextField";
-import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
 import { theme } from "@/theme";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { IconButton, InputAdornment } from "@mui/material";
+import React, { useState } from "react";
 
-type Props = {
-  formInput: FormikFormInput;
-  formik: any;
-  showErrorOn?: "bottom" | "input";
-};
+import { CustomTextField } from "./style";
+import { Props } from "./type";
 
 const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name } = formInput;
@@ -27,7 +21,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
   const inputType = isShowPassword ? "text" : "password";
 
   return (
-    <TextField
+    <CustomTextField
       type={inputType}
       placeholder={label}
       variant={"outlined"}
@@ -38,6 +32,11 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
       onBlur={formik.handleBlur}
       helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
       error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
+      sx={{
+        ".MuiOutlinedInput-notchedOutline:focus": {
+          border: "none",
+        },
+      }}
       InputProps={{
         autoComplete: "new-password",
         endAdornment: (

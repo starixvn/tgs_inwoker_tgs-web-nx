@@ -1,21 +1,28 @@
-import { i18n } from "@tgs-web-nx/utils";
+import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
+import FormikForm from "@/components/project/FormikForm";
+import { ForgotPasswordContainer, FormSubContainer, RememberMeContainer } from "@/components/styled-component/auth/Form";
+import { AuthFormContainer, FormContainer, LoginTitle } from "@/components/styled-component/AuthFormContainer";
+import { Checkbox } from "@/components/UI/Checkbox";
 import { useLoginForm } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import FormikForm from "@/components/project/FormikForm";
-import { Checkbox } from "@/components/UI/Checkbox";
-import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
-import {
-  AuthFormContainer,
-  FormContainer,
-  LoginTitle,
-} from "@/components/styled-component/AuthFormContainer";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
-import {
-  ForgotPasswordContainer,
-  FormSubContainer,
-  RememberMeContainer,
-} from "@/components/styled-component/auth/Form";
-import BrandLogo from "@/components/project/BrandLogo";
+import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
+
+const Header = styled.div`
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  height: 44px;
+  border-radius: 1rem;
+  background: #1d2635;
+`;
+
+const CheckIcon = styled.div`
+  content: "aaa";
+  background: red;
+  width: 20px;
+  height: 20px;
+`;
 
 const LoginForm = () => {
   const {
@@ -31,11 +38,11 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "50px", maxWidth: "none" }} />
-      ) : (
+      <Header>
         <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
-      )}
+
+      </Header>
+
       <FormContainer>
         <FormikForm
           formInputList={formInputConfigList}
@@ -51,6 +58,7 @@ const LoginForm = () => {
                 style={{
                   padding: "0px 5px 0px",
                 }}
+                icon={CheckIcon}
               />
               {i18n.t("wap.login.rememberMe")}
             </RememberMeContainer>
@@ -63,8 +71,6 @@ const LoginForm = () => {
       </FormContainer>
 
       <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
-
-      <LanguageSwitch />
     </AuthFormContainer>
   );
 };

@@ -1,13 +1,9 @@
-import { useHistory } from "react-router-dom";
-import { useEffect } from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import {
-  useAuth,
-  useAuthDialog,
-  useHomeGameContext,
-  useUpdatePageName,
-} from "@tgs-web-nx/core/features";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useAuth, useAuthDialog, useHomeGameContext, useUpdatePageName } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
+import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+
 import { useRwd } from "../../tools";
 
 export function useLoginPage() {
@@ -25,8 +21,10 @@ export function useLoginPage() {
       history.push("/");
     }
 
-    if (isDesktopSize) {
-      handleToggleLoginDialog(true);
-    }
+    // if (isDesktopSize) {
+    //   handleToggleLoginDialog(true);
+    // }
+
+    handleToggleLoginDialog(true);
   }, []);
 }

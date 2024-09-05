@@ -1,7 +1,5 @@
-import React from "react";
-import styled from "styled-components";
-import iconReturn from "@/assets/t28/images/dialog/icon-return.svg";
 import Icon from "@/components/project/Icon";
+import styled from "styled-components";
 
 export const DIALOG_HEADER_HEIGHT = "40px";
 
@@ -43,10 +41,8 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl={iconReturn} width={"20px"} height={"20px"} />
+        <Icon iconUrl="/assets/images/common/icon-close.svg" width={"32px"} height={"32px"} />
       </ReturnIconContainer>
-
-      {dialogHeaderTitle}
     </DialogHeaderContainer>
   );
 };
