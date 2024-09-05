@@ -19,6 +19,7 @@ export const LoginButton = styled.div(({ theme }) => ({
   fontSize: "13px",
   lineHeight: "28px",
   flexShrink: 0,
+  cursor: "pointer",
 }));
 
 type Props = {

@@ -1,7 +1,8 @@
+import { theme } from "@/theme";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { Button as MuiButton, styled as muiStyled } from "@mui/material";
+import { styled as muiStyled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import { getFormatAmount } from "@tgs-web-nx/utils";
@@ -10,14 +11,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import { GameTypeTitle } from "../..";
-
-const RecentBigWinsSection = styled.div`
-  position: relative;
-  width: 100%;
-  padding: 0.4rem;
-  display: flex;
-  gap: 0.8rem;
-`;
+import { BigWinsAmount, GameName } from "./MobileRecentBigWins";
 
 const Row = styled.div`
   display: flex;
@@ -28,37 +22,15 @@ const Row = styled.div`
   font-weight: 500;
 `;
 
-const GameName = styled.div`
-  color: ${({ theme }) => theme.white};
-`;
-
-const BigWinsAmount = styled.div`
-  color: ${({ theme }) => theme.bigWinsAmountColor};
-  text-align: right;
-`;
-
-const PlayNowButton = muiStyled(MuiButton)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  gap: "0.4rem",
-  background: theme.palette.playNowButtonBackground,
-  height: "3.6rem",
-  padding: "0.6rem",
-  color: theme.palette.white,
-  fontFamily: "inherit",
-  fontSize: "1.3rem",
-}));
-
 const CustomTab = muiStyled(Tab)(({ theme }) => ({
-  color: "#6E7E92",
+  color: theme.palette.tabColor,
   fontFamily: "inherit",
   fontSize: "1.4rem",
   fontWeight: "700",
   minHeight: "2.8rem",
   padding: "0 16px",
   "&.Mui-selected": {
-    color: "#fff",
+    color: theme.palette.tabActiveColor,
   },
 }));
 
@@ -110,8 +82,7 @@ const DesktopRecentBigWins: React.FC<{ recentBigWins: BigWinType[] }> = ({ recen
               minHeight: "2.8rem",
               ".MuiTabs-indicator": {
                 height: "0.3rem",
-                background:
-                  "radial-gradient(circle, rgba(226,254,38,1) 5%, rgba(226,254,38,0) 95%)",
+                background: theme.tabActiveLineColor,
               },
             }}
           >
