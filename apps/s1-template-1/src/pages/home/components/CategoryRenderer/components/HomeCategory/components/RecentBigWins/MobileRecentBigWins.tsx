@@ -35,11 +35,11 @@ const Row = styled.div`
   font-weight: 500;
 `;
 
-const GameName = styled.div`
+export const GameName = styled.div`
   color: ${({ theme }) => theme.white};
 `;
 
-const BigWinsAmount = styled.div`
+export const BigWinsAmount = styled.div`
   color: ${({ theme }) => theme.bigWinsAmountColor};
   text-align: right;
 `;

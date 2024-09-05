@@ -52,8 +52,8 @@ export const theme = {
   mainBackground: "#0D131C",
 
   tabColor: "#6E7E92",
-  tabActiveLineColor: "radial-gradient(circle, rgba(226,254,38,1) 5%, rgba(226,254,38,0) 95%)",
   tabActiveColor: "#fff",
+  tabActiveLineColor: "radial-gradient(circle, rgba(226,254,38,1) 5%, rgba(226,254,38,0) 95%)",
 
   footerBackground: "#19212C",
   footerColor: "#97a2b0",
