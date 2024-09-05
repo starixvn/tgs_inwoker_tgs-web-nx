@@ -1,19 +1,13 @@
-import React from "react";
-import { FormikFormInput } from "@tgs-web-nx/core/features";
-import { TextField } from "@/components/UI/TextField";
 import { getFormInputType } from "@/components/project/FormikForm/utils/getFormInputType";
 
-type Props = {
-  formInput: FormikFormInput;
-  formik: any;
-  showErrorOn?: "bottom" | "input";
-};
+import { CustomTextField } from "./style";
+import { Props } from "./type";
 
 const FormText = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
 
   return (
-    <TextField
+    <CustomTextField
       type={getFormInputType(type)}
       placeholder={label}
       variant={"outlined"}
@@ -26,6 +20,11 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
       error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
       inputProps={{
         autoComplete: "off",
+      }}
+      sx={{
+        ".MuiOutlinedInput-notchedOutline:focus": {
+          border: "none",
+        },
       }}
     />
   );

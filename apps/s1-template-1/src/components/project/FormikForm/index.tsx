@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { FormikFormInput } from "@tgs-web-nx/core/features";
 import { FormInputFactory } from "@/components/project/FormikForm/FormInputFactory";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { FormikFormInput } from "@tgs-web-nx/core/features";
+import React from "react";
+import styled from "styled-components";
 
 const ErrorMessageContainer = styled.div`
-  color: ${({ theme }) => theme.red};
-  font-size: 0.875rem;
-  font-weight: 400;
+  color: ${({ theme }) => theme.errorColor};
+  font-size: 1.3rem;
+  font-weight: 700;
   text-align: center;
 `;
 
@@ -15,7 +15,7 @@ const Form = styled.form`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.2rem;
   flex-shrink: 0;
 `;
 

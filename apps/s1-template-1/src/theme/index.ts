@@ -57,4 +57,10 @@ export const theme = {
 
   footerBackground: "#19212C",
   footerColor: "#97a2b0",
+
+  formInputBackground: "#091016",
+  formInputBorder: "#2e373e",
+  formInputColor: "#55657E",
+
+  errorColor: "#F90B44"
 };

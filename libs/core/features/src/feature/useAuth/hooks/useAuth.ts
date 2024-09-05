@@ -1,9 +1,10 @@
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useCallback } from "react";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
-import { useHeader } from "../../useHeader/index";
+
 import { useAuthDialog } from "../../useAuthDialog";
+import { useHeader } from "../../useHeader";
 
 export function useAuth() {
   const { account } = useAccountStore();
@@ -16,29 +17,32 @@ export function useAuth() {
   const isLogin = !!account.token;
 
   const goToLogin = useCallback(() => {
-    if (!isDesktopSize) {
-      handleToggleMenu(false);
-    }
+    // if (!isDesktopSize) {
+    //   handleToggleMenu(false);
+    // }
 
-    if (isDesktopSize) {
-      handleToggleLoginDialog(true);
-      return;
-    }
+    // if (isDesktopSize) {
+    //   handleToggleLoginDialog(true);
+    //   return;
+    // }
 
-    history.push("/login");
-  }, [handleToggleLoginDialog, handleToggleMenu, history, isDesktopSize]);
+    // history.push("/login");
+    handleToggleLoginDialog(true);
+  }, [handleToggleLoginDialog, handleToggleMenu, history]);
 
   const goToRegister = useCallback(() => {
-    if (!isDesktopSize) {
-      handleToggleMenu(false);
-    }
+    handleToggleRegisterDialog(true);
 
-    if (isDesktopSize) {
-      handleToggleRegisterDialog(true);
-      return;
-    }
-    history.push("/register");
-  }, [handleToggleMenu, handleToggleRegisterDialog, history, isDesktopSize]);
+    // if (!isDesktopSize) {
+    //   handleToggleMenu(false);
+    // }
+
+    // if (isDesktopSize) {
+    //   handleToggleRegisterDialog(true);
+    //   return;
+    // }
+    // history.push("/register");
+  }, [handleToggleMenu, handleToggleRegisterDialog, history]);
 
   return {
     isLogin,
