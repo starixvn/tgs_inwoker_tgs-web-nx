@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const AuthFormContainer = styled.div`
   width: 100%;
-  height: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -32,10 +31,9 @@ export const Tabs = styled.div`
   width: 50%;
   min-width: 20rem;
   padding: 0.4rem;
-  margin: 0 2.4rem;
+  margin: 1.6rem 2.4rem 1.2rem;
   border-radius: 1rem;
   background: ${({ theme }) => theme.authTabsBackground};
-  margin-bottom: 1.2rem;
   text-align: center;
 `;
 

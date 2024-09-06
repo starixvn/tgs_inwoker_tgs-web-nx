@@ -1,4 +1,3 @@
-import { media } from "@/theme/breakpoints";
 import React from "react";
 import styled from "styled-components";
 
@@ -12,11 +11,6 @@ const CloseIconContainer = styled.div`
   justify-content: center;
   cursor: pointer;
   z-index: 3;
-
-  ${media.sm} {
-    width: 17.5px;
-    height: 17.5px;
-  }
 `;
 
 type Props = {
