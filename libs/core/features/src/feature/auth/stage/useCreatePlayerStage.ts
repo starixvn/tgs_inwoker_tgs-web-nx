@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
-import { useAccountStore } from "@tgs-web-nx/core";
-import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
-import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web-nx/types";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
-import {
-  InvitationType,
-  useAuthDialog,
-  useConfirmAdult,
-  useGenerateRegisterCreatePlayerFormik,
-} from "../../../index";
+import { useAccountStore } from "@tgs-web-nx/core";
+import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web-nx/types";
+import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
+import { useEffect, useState } from "react";
+
+import { InvitationType, useAuthDialog, useConfirmAdult, useGenerateRegisterCreatePlayerFormik } from "../../..";
 
 export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
   const [isLoading, setIsLoading] = useState(false);
@@ -43,8 +39,6 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
 
       const newRegisterResDto = await registerV2CreatePlayer(createPlayerReqDto);
 
-      
-
       if (!newRegisterResDto) {
         throw new Error("No newRegisterResDto found");
       }
@@ -65,11 +59,11 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
           realname: values.realName,
         };
         const setRealNameDto = await registerV2SetRealName(setRealNameReqDto);
-        
-        if(setRealNameDto?.data.isCompleted && handleRegisterSuccess) {
+
+        if (setRealNameDto?.data.isCompleted && handleRegisterSuccess) {
           handleRegisterSuccess();
-        } 
-        
+        }
+
         //update user info
         await getAccountInfo();
       }

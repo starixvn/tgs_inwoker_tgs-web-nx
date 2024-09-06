@@ -7,10 +7,13 @@ import React from "react";
 import styled from "styled-components";
 
 const MainWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  ${media.sm} {
+    display: grid;
+    grid-template-columns: 32.5rem 1fr;
+    grid-template-rows: 54.8rem;
+  }
 `;
-const LogoImgContainer = styled.div`
+const BannerContainer = styled.div`
   display: none;
 
   ${media.sm} {
@@ -32,9 +35,14 @@ const LoginDialog = () => {
   return (
     <AuthDialog open={isLoginDialogOpen} onClose={() => handleToggleLoginDialog(false)}>
       <MainWrapper>
-        <LogoImgContainer>
-          <img src="/assets/images/auth/login-banner.png" alt="Login Banner" />
-        </LogoImgContainer>
+        <BannerContainer>
+          <img
+            src="/assets/images/auth/login-banner.png"
+            alt="Login Banner"
+            width={325}
+            height={548}
+          />
+        </BannerContainer>
         <ForgetPasswordFormContainer>
           <LoginForm />
         </ForgetPasswordFormContainer>
