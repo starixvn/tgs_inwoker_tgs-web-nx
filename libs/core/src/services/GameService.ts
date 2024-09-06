@@ -28,6 +28,7 @@ function JoinGame(gid: number, gpcode: string) {
     language: detectLanguage,
     extends: {
       lobbyurl: window.location.protocol + "//" + window.location.hostname,
+      browserUserAgent: window.navigator?.userAgent,
     },
   }) as unknown as Promise<JoinGameResDto>;
 }
@@ -39,6 +40,7 @@ function JoinLobbyGame(gtype: string, gpcode: string) {
     language: detectLanguage,
     extends: {
       lobbyurl: window.location.protocol + "//" + window.location.hostname,
+      browserUserAgent: window.navigator?.userAgent,
     },
   }) as unknown as Promise<JoinLobbyGameResDto>;
 }
