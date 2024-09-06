@@ -73,7 +73,7 @@ const FormikForm = ({
       )}
 
       <SubmitButton fullWidth={true} type={"submit"} disabled={isLoading}>
-        {buttonText}
+        Sign Up
       </SubmitButton>
     </Form>
   );

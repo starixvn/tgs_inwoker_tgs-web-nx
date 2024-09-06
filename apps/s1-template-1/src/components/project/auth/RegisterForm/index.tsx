@@ -1,31 +1,81 @@
-import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
-import BrandLogo from "@/components/project/BrandLogo";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
-import { ActiveTab, AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
+import { ActiveTab, AuthFormContainer, FormContainer, Tabs, TabText } from "@/components/styled-component/AuthFormContainer";
+import { media } from "@tgs-web-nx/constants";
+import { useRedirectToLoginHint } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
 import React from "react";
+import styled from "styled-components";
 
 import RegisterFormStage from "./RegisterFormStage";
 
+const ThirdPartyLoginArea = styled.div`
+  margin-top: -2.4rem;
+  margin-bottom: 1.6rem;
+
+  ${media.sm} {
+    position: absolute;
+    bottom: 7rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`;
+
+const SignUpWith = styled.div`
+  text-align: center;
+  font-size: 1.3rem;
+`;
+
+const SocialIcons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1.6rem;
+  margin-top: 1.2rem;
+`;
+
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
+  const { handleRedirect } = useRedirectToLoginHint();
+
+  const socialList = [
+    {
+      name: "Facebook",
+      url: "/assets/images/community/facebook.png",
+    },
+    {
+      name: "Telegram",
+      url: "/assets/images/community/telegram.png",
+    },
+    {
+      name: "Google",
+      url: "/assets/images/community/google.png",
+    },
+    {
+      name: "Twitter",
+      url: "/assets/images/community/twitter.png",
+    },
+  ];
 
   return (
     <AuthFormContainer>
-      {isMobileSize ? (
-        <BrandLogo style={{ marginBottom: "50px", maxWidth: "none" }} />
-      ) : (
-        <ActiveTab>{i18n.t("common.register").toUpperCase()}</ActiveTab>
-      )}
+      <Tabs>
+        <TabText onClick={handleRedirect} className="link">
+          Sign In
+        </TabText>
+        <ActiveTab>Sign Up</ActiveTab>
+      </Tabs>
 
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>
 
-      <RedirectToLoginHint style={{ marginBottom: "20px" }} />
-      <LanguageSwitch />
+      <ThirdPartyLoginArea>
+        <SignUpWith>Sign in directly with</SignUpWith>
+        <SocialIcons>
+          {socialList.map((social) => {
+            return <img src={social.url} width={36} height={36} alt={social.name} />;
+          })}
+        </SocialIcons>
+      </ThirdPartyLoginArea>
     </AuthFormContainer>
   );
 };

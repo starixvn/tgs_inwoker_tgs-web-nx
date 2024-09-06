@@ -1,7 +1,9 @@
 import BG from "@/assets/t29/images/loginBG.png";
+import { media } from "@tgs-web-nx/constants";
 import styled from "styled-components";
 
 export const AuthFormContainer = styled.div`
+  position: relative;
   width: 100%;
   flex: 1;
   display: flex;
@@ -11,6 +13,10 @@ export const AuthFormContainer = styled.div`
   ::-webkit-scrollbar {
     visibility: hidden;
     width: 0;
+  }
+
+  ${media.sm} {
+    margin-top: 4.8rem;
   }
 
   & > * {
