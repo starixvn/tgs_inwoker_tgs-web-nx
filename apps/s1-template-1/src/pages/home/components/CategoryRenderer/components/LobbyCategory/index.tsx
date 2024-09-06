@@ -2,11 +2,12 @@ import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { media } from "@/theme/breakpoints";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetLobbyCategoryList, useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Common, utility } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import LoadMore from "../LoadMore";
 
 const Wrapper = styled.div`
   display: flex;
@@ -48,12 +49,21 @@ const CategoryContent = styled.div`
   column-gap: 9px;
   align-self: stretch;
 `;
+const DesktopWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* padding: 24px 0; */
+  /* align-items: center; */
+`;
 
 const LobbyCategory = () => {
   const { activeGameType, activeGameTypeKey } = useHomeGameContext();
   const { account } = useAccountStore();
   const history = useHistory();
   const { lobbyCategoryList } = useGetLobbyCategoryList();
+  const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const { isMobileSize, isDesktopSize } = useRwd();
 
   const launchLobbyGame = (gpcode: string) => {
@@ -120,28 +130,30 @@ const LobbyCategory = () => {
               })}
             {!hasMappingData && <div>No data</div>}
           </CategoryContent>
+          <LoadMore></LoadMore>
         </CategoryContentWrapper>
       )}
       {isDesktopSize && (
+        <DesktopWrapper>
         <DesktopCategoryContentWrapper>
           {hasMappingData &&
-            lobbyCategoryList.map((provider) => {
-              const { code: gpCode, status, name } = provider;
+            gameList.map((provider) => {
+              const { gpcode, status, name } = provider;
 
-              if (gpCode === "BC") return null;
+              if (gpcode === "BC") return null;
               return (
                 <DesktopVendorCard
-                  key={gpCode}
+                  key={gpcode}
                   bgUrl={`${utility.imagePathGenerator(
                     `home/desktop/${activeGameTypeKey}/bg.png`,
                   )}`}
                   imageUrl={`${utility.imagePathGenerator(
-                    `home/desktop/${activeGameTypeKey}/${gpCode}.png`,
+                    `home/desktop/${activeGameTypeKey}/${gpcode}.png`,
                   )}`}
                   venderLogoUrl={`${utility.imagePathGenerator(
-                    `home/provider_logo/${activeGameTypeKey}/${gpCode}.png`,
+                    `home/provider_logo/${activeGameTypeKey}/${gpcode}.png`,
                   )}`}
-                  launchGame={() => launchLobbyGame(gpCode)}
+                  launchGame={() => launchLobbyGame(gpcode)}
                   status={status}
                   venderName={name}
                 />
@@ -149,6 +161,8 @@ const LobbyCategory = () => {
             })}
           {!hasMappingData && <div>No data</div>}
         </DesktopCategoryContentWrapper>
+        <LoadMore></LoadMore>
+        </DesktopWrapper>
       )}
     </Wrapper>
   );

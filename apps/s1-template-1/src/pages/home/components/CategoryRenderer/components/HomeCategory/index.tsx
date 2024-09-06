@@ -140,6 +140,11 @@ const HomeCategory = () => {
     { name: "PERDITA", amount: 666465825, code: "perdita" },
   ];
 
+  const navigateTo = (pageName: string) => {
+    history.push("/main/" + pageName);
+    window.scroll({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <DesktopContainer>
       <GameTypeContainer>
@@ -147,7 +152,7 @@ const HomeCategory = () => {
         <GameTypeTitle>
           <img src="/assets/images/common/icon-sports-group.svg" alt="hot" />
           {i18n.t("common.sports")}
-          <ViewAll>View All</ViewAll>
+          <ViewAll onClick={() => navigateTo("sports")}>View All</ViewAll>
         </GameTypeTitle>
 
         <section className="embla">
@@ -181,7 +186,7 @@ const HomeCategory = () => {
         <GameTypeTitle>
           <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
           Popular Slots
-          <ViewAll>View All</ViewAll>
+          <ViewAll onClick={() => navigateTo("slots")}>View All</ViewAll>
         </GameTypeTitle>
         <section className="embla">
           <div className="embla__viewport" ref={emblaPopularSlotsRef}>
@@ -209,7 +214,7 @@ const HomeCategory = () => {
         <GameTypeTitle>
           <img src="/assets/images/common/icon-live-casino-group.svg" alt="slot" />
           {i18n.t("common.live")}
-          <ViewAll>View All</ViewAll>
+          <ViewAll onClick={() => navigateTo("liveCasino")}>View All</ViewAll>
         </GameTypeTitle>
         <section className="embla">
           <div className="embla__viewport" ref={emblaLiveCasinoRef}>

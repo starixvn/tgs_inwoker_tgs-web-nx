@@ -10,6 +10,7 @@ import { useGpCode } from "../hooks/useGpCode";
 import { useProvider } from "../hooks/useProvider";
 import { FilterTag, FilterTagTypeEnum } from "../types";
 import { useNavPopupGameType } from "../hooks/useNavPopupGameType";
+import { usePagination } from "../hooks/usePagination";
 
 export type GameTypeItem = {
   key: string;
@@ -54,6 +55,10 @@ const initialState: {
   handleChangeSearch: (searchString: string) => void;
   setIsEnterGamePortal: (isEnterGamePortal: boolean) => void;
   isEnterGamePortal: boolean;
+  // pagination
+  pageIndex: number;
+  pageSize: number;
+  handleChangePageIndex: (pageIndex: number) => void;
 } = {
   // provider
   providerList: [],
@@ -87,6 +92,10 @@ const initialState: {
   handleChangeSearch: () => {},
   setIsEnterGamePortal: () => {},
   isEnterGamePortal: false,
+  // pagination
+  pageIndex: 0,
+  pageSize: 0,
+  handleChangePageIndex: () => {},
 };
 
 export const HomeGameContext = createContext({
@@ -114,19 +123,27 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
   } = useProviderFilter(providerList);
 
   const { favoriteList, fetchFavoriteList } = useFavoriteList(
-    activeGameType ? activeGameType : GameTypeEnum.SLOT,
+    activeGameType ? activeGameType : GameTypeEnum.SLOT
   );
   const { searchString, handleChangeSearch } = useGameSearch();
+
   const SportsType = gameTypeList.find((item) => item.gameType === GameTypeEnum.SPORTS);
   const activeGameTypeKey = gameTypeList.find((item) =>
     //虛擬體育歸類在體育底下
-    activeGameType === GameTypeEnum.RNGSPORTS ? SportsType?.key : item.gameType === activeGameType,
+    activeGameType === GameTypeEnum.RNGSPORTS ? SportsType?.key : item.gameType === activeGameType
   )?.key;
   const activeNavPopupGameTypeKey = gameTypeList.find(
-    (item) => item.gameType === activeNavPopupGameType,
+    (item) => item.gameType === activeNavPopupGameType
   )?.key;
 
   const [isEnterGamePortal, setIsEnterGamePortal] = useState<boolean>(false);
+
+  const { pageIndex, pageSize, handleChangePageIndex } = usePagination();
+
+  const handleChangePage = (newGameType: GameTypeEnum) => {
+    handleChangeGameType(newGameType);
+    handleChangePageIndex(1);
+  };
 
   return (
     <HomeGameContext.Provider
@@ -137,7 +154,7 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         activeGameType,
         activeGameTypeKey: activeGameTypeKey ?? "",
         activeNavPopupGameTypeKey: activeNavPopupGameTypeKey ?? "",
-        handleChangeGameType,
+        handleChangeGameType: handleChangePage,
         // navGameType
         activeNavPopupGameType,
         handleChangeNavPopupGameType,
@@ -163,6 +180,10 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         handleChangeSearch,
         setIsEnterGamePortal,
         isEnterGamePortal,
+        // pagination
+        pageIndex,
+        pageSize,
+        handleChangePageIndex,
       }}
     >
       {children}
