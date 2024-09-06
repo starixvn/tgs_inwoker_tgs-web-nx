@@ -1,6 +1,4 @@
-import treasureImg from "@/assets/t28/images/account/treasureImg.png";
 import LoginForm from "@/components/project/auth/LoginForm";
-import BrandLogo from "@/components/project/BrandLogo";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import { media } from "@tgs-web-nx/constants";
 import { useAuthDialog } from "@tgs-web-nx/core/features";
@@ -35,8 +33,7 @@ const LoginDialog = () => {
     <AuthDialog open={isLoginDialogOpen} onClose={() => handleToggleLoginDialog(false)}>
       <MainWrapper>
         <LogoImgContainer>
-          <BrandLogo />
-          <img src={treasureImg} alt="treasure" />
+          <img src="/assets/images/auth/login-banner.png" alt="Login Banner" />
         </LogoImgContainer>
         <ForgetPasswordFormContainer>
           <LoginForm />

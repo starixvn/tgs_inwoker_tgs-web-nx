@@ -18,10 +18,9 @@ const StyledDialog = styled(MuiDialog)`
     border-radius: 24px 24px 0px 0px;
     background: ${({ theme }) => theme.dialogBackground};
     box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.3);
-    max-width: 100%;
+    max-width: 71.8rem;
     width: 100%;
     margin: 0;
-    padding-top: 1.6rem;
 
     ${media.sm} {
       position: relative;
