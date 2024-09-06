@@ -7,33 +7,52 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
-  width: 100%;
-  background: ${({ theme }) => theme.footerBackground};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 3rem;
+   background: ${({ theme }) => theme.footerBackground};
+`;
 
-  ${media.sm} {
+const FooterWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  padding: 2rem 0;
+  
+  ${media.md} {
     flex-direction: row;
   }
+  ${media.lg}  {
+    max-width: 120rem;
+    margin: 0 auto ;
+  }
+ 
+`;
+
+const FooterBottom = styled.div`
+  background-color: ${({ theme }) => theme.footerBottomBg};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const FooterGroup = styled.div`
-  min-width: 28%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    ${media.lg} {
+       align-items: flex-start;
+      width: 25%;
+    }
 `;
 
 const GroupTitle = styled.h6`
   position: relative;
   display: flex;
-  justify-content: center;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1rem;
   color: #d5dde9;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: 24px;
-  text-transform: uppercase;
 
   &:after {
     content: "";
@@ -42,33 +61,64 @@ const GroupTitle = styled.h6`
     height: 0.2rem;
     width: 4.1rem;
     background-color: #e2fe26;
+    left: 50%;
+    transform: translateX(-50%);
+    ${media.lg}{
+      left: unset;
+      transform: none;
+    }
   }
 `;
 
 const GroupContent = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 1.2rem;
   font-size: 1.3rem;
   line-height: 2.4rem;
-  font-weight: 500;
-  margin-bottom: 2.4rem;
+  font-weight: 500;  
+  margin: 1.2rem 0 .8rem;
   color: ${({ theme }) => theme.footerColor};
 `;
 
 const SocialIcons = styled.div`
   display: flex;
-  justify-content: center;
   gap: 1.6rem;
-  margin-top: 2.2rem;
-  margin-bottom: 2.4rem;
+  margin-top: .4rem;
 `;
 
 const LinkContent = styled(GroupContent)`
   flex-direction: column;
   gap: 0.8rem;
+  margin-bottom: 2.4rem;
 `;
+
+const FooterLogo = styled.div`
+  margin-bottom: .8rem;
+  display: flex;
+  justify-content: center;
+`
+
+const GamCareTitle = styled.div`
+  display: flex;
+  margin-bottom: 2.4rem;
+  gap: 1.6rem;
+  ${media.lg} {
+    margin-bottom: 0;
+  }
+`
+
+const GameCareText = styled.div`
+  text-align: left;
+  font-size: 1.3rem;
+  color: #97A2B0;
+  padding-right: 2rem;
+  margin-top: 1rem;
+  line-height: 2.4rem;
+  display: none;
+
+  ${media.lg} {
+    display: block;
+  }
+`
 
 // const LogoImg = styled.img`
 //   width: 100%;
@@ -77,8 +127,13 @@ const LinkContent = styled(GroupContent)`
 // `;
 
 const Link = styled.div`
-  width: max-content;
+  width: 100%;
   cursor: pointer;
+  margin-bottom: .8rem;
+  text-align: center;
+  ${media.lg} {
+     text-align: left;
+  }
 
   &:hover {
     color: ${({ theme }) => theme.linkColor};
@@ -117,31 +172,57 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-      <FooterGroup>
-        <GroupTitle>COMMUNITY</GroupTitle>
-        <SocialIcons>
-          {socialList.map((social) => {
-            return <img src={social.url} width={36} height={36} alt={social.name} />;
-          })}
-        </SocialIcons>
+      <FooterWrapper>       
+        <FooterGroup>
+          <GroupTitle>Community</GroupTitle>
+          <GroupContent>
+            <SocialIcons>
+              {socialList.map((social) => {
+                return <img src={social.url} width={36} height={36} alt={social.name} />;
+              })}
+            </SocialIcons>
+          </GroupContent>
+          
+        </FooterGroup>
+        <FooterGroup>
+          <GroupTitle>Support</GroupTitle>
+          <LinkContent>
+            <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
+            <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
+            <Link onClick={() => navigateTo("responsiblegaming")}>
+              {i18n.t("T13.quickLink.reponsible")}
+            </Link>
+
+          </LinkContent>
+        </FooterGroup>
+        <FooterGroup>
+          <GroupTitle>Policies</GroupTitle>
+          <LinkContent>
+            <Link onClick={() => navigateTo("privacypolicy")}>{i18n.t("T13.quickLink.privacy")}</Link>
+            <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
+            <Link onClick={() => navigateTo("responsiblegaming")}>
+              {i18n.t("T13.quickLink.reponsible")}
+            </Link>
+          </LinkContent>
+        </FooterGroup>  
+        <FooterGroup>
+          <GamCareTitle>
+            <img src="/assets/images/footer/icon-18plus.svg" alt="18plus" width={32} height={32}></img>
+            <img src="/assets/images/footer/icon-gamcare.svg" alt="gamcare" width={125} height={31}></img>
+          </GamCareTitle>
+          <GameCareText>
+            This website offers gaming with rich experience. To be a user of our site you must be over 18 years old. We are not responsible for the violation 
+            of your local laws. Play responsibly and have fun on S1.
+          </GameCareText>
+        </FooterGroup>
+      </FooterWrapper>
+      <FooterBottom>
         <GroupContent>
           {/* <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} /> */}
-          <img src="/assets/images/common/logo.svg" width={44} height={29} alt="Twitter" />
-          © 2024, S1.com <br /> All Rights Reserved.
+          <FooterLogo><img src="/assets/images/common/logo.svg" width={82} height={22} alt="Twitter" /></FooterLogo>
+          © 2024, S1.com | All Rights Reserved.
         </GroupContent>
-      </FooterGroup>
-
-      <FooterGroup>
-        <GroupTitle>ABOUT US</GroupTitle>
-        <LinkContent>
-          <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
-          <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
-          <Link onClick={() => navigateTo("responsiblegaming")}>
-            {i18n.t("T13.quickLink.reponsible")}
-          </Link>
-          <Link onClick={() => navigateTo("privacypolicy")}>{i18n.t("T13.quickLink.privacy")}</Link>
-        </LinkContent>
-      </FooterGroup>
+      </FooterBottom>
     </FooterContainer>
   );
 };

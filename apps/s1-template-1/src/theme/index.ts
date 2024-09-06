@@ -44,6 +44,7 @@ export const theme = {
 
   // Footer
   footerBackground: "#19212C",
+  footerBottomBg: "#1D2939",
   footerColor: "#97a2b0",
 
   // Forms

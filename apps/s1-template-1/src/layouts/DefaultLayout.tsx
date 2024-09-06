@@ -1,5 +1,4 @@
 import BottomAppBar from "@/layouts/components/BottomAppBar";
-import Footer from "@/layouts/components/Footer";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
 import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
@@ -7,6 +6,7 @@ import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
+import Footer from "./components/Footer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -55,13 +55,10 @@ const DefaultLayout = ({ children }: Props) => {
 
       <DashboardContainer>
         <ContentWrapper>
-          <>
             <ChildrenWrapper>{children}</ChildrenWrapper>
-            <Footer />
-          </>
         </ContentWrapper>
       </DashboardContainer>
-
+      <Footer />
       {isMobileSize && loginAccount && <BottomAppBar />}
     </DefaultLayoutContainer>
   );
