@@ -10,6 +10,7 @@ export interface GameItem {
   name: string;
   description: string;
   gpcode: string;
+  status: number;
   isactive: boolean;
   type: number;
   tag: GameTagItem;

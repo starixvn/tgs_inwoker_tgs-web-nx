@@ -18,6 +18,8 @@ import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t29/images/home/search.svg";
 import { theme } from "@/theme";
+import LoadMore from "../LoadMore";
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -109,7 +111,7 @@ const NonLobbyCategory = () => {
     activeProviderFilterTag,
     searchString,
     handleChangeSearch,
-    activeGameTypeKey,
+    activeGameTypeKey
   } = useHomeGameContext();
   const hasMappingData = !!gameList.length;
   const { navPopupCategoryList } = useGetLobbyCategoryList();
@@ -120,6 +122,7 @@ const NonLobbyCategory = () => {
     ) as FilterTag;
     handleChangeActiveProviderFilterTag(newFilterTag);
   };
+
   return (
     <Wrapper>
       {isMobileSize && (
@@ -187,6 +190,7 @@ const NonLobbyCategory = () => {
               ))}
             {!hasMappingData && !isLoading && <div>No data</div>}
           </CategoryContent>
+          <LoadMore></LoadMore>
         </CategoryContentWrapper>
       )}
 
@@ -211,9 +215,11 @@ const NonLobbyCategory = () => {
                     gameItem.code
                   }.jpg`}
                 />
+              
               ))}
             {!hasMappingData && !isLoading && <Text>No data</Text>}
           </DesktopCategoryContentWrapper>
+          <LoadMore></LoadMore>
         </DesktopWrapper>
       )}
       <Loading show={isLoading} />

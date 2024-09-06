@@ -10,12 +10,14 @@ interface GetGameListState {
   isLoading: boolean;
   gameList: GameItem[];
   error: Error | null;
+  total: number;
 }
 
 export function useGetNonLobbyCategoryList() {
   const [gameListState, setGameListState] = useState<GetGameListState>({
     isLoading: false,
     gameList: [],
+    total: 0,
     error: null,
   });
 
@@ -26,45 +28,42 @@ export function useGetNonLobbyCategoryList() {
     favoriteList,
     activeProviderFilterTag,
     searchString,
+    pageIndex,
+    pageSize
   } = useHomeGameContext();
 
   const fetchGameList = async (): Promise<GameItem[] | void> => {
-    if (gameCacheService.hasCache(activeGameType)) {
-      const gameList = await gameCacheService.getCachedGameList(activeGameType);
-
-      setGameListState({
-        isLoading: false,
-        gameList,
-        error: null,
-      });
-
+    if (gameCacheService.hasCache(activeGameType, pageIndex) && gameCacheService.hasTotalGameCache(activeGameType)) {
+      const gameList = await gameCacheService.getCachedGameList(activeGameType, pageIndex);
+      const totalGame = await gameCacheService.getCachedTotal(activeGameType);
+      setGameListState(state => ({ ...state, gameList: gameList, total: totalGame }));
       return gameList;
     }
 
     try {
-      setGameListState({
-        isLoading: true,
-        gameList: [],
-        error: null,
-      });
+      setGameListState(state => ({ ...state, isLoading: true }));
 
-      const response = await GameService.GetGameList("", activeGameType);
+      const response = await GameService.GetCategory(activeGameType, pageIndex, pageSize);
+      const gameList = pageIndex > 1 ? gameListState.gameList.concat(response.data[0].games) : response.data[0].games;
 
       setGameListState({
         isLoading: false,
-        gameList: response.data,
+        gameList: gameList,
         error: null,
+        total: response.data[0].total
       });
 
-      gameCacheService.updateGameCacheDictionary(activeGameType, response.data);
+      gameCacheService.updateGameCacheDictionary(activeGameType, pageIndex, gameList);
+      gameCacheService.updateTotalCacheDictionary(activeGameType, response.data[0].total);
 
-      return response.data;
+      return gameList;
     } catch (error: any) {
       console.error(error);
       setGameListState({
         isLoading: false,
         gameList: [],
         error: error,
+        total: 0
       });
     }
   };
@@ -74,7 +73,7 @@ export function useGetNonLobbyCategoryList() {
       if (!response) return;
       updateGpCodeList(response);
     });
-  }, [activeGameType]);
+  }, [activeGameType, pageIndex]);
 
   const filteredGameListByTag = useMemo(() => {
     return getFilteredGameListByTag(gameListState.gameList, activeFilterTag, favoriteList);
@@ -96,5 +95,6 @@ export function useGetNonLobbyCategoryList() {
     isLoading: gameListState.isLoading,
     gameList: searchedGameList,
     error: gameListState.error,
+    total: gameListState.total,
   };
 }
