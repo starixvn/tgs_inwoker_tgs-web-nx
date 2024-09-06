@@ -27,6 +27,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
       variant={"outlined"}
       fullWidth
       name={name}
+      className={name}
       value={formik.values[name]}
       onChange={formik.handleChange}
       onBlur={formik.handleBlur}

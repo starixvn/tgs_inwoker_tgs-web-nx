@@ -1,10 +1,6 @@
-import styled from "styled-components";
-import {
-  Button as MuiButton,
-  FormControl as MuiFormControl,
-  styled as muiStyled,
-} from "@mui/material";
 import { media } from "@/theme/breakpoints";
+import { Button as MuiButton, FormControl as MuiFormControl, styled as muiStyled } from "@mui/material";
+import styled from "styled-components";
 
 export const Remark = styled.div`
   font-size: 0.937rem;
@@ -71,18 +67,20 @@ export const UploadFileTag = styled.span`
 `;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
-  height: "50px",
+  height: "4.8rem",
   whiteSpace: "nowrap",
-  padding: "16px",
-  fontSize: "1rem",
+  padding: "1.6rem",
+  marginBottom: "2.4rem",
+  fontSize: "1.4rem",
   lineHeight: 1,
   fontWeight: 700,
-  color: theme.palette.white,
-  background: theme.palette.primary.main,
-  boxShadow: "none",
+  color: theme.palette.submitButtonColor,
+  background: theme.palette.submitButtonBackground,
+  boxShadow: theme.palette.submitButtonShadow,
+  borderRadius: "1rem",
 
   "&:hover": {
-    background: theme.palette.primary.main,
+    background: theme.palette.submitButtonBackground,
   },
 
   "&:disabled": {
