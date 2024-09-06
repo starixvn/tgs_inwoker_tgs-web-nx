@@ -15,7 +15,7 @@ const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 2rem .8rem;
   
   ${media.md} {
     flex-direction: row;
@@ -39,7 +39,7 @@ const FooterGroup = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    ${media.lg} {
+    ${media.md} {
        align-items: flex-start;
       width: 25%;
     }
@@ -63,7 +63,7 @@ const GroupTitle = styled.h6`
     background-color: #e2fe26;
     left: 50%;
     transform: translateX(-50%);
-    ${media.lg}{
+    ${media.md}{
       left: unset;
       transform: none;
     }
@@ -101,7 +101,7 @@ const GamCareTitle = styled.div`
   display: flex;
   margin-bottom: 2.4rem;
   gap: 1.6rem;
-  ${media.lg} {
+  ${media.md} {
     margin-bottom: 0;
   }
 `
@@ -115,7 +115,7 @@ const GameCareText = styled.div`
   line-height: 2.4rem;
   display: none;
 
-  ${media.lg} {
+  ${media.md} {
     display: block;
   }
 `
@@ -131,7 +131,7 @@ const Link = styled.div`
   cursor: pointer;
   margin-bottom: .8rem;
   text-align: center;
-  ${media.lg} {
+  ${media.md} {
      text-align: left;
   }
 
