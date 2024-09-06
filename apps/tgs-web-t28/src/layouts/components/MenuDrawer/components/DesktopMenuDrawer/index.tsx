@@ -96,75 +96,68 @@ const SocialMediaTitle = styled.div`
 `;
 
 const DesktopMenuDrawer = () => {
-  const history = useHistory();
+    const history = useHistory();
 
-  type SideMenuItem = {
-    key: string;
-    iconUrl: string;
-    label: string;
-    routePath: string;
-  };
+    type SideMenuItem = {
+        key: string;
+        iconUrl: string;
+        label: string;
+        routePath: string;
+    };
 
-  const sideMenuList: SideMenuItem[] = [
-    {
-      key: "promotion",
-      iconUrl: iconPromotion,
-      label: i18n.t("common.promotion"),
-      routePath: "/promotion-list",
-    },
-    {
-      key: "vip",
-      iconUrl: iconVip,
-      label: "VIP",
-      routePath: "/vip",
-    },
-    {
-      key: "deposit",
-      iconUrl: iconDeposit,
-      label: i18n.t("common.deposit"),
-      routePath: "/deposit",
-    },
-    {
-      key: "withdrawal",
-      iconUrl: iconWithdraw,
-      label: i18n.t("common.withdrawal"),
-      routePath: "/withdrawal",
-    },
+    const sideMenuList: SideMenuItem[] = [
+        {
+            key: "promotion",
+            iconUrl: iconPromotion,
+            label: i18n.t("common.promotion"),
+            routePath: "/promotion-list",
+        },
+        {
+            key: "vip",
+            iconUrl: iconVip,
+            label: "VIP",
+            routePath: "/vip",
+        },
+        {
+            key: "deposit",
+            iconUrl: iconDeposit,
+            label: i18n.t("common.deposit"),
+            routePath: "/deposit",
+        },
+        {
+            key: "withdrawal",
+            iconUrl: iconWithdraw,
+            label: i18n.t("common.withdrawal"),
+            routePath: "/withdrawal",
+        },
+    ];
 
-    {
-      key: "transfer",
-      iconUrl: iconTransfer,
-      label: i18n.t("common.transfer"),
-      routePath: "/transfer",
-    },
-  ];
-
-  return (
-    <MobileMenuDrawerContainer>
-      <HeaderContentContainer>
-        {sideMenuList.map((item: SideMenuItem) => {
-          return (
-            <PromotionCard
-              key={item.key}
-              onClick={() => {
-                history.push(item.routePath);
-              }}
-            >
-              <img src={item.iconUrl} alt={item.label} />
-              {item.key === "promotion" || item.key === "vip" ? (
-                <>
-                  <HotText>{item.label}</HotText>
-                  <img src={hotIcon} alt="hot" />
-                </>
-              ) : (
-                <IconText>{item.label}</IconText>
-              )}
-            </PromotionCard>
-          );
-        })}
-      </HeaderContentContainer>
-      {/* TODO: remove for phase 1 */}
-      {/* <DownloadWrapper>
+    return (
+        <MobileMenuDrawerContainer>
+            <HeaderContentContainer>
+                {sideMenuList.map((item: SideMenuItem) => {
+                    return (
+                        <PromotionCard
+                            key={item.key}
+                            onClick={() => {
+                                history.push(item.routePath);
+                            }}
+                        >
+                            <img src={item.iconUrl} alt={item.label} />
+                            {item.key === "promotion" || item.key === "vip" ? (
+                                <>
+                                    <HotText>{item.label}</HotText>
+                                    <img src={hotIcon} alt="hot" />
+                                </>
+                            ) : (
+                                <IconText>{item.label}</IconText>
+                            )}
+                        </PromotionCard>
+                    );
+                })}
+            </HeaderContentContainer>
+            {/* TODO: remove for phase 1 */}
+            {/* <DownloadWrapper>
         <DownloadButton>
           <DownloadIconWrapper
             onClick={() => {
@@ -177,13 +170,13 @@ const DesktopMenuDrawer = () => {
         </DownloadButton>
       </DownloadWrapper> */}
 
-      <SocialMediaWrapper>
-        <SocialMediaTitle>Official Channel</SocialMediaTitle>
-        <SocialMedia />
-      </SocialMediaWrapper>
-      <MenuLanguageSwitch style={{ width: "100%" }} />
-    </MobileMenuDrawerContainer>
-  );
+            <SocialMediaWrapper>
+                <SocialMediaTitle>Official Channel</SocialMediaTitle>
+                <SocialMedia />
+            </SocialMediaWrapper>
+            <MenuLanguageSwitch style={{ width: "100%" }} />
+        </MobileMenuDrawerContainer>
+    );
 };
 
 export default DesktopMenuDrawer;

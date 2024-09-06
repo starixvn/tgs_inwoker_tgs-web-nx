@@ -346,12 +346,4 @@ const routes: RouteType[] = [
   },
 ];
 
-if (!config.features.NewTransferUI) {
-  routes.push({
-    path: "/transfer",
-    component: TransferPage,
-    layout: DialogLayout,
-  });
-}
-
 export { routes };

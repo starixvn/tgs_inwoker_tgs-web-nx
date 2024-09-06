@@ -5,21 +5,21 @@ import styled from "styled-components";
 import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
 import {
-  ProfileIcon,
-  ContactIcon,
-  DepositIcon,
-  InoboxIcon,
-  ReportIcon,
-  TransferIcon,
-  WithdrawIcon,
+    ProfileIcon,
+    ContactIcon,
+    DepositIcon,
+    InoboxIcon,
+    ReportIcon,
+    TransferIcon,
+    WithdrawIcon,
 } from "@/components/account/Icons";
 
 type MenuItem = {
-  key: NavCardKey;
-  label: string;
-  router: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  icon: any;
+    key: NavCardKey;
+    label: string;
+    router: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    icon: any;
 };
 
 const TabContainer = styled.div`
@@ -37,7 +37,7 @@ const Tab = styled.div<{ $isActived: boolean }>`
   padding: 8px 14px;
   border-radius: 30px;
   border: ${({ theme, $isActived }) =>
-    $isActived ? `1px solid ${theme.lightPurple}` : `2px solid ${theme.secBTNBGC}`};
+        $isActived ? `1px solid ${theme.lightPurple}` : `2px solid ${theme.secBTNBGC}`};
   gap: 8px;
   margin-bottom: 24px;
   cursor: pointer;
@@ -55,92 +55,86 @@ const Tab = styled.div<{ $isActived: boolean }>`
 `;
 
 const MenuTabs = () => {
-  const history = useHistory();
-  const location = useLocation();
-  const accountMenuList: MenuItem[] = [
-    {
-      key: NavCardKey.PROFILE,
-      label: i18n.t("deposit.details.account"),
-      router: "/profile",
-      icon: ProfileIcon,
-    },
-    {
-      key: NavCardKey.DEPOSIT,
-      label: i18n.t("common.deposit"),
-      router: "/deposit",
-      icon: DepositIcon,
-    },
-    {
-      key: NavCardKey.WITHDRAW,
-      label: i18n.t("common.withdrawal"),
-      router: "/withdrawal",
-      icon: WithdrawIcon,
-    },
-    //TODO: remove for phase 1
-    // {
-    //   key: NavCardKey.WAGERING,
-    //   label: i18n.t("common.wagering"),
-    //   router: "/wagering",
-    //   icon: ReportIcon,
-    // },
-    {
-      key: NavCardKey.TRANSFER,
-      label: i18n.t("common.transfer"),
-      router: "/transfer",
-      icon: TransferIcon,
-    },
-    {
-      key: NavCardKey.REPORT,
-      label: i18n.t("report.title"),
-      router: "/report",
-      icon: ReportIcon,
-    },
-    {
-      key: NavCardKey.INBOX,
-      label: i18n.t("wap.main.account.inbox"),
-      router: "/inbox",
-      icon: InoboxIcon,
-    },
-    //TODO: remove for phase 1
-    // {
-    //   key: NavCardKey.AFFILIATE,
-    //   label: i18n.t("wap.main.account.affiliate"),
-    //   router: "/affiliate",
-    //   icon: AffiliateIcon,
-    // },
-    {
-      key: NavCardKey.CONTACT_US,
-      label: i18n.t("common.contact"),
-      router: "/support",
-      icon: ContactIcon,
-    },
-    //TODO: remove for phase 1
-    // {
-    //   key: NavCardKey.APP_DOWNLOAD,
-    //   label: i18n.t("wap.main.account.appDownload"),
-    //   router: "/appDownload",
-    //   icon: DownloadIcon,
-    // },
-  ];
-  return (
-    <TabContainer>
-      {accountMenuList.map((item: MenuItem) => {
-        const isActived = item.router === location.pathname;
-        return (
-          <Tab
-            key={item.key}
-            $isActived={isActived}
-            onClick={() => {
-              history.push(item.router);
-            }}
-          >
-            <item.icon $color={isActived ? theme.lightPurple : theme.gray50} />
-            <span>{item.label}</span>
-          </Tab>
-        );
-      })}
-    </TabContainer>
-  );
+    const history = useHistory();
+    const location = useLocation();
+    const accountMenuList: MenuItem[] = [
+        {
+            key: NavCardKey.PROFILE,
+            label: i18n.t("deposit.details.account"),
+            router: "/profile",
+            icon: ProfileIcon,
+        },
+        {
+            key: NavCardKey.DEPOSIT,
+            label: i18n.t("common.deposit"),
+            router: "/deposit",
+            icon: DepositIcon,
+        },
+        {
+            key: NavCardKey.WITHDRAW,
+            label: i18n.t("common.withdrawal"),
+            router: "/withdrawal",
+            icon: WithdrawIcon,
+        },
+        //TODO: remove for phase 1
+        // {
+        //   key: NavCardKey.WAGERING,
+        //   label: i18n.t("common.wagering"),
+        //   router: "/wagering",
+        //   icon: ReportIcon,
+        // },
+        {
+            key: NavCardKey.REPORT,
+            label: i18n.t("report.title"),
+            router: "/report",
+            icon: ReportIcon,
+        },
+        {
+            key: NavCardKey.INBOX,
+            label: i18n.t("wap.main.account.inbox"),
+            router: "/inbox",
+            icon: InoboxIcon,
+        },
+        //TODO: remove for phase 1
+        // {
+        //   key: NavCardKey.AFFILIATE,
+        //   label: i18n.t("wap.main.account.affiliate"),
+        //   router: "/affiliate",
+        //   icon: AffiliateIcon,
+        // },
+        {
+            key: NavCardKey.CONTACT_US,
+            label: i18n.t("common.contact"),
+            router: "/support",
+            icon: ContactIcon,
+        },
+        //TODO: remove for phase 1
+        // {
+        //   key: NavCardKey.APP_DOWNLOAD,
+        //   label: i18n.t("wap.main.account.appDownload"),
+        //   router: "/appDownload",
+        //   icon: DownloadIcon,
+        // },
+    ];
+    return (
+        <TabContainer>
+            {accountMenuList.map((item: MenuItem) => {
+                const isActived = item.router === location.pathname;
+                return (
+                    <Tab
+                        key={item.key}
+                        $isActived={isActived}
+                        onClick={() => {
+                            history.push(item.router);
+                        }}
+                    >
+                        <item.icon $color={isActived ? theme.lightPurple : theme.gray50} />
+                        <span>{item.label}</span>
+                    </Tab>
+                );
+            })}
+        </TabContainer>
+    );
 };
 
 export default MenuTabs;

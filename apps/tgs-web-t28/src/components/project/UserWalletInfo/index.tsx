@@ -146,10 +146,10 @@ export const AmountContainer = styled.div<{ theme: DefaultTheme }>`
 `;
 
 type RefreshButtonProps = {
-  $isLoading: boolean;
+    $isLoading: boolean;
 };
 
-export const RefreshButton = styled(Icon)<RefreshButtonProps>`
+export const RefreshButton = styled(Icon) <RefreshButtonProps>`
   &:hover {
     cursor: pointer;
     animation: ${rotateKeyFrame} 1s linear 0s infinite;
@@ -157,103 +157,64 @@ export const RefreshButton = styled(Icon)<RefreshButtonProps>`
 `;
 
 const UserWalletInfo = () => {
-  const { game } = useGameStore();
-  const {
-    mainSymbol,
-    mainWalletBalance,
-    transferWalletBalance,
-    fetchMainWalletBalance,
-    fetchTransferWalletBalance,
-    fetchBalance,
-    isMainWalletLoading,
-    isTransferWalletLoading,
-    info,
-  } = useUserWalletInfoContext();
+    const { game } = useGameStore();
+    const {
+        mainSymbol,
+        mainWalletBalance,
+        transferWalletBalance,
+        fetchBalance,
+        isMainWalletLoading,
+        isTransferWalletLoading,
+        info,
+    } = useUserWalletInfoContext();
 
-  return (
-    <Container>
-      <PlayerInfoContainer>
-        <PlayerInfo>
-          <PlayerName>{info.member_username}</PlayerName>
-          {config.features.HaveVIPFeature && (
-            <VIPLabel>
-              <img
-                width={"50px"}
-                height={"50px"}
-                src={`${import.meta.env.BASE_URL}assets/images/vip/level_${
-                  info.member_level_id
-                }.png`}
-                alt={`level_${info.member_level_id}`}
-              />
-              VIP
-              {info.member_level_id}
-            </VIPLabel>
-          )}
-        </PlayerInfo>
-        <VipProgressBar />
-      </PlayerInfoContainer>
+    return (
+        <Container>
+            <PlayerInfoContainer>
+                <PlayerInfo>
+                    <PlayerName>{info.member_username}</PlayerName>
+                    {config.features.HaveVIPFeature && (
+                        <VIPLabel>
+                            <img
+                                width={"50px"}
+                                height={"50px"}
+                                src={`${import.meta.env.BASE_URL}assets/images/vip/level_${info.member_level_id
+                                    }.png`}
+                                alt={`level_${info.member_level_id}`}
+                            />
+                            VIP
+                            {info.member_level_id}
+                        </VIPLabel>
+                    )}
+                </PlayerInfo>
+                <VipProgressBar />
+            </PlayerInfoContainer>
 
-      <WalletsWrapper>
-        <MainWalletContainer>
-          <MainAccountLabel>{i18n.t("web.account.header.mainWallet")}</MainAccountLabel>
-          <AmountContainer>
-            {isMainWalletLoading ? (
-              <span>-</span>
-            ) : (
-              <DynamicFont content={mainSymbol + Common.formatCurrency(mainWalletBalance)} />
-            )}
-            <RefreshButton
-              width={"44px"}
-              height={"44px"}
-              iconUrl={refreshIcon}
-              onClick={fetchMainWalletBalance}
-              $isLoading={isMainWalletLoading}
-            />
-          </AmountContainer>
-        </MainWalletContainer>
-        {game.containTransferWallet && (
-          <MainWalletContainer>
-            <MainAccountLabel>{i18n.t("web.account.header.allGameWallet")}</MainAccountLabel>
-            <AmountContainer>
-              {isTransferWalletLoading ? (
-                <span>-</span>
-              ) : (
-                <DynamicFont content={mainSymbol + Common.formatCurrency(transferWalletBalance)} />
-              )}
-              <RefreshButton
-                width={"44px"}
-                height={"44px"}
-                iconUrl={refreshIcon}
-                onClick={fetchTransferWalletBalance}
-                $isLoading={isTransferWalletLoading}
-              />
-            </AmountContainer>
-          </MainWalletContainer>
-        )}
-        <MainWalletContainer>
-          <MainAccountLabel>{i18n.t("web.account.header.total")}</MainAccountLabel>
-          <AmountContainer>
-            {isMainWalletLoading && isTransferWalletLoading ? (
-              <span>-</span>
-            ) : (
-              <DynamicFont
-                content={
-                  mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)
-                }
-              />
-            )}
-            <RefreshButton
-              width={"44px"}
-              height={"44px"}
-              iconUrl={refreshIcon}
-              onClick={fetchBalance}
-              $isLoading={isMainWalletLoading && isTransferWalletLoading}
-            />
-          </AmountContainer>
-        </MainWalletContainer>
-      </WalletsWrapper>
-    </Container>
-  );
+            <WalletsWrapper>
+                <MainWalletContainer>
+                    <MainAccountLabel>{i18n.t("web.account.header.total")}</MainAccountLabel>
+                    <AmountContainer>
+                        {isMainWalletLoading && isTransferWalletLoading ? (
+                            <span>-</span>
+                        ) : (
+                            <DynamicFont
+                                content={
+                                    mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)
+                                }
+                            />
+                        )}
+                        <RefreshButton
+                            width={"44px"}
+                            height={"44px"}
+                            iconUrl={refreshIcon}
+                            onClick={fetchBalance}
+                            $isLoading={isMainWalletLoading && isTransferWalletLoading}
+                        />
+                    </AmountContainer>
+                </MainWalletContainer>
+            </WalletsWrapper>
+        </Container>
+    );
 };
 
 export default UserWalletInfo;

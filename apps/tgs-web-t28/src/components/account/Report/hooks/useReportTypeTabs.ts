@@ -34,14 +34,6 @@ export function useReportTypeTabs() {
         index: ReportTabIndexEnum.DEPOSIT,
         label: i18n.t("report.depositDetails"),
       },
-      (() => {
-        if (game.containTransferWallet) {
-          return {
-            index: ReportTabIndexEnum.TRANSFER,
-            label: i18n.t("common.transfer"),
-          };
-        }
-      })(),
       {
         index: ReportTabIndexEnum.BALANCE_CHANGE,
         label: i18n.t("report.balanceChanges.title"),
@@ -51,7 +43,7 @@ export function useReportTypeTabs() {
         label: i18n.t("report.joinedPromo.title"),
       },
     ].filter((reportTab) => !!reportTab) as ReportTab[];
-  }, [game.containTransferWallet]);
+  }, []);
 
   return {
     displayedTabList,
