@@ -1,4 +1,3 @@
-import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
@@ -75,8 +74,8 @@ const DesktopHeader = () => {
           <img
             src={logoUrl}
             alt={"logo"}
-            width={45}
-            height={29}
+            width={82}
+            height={22}
             onClick={() => {
               history.push("/");
             }}
