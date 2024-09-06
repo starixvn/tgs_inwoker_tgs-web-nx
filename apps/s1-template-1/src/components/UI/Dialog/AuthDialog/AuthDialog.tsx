@@ -16,12 +16,12 @@ const StyledDialog = styled(MuiDialog)`
     flex-direction: column;
     justify-content: center;
     border-radius: 24px 24px 0px 0px;
-    background: var(--bg-register, #121b24);
+    background: ${({ theme }) => theme.dialogBackground};
     box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.3);
     max-width: 100%;
     width: 100%;
     margin: 0;
-    padding: 1.6rem 2.4rem;
+    padding-top: 1.6rem;
 
     ${media.sm} {
       position: relative;
@@ -34,7 +34,6 @@ const ChildContainer = styled.div`
   width: 100%;
   margin: auto;
   max-height: 910px;
-  // background: ${({ theme }) => theme.secBTNBGC};
   z-index: 2;
   overflow: auto;
 

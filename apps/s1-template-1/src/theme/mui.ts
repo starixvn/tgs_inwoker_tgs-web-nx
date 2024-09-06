@@ -34,6 +34,9 @@ declare module "@mui/material/styles/createPalette" {
     playNowButtonBackground: string;
     tabColor: string;
     tabActiveColor: string;
+    submitButtonBackground: string;
+    submitButtonColor: string;
+    submitButtonShadow: string;
   }
 }
 
@@ -87,6 +90,9 @@ const muiTheme = createTheme({
     playNowButtonBackground: theme.playNowButtonBackground,
     tabColor: theme.tabColor,
     tabActiveColor: theme.tabActiveColor,
+    submitButtonBackground: theme.submitButtonBackground,
+    submitButtonColor: theme.submitButtonColor,
+    submitButtonShadow: theme.submitButtonShadow,
   },
   typography: {
     fontWeightLight: 300,

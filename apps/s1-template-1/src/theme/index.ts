@@ -19,7 +19,6 @@ export const theme = {
   inputBGC: "#FFFFFF14",
   popupMask: "#000000A8",
   secPopupMask: "#00000040",
-  text: "#FFFFFF",
 
   // New template
   // Header
@@ -54,6 +53,7 @@ export const theme = {
 
   // Common
   mainBackground: "#0D131C",
+  text: "#FFFFFF",
 
   errorColor: "#F90B44",
 
@@ -75,4 +75,13 @@ export const theme = {
   tabColor: "#6E7E92",
   tabActiveColor: "#fff",
   tabActiveLineColor: "radial-gradient(circle, rgba(226,254,38,1) 5%, rgba(226,254,38,0) 95%)",
+
+  submitButtonBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
+  submitButtonColor: "#fff",
+  submitButtonShadow: "0 0 13px 0px rgba(255,160,18,0.7)",
+
+  dialogBackground: "#121b24",
+
+  checkBoxBackground: "#65759b",
+  activeCheckBoxBackground: "#90A405",
 };

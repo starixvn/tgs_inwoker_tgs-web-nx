@@ -13,6 +13,7 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
       variant={"outlined"}
       fullWidth
       name={name}
+      className={name}
       value={formik.values[name]}
       onChange={formik.handleChange}
       onBlur={formik.handleBlur}
@@ -20,11 +21,6 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
       error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
       inputProps={{
         autoComplete: "off",
-      }}
-      sx={{
-        ".MuiOutlinedInput-notchedOutline:focus": {
-          border: "none",
-        },
       }}
     />
   );

@@ -17,6 +17,7 @@ const Form = styled.form`
   flex-direction: column;
   gap: 1.2rem;
   flex-shrink: 0;
+  padding: 0 2.4rem;
 `;
 
 type Props = {

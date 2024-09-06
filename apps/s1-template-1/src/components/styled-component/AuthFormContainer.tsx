@@ -7,7 +7,6 @@ export const AuthFormContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding-bottom: 2.4rem;
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -30,12 +29,14 @@ export const Tabs = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 3.6rem;
   align-items: center;
-  width: 70%;
+  width: 50%;
   min-width: 20rem;
   padding: 0.4rem;
+  margin: 0 2.4rem;
   border-radius: 1rem;
   background: ${({ theme }) => theme.authTabsBackground};
   margin-bottom: 1.2rem;
+  text-align: center;
 `;
 
 export const ActiveTab = styled.div`
@@ -56,6 +57,7 @@ export const TabText = styled.span`
   padding: 0 2rem;
   line-height: 3.6rem;
   color: ${({ theme }) => theme.authTabColor};
+  cursor: pointer;
 `;
 
 export const FormContainerWithBG = styled.div`
