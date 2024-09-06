@@ -1,16 +1,13 @@
-import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
+import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
+import BrandLogo from "@/components/project/BrandLogo";
+import LanguageSwitch from "@/components/project/LanguageSwitch";
+import { ActiveTab, AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import React from "react";
+
 import RegisterFormStage from "./RegisterFormStage";
-import RedirectToLoginHint from "@/components/project/auth/RedirectToLoginHint";
-import {
-  AuthFormContainer,
-  LoginTitle,
-  FormContainer,
-} from "@/components/styled-component/AuthFormContainer";
-import LanguageSwitch from "@/components/project/LanguageSwitch";
-import BrandLogo from "@/components/project/BrandLogo";
 
 const RegisterForm = () => {
   const { isMobileSize } = useRwd();
@@ -20,7 +17,7 @@ const RegisterForm = () => {
       {isMobileSize ? (
         <BrandLogo style={{ marginBottom: "50px", maxWidth: "none" }} />
       ) : (
-        <LoginTitle>{i18n.t("common.register").toUpperCase()}</LoginTitle>
+        <ActiveTab>{i18n.t("common.register").toUpperCase()}</ActiveTab>
       )}
 
       <FormContainer>

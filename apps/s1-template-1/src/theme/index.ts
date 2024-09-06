@@ -22,17 +22,40 @@ export const theme = {
   text: "#FFFFFF",
 
   // New template
+  // Header
   signUpButtonBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   changeLanguage: "linear-gradient(180deg, #344863 0%, #27384f 100%)",
 
+  // Category
   categoryBackground: "linear-gradient(180deg, #2b3f5b 0%, #203757 100%)",
   categoryBackgroundActive: "linear-gradient(180deg, #A0B60F 0%, #6C7B0A 100%)",
 
+  // Recent Big Wins
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
   bigWinsAmountColor: "#e2fe26",
   recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
   recentBigWinsBottomBackground:
     "linear-gradient(180deg, rgba(22, 75, 153, 0) 4.38%, #065cdc 169.37%)",
+
+  // AuthForm
+  authTabsBackground: "#1d2635",
+  authActiveTabBackground: "linear-gradient(276deg, #b3cd0a 2.32%, #7f9303 99.1%)",
+  authActiveTabColor: "#fff",
+  authTabColor: "#55657e",
+
+  // Footer
+  footerBackground: "#19212C",
+  footerColor: "#97a2b0",
+
+  // Forms
+  formInputBackground: "#091016",
+  formInputBorder: "#2e373e",
+  formInputColor: "#55657E",
+
+  // Common
+  mainBackground: "#0D131C",
+
+  errorColor: "#F90B44",
 
   linkColor: "#E2FE26",
 
@@ -49,18 +72,7 @@ export const theme = {
   white: "#FFFFFF",
   gray: "#6E7E92",
 
-  mainBackground: "#0D131C",
-
   tabColor: "#6E7E92",
   tabActiveColor: "#fff",
   tabActiveLineColor: "radial-gradient(circle, rgba(226,254,38,1) 5%, rgba(226,254,38,0) 95%)",
-
-  footerBackground: "#19212C",
-  footerColor: "#97a2b0",
-
-  formInputBackground: "#091016",
-  formInputBorder: "#2e373e",
-  formInputColor: "#55657E",
-
-  errorColor: "#F90B44"
 };
