@@ -7,7 +7,7 @@ export const AuthFormContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 24px 22px;
+  padding-bottom: 2.4rem;
   overflow: auto;
 
   ::-webkit-scrollbar {
@@ -25,13 +25,37 @@ export const FormContainer = styled.div`
   margin: 0 auto 2rem;
 `;
 
-export const LoginTitle = styled.div`
+export const Tabs = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 3.6rem;
+  align-items: center;
+  width: 70%;
+  min-width: 20rem;
+  padding: 0.4rem;
+  border-radius: 1rem;
+  background: ${({ theme }) => theme.authTabsBackground};
+  margin-bottom: 1.2rem;
+`;
+
+export const ActiveTab = styled.div`
   height: 3.6rem;
   font-size: 1.3rem;
   font-weight: 700;
-  line-height: 24px;
   border-radius: 10px;
-  background: linear-gradient(276deg, #b3cd0a 2.32%, #7f9303 99.1%);
+  background: ${({ theme }) => theme.authActiveTabBackground};
+  padding: 0 2rem;
+  line-height: 3.6rem;
+  color: ${({ theme }) => theme.authActiveTabColor};
+`;
+
+export const TabText = styled.span`
+  height: 3.6rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 0 2rem;
+  line-height: 3.6rem;
+  color: ${({ theme }) => theme.authTabColor};
 `;
 
 export const FormContainerWithBG = styled.div`

@@ -1,28 +1,10 @@
-import RedirectToRegisterHint from "@/components/project/auth/RedirectToRegisterHint";
 import FormikForm from "@/components/project/FormikForm";
 import { ForgotPasswordContainer, FormSubContainer, RememberMeContainer } from "@/components/styled-component/auth/Form";
-import { AuthFormContainer, FormContainer, LoginTitle } from "@/components/styled-component/AuthFormContainer";
+import { ActiveTab, AuthFormContainer, FormContainer, Tabs, TabText } from "@/components/styled-component/AuthFormContainer";
 import { Checkbox } from "@/components/UI/Checkbox";
-import { useLoginForm } from "@tgs-web-nx/core/features";
+import { useLoginForm, useRedirectToRegisterHint } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
-import styled from "styled-components";
-
-const Header = styled.div`
-  display: flex;
-  padding: 4px;
-  align-items: center;
-  height: 44px;
-  border-radius: 1rem;
-  background: #1d2635;
-`;
-
-const CheckIcon = styled.div`
-  content: "aaa";
-  background: red;
-  width: 20px;
-  height: 20px;
-`;
 
 const LoginForm = () => {
   const {
@@ -35,13 +17,16 @@ const LoginForm = () => {
     handleClickForgotPassword,
   } = useLoginForm();
   const { isMobileSize } = useRwd();
+  const { handleRedirect } = useRedirectToRegisterHint();
 
   return (
     <AuthFormContainer>
-      <Header>
-        <LoginTitle>{i18n.t("common.login").toUpperCase()}</LoginTitle>
-
-      </Header>
+      <Tabs>
+        <ActiveTab>Sign In</ActiveTab>
+        <TabText onClick={handleRedirect} className="link">
+          Sign Up
+        </TabText>
+      </Tabs>
 
       <FormContainer>
         <FormikForm
@@ -58,7 +43,6 @@ const LoginForm = () => {
                 style={{
                   padding: "0px 5px 0px",
                 }}
-                icon={CheckIcon}
               />
               {i18n.t("wap.login.rememberMe")}
             </RememberMeContainer>
@@ -67,10 +51,9 @@ const LoginForm = () => {
               {i18n.t("forgotPassword.title")}?
             </ForgotPasswordContainer>
           </FormSubContainer>
+          {/* <RedirectToRegisterHint style={{ marginBottom: "20px" }} /> */}
         </FormikForm>
       </FormContainer>
-
-      <RedirectToRegisterHint style={{ marginBottom: "20px" }} />
     </AuthFormContainer>
   );
 };
