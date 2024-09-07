@@ -1,51 +1,43 @@
 import LoginForm from "@/components/project/auth/LoginForm";
+import RegisterForm from "@/components/project/auth/RegisterForm";
+import { CustomTab, CustomTabList, CustomTabPanel, MainWrapper } from "@/components/styled-component/AuthFormContainer";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
-import { media } from "@tgs-web-nx/constants";
+import AuthBanner from "@/components/UI/Dialog/AuthDialog/components/AuthBanner";
+import TabContext from "@mui/lab/TabContext";
+import Box from "@mui/material/Box";
 import { useAuthDialog } from "@tgs-web-nx/core/features";
 import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
-import React from "react";
-import styled from "styled-components";
-
-const MainWrapper = styled.div`
-  ${media.sm} {
-    display: grid;
-    grid-template-columns: 32.5rem 1fr;
-    grid-template-rows: 54.8rem;
-  }
-`;
-const BannerContainer = styled.div`
-  display: none;
-
-  ${media.sm} {
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(199.8deg, #3219cc 2.15%, #7623b7 49%, #9f0963 100%);
-    justify-content: center;
-  }
-`;
-
-const ForgetPasswordFormContainer = styled.div`
-  width: 100%;
-`;
+import React, { useState } from "react";
 
 const LoginDialog = () => {
+  const [value, setValue] = useState("1");
   const { isLoginDialogOpen, handleToggleLoginDialog } = useAuthDialog();
   useDetectDialogClose(isLoginDialogOpen, () => handleToggleLoginDialog(false));
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
 
   return (
     <AuthDialog open={isLoginDialogOpen} onClose={() => handleToggleLoginDialog(false)}>
       <MainWrapper>
-        <BannerContainer>
-          <img
-            src="/assets/images/auth/login-banner.png"
-            alt="Login Banner"
-            width={325}
-            height={548}
-          />
-        </BannerContainer>
-        <ForgetPasswordFormContainer>
-          <LoginForm />
-        </ForgetPasswordFormContainer>
+        <AuthBanner />
+        <div>
+          <TabContext value={value}>
+            <Box>
+              <CustomTabList onChange={handleChange} aria-label="Sign In">
+                <CustomTab label="Sign In" value="1" />
+                <CustomTab label="Sign Up" value="2" />
+              </CustomTabList>
+            </Box>
+            <CustomTabPanel value="1">
+              <LoginForm />
+            </CustomTabPanel>
+            <CustomTabPanel value="2">
+              <RegisterForm />
+            </CustomTabPanel>
+          </TabContext>
+        </div>
       </MainWrapper>
     </AuthDialog>
   );

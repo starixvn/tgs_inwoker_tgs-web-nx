@@ -1,5 +1,4 @@
-import { ActiveTab, AuthFormContainer, FormContainer, Tabs, TabText } from "@/components/styled-component/AuthFormContainer";
-import { media } from "@tgs-web-nx/constants";
+import { AuthFormContainer, FormContainer } from "@/components/styled-component/AuthFormContainer";
 import { useRedirectToLoginHint } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { RegisterStageEnum } from "@tgs-web-nx/types";
@@ -11,13 +10,6 @@ import RegisterFormStage from "./RegisterFormStage";
 const ThirdPartyLoginArea = styled.div`
   margin-top: -2.4rem;
   margin-bottom: 1.6rem;
-
-  ${media.sm} {
-    position: absolute;
-    bottom: 7rem;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 `;
 
 const SignUpWith = styled.div`
@@ -57,13 +49,6 @@ const RegisterForm = () => {
 
   return (
     <AuthFormContainer>
-      <Tabs>
-        <TabText onClick={handleRedirect} className="link">
-          Sign In
-        </TabText>
-        <ActiveTab>Sign Up</ActiveTab>
-      </Tabs>
-
       <FormContainer>
         <RegisterFormStage currentStage={RegisterStageEnum.CreatePlayer} />
       </FormContainer>
