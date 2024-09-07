@@ -42,7 +42,7 @@ export const useGameTypeList = () => {
       },
       {
         key: "sabong",
-        iconUrl: "/assets/images/common/icon-sabong.svg",
+        iconUrl: "/assets/images/common/icon-cock-fighting.svg",
         activeIconUrl: "",
         text: i18n.t("common.cockfight"),
         fontSize: "smaller",

@@ -2,7 +2,7 @@
   width: 100%;
   margin: auto;
   --slide-height: 19rem;
-  --slide-spacing: 1rem;
+  --slide-spacing: 0.8rem;
   --slide-size: 14rem;
 }
 
@@ -13,7 +13,7 @@
 .embla__container {
   display: flex;
   touch-action: pan-y pinch-zoom;
-  gap: 0.8rem;
+  gap: var(--slide-spacing);
   overflow: initial;
 }
 

@@ -5,11 +5,11 @@ import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
 import Banner from "@/pages/home/components/Banner";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import MobileSlider from "@/pages/home/components/Slider";
-import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import useEmblaCarousel from "embla-carousel-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -47,7 +47,7 @@ const MainContentWrapper = styled.div`
   align-items: flex-start;
   background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
-  gap: 6px;
+  gap: 0.6rem;
   flex-shrink: 0;
   flex: 1;
 
@@ -83,6 +83,10 @@ const GameTypeNav = styled.div`
   padding: 0.4rem;
   cursor: pointer;
   position: relative;
+
+  ${media.lg} {
+    font-size: 1.6rem;
+  }
 `;
 
 const Wrapper = styled.div<{
@@ -93,20 +97,48 @@ const Wrapper = styled.div<{
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  height: 60px;
-  padding: 8px 16px;
+  gap: 0.3rem;
+  height: 6rem;
+  padding: 0.8rem 1.6rem;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 1rem;
   background: ${({ theme, $isActive }) =>
     $isActive ? theme.categoryBackgroundActive : theme.categoryBackground};
 
-  ${media.sm} {
-    flex-direction: unset;
+  ${media.lg} {
+    height: 8rem;
   }
 
   & img {
     width: 2.4rem;
     height: 2.4rem;
+
+    ${media.lg} {
+      width: 4.2rem;
+      height: 4.2rem;
+    }
+  }
+`;
+
+const GameTypeEmbla = styled.section<{ gameTypeNumber: number }>`
+  &.embla__container {
+    --slide-height: 6rem;
+    --column-size: 4;
+    --slide-size: calc(
+      (100% / var(--column-size)) - ((0.8rem * (var(--column-size) - 1)) / var(--column-size))
+    );
+
+    ${media.sm} {
+      --column-size: 5;
+    }
+
+    ${media.md} {
+      --column-size: 6;
+    }
+
+    ${media.lg} {
+      --column-size: 8;
+    }
   }
 `;
 
@@ -119,6 +151,8 @@ const HomePage = () => {
   const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
   const hasNavData = !!navPopupCategoryList.length;
+  const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
+
   const gameTypeList = useGameTypeList();
 
   const getGameTypeFromKey = (key: string) => {
@@ -156,23 +190,29 @@ const HomePage = () => {
         <BannerWrapper>{isDesktopSize && <Banner />}</BannerWrapper>
       ) : null}
 
-      <GameTypesContainer>
-        {sideNavItemList &&
-          sideNavItemList.map((navItem, index) => {
-            const isActive = navItem.gameType === activeGameType;
-
-            return (
-              <Wrapper
-                $isActive={isActive}
-                key={navItem.key}
-                onClick={() => handleClickNav(navItem)}
-              >
-                <img src={navItem.iconUrl} alt={navItem.label} />
-                <GameTypeNav>{navItem.label}</GameTypeNav>
-              </Wrapper>
-            );
-          })}
-      </GameTypesContainer>
+      <section className="embla">
+        <div className="embla__viewport" ref={emblaGameTypeRef}>
+          <GameTypeEmbla
+            className={`embla__container ${sideNavItemList.length <= 4 ? "" : "two-rows"}`}
+            gameTypeNumber={sideNavItemList.length}
+          >
+            {sideNavItemList &&
+              sideNavItemList.map((navItem, index) => {
+                const isActive = navItem.gameType === activeGameType;
+                return (
+                  <Wrapper
+                    $isActive={isActive}
+                    key={navItem.key}
+                    onClick={() => handleClickNav(navItem)}
+                  >
+                    <img src={navItem.iconUrl} alt={navItem.label} />
+                    <GameTypeNav>{navItem.label}</GameTypeNav>
+                  </Wrapper>
+                );
+              })}
+          </GameTypeEmbla>
+        </div>
+      </section>
       <MainContentWrapper>
         <CategoryRenderer />
       </MainContentWrapper>
