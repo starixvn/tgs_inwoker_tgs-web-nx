@@ -49,9 +49,10 @@ export const CustomTabList = muiStyled(TabList)(({ theme }) => ({
   background: theme.palette.authForm.tabsBackground,
   borderRadius: "1rem",
   padding: "0.4rem",
+  minHeight: "4.4rem",
   margin: "1.6rem 2.4rem 0",
   [theme.breakpoints.up("sm")]: {
-    marginTop: "7rem",
+    marginTop: "6.6rem",
   },
   ".MuiTabs-indicator": { display: "none" },
 }));
@@ -63,7 +64,7 @@ export const CustomTab = muiStyled(Tab)(({ theme }) => ({
   fontWeight: "700",
   lineHeight: "3.6rem",
   minHeight: "3.6rem",
-  padding: "0 16px",
+  padding: "0 1.6rem",
   borderRadius: "1rem",
   flexGrow: "1",
 

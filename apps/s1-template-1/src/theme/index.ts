@@ -82,6 +82,7 @@ export const theme = {
   submitButtonShadow: "0 0 13px 0px rgba(255,160,18,0.7)",
 
   dialogBackground: "#121b24",
+  dialogLineBackground: "#1c2a37",
 
   checkBoxBackground: "#65759b",
   activeCheckBoxBackground: "#90A405",
