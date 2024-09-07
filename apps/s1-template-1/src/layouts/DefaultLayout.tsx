@@ -12,6 +12,10 @@ import Footer from "./components/Footer";
 const DefaultLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};
+
+  ${media.lg} {
+    background: ${({ theme }) => theme.desktopMainBackground};
+  }
 `;
 
 const DashboardContainer = styled.div`

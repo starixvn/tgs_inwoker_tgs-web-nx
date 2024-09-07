@@ -77,6 +77,7 @@ export const theme = {
 
   // Common
   mainBackground: "#0D131C",
+  desktopMainBackground: "linear-gradient(0deg,#0d131c 0%,#0d131c 80%, #162b4e 100%)",
   text: "#FFFFFF",
 
   errorColor: "#F90B44",
