@@ -10,12 +10,24 @@ import styled from "styled-components";
 
 const StyledSelect = styled(MuiSelect)`
   position: relative;
-  width: 5rem;
-  height: 2.8rem;
-  padding: 0;
-  background: ${({ theme }) => theme.changeLanguage};
-  font-size: 1.3rem !important;
-  border-radius: 0.7rem !important;
+  height: 3.6rem;
+  border-radius: 0.8rem !important;
+  font-size: 1.3rem;
+  line-height: 3.6rem;
+  min-width: 6rem;
+  background: ${({ theme }) => theme.languageButtonBackground};
+  border-bottom: 0.2rem solid ${({ theme }) => theme.languageButtonShadow};
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 3.6rem;
+    display: flex;
+    justify-content: center;
+    height: 2.8rem;
+    width: 0.1rem;
+    background: ${({ theme }) => theme.languageLineColor};
+  }
 
   .MuiSelect-select {
     position: relative;
@@ -23,16 +35,6 @@ const StyledSelect = styled(MuiSelect)`
     display: flex;
     justify-content: center;
     left: -0.6rem;
-
-    &:after {
-      position: absolute;
-      left: 3.4rem;
-      content: "|";
-      display: flex;
-      justify-content: center;
-      font-size: 2rem;
-      color: ${({ theme }) => theme.dropDownIconColor};
-    }
   }
 
   .NameContainer-rajv0b-3 {
@@ -45,7 +47,7 @@ const StyledSelect = styled(MuiSelect)`
 
   .MuiSvgIcon-root {
     color: ${({ theme }) => theme.dropDownIconColor};
-    right: 0.2rem;
+    right: 0.6rem;
   }
 `;
 

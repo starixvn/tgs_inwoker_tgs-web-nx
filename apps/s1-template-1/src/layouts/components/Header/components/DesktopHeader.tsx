@@ -12,9 +12,10 @@ const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  background: ${({ theme }) => theme.secondary};
+  background: ${({ theme }) => theme.headerBackground};
   height: ${MOBILE_HEADER_HEIGHT};
   width: 100%;
+  border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
   z-index: 10;
 
   ${media.sm} {
