@@ -1,5 +1,5 @@
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { RoundHeaderButton } from "@/layouts/components/Header/components/HeaderButton";
+import { SignInButton, SignUpButton } from "@/layouts/components/Header/components/HeaderButton";
 import { theme } from "@/theme";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -9,18 +9,8 @@ import styled from "styled-components";
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 1.2rem;
 `;
-
-export const LoginButton = styled.div(({ theme }) => ({
-  height: "28px",
-  paddingLeft: "12px",
-  paddingRight: "12px",
-  fontSize: "13px",
-  lineHeight: "28px",
-  flexShrink: 0,
-  cursor: "pointer",
-}));
 
 type Props = {
   buttonWidth?: string;
@@ -32,16 +22,16 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
 
   return (
     <ButtonContainer>
-      <LoginButton
+      <SignInButton
         onClick={goToLogin}
         style={{
           color: theme.white,
         }}
       >
         Sign in
-      </LoginButton>
+      </SignInButton>
 
-      <RoundHeaderButton
+      <SignUpButton
         color={"primary"}
         onClick={goToRegister}
         style={{
@@ -50,7 +40,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
         }}
       >
         Sign up
-      </RoundHeaderButton>
+      </SignUpButton>
       <HeaderLanguageSwitch />
     </ButtonContainer>
   );

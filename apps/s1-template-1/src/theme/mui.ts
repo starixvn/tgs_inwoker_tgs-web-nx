@@ -45,6 +45,18 @@ declare module "@mui/material/styles/createPalette" {
       activeTabColor: string;
       tabColor: string;
     };
+    header: {
+      signIn: {
+        background: string;
+        shadow: string;
+        color: string;
+      };
+      signUp: {
+        background: string;
+        shadow: string;
+        color: string;
+      };
+    };
   }
 }
 
@@ -80,7 +92,7 @@ const muiTheme = createTheme({
     middlePurple: theme.middlePurple,
     lightPurple: theme.lightPurple,
     memberSection: theme.memberSection,
-    NavBGC: theme.NavBGC,
+    NavBGC: theme.headerBackground,
     secBTNBGC: theme.secBTNBGC,
     gray: theme.gray,
     gray20: theme.gray20,
@@ -108,6 +120,18 @@ const muiTheme = createTheme({
       activeTabBackground: theme.authActiveTabBackground,
       activeTabColor: theme.authActiveTabColor,
       tabColor: theme.authTabColor,
+    },
+    header: {
+      signIn: {
+        background: theme.signInButtonBackground,
+        shadow: theme.signInButtonShadow,
+        color: theme.signInButtonColor,
+      },
+      signUp: {
+        background: theme.signUpButtonBackground,
+        shadow: theme.signUpButtonShadow,
+        color: theme.signUpButtonColor,
+      },
     },
   },
   typography: {

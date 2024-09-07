@@ -9,7 +9,7 @@ export const theme = {
   lightPurple: "#935FFC",
 
   memberSection: "#141414",
-  NavBGC: "#19212C",
+
   secBTNBGC: "#242424",
 
   gray20: "#FFFFFF33",
@@ -22,8 +22,21 @@ export const theme = {
 
   // New template
   // Header
+  headerBackground: "#19212C",
+  headerBorderColor: "#2B384A",
+
   signUpButtonBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
-  changeLanguage: "linear-gradient(180deg, #344863 0%, #27384f 100%)",
+  signUpButtonShadow: "#A96300",
+  signUpButtonColor: "#fff",
+
+  signInButtonBackground: "linear-gradient(180deg, #BAD30F 0%, #7E8F0C 100%)",
+  signInButtonShadow: "#5D6A00",
+  signInButtonColor: "#fff",
+
+  languageButtonBackground: "linear-gradient(180deg, #344863 0%, #27384F 100%)",
+  languageButtonShadow: "#172E4A",
+  languageButtonColor: "#fff",
+  languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
   categoryBackground: "linear-gradient(180deg, #2b3f5b 0%, #203757 100%)",

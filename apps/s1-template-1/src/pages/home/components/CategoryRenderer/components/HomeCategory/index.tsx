@@ -185,7 +185,7 @@ const HomeCategory = () => {
         </section>
         <GameTypeTitle>
           <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
-          Popular Slots
+          Slots
           <ViewAll onClick={() => navigateTo("slots")}>View All</ViewAll>
         </GameTypeTitle>
         <section className="embla">
