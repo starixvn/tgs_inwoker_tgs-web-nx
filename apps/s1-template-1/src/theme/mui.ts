@@ -34,9 +34,17 @@ declare module "@mui/material/styles/createPalette" {
     playNowButtonBackground: string;
     tabColor: string;
     tabActiveColor: string;
-    submitButtonBackground: string;
-    submitButtonColor: string;
-    submitButtonShadow: string;
+    submitButton: {
+      background: string;
+      color: string;
+      shadow: string;
+    };
+    authForm: {
+      tabsBackground: string;
+      activeTabBackground: string;
+      activeTabColor: string;
+      tabColor: string;
+    };
   }
 }
 
@@ -90,9 +98,17 @@ const muiTheme = createTheme({
     playNowButtonBackground: theme.playNowButtonBackground,
     tabColor: theme.tabColor,
     tabActiveColor: theme.tabActiveColor,
-    submitButtonBackground: theme.submitButtonBackground,
-    submitButtonColor: theme.submitButtonColor,
-    submitButtonShadow: theme.submitButtonShadow,
+    submitButton: {
+      background: theme.submitButtonBackground,
+      color: theme.submitButtonColor,
+      shadow: theme.submitButtonShadow,
+    },
+    authForm: {
+      tabsBackground: theme.authTabsBackground,
+      activeTabBackground: theme.authActiveTabBackground,
+      activeTabColor: theme.authActiveTabColor,
+      tabColor: theme.authTabColor,
+    },
   },
   typography: {
     fontWeightLight: 300,

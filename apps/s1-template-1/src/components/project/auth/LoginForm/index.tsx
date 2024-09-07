@@ -1,6 +1,6 @@
 import FormikForm from "@/components/project/FormikForm";
 import { ForgotPasswordContainer, FormSubContainer, RememberMeContainer } from "@/components/styled-component/auth/Form";
-import { ActiveTab, AuthFormContainer, Tabs, TabText } from "@/components/styled-component/AuthFormContainer";
+import { AuthFormContainer } from "@/components/styled-component/AuthFormContainer";
 import { Checkbox } from "@/components/UI/Checkbox";
 import { useLoginForm, useRedirectToRegisterHint } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -21,13 +21,6 @@ const LoginForm = () => {
 
   return (
     <AuthFormContainer>
-      <Tabs>
-        <ActiveTab>Sign In</ActiveTab>
-        <TabText onClick={handleRedirect} className="link">
-          Sign Up
-        </TabText>
-      </Tabs>
-
       <FormikForm
         formInputList={formInputConfigList}
         formik={formik}

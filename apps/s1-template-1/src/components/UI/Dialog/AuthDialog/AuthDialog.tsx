@@ -9,30 +9,30 @@ import styled from "styled-components";
 const StyledDialog = styled(MuiDialog)`
   position: relative;
 
-  & .MuiPaper-root {
+  .MuiPaper-root {
     position: fixed;
     bottom: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    border-radius: 24px 24px 0px 0px;
-    background: ${({ theme }) => theme.dialogBackground};
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
+    justify-content: flex-start;
     max-width: 71.8rem;
     width: 100%;
+    min-height: 50rem;
     margin: 0;
+    border-radius: 2.4rem 2.4rem 0 0;
+    background: ${({ theme }) => theme.dialogBackground};
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.8);
 
     ${media.sm} {
       position: relative;
-      border-radius: 24px;
+      border-radius: 2.4rem;
     }
   }
 `;
 
 const ChildContainer = styled.div`
   width: 100%;
-  margin: auto;
-  max-height: 910px;
+  margin: 0 auto;
   z-index: 2;
   overflow: auto;
 

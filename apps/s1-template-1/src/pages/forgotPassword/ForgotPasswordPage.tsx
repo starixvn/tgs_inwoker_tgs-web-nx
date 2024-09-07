@@ -1,7 +1,6 @@
-import React from "react";
-import { useForgotPasswordPage, useRwd } from "@tgs-web-nx/core/hooks";
 import ForgotPasswordForm from "@/components/project/auth/ForgotPasswordForm";
-import { FormContainerWithBG } from "@/components/styled-component/AuthFormContainer";
+import { useForgotPasswordPage, useRwd } from "@tgs-web-nx/core/hooks";
+import React from "react";
 
 const ForgotPasswordPage = () => {
   useForgotPasswordPage();
