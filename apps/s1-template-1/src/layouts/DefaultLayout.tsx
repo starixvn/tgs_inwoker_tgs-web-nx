@@ -1,11 +1,12 @@
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
+
 import Footer from "./components/Footer";
 
 const DefaultLayoutContainer = styled.div`
@@ -21,7 +22,7 @@ const DashboardContainer = styled.div`
   ${media.lg} {
     min-height: calc(100vh - ${DESKTOP_HEADER_HEIGHT});
     margin: ${DESKTOP_HEADER_HEIGHT} auto 0;
-    max-width: 1200px;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
   }
 `;
 
@@ -55,7 +56,7 @@ const DefaultLayout = ({ children }: Props) => {
 
       <DashboardContainer>
         <ContentWrapper>
-            <ChildrenWrapper>{children}</ChildrenWrapper>
+          <ChildrenWrapper>{children}</ChildrenWrapper>
         </ContentWrapper>
       </DashboardContainer>
       <Footer />
