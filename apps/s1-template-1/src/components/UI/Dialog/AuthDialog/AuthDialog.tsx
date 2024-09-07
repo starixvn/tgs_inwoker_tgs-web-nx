@@ -17,7 +17,7 @@ const StyledDialog = styled(MuiDialog)`
     justify-content: flex-start;
     max-width: 71.8rem;
     width: 100%;
-    min-height: 50rem;
+    min-height: 51.5rem;
     margin: 0;
     border-radius: 2.4rem 2.4rem 0 0;
     background: ${({ theme }) => theme.dialogBackground};
