@@ -18,7 +18,7 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { NavCardKey } from "@tgs-web-nx/types";
-import { i18n, utility } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import { useMemo } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -32,15 +32,15 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-    | {
+  | {
       navType: "route";
       routePath: string;
     }
-    | {
+  | {
       navType: "action";
       callback: () => void;
     }
-  );
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -75,19 +75,6 @@ export function useGetNavItemList() {
         },
       });
     }
-
-    navItemList.unshift({
-      key: NavCardKey.HOME,
-      label: "home",
-      iconUrl: "/assets/images/common/icon-home.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: GameTypeEnum.NONE,
-      router: "",
-      callback: () => {
-        history.push("/");
-      },
-    });
 
     return navItemList;
     // eslint-disable-next-line react-hooks/exhaustive-deps
