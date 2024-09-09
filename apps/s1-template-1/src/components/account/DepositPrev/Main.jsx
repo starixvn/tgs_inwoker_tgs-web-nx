@@ -1,10 +1,14 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { connect } from "react-redux";
-import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
+import {
+  AmountHint,
+  ExchangeRateContainer,
+  FeeSpot,
+  HintText,
+  LimitAmount,
+  LimitLabel,
+  QRCodeImg,
+  TransferLabel,
+  TransferValue,
+} from "@/components/styled-component/Deposit";
 import {
   FormControl,
   InfoContainer,
@@ -18,28 +22,24 @@ import {
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
-import {
-  AmountHint,
-  ExchangeRateContainer,
-  FeeSpot,
-  HintText,
-  LimitAmount,
-  LimitLabel,
-  QRCodeImg,
-  TransferLabel,
-  TransferValue,
-} from "@/components/styled-component/Deposit";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
+import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
+import config from "@tgs-web-nx/config";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { Component } from "react";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
 const BadgeContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1.2rem;
   margin-bottom: 12px;
 `;
 
 const LabelContainer = styled(ProfileLabelContainer)`
-  font-size: 14px;
+  font-size: 1.6rem;
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 0em;
