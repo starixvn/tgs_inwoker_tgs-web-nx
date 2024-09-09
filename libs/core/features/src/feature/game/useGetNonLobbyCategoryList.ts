@@ -5,12 +5,20 @@ import { useHomeGameContext } from "./useHomeGameContext";
 import { getFilteredGameListByProvider } from "./utils/getFilteredGameListByProvider";
 import { getFilteredGameListByTag } from "./utils/getFilteredGameListByTag";
 import { gameCacheService } from "./services";
+import { AxiosResponse } from "axios";
 
 interface GetGameListState {
   isLoading: boolean;
   gameList: GameItem[];
   error: Error | null;
   total: number;
+}
+
+interface Category {
+  total: number;
+  games: GameItem[];
+  pageIndex: number;
+  pageSize: number;
 }
 
 export function useGetNonLobbyCategoryList() {
@@ -43,18 +51,28 @@ export function useGetNonLobbyCategoryList() {
     try {
       setGameListState(state => ({ ...state, isLoading: true }));
 
-      const response = await GameService.GetCategory(activeGameType, pageIndex, pageSize);
-      const gameList = pageIndex > 1 ? gameListState.gameList.concat(response.data[0].games) : response.data[0].games;
+      const response = await GameService.GetCategory(activeGameType, pageIndex, pageSize).then((res: void | AxiosResponse<Category[]>) => {
+        if (res && 'data' in res) {
+          return res.data[0];
+        }
+        return {
+          total: 0,
+          games: [],
+          pageIndex: 0,
+          pageSize: 0
+        } as Category;
+      });
+      const gameList = pageIndex > 1 ? gameListState.gameList.concat(response.games) : response.games;
 
       setGameListState({
         isLoading: false,
         gameList: gameList,
         error: null,
-        total: response.data[0].total
+        total: response.total
       });
 
       gameCacheService.updateGameCacheDictionary(activeGameType, pageIndex, gameList);
-      gameCacheService.updateTotalCacheDictionary(activeGameType, response.data[0].total);
+      gameCacheService.updateTotalCacheDictionary(activeGameType, response.total);
 
       return gameList;
     } catch (error: any) {
