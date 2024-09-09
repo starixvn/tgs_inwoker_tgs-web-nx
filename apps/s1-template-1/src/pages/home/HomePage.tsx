@@ -30,7 +30,6 @@ const MainContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   gap: 0.6rem;
   flex-shrink: 0;

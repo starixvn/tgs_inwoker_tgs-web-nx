@@ -26,7 +26,7 @@ const LoginForm = () => {
         formik={formik}
         isLoading={isLoading}
         error={loginError}
-        buttonText={i18n.t("common.login")}
+        buttonText={"Sign In"}
       >
         <FormSubContainer>
           <RememberMeContainer onClick={handleClickNeedToRemember}>
