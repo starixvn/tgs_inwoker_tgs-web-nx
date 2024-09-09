@@ -18,7 +18,7 @@ export const useGameTypeList = () => {
     const gameTypeList: GameTypeItem[] = [
       {
         key: "sports",
-        iconUrl: "/assets/images/common/icon-sports.svg",
+        iconUrl: "/assets/images/common/icon-soccer.svg",
         activeIconUrl: "",
         text: i18n.t("common.sports"),
         fontSize: "small",

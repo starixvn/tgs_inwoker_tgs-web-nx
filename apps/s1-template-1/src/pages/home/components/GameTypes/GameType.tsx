@@ -34,6 +34,10 @@ const Wrapper = styled.div<{
   background: ${({ theme, $isActive }) =>
     $isActive ? theme.categoryBackgroundActive : theme.categoryBackground};
 
+  &:hover {
+    background: ${({ theme }) => theme.categoryBackgroundActive};
+  }
+
   ${media.lg} {
     height: 8rem;
   }
