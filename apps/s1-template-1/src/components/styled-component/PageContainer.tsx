@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
+import styled from "styled-components";
 
 export const PageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
@@ -16,7 +16,7 @@ export const PageContainer = styled.div`
 
 export const TransferPageContainer = styled.div`
   background: ${({ theme }) => theme.mainBackground};
-  padding: 20px;
+  padding: 1.2rem;
   max-width: 1170px;
   flex: 1;
   margin: 0 auto;

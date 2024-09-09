@@ -1,15 +1,15 @@
-import React, { useMemo } from "react";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import { useWalletStore } from "@tgs-web-nx/core";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import { media } from "@/theme/breakpoints";
+import { useWalletStore } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import React, { useMemo } from "react";
+import styled from "styled-components";
 
 const BadgeContainer = styled.div`
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1.2rem;
+  margin-bottom: 2.4rem;
 
   ${media.sm} {
     margin-bottom: 40px;

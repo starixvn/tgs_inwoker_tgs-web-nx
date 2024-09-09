@@ -60,10 +60,20 @@ export const theme = {
   footerBottomBg: "#1D2939",
   footerColor: "#97a2b0",
 
+  // Transfer
+  transferPrimaryText: "#8FA7CE",
+  transferSecondText: "#ffffff",
+  placeHolderText: "#55657E",
+
   // Forms
   formInputBackground: "#091016",
   formInputBorder: "#2e373e",
   formInputColor: "#55657E",
+
+  //Select
+  selectBorderColor: "#2E373E",
+  selectBackgroundColor: "#091016",
+  selectTextColor: "#55657E",
 
   // Common
   mainBackground: "#0D131C",
