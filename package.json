@@ -57,6 +57,7 @@
     "copy-to-clipboard": "^3.3.3",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.11",
+    "embla-carousel-autoplay": "^8.2.1",
     "embla-carousel-react": "^8.2.0",
     "es6-promise": "^4.2.8",
     "formik": "^2.4.5",

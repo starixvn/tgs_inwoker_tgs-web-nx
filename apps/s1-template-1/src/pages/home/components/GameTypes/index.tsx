@@ -1,0 +1,95 @@
+import useGameTypeList from "@/hooks/home/useGameTypeList";
+import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
+import { media } from "@/theme/breakpoints";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import useEmblaCarousel from "embla-carousel-react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+
+import GameType from "./GameType";
+
+const GameTypeEmbla = styled.section<{ gameTypeNumber: number }>`
+  &.embla__container {
+    --slide-height: 6rem;
+    --column-size: 4;
+    --slide-size: calc(
+      (100% / var(--column-size)) - ((0.8rem * (var(--column-size) - 1)) / var(--column-size))
+    );
+
+    ${media.sm} {
+      --column-size: 5;
+    }
+
+    ${media.md} {
+      --column-size: 6;
+    }
+
+    ${media.lg} {
+      --column-size: 8;
+    }
+  }
+`;
+
+const GameTypes = () => {
+  const { sideNavItemList } = useGetNavItemList();
+  const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
+  const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
+
+  const { gameType: urlGameType } = useParams<{ gameType: string }>();
+  const gameTypeList = useGameTypeList();
+
+  const getGameTypeFromKey = (key: string) => {
+    const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
+    return matchingGameType ? matchingGameType.gameType : null;
+  };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [activeGameType]);
+
+  useEffect(() => {
+    const gameType = getGameTypeFromKey(urlGameType);
+    if (gameType) {
+      handleChangeGameType(gameType);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlGameType, gameTypeList]);
+
+  const handleClickNav = (navItem: NavItem & { gameType: GameTypeEnum }) => {
+    handleChangeGameType(navItem.gameType);
+    if (navItem.navType !== "action") return;
+    navItem.callback();
+  };
+
+  return (
+    <section className="embla">
+      <div className="embla__viewport" ref={emblaGameTypeRef}>
+        <GameTypeEmbla
+          className={`embla__container ${sideNavItemList.length <= 4 ? "" : "two-rows"}`}
+          gameTypeNumber={sideNavItemList.length}
+        >
+          {sideNavItemList &&
+            sideNavItemList.map((navItem, index) => {
+              const isActive = navItem.gameType === activeGameType;
+              return (
+                <GameType
+                  isActive={isActive}
+                  key={index}
+                  navItem={navItem}
+                  handleClickNav={handleClickNav}
+                />
+              );
+            })}
+        </GameTypeEmbla>
+      </div>
+    </section>
+  );
+};
+
+export default GameTypes;

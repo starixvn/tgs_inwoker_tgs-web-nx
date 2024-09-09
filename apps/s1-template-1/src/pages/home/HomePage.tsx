@@ -1,18 +1,10 @@
-import useBanner from "@/hooks/home/useBanner";
-import useGameTypeList from "@/hooks/home/useGameTypeList";
-import GameTypeNavPopup from "@/layouts/components/Header/components/GameTypeNavPopup";
-import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import Banner from "@/pages/home/components/Banner";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
-import MobileSlider from "@/pages/home/components/Slider";
 import { media } from "@/theme/breakpoints";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import useEmblaCarousel from "embla-carousel-react";
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
+
+import Banner from "./components/Banner";
+import GameTypes from "./components/GameTypes";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -20,22 +12,15 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: ${({ theme }) => theme.mainBackground};
   color: ${({ theme }) => theme.white};
   padding: 1.2rem 0.8rem;
-  gap: 6px;
+  gap: 1.2rem;
   flex-shrink: 0;
   flex: 1;
-`;
 
-const BannerWrapper = styled.div`
-  flex-shrink: 0;
-  width: 100%;
-
-  ${media.lg} {
-    height: 100%;
-    max-height: 450px;
-    BannerWrapper
+  ${media.md} {
+    gap: 0.8rem;
+    padding: 0.8rem;
   }
 `;
 
@@ -57,162 +42,11 @@ const MainContentWrapper = styled.div`
   }
 `;
 
-const GameTypesContainer = styled.div`
-  position: relative;
-  display: grid;
-  flex-wrap: wrap;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.8rem;
-  width: 100%;
-  height: 100%;
-
-  ${media.lg} {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1rem;
-  }
-`;
-
-const GameTypeNav = styled.div`
-  flex-shrink: 0;
-  font-size: 1.2rem;
-  font-weight: 500;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  padding: 0.4rem;
-  cursor: pointer;
-  position: relative;
-
-  ${media.lg} {
-    font-size: 1.6rem;
-  }
-`;
-
-const Wrapper = styled.div<{
-  $isActive: boolean;
-}>`
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3rem;
-  height: 6rem;
-  padding: 0.8rem 1.6rem;
-  cursor: pointer;
-  border-radius: 1rem;
-  background: ${({ theme, $isActive }) =>
-    $isActive ? theme.categoryBackgroundActive : theme.categoryBackground};
-
-  ${media.lg} {
-    height: 8rem;
-  }
-
-  & img {
-    width: 2.4rem;
-    height: 2.4rem;
-
-    ${media.lg} {
-      width: 4.2rem;
-      height: 4.2rem;
-    }
-  }
-`;
-
-const GameTypeEmbla = styled.section<{ gameTypeNumber: number }>`
-  &.embla__container {
-    --slide-height: 6rem;
-    --column-size: 4;
-    --slide-size: calc(
-      (100% / var(--column-size)) - ((0.8rem * (var(--column-size) - 1)) / var(--column-size))
-    );
-
-    ${media.sm} {
-      --column-size: 5;
-    }
-
-    ${media.md} {
-      --column-size: 6;
-    }
-
-    ${media.lg} {
-      --column-size: 8;
-    }
-  }
-`;
-
 const HomePage = () => {
-  const { sideNavItemList } = useGetNavItemList();
-  const { isMobileSize, isDesktopSize } = useRwd();
-  const { gameType: urlGameType } = useParams<{ gameType: string }>();
-  const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
-
-  const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
-  const hasNavData = !!navPopupCategoryList.length;
-  const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
-
-  const gameTypeList = useGameTypeList();
-
-  const getGameTypeFromKey = (key: string) => {
-    const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
-    return matchingGameType ? matchingGameType.gameType : null;
-  };
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  }, [activeGameType]);
-
-  useEffect(() => {
-    const gameType = getGameTypeFromKey(urlGameType);
-    if (gameType) {
-      handleChangeGameType(gameType);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType, gameTypeList]);
-
-  const handleClickNav = (navItem: NavItem & { gameType: GameTypeEnum }) => {
-    handleChangeGameType(navItem.gameType);
-    if (navItem.navType !== "action") return;
-    navItem.callback();
-  };
-
   return (
     <MainWrapper>
-      {!!activeNavPopupGameType && hasNavData && <GameTypeNavPopup />}
-      {isMobileSize && hasActiveMobileBanner() && <MobileSlider />}
-      {hasActiveDesktopBanner() ? (
-        <BannerWrapper>{isDesktopSize && <Banner />}</BannerWrapper>
-      ) : null}
-
-      <section className="embla">
-        <div className="embla__viewport" ref={emblaGameTypeRef}>
-          <GameTypeEmbla
-            className={`embla__container ${sideNavItemList.length <= 4 ? "" : "two-rows"}`}
-            gameTypeNumber={sideNavItemList.length}
-          >
-            {sideNavItemList &&
-              sideNavItemList.map((navItem, index) => {
-                const isActive = navItem.gameType === activeGameType;
-                return (
-                  <Wrapper
-                    $isActive={isActive}
-                    key={navItem.key}
-                    onClick={() => handleClickNav(navItem)}
-                  >
-                    <img src={navItem.iconUrl} alt={navItem.label} />
-                    <GameTypeNav>{navItem.label}</GameTypeNav>
-                  </Wrapper>
-                );
-              })}
-          </GameTypeEmbla>
-        </div>
-      </section>
+      <Banner />
+      <GameTypes />
       <MainContentWrapper>
         <CategoryRenderer />
       </MainContentWrapper>
