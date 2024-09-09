@@ -1,6 +1,8 @@
+import Marquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
-import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
-import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_ANNOUNCEMENT_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { useAccountStore, useGeneralStore, useUiStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -8,12 +10,15 @@ import styled from "styled-components";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.div<{ hasAnnouncement: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
+  display: flex;
+  flex-direction: column;
   background: ${({ theme }) => theme.headerBackground};
-  height: ${MOBILE_HEADER_HEIGHT};
+  height: ${({ hasAnnouncement }) =>
+    hasAnnouncement ? MOBILE_HEADER_ANNOUNCEMENT_HEIGHT : MOBILE_HEADER_HEIGHT};
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
   z-index: 10;
@@ -59,8 +64,13 @@ const DesktopHeader = () => {
   const {
     general: { brand },
   } = useGeneralStore();
+  const { isMobileSize, isDesktopSize } = useRwd();
   const history = useHistory();
   const noLoginAccount = account.token !== account.info.token;
+  const {
+    ui: { marquees },
+  } = useUiStore();
+  const hasAnnouncement = (marquees && marquees.length > 0) ?? false;
 
   // Todo
   // using asset site
@@ -69,24 +79,28 @@ const DesktopHeader = () => {
 
   if (!logoUrl) return null;
   return (
-    <HeaderContainer>
-      <HeaderWrapper>
-        <LogoWrapper>
-          <img
-            src={logoUrl}
-            alt={"logo"}
-            width={82}
-            height={22}
-            onClick={() => {
-              history.push("/");
-            }}
-          />
-        </LogoWrapper>
-        <HeaderContentContainer>
-          {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-        </HeaderContentContainer>
-      </HeaderWrapper>
-    </HeaderContainer>
+    <>
+      <HeaderContainer hasAnnouncement={hasAnnouncement}>
+        {isMobileSize && <Marquee />}
+        <HeaderWrapper>
+          <LogoWrapper>
+            <img
+              src={logoUrl}
+              alt={"logo"}
+              width={82}
+              height={22}
+              onClick={() => {
+                history.push("/");
+              }}
+            />
+          </LogoWrapper>
+          <HeaderContentContainer>
+            {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+          </HeaderContentContainer>
+        </HeaderWrapper>
+      </HeaderContainer>
+      {isDesktopSize && <Marquee />}
+    </>
   );
 };
 
