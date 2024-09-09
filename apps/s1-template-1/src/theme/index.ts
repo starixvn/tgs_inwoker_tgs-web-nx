@@ -26,15 +26,18 @@ export const theme = {
   headerBorderColor: "#2B384A",
 
   signUpButtonBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
-  signUpButtonShadow: "#A96300",
+  signUpButtonBottomBorderColor: "#A96300",
   signUpButtonColor: "#fff",
+  signUpButtonActiveShadow: "0 0 1rem 0px rgba(255,160,18,0.7)",
 
   signInButtonBackground: "linear-gradient(180deg, #BAD30F 0%, #7E8F0C 100%)",
-  signInButtonShadow: "#5D6A00",
+  signInButtonBottomBorderColor: "#5D6A00",
   signInButtonColor: "#fff",
+  signInButtonActiveShadow: "0 0 1rem 0px rgba(93,106,0,0.7)",
 
   languageButtonBackground: "linear-gradient(180deg, #344863 0%, #27384F 100%)",
-  languageButtonShadow: "#172E4A",
+  languageButtonBottomBorderColor: "#172E4A",
+  languageButtonActiveShadow: "0 0 1rem 0px rgba(13,40,73,0.7)",
   languageButtonColor: "#fff",
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 

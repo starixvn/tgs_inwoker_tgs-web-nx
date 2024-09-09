@@ -16,7 +16,14 @@ const StyledSelect = styled(MuiSelect)`
   line-height: 3.6rem;
   min-width: 6rem;
   background: ${({ theme }) => theme.languageButtonBackground};
-  border-bottom: 0.2rem solid ${({ theme }) => theme.languageButtonShadow};
+  border-bottom: 0.2rem solid ${({ theme }) => theme.languageButtonBottomBorderColor};
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    border-bottom-width: 0.4rem;
+    transition: all 0.2s ease-in-out;
+    box-shadow: ${({ theme }) => theme.languageButtonActiveShadow};
+  }
 
   &:after {
     content: "";
@@ -34,7 +41,9 @@ const StyledSelect = styled(MuiSelect)`
     padding: 0 !important;
     display: flex;
     justify-content: center;
+    align-items: center;
     left: -0.6rem;
+    height: 100% !important;
   }
 
   .NameContainer-rajv0b-3 {

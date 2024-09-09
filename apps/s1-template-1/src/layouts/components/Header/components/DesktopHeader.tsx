@@ -57,6 +57,7 @@ const HeaderContentContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
+  height: 100%;
 `;
 
 const DesktopHeader = () => {

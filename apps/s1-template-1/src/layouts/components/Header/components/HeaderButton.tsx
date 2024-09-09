@@ -5,22 +5,36 @@ const Button = muiStyled(MuiButton)(({ theme }) => ({
   padding: "0 1rem",
   borderRadius: "0.8rem",
   fontSize: "1.3rem",
+  fontWeight: 700,
   lineHeight: "3.6rem",
   minWidth: "7.8rem",
   borderBottomWidth: "0.2rem",
   borderStyle: "solid",
+  transition: "all 0.1s ease-in-out",
+
+  "&:hover": {
+    borderBottomWidth: "0.4rem",
+    transition: "all 0.2s ease-in-out",
+    textShadow: "0 0 0.4rem rgba(255, 255, 255, 0.50)",
+  },
 }));
 
 export const SignUpButton = muiStyled(Button)(({ theme }) => ({
   background: theme.palette.header.signUp.background,
-  borderBottomColor: theme.palette.header.signUp.shadow,
+  borderBottomColor: theme.palette.header.signUp.bottomBorderColor,
   color: theme.palette.header.signUp.color,
+  "&:hover": {
+    boxShadow: theme.palette.header.signUp.activeShadow,
+  },
 }));
 
 export const SignInButton = muiStyled(Button)(({ theme }) => ({
   background: theme.palette.header.signIn.background,
-  borderBottomColor: theme.palette.header.signIn.shadow,
+  borderBottomColor: theme.palette.header.signIn.bottomBorderColor,
   color: theme.palette.header.signIn.color,
+  "&:hover": {
+    boxShadow: theme.palette.header.signIn.activeShadow,
+  },
 }));
 
 export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
