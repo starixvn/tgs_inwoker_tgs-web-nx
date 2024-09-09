@@ -24,6 +24,7 @@ import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
+import { MenuItem } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { Component } from "react";
@@ -142,7 +143,6 @@ class Main extends Component {
             <LabelContainer>{i18n.t("idr1.pleaseEnterAccountName")}</LabelContainer>
             <FormControl variant="outlined">
               <Select
-                native
                 id="customSelect"
                 value={this.props.selectedBankCard}
                 onChange={(e) => this.props.handleBankCardChange(e)}
@@ -152,9 +152,9 @@ class Main extends Component {
                 </option>
                 {this.props.bankCardList.map((item, index) => {
                   return (
-                    <option value={item.id} key={index}>
+                    <MenuItem value={item.id} key={index}>
                       {formatBankCardDetail(item)}
-                    </option>
+                    </MenuItem>
                   );
                 })}
               </Select>
@@ -168,7 +168,6 @@ class Main extends Component {
             <LabelContainer>{i18n.t("deposit.msgPlsSelectMethod")}</LabelContainer>
             <FormControl variant="outlined">
               <Select
-                native
                 id="customSelect"
                 value={this.props.selectedChannelIndex}
                 onChange={(e) => this.props.handleChannelChange(e)}
@@ -176,9 +175,9 @@ class Main extends Component {
                 {this.props.wallet.depositTypeList.length > 0 &&
                   selectedPaymentMethod.channel.map((item, index) => {
                     return (
-                      <option key={index} value={index}>
+                      <MenuItem key={index} value={index}>
                         {item.channelname}
-                      </option>
+                      </MenuItem>
                     );
                   })}
               </Select>

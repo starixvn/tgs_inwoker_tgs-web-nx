@@ -74,6 +74,7 @@ export const theme = {
   selectBorderColor: "#2E373E",
   selectBackgroundColor: "#091016",
   selectTextColor: "#55657E",
+  optionHoverBgColor: "#2A3546",
 
   // Common
   mainBackground: "#0D131C",
