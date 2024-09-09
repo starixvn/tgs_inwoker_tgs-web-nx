@@ -82,7 +82,7 @@ const GameTypes = () => {
                   isActive={isActive}
                   key={index}
                   navItem={navItem}
-                  handleClickNav={handleClickNav}
+                  handleClickNav={() => handleClickNav(navItem)}
                 />
               );
             })}
