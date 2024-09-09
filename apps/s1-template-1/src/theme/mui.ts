@@ -57,6 +57,13 @@ declare module "@mui/material/styles/createPalette" {
         color: string;
       };
     };
+
+    select: {
+      borderColor: string;
+      backgroundColor: string;
+      textColor: string;
+      optionHoverBgColor: string;
+    };
   }
 }
 
@@ -132,6 +139,13 @@ const muiTheme = createTheme({
         shadow: theme.signUpButtonShadow,
         color: theme.signUpButtonColor,
       },
+    },
+
+    select: {
+      borderColor: theme.selectBorderColor,
+      textColor: theme.selectTextColor,
+      backgroundColor: theme.selectBackgroundColor,
+      optionHoverBgColor: theme.optionHoverBgColor,
     },
   },
   typography: {
