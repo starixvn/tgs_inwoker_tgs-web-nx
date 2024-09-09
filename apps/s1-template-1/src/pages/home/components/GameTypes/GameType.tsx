@@ -1,5 +1,5 @@
+import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 import { media } from "@/theme/breakpoints";
-import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const GameTypeNav = styled.div`
@@ -53,7 +53,7 @@ type PropsType = {
   isActive: boolean;
   key: number;
   navItem: any;
-  handleClickNav: (navItem) => void;
+  handleClickNav: (navItem: NavItem) => void;
 };
 
 const GameType = (props: PropsType) => {
