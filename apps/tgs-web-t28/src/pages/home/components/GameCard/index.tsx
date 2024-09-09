@@ -21,7 +21,6 @@ const CardHoverBg = styled.div`
   top: 0;
   backdrop-filter: blur(3px);
   border-radius: 10px;
-  display: none;
   white-space: pre-line;
 `;
 
@@ -153,6 +152,7 @@ const HoverGameName = styled(GameCardContent)`
 const PlayIcon = styled.img`
   width: 60px;
   height: 60px;
+  display: none;
 `;
 
 const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
