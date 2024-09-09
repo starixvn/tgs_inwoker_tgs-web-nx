@@ -10,6 +10,8 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.2rem;
+  height: 100%;
+  padding-left: 1rem;
 `;
 
 type Props = {
