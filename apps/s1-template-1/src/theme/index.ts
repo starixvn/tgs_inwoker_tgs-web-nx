@@ -78,7 +78,7 @@ export const theme = {
 
   // Common
   mainBackground: "#0D131C",
-  desktopMainBackground: "linear-gradient(0deg,#0d131c 0%,#0d131c 80%, #162b4e 100%)",
+  desktopMainBackground: "linear-gradient(0deg,#0d131c 0%,#0d131c 70%,#162b4e 100%)",
   text: "#FFFFFF",
 
   errorColor: "#F90B44",
@@ -111,4 +111,8 @@ export const theme = {
 
   checkBoxBackground: "#65759b",
   activeCheckBoxBackground: "#90A405",
+
+  // Announcement
+  announceTextColor: "#F6254B",
+  announceBackground: "rgba(65, 90, 124, 0.50)",
 };

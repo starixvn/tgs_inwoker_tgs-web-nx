@@ -10,7 +10,7 @@ import styled from "styled-components";
 
 import GameType from "./GameType";
 
-const GameTypeEmbla = styled.section<{ gameTypeNumber: number }>`
+const GameTypeEmbla = styled.section`
   &.embla__container {
     --slide-height: 6rem;
     --column-size: 4;
@@ -35,7 +35,7 @@ const GameTypeEmbla = styled.section<{ gameTypeNumber: number }>`
 const GameTypes = () => {
   const { sideNavItemList } = useGetNavItemList();
   const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
-  const { activeGameType, handleChangeGameType, activeNavPopupGameType } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType } = useHomeGameContext();
 
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const gameTypeList = useGameTypeList();
@@ -72,7 +72,6 @@ const GameTypes = () => {
       <div className="embla__viewport" ref={emblaGameTypeRef}>
         <GameTypeEmbla
           className={`embla__container ${sideNavItemList.length <= 4 ? "" : "two-rows"}`}
-          gameTypeNumber={sideNavItemList.length}
         >
           {sideNavItemList &&
             sideNavItemList.map((navItem, index) => {
