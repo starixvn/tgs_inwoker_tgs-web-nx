@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { GameTypeEnum, media } from "@tgs-web-nx/constants";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { Common, i18n, utility } from "@tgs-web-nx/utils";
@@ -17,6 +17,10 @@ const DesktopContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 1.8rem 0;
+
+  ${media.md} {
+    padding: 2.4rem 0;
+  }
 `;
 
 export const GameContainer = styled.div`
@@ -39,6 +43,10 @@ export const GameTypeTitle = styled.div`
   margin-top: 2.4rem;
   margin-bottom: 0.8rem;
   gap: 0.8rem;
+
+  ${media.md} {
+    margin-top: 3.2rem;
+  }
 
   &:first-child {
     margin-top: 0;
