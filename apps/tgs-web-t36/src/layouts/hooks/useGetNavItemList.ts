@@ -14,6 +14,7 @@ import AccountSvg from "@/pages/account/components/AccountSvgIcon/Account";
 import DepositSvg from "@/pages/account/components/AccountSvgIcon/Deposit";
 import WithdrawSvg from "@/pages/account/components/AccountSvgIcon/Withdraw";
 import WageringSvg from "@/pages/account/components/AccountSvgIcon/Wagering";
+import RewardSvg from "@/pages/account/components/AccountSvgIcon/Reward";
 import TransferSvg from "@/pages/account/components/AccountSvgIcon/Transfer";
 import ReportSvg from "@/pages/account/components/AccountSvgIcon/Report";
 import InboxSvg from "@/pages/account/components/AccountSvgIcon/Inbox";
@@ -151,6 +152,16 @@ export function useGetNavItemList() {
           history.push("/wagering");
         },
         iconComponent: WageringSvg,
+      },
+      {
+        key: NavCardKey.REWARD,
+        label: i18n.t("common.reward"),
+        navType: "route",
+        routePath: "/reward",
+        callback: () => {
+          history.push("/reward");
+        },
+        iconComponent: RewardSvg,
       },
       {
         key: NavCardKey.TRANSFER,

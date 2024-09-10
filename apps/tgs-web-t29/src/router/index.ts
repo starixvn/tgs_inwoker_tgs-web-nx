@@ -42,6 +42,7 @@ import AgentListPgae from "@/pages/agent/components/AgentList/MobilePage";
 import WinlossReport from "@/pages/agent/components/WinlossReport/MobilePage";
 import ProfitShareReport from "@/pages/agent/components/ProfitShareReport/MobilePage";
 import ContributionPage from "@/pages/agent/components/Contribution/MobilePage";
+import RewardPage from "@/pages/reward/RewardPage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -88,6 +89,11 @@ const routes: RouteType[] = [
   {
     path: "/wagering",
     component: WageringPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/reward",
+    component: RewardPage,
     layout: DialogLayout,
   },
   {
@@ -384,7 +390,6 @@ const routes: RouteType[] = [
     layout: DialogLayout,
   },
 ];
-
 
 if (!config.features.NewTransferUI) {
   routes.push({

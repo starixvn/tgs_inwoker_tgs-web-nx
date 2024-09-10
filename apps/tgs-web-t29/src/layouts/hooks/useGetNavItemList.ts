@@ -31,6 +31,8 @@ import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 import wageringWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 import languageWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-wagering.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
+import rewardImg from "@/assets/t29/images/account/navItem/icon-reward.svg";
+import rewardWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-reward.svg";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -58,7 +60,7 @@ export function useGetNavItemList() {
   const { handleChangeGameType, providerList } = useHomeGameContext();
   const history = useHistory();
   const isAgent = account.info.playerisagentid !== null;
-  
+
   const sideNavItemList: (NavItem & { gameType: GameTypeEnum })[] | null = useMemo(() => {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
@@ -165,6 +167,14 @@ export function useGetNavItemList() {
         iconSecondaryUrl: wageringWhiteImg,
         navType: "route",
         routePath: "/wagering",
+      },
+      {
+        key: NavCardKey.REWARD,
+        label: i18n.t("common.reward"),
+        iconUrl: rewardImg,
+        iconSecondaryUrl: rewardWhiteImg,
+        navType: "route",
+        routePath: "/reward",
       },
       {
         key: NavCardKey.TRANSFER,
