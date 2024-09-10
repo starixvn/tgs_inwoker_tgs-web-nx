@@ -40,6 +40,15 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   },
 })) as typeof MuiFormControl;
 
+export const UploadFileControl = styled.div`
+  padding: 0 1.2rem;
+  height: 4.8rem;
+  line-height: 48rem;
+  border-radius: 1rem;
+  border: 1px solid ${({ theme }) => theme.formInputBorder};
+  position: relative;
+`;
+
 export const InfoContainer = styled.div`
   width: 100%;
   font-size: 1.4rem;
@@ -50,20 +59,30 @@ export const InfoContainer = styled.div`
 `;
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
-  fontSize: "0.875rem",
-  height: "50px",
-  color: "#828282",
-  // background: theme.palette.mainBackground,
-  // border: `1px solid ${theme.palette.gray10}`,
+  fontSize: "1.2rem",
+  backgroundColor: "#272E37",
+  padding: ".5rem 1.2rem .4rem",
+  color: `${theme.palette.text.primary}`,
+  border: "none",
+  position: "absolute",
+  right: "1.2rem",
+  top: ".8rem",
+  borderRadius: ".8rem",
+  "&:hover": {
+    border: "none",
+    backgroundColor: "#272E37",
+  }
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`
   width: 100%;
-  font-size: 0.937rem;
-  color: ${({ theme }) => theme.text};
+  font-size: 1.4rem;
+  color: ${({ theme }) => theme.formInputColor};
 
   display: flex;
   align-items: center;
+  height: 4.8rem;
+  font-weight: 700;
 `;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({

@@ -17,7 +17,8 @@ import {
   Remark,
   SubmitButton,
   UploadFileButton,
-  UploadFileTag,
+  UploadFileControl,
+  UploadFileTag
 } from "@/components/styled-component/ProfileForms";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
@@ -593,36 +594,33 @@ class Main extends Component {
                   <LabelContainer>{i18n.t("deposit.uploadReceipt")}</LabelContainer>
 
                   <FormControl>
-                    <UploadFileButton
-                      onClick={() => {
-                        document.getElementById("getFile").click();
-                      }}
-                      variant={"outlined"}
-                    >
-                      {i18n.t("common.upload")}
-                    </UploadFileButton>
-
-                    <input
-                      type="file"
-                      id="getFile"
-                      onChange={this.props.handleFileChange}
-                      accept="image/jpg, image/jpeg, image/png, image/tiff"
-                      style={{ display: "none" }}
-                    />
-                    {this.props.files ? (
-                      <UploadFileTag>{this.props.files[0].name}</UploadFileTag>
-                    ) : (
-                      ""
-                    )}
+                    <UploadFileControl>
+                      <UploadFileButton
+                        onClick={() => {
+                          document.getElementById("getFile").click();
+                        }}
+                        variant={"outlined"}
+                      >
+                        Upload
+                      </UploadFileButton>
+                        <input
+                        type="file"
+                        id="getFile"
+                        onChange={this.props.handleFileChange}
+                        accept="image/jpg, image/jpeg, image/png, image/tiff"
+                        style={{ display: "none" }}
+                      />
+                      <UploadFileTag>{this.props.files ? this.props.files[0].name : "abcd.jpg"}</UploadFileTag>
+                    </UploadFileControl>                   
                   </FormControl>
                 </ItemContainer>
-                <Remark>
+                {/* <Remark>
                   {i18n.t(
                     config.features.Deposit_UploadRequired
                       ? "deposit.msgPlsUploadProof"
                       : "deposit.msgNotMustUploadProof",
                   )}
-                </Remark>
+                </Remark> */}
               </>
             );
           }
@@ -644,7 +642,6 @@ class Main extends Component {
         <SubmitButton
           onClick={this.props.handleDepositClick}
           variant={"contained"}
-          color={"primary"}
           fullWidth
           disabled={(() => {
             const transferlimit = channel.transferlimit;
