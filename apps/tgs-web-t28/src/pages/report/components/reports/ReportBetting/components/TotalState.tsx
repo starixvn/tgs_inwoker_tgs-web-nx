@@ -26,7 +26,6 @@ const TotalState = ({ roundTotal }: Props) => {
             <>{i18n.t("report.total")}</>
           </TableCell>
           <TableCell style={{ border: "unset" }}></TableCell>
-          <TableCell style={{ border: "unset" }}></TableCell>
           <TableCell
             align={"right"}
             style={{
@@ -45,7 +44,7 @@ const TotalState = ({ roundTotal }: Props) => {
               border: "unset",
             }}
           >
-            <>{validBetAmount}</>
+            <CustomWinLose $value={roundTotal && winLoss}>{winLoss}</CustomWinLose>
           </TableCell>
           <TableCell
             align={"right"}
@@ -54,9 +53,7 @@ const TotalState = ({ roundTotal }: Props) => {
               fontWeight: 500,
               border: "unset",
             }}
-          >
-            <CustomWinLose $value={roundTotal && winLoss}>{winLoss}</CustomWinLose>
-          </TableCell>
+          ></TableCell>
         </TableRow>
       </TableBody>
     )

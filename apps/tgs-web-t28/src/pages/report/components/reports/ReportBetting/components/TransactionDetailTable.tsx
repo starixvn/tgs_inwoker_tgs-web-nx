@@ -13,6 +13,32 @@ import {
 import { theme } from "@/theme";
 import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 
+const TicketStatus = {
+  Waiting: 0,
+  Running: 1,
+  Void: 2,
+  Refund: 3,
+  Cancel: 4,
+  Loss: 5,
+  Win: 6,
+  Draw: 7,
+  HaftWin: 8,
+  HaftLoss: 9,
+};
+
+const BetHistoryStatus: { [key: number]: string } = {
+  [TicketStatus.Waiting]: "Open",
+  [TicketStatus.Running]: "Open",
+  [TicketStatus.Void]: "Void",
+  [TicketStatus.Refund]: "Void",
+  [TicketStatus.Cancel]: "Void",
+  [TicketStatus.Loss]: "Lost",
+  [TicketStatus.Win]: "Won",
+  [TicketStatus.Draw]: "Draw",
+  [TicketStatus.HaftWin]: "Won",
+  [TicketStatus.HaftLoss]: "Lost",
+};
+
 type Props = {
   transactionDetails: TransactionDetail[];
   roundTotal: RoundTotalDto;
@@ -36,6 +62,15 @@ const TransactionDetailTable = ({
   if (!transactionDetails?.length) {
     return <NoRecord />;
   }
+
+  const getStatusColor = (status: number | null) => {
+    if (status === null) return "";
+    if (status === TicketStatus.Win || status === TicketStatus.HaftWin) return theme.green;
+    if (status === TicketStatus.Loss || status === TicketStatus.HaftLoss) return theme.red;
+
+    return theme.text;
+  };
+
   return (
     <ReportCardsContainer>
       <ReportTable aria-label="simple table">
@@ -47,23 +82,18 @@ const TransactionDetailTable = ({
                 color: `${theme.text} !important`,
               }}
             >
-              <>{i18n.t("report.betDateTime")}</>
+              <>
+                {i18n.t("report.betDateTime")}/{i18n.t("report.betid")}
+              </>
             </TableCell>
             <TableCell
+              align={"right"}
               sx={{
                 border: "none",
                 color: `${theme.text} !important`,
               }}
             >
-              <>{i18n.t("report.betid")}</>
-            </TableCell>
-            <TableCell
-              sx={{
-                border: "none",
-                color: `${theme.text} !important`,
-              }}
-            >
-              <>{i18n.t("report.platformgamename")}</>
+              <>{i18n.t("Game Provider Name")}</>
             </TableCell>
             <TableCell
               align={"right"}
@@ -81,7 +111,9 @@ const TransactionDetailTable = ({
                 color: `${theme.text} !important`,
               }}
             >
-              <>{i18n.t("report.validBet")}</>
+              <>
+                {i18n.t("report.winloss")}/{i18n.t("Comm")}
+              </>
             </TableCell>
             <TableCell
               align={"right"}
@@ -90,7 +122,7 @@ const TransactionDetailTable = ({
                 color: `${theme.text} !important`,
               }}
             >
-              <>{i18n.t("report.winloss")}</>
+              <>{i18n.t("report.status")}</>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -99,22 +131,17 @@ const TransactionDetailTable = ({
           {transactionDetails
             // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((transactionDetail) => {
-              const {
-                id,
-                createdOn,
-                betAmount,
-                validBetAmount,
-                winLoss,
-                subGameProviderName,
-                gameProviderName,
-                gameName,
-              } = transactionDetail;
+              const { id, createdOn, betAmount, winLoss, gameProviderName, commission, status } =
+                transactionDetail;
 
               const date = moment(createdOn).format("YYYY-MM-DD hh:mm a");
 
               return (
                 <TableRow key={id}>
-                  <TableCell>{date}</TableCell>
+                  <TableCell>
+                    <div>{date}</div>
+                    <div>{id}</div>
+                  </TableCell>
                   <TableCell
                     style={{
                       whiteSpace: "nowrap",
@@ -124,20 +151,21 @@ const TransactionDetailTable = ({
                       width: "10%",
                     }}
                   >
-                    {id}
-                  </TableCell>
-                  <TableCell>
-                    {gameProviderName
-                      ? gameProviderName === "BTI" && config.currency === "PHP"
-                        ? "PHSB"
-                        : gameProviderName
-                      : ""}
-                    - {gameName}
+                    {gameProviderName}
                   </TableCell>
                   <TableCell align={"right"}>{betAmount}</TableCell>
-                  <TableCell align={"right"}>{validBetAmount}</TableCell>
                   <TableCell align={"right"}>
                     <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
+                    <div>{commission}</div>
+                  </TableCell>
+                  <TableCell
+                    align={"right"}
+                    sx={{
+                      border: "none",
+                      color: `${getStatusColor(status)} !important`,
+                    }}
+                  >
+                    <div>{status != null && BetHistoryStatus[status]}</div>
                   </TableCell>
                 </TableRow>
               );
