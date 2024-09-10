@@ -14,8 +14,8 @@ i18n
   .init(
     {
       backend: {
-        loadPath: `https://app12.srvptt.com/translation/{{lng}}.json`,
-        addPath: `https://app12.srvptt.com/translation/{{lng}}`,
+        loadPath: `https://minio-lumprod-api.lumigame.com/s1-files/s1-public/translation/{{lng}}.json`,
+        addPath: `https://minio-lumprod-api.lumigame.com/s1-files/s1-public/translation/{{lng}}`,
       },
 
       whitelist: ["en-US", "zh-CN", "zh-TW", "th-TH", "id-ID", "vi-VN"],
