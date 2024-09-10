@@ -1,16 +1,15 @@
-import React from "react";
 import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
-  overflow: "visible",
-  background: theme.palette.inputBGC,
-  // border: `1px solid  ${theme.palette.inputBGC}`,
+  background: theme.palette.form.backgroundColor,
+  borderRadius: "1rem",
+  border: `1px solid ${theme.palette.form.borderColor}`,
   input: {
-    padding: "12px 20px",
+    padding: "0 1.2rem",
     color: theme.palette.text.primary,
-    fontSize: "0.875rem",
-    fontWeight: 400,
-    border: "none",
+    fontSize: "1.4rem",
+    height: "4.8rem",
+    lineHeight: "4.8rem",
 
     "&:-webkit-autofill": {
       WebkitTextFillColor: `${theme.palette.text.primary} !important`,
@@ -22,15 +21,12 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontSize: "0.875rem",
     fontWeight: 400,
   },
-  placeholder: {
-    // color: "red",
-  },
 
   "& input::placeholder": {
-    color: "#828282",
+    color: `${theme.palette.form.textColor}`,
     opacity: 1,
-    fontSize: "0.875rem",
-    fontWeight: 400,
+    fontSize: "1.4rem",
+    fontWeight: 700,
   },
   [theme.breakpoints.up("sm")]: {
     input: {

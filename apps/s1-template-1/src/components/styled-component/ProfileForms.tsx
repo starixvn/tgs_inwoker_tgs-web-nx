@@ -42,11 +42,11 @@ export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
 
 export const InfoContainer = styled.div`
   width: 100%;
-  font-size: 0.937rem;
+  font-size: 1.4rem;
+  font-weight: bold;
   color: ${({ theme }) => theme.text};
-
-  display: flex;
-  align-items: center;
+  position: relative;
+  padding-top: 1rem;
 `;
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({

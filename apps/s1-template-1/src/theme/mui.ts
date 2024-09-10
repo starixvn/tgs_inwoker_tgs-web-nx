@@ -60,7 +60,7 @@ declare module "@mui/material/styles/createPalette" {
       };
     };
 
-    select: {
+    form: {
       borderColor: string;
       backgroundColor: string;
       textColor: string;
@@ -145,10 +145,10 @@ const muiTheme = createTheme({
       },
     },
 
-    select: {
-      borderColor: theme.selectBorderColor,
-      textColor: theme.selectTextColor,
-      backgroundColor: theme.selectBackgroundColor,
+    form: {
+      borderColor: theme.formInputBorder,
+      textColor: theme.formInputColor,
+      backgroundColor: theme.formInputBackground,
       optionHoverBgColor: theme.optionHoverBgColor,
     },
   },
@@ -177,3 +177,4 @@ const muiTheme = createTheme({
 } as ThemeOptions);
 
 export { muiTheme };
+

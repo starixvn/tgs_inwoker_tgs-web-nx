@@ -45,6 +45,7 @@ const LabelContainer = styled(ProfileLabelContainer)`
   line-height: 16px;
   letter-spacing: 0em;
   text-align: left;
+  margin-bottom: .8rem;
 `;
 
 const WarningText = styled.div`
@@ -53,6 +54,19 @@ const WarningText = styled.div`
 
 const TransferHint = styled.div`
   font-weight: bold;
+`;
+
+const QRCodeBounding = styled.div`
+  border-radius: 1rem;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  width: 9rem;
+  height: 9rem;
+  justify-content: center;
+`;
+
+const AccountInfo = styled.div`
 `;
 
 class Main extends Component {
@@ -194,31 +208,33 @@ class Main extends Component {
 
             return (
               <ItemContainer>
-                <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer>
+                {/* <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer> */}
+                <AccountInfo>
+                  {methodCode("BANKTRANSFER") && (
+                    <InfoContainer>
+                      <TransferLabel>{i18n.t("deposit.details.bank")}:</TransferLabel>
+                      {channel.channelname && (
+                        <>
+                          <TransferValue>{channel.channelname}</TransferValue>
+                          <CopyIcon copyContent={channel.channelname} />
+                        </>
+                      )}
+                    </InfoContainer>
+                  )}
 
-                {methodCode("BANKTRANSFER") && (
-                  <InfoContainer>
-                    <TransferLabel>{i18n.t("deposit.details.bank")}:</TransferLabel>
-                    {channel.channelname && (
-                      <>
-                        <TransferValue>{channel.channelname}</TransferValue>
-                        <CopyIcon copyContent={channel.channelname} />
-                      </>
-                    )}
-                  </InfoContainer>
-                )}
-
-                {methodCode("BANKTRANSFER") && (
-                  <InfoContainer>
-                    <TransferLabel>{i18n.t("deposit.accName")}:</TransferLabel>
-                    {channelExtend.name && (
-                      <>
-                        <TransferValue>{channelExtend.name}</TransferValue>
-                        <CopyIcon copyContent={channelExtend.name} />
-                      </>
-                    )}
-                  </InfoContainer>
-                )}
+                  {methodCode("BANKTRANSFER") && (
+                    <InfoContainer>
+                      <TransferLabel>{i18n.t("deposit.accName")}:</TransferLabel>
+                      {channelExtend.name && (
+                        <>
+                          <TransferValue>{channelExtend.name}</TransferValue>
+                          <CopyIcon copyContent={channelExtend.name} />
+                        </>
+                      )}
+                    </InfoContainer>
+                  )}
+                </AccountInfo>
+                
 
                 {methodCode("BANKTRANSFER") && (
                   <InfoContainer>
@@ -272,19 +288,21 @@ class Main extends Component {
                     return null;
                   } else if (content[key].includes("http")) {
                     return (
-                      <QRCodeImg
-                        key={index}
-                        src={content[key]}
-                        alt={content[key]}
-                        style={{ marginBottom: "10px" }}
-                      />
+                      <QRCodeBounding>
+                        <QRCodeImg
+                          key={index}
+                          src={content[key]}
+                          alt={content[key]}
+                          style={{ marginBottom: "10px" }}
+                        />
+                      </QRCodeBounding>
+                      
                     );
                   } else {
                     return (
                       <InfoContainer key={index}>
                         <TransferLabel>{i18n.t("extended." + [key])}:</TransferLabel>
                         <TransferValue>{content[key]}</TransferValue>
-
                         <CopyIcon copyContent={content[key]} />
                       </InfoContainer>
                     );
@@ -303,15 +321,17 @@ class Main extends Component {
             if (methodCode("THIRDPARTY")) {
               return (
                 <ItemContainer>
-                  <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer>
+                  {/* <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer> */}
                   <QRCodeImg src={channelExtend.qrCode} style={{ marginBottom: "10px" }} />
                 </ItemContainer>
               );
             } else {
               return (
                 <ItemContainer>
-                  <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer>
-                  {generateDisplayContent(channelExtend)}
+                   {/* <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer> */}
+                  <AccountInfo>
+                    {generateDisplayContent(channelExtend)}
+                  </AccountInfo>                  
                 </ItemContainer>
               );
             }
@@ -370,7 +390,7 @@ class Main extends Component {
                             ) : (
                               <>
                                 <div>{i18n.t("common.pleaseEnterAccountName")}</div>
-                                <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText>
+                                {/* <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText> */}
                               </>
                             )}
                           </LabelContainer>
@@ -439,7 +459,9 @@ class Main extends Component {
               value={this.props.amount}
               onChange={this.props.handleAmountChange}
               type={"number"}
-              placeholder={i18n.t("deposit.msgPleaseEnter") + i18n.t("deposit.depositAmount")}
+              placeholder={`${Common.formatNumberWithThousand(
+                transferLimitFrom,
+              )} - ${Common.formatNumberWithThousand(transferLimitTo)}`}
             />
           </FormControl>
 
@@ -449,12 +471,7 @@ class Main extends Component {
                 {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
               </FeeSpot>
             )}
-            <TransferHint>
-              {`${Common.formatNumberWithThousand(
-                transferLimitFrom,
-              )} - ${Common.formatNumberWithThousand(transferLimitTo)}
-                ${i18n.t("deposit.dollor")}`}
-            </TransferHint>
+           
           </AmountHint>
         </ItemContainer>
 
@@ -532,7 +549,7 @@ class Main extends Component {
         })()}
 
         {/*優惠活動*/}
-        <ItemContainer>
+        {/* <ItemContainer>
           <LabelContainer>{i18n.t("deposit.promotion")}</LabelContainer>
           <FormControl variant="outlined">
             <Select
@@ -565,7 +582,7 @@ class Main extends Component {
                 })}
             </Select>
           </FormControl>
-        </ItemContainer>
+        </ItemContainer> */}
 
         {/*上傳憑證*/}
         {(() => {

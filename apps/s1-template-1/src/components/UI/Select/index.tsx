@@ -5,9 +5,11 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: `#f00fff`,
   fontSize: `1.4rem`,
   fontWeight: 400,
-  background: `${theme.palette.select.backgroundColor}`,
-  border: `1px solid ${theme.palette.select.borderColor}`,   
+  background: `${theme.palette.form.backgroundColor}`,
+  border: `1px solid ${theme.palette.form.borderColor}`,   
   borderRadius: "1rem",
+  height: "4.8rem",
+  lineHeight: "4.8rem",
   "&:focus": {
     background: "none",
   },
@@ -24,12 +26,12 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
 
   "& .MuiSvgIcon-root.MuiSelect-icon" : {
     fontSize: "2.2rem",
-    color: `${theme.palette.select.textColor}`
+    color: `${theme.palette.form.textColor}`
   },
 
   select: {
-    color: `${theme.palette.select.textColor}`,
-    background: `${theme.palette.select.backgroundColor}`,
+    color: `${theme.palette.form.textColor}`,
+    background: `${theme.palette.form.backgroundColor}`,
     
     padding: "1rem",
     borderRadius: "1rem",
@@ -47,8 +49,8 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   },
 
   "& .MuiInputBase-input": {
-    color: `${theme.palette.select.textColor}`,
-    background: `${theme.palette.select.backgroundColor}`,
+    color: `${theme.palette.form.textColor}`,
+    background: `${theme.palette.form.backgroundColor}`,
     
     padding: "1rem",
     borderRadius: "1rem",
@@ -65,10 +67,10 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
   option: {
-    background: `${theme.palette.select.backgroundColor}`,
-    color: `${theme.palette.select.textColor}`,
+    background: `${theme.palette.form.backgroundColor}`,
+    color: `${theme.palette.form.textColor}`,
     "&:hover": {
-      background: `${theme.palette.select.optionHoverBgColor}`,
+      background: `${theme.palette.form.optionHoverBgColor}`,
       color: `${theme.palette.white}`,
       height: "4.4rem",
     },

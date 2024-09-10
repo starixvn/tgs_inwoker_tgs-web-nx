@@ -8,8 +8,12 @@ export const LimitAmount = styled.span`
   color: ${({ theme }) => theme.text};
 `;
 
-export const TransferLabel = styled.div``;
-export const TransferValue = styled.div``;
+export const TransferLabel = styled.div`
+  color: ${({ theme }) => theme.transferPrimaryText};
+`;
+export const TransferValue = styled.div`
+  padding-top: .4rem;
+`;
 
 export const ExchangeRateContainer = styled.div`
   margin: 20px auto;
@@ -20,8 +24,8 @@ export const ExchangeRateContainer = styled.div`
 export const QRCodeImg = styled.img`
   display: block;
   margin-top: 10px;
-  width: 200px;
-  height: 200px;
+  width: 7.8rem;
+  height: 7.8rem;
 `;
 
 export const HintText = styled.div`

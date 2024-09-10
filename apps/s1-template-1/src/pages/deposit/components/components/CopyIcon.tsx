@@ -1,20 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import { i18n, utility } from "@tgs-web-nx/utils";
-import { useNotifications } from "@tgs-web-nx/core/features";
+import copyImg from "@/assets/t18/images/deposit/copy.svg";
 import Icon from "@/components/project/Icon";
-import copyImg from "@/assets/t18/images/deposit/copy.png";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { i18n, utility } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 
 const CopyIconContainer = styled.div`
   width: 30px;
   height: 30px;
-  border-radius: 5px;
-  background-color: ${({ theme }) => theme.primary};
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   margin-left: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 
   transition: all ease-in-out 0.2s;
   &:hover {
