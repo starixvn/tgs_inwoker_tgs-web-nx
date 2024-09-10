@@ -58,8 +58,10 @@ const Marquee = () => {
       <MarqueeContent>
         <img
           className="icon"
-          src="/assets/images/common/icon-announcement.svg"
+          src="/assets/images/common/icon-announcement.png"
           alt="announcement"
+          height={21}
+          width={22}
         />
         {
           // Disable TypeScript check for unknown HTML elements

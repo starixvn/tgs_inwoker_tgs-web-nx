@@ -1,4 +1,5 @@
 import { media } from "@/theme/breakpoints";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
@@ -60,24 +61,20 @@ const Banner = () => {
   const [emblaBannerRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ playOnInit: true, delay: 3000 }),
   ]);
-
+  const { general } = useGeneralStore();
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
-
-  const SLIDE_COUNT = 5;
-  const slides = Array.from(Array(SLIDE_COUNT).keys());
 
   return (
     <BannerContainerEmbla className="embla">
       <div className="embla__viewport" ref={emblaBannerRef}>
         <div className="embla__container">
-          {slides.map((index) => (
+          {general.banner.map((banner, index) => (
             <div className="embla__slide" key={index}>
               <img
                 className="banner"
-                src={`/assets/images/banners/${isMobileSize ? "banner-mobile" : "banner-desktop"}/${
-                  index + 1
-                }.png`}
-                alt="Banner"
+                src={isMobileSize ? banner.mobileurl : banner.desktopurl}
+                alt={banner.alt}
+                title={banner.title}
               />
             </div>
           ))}

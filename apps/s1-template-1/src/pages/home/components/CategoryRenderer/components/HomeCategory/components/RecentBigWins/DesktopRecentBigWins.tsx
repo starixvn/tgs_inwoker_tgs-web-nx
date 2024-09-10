@@ -5,6 +5,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { styled as muiStyled } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
+import { media } from "@tgs-web-nx/constants";
 import { getFormatAmount } from "@tgs-web-nx/utils";
 import useEmblaCarousel from "embla-carousel-react";
 import { useState } from "react";
@@ -13,7 +14,7 @@ import styled from "styled-components";
 import { GameTypeTitle } from "../..";
 import { BigWinsAmount, GameName } from "./MobileRecentBigWins";
 
-const Row = styled.div`
+const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,8 +44,48 @@ const Wrapper = styled.div`
   gap: 1rem;
 `;
 
-const GameIcon = styled.img`
+const CardHoverBg = styled.div`
+  flex-shrink: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(6, 0, 74, 0.8);
   border-radius: 0.8rem;
+  display: none;
+  white-space: pre-line;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const GameIcon = styled.div`
+  position: relative;
+
+  .icon {
+    border-radius: 0.8rem !important;
+  }
+
+  ${media.sm} {
+    flex-shrink: 0;
+
+    &:hover {
+      ${CardHoverBg} {
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+`;
+
+const PlayIcon = styled.img`
+  width: 4.2rem;
+  height: 4.2rem;
 `;
 
 const RecentBigWinsSlide = styled.div`
@@ -67,6 +108,21 @@ const DesktopRecentBigWins: React.FC<{ recentBigWins: BigWinType[] }> = ({ recen
     setValue(newValue);
   };
 
+  const launchGameHandler = () => {
+    // if (!isActive) {
+    //   return;
+    // }
+    launchGame();
+  };
+
+  const launchGame = () => {
+    // if (!isLogin) {
+    //   history.push("/login");
+    // } else {
+    //   Common.closePreviousPopup();
+    //   Common.PopupCenter(`/joingame/${gameItem.id}/${gameItem.gpcode}`, "gamewindow");
+    // }
+  };
   return (
     <TabContext value={value}>
       <Wrapper>
@@ -101,14 +157,21 @@ const DesktopRecentBigWins: React.FC<{ recentBigWins: BigWinType[] }> = ({ recen
                 recentBigWins.map((item, index) => {
                   return (
                     <RecentBigWinsSlide className="embla__slide" key={index}>
-                      <Row key={index}>
-                        <GameIcon
-                          src={`/assets/images/big-wins/desktop/${item.code}.png`}
-                          alt={item.name}
-                        />
+                      <GameContainer key={index}>
+                        <GameIcon>
+                          <img
+                            className="icon"
+                            src={`/assets/images/big-wins/desktop/${item.code}.png`}
+                            alt={item.name}
+                          />
+                          <CardHoverBg onClick={launchGameHandler}>
+                            <PlayIcon src="/assets/images/common/icon-play.svg" alt={"play"} />
+                          </CardHoverBg>
+                        </GameIcon>
+
                         <GameName>{item.name}</GameName>
                         <BigWinsAmount>{`đ${getFormatAmount(item.amount)}`}</BigWinsAmount>
-                      </Row>
+                      </GameContainer>
                     </RecentBigWinsSlide>
                   );
                 })}
@@ -124,14 +187,7 @@ const DesktopRecentBigWins: React.FC<{ recentBigWins: BigWinType[] }> = ({ recen
                 recentBigWins.map((item, index) => {
                   return (
                     <RecentBigWinsSlide className="embla__slide" key={index}>
-                      <Row key={index}>
-                        <GameIcon
-                          src={`/assets/images/big-wins/desktop/${item.code}.png`}
-                          alt={item.name}
-                        />
-                        <GameName>{item.name}</GameName>
-                        <BigWinsAmount>{`đ${getFormatAmount(item.amount)}`}</BigWinsAmount>
-                      </Row>
+                      <GameContainer key={index}></GameContainer>
                     </RecentBigWinsSlide>
                   );
                 })}
@@ -147,14 +203,7 @@ const DesktopRecentBigWins: React.FC<{ recentBigWins: BigWinType[] }> = ({ recen
                 recentBigWins.map((item, index) => {
                   return (
                     <RecentBigWinsSlide className="embla__slide" key={index}>
-                      <Row key={index}>
-                        <GameIcon
-                          src={`/assets/images/big-wins/desktop/${item.code}.png`}
-                          alt={item.name}
-                        />
-                        <GameName>{item.name}</GameName>
-                        <BigWinsAmount>{`đ${getFormatAmount(item.amount)}`}</BigWinsAmount>
-                      </Row>
+                      <GameContainer key={index}></GameContainer>
                     </RecentBigWinsSlide>
                   );
                 })}

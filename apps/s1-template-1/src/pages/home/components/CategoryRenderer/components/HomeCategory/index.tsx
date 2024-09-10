@@ -106,6 +106,7 @@ const HomeCategory = () => {
   const [emblaLiveCasinoRef] = useEmblaCarousel({ dragFree: true });
   const [emblaNewReleaseRef] = useEmblaCarousel({ dragFree: true });
   const [emblaGameProvidersRef] = useEmblaCarousel({ dragFree: true });
+  const [emblaTableGamesRef] = useEmblaCarousel({ dragFree: true });
   const [emblaHotGamesRef] = useEmblaCarousel({ dragFree: true });
 
   const launchLobbyGame = (gpcode: string, gtype: GameTypeEnum = GameTypeEnum.SPORTS) => {
@@ -308,11 +309,11 @@ const HomeCategory = () => {
 
         <GameTypeTitle>
           <img src="/assets/images/common/icon-table-game-group.svg" alt="hot" />
-          Table Game
+          Table Games
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
         <section className="embla">
-          <div className="embla__viewport" ref={emblaHotGamesRef}>
+          <div className="embla__viewport" ref={emblaTableGamesRef}>
             <div className="embla__container">
               {hotTableGameList.length === 0 && <NoGame></NoGame>}
               {hotTableGameList.map((gameItem, index) => {
@@ -336,7 +337,7 @@ const HomeCategory = () => {
         </section>
 
         <GameTypeTitle>
-          <img src="/assets/images/common/icon-new-release.svg" alt="hot" />
+          <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
           Hot Games
           <ViewAll>View All</ViewAll>
         </GameTypeTitle>
