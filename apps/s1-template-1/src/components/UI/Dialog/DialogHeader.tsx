@@ -1,7 +1,7 @@
 import Icon from "@/components/project/Icon";
 import styled from "styled-components";
 
-export const DIALOG_HEADER_HEIGHT = "40px";
+export const DIALOG_HEADER_HEIGHT = "64px";
 
 const DialogHeaderContainer = styled.div`
   position: fixed;
@@ -9,7 +9,7 @@ const DialogHeaderContainer = styled.div`
   left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.dialogTitleBackground};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,6 +32,13 @@ const ReturnIconContainer = styled.div`
   cursor: pointer;
 `;
 
+const DialogTitle = styled.div`
+  font-size: 2rem;
+  font-weight: 700;
+  padding-left: 1.2rem;
+  letter-spacing: .04rem;
+`;
+
 type Props = {
   handleClose: () => void;
   dialogHeaderTitle: string;
@@ -41,7 +48,8 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl="/assets/images/common/icon-close.svg" width={"32px"} height={"32px"} />
+        <Icon iconUrl="/assets/images/common/icon-back.svg" width={"32px"} height={"32px"} />
+        <DialogTitle>{dialogHeaderTitle}</DialogTitle>
       </ReturnIconContainer>
     </DialogHeaderContainer>
   );

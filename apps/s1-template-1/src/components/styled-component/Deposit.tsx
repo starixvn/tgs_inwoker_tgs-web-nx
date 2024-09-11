@@ -10,9 +10,14 @@ export const LimitAmount = styled.span`
 
 export const TransferLabel = styled.div`
   color: ${({ theme }) => theme.transferPrimaryText};
+  line-height: 1.8rem;
+  letter-spacing: 0.28px;
+
 `;
 export const TransferValue = styled.div`
-  padding-top: .4rem;
+  padding-top: .2rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.28px;
 `;
 
 export const ExchangeRateContainer = styled.div`

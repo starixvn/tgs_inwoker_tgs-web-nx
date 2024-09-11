@@ -17,6 +17,8 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   font-size: 1.4rem;
   font-weight: bold;
   border-radius: .8rem;
+  box-shadow: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? `0px 0px 10px 0px rgba(160, 218, 66, 0.60) inset` : `unset`} ;
 
   ${media.md} {
     width: auto;

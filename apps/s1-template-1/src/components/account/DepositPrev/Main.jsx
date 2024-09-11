@@ -41,13 +41,21 @@ const BadgeContainer = styled.div`
 `;
 
 const LabelContainer = styled(ProfileLabelContainer)`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
   line-height: 16px;
-  letter-spacing: 0em;
+   letter-spacing: 0.28px;
   text-align: left;
   margin-bottom: .8rem;
 `;
+
+const LabelLargeContainer = styled(LabelContainer)`
+  font-size: 1.6rem;
+  float: unset;
+  letter-spacing: 0.32px;
+  margin-bottom: 1.6rem;
+`;
+
 
 const WarningText = styled.div`
   color: ${({ theme }) => theme.red};
@@ -130,7 +138,7 @@ class Main extends Component {
 
             {/*1. 请选择支付方式 */}
             <ItemContainer>
-              <LabelContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelContainer>
+              <LabelLargeContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelLargeContainer>
               <BadgeContainer>
                 {this.props.wallet.depositTypeList.length > 0 &&
                   selectedDepositType.method.map((item, index) => {
@@ -179,8 +187,8 @@ class Main extends Component {
 
         {/*请选择支付渠道*/}
         {!(config.features.Deposit_HideDepositChannel || config.features.Deposit_AddCard) && (
-          <ItemContainer>
-            <LabelContainer>{i18n.t("deposit.msgPlsSelectMethod")}</LabelContainer>
+          <ItemContainer style={{marginBottom: "0"}}>
+            <LabelLargeContainer>{i18n.t("deposit.msgPlsSelectMethod")}</LabelLargeContainer>
             <FormControl variant="outlined">
               <Select
                 id="customSelect"
@@ -384,6 +392,8 @@ class Main extends Component {
                           </FormControl>
                         </ItemContainer>
                       ) : (
+                        <>
+                        <LabelLargeContainer style={{paddingTop: "1.2rem"}}>Your bank account info</LabelLargeContainer>
                         <ItemContainer>
                           <LabelContainer>
                             {config.features.Deposit_OriginAccount ? (
@@ -413,6 +423,25 @@ class Main extends Component {
                             />
                           </FormControl>
                         </ItemContainer>
+                        <ItemContainer>
+                          <LabelContainer>
+                            Account Number
+                          </LabelContainer>
+                          <FormControl variant="outlined">
+                            <TextField
+                              type={"text"}
+                              placeholder={"Please enter the bank account number"}
+                              value={this.props.account}
+                              disabled={
+                                !config.features.Deposit_AccountNameManualInput &&
+                                config.features.Deposit_AutofillFirstCard &&
+                                this.props.wallet.bankCardList.length > 1
+                              }
+                              onChange={(e) => this.props.handleAccountChange(e)}
+                            />
+                          </FormControl>
+                      </ItemContainer>
+                      </>
                       )}
                     </>
                   )}
@@ -591,7 +620,7 @@ class Main extends Component {
             return (
               <>
                 <ItemContainer>
-                  <LabelContainer>{i18n.t("deposit.uploadReceipt")}</LabelContainer>
+                  <LabelLargeContainer>{i18n.t("deposit.uploadReceipt")}</LabelLargeContainer>
 
                   <FormControl>
                     <UploadFileControl>
