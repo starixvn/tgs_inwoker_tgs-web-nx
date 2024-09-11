@@ -115,6 +115,10 @@ export const theme = {
   checkBoxBackground: "#65759b",
   activeCheckBoxBackground: "#90A405",
   dialogTitleBackground: "linear-gradient(270deg, #213757 0%, #283D5A 100%)",
+  greenGradientBackround: "linear-gradient(180deg, #BAD30F 0%, #7E8F0C 100%)",
+  orangeGradientBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
+  balanceHeaderBackground: "rgba(68, 88, 116, 0.24)",
+
 
   // Announcement
   announceTextColor: "#F6254B",
