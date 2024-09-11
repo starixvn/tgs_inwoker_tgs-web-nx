@@ -105,12 +105,14 @@ export const Select = (props: SelectProps) => {
             },
             "& .MuiMenuItem-root": {
               padding: "1rem 1.2rem",
-              color: theme.text,
+              color: theme.gray,
               borderRadius: "1rem",
               fontSize: "1.2rem",
+              fontWeight: "bold",
             },
             "& .Mui-selected": {
               background: `${theme.dropDownItemSelectedBackground} !important`,
+              color: theme.text,
               "&:hover": {
                 background: `${theme.dropDownItemSelectedBackground} !important`,
               },

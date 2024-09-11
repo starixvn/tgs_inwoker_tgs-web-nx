@@ -1,6 +1,11 @@
 import Icon from "@/components/project/Icon";
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { GreenGradientButton } from "@/components/UI/Button";
+import { Select } from "@/components/UI/Select";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
+import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
+import { MenuItem } from "@mui/material";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -60,7 +65,7 @@ const LogoutButton = styled(BascicButton)`
 
 const AccountIcon = styled.div`
   cursor: pointer;
-  margin-left: .6rem;
+  margin: 0 0 0 .6rem;
   border-radius: 2rem;
   background: rgba(255, 255, 255, 0.2);
   width: 4rem;
@@ -68,6 +73,9 @@ const AccountIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${media.sm} {
+     margin: 0 .8rem 0 .6rem;
+  }
 
 `;
 
@@ -126,14 +134,59 @@ const AccountHeaderContent = () => {
           </>
         )} */}
       </ButtonContainer>
-      <AccountIcon
-        onClick={() => {
-          history.push("/profile");
-        }}
+      <Select renderValue={() => {
+        return (
+          <AccountIcon>
+            <img src={"/assets/images/common/avatar.png"} width={"36px"} height={"36px"} alt="profile" />
+          </AccountIcon>
+        )
+      }}
+      value={''}
+      sx={{
+        border: "none",
+        background: "transparent",
+        "& .MuiSelect-select": {
+          background: "transparent",
+          padding: "0 !important",
+        },
+        "& .MuiSvgIcon-root": {
+          display: "none",
+        }
+      }}
+      MenuProps={{
+        PaperProps: {
+          sx: {  
+            ".MuiList-root": {
+              padding: "0",
+              color: theme.formInputColor,
+            },         
+            "& .MuiMenuItem-root": {
+              color: theme.formInputColor,
+            },
+            "& .Mui-selected": {
+              background: `${theme.dropDownItemSelectedBackground} !important`,
+              "&:hover": {
+                background: `${theme.dropDownItemSelectedBackground} !important`,
+              },
+            },
+          },
+        },
+      }}
       >
-        <img src={"/assets/images/common/avatar.png"} width={"36px"} height={"36px"} alt="profile" />
-      </AccountIcon>
-     
+        <MenuItem onClick={() => {
+              history.push("/withdraw");
+            }}>Withdraw</MenuItem>
+        <MenuItem onClick={() => {
+              history.push("/deposit");
+            }}>Deposit</MenuItem>
+        <MenuItem>Transation</MenuItem>
+        <MenuItem>Bet History</MenuItem>
+        <MenuItem onClick={() => {
+              history.push("/profile");
+            }}>Account Info</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Select>
+      {isDesktopSize && <HeaderLanguageSwitch />}
     </>
    
   );

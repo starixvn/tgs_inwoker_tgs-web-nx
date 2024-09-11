@@ -80,7 +80,7 @@ const FlagContainer = styled.div`
 `;
 
 const NameContainer = styled.div`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 `;
 
 const HeaderLanguageSwitch = (props: SelectProps) => {
@@ -126,11 +126,13 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
             },
             "& .MuiMenuItem-root": {
               padding: "1rem 1.2rem",
-              color: theme.text,
+              color: theme.gray,
               borderRadius: "1rem",
+              fontWeight: "bold",
             },
             "& .Mui-selected": {
               background: `${theme.dropDownItemSelectedBackground} !important`,
+              color: theme.text,
               "&:hover": {
                 background: `${theme.dropDownItemSelectedBackground} !important`,
               },
