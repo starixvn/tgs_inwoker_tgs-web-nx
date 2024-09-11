@@ -1,10 +1,11 @@
-import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { SignInButton, SignUpButton } from "@/layouts/components/Header/components/HeaderButton";
-import { theme } from "@/theme";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React, { useCallback } from "react";
 import styled from "styled-components";
+import { i18n, utility } from "@tgs-web-nx/utils";
+import { theme } from "@/theme";
+import { SignInButton, SignUpButton } from "@/layouts/components/Header/components/HeaderButton";
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
           color: theme.white,
         }}
       >
-        Sign in
+        {i18n.t("web.header.signin")}
       </SignInButton>
 
       <SignUpButton
@@ -41,7 +42,7 @@ const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
           background: theme.signUpButtonBackground,
         }}
       >
-        Sign up
+        {i18n.t("web.header.signup")}
       </SignUpButton>
       <HeaderLanguageSwitch />
     </ButtonContainer>

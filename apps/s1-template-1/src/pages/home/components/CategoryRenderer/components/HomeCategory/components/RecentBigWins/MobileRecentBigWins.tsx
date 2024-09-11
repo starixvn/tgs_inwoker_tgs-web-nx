@@ -1,5 +1,5 @@
 import { Button as MuiButton, styled as muiStyled } from "@mui/material";
-import { getFormatAmount } from "@tgs-web-nx/utils";
+import { getFormatAmount, i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
 import { GameContainer, GameTypeTitle } from "../..";
@@ -68,7 +68,7 @@ const MobileRecentBigWins: React.FC<{ recentBigWins: BigWinType[] }> = ({ recent
     <>
       <GameTypeTitle>
         <img src="/assets/images/common/icon-big-wins.svg" alt="hot" />
-        Recent Big Wins
+        {i18n.t("web.home.Section1RecentBigWins")}
       </GameTypeTitle>
       <GameContainer>
         <RecentBigWinsSection>

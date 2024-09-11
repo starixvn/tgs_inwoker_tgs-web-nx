@@ -1,13 +1,13 @@
-import { media } from "@/theme/breakpoints";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProvider } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { media } from "@/theme/breakpoints";
 
 const FooterContainer = styled.div`
-   background: ${({ theme }) => theme.footerBackground};
+  background: ${({ theme }) => theme.footerBackground};
 `;
 
 const FooterWrapper = styled.div`
@@ -15,16 +15,15 @@ const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
-  padding: 2rem .8rem;
-  
+  padding: 2rem 0.8rem;
+
   ${media.md} {
     flex-direction: row;
   }
-  ${media.lg}  {
+  ${media.lg} {
     max-width: 120rem;
-    margin: 0 auto ;
+    margin: 0 auto;
   }
- 
 `;
 
 const FooterBottom = styled.div`
@@ -35,14 +34,14 @@ const FooterBottom = styled.div`
 `;
 
 const FooterGroup = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    ${media.md} {
-       align-items: flex-start;
-      width: 25%;
-    }
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  ${media.md} {
+    align-items: flex-start;
+    width: 25%;
+  }
 `;
 
 const GroupTitle = styled.h6`
@@ -63,7 +62,7 @@ const GroupTitle = styled.h6`
     background-color: #e2fe26;
     left: 50%;
     transform: translateX(-50%);
-    ${media.md}{
+    ${media.md} {
       left: unset;
       transform: none;
     }
@@ -74,15 +73,15 @@ const GroupContent = styled.div`
   gap: 1.2rem;
   font-size: 1.3rem;
   line-height: 2.4rem;
-  font-weight: 500;  
-  margin: 1.2rem 0 .8rem;
+  font-weight: 500;
+  margin: 1.2rem 0 0.8rem;
   color: ${({ theme }) => theme.footerColor};
 `;
 
 const SocialIcons = styled.div`
   display: flex;
   gap: 1.6rem;
-  margin-top: .4rem;
+  margin-top: 0.4rem;
 `;
 
 const LinkContent = styled(GroupContent)`
@@ -92,10 +91,10 @@ const LinkContent = styled(GroupContent)`
 `;
 
 const FooterLogo = styled.div`
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
   display: flex;
   justify-content: center;
-`
+`;
 
 const GamCareTitle = styled.div`
   display: flex;
@@ -104,12 +103,12 @@ const GamCareTitle = styled.div`
   ${media.md} {
     margin-bottom: 0;
   }
-`
+`;
 
 const GameCareText = styled.div`
   text-align: left;
   font-size: 1.3rem;
-  color: #97A2B0;
+  color: #97a2b0;
   padding-right: 2rem;
   margin-top: 1rem;
   line-height: 2.4rem;
@@ -118,7 +117,7 @@ const GameCareText = styled.div`
   ${media.md} {
     display: block;
   }
-`
+`;
 
 // const LogoImg = styled.img`
 //   width: 100%;
@@ -129,10 +128,10 @@ const GameCareText = styled.div`
 const Link = styled.div`
   width: 100%;
   cursor: pointer;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
   text-align: center;
   ${media.md} {
-     text-align: left;
+    text-align: left;
   }
 
   &:hover {
@@ -172,9 +171,9 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-      <FooterWrapper>       
+      <FooterWrapper>
         <FooterGroup>
-          <GroupTitle>Community</GroupTitle>
+          <GroupTitle>{i18n.t("web.footer.community")}</GroupTitle>
           <GroupContent>
             <SocialIcons>
               {socialList.map((social) => {
@@ -182,45 +181,54 @@ const Footer = () => {
               })}
             </SocialIcons>
           </GroupContent>
-          
         </FooterGroup>
         <FooterGroup>
-          <GroupTitle>Support</GroupTitle>
+          <GroupTitle>{i18n.t("web.footer.support")}</GroupTitle>
           <LinkContent>
             <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
             <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
             <Link onClick={() => navigateTo("responsiblegaming")}>
               {i18n.t("T13.quickLink.reponsible")}
             </Link>
-
           </LinkContent>
         </FooterGroup>
         <FooterGroup>
-          <GroupTitle>Policies</GroupTitle>
+          <GroupTitle>{i18n.t("web.footer.policies")}</GroupTitle>
           <LinkContent>
-            <Link onClick={() => navigateTo("privacypolicy")}>{i18n.t("T13.quickLink.privacy")}</Link>
+            <Link onClick={() => navigateTo("privacypolicy")}>
+              {i18n.t("T13.quickLink.privacy")}
+            </Link>
             <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
             <Link onClick={() => navigateTo("responsiblegaming")}>
               {i18n.t("T13.quickLink.reponsible")}
             </Link>
           </LinkContent>
-        </FooterGroup>  
+        </FooterGroup>
         <FooterGroup>
           <GamCareTitle>
-            <img src="/assets/images/footer/icon-18plus.svg" alt="18plus" width={32} height={32}></img>
-            <img src="/assets/images/footer/icon-gamcare.svg" alt="gamcare" width={125} height={31}></img>
+            <img
+              src="/assets/images/footer/icon-18plus.svg"
+              alt="18plus"
+              width={32}
+              height={32}
+            ></img>
+            <img
+              src="/assets/images/footer/icon-gamcare.svg"
+              alt="gamcare"
+              width={125}
+              height={31}
+            ></img>
           </GamCareTitle>
-          <GameCareText>
-            This website offers gaming with rich experience. To be a user of our site you must be over 18 years old. We are not responsible for the violation 
-            of your local laws. Play responsibly and have fun on S1.
-          </GameCareText>
+          <GameCareText>{i18n.t("web.footer.websitedescription")}</GameCareText>
         </FooterGroup>
       </FooterWrapper>
       <FooterBottom>
         <GroupContent>
           {/* <LogoImg src={general.brand && general.brand.loadingUrl} alt={`${brand}`} /> */}
-          <FooterLogo><img src="/assets/images/common/logo.svg" width={82} height={22} alt="Twitter" /></FooterLogo>
-          © 2024, S1.com | All Rights Reserved.
+          <FooterLogo>
+            <img src="/assets/images/common/logo.svg" width={82} height={22} alt="Twitter" />
+          </FooterLogo>
+          © 2024, S1.com | {i18n.t("web.footer.allrightsreserverd")}
         </GroupContent>
       </FooterBottom>
     </FooterContainer>

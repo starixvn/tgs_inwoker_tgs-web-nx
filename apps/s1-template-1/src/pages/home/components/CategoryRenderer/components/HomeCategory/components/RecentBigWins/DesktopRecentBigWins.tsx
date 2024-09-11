@@ -1,4 +1,3 @@
-import { theme } from "@/theme";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
@@ -10,9 +9,11 @@ import { getFormatAmount } from "@tgs-web-nx/utils";
 import useEmblaCarousel from "embla-carousel-react";
 import { useState } from "react";
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 
 import { GameTypeTitle } from "../..";
 import { BigWinsAmount, GameName } from "./MobileRecentBigWins";
+import { theme } from "@/theme";
 
 const GameContainer = styled.div`
   display: flex;
@@ -128,7 +129,7 @@ const DesktopRecentBigWins: React.FC<{ recentBigWins: BigWinType[] }> = ({ recen
       <Wrapper>
         <GameTypeTitle>
           <img src="/assets/images/common/icon-big-wins.svg" alt="hot" />
-          Recent Big Wins
+          {i18n.t("web.home.Section1RecentBigWins")}
         </GameTypeTitle>
         <Box sx={{ borderBottom: 1, borderColor: "divider", color: "#fff" }}>
           <TabList

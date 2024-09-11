@@ -83,7 +83,7 @@ const AccountHeaderContent = () => {
           history.push("/deposit");
         }}
       >
-        {i18n.t("common.deposit").toUpperCase()}
+        {i18n.t("web.header.deposit").toUpperCase()}
       </DepositButton>
       {isMobileSize && <HeaderLanguageSwitch />}
       {isDesktopSize && (
