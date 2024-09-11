@@ -156,8 +156,6 @@ const HomeCategory = () => {
     window.scroll({ top: 0, behavior: "smooth" });
   };
 
-  console.log("----------useGetHomeCategoryList()", useGetHomeCategoryList());
-
   return (
     <DesktopContainer>
       <GameTypeContainer>
