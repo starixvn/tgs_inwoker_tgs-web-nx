@@ -9,11 +9,12 @@ const GameTypeNav = styled.div`
   white-space: nowrap;
   display: flex;
   align-items: center;
-  padding: 0.4rem;
+  padding: 0.2rem;
   cursor: pointer;
   position: relative;
 
   ${media.lg} {
+    padding: 0.4rem;
     font-size: 1.6rem;
   }
 `;
@@ -26,7 +27,6 @@ const Wrapper = styled.div<{
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  gap: 0.3rem;
   height: 6rem;
   padding: 0.8rem 1.6rem;
   cursor: pointer;
@@ -43,8 +43,8 @@ const Wrapper = styled.div<{
   }
 
   & img {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 3.2rem;
+    height: 3.2rem;
 
     ${media.lg} {
       width: 4.2rem;

@@ -119,4 +119,10 @@ export const theme = {
   // Announcement
   announceTextColor: "#F6254B",
   announceBackground: "rgba(65, 90, 124, 0.50)",
+
+  // Play button on game icon
+  playButtonBackground: "#b0003f",
+  playButtonBottomBorderColor: "#6a0026",
+  playButtonShadow: "0 0.4rem 0.4rem 0 rgba(255, 255, 255, 0.25) inset",
+  playButtonShadowHover: "0 0.4rem 0.4rem 0 rgba(255, 255, 255, 0.25) inset, 0 0 1.5rem #f64b89",
 };

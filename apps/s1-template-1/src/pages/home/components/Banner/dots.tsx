@@ -20,10 +20,12 @@ const Dot = styled.button`
     width: 1rem;
     height: 0.5rem;
     background: #fff;
+    transition: all 0.3s ease-out;
 
     ${media.md} {
       width: 3.4rem;
       height: 1.2rem;
+      transition: all 0.3s ease-in;
     }
   }
 `;

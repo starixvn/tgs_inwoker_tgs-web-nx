@@ -53,6 +53,7 @@ const BannerContainerEmbla = styled.section`
   .embla__dots {
     display: flex;
     gap: 0.4rem;
+    transition: all 0.3s ease-out;
   }
 `;
 

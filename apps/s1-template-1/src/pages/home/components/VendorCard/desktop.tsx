@@ -1,10 +1,11 @@
 import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
-import playIcon from "@/assets/t28/images/home/play.svg";
 import useDynamicFontSize from "@/hooks/home/useDynamicFontSize";
 import { media } from "@/theme/breakpoints";
 import { providerStatus } from "@tgs-web-nx/constants";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
+
+import PlayIcon from "../PlayIcon";
 
 type Props = {
   bgUrl: string;
@@ -34,8 +35,9 @@ const VendorCardHoverBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  backdrop-filter: blur(3px);
-  border-radius: 10px;
+  border-radius: 1.2rem;
+  background: rgba(6, 0, 74, 0.8);
+  backdrop-filter: blur(0.2rem);
   display: none;
   white-space: pre-line;
 `;
@@ -65,7 +67,7 @@ const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   z-index: 100;
   position: absolute;
   left: 50%;
-  top: 70%;
+  top: 68%;
   display: inline-flex;
   width: 100%;
   max-width: 8.5rem;
@@ -75,10 +77,6 @@ const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
   background-repeat: no-repeat;
   background-position: center;
   transform: translate(-50%, -50%);
-  ${media.sm} {
-    left: 40%;
-    top: 85%;
-  }
 `;
 
 const MaintenanceBg = styled.div`
@@ -112,11 +110,6 @@ const GradientOverlay = styled.div`
   border-radius: 0 0 1.2rem 1.2rem;
 `;
 
-const PlayIcon = styled.img`
-  width: 60px;
-  height: 60px;
-`;
-
 const DesktopVendorCard = ({ imageUrl, venderLogoUrl, launchGame, status }: Props) => {
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
@@ -148,7 +141,7 @@ const DesktopVendorCard = ({ imageUrl, venderLogoUrl, launchGame, status }: Prop
         )}
       </GradientOverlay>
       <VendorCardHoverBg onClick={launchGameHandler}>
-        <PlayIcon src={playIcon} alt={"play"} />
+        <PlayIcon />
       </VendorCardHoverBg>
     </VendorCardBg>
   );

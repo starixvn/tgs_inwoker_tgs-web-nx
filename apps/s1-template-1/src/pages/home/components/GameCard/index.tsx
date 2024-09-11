@@ -1,5 +1,4 @@
 import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
-import playIcon from "@/assets/t28/images/home/play.svg";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
@@ -11,18 +10,24 @@ import { MouseEvent, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
+import PlayIcon from "../PlayIcon";
+
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
-  flex-shrink: 0;
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  backdrop-filter: blur(3px);
-  border-radius: 1rem;
-  display: none;
-  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 1.2rem;
+  background: rgba(6, 0, 74, 0.8);
+  backdrop-filter: blur(0.2rem);
+  opacity: 0;
 `;
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
@@ -34,41 +39,7 @@ const GameIcon = styled.div<{ $imageUrl: string }>`
   top: 0;
   background-image: url(${({ $imageUrl }) => $imageUrl});
   background-size: cover;
-  border-radius: 1rem;
-`;
-
-const NewTag = styled.div`
-  position: absolute;
-  top: 5px;
-  left: 3px;
-  width: 53px;
-  height: 26px;
-  padding: 4px 10px;
-  border-radius: 50px;
-  background: ${(props) => props.theme.red};
-  color: ${(props) => props.theme.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 400;
-`;
-
-const HotTag = styled.div`
-  position: absolute;
-  bottom: 7px;
-  left: 0;
-  width: 53px;
-  height: 26px;
-  padding: 4px 10px;
-  border-radius: 50px;
-  background: ${(props) => props.theme.green};
-  color: ${(props) => props.theme.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 400;
+  border-radius: 1.2rem;
 `;
 
 const GameCardContent = styled.div`
@@ -81,35 +52,15 @@ const GameCardBg = styled.div`
   position: relative;
   cursor: pointer;
   aspect-ratio: 140 / 189;
-  border-radius: 1rem;
-  background-color: grey;
 
   ${media.sm} {
     flex-shrink: 0;
     &:hover {
       ${CardHoverBg} {
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        opacity: 1;
       }
     }
   }
-`;
-
-const GameName = styled.div`
-  position: absolute;
-  bottom: 0;
-  color: ${(props) => props.theme.white};
-  font-size: 0.875rem;
-  font-weight: 400;
-  text-align: center;
-  margin: 4px 0 12px 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%; //利用最大寬度來限制文字長度
 `;
 
 const MaintenanceBg = styled.div`
@@ -136,25 +87,22 @@ const MaintenanceIcon = styled.img`
   height: 83px;
 `;
 
+const HoverGameName = styled(GameCardContent)`
+  position: absolute;
+  top: 2rem;
+  color: ${(props) => props.theme.white};
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.8rem;
+  text-align: center;
+`;
+
 type GameCardProps = {
   gameItem: GameItem;
   isActive: boolean;
   imageUrl: string;
 };
-
-const HoverGameName = styled(GameCardContent)`
-  color: ${(props) => props.theme.white};
-  font-size: 18px;
-  font-weight: 590;
-  line-height: 24px;
-  letter-spacing: 0em;
-  text-align: center;
-`;
-
-const PlayIcon = styled.img`
-  width: 60px;
-  height: 60px;
-`;
 
 const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
@@ -223,8 +171,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && (
         <CardHoverBg onClick={launchGameHandler}>
-          <PlayIcon src={playIcon} alt={"play"} />
           {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
+          <PlayIcon />
         </CardHoverBg>
       )}
     </GameCardBg>
