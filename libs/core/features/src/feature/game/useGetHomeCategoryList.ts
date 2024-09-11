@@ -1,217 +1,111 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
-import { GameItem } from "@tgs-web-nx/types";
-import { useCallback, useEffect, useState } from "react";
+import { CategoryDto, GameItem, GameTagListResDto } from "@tgs-web-nx/types";
+import { useEffect, useState } from "react";
 
-import { FilterTag, FilterTagTypeEnum } from "./types";
-import { useHomeGameContext } from "./useHomeGameContext";
+import { TagTypeEnum } from "./types";
 
-interface GetGameListState {
+interface HomeGameList {
   isLoading: boolean;
-  gameList: GameItem[];
   error: Error | null;
+  slotGameList: GameItem[];
+  tableGameList: GameItem[];
+  sportGameList: GameItem[];
+  liveCasinoList: GameItem[];
 }
 
-type GameListDictionary = {
-  [key in FilterTagTypeEnum]: GameItem[];
+interface TagGameList {
+  isLoading: boolean;
+  error: Error | null;
+  hotGameList: GameItem[];
+  newGameList: GameItem[];
+}
+
+const initHomeGameList: HomeGameList = {
+  isLoading: false,
+  error: null,
+  slotGameList: [],
+  tableGameList: [],
+  sportGameList: [],
+  liveCasinoList: []
 };
 
+const initTagGameList: TagGameList = {
+  isLoading: false,
+  error: null,
+  hotGameList: [],
+  newGameList: []
+};
+
+const HomeCategory = [GameTypeEnum.SPORTS, GameTypeEnum.ESPORTS, GameTypeEnum.SLOT, GameTypeEnum.TABLEGAME, GameTypeEnum.LIVE];
+
 export function useGetHomeCategoryList() {
-  const [slotGameListState, setSlotGameListState] = useState<GetGameListState>({
-    isLoading: false,
-    gameList: [],
-    error: null,
-  });
 
-  const [tableGameListState, setTableGameListState] = useState<GetGameListState>({
-    isLoading: false,
-    gameList: [],
-    error: null,
-  });
+  const [homeGameList, setHomeGameList] = useState<HomeGameList>(initHomeGameList);
 
-  const [allGameListState, setAllGameListState] = useState<GetGameListState>({
-    isLoading: false,
-    gameList: [],
-    error: null,
-  });
+  const [tagGameList, setTagGameList] = useState<TagGameList>(initTagGameList);
 
-  const { activeGameType, activeFilterTag } = useHomeGameContext();
-
-  const getAllGameList = async () => {
+  const getHomeGameList = async () => {
     try {
-      setAllGameListState({
-        isLoading: true,
-        gameList: [],
-        error: null,
-      });
-      const response = await GameService.GetGameList("");
+      setHomeGameList({ ...initHomeGameList, isLoading: true });
+      const response = await GameService.GetCategory(HomeCategory, TagTypeEnum.RECOMMEND, 1, 30);
 
-      setAllGameListState({
+      setHomeGameList({
+        ...initHomeGameList,
         isLoading: false,
-        gameList: response.data,
         error: null,
+        slotGameList: filterGameType(response.data, [GameTypeEnum.SLOT]),
+        tableGameList: filterGameType(response.data, [GameTypeEnum.TABLEGAME]),
+        liveCasinoList: filterGameType(response.data, [GameTypeEnum.LIVE]),
+        sportGameList: filterGameType(response.data, [GameTypeEnum.SPORTS, GameTypeEnum.ESPORTS]),
       });
 
       return response;
     } catch (error: any) {
       console.error(error);
-      setAllGameListState({
-        isLoading: false,
-        gameList: [],
-        error: error,
-      });
+      setHomeGameList({ ...initHomeGameList, isLoading: false, error: error });
     }
   };
 
-  const getTableGameList = async () => {
+  const getGameByTag = async () => {
     try {
-      setTableGameListState({
-        isLoading: true,
-        gameList: [],
-        error: null,
-      });
-      const response = await GameService.GetGameList("", GameTypeEnum.TABLEGAME);
-      const hotTablegameList = response.data.filter((gameItem: GameItem) => {
-        return gameItem.tag.hot;
-      });
-      setTableGameListState({
-        isLoading: false,
-        gameList: hotTablegameList,
-        error: null,
-      });
+      setTagGameList({ ...initTagGameList, isLoading: true });
 
+      const response = await GameService.GetGameListByTag([TagTypeEnum.HOT, TagTypeEnum.NEW], 30);
+      const hotTag = response.data.find((gt: GameTagListResDto) => gt.tag === TagTypeEnum.HOT)?.games || [];
+      const newTag = response.data.find((gt: GameTagListResDto) => gt.tag === TagTypeEnum.NEW)?.games || [];
+
+      setTagGameList({ ...initTagGameList, isLoading: false, hotGameList: hotTag, newGameList: newTag });
       return response;
     } catch (error: any) {
       console.error(error);
-      setTableGameListState({
-        isLoading: false,
-        gameList: [],
-        error: error,
-      });
+      setTagGameList({ ...initTagGameList, isLoading: false, error: error });
     }
-  };
+  }
 
-  const getSlotGameList = async () => {
-    try {
-      setSlotGameListState({
-        isLoading: true,
-        gameList: [],
-        error: null,
-      });
-      const response = await GameService.GetGameList("", GameTypeEnum.SLOT);
-      setSlotGameListState({
-        isLoading: false,
-        gameList: response.data,
-        error: null,
-      });
+  const filterGameType = (categories: CategoryDto[], gameTypes: GameTypeEnum[]) => {
+    const results = categories.filter((category) => gameTypes.includes(category.gameType));
 
-      return response;
-    } catch (error: any) {
-      console.error(error);
-      setSlotGameListState({
-        isLoading: false,
-        gameList: [],
-        error: error,
-      });
+    if (results.length > 0) {
+      return results.map((category) => category.games).flat();
     }
-  };
+    return []
+  }
 
   useEffect(() => {
-    getSlotGameList();
-    getAllGameList();
-    getTableGameList();
-  }, [activeGameType]);
-
-  // filter
-  const [slotGameListDictionary, setSlotGameListDictionary] = useState<GameListDictionary>({
-    [FilterTagTypeEnum.ALL]: [],
-    [FilterTagTypeEnum.FAVORITE]: [],
-    [FilterTagTypeEnum.HOT]: [],
-    [FilterTagTypeEnum.NEW]: [],
-    [FilterTagTypeEnum.RECOMMEND]: [],
-    [FilterTagTypeEnum.PROVIDER]: [],
-  });
-
-  const [allGameListDictionary, setAllGameListDictionary] = useState<GameListDictionary>({
-    [FilterTagTypeEnum.ALL]: [],
-    [FilterTagTypeEnum.FAVORITE]: [],
-    [FilterTagTypeEnum.HOT]: [],
-    [FilterTagTypeEnum.NEW]: [],
-    [FilterTagTypeEnum.RECOMMEND]: [],
-    [FilterTagTypeEnum.PROVIDER]: [],
-  });
-
-  const [isFilterLoading, setIsFilterLoading] = useState(false);
-
-  const getDictionary = useCallback(async (gameList: GameItem[], activeFilterTag: FilterTag) => {
-    setIsFilterLoading(true);
-    const dictionary: { [key in FilterTagTypeEnum]: GameItem[] } = {
-      [FilterTagTypeEnum.ALL]: [],
-      [FilterTagTypeEnum.FAVORITE]: [],
-      [FilterTagTypeEnum.HOT]: [],
-      [FilterTagTypeEnum.NEW]: [],
-      [FilterTagTypeEnum.RECOMMEND]: [],
-      [FilterTagTypeEnum.PROVIDER]: [],
-    };
-
-    gameList.forEach((gameItem) => {
-      if (gameItem.tag.hot) {
-        dictionary[FilterTagTypeEnum.HOT].push(gameItem);
-      }
-
-      if (gameItem.tag.new) {
-        dictionary[FilterTagTypeEnum.NEW].push(gameItem);
-      }
-
-      if (gameItem.tag.recommend) {
-        dictionary[FilterTagTypeEnum.RECOMMEND].push(gameItem);
-      }
-
-      if (activeFilterTag.gpCode && gameItem.gpcode === activeFilterTag.gpCode) {
-        dictionary[FilterTagTypeEnum.PROVIDER].push(gameItem);
-      }
-
-      if (true) {
-        dictionary[FilterTagTypeEnum.FAVORITE].push(gameItem);
-      }
-
-      dictionary[FilterTagTypeEnum.ALL].push(gameItem);
-    });
-
-    setIsFilterLoading(false);
-
-    return dictionary;
+    getHomeGameList();
+    getGameByTag();
   }, []);
 
-  useEffect(() => {
-    if (!slotGameListState.gameList.length) return;
-
-    getDictionary(slotGameListState.gameList, activeFilterTag).then((res) => {
-      setSlotGameListDictionary(res);
-    });
-  }, [JSON.stringify(slotGameListState.gameList), activeFilterTag.gpCode]);
-
-  useEffect(() => {
-    if (!allGameListState.gameList.length) return;
-
-    getDictionary(allGameListState.gameList, activeFilterTag).then((res) => {
-      setAllGameListDictionary(res);
-    });
-  }, [JSON.stringify(allGameListState.gameList), activeFilterTag.gpCode]);
 
   return {
-    isLoading: slotGameListState.isLoading || isFilterLoading,
-    error: slotGameListState.error,
-    slotGameList: slotGameListDictionary[activeFilterTag.tagType] || [],
-    allGameList: slotGameListDictionary[FilterTagTypeEnum.ALL] || [],
-    favoriteGameList: slotGameListDictionary[FilterTagTypeEnum.FAVORITE] || [],
-    hotSlotGameList: slotGameListDictionary[FilterTagTypeEnum.HOT] || [],
-    recommendSlotGameList: slotGameListDictionary[FilterTagTypeEnum.RECOMMEND] || [],
-    providerGameList: slotGameListDictionary[FilterTagTypeEnum.PROVIDER] || [],
-    hotTableGameList: tableGameListState.gameList || [],
-    hotGameList: allGameListDictionary[FilterTagTypeEnum.HOT] || [],
-    newGameList: allGameListDictionary[FilterTagTypeEnum.NEW] || [],
-    tableGameListState,
-    isTableGameLoading: tableGameListState.isLoading,
+    isLoading: homeGameList.isLoading || tagGameList.isLoading,
+    error: homeGameList.error || tagGameList.error,
+    slotGameList: homeGameList.slotGameList,
+    hotGameList: tagGameList.hotGameList,
+    newGameList: tagGameList.newGameList,
+    tableGameList: homeGameList.tableGameList,
+    liveCasinoList: homeGameList.liveCasinoList,
+    sportGameList: homeGameList.sportGameList,
   };
 }

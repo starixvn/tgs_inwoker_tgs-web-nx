@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import { GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto } from "@tgs-web-nx/types";
+import { CategoryDto, GameTagListResDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, ResponseResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
@@ -11,6 +11,8 @@ export const GameService = {
   JoinLobbyGame,
   GetProviderList,
   GetGameList,
+  GetCategory,
+  GetGameListByTag,
 };
 
 const languageFromLocalStorage = localStorage.getItem("i18nextLng");
@@ -51,8 +53,28 @@ function GetProviderList() {
 function GetGameList(gpCode: string, gametypes?: number) {
   return ApiService.get(
     //@ts-ignore
-    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${
-      config.currency
+    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency
     }${gametypes ? `&gametypes=${gametypes}` : ""}`,
   ) as unknown as Promise<GetGameListResDto>;
+}
+
+function GetCategory(gameTypes: number[], tag: number, pageIndex: number, pageSize: number) {
+  const result = ApiService.post("Category", {
+    PlatformType: config.isPC,
+    Language: i18n.language,
+    Currency: config.currency,
+    GameTypes: gameTypes,
+    Tag: tag,
+    PageIndex: pageIndex,
+    PageSize: pageSize,
+  });
+  return result as unknown as Promise<ResponseResDto<CategoryDto>>;
+}
+
+function GetGameListByTag(tags: number[], limit: number) {
+  const tagsQuery = tags.map((tag) => `tags=${tag}`).join("&");
+  return ApiService.get(
+    //@ts-ignore
+    `Game/by-tag?platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}&${tagsQuery}&limit=${limit}`,
+  ) as unknown as Promise<ResponseResDto<GameTagListResDto>>;
 }

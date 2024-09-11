@@ -131,13 +131,7 @@ const Group = styled.div`
 const HomeCategory = () => {
   const history = useHistory();
   const { providerList } = useHomeGameContext();
-  const { hotSlotGameList, newGameList, hotGameList, hotTableGameList } = useGetHomeCategoryList();
-  const liveCasinoList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.LIVELOBBY);
-  });
-  const sportList = providerList.filter((provider) => {
-    return provider.gametypes.includes(GameTypeEnum.SPORTS);
-  });
+  const { sportGameList, liveCasinoList, slotGameList, newGameList, hotGameList, tableGameList } = useGetHomeCategoryList();
 
   // const recentBigWins = [
   //   { name: "Itslon1", amount: 666465825, code: "itslon1" },
@@ -163,7 +157,7 @@ const HomeCategory = () => {
             </ViewAll>
           </GameTypeTitle>
           <EmblaCarousel>
-            <VendorCardSlider data={sportList} gameType={"sports"} />
+            <VendorCardSlider data={sportGameList} gameType={"sports"} />
           </EmblaCarousel>
         </Group>
 
@@ -176,7 +170,7 @@ const HomeCategory = () => {
             </ViewAll>
           </GameTypeTitle>
           <EmblaCarousel extraClassName="two-rows">
-            <GameCardSlider data={hotSlotGameList} />
+            <GameCardSlider data={slotGameList} />
           </EmblaCarousel>
         </Group>
 
@@ -236,7 +230,7 @@ const HomeCategory = () => {
             <ViewAll>All</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel>
-            <GameCardSlider data={hotTableGameList} />
+            <GameCardSlider data={tableGameList} />
           </EmblaCarousel>
         </Group>
 

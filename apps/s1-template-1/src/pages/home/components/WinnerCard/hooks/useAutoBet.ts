@@ -41,11 +41,11 @@ export function useAutoBet() {
     initialBetRecordList[initialBetRecordList.length - 1],
   );
 
-  const { hotSlotGameList: hotGameList } = useGetHomeCategoryList();
+  const { slotGameList } = useGetHomeCategoryList();
 
   const generateSingleBetRecord = (): BetRecord => {
     const key = uuidv4();
-    const gameName = getRandomGameName(hotGameList) || "";
+    const gameName = getRandomGameName(slotGameList) || "";
     const playerName = userList[Math.floor(Math.random() * userList.length)];
     const betAmount = getRandomBetAmount();
 

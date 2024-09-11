@@ -22,3 +22,24 @@ export interface GetGameListResDto {
   data: GameItem[];
   info: string | null;
 }
+
+export interface GameTagListResDto {
+  data: GameItem[];
+  tag: number;
+  limit: number;
+}
+
+export interface ResponseResDto<T> {
+  err: number;
+  errmsg: string;
+  data: T[];
+  errmsgid: string | null;
+}
+
+export interface CategoryDto {
+  total: number;
+  games: GameItem[];
+  pageIndex: number;
+  pageSize: number;
+  gameType: number;
+}
