@@ -12,13 +12,18 @@ const gameTypeNameDictionary = {
   [GameTypeEnum.QIPAILOBBY]: "common.chess",
   [GameTypeEnum.FISH]: "common.fish",
   [GameTypeEnum.FISHLOBBY]: "common.fish",
-  [GameTypeEnum.ARCADE]: "Arcade",
-  [GameTypeEnum.ARCADELOBBY]: "Arcade",
+  [GameTypeEnum.ARCADE]: "common.arcade",
+  [GameTypeEnum.ARCADELOBBY]: "common.arcade",
   [GameTypeEnum.LOTTERY]: "common.lottery",
   [GameTypeEnum.LOTTERYLOBBY]: "common.lottery",
   [GameTypeEnum.SLOT]: "common.slots",
-  [GameTypeEnum.TABLEGAME]: "common.egame",
+  [GameTypeEnum.TABLEGAME]: "common.tableGame",
   [GameTypeEnum.COCKFIGHT]: "common.cockfight",
+  [GameTypeEnum.INSTANTPLAY]: "common.instantPlay",
+  [GameTypeEnum.CASINO]: "common.casino",
+  [GameTypeEnum.KENO]: "common.keno",
+  [GameTypeEnum.BINGO]: "common.bingo",
+  [GameTypeEnum.RACING]: "common.racing",
 };
 export function getGameTypeName(gameType: GameTypeEnum) {
   return gameTypeNameDictionary[gameType];

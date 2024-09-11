@@ -20,6 +20,7 @@ export type GameTypeItem = {
   gameType: GameTypeEnum;
   bgUrl?: string;
   iconActiveUrl?: string;
+  router?: string;
 };
 
 const initialState: {

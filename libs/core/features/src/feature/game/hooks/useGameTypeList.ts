@@ -1,22 +1,14 @@
 import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { i18n } from "@tgs-web-nx/utils";
+import { getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import config from "@tgs-web-nx/config";
+import { GameTypeItem } from "../useHomeGameContext";
 
-export type GameTypeItem = {
-  key: string;
-  iconUrl: string;
-  activeIconUrl?: string;
-  text?: string | any;
-  fontSize: string;
-  gameType: GameTypeEnum;
-  router: string;
-};
 const gameTypeList: GameTypeItem[] = [
   {
     key: "home",
     iconUrl: "/assets/images/game-type-icons/icon-home.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-home.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-home.svg",
     text: "common.home",
     fontSize: "small",
     gameType: GameTypeEnum.NONE,
@@ -25,7 +17,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "sports",
     iconUrl: "/assets/images/game-type-icons/icon-sports.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-sports.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-sports.svg",
     text: "common.sports",
     fontSize: "small",
     gameType: GameTypeEnum.SPORTS,
@@ -34,7 +26,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "virtualSports",
     iconUrl: "/assets/images/game-type-icons/icon-virtual-sports.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-virtual-sports.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-virtual-sports.svg",
     text: "common.virtualsports",
     fontSize: "smaller",
     gameType: GameTypeEnum.RNGSPORTS,
@@ -43,7 +35,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "esports",
     iconUrl: "/assets/images/game-type-icons/icon-e-sports.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-e-sports.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-e-sports.svg",
     text: "common.esports",
     fontSize: "smaller",
     gameType: GameTypeEnum.ESPORTS,
@@ -52,7 +44,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "liveCasino",
     iconUrl: "/assets/images/game-type-icons/icon-live-casino.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-live-casino.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-live-casino.svg",
     text: "common.live",
     fontSize: "small",
     gameType: GameTypeEnum.LIVE,
@@ -61,7 +53,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "cardGame",
     iconUrl: "/assets/images/game-type-icons/icon-card-game.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-card-game.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-card-game.svg",
     text: "common.chess",
     fontSize: "smaller",
     gameType: GameTypeEnum.QIPAI,
@@ -70,7 +62,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "fishing",
     iconUrl: "/assets/images/game-type-icons/icon-fishing.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-fishing.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-fishing.svg",
     text:"common.fish",
     fontSize: "smaller",
     gameType: GameTypeEnum.FISH,
@@ -79,7 +71,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "arcade",
     iconUrl: "/assets/images/game-type-icons/icon-arcade.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-arcade.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-arcade.svg",
     text: "common.arcade",
     fontSize: "small",
     gameType: GameTypeEnum.ARCADE,
@@ -88,7 +80,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "lottery",
     iconUrl: "/assets/images/game-type-icons/icon-lottery.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-lottery.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-lottery.svg",
     text: "common.lottery",
     fontSize: "small",
     gameType: GameTypeEnum.LOTTERYLOBBY,
@@ -97,7 +89,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "slots",
     iconUrl: "/assets/images/game-type-icons/icon-slots.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-slots.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-slots.svg",
     text: "common.slot",
     fontSize: "small",
     gameType: GameTypeEnum.SLOT,
@@ -106,7 +98,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "tableGame",
     iconUrl: "/assets/images/game-type-icons/icon-table-games.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-table-games.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-table-games.svg",
     text: "common.tableGame",
     fontSize: "smaller",
     gameType: GameTypeEnum.TABLEGAME,
@@ -115,7 +107,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "cockfighting",
     iconUrl: "/assets/images/game-type-icons/icon-cock-fighting.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-cock-fighting.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-cock-fighting.svg",
     text: "common.cockfight",
     fontSize: "smaller",
     gameType: GameTypeEnum.COCKFIGHT,
@@ -124,7 +116,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "instantPlay",
     iconUrl: "/assets/images/game-type-icons/icon-instant-play.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-instant-play.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-instant-play.svg",
     text: "common.instantPlay",
     fontSize: "smaller",
     gameType: GameTypeEnum.INSTANTPLAY,
@@ -133,7 +125,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "casino",
     iconUrl: "/assets/images/game-type-icons/icon-casino.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-casino.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-casino.svg",
     text: "common.casino",
     fontSize: "smaller",
     gameType: GameTypeEnum.CASINO,
@@ -142,7 +134,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "keno",
     iconUrl: "/assets/images/game-type-icons/icon-keno.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-keno.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-keno.svg",
     text: "common.keno",
     fontSize: "smaller",
     gameType: GameTypeEnum.KENO,
@@ -151,7 +143,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "bingo",
     iconUrl: "/assets/images/game-type-icons/icon-bingo.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-bingo.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-bingo.svg",
     text: "common.bingo",
     fontSize: "smaller",
     gameType: GameTypeEnum.BINGO,
@@ -160,7 +152,7 @@ const gameTypeList: GameTypeItem[] = [
   {
     key: "racing",
     iconUrl: "/assets/images/game-type-icons/icon-racing.svg",
-    activeIconUrl: "/assets/images/game-type-icons/active-icon-racing.svg",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-racing.svg",
     text: "common.racing",
     fontSize: "smaller",
     gameType: GameTypeEnum.RACING,
@@ -177,7 +169,7 @@ export const useGameTypeList = () =>{
     .filter((gameType: GameTypeItem) => gameType)
     .map((gameItem: GameTypeItem) => ({
       ...gameItem,
-      text: i18n.t(gameItem.text),
+      text: i18n.t(getGameTypeName(gameItem.gameType)),
     }));
 
     setTranslatedGameTypeList(translatedList);

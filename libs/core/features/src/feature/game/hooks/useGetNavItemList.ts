@@ -38,7 +38,7 @@ export const useGetNavGameTypeItemList = () =>{
         key: gameTypeItem.key,
         label: gameTypeItem.text as string,
         iconUrl: gameTypeItem.iconUrl,
-        iconActiveUrl: gameTypeItem.activeIconUrl,
+        iconActiveUrl: gameTypeItem.iconActiveUrl,
         navType: "action",
         gameType: gameTypeItem.gameType,
         router: gameTypeItem.key as string,
