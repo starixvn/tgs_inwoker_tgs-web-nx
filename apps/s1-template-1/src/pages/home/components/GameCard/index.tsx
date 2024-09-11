@@ -66,7 +66,7 @@ const MaintenanceBg = styled.div`
   left: 0;
   top: 0;
   border-radius: 1.2rem;
-  background: rgba(3, 10, 20, 0.5);
+  background: ${({ theme }) => theme.maintenanceBackground};
   backdrop-filter: blur(2px);
   padding: 0 1.2rem;
   display: flex;
@@ -80,10 +80,11 @@ const MaintenanceBg = styled.div`
     justify-content: center;
     width: 94%;
     height: 3.4rem;
-    background-color: #b0003f;
+    background-color: ${({ theme }) => theme.maintenanceLabelBackground};
     border-radius: 3rem;
     font-size: 1.3rem;
     font-weight: 700;
+    color: ${({ theme }) => theme.maintenanceLabelColor};
   }
 
   &:hover {

@@ -1,4 +1,5 @@
-import { GameTypeEnum, media } from "@tgs-web-nx/constants";
+import EmblaCarousel from "@/components/project/embla-carousel";
+import { media } from "@tgs-web-nx/constants";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n, utility } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
@@ -6,7 +7,6 @@ import styled from "styled-components";
 
 import GameCardSlider from "./components/GameSlider/GameCardSlider";
 import VendorCardSlider from "./components/GameSlider/VendorCardSlider";
-import EmblaCarousel from "@/components/project/embla-carousel";
 
 const DesktopContainer = styled.div`
   align-items: center;
@@ -61,6 +61,10 @@ const ViewAll = styled.div`
   font-weight: 700;
   cursor: pointer;
 
+  &:hover {
+    background-color: ${({ theme }) => theme.slideNextButtonBackground};
+  }
+
   .text {
     position: relative;
     top: 1px;
@@ -85,8 +89,8 @@ const GameTypeContainer = styled.div`
   }
 `;
 
-const ProvideItem = styled.div`
-  background-color: #1c2532;
+const ProviderItem = styled.div`
+  background-color: ${({ theme }) => theme.providerItemBackground};
   width: 11.3rem;
   height: 6rem;
   border-radius: 1rem;
@@ -120,10 +124,18 @@ const Group = styled.div`
     height: 3.2rem;
     padding: 0.8rem;
     border-radius: 0.8rem;
-    background: #2e353e;
+    background-color: ${({ theme }) => theme.slideNextButtonBackground};
+    color: ${({ theme }) => theme.slideNextButtonColor};
 
-    &:disabled .icon {
-      color: #6e7e92;
+    &[disabled] {
+      background-color: ${({ theme }) => theme.disabledSlideNextButtonBackground};
+      .icon {
+        color: ${({ theme }) => theme.disabledSlideNextButtonColor};
+      }
+    }
+
+    &:hover:not([disabled]) {
+      background-color: ${({ theme }) => theme.slideNextButtonBackgroundHover};
     }
   }
 `;
@@ -210,14 +222,14 @@ const HomeCategory = () => {
             {providerList.map((provider, index) => {
               return (
                 <div className="embla__slide " key={index}>
-                  <ProvideItem>
+                  <ProviderItem>
                     <img
                       src={utility.imagePathGenerator(
                         `provider/dark/${provider.code.toLowerCase()}.png`,
                       )}
                       alt="Provider"
                     />
-                  </ProvideItem>
+                  </ProviderItem>
                 </div>
               );
             })}

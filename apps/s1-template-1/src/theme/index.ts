@@ -129,4 +129,17 @@ export const theme = {
   playButtonBottomBorderColor: "#6a0026",
   playButtonShadow: "0 0.4rem 0.4rem 0 rgba(255, 255, 255, 0.25) inset",
   playButtonShadowHover: "0 0.4rem 0.4rem 0 rgba(255, 255, 255, 0.25) inset, 0 0 1.5rem #f64b89",
+
+  // Home page
+  slideNextButtonBackground: "#465262",
+  slideNextButtonColor: "#fff",
+  slideNextButtonBackgroundHover: "#606e82",
+  disabledSlideNextButtonBackground: "#2e353e",
+  disabledSlideNextButtonColor: "#6e7e92",
+
+  providerItemBackground: "#1c2532",
+
+  maintenanceBackground: "rgba(3, 10, 20, 0.5)",
+  maintenanceLabelBackground: "#b0003f",
+  maintenanceLabelColor: "#fff",
 };
