@@ -1,6 +1,6 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
-import { CategoryDto, GameItem, GameTagListResDto } from "@tgs-web-nx/types";
+import { GameItem, GameTagListResDto, GameTypeDto } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
 
 import { TagTypeEnum } from "./types";
@@ -95,8 +95,8 @@ export function useGetHomeCategoryList() {
     }
   };
 
-  const filterGameType = (categories: CategoryDto[], gameTypes: GameTypeEnum[]) => {
-    const results = categories.filter((category) => gameTypes.includes(category.gameType));
+  const filterGameType = (gameTypes: GameTypeDto[], types: GameTypeEnum[]) => {
+    const results = gameTypes.filter((gameType) => types.includes(gameType.gameType));
 
     if (results.length > 0) {
       return results.map((category) => category.games).flat();
