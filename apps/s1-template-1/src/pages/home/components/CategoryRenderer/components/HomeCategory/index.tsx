@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import GameCardSlider from "./components/GameSlider/GameCardSlider";
-import VendorCardSlider from "./components/GameSlider/VendorCardSlider";
 
 const DesktopContainer = styled.div`
   align-items: center;
@@ -157,6 +156,8 @@ const HomeCategory = () => {
     window.scroll({ top: 0, behavior: "smooth" });
   };
 
+  console.log("----------useGetHomeCategoryList()", useGetHomeCategoryList());
+
   return (
     <DesktopContainer>
       <GameTypeContainer>
@@ -170,7 +171,7 @@ const HomeCategory = () => {
             </ViewAll>
           </GameTypeTitle>
           <EmblaCarousel>
-            <VendorCardSlider data={sportGameList} gameType={"sports"} />
+            <GameCardSlider data={sportGameList} />
           </EmblaCarousel>
         </Group>
 
@@ -196,7 +197,7 @@ const HomeCategory = () => {
             </ViewAll>
           </GameTypeTitle>
           <EmblaCarousel>
-            <VendorCardSlider data={liveCasinoList} gameType={"liveCasino"} />
+            <GameCardSlider data={liveCasinoList} />
           </EmblaCarousel>
         </Group>
 

@@ -1,6 +1,6 @@
 import GameCard from "@/pages/home/components/GameCard";
-import config from "@tgs-web-nx/config";
-import { Common } from "@tgs-web-nx/utils";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { utility } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
 const NoGame = styled.div`
@@ -17,6 +17,7 @@ interface IGameSlider {
 
 const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
   const { data } = props;
+  const { isDesktopSize } = useRwd();
 
   return (
     <>
@@ -28,11 +29,11 @@ const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
               key={gameItem.id}
               gameItem={gameItem}
               isActive={gameItem.isactive}
-              imageUrl={`${
-                config.sourceUrl
-              }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                gameItem.code
-              }.jpg`}
+              imageUrl={`${utility.imagePathGenerator(
+                `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
+                  isDesktopSize ? "@2x" : "@1x"
+                }.webp`,
+              )}`}
             />
           </div>
         );

@@ -1,7 +1,7 @@
 import { copyImageToClipboard } from "copy-image-clipboard";
 
 function imagePathGenerator(path: string): string {
-  return `${window.envConfig.assetsPath}assets/images/${path}`;
+  return `${window.envConfig.assetsPath}${path}`;
 }
 
 export function copy(item: string): void {
