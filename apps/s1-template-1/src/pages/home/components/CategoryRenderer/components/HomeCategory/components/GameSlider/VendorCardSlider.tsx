@@ -62,7 +62,7 @@ const VendorCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
             <DesktopVendorCard
               key={gpCode}
               bgUrl={`${utility.imagePathGenerator(`home/desktop/${gameType}/bg.png`)}`}
-              imageUrl={`${utility.imagePathGenerator(`home/desktop/${gameType}/${gpCode}.png`)}`}
+              imageUrl={`${utility.imagePathGenerator(`home/desktop/${gameType}/${gpCode}.webp`)}`}
               venderLogoUrl={`${utility.imagePathGenerator(
                 `home/provider_logo/${gameType}/${gpCode}.png`,
               )}`}

@@ -24,7 +24,7 @@ export interface GetGameListResDto {
 }
 
 export interface GameTagListResDto {
-  data: GameItem[];
+  games: GameItem[];
   tag: number;
   limit: number;
 }

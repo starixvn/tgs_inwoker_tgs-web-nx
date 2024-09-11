@@ -5,6 +5,7 @@ import { useHomeGameContext } from "./useHomeGameContext";
 import { getFilteredGameListByProvider } from "./utils/getFilteredGameListByProvider";
 import { getFilteredGameListByTag } from "./utils/getFilteredGameListByTag";
 import { gameCacheService } from "./services";
+import { TagTypeEnum } from "./types";
 
 interface GetGameListState {
   isLoading: boolean;
@@ -43,7 +44,7 @@ export function useGetNonLobbyCategoryList() {
     try {
       setGameListState(state => ({ ...state, isLoading: true }));
 
-      const response = await GameService.GetCategory([activeGameType], activeFilterTag.tagType, pageIndex, pageSize);
+      const response = await GameService.GetCategory([activeGameType], TagTypeEnum.NONE, pageIndex, pageSize);
 
       const gameList = pageIndex > 1 ? gameListState.gameList.concat(response.data[0].games) : response.data[0].games;
 
