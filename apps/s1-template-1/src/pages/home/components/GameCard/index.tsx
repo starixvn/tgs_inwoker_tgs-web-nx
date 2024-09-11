@@ -1,4 +1,3 @@
-import maintenanceIcon from "@/assets/t28/images/home/maintenance.svg";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
@@ -66,22 +65,30 @@ const MaintenanceBg = styled.div`
   height: 100%;
   left: 0;
   top: 0;
-  background: rgb(0 0 0 / 70%);
-  padding: 7px;
+  border-radius: 1.2rem;
+  background: rgba(3, 10, 20, 0.5);
+  backdrop-filter: blur(2px);
+  padding: 0 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
   z-index: 3;
+
+  .maintenance-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 94%;
+    height: 3.4rem;
+    background-color: #b0003f;
+    border-radius: 3rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
 
   &:hover {
     cursor: not-allowed;
   }
-`;
-
-const MaintenanceIcon = styled.img`
-  width: 118px;
-  height: 83px;
 `;
 
 const HoverGameName = styled(GameCardContent)`
@@ -153,7 +160,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
         {!isActive && (
           <MaintenanceBg>
-            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+            <div className="maintenance-text">Be back soon</div>
           </MaintenanceBg>
         )}
       </GameCardContent>
@@ -166,7 +173,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         />
       )}
 
-      {isDesktopSize && (
+      {isDesktopSize && isActive && (
         <CardHoverBg onClick={launchGameHandler}>
           {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
           <PlayIcon />
