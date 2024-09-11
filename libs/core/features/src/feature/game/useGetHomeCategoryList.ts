@@ -27,20 +27,25 @@ const initHomeGameList: HomeGameList = {
   slotGameList: [],
   tableGameList: [],
   sportGameList: [],
-  liveCasinoList: []
+  liveCasinoList: [],
 };
 
 const initTagGameList: TagGameList = {
   isLoading: false,
   error: null,
   hotGameList: [],
-  newGameList: []
+  newGameList: [],
 };
 
-const HomeCategory = [GameTypeEnum.SPORTS, GameTypeEnum.ESPORTS, GameTypeEnum.SLOT, GameTypeEnum.TABLEGAME, GameTypeEnum.LIVE];
+const HomeCategory = [
+  GameTypeEnum.SPORTS,
+  GameTypeEnum.ESPORTS,
+  GameTypeEnum.SLOT,
+  GameTypeEnum.TABLEGAME,
+  GameTypeEnum.LIVE,
+];
 
 export function useGetHomeCategoryList() {
-
   const [homeGameList, setHomeGameList] = useState<HomeGameList>(initHomeGameList);
 
   const [tagGameList, setTagGameList] = useState<TagGameList>(initTagGameList);
@@ -72,16 +77,23 @@ export function useGetHomeCategoryList() {
       setTagGameList({ ...initTagGameList, isLoading: true });
 
       const response = await GameService.GetGameListByTag([TagTypeEnum.HOT, TagTypeEnum.NEW], 30);
-      const hotTag = response.data.find((gt: GameTagListResDto) => gt.tag === TagTypeEnum.HOT)?.games || [];
-      const newTag = response.data.find((gt: GameTagListResDto) => gt.tag === TagTypeEnum.NEW)?.games || [];
+      const hotTag =
+        response.data.find((gt: GameTagListResDto) => gt.tag === TagTypeEnum.HOT)?.games || [];
+      const newTag =
+        response.data.find((gt: GameTagListResDto) => gt.tag === TagTypeEnum.NEW)?.games || [];
 
-      setTagGameList({ ...initTagGameList, isLoading: false, hotGameList: hotTag, newGameList: newTag });
+      setTagGameList({
+        ...initTagGameList,
+        isLoading: false,
+        hotGameList: hotTag,
+        newGameList: newTag,
+      });
       return response;
     } catch (error: any) {
       console.error(error);
       setTagGameList({ ...initTagGameList, isLoading: false, error: error });
     }
-  }
+  };
 
   const filterGameType = (categories: CategoryDto[], gameTypes: GameTypeEnum[]) => {
     const results = categories.filter((category) => gameTypes.includes(category.gameType));
@@ -89,14 +101,13 @@ export function useGetHomeCategoryList() {
     if (results.length > 0) {
       return results.map((category) => category.games).flat();
     }
-    return []
-  }
+    return [];
+  };
 
   useEffect(() => {
     getHomeGameList();
     getGameByTag();
   }, []);
-
 
   return {
     isLoading: homeGameList.isLoading || tagGameList.isLoading,

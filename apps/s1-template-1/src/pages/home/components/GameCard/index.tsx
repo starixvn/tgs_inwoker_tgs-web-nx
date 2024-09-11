@@ -30,20 +30,9 @@ const CardHoverBg = styled.div`
   opacity: 0;
 `;
 
-const GameIcon = styled.div<{ $imageUrl: string }>`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  padding-top: 100%;
-  left: 0;
-  top: 0;
-  background-image: url(${({ $imageUrl }) => $imageUrl});
-  background-size: cover;
-  border-radius: 1.2rem;
-`;
-
 const GameCardContent = styled.div`
   width: 100%;
+  height: 100%;
 `;
 
 const GameCardBg = styled.div`
@@ -52,6 +41,14 @@ const GameCardBg = styled.div`
   position: relative;
   cursor: pointer;
   aspect-ratio: 140 / 189;
+  border-radius: 1.2rem;
+  background: linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%);
+  backdrop-filter: blur(2px);
+
+  .game-icon {
+    width: 100%;
+    aspect-ratio: 140 / 189;
+  }
 
   ${media.sm} {
     flex-shrink: 0;
@@ -94,7 +91,7 @@ const HoverGameName = styled(GameCardContent)`
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 1.8rem;
+  line-height: 1.2;
   text-align: center;
 `;
 
@@ -151,7 +148,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
-        <GameIcon $imageUrl={imageUrl}></GameIcon>
+        <img className="game-icon" src={imageUrl} title={gameItem.name} alt={gameItem.name} />
         {/* {gameItem.tag.new && <NewTag>New</NewTag>}
         {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
         {!isActive && (

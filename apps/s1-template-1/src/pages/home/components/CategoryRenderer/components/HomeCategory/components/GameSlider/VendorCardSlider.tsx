@@ -2,6 +2,7 @@ import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Common, utility } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 
@@ -16,6 +17,7 @@ const VendorCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
   const history = useHistory();
   const { account } = useAccountStore();
   const { activeGameType } = useHomeGameContext();
+  const { isMobileSize } = useRwd();
 
   const launchLobbyGame = (gpcode: string, gtype: GameTypeEnum = GameTypeEnum.SPORTS) => {
     if (!account.token) {
@@ -62,13 +64,12 @@ const VendorCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
             <DesktopVendorCard
               key={gpCode}
               bgUrl={`${utility.imagePathGenerator(`home/desktop/${gameType}/bg.png`)}`}
-              imageUrl={`${utility.imagePathGenerator(`home/desktop/${gameType}/${gpCode}.webp`)}`}
-              venderLogoUrl={`${utility.imagePathGenerator(
-                `home/provider_logo/${gameType}/${gpCode}.png`,
+              imageUrl={`${utility.imagePathGenerator(
+                `home/desktop/${gameType}/${gpCode}${isMobileSize ? "@2x" : "@1x"}.webp`,
               )}`}
               launchGame={() => launchLobbyGame(gpCode, GameTypeEnum.LIVE)}
               status={status}
-              venderName={name}
+              name={name}
             />
           </div>
         );

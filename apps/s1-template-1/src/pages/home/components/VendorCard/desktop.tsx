@@ -9,12 +9,13 @@ import PlayIcon from "../PlayIcon";
 
 type Props = {
   bgUrl: string;
-  imageUrl: string;
-  gameName?: string;
-  venderName: string;
-  venderLogoUrl: string;
   launchGame: () => void;
   status: number;
+  imageUrl: string;
+  gameName?: string;
+  venderName?: string;
+  venderLogoUrl?: string;
+  name?: string;
 };
 
 const GameIcon = styled.div<{ $imageUrl: string }>`
@@ -47,8 +48,16 @@ const VendorCardBg = styled.div`
   height: 100%;
   aspect-ratio: 140 / 189;
   position: relative;
+  border-radius: 1.2rem;
+  background: linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%);
+  backdrop-filter: blur(2px);
   flex-shrink: 0;
   transition: transform 0.6s ease 0s;
+
+  .game-icon {
+    width: 100%;
+    aspect-ratio: 140 / 189;
+  }
 
   ${media.sm} {
     cursor: pointer;
@@ -61,22 +70,6 @@ const VendorCardBg = styled.div`
       }
     }
   }
-`;
-
-const VenderLogo = styled.div<{ $venderLogoUrl: string }>`
-  z-index: 100;
-  position: absolute;
-  left: 50%;
-  top: 68%;
-  display: inline-flex;
-  width: 100%;
-  max-width: 8.5rem;
-  min-height: 3rem;
-  background-image: url(${({ $venderLogoUrl }) => $venderLogoUrl});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  transform: translate(-50%, -50%);
 `;
 
 const MaintenanceBg = styled.div`
@@ -100,17 +93,20 @@ const MaintenanceIcon = styled.img`
   height: 130px;
 `;
 
-const GradientOverlay = styled.div`
+const HoverGameName = styled.div`
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 2rem;
   width: 100%;
-  height: 30%;
-  background: linear-gradient(180deg, rgba(244, 47, 47, 0) 0%, rgba(244, 47, 47, 1) 80.21%);
-  border-radius: 0 0 1.2rem 1.2rem;
+  height: 100%;
+  color: ${(props) => props.theme.white};
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
 `;
 
-const DesktopVendorCard = ({ imageUrl, venderLogoUrl, launchGame, status }: Props) => {
+const DesktopVendorCard = ({ imageUrl, venderLogoUrl, launchGame, status, name }: Props) => {
   const venderNameRef = useRef<HTMLDivElement | null>(null);
   const { resizeText } = useDynamicFontSize();
 
@@ -130,17 +126,15 @@ const DesktopVendorCard = ({ imageUrl, venderLogoUrl, launchGame, status }: Prop
 
   return (
     <VendorCardBg onClick={launchGameHandler}>
-      <GameIcon $imageUrl={imageUrl}></GameIcon>
+      <img className="game-icon" src={imageUrl} title={name} alt={name} />
+      {status === providerStatus.Maintenance && (
+        <MaintenanceBg>
+          <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
+        </MaintenanceBg>
+      )}
 
-      <GradientOverlay>
-        {venderLogoUrl && <VenderLogo $venderLogoUrl={venderLogoUrl}></VenderLogo>}
-        {status === providerStatus.Maintenance && (
-          <MaintenanceBg>
-            <MaintenanceIcon src={maintenanceIcon} alt={"maintenance"} />
-          </MaintenanceBg>
-        )}
-      </GradientOverlay>
       <VendorCardHoverBg onClick={launchGameHandler}>
+        {name && <HoverGameName>{name}</HoverGameName>}
         <PlayIcon />
       </VendorCardHoverBg>
     </VendorCardBg>
