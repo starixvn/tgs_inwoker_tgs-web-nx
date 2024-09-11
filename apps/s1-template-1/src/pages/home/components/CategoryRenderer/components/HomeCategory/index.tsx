@@ -221,14 +221,14 @@ const HomeCategory = () => {
           </GameTypeTitle>
           <EmblaCarousel extraClassName="providers two-rows">
             {providerList.map((provider, index) => {
+              const providerName = provider.code.toLowerCase();
               return (
                 <div className="embla__slide " key={index}>
                   <ProviderItem>
                     <img
-                      src={utility.imagePathGenerator(
-                        `provider/dark/${provider.code.toLowerCase()}.png`,
-                      )}
-                      alt="Provider"
+                      src={utility.imagePathGenerator(`provider/dark/${providerName}.png`)}
+                      alt={providerName}
+                      title={providerName}
                     />
                   </ProviderItem>
                 </div>
