@@ -103,6 +103,17 @@ const HoverGameName = styled(GameCardContent)`
   text-align: center;
 `;
 
+const ProviderName = styled.div`
+  position: absolute;
+  bottom: 0.8rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+`;
+
 type GameCardProps = {
   gameItem: GameItem;
   isActive: boolean;
@@ -118,6 +129,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { isDesktopSize } = useRwd();
   const isFavorite = favoriteList.includes(gameItem.id);
   const isLogin = !!account.token;
+  const { id, gpcode, name, gpname } = gameItem;
 
   const launchGameHandler = () => {
     if (!isActive) {
@@ -130,7 +142,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       history.push("/login");
     } else {
       Common.closePreviousPopup();
-      Common.PopupCenter(`/joingame/${gameItem.id}/${gameItem.gpcode}`, "gamewindow");
+      Common.PopupCenter(`/joingame/${id}/${gpcode}`, "gamewindow");
     }
   };
 
@@ -156,7 +168,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
-        <img className="game-icon" src={imageUrl} title={gameItem.name} alt={gameItem.name} />
+        <img className="game-icon" src={imageUrl} title={name} alt={name} />
+        <ProviderName>{gpname}</ProviderName>
         {/* {gameItem.tag.new && <NewTag>New</NewTag>}
         {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
         {!isActive && (
