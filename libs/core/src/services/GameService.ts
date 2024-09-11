@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import { CategoryDto, GameTagListResDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, ResponseResDto } from "@tgs-web-nx/types";
+import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, ResponseResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
@@ -59,7 +59,7 @@ function GetGameList(gpCode: string, gametypes?: number) {
 }
 
 function GetCategory(gameTypes: number[], tag: number, pageIndex: number, pageSize: number) {
-  const result = ApiService.post("Category", {
+  const result = ApiService.post("gametype", {
     PlatformType: config.isPC,
     Language: i18n.language,
     Currency: config.currency,
@@ -68,7 +68,7 @@ function GetCategory(gameTypes: number[], tag: number, pageIndex: number, pageSi
     PageIndex: pageIndex,
     PageSize: pageSize,
   });
-  return result as unknown as Promise<ResponseResDto<CategoryDto>>;
+  return result as unknown as Promise<ResponseResDto<GameTypeDto>>;
 }
 
 function GetGameListByTag(tags: number[], limit: number) {

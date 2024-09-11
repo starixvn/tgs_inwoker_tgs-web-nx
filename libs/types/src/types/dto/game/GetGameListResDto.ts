@@ -10,6 +10,7 @@ export interface GameItem {
   name: string;
   description: string;
   gpcode: string;
+  gpname: string;
   status: number;
   isactive: boolean;
   type: number;
@@ -36,7 +37,7 @@ export interface ResponseResDto<T> {
   errmsgid: string | null;
 }
 
-export interface CategoryDto {
+export interface GameTypeDto {
   total: number;
   games: GameItem[];
   pageIndex: number;
