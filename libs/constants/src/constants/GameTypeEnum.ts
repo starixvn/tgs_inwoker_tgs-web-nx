@@ -17,4 +17,9 @@ export enum GameTypeEnum {
   SLOT = 15,
   TABLEGAME = 16,
   COCKFIGHT = 17,
+  INSTANTPLAY = 18,
+  CASINO = 19,
+  KENO = 20,
+  BINGO = 21,
+  RACING = 22
 }

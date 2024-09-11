@@ -1,6 +1,6 @@
+import styled from "styled-components";
 import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 import { media } from "@/theme/breakpoints";
-import styled from "styled-components";
 
 const GameTypeNav = styled.div`
   flex-shrink: 0;
@@ -56,14 +56,14 @@ const Wrapper = styled.div<{
 type PropsType = {
   isActive: boolean;
   key: number;
-  navItem: any;
+  navItem: NavItem;
   handleClickNav: (navItem: NavItem) => void;
 };
 
 const GameType = (props: PropsType) => {
   const { isActive, navItem, handleClickNav } = props;
   return (
-    <Wrapper $isActive={isActive} key={navItem.key} onClick={() => handleClickNav(navItem)}>
+    <Wrapper $isActive={isActive} key={navItem.key} onClick={() => handleClickNav(navItem as any)}>
       <img src={navItem.iconUrl} alt={navItem.label} />
       <GameTypeNav>{navItem.label}</GameTypeNav>
     </Wrapper>

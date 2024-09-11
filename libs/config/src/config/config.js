@@ -22,6 +22,7 @@ const config = {
   features: featureList["default"],
   brandTitle: "",
   AgentAdminUrl: null,
+  offeredGameType: []
 };
 
 config.isPC = isMobileOnly ? 1 : 0;

@@ -1,14 +1,12 @@
-import useGameTypeList from "@/hooks/home/useGameTypeList";
-import { NavItem, useGetNavItemList } from "@/layouts/hooks/useGetNavItemList";
-import { media } from "@/theme/breakpoints";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { NavItem, useGameTypeList, useGetNavGameTypeItemList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import useEmblaCarousel from "embla-carousel-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import GameType from "./GameType";
+import { media } from "@/theme/breakpoints";
 
 const GameTypeEmbla = styled.section`
   &.embla__container {
@@ -33,7 +31,7 @@ const GameTypeEmbla = styled.section`
 `;
 
 const GameTypes = () => {
-  // const { sideNavItemList } = useGetNavItemList();
+  const {sideNavGameTypeItemList} = useGetNavGameTypeItemList()
   const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
 
@@ -44,80 +42,6 @@ const GameTypes = () => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
   };
-  const tempGameTypeItems : any = [
-    {
-      key: "sports",
-      label: "Sports",
-      iconUrl: "/assets/images/common/icon-soccer.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: 1,
-      router: "sports"
-    },
-    {
-      key: "slots",
-      label: "Slots",
-      iconUrl: "/assets/images/common/icon-slots.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: 15,
-      router: "slots"
-    },
-    {
-      key: "liveCasino",
-      label: "Live Casino",
-      iconUrl: "/assets/images/common/icon-live-casino.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: 6,
-      router: "liveCasino"
-    },
-    {
-      key: "fishing",
-      label: "Fishing",
-      iconUrl: "/assets/images/common/icon-fishing.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: 9,
-      router: "fishing"
-    },
-    {
-      key: "TableGame",
-      label: "Table Game",
-      iconUrl: "/assets/images/common/icon-table-games.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: 16,
-      router: "TableGame"
-    },
-    {
-      key: "lottery",
-      label: "Lottery",
-      iconUrl: "/assets/images/common/icon-lottery.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: 14,
-      router: "lottery"
-    },
-    {
-      key: "sabong",
-      label: "Cock Fighting",
-      iconUrl: "/assets/images/common/icon-cock-fighting.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: 17,
-      router: "sabong"
-    },
-    {
-      key: "InstantPlay",
-      label: "Instant Play",
-      iconUrl: "/assets/images/common/icon-instant-play.svg",
-      iconActiveUrl: "",
-      navType: "action",
-      gameType: 8,
-      router: "instantplay"
-    },
-  ]
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -144,10 +68,10 @@ const GameTypes = () => {
     <section className="embla">
       <div className="embla__viewport" ref={emblaGameTypeRef}>
         <GameTypeEmbla
-          className={`embla__container ${tempGameTypeItems.length <= 4 ? "" : "two-rows"}`}
+          className={`embla__container ${sideNavGameTypeItemList.length <= 4 ? "" : "two-rows"}`}
         >
-          {tempGameTypeItems &&
-            tempGameTypeItems.map((navItem: any, index: number) => {
+          {sideNavGameTypeItemList &&
+            sideNavGameTypeItemList.map((navItem: any, index: number) => {
               const isActive = navItem.gameType === activeGameType;
               return (
                 <GameType
