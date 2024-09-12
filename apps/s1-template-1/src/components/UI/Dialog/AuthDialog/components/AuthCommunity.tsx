@@ -1,3 +1,4 @@
+import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
 const SocialIcons = styled.div`
@@ -65,7 +66,7 @@ const AuthCommunity = () => {
         })}
       </SocialIcons>
       <Devider>
-        <OrText>OR</OrText>
+        <OrText>{i18n.t("common.or")}</OrText>
       </Devider>
     </>
   );

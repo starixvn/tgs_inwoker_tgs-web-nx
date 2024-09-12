@@ -1,14 +1,20 @@
-import LoginForm from "@/components/project/auth/LoginForm";
-import RegisterForm from "@/components/project/auth/RegisterForm";
-import { CustomTab, CustomTabList, CustomTabPanel, MainWrapper } from "@/components/styled-component/AuthFormContainer";
-import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
-import AuthBanner from "@/components/UI/Dialog/AuthDialog/components/AuthBanner";
-import AuthCommunity from "@/components/UI/Dialog/AuthDialog/components/AuthCommunity";
 import TabContext from "@mui/lab/TabContext";
 import Box from "@mui/material/Box";
 import { useAuthDialog } from "@tgs-web-nx/core/features";
 import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
 import React, { useState } from "react";
+import { i18n } from "@tgs-web-nx/utils";
+import LoginForm from "@/components/project/auth/LoginForm";
+import RegisterForm from "@/components/project/auth/RegisterForm";
+import {
+  CustomTab,
+  CustomTabList,
+  CustomTabPanel,
+  MainWrapper,
+} from "@/components/styled-component/AuthFormContainer";
+import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
+import AuthBanner from "@/components/UI/Dialog/AuthDialog/components/AuthBanner";
+import AuthCommunity from "@/components/UI/Dialog/AuthDialog/components/AuthCommunity";
 
 const LoginDialog = () => {
   const [value, setValue] = useState("1");
@@ -27,8 +33,8 @@ const LoginDialog = () => {
           <TabContext value={value}>
             <Box>
               <CustomTabList onChange={handleChange} aria-label="Sign In">
-                <CustomTab label="Sign In" value="1" />
-                <CustomTab label="Sign Up" value="2" />
+                <CustomTab label={i18n.t("web.login.signin")} value="1" />
+                <CustomTab label={i18n.t("web.register.signup")} value="2" />
               </CustomTabList>
             </Box>
             <AuthCommunity />

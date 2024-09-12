@@ -1,8 +1,9 @@
-import FormikForm from "@/components/project/FormikForm";
-import { Checkbox } from "@/components/UI/Checkbox";
 import { useCreatePlayerStage } from "@tgs-web-nx/core/features";
 import React from "react";
 import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
+import { Checkbox } from "@/components/UI/Checkbox";
+import FormikForm from "@/components/project/FormikForm";
 
 const VerifyAgeContainer = styled.div`
   width: 100%;
@@ -28,11 +29,11 @@ const CreatePlayerStage = () => {
       formik={formik}
       isLoading={isLoading}
       error={registerError}
-      buttonText={"Sign Up"}
+      buttonText={i18n.t("web.register.signup")}
     >
       <VerifyAgeContainer>
-        <Checkbox value={isConfirmedAdult} onClick={handleClickConfirmAdult} />I agree to the User
-        Agreement & confirm I am at least 18 years old
+        <Checkbox value={isConfirmedAdult} onClick={handleClickConfirmAdult} />
+        {i18n.t("web.register.useragreement")}
       </VerifyAgeContainer>
     </FormikForm>
   );
