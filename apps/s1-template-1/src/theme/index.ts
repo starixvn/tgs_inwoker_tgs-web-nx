@@ -80,8 +80,7 @@ export const theme = {
   optionHoverBgColor: "#2A3546",
 
   // Common
-  mainBackground: "#0D131C",
-  desktopMainBackground: "linear-gradient(0deg,#0d131c 0%,#0d131c 70%,#162b4e 100%)",
+  mainBackground: "#0d131c",
   text: "#FFFFFF",
 
   errorColor: "#F90B44",
@@ -118,7 +117,6 @@ export const theme = {
   greenGradientBackround: "linear-gradient(180deg, #BAD30F 0%, #7E8F0C 100%)",
   orangeGradientBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   balanceHeaderBackground: "rgba(68, 88, 116, 0.24)",
-
 
   // Announcement
   announceTextColor: "#F6254B",

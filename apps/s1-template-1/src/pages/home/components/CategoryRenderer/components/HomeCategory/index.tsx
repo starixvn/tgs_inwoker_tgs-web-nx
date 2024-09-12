@@ -15,7 +15,7 @@ const DesktopContainer = styled.div`
   padding: 1.8rem 0;
 
   ${media.md} {
-    padding: 4rem 0px 2.4rem;
+    padding: 3rem 0px 2.4rem;
   }
 `;
 

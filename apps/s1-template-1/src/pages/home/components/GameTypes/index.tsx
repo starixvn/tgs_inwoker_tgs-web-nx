@@ -14,11 +14,13 @@ import styled from "styled-components";
 
 import GameType from "./GameType";
 
-const GameTypesEmbla = styled.section<{ $hasAnnouncement: boolean }>`
+const GameTypesEmbla = styled.section`
   &.game-types {
     position: sticky;
     top: ${MOBILE_HEADER_HEIGHT};
     z-index: 1001;
+    padding: 1.6rem 0;
+    background-color: ${({ theme }) => theme.mainBackground};
 
     ${media.sm} {
       top: ${DESKTOP_HEADER_HEIGHT};

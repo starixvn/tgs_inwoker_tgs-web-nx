@@ -3,7 +3,7 @@ import { media } from "@/theme/breakpoints";
 import {
   DESKTOP_HEADER_HEIGHT,
   MAIN_CONTENT_MAX_WIDTH,
-  MOBILE_ANNOUNCEMENT_HEIGHT,
+  MOBILE_HEADER_HEIGHT,
 } from "@/theme/constants";
 import { useAccountStore, useGeneralStore, useUiStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -16,16 +16,18 @@ import AnonymousHeaderContent from "./AnonymousHeaderContent";
 
 const HeaderContainer = styled.div<{ hasAnnouncement: boolean }>`
   position: sticky;
-  top: ${({ hasAnnouncement }) => (hasAnnouncement ? `-${MOBILE_ANNOUNCEMENT_HEIGHT}` : 0)};
+  top: ${({ hasAnnouncement }) => (hasAnnouncement ? "-4.1rem" : 0)};
   left: 0;
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.headerBackground};
   width: 100%;
+  height: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
   z-index: 10;
 
   ${media.sm} {
+    top: 0;
     height: ${DESKTOP_HEADER_HEIGHT};
   }
 `;
@@ -33,7 +35,7 @@ const HeaderContainer = styled.div<{ hasAnnouncement: boolean }>`
 const HeaderWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: ${MOBILE_HEADER_HEIGHT};
   padding: 0 0.8rem;
   display: flex;
   align-items: center;
