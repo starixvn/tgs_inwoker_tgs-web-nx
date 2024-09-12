@@ -1,179 +1,180 @@
-import { useEffect, useState } from "react";
+import config from "@tgs-web-nx/config";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { getGameTypeName, i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
+import { useEffect, useState } from "react";
+
 import { GameTypeItem } from "../useHomeGameContext";
 
 const gameTypeList: GameTypeItem[] = [
   {
     key: "home",
-    iconUrl: "/assets/images/game-type-icons/icon-home.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-home.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-home.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-home.png",
     text: "common.home",
     fontSize: "small",
     gameType: GameTypeEnum.NONE,
-    router: ""
+    router: "",
   },
   {
     key: "sports",
-    iconUrl: "/assets/images/game-type-icons/icon-sports.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-sports.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-sports.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-sports.png",
     text: "common.sports",
     fontSize: "small",
     gameType: GameTypeEnum.SPORTS,
-    router: "sports"
+    router: "sports",
   },
   {
     key: "virtualSports",
-    iconUrl: "/assets/images/game-type-icons/icon-virtual-sports.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-virtual-sports.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-virtual-sports.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-virtual-sports.png",
     text: "common.virtualsports",
     fontSize: "smaller",
     gameType: GameTypeEnum.RNGSPORTS,
-    router: "virtualSports"
+    router: "virtualSports",
   },
   {
     key: "esports",
-    iconUrl: "/assets/images/game-type-icons/icon-e-sports.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-e-sports.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-e-sports.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-e-sports.png",
     text: "common.esports",
     fontSize: "smaller",
     gameType: GameTypeEnum.ESPORTS,
-    router: "esports"
+    router: "esports",
   },
   {
     key: "liveCasino",
-    iconUrl: "/assets/images/game-type-icons/icon-live-casino.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-live-casino.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-live-casino.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-live-casino.png",
     text: "common.live",
     fontSize: "small",
     gameType: GameTypeEnum.LIVE,
-    router: "liveCasino"
+    router: "liveCasino",
   },
   {
     key: "cardGame",
-    iconUrl: "/assets/images/game-type-icons/icon-card-game.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-card-game.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-card-game.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-card-game.png",
     text: "common.chess",
     fontSize: "smaller",
     gameType: GameTypeEnum.QIPAI,
-    router: "cardGame"
+    router: "cardGame",
   },
   {
     key: "fishing",
-    iconUrl: "/assets/images/game-type-icons/icon-fishing.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-fishing.svg",
-    text:"common.fish",
+    iconUrl: "/assets/images/game-type-icons/icon-fishing.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-fishing.png",
+    text: "common.fish",
     fontSize: "smaller",
     gameType: GameTypeEnum.FISH,
-    router: "fishing"
+    router: "fishing",
   },
   {
     key: "arcade",
-    iconUrl: "/assets/images/game-type-icons/icon-arcade.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-arcade.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-arcade.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-arcade.png",
     text: "common.arcade",
     fontSize: "small",
     gameType: GameTypeEnum.ARCADE,
-    router: "arcade"
+    router: "arcade",
   },
   {
     key: "lottery",
-    iconUrl: "/assets/images/game-type-icons/icon-lottery.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-lottery.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-lottery.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-lottery.png",
     text: "common.lottery",
     fontSize: "small",
     gameType: GameTypeEnum.LOTTERYLOBBY,
-    router: "lottery"
+    router: "lottery",
   },
   {
     key: "slots",
-    iconUrl: "/assets/images/game-type-icons/icon-slots.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-slots.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-slots.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-slots.png",
     text: "common.slot",
     fontSize: "small",
     gameType: GameTypeEnum.SLOT,
-    router: "slots"
+    router: "slots",
   },
   {
     key: "tableGame",
-    iconUrl: "/assets/images/game-type-icons/icon-table-games.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-table-games.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-table-games.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-table-games.png",
     text: "common.tableGame",
     fontSize: "smaller",
     gameType: GameTypeEnum.TABLEGAME,
-    router: "tableGame"
+    router: "tableGame",
   },
   {
     key: "cockfighting",
-    iconUrl: "/assets/images/game-type-icons/icon-cock-fighting.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-cock-fighting.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-cock-fighting.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-cock-fighting.png",
     text: "common.cockfight",
     fontSize: "smaller",
     gameType: GameTypeEnum.COCKFIGHT,
-    router: "cockfighting"
+    router: "cockfighting",
   },
   {
     key: "instantPlay",
-    iconUrl: "/assets/images/game-type-icons/icon-instant-play.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-instant-play.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-instant-play.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-instant-play.png",
     text: "common.instantPlay",
     fontSize: "smaller",
     gameType: GameTypeEnum.INSTANTPLAY,
-    router: "instantPlay"
+    router: "instantPlay",
   },
   {
     key: "casino",
-    iconUrl: "/assets/images/game-type-icons/icon-casino.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-casino.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-casino.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-casino.png",
     text: "common.casino",
     fontSize: "smaller",
     gameType: GameTypeEnum.CASINO,
-    router: "casino"
+    router: "casino",
   },
   {
     key: "keno",
-    iconUrl: "/assets/images/game-type-icons/icon-keno.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-keno.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-keno.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-keno.png",
     text: "common.keno",
     fontSize: "smaller",
     gameType: GameTypeEnum.KENO,
-    router: "keno"
+    router: "keno",
   },
   {
     key: "bingo",
-    iconUrl: "/assets/images/game-type-icons/icon-bingo.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-bingo.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-bingo.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-bingo.png",
     text: "common.bingo",
     fontSize: "smaller",
     gameType: GameTypeEnum.BINGO,
-    router: "bingo"
+    router: "bingo",
   },
   {
     key: "racing",
-    iconUrl: "/assets/images/game-type-icons/icon-racing.svg",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-racing.svg",
+    iconUrl: "/assets/images/game-type-icons/icon-racing.png",
+    iconActiveUrl: "/assets/images/game-type-icons/active-icon-racing.png",
     text: "common.racing",
     fontSize: "smaller",
     gameType: GameTypeEnum.RACING,
-    router: "racing"
+    router: "racing",
   },
 ];
 
-export const useGameTypeList = () =>{
+export const useGameTypeList = () => {
   const [translatedGameTypeList, setTranslatedGameTypeList] = useState<GameTypeItem[]>([]);
   const { offeredGameType } = config;
   useEffect(() => {
     const translatedList = offeredGameType
-    .map((key:string) => gameTypeList.find(type => type.key === key))
-    .filter((gameType: GameTypeItem) => gameType)
-    .map((gameItem: GameTypeItem) => ({
-      ...gameItem,
-      text: i18n.t(getGameTypeName(gameItem.gameType)),
-    }));
+      .map((key: string) => gameTypeList.find((type) => type.key === key))
+      .filter((gameType: GameTypeItem) => gameType)
+      .map((gameItem: GameTypeItem) => ({
+        ...gameItem,
+        text: i18n.t(getGameTypeName(gameItem.gameType)),
+      }));
 
     setTranslatedGameTypeList(translatedList);
   }, []);
 
   return translatedGameTypeList;
-}
+};

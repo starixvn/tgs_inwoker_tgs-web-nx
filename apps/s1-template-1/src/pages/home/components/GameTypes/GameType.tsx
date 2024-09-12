@@ -35,15 +35,17 @@ const Wrapper = styled.div<{
   background: ${({ theme, $isActive }) =>
     $isActive ? theme.categoryBackgroundActive : theme.categoryBackground};
 
-  &:hover {
-    background: ${({ theme }) => theme.categoryBackgroundActive};
+  ${media.sm} {
+    &:hover {
+      background: ${({ theme }) => theme.categoryBackgroundActive};
+    }
   }
 
   ${media.lg} {
     height: 8rem;
   }
 
-  & img {
+  img {
     width: 3.2rem;
     height: 3.2rem;
 
