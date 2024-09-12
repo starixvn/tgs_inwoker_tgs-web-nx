@@ -12,7 +12,7 @@ const DesktopContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  padding: 1.8rem 0;
+  padding: 0.2rem 0 1.8rem;
 
   ${media.md} {
     padding: 3rem 0px 2.4rem;
@@ -36,7 +36,7 @@ export const GameTypeTitle = styled.div`
   line-height: 1.5;
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
   gap: 0.8rem;
 
   & > img {
@@ -81,7 +81,7 @@ const ViewAll = styled.div`
 const GameTypeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  gap: 3.6rem;
 
   ${media.md} {
     gap: 5rem;
