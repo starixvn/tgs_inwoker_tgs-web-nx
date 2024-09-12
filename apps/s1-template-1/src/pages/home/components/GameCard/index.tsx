@@ -46,6 +46,7 @@ const GameCardBg = styled.div`
   border-radius: 1.2rem;
   background: linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%);
   backdrop-filter: blur(2px);
+  overflow: hidden;
 
   .game-icon {
     width: 100%;
