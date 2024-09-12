@@ -1,7 +1,7 @@
 import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_ANNOUNCEMENT_HEIGHT, DESKTOP_HEADER_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_ANNOUNCEMENT_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { BOTTOM_APP_BAR_HEIGHT, MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useAccountStore, useUiStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
@@ -20,19 +20,10 @@ const DefaultLayoutContainer = styled.div`
 
 const DashboardContainer = styled.div<{ hasAnnouncement: boolean }>`
   display: flex;
-  margin-top: ${({ hasAnnouncement }) =>
-    hasAnnouncement ? MOBILE_HEADER_ANNOUNCEMENT_HEIGHT : MOBILE_HEADER_HEIGHT};
-  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - ${BOTTOM_APP_BAR_HEIGHT});
+  margin: 0 auto;
 
   ${media.lg} {
-    min-height: calc(
-      100vh -
-        ${({ hasAnnouncement }) =>
-          hasAnnouncement ? DESKTOP_HEADER_ANNOUNCEMENT_HEIGHT : DESKTOP_HEADER_HEIGHT}
-    );
-    margin: ${({ hasAnnouncement }) =>
-        hasAnnouncement ? DESKTOP_HEADER_ANNOUNCEMENT_HEIGHT : DESKTOP_HEADER_HEIGHT}
-      auto 0;
+    margin: 0 auto;
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
   }
 `;
@@ -42,6 +33,7 @@ const ContentWrapper = styled.div`
   flex-grow: 1;
   margin: 0 auto;
   transition: all ease-in-out 0.2s;
+  width: 100%;
 `;
 
 const ChildrenWrapper = styled.div`

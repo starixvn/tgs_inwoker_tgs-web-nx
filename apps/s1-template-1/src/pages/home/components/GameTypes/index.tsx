@@ -1,6 +1,12 @@
 import { media } from "@/theme/breakpoints";
+import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { NavItem, useGameTypeList, useGetNavGameTypeItemList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  NavItem,
+  useGameTypeList,
+  useGetNavGameTypeItemList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import useEmblaCarousel from "embla-carousel-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -8,11 +14,15 @@ import styled from "styled-components";
 
 import GameType from "./GameType";
 
-const GameTypesEmbla = styled.section`
+const GameTypesEmbla = styled.section<{ $hasAnnouncement: boolean }>`
   &.game-types {
     position: sticky;
-    top: 4rem;
+    top: ${MOBILE_HEADER_HEIGHT};
     z-index: 1001;
+
+    ${media.sm} {
+      top: ${DESKTOP_HEADER_HEIGHT};
+    }
   }
 `;
 
@@ -51,6 +61,7 @@ const GameTypes = () => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
   };
+
   useEffect(() => {
     window.scrollTo({
       top: 0,

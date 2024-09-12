@@ -1,5 +1,9 @@
 import { media } from "@/theme/breakpoints";
-import { DESKTOP_ANNOUNCEMENT_HEIGHT, DESKTOP_HEADER_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_ANNOUNCEMENT_HEIGHT } from "@/theme/constants";
+import {
+  DESKTOP_ANNOUNCEMENT_HEIGHT,
+  MAIN_CONTENT_MAX_WIDTH,
+  MOBILE_ANNOUNCEMENT_HEIGHT,
+} from "@/theme/constants";
 import { useUiStore } from "@tgs-web-nx/core";
 import styled from "styled-components";
 
@@ -8,7 +12,6 @@ const MarqueeContainer = styled.div`
   overflow: visible;
   height: ${MOBILE_ANNOUNCEMENT_HEIGHT};
   width: 100%;
-  max-width: ${MAIN_CONTENT_MAX_WIDTH};
   display: flex;
   align-items: center;
   font-size: 1.3rem;
@@ -18,10 +21,6 @@ const MarqueeContainer = styled.div`
   flex-shrink: 0;
 
   ${media.sm} {
-    position: absolute;
-    top: ${DESKTOP_HEADER_HEIGHT};
-    left: 50%;
-    transform: translateX(-50%);
     height: ${DESKTOP_ANNOUNCEMENT_HEIGHT};
     background: transparent;
   }
@@ -36,6 +35,11 @@ const MarqueeContent = styled.div`
   align-items: center;
   font-size: 1.4rem;
   font-weight: 500;
+
+  ${media.lg} {
+    margin: 0 auto;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
+  }
 `;
 
 const MarqueesBackground = styled.div`

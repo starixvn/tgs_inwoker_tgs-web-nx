@@ -1,6 +1,10 @@
 import Marquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
-import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_ANNOUNCEMENT_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import {
+  DESKTOP_HEADER_HEIGHT,
+  MAIN_CONTENT_MAX_WIDTH,
+  MOBILE_ANNOUNCEMENT_HEIGHT,
+} from "@/theme/constants";
 import { useAccountStore, useGeneralStore, useUiStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
@@ -11,14 +15,12 @@ import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 
 const HeaderContainer = styled.div<{ hasAnnouncement: boolean }>`
-  position: fixed;
-  top: 0;
+  position: sticky;
+  top: ${({ hasAnnouncement }) => (hasAnnouncement ? `-${MOBILE_ANNOUNCEMENT_HEIGHT}` : 0)};
   left: 0;
   display: flex;
   flex-direction: column;
   background: ${({ theme }) => theme.headerBackground};
-  height: ${({ hasAnnouncement }) =>
-    hasAnnouncement ? MOBILE_HEADER_ANNOUNCEMENT_HEIGHT : MOBILE_HEADER_HEIGHT};
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
   z-index: 10;
@@ -40,7 +42,7 @@ const HeaderWrapper = styled.div`
 
   ${media.lg} {
     margin: 0 auto;
-    max-width: 120rem;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
   }
 `;
 
