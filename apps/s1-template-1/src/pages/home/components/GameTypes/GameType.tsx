@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import { NavItem } from "@/layouts/hooks/useGetNavItemList";
 import { media } from "@/theme/breakpoints";
+import styled from "styled-components";
 
 const GameTypeNav = styled.div`
   flex-shrink: 0;
@@ -12,6 +12,7 @@ const GameTypeNav = styled.div`
   padding: 0.2rem;
   cursor: pointer;
   position: relative;
+  text-transform: capitalize;
 
   ${media.lg} {
     padding: 0.4rem;

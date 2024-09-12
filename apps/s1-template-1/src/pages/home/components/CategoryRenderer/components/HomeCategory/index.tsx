@@ -38,6 +38,7 @@ export const GameTypeTitle = styled.div`
   align-items: center;
   margin-bottom: 1.8rem;
   gap: 0.8rem;
+  text-transform: capitalize;
 
   & > img {
     width: 2.4rem;
@@ -51,29 +52,26 @@ const ViewAll = styled.div`
   display: flex;
   align-items: center;
   height: 3.2rem;
-  line-height: 3.2rem;
-  padding: 0 0.8rem;
+  line-height: 1;
+  padding: 0 3.2rem 0 0.8rem;
   border-radius: 0.8rem;
   background: #2e353e;
   color: ${({ theme }) => theme.white};
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
+  text-transform: capitalize;
   cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.slideNextButtonBackground};
   }
 
-  .text {
-    position: relative;
-    top: 1px;
-  }
-
   &:after {
     content: "";
+    position: absolute;
+    right: 1rem;
     width: 0.9rem;
     height: 1.4rem;
-    margin-left: 1.2rem;
     background: url("/assets/images/common/icon-view-all.svg") center;
   }
 `;
@@ -171,9 +169,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-sports-group.svg" alt="hot" />
             {i18n.t("web.home.Section1Sport")}
-            <ViewAll onClick={() => navigateTo("sports")}>
-              <span className="text">{i18n.t("common.all")}</span>
-            </ViewAll>
+            <ViewAll onClick={() => navigateTo("sports")}>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel>
             <GameCardSlider data={sportGameList} />
@@ -184,9 +180,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
             {i18n.t("web.home.Section1Slot")}
-            <ViewAll onClick={() => navigateTo("slots")}>
-              <span className="text">{i18n.t("common.all")}</span>
-            </ViewAll>
+            <ViewAll onClick={() => navigateTo("slots")}>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel extraClassName="two-rows">
             <GameCardSlider data={slotGameList} />
@@ -197,9 +191,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-live-casino-group.svg" alt="slot" />
             {i18n.t("web.home.Section1Live")}
-            <ViewAll onClick={() => navigateTo("liveCasino")}>
-              <span className="text">{i18n.t("common.all")}</span>
-            </ViewAll>
+            <ViewAll onClick={() => navigateTo("liveCasino")}>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel>
             <GameCardSlider data={liveCasinoList} />
@@ -210,9 +202,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-new-release.svg" alt="hot" />
             {i18n.t("web.home.Section1NewRelease")}
-            <ViewAll>
-              <span className="text">{i18n.t("common.all")}</span>
-            </ViewAll>
+            <ViewAll>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel>
             <GameCardSlider data={newGameList} />
@@ -231,7 +221,7 @@ const HomeCategory = () => {
                 <div className="embla__slide " key={index}>
                   <ProviderItem>
                     <img
-                      src={utility.imagePathGenerator(`provider/dark/${providerName}.png`)}
+                      src={utility.imagePathGenerator(`provider/dark/${providerName}.webp`)}
                       alt={providerName}
                       title={providerName}
                     />
@@ -246,7 +236,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-table-game-group.svg" alt="hot" />
             {i18n.t("web.home.Section1Electron")}
-            <ViewAll>{i18n.t("common.all")}</ViewAll>
+            {i18n.t("common.all")}
           </GameTypeTitle>
           <EmblaCarousel>
             <GameCardSlider data={tableGameList} />
@@ -257,9 +247,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
             {i18n.t("web.home.Section1HotGames")}
-            <ViewAll>
-              <span className="text">{i18n.t("common.all")}</span>
-            </ViewAll>
+            <ViewAll>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel>
             <GameCardSlider data={hotGameList} />
