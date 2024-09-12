@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { utility } from "@tgs-web-nx/utils";
@@ -78,7 +78,7 @@ const NavCategory = () => {
               />
             );
           })}
-        {!hasMappingData && <NoDataText>No data</NoDataText>}
+        {!hasMappingData && <NoDataText>{i18n.t("common.nodata")}</NoDataText>}
       </DesktopCategoryContentWrapper>
     </Wrapper>
   );

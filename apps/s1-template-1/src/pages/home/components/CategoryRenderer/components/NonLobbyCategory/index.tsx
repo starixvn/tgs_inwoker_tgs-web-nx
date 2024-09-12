@@ -186,7 +186,7 @@ const NonLobbyCategory = () => {
                   )}`}
                 />
               ))}
-            {!hasMappingData && !isLoading && <div>No data</div>}
+            {!hasMappingData && !isLoading && <div>{i18n.t("common.nodata")}</div>}
           </CategoryContent>
           <LoadMore></LoadMore>
         </CategoryContentWrapper>
@@ -214,7 +214,7 @@ const NonLobbyCategory = () => {
                   )}`}
                 />
               ))}
-            {!hasMappingData && !isLoading && <Text>No data</Text>}
+            {!hasMappingData && !isLoading && <Text>{i18n.t("common.nodata")}</Text>}
           </DesktopCategoryContentWrapper>
           <LoadMore></LoadMore>
         </DesktopWrapper>

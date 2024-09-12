@@ -1,13 +1,17 @@
-import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
-import { media } from "@/theme/breakpoints";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { useGetLobbyCategoryList, useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  useGetLobbyCategoryList,
+  useGetNonLobbyCategoryList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { Common, utility } from "@tgs-web-nx/utils";
+import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import LoadMore from "../LoadMore";
+import { media } from "@/theme/breakpoints";
+import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 
 const Wrapper = styled.div`
   display: flex;
@@ -128,41 +132,40 @@ const LobbyCategory = () => {
                   />
                 );
               })}
-            {!hasMappingData && <div>No data</div>}
+            {!hasMappingData && <div>{i18n.t("common.nodata")}</div>}
           </CategoryContent>
           <LoadMore></LoadMore>
         </CategoryContentWrapper>
       )}
       {isDesktopSize && (
         <DesktopWrapper>
-        <DesktopCategoryContentWrapper>
-          {hasMappingData &&
-            gameList.map((game) => {
-              const { gpcode, status, name, code } = game;
+          <DesktopCategoryContentWrapper>
+            {hasMappingData &&
+              gameList.map((game) => {
+                const { gpcode, status, name, code } = game;
 
-              if (gpcode === "BC") return null;
-              return (
-                <DesktopVendorCard
-                  key={gpcode}
-                  bgUrl={`${utility.imagePathGenerator(
-                    `home/desktop/${activeGameTypeKey}/bg.png`,
-                  )}`}
-                  imageUrl={`${utility.imagePathGenerator(
-                    `${gpcode.toLowerCase()}/en-US/${code}${
-                    isDesktopSize ? "@2x" : "@1x"
-                  }.webp`)}`}
-                  venderLogoUrl={`${utility.imagePathGenerator(
-                    `home/provider_logo/${activeGameTypeKey}/${gpcode}.png`,
-                  )}`}
-                  launchGame={() => launchLobbyGame(gpcode)}
-                  status={status}
-                  venderName={name}
-                />
-              );
-            })}
-          {!hasMappingData && <div>No data</div>}
-        </DesktopCategoryContentWrapper>
-        <LoadMore></LoadMore>
+                if (gpcode === "BC") return null;
+                return (
+                  <DesktopVendorCard
+                    key={gpcode}
+                    bgUrl={`${utility.imagePathGenerator(
+                      `home/desktop/${activeGameTypeKey}/bg.png`,
+                    )}`}
+                    imageUrl={`${utility.imagePathGenerator(
+                      `${gpcode.toLowerCase()}/en-US/${code}${isDesktopSize ? "@2x" : "@1x"}.webp`,
+                    )}`}
+                    venderLogoUrl={`${utility.imagePathGenerator(
+                      `home/provider_logo/${activeGameTypeKey}/${gpcode}.png`,
+                    )}`}
+                    launchGame={() => launchLobbyGame(gpcode)}
+                    status={status}
+                    venderName={name}
+                  />
+                );
+              })}
+            {!hasMappingData && <div>{i18n.t("common.nodata")}</div>}
+          </DesktopCategoryContentWrapper>
+          <LoadMore></LoadMore>
         </DesktopWrapper>
       )}
     </Wrapper>
