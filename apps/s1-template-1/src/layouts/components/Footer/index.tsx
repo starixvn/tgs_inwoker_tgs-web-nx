@@ -1,10 +1,10 @@
+import { media } from "@/theme/breakpoints";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProvider } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { media } from "@/theme/breakpoints";
 
 const FooterContainer = styled.div`
   background: ${({ theme }) => theme.footerBackground};
@@ -186,9 +186,9 @@ const Footer = () => {
           <GroupTitle>{i18n.t("web.footer.support")}</GroupTitle>
           <LinkContent>
             <Link onClick={() => navigateTo("faq")}>{i18n.t("T13.quickLink.faq")}</Link>
-            <Link onClick={() => navigateTo("terms")}>{i18n.t("T13.quickLink.tnc")}</Link>
+            <Link onClick={() => navigateTo("terms")}>{i18n.t("web.footer.aboutus")}</Link>
             <Link onClick={() => navigateTo("responsiblegaming")}>
-              {i18n.t("T13.quickLink.reponsible")}
+              {i18n.t("web.footer.livesupport")}
             </Link>
           </LinkContent>
         </FooterGroup>
