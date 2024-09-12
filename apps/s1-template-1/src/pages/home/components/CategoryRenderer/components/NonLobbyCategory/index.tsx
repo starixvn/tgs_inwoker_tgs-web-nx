@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { i18n, utility } from "@tgs-web-nx/utils";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import {
   FilterTag,
@@ -181,11 +180,10 @@ const NonLobbyCategory = () => {
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
+                  imageUrl={`${utility.imagePathGenerator(
+                    `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
+                    isDesktopSize ? "@2x" : "@1x"
+                  }.webp`)}`}
                 />
               ))}
             {!hasMappingData && !isLoading && <div>No data</div>}
@@ -209,11 +207,10 @@ const NonLobbyCategory = () => {
                   key={gameItem.id}
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
-                  imageUrl={`${
-                    config.sourceUrl
-                  }${gameItem.gpcode.toUpperCase()}/${Common.getCDNLanguagePrefix()}/${
-                    gameItem.code
-                  }.jpg`}
+                  imageUrl={`${utility.imagePathGenerator(
+                  `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
+                  isDesktopSize ? "@2x" : "@1x"
+                }.webp`)}`}
                 />
               
               ))}

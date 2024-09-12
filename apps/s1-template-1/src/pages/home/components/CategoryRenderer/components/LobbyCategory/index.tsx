@@ -137,8 +137,8 @@ const LobbyCategory = () => {
         <DesktopWrapper>
         <DesktopCategoryContentWrapper>
           {hasMappingData &&
-            gameList.map((provider) => {
-              const { gpcode, status, name } = provider;
+            gameList.map((game) => {
+              const { gpcode, status, name, code } = game;
 
               if (gpcode === "BC") return null;
               return (
@@ -148,8 +148,9 @@ const LobbyCategory = () => {
                     `home/desktop/${activeGameTypeKey}/bg.png`,
                   )}`}
                   imageUrl={`${utility.imagePathGenerator(
-                    `home/desktop/${activeGameTypeKey}/${gpcode}.png`,
-                  )}`}
+                    `${gpcode.toLowerCase()}/en-US/${code}${
+                    isDesktopSize ? "@2x" : "@1x"
+                  }.webp`)}`}
                   venderLogoUrl={`${utility.imagePathGenerator(
                     `home/provider_logo/${activeGameTypeKey}/${gpcode}.png`,
                   )}`}
