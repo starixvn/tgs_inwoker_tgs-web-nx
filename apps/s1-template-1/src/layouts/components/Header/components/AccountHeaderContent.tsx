@@ -1,18 +1,25 @@
-import Icon from "@/components/project/Icon";
-import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { GreenGradientButton } from "@/components/UI/Button";
-import { AccountInfoIcon, DepositIcon, HistoryIcon, LogoutIcon, TransactionIcon, WithdrawIcon } from "@/components/UI/CustomizeIcon";
-import { Select } from "@/components/UI/Select";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
-import { theme } from "@/theme";
-import { media } from "@/theme/breakpoints";
 import { MenuItem } from "@mui/material";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import Icon from "@/components/project/Icon";
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
+import { GreenGradientButton } from "@/components/UI/Button";
+import {
+  AccountInfoIcon,
+  DepositIcon,
+  HistoryIcon,
+  LogoutIcon,
+  TransactionIcon,
+  WithdrawIcon,
+} from "@/components/UI/CustomizeIcon";
+import { Select } from "@/components/UI/Select";
+import { useGoToHomePage } from "@/hooks/useGoToHomePage";
+import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -21,7 +28,7 @@ const ButtonContainer = styled.div`
   background-color: ${({ theme }) => theme.balanceHeaderBackground};
   border-radius: 1.2rem;
   justify-content: space-between;
-  padding-right: .2rem;
+  padding-right: 0.2rem;
 `;
 
 const BascicButton = styled.div`
@@ -41,10 +48,10 @@ const BascicButton = styled.div`
 
 const BalanceContainer = styled(BascicButton)`
   cursor: unset;
-  width: calc(100% - 3.8rem); 
-  padding: 1rem .6rem;
+  width: calc(100% - 3.8rem);
+  padding: 1rem 0.6rem;
   justify-content: flex-end;
-  color: #FFC909;
+  color: #ffc909;
 `;
 
 const WithDrawButton = styled(BascicButton)`
@@ -55,7 +62,7 @@ const WithDrawButton = styled(BascicButton)`
 
 const DepositButton = styled.div`
   color: ${({ theme }) => theme.text};
-  margin-right: .1rem;
+  margin-right: 0.1rem;
 `;
 
 const LogoutButton = styled(BascicButton)`
@@ -66,7 +73,7 @@ const LogoutButton = styled(BascicButton)`
 
 const AccountIcon = styled.div`
   cursor: pointer;
-  margin: 0 0 0 .6rem;
+  margin: 0 0 0 0.6rem;
   border-radius: 2rem;
   background: rgba(255, 255, 255, 0.2);
   width: 4rem;
@@ -75,11 +82,9 @@ const AccountIcon = styled.div`
   align-items: center;
   justify-content: center;
   ${media.sm} {
-     margin: 0 .8rem 0 .6rem;
+    margin: 0 0.8rem 0 0.6rem;
   }
-
 `;
-
 
 const AccountHeaderContent = () => {
   const history = useHistory();
@@ -98,11 +103,11 @@ const AccountHeaderContent = () => {
 
   return (
     <>
-       <ButtonContainer>
+      <ButtonContainer>
         <BalanceContainer>{currentBalance}</BalanceContainer>
 
         <GreenGradientButton
-          style={{minWidth: "unset", width: "3.6rem"}}
+          style={{ minWidth: "unset", width: "3.6rem" }}
           onClick={() => {
             history.push("/deposit");
           }}
@@ -135,79 +140,144 @@ const AccountHeaderContent = () => {
           </>
         )} */}
       </ButtonContainer>
-      <Select renderValue={() => {
-        return (
-          <AccountIcon>
-            <img src={"/assets/images/common/avatar.png"} width={"36px"} height={"36px"} alt="profile" />
-          </AccountIcon>
-        )
-      }}
-      value={''}
-      sx={{
-        border: "none",
-        background: "transparent",
-        "& .MuiSelect-select": {
+      <Select
+        renderValue={() => {
+          return (
+            <AccountIcon>
+              <img
+                src={"/assets/images/common/avatar.png"}
+                width={"36px"}
+                height={"36px"}
+                alt="profile"
+              />
+            </AccountIcon>
+          );
+        }}
+        value={""}
+        sx={{
+          border: "none",
           background: "transparent",
-          padding: "0 !important",
-        },
-        "& .MuiSvgIcon-root": {
-          display: "none",
-        }
-      }}
-      MenuProps={{
-        PaperProps: {
-          sx: {  
-            ".MuiList-root": {
-              padding: "0",
-              color: theme.formInputColor,
-            },         
-            "& .MuiMenuItem-root": {
-              color: theme.formInputColor
-            },
-            "& .Mui-selected": {
-              background: `${theme.dropDownItemSelectedBackground} !important`,
-              "&:hover": {
+          "& .MuiSelect-select": {
+            background: "transparent",
+            padding: "0 !important",
+          },
+          "& .MuiSvgIcon-root": {
+            display: "none",
+          },
+        }}
+        MenuProps={{
+          PaperProps: {
+            sx: {
+              ".MuiList-root": {
+                padding: "0",
+                color: theme.formInputColor,
+              },
+              "& .MuiMenuItem-root": {
+                color: theme.formInputColor,
+              },
+              "& .Mui-selected": {
                 background: `${theme.dropDownItemSelectedBackground} !important`,
+                "&:hover": {
+                  background: `${theme.dropDownItemSelectedBackground} !important`,
+                },
               },
             },
           },
-        },
-      }}
+        }}
       >
-        <MenuItem onClick={() => {
-                history.push("/withdrawal");
-              }}>
-          <WithdrawIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></WithdrawIcon>
-          Withdraw
+        <MenuItem
+          onClick={() => {
+            history.push("/withdrawal");
+          }}
+        >
+          <WithdrawIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "2px",
+            }}
+          ></WithdrawIcon>
+          {i18n.t("common.withdraw")}
         </MenuItem>
-        <MenuItem onClick={() => {
-              history.push("/deposit");
-            }}>
-            <DepositIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></DepositIcon>
-            Deposit
+        <MenuItem
+          onClick={() => {
+            history.push("/deposit");
+          }}
+        >
+          <DepositIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "2px",
+            }}
+          ></DepositIcon>
+          {i18n.t("common.deposit")}
         </MenuItem>
         <MenuItem>
-          <TransactionIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></TransactionIcon>
-          Transation
+          <TransactionIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "2px",
+            }}
+          ></TransactionIcon>
+          {i18n.t("common.translation")}
         </MenuItem>
         <MenuItem>
-          <HistoryIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></HistoryIcon>
-          Bet History
+          <HistoryIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "2px",
+            }}
+          ></HistoryIcon>
+          {i18n.t("common.bethistory")}
         </MenuItem>
-        <MenuItem onClick={() => {
-              history.push("/profile");
-            }}>
-            <AccountInfoIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></AccountInfoIcon>
-            Account Info
+        <MenuItem
+          onClick={() => {
+            history.push("/profile");
+          }}
+        >
+          <AccountInfoIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "2px",
+            }}
+          ></AccountInfoIcon>
+          {i18n.t("common.accountinfo")}
         </MenuItem>
         <MenuItem onClick={handleClickLogout}>
-          <LogoutIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></LogoutIcon>
-          Logout
+          <LogoutIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "2px",
+            }}
+          ></LogoutIcon>
+          {i18n.t("common.logout")}
         </MenuItem>
       </Select>
       {isDesktopSize && <HeaderLanguageSwitch />}
     </>
-   
   );
 };
 
