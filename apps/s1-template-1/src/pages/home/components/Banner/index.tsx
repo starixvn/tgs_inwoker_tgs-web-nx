@@ -22,12 +22,10 @@ const BannerContainerEmbla = styled.section`
   }
   .embla__slide {
     position: relative;
-    border-radius: 1.2rem;
     flex: 0 0 100%;
     
 
-    ${media.lg} {
-      border-radius: 1.3rem;
+    ${media.sm} {
       flex: 0 0 calc(33% - 8px);
       margin-right: 1.6rem;
     }
@@ -48,8 +46,10 @@ const BannerContainerEmbla = styled.section`
     width: 100%;
     max-width: 100%;
     aspect-ratio: 376/246;
+    border-radius: 1.2rem;
 
     ${media.sm} {
+      border-radius: 1.3rem;
       aspect-ratio: 388/254;
     }
   }
@@ -57,13 +57,26 @@ const BannerContainerEmbla = styled.section`
   .embla__controls {
     display: flex;
     justify-content: center;
-    margin: 1.6rem 0 2.4rem;
+    margin: 1.6rem 0 .6rem;
+    ${media.sm} {
+      margin-bottom: 1.8rem;
+    }
   }
 
   .embla__dots {
     display: flex;
     gap: 0.8rem;
     transition: all 0.3s ease-out;
+  }
+
+  .embla__dot {
+    width: 1.4rem;
+    height: .7rem;
+    border-radius: 2rem;
+  }
+  .embla__dot--selected {
+    width: 4.4rem;
+    background: ${({ theme }) => theme.primary};
   }
 `;
 
