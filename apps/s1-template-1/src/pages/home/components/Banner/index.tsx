@@ -10,7 +10,7 @@ import { DotButton, useDotButton } from "./dots";
 const BannerContainerEmbla = styled.section`
   --slide-height: 6rem;
   --column-size: 4;
-  --slide-spacing: 1.6rem;
+  --slide-spacing: 0;
 
 
 
@@ -24,10 +24,12 @@ const BannerContainerEmbla = styled.section`
     position: relative;
     border-radius: 1.2rem;
     flex: 0 0 100%;
+    
 
     ${media.lg} {
       border-radius: 1.3rem;
-      flex: 0 0 calc(33% - 1.6rem);
+      flex: 0 0 calc(33% - 8px);
+      margin-right: 1.6rem;
     }
 
     &:after {
@@ -67,7 +69,7 @@ const BannerContainerEmbla = styled.section`
 
 const Banner = () => {
   const { isMobileSize } = useRwd();
-  const [emblaBannerRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: true }, [
+  const [emblaBannerRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: true, align: "start" }, [
     Autoplay({ playOnInit: true, delay: 3000 }),
   ]);
   const { general } = useGeneralStore();
