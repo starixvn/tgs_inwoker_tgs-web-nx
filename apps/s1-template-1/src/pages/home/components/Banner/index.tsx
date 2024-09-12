@@ -10,16 +10,23 @@ import { DotButton, useDotButton } from "./dots";
 const BannerContainerEmbla = styled.section`
   --slide-height: 6rem;
   --column-size: 4;
-  --slide-size: 100%;
+  --slide-spacing: 1.6rem;
+
+
 
   position: relative;
-
+  .emble {
+    container-type: inline-size;
+    overflow-x: clip;
+    overflow: hidden;
+  }
   .embla__slide {
     position: relative;
     border-radius: 1.2rem;
 
     ${media.lg} {
       border-radius: 1.3rem;
+      flex: 0 0 calc(33% - 1.6rem);
     }
 
     &:after {
@@ -37,18 +44,17 @@ const BannerContainerEmbla = styled.section`
   .banner {
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 376/208;
+    aspect-ratio: 376/246;
 
     ${media.sm} {
-      aspect-ratio: 1200/375;
+      aspect-ratio: 388/254;
     }
   }
 
   .embla__controls {
-    position: absolute;
-    bottom: 1.6rem;
-    left: 50%;
-    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    margin: 1.6rem 0 2.4rem;
   }
 
   .embla__dots {
@@ -60,8 +66,8 @@ const BannerContainerEmbla = styled.section`
 
 const Banner = () => {
   const { isMobileSize } = useRwd();
-  const [emblaBannerRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ playOnInit: true, delay: 3000 }),
+  const [emblaBannerRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: true }, [
+    Autoplay({ playOnInit: true, delay: 10000 }),
   ]);
   const { general } = useGeneralStore();
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
@@ -74,7 +80,7 @@ const Banner = () => {
             <div className="embla__slide" key={index}>
               <img
                 className="banner"
-                src={isMobileSize ? banner.mobileurl : banner.desktopurl}
+                src={banner.mobileurl}
                 alt={banner.alt}
                 title={banner.title}
               />
