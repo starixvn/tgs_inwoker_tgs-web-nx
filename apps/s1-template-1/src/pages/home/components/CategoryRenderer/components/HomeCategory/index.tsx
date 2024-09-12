@@ -15,7 +15,7 @@ const DesktopContainer = styled.div`
   padding: 1.8rem 0;
 
   ${media.md} {
-    padding: 2.4rem 0;
+    padding: 4rem 0px 2.4rem;
   }
 `;
 
@@ -36,7 +36,7 @@ export const GameTypeTitle = styled.div`
   line-height: 1.5;
   display: flex;
   align-items: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 2rem;
   gap: 0.8rem;
 
   & > img {
@@ -84,11 +84,14 @@ const GameTypeContainer = styled.div`
   gap: 2.4rem;
 
   ${media.md} {
-    gap: 3.2rem;
+    gap: 5rem;
   }
 `;
 
 const ProviderItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: ${({ theme }) => theme.providerItemBackground};
   width: 11.3rem;
   height: 6rem;
@@ -101,6 +104,10 @@ const ProviderItem = styled.div`
 
 const Group = styled.div`
   position: relative;
+
+  .embla__container {
+    gap: 1.2rem;
+  }
 
   .embla__controls {
     position: absolute;

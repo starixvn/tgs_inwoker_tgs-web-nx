@@ -24,7 +24,7 @@ const PlayButton = styled.div`
 const PlayIcon = () => {
   return (
     <PlayButton>
-      <img src="/assets/images/common/icon-play.svg" title="Icon Play" alt="Icon Play" />
+      <img src="/assets/images/common/icon-play.svg" alt="Icon Play" />
     </PlayButton>
   );
 };

@@ -35,6 +35,9 @@ const GameCardContent = styled.div`
 `;
 
 const GameCardBg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 14rem;
   flex-shrink: 0;
   position: relative;
@@ -97,10 +100,10 @@ const HoverGameName = styled(GameCardContent)`
   top: 2rem;
   color: ${(props) => props.theme.white};
   font-size: 1.3rem;
-  font-style: normal;
   font-weight: 700;
   line-height: 1.2;
   text-align: center;
+  text-transform: capitalize;
 `;
 
 const ProviderName = styled.div`
