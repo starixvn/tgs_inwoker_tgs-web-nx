@@ -23,6 +23,7 @@ const BannerContainerEmbla = styled.section`
   .embla__slide {
     position: relative;
     border-radius: 1.2rem;
+    flex: 0 0 100%;
 
     ${media.lg} {
       border-radius: 1.3rem;
@@ -67,7 +68,7 @@ const BannerContainerEmbla = styled.section`
 const Banner = () => {
   const { isMobileSize } = useRwd();
   const [emblaBannerRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: true }, [
-    Autoplay({ playOnInit: true, delay: 10000 }),
+    Autoplay({ playOnInit: true, delay: 3000 }),
   ]);
   const { general } = useGeneralStore();
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
