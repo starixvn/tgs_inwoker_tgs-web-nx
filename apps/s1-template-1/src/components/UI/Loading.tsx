@@ -18,7 +18,7 @@ const LoadingContainer = styled.div<LoadingContainer>`
     opacity 0.2s linear,
     height 0.02s linear 0.2s;
   background-color: rgba(0, 0, 0, ${({ $opacity }: LoadingContainer) => $opacity});
-  ${({ $open }) => ($open ? "opacity:1;height: 100%;" : "opacity:0;height:0px;")};
+  ${({ $open }) => ($open ? "opacity:1;height: 100%;" : "display: none")};
   z-index: 9999;
 `;
 const Inner = styled.div`
