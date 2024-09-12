@@ -46,7 +46,7 @@ function JoinLobbyGame(gtype: string, gpcode: string) {
 function GetProviderList() {
   return ApiService.get(
     //@ts-ignore
-    `GameProvider/list?platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}`,
+    `GameProvider?platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}`,
   ) as unknown as Promise<GetProviderListResDto>;
 }
 
