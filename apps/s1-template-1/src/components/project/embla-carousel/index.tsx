@@ -9,7 +9,7 @@ interface IEmblaCarousel {
 
 const EmblaCarousel: React.FC<IEmblaCarousel> = (props: IEmblaCarousel) => {
   const { extraClassName, children } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ slidesToScroll: "auto" });
   const { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick } =
     usePrevNextButtons(emblaApi);
 
