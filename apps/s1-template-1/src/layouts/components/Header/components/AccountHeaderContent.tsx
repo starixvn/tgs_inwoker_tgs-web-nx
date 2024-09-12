@@ -1,6 +1,7 @@
 import Icon from "@/components/project/Icon";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { GreenGradientButton } from "@/components/UI/Button";
+import { AccountInfoIcon, DepositIcon, HistoryIcon, LogoutIcon, TransactionIcon, WithdrawIcon } from "@/components/UI/CustomizeIcon";
 import { Select } from "@/components/UI/Select";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 import { theme } from "@/theme";
@@ -175,16 +176,34 @@ const AccountHeaderContent = () => {
       >
         <MenuItem onClick={() => {
               history.push("/withdraw");
-            }}>Withdraw</MenuItem>
+            }}>
+          <WithdrawIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></WithdrawIcon>
+          Withdraw
+        </MenuItem>
         <MenuItem onClick={() => {
               history.push("/deposit");
-            }}>Deposit</MenuItem>
-        <MenuItem>Transation</MenuItem>
-        <MenuItem>Bet History</MenuItem>
+            }}>
+            <DepositIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></DepositIcon>
+            Deposit
+        </MenuItem>
+        <MenuItem>
+          <TransactionIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></TransactionIcon>
+          Transation
+        </MenuItem>
+        <MenuItem>
+          <HistoryIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></HistoryIcon>
+          Bet History
+        </MenuItem>
         <MenuItem onClick={() => {
               history.push("/profile");
-            }}>Account Info</MenuItem>
-        <MenuItem>Logout</MenuItem>
+            }}>
+            <AccountInfoIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></AccountInfoIcon>
+            Account Info
+        </MenuItem>
+        <MenuItem>
+          <LogoutIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></LogoutIcon>
+          Logout
+        </MenuItem>
       </Select>
       {isDesktopSize && <HeaderLanguageSwitch />}
     </>
