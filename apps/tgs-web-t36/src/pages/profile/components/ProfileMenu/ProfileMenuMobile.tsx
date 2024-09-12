@@ -42,31 +42,19 @@ const ProfileMenuMobile = () => {
         />
       </ProfileCard>
 
-      <ProfileCard>
-        {config.features.QQWeChat && (
-          <>
-            <ProfileRowInMobile
-              key={profileItemDictionary["qq"].key}
-              profileItem={profileItemDictionary["qq"]}
-              handleClick={handleClickProfileItem}
-            />
-            <ProfileRowInMobile
-              key={profileItemDictionary["wechat"].key}
-              profileItem={profileItemDictionary["wechat"]}
-              handleClick={handleClickProfileItem}
-            />
-          </>
-        )}
-        {customMessagingList.map((messagingItem) => {
-          return (
-            <ProfileRowInMobile
-              key={messagingItem.key}
-              profileItem={messagingItem}
-              handleClick={handleClickProfileItem}
-            />
-          );
-        })}
-      </ProfileCard>
+      {customMessagingList.length !== 0 && (
+        <ProfileCard>
+          {customMessagingList.map((messagingItem) => {
+            return (
+              <ProfileRowInMobile
+                key={messagingItem.key}
+                profileItem={messagingItem}
+                handleClick={handleClickProfileItem}
+              />
+            );
+          })}
+        </ProfileCard>
+      )}
 
       <ProfileCard>
         <ProfileRowInMobile
