@@ -162,7 +162,7 @@ const AccountHeaderContent = () => {
               color: theme.formInputColor,
             },         
             "& .MuiMenuItem-root": {
-              color: theme.formInputColor,
+              color: theme.formInputColor
             },
             "& .Mui-selected": {
               background: `${theme.dropDownItemSelectedBackground} !important`,
@@ -175,33 +175,33 @@ const AccountHeaderContent = () => {
       }}
       >
         <MenuItem onClick={() => {
-              history.push("/withdraw");
-            }}>
-          <WithdrawIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></WithdrawIcon>
+                history.push("/withdrawal");
+              }}>
+          <WithdrawIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></WithdrawIcon>
           Withdraw
         </MenuItem>
         <MenuItem onClick={() => {
               history.push("/deposit");
             }}>
-            <DepositIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></DepositIcon>
+            <DepositIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></DepositIcon>
             Deposit
         </MenuItem>
         <MenuItem>
-          <TransactionIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></TransactionIcon>
+          <TransactionIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></TransactionIcon>
           Transation
         </MenuItem>
         <MenuItem>
-          <HistoryIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></HistoryIcon>
+          <HistoryIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></HistoryIcon>
           Bet History
         </MenuItem>
         <MenuItem onClick={() => {
               history.push("/profile");
             }}>
-            <AccountInfoIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></AccountInfoIcon>
+            <AccountInfoIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></AccountInfoIcon>
             Account Info
         </MenuItem>
-        <MenuItem>
-          <LogoutIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px"}}></LogoutIcon>
+        <MenuItem onClick={handleClickLogout}>
+          <LogoutIcon sx={{ fill: `${theme.formInputColor}`, width: "18px", height: "18px", marginRight: "6px", position: "relative", top: "2px"}}></LogoutIcon>
           Logout
         </MenuItem>
       </Select>
