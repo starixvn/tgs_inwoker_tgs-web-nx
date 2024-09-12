@@ -1,15 +1,15 @@
-import Favorite from "@/pages/home/components/Favorite";
-import { media } from "@/theme/breakpoints";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameItem } from "@tgs-web-nx/types";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { MouseEvent, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
 import PlayIcon from "../PlayIcon";
+import { media } from "@/theme/breakpoints";
+import Favorite from "@/pages/home/components/Favorite";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
@@ -178,7 +178,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         {gameItem.tag.hot && <HotTag>Hot</HotTag>} */}
         {!isActive && (
           <MaintenanceBg>
-            <div className="maintenance-text">Be back soon</div>
+            <div className="maintenance-text">{i18n.t("common.bebacksoon")}</div>
           </MaintenanceBg>
         )}
       </GameCardContent>

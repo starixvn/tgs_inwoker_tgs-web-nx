@@ -1,4 +1,5 @@
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
 const LoadMoreWrapper = styled.div`
@@ -6,7 +7,7 @@ const LoadMoreWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;;
+  justify-content: center;
 `;
 
 const LoadMoreButton = styled.button`
@@ -20,7 +21,6 @@ const LoadMoreButton = styled.button`
   width: fit-content;
   cursor: pointer;
 `;
-
 
 const ProgressBar = styled.div`
   width: 150px;
@@ -37,22 +37,21 @@ const Caption = styled.div`
 `;
 
 const LoadMore = () => {
-  const {
-    pageIndex,
-    pageSize,
-    handleChangePageIndex
-  } = useHomeGameContext();
+  const { pageIndex, pageSize, handleChangePageIndex } = useHomeGameContext();
 
   const { total } = useGetNonLobbyCategoryList();
 
-    return ( 
-      total > (pageSize * pageIndex) &&
-        <LoadMoreWrapper>
-              <LoadMoreButton onClick={() => handleChangePageIndex(pageIndex + 1)}>Load More</LoadMoreButton>
-              <ProgressBar></ProgressBar>
-              <Caption>{`Shown ${pageIndex * pageSize} of ${total}`}</Caption>
-        </LoadMoreWrapper>
-    );
-    };
+  return (
+    total > pageSize * pageIndex && (
+      <LoadMoreWrapper>
+        <LoadMoreButton onClick={() => handleChangePageIndex(pageIndex + 1)}>
+          {i18n.t("common.loadmore")}
+        </LoadMoreButton>
+        <ProgressBar></ProgressBar>
+        <Caption>{`${i18n.t("common.shown")} ${pageIndex * pageSize} ${i18n.t("common.of")} ${total}`}</Caption>
+      </LoadMoreWrapper>
+    )
+  );
+};
 
 export default LoadMore;

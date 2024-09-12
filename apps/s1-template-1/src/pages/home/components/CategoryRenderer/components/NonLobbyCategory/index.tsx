@@ -9,6 +9,7 @@ import {
 } from "@tgs-web-nx/core/features";
 import { MenuItem, Select } from "@mui/material";
 import { providerStatus } from "@tgs-web-nx/constants";
+import LoadMore from "../LoadMore";
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
@@ -17,8 +18,6 @@ import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import SearchInput from "@/pages/home/components/SearchInput";
 import searchIcon from "@/assets/t29/images/home/search.svg";
 import { theme } from "@/theme";
-import LoadMore from "../LoadMore";
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -110,7 +109,7 @@ const NonLobbyCategory = () => {
     activeProviderFilterTag,
     searchString,
     handleChangeSearch,
-    activeGameTypeKey
+    activeGameTypeKey,
   } = useHomeGameContext();
   const hasMappingData = !!gameList.length;
   const { navPopupCategoryList } = useGetLobbyCategoryList();
@@ -182,8 +181,9 @@ const NonLobbyCategory = () => {
                   isActive={gameItem.isactive}
                   imageUrl={`${utility.imagePathGenerator(
                     `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
-                    isDesktopSize ? "@2x" : "@1x"
-                  }.webp`)}`}
+                      isDesktopSize ? "@2x" : "@1x"
+                    }.webp`,
+                  )}`}
                 />
               ))}
             {!hasMappingData && !isLoading && <div>No data</div>}
@@ -208,11 +208,11 @@ const NonLobbyCategory = () => {
                   gameItem={gameItem}
                   isActive={gameItem.isactive}
                   imageUrl={`${utility.imagePathGenerator(
-                  `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
-                  isDesktopSize ? "@2x" : "@1x"
-                }.webp`)}`}
+                    `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
+                      isDesktopSize ? "@2x" : "@1x"
+                    }.webp`,
+                  )}`}
                 />
-              
               ))}
             {!hasMappingData && !isLoading && <Text>No data</Text>}
           </DesktopCategoryContentWrapper>

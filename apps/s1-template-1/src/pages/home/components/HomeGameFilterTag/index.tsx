@@ -93,25 +93,25 @@ const HomeGameFilterTag = () => {
 
   const filterTagList: FilterTag[] = [
     {
-      name: "new",
+      name: i18n.t("common.new"),
       tagType: FilterTagTypeEnum.NEW,
       iconUrl: newIcon,
       activedUrl: activedNewIcon,
     },
     {
-      name: "favorite",
+      name: i18n.t("common.favorite"),
       tagType: FilterTagTypeEnum.FAVORITE,
       iconUrl: favoriteIcon,
       activedUrl: activedFavoriteIcon,
     },
     {
-      name: "hot",
+      name: i18n.t("common.hot"),
       tagType: FilterTagTypeEnum.HOT,
       iconUrl: hotIcon,
       activedUrl: activedHotIcon,
     },
     {
-      name: "recommend",
+      name: i18n.t("common.recommend"),
       tagType: FilterTagTypeEnum.RECOMMEND,
       iconUrl: recommendIcon,
       activedUrl: activedRecommendIcon,
@@ -185,7 +185,7 @@ const HomeGameFilterTag = () => {
               })}
             </Select>
             <SearchInput
-              placeholder={i18n.t("slot.search")}
+              placeholder={i18n.t("common.searchkeyword")}
               imageUrl={searchIcon}
               handleChange={handleChangeSearch}
               value={searchString}
