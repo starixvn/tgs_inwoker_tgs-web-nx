@@ -1,48 +1,40 @@
-import styled from "styled-components";
+import activedFavoriteIcon from "@/assets/t28/images/home/actived-favorite.svg";
+import activedHotIcon from "@/assets/t28/images/home/actived-hot.svg";
+import activedNewIcon from "@/assets/t28/images/home/actived-new.svg";
+import activedRecommendIcon from "@/assets/t28/images/home/actived-recommend.svg";
+import favoriteIcon from "@/assets/t28/images/home/favorite.svg";
+import hotIcon from "@/assets/t28/images/home/hot.svg";
+import newIcon from "@/assets/t28/images/home/new.svg";
+import recommendIcon from "@/assets/t28/images/home/recommend.svg";
+import { Select } from "@/components/UI/Select";
+import { media } from "@/theme/breakpoints";
+import MenuItem from "@mui/material/MenuItem";
+import { providerStatus } from "@tgs-web-nx/constants";
 import {
   FilterTag,
-  FilterTagTypeEnum,
   filterTagAll,
+  FilterTagTypeEnum,
   useAuth,
   useGetLobbyCategoryList,
   useHomeGameContext,
 } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
-import { providerStatus } from "@tgs-web-nx/constants";
-import { MenuItem, Select } from "@mui/material";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import CommonTag from "./CommonTag";
-import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t29/images/home/search.svg";
-import { media } from "@/theme/breakpoints";
-import hotIcon from "@/assets/t28/images/home/hot.svg";
-import newIcon from "@/assets/t28/images/home/new.svg";
-import recommendIcon from "@/assets/t28/images/home/recommend.svg";
-import favoriteIcon from "@/assets/t28/images/home/favorite.svg";
-//active
-import activedHotIcon from "@/assets/t28/images/home/actived-hot.svg";
-import activedNewIcon from "@/assets/t28/images/home/actived-new.svg";
-import activedRecommendIcon from "@/assets/t28/images/home/actived-recommend.svg";
-import activedFavoriteIcon from "@/assets/t28/images/home/actived-favorite.svg";
-import { theme } from "@/theme";
+import styled from "styled-components";
 
+//active
 const FilterTagWrapper = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-`;
+  margin-bottom: 1.2rem;
 
-const CommonTagContainer = styled.div`
-  border-radius: 100px;
-  gap: 12px;
-  display: flex;
-  align-items: center;
-  height: 37px;
-  overflow: auto;
+  ${media.sm} {
+    position: absolute;
+    top: 0;
+    right: 0;
+    justify-content: flex-end;
+  }
 `;
 
 export const SearchInputWrapper = styled.div`
@@ -50,6 +42,7 @@ export const SearchInputWrapper = styled.div`
   height: 50px;
   display: flex;
   gap: 10px;
+
   ${media.sm} {
     width: 410px;
     height: 100%;
@@ -57,12 +50,25 @@ export const SearchInputWrapper = styled.div`
 `;
 
 const CommonSearchWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   width: 100%;
-  display: flex;
   flex-wrap: wrap;
-  row-gap: 10px;
-  justify-content: space-between;
   align-items: center;
+  gap: 1.6rem;
+
+  .MuiInputBase-root {
+    min-width: initial;
+  }
+
+  ${media.sm} {
+    display: flex;
+    width: initial;
+
+    .MuiInputBase-root {
+      min-width: 20rem;
+    }
+  }
 `;
 
 const HomeGameFilterTag = () => {
@@ -129,69 +135,50 @@ const HomeGameFilterTag = () => {
     handleChangeActiveProviderFilterTag(newFilterTag);
   };
 
+  const sortList = ["Hot", "A-Z", "Z-A", "New"];
+
   return (
     <FilterTagWrapper>
       <CommonSearchWrapper>
-        <CommonTagContainer>
-          {validFilterTagList.map((filterTag) => {
+        <Select
+          onChange={(e) => handleSelectProvider(`${e.target.value}`)}
+          value={activeProviderFilterTag.name}
+          sx={{
+            minWidth: "20rem",
+          }}
+        >
+          {providerFilterTagList.map((filterTag) => {
+            const matchedProvider = navPopupCategoryList.find(
+              (provider) => provider.code === filterTag.gpCode,
+            );
+            const status = matchedProvider ? matchedProvider.status : -1;
+
             return (
-              <CommonTag
+              <MenuItem
                 key={filterTag.name}
-                text={filterTag.name}
-                iconUrl={filterTag.iconUrl}
-                activedUrl={filterTag.activedUrl}
-                isActive={filterTag.tagType === activeFilterTag.tagType}
-                onClick={() => onChangeCommonFilterTag(filterTag)}
-              />
+                value={filterTag.name}
+                disabled={status === providerStatus.Maintenance}
+              >
+                {filterTag.name}
+              </MenuItem>
             );
           })}
-        </CommonTagContainer>
-        {isDesktopSize && (
-          <SearchInputWrapper>
-            <Select
-              onChange={(e) => handleSelectProvider(e.target.value)}
-              value={activeProviderFilterTag.name}
-              sx={{
-                minWidth: "200px",
-                height: "39px",
-                backgroundColor: theme.secBTNBGC,
-                color: theme.text,
-                padding: "0 12px",
-                borderRadius: "50px",
-                "& .MuiSvgIcon-root": {
-                  color: theme.white,
-                },
-                "& .MuiOutlinedInput-notchedOutline": {
-                  border: "none",
-                },
-              }}
-            >
-              {providerFilterTagList.map((filterTag) => {
-                const matchedProvider = navPopupCategoryList.find(
-                  (provider) => provider.code === filterTag.gpCode,
-                );
-                const status = matchedProvider ? matchedProvider.status : -1;
-
-                return (
-                  <MenuItem
-                    key={filterTag.name}
-                    value={filterTag.name}
-                    sx={{ color: "black" }}
-                    disabled={status === providerStatus.Maintenance}
-                  >
-                    {filterTag.name}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-            <SearchInput
-              placeholder={i18n.t("common.searchkeyword")}
-              imageUrl={searchIcon}
-              handleChange={handleChangeSearch}
-              value={searchString}
-            />
-          </SearchInputWrapper>
-        )}
+        </Select>
+        <Select
+          onChange={(e) => {}}
+          value={"Hot"}
+          sx={{
+            minWidth: "20rem",
+          }}
+        >
+          {sortList.map((value, index) => {
+            return (
+              <MenuItem key={index} value={value}>
+                {value}
+              </MenuItem>
+            );
+          })}
+        </Select>
       </CommonSearchWrapper>
     </FilterTagWrapper>
   );

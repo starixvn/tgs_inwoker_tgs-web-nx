@@ -48,7 +48,7 @@ const BannerContainerEmbla = styled.section`
   .banner {
     width: 100%;
     max-width: 100%;
-    aspect-ratio: 371/203;
+    aspect-ratio: 376/209;
     border-radius: 1.2rem;
 
     ${media.sm} {

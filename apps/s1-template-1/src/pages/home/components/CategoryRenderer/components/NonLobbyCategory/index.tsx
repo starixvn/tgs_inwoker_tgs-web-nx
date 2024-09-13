@@ -1,23 +1,21 @@
-import styled from "styled-components";
-import { i18n, utility } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import Loading from "@/components/UI/Loading";
+import GameCard from "@/pages/home/components/GameCard";
+import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
+import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
+import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import {
   FilterTag,
   useGetLobbyCategoryList,
-  useHomeGameContext,
   useGetNonLobbyCategoryList,
+  useHomeGameContext,
 } from "@tgs-web-nx/core/features";
-import { MenuItem, Select } from "@mui/material";
-import { providerStatus } from "@tgs-web-nx/constants";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { i18n, utility } from "@tgs-web-nx/utils";
+import styled from "styled-components";
+
+import { GameTypeTitle } from "../HomeCategory/style";
 import LoadMore from "../LoadMore";
-import Loading from "@/components/UI/Loading";
-import GameCard from "@/pages/home/components/GameCard";
-import HomeGameFilterTag, { SearchInputWrapper } from "@/pages/home/components/HomeGameFilterTag";
-import { media } from "@/theme/breakpoints";
-import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import SearchInput from "@/pages/home/components/SearchInput";
-import searchIcon from "@/assets/t29/images/home/search.svg";
-import { theme } from "@/theme";
 
 const Wrapper = styled.div`
   display: flex;
@@ -76,12 +74,11 @@ const CategoryContent = styled.div`
 `;
 
 const DesktopWrapper = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* padding: 24px 0; */
-  /* align-items: center; */
 `;
 
 const Text = styled.div`
@@ -93,11 +90,16 @@ const Text = styled.div`
   font-weight: 700;
 `;
 
-const GameTitle = styled.div`
-  font-size: 28px;
-  font-weight: 510;
-  line-height: 31px;
-  letter-spacing: 0em;
+const GameList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  list-style: none;
+
+  li {
+    min-width: 14rem;
+    flex: 0 0 1.4rem;
+  }
 `;
 
 const NonLobbyCategory = () => {
@@ -123,102 +125,36 @@ const NonLobbyCategory = () => {
 
   return (
     <Wrapper>
-      {isMobileSize && (
-        <CategoryContentWrapper>
-          <FilterSection>
-            <HomeGameFilterTag />
-            <SearchInputWrapper>
-              <Select
-                onChange={(e) => handleSelectProvider(e.target.value)}
-                value={activeProviderFilterTag.name}
-                sx={{
-                  minWidth: "180px",
-                  height: "50px",
-                  backgroundColor: theme.secBTNBGC,
-                  color: theme.text,
-                  padding: "0 12px",
-                  borderRadius: "50px",
-                  "& .MuiSvgIcon-root": {
-                    color: theme.white,
-                  },
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    border: "none",
-                  },
-                }}
-              >
-                {providerFilterTagList.map((filterTag) => {
-                  const matchedProvider = navPopupCategoryList.find(
-                    (provider) => provider.code === filterTag.gpCode,
-                  );
-                  const status = matchedProvider ? matchedProvider.status : -1;
-
-                  return (
-                    <MenuItem
-                      key={filterTag.name}
-                      value={filterTag.name}
-                      sx={{ color: "black" }}
-                      disabled={status === providerStatus.Maintenance}
-                    >
-                      {filterTag.name}
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-              <SearchInput
-                placeholder={i18n.t("slot.search")}
-                imageUrl={searchIcon}
-                handleChange={handleChangeSearch}
-                value={searchString}
-              />
-            </SearchInputWrapper>
-          </FilterSection>
-          <CategoryContent>
+      <DesktopWrapper>
+        <HomeGameFilterTag />
+        <GameTypeTitle>
+          {activeGameTypeKey !== "fishing"
+            ? i18n.t(`common.${activeGameTypeKey}`)
+            : i18n.t(`common.fish`)}
+        </GameTypeTitle>
+        <DesktopCategoryContentWrapper>
+          <GameList>
             {hasMappingData &&
               gameList.map((gameItem) => (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${utility.imagePathGenerator(
-                    `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
-                      isDesktopSize ? "@2x" : "@1x"
-                    }.webp`,
-                  )}`}
-                />
-              ))}
-            {!hasMappingData && !isLoading && <div>{i18n.t("common.nodata")}</div>}
-          </CategoryContent>
-          <LoadMore></LoadMore>
-        </CategoryContentWrapper>
-      )}
-
-      {isDesktopSize && (
-        <DesktopWrapper>
-          <HomeGameFilterTag />
-          <GameTitle>
-            {activeGameTypeKey !== "fishing"
-              ? i18n.t(`common.${activeGameTypeKey}`)
-              : i18n.t(`common.fish`)}
-          </GameTitle>
-          <DesktopCategoryContentWrapper>
-            {hasMappingData &&
-              gameList.map((gameItem) => (
-                <GameCard
-                  key={gameItem.id}
-                  gameItem={gameItem}
-                  isActive={gameItem.isactive}
-                  imageUrl={`${utility.imagePathGenerator(
-                    `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
-                      isDesktopSize ? "@2x" : "@1x"
-                    }.webp`,
-                  )}`}
-                />
+                <li>
+                  <GameCard
+                    key={gameItem.id}
+                    gameItem={gameItem}
+                    isActive={gameItem.isactive}
+                    imageUrl={`${utility.imagePathGenerator(
+                      `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
+                        isDesktopSize ? "@2x" : "@1x"
+                      }.webp`,
+                    )}`}
+                  />
+                </li>
               ))}
             {!hasMappingData && !isLoading && <Text>{i18n.t("common.nodata")}</Text>}
-          </DesktopCategoryContentWrapper>
-          <LoadMore></LoadMore>
-        </DesktopWrapper>
-      )}
+          </GameList>
+        </DesktopCategoryContentWrapper>
+        <LoadMore></LoadMore>
+      </DesktopWrapper>
+
       <Loading show={isLoading} />
     </Wrapper>
   );
