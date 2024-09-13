@@ -1,15 +1,14 @@
 import styled from "styled-components";
 import CardIndicator from "./CardIndicator";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { contextType, RewardContext, useRwd } from "@tgs-web-nx/core/hooks";
 import React, { useContext } from "react";
-import { RewardContext } from "../index";
-import { RewardProps } from "../index";
+import { media } from "@tgs-web-nx/constants";
 
-const Container = styled.div<{ $media: RewardProps["media"] }>`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
-  ${({ $media }) => $media.sm} {
+  ${media.sm} {
     flex-direction: column;
   }
 `;
@@ -17,7 +16,6 @@ const Container = styled.div<{ $media: RewardProps["media"] }>`
 const StateContainer = styled.div<{
   $color: string;
   $complete: boolean;
-  $media: RewardProps["media"];
 }>`
   display: flex;
   flex-shrink: 0;
@@ -26,7 +24,7 @@ const StateContainer = styled.div<{
   gap: 16px;
   color: ${({ theme, $color }) => $color};
 
-  ${({ $media }) => $media.sm} {
+  ${media.sm} {
     flex-direction: row;
     align-items: center;
   }
@@ -77,14 +75,15 @@ const Line = styled.div`
   background: #e7f1fb;
 `;
 
-const RewardCard = React.memo((props: { index: number; state: boolean }) => {
+const RewardCard = React.memo((props: any) => {
   const { isDesktopSize, isMobileSize } = useRwd();
-  const context = useContext(RewardContext);
+  const context = useContext(RewardContext) as contextType;
   const { mainBg, indicatorBg, bonusBg } = context.colors;
+
   return (
-    <Container $media={context.media}>
-      <StateContainer $color={indicatorBg} $complete={props.state} $media={context.media}>
-        <CardIndicator $color={indicatorBg} $complete={props.state} />
+    <Container>
+      <StateContainer $color={indicatorBg} $complete={props.finish}>
+        <CardIndicator $color={indicatorBg} $complete={props.finish} />
         {isMobileSize && (
           <LineContainer>
             <Line />
@@ -94,13 +93,13 @@ const RewardCard = React.memo((props: { index: number; state: boolean }) => {
         {isDesktopSize && (
           <div>
             <span>{(props.index + 1).toString().padStart(2, "0")}</span>
-            <span>狀態</span>
+            <span>{props.finish ? "已完成" : "未完成"}</span>
           </div>
         )}
       </StateContainer>
       <AccountBetDeposit $bg={mainBg}>
-        <div>Valid bet ₱0.00 / 500.00</div>
-        <div>Deposit ₱0.00 / 500.00</div>
+        <div>{`Valid bet $${props.currentBet} / $${props.targetBet}`}</div>
+        <div>{`Deposit  $${props.currentDeposit} / $${props.targetDeposit}`}</div>
         <BonusContainer $bonusBg={bonusBg}>Bonus: ₱5.00</BonusContainer>
       </AccountBetDeposit>
     </Container>

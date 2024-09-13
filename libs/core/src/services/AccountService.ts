@@ -304,6 +304,58 @@ function checkPhoneDuplicate(area: string, phone: string) {
   }) as unknown;
 }
 
+const getMilestoneList = async () => {
+  // const res = await ApiService.get("agent/info");
+  return [
+    {
+      id: 1,
+      title: "Slots Weekly Ranking",
+      date: "2024.08.25~2024.09.01",
+      current: 0,
+      complete: 3,
+      rewards: [
+        {
+          currentBet: 100,
+          targetBet: 100,
+          currentDeposit: 100,
+          targetDeposit: 100,
+          finish: true,
+        },
+        {
+          currentBet: 100,
+          targetBet: 1000,
+          currentDeposit: 100,
+          targetDeposit: 1000,
+          finish: false,
+        },
+        {
+          currentBet: 100,
+          targetBet: 1000,
+          currentDeposit: 100,
+          targetDeposit: 1000,
+          finish: false,
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "SPORT Weekly Ranking",
+      date: "2024.08.25~2024.09.01",
+      current: 1,
+      complete: 4,
+      rewards: [
+        {
+          currentBet: 100,
+          targetBet: 1000,
+          currentDeposit: 100,
+          targetDeposit: 1000,
+          finish: false,
+        },
+      ],
+    },
+  ];
+};
+
 export const AccountService = {
   CheckUserName,
   Login,
@@ -342,4 +394,5 @@ export const AccountService = {
   UpdateEmailV2,
   registerV2SetRealName,
   checkPhoneDuplicate,
+  getMilestoneList,
 };

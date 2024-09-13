@@ -1,5 +1,6 @@
 import Loading from "./Loading";
 import Wagering from "./Wagering";
-import Reward from "./Reward/index";
+import MilestoneList from "./MilestoneList/index";
+import MilestonePromotionList from "./MilestonePromotionList/index";
 
-export { Loading, Wagering, Reward };
+export { Loading, Wagering, MilestoneList, MilestonePromotionList };
