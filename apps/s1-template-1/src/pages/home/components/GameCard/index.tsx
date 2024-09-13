@@ -26,6 +26,7 @@ const CardHoverBg = styled.div`
   border-radius: 1.2rem;
   background: ${({ theme }) => theme.gameCardBackgroundHover};
   backdrop-filter: blur(0.2rem);
+  transition: opacity 0.15s linear;
   opacity: 0;
 `;
 
@@ -58,6 +59,12 @@ const GameCardBg = styled.div`
     flex-shrink: 0;
 
     &:hover {
+      border: 2px solid #fff;
+
+      .game-icon {
+        transform: scale(1.07);
+      }
+
       ${CardHoverBg} {
         opacity: 1;
       }

@@ -125,10 +125,7 @@ export const theme = {
   announceBackground: "rgba(65, 90, 124, 0.50)",
 
   // Play button on game icon
-  playButtonBackground: "#b0003f",
-  playButtonBottomBorderColor: "#6a0026",
-  playButtonShadow: "0 0.4rem 0.4rem 0 rgba(255, 255, 255, 0.25) inset",
-  playButtonShadowHover: "0 0.4rem 0.4rem 0 rgba(255, 255, 255, 0.25) inset, 0 0 1.5rem #f64b89",
+  playButtonBackground: "rgba(0, 0, 0, 0.5)",
 
   // Home page
   slideNextButtonBackground: "#465262",
@@ -146,6 +143,6 @@ export const theme = {
   // Game Card
   gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",
   gameCardGameNameColor: "#fff",
-  gameCardBackgroundHover: "rgba(6, 0, 74, 0.8)",
+  gameCardBackgroundHover: "rgba(0, 0, 0, 0.6)",
   gameCardAspectRatio: "156 / 210",
 };
