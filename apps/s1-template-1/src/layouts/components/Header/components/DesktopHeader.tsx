@@ -1,12 +1,7 @@
 import Marquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
-import {
-  DESKTOP_HEADER_HEIGHT,
-  MAIN_CONTENT_MAX_WIDTH,
-  MOBILE_HEADER_HEIGHT,
-} from "@/theme/constants";
-import { useAccountStore, useGeneralStore, useUiStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -14,9 +9,9 @@ import styled from "styled-components";
 import AccountHeaderContent from "./AccountHeaderContent";
 import AnonymousHeaderContent from "./AnonymousHeaderContent";
 
-const HeaderContainer = styled.div<{ hasAnnouncement: boolean }>`
+const HeaderContainer = styled.div`
   position: sticky;
-  top: ${({ hasAnnouncement }) => (hasAnnouncement ? "-4.1rem" : 0)};
+  top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -25,11 +20,6 @@ const HeaderContainer = styled.div<{ hasAnnouncement: boolean }>`
   height: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
   z-index: 10;
-
-  ${media.sm} {
-    top: 0;
-    height: ${DESKTOP_HEADER_HEIGHT};
-  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -69,13 +59,8 @@ const DesktopHeader = () => {
   const {
     general: { brand },
   } = useGeneralStore();
-  const { isMobileSize, isDesktopSize } = useRwd();
   const history = useHistory();
   const noLoginAccount = account.token !== account.info.token;
-  const {
-    ui: { marquees },
-  } = useUiStore();
-  const hasAnnouncement = (marquees && marquees.length > 0) ?? false;
 
   // Todo
   // using asset site
@@ -85,8 +70,7 @@ const DesktopHeader = () => {
   if (!logoUrl) return null;
   return (
     <>
-      <HeaderContainer hasAnnouncement={hasAnnouncement}>
-        {isMobileSize && <Marquee />}
+      <HeaderContainer>
         <HeaderWrapper>
           <LogoWrapper>
             <img
@@ -104,7 +88,7 @@ const DesktopHeader = () => {
           </HeaderContentContainer>
         </HeaderWrapper>
       </HeaderContainer>
-      {isDesktopSize && <Marquee />}
+      <Marquee />
     </>
   );
 };

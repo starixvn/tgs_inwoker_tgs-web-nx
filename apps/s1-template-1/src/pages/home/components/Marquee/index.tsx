@@ -17,7 +17,6 @@ const MarqueeContainer = styled.div`
   font-size: 1.3rem;
   padding: 0 0.8rem;
   color: ${({ theme }) => theme.announceTextColor};
-  background: ${({ theme }) => theme.announceBackground};
   flex-shrink: 0;
 
   ${media.sm} {

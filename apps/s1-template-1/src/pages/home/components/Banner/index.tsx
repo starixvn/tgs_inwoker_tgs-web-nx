@@ -13,11 +13,6 @@ const BannerContainerEmbla = styled.section`
   --slide-spacing: 0;
 
   position: relative;
-  padding-top: 1.6rem;
-
-  ${media.sm} {
-    padding-top: 0;
-  }
 
   .emble {
     container-type: inline-size;
