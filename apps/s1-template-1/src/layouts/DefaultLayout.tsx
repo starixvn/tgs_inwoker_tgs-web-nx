@@ -1,4 +1,3 @@
-import BottomAppBar from "@/layouts/components/BottomAppBar";
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
 import { BOTTOM_APP_BAR_HEIGHT, MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
@@ -62,7 +61,7 @@ const DefaultLayout = ({ children }: Props) => {
         </ContentWrapper>
       </DashboardContainer>
       <Footer />
-      {isMobileSize && loginAccount && <BottomAppBar />}
+      {/* {isMobileSize && loginAccount && <BottomAppBar />} */}
     </DefaultLayoutContainer>
   );
 };

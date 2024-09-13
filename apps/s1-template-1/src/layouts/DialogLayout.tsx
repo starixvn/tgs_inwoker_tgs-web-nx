@@ -1,12 +1,11 @@
-import React, { useCallback } from "react";
-import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { usePageName } from "@tgs-web-nx/core/features";
-import { useHistory } from "react-router-dom";
-import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
-import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
 import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
-import BottomAppBar from "@/layouts/components/BottomAppBar";
+import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
+import { BOTTOM_APP_BAR_HEIGHT } from "@/theme/constants";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
@@ -45,7 +44,7 @@ const DialogLayout = ({ children }: Props) => {
 
       <ContentWrapper>{children}</ContentWrapper>
 
-      <BottomAppBar />
+      {/* <BottomAppBar /> */}
     </DialogLayoutContainer>
   );
 };
