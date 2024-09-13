@@ -2,7 +2,7 @@ import { Button as MuiButton, styled as muiStyled } from "@mui/material";
 import { getFormatAmount, i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
-import { GameContainer, GameTypeTitle } from "../..";
+import { GameContainer, GameTypeTitle } from "../../style";
 
 const RecentBigWinsSection = styled.div`
   position: relative;
