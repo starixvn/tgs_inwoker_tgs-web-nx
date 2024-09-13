@@ -1,6 +1,6 @@
 import Header from "@/layouts/components/Header";
 import { media } from "@/theme/breakpoints";
-import { BOTTOM_APP_BAR_HEIGHT, MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useAccountStore, useUiStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
@@ -31,14 +31,6 @@ const ContentWrapper = styled.div`
   width: 100%;
 `;
 
-const ChildrenWrapper = styled.div`
-  padding-bottom: ${BOTTOM_APP_BAR_HEIGHT};
-
-  ${media.sm} {
-    padding-bottom: 0;
-  }
-`;
-
 type Props = {
   children: React.ReactNode;
 };
@@ -57,7 +49,7 @@ const DefaultLayout = ({ children }: Props) => {
 
       <DashboardContainer hasAnnouncement={hasAnnouncement}>
         <ContentWrapper>
-          <ChildrenWrapper>{children}</ChildrenWrapper>
+          <div>{children}</div>
         </ContentWrapper>
       </DashboardContainer>
       <Footer />

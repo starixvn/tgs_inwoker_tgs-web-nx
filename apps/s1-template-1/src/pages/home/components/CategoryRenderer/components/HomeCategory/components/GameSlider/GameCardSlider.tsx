@@ -23,8 +23,6 @@ const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
     <>
       {data.length === 0 && <NoGame></NoGame>}
       {data.map((gameItem, index) => {
-        const customeGameIconName = gameItem.code.replace("---mobile", "");
-
         return (
           <div className="embla__slide" key={index}>
             <GameCard
@@ -32,7 +30,7 @@ const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
               gameItem={gameItem}
               isActive={gameItem.isactive}
               imageUrl={`${utility.imagePathGenerator(
-                `${gameItem.gpcode.toLowerCase()}/en-US/${customeGameIconName}${
+                `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
                   isDesktopSize ? "@2x" : "@1x"
                 }.webp`,
               )}`}

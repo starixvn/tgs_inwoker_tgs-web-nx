@@ -12,9 +12,9 @@ const BannerContainerEmbla = styled.section`
   --column-size: 4;
   --slide-spacing: 0;
 
-
-
   position: relative;
+  padding-top: 1.6rem;
+
   .emble {
     container-type: inline-size;
     overflow-x: clip;
@@ -23,7 +23,6 @@ const BannerContainerEmbla = styled.section`
   .embla__slide {
     position: relative;
     flex: 0 0 100%;
-    
 
     ${media.sm} {
       flex: 0 0 calc(33% - 8px);
@@ -56,7 +55,7 @@ const BannerContainerEmbla = styled.section`
   .embla__controls {
     display: flex;
     justify-content: center;
-    margin: 1.6rem 0 .6rem;
+    margin: 1.6rem 0 0.6rem;
     ${media.sm} {
       margin-bottom: 1.8rem;
     }
@@ -70,7 +69,7 @@ const BannerContainerEmbla = styled.section`
 
   .embla__dot {
     width: 1.4rem;
-    height: .7rem;
+    height: 0.7rem;
     border-radius: 2rem;
   }
   .embla__dot--selected {
@@ -81,9 +80,10 @@ const BannerContainerEmbla = styled.section`
 
 const Banner = () => {
   const { isMobileSize } = useRwd();
-  const [emblaBannerRef, emblaApi] = useEmblaCarousel({ loop: true, skipSnaps: true, align: "start" }, [
-    Autoplay({ playOnInit: true, delay: 3000 }),
-  ]);
+  const [emblaBannerRef, emblaApi] = useEmblaCarousel(
+    { loop: true, skipSnaps: true, align: "start" },
+    [Autoplay({ playOnInit: true, delay: 3000 })],
+  );
   const { general } = useGeneralStore();
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 

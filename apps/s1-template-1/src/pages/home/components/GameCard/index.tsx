@@ -1,3 +1,5 @@
+import Favorite from "@/pages/home/components/Favorite";
+import { media } from "@/theme/breakpoints";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -8,23 +10,21 @@ import { useHistory } from "react-router";
 import styled from "styled-components";
 
 import PlayIcon from "../PlayIcon";
-import { media } from "@/theme/breakpoints";
-import Favorite from "@/pages/home/components/Favorite";
 
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
   position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
+  bottom: -1px;
+  right: -1px;
+  left: -1px;
+  top: -1px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   border-radius: 1.2rem;
-  background: rgba(6, 0, 74, 0.8);
+  background: ${({ theme }) => theme.gameCardBackgroundHover};
   backdrop-filter: blur(0.2rem);
   opacity: 0;
 `;
@@ -32,6 +32,8 @@ const CardHoverBg = styled.div`
 const GameCardContent = styled.div`
   width: 100%;
   height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 `;
 
 const GameCardBg = styled.div`
@@ -44,9 +46,8 @@ const GameCardBg = styled.div`
   cursor: pointer;
   aspect-ratio: 140 / 189;
   border-radius: 1.2rem;
-  background: linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%);
+  background: ${({ theme }) => theme.gameCardBackground};
   backdrop-filter: blur(2px);
-  overflow: hidden;
 
   .game-icon {
     width: 100%;
@@ -55,6 +56,7 @@ const GameCardBg = styled.div`
 
   ${media.sm} {
     flex-shrink: 0;
+
     &:hover {
       ${CardHoverBg} {
         opacity: 1;
@@ -99,7 +101,7 @@ const MaintenanceBg = styled.div`
 const HoverGameName = styled(GameCardContent)`
   position: absolute;
   top: 2rem;
-  color: ${(props) => props.theme.white};
+  color: ${({ theme }) => theme.gameCardGameNameColor};
   font-size: 1.3rem;
   font-weight: 700;
   line-height: 1.2;
@@ -116,6 +118,7 @@ const ProviderName = styled.div`
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
+  color: ${({ theme }) => theme.gameCardGameNameColor};
 `;
 
 type GameCardProps = {

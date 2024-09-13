@@ -142,4 +142,9 @@ export const theme = {
   maintenanceBackground: "rgba(3, 10, 20, 0.5)",
   maintenanceLabelBackground: "#b0003f",
   maintenanceLabelColor: "#fff",
+
+  // Game Card
+  gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",
+  gameCardGameNameColor: "#fff",
+  gameCardBackgroundHover: "rgba(6, 0, 74, 0.8)",
 };
