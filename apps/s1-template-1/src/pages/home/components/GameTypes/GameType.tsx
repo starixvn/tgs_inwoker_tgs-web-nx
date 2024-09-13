@@ -51,8 +51,8 @@ const Wrapper = styled.div<{
     height: 3.2rem;
 
     ${media.lg} {
-      width: 4.2rem;
-      height: 4.2rem;
+      width: 3.8rem;
+      height: 3.8rem;
     }
   }
 `;

@@ -14,10 +14,10 @@ import PlayIcon from "../PlayIcon";
 // -------- hover effect for desktop--------------
 const CardHoverBg = styled.div`
   position: absolute;
-  bottom: -1px;
-  right: -1px;
-  left: -1px;
-  top: -1px;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

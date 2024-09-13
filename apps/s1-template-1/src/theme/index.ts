@@ -42,10 +42,10 @@ export const theme = {
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
-  categoryBackground: "linear-gradient(180deg, #2b3f5b 0%, #203757 100%)",
-  categoryBackgroundActive: "linear-gradient(180deg, #A0B60F 0%, #6C7B0A 100%)",
-  categoryBackgroundHover: "linear-gradient(180deg, #344D71 0%, #2A3E5B 100%)",
-  categoryBorder: "#161f2c",
+  categoryBackground: "#1C2532",
+  categoryBackgroundActive: "#849709",
+  categoryBackgroundHover: "#2B394E",
+  categoryBorder: "#161F2C",
 
   // Recent Big Wins
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
