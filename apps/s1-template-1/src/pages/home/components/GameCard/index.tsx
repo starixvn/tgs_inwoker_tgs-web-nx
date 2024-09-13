@@ -62,7 +62,7 @@ const GameCardBg = styled.div`
       border: 2px solid #fff;
 
       .game-icon {
-        transform: scale(1.07);
+        transform: scale(1.1);
       }
 
       ${CardHoverBg} {
