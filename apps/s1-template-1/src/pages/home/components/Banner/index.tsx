@@ -15,6 +15,10 @@ const BannerContainerEmbla = styled.section`
   position: relative;
   padding-top: 1.6rem;
 
+  ${media.sm} {
+    padding-top: 0;
+  }
+
   .emble {
     container-type: inline-size;
     overflow-x: clip;
@@ -25,6 +29,11 @@ const BannerContainerEmbla = styled.section`
     flex: 0 0 100%;
 
     ${media.sm} {
+      flex: 0 0 calc(50% - 8px);
+      margin-right: 1.6rem;
+    }
+
+    ${media.md} {
       flex: 0 0 calc(33% - 8px);
       margin-right: 1.6rem;
     }

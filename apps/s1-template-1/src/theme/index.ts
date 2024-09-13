@@ -147,4 +147,5 @@ export const theme = {
   gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",
   gameCardGameNameColor: "#fff",
   gameCardBackgroundHover: "rgba(6, 0, 74, 0.8)",
+  gameCardAspectRatio: "156 / 210",
 };

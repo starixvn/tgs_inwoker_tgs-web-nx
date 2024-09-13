@@ -18,7 +18,7 @@ const GameTypesEmbla = styled.section`
   &.game-types {
     position: sticky;
     top: ${MOBILE_HEADER_HEIGHT};
-    z-index: 1001;
+    z-index: 9;
     padding: 1.6rem 0;
     background-color: ${({ theme }) => theme.mainBackground};
 

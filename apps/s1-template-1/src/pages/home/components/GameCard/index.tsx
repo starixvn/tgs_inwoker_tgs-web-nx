@@ -40,18 +40,18 @@ const GameCardBg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 14rem;
+  width: 100%;
   flex-shrink: 0;
   position: relative;
   cursor: pointer;
-  aspect-ratio: 140 / 189;
+  aspect-ratio: ${({ theme }) => theme.gameCardAspectRatio};
   border-radius: 1.2rem;
   background: ${({ theme }) => theme.gameCardBackground};
   backdrop-filter: blur(2px);
 
   .game-icon {
     width: 100%;
-    aspect-ratio: 140 / 189;
+    aspect-ratio: ${({ theme }) => theme.gameCardAspectRatio};
   }
 
   ${media.sm} {
