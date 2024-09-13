@@ -97,12 +97,14 @@ const Banner = () => {
         <div className="embla__container">
           {general.banner.map((banner, index) => (
             <div className="embla__slide" key={index}>
-              <img
-                className="banner"
-                src={banner.mobileurl}
-                alt={banner.alt}
-                title={banner.title}
-              />
+              <a href={banner.navurl}>
+                <img
+                  className="banner"
+                  src={banner.mobileurl}
+                  alt={banner.alt}
+                  title={banner.title}
+                />
+              </a>
             </div>
           ))}
         </div>
