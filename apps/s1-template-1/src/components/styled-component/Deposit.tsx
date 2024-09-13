@@ -41,7 +41,6 @@ export const AmountHint = styled.div`
   color: ${({ theme }) => theme.text};
   font-size: 0.937rem;
   font-weight: 400;
-  margin-top: 9px;
   text-align: center;
   max-width: 500px;
 `;

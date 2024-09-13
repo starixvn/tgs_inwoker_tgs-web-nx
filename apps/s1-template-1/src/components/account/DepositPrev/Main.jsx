@@ -37,7 +37,6 @@ const BadgeContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 1.2rem;
-  margin-bottom: 12px;
 `;
 
 const LabelContainer = styled(ProfileLabelContainer)`
@@ -53,7 +52,7 @@ const LabelLargeContainer = styled(LabelContainer)`
   font-size: 1.6rem;
   float: unset;
   letter-spacing: 0.32px;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.2rem;
 `;
 
 const WarningText = styled.div`
@@ -72,14 +71,21 @@ const QRCodeBounding = styled.div`
   width: 9rem;
   height: 9rem;
   justify-content: center;
-  float: left;
   margin-right: 1.2rem;
-  position: relative;
-  top: .8rem;
 `;
 
 const AccountInfo = styled.div`
-  margin-top: .6rem;
+  display: flex;
+  align-items: center;
+  margin-top: -1rem;
+`;
+
+const ChannelExtend = styled.div`
+  display: block;
+`;
+
+const ChannelExtendTitle = styled(LabelLargeContainer)`
+  margin-bottom: -.2rem;
 `;
 
 class Main extends Component {
@@ -174,9 +180,9 @@ class Main extends Component {
                 value={this.props.selectedBankCard}
                 onChange={(e) => this.props.handleBankCardChange(e)}
               >
-                <option value="" disabled>
+                {/* <option value="" disabled>
                   {i18n.t("idr1.pleaseEnterAccountName")}
-                </option>
+                </option> */}
                 {this.props.bankCardList.map((item, index) => {
                   return (
                     <MenuItem value={item.id} key={index}>
@@ -191,7 +197,7 @@ class Main extends Component {
 
         {/*请选择支付渠道*/}
         {!(config.features.Deposit_HideDepositChannel || config.features.Deposit_AddCard) && (
-          <ItemContainer style={{ marginBottom: "0" }}>
+          <ItemContainer>
             <LabelLargeContainer>{i18n.t("deposit.msgPlsSelectMethod")}</LabelLargeContainer>
             <FormControl variant="outlined">
               <Select
@@ -213,84 +219,50 @@ class Main extends Component {
         )}
 
         {/*轉帳賬戶*/}
-        {(() => {
-          if (config.features.Deposit_AddCard && this.props.selectedBankCard !== "") {
-            if (!methodCode("BANKTRANSFER") && !methodCode("EWALLET") && !methodCode("PULSA")) {
-              return null;
-            }
 
-            return (
-              <ItemContainer>
-                {/* <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer> */}
-                <AccountInfo>
-                  {methodCode("BANKTRANSFER") && (
-                    <InfoContainer>
-                      <TransferLabel>{i18n.t("deposit.details.bank")}:</TransferLabel>
-                      {channel.channelname && (
-                        <>
-                          <TransferValue>{channel.channelname}</TransferValue>
-                          <CopyIcon copyContent={channel.channelname} />
-                        </>
-                      )}
-                    </InfoContainer>
-                  )}
-
-                  {methodCode("BANKTRANSFER") && (
-                    <InfoContainer>
-                      <TransferLabel>{i18n.t("deposit.accName")}:</TransferLabel>
-                      {channelExtend.name && (
-                        <>
-                          <TransferValue>{channelExtend.name}</TransferValue>
-                          <CopyIcon copyContent={channelExtend.name} />
-                        </>
-                      )}
-                    </InfoContainer>
-                  )}
-                </AccountInfo>
-
-                {methodCode("BANKTRANSFER") && (
-                  <InfoContainer>
-                    <TransferLabel>{i18n.t("deposit.cardNum")}:</TransferLabel>
-                    {channelExtend.bankAccount && (
-                      <>
-                        <TransferValue>{channelExtend.bankAccount}</TransferValue>
-                        <CopyIcon copyContent={channelExtend.bankAccount} />
-                      </>
-                    )}
-                  </InfoContainer>
-                )}
-                {(methodCode("EWALLET") || methodCode("PULSA")) && (
-                  <InfoContainer>
-                    <TransferLabel>{i18n.t("deposit.phone")}:</TransferLabel>
-                    {channelExtend.phone && (
-                      <>
-                        <TransferValue>{channelExtend.phone}</TransferValue>
-                        <CopyIcon copyContent={channelExtend.phone} />
-                      </>
-                    )}
-                  </InfoContainer>
-                )}
-                {methodCode("EWALLET") && (
-                  <InfoContainer>
-                    <TransferLabel>{i18n.t("deposit.eWalletAccount")}:</TransferLabel>
-                    {channelExtend.eMoneyName && (
-                      <>
-                        <TransferValue>{channelExtend.eMoneyName}</TransferValue>
-                        <CopyIcon copyContent={channelExtend.eMoneyName} />
-                      </>
-                    )}
-                  </InfoContainer>
-                )}
-              </ItemContainer>
-            );
-          }
-        })()}
 
         {(() => {
           const generateDisplayContent = (content) => {
             const displaysequence = ["name", "address", "bankAccount", "eMoneyName", "phone"];
-
-            return Object.keys(content)
+            const logo = Object.keys(content).find(key => content[key].includes("http"));
+            if(logo) {
+              return (
+                <>
+                <QRCodeBounding>
+                  <QRCodeImg
+                    src={content[logo]}
+                    alt={content[logo]}
+                    style={{ marginBottom: "10px" }}
+                  />
+                </QRCodeBounding>
+                 <ChannelExtend style={{width: logo ? 'calc(100% - 9rem)' : '100%'}}>
+                  <ChannelExtendTitle>Transfer To</ChannelExtendTitle>
+                  {Object.keys(content)
+                    .sort((a, b) => {
+                      return displaysequence.indexOf(a) - displaysequence.indexOf(b);
+                    })
+                    .map((key, index) => {
+                      if (content[key] !== "" && content[key]) {
+                        if (typeof content[key] === "number") {
+                          return null;
+                        } else if(!content[key].includes("http")) {
+                          return (
+                            <InfoContainer key={index}>
+                              <TransferLabel>{i18n.t("extended." + [key])}:</TransferLabel>
+                              <TransferValue>{content[key]}</TransferValue>
+                              <CopyIcon copyContent={content[key]} />
+                            </InfoContainer>
+                          )
+                        }
+                      }
+                    })}
+                 </ChannelExtend>
+                 
+                 </>
+              )
+            }
+            else {
+              return Object.keys(content)
               .sort((a, b) => {
                 return displaysequence.indexOf(a) - displaysequence.indexOf(b);
               })
@@ -298,17 +270,6 @@ class Main extends Component {
                 if (content[key] !== "" && content[key]) {
                   if (typeof content[key] === "number") {
                     return null;
-                  } else if (content[key].includes("http")) {
-                    return (
-                      <QRCodeBounding>
-                        <QRCodeImg
-                          key={index}
-                          src={content[key]}
-                          alt={content[key]}
-                          style={{ marginBottom: "10px" }}
-                        />
-                      </QRCodeBounding>
-                    );
                   } else {
                     return (
                       <InfoContainer key={index}>
@@ -320,6 +281,9 @@ class Main extends Component {
                   }
                 }
               });
+            }
+           
+            
           };
 
           if (
@@ -483,7 +447,7 @@ class Main extends Component {
 
         {/*請輸入存款金額*/}
         <ItemContainer>
-          <LabelContainer>{i18n.t("deposit.depositAmount")}</LabelContainer>
+          <LabelLargeContainer>{i18n.t("deposit.depositAmount")}</LabelLargeContainer>
           <FormControl variant="outlined">
             <TextField
               fullWidth
