@@ -93,7 +93,7 @@ const TransactionDetailTable = ({
                 color: `${theme.text} !important`,
               }}
             >
-              <>{i18n.t("Game Provider Name")}</>
+              <>{i18n.t("Game Provider")}</>
             </TableCell>
             <TableCell
               align={"right"}
@@ -131,7 +131,7 @@ const TransactionDetailTable = ({
           {transactionDetails
             // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((transactionDetail) => {
-              const { id, createdOn, betAmount, winLoss, gameProviderName, commission, status } =
+              const { id, createdOn, betAmount, winLoss, gameProviderName, status } =
                 transactionDetail;
 
               const date = moment(createdOn).format("YYYY-MM-DD hh:mm a");
@@ -156,7 +156,6 @@ const TransactionDetailTable = ({
                   <TableCell align={"right"}>{betAmount}</TableCell>
                   <TableCell align={"right"}>
                     <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
-                    <div>{commission}</div>
                   </TableCell>
                   <TableCell
                     align={"right"}

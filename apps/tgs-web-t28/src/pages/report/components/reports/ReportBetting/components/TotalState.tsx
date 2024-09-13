@@ -10,7 +10,7 @@ type Props = {
 };
 
 const TotalState = ({ roundTotal }: Props) => {
-  const { betAmount, validBetAmount, winLoss } = roundTotal;
+  const { betAmount, winLoss } = roundTotal;
   return (
     config.features.Report_ShowRoundsTotal &&
     roundTotal && (
