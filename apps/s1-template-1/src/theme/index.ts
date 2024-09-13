@@ -44,6 +44,8 @@ export const theme = {
   // Category
   categoryBackground: "linear-gradient(180deg, #2b3f5b 0%, #203757 100%)",
   categoryBackgroundActive: "linear-gradient(180deg, #A0B60F 0%, #6C7B0A 100%)",
+  categoryBackgroundHover: "linear-gradient(180deg, #344D71 0%, #2A3E5B 100%)",
+  categoryBorder: "#161f2c",
 
   // Recent Big Wins
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",

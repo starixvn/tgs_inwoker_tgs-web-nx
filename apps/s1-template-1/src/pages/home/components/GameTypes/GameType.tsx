@@ -32,12 +32,13 @@ const Wrapper = styled.div<{
   padding: 0.8rem 1.6rem;
   cursor: pointer;
   border-radius: 1rem;
+  border: 1px solid ${({ theme }) => theme.categoryBorder};
   background: ${({ theme, $isActive }) =>
     $isActive ? theme.categoryBackgroundActive : theme.categoryBackground};
 
   ${media.sm} {
     &:hover {
-      background: ${({ theme }) => theme.categoryBackgroundActive};
+      background: ${({ theme }) => theme.categoryBackgroundHover};
     }
   }
 
