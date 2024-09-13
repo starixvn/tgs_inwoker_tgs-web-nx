@@ -1,6 +1,8 @@
+
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
+
 
 type BadgeContainerProps = {
   $isActive: boolean;
@@ -19,6 +21,9 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   border-radius: .8rem;
   box-shadow: ${({ $isActive, theme }: BadgeContainerProps) =>
     $isActive ? `0px 0px 10px 0px rgba(160, 218, 66, 0.60) inset` : `unset`} ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   ${media.md} {
     width: auto;

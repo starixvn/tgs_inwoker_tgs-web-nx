@@ -1,9 +1,3 @@
-import { MenuItem } from "@mui/material";
-import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { Component } from "react";
-import { connect } from "react-redux";
-import styled from "styled-components";
 import {
   AmountHint,
   ExchangeRateContainer,
@@ -31,7 +25,13 @@ import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
+import { MenuItem } from "@mui/material";
+import config from "@tgs-web-nx/config";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { Component } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
 const BadgeContainer = styled.div`
   display: grid;
@@ -72,9 +72,15 @@ const QRCodeBounding = styled.div`
   width: 9rem;
   height: 9rem;
   justify-content: center;
+  float: left;
+  margin-right: 1.2rem;
+  position: relative;
+  top: .8rem;
 `;
 
-const AccountInfo = styled.div``;
+const AccountInfo = styled.div`
+  margin-top: .6rem;
+`;
 
 class Main extends Component {
   render() {
@@ -343,6 +349,7 @@ class Main extends Component {
 
         {(() => {
           if (config.features.Deposit_ManualApplePayHideBankAcc) {
+            //empty
           } else {
             if (paymentCode("MANUAL") || paymentCode("APPLEPAY") || alteredPaymentCode("manual")) {
               return (
@@ -516,7 +523,7 @@ class Main extends Component {
                   </LimitLabel>
                   <LimitAmount>{` ${usdtRate} `}</LimitAmount>
                   <LimitLabel>USDT</LimitLabel>
-                  <div class="clear"></div>
+                  <div className="clear"></div>
                   {/*上分金额*/}
                   <LimitLabel>{i18n.t("deposit.totalAmount")}</LimitLabel>
                   {" :  "}

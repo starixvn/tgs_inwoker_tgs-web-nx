@@ -29,14 +29,11 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     color: `${theme.palette.form.textColor}`
   },
 
-  select: {
+
+  "& .MuiInputBase-input": {
     color: `${theme.palette.form.textColor}`,
-    background: `${theme.palette.form.backgroundColor}`,
-    
-    padding: "1rem",
-    borderRadius: "1rem",
-    fontSize: `1.4rem`,
     fontWeight: "bold",
+    height: "100%",
     "&:focus": {
       background: "none",
     },
@@ -48,33 +45,6 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     },
   },
 
-  "& .MuiInputBase-input": {
-    color: `${theme.palette.form.textColor}`,
-    background: `${theme.palette.form.backgroundColor}`,
-    
-    padding: "1rem",
-    borderRadius: "1rem",
-    fontSize: `1.4rem`,
-    fontWeight: "bold",
-    "&:focus": {
-      background: "none",
-    },
-    "&:active": {
-      background: "none",
-    },
-    "&:disabled": {
-      color: "#828282",
-    },
-  },
-  option: {
-    background: `${theme.palette.form.backgroundColor}`,
-    color: `${theme.palette.form.textColor}`,
-    "&:hover": {
-      background: `${theme.palette.form.optionHoverBgColor}`,
-      color: `${theme.palette.white}`,
-      height: "4.4rem",
-    },
-  },
   "& .MuiSvgIcon-root": {
     color: theme.palette.text.primary,
   },
