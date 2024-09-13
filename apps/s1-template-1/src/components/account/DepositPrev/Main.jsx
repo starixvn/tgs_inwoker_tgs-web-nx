@@ -1,3 +1,9 @@
+import { MenuItem } from "@mui/material";
+import config from "@tgs-web-nx/config";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { Component } from "react";
+import { connect } from "react-redux";
+import styled from "styled-components";
 import {
   AmountHint,
   ExchangeRateContainer,
@@ -18,20 +24,14 @@ import {
   SubmitButton,
   UploadFileButton,
   UploadFileControl,
-  UploadFileTag
+  UploadFileTag,
 } from "@/components/styled-component/ProfileForms";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
-import { MenuItem } from "@mui/material";
-import config from "@tgs-web-nx/config";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { Component } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { connect } from "react-redux";
-import styled from "styled-components";
 
 const BadgeContainer = styled.div`
   display: grid;
@@ -44,9 +44,9 @@ const LabelContainer = styled(ProfileLabelContainer)`
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 16px;
-   letter-spacing: 0.28px;
+  letter-spacing: 0.28px;
   text-align: left;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 `;
 
 const LabelLargeContainer = styled(LabelContainer)`
@@ -55,7 +55,6 @@ const LabelLargeContainer = styled(LabelContainer)`
   letter-spacing: 0.32px;
   margin-bottom: 1.6rem;
 `;
-
 
 const WarningText = styled.div`
   color: ${({ theme }) => theme.red};
@@ -75,8 +74,7 @@ const QRCodeBounding = styled.div`
   justify-content: center;
 `;
 
-const AccountInfo = styled.div`
-`;
+const AccountInfo = styled.div``;
 
 class Main extends Component {
   render() {
@@ -187,7 +185,7 @@ class Main extends Component {
 
         {/*请选择支付渠道*/}
         {!(config.features.Deposit_HideDepositChannel || config.features.Deposit_AddCard) && (
-          <ItemContainer style={{marginBottom: "0"}}>
+          <ItemContainer style={{ marginBottom: "0" }}>
             <LabelLargeContainer>{i18n.t("deposit.msgPlsSelectMethod")}</LabelLargeContainer>
             <FormControl variant="outlined">
               <Select
@@ -243,7 +241,6 @@ class Main extends Component {
                     </InfoContainer>
                   )}
                 </AccountInfo>
-                
 
                 {methodCode("BANKTRANSFER") && (
                   <InfoContainer>
@@ -305,7 +302,6 @@ class Main extends Component {
                           style={{ marginBottom: "10px" }}
                         />
                       </QRCodeBounding>
-                      
                     );
                   } else {
                     return (
@@ -337,10 +333,8 @@ class Main extends Component {
             } else {
               return (
                 <ItemContainer>
-                   {/* <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer> */}
-                  <AccountInfo>
-                    {generateDisplayContent(channelExtend)}
-                  </AccountInfo>                  
+                  {/* <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer> */}
+                  <AccountInfo>{generateDisplayContent(channelExtend)}</AccountInfo>
                 </ItemContainer>
               );
             }
@@ -393,55 +387,55 @@ class Main extends Component {
                         </ItemContainer>
                       ) : (
                         <>
-                        <LabelLargeContainer style={{paddingTop: "1.2rem"}}>Your bank account info</LabelLargeContainer>
-                        <ItemContainer>
-                          <LabelContainer>
-                            {config.features.Deposit_OriginAccount ? (
-                              i18n.t("idr1.pleaseEnterAccountName")
-                            ) : (
-                              <>
-                                <div>{i18n.t("common.pleaseEnterAccountName")}</div>
-                                {/* <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText> */}
-                              </>
-                            )}
-                          </LabelContainer>
-                          <FormControl variant="outlined">
-                            <TextField
-                              type={"text"}
-                              placeholder={
-                                config.features.Deposit_OriginAccount
-                                  ? i18n.t("idr1.pleaseEnterAccountName")
-                                  : i18n.t("common.pleaseEnterAccountName")
-                              }
-                              value={this.props.account}
-                              disabled={
-                                !config.features.Deposit_AccountNameManualInput &&
-                                config.features.Deposit_AutofillFirstCard &&
-                                this.props.wallet.bankCardList.length > 1
-                              }
-                              onChange={(e) => this.props.handleAccountChange(e)}
-                            />
-                          </FormControl>
-                        </ItemContainer>
-                        <ItemContainer>
-                          <LabelContainer>
-                            Account Number
-                          </LabelContainer>
-                          <FormControl variant="outlined">
-                            <TextField
-                              type={"text"}
-                              placeholder={"Please enter the bank account number"}
-                              value={this.props.account}
-                              disabled={
-                                !config.features.Deposit_AccountNameManualInput &&
-                                config.features.Deposit_AutofillFirstCard &&
-                                this.props.wallet.bankCardList.length > 1
-                              }
-                              onChange={(e) => this.props.handleAccountChange(e)}
-                            />
-                          </FormControl>
-                      </ItemContainer>
-                      </>
+                          <LabelLargeContainer style={{ paddingTop: "1.2rem" }}>
+                            {i18n.t("deposit.yourbankaccountinfo")}
+                          </LabelLargeContainer>
+                          <ItemContainer>
+                            <LabelContainer>
+                              {config.features.Deposit_OriginAccount ? (
+                                i18n.t("idr1.pleaseEnterAccountName")
+                              ) : (
+                                <>
+                                  <div>{i18n.t("common.pleaseEnterAccountName")}</div>
+                                  {/* <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText> */}
+                                </>
+                              )}
+                            </LabelContainer>
+                            <FormControl variant="outlined">
+                              <TextField
+                                type={"text"}
+                                placeholder={
+                                  config.features.Deposit_OriginAccount
+                                    ? i18n.t("idr1.pleaseEnterAccountName")
+                                    : i18n.t("common.pleaseEnterAccountName")
+                                }
+                                value={this.props.account}
+                                disabled={
+                                  !config.features.Deposit_AccountNameManualInput &&
+                                  config.features.Deposit_AutofillFirstCard &&
+                                  this.props.wallet.bankCardList.length > 1
+                                }
+                                onChange={(e) => this.props.handleAccountChange(e)}
+                              />
+                            </FormControl>
+                          </ItemContainer>
+                          <ItemContainer>
+                            <LabelContainer>{i18n.t("deposit.cardNum")}</LabelContainer>
+                            <FormControl variant="outlined">
+                              <TextField
+                                type={"text"}
+                                placeholder={i18n.t("deposit.msgPlsEnterBankAccount")}
+                                value={this.props.account}
+                                disabled={
+                                  !config.features.Deposit_AccountNameManualInput &&
+                                  config.features.Deposit_AutofillFirstCard &&
+                                  this.props.wallet.bankCardList.length > 1
+                                }
+                                onChange={(e) => this.props.handleAccountChange(e)}
+                              />
+                            </FormControl>
+                          </ItemContainer>
+                        </>
                       )}
                     </>
                   )}
@@ -501,7 +495,6 @@ class Main extends Component {
                 {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
               </FeeSpot>
             )}
-           
           </AmountHint>
         </ItemContainer>
 
@@ -632,15 +625,17 @@ class Main extends Component {
                       >
                         Upload
                       </UploadFileButton>
-                        <input
+                      <input
                         type="file"
                         id="getFile"
                         onChange={this.props.handleFileChange}
                         accept="image/jpg, image/jpeg, image/png, image/tiff"
                         style={{ display: "none" }}
                       />
-                      <UploadFileTag>{this.props.files ? this.props.files[0].name : "abcd.jpg"}</UploadFileTag>
-                    </UploadFileControl>                   
+                      <UploadFileTag>
+                        {this.props.files ? this.props.files[0].name : "abcd.jpg"}
+                      </UploadFileTag>
+                    </UploadFileControl>
                   </FormControl>
                 </ItemContainer>
                 {/* <Remark>
