@@ -19,6 +19,7 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+    padding-right: 0 !important;
   }
 
   .headerSubmenu .slick-track,
