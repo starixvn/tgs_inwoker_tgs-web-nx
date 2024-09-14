@@ -1,12 +1,7 @@
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
-import {
-  FilterTag,
-  useGetLobbyCategoryList,
-  useGetNonLobbyCategoryList,
-  useHomeGameContext,
-} from "@tgs-web-nx/core/features";
+import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n, utility } from "@tgs-web-nx/utils";
 
@@ -15,11 +10,10 @@ import LoadMore from "../LoadMore";
 import { DesktopCategoryContentWrapper, DesktopWrapper, GameList, Text, Wrapper } from "./style";
 
 const NonLobbyCategory = () => {
-  const { isDesktopSize, isMobileSize } = useRwd();
+  const { isDesktopSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const { activeGameTypeKey } = useHomeGameContext();
   const hasMappingData = !!gameList.length;
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
 
   return (
     <Wrapper>

@@ -37,6 +37,8 @@ const Wrapper = styled.div<{
     $isActive ? theme.categoryBackgroundActive : theme.categoryBackground};
 
   ${media.sm} {
+    height: 74px;
+
     &:hover {
       background: ${({ theme }) => theme.categoryBackgroundHover};
     }

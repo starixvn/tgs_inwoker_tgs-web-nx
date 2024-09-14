@@ -22,7 +22,6 @@ export const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  padding: 24px 0;
 `;
 
 export const DesktopWrapper = styled.div`
