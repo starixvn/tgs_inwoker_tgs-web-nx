@@ -32,17 +32,6 @@ const BannerContainerEmbla = styled.section`
       flex: 0 0 calc(33% - 8px);
       margin-right: 1.6rem;
     }
-
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 25%;
-      border-radius: 0 0 1.2rem 1.2rem;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 2, 5, 0.7) 100%);
-    }
   }
 
   .banner {

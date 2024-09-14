@@ -19,11 +19,11 @@ const EmblaCarousel: React.FC<IEmblaCarousel> = (props: IEmblaCarousel) => {
 
   return (
     <>
-      <section className="embla">
+      <div className="embla">
         <div className="embla__viewport" ref={emblaRef}>
           <div className={`embla__container ${extraClassName}`}>{children}</div>
         </div>
-      </section>
+      </div>
       {hasControlButton && (
         <div className="embla__controls">
           <div className="embla__buttons">

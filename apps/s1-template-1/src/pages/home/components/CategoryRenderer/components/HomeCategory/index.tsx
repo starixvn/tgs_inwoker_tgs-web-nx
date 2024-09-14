@@ -1,3 +1,4 @@
+import EmblaCarousel from "@/components/project/embla-carousel";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n, utility } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
@@ -13,13 +14,19 @@ import {
   ProviderItem,
   ViewAll,
 } from "./style";
-import EmblaCarousel from "@/components/project/embla-carousel";
 
 const HomeCategory = () => {
   const history = useHistory();
   const { providerList } = useHomeGameContext();
-  const { sportGameList, liveCasinoList, slotGameList, newGameList, hotGameList, tableGameList, recentBigWins } =
-    useGetHomeCategoryList();
+  const {
+    sportGameList,
+    liveCasinoList,
+    slotGameList,
+    newGameList,
+    hotGameList,
+    tableGameList,
+    recentBigWins,
+  } = useGetHomeCategoryList();
 
   const navigateTo = (pageName: string) => {
     history.push("/main/" + pageName);
@@ -31,8 +38,8 @@ const HomeCategory = () => {
   return (
     <DesktopContainer>
       <GameTypeContainer>
-        <RecentBigWins data={recentBigWins}/>
-        <Group>
+        <RecentBigWins data={recentBigWins} />
+        <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-sports-group.svg" alt="hot" />
             {i18n.t("web.home.Section1Sport")}
@@ -43,7 +50,7 @@ const HomeCategory = () => {
           </EmblaCarousel>
         </Group>
 
-        <Group>
+        <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
             {i18n.t("web.home.Section1Slot")}
@@ -58,7 +65,7 @@ const HomeCategory = () => {
           </EmblaCarousel>
         </Group>
 
-        <Group>
+        <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-live-casino-group.svg" alt="slot" />
             {i18n.t("web.home.Section1Live")}
@@ -69,7 +76,7 @@ const HomeCategory = () => {
           </EmblaCarousel>
         </Group>
 
-        <Group>
+        <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-new-release.svg" alt="hot" />
             {i18n.t("web.home.Section1NewRelease")}
@@ -107,7 +114,7 @@ const HomeCategory = () => {
           </EmblaCarousel>
         </Group>
 
-        <Group>
+        <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-table-game-group.svg" alt="hot" />
             {i18n.t("web.home.Section1Electron")}
@@ -118,7 +125,7 @@ const HomeCategory = () => {
           </EmblaCarousel>
         </Group>
 
-        <Group>
+        <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
             {i18n.t("web.home.Section1HotGames")}

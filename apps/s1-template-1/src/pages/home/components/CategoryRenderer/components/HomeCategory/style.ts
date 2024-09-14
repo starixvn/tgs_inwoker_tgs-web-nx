@@ -98,17 +98,90 @@ export const ProviderItem = styled.div`
 export const Group = styled.div`
   position: relative;
 
-  .embla__container {
-    --slide-spacing: 1.2rem;
-    ${media.md} {
-      --slide-height: 21rem;
-      --slide-spacing: 1.6rem;
-      --slide-size: 15.6rem;
+  &.game-area {
+    .embla {
+      position: relative;
+      container-type: inline-size;
+      margin-inline: -4rem;
+      overflow-x: clip;
+      padding-inline: 4rem;
+      width: calc(100% + 8rem);
+
+      &:after {
+        --shadow-width: 4rem;
+        display: none;
+        content: "";
+        height: 120%;
+        pointer-events: none;
+        position: absolute;
+        top: -10%;
+        left: -1px;
+        width: calc(100% + 2px);
+        background: linear-gradient(to right, #0d131c 0, rgba(13, 19, 28, 0) var(--shadow-width)),
+          linear-gradient(to left, #0d131c 0, rgba(13, 19, 28, 0) var(--shadow-width));
+      }
+
+      .embla__viewport {
+        overflow: initial;
+        width: calc(100%);
+        &:before {
+          content: "";
+        }
+      }
     }
 
-    &.providers {
-      --slide-size: 11.3rem;
+    @supports ((-moz-text-align-last: right) or (text-align-last: right)) {
+      .embla:after {
+        display: block;
+      }
     }
+
+    .embla__container {
+      --gap: 1.2rem;
+      --min-width: 13.1rem;
+      --single-column-width: calc(
+        (100% - (var(--column-count) - 1) * var(--gap)) / var(--column-count)
+      );
+
+      display: grid;
+      gap: var(--gap);
+      grid-auto-flow: column;
+      grid-auto-columns: calc(var(--min-width) + var(--gap));
+
+      @media (min-width: 555px) {
+        --column-count: 3 !important;
+        grid-auto-columns: var(--column-width, var(--single-column-width));
+      }
+
+      @media (min-width: 729px) {
+        --gap: 1.6rem;
+        --column-count: 4 !important;
+      }
+
+      @media (min-width: 995px) {
+        --column-count: 5 !important;
+      }
+
+      @media (min-width: 1171px) {
+        --column-count: 6 !important;
+      }
+
+      @media (min-width: 1347px) {
+        --column-count: 7 !important;
+      }
+
+      @media (min-width: 1523px) {
+        --column-count: 8 !important;
+      }
+
+      @media (min-width: 1699px) {
+        --column-count: 9 !important;
+      }
+    }
+  }
+
+  .embla__container.providers {
+    --slide-size: 11.3rem;
   }
 
   .embla__controls {
