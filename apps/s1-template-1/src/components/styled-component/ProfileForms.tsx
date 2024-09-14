@@ -19,12 +19,32 @@ export const ItemContainer = styled.div`
 `;
 
 export const LabelContainer = styled.div`
-  font-size: 0.875rem;
-  font-weight: 400;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: ${({ theme }) => theme.text};
   float: left;
-  margin-bottom: 16px;
+  margin-bottom: .8rem;
+  letter-spacing: 0.28px;
 `;
+
+export const LabelLargeContainer = styled(LabelContainer)`
+  font-size: 1.6rem;
+  margin-bottom: 1.6rem;
+  letter-spacing: 0.32px;
+  float: unset;
+`;
+
+export const ItemNote = styled.div`
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.noteTextColor};
+`;
+
+export const ItemNoteDesc = styled.span`
+  font-size: 1.3rem;
+  font-weight: 500;
+`;
+
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   width: "100%",
   fontSize: "0.875rem",

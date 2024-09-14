@@ -1,6 +1,6 @@
+import { media } from "@/theme/breakpoints";
 import React from "react";
 import styled from "styled-components";
-import { media } from "@/theme/breakpoints";
 
 const AccountPaperContainer = styled.div`
   ${media.sm} {
@@ -15,7 +15,10 @@ type Props = {
   children: React.ReactNode | React.ReactNode[];
 };
 const AccountPaper = ({ pageName, iconUrl, children }: Props) => {
-  return <AccountPaperContainer>{children}</AccountPaperContainer>;
+  return <AccountPaperContainer>
+         {/* <AccountHeaderContent /> */}
+        {children}
+    </AccountPaperContainer>;
 };
 
 export default AccountPaper;

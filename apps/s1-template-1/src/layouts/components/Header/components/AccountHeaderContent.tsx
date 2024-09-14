@@ -114,31 +114,7 @@ const AccountHeaderContent = () => {
         >
           <Icon iconUrl="/assets/images/common/icon-plus.svg" width={"18px"} height={"18px"} />
         </GreenGradientButton>
-        {/* {isMobileSize && <HeaderLanguageSwitch />}
-        {isDesktopSize && (
-          <>
-            <WithDrawButton
-              onClick={() => {
-                history.push("/withdrawal");
-              }}
-            >
-              {i18n.t("common.withdrawal").toUpperCase()}
-            </WithDrawButton>
-            <AccountIcon
-              onClick={() => {
-                history.push("/profile");
-              }}
-            >
-              <img src={iconAccount} alt="profile" />
-            </AccountIcon>
-            <LogoutButton onClick={handleClickLogout}>
-              {i18n.t("web.header.logout").toLocaleUpperCase()}
-              <span>
-                <img src={iconLogout} alt="logout" />
-              </span>
-            </LogoutButton>
-          </>
-        )} */}
+        
       </ButtonContainer>
       <Select
         renderValue={() => {

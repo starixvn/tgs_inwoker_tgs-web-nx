@@ -119,6 +119,7 @@ export const theme = {
   greenGradientBackround: "linear-gradient(180deg, #BAD30F 0%, #7E8F0C 100%)",
   orangeGradientBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   balanceHeaderBackground: "rgba(68, 88, 116, 0.24)",
+  noteTextColor: "#6F809A",
 
   // Announcement
   announceTextColor: "#F6254B",

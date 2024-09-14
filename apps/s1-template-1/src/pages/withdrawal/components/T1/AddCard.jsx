@@ -1,17 +1,20 @@
-import React from "react";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { TextField } from "@/components/UI/TextField";
+import { GreenGradientButton } from "@/components/UI/Button";
 import { Select as CustomSelect } from "@/components/UI/Select";
+import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
   ItemContainer,
+  ItemNote,
+  ItemNoteDesc,
   LabelContainer,
-  SubmitButton,
+  LabelLargeContainer,
+  SubmitButton
 } from "@/components/styled-component/ProfileForms";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
+import config from "@tgs-web-nx/config";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
@@ -66,6 +69,7 @@ const AddCard = ({
   return (
     <Container>
       {isDesktopSize && <FormTitle title={i18n.t("card.addCard.title")} />}
+      <LabelLargeContainer>Add New Account</LabelLargeContainer>
       {!config.features.AddCard_HideCertainField && (
         <ItemContainer>
           <LabelContainer>{i18n.t("common.withdrawalBankType")}</LabelContainer>
@@ -393,8 +397,14 @@ const AddCard = ({
                     value={ifsc}
                   />
                 </FormControl>
-              </ItemContainer>
+              </ItemContainer>              
             )}
+            <ItemContainer>
+              <ItemNote>Note:
+                <ItemNoteDesc>The account holder name must be the same as the real name filled you account profile</ItemNoteDesc>
+              </ItemNote>
+              
+            </ItemContainer>
         </>
       )}
       <ButtonGroups>
@@ -404,11 +414,11 @@ const AddCard = ({
           </SubmitButton>
         )}
 
-        <SubmitButton fullWidth onClick={handleNextClick}>
+        <GreenGradientButton fullWidth onClick={handleNextClick}>
           {config.features.Register_CustomFlow_IDR && !isDeposit
             ? i18n.t("web.register.btn")
-            : i18n.t("common.nextStep")}
-        </SubmitButton>
+            : i18n.t("common.submit")}
+        </GreenGradientButton>
       </ButtonGroups>
     </Container>
   );
