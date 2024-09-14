@@ -6,6 +6,9 @@ import { getFormatAmount, i18n, utility } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import styled from "styled-components";
+import { useHistory } from "react-router";
+import { Common } from "@tgs-web-nx/utils";
+import { useAccountStore } from "@tgs-web-nx/core";
 
 import { GameTypeTitle, Group } from "../../style";
 
@@ -86,10 +89,25 @@ type BigWinType = {
   data: any[];
 };
 
+
+
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
-  const emblaPlugins: any = [Autoplay({ playOnInit: true, delay: 3000 })];
+  const emblaPlugins: any = [Autoplay({ playOnInit: true, delay: 1000 })];
+  const { account } = useAccountStore();
   const { isDesktopSize } = useRwd();
+  const isLogin = !!account.token;
+  const history = useHistory();
+  const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+
+  const launchGame = (gameId: any, gameProviderCode: any) => {
+    if (!isLogin) {
+      history.push("/login");
+    } else {
+      Common.closePreviousPopup();
+      Common.PopupCenter(`/joingame/${gameId}/${gameProviderCode}`, "gamewindow");
+    }
+  };
   return (
     <Group>
       <GameTypeTitle>
@@ -101,7 +119,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
           recentBigWins.data.map((item, index) => {
             return (
               <RecentBigWinsSlide className="embla__slide" key={index}>
-                <GameContainer key={index}>
+                <GameContainer key={index} onClick={() => {launchGame(item.gameId, item.gameProviderCode)}}>
                   <GameIcon>
                     <img
                       className="icon"
@@ -124,8 +142,8 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
                     </CardHoverBg>
                   </GameIcon>
 
-                  <GameName>{item.gameName}</GameName>
-                  <BigWinsAmount>{`đ${getFormatAmount(item.winAmount)}`}</BigWinsAmount>
+                  <GameName>{item.playerName}</GameName>
+                  <BigWinsAmount>{`${formatter.format(item.winAmount)}`}</BigWinsAmount>
                 </GameContainer>
               </RecentBigWinsSlide>
             );
