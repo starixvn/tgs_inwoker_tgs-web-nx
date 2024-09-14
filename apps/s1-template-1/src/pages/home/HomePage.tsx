@@ -22,7 +22,7 @@ const MainWrapper = styled.div`
 
   ${media.md} {
     gap: 0.8rem;
-    padding: 0.8rem;
+    padding: 0 0.8rem;
   }
 `;
 

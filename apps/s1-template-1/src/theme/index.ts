@@ -42,9 +42,9 @@ export const theme = {
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
-  categoryBackground: "#1C2532",
+  categoryBackground: "radial-gradient(57.7% 89.62% at 50.57% 23.58%, #293978 0%, #1D2738 100%)",
   categoryBackgroundActive: "#849709",
-  categoryBackgroundHover: "#2B394E",
+  categoryBackgroundHover: "#243260",
   categoryBorder: "#161F2C",
 
   // Recent Big Wins
