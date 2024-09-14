@@ -64,7 +64,7 @@ const GameTypeTab = () => {
       history.push(`/`);
     } else {
       handleChangeGameType(gameTypeItem.gameType);
-      history.push(`/main/${gameTypeItem.key}`);
+      history.push(`/${gameTypeItem.key}`);
     }
   };
 

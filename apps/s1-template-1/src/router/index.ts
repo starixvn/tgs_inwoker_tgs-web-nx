@@ -41,13 +41,7 @@ const routes: RouteType[] = [
     isAnonymousAllowed: true,
   },
   {
-    path: "/main",
-    component: MainPage,
-    layout: DefaultLayout,
-    isAnonymousAllowed: true,
-  },
-  {
-    path: "/main/:gameType",
+    path: "/:gameType",
     component: MainPage,
     layout: DefaultLayout,
     isAnonymousAllowed: true,

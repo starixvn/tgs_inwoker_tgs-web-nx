@@ -3,7 +3,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavCardKey } from "@tgs-web-nx/types";
 import { useHistory } from "react-router";
 import { useHomeGameContext } from "../useHomeGameContext";
-import {  useGameTypeList } from "./useGameTypeList";
+import { useGameTypeList } from "./useGameTypeList";
 
 export type NavItem = {
   key: NavCardKey | string;
@@ -15,17 +15,17 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-  | {
+    | {
       navType: "route";
       routePath: string;
     }
-  | {
+    | {
       navType: "action";
       callback: () => void;
     }
-);
+  );
 
-export const useGetNavGameTypeItemList = () =>{
+export const useGetNavGameTypeItemList = () => {
   const gameTypeList = useGameTypeList();
   const { handleChangeGameType } = useHomeGameContext();
   const history = useHistory();
@@ -44,7 +44,7 @@ export const useGetNavGameTypeItemList = () =>{
         router: gameTypeItem.key as string,
         callback: () => {
           handleChangeGameType(gameTypeItem.gameType);
-          history.push(`/main/${gameTypeItem.key}`);
+          history.push(`/${gameTypeItem.key}`);
         },
       });
     }

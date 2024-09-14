@@ -19,23 +19,12 @@ const CategoryRenderer = () => {
       handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SPORTS);
     }
   }, [isDesktopSize]);
-
   switch (activeGameType) {
     case GameTypeEnum.NONE:
-      return <HomeCategory />;
-    case GameTypeEnum.SLOT:
-    case GameTypeEnum.FISH:
-    case GameTypeEnum.TABLEGAME:
-      return <NonLobbyCategory />;
+      return <HomeCategory />
 
     default:
-    case GameTypeEnum.LIVELOBBY:
-    case GameTypeEnum.ARCADELOBBY:
-    case GameTypeEnum.SPORTS:
-    case GameTypeEnum.COCKFIGHT:
-    case GameTypeEnum.ESPORTS:
-    case GameTypeEnum.QIPAILOBBY:
-      return <LobbyCategory />;
+      return <NonLobbyCategory />
   }
 };
 

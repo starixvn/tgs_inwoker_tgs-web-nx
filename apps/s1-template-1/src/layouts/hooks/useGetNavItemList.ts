@@ -32,15 +32,15 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-  | {
+    | {
       navType: "route";
       routePath: string;
     }
-  | {
+    | {
       navType: "action";
       callback: () => void;
     }
-);
+  );
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -71,7 +71,7 @@ export function useGetNavItemList() {
         router: gameTypeItem.key as string,
         callback: () => {
           handleChangeGameType(gameTypeItem.gameType);
-          history.push(`/main/${gameTypeItem.key}`);
+          history.push(`/${gameTypeItem.key}`);
         },
       });
     }
