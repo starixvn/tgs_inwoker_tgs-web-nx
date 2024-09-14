@@ -100,13 +100,6 @@ export const Group = styled.div`
 
   &.game-area {
     .embla {
-      position: relative;
-      container-type: inline-size;
-      margin-inline: -4rem;
-      overflow-x: clip;
-      padding-inline: 4rem;
-      width: calc(100% + 8rem);
-
       &:after {
         --shadow-width: 4rem;
         display: none;
@@ -130,9 +123,20 @@ export const Group = styled.div`
       }
     }
 
-    @supports ((-moz-text-align-last: right) or (text-align-last: right)) {
-      .embla:after {
-        display: block;
+    ${media.xl} {
+      @supports ((-moz-text-align-last: right) or (text-align-last: right)) {
+        .embla {
+          container-type: inline-size;
+          margin-inline: -4rem;
+          overflow-x: clip;
+          padding-inline: 4rem;
+          width: 100%;
+          width: calc(100% + 8rem);
+
+          &:after {
+            display: block;
+          }
+        }
       }
     }
 
