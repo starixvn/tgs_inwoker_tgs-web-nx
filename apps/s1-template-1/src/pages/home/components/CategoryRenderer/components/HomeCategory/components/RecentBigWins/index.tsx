@@ -1,14 +1,13 @@
+import EmblaCarousel from "@/components/project/embla-carousel";
+import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
 import { media } from "@tgs-web-nx/constants";
-import { getFormatAmount, i18n } from "@tgs-web-nx/utils";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { getFormatAmount, i18n, utility } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
-import { utility } from "@tgs-web-nx/utils";
 
 import { GameTypeTitle, Group } from "../../style";
-import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
-import EmblaCarousel from "@/components/project/embla-carousel";
 
 const CardHoverBg = styled.div`
   position: absolute;
@@ -58,10 +57,9 @@ const GameIcon = styled.div`
   position: relative;
 
   .icon {
+    width: 7.4rem;
+    height: 9.9rem;
     border-radius: 0.8rem !important;
-  }
-
-  ${media.sm} {
     flex-shrink: 0;
   }
 `;
@@ -71,6 +69,7 @@ const RecentBigWinsSlide = styled.div`
 `;
 
 const GameName = styled.div`
+  text-align: center;
   color: ${({ theme }) => theme.white};
 `;
 
@@ -87,7 +86,7 @@ type BigWinType = {
   data: any[];
 };
 
-const RecentBigWins : React.FC<BigWinType> = (recentBigWins: BigWinType) => {
+const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
   const emblaPlugins: any = [Autoplay({ playOnInit: true, delay: 3000 })];
   const { isDesktopSize } = useRwd();
