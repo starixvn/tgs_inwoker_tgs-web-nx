@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const PlayButton = styled.div`
+export const PlayButton = styled.div`
   position: relative;
   display: flex;
   align-items: center;
