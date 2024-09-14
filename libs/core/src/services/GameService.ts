@@ -13,7 +13,7 @@ export const GameService = {
   GetGameList,
   GetGameType,
   GetGameListByTag,
-  GetHotMatchList
+  GetHotMatchList,
   GetRecentBigWins
 };
 
