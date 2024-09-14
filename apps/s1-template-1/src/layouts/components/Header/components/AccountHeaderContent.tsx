@@ -1,10 +1,3 @@
-import { MenuItem } from "@mui/material";
-import { useWalletStore } from "@tgs-web-nx/core";
-import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { GreenGradientButton } from "@/components/UI/Button";
@@ -20,6 +13,13 @@ import { Select } from "@/components/UI/Select";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
+import { MenuItem } from "@mui/material";
+import { useWalletStore } from "@tgs-web-nx/core";
+import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -107,7 +107,7 @@ const AccountHeaderContent = () => {
         <BalanceContainer>{currentBalance}</BalanceContainer>
 
         <GreenGradientButton
-          style={{ minWidth: "unset", width: "3.6rem" }}
+          style={{ minWidth: "unset", width: "3.6rem", height: "3.6rem" }}
           onClick={() => {
             history.push("/deposit");
           }}

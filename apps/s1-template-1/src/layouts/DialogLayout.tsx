@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.dialogBackground};
 `;
 
 const ContentWrapper = styled.div`

@@ -26,6 +26,7 @@ export const Button = (props: ButtonProps) => {
   return <StyledButton variant={props.variant || "contained"} {...props} />;
 }; 
 
+
 const ButtonDefault = muiStyled(MuiButton)(({ theme }) => ({
   height: "3.6rem",
   padding: "0 1rem",
@@ -43,9 +44,22 @@ const ButtonDefault = muiStyled(MuiButton)(({ theme }) => ({
     transition: "all 0.2s ease-in-out",
     textShadow: "0 0 0.4rem rgba(255, 255, 255, 0.50)",
   },
+  "&.Mui-disabled": {
+    background: "#ccc",
+    
+  }
 }));
 
-export const GreenGradientButton = muiStyled(ButtonDefault)(({ theme }) => ({
+export const SignUpButton = muiStyled(ButtonDefault)(({ theme }) => ({
+  background: theme.palette.header.signUp.background,
+  borderBottomColor: theme.palette.header.signUp.bottomBorderColor,
+  color: theme.palette.header.signUp.color,
+  "&:hover": {
+    boxShadow: theme.palette.header.signUp.activeShadow,
+  },
+}));
+
+export const SignInButton = muiStyled(ButtonDefault)(({ theme }) => ({
   background: theme.palette.header.signIn.background,
   borderBottomColor: theme.palette.header.signIn.bottomBorderColor,
   color: theme.palette.header.signIn.color,
@@ -54,12 +68,27 @@ export const GreenGradientButton = muiStyled(ButtonDefault)(({ theme }) => ({
   },
 }));
 
-export const OrangeGradientButton = muiStyled(Button)(({ theme }) => ({
-  background: theme.palette.header.signUp.background,
-  borderBottomColor: theme.palette.header.signUp.bottomBorderColor,
-  color: theme.palette.header.signUp.color,
-  "&:hover": {
-    boxShadow: theme.palette.header.signUp.activeShadow,
-  },
+export const GreenGradientButton = muiStyled(SignInButton)(({ theme }) => ({
+  width: "100%",
+  height: "4.8rem",
+}));
+
+export const OrangeGradientButton = muiStyled(SignUpButton)(({ theme }) => ({
+  width: "100%",
+  height: "4.8rem",
+}));
+
+export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
+  color: theme.palette.white,
+  padding: "0 18px",
+  width: "auto",
+  whiteSpace: "nowrap",
+  fontSize: "0.812rem",
+  lineHeight: "1.25rem",
+  fontWeight: 400,
+  borderRadius: "3px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 }));
 

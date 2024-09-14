@@ -15,11 +15,11 @@ import {
   ItemContainer,
   LabelContainer as ProfileLabelContainer,
   Remark,
-  SubmitButton,
   UploadFileButton,
   UploadFileControl,
   UploadFileTag,
 } from "@/components/styled-component/ProfileForms";
+import { GreenGradientButton } from "@/components/UI/Button";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
@@ -634,7 +634,7 @@ class Main extends Component {
           )}
 
         {/*提交*/}
-        <SubmitButton
+        <GreenGradientButton
           onClick={this.props.handleDepositClick}
           variant={"contained"}
           fullWidth
@@ -653,7 +653,7 @@ class Main extends Component {
           })()}
         >
           {i18n.t("common.submit")}
-        </SubmitButton>
+        </GreenGradientButton>
 
         <ResultPopupDialog
           isDialogOpen={this.props.openPopup}

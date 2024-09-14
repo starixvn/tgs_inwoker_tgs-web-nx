@@ -1,16 +1,15 @@
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
+import { SignInButton, SignUpButton } from "@/components/UI/Button";
+import { theme } from "@/theme";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import React, { useCallback } from "react";
+import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
-import { i18n, utility } from "@tgs-web-nx/utils";
-import { theme } from "@/theme";
-import { SignInButton, SignUpButton } from "@/layouts/components/Header/components/HeaderButton";
-import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: .8rem;
   height: 100%;
   padding-left: 1rem;
 `;

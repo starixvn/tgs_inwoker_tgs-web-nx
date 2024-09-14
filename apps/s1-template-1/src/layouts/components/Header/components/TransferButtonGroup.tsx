@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
+import { HeaderButton } from "@/components/UI/Button";
+import { i18n } from "@tgs-web-nx/utils";
+import { useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import { HeaderButton } from "@/layouts/components/Header/components/HeaderButton";
 
 const ButtonContainer = styled.div`
   display: flex;
