@@ -19,7 +19,6 @@ export function useProviderFilter() {
     gpCodeList.forEach((provider) => {
       filteredTags.push({
         name: provider.name,
-        tagType: FilterTagTypeEnum.PROVIDER,
         gpCode: provider.code,
       });
     });

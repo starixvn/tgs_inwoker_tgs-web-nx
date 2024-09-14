@@ -141,7 +141,6 @@ const Link = styled.div`
 
 const Footer = () => {
   const { general } = useGeneralStore();
-  const { providerList } = useProvider();
   const history = useHistory();
   const brand = config.brand;
 

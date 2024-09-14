@@ -9,7 +9,7 @@ export enum FilterTagTypeEnum {
 
 export interface FilterTag {
   name: string;
-  tagType: OrderTypeEnum;
+  tagType?: OrderTypeEnum;
   gpCode?: string;
   iconUrl?: string;
   activedUrl?: string

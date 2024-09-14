@@ -48,7 +48,10 @@ const initTagGameList: TagGameList = {
 const initHotMatchList: HotMatchs = {
   isLoading: false,
   error: null,
-  matches: [],
+  matches: {
+    events: [],
+    markets: []
+  }
 };
 
 const HomeCategory = [
@@ -70,7 +73,7 @@ export function useGetHomeCategoryList() {
     try {
       setHomeGameList({ ...initHomeGameList, isLoading: true });
       const response = await GameService.GetGameType(HomeCategory, TagTypeEnum.RECOMMEND, 1, 30);
-      const responseRecentBigWins = await GameService.GetRecentBigWins();
+      // const responseRecentBigWins = await GameService.GetRecentBigWins();
 
       setHomeGameList({
         ...initHomeGameList,
@@ -80,7 +83,7 @@ export function useGetHomeCategoryList() {
         tableGameList: filterGameType(response.data, [GameTypeEnum.TABLEGAME]),
         liveCasinoList: filterGameType(response.data, [GameTypeEnum.LIVE]),
         sportGameList: filterGameType(response.data, [GameTypeEnum.SPORTS, GameTypeEnum.ESPORTS]),
-        recentBigWins: responseRecentBigWins.data
+        recentBigWins: [] //responseRecentBigWins.data
       });
 
       return response;
@@ -113,24 +116,24 @@ export function useGetHomeCategoryList() {
     }
   };
 
-  const getHotMatch = async () => {
-    try {
-      setHotMatchList({ ...initHotMatchList, isLoading: true });
-      const response = await GameService.GetHotMatchList();
+  // const getHotMatch = async () => {
+  //   try {
+  //     setHotMatchList({ ...initHotMatchList, isLoading: true });
+  //     const response = await GameService.GetHotMatchList();
 
-      setHotMatchList({
-        ...initHotMatchList,
-        isLoading: false,
-        error: null,
-        matches: response.data,
-      });
+  //     setHotMatchList({
+  //       ...initHotMatchList,
+  //       isLoading: false,
+  //       error: null,
+  //       matches: response.data,
+  //     });
 
-      return response;
-    } catch (error: any) {
-      console.error(error);
-      setHotMatchList({ ...initHotMatchList, isLoading: false, error: error });
-    }
-  }
+  //     return response;
+  //   } catch (error: any) {
+  //     console.error(error);
+  //     setHotMatchList({ ...initHotMatchList, isLoading: false, error: error });
+  //   }
+  // }
 
   const filterGameType = (gameTypes: GameTypeDto[], types: GameTypeEnum[]) => {
     const results = gameTypes.filter((gameType) => types.includes(gameType.gameType));
@@ -144,7 +147,7 @@ export function useGetHomeCategoryList() {
   useEffect(() => {
     getHomeGameList();
     getGameByTag();
-    getHotMatch();
+    // getHotMatch();
   }, []);
 
   return {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { FilterTagTypeEnum, useHomeGameContext, GameTypeItem } from "@tgs-web-nx/core/features";
+import { FilterTagTypeEnum, useHomeGameContext, GameTypeItem, OrderTypeEnum } from "@tgs-web-nx/core/features";
 import { useHistory } from "react-router-dom";
 import Tab from "./Tab";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
@@ -49,15 +49,10 @@ const GameTypeTab = () => {
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { handleChangeActiveFilterTag, handleChangeActiveProviderFilterTag, providerList } = useHomeGameContext();
 
-  const allTag = {
-    tagType: FilterTagTypeEnum.ALL,
-    name: "",
-  };
-
   const switchGameType = (gameTypeItem: GameTypeItem) => {
     // 把filter tag的狀態清空
-    handleChangeActiveProviderFilterTag(allTag);
-    handleChangeActiveFilterTag(allTag);
+    handleChangeActiveProviderFilterTag([]);
+    handleChangeActiveFilterTag(OrderTypeEnum.HOT);
 
     if (gameTypeItem.gameType === GameTypeEnum.NONE) {
       handleChangeGameType(GameTypeEnum.NONE);
