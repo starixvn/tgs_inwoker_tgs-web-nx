@@ -46,7 +46,6 @@ const ButtonDefault = muiStyled(MuiButton)(({ theme }) => ({
   },
   "&.Mui-disabled": {
     background: "#ccc",
-    
   }
 }));
 

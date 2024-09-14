@@ -6,6 +6,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
 
+import Marquee from "@/pages/home/components/Marquee";
 import Footer from "./components/Footer";
 
 const DefaultLayoutContainer = styled.div`
@@ -46,7 +47,7 @@ const DefaultLayout = ({ children }: Props) => {
   return (
     <DefaultLayoutContainer>
       <Header />
-
+      <Marquee />
       <DashboardContainer hasAnnouncement={hasAnnouncement}>
         <ContentWrapper>
           <div>{children}</div>

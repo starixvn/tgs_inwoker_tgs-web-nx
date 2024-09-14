@@ -1,15 +1,12 @@
 import Icon from "@/components/project/Icon";
 import styled from "styled-components";
 
-export const DIALOG_HEADER_HEIGHT = "64px";
+export const DIALOG_HEADER_HEIGHT = "54px";
 
 const DialogHeaderContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.dialogTitleBackground};
+  background: ${({ theme }) => theme.dialogBackground};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,9 +21,7 @@ const DialogHeaderContainer = styled.div`
 
 const ReturnIconContainer = styled.div`
   position: absolute;
-  top: 50%;
   left: 16px;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
   cursor: pointer;

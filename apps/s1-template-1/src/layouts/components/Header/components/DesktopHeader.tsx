@@ -1,4 +1,3 @@
-import Marquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
@@ -69,7 +68,6 @@ const DesktopHeader = () => {
 
   if (!logoUrl) return null;
   return (
-    <>
       <HeaderContainer>
         <HeaderWrapper>
           <LogoWrapper>
@@ -88,8 +86,6 @@ const DesktopHeader = () => {
           </HeaderContentContainer>
         </HeaderWrapper>
       </HeaderContainer>
-      <Marquee />
-    </>
   );
 };
 
