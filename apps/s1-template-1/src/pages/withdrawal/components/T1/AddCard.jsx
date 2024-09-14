@@ -1,16 +1,19 @@
 import { GreenGradientButton } from "@/components/UI/Button";
-import { Select as CustomSelect } from "@/components/UI/Select";
+import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
   ItemContainer,
   ItemNote,
   ItemNoteDesc,
+  ItemNoteText,
   LabelContainer,
   LabelLargeContainer,
   SubmitButton
 } from "@/components/styled-component/ProfileForms";
+import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
+import { MenuItem } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
@@ -24,6 +27,12 @@ const ButtonGroups = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+`;
+
+const BadgeContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1.2rem;
 `;
 
 const AddCard = ({
@@ -74,7 +83,20 @@ const AddCard = ({
         <ItemContainer>
           <LabelContainer>{i18n.t("common.withdrawalBankType")}</LabelContainer>
           <FormControl>
-            <CustomSelect
+            <BadgeContainer>
+            {isDeposit
+              ? depositList.map((item, index) => {
+                  return (
+                    <Badge key={index} text={item.banktype} isActive={index === selectedBankTypeIndex} handleClick={() =>handleBankTypeChange({}, index)}/>
+                  );
+                })
+              : withdrawalList.map((item, index) => {
+                  return (
+                    <Badge key={index} text={item.banktype} isActive={index === selectedBankTypeIndex} handleClick={() => handleBankTypeChange({}, index)}/>
+                  );
+                })}
+            </BadgeContainer>
+            {/* <CustomSelect
               native
               variant="outlined"
               displayEmpty
@@ -96,7 +118,7 @@ const AddCard = ({
                       </option>
                     );
                   })}
-            </CustomSelect>
+            </CustomSelect> */}
           </FormControl>
         </ItemContainer>
       )}
@@ -114,8 +136,7 @@ const AddCard = ({
               : i18n.t("common.withdrawalChannel")}
           </LabelContainer>
           <FormControl>
-            <CustomSelect
-              native
+            <Select
               variant="outlined"
               displayEmpty
               value={selectedChannelIndex}
@@ -125,20 +146,20 @@ const AddCard = ({
                 ? depositList.length > 0 &&
                   channelList.map((item, index) => {
                     return (
-                      <option value={index} key={index}>
+                      <MenuItem value={index} key={index}>
                         {i18n.t(item.channelname)}
-                      </option>
+                      </MenuItem>
                     );
                   })
                 : withdrawalList.length > 0 &&
                   channelList.map((item, index) => {
                     return (
-                      <option value={index} key={index}>
+                      <MenuItem value={index} key={index}>
                         {i18n.t(item.channelname)}
-                      </option>
+                      </MenuItem>
                     );
                   })}
-            </CustomSelect>
+            </Select>
           </FormControl>
         </ItemContainer>
       )}
@@ -163,7 +184,7 @@ const AddCard = ({
                     </LabelContainer>
                     {config.features.AddCard_BankDropdown ? (
                       <FormControl>
-                        <CustomSelect
+                        <Select
                           native
                           variant="outlined"
                           displayEmpty
@@ -171,20 +192,20 @@ const AddCard = ({
                           name="bankName"
                           onChange={handleBankNameChange}
                         >
-                          <option value="" selected disabled>
+                          <MenuItem value="" selected disabled>
                             {config.features.AddCard_DisplayFPS
                               ? i18n.t("hk28.card.addCard.msgEnterBankName")
                               : i18n.t("card.addCard.msgEnterBankName")}
-                          </option>
+                          </MenuItem>
                           {bankList.length > 0 &&
                             bankList.map((item, index) => {
                               return (
-                                <option value={item} key={index}>
+                                <MenuItem value={item} key={index}>
                                   {item}
-                                </option>
+                                </MenuItem>
                               );
                             })}
-                        </CustomSelect>
+                        </Select>
                       </FormControl>
                     ) : (
                       <FormControl>
@@ -400,8 +421,8 @@ const AddCard = ({
               </ItemContainer>              
             )}
             <ItemContainer>
-              <ItemNote>Note:
-                <ItemNoteDesc>The account holder name must be the same as the real name filled you account profile</ItemNoteDesc>
+              <ItemNote style={{display: "flex"}}><ItemNoteText>Note:</ItemNoteText>
+                <ItemNoteDesc style={{textAlign: "left"}}>The account holder name must be the same as the real name filled you account profile</ItemNoteDesc>
               </ItemNote>
               
             </ItemContainer>

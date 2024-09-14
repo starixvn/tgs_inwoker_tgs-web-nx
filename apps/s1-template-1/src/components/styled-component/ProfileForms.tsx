@@ -38,11 +38,17 @@ export const ItemNote = styled.div`
   font-size: 1.4rem;
   font-weight: 700;
   color: ${({ theme }) => theme.noteTextColor};
+  line-height: 1.8rem;
+`;
+export const ItemNoteText = styled.span`
+  position: relative; 
+  top: -.2rem;
 `;
 
 export const ItemNoteDesc = styled.span`
   font-size: 1.3rem;
   font-weight: 500;
+  margin-left: .4rem;
 `;
 
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
