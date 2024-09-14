@@ -12,6 +12,7 @@ interface HomeGameList {
   tableGameList: GameItem[];
   sportGameList: GameItem[];
   liveCasinoList: GameItem[];
+  recentBigWins: [];
 }
 
 interface TagGameList {
@@ -34,6 +35,7 @@ const initHomeGameList: HomeGameList = {
   tableGameList: [],
   sportGameList: [],
   liveCasinoList: [],
+  recentBigWins: []
 };
 
 const initTagGameList: TagGameList = {
@@ -68,6 +70,7 @@ export function useGetHomeCategoryList() {
     try {
       setHomeGameList({ ...initHomeGameList, isLoading: true });
       const response = await GameService.GetGameType(HomeCategory, TagTypeEnum.RECOMMEND, 1, 30);
+      const responseRecentBigWins = await GameService.GetRecentBigWins();
 
       setHomeGameList({
         ...initHomeGameList,
@@ -77,6 +80,7 @@ export function useGetHomeCategoryList() {
         tableGameList: filterGameType(response.data, [GameTypeEnum.TABLEGAME]),
         liveCasinoList: filterGameType(response.data, [GameTypeEnum.LIVE]),
         sportGameList: filterGameType(response.data, [GameTypeEnum.SPORTS, GameTypeEnum.ESPORTS]),
+        recentBigWins: responseRecentBigWins.data
       });
 
       return response;
@@ -153,5 +157,6 @@ export function useGetHomeCategoryList() {
     liveCasinoList: homeGameList.liveCasinoList,
     sportGameList: homeGameList.sportGameList,
     hotMatchList: hotMatchList.matches,
+    recentBigWins: homeGameList.recentBigWins
   };
 }

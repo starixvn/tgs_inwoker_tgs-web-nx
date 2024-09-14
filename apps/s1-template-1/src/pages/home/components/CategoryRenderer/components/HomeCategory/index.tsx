@@ -1,4 +1,3 @@
-import EmblaCarousel from "@/components/project/embla-carousel";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n, utility } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
@@ -14,11 +13,12 @@ import {
   ProviderItem,
   ViewAll,
 } from "./style";
+import EmblaCarousel from "@/components/project/embla-carousel";
 
 const HomeCategory = () => {
   const history = useHistory();
   const { providerList } = useHomeGameContext();
-  const { sportGameList, liveCasinoList, slotGameList, newGameList, hotGameList, tableGameList } =
+  const { sportGameList, liveCasinoList, slotGameList, newGameList, hotGameList, tableGameList, recentBigWins } =
     useGetHomeCategoryList();
 
   const navigateTo = (pageName: string) => {
@@ -31,7 +31,7 @@ const HomeCategory = () => {
   return (
     <DesktopContainer>
       <GameTypeContainer>
-        <RecentBigWins />
+        <RecentBigWins data={recentBigWins}/>
         <Group>
           <GameTypeTitle>
             <img src="/assets/images/common/icon-sports-group.svg" alt="hot" />

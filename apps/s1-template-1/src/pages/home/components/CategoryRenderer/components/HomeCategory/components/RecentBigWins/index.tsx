@@ -1,12 +1,14 @@
-import EmblaCarousel from "@/components/project/embla-carousel";
-import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
 import { media } from "@tgs-web-nx/constants";
 import { getFormatAmount, i18n } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
+import { utility } from "@tgs-web-nx/utils";
 
 import { GameTypeTitle, Group } from "../../style";
+import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
+import EmblaCarousel from "@/components/project/embla-carousel";
 
 const CardHoverBg = styled.div`
   position: absolute;
@@ -82,30 +84,13 @@ const CustomPlayButton = styled(PlayButton)`
 `;
 
 type BigWinType = {
-  name: string;
-  amount: number;
-  code: string;
+  data: any[];
 };
 
-const RecentBigWins = () => {
-  const recentBigWins: BigWinType[] = [
-    { name: "Itslon1", amount: 666465825, code: "itslon1" },
-    { name: "Janganmurated", amount: 729129982, code: "janganmurated" },
-    { name: "PERDITA", amount: 666465825, code: "perdita" },
-    { name: "Itslon2", amount: 666465825, code: "itslon1" },
-    { name: "Janganmurated2", amount: 729129982, code: "janganmurated" },
-    { name: "PERDITA2", amount: 666465825, code: "perdita" },
-    { name: "Itslon3", amount: 666465825, code: "itslon1" },
-    { name: "Janganmurated4", amount: 729129982, code: "janganmurated" },
-    { name: "PERDITA5", amount: 666465825, code: "perdita" },
-    { name: "Itslon4", amount: 666465825, code: "itslon1" },
-    { name: "Janganmurated5", amount: 729129982, code: "janganmurated" },
-    { name: "PERDITA6", amount: 666465825, code: "perdita" },
-  ];
-
+const RecentBigWins : React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
   const emblaPlugins: any = [Autoplay({ playOnInit: true, delay: 3000 })];
-
+  const { isDesktopSize } = useRwd();
   return (
     <Group>
       <GameTypeTitle>
@@ -113,16 +98,20 @@ const RecentBigWins = () => {
         {i18n.t("web.home.Section1RecentBigWins")}
       </GameTypeTitle>
       <EmblaCarousel options={emblaOptions} plugins={emblaPlugins}>
-        {recentBigWins &&
-          recentBigWins.map((item, index) => {
+        {recentBigWins.data.length > 0 &&
+          recentBigWins.data.map((item, index) => {
             return (
               <RecentBigWinsSlide className="embla__slide" key={index}>
                 <GameContainer key={index}>
                   <GameIcon>
                     <img
                       className="icon"
-                      src={`/assets/images/big-wins/desktop/${item.code}.png`}
-                      alt={item.name}
+                      src={`${utility.imagePathGenerator(
+                        `${item.gameProviderCode.toLowerCase()}/en-US/${item.gameCode}${
+                          isDesktopSize ? "@1x" : "@2x"
+                        }.webp`,
+                      )}`}
+                      alt={item.gameCode}
                     />
                     <CardHoverBg>
                       <CustomPlayButton>
@@ -136,8 +125,8 @@ const RecentBigWins = () => {
                     </CardHoverBg>
                   </GameIcon>
 
-                  <GameName>{item.name}</GameName>
-                  <BigWinsAmount>{`đ${getFormatAmount(item.amount)}`}</BigWinsAmount>
+                  <GameName>{item.gameName}</GameName>
+                  <BigWinsAmount>{`đ${getFormatAmount(item.winAmount)}`}</BigWinsAmount>
                 </GameContainer>
               </RecentBigWinsSlide>
             );
