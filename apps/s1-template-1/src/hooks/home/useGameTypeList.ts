@@ -49,10 +49,10 @@ export const useGameTypeList = () => {
         gameType: GameTypeEnum.COCKFIGHT,
       },
       {
-        key: "egame",
-        iconUrl: "/assets/images/common/icon-e-game.svg",
+        key: "tableGame",
+        iconUrl: "/assets/images/common/icon-table-game-group.svg",
         activeIconUrl: "",
-        text: i18n.t("common.egame"),
+        text: i18n.t("common.tablegame"),
         fontSize: "small",
         gameType: GameTypeEnum.TABLEGAME,
       },

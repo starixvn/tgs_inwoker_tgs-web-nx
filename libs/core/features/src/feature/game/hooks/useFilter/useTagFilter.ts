@@ -1,32 +1,19 @@
 import { useCallback, useMemo, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { FilterTag, FilterTagTypeEnum } from "../../types";
-import { filterTagAll } from "../../constants/filterTagAll";
-import { useAuth } from "../../../useAuth";
+import { FilterTag, OrderTypeEnum, } from "../../types";
 
 export function useTagFilter() {
-  const { isLogin } = useAuth();
-  const history = useHistory();
-  const [activeFilterTag, setActiveFilterTag] = useState<FilterTag>(filterTagAll);
+  const [activeFilterTag, setActiveFilterTag] = useState<OrderTypeEnum>(OrderTypeEnum.HOT);
 
-  const handleChangeActiveFilterTag = useCallback(
-    (newFilterTag: FilterTag) => {
-      if (!isLogin && newFilterTag.tagType === FilterTagTypeEnum.FAVORITE) {
-        history.push("/login");
-      }
-
-      setActiveFilterTag(newFilterTag);
-    },
-    [isLogin],
-  );
+  const handleChangeActiveFilterTag = useCallback((newFilterTag: OrderTypeEnum) => {
+    setActiveFilterTag(newFilterTag);
+  }, []);
 
   const filterTagList = useMemo(() => {
     const tags = [
-      { name: "All", tagType: FilterTagTypeEnum.ALL },
-      { name: "New", tagType: FilterTagTypeEnum.NEW },
-      { name: "Favorite", tagType: FilterTagTypeEnum.FAVORITE },
-      { name: "Hot", tagType: FilterTagTypeEnum.HOT },
-      { name: "Recommend", tagType: FilterTagTypeEnum.RECOMMEND },
+      { name: "Hot", tagType: OrderTypeEnum.HOT },
+      { name: "A-Z", tagType: OrderTypeEnum.A_Z },
+      { name: "Z-A", tagType: OrderTypeEnum.Z_A },
+      { name: "New", tagType: OrderTypeEnum.NEW },
     ];
     return tags.filter((tag) => !!tag) as FilterTag[];
   }, []);

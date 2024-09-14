@@ -3,13 +3,14 @@ import { ProviderDto } from "@tgs-web-nx/types";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
+import { useProviderFilter } from "./useFilter/useProviderFilter";
 
 interface ProviderState {
   isLoading: boolean;
   providerList: ProviderDto[];
   error: Error | null;
 }
-export function useProvider() {
+export function useProvider(updateGpCodeList: (providers: ProviderDto[]) => void) {
   const [providerState, setProviderState] = useState<ProviderState>({
     isLoading: false,
     providerList: [],
@@ -42,6 +43,7 @@ export function useProvider() {
           providerList: formattedProviderList,
           error: null,
         });
+        updateGpCodeList(response.data);
       } catch (error: any) {
         console.error(error);
         setProviderState({

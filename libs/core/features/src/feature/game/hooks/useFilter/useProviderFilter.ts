@@ -1,39 +1,31 @@
 import { useCallback, useMemo, useState } from "react";
-import { GameItem, ProviderDto } from "@tgs-web-nx/types";
+import { ProviderDto } from "@tgs-web-nx/types";
 import { filterTagAll } from "../../constants/filterTagAll";
 import { FilterTag, FilterTagTypeEnum } from "../../types";
 
-export function useProviderFilter(providerList: ProviderDto[]) {
-  const [activeProviderFilterTag, setActiveProviderFilterTag] = useState<FilterTag>(filterTagAll);
-  const handleChangeActiveProviderFilterTag = useCallback((newFilterTag: FilterTag) => {
+export function useProviderFilter() {
+  const [activeProviderFilterTag, setActiveProviderFilterTag] = useState<string[]>([]);
+  const handleChangeActiveProviderFilterTag = useCallback((newFilterTag: string[]) => {
     setActiveProviderFilterTag(newFilterTag);
   }, []);
 
-  const [gpCodeList, setGpCodeList] = useState<string[]>([]);
-  const updateGpCodeList = (gameItemList: GameItem[]) => {
-    const gpCodeSet = new Set<string>();
-
-    gameItemList.forEach((gameItem) => {
-      gpCodeSet.add(gameItem.gpcode);
-    });
-
-    setGpCodeList(Array.from(gpCodeSet));
+  const [gpCodeList, setGpCodeList] = useState<ProviderDto[]>([]);
+  const updateGpCodeList = (providers: ProviderDto[]) => {
+    setGpCodeList(providers);
   };
 
   const providerFilterTagList = useMemo(() => {
-    const filteredTags: FilterTag[] = [filterTagAll];
-    providerList.forEach((provider) => {
-      if (gpCodeList.includes(provider.code)) {
-        filteredTags.push({
-          name: provider.name,
-          tagType: FilterTagTypeEnum.PROVIDER,
-          gpCode: provider.code,
-        });
-      }
+    const filteredTags: FilterTag[] = [];
+    gpCodeList.forEach((provider) => {
+      filteredTags.push({
+        name: provider.name,
+        tagType: FilterTagTypeEnum.PROVIDER,
+        gpCode: provider.code,
+      });
     });
 
     return filteredTags.filter((tag) => !!tag) as FilterTag[];
-  }, [gpCodeList, providerList]);
+  }, [gpCodeList]);
 
   return {
     providerFilterTagList,

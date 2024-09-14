@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, ResponseResDto } from "@tgs-web-nx/types";
+import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, HotMatchList, JoinGameResDto, JoinLobbyGameResDto, ResponseResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
@@ -11,8 +11,9 @@ export const GameService = {
   JoinLobbyGame,
   GetProviderList,
   GetGameList,
-  GetCategory,
+  GetGameType,
   GetGameListByTag,
+  GetHotMatchList
 };
 
 const languageFromLocalStorage = localStorage.getItem("i18nextLng");
@@ -58,7 +59,7 @@ function GetGameList(gpCode: string, gametypes?: number) {
   ) as unknown as Promise<GetGameListResDto>;
 }
 
-function GetCategory(gameTypes: number[], tag: number, pageIndex: number, pageSize: number) {
+function GetGameType(gameTypes: number[], tag: number, pageIndex: number, pageSize: number, providerCode = [], orderBy = 0) {
   const result = ApiService.post("gametype", {
     PlatformType: config.isPC,
     Language: i18n.language,
@@ -67,6 +68,8 @@ function GetCategory(gameTypes: number[], tag: number, pageIndex: number, pageSi
     Tag: tag,
     PageIndex: pageIndex,
     PageSize: pageSize,
+    providerCode,
+    orderType: orderBy
   });
   return result as unknown as Promise<ResponseResDto<GameTypeDto>>;
 }
@@ -77,4 +80,12 @@ function GetGameListByTag(tags: number[], limit: number) {
     //@ts-ignore
     `Game/by-tag?platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}&${tagsQuery}&limit=${limit}`,
   ) as unknown as Promise<ResponseResDto<GameTagListResDto>>;
+}
+
+function GetHotMatchList() {
+  return ApiService.getSabaAPI(
+    //@ts-ignore
+    `sports/V1/GetEvents?query=$filter=sporttype eq 1&$top=10&includeMarkets=$filter=bettype eq 5&language=en&from=${new Date().toJSON()}`,
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTdGFyaXgxU1dfNHVueHFobHd4dzBrX3Rlc3QiLCJzbiI6IlN0YXJpeDFTVyIsInAiOiIwNVNobWlrM2NJZnhWRlVjVkloTzV0VmFCVVA4SnMvUmZwYVVKaUVuM3hiS1hnM0I1SUtEeW9IczF5Q0hRbUtOWlhzVzZHMGlNK2lMekE5OENFKzRCUFcrZGVJeEt6RDNyNmFlb2I3d1hpMD0iLCJTaXRlSWQiOiI0MzUxNDAwIiwibmJmIjoxNzI2Mjc5MTM4LCJleHAiOjE3MjYyNzk3Mzh9.7FlNBoOlMLNyHrPZoNhmBH10ULdfiEEAiDpBD_q1xCk"
+  ) as unknown as Promise<ResponseResDto<HotMatchList>>;
 }

@@ -10,7 +10,7 @@ export const InterceptorService = {
     axios.interceptors.request.use(
       async function (config: AxiosRequestConfig) {
         const client = localStorage.getItem("client-token");
-        if (client != null && client !== "") {
+        if (client != null && client !== "" && !config.headers["Authorization"]) {
           config.headers["Authorization"] = "bearer " + client;
         }
 
@@ -124,7 +124,7 @@ export const InterceptorService = {
             error.response.data.err == 101 ||
             error.response.data.err == 210 ||
             error.response.data.errmsg ===
-              "request platform is not matched with player login platform."
+            "request platform is not matched with player login platform."
           ) {
             if (
               error.response.config.url.indexOf("Player/Login") < 0 &&

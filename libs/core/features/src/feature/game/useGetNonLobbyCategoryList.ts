@@ -24,11 +24,8 @@ export function useGetNonLobbyCategoryList() {
 
   const {
     activeGameType,
-    updateGpCodeList,
-    activeFilterTag,
-    favoriteList,
     activeProviderFilterTag,
-    searchString,
+    activeFilterTag,
     pageIndex,
     pageSize
   } = useHomeGameContext();
@@ -43,8 +40,7 @@ export function useGetNonLobbyCategoryList() {
 
     try {
       setGameListState(state => ({ ...state, isLoading: true }));
-
-      const response = await GameService.GetCategory([activeGameType], TagTypeEnum.NONE, pageIndex, pageSize);
+      const response = await GameService.GetGameType([activeGameType], TagTypeEnum.NONE, pageIndex, pageSize, activeProviderFilterTag, activeFilterTag);
 
       const gameList = pageIndex > 1 ? gameListState.gameList.concat(response.data[0].games) : response.data[0].games;
 
@@ -71,31 +67,12 @@ export function useGetNonLobbyCategoryList() {
   };
 
   useEffect(() => {
-    fetchGameList().then((response) => {
-      if (!response) return;
-      updateGpCodeList(response);
-    });
-  }, [activeGameType, pageIndex]);
-
-  const filteredGameListByTag = useMemo(() => {
-    return getFilteredGameListByTag(gameListState.gameList, activeFilterTag, favoriteList);
-  }, [JSON.stringify(gameListState.gameList), activeFilterTag, favoriteList]);
-
-  const filteredGameListByProvider = useMemo(() => {
-    return getFilteredGameListByProvider(filteredGameListByTag, activeProviderFilterTag);
-  }, [filteredGameListByTag, activeProviderFilterTag]);
-
-  const searchedGameList = useMemo(() => {
-    if (!searchString) return filteredGameListByProvider;
-
-    return filteredGameListByProvider.filter((item) => {
-      return item.name.toLowerCase().includes(searchString.toLowerCase());
-    });
-  }, [searchString, JSON.stringify(filteredGameListByProvider)]);
+    fetchGameList();
+  }, [activeGameType, pageIndex, activeProviderFilterTag, activeFilterTag]);
 
   return {
     isLoading: gameListState.isLoading,
-    gameList: searchedGameList,
+    gameList: gameListState.gameList,
     error: gameListState.error,
     total: gameListState.total,
   };

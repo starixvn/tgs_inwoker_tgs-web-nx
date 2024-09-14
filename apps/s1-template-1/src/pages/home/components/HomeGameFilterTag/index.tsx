@@ -14,6 +14,7 @@ import {
   FilterTag,
   filterTagAll,
   FilterTagTypeEnum,
+  OrderTypeEnum,
   useAuth,
   useGetLobbyCategoryList,
   useHomeGameContext,
@@ -22,6 +23,8 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
+import { Dropdown} from 'primereact/dropdown';
 
 //active
 const FilterTagWrapper = styled.div`
@@ -72,113 +75,41 @@ const CommonSearchWrapper = styled.div`
 `;
 
 const HomeGameFilterTag = () => {
-  const { isLogin } = useAuth();
-  const history = useHistory();
-  const { isDesktopSize } = useRwd();
   const {
     providerFilterTagList,
+    filterTagList,
+    activeProviderFilterTag,
     handleChangeActiveFilterTag,
     handleChangeActiveProviderFilterTag,
     activeFilterTag,
-    activeProviderFilterTag,
     searchString,
     handleChangeSearch,
   } = useHomeGameContext();
-  const { navPopupCategoryList } = useGetLobbyCategoryList();
-  const onChangeCommonFilterTag = (newFilterTag: FilterTag) => {
-    if (!isLogin && newFilterTag.tagType === FilterTagTypeEnum.FAVORITE) {
-      history.push("/login");
-    }
-
-    if (newFilterTag.tagType === activeFilterTag.tagType) {
-      handleChangeActiveFilterTag(filterTagAll);
-      return;
-    }
-    handleChangeActiveFilterTag(newFilterTag);
-  };
-
-  const filterTagList: FilterTag[] = [
-    {
-      name: i18n.t("common.new"),
-      tagType: FilterTagTypeEnum.NEW,
-      iconUrl: newIcon,
-      activedUrl: activedNewIcon,
-    },
-    {
-      name: i18n.t("common.favorite"),
-      tagType: FilterTagTypeEnum.FAVORITE,
-      iconUrl: favoriteIcon,
-      activedUrl: activedFavoriteIcon,
-    },
-    {
-      name: i18n.t("common.hot"),
-      tagType: FilterTagTypeEnum.HOT,
-      iconUrl: hotIcon,
-      activedUrl: activedHotIcon,
-    },
-    {
-      name: i18n.t("common.recommend"),
-      tagType: FilterTagTypeEnum.RECOMMEND,
-      iconUrl: recommendIcon,
-      activedUrl: activedRecommendIcon,
-    },
-  ];
-
-  const validFilterTagList: FilterTag[] = filterTagList.filter(
-    (tag): tag is FilterTag => tag !== null,
-  );
-
-  const handleSelectProvider = (providerName: string) => {
-    const newFilterTag = providerFilterTagList.find(
-      (tag: FilterTag) => tag.name === providerName,
-    ) as FilterTag;
-    handleChangeActiveProviderFilterTag(newFilterTag);
-  };
-
-  const sortList = ["Hot", "A-Z", "Z-A", "New"];
 
   return (
     <FilterTagWrapper>
       <CommonSearchWrapper>
-        <Select
-          onChange={(e) => handleSelectProvider(`${e.target.value}`)}
-          value={activeProviderFilterTag.name}
-          sx={{
-            minWidth: "20rem",
-          }}
+        <MultiSelect
+          filter 
+          onChange={(e: MultiSelectChangeEvent) => handleChangeActiveProviderFilterTag(e.target.value)}
+          value={activeProviderFilterTag}
+          options={providerFilterTagList}
+          optionLabel="name"
+          optionValue="gpCode"
+          placeholder={i18n.t("web.home.Section1GameProviders")}
+          maxSelectedLabels={2}
+          // className="w-full md:w-20rem" 
         >
-          {providerFilterTagList.map((filterTag) => {
-            const matchedProvider = navPopupCategoryList.find(
-              (provider) => provider.code === filterTag.gpCode,
-            );
-            const status = matchedProvider ? matchedProvider.status : -1;
-
-            return (
-              <MenuItem
-                key={filterTag.name}
-                value={filterTag.name}
-                disabled={status === providerStatus.Maintenance}
-              >
-                {filterTag.name}
-              </MenuItem>
-            );
-          })}
-        </Select>
-        <Select
-          onChange={(e) => {}}
-          value={"Hot"}
-          sx={{
-            minWidth: "20rem",
-          }}
+        </MultiSelect>
+        <Dropdown 
+          onChange={(e) => handleChangeActiveFilterTag(e.target.value)}
+          value={activeFilterTag}
+          options={filterTagList}
+          optionLabel="name"
+          optionValue="tagType"
+          placeholder={i18n.t("web.home.Section1GameProviders")}
         >
-          {sortList.map((value, index) => {
-            return (
-              <MenuItem key={index} value={value}>
-                {value}
-              </MenuItem>
-            );
-          })}
-        </Select>
+        </Dropdown>
       </CommonSearchWrapper>
     </FilterTagWrapper>
   );

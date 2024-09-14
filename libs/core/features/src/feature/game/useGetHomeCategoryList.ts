@@ -1,6 +1,6 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
-import { GameItem, GameTagListResDto, GameTypeDto } from "@tgs-web-nx/types";
+import { GameItem, GameTagListResDto, GameTypeDto, HotMatchList } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
 
 import { TagTypeEnum } from "./types";
@@ -21,6 +21,12 @@ interface TagGameList {
   newGameList: GameItem[];
 }
 
+interface HotMatchs {
+  isLoading: boolean;
+  error: Error | null;
+  matches: HotMatchList;
+}
+
 const initHomeGameList: HomeGameList = {
   isLoading: false,
   error: null,
@@ -37,6 +43,12 @@ const initTagGameList: TagGameList = {
   newGameList: [],
 };
 
+const initHotMatchList: HotMatchs = {
+  isLoading: false,
+  error: null,
+  matches: [],
+};
+
 const HomeCategory = [
   GameTypeEnum.SPORTS,
   GameTypeEnum.ESPORTS,
@@ -50,10 +62,12 @@ export function useGetHomeCategoryList() {
 
   const [tagGameList, setTagGameList] = useState<TagGameList>(initTagGameList);
 
+  const [hotMatchList, setHotMatchList] = useState<HotMatchs>(initHotMatchList);
+
   const getHomeGameList = async () => {
     try {
       setHomeGameList({ ...initHomeGameList, isLoading: true });
-      const response = await GameService.GetCategory(HomeCategory, TagTypeEnum.RECOMMEND, 1, 30);
+      const response = await GameService.GetGameType(HomeCategory, TagTypeEnum.RECOMMEND, 1, 30);
 
       setHomeGameList({
         ...initHomeGameList,
@@ -95,6 +109,25 @@ export function useGetHomeCategoryList() {
     }
   };
 
+  const getHotMatch = async () => {
+    try {
+      setHotMatchList({ ...initHotMatchList, isLoading: true });
+      const response = await GameService.GetHotMatchList();
+
+      setHotMatchList({
+        ...initHotMatchList,
+        isLoading: false,
+        error: null,
+        matches: response.data,
+      });
+
+      return response;
+    } catch (error: any) {
+      console.error(error);
+      setHotMatchList({ ...initHotMatchList, isLoading: false, error: error });
+    }
+  }
+
   const filterGameType = (gameTypes: GameTypeDto[], types: GameTypeEnum[]) => {
     const results = gameTypes.filter((gameType) => types.includes(gameType.gameType));
 
@@ -107,6 +140,7 @@ export function useGetHomeCategoryList() {
   useEffect(() => {
     getHomeGameList();
     getGameByTag();
+    getHotMatch();
   }, []);
 
   return {
@@ -118,5 +152,6 @@ export function useGetHomeCategoryList() {
     tableGameList: homeGameList.tableGameList,
     liveCasinoList: homeGameList.liveCasinoList,
     sportGameList: homeGameList.sportGameList,
+    hotMatchList: hotMatchList.matches,
   };
 }

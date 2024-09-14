@@ -44,12 +44,12 @@ const NavCategory = () => {
 
   const enterVendorFilter = (gpcode: string) => {
     handleChangeGameType(activeNavPopupGameType);
-    const filterTag = {
-      tagType: FilterTagTypeEnum.PROVIDER,
-      name: "",
-      gpCode: gpcode,
-    };
-    handleChangeActiveProviderFilterTag(filterTag);
+    // const filterTag = {
+    //   tagType: FilterTagTypeEnum.PROVIDER,
+    //   name: "",
+    //   gpCode: gpcode,
+    // };
+   // handleChangeActiveProviderFilterTag(filterTag);
 
     history.push(`/main/${activeNavPopupGameTypeKey}`);
   };

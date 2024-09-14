@@ -105,23 +105,9 @@ const GameList = styled.ul`
 const NonLobbyCategory = () => {
   const { isDesktopSize, isMobileSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
-  const {
-    providerFilterTagList,
-    handleChangeActiveProviderFilterTag,
-    activeProviderFilterTag,
-    searchString,
-    handleChangeSearch,
-    activeGameTypeKey,
-  } = useHomeGameContext();
+  const { activeGameTypeKey } = useHomeGameContext();
   const hasMappingData = !!gameList.length;
   const { navPopupCategoryList } = useGetLobbyCategoryList();
-
-  const handleSelectProvider = (providerName: string) => {
-    const newFilterTag = providerFilterTagList.find(
-      (tag: FilterTag) => tag.name === providerName,
-    ) as FilterTag;
-    handleChangeActiveProviderFilterTag(newFilterTag);
-  };
 
   return (
     <Wrapper>
