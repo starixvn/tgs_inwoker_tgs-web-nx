@@ -29,7 +29,7 @@ const HomeCategory = () => {
   } = useGetHomeCategoryList();
 
   const navigateTo = (pageName: string) => {
-    history.push("/main/" + pageName);
+    history.push("/" + pageName);
     window.scroll({ top: 0, behavior: "smooth" });
   };
 
