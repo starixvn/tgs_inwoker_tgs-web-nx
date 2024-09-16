@@ -64,46 +64,11 @@ export interface GameTypeDto {
   gameType: number;
 }
 
-export interface HotMatchList {
-  events: EventMatch[];
-  markets: Market[];
+export interface ProviderGameDto {
+  total: number;
+  games: GameItem[];
+  pageIndex: number;
+  ProviderCode: string;
 }
 
-export interface EventMatch {
-  sportType: number;
-  sportName: string;
-  leagueName: string;
-  leagueUrl: string;
-  eventId: string;
-  globalShowTime: string;
-  teamInfo: TeamInfo;
-}
 
-interface TeamInfo {
-  homeName: string;
-  homeIconUrl: string;
-  awayName: string;
-  awayIconUrl: string;
-}
-
-export interface Market {
-  eventId: string;
-  betType: number;
-  betTypeName: string;
-  selections: SelectionInfo[];
-}
-
-interface SelectionInfo {
-  key: string;
-  point: number;
-  oddsPrice: OddsPrice;
-}
-
-interface OddsPrice {
-  americanPrice: number;
-  decimalPrice: number;
-  hongKongPrice: number;
-  indoPrice: number;
-  malayPrice: number;
-  parlayPrice: number;
-}

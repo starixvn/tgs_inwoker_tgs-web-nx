@@ -1,6 +1,6 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
-import { GameItem, GameTagListResDto, GameTypeDto, HotMatchList, RecentBigWins } from "@tgs-web-nx/types";
+import { GameItem, GameTagListResDto, GameTypeDto, RecentBigWins } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
 
 import { TagTypeEnum } from "./types";
@@ -22,11 +22,11 @@ interface TagGameList {
   newGameList: GameItem[];
 }
 
-interface HotMatchs {
-  isLoading: boolean;
-  error: Error | null;
-  matches: HotMatchList;
-}
+// interface HotMatchs {
+//   isLoading: boolean;
+//   error: Error | null;
+//   matches: HotMatchList;
+// }
 
 const initHomeGameList: HomeGameList = {
   isLoading: false,
@@ -45,15 +45,6 @@ const initTagGameList: TagGameList = {
   newGameList: [],
 };
 
-const initHotMatchList: HotMatchs = {
-  isLoading: false,
-  error: null,
-  matches: {
-    events: [],
-    markets: []
-  }
-};
-
 const HomeCategory = [
   GameTypeEnum.SPORTS,
   GameTypeEnum.ESPORTS,
@@ -67,8 +58,6 @@ export function useGetHomeCategoryList() {
 
   const [tagGameList, setTagGameList] = useState<TagGameList>(initTagGameList);
 
-  const [hotMatchList, setHotMatchList] = useState<HotMatchs>(initHotMatchList);
-
   useEffect(() => {
     const fetchData = async () => {
       const responseRecentBigWins = await GameService.GetRecentBigWins();
@@ -80,7 +69,7 @@ export function useGetHomeCategoryList() {
 
     const interval = setInterval(() => {
       fetchData();
-    }, 300000); 
+    }, 300000);
 
     return () => clearInterval(interval);
   }, []);
@@ -132,25 +121,6 @@ export function useGetHomeCategoryList() {
     }
   };
 
-  // const getHotMatch = async () => {
-  //   try {
-  //     setHotMatchList({ ...initHotMatchList, isLoading: true });
-  //     const response = await GameService.GetHotMatchList();
-
-  //     setHotMatchList({
-  //       ...initHotMatchList,
-  //       isLoading: false,
-  //       error: null,
-  //       matches: response.data,
-  //     });
-
-  //     return response;
-  //   } catch (error: any) {
-  //     console.error(error);
-  //     setHotMatchList({ ...initHotMatchList, isLoading: false, error: error });
-  //   }
-  // }
-
   const filterGameType = (gameTypes: GameTypeDto[], types: GameTypeEnum[]) => {
     const results = gameTypes.filter((gameType) => types.includes(gameType.gameType));
 
@@ -175,7 +145,6 @@ export function useGetHomeCategoryList() {
     tableGameList: homeGameList.tableGameList,
     liveCasinoList: homeGameList.liveCasinoList,
     sportGameList: homeGameList.sportGameList,
-    hotMatchList: hotMatchList.matches,
     recentBigWins: homeGameList.recentBigWins
   };
 }
