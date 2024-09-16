@@ -13,7 +13,7 @@ export const GameService = {
   GetGameList,
   GetGameType,
   GetGameListByTag,
-  // GetRecentBigWins
+  GetRecentBigWins
 };
 
 const languageFromLocalStorage = localStorage.getItem("i18nextLng");
@@ -82,9 +82,9 @@ function GetGameListByTag(tags: number[], limit: number) {
   ) as unknown as Promise<ResponseResDto<GameTagListResDto>>;
 }
 
-// function GetRecentBigWins() {
-//   return ApiService.get(
-//     //@ts-ignore
-//     `Game/rencent-big-wins?platformtype=${config.isPC}`,
-//   ) as unknown as Promise<ResponseResDto<[]>>;
-// }
+function GetRecentBigWins() {
+  return ApiService.get(
+    //@ts-ignore
+    `Game/rencent-big-wins?platformtype=${config.isPC}`,
+  ) as unknown as Promise<[]>;
+}
