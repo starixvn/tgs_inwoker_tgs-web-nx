@@ -22,8 +22,8 @@ const NonLobbyCategory = () => {
         <DesktopCategoryContentWrapper>
           <GameList>
             {hasMappingData &&
-              gameList.map((gameItem) => (
-                <li>
+              gameList.map((gameItem, index) => (
+                <li key={index}>
                   <GameCard
                     key={gameItem.id}
                     gameItem={gameItem}
