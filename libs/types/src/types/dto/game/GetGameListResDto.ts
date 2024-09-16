@@ -64,11 +64,4 @@ export interface GameTypeDto {
   gameType: number;
 }
 
-export interface ProviderGameDto {
-  total: number;
-  games: GameItem[];
-  pageIndex: number;
-  ProviderCode: string;
-}
-
 

@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, ResponseResDto, RecentBigWins, ProviderGameDto } from "@tgs-web-nx/types";
+import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, ResponseResDto, RecentBigWins } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
@@ -13,8 +13,7 @@ export const GameService = {
   GetGameList,
   GetGameType,
   GetGameListByTag,
-  GetRecentBigWins,
-  GetGameByProvider
+  GetRecentBigWins
 };
 
 const languageFromLocalStorage = localStorage.getItem("i18nextLng");
@@ -88,12 +87,4 @@ function GetRecentBigWins() {
     //@ts-ignore
     `Game/rencent-big-wins?platformtype=${config.isPC}`,
   ) as unknown as Promise<ResponseResDto<RecentBigWins>>;
-}
-
-function GetGameByProvider(gpCodes: string[], pageIndex: number, pageSize: number, orderBy = 0) {
-  const codes = gpCodes.length > 0 ? gpCodes.map((gpCode) => `gpcode=${gpCode}`).join("&") : "";
-  const orderByQuery = orderBy > 0 ? `&orderType=${orderBy}` : "";
-  return ApiService.get(
-    `GameProvider/Games?platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}&pagesize=${pageSize}&pageindex=${pageIndex}&${orderByQuery}&${codes}`
-  ) as unknown as Promise<ResponseResDto<ProviderGameDto>>
 }
