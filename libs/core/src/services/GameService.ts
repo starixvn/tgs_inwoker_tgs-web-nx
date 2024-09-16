@@ -86,5 +86,5 @@ function GetRecentBigWins() {
   return ApiService.get(
     //@ts-ignore
     `Game/rencent-big-wins?platformtype=${config.isPC}`,
-  ) as unknown as Promise<ResponseResDto<GameTagListResDto>>;
+  ) as unknown as Promise<ResponseResDto<any[]>>;
 }
