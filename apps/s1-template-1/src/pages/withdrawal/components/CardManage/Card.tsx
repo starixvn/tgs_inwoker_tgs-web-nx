@@ -1,9 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import deleteIcon from "@/assets/t28/images/card/delete.svg";
-import { media } from "@/theme/breakpoints";
 import Icon from "@/components/project/Icon";
+import { media } from "@/theme/breakpoints";
+import styled from "styled-components";
 
 const CardContainer = styled.div`
   width: 100%;
@@ -24,60 +21,49 @@ const CardTitle = styled.div`
   color: ${({ theme }) => theme.text};
   border-bottom: 1px solid ${({ theme }) => theme.gray20};
   padding-bottom: 10px;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
 `;
 
 const CardContent = styled.div`
-  color: ${({ theme }) => theme.gray50};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  color: ${({ theme }) => theme.text};
+  display: grid;
+  grid-template-columns: 5.6rem 1fr 1fr 4.8rem;
+  align-items: center;
+  height: 4.8rem;
+   border-bottom: 1px solid ${({ theme }) => theme.tableBorderColor};
 `;
 
 const ContentRow = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
+   font-size: 1.1rem;
+  
 `;
 
-const EndingInLabel = styled.div`
-  font-size: 1.125rem;
-  color: ${({ theme }) => theme.gray50};
-`;
-const EndingInValue = styled.div`
-  font-size: 1.125rem;
-
-  color: ${({ theme }) => theme.gray50};
-`;
 
 type Props = {
   title: string;
   content: string;
   handleDelete: () => void;
   disable: boolean;
+  contentName: string;
 };
-const Card = ({ title, content, handleDelete, disable }: Props) => {
+const Card = ({ title, content, handleDelete, contentName, disable }: Props) => {
   return (
-    <CardContainer>
-      <CardTitle>{title}</CardTitle>
       <CardContent>
+        <ContentRow>{title}</ContentRow>
+        <ContentRow>{contentName}</ContentRow>
         <ContentRow>
-          <EndingInLabel>{i18n.t("card.tail")}</EndingInLabel>
-          <EndingInValue>{content}</EndingInValue>
+          {/* <EndingInLabel>{i18n.t("card.tail")}</EndingInLabel> */}
+          {content}
         </ContentRow>
+        
         <ContentRow>
           {!disable && (
             <Icon
               onClick={handleDelete}
-              iconUrl={deleteIcon}
-              width={"40px"}
-              height={"40px"}
+              iconUrl="/assets/images/common/icon-delete.svg"
+              width={"13px"}
+              height={"16px"}
               style={{
                 marginLeft: "auto",
                 cursor: "pointer",
@@ -86,7 +72,6 @@ const Card = ({ title, content, handleDelete, disable }: Props) => {
           )}
         </ContentRow>
       </CardContent>
-    </CardContainer>
   );
 };
 

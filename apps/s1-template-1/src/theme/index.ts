@@ -160,4 +160,7 @@ export const theme = {
   captionTextColor: "#6E7E92",
 
   noDataTextColor: "#6E7E92",
+  // Table
+  tableBorderColor: "#1E2837",
+  tableBackground: "#1C2836",
 };

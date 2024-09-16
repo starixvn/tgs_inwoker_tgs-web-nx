@@ -1,18 +1,24 @@
-import React from "react";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { BankCard } from "@tgs-web-nx/types";
-import { useShowAddCardButton } from "@tgs-web-nx/core/features";
-import { SubmitButton } from "@/components/styled-component/ProfileForms";
-import Card from "@/pages/withdrawal/components/CardManage/Card";
+import { LabelContainer } from "@/components/styled-component/ProfileForms";
 import { CardContainer } from "@/components/styled-component/WithdrawV2/CardManage";
+import { DarkBlueGradientButton } from "@/components/UI/Button";
+import Card from "@/pages/withdrawal/components/CardManage/Card";
 import CardAddCard from "@/pages/withdrawal/components/CardManage/CardAddCard";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
+import config from "@tgs-web-nx/config";
+import { useShowAddCardButton } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { BankCard } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 
 const CardManageContainer = styled.div`
   width: 100%;
+`;
+
+const CardContainerTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 type Props = {
@@ -33,11 +39,11 @@ const CardManage = ({
 
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
-      return item.detail.phone.substring(item.detail.phone.length - 4);
+      return item.detail.phone;
     }
 
     if (item.detail.address) {
-      return item.detail.address.substring(item.detail.address.length - 4);
+      return item.detail.address;
     }
 
     if (
@@ -52,10 +58,14 @@ const CardManage = ({
     }
 
     if (item.detail.bankAccount) {
-      return item.detail.bankAccount.substring(item.detail.bankAccount.length - 4);
+      return item.detail.bankAccount;
     }
 
     return "";
+  };
+
+  const getBankName = (item: BankCard): string => {
+    return item.detail.bankName;
   };
   return (
     <CardManageContainer>
@@ -66,14 +76,22 @@ const CardManage = ({
           handleClickAddCard={onhandleAddCardClick}
         />
       )}
-
+      <CardContainerTitle>
+        <LabelContainer>Manage Bank Accounts</LabelContainer>
+        {!isDesktopSize && isShowAddCardButton && (
+            <CardAddCard handleClick={onhandleAddCardClick} />
+          )}
+      </CardContainerTitle>
+      
       <CardContainer>
+        
         {bankCardList.map((item, key) => {
           return (
             <Card
               key={item.id}
               title={item.banktype}
               content={getCardContent(item)}
+              contentName={getBankName(item)}
               handleDelete={() => onhandleDeleteCardClick(item.id)}
               disable={
                 config.features.AddCard_NotAllowedEditDelete ||
@@ -85,15 +103,11 @@ const CardManage = ({
             />
           );
         })}
-
-        {!isDesktopSize && isShowAddCardButton && (
-          <CardAddCard handleClick={onhandleAddCardClick} />
-        )}
       </CardContainer>
 
-      <SubmitButton fullWidth onClick={onhandleBackClick}>
+      <DarkBlueGradientButton fullWidth onClick={onhandleBackClick}>
         {i18n.t("common.back")}
-      </SubmitButton>
+      </DarkBlueGradientButton>
     </CardManageContainer>
   );
 };

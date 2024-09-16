@@ -3,6 +3,7 @@ export interface BankCardDetail {
   address: string;
   name: string;
   bankAccount: string;
+  bankName: string;
 }
 
 export interface BankCard {

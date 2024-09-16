@@ -1,7 +1,7 @@
-import React from "react";
+
+import { LightBlueGradientButton } from "@/components/UI/Button";
+import Icon from "@/components/project/Icon";
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import AddCardIcon from "@/assets/t28/images/card/add-card.svg";
 
 const CardContainer = styled.div`
   width: 100%;
@@ -46,16 +46,11 @@ type Props = {
 };
 const CardAddCard = ({ handleClick }: Props) => {
   return (
-    <CardContainer onClick={handleClick}>
-      <Wrapper>
-        <IconContainer>
-          <img src={AddCardIcon} alt={"addCard"} />
-        </IconContainer>
-        <EmptyCardTitle>{i18n.t("card.msgAddCard")}</EmptyCardTitle>
-      </Wrapper>
-
+    <LightBlueGradientButton onClick={handleClick} style={{height: "36px", width: "110px"}}>        
+        Add New
+        <Icon iconUrl="/assets/images/common/icon-plus.svg" width={"18px"} height={"18px"} />
       {/*<EmptyCardDesc>{i18n.t("card.msgAddCardDesc")}</EmptyCardDesc>*/}
-    </CardContainer>
+    </LightBlueGradientButton>
   );
 };
 
