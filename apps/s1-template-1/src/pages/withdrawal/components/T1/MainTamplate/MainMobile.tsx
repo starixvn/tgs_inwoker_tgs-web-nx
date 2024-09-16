@@ -1,33 +1,26 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import config from "@tgs-web-nx/config";
-import styled from "styled-components";
-import { useWageringPage } from "@tgs-web-nx/core/hooks";
-import { MainProps } from "./index";
 import {
   FormControl,
   ItemContainer,
-  LabelContainer,
-  SubmitButton,
+  LabelContainer
 } from "@/components/styled-component/ProfileForms";
-import { TextField } from "@/components/UI/TextField";
-import WithdrawInfoCard from "@/pages/withdrawal/components/WithdrawInfoCard";
-import {
-  ManageBankCardButtonContainer,
-  RequireAmount,
-  RequireWrapper,
-  Turnover,
-  TurnoverTextWrapper,
-} from "@/components/styled-component/WithdrawV2/Main";
-import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
-import { Select } from "@/components/UI/Select";
 import {
   ButtonWrapper,
   GameWalletButton,
-  SubHeaderContainer,
-  Hint,
+  ManageBankCardButtonContainer,
+  SubHeaderContainer
 } from "@/components/styled-component/WithdrawV2/Main";
+import { GreenGradientButton } from "@/components/UI/Button";
+import { Select } from "@/components/UI/Select";
+import { TextField } from "@/components/UI/TextField";
+import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
+import MenuItem from "@mui/material/MenuItem";
+import config from "@tgs-web-nx/config";
+import { useWageringPage } from "@tgs-web-nx/core/hooks";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router";
+import styled from "styled-components";
+import { MainProps } from "./index";
 
 const TransferHint = styled.div`
   font-weight: bold;
@@ -82,39 +75,38 @@ const MainMobile = ({
   };
   return (
     <>
-      <WithdrawInfoCard />
-
-      <ManageBankCardButtonContainer>
-        <ManageBankCardButton handleManageCardClick={onhandleManageCardClick} />
-      </ManageBankCardButtonContainer>
+      {/* <WithdrawInfoCard /> */}
 
       {/*管理銀行卡*/}
-      <ItemContainer>
-        <LabelContainer>{i18n.t("withdrawal.msgEnterBank")}</LabelContainer>
+      <ItemContainer style={{marginBottom: "1.6rem"}}>
+        <LabelContainer>Select Your Bank Account</LabelContainer>
         <FormControl variant="outlined">
           <Select
             value={selectedCardIndex}
-            native
             onChange={(e) => {
               const index = e.target.value;
               handleSelectCardChange(index);
               // getTransferLimit(cardList[index].paymentchannelid);
             }}
           >
-            <option disabled value="">
-              {i18n.t("withdrawal.msgEnterBank")}
-            </option>
+
             {cardList.map((item, index) => {
               return (
-                <option key={index} value={index} id={`optionValue-${index}`}>
+                <MenuItem key={index} value={index} id={`optionValue-${index}`}>
                   {item.banktype} (
                   {item.detail.address || item.detail.bankAccount || item.detail.phone})
-                </option>
+                </MenuItem>
               );
             })}
           </Select>
         </FormControl>
       </ItemContainer>
+      <ItemContainer style={{marginBottom: "1.6rem"}}>
+        <ManageBankCardButtonContainer>
+          <ManageBankCardButton handleManageCardClick={onhandleManageCardClick} />
+        </ManageBankCardButtonContainer>
+      </ItemContainer>
+      
 
       {config.features.NewTransferUI && (
         <SubHeaderContainer>
@@ -139,20 +131,20 @@ const MainMobile = ({
 
       {/*請輸入提款金額*/}
       <ItemContainer>
-        <LabelContainer>{i18n.t("common.amount")}</LabelContainer>
+        <LabelContainer>Withdraw Amount</LabelContainer>
         <FormControl variant="outlined">
           <TextField
             fullWidth
             value={amount}
             onChange={handleAmountChange}
             type={"number"}
-            placeholder={i18n.t("withdrawal.enterAmount")}
+            placeholder={`${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(max)}`}
           />
         </FormControl>
-        <TransferHint>
+        {/* <TransferHint>
           {selectedCardIndex != null &&
             `${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(max)}`}
-        </TransferHint>
+        </TransferHint> */}
       </ItemContainer>
 
       {/*玩家備註*/}
@@ -172,7 +164,7 @@ const MainMobile = ({
             </FormControl>
           </ItemContainer>
         )}
-      <Turnover>
+      {/* <Turnover>
         {i18n.t("withdrawal.turnover")}
         <TurnoverTextWrapper>
           <RequireWrapper>
@@ -188,11 +180,11 @@ const MainMobile = ({
             );
           })}
         </TurnoverTextWrapper>
-      </Turnover>
+      </Turnover> */}
 
-      <Hint>{i18n.t("withdrawal.notice")}</Hint>
+      {/* <Hint>{i18n.t("withdrawal.notice")}</Hint> */}
 
-      <SubmitButton
+      <GreenGradientButton
         fullWidth
         disabled={Boolean(
           isNaN(parseFloat(amount)) ||
@@ -202,8 +194,8 @@ const MainMobile = ({
         )}
         onClick={handleWithdrawalClick}
       >
-        {i18n.t("common.nextStep")}
-      </SubmitButton>
+        {i18n.t("common.submit")}
+      </GreenGradientButton>
     </>
   );
 };

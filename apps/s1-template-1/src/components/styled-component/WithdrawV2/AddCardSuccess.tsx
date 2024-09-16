@@ -1,15 +1,17 @@
-import styled from "styled-components";
 import { media } from "@/theme/breakpoints";
+import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
 `;
 export const SubTitle = styled.div`
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 16px;
+  margin: 2.4rem 0;
   color: ${({ theme }) => theme.text};
   text-align: center;
+  letter-spacing: 0.4px;
+  line-height: 3.2rem;
 `;
 export const SubTitleDesc = styled.div`
   font-size: 0.875rem;
@@ -18,13 +20,19 @@ export const SubTitleDesc = styled.div`
   text-align: center;
 `;
 export const ButtonContainer = styled.div`
-  margin: 0 auto;
+  margin: 0 auto 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
+  gap: 2.4rem;
+  padding-top: 1.2rem;
 
   ${media.sm} {
     flex-direction: row;
   }
+`;
+
+export const SuccessImg = styled.div`
+  display: flex;
+  justify-content: center;
 `;

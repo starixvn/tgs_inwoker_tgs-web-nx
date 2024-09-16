@@ -29,7 +29,7 @@ const WageringPage = () => {
   return (
     <TransferPageContainer>
       {isDesktopSize && <UserWalletInfo />}
-      <AccountPaper pageName={i18n.t("wagering.wageringrequirement")} iconUrl={iconWagering}>
+      <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWagering}>
         <Wagering
           wageringImages={wageringImages}
           mainBucketIcon={mainBucketIcon}

@@ -1,17 +1,14 @@
-import React from "react";
-import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import { useShowAddCardButton } from "@tgs-web-nx/core/features";
-import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import Icon from "@/components/project/Icon";
 import {
   ButtonContainer,
   Container,
-  SubTitle,
-  SubTitleDesc,
+  SubTitle, SuccessImg
 } from "@/components/styled-component/WithdrawV2/AddCardSuccess";
+import { GreenGradientButton, LightBlueGradientButton } from "@/components/UI/Button";
 import { theme } from "@/theme";
-import { ImgSuccess } from "@/components/styled-component/WithdrawV2/Success";
-import SuccessPNG from "@/assets/t28/images/withdraw/icon-check.svg";
+import config from "@tgs-web-nx/config";
+import { useShowAddCardButton } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
 
 const AddCardSuccess = ({
   isDeposit,
@@ -25,10 +22,12 @@ const AddCardSuccess = ({
 
   return (
     <Container>
-      <ImgSuccess src={SuccessPNG} />
+      <SuccessImg>
+        <Icon iconUrl="/assets/images/transfer/icon-successful.svg" width={"138px"} height={"138px"} />
+      </SuccessImg>
 
       <SubTitle>{i18n.t("card.success.title")}</SubTitle>
-      {isShowAddCardButton ? (
+      {/* {isShowAddCardButton ? (
         <SubTitleDesc>
           {i18n.t("card.success.successDesc")}
           <br></br>
@@ -36,7 +35,7 @@ const AddCardSuccess = ({
         </SubTitleDesc>
       ) : (
         <SubTitleDesc>{i18n.t("card.success.noMoreAddCard")}</SubTitleDesc>
-      )}
+      )} */}
 
       <ButtonContainer>
         {!(
@@ -44,19 +43,14 @@ const AddCardSuccess = ({
           config.features.AddCard_NotAllowedEditDelete ||
           bankCardList.length >= config.features.AddCard_MaximumCardAllowed
         ) && (
-          <SubmitButton
+          <LightBlueGradientButton
             fullWidth
-            onClick={onhandleBindCardClick}
-            style={{
-              background: theme.memberSection,
-              color: theme.lightPurple,
-              border: `1px solid ${theme.lightPurple}`,
-            }}
+            onClick={onhandleBindCardClick}            
           >
             {i18n.t("card.success.bindBankCard")}
-          </SubmitButton>
+          </LightBlueGradientButton>
         )}
-        <SubmitButton
+        <GreenGradientButton
           fullWidth
           onClick={isDeposit ? onhandleGoDepositClick : onhandleGoWithdrawClick}
           style={{
@@ -64,7 +58,7 @@ const AddCardSuccess = ({
           }}
         >
           {isDeposit ? i18n.t("card.success.goDeposit") : i18n.t("card.success.goWithdrawal")}
-        </SubmitButton>
+        </GreenGradientButton>
       </ButtonContainer>
     </Container>
   );

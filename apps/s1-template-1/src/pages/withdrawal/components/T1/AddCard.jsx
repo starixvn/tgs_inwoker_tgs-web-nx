@@ -1,4 +1,4 @@
-import { GreenGradientButton } from "@/components/UI/Button";
+import { DarkBlueGradientButton, GreenGradientButton } from "@/components/UI/Button";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import {
@@ -8,8 +8,7 @@ import {
   ItemNoteDesc,
   ItemNoteText,
   LabelContainer,
-  LabelLargeContainer,
-  SubmitButton
+  LabelLargeContainer
 } from "@/components/styled-component/ProfileForms";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
@@ -430,9 +429,9 @@ const AddCard = ({
       )}
       <ButtonGroups>
         {showBack && (
-          <SubmitButton fullWidth onClick={onhandleBackClick}>
+          <DarkBlueGradientButton fullWidth onClick={onhandleBackClick}>
             {i18n.t("common.back")}
-          </SubmitButton>
+          </DarkBlueGradientButton>
         )}
 
         <GreenGradientButton fullWidth onClick={handleNextClick}>

@@ -1,12 +1,12 @@
-import { styled as muiStyled } from "@mui/material/styles";
-import Modal from "@mui/material/Modal";
-import { ListItem, ListItemText } from "@mui/material";
-import styled from "styled-components";
 import {
   FormControl as ProfileFormControl,
   ItemContainer as ProfileItemContainer,
 } from "@/components/styled-component/ProfileForms";
 import { media } from "@/theme/breakpoints";
+import { ListItem, ListItemText } from "@mui/material";
+import Modal from "@mui/material/Modal";
+import { styled as muiStyled } from "@mui/material/styles";
+import styled from "styled-components";
 
 export const StyledModalBank = muiStyled(Modal)(({ theme }) => ({
   "& .MuiModal-paper": {
@@ -58,7 +58,7 @@ export const ManageBankCardButtonContainer = styled.div`
   display: flex;
   justify-content: end;
   align-self: flex-start;
-  margin-top: 10px;
+  width: 100%;
 `;
 export const ItemContainer = styled(ProfileItemContainer)`
   ${media.sm} {

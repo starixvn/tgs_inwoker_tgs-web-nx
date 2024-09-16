@@ -88,6 +88,16 @@ export const OrangeGradientButton = muiStyled(SignUpButton)(({ theme }) => ({
   height: "4.8rem",
 }));
 
+export const LightBlueGradientButton = muiStyled(GreenGradientButton)(({ theme }) => ({
+  background: "linear-gradient(180deg, #0F95E4 100%, #087EC2 100%)",
+  borderBottomColor: "#004781",
+}));
+
+export const DarkBlueGradientButton = muiStyled(GreenGradientButton)(({ theme }) => ({
+  background: "linear-gradient(180deg, #325276 100%, #253F5C 100%)",
+  borderBottomColor: "#072341",
+}));
+
 export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
   color: theme.palette.white,
   padding: "0 18px",
