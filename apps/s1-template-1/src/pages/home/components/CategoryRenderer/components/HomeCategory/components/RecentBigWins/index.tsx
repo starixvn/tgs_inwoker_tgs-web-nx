@@ -1,18 +1,16 @@
+import EmblaCarousel from "@/components/project/embla-carousel";
+import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
 import { media } from "@tgs-web-nx/constants";
-import React, { useEffect, useState } from 'react';
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { getFormatAmount, i18n, utility } from "@tgs-web-nx/utils";
-import { EmblaOptionsType } from "embla-carousel";
-import Autoplay from "embla-carousel-autoplay";
-import AutoScroll from 'embla-carousel-auto-scroll';
-import styled from "styled-components";
-import { useHistory } from "react-router";
-import { Common } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { Common, i18n, utility } from "@tgs-web-nx/utils";
+import { EmblaOptionsType } from "embla-carousel";
+import AutoScroll from "embla-carousel-auto-scroll";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import styled from "styled-components";
 
 import { GameTypeTitle, Group } from "../../style";
-import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
-import EmblaCarousel from "@/components/project/embla-carousel";
 
 const CardHoverBg = styled.div`
   position: absolute;
@@ -91,8 +89,6 @@ type BigWinType = {
   data: any[];
 };
 
-
-
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
   const emblaPlugins: any = [AutoScroll({ playOnInit: true, stopOnFocusIn: true })];
@@ -100,7 +96,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const { isDesktopSize } = useRwd();
   const isLogin = !!account.token;
   const history = useHistory();
-  const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+  const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
   const launchGame = (gameId: any, gameProviderCode: any) => {
     if (!isLogin) {
@@ -119,17 +115,19 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
       <EmblaCarousel options={emblaOptions} plugins={emblaPlugins}>
         {recentBigWins.data.length > 0 &&
           recentBigWins.data.map((item, index) => {
+            const { gameId, gameProviderCode, gameCode } = item;
             return (
               <RecentBigWinsSlide className="embla__slide" key={index}>
-                <GameContainer key={index} onClick={() => {launchGame(item.gameId, item.gameProviderCode)}}>
+                <GameContainer
+                  key={index}
+                  onClick={() => {
+                    launchGame(gameId, gameProviderCode);
+                  }}
+                >
                   <GameIcon>
                     <img
                       className="icon"
-                      src={`${utility.imagePathGenerator(
-                        `${item.gameProviderCode.toLowerCase()}/en-US/${item.gameCode}${
-                          isDesktopSize ? "@1x" : "@2x"
-                        }.webp`,
-                      )}`}
+                      src={utility.getGameNameUrl(gameProviderCode, gameCode, isDesktopSize)}
                       alt={item.gameCode}
                     />
                     <CardHoverBg>

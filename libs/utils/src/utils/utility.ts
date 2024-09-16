@@ -47,6 +47,16 @@ function replaceUnderscoresWithSpace(str: string): string {
   return resultString;
 }
 
+function getGameNameUrl(
+  gameProviderCode: string,
+  gameCode: string,
+  isDesktopSize: boolean,
+): string {
+  return imagePathGenerator(
+    `${gameProviderCode.toLowerCase()}/en-US/${gameCode}${isDesktopSize ? "@1x" : "@2x"}.webp`,
+  );
+}
+
 export const utility = {
   imagePathGenerator,
   copy,
@@ -54,4 +64,5 @@ export const utility = {
   downloadImage,
   removeSpace,
   replaceUnderscoresWithSpace,
+  getGameNameUrl,
 };

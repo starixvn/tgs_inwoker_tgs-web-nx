@@ -1,7 +1,7 @@
 import Loading from "@/components/UI/Loading";
 import GameCard from "@/pages/home/components/GameCard";
 import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
-import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetNonLobbyCategoryList } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n, utility } from "@tgs-web-nx/utils";
 
@@ -11,7 +11,6 @@ import { DesktopCategoryContentWrapper, DesktopWrapper, GameList, Text, Wrapper 
 const NonLobbyCategory = () => {
   const { isDesktopSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
-  const { activeGameTypeKey } = useHomeGameContext();
   const hasMappingData = !!gameList.length;
 
   return (
@@ -22,20 +21,19 @@ const NonLobbyCategory = () => {
         <DesktopCategoryContentWrapper>
           <GameList>
             {hasMappingData &&
-              gameList.map((gameItem, index) => (
-                <li key={index}>
-                  <GameCard
-                    key={gameItem.id}
-                    gameItem={gameItem}
-                    isActive={gameItem.isactive}
-                    imageUrl={`${utility.imagePathGenerator(
-                      `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
-                        isDesktopSize ? "@2x" : "@1x"
-                      }.webp`,
-                    )}`}
-                  />
-                </li>
-              ))}
+              gameList.map((gameItem, index) => {
+                const { id, isactive, gpcode, code } = gameItem;
+                return (
+                  <li key={index}>
+                    <GameCard
+                      key={id}
+                      gameItem={gameItem}
+                      isActive={isactive}
+                      imageUrl={utility.getGameNameUrl(gpcode, code, isDesktopSize)}
+                    />
+                  </li>
+                );
+              })}
             {!hasMappingData && !isLoading && <Text>{i18n.t("common.nodata")}</Text>}
           </GameList>
         </DesktopCategoryContentWrapper>

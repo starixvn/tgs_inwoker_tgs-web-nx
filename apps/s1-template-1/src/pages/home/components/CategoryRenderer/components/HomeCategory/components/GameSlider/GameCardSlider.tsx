@@ -23,17 +23,15 @@ const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
     <>
       {data.length === 0 && <NoGame></NoGame>}
       {data.map((gameItem, index) => {
+        const { id, isactive, gpcode, code } = gameItem;
+
         return (
           <div className="embla__slide" key={index}>
             <GameCard
-              key={gameItem.id}
+              key={id}
               gameItem={gameItem}
-              isActive={gameItem.isactive}
-              imageUrl={`${utility.imagePathGenerator(
-                `${gameItem.gpcode.toLowerCase()}/en-US/${gameItem.code}${
-                  isDesktopSize ? "@2x" : "@1x"
-                }.webp`,
-              )}`}
+              isActive={isactive}
+              imageUrl={utility.getGameNameUrl(gpcode, code, isDesktopSize)}
             />
           </div>
         );
