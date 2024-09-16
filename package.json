@@ -6,7 +6,7 @@
     "create-template": "nx g @nx/react:app --bundler=vite --routing=false --e2eTestRunner=none --projectNameAndRootFormat=derived",
     "create-lib": "nx g @nx/react:lib --bundler=none --projectNameAndRootFormat=derived",
     "dev-start": "nx serve tgs-web-t28",
-    "s1-template-1": "nx serve s1-template-1",
+    "s1-template-1": "tsc -b ./apps/s1-template-1 && nx serve s1-template-1",
     "t17": "nx serve tgs-web-t17",
     "t18": "nx serve tgs-web-t18",
     "t19": "nx serve tgs-web-t19",
