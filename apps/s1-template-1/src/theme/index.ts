@@ -152,4 +152,10 @@ export const theme = {
   gameCardGameNameColor: "#fff",
   gameCardBackgroundHover: "rgba(0, 0, 0, 0.6)",
   gameCardAspectRatio: "156 / 210",
+
+  // Load more button
+  loadingMoreButtonBackground: "#2A3038",
+  loadingMoreButtonColor: "#fff",
+  progressBar: "#292F42",
+  captionTextColor: "#6E7E92",
 };

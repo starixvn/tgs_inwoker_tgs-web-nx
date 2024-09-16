@@ -1,56 +1,77 @@
 import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
+import { Trans } from "react-i18next";
 import styled from "styled-components";
 
 const LoadMoreWrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 3.2rem;
+  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.8rem;
+`;
+
+const LoadingMore = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: stretch;
 `;
 
 const LoadMoreButton = styled.button`
-  background-color: ${({ theme }) => theme.gray20};
+  background-color: ${({ theme }) => theme.loadingMoreButtonBackground};
   border-color: transparent;
-  border-radius: 8px;
-  padding: 10px 20px;
-  color: ${({ theme }) => theme.white};
-  font-size: 16px;
+  border-radius: 1rem;
+  height: 3.6rem;
+  padding: 0 1.8rem;
+  color: ${({ theme }) => theme.loadingMoreButtonColor};
+  font-size: 1.6rem;
   font-weight: 700;
   width: fit-content;
   cursor: pointer;
 `;
 
 const ProgressBar = styled.div`
-  width: 150px;
-  height: 5px;
-  background-color: ${({ theme }) => theme.gray20};
-  margin-top: 5px;
-  border-radius: 5px;
+  height: 0.4rem;
+  background-color: ${({ theme }) => theme.progressBar};
+  border-radius: 10rem;
 `;
 
 const Caption = styled.div`
-  font-size: 14px;
-  color: ${({ theme }) => theme.gray50};
-  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 2rem;
+  color: ${({ theme }) => theme.captionTextColor};
 `;
 
 const LoadMore = () => {
   const { pageIndex, pageSize, handleChangePageIndex } = useHomeGameContext();
 
   const { total } = useGetNonLobbyCategoryList();
+  const shownItems = pageIndex * pageSize;
+  const remainingItems = total - shownItems;
+  const numberMore = Math.max(0, Math.min(remainingItems, pageSize));
+
+  const hasMoreItems = total > shownItems;
 
   return (
-    total > pageSize * pageIndex && (
-      <LoadMoreWrapper>
-        <LoadMoreButton onClick={() => handleChangePageIndex(pageIndex + 1)}>
-          {i18n.t("common.loadmore")}
-        </LoadMoreButton>
-        <ProgressBar></ProgressBar>
-        <Caption>{`${i18n.t("common.shown")} ${pageIndex * pageSize} ${i18n.t("common.of")} ${total}`}</Caption>
-      </LoadMoreWrapper>
-    )
+    <LoadMoreWrapper>
+      {hasMoreItems && (
+        <LoadingMore>
+          <LoadMoreButton onClick={() => handleChangePageIndex(pageIndex + 1)}>
+            <Trans>{i18n.t("common.showNumberMore", { numberMore })}</Trans>
+          </LoadMoreButton>
+          <ProgressBar />
+        </LoadingMore>
+      )}
+      <Caption>
+        <Trans>
+          {i18n.t("common.showNumberOfTotal", { number: Math.min(shownItems, total), total })}
+        </Trans>
+      </Caption>
+    </LoadMoreWrapper>
   );
 };
 
