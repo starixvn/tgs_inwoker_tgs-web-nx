@@ -7,9 +7,6 @@ export const FilterTagWrapper = styled.div`
   margin-bottom: 1.2rem;
 
   ${media.sm} {
-    position: absolute;
-    top: 0;
-    right: 0;
     justify-content: flex-end;
   }
 `;

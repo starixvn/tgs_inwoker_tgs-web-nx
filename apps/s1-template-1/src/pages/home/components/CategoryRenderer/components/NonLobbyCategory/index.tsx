@@ -5,7 +5,6 @@ import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n, utility } from "@tgs-web-nx/utils";
 
-import { GameTypeTitle } from "../HomeCategory/style";
 import LoadMore from "../LoadMore";
 import { DesktopCategoryContentWrapper, DesktopWrapper, GameList, Text, Wrapper } from "./style";
 
@@ -19,11 +18,7 @@ const NonLobbyCategory = () => {
     <Wrapper>
       <DesktopWrapper>
         <HomeGameFilterTag />
-        <GameTypeTitle>
-          {activeGameTypeKey !== "fishing"
-            ? i18n.t(`common.${activeGameTypeKey}`)
-            : i18n.t(`common.fish`)}
-        </GameTypeTitle>
+
         <DesktopCategoryContentWrapper>
           <GameList>
             {hasMappingData &&
