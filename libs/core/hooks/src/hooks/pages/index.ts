@@ -19,3 +19,4 @@ export * from "./affiliate/useRebateTable";
 export * from "./deposit/useDepositForm";
 export * from "./agent";
 export * from "./reward/useRewardPage";
+export * from "./reward/RewardProvider";

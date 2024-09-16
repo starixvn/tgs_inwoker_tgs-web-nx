@@ -22,7 +22,7 @@ const Container = styled.div`
 const RewardPromotion = memo((props: any) => {
   return (
     <Container>
-      {props.milestoneList.map((milestone: any, index: number) => {
+      {props?.milestoneList?.map((milestone: any, index: number) => {
         return <PromotionCard key={milestone.id} index={index} milestone={milestone} />;
       })}
     </Container>

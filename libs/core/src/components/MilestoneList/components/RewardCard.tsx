@@ -35,7 +35,7 @@ const StateContainer = styled.div<{
     display: flex;
     align-items: center;
     gap: 10px;
-    opacity: ${({ theme, $complete }) => ($complete ? 0.4 : 1)};
+    opacity: ${({ theme, $complete }) => ($complete ? 1 : 0.4)};
   }
 `;
 

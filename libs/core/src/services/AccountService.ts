@@ -305,7 +305,7 @@ function checkPhoneDuplicate(area: string, phone: string) {
 }
 
 const getMilestoneList = async () => {
-  // const res = await ApiService.get("agent/info");
+  const res = await ApiService.get("agent/info");
   return [
     {
       id: 1,

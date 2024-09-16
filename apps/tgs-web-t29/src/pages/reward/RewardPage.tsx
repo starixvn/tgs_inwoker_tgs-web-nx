@@ -1,17 +1,20 @@
+import { useEffect, useState, useContext, memo } from "react";
 import { i18n } from "@tgs-web-nx/utils";
-import iconReward from "@/assets/t29/images/account/navItem/icon-reward.svg";
-import AccountPaper from "@/components/project/AccountPaper";
-import { PageContainer } from "@/components/styled-component/PageContainer";
-
-import { theme } from "@/theme";
-import { MilestoneList, MilestonePromotionList, AccountService } from "@tgs-web-nx/core";
-import { useEffect, useState, useContext } from "react";
-import { contextType, useRwd } from "@tgs-web-nx/core/hooks";
-import Loading from "@/components/UI/Loading";
-import { RewardContext, RewardContextProvider } from "@tgs-web-nx/core/hooks";
 import { useQuery } from "@tanstack/react-query";
 
+import { PageContainer } from "@/components/styled-component/PageContainer";
+import AccountPaper from "@/components/project/AccountPaper";
+import iconReward from "@/assets/t29/images/account/navItem/icon-reward.svg";
+import Loading from "@/components/UI/Loading";
+import { theme } from "@/theme";
+
+import { contextType, useRwd } from "@tgs-web-nx/core/hooks";
+import { AccountService, MilestoneList, MilestonePromotionList } from "@tgs-web-nx/core";
+import { RewardContext, RewardContextProvider } from "@tgs-web-nx/core/hooks";
+import { useUpdatePageName } from "@tgs-web-nx/core/features";
+
 const RewardPage = () => {
+  useUpdatePageName(i18n.t("common.Milestone"));
   const [loading, setLoading] = useState<boolean>(true);
 
   const { isDesktopSize } = useRwd();
@@ -58,10 +61,10 @@ const RewardPage = () => {
   );
 };
 
-const RewardWithProvider = () => (
+const RewardWithProvider = memo(() => (
   <RewardContextProvider>
     <RewardPage />
   </RewardContextProvider>
-);
+));
 
 export default RewardWithProvider;

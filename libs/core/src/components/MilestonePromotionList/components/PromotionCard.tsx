@@ -8,6 +8,7 @@ import { useRwd, RewardContext, contextType } from "@tgs-web-nx/core/hooks";
 import { media } from "@tgs-web-nx/constants";
 import MilestoneList from "../../MilestoneList";
 import { Collapse } from "@mui/material";
+import MilestoneProcessBar from "./ProcessBar";
 const backgrounds = [bg1, bg2, bg3];
 
 const CardContainer = styled.div<{ $index: number }>`
@@ -17,8 +18,11 @@ const CardContainer = styled.div<{ $index: number }>`
   background-size: contain;
   width: 100%;
   height: 170px;
-  padding: 24px 12px;
+  padding: 12px;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   ${media.sm} {
     width: 338px;
     height: 170px;
@@ -66,7 +70,7 @@ const ContentText = styled.div`
   width: 100%;
   display: flex;
   div:first-child {
-    width: 90px;
+    width: 85px;
   }
 `;
 
@@ -85,10 +89,16 @@ const PromotionCard = (props: any) => {
         }}
       >
         <RuleButtonContainer>
-          <RuleButton>Rules</RuleButton>
+          <RuleButton
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            Rules
+          </RuleButton>
         </RuleButtonContainer>
         <Content>
-          <img src={indicator} alt="indicator" />
+          <img src={indicator} alt="indicator" style={{ alignSelf: "flex-start" }} />
           <PromotionContent>
             <Title>{title}</Title>
             <ContentText>
@@ -99,6 +109,7 @@ const PromotionCard = (props: any) => {
               <div>Milestones</div>
               <div>{`${current} / ${complete}`}</div>
             </ContentText>
+            <MilestoneProcessBar total={complete} current={current} />
           </PromotionContent>
         </Content>
       </CardContainer>
