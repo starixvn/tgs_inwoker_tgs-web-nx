@@ -51,12 +51,18 @@ declare module "@mui/material/styles/createPalette" {
         bottomBorderColor: string;
         color: string;
         activeShadow: string;
+        disabledColor: string;
+        disabledBackground: string;
+        disabledBorder: string;
       };
       signUp: {
         background: string;
         bottomBorderColor: string;
         color: string;
         activeShadow: string;
+        disabledColor: string;
+        disabledBackground: string;
+        disabledBorder: string;
       };
     };
 
@@ -136,12 +142,18 @@ const muiTheme = createTheme({
         bottomBorderColor: theme.signInButtonBottomBorderColor,
         color: theme.signInButtonColor,
         activeShadow: theme.signInButtonActiveShadow,
+        disabledColor: theme.signInButtonDisabledColor,
+        disabledBorder: theme.signInButtonDisabledBorderColor,
+        disabledBackground: theme.signInButtonDisabledBg,
       },
       signUp: {
         background: theme.signUpButtonBackground,
         bottomBorderColor: theme.signUpButtonBottomBorderColor,
         color: theme.signUpButtonColor,
         activeShadow: theme.signUpButtonActiveShadow,
+        disabledColor: theme.signUpButtonDisabledColor,
+        disabledBorder: theme.signUpButtonDisabledBorderColor,
+        disabledBackground: theme.signUpButtonDisabledBg,
       },
     },
 
@@ -177,4 +189,3 @@ const muiTheme = createTheme({
 } as ThemeOptions);
 
 export { muiTheme };
-

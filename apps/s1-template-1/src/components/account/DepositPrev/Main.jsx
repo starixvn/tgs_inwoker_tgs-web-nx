@@ -634,26 +634,30 @@ class Main extends Component {
           )}
 
         {/*提交*/}
-        <GreenGradientButton
-          onClick={this.props.handleDepositClick}
-          variant={"contained"}
-          fullWidth
-          disabled={(() => {
-            const transferlimit = channel.transferlimit;
+        <ItemContainer>
+          <GreenGradientButton
+            onClick={this.props.handleDepositClick}
+            variant={"contained"}
+            fullWidth
+            disabled={(() => {
+              const transferlimit = channel.transferlimit;
 
-            return (
-              !!this.props.disabled ||
-              this.props.amount < transferlimit.from ||
-              this.props.amount > transferlimit.to ||
-              this.props.amount === "" ||
-              (this.props.files === null &&
-                config.features.Deposit_UploadRequired &&
-                paymentCode("manual"))
-            );
-          })()}
-        >
-          {i18n.t("common.submit")}
-        </GreenGradientButton>
+              return (
+                !!this.props.disabled ||
+                this.props.amount < transferlimit.from ||
+                this.props.amount > transferlimit.to ||
+                this.props.amount === "" ||
+                (this.props.files === null &&
+                  config.features.Deposit_UploadRequired &&
+                  paymentCode("manual"))
+              );
+            })()}
+          >
+            {i18n.t("common.submit")}
+            <div></div>
+          </GreenGradientButton>
+        </ItemContainer>
+        
 
         <ResultPopupDialog
           isDialogOpen={this.props.openPopup}

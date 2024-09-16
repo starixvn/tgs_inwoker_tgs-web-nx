@@ -29,11 +29,17 @@ export const theme = {
   signUpButtonBottomBorderColor: "#A96300",
   signUpButtonColor: "#fff",
   signUpButtonActiveShadow: "0 0 1rem 0px rgba(255,160,18,0.7)",
+  signUpButtonDisabledBg: "linear-gradient(180deg, #AA6B12 0%, #9F620D 100%)",
+  signUpButtonDisabledBorderColor: "#6D4B17",
+  signUpButtonDisabledColor: "#B3B3B3",
 
   signInButtonBackground: "linear-gradient(180deg, #BAD30F 0%, #7E8F0C 100%)",
   signInButtonBottomBorderColor: "#5D6A00",
   signInButtonColor: "#fff",
   signInButtonActiveShadow: "0 0 1rem 0px rgba(93,106,0,0.7)",
+  signInButtonDisabledBg: "linear-gradient(180deg, #74840A 0%, #5E6B08 100%)",
+  signInButtonDisabledBorderColor: "#414A00",
+  signInButtonDisabledColor: "#B3B3B3",
 
   languageButtonBackground: "linear-gradient(180deg, #344863 0%, #27384F 100%)",
   languageButtonBottomBorderColor: "#172E4A",
@@ -69,6 +75,7 @@ export const theme = {
   transferPrimaryText: "#8FA7CE",
   transferSecondText: "#ffffff",
   placeHolderText: "#55657E",
+  transferTabMenu: "#E1EDFF",
 
   // Forms
   formInputBackground: "#091016",

@@ -56,6 +56,12 @@ export const SignUpButton = muiStyled(ButtonDefault)(({ theme }) => ({
   "&:hover": {
     boxShadow: theme.palette.header.signUp.activeShadow,
   },
+
+  "&.Mui-disabled": {
+    background: theme.palette.header.signUp.disabledBackground,
+    color: theme.palette.header.signUp.disabledColor,
+    borderBottomColor: theme.palette.header.signUp.disabledBorder,
+  }
 }));
 
 export const SignInButton = muiStyled(ButtonDefault)(({ theme }) => ({
@@ -65,11 +71,16 @@ export const SignInButton = muiStyled(ButtonDefault)(({ theme }) => ({
   "&:hover": {
     boxShadow: theme.palette.header.signIn.activeShadow,
   },
+  "&.Mui-disabled": {
+    background: theme.palette.header.signIn.disabledBackground,
+    color: theme.palette.header.signIn.disabledColor,
+    borderBottomColor: theme.palette.header.signIn.disabledBorder,
+  }
 }));
 
 export const GreenGradientButton = muiStyled(SignInButton)(({ theme }) => ({
   width: "100%",
-  height: "4.8rem",
+  height: "4.8rem", 
 }));
 
 export const OrangeGradientButton = muiStyled(SignUpButton)(({ theme }) => ({
