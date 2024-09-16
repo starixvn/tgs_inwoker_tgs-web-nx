@@ -1,5 +1,3 @@
-import EmblaCarousel from "@/components/project/embla-carousel";
-import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
 import { media } from "@tgs-web-nx/constants";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -10,7 +8,10 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
+import Autoplay from "embla-carousel-autoplay";
 import { GameTypeTitle, Group } from "../../style";
+import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
+import EmblaCarousel from "@/components/project/embla-carousel";
 
 const CardHoverBg = styled.div`
   position: absolute;
@@ -91,7 +92,7 @@ type BigWinType = {
 
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
-  const emblaPlugins: any = [AutoScroll({ playOnInit: true, stopOnFocusIn: true })];
+  const emblaPlugins: any = [Autoplay({ playOnInit: true, delay: 2000 })];
   const { account } = useAccountStore();
   const { isDesktopSize } = useRwd();
   const isLogin = !!account.token;
