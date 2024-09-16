@@ -69,6 +69,22 @@ export function useGetHomeCategoryList() {
 
   const [hotMatchList, setHotMatchList] = useState<HotMatchs>(initHotMatchList);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const responseRecentBigWins = await GameService.GetRecentBigWins();
+      setHomeGameList({
+        ...initHomeGameList,
+        recentBigWins: responseRecentBigWins.data
+      });
+    };
+
+    const interval = setInterval(() => {
+      fetchData();
+    }, 300000); 
+
+    return () => clearInterval(interval);
+  }, []);
+
   const getHomeGameList = async () => {
     try {
       setHomeGameList({ ...initHomeGameList, isLoading: true });
