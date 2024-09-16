@@ -1,9 +1,10 @@
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
-import { Dropdown } from "primereact/dropdown";
+import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
 
 import { CommonSearchWrapper, FilterTagWrapper } from "./style";
+import { usePagination } from "../../../../../../../libs/core/features/src/feature/game/hooks/usePagination";
 
 const HomeGameFilterTag = () => {
   const {
@@ -15,16 +16,25 @@ const HomeGameFilterTag = () => {
     activeFilterTag,
     searchString,
     handleChangeSearch,
+    handleChangePageIndex
   } = useHomeGameContext();
+
+  const handleChangeProvider = (event: MultiSelectChangeEvent) => {
+    handleChangeActiveProviderFilterTag(event.target.value);
+    handleChangePageIndex(1);
+  }
+
+  const handleChangeOrderBy = (event: DropdownChangeEvent) => {
+    handleChangeActiveFilterTag(event.target.value);
+    handleChangePageIndex(1);
+  }
 
   return (
     <FilterTagWrapper>
       <CommonSearchWrapper>
         <MultiSelect
           filter
-          onChange={(e: MultiSelectChangeEvent) =>
-            handleChangeActiveProviderFilterTag(e.target.value)
-          }
+          onChange={handleChangeProvider}
           value={activeProviderFilterTag}
           options={providerFilterTagList}
           optionLabel="name"
@@ -34,7 +44,7 @@ const HomeGameFilterTag = () => {
           className="multi-select"
         ></MultiSelect>
         <Dropdown
-          onChange={(e) => handleChangeActiveFilterTag(e.target.value)}
+          onChange={handleChangeOrderBy}
           value={activeFilterTag}
           options={filterTagList}
           optionLabel="name"

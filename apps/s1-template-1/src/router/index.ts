@@ -40,12 +40,6 @@ const routes: RouteType[] = [
     layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
-  {
-    path: "/:gameType",
-    component: MainPage,
-    layout: DefaultLayout,
-    isAnonymousAllowed: true,
-  },
   // {
   //   path: "/main/:page",
   //   component: MainPage,
@@ -336,6 +330,12 @@ const routes: RouteType[] = [
   {
     path: "/responsiblegaming",
     component: Responsiblegaming,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/:gameType",
+    component: MainPage,
+    layout: DefaultLayout,
     isAnonymousAllowed: true,
   },
 ];
