@@ -30,6 +30,25 @@ export interface GameTagListResDto {
   limit: number;
 }
 
+export interface RecentBigWins {
+  GameId: number;
+  GameName: string;
+  GameCode: string;
+  GameType: number;
+  GameProviderCode: string;
+  GameProviderName: string;
+  CreateTime: Date;
+  CurrencyName: string;
+  PlayerName: string;
+  PlayerCode: string;
+  PlayerVipLevel: number;
+  BetId: string;
+  WinAmount: number;
+  BetAmount: number;
+  Profit: number;
+  Payout: string;
+}
+
 export interface ResponseResDto<T> {
   err: number;
   errmsg: string;

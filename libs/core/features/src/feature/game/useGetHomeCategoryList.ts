@@ -1,6 +1,6 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
-import { GameItem, GameTagListResDto, GameTypeDto, HotMatchList } from "@tgs-web-nx/types";
+import { GameItem, GameTagListResDto, GameTypeDto, HotMatchList, RecentBigWins } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
 
 import { TagTypeEnum } from "./types";
@@ -12,7 +12,7 @@ interface HomeGameList {
   tableGameList: GameItem[];
   sportGameList: GameItem[];
   liveCasinoList: GameItem[];
-  recentBigWins: [];
+  recentBigWins: RecentBigWins[];
 }
 
 interface TagGameList {
