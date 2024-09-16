@@ -4,9 +4,10 @@ import HomeGameFilterTag from "@/pages/home/components/HomeGameFilterTag";
 import { useGetNonLobbyCategoryList } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n, utility } from "@tgs-web-nx/utils";
+import { useEffect, useRef } from "react";
 
 import LoadMore from "../LoadMore";
-import { DesktopCategoryContentWrapper, DesktopWrapper, GameList, Text, Wrapper } from "./style";
+import { DesktopCategoryContentWrapper, DesktopWrapper, GameList, NoData, Wrapper } from "./style";
 
 const NonLobbyCategory = () => {
   const { isDesktopSize } = useRwd();
@@ -17,7 +18,6 @@ const NonLobbyCategory = () => {
     <Wrapper>
       <DesktopWrapper>
         <HomeGameFilterTag />
-
         <DesktopCategoryContentWrapper>
           <GameList>
             {hasMappingData &&
@@ -34,10 +34,10 @@ const NonLobbyCategory = () => {
                   </li>
                 );
               })}
-            {!hasMappingData && !isLoading && <Text>{i18n.t("common.nodata")}</Text>}
           </GameList>
+          {!hasMappingData && !isLoading && <NoData>{i18n.t("common.nodata")}</NoData>}
         </DesktopCategoryContentWrapper>
-        <LoadMore></LoadMore>
+        {gameList?.length > 0 && <LoadMore></LoadMore>}
       </DesktopWrapper>
 
       <Loading show={isLoading} />

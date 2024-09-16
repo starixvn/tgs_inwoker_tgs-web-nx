@@ -1,7 +1,6 @@
 import { media } from "@/theme/breakpoints";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
-import { useProvider } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -18,10 +17,15 @@ const FooterWrapper = styled.div`
   padding: 2rem 0.8rem;
 
   ${media.md} {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
     flex-direction: row;
   }
+
   ${media.lg} {
     max-width: 120rem;
+    padding-left: 0;
+    padding-right: 0;
     margin: 0 auto;
   }
 `;
@@ -175,8 +179,10 @@ const Footer = () => {
           <GroupTitle>{i18n.t("web.footer.community")}</GroupTitle>
           <GroupContent>
             <SocialIcons>
-              {socialList.map((social) => {
-                return <img src={social.url} width={36} height={36} alt={social.name} />;
+              {socialList.map((social, index) => {
+                return (
+                  <img key={index} src={social.url} width={36} height={36} alt={social.name} />
+                );
               })}
             </SocialIcons>
           </GroupContent>

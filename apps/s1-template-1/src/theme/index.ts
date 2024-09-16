@@ -158,4 +158,6 @@ export const theme = {
   loadingMoreButtonColor: "#fff",
   progressBar: "#292F42",
   captionTextColor: "#6E7E92",
+
+  noDataTextColor: "#6E7E92",
 };

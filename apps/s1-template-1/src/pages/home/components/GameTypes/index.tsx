@@ -1,14 +1,9 @@
 import { media } from "@/theme/breakpoints";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import {
-  NavItem,
-  useGameTypeList,
-  useGetNavGameTypeItemList,
-  useHomeGameContext,
-} from "@tgs-web-nx/core/features";
+import { NavItem, useGameTypeList, useGetNavGameTypeItemList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import useEmblaCarousel from "embla-carousel-react";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
@@ -55,6 +50,7 @@ const GameTypes = () => {
   const { sideNavGameTypeItemList } = useGetNavGameTypeItemList();
   const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const scrollDemoRef = useRef(null);
 
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
   const gameTypeList = useGameTypeList();
@@ -65,11 +61,15 @@ const GameTypes = () => {
   };
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
+    //@ts-ignore
+    if (scrollDemoRef && scrollDemoRef.current && scrollDemoRef.current.getBoundingClientRect()) {
+      //@ts-ignore
+      const scrollY = scrollDemoRef.current.offsetTop + scrollDemoRef.current.clientHeight / 2;
+      window.scrollTo({
+        top: activeGameType !== 0 ? scrollY : 0,
+        behavior: "smooth",
+      });
+    }
   }, [activeGameType]);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const GameTypes = () => {
   };
 
   return (
-    <GameTypesEmbla className="embla game-types">
+    <GameTypesEmbla ref={scrollDemoRef} className="embla game-types">
       <div className="embla__viewport" ref={emblaGameTypeRef}>
         <GameTypesEmblaContainer
           className={`embla__container ${sideNavGameTypeItemList.length <= 4 ? "" : "two-rows"}`}

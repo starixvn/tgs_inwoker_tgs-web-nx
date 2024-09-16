@@ -18,9 +18,11 @@ export const Wrapper = styled.div`
 
 export const DesktopCategoryContentWrapper = styled.div`
   width: 100%;
-  gap: 10px 6px;
+  min-height: 35rem;
+  gap: 1rem 0.6rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-content: center;
 `;
 
@@ -32,13 +34,13 @@ export const DesktopWrapper = styled.div`
   justify-content: center;
 `;
 
-export const Text = styled.div`
+export const NoData = styled.div`
   width: 100%;
+  text-transform: capitalize;
   text-align: center;
-  padding: 40px 0;
-  color: ${({ theme }) => theme.gray50};
-  font-size: 18px;
-  font-weight: 700;
+  color: ${({ theme }) => theme.noDataTextColor};
+  font-size: 1.2rem;
+  font-weight: 500;
 `;
 
 export const GameList = styled.ul`
