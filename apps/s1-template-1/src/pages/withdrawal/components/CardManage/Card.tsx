@@ -1,6 +1,12 @@
 import Icon from "@/components/project/Icon";
+import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
+
+type CardContentProps = {
+  $isHeader: boolean;
+  theme: typeof theme;
+}
 
 const CardContainer = styled.div`
   width: 100%;
@@ -25,17 +31,26 @@ const CardTitle = styled.div`
   font-weight: 700;
 `;
 
-const CardContent = styled.div`
-  color: ${({ theme }) => theme.text};
+const CardContent = styled.div<CardContentProps>`
+  color: ${({ $isHeader, theme }: CardContentProps) =>
+    $isHeader ? theme.tableHeaderColor : theme.tableColor};
   display: grid;
   grid-template-columns: 5.6rem 1fr 1fr 4.8rem;
   align-items: center;
-  height: 4.8rem;
-   border-bottom: 1px solid ${({ theme }) => theme.tableBorderColor};
+  height:${({ $isHeader, theme }: CardContentProps) =>
+    $isHeader ? `3.6rem` : `4.8rem`};
+   border-bottom: 1px solid ${({ $isHeader, theme }: CardContentProps) =>
+    $isHeader ? theme.tableHeaderBorderColor : theme.tableBorderColor};
+  padding: .4rem;
+  font-size:${({ $isHeader, theme }: CardContentProps) =>
+    $isHeader ? theme.tableHeaderFontSize : theme.tableFontSize};
+  font-weight: ${({ $isHeader, theme }: CardContentProps) =>
+    $isHeader ? `700` : `400`};
 `;
+  
 
-const ContentRow = styled.div`
-   font-size: 1.1rem;
+const ContentRow = styled.div`   
+   text-align: center;
   
 `;
 
@@ -44,12 +59,13 @@ type Props = {
   title: string;
   content: string;
   handleDelete: () => void;
-  disable: boolean;
+  disable?: boolean;
   contentName: string;
+  isHeader: boolean;
 };
-const Card = ({ title, content, handleDelete, contentName, disable }: Props) => {
+const Card = ({ title, content, handleDelete, contentName, disable, isHeader}: Props) => {
   return (
-      <CardContent>
+      <CardContent $isHeader={isHeader}>
         <ContentRow>{title}</ContentRow>
         <ContentRow>{contentName}</ContentRow>
         <ContentRow>

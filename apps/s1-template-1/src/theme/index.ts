@@ -163,4 +163,10 @@ export const theme = {
   // Table
   tableBorderColor: "#1E2837",
   tableBackground: "#1C2836",
+  tableHeaderBackground: "#263343",
+  tableHeaderColor: "#E1EDFF",
+  tableHeaderBorderColor: "#3A4F69",
+  tableColor: "#ffffff",
+  tableFontSize: "1.1rem",
+  tableHeaderFontSize: "1.2rem",
 };

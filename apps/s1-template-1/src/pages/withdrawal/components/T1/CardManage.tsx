@@ -19,6 +19,13 @@ const CardContainerTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: .8rem;
+`;
+
+const CardContainerHeader = styled.div`
+  background-color: ${({ theme }) => theme.tableHeaderBackground};
+  height: 3.6rem;
+
 `;
 
 type Props = {
@@ -84,7 +91,9 @@ const CardManage = ({
       </CardContainerTitle>
       
       <CardContainer>
-        
+        <CardContainerHeader>
+          <Card title={"Type"} content={"Brand"} contentName={"Account Number"} handleDelete={() => {}} isHeader={true} disable={true} />
+        </CardContainerHeader>
         {bankCardList.map((item, key) => {
           return (
             <Card
@@ -100,6 +109,7 @@ const CardManage = ({
                 //@ts-ignore
                 config.features.DisableRemoveCard
               }
+              isHeader={false}
             />
           );
         })}
