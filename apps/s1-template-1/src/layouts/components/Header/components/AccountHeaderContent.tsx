@@ -114,6 +114,7 @@ const AccountHeaderContent = () => {
         >
           <Icon iconUrl="/assets/images/common/icon-plus.svg" width={"18px"} height={"18px"} />
         </GreenGradientButton>
+
       </ButtonContainer>
       <Select
         renderValue={() => {
@@ -194,7 +195,14 @@ const AccountHeaderContent = () => {
           ></DepositIcon>
           {i18n.t("common.deposit")}
         </MenuItem>
-        <MenuItem>
+        <MenuItem
+          onClick={() => {
+            history.push({
+              pathname: "/report",
+              state: { selectedType: 8 }
+            });
+          }}
+        >
           <TransactionIcon
             sx={{
               fill: `${theme.formInputColor}`,
@@ -207,7 +215,11 @@ const AccountHeaderContent = () => {
           ></TransactionIcon>
           {i18n.t("common.transaction")}
         </MenuItem>
-        <MenuItem>
+        <MenuItem
+          onClick={() => {
+            history.push("/report");
+          }}
+        >
           <HistoryIcon
             sx={{
               fill: `${theme.formInputColor}`,

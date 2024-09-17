@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
+import { useLocation } from 'react-router-dom';
 import Loading from "@/components/UI/Loading";
 import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
 import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
@@ -23,10 +24,16 @@ const Title = styled.div`
 
 const Report = () => {
   // TODO: tab function
+  const location = useLocation();
   const { tab } = useParams<{ tab: string }>();
   const [selectedType, setSelectedType] = useState(
     tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2,
   );
+
+  if(location.state){
+    setSelectedType(8);
+    location.state = null;
+  }
 
   const {
     dateRangeInfo,
