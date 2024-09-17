@@ -80,21 +80,6 @@ export const GameTypeContainer = styled.div`
   }
 `;
 
-export const ProviderItem = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.providerItemBackground};
-  min-width: 11.3rem;
-  height: 6rem;
-  padding: 0 0.8rem;
-  border-radius: 1rem;
-
-  > img {
-    max-width: 100%;
-  }
-`;
-
 export const Group = styled.div`
   position: relative;
 

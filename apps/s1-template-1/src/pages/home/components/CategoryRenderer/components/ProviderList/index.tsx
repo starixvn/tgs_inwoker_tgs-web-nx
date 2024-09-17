@@ -1,9 +1,29 @@
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { GameTypeEnum, media } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { ProviderDto } from "@tgs-web-nx/types";
 import { utility } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 
-import { ProviderItem } from "../HomeCategory/style";
+const ProviderItem = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.providerItemBackground};
+  min-width: 11.3rem;
+  height: 6rem;
+  padding: 0 0.8rem;
+  border-radius: 1rem;
+
+  ${media.sm} {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  > img {
+    max-width: 100%;
+  }
+`;
 
 const ProviderList: React.FC<{ providerList: ProviderDto[] }> = ({ providerList }) => {
   const { handleChangeGameType, handleChangeProvider } = useHomeGameContext();
