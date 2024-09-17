@@ -61,15 +61,20 @@ const GameTypes = () => {
   };
 
   useEffect(() => {
-    //@ts-ignore
-    if (scrollDemoRef && scrollDemoRef.current && scrollDemoRef.current.getBoundingClientRect()) {
-      //@ts-ignore
-      const scrollY = scrollDemoRef.current.offsetTop + scrollDemoRef.current.clientHeight / 2;
-      window.scrollTo({
-        top: activeGameType !== 0 ? scrollY : 0,
-        behavior: "smooth",
-      });
-    }
+    // //@ts-ignore
+    // if (scrollDemoRef && scrollDemoRef.current && scrollDemoRef.current.getBoundingClientRect()) {
+    //   //@ts-ignore
+    //   const scrollY = scrollDemoRef.current.offsetTop + scrollDemoRef.current.clientHeight / 2;
+    //   window.scrollTo({
+    //     top: activeGameType !== 0 ? scrollY : 0,
+    //     behavior: "smooth",
+    //   });
+    // }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, [activeGameType]);
 
   useEffect(() => {

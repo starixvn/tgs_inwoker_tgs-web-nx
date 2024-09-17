@@ -23,7 +23,7 @@ class GameCacheService {
     this.gameCacheDictionary[key] = gameList;
   }
 
-  hasCache(gameType: GameTypeEnum, pageIndex: number): boolean {
+  hasCache(gameType: GameTypeEnum | string, pageIndex: number): boolean {
     return !!this.gameCacheDictionary[this.getKey(gameType, pageIndex)];
   }
 
@@ -37,7 +37,7 @@ class GameCacheService {
     this.totalGameCacheDictionary[gameType] = total;
   }
 
-  hasTotalGameCache(gameType: GameTypeEnum): boolean {
+  hasTotalGameCache(gameType: GameTypeEnum | string): boolean {
     return !!this.gameCacheDictionary[gameType];
   }
 

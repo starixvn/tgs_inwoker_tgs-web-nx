@@ -6,6 +6,8 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
+import NonLobbyProvider from "./components/NonLobbyProvider";
+
 const CategoryRenderer = () => {
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const { isDesktopSize } = useRwd();
@@ -22,7 +24,7 @@ const CategoryRenderer = () => {
     case GameTypeEnum.NONE:
       return <HomeCategory />;
     case GameTypeEnum.ALL:
-      return <NonLobbyCategory isHideProviderDropdown={true} />;
+      return <NonLobbyProvider />;
     default:
       return <NonLobbyCategory />;
   }

@@ -1,6 +1,7 @@
 export * from "./useGetHomeCategoryList";
 export * from "./useGetLobbyCategoryList";
 export * from "./useGetNonLobbyCategoryList";
+export * from "./useGetAllGameListOfProvider";
 export * from "./useHomeGameContext";
 export * from "./contexts/homeGameContext";
 export * from "./hooks";
