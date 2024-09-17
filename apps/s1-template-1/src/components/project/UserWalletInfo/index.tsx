@@ -26,7 +26,6 @@ const PlayerInfoContainer = styled.div`
   flex-direction: column;
   gap: 1.2rem;
   padding: 1.2rem;
-  margin-bottom: 2.4rem;
 `;
 
 export const VIPLabel = styled.div<{ theme: DefaultTheme }>`

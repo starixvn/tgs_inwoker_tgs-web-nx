@@ -23,6 +23,12 @@ const ProfileMenuMobile = () => {
   console.log("profileItemDictionary", profileItemDictionary);
   return (
     <>
+      <ProfileCard style={{marginBottom: "2.4rem"}}>
+        <ProfileRowInMobile
+          profileItem={profileItemDictionary["password"]}
+          handleClick={handleClickProfileItem}
+        />
+      </ProfileCard>
       <LabelLargeContainer>Profile Settings</LabelLargeContainer>
       <ProfileCard>
         <ProfileRowInMobile
@@ -30,13 +36,14 @@ const ProfileMenuMobile = () => {
           handleClick={handleClickProfileItem}
         />
         <ProfileRowInMobile
-          profileItem={profileItemDictionary["phone"]}
-          handleClick={handleClickProfileItem}
-        />
-        <ProfileRowInMobile
           profileItem={profileItemDictionary["email"]}
           handleClick={handleClickProfileItem}
         />
+        <ProfileRowInMobile
+          profileItem={profileItemDictionary["phone"]}
+          handleClick={handleClickProfileItem}
+        />
+        
         <ProfileRowInMobile
           profileItem={profileItemDictionary["birth"]}
           handleClick={handleClickProfileItem}
@@ -64,13 +71,6 @@ const ProfileMenuMobile = () => {
             />
           );
         })}
-      </ProfileCard>
-
-      <ProfileCard>
-        <ProfileRowInMobile
-          profileItem={profileItemDictionary["password"]}
-          handleClick={handleClickProfileItem}
-        />
       </ProfileCard>
     </>
   );
