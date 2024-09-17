@@ -2,17 +2,11 @@ import { useGetAllGameListOfProvider } from "@tgs-web-nx/core/features";
 
 import NonLobbyWrapper from "../NonLobbyCategory/NonLobbyWrapper";
 
-const NonLobbyProvider: React.FC<{ isHideProviderDropdown?: boolean }> = ({
-  isHideProviderDropdown,
-}) => {
+const NonLobbyProvider = () => {
   const { gameList, isLoading } = useGetAllGameListOfProvider();
 
   return (
-    <NonLobbyWrapper
-      isHideProviderDropdown={isHideProviderDropdown}
-      gameList={gameList}
-      isLoading={isLoading}
-    />
+    <NonLobbyWrapper isHideProviderDropdown={true} gameList={gameList} isLoading={isLoading} />
   );
 };
 

@@ -24,7 +24,9 @@ const CheckIcon = () => {
   );
 };
 
-const HomeGameFilterTag = (props: any) => {
+const HomeGameFilterTag: React.FC<{ isHideProviderDropdown?: boolean }> = ({
+  isHideProviderDropdown,
+}) => {
   const {
     providerFilterTagList,
     filterTagList,
@@ -52,7 +54,7 @@ const HomeGameFilterTag = (props: any) => {
   return (
     <FilterTagWrapper>
       <CommonSearchWrapper>
-        {!props.isHideProviderDropdown && (
+        {!isHideProviderDropdown && (
           <MultiSelect
             filter
             onChange={handleChangeProvider}

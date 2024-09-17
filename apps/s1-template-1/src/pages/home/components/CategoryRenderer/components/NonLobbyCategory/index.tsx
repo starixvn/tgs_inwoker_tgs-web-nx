@@ -1,5 +1,4 @@
 import { useGetNonLobbyCategoryList } from "@tgs-web-nx/core/features";
-import { useEffect, useRef } from "react";
 
 import NonLobbyWrapper from "./NonLobbyWrapper";
 
