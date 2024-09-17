@@ -11,8 +11,7 @@ interface AuthGuardProps {
 
 export const AuthGuard = (props: AuthGuardProps) => {
   const { children, route } = props;
-  const { isLogin } = useAuth();
-  const history = useHistory();
+  const { isLogin, goToLogin } = useAuth();
 
   const checkIfHasAccessToViewPage = () => {
     return Boolean(isLogin || route.isAnonymousAllowed);
@@ -21,12 +20,11 @@ export const AuthGuard = (props: AuthGuardProps) => {
   const [checked, setChecked] = useState(checkIfHasAccessToViewPage());
 
   const validate = async () => {
-    const pathname = history.location.pathname;
     const isHasAccessToViewPage = checkIfHasAccessToViewPage();
     if (!isHasAccessToViewPage) {
-      history.push(`/login?return_url=${pathname}`);
+      goToLogin();
+      return;
     }
-
     setChecked(true);
   };
 
@@ -34,12 +32,18 @@ export const AuthGuard = (props: AuthGuardProps) => {
     validate().then();
   }, []);
 
+  useEffect(() => {
+    if (isLogin) {
+      setChecked(true);
+    }
+  }, [isLogin]);
+
   // if (isVendorIdNotValid || isNotHasAccessToShowPage || isHideFeature) {
   //   return <NotFound />;
   // }
 
   if (!checked) {
-    return <Loading show={true} />;
+    return <></>;
   }
 
   // If got here, it means that the redirect did not occur, and that tells us that the user is

@@ -1,6 +1,7 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService, useAccountStore } from "@tgs-web-nx/core";
 import {
+  useAuth,
   useGetLobbyCategoryList,
   useGetNonLobbyCategoryList,
   useHomeGameContext,
@@ -69,10 +70,11 @@ const LobbyCategory = () => {
   const { lobbyCategoryList } = useGetLobbyCategoryList();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const { isMobileSize, isDesktopSize } = useRwd();
+  const { goToLogin } = useAuth();
 
   const launchLobbyGame = (gpcode: string) => {
     if (!account.token) {
-      history.push("/login");
+      goToLogin();
       return;
     }
 

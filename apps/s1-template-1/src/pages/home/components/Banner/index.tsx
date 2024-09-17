@@ -8,6 +8,7 @@ import { useHistory } from "react-router";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { DotButton, useDotButton } from "./dots";
 import { Common } from "@tgs-web-nx/utils";
+import { useAuth } from "@tgs-web-nx/core/features";
 
 const BannerContainerEmbla = styled.section`
   --slide-height: 6rem;
@@ -82,11 +83,11 @@ const Banner = () => {
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
   const { account } = useAccountStore();
   const isLogin = !!account.token;
-  const history = useHistory();
+  const { goToLogin} = useAuth();
 
   const launchGame = (navurl: any) => {
     if (!isLogin) {
-      history.push("/login");
+      goToLogin();
     } else {
       Common.closePreviousPopup();
       Common.PopupCenter(navurl, "gamewindow");

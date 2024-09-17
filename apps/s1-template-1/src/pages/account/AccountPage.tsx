@@ -31,13 +31,13 @@ const AccountPage = () => {
   } = useUserWalletInfoContext();
   const { game } = useGameStore();
 
-  const { isLogin } = useAuth();
+  const { isLogin, goToLogin } = useAuth();
   const history = useHistory();
   const { isDesktopSize } = useRwd();
 
   useEffect(() => {
     if (!isLogin) {
-      history.push("/login");
+        goToLogin();
     }
   }, [history, isLogin]);
 

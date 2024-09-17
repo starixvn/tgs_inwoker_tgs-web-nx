@@ -8,6 +8,7 @@ import { REDIRECT_PROMOTION_TYPE } from "@tgs-web-nx/constants";
 import Loading from "@/components/UI/Loading";
 import { media } from "@/theme/breakpoints";
 import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { useAuth } from "@tgs-web-nx/core/features";
 
 const StyledButton = styled(SubmitButton)`
   width: 100%;
@@ -33,13 +34,14 @@ const JoinPromotionButton = ({ id, promotionType }: { id: string; promotionType:
     account: { token },
   } = useAccountStore();
   const history = useHistory();
+  const { goToLogin } = useAuth();
 
   const [loading, setLoading] = useState(false);
   const [hasJoined, setHasjoined] = useState(false);
 
   const handleJoinPromotion = async () => {
     if (token === null) {
-      history.push("/login");
+      goToLogin();
       return;
     }
 

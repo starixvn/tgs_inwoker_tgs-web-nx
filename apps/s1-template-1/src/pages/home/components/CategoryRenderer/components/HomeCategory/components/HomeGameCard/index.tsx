@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { GameItem } from "@tgs-web-nx/types";
 import { Common } from "@tgs-web-nx/utils";
 import { useAccountStore, useGameStore } from "@tgs-web-nx/core";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Favorite from "@/pages/home/components/Favorite";
 import { media } from "@/theme/breakpoints";
@@ -152,16 +152,16 @@ const PlayIcon = styled.img`
 const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
   const { account } = useAccountStore();
-  const history = useHistory();
   const { favoriteList, fetchFavoriteList } = useHomeGameContext();
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
+  const { goToLogin } = useAuth();
   const isFavorite = favoriteList.includes(gameItem.id);
   const isLogin = !!account.token;
 
   const launchGame = () => {
     if (!isLogin) {
-      history.push("/login");
+      goToLogin();
     } else {
       Common.closePreviousPopup();
       Common.PopupCenter(`/joingame/${gameItem.id}/${gameItem.gpcode}`, "gamewindow");
@@ -171,7 +171,7 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const handleToggleFavorite = async (event: MouseEvent, gameId: number) => {
     event.stopPropagation();
     if (!isLogin) {
-      history.push("/login");
+      goToLogin();
     } else {
       if (isUpdatingFavorite) return;
 
