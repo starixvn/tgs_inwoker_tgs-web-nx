@@ -1,6 +1,8 @@
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -60,7 +62,7 @@ const DesktopHeader = () => {
   } = useGeneralStore();
   const history = useHistory();
   const noLoginAccount = account.token !== account.info.token;
-
+  const { handleChangeGameType } = useHomeGameContext();
   // Todo
   // using asset site
   // const logoUrl = brand.loadingUrl;
@@ -68,24 +70,24 @@ const DesktopHeader = () => {
 
   if (!logoUrl) return null;
   return (
-      <HeaderContainer>
-        <HeaderWrapper>
-          <LogoWrapper>
-            <img
-              src={logoUrl}
-              alt={"logo"}
-              width={82}
-              height={22}
-              onClick={() => {
-                history.push("/");
-              }}
-            />
-          </LogoWrapper>
-          <HeaderContentContainer>
-            {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
-          </HeaderContentContainer>
-        </HeaderWrapper>
-      </HeaderContainer>
+    <HeaderContainer>
+      <HeaderWrapper>
+        <LogoWrapper>
+          <img
+            src={logoUrl}
+            alt={"logo"}
+            width={82}
+            height={22}
+            onClick={() => {
+              handleChangeGameType(GameTypeEnum.NONE);
+            }}
+          />
+        </LogoWrapper>
+        <HeaderContentContainer>
+          {noLoginAccount ? <AnonymousHeaderContent /> : <AccountHeaderContent />}
+        </HeaderContentContainer>
+      </HeaderWrapper>
+    </HeaderContainer>
   );
 };
 

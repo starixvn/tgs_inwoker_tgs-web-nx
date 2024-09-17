@@ -46,14 +46,14 @@ const Caption = styled.div`
   color: ${({ theme }) => theme.captionTextColor};
 `;
 
-const LoadMore: React.FC<{ totalGames: number }> = ({ totalGames }) => {
+const LoadMore: React.FC<{ totalGames?: number }> = ({ totalGames }) => {
   const { pageIndex, pageSize, handleChangePageIndex } = useHomeGameContext();
 
   const shownItems = pageIndex * pageSize;
-  const remainingItems = totalGames - shownItems;
+  const remainingItems = totalGames ? totalGames - shownItems : 0;
   const numberMore = Math.max(0, Math.min(remainingItems, pageSize));
 
-  const hasMoreItems = totalGames > shownItems;
+  const hasMoreItems = totalGames && totalGames > shownItems;
 
   return (
     <LoadMoreWrapper>
@@ -68,7 +68,7 @@ const LoadMore: React.FC<{ totalGames: number }> = ({ totalGames }) => {
       <Caption>
         <Trans>
           {i18n.t("common.showNumberOfTotal", {
-            number: Math.min(shownItems, totalGames),
+            number: Math.min(shownItems, totalGames || 0),
             total: totalGames,
           })}
         </Trans>
