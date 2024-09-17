@@ -62,7 +62,12 @@ export function useGetHomeCategoryList() {
     const fetchData = async () => {
       const responseRecentBigWins = await GameService.GetRecentBigWins();
       setHomeGameList({
-        ...initHomeGameList,
+        isLoading: false,
+        error: null,
+        slotGameList: homeGameList.slotGameList,
+        tableGameList: homeGameList.tableGameList,
+        liveCasinoList: homeGameList.liveCasinoList,
+        sportGameList: homeGameList.sportGameList,
         recentBigWins: responseRecentBigWins.data
       });
     };
