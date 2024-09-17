@@ -1,8 +1,7 @@
-import React from "react";
-import styled from "styled-components";
+import { FormControl, ItemContainer, LabelContainer } from "@/components/styled-component/ProfileForms";
+import { TextField } from "@/components/UI/TextField";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
-import iconArrow from "@/assets/t29/images/profile/icon-arrow.svg";
-import Icon from "@/components/project/Icon";
+import styled from "styled-components";
 
 const ProfileItemContainer = styled.div`
   width: 100%;
@@ -45,12 +44,16 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         handleClick(profileItem);
       }}
     >
-      <div>
-        <div className={"label"}>{label}</div>
-        <div className={"status"}>{status}</div>
-      </div>
+      <ItemContainer style={{width: "100%", marginBottom: "1.2rem"}}>
+        <LabelContainer>{label}</LabelContainer>
+        <FormControl variant="outlined" >
+          <TextField fullWidth />
+        </FormControl>
+       
+        {/* <div className={"status"}>{status}</div> */}
+      </ItemContainer>
 
-      <Icon iconUrl={iconArrow} width={"20px"} height={"20px"} />
+      {/* <Icon iconUrl={iconArrow} width={"20px"} height={"20px"} /> */}
     </ProfileItemContainer>
   );
 };

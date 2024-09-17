@@ -2,10 +2,10 @@ import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
 export const PageContainer = styled.div`
-  padding: 20px;
   /* max-width: calc(961px + 20px * 2); */
   flex: 1;
   margin: 0 auto;
+   padding: ${({ theme }) => theme.gapPage};
 
   ${media.sm} {
     padding: 10px;
@@ -14,7 +14,7 @@ export const PageContainer = styled.div`
 `;
 
 export const TransferPageContainer = styled.div`
-  padding: 1.2rem;
+  padding: ${({ theme }) => theme.gapPage};
   max-width: 1170px;
   flex: 1;
   margin: 0 auto;

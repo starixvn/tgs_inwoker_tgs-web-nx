@@ -1,3 +1,4 @@
+import { LabelLargeContainer } from "@/components/styled-component/ProfileForms";
 import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
 import React from "react";
@@ -5,16 +6,16 @@ import styled from "styled-components";
 
 const ProfileCard = styled.div`
   width: 100%;
-  background: ${({ theme }) => theme.blue20};
-  padding: 20px;
-  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
-  gap: 42px;
 
   &:last-child {
     margin-bottom: 0;
   }
+`;
+
+const ProfileTitle = styled.div`
+
 `;
 
 const ProfileMenuMobile = () => {
@@ -22,6 +23,7 @@ const ProfileMenuMobile = () => {
   console.log("profileItemDictionary", profileItemDictionary);
   return (
     <>
+      <LabelLargeContainer>Profile Settings</LabelLargeContainer>
       <ProfileCard>
         <ProfileRowInMobile
           profileItem={profileItemDictionary["name"]}

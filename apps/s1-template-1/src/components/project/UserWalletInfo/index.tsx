@@ -26,6 +26,7 @@ const PlayerInfoContainer = styled.div`
   flex-direction: column;
   gap: 1.2rem;
   padding: 1.2rem;
+  margin-bottom: 2.4rem;
 `;
 
 export const VIPLabel = styled.div<{ theme: DefaultTheme }>`
@@ -46,6 +47,7 @@ export const PlayerInfo = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
+  gap: 1.6rem;
 `;
 
 export const VIPInfo = styled.div`
@@ -181,7 +183,7 @@ const UserWalletInfo = () => {
     <Container>
       <PlayerInfoContainer>
         <PlayerInfo>
-          <AccountIcon style={{height: "6.4rem", width: "6.4rem", borderRadius: "4rem", margin: "0"}}>
+          <AccountIcon style={{height: "6.8rem", width: "6.8rem", borderRadius: "4rem", margin: "0"}}>
             <img
               src={"/assets/images/common/avatar.png"}
               width={"60px"}

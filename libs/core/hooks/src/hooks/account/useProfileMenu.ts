@@ -53,11 +53,12 @@ export function useProfileMenu() {
         isVerified: !!account.info.member_name,
         status: account.info.member_name
           ? i18n.t(
-            `${account.info.member_name} ${config.features.ShowVerificationStatus
-              ? `(` + i18n.t("verified." + getStatus()) + `)`
-              : ""
-            }`,
-          )
+              `${account.info.member_name} ${
+                config.features.ShowVerificationStatus
+                  ? `(` + i18n.t("verified." + getStatus()) + `)`
+                  : ""
+              }`,
+            )
           : i18n.t("profile.notSet"),
         routePath: "/profile/name",
         buttonText: account.info.member_name
@@ -88,7 +89,7 @@ export function useProfileMenu() {
       },
       birth: {
         key: "birthdate",
-        label: i18n.t("profile.birthdate.title"),
+        label: "Date of Birth",
         isVerified: !!account.info.member_birthdate,
         status: account.info.member_birthdate
           ? account.info.member_birthdate
@@ -122,7 +123,7 @@ export function useProfileMenu() {
       },
       password: {
         key: "changepassword",
-        label: i18n.t("profile.password.title"),
+        label: "Change Password",
         status: "",
         routePath: "/profile/changepassword",
         buttonText: i18n.t("profile.edit"),
