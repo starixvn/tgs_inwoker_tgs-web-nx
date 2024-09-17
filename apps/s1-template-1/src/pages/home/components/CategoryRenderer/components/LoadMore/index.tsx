@@ -1,4 +1,4 @@
-import { useGetNonLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { Trans } from "react-i18next";
 import styled from "styled-components";
@@ -46,15 +46,14 @@ const Caption = styled.div`
   color: ${({ theme }) => theme.captionTextColor};
 `;
 
-const LoadMore = () => {
+const LoadMore: React.FC<{ totalGames: number }> = ({ totalGames }) => {
   const { pageIndex, pageSize, handleChangePageIndex } = useHomeGameContext();
 
-  const { total } = useGetNonLobbyCategoryList();
   const shownItems = pageIndex * pageSize;
-  const remainingItems = total - shownItems;
+  const remainingItems = totalGames - shownItems;
   const numberMore = Math.max(0, Math.min(remainingItems, pageSize));
 
-  const hasMoreItems = total > shownItems;
+  const hasMoreItems = totalGames > shownItems;
 
   return (
     <LoadMoreWrapper>
@@ -68,7 +67,10 @@ const LoadMore = () => {
       )}
       <Caption>
         <Trans>
-          {i18n.t("common.showNumberOfTotal", { number: Math.min(shownItems, total), total })}
+          {i18n.t("common.showNumberOfTotal", {
+            number: Math.min(shownItems, totalGames),
+            total: totalGames,
+          })}
         </Trans>
       </Caption>
     </LoadMoreWrapper>

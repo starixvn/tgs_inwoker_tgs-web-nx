@@ -12,7 +12,8 @@ const NonLobbyWrapper: React.FC<{
   isHideProviderDropdown?: boolean;
   gameList: GameItem[];
   isLoading: boolean;
-}> = ({ isHideProviderDropdown, gameList, isLoading }) => {
+  totalGames: number;
+}> = ({ isHideProviderDropdown, gameList, isLoading, totalGames }) => {
   const { isDesktopSize } = useRwd();
   const hasMappingData = !!gameList.length;
 
@@ -39,7 +40,7 @@ const NonLobbyWrapper: React.FC<{
           </GameList>
           {!hasMappingData && !isLoading && <NoData>{i18n.t("common.nodata")}</NoData>}
         </DesktopCategoryContentWrapper>
-        {gameList?.length > 0 && <LoadMore></LoadMore>}
+        {gameList?.length > 0 && <LoadMore totalGames={totalGames}></LoadMore>}
       </DesktopWrapper>
 
       <Loading show={isLoading} />
