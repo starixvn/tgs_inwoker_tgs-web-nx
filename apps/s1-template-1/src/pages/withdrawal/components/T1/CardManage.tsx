@@ -89,11 +89,10 @@ const CardManage = ({
             <CardAddCard handleClick={onhandleAddCardClick} />
           )}
       </CardContainerTitle>
-      
+    
       <CardContainer>
-        <CardContainerHeader>
           <Card title={"Type"} content={"Brand"} contentName={"Account Number"} handleDelete={() => {}} isHeader={true} disable={true} />
-        </CardContainerHeader>
+
         {bankCardList.map((item, key) => {
           return (
             <Card

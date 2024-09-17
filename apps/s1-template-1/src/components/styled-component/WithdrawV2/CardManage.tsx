@@ -5,6 +5,7 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
-  background-color:  ${({ theme }) => theme.tableBackground}
+  background-color:  ${({ theme }) => theme.tableBackground};
+  border-radius: ${({ theme }) => theme.tableBorderRadius};
 
 `;

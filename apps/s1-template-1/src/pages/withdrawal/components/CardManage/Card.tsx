@@ -46,6 +46,16 @@ const CardContent = styled.div<CardContentProps>`
     $isHeader ? theme.tableHeaderFontSize : theme.tableFontSize};
   font-weight: ${({ $isHeader, theme }: CardContentProps) =>
     $isHeader ? `700` : `400`};
+   background-color: ${({ $isHeader, theme }: CardContentProps) =>
+    $isHeader ? theme.tableHeaderBackground : `inherit`};
+   border-radius: ${({ $isHeader, theme }: CardContentProps) =>
+    $isHeader ? `${theme.tableBorderRadius} ${theme.tableBorderRadius} 0 0` : `0`};
+  
+  &:last-child {
+    border-radius: 0 0 ${theme.tableBorderRadius} ${theme.tableBorderRadius};
+    border: none;
+  }
+
 `;
   
 

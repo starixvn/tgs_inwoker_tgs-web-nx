@@ -161,7 +161,7 @@ export const theme = {
 
   noDataTextColor: "#6E7E92",
   // Table
-  tableBorderColor: "#1E2837",
+  tableBorderColor: "#293849",
   tableBackground: "#1C2836",
   tableHeaderBackground: "#263343",
   tableHeaderColor: "#E1EDFF",
@@ -169,4 +169,5 @@ export const theme = {
   tableColor: "#ffffff",
   tableFontSize: "1.1rem",
   tableHeaderFontSize: "1.2rem",
+  tableBorderRadius: ".8rem",
 };
