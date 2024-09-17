@@ -100,7 +100,7 @@ export function useGetNonLobbyCategoryList() {
         TagTypeEnum.NONE,
         pageIndex,
         pageSize,
-        activeGameProvider,
+        [activeGameProvider],
         activeFilterTag,
       );
 

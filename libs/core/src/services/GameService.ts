@@ -55,8 +55,7 @@ function GetProviderList() {
 function GetGameList(gpCode: string, gametypes?: number) {
   return ApiService.get(
     //@ts-ignore
-    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${
-      config.currency
+    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency
     }${gametypes ? `&gametypes=${gametypes}` : ""}`,
   ) as unknown as Promise<GetGameListResDto>;
 }
@@ -99,6 +98,7 @@ function GetAllGameOfProvider(
     PageSize: pageSize,
     providerCode,
     orderType: orderBy,
+    GameTypes: []
   });
   return result as unknown as Promise<ResponseResDto<GameTypeDto>>;
 }
