@@ -12,6 +12,8 @@ import Autoplay from "embla-carousel-autoplay";
 import { GameTypeTitle, Group } from "../../style";
 import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
 import EmblaCarousel from "@/components/project/embla-carousel";
+import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
+import { useLogin } from "../../../../../../../../../../../libs/core/features/src/feature/useAuth/hooks/useLogin";
 
 const CardHoverBg = styled.div`
   position: absolute;
@@ -96,12 +98,12 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const { account } = useAccountStore();
   const { isDesktopSize } = useRwd();
   const isLogin = !!account.token;
-  const history = useHistory();
+  const { goToLogin } = useAuth();
   const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
   const launchGame = (gameId: any, gameProviderCode: any) => {
     if (!isLogin) {
-      history.push("/login");
+      goToLogin();
     } else {
       Common.closePreviousPopup();
       Common.PopupCenter(`/joingame/${gameId}/${gameProviderCode}`, "gamewindow");
