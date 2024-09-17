@@ -23,10 +23,7 @@ export function useLoginForm() {
       try {
         const { username, password } = values;
         await handleLogin(username, password, needToRemember);
-
-        if (isDesktopSize) {
-          handleToggleLoginDialog(false);
-        }
+        handleToggleLoginDialog(false);
       } catch (error: any) {
         console.error(error);
       }
