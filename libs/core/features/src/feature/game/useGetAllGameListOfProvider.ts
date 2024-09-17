@@ -21,19 +21,12 @@ export function useGetAllGameListOfProvider() {
     error: null,
   });
 
-  const {
-    activeGameType,
-    activeProviderFilterTag,
-    activeFilterTag,
-    pageIndex,
-    pageSize,
-    activeGameProvider,
-  } = useHomeGameContext();
+  const { activeFilterTag, pageIndex, pageSize, activeGameProvider } = useHomeGameContext();
 
   const fetchGameListOfProvider = async (): Promise<GameItem[] | void> => {
     if (
-      gameCacheService.hasCache(activeGameType, pageIndex) &&
-      gameCacheService.hasTotalGameCache(activeGameType)
+      gameCacheService.hasCache(activeGameProvider, pageIndex) &&
+      gameCacheService.hasTotalGameCache(activeGameProvider)
     ) {
       const gameList = await gameCacheService.getCachedGameList(activeGameProvider, pageIndex);
       const totalGame = await gameCacheService.getCachedTotal(activeGameProvider);
