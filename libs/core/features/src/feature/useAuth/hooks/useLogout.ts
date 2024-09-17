@@ -33,8 +33,8 @@ export function useLogout() {
 
       const result = await accountLogout(token);
       setLogoutState({ isLoading: false, data: result.data, error: null });
-      handleChangeGameType(GameTypeEnum.NONE);
-      history.push("/");
+      // handleChangeGameType(GameTypeEnum.NONE);
+      // history.push("/");
     } catch (error: any) {
       console.log(error);
 

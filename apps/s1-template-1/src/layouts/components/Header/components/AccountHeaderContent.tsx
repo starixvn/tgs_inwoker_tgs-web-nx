@@ -98,7 +98,7 @@ const AccountHeaderContent = () => {
     mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
   const handleClickLogout = async () => {
     await handleLogout();
-    goToHomePage();
+    //goToHomePage();
   };
 
   return (

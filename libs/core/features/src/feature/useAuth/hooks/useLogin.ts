@@ -123,15 +123,6 @@ export function useLogin() {
     if (!inBlackList) {
       await fetchData();
       handleLocalStorage(needToRemember || false, username);
-
-      // handle return url
-      const urlParams = new URLSearchParams(location.search);
-      const returnUrl = urlParams.get("return_url");
-      if (returnUrl) {
-        return history.push(returnUrl);
-      }
-
-      redirectToHome();
     }
   };
 

@@ -145,6 +145,8 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
   const handleChangePage = (newGameType: GameTypeEnum) => {
     handleChangeGameType(newGameType);
     handleChangePageIndex(1);
+    handleChangeActiveFilterTag(OrderTypeEnum.HOT);
+    handleChangeActiveProviderFilterTag([]);
   };
 
   return (
