@@ -9,10 +9,10 @@ import LoadMore from "../LoadMore";
 import { DesktopCategoryContentWrapper, DesktopWrapper, GameList, NoData, Wrapper } from "./style";
 
 const NonLobbyWrapper: React.FC<{
-  isHideProviderDropdown?: boolean;
   gameList: GameItem[];
   isLoading: boolean;
   totalGames: number;
+  isHideProviderDropdown?: boolean;
 }> = ({ isHideProviderDropdown, gameList, isLoading, totalGames }) => {
   const { isDesktopSize } = useRwd();
   const hasMappingData = !!gameList.length;

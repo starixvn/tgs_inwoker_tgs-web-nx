@@ -3,9 +3,9 @@ import { ProviderDto } from "@tgs-web-nx/types";
 import { createContext, useState } from "react";
 
 import { useFavoriteList } from "../hooks/useFavoriteList";
+import { useGameProvider } from "../hooks/useFilter/useGameProvider";
 import { useProviderFilter } from "../hooks/useFilter/useProviderFilter";
 import { useTagFilter } from "../hooks/useFilter/useTagFilter";
-import { useGameProvider } from "../hooks/useGameProvider";
 import { useGameSearch } from "../hooks/useGameSearch";
 import { useGameType } from "../hooks/useGameType";
 import { useGpCode } from "../hooks/useGpCode";
@@ -28,8 +28,9 @@ export type GameTypeItem = {
 const initialState: {
   // provider
   providerList: ProviderDto[];
-  activeGameProvider: string;
-  handleChangeProvider: (provider: string) => void;
+  searchedGameProviderCode: string;
+  searchedGameProviderName: string;
+  handleGamesWithProvider: (provider: ProviderDto) => void;
   // gameType
   activeGameType: GameTypeEnum;
   handleChangeGameType: (newGameType: GameTypeEnum) => void;
@@ -67,8 +68,9 @@ const initialState: {
 } = {
   // provider
   providerList: [],
-  activeGameProvider: "",
-  handleChangeProvider: () => {},
+  searchedGameProviderCode: "",
+  searchedGameProviderName: "",
+  handleGamesWithProvider: () => {},
   // gameType
   activeGameType: GameTypeEnum.NONE,
   handleChangeGameType: () => {},
@@ -156,8 +158,11 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
     handleChangeActiveProviderFilterTag([]);
   };
 
-  const handleChangeGameProvider = (provider: string) => {
-    handleChangeProvider(provider);
+  const [providerName, setProviderName] = useState<string>("");
+
+  const handleGamesWithProvider = (provider: ProviderDto) => {
+    handleChangeProvider(provider.code);
+    setProviderName(provider.name);
   };
 
   return (
@@ -165,8 +170,9 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
       value={{
         // provider
         providerList,
-        activeGameProvider,
-        handleChangeProvider: handleChangeGameProvider,
+        searchedGameProviderCode: activeGameProvider,
+        searchedGameProviderName: providerName,
+        handleGamesWithProvider,
         // gameType
         activeGameType,
         activeGameTypeKey: activeGameTypeKey ?? "",

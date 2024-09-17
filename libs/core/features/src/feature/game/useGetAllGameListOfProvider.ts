@@ -1,6 +1,6 @@
 import { GameService } from "@tgs-web-nx/core";
 import { GameItem } from "@tgs-web-nx/types";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { gameCacheService } from "./services";
 import { TagTypeEnum } from "./types";
@@ -21,15 +21,18 @@ export function useGetAllGameListOfProvider() {
     error: null,
   });
 
-  const { activeFilterTag, pageIndex, pageSize, activeGameProvider } = useHomeGameContext();
+  const { activeFilterTag, pageIndex, pageSize, searchedGameProviderCode } = useHomeGameContext();
 
   const fetchGameListOfProvider = async (): Promise<GameItem[] | void> => {
     if (
-      gameCacheService.hasCache(activeGameProvider, pageIndex) &&
-      gameCacheService.hasTotalGameCache(activeGameProvider)
+      gameCacheService.hasCache(searchedGameProviderCode, pageIndex) &&
+      gameCacheService.hasTotalGameCache(searchedGameProviderCode)
     ) {
-      const gameList = await gameCacheService.getCachedGameList(activeGameProvider, pageIndex);
-      const totalGame = await gameCacheService.getCachedTotal(activeGameProvider);
+      const gameList = await gameCacheService.getCachedGameList(
+        searchedGameProviderCode,
+        pageIndex,
+      );
+      const totalGame = await gameCacheService.getCachedTotal(searchedGameProviderCode);
       setGameListState((state) => ({ ...state, gameList: gameList, total: totalGame }));
       return gameList;
     }
@@ -40,7 +43,7 @@ export function useGetAllGameListOfProvider() {
         TagTypeEnum.NONE,
         pageIndex,
         pageSize,
-        [activeGameProvider],
+        [searchedGameProviderCode],
         activeFilterTag,
       );
 
@@ -56,8 +59,8 @@ export function useGetAllGameListOfProvider() {
         total: response.data[0].total,
       });
 
-      gameCacheService.updateGameCacheDictionary(activeGameProvider, pageIndex, gameList);
-      gameCacheService.updateTotalCacheDictionary(activeGameProvider, response.data[0].total);
+      gameCacheService.updateGameCacheDictionary(searchedGameProviderCode, pageIndex, gameList);
+      gameCacheService.updateTotalCacheDictionary(searchedGameProviderCode, response.data[0].total);
 
       return gameList;
     } catch (error: any) {
@@ -72,11 +75,11 @@ export function useGetAllGameListOfProvider() {
   };
 
   useEffect(() => {
-    if (activeGameProvider === "") {
+    if (searchedGameProviderCode === "") {
       return;
     }
     fetchGameListOfProvider();
-  }, [activeGameProvider, pageIndex, activeFilterTag]);
+  }, [searchedGameProviderCode, pageIndex, activeFilterTag]);
 
   return {
     isLoading: gameListState.isLoading,

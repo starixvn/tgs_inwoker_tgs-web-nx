@@ -26,18 +26,19 @@ const ProviderItem = styled.div`
 `;
 
 const ProviderList: React.FC<{ providerList: ProviderDto[] }> = ({ providerList }) => {
-  const { handleChangeGameType, handleChangeProvider } = useHomeGameContext();
+  const { handleChangeGameType, handleGamesWithProvider } = useHomeGameContext();
 
   return providerList.map((provider, index) => {
     const providerName = provider.code.toLowerCase();
 
-    const handleChange = (providerCode: string) => {
+    const handleChange = (provider: ProviderDto) => {
       handleChangeGameType(GameTypeEnum.ALL);
-      handleChangeProvider(providerCode);
+      handleGamesWithProvider(provider);
     };
+
     return (
       <div className="embla__slide " key={index}>
-        <ProviderItem onClick={() => handleChange(provider.code)}>
+        <ProviderItem onClick={() => handleChange(provider)}>
           <img
             src={utility.imagePathGenerator(`provider/dark/${providerName}.webp`)}
             alt={providerName}

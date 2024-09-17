@@ -49,7 +49,7 @@ const GameTypesEmblaContainer = styled.div`
 const GameTypes = () => {
   const { sideNavGameTypeItemList } = useGetNavGameTypeItemList();
   const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
-  const { activeGameType, handleChangeGameType, handleChangeProvider } = useHomeGameContext();
+  const { activeGameType, handleChangeGameType } = useHomeGameContext();
   const scrollDemoRef = useRef(null);
 
   const { gameType: urlGameType } = useParams<{ gameType: string }>();
@@ -81,7 +81,7 @@ const GameTypes = () => {
     const gameType = getGameTypeFromKey(urlGameType);
     if (gameType) {
       handleChangeGameType(gameType);
-      handleChangeProvider("");
+      // handleChangeProvider(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType, gameTypeList]);
