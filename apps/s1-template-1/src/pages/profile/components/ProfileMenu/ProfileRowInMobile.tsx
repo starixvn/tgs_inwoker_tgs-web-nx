@@ -35,6 +35,19 @@ const FormWrapper = styled.div`
   align-items: center;
 `;
 
+const FormWrapperExtend = styled.div`
+  position: relative;
+
+`;
+
+const VerifyButton = styled.span`
+  position: absolute;
+  right: .8rem;
+  top: 1.6rem;
+  color: #fff;
+  font-size: 1.2rem;
+`;
+
 type ProfileItemProps = {
   profileItem?: ProfileItem;
   handleClick: (newProfileItem: ProfileItem) => void;
@@ -57,17 +70,19 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
   }
   else if(profileItem.key === "name" || profileItem.key === "email") {
     return (
-      <ProfileItemContainer
-        onClick={() => {
-          if (!profileItem) return;
-          handleClick(profileItem);
-        }}
-      >
+      <ProfileItemContainer>
         <ItemContainer style={{width: "100%", marginBottom: "1.2rem"}}>
           <LabelContainer>{label}</LabelContainer>
-          <FormControl variant="outlined" >
-            <TextField fullWidth />
-          </FormControl>
+          <FormWrapperExtend>
+            <FormControl variant="outlined" >
+              <TextField fullWidth disabled={true}/>
+            </FormControl>
+            <VerifyButton  onClick={() => {
+              if (!profileItem) return;
+              handleClick(profileItem);
+            }}>Verify</VerifyButton>
+          </FormWrapperExtend>
+         
          
           {/* <div className={"status"}>{status}</div> */}
         </ItemContainer>

@@ -100,26 +100,26 @@ export function useProfileMenu() {
           : i18n.t("profile.setNow"),
       },
       qq: {
-        key: "qq",
-        label: i18n.t("common.qqNumber"),
-        isVerified: !!account.info.member_qq,
-        status: account.info.member_qq
-          ? account.info.member_qq.substring(0, 1) + "**"
+        key: "telegram",
+        label: "Telegram Account",
+        isVerified: !!account.info.member_telegram,
+        status: account.info.member_telegram
+          ? account.info.member_telegram.substring(0, 1) + "**"
           : i18n.t("profile.notSet"),
-        routePath: "/profile/qq",
-        buttonText: account.info.member_qq ? i18n.t("profile.details") : i18n.t("profile.setNow"),
-      },
-      wechat: {
-        key: "wechat",
-        label: i18n.t("common.wechatNumber"),
-        isVerified: !!account.info.member_wechat,
-        status: account.info.member_wechat
-          ? account.info.member_wechat.substring(0, 1) + "**"
-          : i18n.t("profile.notSet"),
-        routePath: "/profile/wechat",
-        buttonText: account.info.member_wechat
+        routePath: "/profile/telegram",
+        buttonText: account.info.member_telegram
           ? i18n.t("profile.details")
           : i18n.t("profile.setNow"),
+      },
+      wechat: {
+        key: "line",
+        label: "Line",
+        isVerified: !!account.info.member_line,
+        status: account.info.member_line
+          ? account.info.member_line.substring(0, 1) + "**"
+          : i18n.t("profile.notSet"),
+        routePath: "/profile/line",
+        buttonText: account.info.member_line ? i18n.t("profile.details") : i18n.t("profile.setNow"),
       },
       password: {
         key: "changepassword",
