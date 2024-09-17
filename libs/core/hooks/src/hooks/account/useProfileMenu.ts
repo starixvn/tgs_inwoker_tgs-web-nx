@@ -1,9 +1,9 @@
 //@ts-nocheck
-import { useHistory } from "react-router-dom";
-import { useCallback, useMemo } from "react";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { useCallback, useMemo } from "react";
+import { useHistory } from "react-router-dom";
 
 export interface ProfileItem {
   key: string;
@@ -16,6 +16,7 @@ export interface ProfileItem {
 
 export function useProfileMenu() {
   const { account } = useAccountStore();
+  console.log("account", account);
   const history = useHistory();
 
   const getStatus = useCallback(() => {

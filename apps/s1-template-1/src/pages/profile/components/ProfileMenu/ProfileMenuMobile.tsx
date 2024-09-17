@@ -1,7 +1,7 @@
+import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
+import { useProfileMenu } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
-import { useProfileMenu } from "@tgs-web-nx/core/hooks";
-import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
 
 const ProfileCard = styled.div`
   width: 100%;
@@ -19,6 +19,7 @@ const ProfileCard = styled.div`
 
 const ProfileMenuMobile = () => {
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
+  console.log("profileItemDictionary", profileItemDictionary);
   return (
     <>
       <ProfileCard>

@@ -2,7 +2,6 @@ import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
 export const PageContainer = styled.div`
-  background: ${({ theme }) => theme.mainBackground};
   padding: 20px;
   /* max-width: calc(961px + 20px * 2); */
   flex: 1;

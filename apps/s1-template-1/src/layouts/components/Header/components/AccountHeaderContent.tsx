@@ -1,12 +1,6 @@
-import { MenuItem } from "@mui/material";
-import { useWalletStore } from "@tgs-web-nx/core";
-import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
+import { AccountIcon } from "@/components/styled-component/ProfileForms";
 import { GreenGradientButton } from "@/components/UI/Button";
 import {
   AccountInfoIcon,
@@ -19,7 +13,13 @@ import {
 import { Select } from "@/components/UI/Select";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 import { theme } from "@/theme";
-import { media } from "@/theme/breakpoints";
+import { MenuItem } from "@mui/material";
+import { useWalletStore } from "@tgs-web-nx/core";
+import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -71,20 +71,6 @@ const LogoutButton = styled(BascicButton)`
   gap: 4px;
 `;
 
-const AccountIcon = styled.div`
-  cursor: pointer;
-  margin: 0 0 0 0.6rem;
-  border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.2);
-  width: 4rem;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  ${media.sm} {
-    margin: 0 0.8rem 0 0.6rem;
-  }
-`;
 
 const AccountHeaderContent = () => {
   const history = useHistory();

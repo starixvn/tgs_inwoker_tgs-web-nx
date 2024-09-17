@@ -111,6 +111,25 @@ export const UploadFileTag = styled.span`
   font-weight: 700;
 `;
 
+export const AccountIcon = styled.div`
+  cursor: pointer;
+  margin: 0 0 0 0.6rem;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${media.sm} {
+    margin: 0 0.8rem 0 0.6rem;
+  }
+`;
+
+export const LabelHighlight = styled.div`
+  color: ${({ theme }) => theme.textHighlight};
+`;
+
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   height: "4.8rem",
   whiteSpace: "nowrap",

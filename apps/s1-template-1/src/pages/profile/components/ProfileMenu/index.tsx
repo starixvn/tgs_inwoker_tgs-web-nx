@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useUpdatePageName } from "@tgs-web-nx/core/features";
-import { useAccountStore } from "@tgs-web-nx/core";
 import ProfileMenuDesktop from "@/pages/profile/components/ProfileMenu/ProfileMenuDesktop";
 import ProfileMenuMobile from "@/pages/profile/components/ProfileMenu/ProfileMenuMobile";
+import { useAccountStore } from "@tgs-web-nx/core";
+import { useUpdatePageName } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useEffect } from "react";
 
 const ProfileMenu = () => {
-  useUpdatePageName(i18n.t("profile.basicInfo"));
+  useUpdatePageName("Account");
   const { isDesktopSize } = useRwd();
   const { getAccountInfo } = useAccountStore();
 

@@ -1,14 +1,10 @@
-import React from "react";
-import styled, { DefaultTheme, keyframes } from "styled-components";
-import DynamicFont from "react-dynamic-font";
-import config from "@tgs-web-nx/config";
-import { Common, i18n, utility } from "@tgs-web-nx/utils";
+import Icon from "@/components/project/Icon";
+import { AccountIcon, LabelHighlight } from "@/components/styled-component/ProfileForms";
+import { media } from "@/theme/breakpoints";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import refreshIcon from "@/assets/t28/images/account/icon-refresh.svg";
-import Icon from "@/components/project/Icon";
-import { media } from "@/theme/breakpoints";
-import VipProgressBar from "@/components/account/VipProgressBar";
+import { Common } from "@tgs-web-nx/utils";
+import styled, { DefaultTheme, keyframes } from "styled-components";
 
 const rotateKeyFrame = keyframes`
   0% {
@@ -20,15 +16,17 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
-  padding: 22px 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-bottom: 1px solid ${({ theme }) => theme.maskBlack20};
 `;
 
-const PlayerInfoContainer = styled.div``;
+const PlayerInfoContainer = styled.div`
+  width: 100%;
+  background: linear-gradient(180deg, #273559 0%, #111925 100%);
+  border-radius: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.2rem;
+`;
 
 export const VIPLabel = styled.div<{ theme: DefaultTheme }>`
   color: ${({ theme }) => theme.secondary};
@@ -46,7 +44,8 @@ export const VIPLabel = styled.div<{ theme: DefaultTheme }>`
 export const PlayerInfo = styled.div`
   display: flex;
   align-items: center;
-  min-width: 400px;
+  justify-content: flex-start;
+  width: 100%;
 `;
 
 export const VIPInfo = styled.div`
@@ -95,14 +94,12 @@ export const PlayerName = styled.div`
 
 export const WalletsWrapper = styled.div`
   width: 100%;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
   flex-wrap: wrap;
   background: ${({ theme }) => theme.NavBGC};
-  padding: 20px;
   ${media.sm} {
     background: transparent;
     width: 300px;
@@ -145,6 +142,16 @@ export const AmountContainer = styled.div<{ theme: DefaultTheme }>`
   }
 `;
 
+const WalletInfo = styled.div`
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+`;
+
 type RefreshButtonProps = {
   $isLoading: boolean;
 };
@@ -174,8 +181,22 @@ const UserWalletInfo = () => {
     <Container>
       <PlayerInfoContainer>
         <PlayerInfo>
+          <AccountIcon style={{height: "6.4rem", width: "6.4rem", borderRadius: "4rem", margin: "0"}}>
+            <img
+              src={"/assets/images/common/avatar.png"}
+              width={"60px"}
+              height={"60px"}
+              alt="profile"
+            />
+          </AccountIcon>
           <PlayerName>{info.member_username}</PlayerName>
-          {config.features.HaveVIPFeature && (
+        </PlayerInfo>       
+        <WalletsWrapper>
+          <WalletInfo>{"Account Balance"}{":"} <LabelHighlight>{ mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)}</LabelHighlight></WalletInfo>
+          <WalletInfo>Total Deposit{":"} <LabelHighlight>{info.accumdeposit}</LabelHighlight></WalletInfo>
+          <WalletInfo>Total Bet Amount{":"} <LabelHighlight>{info.accumturnover}</LabelHighlight></WalletInfo>
+          
+          {/* {config.features.HaveVIPFeature && (
             <VIPLabel>
               <img
                 width={"50px"}
@@ -186,12 +207,12 @@ const UserWalletInfo = () => {
               VIP
               {info.member_level_id}
             </VIPLabel>
-          )}
-        </PlayerInfo>
-        <VipProgressBar />
+          )} */}
+        </WalletsWrapper>
+        {/* <VipProgressBar /> */}
       </PlayerInfoContainer>
 
-      <WalletsWrapper>
+      {/* <WalletsWrapper>
         <MainWalletContainer>
           <MainAccountLabel>{i18n.t("web.account.header.mainWallet")}</MainAccountLabel>
           <AmountContainer>
@@ -249,7 +270,7 @@ const UserWalletInfo = () => {
             />
           </AmountContainer>
         </MainWalletContainer>
-      </WalletsWrapper>
+      </WalletsWrapper> */}
     </Container>
   );
 };
