@@ -4,7 +4,7 @@ import { GameItem } from "@tgs-web-nx/types";
 class GameCacheService {
   private readonly gameCacheDictionary: { [key in string]: GameItem[] };
 
-  private readonly totalGameCacheDictionary: { [key in number]: number };
+  private readonly totalGameCacheDictionary: { [key in number | string]: number };
 
   constructor() {
     // @ts-ignore
@@ -12,7 +12,11 @@ class GameCacheService {
     this.totalGameCacheDictionary = {};
   }
 
-  updateGameCacheDictionary(gameType: GameTypeEnum, pageIndex: number, gameList: GameItem[]): void {
+  updateGameCacheDictionary(
+    gameType: GameTypeEnum | string,
+    pageIndex: number,
+    gameList: GameItem[],
+  ): void {
     const key = this.getKey(gameType, pageIndex);
     if (this.gameCacheDictionary[key]) return;
 
@@ -23,11 +27,11 @@ class GameCacheService {
     return !!this.gameCacheDictionary[this.getKey(gameType, pageIndex)];
   }
 
-  getCachedGameList(gameType: GameTypeEnum, pageIndex: number): Promise<GameItem[]> {
+  getCachedGameList(gameType: GameTypeEnum | string, pageIndex: number): Promise<GameItem[]> {
     return Promise.resolve(this.gameCacheDictionary[this.getKey(gameType, pageIndex)] || []);
   }
 
-  updateTotalCacheDictionary(gameType: GameTypeEnum, total: number): void {
+  updateTotalCacheDictionary(gameType: GameTypeEnum | string, total: number): void {
     if (this.totalGameCacheDictionary[gameType]) return;
 
     this.totalGameCacheDictionary[gameType] = total;
@@ -37,11 +41,11 @@ class GameCacheService {
     return !!this.gameCacheDictionary[gameType];
   }
 
-  getCachedTotal(gameType: GameTypeEnum): number {
+  getCachedTotal(gameType: GameTypeEnum | string): number {
     return this.totalGameCacheDictionary[gameType] || 0;
   }
 
-  private getKey(gameType: GameTypeEnum, pageIndex: number): string {
+  private getKey(gameType: GameTypeEnum | string, pageIndex: number): string {
     return `${gameType}_${pageIndex}`;
   }
 }

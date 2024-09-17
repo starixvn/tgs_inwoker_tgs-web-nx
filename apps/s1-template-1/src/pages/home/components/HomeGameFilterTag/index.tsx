@@ -24,7 +24,7 @@ const CheckIcon = () => {
   );
 };
 
-const HomeGameFilterTag = () => {
+const HomeGameFilterTag = (props) => {
   const {
     providerFilterTagList,
     filterTagList,
@@ -52,19 +52,21 @@ const HomeGameFilterTag = () => {
   return (
     <FilterTagWrapper>
       <CommonSearchWrapper>
-        <MultiSelect
-          filter
-          onChange={handleChangeProvider}
-          value={activeProviderFilterTag}
-          options={providerFilterTagList}
-          optionLabel="name"
-          optionValue="gpCode"
-          placeholder={i18n.t("common.allProviders")}
-          maxSelectedLabels={1}
-          className="multi-select"
-          checkboxIcon={CheckIcon}
-          selectedItemsLabel={`${i18n.t("common.providers")}: ${selectedProviderNumbers}`}
-        ></MultiSelect>
+        {!props.isHideProviderDropdown && (
+          <MultiSelect
+            filter
+            onChange={handleChangeProvider}
+            value={activeProviderFilterTag}
+            options={providerFilterTagList}
+            optionLabel="name"
+            optionValue="gpCode"
+            placeholder={i18n.t("common.allProviders")}
+            maxSelectedLabels={1}
+            className="multi-select"
+            checkboxIcon={CheckIcon}
+            selectedItemsLabel={`${i18n.t("common.providers")}: ${selectedProviderNumbers}`}
+          ></MultiSelect>
+        )}
         <Dropdown
           onChange={handleChangeOrderBy}
           value={activeFilterTag}

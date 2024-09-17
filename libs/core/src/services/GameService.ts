@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, ResponseResDto, RecentBigWins } from "@tgs-web-nx/types";
+import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, RecentBigWins, ResponseResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
@@ -12,8 +12,9 @@ export const GameService = {
   GetProviderList,
   GetGameList,
   GetGameType,
+  GetAllGameOfProvider,
   GetGameListByTag,
-  GetRecentBigWins
+  GetRecentBigWins,
 };
 
 const languageFromLocalStorage = localStorage.getItem("i18nextLng");
@@ -54,12 +55,20 @@ function GetProviderList() {
 function GetGameList(gpCode: string, gametypes?: number) {
   return ApiService.get(
     //@ts-ignore
-    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency
+    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${
+      config.currency
     }${gametypes ? `&gametypes=${gametypes}` : ""}`,
   ) as unknown as Promise<GetGameListResDto>;
 }
 
-function GetGameType(gameTypes: number[], tag: number, pageIndex: number, pageSize: number, providerCode: string[] = [], orderBy = 0) {
+function GetGameType(
+  gameTypes: number[],
+  tag: number,
+  pageIndex: number,
+  pageSize: number,
+  providerCode: string[] = [],
+  orderBy = 0,
+) {
   const result = ApiService.post("gametype", {
     PlatformType: config.isPC,
     Language: i18n.language,
@@ -69,7 +78,27 @@ function GetGameType(gameTypes: number[], tag: number, pageIndex: number, pageSi
     PageIndex: pageIndex,
     PageSize: pageSize,
     providerCode,
-    orderType: orderBy
+    orderType: orderBy,
+  });
+  return result as unknown as Promise<ResponseResDto<GameTypeDto>>;
+}
+
+function GetAllGameOfProvider(
+  tag: number,
+  pageIndex: number,
+  pageSize: number,
+  providerCode: string[] = [],
+  orderBy = 0,
+) {
+  const result = ApiService.post("gametype", {
+    PlatformType: config.isPC,
+    Language: i18n.language,
+    Currency: config.currency,
+    Tag: tag,
+    PageIndex: pageIndex,
+    PageSize: pageSize,
+    providerCode,
+    orderType: orderBy,
   });
   return result as unknown as Promise<ResponseResDto<GameTypeDto>>;
 }

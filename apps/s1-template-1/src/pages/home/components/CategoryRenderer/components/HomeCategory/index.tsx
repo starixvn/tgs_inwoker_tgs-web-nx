@@ -1,19 +1,13 @@
 import EmblaCarousel from "@/components/project/embla-carousel";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { i18n, utility } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
 import { useHistory } from "react-router-dom";
 
+import ProviderList from "../ProviderList";
 import GameCardSlider from "./components/GameSlider/GameCardSlider";
 import RecentBigWins from "./components/RecentBigWins";
-import {
-  DesktopContainer,
-  GameTypeContainer,
-  GameTypeTitle,
-  Group,
-  ProviderItem,
-  ViewAll,
-} from "./style";
+import { DesktopContainer, GameTypeContainer, GameTypeTitle, Group, ViewAll } from "./style";
 
 const HomeCategory = () => {
   const history = useHistory();
@@ -97,20 +91,7 @@ const HomeCategory = () => {
             hasControlButton={true}
             extraClassName="providers two-rows"
           >
-            {providerList.map((provider, index) => {
-              const providerName = provider.code.toLowerCase();
-              return (
-                <div className="embla__slide " key={index}>
-                  <ProviderItem>
-                    <img
-                      src={utility.imagePathGenerator(`provider/dark/${providerName}.webp`)}
-                      alt={providerName}
-                      title={providerName}
-                    />
-                  </ProviderItem>
-                </div>
-              );
-            })}
+            <ProviderList providerList={providerList} />
           </EmblaCarousel>
         </Group>
 

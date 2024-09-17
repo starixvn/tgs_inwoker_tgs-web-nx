@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react";
 import LoadMore from "../LoadMore";
 import { DesktopCategoryContentWrapper, DesktopWrapper, GameList, NoData, Wrapper } from "./style";
 
-const NonLobbyCategory = () => {
+const NonLobbyCategory: React.FC<{ isHideProviderDropdown?: boolean }> = ({ isHideProviderDropdown }) => {
   const { isDesktopSize } = useRwd();
   const { gameList, isLoading } = useGetNonLobbyCategoryList();
   const hasMappingData = !!gameList.length;
@@ -17,7 +17,7 @@ const NonLobbyCategory = () => {
   return (
     <Wrapper>
       <DesktopWrapper>
-        <HomeGameFilterTag />
+        <HomeGameFilterTag isHideProviderDropdown={isHideProviderDropdown} />
         <DesktopCategoryContentWrapper>
           <GameList>
             {hasMappingData &&

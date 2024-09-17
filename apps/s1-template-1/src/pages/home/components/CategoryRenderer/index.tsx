@@ -1,5 +1,4 @@
 import HomeCategory from "@/pages/home/components/CategoryRenderer/components/HomeCategory";
-import LobbyCategory from "@/pages/home/components/CategoryRenderer/components/LobbyCategory";
 import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/components/NonLobbyCategory";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
@@ -21,10 +20,11 @@ const CategoryRenderer = () => {
   }, [isDesktopSize]);
   switch (activeGameType) {
     case GameTypeEnum.NONE:
-      return <HomeCategory />
-
+      return <HomeCategory />;
+    case GameTypeEnum.ALL:
+      return <NonLobbyCategory isHideProviderDropdown={true} />;
     default:
-      return <NonLobbyCategory />
+      return <NonLobbyCategory />;
   }
 };
 
