@@ -99,7 +99,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-table-game-group.svg" alt="hot" />
             {i18n.t("web.home.Section1Electron")}
-            <ViewAll>{i18n.t("common.all")}</ViewAll>
+            <ViewAll onClick={() => navigateTo("tableGame")}>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
             <GameCardSlider data={tableGameList} />
