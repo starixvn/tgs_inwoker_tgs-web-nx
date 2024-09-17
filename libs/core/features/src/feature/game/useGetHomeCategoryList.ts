@@ -61,15 +61,10 @@ export function useGetHomeCategoryList() {
   useEffect(() => {
     const fetchData = async () => {
       const responseRecentBigWins = await GameService.GetRecentBigWins();
-      setHomeGameList({
-        isLoading: false,
-        error: null,
-        slotGameList: homeGameList.slotGameList,
-        tableGameList: homeGameList.tableGameList,
-        liveCasinoList: homeGameList.liveCasinoList,
-        sportGameList: homeGameList.sportGameList,
+      setHomeGameList(currentState => ({
+        ...currentState,
         recentBigWins: responseRecentBigWins.data
-      });
+      }));
     };
 
     const interval = setInterval(() => {
