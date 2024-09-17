@@ -24,7 +24,7 @@ const CheckIcon = () => {
   );
 };
 
-const HomeGameFilterTag = (props) => {
+const HomeGameFilterTag = (props: any) => {
   const {
     providerFilterTagList,
     filterTagList,
