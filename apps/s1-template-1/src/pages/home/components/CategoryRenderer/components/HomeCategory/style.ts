@@ -84,47 +84,6 @@ export const Group = styled.div`
   position: relative;
 
   &.game-area {
-    .embla {
-      &:after {
-        --shadow-width: 4rem;
-        display: none;
-        content: "";
-        height: 120%;
-        pointer-events: none;
-        position: absolute;
-        top: -10%;
-        left: -1px;
-        width: calc(100% + 2px);
-        background: linear-gradient(to right, #0d131c 0, rgba(13, 19, 28, 0) var(--shadow-width)),
-          linear-gradient(to left, #0d131c 0, rgba(13, 19, 28, 0) var(--shadow-width));
-      }
-
-      .embla__viewport {
-        overflow: initial;
-        width: calc(100%);
-        &:before {
-          content: "";
-        }
-      }
-    }
-
-    ${media.xl} {
-      @supports ((-moz-text-align-last: right) or (text-align-last: right)) {
-        .embla {
-          container-type: inline-size;
-          margin-inline: -4rem;
-          overflow-x: clip;
-          padding-inline: 4rem;
-          width: 100%;
-          width: calc(100% + 8rem);
-
-          &:after {
-            display: block;
-          }
-        }
-      }
-    }
-
     .embla__container {
       --gap: 1.2rem;
       --min-width: 13.1rem;
