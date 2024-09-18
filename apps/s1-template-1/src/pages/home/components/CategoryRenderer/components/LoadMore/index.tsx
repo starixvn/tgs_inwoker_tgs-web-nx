@@ -33,10 +33,23 @@ const LoadMoreButton = styled.button`
   cursor: pointer;
 `;
 
-const ProgressBar = styled.div`
+const ProgressBar = styled.div<{ percent: number }>`
+  position: relative;
   height: 0.4rem;
-  background-color: ${({ theme }) => theme.progressBar};
+  background-color: ${({ theme }) => theme.progress};
   border-radius: 10rem;
+  overflow: hidden;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: ${({ percent }) => percent}%;
+    border-radius: 10rem;
+    background-color: ${({ theme }) => theme.progressBar};
+  }
 `;
 
 const Caption = styled.div`
@@ -54,6 +67,8 @@ const LoadMore: React.FC<{ totalGames?: number }> = ({ totalGames }) => {
   const numberMore = Math.max(0, Math.min(remainingItems, pageSize));
 
   const hasMoreItems = totalGames && totalGames > shownItems;
+  const shownItemsNumber = Math.min(shownItems, totalGames || 0);
+  const percentShownItems = (totalGames && (shownItemsNumber / totalGames) * 100) || 0;
 
   return (
     <LoadMoreWrapper>
@@ -62,13 +77,13 @@ const LoadMore: React.FC<{ totalGames?: number }> = ({ totalGames }) => {
           <LoadMoreButton onClick={() => handleChangePageIndex(pageIndex + 1)}>
             <Trans>{i18n.t("common.showNumberMore", { numberMore })}</Trans>
           </LoadMoreButton>
-          <ProgressBar />
+          <ProgressBar percent={percentShownItems} />
         </LoadingMore>
       )}
       <Caption>
         <Trans>
           {i18n.t("common.showNumberOfTotal", {
-            number: Math.min(shownItems, totalGames || 0),
+            number: shownItemsNumber,
             total: totalGames,
           })}
         </Trans>

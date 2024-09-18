@@ -23,7 +23,8 @@ export const theme = {
   // New template
   // Header
   headerBackground: "#19212C",
-  headerBorderColor: "#2B384A",
+  headerBorderColor: "hsla(0,0%,100%,.04)",
+  headerShadow: "#0d131c78",
 
   signUpButtonBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   signUpButtonBottomBorderColor: "#A96300",
@@ -158,7 +159,8 @@ export const theme = {
   // Load more button
   loadingMoreButtonBackground: "#2A3038",
   loadingMoreButtonColor: "#fff",
-  progressBar: "#292F42",
+  progress: "#292F42",
+  progressBar: "#E2FE26",
   captionTextColor: "#6E7E92",
 
   noDataTextColor: "#6E7E92",

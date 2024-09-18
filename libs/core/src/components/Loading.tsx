@@ -25,11 +25,7 @@ const Inner = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-const LogoImg = styled.img`
-  margin: 0 auto;
-  display: block;
-  width: 250px;
-`;
+
 type Props = {
   show: boolean;
   opacity?: number;
