@@ -21,9 +21,11 @@ export const CardHoverBg = styled.div`
 `;
 
 export const GameCardContent = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
+  border-radius: 1.2rem;
   overflow: hidden;
 `;
 
@@ -116,4 +118,41 @@ export const ProviderName = styled.div`
   font-weight: 700;
   text-transform: uppercase;
   color: ${({ theme }) => theme.gameCardGameNameColor};
+`;
+
+export const NoGameIconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const NoImage = styled.img`
+  width: 6.8rem;
+  height: 6.8rem;
+`;
+
+export const SpinnerBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Loading = styled.div`
+  width: 5rem;
+  height: 5rem;
+  border: 0.3rem solid #93acd3;
+  border-top: 0.3rem solid transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear 0s infinite;
+
+  @keyframes spin {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
 `;

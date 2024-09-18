@@ -3,9 +3,10 @@ import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameItem } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
+import { Img } from "react-image";
 
 import PlayIcon from "../PlayIcon";
-import { CardHoverBg, GameCardBg, GameCardContent, HoverGameName, MaintenanceBg, ProviderName } from "./style";
+import { CardHoverBg, GameCardBg, GameCardContent, HoverGameName, Loading, MaintenanceBg, NoGameIconWrapper, NoImage, ProviderName, SpinnerBox } from "./style";
 
 type GameCardProps = {
   gameItem: GameItem;
@@ -38,7 +39,8 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
-        <img className="game-icon" src={imageUrl} title={name} alt={name} />
+        <Img src={imageUrl} loader={<LoadingIcon />} unloader={<NoGameIcon gameName={name} />} />
+
         <ProviderName>{gpname}</ProviderName>
         {!isActive && (
           <MaintenanceBg>
@@ -49,11 +51,28 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && isActive && (
         <CardHoverBg onClick={launchGameHandler}>
-          {gameItem.name && <HoverGameName>{gameItem.name}</HoverGameName>}
+          {name && <HoverGameName>{name}</HoverGameName>}
           <PlayIcon />
         </CardHoverBg>
       )}
     </GameCardBg>
+  );
+};
+
+const NoGameIcon: React.FC<{ gameName: string }> = ({ gameName }) => {
+  return (
+    <NoGameIconWrapper>
+      <NoImage src="/assets/images/common/no-image.svg" alt="No image" />
+      <HoverGameName>{gameName}</HoverGameName>
+    </NoGameIconWrapper>
+  );
+};
+
+const LoadingIcon: React.FC = () => {
+  return (
+    <SpinnerBox>
+      <Loading />
+    </SpinnerBox>
   );
 };
 

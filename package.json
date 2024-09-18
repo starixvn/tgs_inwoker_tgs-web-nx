@@ -85,6 +85,7 @@
     "react-flip-move": "^3.0.5",
     "react-helmet": "^6.1.0",
     "react-i18next": "^15.0.2",
+    "react-image": "^4.1.0",
     "react-is": "18.2.0",
     "react-lazy-load-image-component": "^1.6.0",
     "react-marquee-double": "^0.2.0",
