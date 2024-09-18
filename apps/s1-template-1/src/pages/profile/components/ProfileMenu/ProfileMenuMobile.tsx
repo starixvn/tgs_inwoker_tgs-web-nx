@@ -23,6 +23,7 @@ const ProfileCard = styled.div`
 const FlagContainer = styled.div`
  
   margin-right: 0.8rem;
+  display: flex;
 
   & > img {
     width: 1.8rem;
