@@ -3,7 +3,7 @@ import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
-import { InfoItem, ItemContainer, ProfileItemContainer } from "./ProfileRowInMobile";
+import { ItemContainer, ItemInfo, ProfileItemContainer } from "./ProfileRowInMobile";
 
 
 
@@ -33,9 +33,9 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
         <LabelContainer >
           {label}
         </LabelContainer>
-        <InfoItem className={"status"} style={{ width: "33%" }}>
+        <ItemInfo className={"status"} style={{ width: "33%" }}>
           {status}
-        </InfoItem>
+        </ItemInfo>
 
         <Button
           variant={isVerified ? "contained" : "outlined"}
