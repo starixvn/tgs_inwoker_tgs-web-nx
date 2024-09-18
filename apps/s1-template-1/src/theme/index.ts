@@ -131,6 +131,13 @@ export const theme = {
   textHighlight: "#FFDA18",
   gapPage: ".8rem",
 
+  // Tab
+  tabBackground: "radial-gradient(52.82% 92.71% at 50% 7.29%, rgba(66, 107, 255, 0.45) 0%, rgba(25, 72, 164, 0.25) 100%)",
+  borderTabActive: "#D1F42D",
+  borderTab: "#0D2951",
+  tabTextColor: "#B3CDF8",
+  tabActiveTextColor: "#ffffff",
+
   // Announcement
   announceTextColor: "#F6254B",
 

@@ -13,10 +13,10 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   padding: 15px 10px;
   text-align: center;
   color: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? `${theme.text}` : `${theme.transferTabMenu}`};
-  background: radial-gradient(52.82% 92.71% at 50% 7.29%, rgba(66, 107, 255, 0.45) 0%, rgba(25, 72, 164, 0.25) 100%);
+    $isActive ? `${theme.text}` : `${theme.tabTextColor}`};
+  background: ${({ theme }) => theme.tabBackground};
   border: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? `1px solid #D1F42D` : `unset`};
+    $isActive ? `1px solid ${theme.borderTabActive}` : `1px solid ${theme.borderTab}`};
   font-size: 1.4rem;
   font-weight: bold;
   border-radius: .8rem;

@@ -16,6 +16,7 @@ const rotateKeyFrame = keyframes`
 `;
 
 const Container = styled.div`
+
 `;
 
 const PlayerInfoContainer = styled.div`
@@ -26,6 +27,9 @@ const PlayerInfoContainer = styled.div`
   flex-direction: column;
   gap: 1.2rem;
   padding: 1.2rem;
+  ${media.sm} {
+    padding: 2.4rem;
+  }
 `;
 
 export const VIPLabel = styled.div<{ theme: DefaultTheme }>`
@@ -145,7 +149,7 @@ export const AmountContainer = styled.div<{ theme: DefaultTheme }>`
 
 const WalletInfo = styled.div`
   font-size: 1.5rem;
-  color: #fff;
+  color:  ${({ theme }) => theme.tabTextColor};
   font-weight: 700;
   margin-bottom: 1.2rem;
   display: flex;

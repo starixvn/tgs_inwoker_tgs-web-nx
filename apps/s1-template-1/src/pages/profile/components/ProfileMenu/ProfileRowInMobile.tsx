@@ -4,7 +4,7 @@ import { OrangeGradientButton } from "@/components/UI/Button";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
 
-const ProfileItemContainer = styled.div`
+export const ProfileItemContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
@@ -51,19 +51,22 @@ const VerifyButton = styled.span`
   font-size: 1.2rem;
 `;
 
-const ItemInfo = styled.div`
+export const ItemInfo = styled.div`
   font-size: 1.3rem;
   color: #fff;
   color: ${({ theme }) => theme.placeHolderText}
 `;
 
-const ItemContainer = styled.div`
+export const ItemContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #2A343F;
   margin-bottom: 1.2rem;
   padding: .6rem 0;
+  width: 100%;
+  marginBottom: 1.2rem;
+  display: flex;
 `;
 
 type ProfileItemProps = {
@@ -96,7 +99,7 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         if (!profileItem) return;
         handleClick(profileItem);
       }}>
-        <ItemContainer style={{width: "100%", marginBottom: "1.2rem", display: "flex"}}>
+        <ItemContainer >
           <LabelContainer>{label}</LabelContainer>
           <FormWrapperExtend>
             <ItemInfo>{profileItem.status}</ItemInfo>

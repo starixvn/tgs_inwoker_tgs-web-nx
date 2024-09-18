@@ -1,21 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { ProfileItem } from "@tgs-web-nx/core/hooks";
+import { LabelContainer } from "@/components/styled-component/ProfileForms";
 import { Button } from "@/components/UI/Button";
 import { theme } from "@/theme";
+import { ProfileItem } from "@tgs-web-nx/core/hooks";
+import styled from "styled-components";
+import { InfoItem, ItemContainer, ProfileItemContainer } from "./ProfileRowInMobile";
 
-const ProfileItemContainer = styled.div`
-  width: 100%;
-  //padding: 9.5px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 33px;
 
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
 
 const ProfileRowLabel = styled.div`
   color: ${({ theme }) => theme.text};
@@ -39,35 +29,38 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
   const { label, status, buttonText, isVerified } = profileItem;
   return (
     <ProfileItemContainer>
-      <ProfileRowLabel className={"label"} style={{ width: "33%" }}>
-        {label}
-      </ProfileRowLabel>
-      <ProfileStatus className={"status"} style={{ width: "33%" }}>
-        {status}
-      </ProfileStatus>
+      <ItemContainer style={{padding: "1.6rem", margin: 0}}>
+        <LabelContainer >
+          {label}
+        </LabelContainer>
+        <InfoItem className={"status"} style={{ width: "33%" }}>
+          {status}
+        </InfoItem>
 
-      <Button
-        variant={isVerified ? "contained" : "outlined"}
-        sx={{
-          fontSize: "0.875rem",
-          color: isVerified ? theme.white : theme.lightPurple,
-          background: isVerified ? theme.primary : theme.memberSection,
-          border: isVerified ? `none` : `1px solid ${theme.lightPurple}`,
-          width: "150px",
-          height: "42px",
-          "&:hover": {
+        <Button
+          variant={isVerified ? "contained" : "outlined"}
+          sx={{
+            fontSize: "0.875rem",
+            color: isVerified ? theme.white : theme.lightPurple,
             background: isVerified ? theme.primary : theme.memberSection,
             border: isVerified ? `none` : `1px solid ${theme.lightPurple}`,
-            color: isVerified ? theme.white : theme.lightPurple,
-          },
-        }}
-        onClick={() => {
-          if (!profileItem) return;
-          handleClick(profileItem);
-        }}
-      >
-        {buttonText}
-      </Button>
+            width: "150px",
+            height: "42px",
+            "&:hover": {
+              background: isVerified ? theme.primary : theme.memberSection,
+              border: isVerified ? `none` : `1px solid ${theme.lightPurple}`,
+              color: isVerified ? theme.white : theme.lightPurple,
+            },
+          }}
+          onClick={() => {
+            if (!profileItem) return;
+            handleClick(profileItem);
+          }}
+        >
+          {buttonText}
+        </Button>
+      </ItemContainer>
+      
     </ProfileItemContainer>
   );
 };

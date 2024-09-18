@@ -1,18 +1,17 @@
-import { useLocation } from "react-router";
-import { useHistory } from "react-router";
-import { NavCardKey } from "@tgs-web-nx/types";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import { theme } from "@/theme";
 import {
-  ProfileIcon,
   ContactIcon,
   DepositIcon,
   InoboxIcon,
+  ProfileIcon,
   ReportIcon,
   TransferIcon,
   WithdrawIcon,
 } from "@/components/account/Icons";
+import { theme } from "@/theme";
+import { NavCardKey } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { useHistory, useLocation } from "react-router";
+import styled from "styled-components";
 
 type MenuItem = {
   key: NavCardKey;
@@ -23,23 +22,25 @@ type MenuItem = {
 };
 
 const TabContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-column-gap: 1.6rem;
   width: 100%;
-  gap: 12px;
   overflow: auto;
 `;
 
 const Tab = styled.div<{ $isActived: boolean }>`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  color: white;
-  height: 44px;
+  color: ${({ theme, $isActived }) =>
+    $isActived ? `${theme.tabActiveTextColor}` : `${theme.tabTextColor}`};
   padding: 8px 14px;
-  border-radius: 30px;
+  border-radius: 8px;
   border: ${({ theme, $isActived }) =>
-    $isActived ? `1px solid ${theme.lightPurple}` : `2px solid ${theme.secBTNBGC}`};
+    $isActived ? `1px solid ${theme.borderTabActive}` : `1px solid ${theme.borderTab}`};
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   cursor: pointer;
   & span {
     font-size: 14px;
@@ -47,11 +48,12 @@ const Tab = styled.div<{ $isActived: boolean }>`
     line-height: 17px;
     letter-spacing: 0em;
     text-align: center;
-    color: ${({ theme, $isActived }) => ($isActived ? theme.lightPurple : theme.gray50)};
+    
   }
   & svg {
     flex-shrink: 0;
   }
+  background: ${({ theme }) => theme.tabBackground}
 `;
 
 const MenuTabs = () => {
@@ -134,7 +136,7 @@ const MenuTabs = () => {
               history.push(item.router);
             }}
           >
-            <item.icon $color={isActived ? theme.lightPurple : theme.gray50} />
+            <item.icon $color={isActived ? theme.text : theme.gray50} />
             <span>{item.label}</span>
           </Tab>
         );
