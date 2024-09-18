@@ -15,11 +15,10 @@ export function useGetGamesByTag() {
   });
 
   const {
-    activeFilterTag,
+    activeTag,
     pageIndex,
     pageSize,
-    searchedGameProviderCode,
-    activeProviderFilterTag,
+    activeProviderFilterTag
   } = useHomeGameContext();
 
   const keyName = "GAMES_BY_TAG";
@@ -37,14 +36,7 @@ export function useGetGamesByTag() {
 
     try {
       setGameListState((state) => ({ ...state, isLoading: true }));
-      const response = await GameService.GetGameType(
-        [],
-        TagTypeEnum.NONE,
-        pageIndex,
-        pageSize,
-        [],
-        activeFilterTag,
-      );
+      const response = await GameService.GetGameListByTag([activeTag], activeProviderFilterTag, pageIndex, pageSize);
 
       const gameList =
         pageIndex > 1
@@ -75,7 +67,7 @@ export function useGetGamesByTag() {
 
   useEffect(() => {
     fetchGameListOfProvider();
-  }, [pageIndex, activeFilterTag, activeProviderFilterTag]);
+  }, [pageIndex, activeTag, activeProviderFilterTag]);
 
   return {
     isLoading: gameListState.isLoading,

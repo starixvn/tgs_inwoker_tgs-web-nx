@@ -1,6 +1,6 @@
 import EmblaCarousel from "@/components/project/embla-carousel";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { OrderTypeEnum, useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { OrderTypeEnum, TagTypeEnum, useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
 import { useHistory } from "react-router-dom";
@@ -12,7 +12,7 @@ import { DesktopContainer, GameTypeContainer, GameTypeTitle, Group, ViewAll } fr
 
 const HomeCategory = () => {
   const history = useHistory();
-  const { providerList, handleGamesByTag, handleChangeGameType } = useHomeGameContext();
+  const { providerList, handleChangeActiveTag, handleChangeGameType } = useHomeGameContext();
   const {
     sportGameList,
     liveCasinoList,
@@ -28,9 +28,9 @@ const HomeCategory = () => {
     window.scroll({ top: 0, behavior: "smooth" });
   };
 
-  const navigateToGamesByTag = (gameType: GameTypeEnum, tag: OrderTypeEnum) => {
+  const navigateToGamesByTag = (gameType: GameTypeEnum, tag: TagTypeEnum) => {
     handleChangeGameType(gameType);
-    handleGamesByTag(tag);
+    handleChangeActiveTag(tag);
   };
 
   const gameTypeEmblaOptions: EmblaOptionsType = { slidesToScroll: "auto" };
@@ -81,7 +81,7 @@ const HomeCategory = () => {
             <img src="/assets/images/common/icon-new-release.svg" alt="new-release" />
             {i18n.t("web.home.Section1NewRelease")}
             <ViewAll
-              onClick={() => navigateToGamesByTag(GameTypeEnum.NEW_GAMES, OrderTypeEnum.NEW)}
+              onClick={() => navigateToGamesByTag(GameTypeEnum.NEW_GAMES, TagTypeEnum.NEW)}
             >
               {i18n.t("common.all")}
             </ViewAll>
@@ -121,7 +121,7 @@ const HomeCategory = () => {
             <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
             {i18n.t("web.home.Section1HotGames")}
             <ViewAll
-              onClick={() => navigateToGamesByTag(GameTypeEnum.HOT_GAMES, OrderTypeEnum.HOT)}
+              onClick={() => navigateToGamesByTag(GameTypeEnum.HOT_GAMES, TagTypeEnum.HOT)}
             >
               {i18n.t("common.all")}
             </ViewAll>

@@ -34,7 +34,7 @@ export function useGetGamesByProvider() {
       setGameListState((state) => ({ ...state, isLoading: true }));
       const response = await GameService.GetGameType(
         [],
-        TagTypeEnum.NONE,
+        [],
         pageIndex,
         pageSize,
         [searchedGameProviderCode],

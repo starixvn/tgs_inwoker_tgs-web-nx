@@ -32,7 +32,7 @@ export function useGetNonLobbyCategoryList() {
       setGameListState((state) => ({ ...state, isLoading: true }));
       const response = await GameService.GetGameType(
         [activeGameType],
-        TagTypeEnum.NONE,
+        [],
         pageIndex,
         pageSize,
         activeProviderFilterTag,

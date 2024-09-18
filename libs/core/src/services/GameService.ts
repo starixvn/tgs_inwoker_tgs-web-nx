@@ -4,6 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
 import { GameService as PrevGameService } from "../api-services/services/GameService";
+import { lang } from "moment";
 
 export const GameService = {
   ...PrevGameService,
@@ -54,21 +55,20 @@ function GetProviderList() {
 function GetGameList(gpCode: string, gametypes?: number) {
   return ApiService.get(
     //@ts-ignore
-    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${
-      config.currency
+    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency
     }${gametypes ? `&gametypes=${gametypes}` : ""}`,
   ) as unknown as Promise<GetGameListResDto>;
 }
 
 function GetGameType(
   gameTypes: number[],
-  tag: number,
+  tag: number[],
   pageIndex: number,
   pageSize: number,
   providerCode: string[] = [],
   orderBy = 0,
 ) {
-  const result = ApiService.post("gametype", {
+  const result = ApiService.post("games", {
     PlatformType: config.isPC,
     Language: i18n.language,
     Currency: config.currency,
@@ -82,12 +82,16 @@ function GetGameType(
   return result as unknown as Promise<ResponseResDto<GameTypeDto>>;
 }
 
-function GetGameListByTag(tags: number[], limit: number) {
-  const tagsQuery = tags.map((tag) => `tags=${tag}`).join("&");
-  return ApiService.get(
-    //@ts-ignore
-    `Game/by-tag?platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}&${tagsQuery}&limit=${limit}`,
-  ) as unknown as Promise<ResponseResDto<GameTagListResDto>>;
+function GetGameListByTag(tags: number[], providerCode: string[] = [], pageIndex: number, pageSize: number) {
+  return ApiService.post("games/by-tag", {
+    PlatformType: config.isPC,
+    language: i18n.language,
+    currency: config.currency,
+    tags,
+    pageIndex,
+    pageSize,
+    providerCode,
+  }) as unknown as Promise<ResponseResDto<GameTagListResDto>>;
 }
 
 function GetRecentBigWins() {

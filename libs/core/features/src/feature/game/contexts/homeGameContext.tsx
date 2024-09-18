@@ -12,7 +12,7 @@ import { useGpCode } from "../hooks/useGpCode";
 import { useNavPopupGameType } from "../hooks/useNavPopupGameType";
 import { usePagination } from "../hooks/usePagination";
 import { useProvider } from "../hooks/useProvider";
-import { FilterTag, OrderTypeEnum } from "../types";
+import { FilterTag, OrderTypeEnum, TagTypeEnum } from "../types";
 
 export type GameTypeItem = {
   key: string;
@@ -32,7 +32,8 @@ const initialState: {
   searchedGameProviderName: string;
   handleGamesByProvider: (provider: ProviderDto) => void;
   // hot/new games
-  handleGamesByTag: (tag: OrderTypeEnum) => void;
+  activeTag: TagTypeEnum;
+  handleChangeActiveTag: (tag: TagTypeEnum) => void;
   // gameType
   activeGameType: GameTypeEnum;
   handleChangeGameType: (newGameType: GameTypeEnum) => void;
@@ -74,7 +75,8 @@ const initialState: {
   searchedGameProviderName: "",
   handleGamesByProvider: () => {},
   // hot/new games
-  handleGamesByTag: () => {},
+  activeTag: TagTypeEnum.HOT,
+  handleChangeActiveTag: () => {},
   // gameType
   activeGameType: GameTypeEnum.NONE,
   handleChangeGameType: () => {},
@@ -127,7 +129,13 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
     useNavPopupGameType();
   const { gpCode, handleChangeGpCode } = useGpCode();
 
-  const { filterTagList, activeFilterTag, handleChangeActiveFilterTag } = useTagFilter();
+  const {
+    filterTagList,
+    activeFilterTag,
+    activeTag,
+    handleChangeActiveFilterTag,
+    handleChangeActiveTag,
+  } = useTagFilter();
   const {
     providerFilterTagList,
     activeProviderFilterTag,
@@ -138,17 +146,17 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
   const { providerList } = useProvider(updateGpCodeList);
 
   const { favoriteList, fetchFavoriteList } = useFavoriteList(
-    activeGameType ? activeGameType : GameTypeEnum.SLOT,
+    activeGameType ? activeGameType : GameTypeEnum.SLOT
   );
   const { searchString, handleChangeSearch } = useGameSearch();
 
   const SportsType = gameTypeList.find((item) => item.gameType === GameTypeEnum.SPORTS);
   const activeGameTypeKey = gameTypeList.find((item) =>
     //虛擬體育歸類在體育底下
-    activeGameType === GameTypeEnum.RNGSPORTS ? SportsType?.key : item.gameType === activeGameType,
+    activeGameType === GameTypeEnum.RNGSPORTS ? SportsType?.key : item.gameType === activeGameType
   )?.key;
   const activeNavPopupGameTypeKey = gameTypeList.find(
-    (item) => item.gameType === activeNavPopupGameType,
+    (item) => item.gameType === activeNavPopupGameType
   )?.key;
 
   const [isEnterGamePortal, setIsEnterGamePortal] = useState<boolean>(false);
@@ -169,10 +177,6 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
     setProviderName(provider.name);
   };
 
-  const handleGamesByTag = (tag: OrderTypeEnum) => {
-    handleChangeActiveFilterTag(tag);
-  };
-
   return (
     <HomeGameContext.Provider
       value={{
@@ -182,7 +186,8 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         searchedGameProviderName: providerName,
         handleGamesByProvider,
         // hot/new games
-        handleGamesByTag,
+        activeTag,
+        handleChangeActiveTag,
         // gameType
         activeGameType,
         activeGameTypeKey: activeGameTypeKey ?? "",

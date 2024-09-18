@@ -77,7 +77,7 @@ export function useGetHomeCategoryList() {
   const getHomeGameList = async () => {
     try {
       setHomeGameList({ ...initHomeGameList, isLoading: true });
-      const response = await GameService.GetGameType(HomeCategory, TagTypeEnum.RECOMMEND, 1, 30);
+      const response = await GameService.GetGameType(HomeCategory, [TagTypeEnum.RECOMMEND], 1, 30);
       const responseRecentBigWins = await GameService.GetRecentBigWins();
 
       setHomeGameList({
@@ -102,7 +102,7 @@ export function useGetHomeCategoryList() {
     try {
       setTagGameList({ ...initTagGameList, isLoading: true });
 
-      const response = await GameService.GetGameListByTag([TagTypeEnum.HOT, TagTypeEnum.NEW], 30);
+      const response = await GameService.GetGameListByTag([TagTypeEnum.HOT, TagTypeEnum.NEW], [], 1, 30);
       const hotTag =
         response.data.find((gt: GameTagListResDto) => gt.tag === TagTypeEnum.HOT)?.games || [];
       const newTag =
@@ -122,7 +122,7 @@ export function useGetHomeCategoryList() {
   };
 
   const filterGameType = (gameTypes: GameTypeDto[], types: GameTypeEnum[]) => {
-    const results = gameTypes.filter((gameType) => types.includes(gameType.gameType));
+    const results = gameTypes.filter((gameType) => types.includes(gameType.key));
 
     if (results.length > 0) {
       return results.map((category) => category.games).flat();

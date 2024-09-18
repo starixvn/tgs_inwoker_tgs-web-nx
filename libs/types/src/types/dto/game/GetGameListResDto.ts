@@ -27,7 +27,7 @@ export interface GetGameListResDto {
 export interface GameTagListResDto {
   games: GameItem[];
   tag: number;
-  limit: number;
+  total: number;
 }
 
 export interface RecentBigWins {
@@ -61,7 +61,7 @@ export interface GameTypeDto {
   games: GameItem[];
   pageIndex: number;
   pageSize: number;
-  gameType: number;
+  key: any;
 }
 
 

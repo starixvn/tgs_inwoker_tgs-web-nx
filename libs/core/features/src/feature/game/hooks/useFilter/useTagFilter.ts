@@ -1,11 +1,16 @@
 import { useCallback, useMemo, useState } from "react";
-import { FilterTag, OrderTypeEnum, } from "../../types";
+import { FilterTag, OrderTypeEnum, TagTypeEnum, } from "../../types";
 
 export function useTagFilter() {
   const [activeFilterTag, setActiveFilterTag] = useState<OrderTypeEnum>(OrderTypeEnum.HOT);
+  const [activeTag, setActiveTag] = useState<TagTypeEnum>(TagTypeEnum.HOT);
 
   const handleChangeActiveFilterTag = useCallback((newFilterTag: OrderTypeEnum) => {
     setActiveFilterTag(newFilterTag);
+  }, []);
+
+  const handleChangeActiveTag = useCallback((newTag: TagTypeEnum) => {
+    setActiveTag(newTag);
   }, []);
 
   const filterTagList = useMemo(() => {
@@ -21,6 +26,8 @@ export function useTagFilter() {
   return {
     filterTagList,
     activeFilterTag,
+    activeTag,
     handleChangeActiveFilterTag,
+    handleChangeActiveTag
   };
 }
