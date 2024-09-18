@@ -14,18 +14,23 @@ export function useGetGamesByTag() {
     error: null,
   });
 
-  const { activeFilterTag, pageIndex, pageSize, searchedGameProviderCode } = useHomeGameContext();
+  const {
+    activeFilterTag,
+    pageIndex,
+    pageSize,
+    searchedGameProviderCode,
+    activeProviderFilterTag,
+  } = useHomeGameContext();
+
+  const keyName = "GAMES_BY_TAG";
 
   const fetchGameListOfProvider = async (): Promise<GameItem[] | void> => {
     if (
-      gameCacheService.hasCache(searchedGameProviderCode, pageIndex) &&
-      gameCacheService.hasTotalGameCache(searchedGameProviderCode)
+      gameCacheService.hasCache(keyName, pageIndex) &&
+      gameCacheService.hasTotalGameCache(keyName)
     ) {
-      const gameList = await gameCacheService.getCachedGameList(
-        searchedGameProviderCode,
-        pageIndex,
-      );
-      const totalGame = await gameCacheService.getCachedTotal(searchedGameProviderCode);
+      const gameList = await gameCacheService.getCachedGameList(keyName, pageIndex);
+      const totalGame = await gameCacheService.getCachedTotal(keyName);
       setGameListState((state) => ({ ...state, gameList: gameList, total: totalGame }));
       return gameList;
     }
@@ -53,8 +58,8 @@ export function useGetGamesByTag() {
         total: response.data[0].total,
       });
 
-      gameCacheService.updateGameCacheDictionary(searchedGameProviderCode, pageIndex, gameList);
-      gameCacheService.updateTotalCacheDictionary(searchedGameProviderCode, response.data[0].total);
+      gameCacheService.updateGameCacheDictionary(keyName, pageIndex, gameList);
+      gameCacheService.updateTotalCacheDictionary(keyName, response.data[0].total);
 
       return gameList;
     } catch (error: any) {
@@ -70,7 +75,7 @@ export function useGetGamesByTag() {
 
   useEffect(() => {
     fetchGameListOfProvider();
-  }, [pageIndex, activeFilterTag]);
+  }, [pageIndex, activeFilterTag, activeProviderFilterTag]);
 
   return {
     isLoading: gameListState.isLoading,

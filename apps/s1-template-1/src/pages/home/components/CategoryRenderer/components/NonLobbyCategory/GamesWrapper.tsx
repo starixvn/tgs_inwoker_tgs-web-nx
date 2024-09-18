@@ -8,19 +8,23 @@ import HomeGameFilterTag from "../../../HomeGameFilterTag";
 import LoadMore from "../LoadMore";
 import { DesktopCategoryContentWrapper, DesktopWrapper, GameList, NoData, Wrapper } from "./style";
 
-const NonLobbyWrapper: React.FC<{
+const GamesWrapper: React.FC<{
   gameList: GameItem[];
   isLoading: boolean;
   totalGames: number;
   isHideProviderDropdown?: boolean;
-}> = ({ isHideProviderDropdown, gameList, isLoading, totalGames }) => {
+  isHideOrderDropdown?: boolean;
+}> = ({ gameList, isLoading, totalGames, isHideProviderDropdown, isHideOrderDropdown }) => {
   const { isDesktopSize } = useRwd();
   const hasMappingData = !!gameList.length;
 
   return (
     <Wrapper>
       <DesktopWrapper>
-        <HomeGameFilterTag isHideProviderDropdown={isHideProviderDropdown} />
+        <HomeGameFilterTag
+          isHideProviderDropdown={isHideProviderDropdown}
+          isHideOrderDropdown={isHideOrderDropdown}
+        />
         <DesktopCategoryContentWrapper>
           <GameList>
             {hasMappingData &&
@@ -48,4 +52,4 @@ const NonLobbyWrapper: React.FC<{
   );
 };
 
-export default NonLobbyWrapper;
+export default GamesWrapper;

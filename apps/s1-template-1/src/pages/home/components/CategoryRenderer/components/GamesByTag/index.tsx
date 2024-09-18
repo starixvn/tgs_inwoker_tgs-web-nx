@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { FilterTagWrapper } from "../../../HomeGameFilterTag/style";
 import { GameTypeTitle } from "../HomeCategory/style";
-import NonLobbyWrapper from "../NonLobbyCategory/NonLobbyWrapper";
+import GamesWrapper from "../NonLobbyCategory/GamesWrapper";
 
 const ProviderContainer = styled.div`
   width: 100%;
@@ -26,8 +26,8 @@ const GamesByTag: React.FC<{ title: string }> = ({ title }) => {
   return (
     <ProviderContainer>
       <GameTypeTitle>{title}</GameTypeTitle>
-      <NonLobbyWrapper
-        isHideProviderDropdown={true}
+      <GamesWrapper
+        isHideOrderDropdown={true}
         gameList={gameList}
         isLoading={isLoading}
         totalGames={total}

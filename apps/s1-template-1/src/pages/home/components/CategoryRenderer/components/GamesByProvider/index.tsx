@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { FilterTagWrapper } from "../../../HomeGameFilterTag/style";
 import { GameTypeTitle } from "../HomeCategory/style";
-import NonLobbyWrapper from "../NonLobbyCategory/NonLobbyWrapper";
+import GamesWrapper from "../NonLobbyCategory/GamesWrapper";
 
 const ProviderContainer = styled.div`
   width: 100%;
@@ -27,7 +27,7 @@ const GamesByProvider = () => {
   return (
     <ProviderContainer>
       <GameTypeTitle>{searchedGameProviderName}</GameTypeTitle>
-      <NonLobbyWrapper
+      <GamesWrapper
         isHideProviderDropdown={true}
         gameList={gameList}
         isLoading={isLoading}

@@ -1,11 +1,11 @@
 import { useGetNonLobbyCategoryList } from "@tgs-web-nx/core/features";
 
-import NonLobbyWrapper from "./NonLobbyWrapper";
+import GamesWrapper from "./GamesWrapper";
 
 const NonLobbyCategory = () => {
   const { gameList, isLoading, total } = useGetNonLobbyCategoryList();
 
-  return <NonLobbyWrapper gameList={gameList} isLoading={isLoading} totalGames={total} />;
+  return <GamesWrapper gameList={gameList} isLoading={isLoading} totalGames={total} />;
 };
 
 export default NonLobbyCategory;

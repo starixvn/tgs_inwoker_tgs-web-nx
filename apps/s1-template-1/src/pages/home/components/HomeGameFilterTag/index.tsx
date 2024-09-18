@@ -24,9 +24,10 @@ const CheckIcon = () => {
   );
 };
 
-const HomeGameFilterTag: React.FC<{ isHideProviderDropdown?: boolean }> = ({
-  isHideProviderDropdown,
-}) => {
+const HomeGameFilterTag: React.FC<{
+  isHideProviderDropdown?: boolean;
+  isHideOrderDropdown?: boolean;
+}> = ({ isHideProviderDropdown, isHideOrderDropdown }) => {
   const {
     providerFilterTagList,
     filterTagList,
@@ -69,14 +70,16 @@ const HomeGameFilterTag: React.FC<{ isHideProviderDropdown?: boolean }> = ({
             selectedItemsLabel={`${i18n.t("common.providers")}: ${selectedProviderNumbers}`}
           ></MultiSelect>
         )}
-        <Dropdown
-          onChange={handleChangeOrderBy}
-          value={activeFilterTag}
-          options={filterTagList}
-          optionLabel="name"
-          optionValue="tagType"
-          placeholder={i18n.t("web.home.Section1GameProviders")}
-        ></Dropdown>
+        {!isHideOrderDropdown && (
+          <Dropdown
+            onChange={handleChangeOrderBy}
+            value={activeFilterTag}
+            options={filterTagList}
+            optionLabel="name"
+            optionValue="tagType"
+            placeholder={i18n.t("web.home.Section1GameProviders")}
+          ></Dropdown>
+        )}
       </CommonSearchWrapper>
     </FilterTagWrapper>
   );

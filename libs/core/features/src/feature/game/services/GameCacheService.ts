@@ -13,40 +13,40 @@ class GameCacheService {
   }
 
   updateGameCacheDictionary(
-    gameType: GameTypeEnum | string,
+    keyName: GameTypeEnum | string,
     pageIndex: number,
     gameList: GameItem[],
   ): void {
-    const key = this.getKey(gameType, pageIndex);
+    const key = this.getKey(keyName, pageIndex);
     if (this.gameCacheDictionary[key]) return;
 
     this.gameCacheDictionary[key] = gameList;
   }
 
-  hasCache(gameType: GameTypeEnum | string, pageIndex: number): boolean {
-    return !!this.gameCacheDictionary[this.getKey(gameType, pageIndex)];
+  hasCache(keyName: GameTypeEnum | string, pageIndex: number): boolean {
+    return !!this.gameCacheDictionary[this.getKey(keyName, pageIndex)];
   }
 
-  getCachedGameList(gameType: GameTypeEnum | string, pageIndex: number): Promise<GameItem[]> {
-    return Promise.resolve(this.gameCacheDictionary[this.getKey(gameType, pageIndex)] || []);
+  getCachedGameList(keyName: GameTypeEnum | string, pageIndex: number): Promise<GameItem[]> {
+    return Promise.resolve(this.gameCacheDictionary[this.getKey(keyName, pageIndex)] || []);
   }
 
-  updateTotalCacheDictionary(gameType: GameTypeEnum | string, total: number): void {
-    if (this.totalGameCacheDictionary[gameType]) return;
+  updateTotalCacheDictionary(keyName: GameTypeEnum | string, total: number): void {
+    if (this.totalGameCacheDictionary[keyName]) return;
 
-    this.totalGameCacheDictionary[gameType] = total;
+    this.totalGameCacheDictionary[keyName] = total;
   }
 
-  hasTotalGameCache(gameType: GameTypeEnum | string): boolean {
-    return !!this.gameCacheDictionary[gameType];
+  hasTotalGameCache(keyName: GameTypeEnum | string): boolean {
+    return !!this.gameCacheDictionary[keyName];
   }
 
-  getCachedTotal(gameType: GameTypeEnum | string): number {
-    return this.totalGameCacheDictionary[gameType] || 0;
+  getCachedTotal(keyName: GameTypeEnum | string): number {
+    return this.totalGameCacheDictionary[keyName] || 0;
   }
 
-  private getKey(gameType: GameTypeEnum | string, pageIndex: number): string {
-    return `${gameType}_${pageIndex}`;
+  private getKey(keyName: GameTypeEnum | string, pageIndex: number): string {
+    return `${keyName}_${pageIndex}`;
   }
 }
 

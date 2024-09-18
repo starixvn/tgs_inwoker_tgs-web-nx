@@ -79,6 +79,7 @@ const DesktopHeader = () => {
             width={82}
             height={22}
             onClick={() => {
+              history.push("/");
               handleChangeGameType(GameTypeEnum.NONE);
             }}
           />
