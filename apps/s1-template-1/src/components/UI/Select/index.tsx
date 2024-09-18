@@ -34,6 +34,9 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     color: `${theme.palette.form.textColor}`,
     fontWeight: "bold",
     height: "100%",
+    display: "flex",
+    alignItems: "center",
+
     "&:focus": {
       background: "none",
     },

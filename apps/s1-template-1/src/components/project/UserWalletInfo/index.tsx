@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const PlayerInfoContainer = styled.div`
   width: 100%;
-  background: linear-gradient(180deg, #273559 0%, #111925 100%);
+  background: #19212C;
   border-radius: 1.2rem;
   display: flex;
   flex-direction: column;

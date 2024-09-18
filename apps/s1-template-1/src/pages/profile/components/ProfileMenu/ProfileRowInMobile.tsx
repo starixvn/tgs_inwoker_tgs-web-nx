@@ -1,6 +1,5 @@
-import iconArrow from "@/assets/t29/images/profile/icon-arrow.svg";
 import Icon from "@/components/project/Icon";
-import { ItemContainer, LabelContainer } from "@/components/styled-component/ProfileForms";
+import { LabelContainer } from "@/components/styled-component/ProfileForms";
 import { OrangeGradientButton } from "@/components/UI/Button";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
@@ -41,6 +40,7 @@ const FormWrapperExtend = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 `;
 
 const VerifyButton = styled.span`
@@ -54,6 +54,16 @@ const VerifyButton = styled.span`
 const ItemInfo = styled.div`
   font-size: 1.3rem;
   color: #fff;
+  color: ${({ theme }) => theme.placeHolderText}
+`;
+
+const ItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2A343F;
+  margin-bottom: 1.2rem;
+  padding: .6rem 0;
 `;
 
 type ProfileItemProps = {
@@ -67,12 +77,15 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
   const { label, status } = profileItem;
   if(profileItem.key === "changepassword") {
     return (
-      <OrangeGradientButton onClick={() => {
-        if (!profileItem) return;
-        handleClick(profileItem);
-      }}>
-        {label}
-      </OrangeGradientButton>
+      <ItemContainer>
+        <OrangeGradientButton onClick={() => {
+          if (!profileItem) return;
+          handleClick(profileItem);
+        }}>
+          {label}
+        </OrangeGradientButton>
+      </ItemContainer>
+      
       
     );
   }
@@ -83,21 +96,19 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         if (!profileItem) return;
         handleClick(profileItem);
       }}>
-        <ItemContainer style={{width: "100%", marginBottom: "1.2rem"}}>
+        <ItemContainer style={{width: "100%", marginBottom: "1.2rem", display: "flex"}}>
           <LabelContainer>{label}</LabelContainer>
           <FormWrapperExtend>
             <ItemInfo>{profileItem.status}</ItemInfo>
             {/* <FormControl variant="outlined" >
               <TextField fullWidth disabled={true} value={profileItem.status}/>
             </FormControl> */}
-            <Icon iconUrl={iconArrow} width={"20px"} height={"20px"} />
+            <Icon iconUrl="/assets/images/common/icon-view-all.svg" width={"13px"} height={"19px"} />
           </FormWrapperExtend>
          
          
           {/* <div className={"status"}>{status}</div> */}
-        </ItemContainer>
-  
-        
+        </ItemContainer>        
       </ProfileItemContainer>
     );
   }

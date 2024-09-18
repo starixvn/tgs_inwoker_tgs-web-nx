@@ -1,7 +1,13 @@
-import { LabelLargeContainer } from "@/components/styled-component/ProfileForms";
+import { imageMap } from "@/components/project/LanguageSwitch";
+import { FormControl, ItemContainer, LabelContainer, LabelLargeContainer } from "@/components/styled-component/ProfileForms";
+import { Select } from "@/components/UI/Select";
 import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
+import { MenuItem, SelectChangeEvent } from "@mui/material";
+import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
-import React from "react";
+import { BrandLanguage } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const ProfileCard = styled.div`
@@ -14,23 +20,61 @@ const ProfileCard = styled.div`
   }
 `;
 
-const ProfileTitle = styled.div`
+const FlagContainer = styled.div`
+ 
+  margin-right: 0.8rem;
 
+  & > img {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+  }
+`;
+
+const NameContainer = styled.div`
+  font-size: 1.2rem;
+`;
+
+const PasswordContainer = styled.div`
+  > div {
+   border-bottom: none;
+  }
+`;
+
+const ProfileSettings = styled.div`
+  background: #19212C;
+  border-radius: 1.2rem;
+  margin: 2.4rem 0 25rem;
+  padding: 1.2rem;
 `;
 
 const ProfileMenuMobile = () => {
+  const { general } = useGeneralStore();
+  const languageList = general.brandLanguage;
+  const [currentLanguage, setCurrentLanguage] = useState<BrandLanguage>({
+    culturecode: i18n.language,
+  });
+
+  const handleChange = (event: SelectChangeEvent<any>, child?: any) => {
+    const selectedLanguage = languageList.find(
+      (languageItem) => languageItem.culturecode === event.target.value,
+    );
+
+    if (!selectedLanguage) return;
+
+    setCurrentLanguage(selectedLanguage);
+    i18n.changeLanguage(selectedLanguage.culturecode);
+    window.location.reload();
+  };
+
+  const culturecode = currentLanguage?.culturecode || "";
+
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
   console.log("profileItemDictionary", profileItemDictionary);
   return (
-    <>
-      <ProfileCard style={{marginBottom: "2.4rem"}}>
-        <ProfileRowInMobile
-          profileItem={profileItemDictionary["password"]}
-          handleClick={handleClickProfileItem}
-        />
-      </ProfileCard>
+    <ProfileSettings>
       <LabelLargeContainer>Profile Settings</LabelLargeContainer>
-      <ProfileCard>
+      <ProfileCard>       
         <ProfileRowInMobile
           profileItem={profileItemDictionary["name"]}
           handleClick={handleClickProfileItem}
@@ -38,7 +82,8 @@ const ProfileMenuMobile = () => {
         <ProfileRowInMobile
           profileItem={profileItemDictionary["email"]}
           handleClick={handleClickProfileItem}
-        />
+        />        
+        
         <ProfileRowInMobile
           profileItem={profileItemDictionary["phone"]}
           handleClick={handleClickProfileItem}
@@ -72,7 +117,37 @@ const ProfileMenuMobile = () => {
           );
         })}
       </ProfileCard>
-    </>
+      <ItemContainer style={{marginBottom: "1.2rem"}}>
+            <LabelContainer>Languages</LabelContainer>
+            <FormControl variant="outlined">
+              <Select
+                id="customSelect"
+                value={culturecode}
+                onChange={handleChange}
+                type={"string"}
+              >
+                {languageList.map((languageItem) => {
+                  const { culturecode } = languageItem;
+                  return (
+                    <MenuItem key={culturecode} value={culturecode}>
+                      <FlagContainer>
+                        <img src={imageMap[culturecode] || ""} alt={culturecode} />
+                      </FlagContainer>
+                      <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </ItemContainer>
+      <PasswordContainer>
+        <ProfileRowInMobile
+          profileItem={profileItemDictionary["password"]}
+          handleClick={handleClickProfileItem}
+        />
+      </PasswordContainer>
+      </ProfileSettings>
+
   );
 };
 
