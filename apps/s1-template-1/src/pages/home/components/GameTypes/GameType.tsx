@@ -40,7 +40,8 @@ const Wrapper = styled.div<{
     height: 74px;
 
     &:hover {
-      background: ${({ theme }) => theme.categoryBackgroundHover};
+      background: ${({ theme, $isActive }) =>
+        $isActive ? theme.categoryBackgroundActive : theme.categoryBackgroundHover};
     }
   }
 
