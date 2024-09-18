@@ -6,6 +6,7 @@ import { useProfileMenu } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import React from "react";
 
+
 const ProfileMenuDesktop = () => {
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
 
@@ -50,10 +51,7 @@ const ProfileMenuDesktop = () => {
           );
         })}
       </>
-      <ProfileRowInDesktop
-        profileItem={profileItemDictionary["password"]}
-        handleClick={handleClickProfileItem}
-      />
+     
     </AccountPaper>
   );
 };

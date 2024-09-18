@@ -36,7 +36,7 @@ const NameContainer = styled.div`
   font-size: 1.2rem;
 `;
 
-const PasswordContainer = styled.div`
+export const PasswordContainer = styled.div`
   > div {
    border-bottom: none;
   }

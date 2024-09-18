@@ -31,57 +31,72 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
   if (!profileItem) return null;
 
   const { label, status, buttonText, isVerified } = profileItem;
-  return (
-    <ProfileItemContainer>
-      <ItemContainer style={{padding: "1.6rem", margin: 0}}>
-        <LabelContainer >
+  if(profileItem.key === "changepassword") {
+    return (
+      <ItemContainer>
+        <OrangeGradientButton onClick={() => {
+          if (!profileItem) return;
+          handleClick(profileItem);
+        }}>
           {label}
-        </LabelContainer>
-        <FormWrapperExtend style={{gap: "2.4rem", width: "25rem"}}>
-          <ItemInfoDesktop>
-            {status}
-          </ItemInfoDesktop>
-          {isVerified ? 
-          <OrangeGradientButton style={{width: "11.6rem"}}  onClick={() => {
-            if (!profileItem) return;
-            handleClick(profileItem);
-          }}>
-            {buttonText}
-          </OrangeGradientButton> : 
-          <GreenGradientButton style={{width: "11.6rem"}}  onClick={() => {
-            if (!profileItem) return;
-            handleClick(profileItem);
-          }}>
-            {buttonText}
-          </GreenGradientButton>
-          }
-          {/* <Button
-            variant={isVerified ? "contained" : "outlined"}
-            sx={{
-              color: isVerified ? theme.white : theme.lightPurple,
-              background: isVerified ? theme.primary : theme.memberSection,
-              border: isVerified ? `none` : `1px solid ${theme.lightPurple}`,
-              width: "150px",
-              height: "42px",
-              "&:hover": {
-                background: isVerified ? theme.primary : theme.memberSection,
-                border: isVerified ? `none` : `1px solid ${theme.lightPurple}`,
-                color: isVerified ? theme.white : theme.lightPurple,
-              },
-            }}
-            onClick={() => {
+        </OrangeGradientButton>
+      </ItemContainer>
+    );
+  }
+  else {
+    return (
+      <ProfileItemContainer>
+        <ItemContainer style={{padding: "1.6rem", margin: 0}}>
+          <LabelContainer >
+            {label}
+          </LabelContainer>
+          <FormWrapperExtend style={{gap: "2.4rem", width: "25rem"}}>
+            <ItemInfoDesktop>
+              {status}
+            </ItemInfoDesktop>
+            {isVerified ? 
+            <OrangeGradientButton style={{width: "11.6rem"}}  onClick={() => {
               if (!profileItem) return;
               handleClick(profileItem);
-            }}
-          >
-            {buttonText}
-          </Button>    */}
-        </FormWrapperExtend>
+            }}>
+              {buttonText}
+            </OrangeGradientButton> : 
+            <GreenGradientButton style={{width: "11.6rem"}}  onClick={() => {
+              if (!profileItem) return;
+              handleClick(profileItem);
+            }}>
+              {buttonText}
+            </GreenGradientButton>
+            }
+            {/* <Button
+              variant={isVerified ? "contained" : "outlined"}
+              sx={{
+                color: isVerified ? theme.white : theme.lightPurple,
+                background: isVerified ? theme.primary : theme.memberSection,
+                border: isVerified ? `none` : `1px solid ${theme.lightPurple}`,
+                width: "150px",
+                height: "42px",
+                "&:hover": {
+                  background: isVerified ? theme.primary : theme.memberSection,
+                  border: isVerified ? `none` : `1px solid ${theme.lightPurple}`,
+                  color: isVerified ? theme.white : theme.lightPurple,
+                },
+              }}
+              onClick={() => {
+                if (!profileItem) return;
+                handleClick(profileItem);
+              }}
+            >
+              {buttonText}
+            </Button>    */}
+          </FormWrapperExtend>
+          
+        </ItemContainer>
         
-      </ItemContainer>
-      
-    </ProfileItemContainer>
-  );
+      </ProfileItemContainer>
+    );
+  }
+  
 };
 
 export default ProfileRowInDesktop;

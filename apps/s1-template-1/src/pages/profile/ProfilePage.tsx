@@ -6,12 +6,13 @@ import { PageContainer } from "@/components/styled-component/PageContainer";
 import ProfileMenu from "@/pages/profile/components/ProfileMenu";
 import { media } from "@tgs-web-nx/constants";
 import { ProfilePathEnum } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useProfileMenu, useRwd } from "@tgs-web-nx/core/hooks";
 import { ValueOf } from "@tgs-web-nx/types";
 import React, { useMemo } from "react";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import ProfileRowInDesktop from "./components/ProfileMenu/ProfileRowInDesktop";
 
 const AccountContainer = styled.div`
   width: 100%;
@@ -33,11 +34,19 @@ const InfoWrapper = styled.div`
   }
 `;
 
+export const PasswordContainer = styled.div`
+  margin: 1rem 0;
+  > div {
+    border-bottom: none;
+   }
+`;
+
 const ProfilePage = () => {
   const { isDesktopSize } = useRwd();
   const history = useHistory();
   const location = useLocation();
   const path = location.pathname as ValueOf<typeof ProfilePathEnum>;
+  const { profileItemDictionary, handleClickProfileItem } = useProfileMenu();
 
   const ProfilePageComponent = useMemo(() => {
     return profilePageDictionary[path];
@@ -48,8 +57,17 @@ const ProfilePage = () => {
       <PageContainer>
         <AccountContainer>
           {isDesktopSize && <MenuTabs />}
-          <InfoWrapper>
-            <UserWalletInfo />          
+          <InfoWrapper>              
+            <div>
+              <UserWalletInfo /> 
+              {isDesktopSize && <PasswordContainer>
+                <ProfileRowInDesktop
+                  profileItem={profileItemDictionary["password"]}
+                  handleClick={handleClickProfileItem}
+                />
+              </PasswordContainer>}  
+            </div>
+                
             <ProfileMenu />
           </InfoWrapper>
           
@@ -69,8 +87,17 @@ const ProfilePage = () => {
     <PageContainer>
       <AccountContainer>
       {isDesktopSize && <MenuTabs />}
+      
       <InfoWrapper>
-        <UserWalletInfo />
+        <div>
+          <UserWalletInfo /> 
+          {isDesktopSize && <PasswordContainer>
+            <ProfileRowInDesktop
+              profileItem={profileItemDictionary["password"]}
+              handleClick={handleClickProfileItem}
+            />
+          </PasswordContainer>}  
+        </div>
         {/* {isDesktopSize ? (
           <ProfileMenu />
         ) : (

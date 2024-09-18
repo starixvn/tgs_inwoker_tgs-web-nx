@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const AccountPaperContainer = styled.div`
   ${media.sm} {
-    background: ${({ theme }) => theme.inputBGC};
     padding: 30px;
   }
 `;

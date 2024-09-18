@@ -26,6 +26,10 @@ export const ProfileItemContainer = styled.div`
   & svg {
     color: ${({ theme }) => theme.white} !important;
   }
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const FormWrapper = styled.div`
