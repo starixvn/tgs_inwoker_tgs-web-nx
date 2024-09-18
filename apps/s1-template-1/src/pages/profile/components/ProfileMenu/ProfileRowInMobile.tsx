@@ -1,6 +1,7 @@
-import { FormControl, ItemContainer, LabelContainer } from "@/components/styled-component/ProfileForms";
-import { GreenGradientButton, OrangeGradientButton } from "@/components/UI/Button";
-import { TextField } from "@/components/UI/TextField";
+import iconArrow from "@/assets/t29/images/profile/icon-arrow.svg";
+import Icon from "@/components/project/Icon";
+import { ItemContainer, LabelContainer } from "@/components/styled-component/ProfileForms";
+import { OrangeGradientButton } from "@/components/UI/Button";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
 
@@ -37,7 +38,9 @@ const FormWrapper = styled.div`
 
 const FormWrapperExtend = styled.div`
   position: relative;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const VerifyButton = styled.span`
@@ -46,6 +49,11 @@ const VerifyButton = styled.span`
   top: 1.6rem;
   color: #fff;
   font-size: 1.2rem;
+`;
+
+const ItemInfo = styled.div`
+  font-size: 1.3rem;
+  color: #fff;
 `;
 
 type ProfileItemProps = {
@@ -68,52 +76,31 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
       
     );
   }
-  else if(profileItem.key === "name" || profileItem.key === "email") {
+  
+  else {
     return (
-      <ProfileItemContainer>
+      <ProfileItemContainer onClick={() => {
+        if (!profileItem) return;
+        handleClick(profileItem);
+      }}>
         <ItemContainer style={{width: "100%", marginBottom: "1.2rem"}}>
           <LabelContainer>{label}</LabelContainer>
           <FormWrapperExtend>
-            <FormControl variant="outlined" >
-              <TextField fullWidth disabled={true}/>
-            </FormControl>
-            <VerifyButton  onClick={() => {
-              if (!profileItem) return;
-              handleClick(profileItem);
-            }}>Verify</VerifyButton>
+            <ItemInfo>{profileItem.status}</ItemInfo>
+            {/* <FormControl variant="outlined" >
+              <TextField fullWidth disabled={true} value={profileItem.status}/>
+            </FormControl> */}
+            <Icon iconUrl={iconArrow} width={"20px"} height={"20px"} />
           </FormWrapperExtend>
          
          
           {/* <div className={"status"}>{status}</div> */}
         </ItemContainer>
   
-        {/* <Icon iconUrl={iconArrow} width={"20px"} height={"20px"} /> */}
+        
       </ProfileItemContainer>
     );
   }
-  else {
-    return (
-      <ProfileItemContainer>
-        <ItemContainer style={{width: "100%", marginBottom: "1.2rem"}}>
-          <LabelContainer>{label}</LabelContainer>
-          <FormWrapper>
-            <FormControl variant="outlined" >
-              <TextField />
-            </FormControl>
-            <GreenGradientButton onClick={() => {
-              if (!profileItem) return;
-              handleClick(profileItem);
-            }}>Save</GreenGradientButton>
-          </FormWrapper>
-          
-          {/* <div className={"status"}>{status}</div> */}
-        </ItemContainer>
-  
-        {/* <Icon iconUrl={iconArrow} width={"20px"} height={"20px"} /> */}
-      </ProfileItemContainer>
-    );
-  }
-
   
 };
 
