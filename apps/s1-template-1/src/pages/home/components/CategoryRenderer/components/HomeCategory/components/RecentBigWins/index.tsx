@@ -1,92 +1,16 @@
-import { media } from "@tgs-web-nx/constants";
+import EmblaCarousel from "@/components/project/embla-carousel";
+import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
 import { useAccountStore } from "@tgs-web-nx/core";
+import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
-import AutoScroll from "embla-carousel-auto-scroll";
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import styled from "styled-components";
-
 import Autoplay from "embla-carousel-autoplay";
+import React from "react";
+import { Img } from "react-image";
+
 import { GameTypeTitle, Group } from "../../style";
-import PlayIcon, { PlayButton } from "@/pages/home/components/PlayIcon";
-import EmblaCarousel from "@/components/project/embla-carousel";
-import { useAuth, useAuthContext } from "@tgs-web-nx/core/features";
-import { useLogin } from "../../../../../../../../../../../libs/core/features/src/feature/useAuth/hooks/useLogin";
-
-const CardHoverBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 0.8rem;
-  background: ${({ theme }) => theme.gameCardBackgroundHover};
-  backdrop-filter: blur(0.2rem);
-  transition: opacity 0.15s linear;
-  opacity: 0;
-`;
-
-const GameContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  font-size: 1.3rem;
-  font-weight: 500;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  ${media.sm} {
-    &:hover {
-      .game-icon {
-        border: 1px solid #fff;
-        transform: scale(1.1);
-      }
-
-      ${CardHoverBg} {
-        opacity: 1;
-      }
-    }
-  }
-`;
-
-const GameIcon = styled.div`
-  position: relative;
-
-  .icon {
-    width: 7.4rem;
-    height: 9.9rem;
-    border-radius: 0.8rem !important;
-    flex-shrink: 0;
-  }
-`;
-
-const RecentBigWinsSlide = styled.div`
-  --slide-size: 7.4rem;
-`;
-
-const GameName = styled.div`
-  text-align: center;
-  color: ${({ theme }) => theme.white};
-`;
-
-const BigWinsAmount = styled.div`
-  color: ${({ theme }) => theme.bigWinsAmountColor};
-  text-align: right;
-`;
-
-const CustomPlayButton = styled(PlayButton)`
-  transform: scale(0.5) !important;
-`;
+import { BigWinsAmount, CardHoverBg, CustomPlayButton, GameContainer, GameIcon, GameName, RecentBigWinsSlide } from "./style";
 
 type BigWinType = {
   data: any[];
@@ -118,7 +42,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
       <EmblaCarousel options={emblaOptions} plugins={emblaPlugins}>
         {recentBigWins.data.length > 0 &&
           recentBigWins.data.map((item, index) => {
-            const { gameId, gameProviderCode, gameCode } = item;
+            const { gameId, gameProviderCode, gameCode, name } = item;
             return (
               <RecentBigWinsSlide className="embla__slide" key={index}>
                 <GameContainer
@@ -128,10 +52,11 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
                   }}
                 >
                   <GameIcon>
-                    <img
+                    <Img
                       className="icon"
                       src={utility.getGameNameUrl(gameProviderCode, gameCode, isDesktopSize)}
-                      alt={item.gameCode}
+                      loader={<LoadingIcon />}
+                      unloader={<NoGameIcon />}
                     />
                     <CardHoverBg>
                       <CustomPlayButton>

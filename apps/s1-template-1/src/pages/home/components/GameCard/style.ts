@@ -51,7 +51,7 @@ export const GameCardBg = styled.div`
     flex-shrink: 0;
 
     &:hover {
-      border: 2px solid #fff;
+      border: 2px solid ${({ theme }) => theme.gameCardBorder};
 
       .game-icon {
         transform: scale(1.1);
@@ -97,7 +97,7 @@ export const MaintenanceBg = styled.div`
   }
 `;
 
-export const HoverGameName = styled(GameCardContent)`
+export const GameName = styled.div`
   position: absolute;
   top: 2rem;
   color: ${({ theme }) => theme.gameCardGameNameColor};
@@ -131,6 +131,23 @@ export const NoGameIconWrapper = styled.div`
 export const NoImage = styled.img`
   width: 6.8rem;
   height: 6.8rem;
+  transform: scale(0.6);
+
+  ${media.xs} {
+    transform: scale(0.7);
+  }
+
+  ${media.sm} {
+    transform: scale(0.8);
+  }
+
+  ${media.md} {
+    transform: scale(0.9);
+  }
+
+  ${media.lg} {
+    transform: 1;
+  }
 `;
 
 export const SpinnerBox = styled.div`

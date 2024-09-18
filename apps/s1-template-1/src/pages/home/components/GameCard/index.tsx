@@ -6,7 +6,8 @@ import { Common, i18n } from "@tgs-web-nx/utils";
 import { Img } from "react-image";
 
 import PlayIcon from "../PlayIcon";
-import { CardHoverBg, GameCardBg, GameCardContent, HoverGameName, Loading, MaintenanceBg, NoGameIconWrapper, NoImage, ProviderName, SpinnerBox } from "./style";
+import { LoadingIcon, NoGameIcon } from "./icons";
+import { CardHoverBg, GameCardBg, GameCardContent, GameName, MaintenanceBg, ProviderName } from "./style";
 
 type GameCardProps = {
   gameItem: GameItem;
@@ -51,28 +52,11 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
 
       {isDesktopSize && isActive && (
         <CardHoverBg onClick={launchGameHandler}>
-          {name && <HoverGameName>{name}</HoverGameName>}
+          {name && <GameName>{name}</GameName>}
           <PlayIcon />
         </CardHoverBg>
       )}
     </GameCardBg>
-  );
-};
-
-const NoGameIcon: React.FC<{ gameName: string }> = ({ gameName }) => {
-  return (
-    <NoGameIconWrapper>
-      <NoImage src="/assets/images/common/no-image.svg" alt="No image" />
-      <HoverGameName>{gameName}</HoverGameName>
-    </NoGameIconWrapper>
-  );
-};
-
-const LoadingIcon: React.FC = () => {
-  return (
-    <SpinnerBox>
-      <Loading />
-    </SpinnerBox>
   );
 };
 
