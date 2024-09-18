@@ -61,9 +61,7 @@ export function useProfileMenu() {
             )
           : i18n.t("profile.notSet"),
         routePath: "/profile/name",
-        buttonText: account.info.member_name
-          ? i18n.t("profile.details")
-          : i18n.t("profile.nowVerify"),
+        buttonText: account.info.member_name ? i18n.t("profile.edit") : i18n.t("profile.nowVerify"),
       },
       phone: {
         key: "phone",
@@ -74,7 +72,7 @@ export function useProfileMenu() {
           : i18n.t("profile.notSet"),
         routePath: "/profile/phone",
         buttonText: account.info.member_phone
-          ? i18n.t("profile.details")
+          ? i18n.t("profile.edit")
           : i18n.t("profile.nowVerify"),
       },
       email: {
@@ -84,7 +82,7 @@ export function useProfileMenu() {
         status: account.info.member_email ? account.info.member_email : i18n.t("profile.notSet"),
         routePath: "/profile/email",
         buttonText: account.info.member_email
-          ? i18n.t("profile.details")
+          ? i18n.t("profile.edit")
           : i18n.t("profile.nowVerify"),
       },
       birth: {
@@ -96,7 +94,7 @@ export function useProfileMenu() {
           : i18n.t("profile.notSet"),
         routePath: "/profile/birthdate",
         buttonText: account.info.member_birthdate
-          ? i18n.t("profile.details")
+          ? i18n.t("profile.edit")
           : i18n.t("profile.setNow"),
       },
       qq: {
@@ -108,7 +106,7 @@ export function useProfileMenu() {
           : i18n.t("profile.notSet"),
         routePath: "/profile/telegram",
         buttonText: account.info.member_telegram
-          ? i18n.t("profile.details")
+          ? i18n.t("profile.edit")
           : i18n.t("profile.setNow"),
       },
       wechat: {
@@ -119,7 +117,7 @@ export function useProfileMenu() {
           ? account.info.member_line.substring(0, 1) + "**"
           : i18n.t("profile.notSet"),
         routePath: "/profile/line",
-        buttonText: account.info.member_line ? i18n.t("profile.details") : i18n.t("profile.setNow"),
+        buttonText: account.info.member_line ? i18n.t("profile.edit") : i18n.t("profile.setNow"),
       },
       password: {
         key: "changepassword",

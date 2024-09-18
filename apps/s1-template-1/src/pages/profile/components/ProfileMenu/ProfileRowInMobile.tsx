@@ -35,10 +35,10 @@ const FormWrapper = styled.div`
   align-items: center;
 `;
 
-const FormWrapperExtend = styled.div`
+export const FormWrapperExtend = styled.div`
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   gap: 1rem;
 `;
