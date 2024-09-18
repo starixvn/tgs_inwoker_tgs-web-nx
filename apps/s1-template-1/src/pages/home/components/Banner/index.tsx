@@ -1,14 +1,12 @@
 import { media } from "@/theme/breakpoints";
-import { useGeneralStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
+import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
+import { useAuth } from "@tgs-web-nx/core/features";
+import { Common } from "@tgs-web-nx/utils";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import styled from "styled-components";
-import { useHistory } from "react-router";
-import { useAccountStore } from "@tgs-web-nx/core";
+
 import { DotButton, useDotButton } from "./dots";
-import { Common } from "@tgs-web-nx/utils";
-import { useAuth } from "@tgs-web-nx/core/features";
 
 const BannerContainerEmbla = styled.section`
   --slide-height: 6rem;
@@ -59,31 +57,22 @@ const BannerContainerEmbla = styled.section`
 
   .embla__dots {
     display: flex;
+    justify-content: center;
     gap: 0.8rem;
-    transition: all 0.3s ease-out;
-  }
-
-  .embla__dot {
-    width: 1.4rem;
-    height: 0.7rem;
-    border-radius: 2rem;
-  }
-  .embla__dot--selected {
-    width: 4.4rem;
-    background: ${({ theme }) => theme.primary};
+    width: 100%;
   }
 `;
 
 const Banner = () => {
   const [emblaBannerRef, emblaApi] = useEmblaCarousel(
     { loop: true, skipSnaps: true, align: "start" },
-    [Autoplay({ playOnInit: true, delay: 3000 })],
+    [Autoplay({ playOnInit: true, delay: 6500 })],
   );
   const { general } = useGeneralStore();
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
   const { account } = useAccountStore();
   const isLogin = !!account.token;
-  const { goToLogin} = useAuth();
+  const { goToLogin } = useAuth();
 
   const launchGame = (navurl: any) => {
     if (!isLogin) {
@@ -98,14 +87,19 @@ const Banner = () => {
       <div className="embla__viewport" ref={emblaBannerRef}>
         <div className="embla__container">
           {general.banner.map((banner, index) => (
-            <div className="embla__slide" key={index} onClick={() => {launchGame(banner.navurl)}}>
-                <img
-                  className="banner"
-                  src={banner.mobileurl}
-                  alt={banner.alt}
-                  title={banner.title}
-
-                />
+            <div
+              className="embla__slide"
+              key={index}
+              onClick={() => {
+                launchGame(banner.navurl);
+              }}
+            >
+              <img
+                className="banner"
+                src={banner.mobileurl}
+                alt={banner.alt}
+                title={banner.title}
+              />
             </div>
           ))}
         </div>

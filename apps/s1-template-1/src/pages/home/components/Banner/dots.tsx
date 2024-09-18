@@ -1,31 +1,54 @@
-import { media } from "@tgs-web-nx/constants";
 import { EmblaCarouselType } from "embla-carousel";
 import React, { ComponentPropsWithRef, useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Dot = styled.button`
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
+  --dot-width: 1.4rem;
+  --dot-height: 0.7rem;
+  --dot-width--active: 4.4rem;
+  --fill-dot-duration: 7000ms;
+
+  width: 100%;
+  max-width: var(--dot-width);
+  height: var(--dot-height);
+  border-radius: 2rem;
   border: none;
   background: rgba(255, 255, 255, 0.5);
-
-  ${media.md} {
-    width: 1.2rem;
-    height: 1.2rem;
-  }
+  overflow: hidden;
+  transition:
+    max-width 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
 
   &.embla__dot--selected {
-    border-radius: 2rem;
-    width: 1rem;
-    height: 0.5rem;
-    background: #fff;
-    transition: all 0.3s ease-out;
+    max-width: var(--dot-width--active);
+    will-change: max-width;
+    transition:
+      max-width 0.2s ease-in-out,
+      background-color 0.2s ease-in-out;
 
-    ${media.md} {
-      width: 3.4rem;
-      height: 1.2rem;
-      transition: all 0.3s ease-in;
+    .fill {
+      animation-duration: var(--fill-dot-duration);
+      animation-fill-mode: forwards;
+      animation-name: fill-dot;
+      animation-play-state: running;
+      animation-timing-function: ease;
+      background-color: ${({ theme }) => theme.primary};
+      border-radius: 2rem;
+      height: 100%;
+      margin-left: -0.6rem;
+      transform-origin: center left;
+      width: var(--dot-width--active);
+      will-change: transform;
+    }
+  }
+
+  @keyframes fill-dot {
+    0% {
+      transform: scaleX(0.1);
+    }
+
+    to {
+      transform: scaleX(1.2);
     }
   }
 `;
@@ -83,6 +106,7 @@ export const DotButton: React.FC<PropType> = (props) => {
 
   return (
     <Dot type="button" {...restProps}>
+      <div className="fill"></div>
       {children}
     </Dot>
   );
