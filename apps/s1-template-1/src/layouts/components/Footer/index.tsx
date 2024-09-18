@@ -1,4 +1,5 @@
 import { media } from "@/theme/breakpoints";
+import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
@@ -23,7 +24,7 @@ const FooterWrapper = styled.div`
   }
 
   ${media.lg} {
-    max-width: 120rem;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     padding-left: 0;
     padding-right: 0;
     margin: 0 auto;
