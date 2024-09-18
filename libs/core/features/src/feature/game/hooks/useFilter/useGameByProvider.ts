@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useGameProvider() {
+export function useGameByProvider() {
   const [activeGameProvider, setActiveGameProvider] = useState<string>("");
 
   const handleChangeProvider = (providerCode: string) => {

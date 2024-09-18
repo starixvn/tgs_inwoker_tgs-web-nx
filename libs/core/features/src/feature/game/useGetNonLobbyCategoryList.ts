@@ -1,17 +1,10 @@
 import { GameService } from "@tgs-web-nx/core";
 import { GameItem } from "@tgs-web-nx/types";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { gameCacheService } from "./services";
-import { TagTypeEnum } from "./types";
+import { GetGameListState, TagTypeEnum } from "./types";
 import { useHomeGameContext } from "./useHomeGameContext";
-
-interface GetGameListState {
-  isLoading: boolean;
-  gameList: GameItem[];
-  error: Error | null;
-  total: number;
-}
 
 export function useGetNonLobbyCategoryList() {
   const [gameListState, setGameListState] = useState<GetGameListState>({

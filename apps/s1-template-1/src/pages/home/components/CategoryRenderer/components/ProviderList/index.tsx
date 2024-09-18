@@ -26,14 +26,14 @@ const ProviderItem = styled.div`
 `;
 
 const ProviderList: React.FC<{ providerList: ProviderDto[] }> = ({ providerList }) => {
-  const { handleChangeGameType, handleGamesWithProvider } = useHomeGameContext();
+  const { handleChangeGameType, handleGamesByProvider } = useHomeGameContext();
 
   return providerList.map((provider, index) => {
     const providerName = provider.code.toLowerCase();
 
     const handleChange = (provider: ProviderDto) => {
       handleChangeGameType(GameTypeEnum.ALL);
-      handleGamesWithProvider(provider);
+      handleGamesByProvider(provider);
     };
 
     return (

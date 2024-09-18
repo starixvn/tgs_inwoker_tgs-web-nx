@@ -81,7 +81,6 @@ const GameTypes = () => {
     const gameType = getGameTypeFromKey(urlGameType);
     if (gameType) {
       handleChangeGameType(gameType);
-      // handleChangeProvider(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urlGameType, gameTypeList]);

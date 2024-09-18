@@ -1,4 +1,4 @@
-import { useGetAllGameListOfProvider, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useGetGamesByTag } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 
 import { FilterTagWrapper } from "../../../HomeGameFilterTag/style";
@@ -20,13 +20,12 @@ const ProviderContainer = styled.div`
   }
 `;
 
-const NonLobbyProvider = () => {
-  const { gameList, isLoading, total } = useGetAllGameListOfProvider();
-  const { searchedGameProviderName } = useHomeGameContext();
+const GamesByTag: React.FC<{ title: string }> = ({ title }) => {
+  const { gameList, isLoading, total } = useGetGamesByTag();
 
   return (
     <ProviderContainer>
-      <GameTypeTitle>{searchedGameProviderName}</GameTypeTitle>
+      <GameTypeTitle>{title}</GameTypeTitle>
       <NonLobbyWrapper
         isHideProviderDropdown={true}
         gameList={gameList}
@@ -37,4 +36,4 @@ const NonLobbyProvider = () => {
   );
 };
 
-export default NonLobbyProvider;
+export default GamesByTag;

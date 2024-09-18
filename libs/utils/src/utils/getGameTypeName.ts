@@ -25,6 +25,8 @@ const gameTypeNameDictionary = {
   [GameTypeEnum.BINGO]: "common.bingo",
   [GameTypeEnum.RACING]: "common.racing",
   [GameTypeEnum.ALL]: "Provider",
+  [GameTypeEnum.HOT_GAMES]: "Hot Games",
+  [GameTypeEnum.NEW_GAMES]: "New Games",
 };
 export function getGameTypeName(gameType: GameTypeEnum) {
   return gameTypeNameDictionary[gameType];

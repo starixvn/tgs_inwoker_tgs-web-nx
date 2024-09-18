@@ -3,17 +3,10 @@ import { GameItem } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
 
 import { gameCacheService } from "./services";
-import { TagTypeEnum } from "./types";
+import { GetGameListState, TagTypeEnum } from "./types";
 import { useHomeGameContext } from "./useHomeGameContext";
 
-interface GetGameListState {
-  isLoading: boolean;
-  gameList: GameItem[];
-  error: Error | null;
-  total: number;
-}
-
-export function useGetAllGameListOfProvider() {
+export function useGetGamesByTag() {
   const [gameListState, setGameListState] = useState<GetGameListState>({
     isLoading: false,
     gameList: [],
@@ -39,11 +32,12 @@ export function useGetAllGameListOfProvider() {
 
     try {
       setGameListState((state) => ({ ...state, isLoading: true }));
-      const response = await GameService.GetAllGameOfProvider(
+      const response = await GameService.GetGameType(
+        [],
         TagTypeEnum.NONE,
         pageIndex,
         pageSize,
-        [searchedGameProviderCode],
+        [],
         activeFilterTag,
       );
 
@@ -75,11 +69,8 @@ export function useGetAllGameListOfProvider() {
   };
 
   useEffect(() => {
-    if (searchedGameProviderCode === "") {
-      return;
-    }
     fetchGameListOfProvider();
-  }, [searchedGameProviderCode, pageIndex, activeFilterTag]);
+  }, [pageIndex, activeFilterTag]);
 
   return {
     isLoading: gameListState.isLoading,

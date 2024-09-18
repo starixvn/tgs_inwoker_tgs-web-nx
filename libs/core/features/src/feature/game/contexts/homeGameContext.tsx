@@ -3,7 +3,7 @@ import { ProviderDto } from "@tgs-web-nx/types";
 import { createContext, useState } from "react";
 
 import { useFavoriteList } from "../hooks/useFavoriteList";
-import { useGameProvider } from "../hooks/useFilter/useGameProvider";
+import { useGameByProvider } from "../hooks/useFilter/useGameByProvider";
 import { useProviderFilter } from "../hooks/useFilter/useProviderFilter";
 import { useTagFilter } from "../hooks/useFilter/useTagFilter";
 import { useGameSearch } from "../hooks/useGameSearch";
@@ -30,7 +30,9 @@ const initialState: {
   providerList: ProviderDto[];
   searchedGameProviderCode: string;
   searchedGameProviderName: string;
-  handleGamesWithProvider: (provider: ProviderDto) => void;
+  handleGamesByProvider: (provider: ProviderDto) => void;
+  // hot/new games
+  handleGamesByTag: (tag: OrderTypeEnum) => void;
   // gameType
   activeGameType: GameTypeEnum;
   handleChangeGameType: (newGameType: GameTypeEnum) => void;
@@ -70,7 +72,9 @@ const initialState: {
   providerList: [],
   searchedGameProviderCode: "",
   searchedGameProviderName: "",
-  handleGamesWithProvider: () => {},
+  handleGamesByProvider: () => {},
+  // hot/new games
+  handleGamesByTag: () => {},
   // gameType
   activeGameType: GameTypeEnum.NONE,
   handleChangeGameType: () => {},
@@ -118,7 +122,7 @@ type ProviderProps = {
 
 export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProps) => {
   const { activeGameType, handleChangeGameType } = useGameType();
-  const { activeGameProvider, handleChangeProvider } = useGameProvider();
+  const { activeGameProvider, handleChangeProvider } = useGameByProvider();
   const { activeNavPopupGameType, handleChangeNavPopupGameType, isHovered, setIsHovered } =
     useNavPopupGameType();
   const { gpCode, handleChangeGpCode } = useGpCode();
@@ -160,9 +164,13 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
 
   const [providerName, setProviderName] = useState<string>("");
 
-  const handleGamesWithProvider = (provider: ProviderDto) => {
+  const handleGamesByProvider = (provider: ProviderDto) => {
     handleChangeProvider(provider.code);
     setProviderName(provider.name);
+  };
+
+  const handleGamesByTag = (tag: OrderTypeEnum) => {
+    handleChangeActiveFilterTag(tag);
   };
 
   return (
@@ -172,7 +180,9 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         providerList,
         searchedGameProviderCode: activeGameProvider,
         searchedGameProviderName: providerName,
-        handleGamesWithProvider,
+        handleGamesByProvider,
+        // hot/new games
+        handleGamesByTag,
         // gameType
         activeGameType,
         activeGameTypeKey: activeGameTypeKey ?? "",

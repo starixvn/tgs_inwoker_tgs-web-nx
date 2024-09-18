@@ -3,10 +3,12 @@ import NonLobbyCategory from "@/pages/home/components/CategoryRenderer/component
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { getGameTypeName } from "@tgs-web-nx/utils";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import NonLobbyProvider from "./components/NonLobbyProvider";
+import GamesByProvider from "./components/GamesByProvider";
+import GamesByTag from "./components/GamesByTag";
 
 const CategoryRenderer = () => {
   const { activeGameType, handleChangeGameType } = useHomeGameContext();
@@ -15,16 +17,20 @@ const CategoryRenderer = () => {
 
   useEffect(() => {
     if (history.location.pathname === "/") {
-      handleChangeGameType(isDesktopSize ? GameTypeEnum.NONE : GameTypeEnum.NONE);
+      handleChangeGameType(GameTypeEnum.NONE);
     } else {
       handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SPORTS);
     }
   }, [isDesktopSize]);
+
   switch (activeGameType) {
     case GameTypeEnum.NONE:
       return <HomeCategory />;
     case GameTypeEnum.ALL:
-      return <NonLobbyProvider />;
+      return <GamesByProvider />;
+    case GameTypeEnum.HOT_GAMES:
+    case GameTypeEnum.NEW_GAMES:
+      return <GamesByTag title={getGameTypeName(activeGameType)} />;
     default:
       return <NonLobbyCategory />;
   }

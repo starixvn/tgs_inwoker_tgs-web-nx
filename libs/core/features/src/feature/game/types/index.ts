@@ -1,3 +1,5 @@
+import { GameItem } from "@tgs-web-nx/types";
+
 export enum FilterTagTypeEnum {
   "PROVIDER" = "PROVIDER",
   "ALL" = "ALL",
@@ -12,7 +14,7 @@ export interface FilterTag {
   tagType?: OrderTypeEnum;
   gpCode?: string;
   iconUrl?: string;
-  activedUrl?: string
+  activedUrl?: string;
 }
 
 export enum OrderTypeEnum {
@@ -26,4 +28,11 @@ export enum TagTypeEnum {
   "NEW" = 1,
   "HOT" = 2,
   "RECOMMEND" = 4,
+}
+
+export interface GetGameListState {
+  isLoading: boolean;
+  gameList: GameItem[];
+  error: Error | null;
+  total: number;
 }

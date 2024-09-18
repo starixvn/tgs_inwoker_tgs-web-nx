@@ -23,4 +23,6 @@ export enum GameTypeEnum {
   BINGO = 21,
   RACING = 22,
   ALL = 9999,
+  HOT_GAMES = 9998,
+  NEW_GAMES = 9997,
 }
