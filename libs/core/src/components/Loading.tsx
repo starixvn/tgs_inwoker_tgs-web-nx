@@ -1,6 +1,5 @@
 import { CircularProgress } from "@mui/material";
 import styled from "styled-components";
-import { useGeneralStore } from "@tgs-web-nx/core";
 
 type LoadingContainer = {
   $opacity: number;
@@ -38,13 +37,11 @@ type Props = {
 };
 
 const Loading = ({ show, opacity, noShrink }: Props) => {
-  const { general } = useGeneralStore();
   const backgroundOpacity = typeof opacity === "number" ? opacity : 0.5;
 
   return (
     <LoadingContainer $open={show} $opacity={backgroundOpacity} $isMenuOpen={false}>
       <Inner>
-        <LogoImg src={general.brand && general.brand.loadingUrl} />
         <div className="clear" />
         <CircularProgress size={80} color={"primary"} style={{ margin: "30px 0 0 80px" }} />
       </Inner>
