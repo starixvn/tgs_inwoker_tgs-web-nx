@@ -13,5 +13,5 @@ window.envConfig = {
   affiliateId: "",
   brandTitle: "",
   AgentAdminUrl: null,
-  offeredGameType: ["sports", "slots", "liveCasino", "fishing", "tableGame","lottery","cockfighting","instantPlay"]
+  offeredGameType: ["sports", "slots", "live-casino", "fishing", "table-game","lottery","cock-fighting","instant-play"]
 };

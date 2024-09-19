@@ -5,6 +5,7 @@ export interface ProviderDto {
   transferwallet: boolean;
   name: string;
   status: number;
+  route: string;
 }
 
 export interface GetProviderListResDto {

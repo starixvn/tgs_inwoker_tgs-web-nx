@@ -82,7 +82,7 @@ const DesktopHeader = () => {
             height={22}
             onClick={() => {
               history.push("/");
-              handleChangeGameType(GameTypeEnum.NONE);
+              handleChangeGameType(GameTypeEnum.HOME);
             }}
           />
         </LogoWrapper>

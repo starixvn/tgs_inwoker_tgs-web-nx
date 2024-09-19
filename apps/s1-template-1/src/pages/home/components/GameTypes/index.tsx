@@ -1,13 +1,14 @@
 import { media } from "@/theme/breakpoints";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { NavItem, useGameTypeList, useGetNavGameTypeItemList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { NavItem, TagTypeEnum, useGameTypeList, useGetNavGameTypeItemList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import useEmblaCarousel from "embla-carousel-react";
 import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import GameType from "./GameType";
+import { Tag } from "@mui/icons-material";
 
 const GameTypesEmbla = styled.section`
   &.game-types {
@@ -49,16 +50,21 @@ const GameTypesEmblaContainer = styled.div`
 const GameTypes = () => {
   const { sideNavGameTypeItemList } = useGetNavGameTypeItemList();
   const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
-  const { activeGameType, handleChangeGameType } = useHomeGameContext();
+  const { activeGameType, providerList, handleChangeGameType, handleGamesByProvider, handleChangeActiveTag } = useHomeGameContext();
   const scrollDemoRef = useRef(null);
 
-  const { gameType: urlGameType } = useParams<{ gameType: string }>();
+  const { gameType: urlGameType, sports: urlSport } = useParams<{ gameType: string, sports: string }>();
   const gameTypeList = useGameTypeList();
 
   const getGameTypeFromKey = (key: string) => {
     const matchingGameType = gameTypeList.find((gameTypeItem) => gameTypeItem.key === key);
     return matchingGameType ? matchingGameType.gameType : null;
   };
+
+  const getProviderFromKey = (key: string) => {
+    const matchingProvider = providerList.find((provider) => provider.route === key);
+    return matchingProvider ? matchingProvider : null;
+  }
 
   useEffect(() => {
     // //@ts-ignore
@@ -78,12 +84,43 @@ const GameTypes = () => {
   }, [activeGameType]);
 
   useEffect(() => {
-    const gameType = getGameTypeFromKey(urlGameType);
-    if (gameType) {
-      handleChangeGameType(gameType);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [urlGameType, gameTypeList]);
+    const handleGameTypeChange = () => {
+      const gameType = getGameTypeFromKey(urlGameType);
+
+      if (gameType) {
+        handleChangeGameType(gameType);
+        return;
+      }
+  
+      if (getGameTypeFromKey(urlSport)) {
+        handleChangeGameType(GameTypeEnum.SPORTS);
+        return;
+      }
+      
+      const provider = getProviderFromKey(urlGameType);
+      if (provider) {
+        handleChangeGameType(GameTypeEnum.ALL);
+        handleGamesByProvider(provider);
+        return;
+      }
+  
+      switch (urlGameType) {
+        case 'new':
+          handleChangeGameType(GameTypeEnum.NEW);
+          handleChangeActiveTag(TagTypeEnum.NEW);
+          break;
+        case 'hot':
+          handleChangeGameType(GameTypeEnum.HOT);
+          handleChangeActiveTag(TagTypeEnum.HOT);
+          break;
+        default:
+          break;
+      }
+    };
+  
+    handleGameTypeChange();
+  }, [urlGameType, urlSport, gameTypeList, providerList]);
+  
 
   const handleClickNav = (navItem: NavItem & { gameType: GameTypeEnum }) => {
     handleChangeGameType(navItem.gameType);

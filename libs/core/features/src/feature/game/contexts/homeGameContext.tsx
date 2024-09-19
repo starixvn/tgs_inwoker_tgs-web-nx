@@ -75,14 +75,14 @@ const initialState: {
   searchedGameProviderName: "",
   handleGamesByProvider: () => {},
   // hot/new games
-  activeTag: TagTypeEnum.HOT,
+  activeTag: TagTypeEnum.NONE,
   handleChangeActiveTag: () => {},
   // gameType
   activeGameType: GameTypeEnum.NONE,
   handleChangeGameType: () => {},
   activeGameTypeKey: "",
   // navgameType
-  activeNavPopupGameType: GameTypeEnum.NONE,
+  activeNavPopupGameType: GameTypeEnum.HOME,
   handleChangeNavPopupGameType: () => {},
   activeNavPopupGameTypeKey: "",
   isHovered: false,

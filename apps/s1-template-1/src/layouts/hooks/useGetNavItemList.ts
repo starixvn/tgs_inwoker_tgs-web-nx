@@ -52,7 +52,7 @@ export function useGetNavItemList() {
     const navItemList: (NavItem & { gameType: GameTypeEnum })[] = [];
 
     for (const gameTypeItem of gameTypeList) {
-      if (gameTypeItem.gameType === GameTypeEnum.NONE) continue;
+      if (gameTypeItem.gameType === GameTypeEnum.HOME) continue;
 
       if (providerList.length) {
         const hasData = providerList.filter((provider) => {

@@ -1,7 +1,7 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 const gameTypeNameDictionary = {
-  [GameTypeEnum.NONE]: "common.home",
+  [GameTypeEnum.HOME]: "common.home",
   [GameTypeEnum.SPORTS]: "common.sports",
   [GameTypeEnum.RNGSPORTS]: "common.sports",
   [GameTypeEnum.RNGSPORTSLOBBY]: "common.sports",
@@ -25,8 +25,9 @@ const gameTypeNameDictionary = {
   [GameTypeEnum.BINGO]: "common.bingo",
   [GameTypeEnum.RACING]: "common.racing",
   [GameTypeEnum.ALL]: "Provider",
-  [GameTypeEnum.HOT_GAMES]: "Hot Games",
-  [GameTypeEnum.NEW_GAMES]: "New Games",
+  [GameTypeEnum.HOT]: "Hot Games",
+  [GameTypeEnum.NEW]: "New Games",
+  [GameTypeEnum.NONE]: "",
 };
 export function getGameTypeName(gameType: GameTypeEnum) {
   return gameTypeNameDictionary[gameType];

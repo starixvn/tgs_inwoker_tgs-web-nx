@@ -44,7 +44,7 @@ export const useGetNavGameTypeItemList = () => {
         router: gameTypeItem.key as string,
         callback: () => {
           handleChangeGameType(gameTypeItem.gameType);
-          history.push(`/${gameTypeItem.key}`);
+          history.push(gameTypeItem.gameType === GameTypeEnum.SPORTS ? `/${gameTypeItem.key}` : `/casino/${gameTypeItem.key}`);
         },
       });
     }

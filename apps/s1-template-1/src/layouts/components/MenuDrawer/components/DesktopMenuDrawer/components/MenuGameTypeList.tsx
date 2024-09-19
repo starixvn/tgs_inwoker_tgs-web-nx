@@ -23,7 +23,7 @@ const MenuGameTypeList = () => {
     handleChangeGameType(gameType);
 
     if (history.location.pathname !== "/") {
-      handleChangeGameType(GameTypeEnum.NONE);
+      handleChangeGameType(GameTypeEnum.HOME);
       history.push("/");
     }
   };

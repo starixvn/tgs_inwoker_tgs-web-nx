@@ -24,6 +24,7 @@ export function useGetGamesByTag() {
   const keyName = "GAMES_BY_TAG";
 
   const fetchGameListOfProvider = async (): Promise<GameItem[] | void> => {
+    if (activeTag === TagTypeEnum.NONE) return;
     if (
       gameCacheService.hasCache(keyName, pageIndex) &&
       gameCacheService.hasTotalGameCache(keyName)

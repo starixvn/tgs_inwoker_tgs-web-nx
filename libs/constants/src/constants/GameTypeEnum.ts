@@ -1,5 +1,6 @@
 export enum GameTypeEnum {
-  NONE = 0,
+
+  HOME = 0,
   SPORTS = 1,
   RNGSPORTS = 2,
   RNGSPORTSLOBBY = 3,
@@ -22,7 +23,8 @@ export enum GameTypeEnum {
   KENO = 20,
   BINGO = 21,
   RACING = 22,
-  ALL = 9999,
-  HOT_GAMES = 9998,
-  NEW_GAMES = 9997,
+  NEW = 9996,
+  HOT = 9997,
+  ALL = 9998,
+  NONE = 9999,
 }

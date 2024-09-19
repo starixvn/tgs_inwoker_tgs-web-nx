@@ -11,7 +11,7 @@ export function useGoToHomePage() {
 
   return useCallback(() => {
     if (isDesktopSize) {
-      handleChangeGameType(GameTypeEnum.NONE);
+      handleChangeGameType(GameTypeEnum.HOME);
     } else {
       handleChangeGameType(GameTypeEnum.SPORTS);
     }

@@ -1,9 +1,13 @@
-import { useGetGamesByTag } from "@tgs-web-nx/core/features";
+import { TagTypeEnum, useGetGamesByTag, useHomeGameContext } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 
 import { FilterTagWrapper } from "../../../HomeGameFilterTag/style";
 import { GameTypeTitle } from "../HomeCategory/style";
 import GamesWrapper from "../NonLobbyCategory/GamesWrapper";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getGameTypeName } from "@tgs-web-nx/utils";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 const ProviderContainer = styled.div`
   width: 100%;
@@ -20,8 +24,14 @@ const ProviderContainer = styled.div`
   }
 `;
 
-const GamesByTag: React.FC<{ title: string }> = ({ title }) => {
+const GamesByTag = () => {
   const { gameList, isLoading, total } = useGetGamesByTag();
+  const { activeGameType } = useHomeGameContext();
+  const  [ title, setTitle ] = useState<string>('');
+
+  useEffect(() => {
+    setTitle(getGameTypeName(activeGameType));
+  }, []);
 
   return (
     <ProviderContainer>

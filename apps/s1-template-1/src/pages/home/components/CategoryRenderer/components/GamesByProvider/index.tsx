@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { FilterTagWrapper } from "../../../HomeGameFilterTag/style";
 import { GameTypeTitle } from "../HomeCategory/style";
 import GamesWrapper from "../NonLobbyCategory/GamesWrapper";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const ProviderContainer = styled.div`
   width: 100%;
@@ -22,7 +24,16 @@ const ProviderContainer = styled.div`
 
 const GamesByProvider = () => {
   const { gameList, isLoading, total } = useGetGamesByProvider();
-  const { searchedGameProviderName } = useHomeGameContext();
+  const { searchedGameProviderName, providerList, handleGamesByProvider } = useHomeGameContext();
+  const { providerRoute } = useParams<{ providerRoute: string }>();
+
+  useEffect(() => {
+    if (!providerRoute) return;  
+    const provider = providerList.find((provider) => provider.route === providerRoute);
+    if(provider) {
+      handleGamesByProvider(provider);
+    }
+  }, [providerRoute, providerList]);
 
   return (
     <ProviderContainer>

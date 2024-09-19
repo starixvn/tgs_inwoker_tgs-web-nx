@@ -2,6 +2,7 @@ import { GameTypeEnum, media } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { ProviderDto } from "@tgs-web-nx/types";
 import { utility } from "@tgs-web-nx/utils";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const ProviderItem = styled.div`
@@ -26,19 +27,19 @@ const ProviderItem = styled.div`
 `;
 
 const ProviderList: React.FC<{ providerList: ProviderDto[] }> = ({ providerList }) => {
-  const { handleChangeGameType, handleGamesByProvider } = useHomeGameContext();
+  const history = useHistory();
 
   return providerList.map((provider, index) => {
     const providerName = provider.code.toLowerCase();
 
-    const handleChange = (provider: ProviderDto) => {
-      handleChangeGameType(GameTypeEnum.ALL);
-      handleGamesByProvider(provider);
+    const navigateTo = (pageName: string) => {
+      history.push("/providers/" + pageName);
+      window.scroll({ top: 0, behavior: "smooth" });
     };
 
     return (
       <div className="embla__slide " key={index}>
-        <ProviderItem onClick={() => handleChange(provider)}>
+        <ProviderItem onClick={() => navigateTo(provider.route)}>
           <img
             src={utility.imagePathGenerator(`provider/dark/${providerName}.webp`)}
             alt={providerName}

@@ -25,7 +25,7 @@ const gameTypeList: GameTypeItem[] = [
     router: "sports",
   },
   {
-    key: "virtualSports",
+    key: "virtual-sports",
     iconUrl: "/assets/images/game-type-icons/icon-virtual-sports.png",
     iconActiveUrl: "/assets/images/game-type-icons/active-icon-virtual-sports.png",
     text: "common.virtualsports",
@@ -43,7 +43,7 @@ const gameTypeList: GameTypeItem[] = [
     router: "esports",
   },
   {
-    key: "liveCasino",
+    key: "live-casino",
     iconUrl: "/assets/images/game-type-icons/icon-live-casino.png",
     iconActiveUrl: "/assets/images/game-type-icons/active-icon-live-casino.png",
     text: "common.live",
@@ -52,7 +52,7 @@ const gameTypeList: GameTypeItem[] = [
     router: "liveCasino",
   },
   {
-    key: "cardGame",
+    key: "card-game",
     iconUrl: "/assets/images/game-type-icons/icon-card-game.png",
     iconActiveUrl: "/assets/images/game-type-icons/active-icon-card-game.png",
     text: "common.chess",
@@ -97,7 +97,7 @@ const gameTypeList: GameTypeItem[] = [
     router: "slots",
   },
   {
-    key: "tableGame",
+    key: "table-game",
     iconUrl: "/assets/images/game-type-icons/icon-table-games.png",
     iconActiveUrl: "/assets/images/game-type-icons/active-icon-table-games.png",
     text: "common.tableGame",
@@ -106,7 +106,7 @@ const gameTypeList: GameTypeItem[] = [
     router: "tableGame",
   },
   {
-    key: "cockfighting",
+    key: "cock-fighting",
     iconUrl: "/assets/images/game-type-icons/icon-cock-fighting.png",
     iconActiveUrl: "/assets/images/game-type-icons/active-icon-cock-fighting.png",
     text: "common.cockfight",
@@ -115,7 +115,7 @@ const gameTypeList: GameTypeItem[] = [
     router: "cockfighting",
   },
   {
-    key: "instantPlay",
+    key: "instant-play",
     iconUrl: "/assets/images/game-type-icons/icon-instant-play.png",
     iconActiveUrl: "/assets/images/game-type-icons/active-icon-instant-play.png",
     text: "common.instantPlay",

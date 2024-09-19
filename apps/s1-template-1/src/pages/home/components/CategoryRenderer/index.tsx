@@ -17,20 +17,22 @@ const CategoryRenderer = () => {
 
   useEffect(() => {
     if (history.location.pathname === "/") {
-      handleChangeGameType(GameTypeEnum.NONE);
+      handleChangeGameType(GameTypeEnum.HOME);
     } else {
       handleChangeGameType(isDesktopSize ? activeGameType : GameTypeEnum.SPORTS);
     }
   }, [isDesktopSize]);
 
   switch (activeGameType) {
-    case GameTypeEnum.NONE:
+    case GameTypeEnum.HOME:
       return <HomeCategory />;
     case GameTypeEnum.ALL:
       return <GamesByProvider />;
-    case GameTypeEnum.HOT_GAMES:
-    case GameTypeEnum.NEW_GAMES:
-      return <GamesByTag title={getGameTypeName(activeGameType)} />;
+    case GameTypeEnum.HOT:
+    case GameTypeEnum.NEW:
+      return <GamesByTag  />;
+    case GameTypeEnum.NONE: 
+      return <></>
     default:
       return <NonLobbyCategory />;
   }

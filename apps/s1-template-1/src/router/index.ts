@@ -333,10 +333,28 @@ const routes: RouteType[] = [
     isAnonymousAllowed: true,
   },
   {
-    path: "/:gameType",
+    path: "/providers/:gameType",
     component: MainPage,
     layout: DefaultLayout,
     isAnonymousAllowed: true,
+  },
+  {
+    path: "/tag/:gameType",
+    component: MainPage,
+    layout: DefaultLayout,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/casino/:gameType",
+    component: MainPage,
+    layout: DefaultLayout,
+    isAnonymousAllowed: true,
+  },
+  {
+    path: "/:sports",
+    component: MainPage,
+    layout: DefaultLayout,
+    isAnonymousAllowed: true
   },
 ];
 
