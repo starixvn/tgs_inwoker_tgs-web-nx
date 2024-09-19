@@ -84,7 +84,7 @@ const gameTypeList: GameTypeItem[] = [
     iconActiveUrl: "/assets/images/game-type-icons/active-icon-lottery.png",
     text: "common.lottery",
     fontSize: "small",
-    gameType: GameTypeEnum.LOTTERYLOBBY,
+    gameType: GameTypeEnum.LOTTERY,
     router: "lottery",
   },
   {

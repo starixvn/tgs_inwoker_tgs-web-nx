@@ -38,7 +38,7 @@ export const useGameTypeList = () => {
         activeIconUrl: "",
         text: i18n.t("common.live"),
         fontSize: "small",
-        gameType: GameTypeEnum.LIVELOBBY,
+        gameType: GameTypeEnum.LIVE,
       },
       {
         key: "sabong",
@@ -70,7 +70,7 @@ export const useGameTypeList = () => {
         activeIconUrl: "",
         text: i18n.t("common.chess"),
         fontSize: "smaller",
-        gameType: GameTypeEnum.QIPAILOBBY,
+        gameType: GameTypeEnum.QIPAI,
       },
       {
         key: "lottery",
@@ -78,7 +78,7 @@ export const useGameTypeList = () => {
         activeIconUrl: "",
         text: i18n.t("common.lottery"),
         fontSize: "small",
-        gameType: GameTypeEnum.LOTTERYLOBBY,
+        gameType: GameTypeEnum.LOTTERY,
       },
       {
         key: "esports",
