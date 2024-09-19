@@ -67,6 +67,7 @@ export const CustomTab = muiStyled(Tab)(({ theme }) => ({
   padding: "0 1.6rem",
   borderRadius: "1rem",
   flexGrow: "1",
+  textTransform: "capitalize",
 
   "&.Mui-selected": {
     background: theme.palette.authForm.activeTabBackground,

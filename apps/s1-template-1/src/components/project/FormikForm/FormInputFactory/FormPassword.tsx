@@ -33,11 +33,6 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
       onBlur={formik.handleBlur}
       helperText={showErrorOn === "input" && formik.touched[name] && formik.errors[name]}
       error={showErrorOn === "input" && !!formik.touched[name] && !!formik.errors[name]}
-      sx={{
-        ".MuiOutlinedInput-notchedOutline:focus": {
-          border: "none",
-        },
-      }}
       InputProps={{
         autoComplete: "new-password",
         endAdornment: (

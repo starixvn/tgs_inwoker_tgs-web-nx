@@ -8,9 +8,9 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
 
   return (
     <CustomTextField
+      variant="outlined"
       type={getFormInputType(type)}
       placeholder={label}
-      variant={"outlined"}
       fullWidth
       name={name}
       className={name}
