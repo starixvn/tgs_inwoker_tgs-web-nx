@@ -56,18 +56,25 @@ const CardContent = styled.div<CardContentProps>`
     border: none;
   }
   ${media.sm} {
-    grid-template-columns: 19rem 1fr 1fr 11rem;
     font-size: 1.4rem;
+    grid-template-columns: 19rem 1fr 1fr 11rem;
+    height: 4.8rem;
   }
 
 `;
   
 
-const ContentRow = styled.div`   
-   text-align: center;
+const ContentRow = styled.div<CardContentProps>` 
+   display: flex;
+   justify-content: center;
+   ${media.sm} {
+      justify-content: ${({ $isHeader, theme }: CardContentProps) =>
+      $isHeader ? "center" : "flex-start"};
+      padding: .8rem;
+   }
+   
   
 `;
-
 
 type Props = {
   title: string;
@@ -80,14 +87,14 @@ type Props = {
 const Card = ({ title, content, handleDelete, contentName, disable, isHeader}: Props) => {
   return (
       <CardContent $isHeader={isHeader}>
-        <ContentRow>{title}</ContentRow>
-        <ContentRow>{contentName}</ContentRow>
-        <ContentRow>
+        <ContentRow $isHeader={isHeader}>{title}</ContentRow>
+        <ContentRow $isHeader={isHeader}>{contentName}</ContentRow>
+        <ContentRow $isHeader={isHeader}>
           {/* <EndingInLabel>{i18n.t("card.tail")}</EndingInLabel> */}
           {content}
         </ContentRow>
         
-        <ContentRow>
+        <ContentRow $isHeader={isHeader}>
           {!disable && (
             <Icon
               onClick={handleDelete}
@@ -96,6 +103,7 @@ const Card = ({ title, content, handleDelete, contentName, disable, isHeader}: P
               height={"16px"}
               style={{
                 cursor: "pointer",
+                width: "100%"
               }}
             />
           )}
