@@ -46,6 +46,9 @@ const ButtonDefault = muiStyled(MuiButton)(({ theme }) => ({
   },
   "&.Mui-disabled": {
     background: "#ccc",
+  },
+  "&.MuiButton-fullWidth": {
+    maxWidth: "100% !important",
   }
 }));
 

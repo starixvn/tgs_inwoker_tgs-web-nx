@@ -183,4 +183,11 @@ export const theme = {
   tableFontSize: "1.1rem",
   tableHeaderFontSize: "1.2rem",
   tableBorderRadius: ".8rem",
+
+  //Badge
+  bagdeBackgroundColor: "#304056",
+  badgeActiveBorderColor: "#D1F42D",
+  badgeBorderColor: "#151D28",
+  badgeTextColor: "#B3CDF8",
+  badgeActiveTextColor: "#ffffff",
 };

@@ -10,6 +10,7 @@ import {
   TransferValue,
 } from "@/components/styled-component/Deposit";
 import {
+  AccountInfoWrapper,
   BadgeContainer,
   FormControl,
   InfoContainer,
@@ -83,6 +84,8 @@ const ChannelExtend = styled.div`
 const ChannelExtendTitle = styled(LabelLargeContainer)`
   margin-bottom: -.2rem;
 `;
+
+
 
 class Main extends Component {
   render() {
@@ -357,24 +360,16 @@ class Main extends Component {
                           <LabelLargeContainer style={{ paddingTop: "1.2rem" }}>
                             {i18n.t("deposit.yourbankaccountinfo")}
                           </LabelLargeContainer>
+                          <AccountInfoWrapper>
                           <ItemContainer>
                             <LabelContainer>
-                              {config.features.Deposit_OriginAccount ? (
-                                i18n.t("idr1.pleaseEnterAccountName")
-                              ) : (
-                                <>
-                                  <div>{i18n.t("common.pleaseEnterAccountName")}</div>
-                                  {/* <WarningText>{" *" + i18n.t("mgm.accountDepositTips")}</WarningText> */}
-                                </>
-                              )}
+                              Account Holder Name
                             </LabelContainer>
                             <FormControl variant="outlined">
                               <TextField
                                 type={"text"}
                                 placeholder={
-                                  config.features.Deposit_OriginAccount
-                                    ? i18n.t("idr1.pleaseEnterAccountName")
-                                    : i18n.t("common.pleaseEnterAccountName")
+                                  "Please enter the bank account name"
                                 }
                                 value={this.props.account}
                                 disabled={
@@ -402,6 +397,7 @@ class Main extends Component {
                               />
                             </FormControl>
                           </ItemContainer>
+                          </AccountInfoWrapper>
                         </>
                       )}
                     </>

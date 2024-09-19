@@ -48,6 +48,15 @@ export const ItemNoteDesc = styled.span`
   margin-left: .4rem;
 `;
 
+export const AccountInfoWrapper = styled.div`
+  ${media.sm} {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1.2rem;
+  }
+`;
+
 export const FormControl = muiStyled(MuiFormControl)(({ theme }) => ({
   width: "100%",
   fontSize: "0.875rem",
