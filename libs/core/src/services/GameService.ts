@@ -1,5 +1,5 @@
 import config from "@tgs-web-nx/config";
-import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, RecentBigWins, ResponseResDto } from "@tgs-web-nx/types";
+import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, RecentBigWinItem, ResponseResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
@@ -98,5 +98,5 @@ function GetRecentBigWins() {
   return ApiService.get(
     //@ts-ignore
     `Game/rencent-big-wins?platformtype=${config.isPC}`,
-  ) as unknown as Promise<ResponseResDto<RecentBigWins>>;
+  ) as unknown as Promise<ResponseResDto<RecentBigWinItem>>;
 }

@@ -1,5 +1,3 @@
-import { media } from "@/theme/breakpoints";
-import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { NavItem, TagTypeEnum, useGameTypeList, useGetNavGameTypeItemList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import useEmblaCarousel from "embla-carousel-react";
@@ -7,8 +5,10 @@ import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import GameType from "./GameType";
 import { Tag } from "@mui/icons-material";
+import GameType from "./GameType";
+import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import { media } from "@/theme/breakpoints";
 
 const GameTypesEmbla = styled.section`
   &.game-types {

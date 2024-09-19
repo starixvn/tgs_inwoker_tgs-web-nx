@@ -1,4 +1,3 @@
-import EmblaCarousel from "@/components/project/embla-carousel";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
@@ -8,6 +7,7 @@ import ProviderList from "../ProviderList";
 import GameCardSlider from "./components/GameSlider/GameCardSlider";
 import RecentBigWins from "./components/RecentBigWins";
 import { DesktopContainer, GameTypeContainer, GameTypeTitle, Group, ViewAll } from "./style";
+import EmblaCarousel from "@/components/project/embla-carousel";
 
 const HomeCategory = () => {
   const history = useHistory();

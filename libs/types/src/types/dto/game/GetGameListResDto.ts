@@ -30,23 +30,23 @@ export interface GameTagListResDto {
   total: number;
 }
 
-export interface RecentBigWins {
-  GameId: number;
-  GameName: string;
-  GameCode: string;
-  GameType: number;
-  GameProviderCode: string;
-  GameProviderName: string;
-  CreateTime: Date;
-  CurrencyName: string;
-  PlayerName: string;
-  PlayerCode: string;
-  PlayerVipLevel: number;
-  BetId: string;
-  WinAmount: number;
-  BetAmount: number;
-  Profit: number;
-  Payout: string;
+export interface RecentBigWinItem {
+  gameId: number;
+  gameName: string;
+  gameCode: string;
+  gameType: number;
+  gameProviderCode: string;
+  gameProviderName: string;
+  createTime: Date;
+  currencyName: string;
+  playerName: string;
+  playerCode: string;
+  playerVipLevel: number;
+  betId: string;
+  winAmount: number;
+  betAmount: number;
+  profit: number;
+  payout: string;
 }
 
 export interface ResponseResDto<T> {

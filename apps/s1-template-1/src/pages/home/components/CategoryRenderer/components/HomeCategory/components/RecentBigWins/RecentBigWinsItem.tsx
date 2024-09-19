@@ -1,20 +1,13 @@
-import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { utility } from "@tgs-web-nx/utils";
 import { Img } from "react-image";
 
+import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { BigWinsAmount, CardHoverBg, CustomPlayButton, GameContainer, GameIcon, GameName, RecentBigWinsSlide } from "./style";
-
-export interface BigWinItem {
-  gameId: number;
-  gameProviderCode: string;
-  gameCode: string;
-  playerName: string;
-  winAmount: number;
-}
+import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
 
 const RecentBigWinsItem: React.FC<{
-  item: BigWinItem;
+  item: RecentBigWinItem;
   launchGame: (gameId: number, gameProviderCode: string) => void;
 }> = ({ item, launchGame }) => {
   const { isDesktopSize } = useRwd();

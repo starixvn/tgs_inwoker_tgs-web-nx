@@ -5,13 +5,14 @@ import { EmblaOptionsType } from "embla-carousel";
 import AutoScroll from 'embla-carousel-auto-scroll';
 import React from "react";
 
+import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { GameTypeTitle, Group } from "../../style";
-import RecentBigWinsItem, { BigWinItem } from "./RecentBigWinsItem";
+import RecentBigWinsItem from "./RecentBigWinsItem";
 
 import EmblaCarousel from "@/components/project/embla-carousel";
 
 type BigWinType = {
-  data: BigWinItem[];
+  data: RecentBigWinItem[];
 };
 
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
