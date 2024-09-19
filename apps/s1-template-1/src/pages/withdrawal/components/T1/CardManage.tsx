@@ -3,7 +3,6 @@ import { CardContainer } from "@/components/styled-component/WithdrawV2/CardMana
 import { DarkBlueGradientButton } from "@/components/UI/Button";
 import Card from "@/pages/withdrawal/components/CardManage/Card";
 import CardAddCard from "@/pages/withdrawal/components/CardManage/CardAddCard";
-import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 import config from "@tgs-web-nx/config";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -76,16 +75,16 @@ const CardManage = ({
   };
   return (
     <CardManageContainer>
-      {isDesktopSize && (
+      {/* {isDesktopSize && (
         <FormTitle
           title={i18n.t("card.title")}
           isShowAddCardButton={isShowAddCardButton}
           handleClickAddCard={onhandleAddCardClick}
         />
-      )}
+      )} */}
       <CardContainerTitle>
         <LabelContainer>Manage Bank Accounts</LabelContainer>
-        {!isDesktopSize && isShowAddCardButton && (
+        {isShowAddCardButton && (
             <CardAddCard handleClick={onhandleAddCardClick} />
           )}
       </CardContainerTitle>

@@ -15,12 +15,12 @@ export const PageContainer = styled.div`
 
 export const TransferPageContainer = styled.div`
   padding: ${({ theme }) => theme.gapPage};
-  max-width: 1170px;
+  max-width: ${({ theme }) => theme.mainContentWidth};
   flex: 1;
   margin: 0 auto;
 
   ${media.sm} {
-    padding: 10px;
+    padding: 0;
     background: ${({ theme }) => theme.blue20};
   }
 

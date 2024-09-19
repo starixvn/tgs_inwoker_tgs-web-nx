@@ -55,6 +55,10 @@ const CardContent = styled.div<CardContentProps>`
     border-radius: 0 0 ${theme.tableBorderRadius} ${theme.tableBorderRadius};
     border: none;
   }
+  ${media.sm} {
+    grid-template-columns: 19rem 1fr 1fr 11rem;
+    font-size: 1.4rem;
+  }
 
 `;
   
@@ -91,7 +95,6 @@ const Card = ({ title, content, handleDelete, contentName, disable, isHeader}: P
               width={"13px"}
               height={"16px"}
               style={{
-                marginLeft: "auto",
                 cursor: "pointer",
               }}
             />

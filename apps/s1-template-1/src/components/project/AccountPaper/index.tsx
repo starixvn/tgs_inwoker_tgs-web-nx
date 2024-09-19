@@ -1,8 +1,17 @@
+import { media } from "@/theme/breakpoints";
 import React from "react";
 import styled from "styled-components";
 
-const AccountPaperContainer = styled.div`
-
+export const AccountPaperContainer = styled.div`
+  width: 100%;
+  ${media.sm} {
+    max-width: ${({ theme }) => theme.mainContentWidth};
+    padding: 2.4rem;
+    border: 1px solid ${({ theme }) => theme.mainContentBorderColor};
+    background: ${({ theme }) => theme.mainContentBackgroundColor};
+    margin: auto;
+    border-radius: 1.2rem;
+  }
 `;
 
 type Props = {
