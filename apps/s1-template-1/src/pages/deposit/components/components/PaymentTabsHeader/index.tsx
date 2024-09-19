@@ -1,20 +1,10 @@
+import { BadgeContainer, ItemContainer, LabelLargeContainer } from "@/components/styled-component/ProfileForms";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
-import { media } from "@/theme/breakpoints";
 import { useWalletStore } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import React, { useMemo } from "react";
-import styled from "styled-components";
 
-const BadgeContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 1.2rem;
-  margin-bottom: 2.4rem;
 
-  ${media.sm} {
-    margin-bottom: 40px;
-  }
-`;
 
 type Props = {
   selectedPaymentIndex: number;
@@ -33,19 +23,22 @@ const PaymentTabsHeader = ({ selectedPaymentIndex, handlePaymentChange }: Props)
   if (!transferChannels?.length) return null;
 
   return (
-    <BadgeContainer>
-      {depositTypes.map((depositType, index) => {
-        const { paymentcode, paymentid } = depositType;
-        return (
-          <Badge
-            key={`${paymentid}-${index}`}
-            text={i18n.t(paymentcode)}
-            isActive={index === selectedPaymentIndex}
-            handleClick={() => handlePaymentChange({}, index)}
-          />
-        );
-      })}
-    </BadgeContainer>
+    <ItemContainer>
+      <LabelLargeContainer>Payment Service Provider</LabelLargeContainer>    
+      <BadgeContainer>
+        {depositTypes.map((depositType, index) => {
+          const { paymentcode, paymentid } = depositType;
+          return (
+            <Badge
+              key={`${paymentid}-${index}`}
+              text={i18n.t(paymentcode)}
+              isActive={index === selectedPaymentIndex}
+              handleClick={() => handlePaymentChange({}, index)}
+            />
+          );
+        })}        
+      </BadgeContainer>
+    </ItemContainer>
   );
 };
 

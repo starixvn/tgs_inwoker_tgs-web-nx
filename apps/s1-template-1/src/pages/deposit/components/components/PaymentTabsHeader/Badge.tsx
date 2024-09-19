@@ -26,8 +26,10 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   align-items: center;
   justify-content: center;
 
-  ${media.md} {
-    width: auto;
+  ${media.sm} {
+    flex-basis: 0;
+    max-width: 100%;
+    flex-grow: 1;
   }
 `;
 

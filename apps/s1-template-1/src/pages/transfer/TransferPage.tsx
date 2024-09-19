@@ -1,15 +1,13 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
+import iconTransfer from "@/assets/t29/images/account/navItem/icon-transfer.svg";
+import TransferPrevV2 from "@/components/account/TransferPrevV2";
+import AccountPaper from "@/components/project/AccountPaper";
+import MenuTabs from "@/components/project/MenuTabs";
+import { PageContainer } from "@/components/styled-component/PageContainer";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd, useTransferPage } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 import { useSnackbar } from "notistack";
-import TransferPrevV2 from "@/components/account/TransferPrevV2";
-import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconTransfer from "@/assets/t29/images/account/navItem/icon-transfer.svg";
-import AccountPaper from "@/components/project/AccountPaper";
-import { PageContainer } from "@/components/styled-component/PageContainer";
-import MenuTabs from "@/components/project/MenuTabs";
+import { useHistory } from "react-router-dom";
 
 const TransferPage = () => {
   const { getAllGameBalance } = useTransferPage();
@@ -21,7 +19,7 @@ const TransferPage = () => {
 
   return (
     <PageContainer>
-      {isDesktopSize && <UserWalletInfo />}
+      {/* {isDesktopSize && <UserWalletInfo />} */}
       {isDesktopSize && <MenuTabs />}
       <AccountPaper pageName={i18n.t("common.transfer")} iconUrl={iconTransfer}>
         <TransferPrevV2

@@ -10,6 +10,7 @@ import {
   TransferValue,
 } from "@/components/styled-component/Deposit";
 import {
+  BadgeContainer,
   FormControl,
   InfoContainer,
   ItemContainer,
@@ -17,7 +18,7 @@ import {
   Remark,
   UploadFileButton,
   UploadFileControl,
-  UploadFileTag,
+  UploadFileTag
 } from "@/components/styled-component/ProfileForms";
 import { GreenGradientButton } from "@/components/UI/Button";
 import { Select } from "@/components/UI/Select";
@@ -33,11 +34,6 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-const BadgeContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 1.2rem;
-`;
 
 const LabelContainer = styled(ProfileLabelContainer)`
   font-size: 1.4rem;
@@ -148,7 +144,7 @@ class Main extends Component {
 
             {/*1. 请选择支付方式 */}
             <ItemContainer>
-              <LabelLargeContainer>{i18n.t("deposit.msgPlsSelectPayment")}</LabelLargeContainer>
+              <LabelLargeContainer>Payment Method</LabelLargeContainer>
               <BadgeContainer>
                 {this.props.wallet.depositTypeList.length > 0 &&
                   selectedDepositType.method.map((item, index) => {
@@ -198,7 +194,7 @@ class Main extends Component {
         {/*请选择支付渠道*/}
         {!(config.features.Deposit_HideDepositChannel || config.features.Deposit_AddCard) && (
           <ItemContainer>
-            <LabelLargeContainer>{i18n.t("deposit.msgPlsSelectMethod")}</LabelLargeContainer>
+            <LabelLargeContainer>Deposit Channel</LabelLargeContainer>
             <FormControl variant="outlined">
               <Select
                 id="customSelect"

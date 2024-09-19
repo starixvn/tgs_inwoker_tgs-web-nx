@@ -1,17 +1,15 @@
 //@ts-nocheck
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
+import iconWithdrawal from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
+import WithdrawalPrevV2 from "@/components/account/WithdrawalPrevV2";
+import AccountPaper from "@/components/project/AccountPaper";
+import MenuTabs from "@/components/project/MenuTabs";
+import { TransferPageContainer } from "@/components/styled-component/PageContainer";
+import { useWalletStore } from "@tgs-web-nx/core";
 import { useNotifications, useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { useRwd, useWithdrawalPage } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
 import { useSnackbar } from "notistack";
-import { useWalletStore } from "@tgs-web-nx/core";
-import WithdrawalPrevV2 from "@/components/account/WithdrawalPrevV2";
-import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconWithdrawal from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
-import AccountPaper from "@/components/project/AccountPaper";
-import { TransferPageContainer } from "@/components/styled-component/PageContainer";
-import MenuTabs from "@/components/project/MenuTabs";
+import { useHistory } from "react-router-dom";
 
 const WithdrawalPage = () => {
   useWithdrawalPage();
@@ -28,7 +26,7 @@ const WithdrawalPage = () => {
 
   return (
     <TransferPageContainer>
-      {isDesktopSize && <UserWalletInfo />}
+      {/* {isDesktopSize && <UserWalletInfo />} */}
       {isDesktopSize && <MenuTabs />}
       <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
         <WithdrawalPrevV2

@@ -12,10 +12,7 @@ export const Remark = styled.div`
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
-  ${media.sm} {
-    max-width: 500px;
-  }
+  margin-bottom: 24px; 
 `;
 
 export const LabelContainer = styled.div`
@@ -123,6 +120,17 @@ export const AccountIcon = styled.div`
   justify-content: center;
   ${media.sm} {
     margin: 0 0.8rem 0 0.6rem;
+  }
+`;
+
+export const BadgeContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1.2rem;
+  ${media.sm} {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
   }
 `;
 

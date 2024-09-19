@@ -2,6 +2,7 @@ import { DarkBlueGradientButton, GreenGradientButton } from "@/components/UI/But
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import {
+  BadgeContainer,
   FormControl,
   ItemContainer,
   ItemNote,
@@ -26,12 +27,6 @@ const ButtonGroups = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
-`;
-
-const BadgeContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 1.2rem;
 `;
 
 const AddCard = ({
