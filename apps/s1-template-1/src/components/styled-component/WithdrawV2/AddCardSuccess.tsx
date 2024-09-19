@@ -1,4 +1,3 @@
-import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -26,10 +25,6 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   gap: 2.4rem;
   padding-top: 1.2rem;
-
-  ${media.sm} {
-    flex-direction: row;
-  }
 `;
 
 export const SuccessImg = styled.div`
