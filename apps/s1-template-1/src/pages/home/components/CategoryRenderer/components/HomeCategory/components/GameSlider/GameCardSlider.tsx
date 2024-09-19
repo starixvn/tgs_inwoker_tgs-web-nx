@@ -1,4 +1,5 @@
 import GameCard from "@/pages/home/components/GameCard";
+import { GameCardBg } from "@/pages/home/components/GameCard/style";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { utility } from "@tgs-web-nx/utils";
 import styled from "styled-components";
@@ -18,10 +19,17 @@ interface IGameSlider {
 const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
   const { data } = props;
   const { isDesktopSize } = useRwd();
+  const gameListTmp = Array.from(Array(9).keys());
+
+  const loadGameList = () => {
+    return gameListTmp.map((index) => {
+      return <GameCardBg key={index} />;
+    });
+  };
 
   return (
     <>
-      {data.length === 0 && <NoGame></NoGame>}
+      {data.length === 0 && loadGameList()}
       {data.map((gameItem, index) => {
         const { id, isactive, gpcode, code } = gameItem;
 
