@@ -4,6 +4,10 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   background: theme.palette.form.backgroundColor,
   borderRadius: "1rem",
   border: `1px solid ${theme.palette.form.borderColor}`,
+ 
+  "& .MuiInputBase-root": {
+    fontFamily: "inherit",
+  },
   input: {
     padding: "0 1.2rem",
     color: theme.palette.text.primary,
@@ -27,17 +31,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     opacity: 1,
     fontSize: "1.4rem",
     fontWeight: 700,
-  },
-  [theme.breakpoints.up("sm")]: {
-    input: {
-      fontSize: "0.875rem",
-    },
-    label: {
-      fontSize: "0.875rem",
-    },
-    "& input::placeholder": {
-      fontSize: "0.875rem",
-    },
+    
   },
 
   "& .MuiInput-underline:after": {

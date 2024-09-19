@@ -10,6 +10,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   borderRadius: "1rem",
   height: "4.8rem",
   lineHeight: "4.8rem",
+  fontFamily: "inherit",
   "&:focus": {
     background: "none",
   },
@@ -28,7 +29,6 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     fontSize: "2.2rem",
     color: `${theme.palette.form.textColor}`
   },
-
 
   "& .MuiInputBase-input": {
     color: `${theme.palette.form.textColor}`,
