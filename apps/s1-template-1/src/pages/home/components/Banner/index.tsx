@@ -5,7 +5,7 @@ import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { Img } from "react-image";
 
-import { NoGameIcon } from "../GameCard/icons";
+import { LoadingIcon, NoGameIcon } from "../GameCard/icons";
 import { DotButton, useDotButton } from "./dots";
 import { BannerContainerEmbla } from "./style";
 
@@ -43,6 +43,7 @@ const Banner = () => {
               <Img
                 className="banner"
                 src={banner.mobileurl}
+                loader={<LoadingIcon />}
                 unloader={<NoGameIcon gameName={banner.title} />}
               />
             </div>
