@@ -1,13 +1,14 @@
-import EmblaCarousel from "@/components/project/embla-carousel";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
-import Autoplay from "embla-carousel-autoplay";
+import AutoScroll from 'embla-carousel-auto-scroll';
 import React from "react";
 
 import { GameTypeTitle, Group } from "../../style";
 import RecentBigWinsItem, { BigWinItem } from "./RecentBigWinsItem";
+
+import EmblaCarousel from "@/components/project/embla-carousel";
 
 type BigWinType = {
   data: BigWinItem[];
@@ -15,7 +16,9 @@ type BigWinType = {
 
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
-  const emblaPlugins: any = [Autoplay({ playOnInit: true, delay: 2000 })];
+  const emblaPlugins: any = [AutoScroll({ playOnInit: true,
+    stopOnInteraction: false,
+    stopOnMouseEnter: true, })];
   const { account } = useAccountStore();
   const isLogin = !!account.token;
   const { goToLogin } = useAuth();
