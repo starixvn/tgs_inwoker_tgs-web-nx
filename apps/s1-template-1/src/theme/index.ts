@@ -190,4 +190,9 @@ export const theme = {
   badgeBorderColor: "#151D28",
   badgeTextColor: "#B3CDF8",
   badgeActiveTextColor: "#ffffff",
+
+  // main content
+  mainContentWidth: "108.8rem",
+  mainContentBorderColor: "#161F2C",
+  mainContentBackgroundColor: "#19212C",
 };
