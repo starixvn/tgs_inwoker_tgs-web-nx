@@ -1,10 +1,11 @@
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { FilterTag, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { Dropdown, DropdownChangeEvent } from "primereact/dropdown";
 import { MultiSelect, MultiSelectChangeEvent } from "primereact/multiselect";
 import { useEffect, useState } from "react";
 
 import { CommonSearchWrapper, FilterTagWrapper } from "./style";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 const CheckIcon = () => {
   return (
@@ -29,6 +30,7 @@ const HomeGameFilterTag: React.FC<{
   isHideOrderDropdown?: boolean;
 }> = ({ isHideProviderDropdown, isHideOrderDropdown }) => {
   const {
+    activeGameType,
     providerFilterTagList,
     filterTagList,
     activeProviderFilterTag,
@@ -40,6 +42,7 @@ const HomeGameFilterTag: React.FC<{
     handleChangePageIndex,
   } = useHomeGameContext();
   const [selectedProviderNumbers, setSelectedProviderNumbers] = useState(0);
+  const [ providerOptions, setProviderOptions ] = useState<FilterTag[]>(providerFilterTagList);
 
   const handleChangeProvider = (event: MultiSelectChangeEvent) => {
     setSelectedProviderNumbers(event.value.length);
@@ -52,6 +55,14 @@ const HomeGameFilterTag: React.FC<{
     handleChangePageIndex(1);
   };
 
+  useEffect(() => {
+    if(activeGameType === GameTypeEnum.SPORTS) {
+        setProviderOptions(providerFilterTagList.filter(item => item.name === "Saba Sports"));
+    } else {
+        setProviderOptions(providerFilterTagList.filter(item => item.name !== "Saba Sports"));
+    }
+  }, [activeGameType, providerFilterTagList]);
+
   return (
     <FilterTagWrapper>
       <CommonSearchWrapper>
@@ -60,7 +71,7 @@ const HomeGameFilterTag: React.FC<{
             filter
             onChange={handleChangeProvider}
             value={activeProviderFilterTag}
-            options={providerFilterTagList}
+            options={providerOptions}
             optionLabel="name"
             optionValue="gpCode"
             placeholder={i18n.t("common.allProviders")}
