@@ -1,3 +1,4 @@
+import EmblaCarousel from "@/components/project/embla-carousel";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
@@ -7,11 +8,11 @@ import ProviderList from "../ProviderList";
 import GameCardSlider from "./components/GameSlider/GameCardSlider";
 import RecentBigWins from "./components/RecentBigWins";
 import { DesktopContainer, GameTypeContainer, GameTypeTitle, Group, ViewAll } from "./style";
-import EmblaCarousel from "@/components/project/embla-carousel";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 const HomeCategory = () => {
   const history = useHistory();
-  const { providerList } = useHomeGameContext();
+  const { providerList, handleChangeGameType } = useHomeGameContext();
   const {
     sportGameList,
     liveCasinoList,
@@ -22,7 +23,8 @@ const HomeCategory = () => {
     recentBigWins,
   } = useGetHomeCategoryList();
 
-  const navigateTo = (pageName: string) => {
+  const navigateTo = (pageName: string, gameType: GameTypeEnum) => {
+    handleChangeGameType(gameType);
     history.push(pageName);
     window.scroll({ top: 0, behavior: "smooth" });
   };
@@ -37,7 +39,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-sports-group.svg" alt="sports" />
             {i18n.t("web.home.Section1Sport")}
-            <ViewAll onClick={() => navigateTo("sports")}>{i18n.t("common.all")}</ViewAll>
+            <ViewAll onClick={() => navigateTo("sports", GameTypeEnum.SPORTS)}>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
             <GameCardSlider data={sportGameList} />
@@ -48,7 +50,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
             {i18n.t("web.home.Section1Slot")}
-            <ViewAll onClick={() => navigateTo("/casino/slots")}>{i18n.t("common.all")}</ViewAll>
+            <ViewAll onClick={() => navigateTo("/casino/slots", GameTypeEnum.SLOT)}>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel
             options={gameTypeEmblaOptions}
@@ -63,7 +65,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-live-casino-group.svg" alt="live-casino" />
             {i18n.t("web.home.Section1Live")}
-            <ViewAll onClick={() => navigateTo("/casino/live-casino")}>{i18n.t("common.all")}</ViewAll>
+            <ViewAll onClick={() => navigateTo("/casino/live-casino", GameTypeEnum.LIVE)}>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
             <GameCardSlider data={liveCasinoList} />
@@ -75,7 +77,7 @@ const HomeCategory = () => {
             <img src="/assets/images/common/icon-new-release.svg" alt="new-release" />
             {i18n.t("web.home.Section1NewRelease")}
             <ViewAll
-              onClick={() => navigateTo("/tag/new")}
+              onClick={() => navigateTo("/tag/new", GameTypeEnum.NEW)}
             >
               {i18n.t("common.all")}
             </ViewAll>
@@ -103,7 +105,7 @@ const HomeCategory = () => {
           <GameTypeTitle>
             <img src="/assets/images/common/icon-table-game-group.svg" alt="table-game" />
             {i18n.t("web.home.Section1Electron")}
-            <ViewAll onClick={() => navigateTo("/casino/table-game")}>{i18n.t("common.all")}</ViewAll>
+            <ViewAll onClick={() => navigateTo("/casino/table-game", GameTypeEnum.TABLEGAME)}>{i18n.t("common.all")}</ViewAll>
           </GameTypeTitle>
           <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
             <GameCardSlider data={tableGameList} />
@@ -115,7 +117,7 @@ const HomeCategory = () => {
             <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
             {i18n.t("web.home.Section1HotGames")}
             <ViewAll
-              onClick={() => navigateTo("/tag/hot")}
+              onClick={() => navigateTo("/tag/hot", GameTypeEnum.HOT)}
             >
               {i18n.t("common.all")}
             </ViewAll>

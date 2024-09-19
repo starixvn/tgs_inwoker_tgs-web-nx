@@ -164,7 +164,7 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
       goToLogin();
     } else {
       Common.closePreviousPopup();
-      Common.PopupCenter(`/joingame/${gameItem.id}/${gameItem.gpcode}`, "gamewindow");
+      window.open(`/joingame/${gameItem.id}/${gameItem.gpcode}`, "_blank");
     }
   };
 

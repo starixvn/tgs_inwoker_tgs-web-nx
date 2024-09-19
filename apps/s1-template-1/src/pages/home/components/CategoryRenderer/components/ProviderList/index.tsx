@@ -28,11 +28,13 @@ const ProviderItem = styled.div`
 
 const ProviderList: React.FC<{ providerList: ProviderDto[] }> = ({ providerList }) => {
   const history = useHistory();
+  const { handleChangeGameType} = useHomeGameContext();
 
   return providerList.map((provider, index) => {
     const providerName = provider.code.toLowerCase();
 
     const navigateTo = (pageName: string) => {
+      handleChangeGameType(GameTypeEnum.ALL);
       history.push("/providers/" + pageName);
       window.scroll({ top: 0, behavior: "smooth" });
     };

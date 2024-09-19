@@ -3,7 +3,7 @@ import { GameItem } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
 
 import { gameCacheService } from "./services";
-import { GetGameListState, TagTypeEnum } from "./types";
+import { GetGameListState } from "./types";
 import { useHomeGameContext } from "./useHomeGameContext";
 
 export function useGetNonLobbyCategoryList() {
@@ -14,8 +14,7 @@ export function useGetNonLobbyCategoryList() {
     error: null,
   });
 
-  const { activeGameType, activeProviderFilterTag, activeFilterTag, pageIndex, pageSize } =
-    useHomeGameContext();
+  const { activeGameType, activeProviderFilterTag, activeFilterTag, pageIndex, pageSize } = useHomeGameContext();
 
   const fetchGameList = async (): Promise<GameItem[] | void> => {
     if (

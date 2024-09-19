@@ -161,6 +161,7 @@ const gameTypeList: GameTypeItem[] = [
   },
 ];
 
+
 export const useGameTypeList = () => {
   const [translatedGameTypeList, setTranslatedGameTypeList] = useState<GameTypeItem[]>([]);
   const { offeredGameType } = config;

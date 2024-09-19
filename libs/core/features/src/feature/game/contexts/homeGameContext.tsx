@@ -1,6 +1,6 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { ProviderDto } from "@tgs-web-nx/types";
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 import { useFavoriteList } from "../hooks/useFavoriteList";
 import { useGameByProvider } from "../hooks/useFilter/useGameByProvider";
@@ -140,6 +140,7 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
     providerFilterTagList,
     activeProviderFilterTag,
     handleChangeActiveProviderFilterTag,
+    handleClearActiveProviderFilterTag,
     updateGpCodeList,
   } = useProviderFilter();
 
@@ -163,19 +164,21 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
 
   const { pageIndex, pageSize, handleChangePageIndex } = usePagination();
 
-  const handleChangePage = (newGameType: GameTypeEnum) => {
-    handleChangeGameType(newGameType);
-    handleChangePageIndex(1);
-    handleChangeActiveFilterTag(OrderTypeEnum.HOT);
-    handleChangeActiveProviderFilterTag([]);
-  };
+  const handleChangePage = useCallback((newGameType: GameTypeEnum) => {
+    if (newGameType !== activeGameType) {
+      handleChangeGameType(newGameType);
+      handleChangePageIndex(1);
+      handleChangeActiveFilterTag(OrderTypeEnum.HOT);
+      handleClearActiveProviderFilterTag();
+    }
+  }, []);
 
   const [providerName, setProviderName] = useState<string>("");
 
-  const handleGamesByProvider = (provider: ProviderDto) => {
+  const handleGamesByProvider = useCallback((provider: ProviderDto) => {
     handleChangeProvider(provider.code);
     setProviderName(provider.name);
-  };
+  }, []);
 
   return (
     <HomeGameContext.Provider

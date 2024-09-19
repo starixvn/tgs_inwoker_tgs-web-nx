@@ -32,8 +32,7 @@ const GameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     if (!isLogin) {
       goToLogin();
     } else {
-      Common.closePreviousPopup();
-      Common.PopupCenter(`/joingame/${id}/${gpcode}`, "gamewindow");
+      window.open(`/joingame/${id}/${gpcode}`, '_blank');
     }
   };
 

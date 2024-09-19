@@ -13,6 +13,7 @@ import { GreenGradientButton } from "@/components/UI/Button";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
 import ManageBankCardButton from "@/pages/withdrawal/components/ManageBankCardButton";
+import { media } from "@/theme/breakpoints";
 import MenuItem from "@mui/material/MenuItem";
 import config from "@tgs-web-nx/config";
 import { useWageringPage } from "@tgs-web-nx/core/hooks";
@@ -28,6 +29,15 @@ const TransferHint = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
+`;
+
+const BankAccountWrapper = styled.div`
+  ${media.sm} {
+    display: grid;
+    grid-template-columns: 1fr 15rem;
+    align-items: flex-end;
+    grid-column-gap: 1.2rem;
+  }
 `;
 
 const MainMobile = ({
@@ -78,34 +88,37 @@ const MainMobile = ({
       {/* <WithdrawInfoCard /> */}
 
       {/*管理銀行卡*/}
-      <ItemContainer style={{marginBottom: "1.6rem"}}>
-        <LabelContainer>Select Your Bank Account</LabelContainer>
-        <FormControl variant="outlined">
-          <Select
-            value={selectedCardIndex}
-            onChange={(e) => {
-              const index = e.target.value;
-              handleSelectCardChange(index);
-              // getTransferLimit(cardList[index].paymentchannelid);
-            }}
-          >
+      <BankAccountWrapper>
+        <ItemContainer style={{marginBottom: "1.6rem"}}>
+          <LabelContainer>Select Your Bank Account</LabelContainer>
+          <FormControl variant="outlined">
+            <Select
+              value={selectedCardIndex}
+              onChange={(e) => {
+                const index = e.target.value;
+                handleSelectCardChange(index);
+                // getTransferLimit(cardList[index].paymentchannelid);
+              }}
+            >
 
-            {cardList.map((item, index) => {
-              return (
-                <MenuItem key={index} value={index} id={`optionValue-${index}`}>
-                  {item.banktype} (
-                  {item.detail.address || item.detail.bankAccount || item.detail.phone})
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </ItemContainer>
-      <ItemContainer style={{marginBottom: "1.6rem"}}>
-        <ManageBankCardButtonContainer>
-          <ManageBankCardButton handleManageCardClick={onhandleManageCardClick} />
-        </ManageBankCardButtonContainer>
-      </ItemContainer>
+              {cardList.map((item, index) => {
+                return (
+                  <MenuItem key={index} value={index} id={`optionValue-${index}`}>
+                    {item.banktype} (
+                    {item.detail.address || item.detail.bankAccount || item.detail.phone})
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        </ItemContainer>
+        <ItemContainer style={{marginBottom: "1.6rem"}}>
+          <ManageBankCardButtonContainer>
+            <ManageBankCardButton handleManageCardClick={onhandleManageCardClick} />
+          </ManageBankCardButtonContainer>
+        </ItemContainer>
+      </BankAccountWrapper>
+      
       
 
       {config.features.NewTransferUI && (

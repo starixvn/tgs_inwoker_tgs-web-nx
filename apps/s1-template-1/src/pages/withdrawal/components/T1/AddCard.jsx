@@ -12,7 +12,6 @@ import {
   LabelLargeContainer
 } from "@/components/styled-component/ProfileForms";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
-import FormTitle from "@/pages/withdrawal/components/Main/FormTitle";
 import { MenuItem } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -27,6 +26,11 @@ const ButtonGroups = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+`;
+
+const OptionalText = styled.span`
+  color: #6E7E92;
+  padding-left: 4px;
 `;
 
 const AddCard = ({
@@ -71,7 +75,7 @@ const AddCard = ({
 
   return (
     <Container>
-      {isDesktopSize && <FormTitle title={i18n.t("card.addCard.title")} />}
+      {/* {isDesktopSize && <FormTitle title={i18n.t("card.addCard.title")} />} */}
       <LabelLargeContainer>Add New Account</LabelLargeContainer>
       {!config.features.AddCard_HideCertainField && (
         <ItemContainer>
@@ -220,10 +224,9 @@ const AddCard = ({
                 )}
               {config.features.AddCard_BankBranch && !eWalletCustom && (
                 <ItemContainer>
-                  <LabelContainer>{i18n.t("card.addCard.branch")}</LabelContainer>
+                  <LabelContainer>{i18n.t("card.addCard.branch")}<OptionalText>(optional)</OptionalText></LabelContainer>
                   <FormControl>
-                    <TextField
-                      placeholder={i18n.t("card.addCard.branchPlaceHolder")}
+                    <TextField                     
                       maxLength={255}
                       name="bankBranch"
                       onChange={handleBankBranchChange}
@@ -271,24 +274,26 @@ const AddCard = ({
           depositList[selectedBankTypeIndex].banktype === "EWallet")) && (
         <ItemContainer>
           <LabelContainer>
-            {eWalletCustomIDR
+            {/* {eWalletCustomIDR
               ? i18n.t("idr1.eWalletAccount")
               : eWalletCustom
               ? i18n.t("card.addCard.eWalletAccount")
               : config.features.AddCard_DisplayFPS
               ? i18n.t("hk28.card.addCard.BankAccountName")
-              : i18n.t("card.addCard.BankAccountName")}
+              : i18n.t("card.addCard.BankAccountName")} */}
+              Account Holder Name
           </LabelContainer>
           <FormControl>
             <TextField
               placeholder={
-                eWalletCustomIDR
-                  ? i18n.t("idr1.eWalletAccount")
-                  : eWalletCustom
-                  ? i18n.t("card.addCard.msgEnterEwalletAccount")
-                  : config.features.AddCard_DisplayFPS
-                  ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
-                  : i18n.t("card.addCard.msgEnterBankAccountName")
+                // eWalletCustomIDR
+                //   ? i18n.t("idr1.eWalletAccount")
+                //   : eWalletCustom
+                //   ? i18n.t("card.addCard.msgEnterEwalletAccount")
+                //   : config.features.AddCard_DisplayFPS
+                //   ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
+                //   : i18n.t("card.addCard.msgEnterBankAccountName")
+                "Please enter Bank Account Name"
               }
               name="bankAccountName"
               onChange={handleBankAccountNameChange}
@@ -359,7 +364,7 @@ const AddCard = ({
         <>
           <ItemContainer>
             <LabelContainer>
-              {eWalletCustomIDR
+              {/* {eWalletCustomIDR
                 ? i18n.t("idr1.phone")
                 : eWalletCustom || selectedBankType("Pulsa")
                 ? i18n.t("card.addCard.phone")
@@ -367,20 +372,22 @@ const AddCard = ({
                 ? i18n.t("piso.withdrawalNumber")
                 : config.features.AddCard_DisplayFPS
                 ? i18n.t("hk28.withdrawalNumber")
-                : i18n.t("common.withdrawalNumber")}
+                : i18n.t("common.withdrawalNumber")} */}
+                Bank Card Number
             </LabelContainer>
             <FormControl>
               <TextField
                 placeholder={
-                  eWalletCustomIDR
-                    ? i18n.t("idr1.phone")
-                    : eWalletCustom || selectedBankType("Pulsa")
-                    ? i18n.t("card.addCard.msgEnterPhone")
-                    : config.features.AddCard_DisplayGCash
-                    ? i18n.t("piso.msgEnterWithdrawalNumber")
-                    : config.features.AddCard_DisplayFPS
-                    ? i18n.t("hk28.msgEnterWithdrawalNumber")
-                    : i18n.t("common.msgEnterWithdrawalNumber")
+                  // eWalletCustomIDR
+                  //   ? i18n.t("idr1.phone")
+                  //   : eWalletCustom || selectedBankType("Pulsa")
+                  //   ? i18n.t("card.addCard.msgEnterPhone")
+                  //   : config.features.AddCard_DisplayGCash
+                  //   ? i18n.t("piso.msgEnterWithdrawalNumber")
+                  //   : config.features.AddCard_DisplayFPS
+                  //   ? i18n.t("hk28.msgEnterWithdrawalNumber")
+                  //   : i18n.t("common.msgEnterWithdrawalNumber")
+                  "Please enter Bank Card Number"
                 }
                 maxLength={
                   selectedBankType("ThirdParty") ||

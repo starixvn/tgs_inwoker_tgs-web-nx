@@ -38,7 +38,7 @@ const NoDataText = styled.div`
 `;
 
 const NavCategory = () => {
-  const { activeNavPopupGameType, activeNavPopupGameTypeKey, handleChangeGameType, handleChangeActiveProviderFilterTag } = useHomeGameContext();
+  const { activeNavPopupGameType, activeNavPopupGameTypeKey, handleChangeGameType } = useHomeGameContext();
   const history = useHistory();
   const { navPopupCategoryList } = useGetLobbyCategoryList();
 

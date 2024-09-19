@@ -1,13 +1,18 @@
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ProviderDto } from "@tgs-web-nx/types";
-import { filterTagAll } from "../../constants/filterTagAll";
-import { FilterTag, FilterTagTypeEnum } from "../../types";
+import { FilterTag } from "../../types";
+
+const initProviderFilterTag: string[] = [];
 
 export function useProviderFilter() {
-  const [activeProviderFilterTag, setActiveProviderFilterTag] = useState<string[]>([]);
-  const handleChangeActiveProviderFilterTag = useCallback((newFilterTag: string[]) => {
+  const [activeProviderFilterTag, setActiveProviderFilterTag] = useState<string[]>(initProviderFilterTag);
+  const handleChangeActiveProviderFilterTag = (newFilterTag: string[]) => {
     setActiveProviderFilterTag(newFilterTag);
-  }, []);
+  }
+
+  const handleClearActiveProviderFilterTag = () => {
+    setActiveProviderFilterTag(initProviderFilterTag);
+  }
 
   const [gpCodeList, setGpCodeList] = useState<ProviderDto[]>([]);
   const updateGpCodeList = (providers: ProviderDto[]) => {
@@ -30,6 +35,7 @@ export function useProviderFilter() {
     providerFilterTagList,
     activeProviderFilterTag,
     handleChangeActiveProviderFilterTag,
+    handleClearActiveProviderFilterTag,
     updateGpCodeList,
   };
 }

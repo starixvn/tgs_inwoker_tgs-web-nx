@@ -38,7 +38,7 @@ class GameCacheService {
   }
 
   hasTotalGameCache(keyName: GameTypeEnum | string): boolean {
-    return !!this.gameCacheDictionary[keyName];
+    return !!this.totalGameCacheDictionary[keyName];
   }
 
   getCachedTotal(keyName: GameTypeEnum | string): number {
