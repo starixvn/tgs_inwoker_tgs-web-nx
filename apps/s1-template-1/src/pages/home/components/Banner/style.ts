@@ -38,15 +38,8 @@ export const BannerContainerEmbla = styled.section`
   }
 
   .banner {
-    position: absolute;
-    top: 0px;
-    bottom: 0;
     width: 100%;
-    max-width: 100%;
-
-    ${media.sm} {
-      border-radius: 1.3rem;
-    }
+    height: 100%;
   }
 
   .embla__controls {

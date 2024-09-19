@@ -12,7 +12,7 @@ import { BannerContainerEmbla } from "./style";
 const Banner = () => {
   const [emblaBannerRef, emblaApi] = useEmblaCarousel(
     { loop: true, skipSnaps: true, align: "start" },
-    [Autoplay({ playOnInit: true, delay: 60000 })],
+    [Autoplay({ playOnInit: true, delay: 6000 })],
   );
   const { general } = useGeneralStore();
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
