@@ -60,7 +60,12 @@ const GameCard = ({ gameItem, imageUrl }: GameCardProps) => {
   return (
     <GameCardBg onClick={launchGameHandler}>
       <GameCardContent>
-        <Img src={imageUrl} loader={<LoadingIcon />} unloader={<NoGameIcon gameName={name} />} />
+        <Img
+          className="game-icon"
+          src={imageUrl}
+          loader={<LoadingIcon />}
+          unloader={<NoGameIcon gameName={name} />}
+        />
         <ProviderName>{gpname}</ProviderName>
 
         {isShowGameStatus && (

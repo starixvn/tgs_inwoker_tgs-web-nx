@@ -44,7 +44,7 @@ export const GameCardBg = styled.div`
 
   .game-icon {
     width: 100%;
-    aspect-ratio: ${({ theme }) => theme.gameCardAspectRatio};
+    height: 100%;
   }
 
   ${media.sm} {
