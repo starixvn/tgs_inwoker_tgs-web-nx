@@ -1,3 +1,4 @@
+import { GameTypeEnum } from './../../../../../../apps/tgs-web-t36/src/hooks/home/useGetVendorList';
 import { GameService } from "@tgs-web-nx/core";
 import { GameItem } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
@@ -14,18 +15,17 @@ export function useGetGamesByProvider() {
     error: null,
   });
 
-  const { activeFilterTag, pageIndex, pageSize, searchedGameProviderCode } = useHomeGameContext();
+  const { activeFilterTag, pageIndex, pageSize, searchedGameProviderCode, activeGameType } = useHomeGameContext();
 
   const fetchGameListOfProvider = async (): Promise<GameItem[] | void> => {
     if (
-      gameCacheService.hasCache(searchedGameProviderCode, pageIndex) &&
-      gameCacheService.hasTotalGameCache(searchedGameProviderCode)
+      gameCacheService.hasCache(activeGameType, pageIndex, [searchedGameProviderCode], activeFilterTag) &&
+      gameCacheService.hasTotalGameCache(activeGameType, [searchedGameProviderCode], activeFilterTag)
     ) {
       const gameList = await gameCacheService.getCachedGameList(
-        searchedGameProviderCode,
-        pageIndex,
+        activeGameType, pageIndex, [searchedGameProviderCode], activeFilterTag
       );
-      const totalGame = await gameCacheService.getCachedTotal(searchedGameProviderCode);
+      const totalGame = await gameCacheService.getCachedTotal(activeGameType, [searchedGameProviderCode], activeFilterTag);
       setGameListState((state) => ({ ...state, gameList: gameList, total: totalGame }));
       return gameList;
     }
@@ -53,8 +53,8 @@ export function useGetGamesByProvider() {
         total: response.data[0].total,
       });
 
-      gameCacheService.updateGameCacheDictionary(searchedGameProviderCode, pageIndex, gameList);
-      gameCacheService.updateTotalCacheDictionary(searchedGameProviderCode, response.data[0].total);
+      gameCacheService.updateGameCacheDictionary(activeGameType, pageIndex, [searchedGameProviderCode], activeFilterTag, gameList);
+      gameCacheService.updateTotalCacheDictionary(activeGameType, [searchedGameProviderCode], activeFilterTag, response.data[0].total);
 
       return gameList;
     } catch (error: any) {

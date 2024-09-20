@@ -1,6 +1,5 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameItem } from "@tgs-web-nx/types";
-import { OrderTypeEnum } from "../types";
 
 class GameCacheService {
   private readonly gameCacheDictionary: { [key in string]: GameItem[] };
@@ -17,7 +16,7 @@ class GameCacheService {
     keyName: GameTypeEnum | string,
     pageIndex: number,
     providerList: string[],
-    orderTag: OrderTypeEnum,
+    orderTag: number,
     gameList: GameItem[],
   ): void {
     const key = this.getKey(keyName, pageIndex, providerList, orderTag);
@@ -26,30 +25,30 @@ class GameCacheService {
     this.gameCacheDictionary[key] = gameList;
   }
 
-  hasCache(keyName: GameTypeEnum | string, pageIndex: number, providerList: string[], orderTag: OrderTypeEnum): boolean {
+  hasCache(keyName: GameTypeEnum | string, pageIndex: number, providerList: string[], orderTag: number): boolean {
     return !!this.gameCacheDictionary[this.getKey(keyName, pageIndex, providerList, orderTag)];
   }
 
-  getCachedGameList(keyName: GameTypeEnum | string, pageIndex: number, providerList: string[], orderTag: OrderTypeEnum): Promise<GameItem[]> {
+  getCachedGameList(keyName: GameTypeEnum | string, pageIndex: number, providerList: string[], orderTag: number): Promise<GameItem[]> {
     return Promise.resolve(this.gameCacheDictionary[this.getKey(keyName, pageIndex, providerList, orderTag)] || []);
   }
 
-  updateTotalCacheDictionary(keyName: GameTypeEnum | string, providerList: string[], orderTag: OrderTypeEnum, total: number): void {
+  updateTotalCacheDictionary(keyName: GameTypeEnum | string, providerList: string[], orderTag: number, total: number): void {
     const key = this.getKey(keyName, 0, providerList, orderTag);
     if (this.totalGameCacheDictionary[key]) return;
 
     this.totalGameCacheDictionary[key] = total;
   }
 
-  hasTotalGameCache(keyName: GameTypeEnum | string, providerList: string[], orderTag: OrderTypeEnum,): boolean {
+  hasTotalGameCache(keyName: GameTypeEnum | string, providerList: string[], orderTag: number,): boolean {
     return !!this.totalGameCacheDictionary[this.getKey(keyName, 0, providerList, orderTag)];
   }
 
-  getCachedTotal(keyName: GameTypeEnum | string, providerList: string[], orderTag: OrderTypeEnum): number {
+  getCachedTotal(keyName: GameTypeEnum | string, providerList: string[], orderTag: number): number {
     return this.totalGameCacheDictionary[this.getKey(keyName, 0, providerList, orderTag)] || 0;
   }
 
-  private getKey(keyName: GameTypeEnum | string, pageIndex: number, providerList: string[], orderTag: OrderTypeEnum): string {
+  private getKey(keyName: GameTypeEnum | string, pageIndex: number, providerList: string[], orderTag: number): string {
     return `${keyName}_${pageIndex}_${providerList.join("_")}_${orderTag}`;
   }
 }

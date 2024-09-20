@@ -18,7 +18,8 @@ export function useGetGamesByTag() {
     activeTag,
     pageIndex,
     pageSize,
-    activeProviderFilterTag
+    activeProviderFilterTag,
+    activeGameType,
   } = useHomeGameContext();
 
   const keyName = "GAMES_BY_TAG";
@@ -26,11 +27,11 @@ export function useGetGamesByTag() {
   const fetchGameListOfProvider = async (): Promise<GameItem[] | void> => {
     if (activeTag === TagTypeEnum.NONE) return;
     if (
-      gameCacheService.hasCache(keyName, pageIndex) &&
-      gameCacheService.hasTotalGameCache(keyName)
+      gameCacheService.hasCache(activeGameType, pageIndex, activeProviderFilterTag, 0) &&
+      gameCacheService.hasTotalGameCache(activeGameType, activeProviderFilterTag, 0)
     ) {
-      const gameList = await gameCacheService.getCachedGameList(keyName, pageIndex);
-      const totalGame = await gameCacheService.getCachedTotal(keyName);
+      const gameList = await gameCacheService.getCachedGameList(activeGameType, pageIndex, activeProviderFilterTag, 0);
+      const totalGame = await gameCacheService.getCachedTotal(activeGameType, activeProviderFilterTag, 0);
       setGameListState((state) => ({ ...state, gameList: gameList, total: totalGame }));
       return gameList;
     }
@@ -51,8 +52,8 @@ export function useGetGamesByTag() {
         total: response.data[0].total,
       });
 
-      gameCacheService.updateGameCacheDictionary(keyName, pageIndex, gameList);
-      gameCacheService.updateTotalCacheDictionary(keyName, response.data[0].total);
+      gameCacheService.updateGameCacheDictionary(activeGameType, pageIndex, activeProviderFilterTag, 0, gameList);
+      gameCacheService.updateTotalCacheDictionary(activeGameType, activeProviderFilterTag, 0, response.data[0].total);
 
       return gameList;
     } catch (error: any) {

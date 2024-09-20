@@ -18,7 +18,7 @@ export function useGetNonLobbyCategoryList() {
 
   const fetchGameList = async (): Promise<GameItem[] | void> => {
     if (gameCacheService.hasCache(activeGameType, pageIndex, activeProviderFilterTag, activeFilterTag) &&
-      gameCacheService.hasTotalGameCache(activeGameType, activeProviderFilterTag)
+      gameCacheService.hasTotalGameCache(activeGameType, activeProviderFilterTag, activeFilterTag)
     ) {
       const gameList = await gameCacheService.getCachedGameList(activeGameType, pageIndex, activeProviderFilterTag, activeFilterTag);
       const totalGame = await gameCacheService.getCachedTotal(activeGameType, activeProviderFilterTag, activeFilterTag);
