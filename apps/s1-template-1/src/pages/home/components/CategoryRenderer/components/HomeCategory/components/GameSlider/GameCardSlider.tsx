@@ -31,14 +31,13 @@ const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
     <>
       {data.length === 0 && loadGameList()}
       {data.map((gameItem, index) => {
-        const { id, isactive, gpcode, code } = gameItem;
+        const { id, gpcode, code } = gameItem;
 
         return (
           <div className="embla__slide" key={index}>
             <GameCard
               key={id}
               gameItem={gameItem}
-              isActive={isactive}
               imageUrl={utility.getGameNameUrl(gpcode, code, isDesktopSize)}
             />
           </div>

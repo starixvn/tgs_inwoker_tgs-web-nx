@@ -154,9 +154,11 @@ export const theme = {
 
   providerItemBackground: "#1c2532",
 
-  maintenanceBackground: "rgba(3, 10, 20, 0.5)",
+  gameStatusBackground: "rgba(3, 10, 20, 0.5)",
   maintenanceLabelBackground: "#b0003f",
   maintenanceLabelColor: "#fff",
+  testingLabelBackground: "#0099CA",
+  testingLabelColor: "#fff",
 
   // Game Card
   gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",

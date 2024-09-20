@@ -64,32 +64,42 @@ export const GameCardBg = styled.div`
   }
 `;
 
-export const MaintenanceBg = styled.div`
+export const GameStatusBg = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
   border-radius: 1.2rem;
-  background: ${({ theme }) => theme.maintenanceBackground};
+
   backdrop-filter: blur(2px);
   padding: 0 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
+  background: ${({ theme }) => theme.gameStatusBackground};
 
-  .maintenance-text {
+  &.maintenance .status-text {
+    color: ${({ theme }) => theme.maintenanceLabelColor};
+    background-color: ${({ theme }) => theme.maintenanceLabelBackground};
+  }
+
+  &.testing .status-text {
+    color: ${({ theme }) => theme.testingLabelColor};
+    background-color: ${({ theme }) => theme.testingLabelBackground};
+  }
+
+  .status-text {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 94%;
     height: 3.4rem;
-    background-color: ${({ theme }) => theme.maintenanceLabelBackground};
+
     border-radius: 3rem;
     font-size: 1.3rem;
     font-weight: 700;
-    color: ${({ theme }) => theme.maintenanceLabelColor};
   }
 
   &:hover {

@@ -29,13 +29,12 @@ const GamesWrapper: React.FC<{
           <GameList>
             {hasMappingData &&
               gameList.map((gameItem: any, index: number) => {
-                const { id, isactive, gpcode, code } = gameItem;
+                const { id, gpcode, code } = gameItem;
                 return (
                   <li key={index}>
                     <GameCard
                       key={id}
                       gameItem={gameItem}
-                      isActive={isactive}
                       imageUrl={utility.getGameNameUrl(gpcode, code, isDesktopSize)}
                     />
                   </li>

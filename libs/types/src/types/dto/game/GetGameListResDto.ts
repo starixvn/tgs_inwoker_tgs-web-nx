@@ -12,9 +12,17 @@ export interface GameItem {
   gpcode: string;
   gpname: string;
   status: number;
-  isactive: boolean;
   type: number;
   tag: GameTagItem;
+  gamestatus: GameStatus;
+}
+
+export enum GameStatus {
+  "ACTIVE" = 0,
+  "INACTIVE",
+  "ARCHIVED",
+  "MAINTENANCE",
+  "TESTING",
 }
 
 export interface GetGameListResDto {
@@ -63,5 +71,3 @@ export interface GameTypeDto {
   pageSize: number;
   key: any;
 }
-
-
