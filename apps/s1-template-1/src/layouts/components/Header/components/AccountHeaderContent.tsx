@@ -6,6 +6,7 @@ import {
   AccountInfoIcon,
   DepositIcon,
   HistoryIcon,
+  InboxIcon,
   LogoutIcon,
   TransactionIcon,
   WithdrawIcon,
@@ -233,7 +234,33 @@ const AccountHeaderContent = () => {
               top: "2px",
             }}
           ></AccountInfoIcon>
-          {i18n.t("common.accountinfo")}
+         {i18n.t("deposit.details.account")}
+        </MenuItem>
+        <MenuItem onClick={handleClickLogout}>
+          <InboxIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "4px",
+            }}
+          ></InboxIcon>
+          {i18n.t("wap.main.account.inbox")}
+        </MenuItem>
+        <MenuItem onClick={handleClickLogout}>
+          <InboxIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "4px",
+            }}
+          ></InboxIcon>
+          {i18n.t("common.contact")}
         </MenuItem>
         <MenuItem onClick={handleClickLogout}>
           <LogoutIcon

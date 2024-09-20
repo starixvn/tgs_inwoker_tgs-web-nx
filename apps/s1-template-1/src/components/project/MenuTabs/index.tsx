@@ -1,12 +1,11 @@
 import {
-  ContactIcon,
+  AccountInfoIcon,
   DepositIcon,
-  InoboxIcon,
-  ProfileIcon,
-  ReportIcon,
-  TransferIcon,
-  WithdrawIcon,
-} from "@/components/account/Icons";
+  HistoryIcon,
+  InboxIcon,
+  TransactionIcon,
+  WithdrawIcon
+} from "@/components/UI/CustomizeIcon";
 import { theme } from "@/theme";
 import { NavCardKey } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
@@ -19,6 +18,8 @@ type MenuItem = {
   router: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   icon: any;
+  viewBox?: string;
+  fontSizeIcon?: string;
 };
 
 const TabContainer = styled.div`
@@ -35,19 +36,22 @@ const Tab = styled.div<{ $isActived: boolean }>`
   align-items: center;
   color: ${({ theme, $isActived }) =>
     $isActived ? `${theme.tabActiveTextColor}` : `${theme.tabTextColor}`};
-  padding: 8px 14px;
+  padding: 1rem;
   border-radius: 8px;
   border: ${({ theme, $isActived }) =>
     $isActived ? `1px solid ${theme.borderTabActive}` : `1px solid ${theme.borderTab}`};
-  gap: 8px;
+  gap: 4px;
   margin-bottom: 16px;
   cursor: pointer;
+  justify-content: flex-end;
   & span {
     font-size: 14px;
     font-weight: 590;
     line-height: 17px;
     letter-spacing: 0em;
     text-align: center;
+    color: ${({ theme, $isActived }) =>
+    $isActived ? `1px solid ${theme.tabActiveTextColor}` : `1px solid ${theme.tabTextColor}`};
     
   }
   & svg {
@@ -60,23 +64,22 @@ const MenuTabs = () => {
   const history = useHistory();
   const location = useLocation();
   const accountMenuList: MenuItem[] = [
-    {
-      key: NavCardKey.PROFILE,
-      label: i18n.t("deposit.details.account"),
-      router: "/profile",
-      icon: ProfileIcon,
-    },
+    
     {
       key: NavCardKey.DEPOSIT,
       label: i18n.t("common.deposit"),
       router: "/deposit",
       icon: DepositIcon,
+      viewBox: "0 0 18 20",
+      fontSizeIcon: "2.4rem",
     },
     {
       key: NavCardKey.WITHDRAW,
       label: i18n.t("common.withdrawal"),
       router: "/withdrawal",
       icon: WithdrawIcon,
+      viewBox: "0 0 18 20",
+      fontSizeIcon: "2.4rem",
     },
     //TODO: remove for phase 1
     // {
@@ -87,21 +90,36 @@ const MenuTabs = () => {
     // },
     {
       key: NavCardKey.TRANSFER,
-      label: i18n.t("common.transfer"),
+      label: "Transactions",
       router: "/transfer",
-      icon: TransferIcon,
+      icon: TransactionIcon,
+      viewBox: "0 0 18 14",
+      fontSizeIcon: "2.6rem",
     },
     {
       key: NavCardKey.REPORT,
-      label: i18n.t("report.title"),
+      label: "Bet History",
       router: "/report",
-      icon: ReportIcon,
+      icon: HistoryIcon,
+      viewBox: "0 0 14 16",
+      fontSizeIcon: "2.3rem",
+    },
+    {
+      key: NavCardKey.PROFILE,
+      label: i18n.t("deposit.details.account"),
+      router: "/profile",
+      icon: AccountInfoIcon,
+      viewBox: "0 0 12 15",
+      fontSizeIcon: "2.2rem",
+
     },
     {
       key: NavCardKey.INBOX,
       label: i18n.t("wap.main.account.inbox"),
       router: "/inbox",
-      icon: InoboxIcon,
+      icon: InboxIcon,
+      viewBox: "0 0 16 10",
+      fontSizeIcon: "2.2rem",
     },
     //TODO: remove for phase 1
     // {
@@ -114,7 +132,9 @@ const MenuTabs = () => {
       key: NavCardKey.CONTACT_US,
       label: i18n.t("common.contact"),
       router: "/support",
-      icon: ContactIcon,
+      icon: InboxIcon,
+      viewBox: "0 0 16 10",
+      fontSizeIcon: "2.2rem",
     },
     //TODO: remove for phase 1
     // {
@@ -136,7 +156,7 @@ const MenuTabs = () => {
               history.push(item.router);
             }}
           >
-            <item.icon $color={isActived ? theme.text : theme.gray50} />
+            <item.icon  sx={{ fontSize: item.fontSizeIcon, color: theme.text, textShadow: "0 0 0.4rem rgba(255, 255, 255, 0.50)"}} viewBox={item.viewBox} />
             <span>{item.label}</span>
           </Tab>
         );
