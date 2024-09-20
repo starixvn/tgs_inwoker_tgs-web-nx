@@ -1,8 +1,10 @@
+import AppearSensor from "@/components/project/AppearSensor";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameItem, GameStatus } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
+import { useEffect, useState } from "react";
 import { Img } from "react-image";
 
 import PlayIcon from "../PlayIcon";
@@ -58,30 +60,39 @@ const GameCard = ({ gameItem, imageUrl }: GameCardProps) => {
   };
 
   return (
-    <GameCardBg onClick={launchGameHandler}>
-      <GameCardContent>
-        <Img
-          className="game-icon"
-          src={imageUrl}
-          loader={<LoadingIcon />}
-          unloader={<NoGameIcon gameName={name} />}
-        />
-        <ProviderName>{gpname}</ProviderName>
+    <AppearSensor>
+      {
+        // @ts-ignore
+        ({ hasBeenVisible }) => (
+          <GameCardBg onClick={launchGameHandler}>
+            <GameCardContent>
+              {hasBeenVisible && (
+                <Img
+                  className="game-icon"
+                  src={imageUrl}
+                  loader={<LoadingIcon />}
+                  unloader={<NoGameIcon gameName={name} />}
+                />
+              )}
+              <ProviderName>{gpname}</ProviderName>
 
-        {isShowGameStatus && (
-          <GameStatusBg className={gameStatusClassName}>
-            <div className="status-text">{gameStatus}</div>
-          </GameStatusBg>
-        )}
-      </GameCardContent>
+              {isShowGameStatus && (
+                <GameStatusBg className={gameStatusClassName}>
+                  <div className="status-text">{gameStatus}</div>
+                </GameStatusBg>
+              )}
+            </GameCardContent>
 
-      {isDesktopSize && isActive && (
-        <CardHoverBg onClick={launchGameHandler}>
-          {name && <GameName>{name}</GameName>}
-          <PlayIcon />
-        </CardHoverBg>
-      )}
-    </GameCardBg>
+            {isDesktopSize && isActive && (
+              <CardHoverBg onClick={launchGameHandler}>
+                {name && <GameName>{name}</GameName>}
+                <PlayIcon />
+              </CardHoverBg>
+            )}
+          </GameCardBg>
+        )
+      }
+    </AppearSensor>
   );
 };
 

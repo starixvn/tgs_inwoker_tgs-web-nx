@@ -11,46 +11,25 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    height: 100vh;
+    overflow: hidden;
     margin: 0;
     background: ${({ theme }) => theme.body};
     background-size: 100%;
     font-family: Inter, Arial, sans-serif;
     font-size: 1rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    scroll-behavior: smooth;
+
     padding-right: 0 !important;
   }
 
-  .headerSubmenu .slick-track,
-  .headerSubmenu .slick-slider .slick-list {
-    height: auto;
+  #root {
+    height: 100%;
+    overflow: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
   }
 
-  .headerSubmenu .slick-slide > div {
-    display: flex;
-    align-items: center;
-  }
-
-  .headerSubmenu .slick-prev {
-    left: 0;
-    top: 90px;
-  }
-
-  .headerSubmenu .slick-next {
-    right: 0;
-    top: 90px;
-  }
-  .headerSubmenu.slick-slider .slick-track,
-  .headerSubmenu.slick-slider .slick-list {
-    margin-left: 25px;
-    margin-right: 35px;
-  }
-
-  .headerSubmenu .slick-prev::before,
-  .headerSubmenu .slick-next::before {
-    color: ${({ theme }) => theme.primary};
-  }
 
   /* Custom scrollbar */
 
