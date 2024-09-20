@@ -1,25 +1,29 @@
-import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import SuccessPNG from "@/assets/t28/images/withdraw/icon-check.svg";
-import { Button as CustomButton } from "@/components/UI/Button";
+import Icon from "@/components/project/Icon";
 import {
   Container,
-  ImgSuccess,
-  SameLine,
-  SuccessMessage,
 } from "@/components/styled-component/WithdrawV2/Success";
+import { i18n } from "@tgs-web-nx/utils";
+
+import { GreenGradientButton, LightBlueGradientButton } from "@/components/UI/Button";
+
+import {
+  ButtonContainer,
+  SubTitle, SuccessImg
+} from "@/components/styled-component/WithdrawV2/AddCardSuccess";
 
 const Success = ({ verified, handleConfirmClick, handleVerifyName }) => {
   return (
     <Container>
-      <ImgSuccess src={SuccessPNG} />
-      <SuccessMessage>{i18n.t("withdrawal.msgSuccess")}</SuccessMessage>
-      <SameLine>
-        <CustomButton onClick={handleConfirmClick}>{i18n.t("common.confirm")}</CustomButton>
+      <SuccessImg>
+        <Icon iconUrl="/assets/images/transfer/icon-successful.svg" width={"138px"} height={"138px"} />
+      </SuccessImg>
+      <SubTitle>{i18n.t("withdrawal.msgSuccess")}</SubTitle>
+      <ButtonContainer>
+        <LightBlueGradientButton fullWidth onClick={handleConfirmClick}>{i18n.t("common.confirm")}</LightBlueGradientButton>
         {!verified && (
-          <CustomButton onClick={handleVerifyName}>{i18n.t("verified.goVerify")}</CustomButton>
+          <GreenGradientButton fullWidth onClick={handleVerifyName}>{i18n.t("verified.goVerify")}</GreenGradientButton>
         )}
-      </SameLine>
+      </ButtonContainer>
     </Container>
   );
 };

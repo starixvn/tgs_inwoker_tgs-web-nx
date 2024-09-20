@@ -9,7 +9,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     fontFamily: "inherit",
   },
   input: {
-    padding: "0 1.2rem",
+    padding: "0 1.2rem !important",
     color: theme.palette.text.primary,
     fontSize: "1.4rem",
     height: "4.8rem",
