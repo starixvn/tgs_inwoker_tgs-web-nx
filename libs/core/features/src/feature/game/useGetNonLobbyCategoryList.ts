@@ -17,12 +17,11 @@ export function useGetNonLobbyCategoryList() {
   const { activeGameType, activeProviderFilterTag, activeFilterTag, pageIndex, pageSize } = useHomeGameContext();
 
   const fetchGameList = async (): Promise<GameItem[] | void> => {
-    if (
-      gameCacheService.hasCache(activeGameType, pageIndex) &&
-      gameCacheService.hasTotalGameCache(activeGameType)
+    if (gameCacheService.hasCache(activeGameType, pageIndex, activeProviderFilterTag, activeFilterTag) &&
+      gameCacheService.hasTotalGameCache(activeGameType, activeProviderFilterTag)
     ) {
-      const gameList = await gameCacheService.getCachedGameList(activeGameType, pageIndex);
-      const totalGame = await gameCacheService.getCachedTotal(activeGameType);
+      const gameList = await gameCacheService.getCachedGameList(activeGameType, pageIndex, activeProviderFilterTag, activeFilterTag);
+      const totalGame = await gameCacheService.getCachedTotal(activeGameType, activeProviderFilterTag, activeFilterTag);
       setGameListState((state) => ({ ...state, gameList: gameList, total: totalGame }));
       return gameList;
     }
@@ -50,8 +49,8 @@ export function useGetNonLobbyCategoryList() {
         total: response.data[0].total,
       });
 
-      gameCacheService.updateGameCacheDictionary(activeGameType, pageIndex, gameList);
-      gameCacheService.updateTotalCacheDictionary(activeGameType, response.data[0].total);
+      gameCacheService.updateGameCacheDictionary(activeGameType, pageIndex, activeProviderFilterTag, activeFilterTag, gameList);
+      gameCacheService.updateTotalCacheDictionary(activeGameType, activeProviderFilterTag, activeFilterTag, response.data[0].total);
 
       return gameList;
     } catch (error: any) {
