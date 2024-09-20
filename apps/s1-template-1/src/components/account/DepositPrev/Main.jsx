@@ -333,23 +333,17 @@ class Main extends Component {
                           </LabelContainer>
                           <FormControl variant="outlined">
                             <Select
-                              native
                               id="customSelect"
                               value={this.props.selectedBankCard}
                               onChange={(e) => this.props.handleSelectAccountChange(e)}
                             >
-                              <option value="" disabled>
-                                {config.features.Deposit_OriginAccount
-                                  ? i18n.t("idr1.pleaseEnterAccountName")
-                                  : i18n.t("common.pleaseEnterAccountName")}
-                              </option>
                               {this.props.wallet.bankCardList.map((item, index) => {
                                 const detail = item.detail;
                                 return (
-                                  <option value={item.id} key={index}>
+                                  <MenuItem value={item.id} key={index}>
                                     {detail.bankAccount || detail.address || detail.phone} (
                                     {item.banktype})
-                                  </option>
+                                  </MenuItem>
                                 );
                               })}
                             </Select>
