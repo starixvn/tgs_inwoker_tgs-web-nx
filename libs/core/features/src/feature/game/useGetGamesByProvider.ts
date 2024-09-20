@@ -1,4 +1,3 @@
-import { GameTypeEnum } from './../../../../../../apps/tgs-web-t36/src/hooks/home/useGetVendorList';
 import { GameService } from "@tgs-web-nx/core";
 import { GameItem } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
