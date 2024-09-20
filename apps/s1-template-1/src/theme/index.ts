@@ -197,4 +197,13 @@ export const theme = {
   mainContentWidth: "108.8rem",
   mainContentBorderColor: "#161F2C",
   mainContentBackgroundColor: "#19212C",
+
+  // Toast
+  toastErrorBorderColor: "#F90B44",
+  toastSuccessBorderColor: "#E2FE26",
+  toastWarningBorderColor: "FFC700",
+  toastBackgroundColor: "#212A39",
+  toastTextColor: "#878EA1",
+  toastFontzise: "1.3rem",
+
 };

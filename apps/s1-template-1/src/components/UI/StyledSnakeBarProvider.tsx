@@ -1,10 +1,9 @@
-import React from "react";
-import { ClassNameMap, CombinedClassKey, SnackbarProvider } from "notistack";
-import styled from "styled-components";
-import { makeStyles } from "@mui/styles";
-import SuccessPNG from "@/assets/t18/images/success.png";
-import DangerPNG from "@/assets/t18/images/warning.png";
 import InfoPNG from "@/assets/t18/images/info.png";
+import { theme } from "@/theme";
+import { SnackbarProvider } from "notistack";
+import React from "react";
+import styled from "styled-components";
+import { ErrorIcon, SuccessIcon, WarningIcon } from "./CustomizeIcon";
 
 const Dismiss = styled.a`
   margin-right: 12px;
@@ -18,6 +17,23 @@ const Icon = styled.img`
   width: 24px;
   margin-right: 12px;
 `;
+
+const CustomizedSnackbarProvider = styled(SnackbarProvider)`
+  &.notistack-MuiContent {
+    border-radius: 1.2rem;
+    background-color: ${({ theme }) => theme.toastBackgroundColor};
+  }
+  &.notistack-MuiContent-error {
+    border: 2px solid #F90B44;    
+    
+  }
+  #notistack-snackbar {
+    font-size: ${({ theme }) => theme.toastFontzise};
+    font-weight: 500;
+    gap: .8rem;
+  }
+`;
+
 type Props = {
   children: React.ReactNode;
 };
@@ -28,33 +44,21 @@ const onClickDismiss = (key: string | number) => () => {
   notistackRef.current.closeSnackbar(key);
 };
 
-const useStyles = makeStyles((theme) => ({
-  success: { backgroundColor: "#fff", color: "#000" },
-  error: { backgroundColor: "#fff", color: "#000" },
-  warning: { backgroundColor: "#fff", color: "#000" },
-  info: { backgroundColor: "#fff", color: "#000" },
-}));
+
 
 const StyledSnakeBarProvider = ({ children }: Props) => {
-  const classes = useStyles();
+ 
 
   return (
-    <SnackbarProvider
-      classes={
-        {
-          variantSuccess: classes.success,
-          variantError: classes.error,
-          variantWarning: classes.warning,
-          variantInfo: classes.info,
-        } as Partial<ClassNameMap<CombinedClassKey>>
-      }
+    <CustomizedSnackbarProvider
+      
       iconVariant={{
-        success: <Icon src={SuccessPNG}></Icon>,
-        error: <Icon src={DangerPNG}></Icon>,
-        warning: <Icon src={DangerPNG}></Icon>,
+        success: <SuccessIcon sx={{color: theme.toastSuccessBorderColor, fontSize: "2.8rem"}} viewBox="0 0 18 18"></SuccessIcon>,
+        error: <ErrorIcon sx={{color: theme.toastErrorBorderColor, fontSize: "2.8rem"}} viewBox="0 0 18 18"></ErrorIcon>,
+        warning: <WarningIcon sx={{color: theme.toastWarningBorderColor, fontSize: "2.8rem"}} viewBox="0 0 18 18"></WarningIcon>,
         info: <Icon src={InfoPNG}></Icon>,
       }}
-      action={(key: string | number) => <Dismiss onClick={onClickDismiss(key)}>x</Dismiss>}
+      action={""}
       maxSnack={3}
       autoHideDuration={3000}
       anchorOrigin={{
@@ -64,7 +68,7 @@ const StyledSnakeBarProvider = ({ children }: Props) => {
       ref={notistackRef}
     >
       {children}
-    </SnackbarProvider>
+    </CustomizedSnackbarProvider>
   );
 };
 
