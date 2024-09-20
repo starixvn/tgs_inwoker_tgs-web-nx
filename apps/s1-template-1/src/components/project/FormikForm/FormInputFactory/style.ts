@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 export const CustomTextField = styled(TextField)`
   &.username,
-  &.password {
+  &.password,
+  &.email {
     padding-left: 2.4rem;
 
     &:before {
@@ -22,5 +23,9 @@ export const CustomTextField = styled(TextField)`
 
   &.password:before {
     background: url("/assets/images/auth/icon-password.svg");
+  }
+
+  &.email:before {
+    background: url("/assets/images/auth/icon-email.svg");
   }
 `;

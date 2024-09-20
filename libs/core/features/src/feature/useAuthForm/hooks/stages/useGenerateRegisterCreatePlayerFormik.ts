@@ -33,7 +33,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
       },
       {
         label: i18n.t("common.password"),
-        name: "pwd",
+        name: "password",
         type: FormInputTypeEnum.PASSWORD,
         initialValue: "",
         validationSchema: Yup.string()
@@ -43,15 +43,17 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
           }),
       },
       {
-        label: i18n.t("wap.register.confirmPassword"),
-        name: "confirmPassword",
-        type: FormInputTypeEnum.PASSWORD,
+        label: i18n.t("common.email"),
+        name: "email",
         initialValue: "",
+        type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
-          .required()
-          //@ts-ignore
-          .oneOf([Yup.ref("pwd"), null], "Passwords must match"),
+          .required("Email is required")
+          .matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, {
+            message: i18n.t("common.msgInvalidEmail"),
+          }),
       },
+
       // (() => {
       //   //for MOVN2 customization
       //   if (config.features.isRegisterRealNameRequired) {
