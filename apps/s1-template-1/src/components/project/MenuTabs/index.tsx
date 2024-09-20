@@ -156,7 +156,7 @@ const MenuTabs = () => {
               history.push(item.router);
             }}
           >
-            <item.icon  sx={{ fontSize: item.fontSizeIcon, color: theme.text, textShadow: "0 0 0.4rem rgba(255, 255, 255, 0.50)"}} viewBox={item.viewBox} />
+            <item.icon  sx={{ fontSize: item.fontSizeIcon, color: theme.text,  filter: "drop-shadow(0 0 0.4rem rgba(255, 255, 255, 0.50))"}} viewBox={item.viewBox} />
             <span>{item.label}</span>
           </Tab>
         );
