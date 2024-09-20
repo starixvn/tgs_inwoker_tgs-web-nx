@@ -4,7 +4,12 @@ import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 
-import { InvitationType, useAuthDialog, useConfirmAdult, useGenerateRegisterCreatePlayerFormik } from "../../..";
+import {
+  InvitationType,
+  useAuthDialog,
+  useConfirmAdult,
+  useGenerateRegisterCreatePlayerFormik,
+} from "../../..";
 
 export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,13 +29,17 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
 
     try {
       setIsLoading(true);
+      console.log("values from register", values);
+
       const username = values.username as string;
+      const email = values.email as string;
       const userType = values.userType as InvitationType;
       const promoteCode = values.promoteCode as string;
 
       const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
         username,
-        pwd: values.pwd as string,
+        email,
+        pwd: values.password as string,
         upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
         invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,
         //@ts-ignore

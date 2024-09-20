@@ -68,10 +68,12 @@ export function useCreatePlayerStageWithSMSVerify() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const createPlayer = async (values: any) => {
     const username = values.username as string;
+    const email = values.email as string;
     const userType = values.userType as InvitationType;
     const promoteCode = values.promoteCode as string;
     const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
       username,
+      email,
       pwd: values.pwd as string,
       upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
       invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,

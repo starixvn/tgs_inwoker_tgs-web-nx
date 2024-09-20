@@ -23,6 +23,7 @@ const CreatePlayerStage = () => {
     isConfirmedAdult,
     handleClickConfirmAdult,
   } = useCreatePlayerStage();
+
   return (
     <FormikForm
       formInputList={formInputConfigList}
