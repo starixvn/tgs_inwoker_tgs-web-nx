@@ -1,9 +1,4 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import styled from "styled-components";
 import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
 import {
   generalAction,
   RESET_WALLETRESULT,
@@ -11,14 +6,19 @@ import {
   walletAction,
   WalletService,
 } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import styled from "styled-components";
 import Main from "./Main";
 
-import "react-lazy-load-image-component/src/effects/blur.css";
 import Loading from "@/components/UI/Loading";
-import DepositNotificationDialog from "@/pages/deposit/components/components/DepositNotificationDialog";
-import WalletMessagePopupDialog from "@/pages/deposit/components/components/WalletMessagePopupDialog";
-import PaymentTabsHeader from "@/pages/deposit/components/components/PaymentTabsHeader";
 import DepositAddCard from "@/pages/deposit/components/components/DepositAddCard";
+import DepositNotificationDialog from "@/pages/deposit/components/components/DepositNotificationDialog";
+import PaymentTabsHeader from "@/pages/deposit/components/components/PaymentTabsHeader";
+import WalletMessagePopupDialog from "@/pages/deposit/components/components/WalletMessagePopupDialog";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Container = styled.div`
   position: relative;
@@ -174,7 +174,8 @@ class DepositPrev extends Component {
               url = response.data.paymenturl;
             }
             if (url !== "") {
-              window.open(url, "_blank");
+              const expirationTime = response.data.expirationtime;
+              this.handleOpenDepositPopup(url, expirationTime);
             }
 
             this.props.alert("", i18n.t("deposit.completeDeposit"));
@@ -277,6 +278,18 @@ class DepositPrev extends Component {
         this.handleBankCardChange({ target: { value: defaultCard[0].id } });
       }
     }
+  }
+
+  handleOpenDepositPopup(paymenturl,expirationtime = "") {
+    const expirationTimeStamp = Date.now() + Number.parseInt(expirationtime) * 60 * 1000;
+    console.log(Date.now());
+    console.log(expirationTimeStamp);
+    const queryParams = new URLSearchParams({
+      paymenturl,
+      expirationTimeStamp
+    }).toString();
+    const newTabUrl = `${window.location.origin}/deposit/popup?${queryParams}`;
+    window.open(newTabUrl, '_blank');
   }
 
   handleRestartClick = async (e) => {

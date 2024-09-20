@@ -1,35 +1,37 @@
-import React from "react";
-import config from "@tgs-web-nx/config";
-import { RouteType } from "@tgs-web-nx/types";
-import { ProfilePathEnum } from "@tgs-web-nx/core";
+import AuthDialogLayout from "@/layouts/AuthDialogLayout";
+import DefaultLayout from "@/layouts/DefaultLayout";
+import DialogLayout from "@/layouts/DialogLayout";
+import IframeLayout from "@/layouts/IframeLayout";
+import MaintenanceLayout from "@/layouts/MaintenanceLayout";
+import VipLayout from "@/layouts/VipLayout";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
-import MessageCenterPage from "@/pages/messageCenter/MessageCenterPage";
-import LoginPage from "@/pages/login/LoginPage";
+import { DepositPopupPage } from "@/pages/depositPopup/DepositPopupPage";
+import DepositStatusIframe from "@/pages/depositPopup/DepositStatusIframe";
+import Faq from "@/pages/Faq";
+import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
 import MainPage from "@/pages/home/HomePage";
+import InboxPage from "@/pages/inbox/InboxPage";
+import JoinGamePage from "@/pages/joinGame/JoinGamePage";
+import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
+import LoginPage from "@/pages/login/LoginPage";
 import MaintenancePage from "@/pages/MaintenancePage";
+import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import ProfilePage from "@/pages/profile/ProfilePage";
+import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
 import PromotionPage from "@/pages/promotion/PromotionPage";
 import RegisterPage from "@/pages/register/RegisterPage";
 import ReportPage from "@/pages/report/ReportPage";
+import Responsiblegaming from "@/pages/Responsiblegaming";
+import TermsAndConditions from "@/pages/TermsAndConditions";
 import TransferPage from "@/pages/transfer/TransferPage";
 import VIPPage from "@/pages/vip/VipPage";
 import WithdrawalPage from "@/pages/withdrawal/WithdrawalPage";
-import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
-import DefaultLayout from "@/layouts/DefaultLayout";
-import ForgotPasswordPage from "@/pages/forgotPassword/ForgotPasswordPage";
-import DialogLayout from "@/layouts/DialogLayout";
-import AuthDialogLayout from "@/layouts/AuthDialogLayout";
-import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
-import JoinGamePage from "@/pages/joinGame/JoinGamePage";
-import InboxPage from "@/pages/inbox/InboxPage";
-import Faq from "@/pages/Faq";
-import PrivacyPolicy from "@/pages/PrivacyPolicy";
-import TermsAndConditions from "@/pages/TermsAndConditions";
-import Responsiblegaming from "@/pages/Responsiblegaming";
-import MaintenanceLayout from "@/layouts/MaintenanceLayout";
-import VipLayout from "@/layouts/VipLayout";
+import config from "@tgs-web-nx/config";
+import { ProfilePathEnum } from "@tgs-web-nx/core";
+import { RouteType } from "@tgs-web-nx/types";
+import React from "react";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -50,6 +52,16 @@ const routes: RouteType[] = [
     path: "/account",
     component: AccountPage,
     layout: DefaultLayout,
+  },
+  {
+    path: "/deposit/popup",
+    component: DepositPopupPage,
+    layout: DialogLayout
+  },
+  {
+    path: "/deposit/status",
+    component: DepositStatusIframe,
+    layout: IframeLayout
   },
   {
     path: "/deposit",
