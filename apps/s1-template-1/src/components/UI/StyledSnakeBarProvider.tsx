@@ -53,9 +53,9 @@ const StyledSnakeBarProvider = ({ children }: Props) => {
     <CustomizedSnackbarProvider
       
       iconVariant={{
-        success: <SuccessIcon sx={{color: theme.toastSuccessBorderColor, fontSize: "2.8rem"}} viewBox="0 0 18 18"></SuccessIcon>,
-        error: <ErrorIcon sx={{color: theme.toastErrorBorderColor, fontSize: "2.8rem"}} viewBox="0 0 18 18"></ErrorIcon>,
-        warning: <WarningIcon sx={{color: theme.toastWarningBorderColor, fontSize: "2.8rem"}} viewBox="0 0 18 18"></WarningIcon>,
+        success: <SuccessIcon sx={{color: theme.toastSuccessBorderColor, fontSize: "2.2rem"}} viewBox="0 0 14 14"></SuccessIcon>,
+        error: <ErrorIcon sx={{color: theme.toastErrorBorderColor, fontSize: "2.2rem"}} viewBox="0 0 14 14"></ErrorIcon>,
+        warning: <WarningIcon sx={{color: theme.toastWarningBorderColor, fontSize: "2.2rem"}} viewBox="0 0 14 14"></WarningIcon>,
         info: <Icon src={InfoPNG}></Icon>,
       }}
       action={""}
