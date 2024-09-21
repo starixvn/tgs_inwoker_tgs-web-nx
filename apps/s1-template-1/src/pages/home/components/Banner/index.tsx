@@ -34,13 +34,12 @@ const Banner = () => {
       <div className="embla__viewport" ref={emblaBannerRef}>
         <div className="embla__container">
           {general.banner.map((banner, index) => (
-            <AppearSensor>
+            <AppearSensor key={index}>
               {
                 // @ts-ignore
                 ({ hasBeenVisible }) => (
                   <div
                     className="embla__slide"
-                    key={index}
                     onClick={() => {
                       launchGame(banner.navurl);
                     }}

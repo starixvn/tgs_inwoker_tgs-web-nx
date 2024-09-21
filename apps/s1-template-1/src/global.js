@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
     height: 100vh;
     overflow: hidden;
     margin: 0;
-    background: ${({ theme }) => theme.body};
+    background: ${({ theme }) => theme.mainBackground};
     background-size: 100%;
     font-family: Inter, sans-serif;
     font-size: 1rem;

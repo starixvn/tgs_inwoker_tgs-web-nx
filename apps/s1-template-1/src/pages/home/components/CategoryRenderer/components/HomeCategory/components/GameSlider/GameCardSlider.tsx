@@ -21,8 +21,9 @@ const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
   const { data } = props;
   const { isDesktopSize } = useRwd();
 
-  const gameListTmp = Array.from(Array(9).keys());
-  const loadGameList = () => {
+  const createSkeletonGames = () => {
+    const skeletonGameNumber = 9;
+    const gameListTmp = Array.from(Array(skeletonGameNumber).keys());
     return gameListTmp.map((index) => {
       return <GameCardBg key={index} />;
     });
@@ -30,7 +31,7 @@ const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
 
   return (
     <>
-      {data.length === 0 && loadGameList()}
+      {data.length === 0 && createSkeletonGames()}
       {data.map((gameItem, index) => {
         const { id, gpcode, code } = gameItem;
 

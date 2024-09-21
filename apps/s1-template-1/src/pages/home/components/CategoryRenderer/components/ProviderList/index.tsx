@@ -1,3 +1,4 @@
+import AppearSensor from "@/components/project/AppearSensor";
 import { GameTypeEnum, media } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
 import { ProviderDto } from "@tgs-web-nx/types";
@@ -28,7 +29,7 @@ const ProviderItem = styled.div`
 
 const ProviderList: React.FC<{ providerList: ProviderDto[] }> = ({ providerList }) => {
   const history = useHistory();
-  const { handleChangeGameType} = useHomeGameContext();
+  const { handleChangeGameType } = useHomeGameContext();
 
   return providerList.map((provider, index) => {
     const providerName = provider.code.toLowerCase();
@@ -40,15 +41,24 @@ const ProviderList: React.FC<{ providerList: ProviderDto[] }> = ({ providerList 
     };
 
     return (
-      <div className="embla__slide " key={index}>
-        <ProviderItem onClick={() => navigateTo(provider.route)}>
-          <img
-            src={utility.imagePathGenerator(`provider/dark/${providerName}.webp`)}
-            alt={providerName}
-            title={providerName}
-          />
-        </ProviderItem>
-      </div>
+      <AppearSensor key={index}>
+        {
+          // @ts-ignore
+          ({ hasBeenVisible }) => (
+            <div className="embla__slide">
+              <ProviderItem onClick={() => navigateTo(provider.route)}>
+                {hasBeenVisible && (
+                  <img
+                    src={utility.imagePathGenerator(`provider/dark/${providerName}.webp`)}
+                    alt={providerName}
+                    title={providerName}
+                  />
+                )}
+              </ProviderItem>
+            </div>
+          )
+        }
+      </AppearSensor>
     );
   });
 };

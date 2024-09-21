@@ -9,6 +9,7 @@ import React from "react";
 
 import { GameTypeTitle, Group } from "../../style";
 import RecentBigWinsItem from "./RecentBigWinsItem";
+import RecentBigWinSKeleton from "./RecentBigWinSKeleton";
 
 type BigWinType = {
   data: RecentBigWinItem[];
@@ -17,11 +18,12 @@ type BigWinType = {
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
   const emblaPlugins: any = [
-    AutoScroll({ playOnInit: true, stopOnInteraction: false, stopOnMouseEnter: true, speed: 0.5 }),
+    AutoScroll({ playOnInit: true, stopOnInteraction: false, stopOnMouseEnter: true, speed: 0 }),
   ];
   const { account } = useAccountStore();
   const isLogin = !!account.token;
   const { goToLogin } = useAuth();
+  const hasData = recentBigWins.data.length > 0;
 
   const launchGame = (gameId: any, gameProviderCode: any) => {
     if (!isLogin) {
@@ -32,6 +34,14 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
     }
   };
 
+  const createSkeletonGames = () => {
+    const skeletonGameNumber = 19;
+    const gameListTmp = Array.from(Array(skeletonGameNumber).keys());
+    return gameListTmp.map((index) => {
+      return <RecentBigWinSKeleton key={index} />;
+    });
+  };
+
   return (
     <Group>
       <GameTypeTitle>
@@ -39,7 +49,8 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
         {i18n.t("web.home.Section1RecentBigWins")}
       </GameTypeTitle>
       <EmblaCarousel options={emblaOptions} plugins={emblaPlugins}>
-        {recentBigWins.data.length > 0 &&
+        {!hasData && createSkeletonGames()}
+        {hasData &&
           recentBigWins.data.map((item, index) => {
             return <RecentBigWinsItem key={index} item={item} launchGame={launchGame} />;
           })}

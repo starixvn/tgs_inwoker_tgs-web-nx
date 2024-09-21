@@ -60,8 +60,10 @@ export const GameIcon = styled.div`
 export const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items: stretch;
   gap: 0.8rem;
+  text-align: center;
   font-size: 1.3rem;
   font-weight: 500;
 `;
@@ -71,13 +73,11 @@ export const RecentBigWinsSlide = styled.div`
 `;
 
 export const GameName = styled.div`
-  text-align: center;
   color: ${({ theme }) => theme.white};
 `;
 
 export const BigWinsAmount = styled.div`
   color: ${({ theme }) => theme.bigWinsAmountColor};
-  text-align: right;
 `;
 
 export const CustomPlayButton = styled(PlayButton)`
