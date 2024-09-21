@@ -1,4 +1,3 @@
-import config from "@tgs-web-nx/config";
 import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, HightLightMatchDto, JoinGameResDto, JoinLobbyGameResDto, RecentBigWinItem, ResponseResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 

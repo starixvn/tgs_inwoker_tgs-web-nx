@@ -1,4 +1,4 @@
-import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
+import { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { i18n } from "../index";
 let newWindow: Window | undefined;
 
