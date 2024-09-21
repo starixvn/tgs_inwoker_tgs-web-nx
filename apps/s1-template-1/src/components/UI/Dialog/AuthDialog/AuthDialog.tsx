@@ -9,6 +9,10 @@ import styled from "styled-components";
 const StyledDialog = styled(MuiDialog)`
   position: relative;
 
+  .MuiModal-backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
   .MuiPaper-root {
     position: fixed;
     bottom: 0;

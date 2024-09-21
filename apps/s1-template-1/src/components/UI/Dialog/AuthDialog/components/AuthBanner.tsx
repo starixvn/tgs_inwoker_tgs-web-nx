@@ -7,7 +7,6 @@ const BannerContainer = styled.div`
   ${media.sm} {
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, #8ea014 0%, #394201 100%);
     justify-content: center;
   }
 `;
