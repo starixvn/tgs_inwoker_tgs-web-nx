@@ -1,10 +1,10 @@
-import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { useNotifications } from "@tgs-web-nx/core/features";
-import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
+import { GreenGradientButton, LightBlueGradientButton } from "@/components/UI/Button";
 import DialogPopup from "@/components/UI/Dialog/DialogPopup";
 import { DialogContainer, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
-import { Button } from "@/components/UI/Button";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import React from "react";
 
 type ModalButtonsProps = {
   handleClose: () => void;
@@ -15,16 +15,16 @@ type ModalButtonsProps = {
 const ModalButtons = ({ handleClose, message, action }: ModalButtonsProps) => {
   if (message === "无法连接，请检查您的网络") {
     return (
-      <Button fullWidth onClick={() => window.location.reload()}>
+      <LightBlueGradientButton fullWidth onClick={() => window.location.reload()}>
         <>{i18n.t("common.reload")}</>
-      </Button>
+      </LightBlueGradientButton>
     );
   } else {
     return (
       <div>
-        <Button fullWidth onClick={handleClose}>
+        <GreenGradientButton fullWidth onClick={handleClose}>
           <>{i18n.t("common.confirm")}</>
-        </Button>
+        </GreenGradientButton>
 
         {action && <div onClick={handleClose}>{action}</div>}
       </div>
@@ -41,7 +41,6 @@ const PopupAlertDialog = () => {
       <DialogContainer>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>{message}</DialogContent>
-
         <ModalButtons handleClose={closeAlertPopup} message={message} action={action} />
       </DialogContainer>
     </DialogPopup>

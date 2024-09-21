@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DialogContainer = styled.div`
-  padding: 20px;
+  padding: 3.2rem 3.6rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -15,10 +15,10 @@ export const DialogTitle = styled.div`
   margin-bottom: 20px;
 `;
 export const DialogContent = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.28px;
   color: ${({ theme }) => theme.text};
-  line-height: 1.2rem;
   margin-bottom: 20px;
 `;
 

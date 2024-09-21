@@ -178,7 +178,7 @@ class DepositPrev extends Component {
               this.handleOpenDepositPopup(url, expirationTime);
             }
 
-            this.props.alert("", i18n.t("deposit.completeDeposit"));
+            this.props.alert("", "Your deposit has been processed.");
           }
         }
         //===========================
@@ -207,7 +207,7 @@ class DepositPrev extends Component {
           ...this.initialState,
           fileInput: Math.random().toString(36),
         });
-        this.props.alert("", i18n.t("deposit.uploadSuccess"));
+        this.props.alert("", "Your deposit request has been successfully submitted and is waiting aprroval.");
       } else {
         this.props.alert("", this.props.wallet.depositUploadResult.info);
         this.setState({ ...this.state, loading: false });

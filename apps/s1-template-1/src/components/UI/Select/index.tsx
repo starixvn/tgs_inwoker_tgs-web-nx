@@ -80,7 +80,7 @@ export const Select = (props: SelectProps) => {
               padding: "1rem 1.2rem",
               color: theme.gray,
               borderRadius: "1rem",
-              fontSize: "1.2rem",
+              fontSize: "1.3rem",
               fontWeight: "bold",
             },
             "& .Mui-selected": {

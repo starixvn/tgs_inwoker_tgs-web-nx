@@ -206,4 +206,9 @@ export const theme = {
   toastTextColor: "#878EA1",
   toastFontzise: "1.3rem",
 
+  // Popup Alert
+  popupBackground: "linear-gradient(180deg, #032F63 0%, #111923 47.92%)",
+  popupBoxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.50)",
+  popupBorderRadius: "1.2rem",
+
 };

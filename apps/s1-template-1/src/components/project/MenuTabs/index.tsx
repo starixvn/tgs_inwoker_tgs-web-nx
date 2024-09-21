@@ -75,7 +75,7 @@ const MenuTabs = () => {
     },
     {
       key: NavCardKey.WITHDRAW,
-      label: i18n.t("common.withdrawal"),
+      label: "Withdrawal",
       router: "/withdrawal",
       icon: WithdrawIcon,
       viewBox: "0 0 18 20",

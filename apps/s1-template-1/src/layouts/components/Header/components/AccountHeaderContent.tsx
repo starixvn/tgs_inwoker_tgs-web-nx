@@ -163,7 +163,7 @@ const AccountHeaderContent = () => {
               top: "2px",
             }}
           ></WithdrawIcon>
-          {i18n.t("common.withdraw")}
+          Withdrawal
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -244,7 +244,7 @@ const AccountHeaderContent = () => {
               height: "18px",
               marginRight: "6px",
               position: "relative",
-              top: "4px",
+              top: "5px",
             }}
           ></InboxIcon>
           {i18n.t("wap.main.account.inbox")}
@@ -270,7 +270,7 @@ const AccountHeaderContent = () => {
               height: "18px",
               marginRight: "6px",
               position: "relative",
-              top: "2px",
+              top: "3px",
             }}
           ></LogoutIcon>
           {i18n.t("common.logout")}
