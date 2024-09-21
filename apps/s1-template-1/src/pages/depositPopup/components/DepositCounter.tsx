@@ -1,27 +1,6 @@
 /* eslint-disable import/order */
 import { LabelLargeContainer } from "@/components/styled-component/ProfileForms";
-import { useEffect, useState } from "react";
-
-function useDepositPopupCounter(expirationTimeStamp: number) {
-  const [ absoluteExpirationTimeInSeconds, setAbsoluteExpirationTimeInSeconds ] = useState<number | null>(null);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      const remainingTimeInMiliseconds = expirationTimeStamp - Date.now();
-      const remainingTimeInSeconds = remainingTimeInMiliseconds / 1000;
-      if (remainingTimeInMiliseconds <= 0) {
-        window.close();
-      }
-      setAbsoluteExpirationTimeInSeconds(remainingTimeInSeconds);
-    }, 500)
-
-    return () => {
-      clearInterval(id);
-    }
-  })
-
-  return  { absoluteExpirationTimeInSeconds }
-}
+import { useDepositPopupCounter } from "@tgs-web-nx/core/hooks";
 
 const DepositCounter = ({ expirationTimeStamp }: { expirationTimeStamp: number}) => {
 
