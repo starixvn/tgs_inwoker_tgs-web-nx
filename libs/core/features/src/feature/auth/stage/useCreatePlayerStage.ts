@@ -64,11 +64,11 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
       }
 
       if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.EmailExisted) {
-        throw new Error(i18n.t("common.msgEmailAlreadyExist"));
+        throw new Error(i18n.t("common.msgEmailExist"));
       }
 
       if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.EmailInvalid) {
-        throw new Error(i18n.t("common.msgEmailInvalid"));
+        throw new Error(i18n.t("common.msgInvalidEmail"));
       }
       //for MOVN2 customization
       if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {

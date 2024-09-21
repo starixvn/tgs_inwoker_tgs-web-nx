@@ -43,7 +43,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
           }),
       },
       {
-        label: i18n.t("common.email"),
+        label: i18n.t("common.emailAddress"),
         name: "email",
         initialValue: "",
         type: FormInputTypeEnum.TEXT,
