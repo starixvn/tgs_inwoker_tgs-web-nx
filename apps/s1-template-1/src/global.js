@@ -16,7 +16,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     background: ${({ theme }) => theme.body};
     background-size: 100%;
-    font-family: Inter, Arial, sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1rem;
 
     padding-right: 0 !important;

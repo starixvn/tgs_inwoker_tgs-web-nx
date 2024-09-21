@@ -18,15 +18,10 @@ const FooterWrapper = styled.div`
   padding: 2rem 0.8rem;
 
   ${media.md} {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 1.6rem;
+    padding-bottom: 2.4rem;
     flex-direction: row;
-  }
-
-  ${media.lg} {
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
-    padding-left: 0;
-    padding-right: 0;
     margin: 0 auto;
   }
 `;
