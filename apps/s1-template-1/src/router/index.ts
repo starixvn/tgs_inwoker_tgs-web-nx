@@ -37,6 +37,12 @@ const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
 const routes: RouteType[] = [
   {
+    path: "/deposit/status",
+    component: DepositStatusIframe,
+    layout: IframeLayout,
+    isAnonymousAllowed: true
+  },
+  {
     path: "/",
     component: MainPage,
     layout: DefaultLayout,
@@ -57,11 +63,6 @@ const routes: RouteType[] = [
     path: "/deposit/popup",
     component: DepositPopupPage,
     layout: DialogLayout
-  },
-  {
-    path: "/deposit/status",
-    component: DepositStatusIframe,
-    layout: IframeLayout
   },
   {
     path: "/deposit",

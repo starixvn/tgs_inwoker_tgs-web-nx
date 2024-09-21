@@ -2,8 +2,8 @@
 import { LabelLargeContainer } from "@/components/styled-component/ProfileForms";
 import { useEffect, useState } from "react";
 
-const DepositCounter = ({ expirationTimeStamp }: { expirationTimeStamp: number}) => {
-  const [ expiredTimeInSeconds, setExpiredTimeInSeconds ] = useState<number | null>(null);
+function useDepositPopupCounter(expirationTimeStamp: number) {
+  const [ absoluteExpirationTimeInSeconds, setAbsoluteExpirationTimeInSeconds ] = useState<number | null>(null);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -12,7 +12,7 @@ const DepositCounter = ({ expirationTimeStamp }: { expirationTimeStamp: number})
       if (remainingTimeInMiliseconds <= 0) {
         window.close();
       }
-      setExpiredTimeInSeconds(remainingTimeInSeconds);
+      setAbsoluteExpirationTimeInSeconds(remainingTimeInSeconds);
     }, 500)
 
     return () => {
@@ -20,7 +20,24 @@ const DepositCounter = ({ expirationTimeStamp }: { expirationTimeStamp: number})
     }
   })
 
-  return expiredTimeInSeconds && <LabelLargeContainer>Expiration Time: {expiredTimeInSeconds.toFixed(0)}</LabelLargeContainer>
+  return  { absoluteExpirationTimeInSeconds }
+}
+
+const DepositCounter = ({ expirationTimeStamp }: { expirationTimeStamp: number}) => {
+
+  const { absoluteExpirationTimeInSeconds } = useDepositPopupCounter(expirationTimeStamp);
+
+  return absoluteExpirationTimeInSeconds && <LabelLargeContainer>Expiration Time: {toMinutesDisplay(absoluteExpirationTimeInSeconds)}:{toSecondDisplay(absoluteExpirationTimeInSeconds)}</LabelLargeContainer>
+}
+
+function toMinutesDisplay(absoluteExpirationTimeInSeconds?: number) {
+  const expiredTimeMinutes = (absoluteExpirationTimeInSeconds ?? 0) / 60;
+  return String(Math.floor(expiredTimeMinutes)).padStart(2, '0');
+}
+
+function toSecondDisplay(absoluteExpirationTimeInSeconds: number) {
+  const expiredTimeSeconds = (absoluteExpirationTimeInSeconds ?? 0) % 60;
+  return String(Math.floor(expiredTimeSeconds)).padStart(2, '0');
 }
 
 export default DepositCounter;
