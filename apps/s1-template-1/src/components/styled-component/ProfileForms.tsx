@@ -136,6 +136,7 @@ export const BadgeContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 1.2rem;
+  grid-row-gap: 1.2rem;
   ${media.sm} {
     display: flex;
     gap: 1.2rem;

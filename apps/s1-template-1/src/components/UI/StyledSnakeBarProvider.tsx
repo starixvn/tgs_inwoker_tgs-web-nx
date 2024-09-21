@@ -24,9 +24,15 @@ const CustomizedSnackbarProvider = styled(SnackbarProvider)`
     background-color: ${({ theme }) => theme.toastBackgroundColor};
   }
   &.notistack-MuiContent-error {
-    border: 2px solid #F90B44;    
-    
+    border: 2px solid ${({ theme }) => theme.toastErrorBorderColor};    
   }
+  &.notistack-MuiContent-success {
+    border: 2px solid ${({ theme }) => theme.toastSuccessBorderColor};    
+  }
+  &.notistack-MuiContent-warning {
+    border: 2px solid ${({ theme }) => theme.toastWarningBorderColor};    
+  }
+
   #notistack-snackbar {
     font-size: ${({ theme }) => theme.toastFontzise};
     font-weight: 500;

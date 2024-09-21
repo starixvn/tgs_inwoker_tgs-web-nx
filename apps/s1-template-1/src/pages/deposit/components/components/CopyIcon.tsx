@@ -2,7 +2,9 @@ import copyImg from "@/assets/t18/images/deposit/copy.svg";
 import Icon from "@/components/project/Icon";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { i18n, utility } from "@tgs-web-nx/utils";
+import { useSnackbar } from "notistack";
 import styled from "styled-components";
+
 
 const CopyIconContainer = styled.div`
   width: 30px;
@@ -28,9 +30,13 @@ type Props = {
 };
 const CopyIcon = ({ copyContent }: Props) => {
   const { alert } = useNotifications();
+  const { enqueueSnackbar } = useSnackbar();
 
   const performCopy = (content: any) => {
-    alert("", i18n.t("affiliate.copied"));
+    //alert("", i18n.t("affiliate.copied"));
+    enqueueSnackbar(i18n.t("affiliate.copied"), {
+      variant: "success",
+    });
 
     utility.copy(content);
   };
