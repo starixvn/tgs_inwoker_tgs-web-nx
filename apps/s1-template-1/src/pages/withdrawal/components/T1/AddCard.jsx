@@ -263,44 +263,7 @@ const AddCard = ({
           </ItemContainer>
         </>
       )}
-      {((!isDeposit &&
-        withdrawalList.length > 0 &&
-        withdrawalList[selectedBankTypeIndex].banktype === "EWallet") ||
-        (isDeposit &&
-          depositList.length > 0 &&
-          depositList[selectedBankTypeIndex].banktype === "EWallet")) && (
-        <ItemContainer>
-          <LabelContainer>
-            {/* {eWalletCustomIDR
-              ? i18n.t("idr1.eWalletAccount")
-              : eWalletCustom
-              ? i18n.t("card.addCard.eWalletAccount")
-              : config.features.AddCard_DisplayFPS
-              ? i18n.t("hk28.card.addCard.BankAccountName")
-              : i18n.t("card.addCard.BankAccountName")} */}
-              Account Holder Name
-          </LabelContainer>
-          <FormControl>
-            <TextField
-              placeholder={
-                // eWalletCustomIDR
-                //   ? i18n.t("idr1.eWalletAccount")
-                //   : eWalletCustom
-                //   ? i18n.t("card.addCard.msgEnterEwalletAccount")
-                //   : config.features.AddCard_DisplayFPS
-                //   ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
-                //   : i18n.t("card.addCard.msgEnterBankAccountName")
-                "Please enter Bank Account Name"
-              }
-              name="bankAccountName"
-              onChange={handleBankAccountNameChange}
-              value={bankAccountName}
-              disabled={disableBankAccountNameInput}
-            />
-          </FormControl>
-        </ItemContainer>
-      )}
-      {(!isDeposit &&
+            {(!isDeposit &&
         withdrawalList.length > 0 &&
         (withdrawalList[selectedBankTypeIndex].banktype === "ThirdParty" ||
           withdrawalList[selectedBankTypeIndex].banktype === "Coinsph" ||
@@ -370,7 +333,7 @@ const AddCard = ({
                 : config.features.AddCard_DisplayFPS
                 ? i18n.t("hk28.withdrawalNumber")
                 : i18n.t("common.withdrawalNumber")} */}
-                Phone Number
+                {i18n.t("common.withdrawalEWalletId")}
             </LabelContainer>
             <FormControl>
               <TextField
@@ -384,7 +347,7 @@ const AddCard = ({
                   //   : config.features.AddCard_DisplayFPS
                   //   ? i18n.t("hk28.msgEnterWithdrawalNumber")
                   //   : i18n.t("common.msgEnterWithdrawalNumber")
-                  "Please enter your phone number"
+                  i18n.t("common.msgWithdrawalEWalletId")
                 }
                 maxLength={
                   selectedBankType("ThirdParty") ||
@@ -422,10 +385,48 @@ const AddCard = ({
               <ItemNote style={{display: "flex"}}><ItemNoteText>Note:</ItemNoteText>
                 <ItemNoteDesc style={{textAlign: "left"}}>The account holder name must be the same as the real name filled you account profile</ItemNoteDesc>
               </ItemNote>
-              
+
             </ItemContainer> */}
         </>
       )}
+      {((!isDeposit &&
+        withdrawalList.length > 0 &&
+        withdrawalList[selectedBankTypeIndex].banktype === "EWallet") ||
+        (isDeposit &&
+          depositList.length > 0 &&
+          depositList[selectedBankTypeIndex].banktype === "EWallet")) && (
+        <ItemContainer>
+          <LabelContainer>
+            {/* {eWalletCustomIDR
+              ? i18n.t("idr1.eWalletAccount")
+              : eWalletCustom
+              ? i18n.t("card.addCard.eWalletAccount")
+              : config.features.AddCard_DisplayFPS
+              ? i18n.t("hk28.card.addCard.BankAccountName")
+              : i18n.t("card.addCard.BankAccountName")} */}
+              {i18n.t("common.withdrawalEWalletName")}
+          </LabelContainer>
+          <FormControl>
+            <TextField
+              placeholder={
+                // eWalletCustomIDR
+                //   ? i18n.t("idr1.eWalletAccount")
+                //   : eWalletCustom
+                //   ? i18n.t("card.addCard.msgEnterEwalletAccount")
+                //   : config.features.AddCard_DisplayFPS
+                //   ? i18n.t("hk28.card.addCard.msgEnterBankAccountName")
+                //   : i18n.t("card.addCard.msgEnterBankAccountName")
+                i18n.t("common.msgWithdrawalEWalletName")
+              }
+              name="bankAccountName"
+              onChange={handleBankAccountNameChange}
+              value={bankAccountName}
+              disabled={disableBankAccountNameInput}
+            />
+          </FormControl>
+        </ItemContainer>
+      )}
+
       <ButtonGroups>
         {showBack && (
           <DarkBlueGradientButton fullWidth onClick={onhandleBackClick}>
