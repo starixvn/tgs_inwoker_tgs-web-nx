@@ -4,7 +4,6 @@ import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameItem, GameStatus } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { useEffect, useState } from "react";
 import { Img } from "react-image";
 
 import PlayIcon from "../PlayIcon";

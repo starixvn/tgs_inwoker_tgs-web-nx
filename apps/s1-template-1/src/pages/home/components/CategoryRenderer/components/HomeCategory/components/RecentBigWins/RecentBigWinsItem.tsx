@@ -21,12 +21,12 @@ const RecentBigWinsItem: React.FC<{
         // @ts-ignore
         ({ hasBeenVisible }) => (
           <RecentBigWinsSlide className="embla__slide">
-            <GameContainer
-              onClick={() => {
-                launchGame(gameId, gameProviderCode);
-              }}
-            >
-              <GameIcon>
+            <GameContainer>
+              <GameIcon
+                onClick={() => {
+                  launchGame(gameId, gameProviderCode);
+                }}
+              >
                 {hasBeenVisible && (
                   <Img
                     className="icon"

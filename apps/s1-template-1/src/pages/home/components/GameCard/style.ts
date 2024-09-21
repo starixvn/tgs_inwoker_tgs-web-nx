@@ -41,10 +41,23 @@ export const GameCardBg = styled.div`
   border-radius: 1.2rem;
   background: ${({ theme }) => theme.gameCardBackground};
   backdrop-filter: blur(2px);
+  opacity: 0;
+  animation: appear-game 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+  @keyframes appear-game {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   .game-icon {
     width: 100%;
     height: 100%;
+    opacity: 0;
+    animation: appear-game 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   ${media.sm} {

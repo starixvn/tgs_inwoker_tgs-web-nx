@@ -32,6 +32,17 @@ export const GameIcon = styled.div`
   border-radius: 0.8rem;
   overflow: hidden;
 
+  ${media.sm} {
+    &:hover {
+      cursor: pointer;
+      border: 1px solid ${({ theme }) => theme.gameCardBorder};
+
+      ${CardHoverBg} {
+        opacity: 1;
+      }
+    }
+  }
+
   .icon {
     width: 100%;
     flex-shrink: 0;
@@ -53,21 +64,6 @@ export const GameContainer = styled.div`
   gap: 0.8rem;
   font-size: 1.3rem;
   font-weight: 500;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  ${media.sm} {
-    &:hover {
-      ${GameIcon} {
-        border: 1px solid ${({ theme }) => theme.gameCardBorder};
-      }
-      ${CardHoverBg} {
-        opacity: 1;
-      }
-    }
-  }
 `;
 
 export const RecentBigWinsSlide = styled.div`
