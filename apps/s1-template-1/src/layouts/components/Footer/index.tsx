@@ -2,6 +2,7 @@ import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import config from "@tgs-web-nx/config";
 import { useGeneralStore } from "@tgs-web-nx/core";
+import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -119,12 +120,6 @@ const GameCareText = styled.div`
   }
 `;
 
-// const LogoImg = styled.img`
-//   width: 100%;
-//   height: 100%;
-//   object-fit: scale-down;
-// `;
-
 const Link = styled.div`
   width: 100%;
   cursor: pointer;
@@ -143,6 +138,16 @@ const Footer = () => {
   const { general } = useGeneralStore();
   const history = useHistory();
   const brand = config.brand;
+
+  const { sportGameList, liveCasinoList, slotGameList, newGameList, recentBigWins } =
+    useGetHomeCategoryList();
+
+  const isLoadFullData =
+    sportGameList.length > 0 &&
+    liveCasinoList.length > 0 &&
+    slotGameList.length > 0 &&
+    newGameList.length > 0 &&
+    recentBigWins.length > 0;
 
   const navigateTo = (pageName: string) => {
     history.push("/" + pageName);
@@ -167,6 +172,10 @@ const Footer = () => {
       url: "/assets/images/community/twitter.png",
     },
   ];
+
+  if (!isLoadFullData) {
+    return <></>;
+  }
 
   return (
     <FooterContainer>

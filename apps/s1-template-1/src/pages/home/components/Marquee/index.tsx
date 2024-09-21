@@ -1,9 +1,5 @@
 import { media } from "@/theme/breakpoints";
-import {
-  DESKTOP_ANNOUNCEMENT_HEIGHT,
-  MAIN_CONTENT_MAX_WIDTH,
-  MOBILE_ANNOUNCEMENT_HEIGHT,
-} from "@/theme/constants";
+import { DESKTOP_ANNOUNCEMENT_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_ANNOUNCEMENT_HEIGHT } from "@/theme/constants";
 import { useUiStore } from "@tgs-web-nx/core";
 import styled from "styled-components";
 
@@ -57,7 +53,7 @@ const Marquee = () => {
   }
 
   return (
-    <MarqueeContainer>
+    <MarqueeContainer className="marquee-container">
       <MarqueeContent>
         <img
           className="icon"

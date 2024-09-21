@@ -22,6 +22,11 @@ const HeaderContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
   box-shadow: 0 4px 26px ${({ theme }) => theme.headerShadow};
   z-index: 10;
+  margin-bottom: 1.6rem;
+
+  &:has(+ .marquee-container) {
+    margin-bottom: 0;
+  }
 `;
 
 const HeaderWrapper = styled.div`

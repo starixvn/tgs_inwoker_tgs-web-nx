@@ -1,12 +1,11 @@
 import Header from "@/layouts/components/Header";
+import Marquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useAccountStore, useUiStore } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
 
-import Marquee from "@/pages/home/components/Marquee";
 import Footer from "./components/Footer";
 
 const DefaultLayoutContainer = styled.div`
@@ -37,8 +36,6 @@ type Props = {
 };
 const DefaultLayout = ({ children }: Props) => {
   const { account } = useAccountStore();
-  const { isMobileSize } = useRwd();
-  const loginAccount = account.token === account.info.token;
   const {
     ui: { marquees },
   } = useUiStore();
@@ -54,7 +51,6 @@ const DefaultLayout = ({ children }: Props) => {
         </ContentWrapper>
       </DashboardContainer>
       <Footer />
-      {/* {isMobileSize && loginAccount && <BottomAppBar />} */}
     </DefaultLayoutContainer>
   );
 };
