@@ -1,3 +1,4 @@
+import AppearSensor from "@/components/project/AppearSensor";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { Common } from "@tgs-web-nx/utils";
@@ -33,20 +34,29 @@ const Banner = () => {
       <div className="embla__viewport" ref={emblaBannerRef}>
         <div className="embla__container">
           {general.banner.map((banner, index) => (
-            <div
-              className="embla__slide"
-              key={index}
-              onClick={() => {
-                launchGame(banner.navurl);
-              }}
-            >
-              <Img
-                className="banner"
-                src={banner.mobileurl}
-                loader={<LoadingIcon />}
-                unloader={<NoGameIcon gameName={banner.title} />}
-              />
-            </div>
+            <AppearSensor>
+              {
+                // @ts-ignore
+                ({ hasBeenVisible }) => (
+                  <div
+                    className="embla__slide"
+                    key={index}
+                    onClick={() => {
+                      launchGame(banner.navurl);
+                    }}
+                  >
+                    {hasBeenVisible && (
+                      <Img
+                        className="banner"
+                        src={banner.mobileurl}
+                        loader={<LoadingIcon />}
+                        unloader={<NoGameIcon gameName={banner.title} />}
+                      />
+                    )}
+                  </div>
+                )
+              }
+            </AppearSensor>
           ))}
         </div>
         <div className="embla__controls">

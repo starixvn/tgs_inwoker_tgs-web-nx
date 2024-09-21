@@ -18,6 +18,7 @@ const Dot = styled.button`
   transition:
     max-width 0.2s ease-in-out,
     background-color 0.2s ease-in-out;
+  cursor: pointer;
 
   &.embla__dot--selected {
     max-width: var(--dot-width--active);

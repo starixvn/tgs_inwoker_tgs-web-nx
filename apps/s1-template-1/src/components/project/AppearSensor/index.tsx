@@ -3,18 +3,21 @@ import VisibilitySensor from "react-visibility-sensor";
 
 const AppearSensor: React.FC<any> = ({ children }) => {
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
-  const [containmentElement, setContainmentElement] = useState(null);
+  const [containmentElement, setContainmentElement] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    // @ts-ignore
     setContainmentElement(document.body);
   }, []);
 
+  const handleVisibilityChange = (isVisible: boolean) => {
+    if (isVisible) {
+      setHasBeenVisible(true);
+    }
+  };
+
   return (
     <VisibilitySensor
-      onChange={(isVisible: boolean) => {
-        if (isVisible) setHasBeenVisible(true);
-      }}
+      onChange={handleVisibilityChange}
       partialVisibility={true}
       scrollCheck={true}
       containment={containmentElement}
