@@ -71,7 +71,7 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
         throw new Error(i18n.t("common.msgInvalidEmail"));
       }
       //for MOVN2 customization
-      if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
+      if (brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isAddRealNameFieldBrand) {
         //Set realname之前必須先login
         await accountLogin(values.username, values.pwd);
 
@@ -93,7 +93,7 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
       handleToggleRegisterDialog(false);
 
       //Set realname時已經login,不需要再彈出登入視窗
-      if (!brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
+      if (!brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isAddRealNameFieldBrand) {
         handleToggleLoginDialog(true);
       }
 

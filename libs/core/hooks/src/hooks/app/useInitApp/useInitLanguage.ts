@@ -55,8 +55,8 @@ async function setDefaultLanguage(brandLanguageList: BrandLanguage[]) {
 }
 
 function getDefaultLanguage(brandLanguageList: BrandLanguage[]) {
-  if (checkIfLanguageValid(config.defaultLanguage, brandLanguageList)) {
-    return config.defaultLanguage;
+  if (checkIfLanguageValid(import.meta.env.VITE_DEFAULT_LANGUAGE, brandLanguageList)) {
+    return import.meta.env.VITE_DEFAULT_LANGUAGE;
   }
 
   return "en-US" || brandLanguageList[0].culturecode;

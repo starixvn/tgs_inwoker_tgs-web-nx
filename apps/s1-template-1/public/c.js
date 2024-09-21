@@ -1,18 +1,1 @@
-window.envConfig = {
-  baseUrl: "https://player-site-t28.nexentgame.com",
-  operatorPath: "/operator/api/",
-  brandPath: "/brand/api/",
-  assetsPath: "https://assets.nexentgame.com/",
   sabaAPIPath: "https://sbsports-odds-api.nexentgame.com/api/",
-  client: "XJY9uX5RarE5wrOkTHAgkQoGKMuNFxKIXF4A6zR4BfgCHNs1tC7zDv",
-  currency: "HKD",
-  brand: "GMO",
-  brandId: "8acacf5a-d808-4a55-8302-d832ee3da6dc",
-  brandName: "GMO",
-  sourceUrl: "https://images.srvptt.com/",
-  defaultLanguage: "en-US",
-  affiliateId: "",
-  brandTitle: "",
-  AgentAdminUrl: null,
-  offeredGameType: ["sports", "slots", "live-casino", "fishing", "table-game","lottery","cock-fighting","instant-play"]
-};

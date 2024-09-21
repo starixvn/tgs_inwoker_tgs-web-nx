@@ -135,6 +135,7 @@ const Link = styled.div`
 
 const Footer = () => {
   const history = useHistory();
+  const brand = import.meta.env.VITE_BRAND;
 
   const { sportGameList, slotGameList, recentBigWins } = useGetHomeCategoryList();
   const [isLoadFullData, setIsLoadFullData] = useState<boolean>(false);

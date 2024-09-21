@@ -40,7 +40,8 @@
       "@tgs-web-nx/utils": [
         "libs/utils/src/index.ts"
       ]
-    }
+    },
+    "types": ["vite/client", "vitest"]
   },
   "exclude": [
     "node_modules",

@@ -12,8 +12,8 @@ export function useGoToHomePage(withoutHomeIcon = true) {
 
   return useCallback(() => {
     if (isMobileSize && withoutHomeIcon) {
-      const defaultGametype = brandConfig[mapBrandName(config.brand)].defaultActiveGametype
-        ? (brandConfig[mapBrandName(config.brand)].defaultActiveGametype as GameTypeEnum)
+      const defaultGametype = brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].defaultActiveGametype
+        ? (brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].defaultActiveGametype as GameTypeEnum)
         : GameTypeEnum.SPORTS;
       handleChangeGameType(defaultGametype);
     } else {

@@ -19,7 +19,7 @@ i18n
       },
       load: "currentOnly",
       whitelist: ["en-US", "zh-CN", "zh-TW", "th-TH", "id-ID", "vi-VN"],
-      fallbackLng: [language || config.defaultLanguage],
+      fallbackLng: [language || import.meta.env.VITE_DEFAULT_LANGUAGE],
       interpolation: {
         escapeValue: false,
         formatSeparator: ".",

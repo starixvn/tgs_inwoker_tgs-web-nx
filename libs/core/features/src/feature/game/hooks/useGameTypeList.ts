@@ -163,11 +163,11 @@ const gameTypeList: GameTypeItem[] = [
 
 export const useGameTypeList = () => {
   const [translatedGameTypeList, setTranslatedGameTypeList] = useState<GameTypeItem[]>([]);
-  const { offeredGameType } = config;
   useEffect(() => {
-    const translatedList = offeredGameType
+    const offeredGameTypes = import.meta.env.VITE_OFFERED_GAME_TYPES || [];
+    const translatedList = offeredGameTypes.split(",")
       .map((key: string) => gameTypeList.find((type) => type.key === key))
-      .filter((gameType: GameTypeItem) => gameType)
+      .filter((gameType: GameTypeItem | undefined): gameType is GameTypeItem => gameType !== undefined)
       .map((gameItem: GameTypeItem) => ({
         ...gameItem,
         text: i18n.t(getGameTypeName(gameItem.gameType)),

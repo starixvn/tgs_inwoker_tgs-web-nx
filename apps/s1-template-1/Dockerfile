@@ -1,4 +1,5 @@
 FROM node:16.14.2-stretch-slim AS dependencies
+ARG TRANSFORM_CONFIG 
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
@@ -8,7 +9,8 @@ WORKDIR /app
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY . .
 COPY missing-config.js apps/s1-template-1/public/c.js
-RUN yarn nx build s1-template-1
+RUN yarn nx build s1-template-1 --mode $TRANSFORM_CONFIG
+   
 
 FROM caddy:2.1.1-alpine AS runner
 COPY --from=builder /app/caddy/Caddyfile /etc/caddy/Caddyfile
