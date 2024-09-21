@@ -1,6 +1,10 @@
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { RegisterV2CreatePlayerReqDto, RegisterV2SetRealNameDto } from "@tgs-web-nx/types";
+import {
+  RegisterV2CreatePlayerReqDto,
+  RegisterV2SetRealNameDto,
+  StepStatus,
+} from "@tgs-web-nx/types";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 
@@ -29,7 +33,6 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
 
     try {
       setIsLoading(true);
-      console.log("values from register", values);
 
       const username = values.username as string;
       const email = values.email as string;
@@ -56,8 +59,16 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
         throw new Error(ErrorSwitcher.getTranslation(newRegisterResDto.info));
       }
 
-      if (!newRegisterResDto.data.stepResponse.isnew) {
+      if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.UsernameExisted) {
         throw new Error(i18n.t("common.msgAlreadyExist"));
+      }
+
+      if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.EmailExisted) {
+        throw new Error(i18n.t("common.msgEmailAlreadyExist"));
+      }
+
+      if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.EmailInvalid) {
+        throw new Error(i18n.t("common.msgEmailInvalid"));
       }
       //for MOVN2 customization
       if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {

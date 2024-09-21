@@ -1,3 +1,8 @@
+import { NavCardKey } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { useHistory, useLocation } from "react-router";
+import styled from "styled-components";
+import { theme } from "@/theme";
 import {
   AccountInfoIcon,
   DepositIcon,
@@ -6,11 +11,6 @@ import {
   TransactionIcon,
   WithdrawIcon
 } from "@/components/UI/CustomizeIcon";
-import { theme } from "@/theme";
-import { NavCardKey } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
-import { useHistory, useLocation } from "react-router";
-import styled from "styled-components";
 
 type MenuItem = {
   key: NavCardKey;
@@ -91,7 +91,7 @@ const MenuTabs = () => {
     {
       key: NavCardKey.TRANSFER,
       label: "Transactions",
-      router: "/transfer",
+      router: "/transaction",
       icon: TransactionIcon,
       viewBox: "0 0 18 14",
       fontSizeIcon: "2.6rem",
