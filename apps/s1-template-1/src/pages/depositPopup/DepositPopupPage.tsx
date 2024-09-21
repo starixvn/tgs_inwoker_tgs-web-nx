@@ -6,8 +6,15 @@ import DepositCounter from "./components/DepositCounter";
 const WhiteIframe = styled.iframe`
   background-color: white;
   width: 100%;
-  height: 720px;
+  min-height: 80rem;
 `
+const PopupWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+`;
 
 export function DepositPopupPage() {
 
@@ -15,10 +22,19 @@ export function DepositPopupPage() {
   const expirationtimestamp = new URLSearchParams(search).get("expirationTimeStamp");
 
   const paymenturl = new URLSearchParams(search).get("paymenturl")
-  return <>
-    {isValidExpirationTimeStamp(expirationtimestamp) && <DepositCounter expirationTimeStamp={convertExpirationTimeStampToNumber(expirationtimestamp)}/>}
-    <WhiteIframe title="deposit-popup" src={paymenturl ?? ""}/>
-  </>
+  return (
+    <PopupWrapper>
+      <img
+                src={"/assets/images/transfer/payment-provider.png"}
+                width={"224px"}
+                height={"168px"}
+                alt="counter"
+              />
+      {isValidExpirationTimeStamp(expirationtimestamp) && <DepositCounter expirationTimeStamp={convertExpirationTimeStampToNumber(expirationtimestamp)}/>}
+      <WhiteIframe title="deposit-popup" src={paymenturl ?? ""}/>
+    </PopupWrapper>
+  )
+    
 }
 
 function isValidExpirationTimeStamp(expirationtimestamp: string | null) {

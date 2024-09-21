@@ -47,7 +47,7 @@ const AddCardSuccess = ({
             fullWidth
             onClick={onhandleBindCardClick}            
           >
-            {i18n.t("card.success.bindBankCard")}
+            Add Other Account
           </LightBlueGradientButton>
         )}
         <GreenGradientButton

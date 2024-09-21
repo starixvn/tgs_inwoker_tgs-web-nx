@@ -5,9 +5,6 @@ import {
   BadgeContainer,
   FormControl,
   ItemContainer,
-  ItemNote,
-  ItemNoteDesc,
-  ItemNoteText,
   LabelContainer,
   LabelLargeContainer
 } from "@/components/styled-component/ProfileForms";
@@ -373,7 +370,7 @@ const AddCard = ({
                 : config.features.AddCard_DisplayFPS
                 ? i18n.t("hk28.withdrawalNumber")
                 : i18n.t("common.withdrawalNumber")} */}
-                Bank Card Number
+                Phone Number
             </LabelContainer>
             <FormControl>
               <TextField
@@ -387,7 +384,7 @@ const AddCard = ({
                   //   : config.features.AddCard_DisplayFPS
                   //   ? i18n.t("hk28.msgEnterWithdrawalNumber")
                   //   : i18n.t("common.msgEnterWithdrawalNumber")
-                  "Please enter Bank Card Number"
+                  "Please enter your phone number"
                 }
                 maxLength={
                   selectedBankType("ThirdParty") ||
@@ -421,12 +418,12 @@ const AddCard = ({
                 </FormControl>
               </ItemContainer>
             )}
-            <ItemContainer>
+            {/* <ItemContainer>
               <ItemNote style={{display: "flex"}}><ItemNoteText>Note:</ItemNoteText>
                 <ItemNoteDesc style={{textAlign: "left"}}>The account holder name must be the same as the real name filled you account profile</ItemNoteDesc>
               </ItemNote>
-
-            </ItemContainer>
+              
+            </ItemContainer> */}
         </>
       )}
       <ButtonGroups>
