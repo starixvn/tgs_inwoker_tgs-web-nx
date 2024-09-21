@@ -18,7 +18,7 @@ type BigWinType = {
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
   const emblaPlugins: any = [
-    AutoScroll({ playOnInit: true, stopOnInteraction: false, stopOnMouseEnter: true, speed: 0 }),
+    AutoScroll({ playOnInit: true, stopOnInteraction: false, stopOnMouseEnter: true, speed: 0.5 }),
   ];
   const { account } = useAccountStore();
   const isLogin = !!account.token;
