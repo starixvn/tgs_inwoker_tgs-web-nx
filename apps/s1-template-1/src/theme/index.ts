@@ -154,10 +154,10 @@ export const theme = {
 
   providerItemBackground: "#1c2532",
 
-  gameStatusBackground: "rgba(3, 10, 20, 0.5)",
-  maintenanceLabelBackground: "#b0003f",
+  gameStatusBackground: "rgba(0, 0, 0, 0.25)",
+  maintenanceLabelBackground: "#0099CA",
   maintenanceLabelColor: "#fff",
-  testingLabelBackground: "#0099CA",
+  testingLabelBackground: "#b0003f",
   testingLabelColor: "#fff",
 
   // Game Card
@@ -210,5 +210,4 @@ export const theme = {
   popupBackground: "linear-gradient(180deg, #032F63 0%, #111923 47.92%)",
   popupBoxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.50)",
   popupBorderRadius: "1.2rem",
-
 };

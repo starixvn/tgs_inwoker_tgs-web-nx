@@ -106,10 +106,11 @@ export const GameStatusBg = styled.div`
   .status-text {
     display: flex;
     align-items: center;
+    max-width: 99%;
     justify-content: center;
-    width: 94%;
     height: 3.4rem;
-
+    padding: 0 1.4rem;
+    text-transform: uppercase;
     border-radius: 3rem;
     font-size: 1.3rem;
     font-weight: 700;
