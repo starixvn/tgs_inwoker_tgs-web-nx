@@ -49,7 +49,7 @@ export function useGenerateRegisterCreatePlayerFormik({ handleClickSubmit }: Pro
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required("Email is required")
-          .matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, {
+          .matches(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,4})+$/, {
             message: i18n.t("common.msgInvalidEmail"),
           }),
       },

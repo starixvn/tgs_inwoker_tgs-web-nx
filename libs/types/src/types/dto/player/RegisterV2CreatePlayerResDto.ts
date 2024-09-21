@@ -2,10 +2,10 @@ import { ValueOf } from "../../valueOf";
 import { RegisterStageEnum } from "../../auth";
 
 export enum StepStatus {
-  Valid = "valid",
-  UsernameExisted = "username-existed",
-  EmailExisted = "email-existed",
-  EmailInvalid = "email-invalid",
+  Valid = "Valid",
+  UsernameExisted = "UsernameExisted",
+  EmailExisted = "EmailInvalid",
+  EmailInvalid = "EmailExisted",
 }
 
 export interface RegisterV2CreatePlayerResDto {
