@@ -85,12 +85,12 @@ const AddCard = ({
             {isDeposit
               ? depositList.map((item, index) => {
                   return (
-                    <Badge key={index} text={item.banktype} isActive={index === selectedBankTypeIndex} handleClick={() =>handleBankTypeChange({}, index)}/>
+                    <Badge key={index} text={i18n.t(item.banktype)} isActive={index === selectedBankTypeIndex} handleClick={() =>handleBankTypeChange({}, index)}/>
                   );
                 })
               : withdrawalList.map((item, index) => {
                   return (
-                    <Badge key={index} text={item.banktype} isActive={index === selectedBankTypeIndex} handleClick={() => handleBankTypeChange({}, index)}/>
+                    <Badge key={index} text={i18n.t(item.banktype)} isActive={index === selectedBankTypeIndex} handleClick={() => handleBankTypeChange({}, index)}/>
                   );
                 })}
             </BadgeContainer>
@@ -226,7 +226,7 @@ const AddCard = ({
                 <ItemContainer>
                   <LabelContainer>{i18n.t("card.addCard.branch")}<OptionalText>(optional)</OptionalText></LabelContainer>
                   <FormControl>
-                    <TextField                     
+                    <TextField
                       maxLength={255}
                       name="bankBranch"
                       onChange={handleBankBranchChange}
@@ -419,13 +419,13 @@ const AddCard = ({
                     value={ifsc}
                   />
                 </FormControl>
-              </ItemContainer>              
+              </ItemContainer>
             )}
             <ItemContainer>
               <ItemNote style={{display: "flex"}}><ItemNoteText>Note:</ItemNoteText>
                 <ItemNoteDesc style={{textAlign: "left"}}>The account holder name must be the same as the real name filled you account profile</ItemNoteDesc>
               </ItemNote>
-              
+
             </ItemContainer>
         </>
       )}
