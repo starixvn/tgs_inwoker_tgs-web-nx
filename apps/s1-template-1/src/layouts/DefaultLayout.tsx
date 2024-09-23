@@ -45,7 +45,7 @@ const DefaultLayout = ({ children }: Props) => {
     <DefaultLayoutContainer>
       <Header />
       <Marquee />
-      <DashboardContainer hasAnnouncement={hasAnnouncement}>
+      <DashboardContainer className="main-container" hasAnnouncement={hasAnnouncement}>
         <ContentWrapper>
           <div>{children}</div>
         </ContentWrapper>

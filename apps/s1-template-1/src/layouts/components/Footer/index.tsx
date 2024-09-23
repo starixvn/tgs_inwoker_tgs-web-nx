@@ -1,7 +1,5 @@
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
-import config from "@tgs-web-nx/config";
-import { useGeneralStore } from "@tgs-web-nx/core";
 import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useHistory } from "react-router-dom";
@@ -22,8 +20,8 @@ const FooterWrapper = styled.div`
     padding-top: 1.6rem;
     padding-bottom: 2.4rem;
     flex-direction: row;
-    max-width: ${MAIN_CONTENT_MAX_WIDTH};
     margin: 0 auto;
+    max-width: ${MAIN_CONTENT_MAX_WIDTH};
   }
 `;
 
@@ -135,19 +133,12 @@ const Link = styled.div`
 `;
 
 const Footer = () => {
-  const { general } = useGeneralStore();
   const history = useHistory();
-  const brand = config.brand;
 
-  const { sportGameList, liveCasinoList, slotGameList, newGameList, recentBigWins } =
-    useGetHomeCategoryList();
+  const { sportGameList, slotGameList, recentBigWins } = useGetHomeCategoryList();
 
   const isLoadFullData =
-    sportGameList.length > 0 &&
-    liveCasinoList.length > 0 &&
-    slotGameList.length > 0 &&
-    newGameList.length > 0 &&
-    recentBigWins.length > 0;
+    sportGameList.length > 0 || slotGameList.length > 0 || recentBigWins.length > 0;
 
   const navigateTo = (pageName: string) => {
     history.push("/" + pageName);
@@ -179,7 +170,7 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-      <FooterWrapper>
+      <FooterWrapper className="main-container">
         <FooterGroup>
           <GroupTitle>{i18n.t("web.footer.community")}</GroupTitle>
           <GroupContent>

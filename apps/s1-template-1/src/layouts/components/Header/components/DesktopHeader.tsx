@@ -78,7 +78,7 @@ const DesktopHeader = () => {
   if (!logoUrl) return null;
   return (
     <HeaderContainer>
-      <HeaderWrapper>
+      <HeaderWrapper className="main-container">
         <LogoWrapper>
           <img
             src={logoUrl}

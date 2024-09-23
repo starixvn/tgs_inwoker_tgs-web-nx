@@ -54,7 +54,7 @@ const Marquee = () => {
 
   return (
     <MarqueeContainer className="marquee-container">
-      <MarqueeContent>
+      <MarqueeContent className="main-container">
         <img
           className="icon"
           src="/assets/images/common/icon-announcement.png"

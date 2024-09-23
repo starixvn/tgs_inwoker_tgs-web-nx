@@ -15,14 +15,12 @@ const MainWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: ${({ theme }) => theme.white};
-  padding: 0 0.8rem;
   gap: 1.2rem;
   flex-shrink: 0;
   flex: 1;
 
   ${media.md} {
     gap: 0.8rem;
-    padding: 0 0.8rem;
   }
 `;
 
