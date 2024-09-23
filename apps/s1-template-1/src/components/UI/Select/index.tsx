@@ -6,7 +6,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   fontSize: `1.4rem`,
   fontWeight: 400,
   background: `${theme.palette.form.backgroundColor}`,
-  border: `1px solid ${theme.palette.form.borderColor}`,   
+  border: `1px solid ${theme.palette.form.borderColor}`,
   borderRadius: "1rem",
   height: "4.8rem",
   lineHeight: "4.8rem",
@@ -21,13 +21,13 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     WebkitTextFillColor: `${theme.palette.text.disabled} !important`,
   },
 
-  "& .MuiOutlinedInput-input" : {
+  "& .MuiOutlinedInput-input": {
     WebkitTextFillColor: "unset !important",
   },
 
-  "& .MuiSvgIcon-root.MuiSelect-icon" : {
+  "& .MuiSvgIcon-root.MuiSelect-icon": {
     fontSize: "2.2rem",
-    color: `${theme.palette.form.textColor}`
+    color: `${theme.palette.form.textColor}`,
   },
 
   "& .MuiInputBase-input": {
@@ -68,7 +68,6 @@ export const Select = (props: SelectProps) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            maxHeight: 232,
             width: 214,
             background: theme.dropDownBackground,
             padding: "0.8rem",
@@ -96,7 +95,6 @@ export const Select = (props: SelectProps) => {
       // IconComponent={() => (
       //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
       // )}
-     
     />
   );
 };

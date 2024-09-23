@@ -2,6 +2,7 @@ import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
 import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -136,9 +137,22 @@ const Footer = () => {
   const history = useHistory();
 
   const { sportGameList, slotGameList, recentBigWins } = useGetHomeCategoryList();
+  const [isLoadFullData, setIsLoadFullData] = useState<boolean>(false);
 
-  const isLoadFullData =
-    sportGameList.length > 0 || slotGameList.length > 0 || recentBigWins.length > 0;
+  useEffect(() => {
+    !!isLoadFullData &&
+      setIsLoadFullData(
+        sportGameList.length > 0 && slotGameList.length > 0 && recentBigWins.length > 0,
+      );
+  }, [recentBigWins, sportGameList, slotGameList]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsLoadFullData(true), 5000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
 
   const navigateTo = (pageName: string) => {
     history.push("/" + pageName);

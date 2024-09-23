@@ -2,84 +2,67 @@ import Icon from "@/components/project/Icon";
 import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
 import { AccountIcon } from "@/components/styled-component/ProfileForms";
 import { GreenGradientButton } from "@/components/UI/Button";
-import {
-  AccountInfoIcon,
-  DepositIcon,
-  HistoryIcon,
-  InboxIcon,
-  LogoutIcon,
-  TransactionIcon,
-  WithdrawIcon,
-} from "@/components/UI/CustomizeIcon";
+import { AccountInfoIcon, DepositIcon, HistoryIcon, InboxIcon, LogoutIcon, TransactionIcon, WithdrawIcon } from "@/components/UI/CustomizeIcon";
 import { Select } from "@/components/UI/Select";
-import { useGoToHomePage } from "@/hooks/useGoToHomePage";
 import { theme } from "@/theme";
 import { MenuItem } from "@mui/material";
-import { useWalletStore } from "@tgs-web-nx/core";
 import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Common, i18n } from "@tgs-web-nx/utils";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 18rem;
   background-color: ${({ theme }) => theme.balanceHeaderBackground};
   border-radius: 1.2rem;
   justify-content: space-between;
   padding-right: 0.2rem;
 `;
 
-const BascicButton = styled.div`
+const BalanceContainer = styled.div<{ $runAnim: boolean }>`
+  position: relative;
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  height: 36px;
-  padding: 10px 12px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 17px;
-  letter-spacing: 0em;
-  text-align: center;
-  flex-shrink: 0;
-`;
-
-const BalanceContainer = styled(BascicButton)`
-  cursor: unset;
-  width: calc(100% - 3.8rem);
-  padding: 1rem 0.6rem;
   justify-content: flex-end;
+  border-radius: 0.8rem;
+  height: 3.6rem;
+  line-height: 1;
+  padding: 1rem 0.6rem 1rem 3.2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #ffc909;
-`;
+  cursor: pointer;
 
-const WithDrawButton = styled(BascicButton)`
-  background: ${({ theme }) => theme.memberSection};
-  color: ${({ theme }) => theme.lightPurple};
-  border: ${({ theme }) => `1px solid ${theme.lightPurple}`};
-`;
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0.8rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: url("/assets/images/common/icon-refresh.svg");
+    animation: ${({ $runAnim }) => ($runAnim ? "rotation 1s linear forwards infinite" : "")};
+  }
 
-const DepositButton = styled.div`
-  color: ${({ theme }) => theme.text};
-  margin-right: 0.1rem;
-`;
+  @keyframes rotation {
+    from {
+      transform: rotate(0);
+    }
 
-const LogoutButton = styled(BascicButton)`
-  background: ${({ theme }) => theme.inputBGC};
-  color: ${({ theme }) => theme.text};
-  gap: 4px;
+    to {
+      transform: rotate(360deg);
+    }
+  }
 `;
-
 
 const AccountHeaderContent = () => {
   const history = useHistory();
-  const { wallet } = useWalletStore();
   const { handleLogout } = useAuthContext();
-  const goToHomePage = useGoToHomePage();
-  const { isLargeDesktopSize, isDesktopSize, isMobileSize } = useRwd();
-  const { mainSymbol, mainWalletBalance, transferWalletBalance } = useUserWalletInfoContext();
+  const { isDesktopSize } = useRwd();
+  const { mainSymbol, mainWalletBalance, transferWalletBalance, fetchMainWalletBalance } =
+    useUserWalletInfoContext();
 
   const currentBalance =
     mainSymbol + "$ " + Common.formatNumberWithThousand(mainWalletBalance + transferWalletBalance);
@@ -88,10 +71,31 @@ const AccountHeaderContent = () => {
     //goToHomePage();
   };
 
+  const [runAnimRefresh, setRunAnimRefresh] = useState<boolean>(false);
+  let refreshTimeOut: NodeJS.Timeout;
+
+  const handleRefreshBalance = () => {
+    fetchMainWalletBalance();
+    setRunAnimRefresh(true);
+    refreshTimeOut && clearTimeout(refreshTimeOut);
+
+    refreshTimeOut = setTimeout(() => {
+      setRunAnimRefresh(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    return () => {
+      refreshTimeOut && clearTimeout(refreshTimeOut);
+    };
+  }, []);
+
   return (
     <>
       <ButtonContainer>
-        <BalanceContainer>{currentBalance}</BalanceContainer>
+        <BalanceContainer $runAnim={runAnimRefresh} onClick={handleRefreshBalance}>
+          {currentBalance}
+        </BalanceContainer>
 
         <GreenGradientButton
           style={{ minWidth: "unset", width: "3.6rem", height: "3.6rem" }}
@@ -101,7 +105,6 @@ const AccountHeaderContent = () => {
         >
           <Icon iconUrl="/assets/images/common/icon-plus.svg" width={"18px"} height={"18px"} />
         </GreenGradientButton>
-
       </ButtonContainer>
       <Select
         renderValue={() => {
@@ -148,7 +151,6 @@ const AccountHeaderContent = () => {
           },
         }}
       >
-       
         <MenuItem
           onClick={() => {
             history.push("/deposit");
@@ -157,11 +159,11 @@ const AccountHeaderContent = () => {
           <DepositIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
+              width: "1.8rem",
+              height: "1.8rem",
+              marginRight: "0.6rem",
               position: "relative",
-              top: "2px",
+              top: "0.2rem",
             }}
           ></DepositIcon>
           {i18n.t("common.deposit")}
@@ -174,11 +176,11 @@ const AccountHeaderContent = () => {
           <WithdrawIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
+              width: "1.8rem",
+              height: "1.8rem",
+              marginRight: "0.6rem",
               position: "relative",
-              top: "2px",
+              top: "0.2rem",
             }}
           ></WithdrawIcon>
           Withdrawal
@@ -187,18 +189,18 @@ const AccountHeaderContent = () => {
           onClick={() => {
             history.push({
               pathname: "/report",
-              state: { selectedType: 8 }
+              state: { selectedType: 8 },
             });
           }}
         >
           <TransactionIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
+              width: "1.8rem",
+              height: "1.8rem",
+              marginRight: "0.6rem",
               position: "relative",
-              top: "2px",
+              top: "0.2rem",
             }}
           ></TransactionIcon>
           {i18n.t("common.transaction")}
@@ -211,11 +213,11 @@ const AccountHeaderContent = () => {
           <HistoryIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
+              width: "1.8rem",
+              height: "1.8rem",
+              marginRight: "0.6rem",
               position: "relative",
-              top: "2px",
+              top: "0.2rem",
             }}
           ></HistoryIcon>
           {i18n.t("common.bethistory")}
@@ -228,24 +230,24 @@ const AccountHeaderContent = () => {
           <AccountInfoIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
+              width: "1.8rem",
+              height: "1.8rem",
+              marginRight: "0.6rem",
               position: "relative",
-              top: "2px",
+              top: "0.2rem",
             }}
           ></AccountInfoIcon>
-         {i18n.t("deposit.details.account")}
+          {i18n.t("deposit.details.account")}
         </MenuItem>
         <MenuItem onClick={handleClickLogout}>
           <InboxIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
+              width: "1.8rem",
+              height: "1.8rem",
+              marginRight: "0.6rem",
               position: "relative",
-              top: "5px",
+              top: "0.5rem",
             }}
           ></InboxIcon>
           {i18n.t("wap.main.account.inbox")}
@@ -254,11 +256,11 @@ const AccountHeaderContent = () => {
           <InboxIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
+              width: "1.8rem",
+              height: "1.8rem",
+              marginRight: "0.6rem",
               position: "relative",
-              top: "4px",
+              top: "0.4rem",
             }}
           ></InboxIcon>
           {i18n.t("common.contact")}
@@ -267,11 +269,11 @@ const AccountHeaderContent = () => {
           <LogoutIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
+              width: "1.8rem",
+              height: "1.8rem",
+              marginRight: "0.6rem",
               position: "relative",
-              top: "3px",
+              top: "0.3rem",
             }}
           ></LogoutIcon>
           {i18n.t("common.logout")}
