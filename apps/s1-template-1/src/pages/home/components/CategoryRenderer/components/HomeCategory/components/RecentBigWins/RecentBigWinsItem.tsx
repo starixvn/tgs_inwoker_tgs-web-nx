@@ -1,6 +1,5 @@
 import AppearSensor from "@/components/project/AppearSensor";
 import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { utility } from "@tgs-web-nx/utils";
 import { Img } from "react-image";
@@ -11,7 +10,6 @@ const RecentBigWinsItem: React.FC<{
   item: RecentBigWinItem;
   launchGame: (gameId: number, gameProviderCode: string) => void;
 }> = ({ item, launchGame }) => {
-  const { isDesktopSize } = useRwd();
   const { gameId, gameProviderCode, gameCode, playerName, winAmount } = item;
   const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
@@ -30,7 +28,7 @@ const RecentBigWinsItem: React.FC<{
                 {hasBeenVisible && (
                   <Img
                     className="icon"
-                    src={utility.getGameNameUrl(gameProviderCode, gameCode, isDesktopSize)}
+                    src={utility.getGameUrl(gameProviderCode, gameCode, true)}
                     loader={<LoadingIcon />}
                     unloader={<NoGameIcon />}
                   />

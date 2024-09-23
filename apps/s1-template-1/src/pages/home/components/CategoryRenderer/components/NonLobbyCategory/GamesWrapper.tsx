@@ -1,5 +1,4 @@
 import { Loading } from "@tgs-web-nx/core";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameItem } from "@tgs-web-nx/types";
 import { i18n, utility } from "@tgs-web-nx/utils";
 
@@ -15,7 +14,6 @@ const GamesWrapper: React.FC<{
   isHideProviderDropdown?: boolean;
   isHideOrderDropdown?: boolean;
 }> = ({ gameList, isLoading, totalGames, isHideProviderDropdown, isHideOrderDropdown }) => {
-  const { isDesktopSize } = useRwd();
   const hasMappingData = !!gameList.length;
 
   return (
@@ -35,7 +33,7 @@ const GamesWrapper: React.FC<{
                     <GameCard
                       key={id}
                       gameItem={gameItem}
-                      imageUrl={utility.getGameNameUrl(gpcode, code, isDesktopSize)}
+                      imageUrl={utility.getGameUrl(gpcode, code)}
                     />
                   </li>
                 );

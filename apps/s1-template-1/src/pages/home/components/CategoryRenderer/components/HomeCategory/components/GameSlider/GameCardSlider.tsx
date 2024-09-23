@@ -1,6 +1,5 @@
 import GameCard from "@/pages/home/components/GameCard";
 import { GameCardBg } from "@/pages/home/components/GameCard/style";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { utility } from "@tgs-web-nx/utils";
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
@@ -19,7 +18,6 @@ interface IGameSlider {
 
 const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
   const { data } = props;
-  const { isDesktopSize } = useRwd();
 
   const createSkeletonGames = () => {
     const skeletonGameNumber = 9;
@@ -37,11 +35,7 @@ const GameCardSlider: React.FC<IGameSlider> = (props: IGameSlider) => {
 
         return (
           <div className="embla__slide" key={index}>
-            <GameCard
-              key={id}
-              gameItem={gameItem}
-              imageUrl={utility.getGameNameUrl(gpcode, code, isDesktopSize)}
-            />
+            <GameCard key={id} gameItem={gameItem} imageUrl={utility.getGameUrl(gpcode, code)} />
           </div>
         );
       })}
