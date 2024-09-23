@@ -6,8 +6,6 @@ import {
 import BottomNote from "@/components/UI/BottomNote";
 import Loading from "@/components/UI/Loading";
 import { TextField } from "@/components/UI/TextField";
-import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
-import { Select } from "@mui/material";
 import config from "@tgs-web-nx/config";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
@@ -19,7 +17,8 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 // import { Select } from "@/components/UI/Select";
 import { GreenGradientButton } from "@/components/UI/Button";
-import { theme } from "@/theme";
+import { Select } from "@/components/UI/Select";
+import MenuItem from "@mui/material/MenuItem/MenuItem";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -262,7 +261,6 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
         <PhoneContainer>
           <FormControl variant="outlined" style={{ width: "40%" }}>
             <Select
-              native
               value={areacode}
               onChange={(e) => {
                 setAreacode(`${e.target.value}`);
@@ -272,19 +270,15 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
                 (config.features.Profile_DisableVerifyPhone &&
                   !config.features.InitPhone_WithoutVerify)
               }
-              sx={{
-                background: theme.inputBGC,
-                border: `1px solid ${theme.gray20}`,
-                ".MuiSelect-icon": {
-                  color: theme.white,
-                },
-                ".MuiOutlinedInput-input": {
-                  WebkitTextFillColor: `${theme.white} !important`,
-                  padding: "12px",
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    width: "50px",
+                  },
                 },
               }}
             >
-              <option value={AREA_CODE}>{AREA_CODE}</option>
+              <MenuItem value={AREA_CODE}>{AREA_CODE}</MenuItem>
             </Select>
           </FormControl>
 
@@ -302,7 +296,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
         </PhoneContainer>
       </ItemContainer>
 
-      {(() => {
+      {/* {(() => {
         if (
           !(config.features.Register_CustomFlow_IDR && !account.registercompleted) &&
           !isConfigured
@@ -331,11 +325,11 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
             )
           );
         }
-      })()}
+      })()} */}
 
       <GreenGradientButton
         fullWidth
-        disabled={isDisableButton}
+        //disabled={isDisableButton}
         onClick={handleSubmitClicked}
         style={{ marginBottom: "20px" }}
       >
