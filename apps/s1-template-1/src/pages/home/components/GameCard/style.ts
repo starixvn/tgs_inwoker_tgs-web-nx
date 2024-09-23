@@ -110,8 +110,9 @@ export const GameStatusBg = styled.div`
     justify-content: center;
     height: 3.4rem;
     padding: 0 1.4rem;
-    text-transform: uppercase;
     border-radius: 3rem;
+    text-transform: uppercase;
+    text-align: center;
     font-size: 1.3rem;
     font-weight: 700;
   }
