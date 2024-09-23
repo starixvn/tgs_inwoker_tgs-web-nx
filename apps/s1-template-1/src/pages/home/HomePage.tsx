@@ -1,7 +1,5 @@
-import useBanner from "@/hooks/home/useBanner";
 import CategoryRenderer from "@/pages/home/components/CategoryRenderer";
 import { media } from "@/theme/breakpoints";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
@@ -42,12 +40,10 @@ const MainContentWrapper = styled.div`
 `;
 
 const HomePage = () => {
-  const { isMobileSize, isDesktopSize } = useRwd();
-  const { hasActiveDesktopBanner, hasActiveMobileBanner } = useBanner();
   return (
     <MainWrapper>
-      {isMobileSize && hasActiveMobileBanner() && <Banner />}
-      {isDesktopSize && hasActiveDesktopBanner() && <Banner />}
+      <Banner />
+
       <GameTypes />
       <MainContentWrapper>
         <CategoryRenderer />

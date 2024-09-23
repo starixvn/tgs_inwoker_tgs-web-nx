@@ -1,6 +1,7 @@
 import AppearSensor from "@/components/project/AppearSensor";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { Common } from "@tgs-web-nx/utils";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
@@ -11,6 +12,8 @@ import { DotButton, useDotButton } from "./dots";
 import { BannerContainerEmbla } from "./style";
 
 const Banner = () => {
+  const { isDesktopSize } = useRwd();
+
   const [emblaBannerRef, emblaApi] = useEmblaCarousel(
     { loop: true, skipSnaps: true, align: "start" },
     [Autoplay({ playOnInit: true, delay: 6000 })],
@@ -47,7 +50,7 @@ const Banner = () => {
                     {hasBeenVisible && (
                       <Img
                         className="banner"
-                        src={banner.mobileurl}
+                        src={isDesktopSize ? banner.desktopurl : banner.mobileurl}
                         loader={<LoadingIcon />}
                         unloader={<NoGameIcon gameName={banner.title} />}
                       />

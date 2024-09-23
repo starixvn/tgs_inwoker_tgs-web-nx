@@ -23,7 +23,7 @@ export const DesktopCategoryContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
+  align-content: start;
 `;
 
 export const DesktopWrapper = styled.div`
