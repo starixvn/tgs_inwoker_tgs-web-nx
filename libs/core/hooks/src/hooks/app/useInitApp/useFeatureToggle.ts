@@ -11,7 +11,7 @@ export function useFeatureToggle() {
   function getJsonData(brandName: string) {
     if (!brandName) return;
 
-    return axios.get(`https://app12.srvptt.com/config_${brandName}.json`);
+    return axios.get(`/config_${brandName}.json`);
   }
 
   useEffect(() => {

@@ -1,0 +1,86 @@
+{
+  "Currency": "VND",
+  "DefaultLanguage": "vi-VN",
+  "BrandTitle": "GPI3",
+  "SMSVerification": true,
+  "EmailVerification": false,
+  "ICVerification": true,
+  "ICVerificationUpload": true,
+  "QQWeChat": false,
+  "SportsHideLogo": false,
+  "PopupAnnouncement": true,
+  "Withdrawal_HundredDigit": false,
+  "Deposit_ManualApplePayHideBankAcc": false,
+  "AddCard_BankBranch": true,
+  "AddCard_DisplayFPS": false,
+  "Deposit_DualPage": false,
+  "MenuItem_Sorting_HK28": false,
+  "HomePage_FirstSection6Widget": false,
+  "GamePage_SpecificBackground": false,
+  "MenuItem_ShootFish": false,
+  "HaveDownloadFeature": true,
+  "DisplayPhone": true,
+  "CustomVIP": false,
+  "AddCard_EnglishName": false,
+  "ChangesNotAllowed": false,
+  "HaveAffiliateFeature": true,
+  "HomePageDisplayBalance": false,
+  "Deposit_AddTips": true,
+  "PopupPromotion": true,
+  "Register_ShowPhone": false,
+  "PhonePrefix": "+84",
+  "Report_ShowRoundsTotal": true,
+  "DepositNotification": true,
+  "Header_DisplayCS": true,
+  "Withdrawal_USDT_ExchangeRate": 0.23,
+  "Slot_InfoGap": false,
+  "NewTransferUI": false,
+  "HomePage_PromoRoulette": true,
+  "PromoRoulette_SMSVerification": true,
+  "ForcedVerification": true,
+  "MAX_PHONE_LENGTH": 32,
+  "OnlineUser": true,
+  "AddCard_HideCertainField": false,
+  "SlotGame_Sorting_IDR": true,
+  "MenuItem_Sorting_IDR": true,
+  "HardcodeContentIDR": true,
+  "Withdrawal_WalletTransfer": true,
+  "BC_CustomTranslation": true,
+  "MenuItem_Sorting_PISO": true,
+  "Deposit_ManualDepositPassPhone": true,
+  "UseAlternateLogo": false,
+  "HideDownloadButton": true,
+  "AddCard_MaximumCardAllowed": 10,
+  "AddCard_MaxCardAllowRemove": true,
+  "agent": {
+    "Agent_CreatePlayer": true
+  },
+  "Home_OnlineUsers": {
+    "min": 500,
+    "max": 2000
+  },
+  "Maintenance_Detail": {
+    "startTime": "2022-07-12T01:30:00.000Z",
+    "endTime": "2022-07-12T05:00:00.000Z"
+  },
+  "CustomMessaging": ["telegram", "zalo"],
+  "RouletteSetting": {
+    "web": {
+      "size": 250,
+      "orientation": "row",
+      "position": {
+        "top": 80,
+        "right": 0
+      }
+    },
+    "wap": {
+      "size": 100,
+      "orientation": "column",
+      "position": {
+        "bottom": 250,
+        "right": 0
+      }
+    }
+  },
+  "isShowChannelCode": true
+}

@@ -21,7 +21,7 @@ const featureList = {
     DisplayPhone: false,
     ChangesNotAllowed: false,
     HomePage_CustomSection: false,
-    ICVerificationUpload: true,
+    ICVerificationUpload: false,
     Profile_CustomIdentityPageTranslation: false,
     CustomVIP: false,
     Deposit_EnglishName: false,
