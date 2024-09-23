@@ -1,27 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core"; // Import the RootState type
 import { useContactCS } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Content = styled.div`
-  font-size: 0.875rem;
+  font-size: 1.4rem;
   font-weight: 400;
-  line-height: 1.0025rem;
   text-align: center;
   color: ${({ theme }) => theme.text};
 `;
 
 const LabelLink = styled(Link)`
-  color: ${({ theme }) => theme.secondary};
-  text-decoration: underline;
+  color: ${({ theme }) => theme.linkColor};
 `;
 
 const LabelNormal = styled.span`
-  color: ${({ theme }) => theme.secondary};
-  text-decoration: underline;
   cursor: pointer;
+   color: ${({ theme }) => theme.linkColor};
 `;
 
 type Props = {

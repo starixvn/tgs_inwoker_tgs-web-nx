@@ -1,4 +1,6 @@
-import React from "react";
+import calendar from "@/assets/t28/images/profile/calendar.svg";
+import { theme } from "@/theme";
+import { createTheme, ThemeProvider } from "@mui/material";
 import {
   DatePickerProps,
   LocalizationProvider,
@@ -6,14 +8,11 @@ import {
   MobileDatePickerProps,
 } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import zhLocale from "date-fns/locale/zh-CN";
+import { i18n } from "@tgs-web-nx/utils";
 import enLocale from "date-fns/locale/en-US";
 import thLocale from "date-fns/locale/th";
+import zhLocale from "date-fns/locale/zh-CN";
 import styled from "styled-components";
-import { createTheme, ThemeProvider } from "@mui/material";
-import { i18n } from "@tgs-web-nx/utils";
-import { theme } from "@/theme";
-import calendar from "@/assets/t28/images/profile/calendar.svg";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -52,15 +51,6 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
           disableFuture
           format="yyyy/MM/dd"
           orientation={"portrait"}
-          sx={{
-            "& fieldset": { border: "none" },
-            "& input": {
-              textAlign: "center",
-              fontSize: "0.937rem",
-              padding: "14px 14px",
-              lineHeight: 1,
-            },
-          }}
           slotProps={{
             layout: {
               sx: {
@@ -82,11 +72,23 @@ const BirthDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  border: 1px solid ${({ theme }) => theme.inputBGC};
+  .MuiTextField-root {
+    width: 100%;
+  }
+  .MuiInputBase-root {
+    height: 4.8rem;
+    border: 1px solid ${({ theme }) => theme.formInputBorder};
+    border-radius: 1rem;
+    background: ${({ theme }) => theme.formInputBackground};    
+  }
   .MuiInputBase-input {
     background: none;
-    color: ${({ theme }) => theme.text};
+    color: ${({ theme }) => theme.formInputColor};
     text-align: left;
+    padding: 1.2rem;
+    font-weight: 700;
+    font-size: 1.4rem;
+    font-family: inherit;
   }
 
   .MuiInput-underline:before,
@@ -111,12 +113,12 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   ${({ $disabled }: CustomDatepickerProps) => {
     return $disabled && `pointer-events: none;`;
   }}
-  border-bottom: 1px solid ${({ theme }) => theme.gray10};
   position: relative;
 
   .MuiInputBase-input {
-    background: ${({ theme }) => theme.inputBGC};
-    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.formInputBackground};
+    color: ${({ theme }) => theme.formInputColor};
+    border: 1px solid ${({ theme }) => theme.formInputBorder}
     padding: 10px 10px;
     text-align: left;
     cursor: pointer;

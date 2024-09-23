@@ -73,7 +73,7 @@ export function useProfileMenu() {
         routePath: "/profile/phone",
         buttonText: account.info.member_phone
           ? i18n.t("profile.edit")
-          : i18n.t("profile.nowVerify"),
+          : i18n.t("profile.setNow"),
       },
       email: {
         key: "email",
@@ -83,7 +83,7 @@ export function useProfileMenu() {
         routePath: "/profile/email",
         buttonText: account.info.member_email
           ? i18n.t("profile.edit")
-          : i18n.t("profile.nowVerify"),
+          : i18n.t("profile.setNow"),
       },
       birth: {
         key: "birthdate",

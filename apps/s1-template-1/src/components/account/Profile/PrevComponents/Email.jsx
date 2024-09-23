@@ -1,18 +1,16 @@
-import React from "react";
+import BottomNote from "@/components/UI/BottomNote";
+import config from "@tgs-web-nx/config";
+import { accountAction, AccountService } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import { accountAction, AccountService } from "@tgs-web-nx/core";
 import BaseProfile from "./BaseProfile";
-import BottomNote from "@/components/UI/BottomNote";
 
 import {
   FormControl,
   ItemContainer,
   LabelContainer,
 } from "@/components/styled-component/ProfileForms";
-import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import { TextField } from "@/components/UI/TextField";
 
 class Email extends BaseProfile {
@@ -96,11 +94,12 @@ class Email extends BaseProfile {
   };
 
   isDisableButton = () => {
-    const code = this.state.code;
-    const email = this.state.email;
-    return config.features.Register_CustomFlow_IDR && !this.props.account.registercompleted
-      ? !email
-      : !(code && email);
+    // const code = this.state.code;
+    // const email = this.state.email;
+    // return config.features.Register_CustomFlow_IDR && !this.props.account.registercompleted
+    //   ? !email
+    //   : !(code && email);
+    return false;
   };
   showErrorMessage = (msg) => {
     this.props.alert("", msg);
@@ -194,7 +193,7 @@ class Email extends BaseProfile {
       i18n.t("common.emailAddress"),
       <>
         <ItemContainer>
-          <LabelContainer>{i18n.t("common.emailAddress")}</LabelContainer>
+          <LabelContainer>Email</LabelContainer>
 
           <FormControl variant="outlined">
             <TextField
@@ -206,7 +205,7 @@ class Email extends BaseProfile {
           </FormControl>
         </ItemContainer>
 
-        {(() => {
+        {/* {(() => {
           if (
             !(config.features.Register_CustomFlow_IDR && !this.props.account.registercompleted) &&
             !this.state.isConfigured
@@ -237,9 +236,10 @@ class Email extends BaseProfile {
               </ItemContainer>
             );
           }
-        })()}
+        })()} */}
       </>,
-      this.state.isConfigured ? i18n.t("common.configured") : i18n.t("common.complete"),
+      //this.state.isConfigured ? i18n.t("common.configured") : i18n.t("common.complete"),
+      "Submit",
       (() => {
         if (this.state.isConfigured) {
           return (

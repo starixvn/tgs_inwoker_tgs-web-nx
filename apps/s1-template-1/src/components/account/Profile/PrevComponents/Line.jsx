@@ -1,10 +1,3 @@
-import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import { accountAction, AccountService } from "@tgs-web-nx/core";
-import BaseProfile from "./BaseProfile";
 import BottomNote from "@/components/UI/BottomNote";
 import { TextField } from "@/components/UI/TextField";
 import {
@@ -12,6 +5,12 @@ import {
   ItemContainer,
   LabelContainer,
 } from "@/components/styled-component/ProfileForms";
+import config from "@tgs-web-nx/config";
+import { accountAction, AccountService } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import BaseProfile from "./BaseProfile";
 
 class Line extends BaseProfile {
   state = {
@@ -103,9 +102,10 @@ class Line extends BaseProfile {
           />
         </FormControl>
       </ItemContainer>,
-      this.state.isConfigured && config.features.ChangesNotAllowed
-        ? i18n.t("common.configured")
-        : this.state.line !== this.props.account.member_line && i18n.t("common.complete"),
+      // this.state.isConfigured && config.features.ChangesNotAllowed
+      //   ? i18n.t("common.configured")
+      //   : this.state.line !== this.props.account.member_line && i18n.t("common.complete"),
+      "Submit",
       (() => {
         if (
           this.state.isConfigured &&
