@@ -32,6 +32,7 @@ import {
   UPDATECARDNO_FAILURE,
   UPDATECARDNO_SUCCESS,
 } from "../api-services/constant/actionType";
+import { isMobileOnly } from "react-device-detect";
 
 export function useAccountStore() {
   const dispatch = useDispatch();
@@ -169,6 +170,14 @@ export function useAccountStore() {
     });
 
     try {
+      if (!localStorage.getItem("token" + (isMobileOnly ? 1 : 0))) {
+        dispatch({
+          type: CHECKTOKEN_FAILURE,
+          payload: "",
+          loading: false,
+        });
+        return
+      };
       const response = await AccountService.GetMemberInfo();
 
       if (response?.IsSuccess) {
