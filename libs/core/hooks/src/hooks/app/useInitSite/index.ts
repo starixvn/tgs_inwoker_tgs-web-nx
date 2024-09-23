@@ -21,8 +21,8 @@ export function useInitSite() {
   const { isInitSiteLoading } = useInitSiteApiData();
   const { isAuthLoading } = useAuthContext();
 
-  const isLoading =
-    (isInitSiteLoading || !general.token || isAuthLoading) && !general.isMaintenance;
+  const isLoading = (isInitSiteLoading || isAuthLoading) && !general.isMaintenance
+  //todo (isInitSiteLoading || !general.token || isAuthLoading) && !general.isMaintenance;
 
   return {
     isLoading,

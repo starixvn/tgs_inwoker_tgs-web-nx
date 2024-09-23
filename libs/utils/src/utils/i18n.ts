@@ -17,7 +17,7 @@ i18n
         loadPath: `https://assets.nexentgame.com/translations/{{lng}}.json`,
         addPath: `https://assets.nexentgame.com/translations/{{lng}}`,
       },
-
+      load: "currentOnly",
       whitelist: ["en-US", "zh-CN", "zh-TW", "th-TH", "id-ID", "vi-VN"],
       fallbackLng: [language || config.defaultLanguage],
       interpolation: {

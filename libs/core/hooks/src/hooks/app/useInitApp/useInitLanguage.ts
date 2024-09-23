@@ -6,15 +6,20 @@ import { useGeneralStore } from "@tgs-web-nx/core";
 
 const language: string | null = localStorage.getItem("i18nextLng");
 
-export function useInitLanguage(isConfigFetched: boolean) {
+export function useInitLanguage() {
   const [isLanguageReady, setIsLanguageReady] = useState(false);
   const { getBrandLanguage } = useGeneralStore();
 
-  useEffect(() => {
-    if (!isConfigFetched) return;
+  //todo
+  // useEffect(() => {
+  //    if (!isConfigFetched) return;
 
+  //   initI18n();
+  // }, [isConfigFetched]);
+
+  useEffect(() => {
     initI18n();
-  }, [isConfigFetched]);
+  }, [])
 
   const initI18n = async () => {
     const brandLanguageList = await getSupportLanguageList();
@@ -46,7 +51,6 @@ async function setDefaultLanguage(brandLanguageList: BrandLanguage[]) {
     language && checkIfLanguageValid(language, brandLanguageList)
       ? language
       : getDefaultLanguage(brandLanguageList);
-
   await i18n.changeLanguage(selectedLanguage);
 }
 

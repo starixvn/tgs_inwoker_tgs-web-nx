@@ -27,7 +27,7 @@ export function useInitSiteApiData() {
     getSocialMedia,
   } = useGeneralStore();
   const { getBalanceList } = useWalletStore();
-  const { account, checkTokenIsValid, getAccountProfile } = useAccountStore();
+  const { getAccountProfile } = useAccountStore();
   const { getMarquee, getAnnouncement } = useUiStore();
   const { getMessages } = useInboxStore();
   const { getProviderList } = useGameStore();
@@ -65,19 +65,21 @@ export function useInitSiteApiData() {
   };
 
   const handleSiteDataFetching = async () => {
-    if (!general.token) {
-      await getSiteToken();
-      return;
-    }
+    //todo
+    //  if (!general.token) {
+    //   await getSiteToken();
+    //   return;
+    // }
 
     getMarquee(i18n.language);
     getAnnouncement(i18n.language);
     getBanner();
-    getBrandCommunication();
-    getLiveChatURL();
-    getPromotion();
+    //todo
+    // getBrandCommunication();
+    // getLiveChatURL();
+    // getPromotion();
+    //getSocialMedia();
     getAffiliateStatus();
-    getSocialMedia();
   };
 
   const handleGoto = () => {
@@ -176,11 +178,12 @@ export function useInitSiteApiData() {
   }, [general.token]);
 
   const handleLoginTokenChanged = async () => {
-    if (!general.token) {
-      getSiteToken();
-      getPromotion();
-      return;
-    }
+    //todo
+    // if (!general.token) {
+    //   getSiteToken();
+    //   getPromotion();
+    //   return;
+    // }
 
     localStorage.setItem("client-token", general.token);
 
@@ -195,11 +198,12 @@ export function useInitSiteApiData() {
     getAnnouncement(i18n.language);
     getBanner();
     getBrand();
-    getBrandCommunication();
-    getLiveChatURL();
-    getPromotion();
+    //todo
+    // getBrandCommunication();
+    // getLiveChatURL();
+    // getPromotion();
     getAffiliateStatus();
-    getSocialMedia();
+    //getSocialMedia();
   };
 
   return {

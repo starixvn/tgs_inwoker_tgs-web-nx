@@ -40,7 +40,7 @@ class GameCacheService {
     this.totalGameCacheDictionary[key] = total;
   }
 
-  hasTotalGameCache(keyName: GameTypeEnum | string, providerList: string[], orderTag: number,): boolean {
+  hasTotalGameCache(keyName: GameTypeEnum | string, providerList: string[], orderTag: number): boolean {
     return !!this.totalGameCacheDictionary[this.getKey(keyName, 0, providerList, orderTag)];
   }
 
