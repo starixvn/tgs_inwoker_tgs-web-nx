@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import { store, UPDATE_INFO } from "@tgs-web-nx/core";
 import BottomNote from "@/components/UI/BottomNote";
+import { GreenGradientButton } from "@/components/UI/Button";
 import Loading from "@/components/UI/Loading";
-import { SubmitButton } from "@/components/styled-component/ProfileForms";
+import { store, UPDATE_INFO } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { Component } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
@@ -80,14 +80,14 @@ class BaseProfile extends Component {
       <Container>
         {body}
         {this.state.message}
-        <SubmitButton
+        <GreenGradientButton
           fullWidth
           disabled={this.checkButtonState() || this.state.disableButton}
           onClick={this.handleSubmitClicked}
           style={{ marginBottom: "20px" }}
         >
           {buttonTitle}
-        </SubmitButton>
+        </GreenGradientButton>
         {bottomNode || <BottomNote />}
         <Loading show={this.state.loading} />
       </Container>

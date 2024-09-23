@@ -15,6 +15,11 @@ export const ItemContainer = styled.div`
   margin-bottom: 24px; 
 `;
 
+export const ItemContainerSmall = styled(ItemContainer)`
+  margin-bottom: 1.6rem;
+`;
+
+
 export const LabelContainer = styled.div`
   font-size: 1.4rem;
   font-weight: 700;
@@ -79,6 +84,7 @@ export const UploadFileControl = styled.div`
   border-radius: 1rem;
   border: 1px solid ${({ theme }) => theme.formInputBorder};
   position: relative;
+  background: ${({ theme }) => theme.formInputBackground}
 `;
 
 export const InfoContainer = styled.div`

@@ -1,18 +1,18 @@
-import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import { accountAction, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
-import BaseProfile from "../../BaseProfile";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
-  ItemContainer,
+  ItemContainerSmall,
   LabelContainer,
   UploadFileButton,
-  UploadFileTag,
+  UploadFileControl,
+  UploadFileTag
 } from "@/components/styled-component/ProfileForms";
+import config from "@tgs-web-nx/config";
+import { accountAction, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import BaseProfile from "../../BaseProfile";
 
 class Default extends BaseProfile {
   constructor(props) {
@@ -25,11 +25,10 @@ class Default extends BaseProfile {
   render() {
     return (
       <>
-        <ItemContainer>
+        <ItemContainerSmall>
           <LabelContainer>
-            {config.features.Profile_CustomIdentityPageTranslation
-              ? i18n.t("piso.profile.fullName")
-              : i18n.t("profile.nameVerify.verifyName")}
+            Real Name
+            
           </LabelContainer>
           <FormControl variant="outlined">
             <TextField
@@ -38,22 +37,18 @@ class Default extends BaseProfile {
               onChange={this.props.handleChangeName}
               type={"text"}
               placeholder={
-                config.features.Profile_CustomIdentityPageTranslation
-                  ? i18n.t("piso.profile.enterFullName")
-                  : i18n.t("profile.nameVerify.title")
+                "Enter your real name"
               }
               disabled={false}
               maxLength={256}
             />
           </FormControl>
-        </ItemContainer>
+        </ItemContainerSmall>
 
         {config.features.ICVerification && (
-          <ItemContainer>
+          <ItemContainerSmall>
             <LabelContainer>
-              {config.features.Profile_CustomIdentityPageTranslation
-                ? i18n.t("piso.profile.documentNumber")
-                : i18n.t("profile.nameVerify.icNum")}
+              Indentification Number
             </LabelContainer>
             <FormControl variant="outlined">
               <TextField
@@ -69,30 +64,33 @@ class Default extends BaseProfile {
                 maxLength={256}
               />
             </FormControl>
-          </ItemContainer>
+          </ItemContainerSmall>
         )}
 
         {config.features.ICVerificationUpload && (
-          <ItemContainer>
+          <ItemContainerSmall>
             <LabelContainer>{i18n.t("common.upload")}</LabelContainer>
-            <UploadFileButton
-              variant={"outlined"}
-              onClick={() => {
-                document.getElementById("getFile").click();
-              }}
-            >
-              {i18n.t("common.upload")}
-            </UploadFileButton>
+            <UploadFileControl>
+              <UploadFileButton
+                variant={"outlined"}
+                onClick={() => {
+                  document.getElementById("getFile").click();
+                }}
+              >
+                Upload
+              </UploadFileButton>
 
-            <input
-              type="file"
-              id="getFile"
-              onChange={this.props.handleFileChange}
-              accept="image/jpg, image/jpeg, image/png, image/tiff"
-              style={{ display: "none" }}
-            />
-            <UploadFileTag>{this.props.icUpload ? this.props.icUpload[0].name : ""}</UploadFileTag>
-          </ItemContainer>
+              <input
+                type="file"
+                id="getFile"
+                onChange={this.props.handleFileChange}
+                accept="image/jpg, image/jpeg, image/png, image/tiff"
+                style={{ display: "none" }}
+              />
+              <UploadFileTag>{this.props.icUpload ? this.props.icUpload[0].name : "Upload file"}</UploadFileTag>
+            </UploadFileControl>
+            
+          </ItemContainerSmall>
         )}
       </>
     );

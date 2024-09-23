@@ -21,8 +21,8 @@ const IconContainer = styled.div<IconContainerProps>`
 
 type Props = {
   iconUrl: string;
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
 } & React.HTMLProps<HTMLDivElement>;
 

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import moment from "moment";
-import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import { AccountService, useAccountStore } from "@tgs-web-nx/core";
-import { useNotifications } from "@tgs-web-nx/core/features";
-import BottomNote from "@/components/UI/BottomNote";
-import Loading from "@/components/UI/Loading";
 import {
   ItemContainer,
-  LabelContainer,
-  SubmitButton,
+  LabelContainer
 } from "@/components/styled-component/ProfileForms";
+import BottomNote from "@/components/UI/BottomNote";
+import { GreenGradientButton } from "@/components/UI/Button";
 import { DatePickerForBirthDate } from "@/components/UI/DatePicker";
+import Loading from "@/components/UI/Loading";
+import config from "@tgs-web-nx/config";
+import { AccountService, useAccountStore } from "@tgs-web-nx/core";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { i18n } from "@tgs-web-nx/utils";
+import moment from "moment";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   width: 100%;
@@ -117,13 +117,13 @@ const Birthdate = () => {
       </ItemContainer>
 
       {isConfigured && config.features.Profile_SetUpBirthdateOnce ? null : (
-        <SubmitButton
+        <GreenGradientButton
           fullWidth
           disabled={isDisableButton() || isLoading}
           onClick={handleSubmitClicked}
         >
           {i18n.t("common.submit")}
-        </SubmitButton>
+        </GreenGradientButton>
       )}
 
       <Loading show={isLoading} />

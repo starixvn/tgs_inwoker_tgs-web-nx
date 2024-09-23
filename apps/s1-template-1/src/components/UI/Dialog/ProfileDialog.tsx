@@ -1,21 +1,22 @@
-import { Dialog as MuiDialog, DialogProps } from "@mui/material";
+import Icon from "@/components/project/Icon";
+import { UpTransition } from "@/components/UI/Dialog/Transition";
+import { DialogProps, Dialog as MuiDialog } from "@mui/material";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
-import { Close as CloseIcon } from "@mui/icons-material";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { usePageName } from "@tgs-web-nx/core/features";
-import { UpTransition } from "@/components/UI/Dialog/Transition";
-import { theme } from "@/theme";
 
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     position: relative;
-    background: ${({ theme }) => theme.mainBackground};
+    background: ${({ theme }) => theme.popupBackground};
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 3.2rem 3.6rem;
+    min-width: 40.8rem;
+    border-radius: 1.6rem;
   }
 `;
 
@@ -32,16 +33,16 @@ const ChildContainer = styled.div`
   width: 100%;
   height: auto;
   overflow: auto;
-  padding: 12px 24px;
+  padding-top: 2.4rem;
 `;
 
 const ProfileDialogTitle = styled.div`
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0em;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.36px;
   text-align: left;
   color: ${({ theme }) => theme.text};
+  width: 100%;
 `;
 
 type Props = {
@@ -59,12 +60,9 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
     <StyledDialog
       sx={{
         "& .MuiPaper-root": {
-          padding: "28px 61px",
-          maxWidth: "550px",
-          background:theme.secBTNBGC
         },
         "& .MuiBackdrop-root": {
-          backgroundColor: "rgba(0,0,0,0.8)",
+          
         },
       }}
       fullScreen={!isDesktopSize}
@@ -75,15 +73,8 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
       maxWidth={"xs"}
       {...others}
     >
-      <CloseIconContainer>
-        <CloseIcon
-          onClick={onClose}
-          style={{
-            color: theme.text,
-            width: "30px",
-            height: "30px",
-          }}
-        />
+      <CloseIconContainer onClick={onClose}>
+        <Icon iconUrl="/assets/images/common/icon-close.svg"/>
       </CloseIconContainer>
       <ProfileDialogTitle>{pageName}</ProfileDialogTitle>
 

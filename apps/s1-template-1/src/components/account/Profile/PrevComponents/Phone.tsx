@@ -1,24 +1,24 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import styled from "styled-components";
-import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import { AccountService, useAccountStore } from "@tgs-web-nx/core";
-import { useNotifications } from "@tgs-web-nx/core/features";
-import { EnqueueSnackbar } from "notistack";
-import { UpdatePhoneResDto } from "@tgs-web-nx/types";
-import { Select } from "@mui/material";
-import BottomNote from "@/components/UI/BottomNote";
-import Loading from "@/components/UI/Loading";
-import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import {
   FormControl,
   ItemContainer,
-  LabelContainer,
-  SubmitButton,
+  LabelContainer
 } from "@/components/styled-component/ProfileForms";
+import BottomNote from "@/components/UI/BottomNote";
+import Loading from "@/components/UI/Loading";
 import { TextField } from "@/components/UI/TextField";
+import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
+import { Select } from "@mui/material";
+import config from "@tgs-web-nx/config";
+import { AccountService, useAccountStore } from "@tgs-web-nx/core";
+import { useNotifications } from "@tgs-web-nx/core/features";
+import { UpdatePhoneResDto } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { EnqueueSnackbar } from "notistack";
+import { ChangeEvent, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 // import { Select } from "@/components/UI/Select";
+import { GreenGradientButton } from "@/components/UI/Button";
 import { theme } from "@/theme";
 
 const PhoneContainer = styled.div`
@@ -333,14 +333,14 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
         }
       })()}
 
-      <SubmitButton
+      <GreenGradientButton
         fullWidth
         disabled={isDisableButton}
         onClick={handleSubmitClicked}
         style={{ marginBottom: "20px" }}
       >
         {i18n.t("common.submit")}
-      </SubmitButton>
+      </GreenGradientButton>
 
       {isConfigured || config.features.InitPhone_WithoutVerify ? (
         config.features.Profile_DisableEditPhone ? (
