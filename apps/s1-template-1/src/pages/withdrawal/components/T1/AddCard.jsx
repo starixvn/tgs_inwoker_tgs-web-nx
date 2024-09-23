@@ -333,7 +333,10 @@ const AddCard = ({
                 : config.features.AddCard_DisplayFPS
                 ? i18n.t("hk28.withdrawalNumber")
                 : i18n.t("common.withdrawalNumber")} */}
-                {i18n.t("common.withdrawalEWalletId")}
+                {
+                  checkWithdrawalBankType("EWallet")
+                  ? i18n.t("common.withdrawalEWalletId")
+                  : i18n.t("common.withdrawalNumber")}
             </LabelContainer>
             <FormControl>
               <TextField
@@ -347,7 +350,9 @@ const AddCard = ({
                   //   : config.features.AddCard_DisplayFPS
                   //   ? i18n.t("hk28.msgEnterWithdrawalNumber")
                   //   : i18n.t("common.msgEnterWithdrawalNumber")
-                  i18n.t("common.msgWithdrawalEWalletId")
+                  checkWithdrawalBankType("EWallet")
+                  ? i18n.t("common.msgWithdrawalEWalletId")
+                  : i18n.t("common.msgEnterWithdrawalNumber")
                 }
                 maxLength={
                   selectedBankType("ThirdParty") ||
@@ -405,6 +410,7 @@ const AddCard = ({
               ? i18n.t("hk28.card.addCard.BankAccountName")
               : i18n.t("card.addCard.BankAccountName")} */}
               {i18n.t("common.withdrawalEWalletName")}
+              <OptionalText>(optional)</OptionalText>
           </LabelContainer>
           <FormControl>
             <TextField

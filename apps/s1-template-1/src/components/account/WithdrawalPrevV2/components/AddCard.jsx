@@ -268,10 +268,13 @@ class AddCard extends Component {
         phone: trimAndRemoveSpace(phone),
       };
     } else if (selected.banktype === "EWallet") {
-      if (bankAccountName.trim() === "") {
-        this.props.enqueueSnackbar(i18n.t("card.addCard.msgEnterEwalletAccount"), {
-          variant: "error",
-        });
+      if (number.trim() === "") {
+        this.props.enqueueSnackbar(
+          i18n.t("common.msgWithdrawalEWalletId"),
+          {
+            variant: "error",
+          },
+        );
         return;
       }
 
@@ -279,6 +282,17 @@ class AddCard extends Component {
         number.trim().length < 8 ||
         number.trim().length > (config.features.MAX_PHONE_LENGTH || 10)
       ) {
+        if (selected.banktype === "EWallet") {
+          this.props.enqueueSnackbar(
+            i18n
+              .t("common.msgEWalletIdNoReachMin")
+              .replace(/{maxlength}/g, config.features.MAX_PHONE_LENGTH || 10),
+            {
+              variant: "error",
+            },
+          );
+          return;
+        }
         this.props.enqueueSnackbar(
           i18n
             .t("common.noReachMin")

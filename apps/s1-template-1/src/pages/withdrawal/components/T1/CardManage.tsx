@@ -107,7 +107,7 @@ const CardManage = ({
           return (
             <Card
               key={item.id}
-              title={item.banktype}
+              title={i18n.t(item.banktype)}
               content={getCardContent(item)}
               contentName={getChannelCode(item.banktype, item.paymentchannelid)}
               handleDelete={() => onhandleDeleteCardClick(item.id)}
