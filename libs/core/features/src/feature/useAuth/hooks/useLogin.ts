@@ -153,7 +153,7 @@ export function useLogin() {
     const promiseList = [
       inboxStore.getMessages(i18n.language, 1, 99),
       generalStore.getPromotion(),
-      generalStore.getPromotionRouletteCount(),
+      //generalStore.getPromotionRouletteCount(),
     ];
     await Promise.all(promiseList);
 

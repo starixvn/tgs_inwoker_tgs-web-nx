@@ -160,7 +160,7 @@ export function useInitSiteApiData() {
 
     getBalanceList();
     getMessages(i18n.language, 1, 99);
-    getPromotionRouletteCount();
+    //getPromotionRouletteCount();
   };
 
   const onFocus = () => {
