@@ -4,6 +4,7 @@ import { DarkBlueGradientButton } from "@/components/UI/Button";
 import Card from "@/pages/withdrawal/components/CardManage/Card";
 import CardAddCard from "@/pages/withdrawal/components/CardManage/CardAddCard";
 import config from "@tgs-web-nx/config";
+import { useWalletStore } from "@tgs-web-nx/core";
 import { useShowAddCardButton } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { BankCard } from "@tgs-web-nx/types";
@@ -40,8 +41,12 @@ const CardManage = ({
   onhandleAddCardClick,
   onhandleBackClick,
 }: Props) => {
+  const { wallet } = useWalletStore();
   const { isDesktopSize } = useRwd();
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
+
+  console.log("WHAT THE HAIL")
+  console.log(wallet.withdrawalList);
 
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
@@ -70,6 +75,12 @@ const CardManage = ({
     return "";
   };
 
+  const getChannelCode = (bankType: string, paymentChannelId: string) => {
+    const channels = wallet.withdrawalList.find(item => item.banktype === bankType)?.channel;
+    const code = channels?.find(item => item.channelid === paymentChannelId);
+    return code?.channelcode ?? "Unknown";
+  }
+
   const getBankName = (item: BankCard): string => {
     return item.detail.bankName;
   };
@@ -88,9 +99,9 @@ const CardManage = ({
             <CardAddCard handleClick={onhandleAddCardClick} />
           )}
       </CardContainerTitle>
-    
+
       <CardContainer>
-          <Card title={"Type"} content={"Brand"} contentName={"Account Number"} handleDelete={() => {}} isHeader={true} disable={true} />
+          <Card title={"Type"} content={"Account Number"} contentName={"Brand"} handleDelete={() => {}} isHeader={true} disable={true} />
 
         {bankCardList.map((item, key) => {
           return (
@@ -98,7 +109,7 @@ const CardManage = ({
               key={item.id}
               title={item.banktype}
               content={getCardContent(item)}
-              contentName={getBankName(item)}
+              contentName={getChannelCode(item.banktype, item.paymentchannelid)}
               handleDelete={() => onhandleDeleteCardClick(item.id)}
               disable={
                 config.features.AddCard_NotAllowedEditDelete ||
