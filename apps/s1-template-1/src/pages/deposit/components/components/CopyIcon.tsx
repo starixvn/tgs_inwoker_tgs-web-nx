@@ -1,5 +1,6 @@
-import copyImg from "@/assets/t18/images/deposit/copy.svg";
-import Icon from "@/components/project/Icon";
+import {
+  CopyIcon
+} from "@/components/UI/CustomizeIcon";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { i18n, utility } from "@tgs-web-nx/utils";
 import { useSnackbar } from "notistack";
@@ -17,18 +18,13 @@ const CopyIconContainer = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
-
   transition: all ease-in-out 0.2s;
-  &:hover {
-    color: ${({ theme }) => theme.primary};
-    background-color: ${({ theme }) => theme.white};
-  }
 `;
 
 type Props = {
   copyContent: any;
 };
-const CopyIcon = ({ copyContent }: Props) => {
+const CopyIconStyled = ({ copyContent }: Props) => {
   const { alert } = useNotifications();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -47,9 +43,9 @@ const CopyIcon = ({ copyContent }: Props) => {
         performCopy(copyContent);
       }}
     >
-      <Icon iconUrl={copyImg} width={"20px"} height={"20px"} />
+      <CopyIcon sx={{fontSize: "2rem", color: "#55657E", ":hover": "#fff"}} viewBox="0 0 16 16"></CopyIcon>
     </CopyIconContainer>
   );
 };
 
-export default CopyIcon;
+export default CopyIconStyled;

@@ -24,7 +24,7 @@ import {
 import { GreenGradientButton } from "@/components/UI/Button";
 import { Select } from "@/components/UI/Select";
 import { TextField } from "@/components/UI/TextField";
-import CopyIcon from "@/pages/deposit/components/components/CopyIcon";
+import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
 import { MenuItem } from "@mui/material";
@@ -249,7 +249,7 @@ class Main extends Component {
                             <InfoContainer key={index}>
                               <TransferLabel>{i18n.t("extended." + [key])}:</TransferLabel>
                               <TransferValue>{content[key]}</TransferValue>
-                              <CopyIcon copyContent={content[key]} />
+                              <CopyIconStyled copyContent={content[key]} />
                             </InfoContainer>
                           )
                         }
@@ -274,7 +274,7 @@ class Main extends Component {
                       <InfoContainer key={index}>
                         <TransferLabel>{i18n.t("extended." + [key])}:</TransferLabel>
                         <TransferValue>{content[key]}</TransferValue>
-                        <CopyIcon copyContent={content[key]} />
+                        <CopyIconStyled copyContent={content[key]} />
                       </InfoContainer>
                     );
                   }
@@ -323,34 +323,6 @@ class Main extends Component {
                     config.features.Deposit_AddCard
                   ) && (
                     <>
-                      {this.props.wallet.bankCardList.length > 1 &&
-                      !config.features.Deposit_AccountNameManualInput ? (
-                        <ItemContainer>
-                          <LabelContainer>
-                            {config.features.Deposit_OriginAccount
-                              ? i18n.t("idr1.pleaseEnterAccountName")
-                              : i18n.t("common.pleaseEnterAccountName")}
-                          </LabelContainer>
-                          <FormControl variant="outlined">
-                            <Select
-                              id="customSelect"
-                              value={this.props.selectedBankCard}
-                              onChange={(e) => this.props.handleSelectAccountChange(e)}
-                            >
-                              {this.props.wallet.bankCardList.map((item, index) => {
-                                const detail = item.detail;
-                                return (
-                                  <MenuItem value={item.id} key={index}>
-                                    {detail.bankAccount || detail.address || detail.phone} (
-                                    {item.banktype})
-                                  </MenuItem>
-                                );
-                              })}
-                            </Select>
-                          </FormControl>
-                        </ItemContainer>
-                      ) : (
-                        <>
                           <LabelLargeContainer style={{ paddingTop: "1.2rem" }}>
                             {i18n.t("deposit.yourbankaccountinfo")}
                           </LabelLargeContainer>
@@ -366,11 +338,11 @@ class Main extends Component {
                                   "Please enter the bank account name"
                                 }
                                 value={this.props.account}
-                                disabled={
-                                  !config.features.Deposit_AccountNameManualInput &&
-                                  config.features.Deposit_AutofillFirstCard &&
-                                  this.props.wallet.bankCardList.length > 1
-                                }
+                                // disabled={
+                                //   !config.features.Deposit_AccountNameManualInput &&
+                                //   config.features.Deposit_AutofillFirstCard &&
+                                //   this.props.wallet.bankCardList.length > 1
+                                // }
                                 onChange={(e) => this.props.handleAccountChange(e)}
                               />
                             </FormControl>
@@ -382,19 +354,91 @@ class Main extends Component {
                                 type={"text"}
                                 placeholder={i18n.t("deposit.msgPlsEnterBankAccount")}
                                 value={this.props.account}
-                                disabled={
-                                  !config.features.Deposit_AccountNameManualInput &&
-                                  config.features.Deposit_AutofillFirstCard &&
-                                  this.props.wallet.bankCardList.length > 1
-                                }
+                                // disabled={
+                                //   !config.features.Deposit_AccountNameManualInput &&
+                                //   config.features.Deposit_AutofillFirstCard &&
+                                //   this.props.wallet.bankCardList.length > 1
+                                // }
                                 onChange={(e) => this.props.handleAccountChange(e)}
                               />
                             </FormControl>
                           </ItemContainer>
                           </AccountInfoWrapper>
                         </>
-                      )}
-                    </>
+                    // <>
+                    //   {this.props.wallet.bankCardList.length > 1 &&
+                    //   !config.features.Deposit_AccountNameManualInput ? (
+                    //     <ItemContainer>
+                    //       <LabelContainer>
+                    //         {config.features.Deposit_OriginAccount
+                    //           ? i18n.t("idr1.pleaseEnterAccountName")
+                    //           : i18n.t("common.pleaseEnterAccountName")}
+                    //       </LabelContainer>
+                    //       <FormControl variant="outlined">
+                    //         <Select
+                    //           id="customSelect"
+                    //           value={this.props.selectedBankCard}
+                    //           onChange={(e) => this.props.handleSelectAccountChange(e)}
+                    //         >
+                    //           {this.props.wallet.bankCardList.map((item, index) => {
+                    //             const detail = item.detail;
+                    //             return (
+                    //               <MenuItem value={item.id} key={index}>
+                    //                 {detail.bankAccount || detail.address || detail.phone} (
+                    //                 {item.banktype})
+                    //               </MenuItem>
+                    //             );
+                    //           })}
+                    //         </Select>
+                    //       </FormControl>
+                    //     </ItemContainer>
+                    //   ) : 
+                    //   (
+                    //     <>
+                    //       <LabelLargeContainer style={{ paddingTop: "1.2rem" }}>
+                    //         {i18n.t("deposit.yourbankaccountinfo")}
+                    //       </LabelLargeContainer>
+                    //       <AccountInfoWrapper>
+                    //       <ItemContainer>
+                    //         <LabelContainer>
+                    //           Account Holder Name
+                    //         </LabelContainer>
+                    //         <FormControl variant="outlined">
+                    //           <TextField
+                    //             type={"text"}
+                    //             placeholder={
+                    //               "Please enter the bank account name"
+                    //             }
+                    //             value={this.props.account}
+                    //             disabled={
+                    //               !config.features.Deposit_AccountNameManualInput &&
+                    //               config.features.Deposit_AutofillFirstCard &&
+                    //               this.props.wallet.bankCardList.length > 1
+                    //             }
+                    //             onChange={(e) => this.props.handleAccountChange(e)}
+                    //           />
+                    //         </FormControl>
+                    //       </ItemContainer>
+                    //       <ItemContainer>
+                    //         <LabelContainer>{i18n.t("deposit.cardNum")}</LabelContainer>
+                    //         <FormControl variant="outlined">
+                    //           <TextField
+                    //             type={"text"}
+                    //             placeholder={i18n.t("deposit.msgPlsEnterBankAccount")}
+                    //             value={this.props.account}
+                    //             disabled={
+                    //               !config.features.Deposit_AccountNameManualInput &&
+                    //               config.features.Deposit_AutofillFirstCard &&
+                    //               this.props.wallet.bankCardList.length > 1
+                    //             }
+                    //             onChange={(e) => this.props.handleAccountChange(e)}
+                    //           />
+                    //         </FormControl>
+                    //       </ItemContainer>
+                    //       </AccountInfoWrapper>
+                    //     </>
+                    //   )}
+                    // </>
                   )}
                   {(!(config.features.Deposit_RemoveName || methodCode("fps")) ||
                     config.features.Deposit_FPSWithName) && (
