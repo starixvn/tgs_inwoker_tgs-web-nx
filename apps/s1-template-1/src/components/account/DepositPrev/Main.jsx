@@ -111,6 +111,46 @@ class Main extends Component {
       return selectedDepositType.paymentcode.toUpperCase() === payment.toUpperCase();
     };
 
+    const bankInfoNameTrans = () => {
+      const method = selectedPaymentMethod.methodcode.toUpperCase();
+      switch (method) {
+        case "EWALLET":
+          return i18n.t("deposit.eWalletAccount")
+        default:
+          return i18n.t("deposit.accName")
+      }
+    }
+
+    const bankInfoNameMsgTrans = () => {
+      const method = selectedPaymentMethod.methodcode.toUpperCase();
+      switch (method) {
+        case "EWALLET":
+          return i18n.t("deposit.msgEWalletAccountName")
+        default:
+          return i18n.t("deposit.msgAccName")
+      }
+    }
+
+    const bankInfoNumberTrans = () => {
+      const method = selectedPaymentMethod.methodcode.toUpperCase();
+      switch (method) {
+        case "EWALLET":
+          return i18n.t("deposit.eWalletAccountNumber")
+        default:
+          return i18n.t("deposit.cardNum")
+      }
+    }
+
+    const bankInfoNumberMsgTrans = () => {
+      const method = selectedPaymentMethod.methodcode.toUpperCase();
+      switch (method) {
+        case "EWALLET":
+          return i18n.t("deposit.msgEWalletAccountNumber")
+        default:
+          return i18n.t("deposit.msgAccNum")
+      }
+    }
+
     const formatBankCardDetail = (data) => {
       let detail = "";
       switch (data.banktype.toUpperCase()) {
@@ -261,7 +301,7 @@ class Main extends Component {
                       }
                     })}
                  </ChannelExtend>
-                 
+
                  </>
               )
             }
@@ -286,8 +326,8 @@ class Main extends Component {
                 }
               });
             }
-           
-            
+
+
           };
 
           if (
@@ -334,13 +374,13 @@ class Main extends Component {
                           <AccountInfoWrapper>
                           <ItemContainer>
                             <LabelContainer>
-                              Account Holder Name
+                              {bankInfoNameTrans()}
                             </LabelContainer>
                             <FormControl variant="outlined">
                               <TextField
                                 type={"text"}
                                 placeholder={
-                                  "Please enter the bank account name"
+                                  bankInfoNameMsgTrans()
                                 }
                                 value={this.props.account}
                                 // disabled={
@@ -353,11 +393,11 @@ class Main extends Component {
                             </FormControl>
                           </ItemContainer>
                           <ItemContainer>
-                            <LabelContainer>{i18n.t("deposit.cardNum")}</LabelContainer>
+                            <LabelContainer>{bankInfoNumberTrans()}</LabelContainer>
                             <FormControl variant="outlined">
                               <TextField
                                 type={"text"}
-                                placeholder={i18n.t("deposit.msgPlsEnterBankAccount")}
+                                placeholder={bankInfoNumberMsgTrans()}
                                 value={this.props.account}
                                 // disabled={
                                 //   !config.features.Deposit_AccountNameManualInput &&
@@ -397,7 +437,7 @@ class Main extends Component {
                     //         </Select>
                     //       </FormControl>
                     //     </ItemContainer>
-                    //   ) : 
+                    //   ) :
                     //   (
                     //     <>
                     //       <LabelLargeContainer style={{ paddingTop: "1.2rem" }}>
@@ -692,7 +732,7 @@ class Main extends Component {
             <div></div>
           </GreenGradientButton>
         </ItemContainer>
-        
+
 
         <ResultPopupDialog
           isDialogOpen={this.props.openPopup}
