@@ -5,11 +5,13 @@ import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
 import AutoScroll from "embla-carousel-auto-scroll";
-import React from "react";
+import React, { useState } from "react";
 
 import { GameTypeTitle, Group } from "../../style";
+import BetSlipDialog from "./BetSlipDialog";
 import RecentBigWinsItem from "./RecentBigWinsItem";
 import RecentBigWinSKeleton from "./RecentBigWinSKeleton";
+import { BetArea, BetInfo, BetInfoText, BetInfoValue, Divider, ProfitText, ProfitValue, Title } from "./style";
 
 type BigWinType = {
   data: RecentBigWinItem[];
@@ -42,6 +44,16 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
     });
   };
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleCloseDialog = () => {
+    setIsOpen(false);
+  };
+
+  const handleOpenDialog = (data: RecentBigWinItem) => {
+    setIsOpen(true);
+  };
+
   return (
     <Group>
       <GameTypeTitle>
@@ -52,9 +64,32 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
         {!hasData && createSkeletonGames()}
         {hasData &&
           recentBigWins.data.map((item, index) => {
-            return <RecentBigWinsItem key={index} item={item} launchGame={launchGame} />;
+            return (
+              <RecentBigWinsItem
+                key={index}
+                handleOpenDialog={handleOpenDialog}
+                item={item}
+                launchGame={launchGame}
+              />
+            );
           })}
       </EmblaCarousel>
+      <BetSlipDialog open={isOpen} onClose={handleCloseDialog}>
+        <Title>Bet Slip</Title>
+        <ProfitText>Profit</ProfitText>
+        <ProfitValue>0.85457375</ProfitValue>
+        <BetArea>
+          <BetInfo>
+            <BetInfoText>Bet Amount</BetInfoText>
+            <BetInfoValue>1.877954859</BetInfoValue>
+          </BetInfo>
+          <BetInfo>
+            <BetInfoText>Payout</BetInfoText>
+            <BetInfoValue>1.400x</BetInfoValue>
+          </BetInfo>
+        </BetArea>
+        <Divider></Divider>
+      </BetSlipDialog>
     </Group>
   );
 };

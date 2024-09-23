@@ -83,3 +83,63 @@ export const BigWinsAmount = styled.div`
 export const CustomPlayButton = styled(PlayButton)`
   transform: scale(0.5) !important;
 `;
+
+export const Title = styled.div`
+  color: #fff;
+  text-align: left;
+  font-size: 1.8rem;
+  font-weight: 700;
+`;
+
+export const ProfitText = styled.div`
+  color: #fff;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+`;
+
+export const ProfitValue = styled.div`
+  margin-top: 0.8rem;
+  margin-bottom: 1.6rem;
+  color: #e2fe26;
+  text-align: center;
+  font-size: 3.2rem;
+  font-weight: 700;
+`;
+
+export const BetArea = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 6.8rem;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.6rem;
+  color: #fff;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+`;
+
+export const BetInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+`;
+
+export const BetInfoText = styled.div`
+  font-size: 1.4rem;
+  font-weight: 400;
+`;
+
+export const BetInfoValue = styled.div`
+  font-size: 1.6rem;
+  font-weight: 700;
+`;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 0.3rem;
+  border-top: 0.3rem dashed #404b58;
+  margin-top: 2.4rem;
+`;

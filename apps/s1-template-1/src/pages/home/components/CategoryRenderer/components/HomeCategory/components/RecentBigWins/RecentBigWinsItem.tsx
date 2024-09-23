@@ -9,7 +9,8 @@ import { BigWinsAmount, CardHoverBg, CustomPlayButton, GameContainer, GameIcon, 
 const RecentBigWinsItem: React.FC<{
   item: RecentBigWinItem;
   launchGame: (gameId: number, gameProviderCode: string) => void;
-}> = ({ item, launchGame }) => {
+  handleOpenDialog: (data: RecentBigWinItem) => void;
+}> = ({ item, launchGame, handleOpenDialog }) => {
   const { gameId, gameProviderCode, gameCode, playerName, winAmount } = item;
   const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
@@ -45,9 +46,10 @@ const RecentBigWinsItem: React.FC<{
                   </CustomPlayButton>
                 </CardHoverBg>
               </GameIcon>
-
-              <GameName>{playerName}</GameName>
-              <BigWinsAmount>{`${formatter.format(winAmount)}`}</BigWinsAmount>
+              <div onClick={() => handleOpenDialog(item)}>
+                <GameName>{playerName}</GameName>
+                <BigWinsAmount>{`${formatter.format(winAmount)}`}</BigWinsAmount>
+              </div>
             </GameContainer>
           </RecentBigWinsSlide>
         )
