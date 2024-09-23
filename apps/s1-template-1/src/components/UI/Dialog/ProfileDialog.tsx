@@ -21,12 +21,7 @@ const StyledDialog = styled(MuiDialog)`
 `;
 
 const CloseIconContainer = styled.div`
-  cursor: pointer;
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  display: flex;
-  align-items: center;
+
 `;
 
 const ChildContainer = styled.div`
@@ -42,6 +37,12 @@ const ProfileDialogTitle = styled.div`
   letter-spacing: 0.36px;
   text-align: left;
   color: ${({ theme }) => theme.text};
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
 `;
 
@@ -57,14 +58,7 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
   const { pageName } = usePageName();
 
   return (
-    <StyledDialog
-      sx={{
-        "& .MuiPaper-root": {
-        },
-        "& .MuiBackdrop-root": {
-          
-        },
-      }}
+    <StyledDialog     
       fullScreen={!isDesktopSize}
       open={open}
       TransitionComponent={UpTransition}
@@ -73,11 +67,12 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
       maxWidth={"xs"}
       {...others}
     >
-      <CloseIconContainer onClick={onClose}>
-        <Icon iconUrl="/assets/images/common/icon-close.svg"/>
-      </CloseIconContainer>
-      <ProfileDialogTitle>{pageName}</ProfileDialogTitle>
-
+      <TitleWrapper>        
+        <ProfileDialogTitle>{pageName}</ProfileDialogTitle>
+        <CloseIconContainer onClick={onClose}>
+          <Icon iconUrl="/assets/images/common/icon-close.svg"/>
+        </CloseIconContainer>
+      </TitleWrapper>
       <ChildContainer>{children}</ChildContainer>
     </StyledDialog>
   );
