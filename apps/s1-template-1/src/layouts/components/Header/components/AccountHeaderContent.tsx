@@ -148,23 +148,7 @@ const AccountHeaderContent = () => {
           },
         }}
       >
-        <MenuItem
-          onClick={() => {
-            history.push("/withdrawal");
-          }}
-        >
-          <WithdrawIcon
-            sx={{
-              fill: `${theme.formInputColor}`,
-              width: "18px",
-              height: "18px",
-              marginRight: "6px",
-              position: "relative",
-              top: "2px",
-            }}
-          ></WithdrawIcon>
-          Withdrawal
-        </MenuItem>
+       
         <MenuItem
           onClick={() => {
             history.push("/deposit");
@@ -181,6 +165,23 @@ const AccountHeaderContent = () => {
             }}
           ></DepositIcon>
           {i18n.t("common.deposit")}
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            history.push("/withdrawal");
+          }}
+        >
+          <WithdrawIcon
+            sx={{
+              fill: `${theme.formInputColor}`,
+              width: "18px",
+              height: "18px",
+              marginRight: "6px",
+              position: "relative",
+              top: "2px",
+            }}
+          ></WithdrawIcon>
+          Withdrawal
         </MenuItem>
         <MenuItem
           onClick={() => {
