@@ -29,6 +29,7 @@ import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
 import { MenuItem } from "@mui/material";
 import config from "@tgs-web-nx/config";
+import { media } from "@tgs-web-nx/constants";
 import { Common, i18n } from "@tgs-web-nx/utils";
 import { Component } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -79,6 +80,10 @@ const AccountInfo = styled.div`
 
 const ChannelExtend = styled.div`
   display: block;
+  width: calc(100% - 9rem);
+  ${media.sm} {
+   width: 30rem;
+  }
 `;
 
 const ChannelExtendTitle = styled(LabelLargeContainer)`
@@ -234,7 +239,7 @@ class Main extends Component {
                     style={{ marginBottom: "10px" }}
                   />
                 </QRCodeBounding>
-                 <ChannelExtend style={{width: logo ? 'calc(100% - 9rem)' : '100%'}}>
+                 <ChannelExtend>
                   <ChannelExtendTitle>Transfer To</ChannelExtendTitle>
                   {Object.keys(content)
                     .sort((a, b) => {

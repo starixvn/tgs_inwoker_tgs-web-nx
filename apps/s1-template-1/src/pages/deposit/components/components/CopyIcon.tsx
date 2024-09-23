@@ -19,6 +19,10 @@ const CopyIconContainer = styled.div`
   right: 0;
   bottom: 0;
   transition: all ease-in-out 0.2s;
+  color: #55657E;
+  &:hover {
+    color: #fff;
+  }
 `;
 
 type Props = {
@@ -43,7 +47,7 @@ const CopyIconStyled = ({ copyContent }: Props) => {
         performCopy(copyContent);
       }}
     >
-      <CopyIcon sx={{fontSize: "2rem", color: "#55657E", ":hover": "#fff"}} viewBox="0 0 16 16"></CopyIcon>
+      <CopyIcon sx={{fontSize: "2rem", color: "inherit"}} viewBox="0 0 16 16"></CopyIcon>
     </CopyIconContainer>
   );
 };
