@@ -71,3 +71,88 @@ export interface GameTypeDto {
   pageSize: number;
   key: any;
 }
+
+export interface HightLightMatchDto {
+  sportType: number;
+  sportName: string;
+  leagueId: number;
+  leagueName: string;
+  leagueIconUrl: string;
+  eventId: number;
+  eventCode: string;
+  eventStatus: string;
+  isMainMarket: boolean;
+  kickOffTime: Date;
+  globalShowTime: Date;
+  countryCode: string;
+  isLive: boolean;
+  marketCount: number;
+  channelCode: string;
+  teamInfo: TeamInfo;
+  gameInfo: GameInfo;
+  markets: Market[];
+}
+
+interface TeamInfo {
+  homeId: number;
+  homeName: string;
+  homeIconUrl: string;
+  awayId: number;
+  awayName: string;
+  awayIconUrl: string;
+}
+
+
+interface GameInfo {
+  livePeriod: number;
+  clockDirection: string;
+  seconds: number;
+  isNeutral: boolean;
+  isHt: boolean;
+  isBreak: boolean;
+  isClosed: boolean;
+  inJuryTime: number;
+  delayLive: boolean;
+  gameStatus: number;
+  inPlayTime: string;
+  liveHomeScore: number;
+  liveAwayScore: number;
+}
+
+
+interface Market {
+  sportType: number;
+  eventId: number;
+  betType: number;
+  betTypeName: string;
+  marketId: number;
+  maxBet: number;
+  isLive: boolean;
+  marketStatus: string;
+  gameMap?: number;
+  gameRound?: number;
+  resourceId: string;
+  category: number;
+  showCategory: string;
+  sort: number;
+  combo: number;
+  selections: SelectionInfo[];
+}
+
+interface SelectionInfo {
+  key: string;
+  keyName: string;
+  point?: number;
+  point2?: number;
+  oddsPrice: OddsPriceInfo;
+}
+
+interface OddsPriceInfo {
+  parlayPrice: number;
+  malayPrice: number;
+  hongKongPrice: number;
+  decimalPrice: number;
+  indoPrice: number;
+  americanPrice: number;
+}
+

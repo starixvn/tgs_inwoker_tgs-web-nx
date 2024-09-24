@@ -1,6 +1,6 @@
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
-import { GameItem, GameTagListResDto, GameTypeDto, RecentBigWinItem } from "@tgs-web-nx/types";
+import { GameItem, GameTagListResDto, GameTypeDto, HightLightMatchDto, RecentBigWinItem } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
 
 import { TagTypeEnum } from "./types";
@@ -22,11 +22,11 @@ interface TagGameList {
   newGameList: GameItem[];
 }
 
-// interface HotMatchs {
-//   isLoading: boolean;
-//   error: Error | null;
-//   matches: HotMatchList;
-// }
+interface HightLightMatchList {
+  isLoading: boolean;
+  error: Error | null;
+  matches: HightLightMatchDto[];
+}
 
 const initHomeGameList: HomeGameList = {
   isLoading: false,
@@ -45,6 +45,11 @@ const initTagGameList: TagGameList = {
   newGameList: [],
 };
 
+const initHighlightMatchList: HightLightMatchList = {
+  isLoading: false,
+  matches: []
+};
+
 const HomeCategory = [
   GameTypeEnum.SPORTS,
   GameTypeEnum.ESPORTS,
@@ -57,6 +62,8 @@ export function useGetHomeCategoryList() {
   const [homeGameList, setHomeGameList] = useState<HomeGameList>(initHomeGameList);
 
   const [tagGameList, setTagGameList] = useState<TagGameList>(initTagGameList);
+
+  const [highlightMatchList, setHighlightMatchList] = useState<HightLightMatchList>(initHighlightMatchList);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -121,6 +128,18 @@ export function useGetHomeCategoryList() {
     }
   };
 
+  const getHightLightMatch = async () => {
+    try {
+      setHighlightMatchList({ ...initHighlightMatchList, isLoading: true });
+      const response = await GameService.GetHightLightMatches(5, 10);
+      setHighlightMatchList({ ...initHighlightMatchList, isLoading: false, matches: response.data });
+      return response;
+    } catch (error: any) {
+      console.error(error);
+      setHighlightMatchList({ ...initHighlightMatchList, isLoading: false });
+    }
+  }
+
   const filterGameType = (gameTypes: GameTypeDto[], types: GameTypeEnum[]) => {
     const results = gameTypes.filter((gameType) => types.includes(gameType.key));
 
@@ -133,7 +152,7 @@ export function useGetHomeCategoryList() {
   useEffect(() => {
     getHomeGameList();
     getGameByTag();
-    // getHotMatch();
+    getHightLightMatch();
   }, []);
 
   return {
@@ -145,6 +164,7 @@ export function useGetHomeCategoryList() {
     tableGameList: homeGameList.tableGameList,
     liveCasinoList: homeGameList.liveCasinoList,
     sportGameList: homeGameList.sportGameList,
-    recentBigWins: homeGameList.recentBigWins
+    recentBigWins: homeGameList.recentBigWins,
+    highlightMatches: highlightMatchList.matches,
   };
 }

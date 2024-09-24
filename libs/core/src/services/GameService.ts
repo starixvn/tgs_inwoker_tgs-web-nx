@@ -1,10 +1,9 @@
 import config from "@tgs-web-nx/config";
-import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, JoinGameResDto, JoinLobbyGameResDto, RecentBigWinItem, ResponseResDto } from "@tgs-web-nx/types";
+import { GameTagListResDto, GameTypeDto, GetGameListResDto, GetProviderListResDto, HightLightMatchDto, JoinGameResDto, JoinLobbyGameResDto, RecentBigWinItem, ResponseResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
 import { GameService as PrevGameService } from "../api-services/services/GameService";
-import { lang } from "moment";
 
 export const GameService = {
   ...PrevGameService,
@@ -15,6 +14,7 @@ export const GameService = {
   GetGameType,
   GetGameListByTag,
   GetRecentBigWins,
+  GetHightLightMatches
 };
 
 const languageFromLocalStorage = localStorage.getItem("i18nextLng");
@@ -99,4 +99,8 @@ function GetRecentBigWins() {
     //@ts-ignore
     `Game/rencent-big-wins?platformtype=${config.isPC}`,
   ) as unknown as Promise<ResponseResDto<RecentBigWinItem>>;
+}
+
+function GetHightLightMatches(betType: number, top: number) {
+  return ApiService.getSabaAPI(`saba/event?betType=${betType}&top=${top}`) as unknown as Promise<ResponseResDto<HightLightMatchDto>>;
 }

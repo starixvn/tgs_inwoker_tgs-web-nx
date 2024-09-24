@@ -3,6 +3,7 @@ window.envConfig = {
   operatorPath: "/operator/api/",
   brandPath: "/brand/api/",
   assetsPath: "https://assets.nexentgame.com/",
+  sabaAPIPath: "https://sbsports-odds-api.nexentgame.com/api/",
   client: "XJY9uX5RarE5wrOkTHAgkQoGKMuNFxKIXF4A6zR4BfgCHNs1tC7zDv",
   currency: "HKD",
   brand: "GMO",

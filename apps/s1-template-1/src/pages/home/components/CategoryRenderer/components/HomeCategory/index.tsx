@@ -9,6 +9,7 @@ import GameCardSlider from "./components/GameSlider/GameCardSlider";
 import RecentBigWins from "./components/RecentBigWins";
 import { DesktopContainer, GameTypeContainer, GameTypeTitle, Group, ViewAll } from "./style";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import MatchCardSlider from "./components/MatchSlider/MatchCardSlider";
 
 const HomeCategory = () => {
   const history = useHistory();
@@ -21,6 +22,7 @@ const HomeCategory = () => {
     hotGameList,
     tableGameList,
     recentBigWins,
+    highlightMatches
   } = useGetHomeCategoryList();
 
   const navigateTo = (pageName: string, gameType: GameTypeEnum) => {
@@ -34,6 +36,9 @@ const HomeCategory = () => {
   return (
     <DesktopContainer>
       <GameTypeContainer>
+      {/* <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={false}>
+      <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
+        </EmblaCarousel> */}
         <RecentBigWins data={recentBigWins} />
         <Group className="game-area">
           <GameTypeTitle>
