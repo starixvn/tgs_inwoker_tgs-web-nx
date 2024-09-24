@@ -1,7 +1,3 @@
-import { imageMap } from "@/components/project/LanguageSwitch";
-import { FormControl, ItemContainer, LabelContainer, LabelLargeContainer } from "@/components/styled-component/ProfileForms";
-import { Select } from "@/components/UI/Select";
-import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
 import { MenuItem, SelectChangeEvent } from "@mui/material";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
@@ -9,6 +5,15 @@ import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import React, { useState } from "react";
 import styled from "styled-components";
+import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
+import { Select } from "@/components/UI/Select";
+import {
+  FormControl,
+  ItemContainer,
+  LabelContainer,
+  LabelLargeContainer,
+} from "@/components/styled-component/ProfileForms";
+import { imageMap } from "@/components/project/LanguageSwitch";
 
 const ProfileCard = styled.div`
   width: 100%;
@@ -21,7 +26,6 @@ const ProfileCard = styled.div`
 `;
 
 const FlagContainer = styled.div`
- 
   margin-right: 0.8rem;
   display: flex;
 
@@ -38,12 +42,12 @@ const NameContainer = styled.div`
 
 export const PasswordContainer = styled.div`
   > div {
-   border-bottom: none;
+    border-bottom: none;
   }
 `;
 
 const ProfileSettings = styled.div`
-  background: #19212C;
+  background: #19212c;
   border-radius: 1.2rem;
   margin: 2.4rem 0 25rem;
   padding: 1.2rem;
@@ -75,7 +79,7 @@ const ProfileMenuMobile = () => {
   return (
     <ProfileSettings>
       <LabelLargeContainer>Profile Settings</LabelLargeContainer>
-      <ProfileCard>       
+      <ProfileCard>
         <ProfileRowInMobile
           profileItem={profileItemDictionary["name"]}
           handleClick={handleClickProfileItem}
@@ -83,13 +87,13 @@ const ProfileMenuMobile = () => {
         <ProfileRowInMobile
           profileItem={profileItemDictionary["email"]}
           handleClick={handleClickProfileItem}
-        />        
-        
+        />
+
         <ProfileRowInMobile
           profileItem={profileItemDictionary["phone"]}
           handleClick={handleClickProfileItem}
         />
-        
+
         <ProfileRowInMobile
           profileItem={profileItemDictionary["birth"]}
           handleClick={handleClickProfileItem}
@@ -97,17 +101,6 @@ const ProfileMenuMobile = () => {
       </ProfileCard>
 
       <ProfileCard>
-        <ProfileRowInMobile
-          key={profileItemDictionary["qq"].key}
-          profileItem={profileItemDictionary["qq"]}
-          handleClick={handleClickProfileItem}
-        />
-        <ProfileRowInMobile
-          key={profileItemDictionary["wechat"].key}
-          profileItem={profileItemDictionary["wechat"]}
-          handleClick={handleClickProfileItem}
-        />
-
         {customMessagingList.map((messagingItem) => {
           return (
             <ProfileRowInMobile
@@ -118,37 +111,31 @@ const ProfileMenuMobile = () => {
           );
         })}
       </ProfileCard>
-      <ItemContainer style={{marginBottom: "1.2rem"}}>
-            <LabelContainer>Languages</LabelContainer>
-            <FormControl variant="outlined">
-              <Select
-                id="customSelect"
-                value={culturecode}
-                onChange={handleChange}
-                type={"string"}
-              >
-                {languageList.map((languageItem) => {
-                  const { culturecode } = languageItem;
-                  return (
-                    <MenuItem key={culturecode} value={culturecode}>
-                      <FlagContainer>
-                        <img src={imageMap[culturecode] || ""} alt={culturecode} />
-                      </FlagContainer>
-                      <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
-                    </MenuItem>
-                  );
-                })}
-              </Select>
-            </FormControl>
-          </ItemContainer>
+      <ItemContainer style={{ marginBottom: "1.2rem" }}>
+        <LabelContainer>Languages</LabelContainer>
+        <FormControl variant="outlined">
+          <Select id="customSelect" value={culturecode} onChange={handleChange} type={"string"}>
+            {languageList.map((languageItem) => {
+              const { culturecode } = languageItem;
+              return (
+                <MenuItem key={culturecode} value={culturecode}>
+                  <FlagContainer>
+                    <img src={imageMap[culturecode] || ""} alt={culturecode} />
+                  </FlagContainer>
+                  <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </ItemContainer>
       <PasswordContainer>
         <ProfileRowInMobile
           profileItem={profileItemDictionary["password"]}
           handleClick={handleClickProfileItem}
         />
       </PasswordContainer>
-      </ProfileSettings>
-
+    </ProfileSettings>
   );
 };
 

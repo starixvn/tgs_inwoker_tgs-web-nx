@@ -1,11 +1,10 @@
+import { useProfileMenu } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import React from "react";
 import iconAccount from "@/assets/t29/images/account/navItem/icon-profile.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import { LabelLargeContainer } from "@/components/styled-component/ProfileForms";
 import ProfileRowInDesktop from "@/pages/profile/components/ProfileMenu/ProfileRowInDesktop";
-import { useProfileMenu } from "@tgs-web-nx/core/hooks";
-import { i18n } from "@tgs-web-nx/utils";
-import React from "react";
-
 
 const ProfileMenuDesktop = () => {
   const { profileItemDictionary, handleClickProfileItem, customMessagingList } = useProfileMenu();
@@ -29,17 +28,6 @@ const ProfileMenuDesktop = () => {
         profileItem={profileItemDictionary["birth"]}
         handleClick={handleClickProfileItem}
       />
-
-      <ProfileRowInDesktop
-        key={profileItemDictionary["qq"].key}
-        profileItem={profileItemDictionary["qq"]}
-        handleClick={handleClickProfileItem}
-      />
-      <ProfileRowInDesktop
-        key={profileItemDictionary["wechat"].key}
-        profileItem={profileItemDictionary["wechat"]}
-        handleClick={handleClickProfileItem}
-      />
       <>
         {customMessagingList.map((messagingItem) => {
           return (
@@ -51,7 +39,6 @@ const ProfileMenuDesktop = () => {
           );
         })}
       </>
-     
     </AccountPaper>
   );
 };
