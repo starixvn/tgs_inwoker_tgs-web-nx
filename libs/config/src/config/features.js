@@ -42,7 +42,7 @@ const featureList = {
     NavigateToAddCard: false,
     Profile_NotAllowChangePhone: false,
     Deposit_RemoveAccount: false,
-    Deposit_AutofillFirstCard: true,
+    Deposit_AutofillFirstCard: false,
     HomePage_Animated: false,
     AddCard_MaximumCardAllowed: 10,
     AddCard_DisableCreateUpdateDelete: false, //different than AddCard_NotAllowedEditDelete, as it disable addcard if they forgot to add card initially.
@@ -50,7 +50,6 @@ const featureList = {
     PopupPromotion: true,
     AddCard_AllowedAdd: true,
     MenuItem_Sorting_WLGHK: false,
-
     LiveChatVendor: {
       license: "",
       brand: "",
