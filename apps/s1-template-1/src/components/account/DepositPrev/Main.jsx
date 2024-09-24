@@ -392,13 +392,13 @@ class Main extends Component {
                                 placeholder={
                                   bankInfoNameMsgTrans()
                                 }
-                                value={this.props.account}
+                                value={this.props.name}
                                 // disabled={
                                 //   !config.features.Deposit_AccountNameManualInput &&
                                 //   config.features.Deposit_AutofillFirstCard &&
                                 //   this.props.wallet.bankCardList.length > 1
                                 // }
-                                onChange={(e) => this.props.handleAccountChange(e)}
+                                onChange={(e) => this.props.handleNameChange(e)}
                               />
                             </FormControl>
                           </ItemContainer>
