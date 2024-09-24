@@ -20,6 +20,8 @@ export const DialogContent = styled.div`
   letter-spacing: 0.28px;
   color: ${({ theme }) => theme.text};
   margin-bottom: 20px;
+  line-height: 2rem;
+  text-align: center;
 `;
 
 // TODO: depecrated

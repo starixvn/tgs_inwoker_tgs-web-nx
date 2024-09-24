@@ -21,7 +21,7 @@ const DialogHeaderContainer = styled.div`
 
 const ReturnIconContainer = styled.div`
   position: absolute;
-  left: 16px;
+  left: ${({ theme }) => theme.gapPage};
   display: flex;
   align-items: center;
   cursor: pointer;

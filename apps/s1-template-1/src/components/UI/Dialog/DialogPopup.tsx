@@ -7,9 +7,10 @@ import styled from "styled-components";
 const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     background: ${({ theme }) => theme.popupBackground};
-    min-width: 48rem;
+    max-width: 48rem;
     border-radius: ${({ theme }) => theme.popupBorderRadius};
     box-shadow: ${({ theme }) => theme.popupShadow};
+    margin: 1rem;
   }
 `;
 
