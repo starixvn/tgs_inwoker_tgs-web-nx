@@ -47,7 +47,8 @@ const initTagGameList: TagGameList = {
 
 const initHighlightMatchList: HightLightMatchList = {
   isLoading: false,
-  matches: []
+  matches: [],
+  error: null
 };
 
 const HomeCategory = [
