@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import { i18n } from "@tgs-web-nx/utils";
 import { useGameStore } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { useMemo } from "react";
 
 export enum ReportTabIndexEnum {
   "PLATFORM" = 1,
@@ -34,22 +34,22 @@ export function useReportTypeTabs() {
         index: ReportTabIndexEnum.DEPOSIT,
         label: i18n.t("report.depositDetails"),
       },
-      (() => {
-        if (game.containTransferWallet) {
-          return {
-            index: ReportTabIndexEnum.TRANSFER,
-            label: i18n.t("common.transfer"),
-          };
-        }
-      })(),
-      {
-        index: ReportTabIndexEnum.BALANCE_CHANGE,
-        label: i18n.t("report.balanceChanges.title"),
-      },
-      {
-        index: ReportTabIndexEnum.JOIN_PROMOTION,
-        label: i18n.t("report.joinedPromo.title"),
-      },
+      // (() => {
+      //   if (game.containTransferWallet) {
+      //     return {
+      //       index: ReportTabIndexEnum.TRANSFER,
+      //       label: i18n.t("common.transfer"),
+      //     };
+      //   }
+      // })(),
+      // {
+      //   index: ReportTabIndexEnum.BALANCE_CHANGE,
+      //   label: i18n.t("report.balanceChanges.title"),
+      // },
+      // {
+      //   index: ReportTabIndexEnum.JOIN_PROMOTION,
+      //   label: i18n.t("report.joinedPromo.title"),
+      // },
     ].filter((reportTab) => !!reportTab) as ReportTab[];
   }, [game.containTransferWallet]);
 

@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from "react";
-import moment from "moment";
-import { BottomScrollListener } from "react-bottom-scroll-listener";
-import { WithdrawFormViewModel } from "@tgs-web-nx/types";
+import Loading from "@/components/UI/Loading";
+import { DateRangeInfo, useDateRange } from "@/components/account/Report/hooks/useDateRange";
+import { useWithdrawalStatus } from "@/components/account/Report/hooks/useWithdrawalStatus";
+import { ReportContainer } from "@/components/styled-component/Report";
+import WithdrawalDetailCards from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";
+import WithdrawalDetailTable from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
 import { ReportService } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import Loading from "@/components/UI/Loading";
-import { useWithdrawalStatus } from "@/components/account/Report/hooks/useWithdrawalStatus";
-import StatusSelect from "@/pages/report/components/StatusSelect";
-import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
-import WithdrawalDetailTable from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
-import WithdrawalDetailCards from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";
-import { ReportContainer } from "@/components/styled-component/Report";
+import { WithdrawFormViewModel } from "@tgs-web-nx/types";
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
+import StatusSelect from "../../StatusSelect";
+
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
@@ -85,15 +86,44 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
     setPage(page + 1);
   };
 
+  const {
+    handleDateFromChange,
+    handleDateToChange,
+    handleDateRangeChange,
+    isSelectedDateRange,
+  } = useDateRange();
+
+  const changeDateRange = (dateRangeEnum: number) => {
+    handleDateRangeChange(dateRangeEnum);
+  };
+
   return (
     <>
-      <StatusSelect
+    {/* <FilterWrapper>
+        <DateRangeSelector>
+          <Title>{i18n.t("report.date")}</Title>
+          <DateRangeWithDatePicker
+            dateFrom={dateRangeInfo.dateFrom}
+            dateTo={dateRangeInfo.dateTo}
+            handleDateFromChange={handleDateFromChange}
+            handleDateToChange={handleDateToChange}
+            selectedType={3}
+          />          
+        </DateRangeSelector>
+        <DateRangeWithIntervalSelector
+            dateRange={dateRangeInfo.dateRange}
+            handleDateRangeChange={changeDateRange}
+            isSelectedDateRange={isSelectedDateRange}
+          />
+         
+      </FilterWrapper> */}
+     
+    <StatusSelect
         type="withdrawal"
         statusDictionary={statusDictionary}
         status={status}
         handleStatusChange={handleStatusChange}
       />
-
       <ReportContainer>
         {isDesktopSize ? (
           <WithdrawalDetailTable

@@ -196,7 +196,7 @@ export const theme = {
   // main content
   mainContentWidth: "108.8rem",
   mainContentBorderColor: "#161F2C",
-  mainContentBackgroundColor: "#19212C",
+  mainContentBackgroundColor: "#111923",
 
   // Toast
   toastErrorBorderColor: "#F90B44",
@@ -210,4 +210,9 @@ export const theme = {
   popupBackground: "linear-gradient(180deg, #032F63 0%, #111923 47.92%)",
   popupBoxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.50)",
   popupBorderRadius: "1.2rem",
+
+  // Button Report
+  buttonReportBackgroundColor: "#304056", 
+  buttonReportColor: "#fff", 
+  buttonReportHighlightColor: "#95A90B",
 };

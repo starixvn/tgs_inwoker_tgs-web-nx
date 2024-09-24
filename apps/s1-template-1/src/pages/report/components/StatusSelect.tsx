@@ -1,27 +1,23 @@
-import React from "react";
-import styled from "styled-components";
-import { FormControl, styled as muiStyled } from "@mui/material";
-import { i18n } from "@tgs-web-nx/utils";
 import { Select } from "@/components/UI/Select";
 import { theme } from "@/theme";
+import { FormControl, MenuItem, styled as muiStyled } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 
 const StatusSelectWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
 `;
 
 const StatusSelectContainer = styled.div`
-  border: 1px solid ${theme.secPopupMask};
-  height: 47px;
-  background: ${({ theme }) => theme.mainBackground};
-  font-size: 0.937rem;
   color: ${({ theme }) => theme.white};
-  border-radius: 6px;
-  box-shadow: 0 4px 8px 0 rgba(35, 31, 27, 0.1);
+  border-radius: 1rem;
   display: flex;
   align-items: center;
+  width: 23rem;
+ 
 `;
 
 const SelectLabel = styled.div`
@@ -66,24 +62,29 @@ type Props = {
   status: string;
   type?: string;
 };
+
+
+
+
 const StatusSelect = ({ statusDictionary, handleStatusChange, status, type }: Props) => {
   return (
     <StatusSelectWrapper>
       <SelectLabel>{i18n.t("report.status")}</SelectLabel>
       <StatusSelectContainer>
         {/* <SelectFormControl variant="outlined"> */}
-        <Select native onChange={handleStatusChange} value={status} fullWidth>
-          <option value={""}>{i18n.t("report.all")}</option>
+        <Select sx={{height: "3.6rem", background: theme.dropDownBackground, border: "none"}}  onChange={handleStatusChange} value={status} fullWidth>
+          <MenuItem value={""}>{i18n.t("report.all")}</MenuItem>
 
           {Object.keys(statusDictionary).map((key) => {
             return (
-              <option key={key} value={key}>
+              <MenuItem key={key} value={key}>
                 {i18n.t(`report.${type}.status${key}`)}
-              </option>
+              </MenuItem>
             );
           })}
         </Select>
         {/* </SelectFormControl> */}
+        
       </StatusSelectContainer>
     </StatusSelectWrapper>
   );

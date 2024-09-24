@@ -1,4 +1,3 @@
-import calendar from "@/assets/t28/images/profile/calendar.svg";
 import { theme } from "@/theme";
 import { createTheme, ThemeProvider } from "@mui/material";
 import {
@@ -114,14 +113,19 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
     return $disabled && `pointer-events: none;`;
   }}
   position: relative;
-
-  .MuiInputBase-input {
-    background: ${({ theme }) => theme.formInputBackground};
-    color: ${({ theme }) => theme.formInputColor};
-    border: 1px solid ${({ theme }) => theme.formInputBorder}
-    padding: 10px 10px;
+   background: ${({ theme }) => theme.dropDownBackground};
+   border-radius: 1rem;
+  .MuiInputBase-root {
+    font-size: 1.4rem;
+    font-family: inherit;
+    font-weight: 700;
+  }
+  .MuiInputBase-input {   
+    color: ${({ theme }) => theme.formInputColor};    
+    padding: 0 .8rem !important;
     text-align: left;
     cursor: pointer;
+    height: 3.6rem;
   }
 
   .MuiInput-underline:before,
@@ -135,14 +139,18 @@ const Wrapper = styled.div`
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  width: 27px;
-  height: 27px;
+  width: 2.4rem;
+  height: 2.4rem;
   pointer-events: none;
+  background: #253144;
+  border-radius: .6rem;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  > img {
+    
+   }
 
-  & > img {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 type DatePickerForReportProps = {
@@ -154,7 +162,7 @@ export const DatePickerForReport = ({ disabled, ...others }: DatePickerForReport
     <ReportDatePickerContainer $disabled={!!disabled}>
       <DatePicker {...others} />
       <Wrapper>
-        <img src={calendar} alt="calendar" />
+        <img src={"/assets/images/common/icon-calendar.svg"} alt="calendar" width={"16px"} height={"16px"}/>
       </Wrapper>
     </ReportDatePickerContainer>
   );

@@ -11,6 +11,7 @@ export const AccountPaperContainer = styled.div`
     background: ${({ theme }) => theme.mainContentBackgroundColor};
     margin: auto;
     border-radius: 1.2rem;
+    font-size: 1.4rem;
   }
 `;
 

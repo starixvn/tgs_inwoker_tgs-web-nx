@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import styled from "styled-components";
-import { useLocation } from 'react-router-dom';
-import Loading from "@/components/UI/Loading";
-import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
-import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
-import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWithIntervalSelector";
-import ReportBetting from "@/pages/report/components/reports/ReportBetting";
-import ReportWithdraw from "@/pages/report/components/reports/ReportWithdraw";
-import ReportDeposit from "@/pages/report/components/reports/ReportDeposit";
-import Index from "@/pages/report/components/reports/ReportTransfer";
-import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion";
-import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
 import { useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
+import Loading from "@/components/UI/Loading";
+import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDatePicker";
+import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWithIntervalSelector";
+import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion";
+import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
+import ReportBetting from "@/pages/report/components/reports/ReportBetting";
+import ReportDeposit from "@/pages/report/components/reports/ReportDeposit";
+import Index from "@/pages/report/components/reports/ReportTransfer";
+import ReportWithdraw from "@/pages/report/components/reports/ReportWithdraw";
+import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
+import { i18n } from "@tgs-web-nx/utils";
+import React, { useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import styled from "styled-components";
 
 const Title = styled.div`
   color: ${({ theme }) => theme.text};
@@ -71,14 +70,13 @@ const Report = () => {
           handleDateFromChange={handleDateFromChange}
           handleDateToChange={handleDateToChange}
           selectedType={selectedType}
-        />
-        <DateRangeWithIntervalSelector
+        />        
+      </DateRangeSelector>
+      <DateRangeWithIntervalSelector
           dateRange={dateRangeInfo.dateRange}
           handleDateRangeChange={changeDateRange}
           isSelectedDateRange={isSelectedDateRange}
         />
-      </DateRangeSelector>
-
       {(() => {
         switch (selectedType) {
           // case 1:

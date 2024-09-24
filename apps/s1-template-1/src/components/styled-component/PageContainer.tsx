@@ -2,14 +2,13 @@ import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
 export const PageContainer = styled.div`
-  /* max-width: calc(961px + 20px * 2); */
   flex: 1;
   margin: 0 auto;
-   padding: ${({ theme }) => theme.gapPage};
+  padding: ${({ theme }) => theme.gapPage};
+  max-width: ${({ theme }) => theme.mainContentWidth};
 
   ${media.sm} {
-    padding: 10px;
-    background: ${({ theme }) => theme.blue20};
+    padding: 0;
   }
 `;
 
@@ -21,7 +20,6 @@ export const TransferPageContainer = styled.div`
 
   ${media.sm} {
     padding: 0;
-    background: ${({ theme }) => theme.blue20};
   }
 
   & .MuiButton-fullWidth {

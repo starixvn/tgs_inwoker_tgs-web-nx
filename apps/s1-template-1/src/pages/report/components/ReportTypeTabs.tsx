@@ -1,13 +1,13 @@
+import { ReportTabIndexEnum, useReportTypeTabs } from "@/components/account/Report/hooks/useReportTypeTabs";
+import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import React, { ChangeEvent } from "react";
 import styled from "styled-components";
-import { Button } from "@mui/material";
-import { useReportTypeTabs } from "@/components/account/Report/hooks/useReportTypeTabs";
-import { theme } from "@/theme";
 
 const ReportTypeTabsContainer = styled.div`
   display: flex;
-  gap: 9px;
+  gap: 1.2rem;
   flex-wrap: wrap;
+  width: 100%;
 `;
 
 type Props = {
@@ -28,38 +28,17 @@ const ReportTypeTabs = ({ selectedType, handleChangeTab, ...others }: Props) => 
       {displayedTabList.map((reportTab) => {
         const { index, label } = reportTab;
         const isSelected = index === selectedType;
-        return (
-          <Button
-            key={index}
-            onClick={() => handleButtonClick(index)}
-            sx={{
-              color: isSelected ? theme.lightPurple : theme.gray50,
-              border: isSelected
-                ? `1px solid ${theme.lightPurple}`
-                : `2px solid ${theme.secBTNBGC}`,
-              background: theme.secPopupMask,
-              "&:hover": {
-                color: isSelected ? theme.lightPurple : theme.gray50,
-                background: theme.secPopupMask,
-              },
-              whiteSpace: {
-                sx: "wrap",
-                sm: "no-wrap",
-              },
-              padding: "12px",
-              borderRadius: "4px",
-              width: {
-                xs: "calc((100% - 2 * 9px) / 3)",
-                sm: "auto",
-              },
-              minWidth: {
-                sm: "calc((100% - 5 * 9px) / 6)",
-              },
-            }}
-          >
-            {label}
-          </Button>
-        );
+        if(index !== ReportTabIndexEnum.BETTING ) {
+          return (
+            <Badge
+              text={label}
+              key={index}
+              handleClick={() => handleButtonClick(index)}
+              isActive={isSelected}
+            />
+          );
+        }
+       
       })}
     </ReportTypeTabsContainer>
   );

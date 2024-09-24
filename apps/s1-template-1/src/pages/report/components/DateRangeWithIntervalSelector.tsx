@@ -1,14 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
 import { theme } from "@/theme";
+import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 
 const DateRangContainer = styled.div`
   display: flex;
-  //align-items: center;
   justify-content: center;
-  gap: 13px;
-  height: 47px;
+  gap: 1.2rem;
+  align-items: flex-end;
+  margin-right: 1.2rem;
 `;
 
 type DateRangSelectionTypes = {
@@ -16,22 +15,18 @@ type DateRangSelectionTypes = {
   theme: typeof theme;
 };
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
-  text-align: center;
   cursor: pointer;
   white-space: nowrap;
-  background: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.memberSection : theme.secPopupMask;
-  }};
-  color: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? theme.lightPurple : theme.gray50;
-  }};
-  border: ${({ $isSelected, theme }: DateRangSelectionTypes) => {
-    return $isSelected ? `1px solid ${theme.lightPurple}` : `2px solid ${theme.secBTNBGC}`;
-  }};
-  padding: 12px 20px;
-  font-size: 0.812rem;
+  background: ${({ theme }) => theme.buttonReportBackgroundColor};
+  color: ${({ theme }) => theme.buttonReportColor};
+  padding: .8rem;
   display: flex;
   align-items: center;
+  font-weight: 700;
+  height: 3.6rem;
+  border-radius: 1rem;
+  min-width: 13.8rem;
+  justify-content: center;
 `;
 
 export enum DateRangeEnum {

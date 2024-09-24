@@ -1,17 +1,10 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 
-import styled from "styled-components";
-import addDays from "date-fns/addDays";
 import { DatePickerForReport } from "@/components/UI/DatePicker";
-import { media } from "@/theme/breakpoints";
+import addDays from "date-fns/addDays";
+import styled from "styled-components";
 
 const DateContainer = styled.div`
-  width: 100%;
- 
-  ${media.sm} {
-    width: auto;
-    height: 47px;
-  }
 `;
 
 const FlatStraightLine = styled.div`
@@ -22,11 +15,7 @@ const FlatStraightLine = styled.div`
 `;
 
 const DateSpliter = styled.div`
-  font-size: 20px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.gray50};
-  text-align: center;
-  padding: 12px;
+  width: 1.2rem;
 `;
 const DateInner = styled.div`
   width: 159px;

@@ -1,8 +1,10 @@
-import styled from "styled-components";
-import { styled as muiStyled, Table } from "@mui/material";
 import { media } from "@/theme/breakpoints";
+import { styled as muiStyled, Table } from "@mui/material";
+import styled from "styled-components";
 
-export const ReportContainer = styled.div``;
+export const ReportContainer = styled.div`
+  width: 100%;
+`;
 export const ReportSummary = styled.div`
   font-size: 0.8rem;
   color: ${({ theme }) => theme.text};
@@ -72,17 +74,13 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
 }));
 export const ReportMainContainer = styled.div`
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 `;
 export const DateRangeSelector = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-
-  ${media.sm} {
-    flex-wrap: wrap;
-    flex-direction: row;
-    height: 47px;
-  }
+  align-items: flex-start;
+  gap: .8rem;
+  margin-right: 1.2rem;
 `;
