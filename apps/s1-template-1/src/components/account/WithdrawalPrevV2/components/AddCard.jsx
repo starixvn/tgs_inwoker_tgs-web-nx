@@ -80,7 +80,7 @@ class AddCard extends Component {
       }
     } else {
       if (this.props.withdrawalList.length > 0) {
-        channelList = this.props.withdrawalList[this.state.selectedBankTypeIndex].channel;
+        channelList = this.getDistinctChannelListByChannelId(this.props.withdrawalList[this.state.selectedBankTypeIndex].channel);
         if (this.props.withdrawalList.length > 0) {
           for (i = 0; i < channelList.length; i++) {
             if (addedChannel.indexOf(channelList[i].id) < 0) {
@@ -382,6 +382,18 @@ class AddCard extends Component {
       detail,
     );
   };
+
+  getDistinctChannelListByChannelId = (channelList) => {
+    const result = []
+    const seen = new Set();
+
+    channelList.forEach(channel => {
+      if (seen.has(channel.channelid)) return;
+      result.push(channel);
+      seen.add(channel.channelid);
+    });
+    return result;
+  }
 
   render() {
     const { withdrawalList, depositList } = this.props;

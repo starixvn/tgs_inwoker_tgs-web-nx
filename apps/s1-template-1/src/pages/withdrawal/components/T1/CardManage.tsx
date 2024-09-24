@@ -45,9 +45,6 @@ const CardManage = ({
   const { isDesktopSize } = useRwd();
   const { isShowAddCardButton } = useShowAddCardButton(bankCardList);
 
-  console.log("WHAT THE HAIL")
-  console.log(wallet.withdrawalList);
-
   const getCardContent = (item: BankCard): string => {
     if (item.detail.phone) {
       return item.detail.phone;

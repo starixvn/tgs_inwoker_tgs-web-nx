@@ -70,18 +70,6 @@ const AddCard = ({
     return depositList.length > 0 && depositList[selectedBankTypeIndex].banktype === type;
   };
 
-  const getDistincChannelListByChannelId = () => {
-    const result = []
-    const seen = new Set();
-
-    channelList.forEach(channel => {
-      if (seen.has(channel.channelid)) return;
-      result.push(channel);
-      seen.add(channel.channelid);
-    });
-    return result;
-  }
-
   return (
     <Container>
       {/* {isDesktopSize && <FormTitle title={i18n.t("card.addCard.title")} />} */}
@@ -159,7 +147,7 @@ const AddCard = ({
                     );
                   })
                 : withdrawalList.length > 0 &&
-                  getDistincChannelListByChannelId().map((item, index) => {
+                  channelList.map((item, index) => {
                     return (
                       <MenuItem value={index} key={index}>
                         {i18n.t(item.channelname)}
