@@ -1,7 +1,6 @@
-import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import { WalletService } from "@tgs-web-nx/core";
-import { useCallback, useState } from "react";
 import { i18n } from "@tgs-web-nx/utils";
+import { useCallback, useState } from "react";
 
 export enum GameTypeEnum {
   LiveDealer = "LiveDealer",
@@ -53,7 +52,6 @@ export function useWageringPage() {
       lable: i18n.t("common.virtualsports"),
     },
   ];
-  useUpdatePageName(i18n.t("wagering.wageringrequirement"));
 
   const [playerBuckets, setPlayerBuckets] = useState<PlayerBucket[]>(initBucketList);
   const [wageringRequirement, setWageringRequirement] = useState<number>(0);

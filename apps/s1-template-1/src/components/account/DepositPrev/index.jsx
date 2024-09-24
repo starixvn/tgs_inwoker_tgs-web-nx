@@ -500,9 +500,10 @@ class DepositPrev extends Component {
     this.setState({
       ...this.state,
       selectedMethodIndex: 0,
-
       selectedChannelIndex: 0,
       selectedPaymentIndex: value,
+      name: "",
+      account: ""
     });
   };
 
@@ -517,12 +518,16 @@ class DepositPrev extends Component {
       ...this.state,
       selectedChannelIndex: 0,
       selectedMethodIndex: targetIndex,
+      name: "",
+      account: ""
     });
   };
   handleChannelChange = (e) => {
     this.setState({
       ...this.state,
       selectedChannelIndex: e.target.value,
+      name: "",
+      account: ""
     });
   };
   handleAccountChange = (e) => {
