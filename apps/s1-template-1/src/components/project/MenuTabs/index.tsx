@@ -1,8 +1,3 @@
-import { NavCardKey } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
-import { useHistory, useLocation } from "react-router";
-import styled from "styled-components";
-import { theme } from "@/theme";
 import {
   AccountInfoIcon,
   DepositIcon,
@@ -11,6 +6,11 @@ import {
   TransactionIcon,
   WithdrawIcon
 } from "@/components/UI/CustomizeIcon";
+import { theme } from "@/theme";
+import { NavCardKey } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { useHistory, useLocation } from "react-router";
+import styled from "styled-components";
 
 type MenuItem = {
   key: NavCardKey;
@@ -24,7 +24,7 @@ type MenuItem = {
 
 const TabContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-column-gap: 1.6rem;
   width: 100%;
   overflow: auto;
@@ -91,7 +91,7 @@ const MenuTabs = () => {
     {
       key: NavCardKey.TRANSFER,
       label: "Transactions",
-      router: "/transaction",
+      router: "/report",
       icon: TransactionIcon,
       viewBox: "0 0 18 14",
       fontSizeIcon: "2.6rem",
@@ -128,14 +128,7 @@ const MenuTabs = () => {
     //   router: "/affiliate",
     //   icon: AffiliateIcon,
     // },
-    {
-      key: NavCardKey.CONTACT_US,
-      label: i18n.t("common.contact"),
-      router: "/support",
-      icon: InboxIcon,
-      viewBox: "0 0 16 10",
-      fontSizeIcon: "2.2rem",
-    },
+    
     //TODO: remove for phase 1
     // {
     //   key: NavCardKey.APP_DOWNLOAD,

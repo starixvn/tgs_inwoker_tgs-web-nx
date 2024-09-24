@@ -253,19 +253,6 @@ const AccountHeaderContent = () => {
           {i18n.t("wap.main.account.inbox")}
         </MenuItem>
         <MenuItem onClick={handleClickLogout}>
-          <InboxIcon
-            sx={{
-              fill: `${theme.formInputColor}`,
-              width: "1.8rem",
-              height: "1.8rem",
-              marginRight: "0.6rem",
-              position: "relative",
-              top: "0.4rem",
-            }}
-          ></InboxIcon>
-          {i18n.t("common.contact")}
-        </MenuItem>
-        <MenuItem onClick={handleClickLogout}>
           <LogoutIcon
             sx={{
               fill: `${theme.formInputColor}`,
