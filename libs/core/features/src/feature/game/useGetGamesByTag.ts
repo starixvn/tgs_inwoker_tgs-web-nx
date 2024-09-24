@@ -38,7 +38,7 @@ export function useGetGamesByTag() {
 
     try {
       setGameListState((state) => ({ ...state, isLoading: true }));
-      const response = await GameService.GetGameListByTag([activeTag], activeProviderFilterTag, pageIndex, pageSize);
+      const response = await GameService.GetGameListByTag([activeTag], pageIndex, pageSize, [], activeProviderFilterTag);
 
       const gameList =
         pageIndex > 1

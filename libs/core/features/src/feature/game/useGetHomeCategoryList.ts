@@ -110,7 +110,7 @@ export function useGetHomeCategoryList() {
     try {
       setTagGameList({ ...initTagGameList, isLoading: true });
 
-      const response = await GameService.GetGameListByTag([TagTypeEnum.HOT, TagTypeEnum.NEW], [], 1, 30);
+      const response = await GameService.GetGameListByTag([TagTypeEnum.HOT, TagTypeEnum.NEW], 1, 30, [GameTypeEnum.SPORTS]);
       const hotTag =
         response.data.find((gt: GameTagListResDto) => gt.tag === TagTypeEnum.HOT)?.games || [];
       const newTag =

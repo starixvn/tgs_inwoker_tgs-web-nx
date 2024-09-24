@@ -4,6 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 
 import { ApiService } from "../api-services/services/ApiService";
 import { GameService as PrevGameService } from "../api-services/services/GameService";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 export const GameService = {
   ...PrevGameService,
@@ -82,7 +83,7 @@ function GetGameType(
   return result as unknown as Promise<ResponseResDto<GameTypeDto>>;
 }
 
-function GetGameListByTag(tags: number[], providerCode: string[] = [], pageIndex: number, pageSize: number) {
+function GetGameListByTag(tags: number[], pageIndex: number, pageSize: number, sportExclude: GameTypeEnum[], providerCode: string[] = []) {
   return ApiService.post("games/by-tag", {
     PlatformType: config.isPC,
     language: i18n.language,
@@ -91,6 +92,7 @@ function GetGameListByTag(tags: number[], providerCode: string[] = [], pageIndex
     pageIndex,
     pageSize,
     providerCode,
+    GameTypeExclude: sportExclude
   }) as unknown as Promise<ResponseResDto<GameTagListResDto>>;
 }
 
