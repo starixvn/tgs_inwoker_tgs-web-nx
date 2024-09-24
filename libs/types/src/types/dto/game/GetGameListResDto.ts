@@ -45,7 +45,7 @@ export interface RecentBigWinItem {
   gameType: number;
   gameProviderCode: string;
   gameProviderName: string;
-  createTime: Date;
+  createTime: string;
   currencyName: string;
   playerName: string;
   playerCode: string;

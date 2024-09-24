@@ -34,7 +34,6 @@ export const GameIcon = styled.div`
 
   ${media.sm} {
     &:hover {
-      cursor: pointer;
       border: 1px solid ${({ theme }) => theme.gameCardBorder};
 
       ${CardHoverBg} {
@@ -66,6 +65,12 @@ export const GameContainer = styled.div`
   text-align: center;
   font-size: 1.3rem;
   font-weight: 500;
+
+  ${media.sm} {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const RecentBigWinsSlide = styled.div`
@@ -92,6 +97,7 @@ export const Title = styled.div`
 `;
 
 export const ProfitText = styled.div`
+  margin-top: 2rem;
   color: #fff;
   text-align: center;
   font-size: 1.4rem;
@@ -138,8 +144,114 @@ export const BetInfoValue = styled.div`
 `;
 
 export const Divider = styled.div`
+  position: relative;
   width: 100%;
   height: 0.3rem;
   border-top: 0.3rem dashed #404b58;
   margin-top: 2.4rem;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    border-radius: 1.2rem;
+    width: 3.3rem;
+    height: 3rem;
+    background-color: #0d131c;
+  }
+
+  &:before {
+    left: -3.6rem;
+  }
+
+  &:after {
+    right: -3.6rem;
+  }
+`;
+
+export const PlayerArea = styled.div`
+  display: grid;
+  grid-template-columns: 5.2rem 1fr;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1.6rem;
+  font-size: 1.4rem;
+`;
+
+export const Avatar = styled.img`
+  border-radius: 50%;
+`;
+
+export const PlayerInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 0.8rem;
+`;
+
+export const Game = styled.div`
+  display: flex;
+  padding: 1.2rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  align-self: stretch;
+  border-radius: 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 1.4rem;
+
+  ${media.sm} {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  ${GameIcon} {
+    width: 6rem;
+    height: 8rem;
+  }
+`;
+
+export const GameInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.8rem;
+  flex: 1 0 0;
+  font-weight: 700;
+`;
+
+export const PlayNow = styled.div`
+  display: flex;
+  align-items: center;
+  color: #e2fe26;
+  text-align: right;
+  gap: 1rem;
+
+  .icon {
+    position: relative;
+    top: 0.1rem;
+  }
+`;
+
+export const BetID = styled.p`
+  position: relative;
+  width: 100%;
+  font-weight: bold;
+
+  .icon-copy {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;

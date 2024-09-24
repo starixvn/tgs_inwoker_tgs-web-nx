@@ -53,6 +53,15 @@ function getGameUrl(gameProviderCode: string, gameCode: string, isSmallSize?: bo
   );
 }
 
+function copyText(text: string) {
+  try {
+    navigator.clipboard.writeText(text);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 export const utility = {
   imagePathGenerator,
   copy,
@@ -61,4 +70,5 @@ export const utility = {
   removeSpace,
   replaceUnderscoresWithSpace,
   getGameUrl,
+  copyText,
 };

@@ -11,7 +11,6 @@ import { GameTypeTitle, Group } from "../../style";
 import BetSlipDialog from "./BetSlipDialog";
 import RecentBigWinsItem from "./RecentBigWinsItem";
 import RecentBigWinSKeleton from "./RecentBigWinSKeleton";
-import { BetArea, BetInfo, BetInfoText, BetInfoValue, Divider, ProfitText, ProfitValue, Title } from "./style";
 
 type BigWinType = {
   data: RecentBigWinItem[];
@@ -45,6 +44,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   };
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [itemDetail, setItemDetail] = useState<RecentBigWinItem>();
 
   const handleCloseDialog = () => {
     setIsOpen(false);
@@ -52,6 +52,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
 
   const handleOpenDialog = (data: RecentBigWinItem) => {
     setIsOpen(true);
+    setItemDetail(data);
   };
 
   return (
@@ -74,22 +75,12 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
             );
           })}
       </EmblaCarousel>
-      <BetSlipDialog open={isOpen} onClose={handleCloseDialog}>
-        <Title>Bet Slip</Title>
-        <ProfitText>Profit</ProfitText>
-        <ProfitValue>0.85457375</ProfitValue>
-        <BetArea>
-          <BetInfo>
-            <BetInfoText>Bet Amount</BetInfoText>
-            <BetInfoValue>1.877954859</BetInfoValue>
-          </BetInfo>
-          <BetInfo>
-            <BetInfoText>Payout</BetInfoText>
-            <BetInfoValue>1.400x</BetInfoValue>
-          </BetInfo>
-        </BetArea>
-        <Divider></Divider>
-      </BetSlipDialog>
+      <BetSlipDialog
+        launchGame={launchGame}
+        data={itemDetail}
+        open={isOpen}
+        onClose={handleCloseDialog}
+      />
     </Group>
   );
 };
