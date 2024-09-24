@@ -24,7 +24,7 @@ const PaymentTabsHeader = ({ selectedPaymentIndex, handlePaymentChange }: Props)
 
   return (
     <ItemContainer>
-      <LabelLargeContainer>Payment Service Provider</LabelLargeContainer>    
+      <LabelLargeContainer>{i18n.t("payment.provider")}</LabelLargeContainer>
       <BadgeContainer>
         {depositTypes.map((depositType, index) => {
           const { paymentcode, paymentid } = depositType;
@@ -36,7 +36,7 @@ const PaymentTabsHeader = ({ selectedPaymentIndex, handlePaymentChange }: Props)
               handleClick={() => handlePaymentChange({}, index)}
             />
           );
-        })}        
+        })}
       </BadgeContainer>
     </ItemContainer>
   );

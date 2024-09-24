@@ -111,6 +111,16 @@ class Main extends Component {
       return selectedDepositType.paymentcode.toUpperCase() === payment.toUpperCase();
     };
 
+    const bankInfoTrans = () => {
+      const method = selectedPaymentMethod.methodcode.toUpperCase();
+      switch (method) {
+        case "EWALLET":
+          return i18n.t("deposit.yourEWalletAccountInfo")
+        default:
+          return i18n.t("deposit.yourbankaccountinfo")
+      }
+    }
+
     const bankInfoNameTrans = () => {
       const method = selectedPaymentMethod.methodcode.toUpperCase();
       switch (method) {
@@ -192,7 +202,7 @@ class Main extends Component {
 
             {/*1. 请选择支付方式 */}
             <ItemContainer>
-              <LabelLargeContainer>Payment Method</LabelLargeContainer>
+              <LabelLargeContainer>{i18n.t("payment.method")}</LabelLargeContainer>
               <BadgeContainer>
                 {this.props.wallet.depositTypeList.length > 0 &&
                   selectedDepositType.method.map((item, index) => {
@@ -242,7 +252,7 @@ class Main extends Component {
         {/*请选择支付渠道*/}
         {!(config.features.Deposit_HideDepositChannel || config.features.Deposit_AddCard) && (
           <ItemContainer>
-            <LabelLargeContainer>Deposit Channel</LabelLargeContainer>
+            <LabelLargeContainer>{i18n.t("deposit.depositTunnel")}</LabelLargeContainer>
             <FormControl variant="outlined">
               <Select
                 id="customSelect"
@@ -369,7 +379,7 @@ class Main extends Component {
                   ) && (
                     <>
                           <LabelLargeContainer style={{ paddingTop: "1.2rem" }}>
-                            {i18n.t("deposit.yourbankaccountinfo")}
+                            {bankInfoTrans()}
                           </LabelLargeContainer>
                           <AccountInfoWrapper>
                           <ItemContainer>
