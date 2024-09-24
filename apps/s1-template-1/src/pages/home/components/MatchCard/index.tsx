@@ -1,5 +1,5 @@
 import { HightLightMatchDto } from "@tgs-web-nx/types";
-import { format, isTomorrow } from "date-fns";
+import { format, isToday, isTomorrow } from "date-fns";
 import styled from "styled-components";
 
 const MatchCardBg = styled.div`
@@ -107,8 +107,8 @@ const MatchCard = ({ match }: MatchCardProps) => {
     const formatTime = (time: Date) => format(time, 'HH:mm');
 
     return isTomorrow(givenTime)
-      ? `Tomorrow ${formatTime(givenTime)}`
-      : format(givenTime, 'yyyy-MM-dd HH:mm');
+      ? `Tomorrow ${formatTime(givenTime)}` 
+      : isToday(givenTime) ? `Today ${formatTime(givenTime)}` : format(givenTime, 'yyyy-MM-dd HH:mm');
   }
   return (
     <MatchCardBg>
