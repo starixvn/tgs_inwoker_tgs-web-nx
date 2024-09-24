@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 export const ReportContainer = styled.div`
   width: 100%;
+  margin-top: 1.6rem;
 `;
 export const ReportSummary = styled.div`
   font-size: 0.8rem;
@@ -22,14 +23,13 @@ export const ReportSummaryRow = styled.div`
 `;
 export const ReportSummaryCol = styled.div``;
 export const ReportCardsContainer = styled.div`
-  font-size: 0.8rem;
   color: ${({ theme }) => theme.text};
   border-radius: 5px;
   margin-bottom: 5px;
 `;
 export const ReportCard = styled.div`
   padding: 16px;
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   color: ${({ theme }) => theme.text};
   background: ${({ theme }) => theme.gray20};
   border-radius: 5px;
@@ -57,7 +57,7 @@ export const CustomWinLose = styled.span<CustomWinLoseProps>`
 `;
 export const ReportTable = muiStyled(Table)(({ theme }) => ({
   "& .MuiTableHead-root .MuiTableCell-root": {
-    fontSize: "0.875rem",
+    fontSize: "1.4rem",
     fontWeight: 500,
     whiteSpace: "nowrap",
     padding: "0 5px",
@@ -65,7 +65,7 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
-    fontSize: "0.857rem",
+    fontSize: "1.4rem",
     fontWeight: 400,
     color: theme.palette.text.primary,
     borderBottom: `1px solid ${theme.palette.inputBGC}`,
