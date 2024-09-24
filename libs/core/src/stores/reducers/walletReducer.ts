@@ -429,6 +429,7 @@ function mapBankList(data) {
   return { bankList };
 }
 function mapWithdrawalList(data) {
+  data.sort((a,b) => a.displayorder - b.displayorder);
   const withdrawalList = data.reduce((result, item) => {
     const existingBank = result.find((bank) => bank.banktype === item.banktype);
     const channel = {
