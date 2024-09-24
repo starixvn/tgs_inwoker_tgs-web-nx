@@ -4,7 +4,7 @@ import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { utility } from "@tgs-web-nx/utils";
 import { Img } from "react-image";
 
-import { BigWinsAmount, CardHoverBg, CustomPlayButton, GameContainer, GameIcon, GameName, RecentBigWinsSlide } from "./style";
+import { BigWinsAmount, BottomArea, CardHoverBg, CustomPlayButton, GameContainer, GameIcon, GameName, RecentBigWinsSlide } from "./style";
 
 const RecentBigWinsItem: React.FC<{
   item: RecentBigWinItem;
@@ -46,10 +46,10 @@ const RecentBigWinsItem: React.FC<{
                   </CustomPlayButton>
                 </CardHoverBg>
               </GameIcon>
-              <div onClick={() => handleOpenDialog(item)}>
+              <BottomArea onClick={() => handleOpenDialog(item)}>
                 <GameName>{playerName}</GameName>
                 <BigWinsAmount>{`${formatter.format(winAmount)}`}</BigWinsAmount>
-              </div>
+              </BottomArea>
             </GameContainer>
           </RecentBigWinsSlide>
         )

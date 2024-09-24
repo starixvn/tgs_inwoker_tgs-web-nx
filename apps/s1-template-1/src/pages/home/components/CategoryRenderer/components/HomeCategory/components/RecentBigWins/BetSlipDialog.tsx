@@ -14,26 +14,29 @@ import { Avatar, BetArea, BetID, BetInfo, BetInfoText, BetInfoValue, Divider, Ga
 const StyledDialog = styled(MuiDialog)`
   position: relative;
 
+  .MuiDialog-container {
+    width: 100%;
+  }
+
   .MuiModal-backdrop {
     background-color: rgba(0, 0, 0, 0.7);
   }
 
   .MuiPaper-root {
-    position: fixed;
-    bottom: 0;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 100%;
+    left: 0;
+    right: 0;
     margin: 0;
-    border-radius: 2.4rem 2.4rem 0 0;
-    background: linear-gradient(180deg, #032f63 0%, #111923 50.9%);
+    border-radius: 2.4rem;
+    background: ${({ theme }) => theme.betSlipBackground};
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.8);
+    width: auto;
 
     ${media.sm} {
-      position: relative;
       max-width: 39rem;
-      border-radius: 2.4rem;
     }
   }
 `;
@@ -44,6 +47,7 @@ const ChildContainer = styled.div`
   margin: 0 auto;
   z-index: 2;
   overflow: hidden;
+  font-size: 1.4rem;
 `;
 
 type Props = {
@@ -100,6 +104,9 @@ const BetSlipDialog = ({
           color: "#9CACC2",
           zIndex: "4",
           cursor: "pointer",
+          "&:hover": {
+            color: "#6F7E93",
+          },
         }}
         viewBox="0 0 33 32"
         className="icon-close"
@@ -130,7 +137,7 @@ const BetSlipDialog = ({
               <span>
                 <CopyIcon
                   className="icon-copy"
-                  sx={{ fontSize: "2rem", color: "#55657e" }}
+                  sx={{ fontSize: "2rem" }}
                   viewBox="0 0 16 16"
                   onClick={() => utility.copyText(betId)}
                 />

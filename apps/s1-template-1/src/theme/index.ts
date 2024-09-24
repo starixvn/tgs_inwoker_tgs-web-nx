@@ -61,6 +61,14 @@ export const theme = {
   recentBigWinsBottomBackground:
     "linear-gradient(180deg, rgba(22, 75, 153, 0) 4.38%, #065cdc 169.37%)",
 
+  // Bet slip
+  betSlipBackground: "linear-gradient(180deg, #032f63 0%, #111923 50.9%)",
+  betSlipBetAreaBackground: "rgba(255, 255, 255, 0.1)",
+  betSlipDividerColor: "#404b58",
+  betSlipDividerPattern: "rgba(0, 0, 0, 0.70)",
+  betSlipGameAreaBackground: "rgba(255, 255, 255, 0.1)",
+  betSlipGameAreaBackgroundHover: "rgba(255, 255, 255, 0.15)",
+
   // AuthForm
   authTabsBackground: "#1d2635",
   authActiveTabBackground: "linear-gradient(276deg, #b3cd0a 2.32%, #7f9303 99.1%)",
@@ -130,6 +138,8 @@ export const theme = {
   noteTextColor: "#6F809A",
   textHighlight: "#FFDA18",
   gapPage: ".8rem",
+  iconCopyColor: "#55657e",
+  iconCopyColorHover: "#fff",
 
   // Tab
   tabBackground:

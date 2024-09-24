@@ -34,6 +34,7 @@ export const GameIcon = styled.div`
 
   ${media.sm} {
     &:hover {
+      cursor: pointer;
       border: 1px solid ${({ theme }) => theme.gameCardBorder};
 
       ${CardHoverBg} {
@@ -65,12 +66,6 @@ export const GameContainer = styled.div`
   text-align: center;
   font-size: 1.3rem;
   font-weight: 500;
-
-  ${media.sm} {
-    &:hover {
-      cursor: pointer;
-    }
-  }
 `;
 
 export const RecentBigWinsSlide = styled.div`
@@ -89,6 +84,25 @@ export const CustomPlayButton = styled(PlayButton)`
   transform: scale(0.5) !important;
 `;
 
+export const BottomArea = styled.div`
+  ${media.sm} {
+    &:hover {
+      cursor: pointer;
+      font-weight: bold;
+
+      ${GameName} {
+        color: #e2f2ff;
+        text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+      }
+
+      ${BigWinsAmount} {
+        color: #edff76;
+        text-shadow: 0px 0px 8px rgba(215, 255, 149, 0.5);
+      }
+    }
+  }
+`;
+
 export const Title = styled.div`
   color: #fff;
   text-align: left;
@@ -100,14 +114,13 @@ export const ProfitText = styled.div`
   margin-top: 2rem;
   color: #fff;
   text-align: center;
-  font-size: 1.4rem;
   font-weight: 700;
 `;
 
 export const ProfitValue = styled.div`
   margin-top: 0.8rem;
   margin-bottom: 1.6rem;
-  color: #e2fe26;
+  color: ${({ theme }) => theme.primary};
   text-align: center;
   font-size: 3.2rem;
   font-weight: 700;
@@ -122,7 +135,7 @@ export const BetArea = styled.div`
   column-gap: 1.6rem;
   color: #fff;
   border-radius: 1.2rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: ${({ theme }) => theme.betSlipBetAreaBackground};
 `;
 
 export const BetInfo = styled.div`
@@ -134,7 +147,6 @@ export const BetInfo = styled.div`
 `;
 
 export const BetInfoText = styled.div`
-  font-size: 1.4rem;
   font-weight: 400;
 `;
 
@@ -147,7 +159,7 @@ export const Divider = styled.div`
   position: relative;
   width: 100%;
   height: 0.3rem;
-  border-top: 0.3rem dashed #404b58;
+  border-top: 0.2rem dashed ${({ theme }) => theme.betSlipDividerColor};
   margin-top: 2.4rem;
 
   &:before,
@@ -159,7 +171,7 @@ export const Divider = styled.div`
     border-radius: 1.2rem;
     width: 3.3rem;
     height: 3rem;
-    background-color: #0d131c;
+    background-color: ${({ theme }) => theme.betSlipDividerPattern};
   }
 
   &:before {
@@ -178,7 +190,6 @@ export const PlayerArea = styled.div`
   gap: 0.8rem;
   margin-top: 2rem;
   margin-bottom: 1.6rem;
-  font-size: 1.4rem;
 `;
 
 export const Avatar = styled.img`
@@ -201,11 +212,11 @@ export const Game = styled.div`
   gap: 0.8rem;
   align-self: stretch;
   border-radius: 1.2rem;
-  background: rgba(255, 255, 255, 0.1);
-  font-size: 1.4rem;
+  background: ${({ theme }) => theme.betSlipGameAreaBackground};
 
   ${media.sm} {
     &:hover {
+      background: ${({ theme }) => theme.betSlipGameAreaBackgroundHover};
       cursor: pointer;
     }
   }
@@ -229,7 +240,7 @@ export const GameInfo = styled.div`
 export const PlayNow = styled.div`
   display: flex;
   align-items: center;
-  color: #e2fe26;
+  color: ${({ theme }) => theme.linkColor};
   text-align: right;
   gap: 1rem;
 
@@ -246,12 +257,13 @@ export const BetID = styled.p`
 
   .icon-copy {
     position: absolute;
-    top: 50%;
+    top: 0;
     right: 0;
-    transform: translateY(-50%);
+    color: ${({ theme }) => theme.iconCopyColor};
 
     &:hover {
       cursor: pointer;
+      color: ${({ theme }) => theme.iconCopyColorHover};
     }
   }
 `;
