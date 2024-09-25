@@ -216,23 +216,6 @@ stages:
               done
           done; 
       fi
-  after_script:
-    - |
-      if [[ -e image.txt && $domain == "" && $brand == "" ]]; then 
-        lobby=$(cat lobby.txt)
-        curl --location --request POST $Telegram_Bot_Url \
-          --header 'Content-Type: application/json' \
-          --data-binary @- << EOF
-        {
-          "chat_id": $Telegram_Chat_Id,
-          "text": "
-        專案: tgs-web-nx
-        分支: $env
-        更新lobby: $lobby",
-          "parse_mode": "HTML"
-        }
-        EOF
-      fi
 
 docker-build-dev:
   <<: *docker-build-template
