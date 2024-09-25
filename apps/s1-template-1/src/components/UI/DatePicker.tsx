@@ -38,6 +38,13 @@ const muiTheme = createTheme({
   },
 });
 
+// const StyledMobileDatePicker = muiStyled(MobileDatePicker)(({ theme }) => ({
+//   background: "#1C2532",
+//   "& .MuiPickersLayout-root": {
+   
+//   }
+// }));
+
 export const DatePicker = (props: MobileDatePickerProps<any>) => {
   return (
     <LocalizationProvider
@@ -50,10 +57,117 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
           disableFuture
           format="yyyy/MM/dd"
           orientation={"portrait"}
+          sx={{background: "transparent"}}
           slotProps={{
             layout: {
               sx: {
                 display: "block !important",
+                background: theme.calendarBackground,
+                boxShadow: theme.calendarBoxshadow,
+                fontSize: theme.calendarFontSize,
+                color: theme.calendarTextColor,
+                width: "42rem",
+                height: "57.5rem",
+                padding: "2.4rem 1.2rem",
+                "& .MuiDayCalendar-header .MuiDayCalendar-weekDayLabel": {
+                  fontSize: "inherit",
+                  color: theme.calendarHeaderColor,
+                  justifySelf: "center",
+                  height: "3.6rem",
+                }, 
+                "& .MuiDayCalendar-header": {
+                  display: "grid",
+                  gridTemplateColumns: "repeat(7, 1fr)",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "1.6rem",
+                },
+                "& .MuiDayCalendar-weekContainer": {
+                  display: "grid",
+                  gridTemplateColumns: "repeat(7, 1fr)",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "1.6rem",
+                },
+                "& .MuiDayCalendar-weekContainer .MuiButtonBase-root": {
+                  fontSize: "inherit",
+                  color: `${theme.calendarTextColor}` ,
+                  justifySelf: "center",
+                  "&.Mui-disabled": {
+                    color: theme.calendarTextDisabledColor,
+                  },
+                  "&.Mui-selected": {
+                    background: theme.calendarHighlightBackground,
+                    color: theme.calendarHighlight,
+                    width: "4rem", 
+                    height: "4rem",
+                  }
+                },
+                "& .MuiDateCalendar-root": {
+                  width: "100%",
+                  height: "unset",
+                  overflow: "unset",
+                }, 
+                "& .MuiPickersToolbar-root": {
+                  padding: "0",
+                  marginBottom: "1.6rem",
+                  "& .MuiTypography-root": {
+                    fontSize: "1.6rem",
+                    fontWeight: "500",
+                    color: "#7A8CA8",
+                    fontFamily: "inherit",
+                    letterSpacing: "0.32px",
+                    lineHeight: "3rem",
+                  },
+                  "& .MuiDatePickerToolbar-title": {
+                    fontSize: "2.2rem",
+                    color: theme.calendarTextColor,
+                    letterSpacing: "0.44px",
+                  }
+                },
+                "& .MuiPickersSlideTransition-root": {
+                  minHeight: "unset",
+                  overflow: "hidden",
+                },
+                "& .MuiDayCalendar-monthContainer": {
+                  overflow: "unset",
+                  position: "relative",
+                  top: "unset",
+                  left: "unset",
+                },
+                "& .MuiDialogActions-root": {
+                  position: "absolute",
+                  bottom: "2.4rem",
+                  right: "1.2rem",
+                  "& .MuiButtonBase-root": {
+                    height: "4.8rem",
+                    padding: "0 1rem",
+                    borderRadius: "0.8rem",
+                    fontSize: "1.3rem",
+                    fontFamily: "var(--font-family)",
+                    fontWeight: 700,
+                    textTransform: "capitalize",
+                    lineHeight: "3.6rem",
+                    minWidth: "12rem",
+                    borderBottomWidth: "0.2rem",
+                    borderStyle: "solid",
+                    transition: "all 0.1s ease-in-out", 
+                    color: theme.white,                  
+                    "&:hover": {
+                      borderBottomWidth: "0.4rem",
+                      transition: "all 0.2s ease-in-out",
+                    },
+                    "&:first-child":{
+                      background: "linear-gradient(180deg, #325276 100%, #253F5C 100%)",
+                      borderBottomColor: "#072341",
+                    },
+                    "&:last-child":{
+                      background: theme.signInButtonBackground,
+                      borderBottomColor: theme.signInButtonBottomBorderColor,
+                    }
+                  },
+                  
+                }
               },
             },
           }}

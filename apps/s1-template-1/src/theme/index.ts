@@ -225,4 +225,15 @@ export const theme = {
   buttonReportBackgroundColor: "#304056", 
   buttonReportColor: "#fff", 
   buttonReportHighlightColor: "#95A90B",
+
+  // Calendar
+  calendarBackground: "#1C2532",
+  calendarBorderRadius: "1.2rem", 
+  calendarTextColor: "#fff",
+  calendarTextDisabledColor: "#888",
+  calendarHeaderColor: "#55657E",
+  calendarHighlight: "#E2FE26",
+  calendarHighlightBackground: "#374000",
+  calendarFontSize: "1.8rem",
+  calendarBoxshadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.40)",
 };
