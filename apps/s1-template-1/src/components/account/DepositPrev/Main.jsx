@@ -729,8 +729,8 @@ class Main extends Component {
 
               return (
                 !!this.props.disabled ||
-                this.props.name === "" ||
-                this.props.account === "" ||
+                (paymentCode("manual") && this.props.name === "") ||
+                (paymentCode("manual") && this.props.account === "") ||
                 this.props.amount < transferlimit.from ||
                 this.props.amount > transferlimit.to ||
                 this.props.amount === "" ||
