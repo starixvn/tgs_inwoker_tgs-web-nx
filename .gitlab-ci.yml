@@ -92,13 +92,11 @@ stages:
     - |
       echo "domain=$domain"
       echo "brand=$brand"
-      docker image ls 
-      image_count=$(docker image ls | wc  -l)
-      echo "image_count=$image_count"
 
-      if [[ $domain != "" && $brand != "" && $image_count -gt 1 ]]; then 
-        export image=$(docker image ls | grep pgtgs | awk '{print $1}')
-        export tag=$(docker image ls | grep pgtgs | awk '{print $2}')
+      if [[ $domain != "" && $brand != "" && -e image.txt ]]; then 
+        cat image.txt
+        export image=$(awk -F':' '{print $1}' image.txt)
+        export tag=$(awk -F':' '{print $2}' image.txt)
         echo "image=$image"
         echo "tag=$tag"
         envsubst < ./deployment/values-${tgs_env}.yaml > values.yaml
