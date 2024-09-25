@@ -266,8 +266,6 @@ deploy-domain-dev:
       artifacts: true
   tags:
     - dev
-    - kubernetes
-    - deploy
   only:
     - develop
   except:
@@ -300,8 +298,6 @@ deploy-dev:
       artifacts: true
   tags:
     - dev
-    - kubernetes
-    - deploy
   environment:
     name: dev
   only:
