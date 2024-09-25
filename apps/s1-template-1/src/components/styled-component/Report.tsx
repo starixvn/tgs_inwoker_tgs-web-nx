@@ -86,6 +86,9 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
 
 export const CustomizeTablePagination = muiStyled(TablePagination)(({ theme }) => ({
   fontSize: "1.6rem",
+  display: "flex",
+  justifyContent: "flex-end",
+  borderBottom: "none",
   "& .MuiTablePagination-displayedRows": {
     fontSize: "1.6rem",
     fontFamily: "inherit",

@@ -1,11 +1,11 @@
-import React from "react";
-import moment from "moment";
-import { TableBody, TableCell, TableHead, TableRow, TablePagination } from "@mui/material";
+import { CustomizeTablePagination, ReportCardsContainer, ReportTable, TagStatus } from "@/components/styled-component/Report";
+import NoRecord from "@/pages/report/components/NoRecord";
+import { theme } from "@/theme";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import NoRecord from "@/pages/report/components/NoRecord";
-import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
-import { theme } from "@/theme";
+import moment from "moment";
+import React from "react";
 
 type Props = {
   withdrawalDetails: WithdrawFormViewModel[];
@@ -36,65 +36,53 @@ const WithdrawalDetailTable = ({
           <TableRow>
             <TableCell
               sx={{
-                border: "none",
+                borderTopLeftRadius: `${theme.tableBorderRadius}`
               }}
             >
               <>{i18n.t("report.RequestDate")}</>
             </TableCell>
-            <TableCell
-              sx={{
-                border: "none",
-              }}
-            >
+            <TableCell>
               <>{i18n.t("report.NewOrderNumber")}</>
             </TableCell>
-            <TableCell
-              sx={{
-                border: "none",
-              }}
-            >
+            <TableCell>
               <>{i18n.t("remark")}</>
             </TableCell>
-            <TableCell
-              sx={{
-                border: "none",
-              }}
-            >
+            <TableCell>
               <>{i18n.t("report.status")}</>
             </TableCell>
             <TableCell
               align={"right"}
               sx={{
-                border: "none",
-              }}
+                borderTopRightRadius: `${theme.tableBorderRadius}`
+             }}
             >
               <>{i18n.t("report.amount")}</>
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {withdrawalDetails.map((balanceChange) => {
+          {withdrawalDetails.map((balanceChange, index) => {
             const { id, createdon, orderno, amount, status, remark } = balanceChange;
 
             const date = moment(createdon).format("YYYY-MM-DD hh:mm a");
+            const lastRow = index === withdrawalDetails.length - 1;
 
             return (
               <TableRow key={id}>
-                <TableCell>{date}</TableCell>
-                <TableCell>{orderno}</TableCell>
-                <TableCell>{remark}</TableCell>
-                <TableCell>
-                  <>{i18n.t(`report.withdrawal.status${status}`)}</>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}>{date}</TableCell>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{orderno}</TableCell>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{remark}</TableCell>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>
+                  <TagStatus>{i18n.t(`report.withdrawal.status${status}`)}</TagStatus>
                 </TableCell>
-                <TableCell align={"right"}>{amount}</TableCell>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }} align={"right"}>{amount}</TableCell>
               </TableRow>
             );
           })}
         </TableBody>
       </ReportTable>
 
-      <TablePagination
-        component="div"
+      <CustomizeTablePagination
         rowsPerPageOptions={[]}
         count={totalCount}
         rowsPerPage={pageSize}

@@ -37,23 +37,14 @@ const DepositDetailTable = ({
             <TableCell
               sx={{
                 borderTopLeftRadius: `${theme.tableBorderRadius}`
-
               }}
             >
               <>{i18n.t("report.submitDate")}</>
             </TableCell>
-            <TableCell
-              sx={{
-                border: "none",
-              }}
-            >
+            <TableCell>
               <>{i18n.t("report.NewOrderNumber")}</>
             </TableCell>
-            <TableCell
-              sx={{
-                border: "none",
-              }}
-            >
+            <TableCell>
               <>{i18n.t("report.status")}</>
             </TableCell>
             <TableCell
@@ -90,7 +81,6 @@ const DepositDetailTable = ({
       </ReportTable>
 
       <CustomizeTablePagination
-        component={"div"}
         rowsPerPageOptions={[]}
         count={totalCount}
         rowsPerPage={pageSize}
