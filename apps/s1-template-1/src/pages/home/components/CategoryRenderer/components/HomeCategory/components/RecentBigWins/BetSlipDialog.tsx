@@ -68,7 +68,7 @@ const BetSlipDialog = ({
   ...others
 }: Props & DialogProps) => {
   if (!data) {
-    return null;
+    return <></>;
   }
 
   const {
