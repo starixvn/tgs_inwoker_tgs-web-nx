@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { gameCacheService } from "./services";
 import { GetGameListState, TagTypeEnum } from "./types";
 import { useHomeGameContext } from "./useHomeGameContext";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 export function useGetGamesByTag() {
   const [gameListState, setGameListState] = useState<GetGameListState>({
@@ -38,7 +39,7 @@ export function useGetGamesByTag() {
 
     try {
       setGameListState((state) => ({ ...state, isLoading: true }));
-      const response = await GameService.GetGameListByTag([activeTag], pageIndex, pageSize, [], activeProviderFilterTag);
+      const response = await GameService.GetGameListByTag([activeTag], pageIndex, pageSize, [GameTypeEnum.SPORTS], activeProviderFilterTag);
 
       const gameList =
         pageIndex > 1

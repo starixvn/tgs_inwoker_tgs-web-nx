@@ -53,7 +53,7 @@ const initHighlightMatchList: HightLightMatchList = {
 
 const HomeCategory = [
   GameTypeEnum.SPORTS,
-  GameTypeEnum.ESPORTS,
+  // GameTypeEnum.ESPORTS,
   GameTypeEnum.SLOT,
   GameTypeEnum.TABLEGAME,
   GameTypeEnum.LIVE,
