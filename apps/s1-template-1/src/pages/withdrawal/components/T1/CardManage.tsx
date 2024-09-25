@@ -91,14 +91,14 @@ const CardManage = ({
         />
       )} */}
       <CardContainerTitle>
-        <LabelContainer>Manage Bank Accounts</LabelContainer>
+        <LabelContainer>{i18n.t("card.title")}</LabelContainer>
         {isShowAddCardButton && (
             <CardAddCard handleClick={onhandleAddCardClick} />
           )}
       </CardContainerTitle>
 
       <CardContainer>
-          <Card title={"Type"} content={"Account Number"} contentName={"Brand"} handleDelete={() => {}} isHeader={true} disable={true} />
+          <Card title={i18n.t("card.type")} content={i18n.t("card.number")} contentName={i18n.t("card.brand")} handleDelete={() => {}} isHeader={true} disable={true} />
 
         {bankCardList.map((item, key) => {
           return (

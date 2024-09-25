@@ -5,9 +5,6 @@ import {
   BadgeContainer,
   FormControl,
   ItemContainer,
-  ItemNote,
-  ItemNoteDesc,
-  ItemNoteText,
   LabelContainer,
   LabelLargeContainer
 } from "@/components/styled-component/ProfileForms";
@@ -76,7 +73,7 @@ const AddCard = ({
   return (
     <Container>
       {/* {isDesktopSize && <FormTitle title={i18n.t("card.addCard.title")} />} */}
-      <LabelLargeContainer>Add New Account</LabelLargeContainer>
+      <LabelLargeContainer>{i18n.t("withdrawal.addNewAccount")}</LabelLargeContainer>
       {!config.features.AddCard_HideCertainField && (
         <ItemContainer>
           <LabelContainer>{i18n.t("common.withdrawalBankType")}</LabelContainer>
@@ -224,7 +221,7 @@ const AddCard = ({
                 )}
               {config.features.AddCard_BankBranch && !eWalletCustom && (
                 <ItemContainer>
-                  <LabelContainer>{i18n.t("card.addCard.branch")}<OptionalText>(optional)</OptionalText></LabelContainer>
+                  <LabelContainer>{i18n.t("card.addCard.branch")}<OptionalText>{i18n.t("common.optional")}</OptionalText></LabelContainer>
                   <FormControl>
                     <TextField
                       maxLength={255}
@@ -389,13 +386,6 @@ const AddCard = ({
                 </FormControl>
               </ItemContainer>
             )}
-            {(!isDeposit && selectedBankType("Bank"))
-            &&
-            <ItemContainer>
-              <ItemNote style={{display: "flex"}}><ItemNoteText style={{top: 0}}>Note:</ItemNoteText>
-                <ItemNoteDesc style={{textAlign: "left"}}>{i18n.t("withdrawal.notice")}</ItemNoteDesc>
-              </ItemNote>
-            </ItemContainer>}
         </>
       )}
       {((!isDeposit &&
@@ -414,7 +404,7 @@ const AddCard = ({
               ? i18n.t("hk28.card.addCard.BankAccountName")
               : i18n.t("card.addCard.BankAccountName")} */}
               {i18n.t("common.withdrawalEWalletName")}
-              <OptionalText>(optional)</OptionalText>
+              <OptionalText>{i18n.t("common.optional")}</OptionalText>
           </LabelContainer>
           <FormControl>
             <TextField

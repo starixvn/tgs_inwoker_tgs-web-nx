@@ -90,7 +90,7 @@ const MainMobile = ({
       {/*管理銀行卡*/}
       <BankAccountWrapper>
         <ItemContainer style={{marginBottom: "1.6rem"}}>
-          <LabelContainer>Select Your Bank Account</LabelContainer>
+          <LabelContainer>{i18n.t("card.selectYourBankAccount")}</LabelContainer>
           <FormControl variant="outlined">
             <Select
               value={selectedCardIndex}
@@ -104,7 +104,7 @@ const MainMobile = ({
               {cardList.map((item, index) => {
                 return (
                   <MenuItem key={index} value={index} id={`optionValue-${index}`}>
-                    {item.banktype} (
+                    {i18n.t(item.banktype)} (
                     {item.detail.address || item.detail.bankAccount || item.detail.phone})
                   </MenuItem>
                 );
