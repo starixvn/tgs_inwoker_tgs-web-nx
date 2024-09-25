@@ -57,8 +57,8 @@ const initialState: {
   handleChangeActiveProviderFilterTag: (newFilterTag: string[]) => void;
   providerFilterTagList: FilterTag[];
   // favorite
-  favoriteList: number[];
-  fetchFavoriteList: () => Promise<void>;
+  // favoriteList: number[];
+  // fetchFavoriteList: () => Promise<void>;
   // search
   searchString: string;
   handleChangeSearch: (searchString: string) => void;
@@ -100,8 +100,8 @@ const initialState: {
   handleChangeActiveProviderFilterTag: () => {},
   providerFilterTagList: [],
   // favorite
-  favoriteList: [],
-  fetchFavoriteList: () => Promise.resolve(),
+  // favoriteList: [],
+  // fetchFavoriteList: () => Promise.resolve(),
   // search
   searchString: "",
   handleChangeSearch: () => {},
@@ -146,9 +146,9 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
 
   const { providerList } = useProvider(updateGpCodeList);
 
-  const { favoriteList, fetchFavoriteList } = useFavoriteList(
-    activeGameType ? activeGameType : GameTypeEnum.SLOT
-  );
+  // const { favoriteList, fetchFavoriteList } = useFavoriteList(
+  //   activeGameType ? activeGameType : GameTypeEnum.SLOT
+  // );
   const { searchString, handleChangeSearch } = useGameSearch();
 
   const SportsType = gameTypeList.find((item) => item.gameType === GameTypeEnum.SPORTS);
@@ -214,8 +214,8 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
         handleChangeActiveProviderFilterTag,
         providerFilterTagList,
         // favorite
-        favoriteList,
-        fetchFavoriteList,
+        // favoriteList,
+        // fetchFavoriteList,
         // search
         searchString,
         handleChangeSearch,
