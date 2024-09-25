@@ -3,11 +3,15 @@ import CardIndicator from "./CardIndicator";
 import { contextType, RewardContext, useRwd } from "@tgs-web-nx/core/hooks";
 import React, { useContext } from "react";
 import { media } from "@tgs-web-nx/constants";
+import { i18n } from "@tgs-web-nx/utils";
+import { ConditionType } from "@tgs-web-nx/types";
+import config from "@tgs-web-nx/config";
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
+  margin: 14px 0;
   ${media.sm} {
     flex-direction: column;
   }
@@ -15,7 +19,7 @@ const Container = styled.div`
 
 const StateContainer = styled.div<{
   $color: string;
-  $complete: boolean;
+  $isSent: boolean;
 }>`
   display: flex;
   flex-shrink: 0;
@@ -35,7 +39,7 @@ const StateContainer = styled.div<{
     display: flex;
     align-items: center;
     gap: 10px;
-    opacity: ${({ theme, $complete }) => ($complete ? 1 : 0.4)};
+    opacity: ${({ theme, $isSent }) => ($isSent ? 1 : 0.4)};
   }
 `;
 
@@ -75,34 +79,48 @@ const Line = styled.div`
   background: #e7f1fb;
 `;
 
-const RewardCard = React.memo((props: any) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
-  const context = useContext(RewardContext) as contextType;
-  const { mainBg, indicatorBg, bonusBg } = context.colors;
+const RewardCard = React.memo(
+  (props: {
+    condition: ConditionType;
+    index: number;
+    totalValidBetAmount: number;
+    totalDepositAmount: number;
+  }) => {
+    const { isDesktopSize, isMobileSize } = useRwd();
+    const context = useContext(RewardContext) as contextType;
+    const { mainBg, indicatorBg, bonusBg } = context.colors;
+    const { depositAmount, validBetAmount, bonus, isSent } = props.condition;
 
-  return (
-    <Container>
-      <StateContainer $color={indicatorBg} $complete={props.finish}>
-        <CardIndicator $color={indicatorBg} $complete={props.finish} />
-        {isMobileSize && (
-          <LineContainer>
-            <Line />
-          </LineContainer>
-        )}
+    return (
+      <Container>
+        <StateContainer $color={indicatorBg} $isSent={isSent}>
+          <CardIndicator $color={indicatorBg} $isSent={isSent} />
+          {isMobileSize && (
+            <LineContainer>
+              <Line />
+            </LineContainer>
+          )}
 
-        {isDesktopSize && (
+          {isDesktopSize && (
+            <div>
+              <span>{(props.index + 1).toString().padStart(2, "0")}</span>
+              <span>{isSent ? i18n.t("common.complete") : i18n.t("reward.incomplete")}</span>
+            </div>
+          )}
+        </StateContainer>
+        <AccountBetDeposit $bg={mainBg}>
           <div>
-            <span>{(props.index + 1).toString().padStart(2, "0")}</span>
-            <span>{props.finish ? "已完成" : "未完成"}</span>
+            {`${i18n.t("agent.validBet")} ${config.features.currencySymbol}
+            ${props.totalValidBetAmount} / ${validBetAmount}`}
           </div>
-        )}
-      </StateContainer>
-      <AccountBetDeposit $bg={mainBg}>
-        <div>{`Valid bet $${props.currentBet} / $${props.targetBet}`}</div>
-        <div>{`Deposit  $${props.currentDeposit} / $${props.targetDeposit}`}</div>
-        <BonusContainer $bonusBg={bonusBg}>Bonus: ₱5.00</BonusContainer>
-      </AccountBetDeposit>
-    </Container>
-  );
-});
+          <div>
+            {`${i18n.t("common.deposit")} ${config.features.currencySymbol}
+            ${props.totalDepositAmount} / ${depositAmount}`}
+          </div>
+          <BonusContainer $bonusBg={bonusBg}>{`${i18n.t("vip.bonus")} ${bonus}`}</BonusContainer>
+        </AccountBetDeposit>
+      </Container>
+    );
+  },
+);
 export default RewardCard;

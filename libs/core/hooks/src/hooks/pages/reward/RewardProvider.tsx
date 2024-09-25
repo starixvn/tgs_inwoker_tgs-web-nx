@@ -1,3 +1,4 @@
+import { MilestoneType } from "@tgs-web-nx/types";
 import { createContext, useState, ReactNode, useMemo } from "react";
 
 type Props = {
@@ -6,7 +7,6 @@ type Props = {
 
 type Colors = {
   titleColor: string;
-  subTitleColor: string;
   mainBg: string;
   bonusBg: string;
   indicatorBg: string;
@@ -15,7 +15,7 @@ type Colors = {
 export type contextType = {
   colors: Colors;
   setColors: (colors: Colors) => void;
-  selectedMilestone: any;
+  selectedMilestone: MilestoneType;
   setSelectedMilestone: (milestone: any) => void;
 };
 
@@ -24,12 +24,21 @@ export const RewardContext = createContext<contextType | null>(null);
 export const RewardContextProvider = ({ children }: Props) => {
   const [colors, setColors] = useState<Colors>({
     titleColor: "",
-    subTitleColor: "",
     mainBg: "",
     bonusBg: "",
     indicatorBg: "",
   });
-  const [selectedMilestone, setSelectedMilestone] = useState(null);
+
+  const [selectedMilestone, setSelectedMilestone] = useState({
+    name: "",
+    subSubject: "",
+    totalValidBetAmount: 0,
+    totalDepositAmount: 0,
+    from: "",
+    to: "",
+    promotionId: "",
+    conditions: [],
+  });
 
   const contextValue = useMemo(
     () => ({ colors, setColors, selectedMilestone, setSelectedMilestone }),

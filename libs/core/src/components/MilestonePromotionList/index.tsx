@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PromotionCard from "./components/PromotionCard";
 import { memo } from "react";
 import { media } from "@tgs-web-nx/constants";
+import { GetMilestoneListResDto, MilestoneType } from "@tgs-web-nx/types";
 
 const Container = styled.div`
   display: flex;
@@ -10,20 +11,20 @@ const Container = styled.div`
   width: 100%;
   height: fit-content;
   overflow: auto;
-  padding: 10px;
   ::-webkit-scrollbar {
     display: none;
   }
   ${media.sm} {
     flex-direction: row;
+    padding: 10px;
   }
 `;
 
-const RewardPromotion = memo((props: any) => {
+const RewardPromotion = memo((props: { milestoneList: GetMilestoneListResDto }) => {
   return (
     <Container>
-      {props?.milestoneList?.map((milestone: any, index: number) => {
-        return <PromotionCard key={milestone.id} index={index} milestone={milestone} />;
+      {props?.milestoneList?.data?.map((milestone: MilestoneType, index: number) => {
+        return <PromotionCard key={milestone.promotionId} index={index} milestone={milestone} />;
       })}
     </Container>
   );

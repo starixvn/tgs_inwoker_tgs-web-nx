@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import Indicator from "./components/TitleIndicator";
 import RewardCard from "./components/RewardCard";
-import { contextType, RewardContext, useRewardPage } from "@tgs-web-nx/core/hooks";
-import { createContext, useContext, useEffect, useMemo } from "react";
+import { contextType, RewardContext } from "@tgs-web-nx/core/hooks";
+import { useContext } from "react";
 import { media } from "@tgs-web-nx/constants";
+import { i18n } from "@tgs-web-nx/utils";
+import { ConditionType } from "@tgs-web-nx/types";
 
-const Title = styled.div<{ $titleColor: string; $subTitleColor: string }>`
+const Title = styled.div<{ $titleColor: string }>`
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -18,7 +20,7 @@ const Title = styled.div<{ $titleColor: string; $subTitleColor: string }>`
   div:nth-child(2) {
     font-size: 15px;
     font-weight: 400;
-    color: ${({ theme, $subTitleColor }) => $subTitleColor};
+    color: ${({ theme, $titleColor }) => $titleColor};
     display: flex;
     align-items: center;
     gap: 5px;
@@ -39,20 +41,28 @@ const RewardContainer = styled.div`
 
 const MilestoneList = () => {
   const context = useContext(RewardContext) as contextType;
-  const { titleColor, subTitleColor } = context.colors;
+  const { titleColor } = context.colors;
 
   return (
     <>
-      <Title $titleColor={titleColor} $subTitleColor={subTitleColor}>
-        <div>子標題</div>
+      <Title $titleColor={titleColor}>
+        <div>{context.selectedMilestone?.subSubject}</div>
         <div>
           <Indicator />
-          <div>xxxxxxxxxxxxxxx</div>
+          <div>{i18n.t("reward.incompleteMilestones")}</div>
         </div>
       </Title>
       <RewardContainer>
-        {context.selectedMilestone?.rewards.map((reward: any, index: number) => {
-          return <RewardCard key={index} index={index} {...reward} />;
+        {context.selectedMilestone?.conditions?.map((condition: ConditionType, index: number) => {
+          return (
+            <RewardCard
+              key={index}
+              condition={condition}
+              index={index}
+              totalValidBetAmount={context.selectedMilestone.totalValidBetAmount}
+              totalDepositAmount={context.selectedMilestone.totalDepositAmount}
+            />
+          );
         })}
       </RewardContainer>
     </>
