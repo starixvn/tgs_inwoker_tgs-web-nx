@@ -1,31 +1,11 @@
-import { useGetHomeCategoryList } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { FooterBottom, FooterContainer, FooterGroup, FooterLogo, FooterWrapper, GroupContent, GroupTitle, Link, LinkContent, PaymentMethod, SocialIcons } from "./style";
+import { FooterBottom, FooterContainer, FooterGroup, FooterWrapper, GroupContent, GroupTitle, Link, LinkContent, PaymentMethod, SocialIcons } from "./style";
 
 const Footer = () => {
   const history = useHistory();
-  const brand = import.meta.env.VITE_BRAND;
-
-  const { sportGameList, slotGameList, recentBigWins } = useGetHomeCategoryList();
-  const [isLoadFullData, setIsLoadFullData] = useState<boolean>(false);
-
-  useEffect(() => {
-    !!isLoadFullData &&
-      setIsLoadFullData(
-        sportGameList.length > 0 && slotGameList.length > 0 && recentBigWins.length > 0,
-      );
-  }, [recentBigWins, sportGameList, slotGameList]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsLoadFullData(true), 2000);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
 
   const navigateTo = (pageName: string) => {
     history.push("/" + pageName);
@@ -77,10 +57,6 @@ const Footer = () => {
       url: "/assets/images/footer/logo.png",
     },
   ];
-
-  if (!isLoadFullData) {
-    return <></>;
-  }
 
   return (
     <FooterContainer>
@@ -136,14 +112,7 @@ const Footer = () => {
           </GroupContent>
         </FooterGroup>
       </FooterWrapper>
-      <FooterBottom>
-        <GroupContent>
-          <FooterLogo>
-            <img src="/assets/images/common/logo.svg" width={82} height={22} alt="Twitter" />
-          </FooterLogo>
-          {i18n.t("web.footer.allrightsreserverd")}
-        </GroupContent>
-      </FooterBottom>
+      <FooterBottom>{i18n.t("web.footer.allrightsreserverd")}</FooterBottom>
     </FooterContainer>
   );
 };

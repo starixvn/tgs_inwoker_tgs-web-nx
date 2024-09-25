@@ -17,6 +17,9 @@ const ProviderItem = styled.div`
   border-radius: 1rem;
 
   ${media.sm} {
+    min-width: 13.8rem;
+    height: 7.4rem;
+
     &:hover {
       cursor: pointer;
     }

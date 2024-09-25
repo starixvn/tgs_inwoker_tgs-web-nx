@@ -1,4 +1,4 @@
-import { ButtonProps, Button as MuiButton, styled as muiStyled } from "@mui/material";
+import { Button as MuiButton, ButtonProps, styled as muiStyled } from "@mui/material";
 
 export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
   borderRadius: "0",
@@ -24,21 +24,24 @@ export const StyledButton = muiStyled(MuiButton)(({ theme }) => ({
 
 export const Button = (props: ButtonProps) => {
   return <StyledButton variant={props.variant || "contained"} {...props} />;
-}; 
-
+};
 
 const ButtonDefault = muiStyled(MuiButton)(({ theme }) => ({
   height: "3.6rem",
   padding: "0 1rem",
   borderRadius: "0.8rem",
   fontSize: "1.3rem",
+  fontFamily: "var(--font-family)",
   fontWeight: 700,
+  textTransform: "capitalize",
   lineHeight: "3.6rem",
   minWidth: "7.8rem",
   borderBottomWidth: "0.2rem",
   borderStyle: "solid",
   transition: "all 0.1s ease-in-out",
-
+  [theme.breakpoints.up("lg")]: {
+    fontSize: "1.4rem",
+  },
   "&:hover": {
     borderBottomWidth: "0.4rem",
     transition: "all 0.2s ease-in-out",
@@ -49,7 +52,7 @@ const ButtonDefault = muiStyled(MuiButton)(({ theme }) => ({
   },
   "&.MuiButton-fullWidth": {
     maxWidth: "100% !important",
-  }
+  },
 }));
 
 export const SignUpButton = muiStyled(ButtonDefault)(({ theme }) => ({
@@ -64,7 +67,7 @@ export const SignUpButton = muiStyled(ButtonDefault)(({ theme }) => ({
     background: theme.palette.header.signUp.disabledBackground,
     color: theme.palette.header.signUp.disabledColor,
     borderBottomColor: theme.palette.header.signUp.disabledBorder,
-  }
+  },
 }));
 
 export const SignInButton = muiStyled(ButtonDefault)(({ theme }) => ({
@@ -78,12 +81,12 @@ export const SignInButton = muiStyled(ButtonDefault)(({ theme }) => ({
     background: theme.palette.header.signIn.disabledBackground,
     color: theme.palette.header.signIn.disabledColor,
     borderBottomColor: theme.palette.header.signIn.disabledBorder,
-  }
+  },
 }));
 
 export const GreenGradientButton = muiStyled(SignInButton)(({ theme }) => ({
   width: "100%",
-  height: "4.8rem", 
+  height: "4.8rem",
 }));
 
 export const OrangeGradientButton = muiStyled(SignUpButton)(({ theme }) => ({
@@ -114,4 +117,3 @@ export const HeaderButton = muiStyled(MuiButton)(({ theme }) => ({
   alignItems: "center",
   justifyContent: "center",
 }));
-

@@ -2,6 +2,7 @@ import { imageMap } from "@/components/project/LanguageSwitch";
 import { theme } from "@/theme";
 import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
 import { MenuItem as MuiMenuItem, Select as MuiSelect, SelectChangeEvent, SelectProps } from "@mui/material";
+import { media } from "@tgs-web-nx/constants";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
@@ -80,7 +81,11 @@ const FlagContainer = styled.div`
 `;
 
 const NameContainer = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+
+  ${media.lg} {
+    font-size: 1.4rem;
+  }
 `;
 
 const HeaderLanguageSwitch = (props: SelectProps) => {

@@ -11,18 +11,17 @@ export const FooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 0.8rem;
+  padding: 2.4rem 0.8rem;
 
   ${media.sm} {
-    padding-top: 1.6rem;
-    padding-bottom: 2.4rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap-column: 2rem;
   }
 
-  ${media.md} {
+  ${media.lg} {
     margin: 0 auto;
+    padding-top: 3.2rem;
     grid-template-columns: repeat(4, 1fr);
     max-width: ${MAIN_CONTENT_MAX_WIDTH};
   }
@@ -33,6 +32,15 @@ export const FooterBottom = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 4rem;
+  color: #97a2b0;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+
+  ${media.lg} {
+    font-size: 1.4rem;
+  }
 `;
 
 export const FooterGroup = styled.div`
@@ -81,6 +89,11 @@ export const GroupContent = styled.div`
   font-weight: 500;
   margin: 1.2rem 0 2.4rem;
   color: ${({ theme }) => theme.footerColor};
+
+  ${media.lg} {
+    font-size: 1.4rem;
+    margin-bottom: 0;
+  }
 
   &.payment-method-container {
     display: grid;

@@ -2,14 +2,13 @@ import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLang
 import { SignInButton, SignUpButton } from "@/components/UI/Button";
 import { theme } from "@/theme";
 import { useAuth } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: .8rem;
+  gap: 0.8rem;
   height: 100%;
   padding-left: 1rem;
 `;
@@ -19,7 +18,6 @@ type Props = {
 };
 
 const AnonymousHeaderContent = ({ buttonWidth }: Props) => {
-  const { isDesktopSize, isMobileSize } = useRwd();
   const { goToLogin, goToRegister } = useAuth();
 
   return (

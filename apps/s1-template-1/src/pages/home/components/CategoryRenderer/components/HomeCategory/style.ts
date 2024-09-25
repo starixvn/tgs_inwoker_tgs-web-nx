@@ -6,10 +6,10 @@ export const DesktopContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  padding: 0.2rem 0 1.8rem;
+  padding: 0.2rem 0 4.8rem;
 
   ${media.md} {
-    padding: 3rem 0px 2.4rem;
+    padding-top: 3rem;
   }
 `;
 
@@ -130,6 +130,10 @@ export const Group = styled.div`
 
   .embla__container.providers {
     --slide-size: 11.3rem;
+
+    ${media.sm} {
+      --slide-size: 13.8rem;
+    }
   }
 
   .embla__controls {
