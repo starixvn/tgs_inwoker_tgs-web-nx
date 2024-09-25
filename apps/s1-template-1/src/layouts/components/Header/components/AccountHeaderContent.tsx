@@ -8,7 +8,7 @@ import { theme } from "@/theme";
 import { MenuItem } from "@mui/material";
 import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -61,7 +61,7 @@ const AccountHeaderContent = () => {
   const history = useHistory();
   const { handleLogout } = useAuthContext();
   const { isDesktopSize } = useRwd();
-  const { mainSymbol, mainWalletBalance, transferWalletBalance, fetchMainWalletBalance } =
+  const { mainSymbol, mainWalletBalance, transferWalletBalance, fetchMainWalletBalance, info } =
     useUserWalletInfoContext();
 
   const currentBalance =
@@ -90,6 +90,8 @@ const AccountHeaderContent = () => {
     };
   }, []);
 
+  const avatarUrl = utility.getAvatarUrl(info.playercode);
+
   return (
     <>
       <ButtonContainer>
@@ -110,12 +112,7 @@ const AccountHeaderContent = () => {
         renderValue={() => {
           return (
             <AccountIcon>
-              <img
-                src={"/assets/images/common/avatar.png"}
-                width={"36px"}
-                height={"36px"}
-                alt="profile"
-              />
+              <img src={avatarUrl} alt="avatar" />
             </AccountIcon>
           );
         }}

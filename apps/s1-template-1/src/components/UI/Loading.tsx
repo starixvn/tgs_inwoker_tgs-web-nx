@@ -1,6 +1,5 @@
 import { DESKTOP_DRAWER_WIDTH } from "@/theme/constants";
 import { CircularProgress } from "@mui/material";
-import { useGeneralStore } from "@tgs-web-nx/core";
 import styled from "styled-components";
 
 type LoadingContainer = {
@@ -44,15 +43,11 @@ type Props = {
 };
 
 const Loading = ({ show, opacity, noShrink }: Props) => {
-  const { general } = useGeneralStore();
   const backgroundOpacity = typeof opacity === "number" ? opacity : 0.5;
 
   return (
     <LoadingContainer $open={show} $opacity={backgroundOpacity} $isMenuOpen={false}>
       <Inner>
-        <img src="/assets/images/common/logo.svg" alt="Logo" width={100} height={100} />
-        {/* <LogoImg src={general.brand && general.brand.loadingUrl} /> */}
-        <div className="clear" />
         <CircularProgress size={80} color={"secondary"} style={{ margin: "6rem 0 0 0" }} />
       </Inner>
     </LoadingContainer>

@@ -34,6 +34,7 @@ const OrText = styled.span`
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
+  text-transform: uppercase;
   background-color: ${({ theme }) => theme.dialogBackground};
   color: ${({ theme }) => theme.authTabColor};
 `;

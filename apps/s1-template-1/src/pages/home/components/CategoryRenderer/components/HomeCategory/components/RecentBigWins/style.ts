@@ -192,8 +192,16 @@ export const PlayerArea = styled.div`
   margin-bottom: 1.6rem;
 `;
 
-export const Avatar = styled.img`
+export const Avatar = styled.div`
   border-radius: 50%;
+  height: 5.2rem;
+  width: 5.2rem;
+  border: 0.2rem solid rgba(255, 255, 255, 0.2);
+
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const PlayerInfo = styled.div`

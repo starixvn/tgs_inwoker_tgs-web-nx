@@ -12,20 +12,19 @@ export const Remark = styled.div`
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px; 
+  margin-bottom: 24px;
 `;
 
 export const ItemContainerSmall = styled(ItemContainer)`
   margin-bottom: 1.6rem;
 `;
 
-
 export const LabelContainer = styled.div`
   font-size: 1.4rem;
   font-weight: 700;
   color: ${({ theme }) => theme.text};
   float: left;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
   letter-spacing: 0.28px;
 `;
 
@@ -43,14 +42,14 @@ export const ItemNote = styled.div`
   line-height: 1.8rem;
 `;
 export const ItemNoteText = styled.span`
-  position: relative; 
-  top: -.2rem;
+  position: relative;
+  top: -0.2rem;
 `;
 
 export const ItemNoteDesc = styled.span`
   font-size: 1.3rem;
   font-weight: 500;
-  margin-left: .4rem;
+  margin-left: 0.4rem;
 `;
 
 export const AccountInfoWrapper = styled.div`
@@ -84,7 +83,7 @@ export const UploadFileControl = styled.div`
   border-radius: 1rem;
   border: 1px solid ${({ theme }) => theme.formInputBorder};
   position: relative;
-  background: ${({ theme }) => theme.formInputBackground}
+  background: ${({ theme }) => theme.formInputBackground};
 `;
 
 export const InfoContainer = styled.div`
@@ -109,7 +108,7 @@ export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   "&:hover": {
     border: "none",
     backgroundColor: "#272E37",
-  }
+  },
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`
@@ -126,15 +125,27 @@ export const UploadFileTag = styled.span`
 export const AccountIcon = styled.div`
   cursor: pointer;
   margin: 0 0 0 0.6rem;
-  border-radius: 2rem;
-  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  border: 0.2rem solid rgba(255, 255, 255, 0.2);
   width: 4rem;
   height: 4rem;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.user-wallet {
+    width: 6.8rem;
+    height: 6.8rem;
+    margin: 0;
+  }
+
   ${media.sm} {
     margin: 0 0.8rem 0 0.6rem;
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
   }
 `;
 

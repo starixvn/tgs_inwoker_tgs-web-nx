@@ -3,7 +3,7 @@ import { AccountIcon, LabelHighlight } from "@/components/styled-component/Profi
 import { media } from "@/theme/breakpoints";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import { Common } from "@tgs-web-nx/utils";
+import { Common, utility } from "@tgs-web-nx/utils";
 import styled, { DefaultTheme, keyframes } from "styled-components";
 
 const rotateKeyFrame = keyframes`
@@ -15,13 +15,11 @@ const rotateKeyFrame = keyframes`
   }
 `;
 
-const Container = styled.div`
-
-`;
+const Container = styled.div``;
 
 const PlayerInfoContainer = styled.div`
   width: 100%;
-  background: #19212C;
+  background: #19212c;
   border-radius: 1.2rem;
   display: flex;
   flex-direction: column;
@@ -149,12 +147,12 @@ export const AmountContainer = styled.div<{ theme: DefaultTheme }>`
 
 const WalletInfo = styled.div`
   font-size: 1.5rem;
-  color:  ${({ theme }) => theme.tabTextColor};
+  color: ${({ theme }) => theme.tabTextColor};
   font-weight: 700;
   margin-bottom: 1.2rem;
   display: flex;
   align-items: center;
-  gap: .6rem;
+  gap: 0.6rem;
 `;
 
 type RefreshButtonProps = {
@@ -182,25 +180,31 @@ const UserWalletInfo = () => {
     info,
   } = useUserWalletInfoContext();
 
+  const avatarUrl = utility.getAvatarUrl(info.playercode);
   return (
     <Container>
       <PlayerInfoContainer>
         <PlayerInfo>
-          <AccountIcon style={{height: "6.8rem", width: "6.8rem", borderRadius: "4rem", margin: "0"}}>
-            <img
-              src={"/assets/images/common/avatar.png"}
-              width={"60px"}
-              height={"60px"}
-              alt="profile"
-            />
+          <AccountIcon className="user-wallet">
+            <img src={avatarUrl} alt="avatar" />
           </AccountIcon>
           <PlayerName>{info.member_username}</PlayerName>
-        </PlayerInfo>       
+        </PlayerInfo>
         <WalletsWrapper>
-          <WalletInfo>{"Account Balance"}{":"} <LabelHighlight>{ mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)}</LabelHighlight></WalletInfo>
-          <WalletInfo>Total Deposit{":"} <LabelHighlight>{info.accumdeposit}</LabelHighlight></WalletInfo>
-          <WalletInfo>Total Bet Amount{":"} <LabelHighlight>{info.accumturnover}</LabelHighlight></WalletInfo>
-          
+          <WalletInfo>
+            {"Account Balance"}
+            {":"}{" "}
+            <LabelHighlight>
+              {mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)}
+            </LabelHighlight>
+          </WalletInfo>
+          <WalletInfo>
+            Total Deposit{":"} <LabelHighlight>{info.accumdeposit}</LabelHighlight>
+          </WalletInfo>
+          <WalletInfo>
+            Total Bet Amount{":"} <LabelHighlight>{info.accumturnover}</LabelHighlight>
+          </WalletInfo>
+
           {/* {config.features.HaveVIPFeature && (
             <VIPLabel>
               <img

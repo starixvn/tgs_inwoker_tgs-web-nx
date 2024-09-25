@@ -83,6 +83,7 @@ const BetSlipDialog = ({
     createTime,
     betId,
     profit,
+    playerCode,
   } = data;
 
   return (
@@ -128,7 +129,9 @@ const BetSlipDialog = ({
         </BetArea>
         <Divider></Divider>
         <PlayerArea>
-          <Avatar src="/assets/images/avatars/user1.png" alt="avatar" />
+          <Avatar>
+            <img src={utility.getAvatarUrl(playerCode)} alt="avatar" />
+          </Avatar>
           <PlayerInfo>
             <div className="bold">{playerName}</div>
             <p>{createTime}</p>

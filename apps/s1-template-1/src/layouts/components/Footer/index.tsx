@@ -66,8 +66,8 @@ const Footer = () => {
           <GroupContent className="payment-method-container">
             {paymentMethod.map((social, index) => {
               return (
-                <PaymentMethod>
-                  <img key={index} src={social.url} width="90" alt={social.name} />
+                <PaymentMethod key={index}>
+                  <img src={social.url} width="90" alt={social.name} />
                 </PaymentMethod>
               );
             })}
@@ -77,10 +77,10 @@ const Footer = () => {
         <FooterGroup>
           <GroupTitle>{i18n.t("web.footer.support")}</GroupTitle>
           <LinkContent>
-            <Link onClick={() => navigateTo("#")}>{i18n.t("web.footer.rulesAndRegulation")}</Link>
-            <Link onClick={() => navigateTo("#")}>{i18n.t("web.footer.accountTerms")}</Link>
+            <Link>{i18n.t("web.footer.rulesAndRegulation")}</Link>
+            <Link>{i18n.t("web.footer.accountTerms")}</Link>
             <Link onClick={() => navigateTo("faq")}>{i18n.t("web.footer.faq")}</Link>
-            <Link onClick={() => navigateTo("#")}>{i18n.t("web.footer.contactUs")}</Link>
+            <Link>{i18n.t("web.footer.contactUs")}</Link>
           </LinkContent>
         </FooterGroup>
         <FooterGroup>
@@ -96,7 +96,7 @@ const Footer = () => {
             <Link onClick={() => navigateTo("privacypolicy")}>
               {i18n.t("web.footer.privacyPolicy")}
             </Link>
-            <Link onClick={() => navigateTo("#")}>{i18n.t("web.footer.cookiePolicy")}</Link>
+            <Link>{i18n.t("web.footer.cookiePolicy")}</Link>
           </LinkContent>
         </FooterGroup>
         <FooterGroup>

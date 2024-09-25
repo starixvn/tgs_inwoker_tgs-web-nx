@@ -62,6 +62,25 @@ function copyText(text: string) {
   }
 }
 
+function convertStringToNumber(str: string, maxLimit = 41): number {
+  if (!str || typeof str !== "string" || str.trim() === "") {
+    throw new Error("Input string must be a non-empty string.");
+  }
+  if (typeof maxLimit !== "number" || maxLimit <= 0) {
+    throw new Error("Max limit must be a positive number.");
+  }
+  let num = 0;
+  for (let i = 0; i < str.length; i++) {
+    num += str.charCodeAt(i);
+  }
+  num = num % (maxLimit + 1);
+  return num;
+}
+
+function getAvatarUrl(playerCode: string) {
+  return imagePathGenerator(`avatars/${convertStringToNumber(`${playerCode}`)}.png`);
+}
+
 export const utility = {
   imagePathGenerator,
   copy,
@@ -71,4 +90,5 @@ export const utility = {
   replaceUnderscoresWithSpace,
   getGameUrl,
   copyText,
+  getAvatarUrl,
 };
