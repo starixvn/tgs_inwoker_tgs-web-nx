@@ -29,7 +29,7 @@ function CheckUserName(username: string) {
 function LoginGoogle(token: string) {
   return ApiService.post("Player/login-google", {
     token: token,
-    platformtype: config.isPC
+    platformtype: config.isPC,
   }) as unknown as Promise<LoginResDto>;
 }
 
@@ -304,6 +304,13 @@ function UpdateEmailV2(securitykey: string, code: string) {
   }) as unknown as Promise<UpdatePhoneResDto>;
 }
 
+function checkValidateCode(securitykey: string, code: string) {
+  return ApiService.post("player/validate-code/check", {
+    securitykey,
+    validatecode: code,
+  });
+}
+
 function checkPhoneDuplicate(area: string, phone: string) {
   return ApiService.post("player/phone/check", {
     area: area,
@@ -350,4 +357,5 @@ export const AccountService = {
   UpdateEmailV2,
   registerV2SetRealName,
   checkPhoneDuplicate,
+  checkValidateCode,
 };

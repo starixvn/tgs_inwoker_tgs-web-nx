@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import config from "@tgs-web-nx/config";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { accountAction, AccountService } from "@tgs-web-nx/core";
+import { ForgotPasswordStageEnum } from "@tgs-web-nx/types";
 import BaseProfile from "@/components/account/Profile/PrevComponents/BaseProfile";
 import BottomNote from "@/components/UI/BottomNote";
 
@@ -66,7 +67,8 @@ class VerifyEmail extends BaseProfile {
 
     try {
       this.showLoading(true);
-      const response = await AccountService.VerifyEmail(this.state.email);
+      const response = await AccountService.VerifyForgotPassword(this.state.email, "", "");
+
       if (response.IsSuccess) {
         const securityKey = response.data;
 
@@ -119,65 +121,81 @@ class VerifyEmail extends BaseProfile {
     try {
       this.showLoading(true);
 
-      const isCustomFlowIDR =
-        config.features.Register_CustomFlow_IDR && !this.props.account.registercompleted;
-      const newRegisterInput = {
-        input: isCustomFlowIDR ? "Init" : "Valid",
-        data: {
-          email: this.state.email,
-          securitykey: this.state.securityKey,
-          validatecode: this.state.code,
-        },
-      };
+      let response = await AccountService.checkValidateCode(
+        this.state.securityKey,
+        this.state.code,
+      );
 
-      if (isCustomFlowIDR) {
-        const initMailResponse = await this.props.newRegister("InitMail", newRegisterInput);
-
-        if (initMailResponse.IsSuccess) {
-          const validMailResponse = await this.props.newRegister("InitMail", newRegisterInput);
-
-          if (validMailResponse.IsSuccess) {
-            await this.props.getAccountProfile();
-            this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
-              variant: "success",
-            });
-
-            // DEPRECATED
-            // if (!this.props.account.registercompleted) {
-            //   this.props.history.replace("/card/add");
-            // }
-          } else {
-            this.showErrorMessage(validMailResponse.info);
-          }
-        } else {
-          this.showErrorMessage(initMailResponse.info);
-        }
-      } else {
-        let response = await AccountService.UpdateEmailV2(this.state.securityKey, this.state.code);
-
-        if (response.IsSuccess) {
-          await this.props.getAccountProfile();
-          this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
-            variant: "success",
-          });
-
-          this.setState({
-            code: "",
-            securityKey: "",
-            isConfigured: true,
-            countdownToken: 0,
-            isNew: false,
-          });
-        } else {
-          this.showErrorMessage(response.info);
-        }
+      if (response.IsSuccess && response.data) {
+        await this.handleNextStep(this.state.securityKey, this.state.code);
       }
+
+      //   const isCustomFlowIDR =
+      //     config.features.Register_CustomFlow_IDR && !this.props.account.registercompleted;
+      //   const newRegisterInput = {
+      //     input: isCustomFlowIDR ? "Init" : "Valid",
+      //     data: {
+      //       email: this.state.email,
+      //       securitykey: this.state.securityKey,
+      //       validatecode: this.state.code,
+      //     },
+      //   };
+
+      //   if (isCustomFlowIDR) {
+      //     const initMailResponse = await this.props.newRegister("InitMail", newRegisterInput);
+
+      //     if (initMailResponse.IsSuccess) {
+      //       const validMailResponse = await this.props.newRegister("InitMail", newRegisterInput);
+
+      //       if (validMailResponse.IsSuccess) {
+      //         await this.props.getAccountProfile();
+      //         this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
+      //           variant: "success",
+      //         });
+
+      //         // DEPRECATED
+      //         // if (!this.props.account.registercompleted) {
+      //         //   this.props.history.replace("/card/add");
+      //         // }
+      //       } else {
+      //         this.showErrorMessage(validMailResponse.info);
+      //       }
+      //     } else {
+      //       this.showErrorMessage(initMailResponse.info);
+      //     }
+      //   } else {
+      //     let response = await AccountService.UpdateEmailV2(this.state.securityKey, this.state.code);
+
+      //     if (response.IsSuccess) {
+      //       await this.props.getAccountProfile();
+      //       this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
+      //         variant: "success",
+      //       });
+
+      //       this.setState({
+      //         code: "",
+      //         securityKey: "",
+      //         isConfigured: true,
+      //         countdownToken: 0,
+      //         isNew: false,
+      //       });
+      //     } else {
+      //       this.showErrorMessage(response.info);
+      //     }
+      //   }
     } catch (err) {
       this.showErrorMessage(err);
     } finally {
       this.showLoading(false);
       this.props.handleCloseDialog();
     }
+  };
+
+  handleNextStep = async (securityKey, code) => {
+    this.props.handleUpdateStage(ForgotPasswordStageEnum.NewPassword, {
+      securityKey,
+      code,
+    });
   };
 
   render() {

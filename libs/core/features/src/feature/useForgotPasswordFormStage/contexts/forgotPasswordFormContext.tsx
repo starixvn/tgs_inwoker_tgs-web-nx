@@ -27,7 +27,7 @@ export const ForgotPasswordStageContextProvider = ({ children }: ProviderProps) 
   //如果沒有在useEffect呼叫handleUpdateStage(ex:t36),預設會是VerifyPhone
   //todo:全templete修改至新的修改密碼流程
   const initialStage = useMemo(() => {
-    return ForgotPasswordStageEnum.VerifyPhone;
+    return ForgotPasswordStageEnum.VerifyEmail;
   }, []);
   const [currentStage, setCurrentStage] = useState(initialStage);
 
