@@ -51,14 +51,21 @@ class VerifyEmail extends BaseProfile {
 
   checkCountdownToken = () => {
     if (this.state.countdownToken > 0) {
-      this.setState({
-        ...this.state,
-        countdownToken: this.state.countdownToken - 1,
-      });
-      setTimeout(() => {
-        this.checkCountdownToken();
-      }, 1000);
+      this.setState(
+        (prevState) => ({
+          countdownToken: prevState.countdownToken - 1,
+        }),
+        () => {
+          setTimeout(this.checkCountdownToken, 1000);
+        },
+      );
     }
+  };
+
+  startCountdown = () => {
+    this.setState({ countdownToken: 60 }, () => {
+      this.checkCountdownToken();
+    });
   };
 
   handleGetCodeClick = async (e) => {
@@ -78,17 +85,14 @@ class VerifyEmail extends BaseProfile {
           countdownToken: 60,
         }));
 
+        this.startCountdown();
         this.showInfoMessage(i18n.t("common.msgTokenSent"));
-
-        setTimeout(() => {
-          this.checkCountdownToken();
-        }, 1000);
       } else {
         let errorCode = response.info;
         if (errorCode === "Player is not found in the system.") {
-          errorCode = "error.ERR201";
+          errorCode = "common.msgPlayerNotFound";
         }
-        this.showErrorMessage(i18n.t(errorCode));
+        this.showErrorMessage(i18n.t("common.msgPlayerNotFound"));
       }
     } catch (err) {
       this.showErrorMessage(err);
@@ -105,16 +109,16 @@ class VerifyEmail extends BaseProfile {
       : !(code && email);
   };
   showErrorMessage = (msg) => {
-    this.props.alert("", msg);
-    // this.props.enqueueSnackbar(msg, {
-    //   key: "error"
-    // });
+    // this.props.alert("", msg);
+    this.props.enqueueSnackbar(msg, {
+      key: "error",
+    });
   };
   showInfoMessage = (msg) => {
-    this.props.alert("", msg);
-    // this.props.enqueueSnackbar(msg, {
-    //   key: "info"
-    // });
+    // this.props.alert("", msg);
+    this.props.enqueueSnackbar(msg, {
+      key: "info",
+    });
   };
 
   handleSubmitClicked = async () => {
@@ -128,6 +132,8 @@ class VerifyEmail extends BaseProfile {
 
       if (response.IsSuccess && response.data) {
         await this.handleNextStep(this.state.securityKey, this.state.code);
+      } else {
+        this.showErrorMessage(i18n.t("common.msgVerificationCodeIncorrect"));
       }
 
       //   const isCustomFlowIDR =
