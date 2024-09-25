@@ -37,3 +37,4 @@ export * from "./ReplyInboxItemReqDto";
 export * from "./ReplyInboxItemResDto";
 export * from "./ComposeInboxItemReqDto";
 export * from "./ComposeInboxItemResDto";
+export * from "./GetMilestoneListResDto";

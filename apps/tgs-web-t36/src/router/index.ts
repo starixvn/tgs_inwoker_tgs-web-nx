@@ -30,7 +30,8 @@ import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import TermsAndConditions from "@/pages/TermsAndConditions";
 import Responsiblegaming from "@/pages/Responsiblegaming";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
-import {DepositPayment, DepositPaymentLayout} from "@/pages/deposit/DepositPayment";
+import { DepositPayment, DepositPaymentLayout } from "@/pages/deposit/DepositPayment";
+import RewardPage from "@/pages/reward/RewardPage";
 
 const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
@@ -83,6 +84,11 @@ const routes: RouteType[] = [
   {
     path: "/wagering",
     component: WageringPage,
+    layout: DialogLayout,
+  },
+  {
+    path: "/reward",
+    component: RewardPage,
     layout: DialogLayout,
   },
   {

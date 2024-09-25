@@ -18,6 +18,7 @@ import {
   UpdatePhoneResDto,
   VerifyForgotPasswordResDto,
   RegisterV2SetRealNameDto,
+  GetMilestoneListResDto,
 } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
 import { ApiService } from "../api-services/services/ApiService";
@@ -304,6 +305,13 @@ function checkPhoneDuplicate(area: string, phone: string) {
   }) as unknown;
 }
 
+const getMilestoneList = async () => {
+  const res = (await ApiService.get(
+    "promotion/milestone-list",
+  )) as unknown as Promise<GetMilestoneListResDto>;
+  return res;
+};
+
 export const AccountService = {
   CheckUserName,
   Login,
@@ -342,4 +350,5 @@ export const AccountService = {
   UpdateEmailV2,
   registerV2SetRealName,
   checkPhoneDuplicate,
+  getMilestoneList,
 };
