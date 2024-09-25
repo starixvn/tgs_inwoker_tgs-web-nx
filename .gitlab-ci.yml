@@ -160,26 +160,6 @@ stages:
       else 
           echo "No Deployment Brand and Domain"
       fi
-  after_script:
-    - |
-      if [[ $domain != "" && $brand != "" ]]; then 
-          curl --location --request POST $Telegram_Bot_Url \
-            --header 'Content-Type: application/json' \
-            --data-binary @- << EOF
-          {
-            "chat_id": $Telegram_Chat_Id,
-            "text": "
-          專案: $CI_PROJECT_NAME
-          服務: $brand
-          分支: $CI_COMMIT_BRANCH
-          URL: https://$domain
-          Pipeline: $CI_PIPELINE_URL
-          Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
-          作者: $GITLAB_USER_LOGIN",
-            "parse_mode": "HTML"
-          }
-          EOF
-      fi
 
 .deploy-template: &deploy-template
   stage: deploy
