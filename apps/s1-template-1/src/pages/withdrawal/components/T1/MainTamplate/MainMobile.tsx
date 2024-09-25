@@ -118,8 +118,8 @@ const MainMobile = ({
           </ManageBankCardButtonContainer>
         </ItemContainer>
       </BankAccountWrapper>
-      
-      
+
+
 
       {config.features.NewTransferUI && (
         <SubHeaderContainer>
@@ -144,7 +144,7 @@ const MainMobile = ({
 
       {/*請輸入提款金額*/}
       <ItemContainer>
-        <LabelContainer>Withdraw Amount</LabelContainer>
+        <LabelContainer>{i18n.t("withdrawal.amount")}</LabelContainer>
         <FormControl variant="outlined">
           <TextField
             fullWidth
