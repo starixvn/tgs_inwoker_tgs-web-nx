@@ -193,7 +193,7 @@ const AccountHeaderContent = () => {
         <MenuItem
           onClick={() => {
             history.push({
-              pathname: "/report",
+              pathname: "/transactions",
               state: { selectedType: 8 },
             });
           }}
@@ -212,7 +212,7 @@ const AccountHeaderContent = () => {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            history.push("/report");
+            history.push("/bet-history");
           }}
         >
           <HistoryIcon

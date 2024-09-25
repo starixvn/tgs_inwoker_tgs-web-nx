@@ -89,7 +89,7 @@ const MenuTabs = () => {
     {
       key: NavCardKey.TRANSFER,
       label: i18n.t("common.transactions"),
-      router: "/report",
+      router: "/transactions",
       icon: TransactionIcon,
       viewBox: "0 0 18 14",
       fontSizeIcon: "2.6rem",
@@ -97,7 +97,7 @@ const MenuTabs = () => {
     {
       key: NavCardKey.REPORT,
       label: i18n.t("common.bethistory"),
-      router: "/report",
+      router: "/bet-history",
       icon: HistoryIcon,
       viewBox: "0 0 14 16",
       fontSizeIcon: "2.3rem",
