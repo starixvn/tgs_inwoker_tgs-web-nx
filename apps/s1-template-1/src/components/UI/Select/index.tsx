@@ -81,7 +81,7 @@ export const Select = (props: SelectProps) => {
               borderRadius: "1rem",
               fontSize: "1.3rem",
               fontWeight: "bold",
-              fontFamily: "var(--font-family)",
+              fontFamily: "var(--main-font-family)",
 
               "@media (min-width: 1200px)": {
                 fontSize: "1.4rem",

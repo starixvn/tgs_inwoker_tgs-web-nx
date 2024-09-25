@@ -1,6 +1,9 @@
 html {
   font-size: 10px !important;
-  --font-family: Inter, Arial, sans-serif;
+}
+
+:root {
+  --main-font-family: "Inter", Arial, sans-serif;
 }
 
 div {
@@ -65,7 +68,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   input {
-    font-family: var(--font-family);
+    font-family: var(--main-font-family);
   }
 
   body {

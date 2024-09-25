@@ -31,7 +31,7 @@ const ButtonDefault = muiStyled(MuiButton)(({ theme }) => ({
   padding: "0 1rem",
   borderRadius: "0.8rem",
   fontSize: "1.3rem",
-  fontFamily: "var(--font-family)",
+  fontFamily: "var(--main-font-family)",
   fontWeight: 700,
   textTransform: "capitalize",
   lineHeight: "3.6rem",
