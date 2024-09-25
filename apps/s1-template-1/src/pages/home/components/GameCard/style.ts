@@ -132,6 +132,8 @@ export const GameName = styled.div`
   text-align: center;
   text-transform: capitalize;
   padding: 0 0.8rem;
+  overflow-wrap: break-word;
+  inline-size: 100%;
 `;
 
 export const ProviderName = styled.div`

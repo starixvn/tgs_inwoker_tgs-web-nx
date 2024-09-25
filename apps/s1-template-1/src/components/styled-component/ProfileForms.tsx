@@ -171,6 +171,8 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   padding: "1.6rem",
   marginBottom: "2.4rem",
   fontSize: "1.4rem",
+  fontFamily: "var(--main-font-family)",
+  textTransform: "capitalize",
   lineHeight: 1,
   fontWeight: 700,
   color: theme.palette.submitButton.color,
@@ -183,8 +185,8 @@ export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({
   },
 
   "&:disabled": {
-    background: theme.palette.action.disabledBackground,
-    color: theme.palette.action.disabled,
+    background: theme.palette.header.signUp.disabledBackground,
+    color: theme.palette.header.signUp.disabledColor,
   },
 })) as typeof MuiButton;
 
