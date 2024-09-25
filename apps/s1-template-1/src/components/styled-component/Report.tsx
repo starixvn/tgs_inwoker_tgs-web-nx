@@ -1,5 +1,5 @@
 import { media } from "@/theme/breakpoints";
-import { styled as muiStyled, Table } from "@mui/material";
+import { styled as muiStyled, Table, TablePagination } from "@mui/material";
 import styled from "styled-components";
 
 export const ReportContainer = styled.div`
@@ -80,11 +80,35 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     lineHeight: "4.8rem",
     background: `${theme.palette.table.tableBackground}`,
     fontFamily: "inherit",
-    "&:last-child": {
-      bottomBottom: "none",
+  },
+  
+}));
+
+export const CustomizeTablePagination = muiStyled(TablePagination)(({ theme }) => ({
+  fontSize: "1.6rem",
+  "& .MuiTablePagination-displayedRows": {
+    fontSize: "1.6rem",
+    fontFamily: "inherit",
+  },
+  "& .MuiIconButton-root": {
+    padding: ".4rem", 
+    background: "#606E82",
+    borderRadius: ".8rem",
+    color: "#fff",
+    "&.Mui-disabled": {
+      background: "#2E353E",
     }
   },
+  "& .MuiTablePagination-actions": {
+    display: "flex",
+    gap: "1.2rem",
+    marginLeft: "1.6rem",
+    "& .MuiSvgIcon-root": {
+      fontSize: "2.4rem",
+    }
+  }
 }));
+
 export const ReportMainContainer = styled.div`
   width: 100%;
   display: flex;

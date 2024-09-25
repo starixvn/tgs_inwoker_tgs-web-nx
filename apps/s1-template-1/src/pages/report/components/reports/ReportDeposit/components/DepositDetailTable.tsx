@@ -1,7 +1,7 @@
-import { ReportCardsContainer, ReportTable, TagStatus } from "@/components/styled-component/Report";
+import { CustomizeTablePagination, ReportCardsContainer, ReportTable, TagStatus } from "@/components/styled-component/Report";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { theme } from "@/theme";
-import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import moment from "moment";
@@ -89,8 +89,8 @@ const DepositDetailTable = ({
         </TableBody>
       </ReportTable>
 
-      <TablePagination
-        component="div"
+      <CustomizeTablePagination
+        component={"div"}
         rowsPerPageOptions={[]}
         count={totalCount}
         rowsPerPage={pageSize}
@@ -98,7 +98,7 @@ const DepositDetailTable = ({
         onPageChange={handleChangePage}
         sx={{
           width: "100%",
-          color: theme.text,
+          color: theme.text,         
           "& button": {},
         }}
       />

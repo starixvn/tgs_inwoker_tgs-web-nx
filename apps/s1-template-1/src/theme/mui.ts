@@ -197,18 +197,22 @@ const muiTheme = createTheme({
     },
   },
   components: {
-    MuiTablePagination: {
-      styleOverrides: {
-        actions: {
-          "& .MuiButtonBase-root": {
-            color: "#707070",
-            "&:hover": {
-              // backgroundColor: "#your_hover_color_here", // 设置鼠标悬停时的背景颜色
-            },
-          },
-        },
-      },
-    },
+    // MuiTablePagination: {
+    //   styleOverrides: {
+    //     actions: {
+    //       "& .MuiButtonBase-root": {
+    //         color: "#707070",
+    //         "&:hover": {
+    //           // backgroundColor: "#your_hover_color_here", // 设置鼠标悬停时的背景颜色
+    //         },
+    //       },
+         
+    //     },
+    //   },
+    //   "& .MuiTablePagination-displayedRows": {
+    //     fontSize: "1.6rem",
+    //   }
+    // },
   },
 } as ThemeOptions);
 
