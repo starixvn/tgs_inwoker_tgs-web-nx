@@ -227,12 +227,13 @@ stages:
         {
           "chat_id": $Telegram_Chat_Id,
           "text": "
-        專案: $CI_PROJECT_NAME
-        分支: $CI_COMMIT_BRANCH
+        專案: tgs-web-nx
+        分支: $env
         更新lobby: $lobby
-        Pipeline: $CI_PIPELINE_URL
-        Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
-        作者: $GITLAB_USER_LOGIN",
+        # Pipeline: $CI_PIPELINE_URL
+        # Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
+        # 作者: $GITLAB_USER_LOGIN"
+        ,
           "parse_mode": "HTML"
         }
         EOF
@@ -296,6 +297,8 @@ deploy-dev:
   needs:
     - job: docker-build-dev
       artifacts: true
+  variables:
+    env: dev
   tags:
     - dev
   environment:
@@ -310,6 +313,8 @@ deploy-staging:
   needs:
     - job: docker-build-staging
       artifacts: true
+  variables:
+    env: staging
   environment:
     name: staging
   only:
@@ -322,6 +327,8 @@ deploy-prod:
   needs:
     - job: docker-build-prod
       artifacts: true
+  variables:
+    env: prod
   environment:
     name: prod
   only:
