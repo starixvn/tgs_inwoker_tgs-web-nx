@@ -1,10 +1,10 @@
+import Icon from "@/components/project/Icon";
+import { AccountIcon, LabelHighlight } from "@/components/styled-component/ProfileForms";
+import { media } from "@/theme/breakpoints";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import styled, { DefaultTheme, keyframes } from "styled-components";
-import { media } from "@/theme/breakpoints";
-import { AccountIcon, LabelHighlight } from "@/components/styled-component/ProfileForms";
-import Icon from "@/components/project/Icon";
 
 const rotateKeyFrame = keyframes`
   0% {
@@ -181,19 +181,13 @@ const UserWalletInfo = () => {
   } = useUserWalletInfoContext();
 
   const avatarUrl = utility.getAvatarUrl(info.playercode);
+
   return (
     <Container>
       <PlayerInfoContainer>
         <PlayerInfo>
-          <AccountIcon
-            style={{ height: "6.8rem", width: "6.8rem", borderRadius: "4rem", margin: "0" }}
-          >
-            <img
-              src={"/assets/images/common/avatar.png"}
-              width={"60px"}
-              height={"60px"}
-              alt="profile"
-            />
+          <AccountIcon className="user-wallet">
+            <img src={avatarUrl} alt="avatar" />
           </AccountIcon>
           <PlayerName>{info.member_username}</PlayerName>
         </PlayerInfo>
