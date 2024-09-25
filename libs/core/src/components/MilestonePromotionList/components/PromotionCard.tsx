@@ -82,7 +82,7 @@ const ContentText = styled.div`
     gap: 0;
   }
   div:first-child {
-    width: 60px;
+    width: 70px;
     ${media.sm} {
       width: 85px;
     }
