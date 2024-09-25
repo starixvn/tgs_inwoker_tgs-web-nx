@@ -76,9 +76,9 @@ stages:
     name: pgtgs/tgs-backend-deploy:latest
   before_script:
     - | 
-      source get_tgs-env.sh
-      export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
-      echo "tgs_env=$tgs_env"
+      #source get_tgs-env.sh
+      export tgs_env=$env
+      echo "tgs_env=$env"
       if [[ "${tgs_env}" == "dev" ]]; then
         echo "change tgs_env"
         export tgs_env="devops"
@@ -187,7 +187,6 @@ stages:
     name: pgtgs/tgs-backend-deploy:latest
   before_script:
     - |
-      source get_tgs-env.sh
       export tgs_env=$env
       echo "tgs_env=$tgs_env"
       kube_tgs_env=$tgs_env
