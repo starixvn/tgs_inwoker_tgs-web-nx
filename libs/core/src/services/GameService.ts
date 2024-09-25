@@ -4,6 +4,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import { ApiService } from "../api-services/services/ApiService";
 import { GameService as PrevGameService } from "../api-services/services/GameService";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import config from "../config/config";
 
 export const GameService = {
   ...PrevGameService,
