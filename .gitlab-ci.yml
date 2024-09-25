@@ -188,7 +188,7 @@ stages:
   before_script:
     - |
       source get_tgs-env.sh
-      export tgs_env=$(get_environment "$CI_COMMIT_REF_NAME")
+      export tgs_env=$env
       echo "tgs_env=$tgs_env"
       kube_tgs_env=$tgs_env
       if [[ "${tgs_env}" == "dev" ]]; then
@@ -265,6 +265,8 @@ deploy-domain-dev:
   needs:
     - job: docker-build-dev
       artifacts: true
+  variables:
+    env: dev
   tags:
     - dev
   only:
@@ -277,6 +279,10 @@ deploy-domain-staging:
   needs:
     - job: docker-build-staging
       artifacts: true
+  variables:
+    env: staging
+  tags:
+    - staging
   only:
     - release/current
   except:
@@ -287,6 +293,10 @@ deploy-domain-prod:
   needs:
     - job: docker-build-prod
       artifacts: true
+  variables:
+    env: prod
+  tags:
+    - prod
   only:
     - master
   except:
