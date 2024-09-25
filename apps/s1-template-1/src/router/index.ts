@@ -4,6 +4,7 @@ import DialogLayout from "@/layouts/DialogLayout";
 import IframeLayout from "@/layouts/IframeLayout";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 import VipLayout from "@/layouts/VipLayout";
+import BetHistoryPage from "@/pages/betHistory/BetHistoryPage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
 import ContactUsPage from "@/pages/contactUs/ContactUsPage";
 import DepositPage from "@/pages/deposit/DepositPage";
@@ -264,6 +265,12 @@ const routes: RouteType[] = [
   {
     path: "/report/:tab?",
     component: ReportPage,
+    layout: DialogLayout,
+  },
+
+  {
+    path: "/bet-history",
+    component: BetHistoryPage,
     layout: DialogLayout,
   },
 
