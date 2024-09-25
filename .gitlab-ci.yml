@@ -72,6 +72,8 @@ stages:
 
 .deploy-domain-template: &deploy-domain-template
   stage: deploy-domain
+  image: 
+    name: pgtgs/tgs-backend-deploy:latest
   before_script:
     - | 
       source get_tgs-env.sh
@@ -82,10 +84,10 @@ stages:
         export tgs_env="devops"
       fi
       echo "tgs_env=$tgs_env"
-      export KUBECONFIG="${config}_${tgs_env}"
-      echo "kubeconfig=$KUBECONFIG"
-      export KUBECONFIG=${!KUBECONFIG}
-      echo "KUBECONFIG=$KUBECONFIG"
+      # export KUBECONFIG="${config}_${tgs_env}"
+      # echo "kubeconfig=$KUBECONFIG"
+      # export KUBECONFIG=${!KUBECONFIG}
+      # echo "KUBECONFIG=$KUBECONFIG"
   script:
     - |
       echo "domain=$domain"
@@ -181,6 +183,8 @@ stages:
 
 .deploy-template: &deploy-template
   stage: deploy
+  image: 
+    name: pgtgs/tgs-backend-deploy:latest
   before_script:
     - |
       source get_tgs-env.sh
@@ -192,9 +196,9 @@ stages:
         kube_tgs_env="devops"
       fi
       echo "tgs_env=$tgs_env"
-      export KUBECONFIG_TEMP="${config}_${kube_tgs_env}"
-      export KUBECONFIG=${!KUBECONFIG_TEMP}
-      echo "KUBECONFIG=$KUBECONFIG"
+      # export KUBECONFIG_TEMP="${config}_${kube_tgs_env}"
+      # export KUBECONFIG=${!KUBECONFIG_TEMP}
+      # echo "KUBECONFIG=$KUBECONFIG"
   script:
     - |
       if [[ -e image.txt && $domain == "" && $brand == "" ]]; then 
@@ -260,6 +264,10 @@ deploy-domain-dev:
   needs:
     - job: docker-build-dev
       artifacts: true
+  tags:
+    - dev
+    - kubernetes
+    - deploy
   only:
     - develop
   except:
@@ -290,6 +298,10 @@ deploy-dev:
   needs:
     - job: docker-build-dev
       artifacts: true
+  tags:
+    - dev
+    - kubernetes
+    - deploy
   environment:
     name: dev
   only:
