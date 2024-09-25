@@ -1,10 +1,3 @@
-import Icon from "@/components/project/Icon";
-import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
-import { AccountIcon } from "@/components/styled-component/ProfileForms";
-import { GreenGradientButton } from "@/components/UI/Button";
-import { AccountInfoIcon, DepositIcon, HistoryIcon, InboxIcon, LogoutIcon, TransactionIcon, WithdrawIcon } from "@/components/UI/CustomizeIcon";
-import { Select } from "@/components/UI/Select";
-import { theme } from "@/theme";
 import { MenuItem } from "@mui/material";
 import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -12,6 +5,21 @@ import { Common, i18n, utility } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import Icon from "@/components/project/Icon";
+import HeaderLanguageSwitch from "@/components/project/LanguageSwitch/HeaderLanguageSwitch";
+import { AccountIcon } from "@/components/styled-component/ProfileForms";
+import { GreenGradientButton } from "@/components/UI/Button";
+import {
+  AccountInfoIcon,
+  DepositIcon,
+  HistoryIcon,
+  InboxIcon,
+  LogoutIcon,
+  TransactionIcon,
+  WithdrawIcon,
+} from "@/components/UI/CustomizeIcon";
+import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -180,7 +188,7 @@ const AccountHeaderContent = () => {
               top: "0.2rem",
             }}
           ></WithdrawIcon>
-          Withdrawal
+          {i18n.t("common.withdrawal")}
         </MenuItem>
         <MenuItem
           onClick={() => {

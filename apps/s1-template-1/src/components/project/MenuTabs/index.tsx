@@ -1,16 +1,16 @@
+import { NavCardKey } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { useHistory, useLocation } from "react-router";
+import styled from "styled-components";
+import { theme } from "@/theme";
 import {
   AccountInfoIcon,
   DepositIcon,
   HistoryIcon,
   InboxIcon,
   TransactionIcon,
-  WithdrawIcon
+  WithdrawIcon,
 } from "@/components/UI/CustomizeIcon";
-import { theme } from "@/theme";
-import { NavCardKey } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
-import { useHistory, useLocation } from "react-router";
-import styled from "styled-components";
 
 type MenuItem = {
   key: NavCardKey;
@@ -51,20 +51,18 @@ const Tab = styled.div<{ $isActived: boolean }>`
     letter-spacing: 0em;
     text-align: center;
     color: ${({ theme, $isActived }) =>
-    $isActived ? `1px solid ${theme.tabActiveTextColor}` : `1px solid ${theme.tabTextColor}`};
-    
+      $isActived ? `1px solid ${theme.tabActiveTextColor}` : `1px solid ${theme.tabTextColor}`};
   }
   & svg {
     flex-shrink: 0;
   }
-  background: ${({ theme }) => theme.tabBackground}
+  background: ${({ theme }) => theme.tabBackground};
 `;
 
 const MenuTabs = () => {
   const history = useHistory();
   const location = useLocation();
   const accountMenuList: MenuItem[] = [
-    
     {
       key: NavCardKey.DEPOSIT,
       label: i18n.t("common.deposit"),
@@ -75,7 +73,7 @@ const MenuTabs = () => {
     },
     {
       key: NavCardKey.WITHDRAW,
-      label: "Withdrawal",
+      label: i18n.t("common.withdrawal"),
       router: "/withdrawal",
       icon: WithdrawIcon,
       viewBox: "0 0 18 20",
@@ -90,7 +88,7 @@ const MenuTabs = () => {
     // },
     {
       key: NavCardKey.TRANSFER,
-      label: "Transactions",
+      label: i18n.t("common.transactions"),
       router: "/report",
       icon: TransactionIcon,
       viewBox: "0 0 18 14",
@@ -98,7 +96,7 @@ const MenuTabs = () => {
     },
     {
       key: NavCardKey.REPORT,
-      label: "Bet History",
+      label: i18n.t("common.bethistory"),
       router: "/report",
       icon: HistoryIcon,
       viewBox: "0 0 14 16",
@@ -111,7 +109,6 @@ const MenuTabs = () => {
       icon: AccountInfoIcon,
       viewBox: "0 0 12 15",
       fontSizeIcon: "2.2rem",
-
     },
     {
       key: NavCardKey.INBOX,
@@ -128,7 +125,7 @@ const MenuTabs = () => {
     //   router: "/affiliate",
     //   icon: AffiliateIcon,
     // },
-    
+
     //TODO: remove for phase 1
     // {
     //   key: NavCardKey.APP_DOWNLOAD,
@@ -149,7 +146,14 @@ const MenuTabs = () => {
               history.push(item.router);
             }}
           >
-            <item.icon  sx={{ fontSize: item.fontSizeIcon, color: theme.text,  filter: "drop-shadow(0 0 0.4rem rgba(255, 255, 255, 0.50))"}} viewBox={item.viewBox} />
+            <item.icon
+              sx={{
+                fontSize: item.fontSizeIcon,
+                color: theme.text,
+                filter: "drop-shadow(0 0 0.4rem rgba(255, 255, 255, 0.50))",
+              }}
+              viewBox={item.viewBox}
+            />
             <span>{item.label}</span>
           </Tab>
         );

@@ -1,16 +1,16 @@
-import BottomNote from "@/components/UI/BottomNote";
-import { TextField } from "@/components/UI/TextField";
-import {
-  FormControl,
-  ItemContainer,
-  LabelContainer,
-} from "@/components/styled-component/ProfileForms";
 import config from "@tgs-web-nx/config";
 import { accountAction, AccountService } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BaseProfile from "./BaseProfile";
+import {
+  FormControl,
+  ItemContainer,
+  LabelContainer,
+} from "@/components/styled-component/ProfileForms";
+import { TextField } from "@/components/UI/TextField";
+import BottomNote from "@/components/UI/BottomNote";
 
 class Line extends BaseProfile {
   state = {
@@ -105,7 +105,7 @@ class Line extends BaseProfile {
       // this.state.isConfigured && config.features.ChangesNotAllowed
       //   ? i18n.t("common.configured")
       //   : this.state.line !== this.props.account.member_line && i18n.t("common.complete"),
-      "Submit",
+      i18n.t("common.submit"),
       (() => {
         if (
           this.state.isConfigured &&

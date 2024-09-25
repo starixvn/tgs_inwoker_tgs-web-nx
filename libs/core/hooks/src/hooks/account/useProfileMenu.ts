@@ -83,7 +83,7 @@ export function useProfileMenu() {
       },
       birth: {
         key: "birthdate",
-        label: "Date of Birth",
+        label: i18n.t("common.dateOfBirth"),
         isVerified: !!account.info.member_birthdate,
         status: account.info.member_birthdate
           ? account.info.member_birthdate
@@ -117,7 +117,7 @@ export function useProfileMenu() {
       },
       password: {
         key: "changepassword",
-        label: "Change Password",
+        label: i18n.t("changepassword"),
         status: "",
         routePath: "/profile/changepassword",
         buttonText: i18n.t("profile.edit"),

@@ -1,10 +1,10 @@
-import BottomNote from "@/components/UI/BottomNote";
 import config from "@tgs-web-nx/config";
 import { accountAction, AccountService } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BaseProfile from "./BaseProfile";
+import BottomNote from "@/components/UI/BottomNote";
 
 import {
   FormControl,
@@ -193,7 +193,7 @@ class Email extends BaseProfile {
       i18n.t("common.emailAddress"),
       <>
         <ItemContainer>
-          <LabelContainer>Email</LabelContainer>
+          <LabelContainer>{i18n.t("common.emailAddress")}</LabelContainer>
 
           <FormControl variant="outlined">
             <TextField
@@ -239,7 +239,7 @@ class Email extends BaseProfile {
         })()} */}
       </>,
       //this.state.isConfigured ? i18n.t("common.configured") : i18n.t("common.complete"),
-      "Submit",
+      i18n.t("common.submit"),
       (() => {
         if (this.state.isConfigured) {
           return (

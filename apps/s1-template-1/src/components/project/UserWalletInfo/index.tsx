@@ -1,10 +1,10 @@
-import Icon from "@/components/project/Icon";
-import { AccountIcon, LabelHighlight } from "@/components/styled-component/ProfileForms";
-import { media } from "@/theme/breakpoints";
 import { useGameStore } from "@tgs-web-nx/core";
 import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import { Common, utility } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import styled, { DefaultTheme, keyframes } from "styled-components";
+import { media } from "@/theme/breakpoints";
+import { AccountIcon, LabelHighlight } from "@/components/styled-component/ProfileForms";
+import Icon from "@/components/project/Icon";
 
 const rotateKeyFrame = keyframes`
   0% {
@@ -185,24 +185,33 @@ const UserWalletInfo = () => {
     <Container>
       <PlayerInfoContainer>
         <PlayerInfo>
-          <AccountIcon className="user-wallet">
-            <img src={avatarUrl} alt="avatar" />
+          <AccountIcon
+            style={{ height: "6.8rem", width: "6.8rem", borderRadius: "4rem", margin: "0" }}
+          >
+            <img
+              src={"/assets/images/common/avatar.png"}
+              width={"60px"}
+              height={"60px"}
+              alt="profile"
+            />
           </AccountIcon>
           <PlayerName>{info.member_username}</PlayerName>
         </PlayerInfo>
         <WalletsWrapper>
           <WalletInfo>
-            {"Account Balance"}
+            {i18n.t("common.accountBalance")}
             {":"}{" "}
             <LabelHighlight>
               {mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)}
             </LabelHighlight>
           </WalletInfo>
           <WalletInfo>
-            Total Deposit{":"} <LabelHighlight>{info.accumdeposit}</LabelHighlight>
+            {i18n.t("common.totalDeposit")}
+            {":"} <LabelHighlight>{info.accumdeposit}</LabelHighlight>
           </WalletInfo>
           <WalletInfo>
-            Total Bet Amount{":"} <LabelHighlight>{info.accumturnover}</LabelHighlight>
+            {i18n.t("common.totalBetAmount")}
+            {":"} <LabelHighlight>{info.accumturnover}</LabelHighlight>
           </WalletInfo>
 
           {/* {config.features.HaveVIPFeature && (

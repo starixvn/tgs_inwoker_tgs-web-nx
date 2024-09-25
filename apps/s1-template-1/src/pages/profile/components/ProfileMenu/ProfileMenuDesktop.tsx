@@ -11,7 +11,7 @@ const ProfileMenuDesktop = () => {
 
   return (
     <AccountPaper pageName={i18n.t("deposit.details.account")} iconUrl={iconAccount}>
-      <LabelLargeContainer>Profile Settings</LabelLargeContainer>
+      <LabelLargeContainer>{i18n.t("common.profileSettings")}</LabelLargeContainer>
       <ProfileRowInDesktop
         profileItem={profileItemDictionary["name"]}
         handleClick={handleClickProfileItem}

@@ -2,17 +2,17 @@ import { connect } from "react-redux";
 
 import { withRouter } from "react-router-dom";
 
-import BottomNote from "@/components/UI/BottomNote";
-import { TextField } from "@/components/UI/TextField";
+import config from "@tgs-web-nx/config";
+import { accountAction, AccountService } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import BaseProfile from "./BaseProfile";
 import {
   FormControl,
   ItemContainer,
   LabelContainer,
 } from "@/components/styled-component/ProfileForms";
-import config from "@tgs-web-nx/config";
-import { accountAction, AccountService } from "@tgs-web-nx/core";
-import { i18n } from "@tgs-web-nx/utils";
-import BaseProfile from "./BaseProfile";
+import { TextField } from "@/components/UI/TextField";
+import BottomNote from "@/components/UI/BottomNote";
 
 class Telegram extends BaseProfile {
   state = {
@@ -107,7 +107,7 @@ class Telegram extends BaseProfile {
       // this.state.isConfigured && config.features.ChangesNotAllowed
       //   ? i18n.t("common.configured")
       //   : this.state.telegram !== this.props.account.member_telegram && i18n.t("common.complete"),
-      "Submit",
+      i18n.t("common.submit"),
       (() => {
         if (
           this.state.isConfigured &&

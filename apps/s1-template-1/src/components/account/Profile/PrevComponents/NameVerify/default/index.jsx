@@ -1,18 +1,18 @@
-import { TextField } from "@/components/UI/TextField";
-import {
-  FormControl,
-  ItemContainerSmall,
-  LabelContainer,
-  UploadFileButton,
-  UploadFileControl,
-  UploadFileTag
-} from "@/components/styled-component/ProfileForms";
 import config from "@tgs-web-nx/config";
 import { accountAction, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BaseProfile from "../../BaseProfile";
+import {
+  FormControl,
+  ItemContainerSmall,
+  LabelContainer,
+  UploadFileButton,
+  UploadFileControl,
+  UploadFileTag,
+} from "@/components/styled-component/ProfileForms";
+import { TextField } from "@/components/UI/TextField";
 
 class Default extends BaseProfile {
   constructor(props) {
@@ -26,19 +26,14 @@ class Default extends BaseProfile {
     return (
       <>
         <ItemContainerSmall>
-          <LabelContainer>
-            Real Name
-            
-          </LabelContainer>
+          <LabelContainer>{i18n.t("common.realName")}</LabelContainer>
           <FormControl variant="outlined">
             <TextField
               fullWidth
               value={this.props.name}
               onChange={this.props.handleChangeName}
               type={"text"}
-              placeholder={
-                "Enter your real name"
-              }
+              placeholder={i18n.t("common.enterYourRealName")}
               disabled={false}
               maxLength={256}
             />
@@ -47,9 +42,7 @@ class Default extends BaseProfile {
 
         {config.features.ICVerification && (
           <ItemContainerSmall>
-            <LabelContainer>
-              Indentification Number
-            </LabelContainer>
+            <LabelContainer>{i18n.t("common.identificationNumber")}</LabelContainer>
             <FormControl variant="outlined">
               <TextField
                 fullWidth
@@ -77,7 +70,7 @@ class Default extends BaseProfile {
                   document.getElementById("getFile").click();
                 }}
               >
-                Upload
+                {i18n.t("common.uploadFile")}
               </UploadFileButton>
 
               <input
@@ -87,9 +80,10 @@ class Default extends BaseProfile {
                 accept="image/jpg, image/jpeg, image/png, image/tiff"
                 style={{ display: "none" }}
               />
-              <UploadFileTag>{this.props.icUpload ? this.props.icUpload[0].name : "Upload file"}</UploadFileTag>
+              <UploadFileTag>
+                {this.props.icUpload ? this.props.icUpload[0].name : i18n.t("common.uploadFile")}
+              </UploadFileTag>
             </UploadFileControl>
-            
           </ItemContainerSmall>
         )}
       </>
