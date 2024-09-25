@@ -3,7 +3,6 @@ import { ProviderDto } from "@tgs-web-nx/types";
 import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
-import { useProviderFilter } from "./useFilter/useProviderFilter";
 
 interface ProviderState {
   isLoading: boolean;
@@ -16,7 +15,7 @@ export function useProvider(updateGpCodeList: (providers: ProviderDto[]) => void
     providerList: [],
     error: null,
   });
-  const gpCustomSort = brandConfig[mapBrandName(config.brand)].customGameProviderSort;
+  const gpCustomSort = brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].customGameProviderSort;
 
   useEffect(() => {
     const getProviderList = async () => {
@@ -68,7 +67,7 @@ function getFormattedProviderList(providerList: ProviderDto[]): ProviderDto[] {
   return (
     providerList &&
     providerList.map((provider) => {
-      if (provider.code === "BTI" && config.currency === "PHP") {
+      if (provider.code === "BTI" && import.meta.env.VITE_CURRENCY === "PHP") {
         return {
           ...provider,
           code: "PHSB",

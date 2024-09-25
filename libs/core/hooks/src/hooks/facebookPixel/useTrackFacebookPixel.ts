@@ -16,14 +16,14 @@ export const useTrackFacebookPixel = () => {
     const sendFbTrack = (key: YuriJsParam) => {
 
         // MOMO 客製化設定
-        if(!brandConfig[mapBrandName(config.brand)].isInitYuriJs) {
+        if (!brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isInitYuriJs) {
             return;
         }
 
         //@ts-ignore
-        if(_yuri_track && typeof _yuri_track === 'function') {
+        if (_yuri_track && typeof _yuri_track === 'function') {
             //@ts-ignore
-            _yuri_track(key); 
+            _yuri_track(key);
         }
     }
 

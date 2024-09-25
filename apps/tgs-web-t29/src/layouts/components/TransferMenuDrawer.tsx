@@ -49,8 +49,8 @@ const TransferMenuDrawer = ({ isOpen, handleDrawerToggle }: Props) => {
   };
 
   const handleGotoAgentAdmin = useCallback(() => {
-    if (config.AgentAdminUrl) {
-      window.open(config.AgentAdminUrl, "_blank");
+    if (import.meta.env.VITE_AGENT_ADMIN_URL) {
+      window.open(import.meta.env.VITE_AGENT_ADMIN_URL, "_blank");
     }
   }, []);
 

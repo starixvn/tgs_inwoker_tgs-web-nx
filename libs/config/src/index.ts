@@ -1,4 +1,4 @@
-import config from "./config/config";
+import config from "./config/config.js";
 
 import featureList from "./config/features";
 import { brandConfig, defaultConfig, mapBrandName } from "./config/brand";

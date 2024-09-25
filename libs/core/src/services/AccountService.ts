@@ -19,8 +19,8 @@ import {
   VerifyForgotPasswordResDto,
   RegisterV2SetRealNameDto,
 } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
 import { ApiService } from "../api-services/services/ApiService";
+import config from "../config/config";
 
 function CheckUserName(username: string) {
   return ApiService.get(`Player/checkUsername?=${username}`);
@@ -49,7 +49,7 @@ function Register(
   invitationcode = "",
   upper: any,
 ) {
-  const currency = config.currency;
+  const currency = import.meta.env.VITE_CURRENCY;
   return ApiService.post("Player/create", {
     username,
     currency,
@@ -227,18 +227,18 @@ function UpdateMemberName(token: string, name: string) {
 function UpdateMemberNameAndIC(realname: string, id: string, file: File | null) {
   const request = file
     ? ApiService.postFile(
-        `player/identity/upload`,
-        file,
-        {
-          realname,
-          id,
-        },
-        true,
-      )
-    : ApiService.patch(`player/identity`, {
+      `player/identity/upload`,
+      file,
+      {
         realname,
         id,
-      });
+      },
+      true,
+    )
+    : ApiService.patch(`player/identity`, {
+      realname,
+      id,
+    });
 
   return request as unknown as Promise<UpdateMemberNameAndICResDto>;
 }

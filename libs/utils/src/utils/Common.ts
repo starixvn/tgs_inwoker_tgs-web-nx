@@ -1,4 +1,4 @@
-import config, { mapBrandName, brandConfig } from "@tgs-web-nx/config";
+import { mapBrandName, brandConfig } from "@tgs-web-nx/config";
 import { i18n } from "../index";
 let newWindow: Window | undefined;
 
@@ -53,13 +53,13 @@ function PopupCenter(url: string, title: string, w = 0, h = 0): Window | undefin
   const width = window.innerWidth
     ? window.innerWidth
     : document.documentElement.clientWidth
-    ? document.documentElement.clientWidth
-    : window.screen.width;
+      ? document.documentElement.clientWidth
+      : window.screen.width;
   const height = window.innerHeight
     ? window.innerHeight
     : document.documentElement.clientHeight
-    ? document.documentElement.clientHeight
-    : window.screen.height;
+      ? document.documentElement.clientHeight
+      : window.screen.height;
 
   const systemZoom = 1;
   let left = (width - w) / 2 / systemZoom + dualScreenLeft;
@@ -73,13 +73,13 @@ function PopupCenter(url: string, title: string, w = 0, h = 0): Window | undefin
     url,
     "gamewindow",
     "scrollbars=yes, width=" +
-      w / systemZoom +
-      ", height=" +
-      h / systemZoom +
-      ", top=" +
-      top +
-      ", left=" +
-      left,
+    w / systemZoom +
+    ", height=" +
+    h / systemZoom +
+    ", top=" +
+    top +
+    ", left=" +
+    left,
   );
 
   // if (!newWindow || newWindow.closed || typeof newWindow.closed == "undefined") {
@@ -150,9 +150,9 @@ const validateDepositAndWithdrawAmount = (
  * @returns 貨幣格式
  */
 const formatCurrency = (amount?: number) => {
-  if(amount === undefined) return "";
-  
-  return new Intl.NumberFormat(brandConfig[mapBrandName(config.brand)].countryCode).format(amount);
+  if (amount === undefined) return "";
+
+  return new Intl.NumberFormat(brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].countryCode).format(amount);
 };
 
 /**

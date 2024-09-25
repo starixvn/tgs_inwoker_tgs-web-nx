@@ -59,7 +59,7 @@ const AppWrapper = styled.div`
 const WinnerCard = () => {
   const history = useHistory();
   const { general } = useGeneralStore();
-  const brand = config.brand;
+  const brand = import.meta.env.VITE_BRAND;
 
   return (
     <Wrapper>
