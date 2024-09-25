@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { AccountService } from "@tgs-web-nx/core";
+import { enqueueSnackbar } from "notistack";
 import {
   useAuthDialog,
   useForgotPasswordFormStage,
@@ -27,7 +28,12 @@ export function useNewPasswordStage() {
       const resetPasswordResDto = await AccountService.ResetPassword(securityKey, code, pwd);
 
       if (resetPasswordResDto.IsSuccess) {
-        alert("", i18n.t("forgotPassword.updateSuccess"));
+        // it seems unnecessary to show alert here, use notistack instead
+        // alert("", i18n.t("forgotPassword.updateSuccess"));
+
+        enqueueSnackbar(i18n.t("forgotPassword.updateSuccess"), {
+          key: "info",
+        });
 
         handleToggleForgotPasswordDialog(false);
         handleToggleLoginDialog(true);
