@@ -71,9 +71,7 @@ export function useProfileMenu() {
           ? account.info.member_phone.substring(0, 1) + "**"
           : i18n.t("profile.notSet"),
         routePath: "/profile/phone",
-        buttonText: account.info.member_phone
-          ? i18n.t("profile.edit")
-          : i18n.t("profile.setNow"),
+        buttonText: account.info.member_phone ? i18n.t("profile.edit") : i18n.t("profile.setNow"),
       },
       email: {
         key: "email",
@@ -81,9 +79,7 @@ export function useProfileMenu() {
         isVerified: !!account.info.member_email,
         status: account.info.member_email ? account.info.member_email : i18n.t("profile.notSet"),
         routePath: "/profile/email",
-        buttonText: account.info.member_email
-          ? i18n.t("profile.edit")
-          : i18n.t("profile.setNow"),
+        buttonText: account.info.member_email ? i18n.t("profile.edit") : i18n.t("profile.setNow"),
       },
       birth: {
         key: "birthdate",
@@ -140,7 +136,7 @@ export function useProfileMenu() {
           : i18n.t("profile.notSet"),
         routePath: `/profile/${platform}`,
         buttonText: account.info["member_" + platform]
-          ? i18n.t("profile.details")
+          ? i18n.t("profile.edit")
           : i18n.t("profile.setNow"),
       };
     });
