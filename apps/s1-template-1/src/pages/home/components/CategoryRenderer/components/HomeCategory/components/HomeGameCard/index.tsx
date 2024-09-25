@@ -152,11 +152,11 @@ const PlayIcon = styled.img`
 const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
   const { setFavoriteGame, removeFavoriteGame } = useGameStore();
   const { account } = useAccountStore();
-  const { favoriteList, fetchFavoriteList } = useHomeGameContext();
+  // const { favoriteList, fetchFavoriteList } = useHomeGameContext();
   const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const { isDesktopSize } = useRwd();
   const { goToLogin } = useAuth();
-  const isFavorite = favoriteList.includes(gameItem.id);
+  // const isFavorite = favoriteList.includes(gameItem.id);
   const isLogin = !!account.token;
 
   const launchGame = () => {
@@ -168,24 +168,24 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
     }
   };
 
-  const handleToggleFavorite = async (event: MouseEvent, gameId: number) => {
-    event.stopPropagation();
-    if (!isLogin) {
-      goToLogin();
-    } else {
-      if (isUpdatingFavorite) return;
+  // const handleToggleFavorite = async (event: MouseEvent, gameId: number) => {
+  //   event.stopPropagation();
+  //   if (!isLogin) {
+  //     goToLogin();
+  //   } else {
+  //     if (isUpdatingFavorite) return;
 
-      setIsUpdatingFavorite(true);
-      if (!!favoriteList.length && favoriteList.includes(gameId)) {
-        await removeFavoriteGame(gameId);
-        await fetchFavoriteList();
-      } else {
-        await setFavoriteGame(gameId);
-        await fetchFavoriteList();
-      }
-      setIsUpdatingFavorite(false);
-    }
-  };
+  //     setIsUpdatingFavorite(true);
+  //     if (!!favoriteList.length && favoriteList.includes(gameId)) {
+  //       await removeFavoriteGame(gameId);
+  //       await fetchFavoriteList();
+  //     } else {
+  //       await setFavoriteGame(gameId);
+  //       await fetchFavoriteList();
+  //     }
+  //     setIsUpdatingFavorite(false);
+  //   }
+  // };
 
   return (
     <GameCardBg onClick={launchGame}>
@@ -201,11 +201,11 @@ const HomeGameCard = ({ gameItem, isActive, imageUrl }: GameCardProps) => {
         )}
       </GameCardContent>
 
-      {isLogin && <Favorite
+      {/* {isLogin && <Favorite
         isFavorite={isFavorite}
         handleToggleFavorite={handleToggleFavorite}
         gameItemId={gameItem.id}
-      />}
+      />} */}
 
       {isDesktopSize && (
         <CardHoverBg onClick={launchGame}>
