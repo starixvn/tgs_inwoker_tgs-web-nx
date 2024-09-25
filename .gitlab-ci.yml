@@ -206,13 +206,13 @@ stages:
               echo "=================="
               echo "image=$image"
               app=$(echo "$image" | sed "s|pgtgs/||" | cut -d':' -f1)
-              lobbies="${tgs_env}_${app//-/_}"
+              lobbies="${env}_${app//-/_}"
               echo "lobbies=${!lobbies}"  
               echo ${!lobbies} > lobby.txt
               IFS=',' read -ra array <<< "${!lobbies}"
 
               for lb in "${array[@]}"; do
-                  kubectl set image deployment/$lb $lb=${image} --record -n ${tgs_env}
+                  kubectl set image deployment/$lb $lb=${image} --record -n ${env}
               done
           done; 
       fi
@@ -228,11 +228,7 @@ stages:
           "text": "
         專案: tgs-web-nx
         分支: $env
-        更新lobby: $lobby
-        # Pipeline: $CI_PIPELINE_URL
-        # Commit: $CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA
-        # 作者: $GITLAB_USER_LOGIN"
-        ,
+        更新lobby: $lobby",
           "parse_mode": "HTML"
         }
         EOF
