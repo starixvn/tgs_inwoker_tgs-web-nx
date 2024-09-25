@@ -17,7 +17,7 @@ const Success = ({ verified, handleConfirmClick, handleVerifyName }) => {
       <SuccessImg>
         <Icon iconUrl="/assets/images/transfer/icon-successful.svg" width={"138px"} height={"138px"} />
       </SuccessImg>
-      <SubTitle>Withdrawal request successful</SubTitle>
+      <SubTitle>{i18n.t("withdrawal.msgWithdrawalRequestSuccess")}</SubTitle>
       <ButtonContainer>
         <LightBlueGradientButton fullWidth onClick={handleConfirmClick}>{i18n.t("common.confirm")}</LightBlueGradientButton>
         {!verified && (

@@ -5,6 +5,9 @@ import {
   BadgeContainer,
   FormControl,
   ItemContainer,
+  ItemNote,
+  ItemNoteDesc,
+  ItemNoteText,
   LabelContainer,
   LabelLargeContainer
 } from "@/components/styled-component/ProfileForms";
@@ -386,12 +389,13 @@ const AddCard = ({
                 </FormControl>
               </ItemContainer>
             )}
-            {/* <ItemContainer>
-              <ItemNote style={{display: "flex"}}><ItemNoteText>Note:</ItemNoteText>
-                <ItemNoteDesc style={{textAlign: "left"}}>The account holder name must be the same as the real name filled you account profile</ItemNoteDesc>
+            {(!isDeposit && selectedBankType("Bank"))
+            &&
+            <ItemContainer>
+              <ItemNote style={{display: "flex"}}><ItemNoteText style={{top: 0}}>Note:</ItemNoteText>
+                <ItemNoteDesc style={{textAlign: "left"}}>{i18n.t("withdrawal.notice")}</ItemNoteDesc>
               </ItemNote>
-
-            </ItemContainer> */}
+            </ItemContainer>}
         </>
       )}
       {((!isDeposit &&

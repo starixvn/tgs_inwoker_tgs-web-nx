@@ -144,6 +144,14 @@ export const Hint = styled.div`
   margin: 10px 0;
   color: ${({ theme }) => theme.gray50};
 `;
+export const HintDetail = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  margin: 10px 0;
+  color: ${({ theme }) => theme.gray50};
+`;
 
 export const RequireWrapper = styled.div`
   display: flex;
