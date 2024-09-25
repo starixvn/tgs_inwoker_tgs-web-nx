@@ -1,10 +1,10 @@
-import moment from "moment";
+import { ReportCardsContainer, ReportTable, TagStatus } from "@/components/styled-component/Report";
+import NoRecord from "@/pages/report/components/NoRecord";
+import { theme } from "@/theme";
 import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import NoRecord from "@/pages/report/components/NoRecord";
-import { ReportCardsContainer, ReportTable } from "@/components/styled-component/Report";
-import { theme } from "@/theme";
+import moment from "moment";
 
 type Props = {
   transferDetails: DepositFormViewModel[];
@@ -36,7 +36,8 @@ const DepositDetailTable = ({
           <TableRow>
             <TableCell
               sx={{
-                border: "none",
+                borderTopLeftRadius: `${theme.tableBorderRadius}`
+
               }}
             >
               <>{i18n.t("report.submitDate")}</>
@@ -58,7 +59,7 @@ const DepositDetailTable = ({
             <TableCell
               align={"right"}
               sx={{
-                border: "none",
+                 borderTopRightRadius: `${theme.tableBorderRadius}`
               }}
             >
               <>{i18n.t("report.amount")}</>
@@ -68,19 +69,20 @@ const DepositDetailTable = ({
         <TableBody>
           {transferDetails
             // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((depositDetail) => {
+            .map((depositDetail, index) => {
               const { id, createdon, amount, orderno, status } = depositDetail;
 
               const date = moment(createdon).format("YYYY-MM-DD hh:mm a");
+              const lastRow = index === transferDetails.length - 1;
 
               return (
                 <TableRow key={id}>
-                  <TableCell>{date}</TableCell>
-                  <TableCell>{orderno}</TableCell>
-                  <TableCell>
-                    <>{i18n.t(`report.deposit.status${status}`)}</>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}>{date}</TableCell>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{orderno}</TableCell>
+                  <TableCell align={"center"} sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>
+                    <TagStatus>{i18n.t(`report.deposit.status${status}`)}</TagStatus>
                   </TableCell>
-                  <TableCell align={"right"}>{amount}</TableCell>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }} align={"right"}>{amount}</TableCell>
                 </TableRow>
               );
             })}

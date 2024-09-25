@@ -1,9 +1,3 @@
-import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import { accountAction, AccountService } from "@tgs-web-nx/core";
-import BaseProfile from "./BaseProfile";
 import Step from "@/components/project/Step";
 import {
   FormControl,
@@ -12,6 +6,11 @@ import {
 } from "@/components/styled-component/ProfileForms";
 import { TextField } from "@/components/UI/TextField";
 import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
+import { accountAction, AccountService } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import BaseProfile from "./BaseProfile";
 
 class ChangeEmail extends BaseProfile {
   componentDidMount() {

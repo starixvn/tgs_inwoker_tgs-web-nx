@@ -189,7 +189,7 @@ export const theme = {
   tableBorderColor: "#293849",
   tableBackground: "#1C2836",
   tableHeaderBackground: "#263343",
-  tableHeaderColor: "#E1EDFF",
+  tableHeaderColor: "#B3CDF8",
   tableHeaderBorderColor: "#3A4F69",
   tableColor: "#ffffff",
   tableFontSize: "1.1rem",

@@ -72,6 +72,18 @@ declare module "@mui/material/styles/createPalette" {
       textColor: string;
       optionHoverBgColor: string;
     };
+
+    table: {
+      tableBorderColor: string,
+      tableBackground: string,
+      tableHeaderBackground: string,
+      tableHeaderColor: string,
+      tableHeaderBorderColor: string,
+      tableColor: string,
+      tableFontSize: string,
+      tableHeaderFontSize: string,
+      tableBorderRadius: string,
+    }
   }
 }
 
@@ -163,6 +175,18 @@ const muiTheme = createTheme({
       backgroundColor: theme.formInputBackground,
       optionHoverBgColor: theme.optionHoverBgColor,
     },
+
+    table: {
+      tableBorderColor: theme.tableBorderColor,
+      tableBackground: theme.tableBackground,
+      tableHeaderBackground: theme.tableHeaderBackground,
+      tableHeaderColor: theme.tableHeaderColor,
+      tableHeaderBorderColor: theme.tableHeaderBorderColor,
+      tableColor: theme.tableColor,
+      tableFontSize: theme.tableFontSize,
+      tableHeaderFontSize: theme.tableHeaderFontSize,
+      tableBorderRadius: theme.tableBorderRadius,
+    }
   },
   typography: {
     fontWeightLight: 300,
@@ -189,3 +213,4 @@ const muiTheme = createTheme({
 } as ThemeOptions);
 
 export { muiTheme };
+

@@ -1,15 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { i18n } from "@tgs-web-nx/utils";
-import { AccountService } from "@tgs-web-nx/core";
-import BaseProfile from "./BaseProfile";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
   ItemContainer,
   LabelContainer,
 } from "@/components/styled-component/ProfileForms";
+import { AccountService } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import BaseProfile from "./BaseProfile";
 
 class ChangePassword extends BaseProfile {
   componentDidMount() {}
@@ -80,7 +79,6 @@ class ChangePassword extends BaseProfile {
               type={"password"}
               value={this.state.oldpassword}
               onChange={this.handleChangeOldPassword}
-              placeholder={i18n.t("profile.changePassword.msgEnterOriPass")}
             />
           </FormControl>
         </ItemContainer>
@@ -109,7 +107,7 @@ class ChangePassword extends BaseProfile {
           </FormControl>
         </ItemContainer>
       </>,
-      i18n.t("common.complete"),
+      i18n.t("common.submit"),
     );
   }
 }

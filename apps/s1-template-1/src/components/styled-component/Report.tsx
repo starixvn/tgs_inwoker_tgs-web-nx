@@ -56,20 +56,33 @@ export const CustomWinLose = styled.span<CustomWinLoseProps>`
   }};
 `;
 export const ReportTable = muiStyled(Table)(({ theme }) => ({
+  borderRadius: `${theme.palette.table.tableBorderRadius}`,
   "& .MuiTableHead-root .MuiTableCell-root": {
     fontSize: "1.4rem",
     fontWeight: 500,
     whiteSpace: "nowrap",
     padding: "0 5px",
-    color: theme.palette.black,
+    color: `${theme.palette.table.tableHeaderColor}`,
+    height: "3.6rem",
+    background: `${theme.palette.table.tableHeaderBackground}`,
+    textAlign: "center",
+    borderBottom:  `1px solid ${theme.palette.table.tableHeaderBorderColor}`,   
+    fontFamily: "inherit",
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
     fontSize: "1.4rem",
     fontWeight: 400,
     color: theme.palette.text.primary,
-    borderBottom: `1px solid ${theme.palette.inputBGC}`,
-    padding: "26px 5px 10px",
+    borderBottom: `1px solid ${theme.palette.table.tableBorderColor}`,
+    height: "4.8rem",
+    padding: "0 .8rem",
+    lineHeight: "4.8rem",
+    background: `${theme.palette.table.tableBackground}`,
+    fontFamily: "inherit",
+    "&:last-child": {
+      bottomBottom: "none",
+    }
   },
 }));
 export const ReportMainContainer = styled.div`
@@ -83,4 +96,19 @@ export const DateRangeSelector = styled.div`
   align-items: flex-start;
   gap: .8rem;
   margin-right: 1.2rem;
+`;
+
+
+export const TagStatus = styled.span`
+  padding: .8rem 1.2rem;
+  border-radius: 2rem;
+  font-size: 1.4rem;
+  color: ${({ theme }) => theme.text};
+  position: relative;
+  display: inline-block;
+  &:before {
+    content: "&\2B24";
+    position:absolute;
+    left: 0;
+  }
 `;
