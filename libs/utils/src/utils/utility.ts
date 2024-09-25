@@ -62,7 +62,7 @@ function copyText(text: string) {
   }
 }
 
-function convertStringToNumber(str: string, maxLimit = 41): number {
+function convertStringToNumber(str: string, maxLimit = 29): number {
   if (!str || typeof str !== "string" || str.trim() === "") {
     throw new Error("Input string must be a non-empty string.");
   }
@@ -78,7 +78,7 @@ function convertStringToNumber(str: string, maxLimit = 41): number {
 }
 
 function getAvatarUrl(playerCode: string) {
-  return imagePathGenerator(`avatars/${convertStringToNumber(`${playerCode}`)}.png`);
+  return imagePathGenerator(`avatars/${convertStringToNumber(`${playerCode}`)}.webp`);
 }
 
 export const utility = {

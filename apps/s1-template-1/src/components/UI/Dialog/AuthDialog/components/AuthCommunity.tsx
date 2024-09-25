@@ -43,19 +43,19 @@ const AuthCommunity = () => {
   const socialList = [
     {
       name: "Facebook",
-      url: "/assets/images/community/facebook.png",
+      url: "/assets/images/community/facebook.webp",
     },
     {
       name: "Telegram",
-      url: "/assets/images/community/telegram.png",
+      url: "/assets/images/community/telegram.webp",
     },
     {
       name: "Google",
-      url: "/assets/images/community/google.png",
+      url: "/assets/images/community/google.webp",
     },
     {
       name: "Twitter",
-      url: "/assets/images/community/twitter.png",
+      url: "/assets/images/community/twitter.webp",
     },
   ];
 

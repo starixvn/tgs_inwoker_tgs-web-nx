@@ -1,3 +1,4 @@
+import { SocialIconList } from "@/constants/socialMedia";
 import { i18n } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -12,49 +13,30 @@ const Footer = () => {
     window.scroll({ top: 0, behavior: "smooth" });
   };
 
-  const socialList = [
-    {
-      name: "Facebook",
-      url: "/assets/images/community/facebook.png",
-    },
-    {
-      name: "Telegram",
-      url: "/assets/images/community/telegram.png",
-    },
-    {
-      name: "Google",
-      url: "/assets/images/community/google.png",
-    },
-    {
-      name: "Twitter",
-      url: "/assets/images/community/twitter.png",
-    },
-  ];
-
   const paymentMethod = [
     {
       name: "Dire Pay",
-      url: "/assets/images/footer/dire-pay.png",
+      url: "/assets/images/footer/dire-pay.webp",
     },
     {
       name: "True Money",
-      url: "/assets/images/footer/true-money.png",
+      url: "/assets/images/footer/true-money.webp",
     },
     {
       name: "Game Wallet",
-      url: "/assets/images/footer/game-wallet.png",
+      url: "/assets/images/footer/game-wallet.webp",
     },
     {
       name: "Speed Pay",
-      url: "/assets/images/footer/speed-pay.png",
+      url: "/assets/images/footer/speed-pay.webp",
     },
     {
       name: "Prompt Pay",
-      url: "/assets/images/footer/prompt-pay.png",
+      url: "/assets/images/footer/prompt-pay.webp",
     },
     {
       name: "Logo",
-      url: "/assets/images/footer/logo.png",
+      url: "/assets/images/footer/logo.webp",
     },
   ];
 
@@ -103,7 +85,7 @@ const Footer = () => {
           <GroupTitle>{i18n.t("web.footer.community")}</GroupTitle>
           <GroupContent>
             <SocialIcons>
-              {socialList.map((social, index) => {
+              {SocialIconList.map((social, index) => {
                 return (
                   <img key={index} src={social.url} width={36} height={36} alt={social.name} />
                 );
