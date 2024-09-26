@@ -80,15 +80,6 @@ const ContentText = styled.div`
   width: 100%;
   display: flex;
   gap: 10px;
-  ${media.sm} {
-    gap: 0;
-  }
-  div:first-child {
-    width: 70px;
-    ${media.sm} {
-      width: 85px;
-    }
-  }
 `;
 
 const PromotionCard = (props: { index: number; milestone: MilestoneType }) => {
@@ -163,24 +154,20 @@ const PromotionCard = (props: { index: number; milestone: MilestoneType }) => {
         </Content>
       </CardContainer>
       {isMobileSize && (
-        <>
-          <Collapse in={expanded} timeout="auto" unmountOnExit>
-            <Subtitle subTitle={subSubject} />
-            {conditions?.map((condition: ConditionType, index: number) => {
-              return (
-                <>
-                  <RewardCard
-                    key={index}
-                    condition={condition}
-                    index={index}
-                    totalValidBetAmount={totalValidBetAmount}
-                    totalDepositAmount={totalDepositAmount}
-                  />
-                </>
-              );
-            })}
-          </Collapse>
-        </>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <Subtitle subTitle={subSubject} />
+          {conditions?.map((condition: ConditionType, index: number) => {
+            return (
+              <RewardCard
+                key={index}
+                condition={condition}
+                index={index}
+                totalValidBetAmount={totalValidBetAmount}
+                totalDepositAmount={totalDepositAmount}
+              />
+            );
+          })}
+        </Collapse>
       )}
     </>
   );
