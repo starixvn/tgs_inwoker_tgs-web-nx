@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Indicator from "./components/TitleIndicator";
 import RewardCard from "./components/RewardCard";
-import { contextType, RewardContext } from "@tgs-web-nx/core/hooks";
 import { useContext } from "react";
 import { media } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
 import { ConditionType } from "@tgs-web-nx/types";
+import { contextType, RewardContext } from "@tgs-web-nx/core/features";
 
 const Title = styled.div<{ $titleColor: string }>`
   display: flex;

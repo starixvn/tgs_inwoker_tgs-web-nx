@@ -14,6 +14,7 @@ import {
   PageNameContextProvider,
   PopupContextProvider,
   queryClient,
+  RewardContextProvider,
   RouteContextProvider,
   UserWalletInfoContextProvider,
 } from "@tgs-web-nx/core/features";
@@ -34,7 +35,6 @@ import useGameTypeList from "@/hooks/home/useGameTypeList";
 import RegisterV2InitPhoneDialog from "@/components/project/auth/Dialogs/RegisterV2InitPhoneDialog";
 import RegisterV2InitEmailDialog from "@/components/project/auth/Dialogs/RegisterV2InitEmailDialog";
 import { QueryClientProvider } from "@tanstack/react-query";
-
 
 const App: React.FC = () => {
   const { isLoading } = useInitSite();
@@ -57,62 +57,66 @@ const App: React.FC = () => {
                 <PopupContextProvider>
                   <AuthDialogContextProvider>
                     <UserWalletInfoContextProvider>
-                      <HomeGameContextProvider gameTypeList={gameTypeList}>
-                        <FacebookPixel />
-                        <ScrollToTop />
-                        <Switch>
-                          {routes.map((route, index) => {
-                            return (
-                              <Route
-                                exact
-                                key={index}
-                                path={route.path}
-                                render={(props) => {
-                                  return (
-                                    <LayoutProvider route={route}>
-                                      <AuthGuard route={route}>
-                                        <Suspense
-                                          fallback={
-                                            <Loading show={true} opacity={1} noShrink={true} />
-                                          }
-                                        >
-                                          <route.component route={route} />
-                                        </Suspense>
-                                      </AuthGuard>
-                                    </LayoutProvider>
-                                  );
-                                }}
-                              />
-                            );
-                          })}
-                          <Redirect to="/" />
-                        </Switch>
+                      <RewardContextProvider>
+                        <HomeGameContextProvider gameTypeList={gameTypeList}>
+                          <FacebookPixel />
+                          <ScrollToTop />
+                          <Switch>
+                            {routes.map((route, index) => {
+                              return (
+                                <Route
+                                  exact
+                                  key={index}
+                                  path={route.path}
+                                  render={(props) => {
+                                    return (
+                                      <LayoutProvider route={route}>
+                                        <AuthGuard route={route}>
+                                          <Suspense
+                                            fallback={
+                                              <Loading show={true} opacity={1} noShrink={true} />
+                                            }
+                                          >
+                                            <route.component route={route} />
+                                          </Suspense>
+                                        </AuthGuard>
+                                      </LayoutProvider>
+                                    );
+                                  }}
+                                />
+                              );
+                            })}
+                            <Redirect to="/" />
+                          </Switch>
 
-                        <LiveChat
-                          license={config.features.LiveChatVendor.license}
-                          vendor={config.features.LiveChatVendor.brand}
-                          group={
-                            config.features.LiveChatVendor.group
-                              ? config.features.LiveChatVendor.group
-                              : "0"
-                          }
-                        />
+                          <LiveChat
+                            license={config.features.LiveChatVendor.license}
+                            vendor={config.features.LiveChatVendor.brand}
+                            group={
+                              config.features.LiveChatVendor.group
+                                ? config.features.LiveChatVendor.group
+                                : "0"
+                            }
+                          />
 
-                        <PopupAnnouncement />
-                        <PopupPromotion />
+                          <PopupAnnouncement />
+                          <PopupPromotion />
 
-                        <PopupAlertModal />
-                        {/*<FloatingToolIcons />*/}
-                        <LoginDialog />
-                        <RegisterDialog />
-                        <RegisterV2InitPhoneDialog />
-                        <RegisterV2InitEmailDialog />
-                        <ForgotPasswordDialog />
+                          <PopupAlertModal />
+                          {/*<FloatingToolIcons />*/}
+                          <LoginDialog />
+                          <RegisterDialog />
+                          <RegisterV2InitPhoneDialog />
+                          <RegisterV2InitEmailDialog />
+                          <ForgotPasswordDialog />
 
-                        <AuthContextConsumer>
-                          {(authState) => <Loading show={authState.isAuthLoading} noShrink={true} />}
-                        </AuthContextConsumer>
-                      </HomeGameContextProvider>
+                          <AuthContextConsumer>
+                            {(authState) => (
+                              <Loading show={authState.isAuthLoading} noShrink={true} />
+                            )}
+                          </AuthContextConsumer>
+                        </HomeGameContextProvider>
+                      </RewardContextProvider>
                     </UserWalletInfoContextProvider>
                   </AuthDialogContextProvider>
                 </PopupContextProvider>

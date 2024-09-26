@@ -3,8 +3,8 @@ import bg1 from "libs/core/static/images/promotion/bg1.svg";
 import bg2 from "libs/core/static/images/promotion/bg2.svg";
 import bg3 from "libs/core/static/images/promotion/bg3.svg";
 import indicator from "libs/core/static/images/promotion/indicator.svg";
-import { useContext, useState } from "react";
-import { useRwd, RewardContext, contextType } from "@tgs-web-nx/core/hooks";
+import { useContext, useEffect, useState } from "react";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { media } from "@tgs-web-nx/constants";
 import { Collapse } from "@mui/material";
 import MilestoneProcessBar from "./ProcessBar";
@@ -13,6 +13,7 @@ import { useHistory } from "react-router";
 import { ConditionType, MilestoneType } from "@tgs-web-nx/types";
 import moment from "moment";
 import RewardCard from "../../MilestoneList/components/RewardCard";
+import { contextType, RewardContext } from "@tgs-web-nx/core/features";
 
 const backgrounds = [bg1, bg2, bg3];
 
@@ -102,18 +103,36 @@ const PromotionCard = (props: { index: number; milestone: MilestoneType }) => {
     promotionId,
   } = props.milestone;
   const { isMobileSize, isDesktopSize } = useRwd();
+  const history = useHistory();
+
   const [expanded, setExpanded] = useState(false);
 
-  const history = useHistory();
   const totalMilestoneLength = conditions.length;
   const completeMilestoneLength = conditions.filter((condition) => condition.isSent).length;
+
+  useEffect(() => {
+    if (context.expandPromotions.includes(promotionId)) {
+      setExpanded(true);
+    }
+  }, [context.expandPromotions]);
+
+  const handleExpand = () => {
+    context.changeExpandedPromotions(promotionId);
+    setExpanded((prevState) => {
+      return !prevState;
+    });
+  };
 
   return (
     <>
       <CardContainer
         $index={props.index}
         onClick={() => {
-          isDesktopSize ? context.setSelectedMilestone(props.milestone) : setExpanded(!expanded);
+          if (isDesktopSize) {
+            context.setSelectedMilestone(props.milestone);
+          } else {
+            handleExpand();
+          }
         }}
       >
         <RuleButtonContainer>
