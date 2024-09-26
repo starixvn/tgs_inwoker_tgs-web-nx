@@ -46,6 +46,7 @@ export const VIPLabel = styled.div<{ theme: DefaultTheme }>`
 export const PlayerInfo = styled.div`
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: flex-start;
   width: 100%;
   gap: 1.6rem;
@@ -105,7 +106,6 @@ export const WalletsWrapper = styled.div`
   background: ${({ theme }) => theme.NavBGC};
   ${media.sm} {
     background: transparent;
-    width: 300px;
     padding: 0;
   }
 `;
@@ -152,6 +152,7 @@ const WalletInfo = styled.div`
   margin-bottom: 1.2rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.6rem;
 `;
 
@@ -193,20 +194,22 @@ const UserWalletInfo = () => {
         </PlayerInfo>
         <WalletsWrapper>
           <WalletInfo>
-            {i18n.t("common.accountBalance")}
-            {":"}{" "}
+            <div>
+              {i18n.t("common.accountBalance")}
+              {":"}{" "}
+            </div>            
             <LabelHighlight>
               {mainSymbol + Common.formatCurrency(mainWalletBalance + transferWalletBalance)}
             </LabelHighlight>
           </WalletInfo>
-          <WalletInfo>
+          {/* <WalletInfo>
             {i18n.t("common.totalDeposit")}
             {":"} <LabelHighlight>{info.accumdeposit}</LabelHighlight>
           </WalletInfo>
           <WalletInfo>
             {i18n.t("common.totalBetAmount")}
             {":"} <LabelHighlight>{info.accumturnover}</LabelHighlight>
-          </WalletInfo>
+          </WalletInfo> */}
 
           {/* {config.features.HaveVIPFeature && (
             <VIPLabel>

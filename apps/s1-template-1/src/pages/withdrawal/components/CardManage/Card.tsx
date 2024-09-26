@@ -8,28 +8,6 @@ type CardContentProps = {
   theme: typeof theme;
 }
 
-const CardContainer = styled.div`
-  width: 100%;
-  padding: 16px;
-  background: ${({ theme }) => theme.secBTNBGC};
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-radius: 4px;
-
-  ${media.md} {
-    width: calc((100% - 14px * 1) / 2);
-    background: ${({ theme }) => theme.mainBackground};
-  }
-`;
-
-const CardTitle = styled.div`
-  color: ${({ theme }) => theme.text};
-  border-bottom: 1px solid ${({ theme }) => theme.gray20};
-  padding-bottom: 10px;
-  font-size: 1.1rem;
-  font-weight: 700;
-`;
 
 const CardContent = styled.div<CardContentProps>`
   color: ${({ $isHeader, theme }: CardContentProps) =>

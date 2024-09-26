@@ -6,10 +6,6 @@ export const PageContainer = styled.div`
   margin: 0 auto;
   padding: ${({ theme }) => theme.gapPage};
   max-width: ${({ theme }) => theme.mainContentWidth};
-
-  ${media.sm} {
-    padding: 0;
-  }
 `;
 
 export const TransferPageContainer = styled.div`

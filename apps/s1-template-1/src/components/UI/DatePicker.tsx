@@ -247,6 +247,7 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   position: relative;
    background: ${({ theme }) => theme.dropDownBackground};
    border-radius: 1rem;
+   border: none !important;
   .MuiInputBase-root {
     font-size: 1.4rem;
     font-family: inherit;

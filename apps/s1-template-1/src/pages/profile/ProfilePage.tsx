@@ -24,12 +24,15 @@ const AccountContainer = styled.div`
 
 const InfoWrapper = styled.div`
   ${media.sm} {
+    display: flex;
+    flex-direction:column;
+  }
+  ${media.md} {
     display: grid;
-    grid-template-columns: 20rem 1fr;
+    grid-template-columns: 29rem 1fr;
     grid-column-gap: 1.6rem;
   }
   ${media.lg} {
-    display: grid;
     grid-template-columns: 35.5rem 1fr;
   }
 `;

@@ -50,7 +50,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
           <LabelContainer >
             {label}
           </LabelContainer>
-          <FormWrapperExtend style={{gap: "2.4rem", width: "25rem"}}>
+          <FormWrapperExtend style={{gap: "2.4rem", width: "calc(100% - 18rem)"}}>
             <ItemInfoDesktop>
               {status}
             </ItemInfoDesktop>
