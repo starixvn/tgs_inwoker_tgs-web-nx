@@ -14,6 +14,7 @@ import { i18n } from "@tgs-web-nx/utils";
 import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { ReportTabIndexEnum } from "./hooks/useReportTypeTabs";
 
 export const Title = styled.div`
   color: ${({ theme }) => theme.text};
@@ -23,16 +24,7 @@ export const Title = styled.div`
 
 const Report = () => {
   // TODO: tab function
-  const location = useLocation();
-  const { tab } = useParams<{ tab: string }>();
-  const [selectedType, setSelectedType] = useState(
-    tab && parseInt(tab) > 0 && parseInt(tab) <= 8 ? parseInt(tab) : 2,
-  );
-
-  if(location.state){
-    setSelectedType(8);
-    location.state = null;
-  }
+  const [selectedType, setSelectedType] = useState(ReportTabIndexEnum.DEPOSIT);
 
   const {
     dateRangeInfo,
@@ -57,7 +49,7 @@ const Report = () => {
   return (
     <ReportMainContainer>
       <ReportTypeTabs
-        selectedType={4}
+        selectedType={selectedType}
         handleChangeTab={handleChangeTab}
         style={{ marginBottom: "20px" }}
       />
@@ -81,8 +73,8 @@ const Report = () => {
         switch (selectedType) {
           // case 1:
           //   return <ReportPlatform dateRangeInfo={dateRangeInfo} />;
-          case 2:
-            return <ReportBetting dateRangeInfo={dateRangeInfo} />;
+          // case 2:
+          //   return <ReportBetting dateRangeInfo={dateRangeInfo} />;
           case 3:
             return <ReportWithdraw dateRangeInfo={dateRangeInfo} />;
           case 4:

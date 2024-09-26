@@ -11,9 +11,6 @@ import DateRangeWithDatePicker from "../report/components/DateRangeWithDatePicke
 import DateRangeWithIntervalSelector from "../report/components/DateRangeWithIntervalSelector";
 import ReportBetting from "../report/components/reports/ReportBetting";
 
-const Text = styled.div`
-  color: white;
-`;
 const BetHistoryPage = () => {
   const { isDesktopSize } = useRwd();
   const {
