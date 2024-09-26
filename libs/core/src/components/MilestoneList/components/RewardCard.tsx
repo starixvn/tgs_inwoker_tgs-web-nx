@@ -111,7 +111,7 @@ const RewardCard = React.memo(
         </StateContainer>
         <AccountBetDeposit $bg={mainBg}>
           <div>
-            {`${i18n.t("agent.validBet")} ${config.features.currencySymbol}
+            {`${i18n.t("reward.validBet")} ${config.features.currencySymbol}
             ${props.totalValidBetAmount} / ${validBetAmount}`}
           </div>
           <div>
