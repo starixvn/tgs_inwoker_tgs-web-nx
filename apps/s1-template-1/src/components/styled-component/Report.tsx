@@ -1,3 +1,4 @@
+import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
 import { styled as muiStyled, Table, TablePagination } from "@mui/material";
 import styled from "styled-components";
@@ -49,14 +50,20 @@ export const ReportCardCol = styled.span`
     margin-bottom: 5px;
   }
 `;
-type CustomWinLoseProps = { $value: number | null };
+type CustomWinLoseProps = { $value: number | null, theme: typeof theme };
 export const CustomWinLose = styled.span<CustomWinLoseProps>`
-  color: ${({ $value }: CustomWinLoseProps) => {
-    return !$value ? "" : $value > 0 ? "rgb(3,189, 0)" : "rgb(255, 0, 0)";
+  color: ${({ $value, theme }: CustomWinLoseProps) => {
+    return !$value ? "" : $value > 0 ? theme.winAmountColor : theme.lossAmountColor;
   }};
 `;
+
+export const WinLossZero = styled.span`
+  color: ${({ theme }) => theme.white};
+`;
+
 export const ReportTable = muiStyled(Table)(({ theme }) => ({
   borderRadius: `${theme.palette.table.tableBorderRadius}`,
+  tableLayout: "fixed",
   "& .MuiTableHead-root .MuiTableCell-root": {
     fontSize: "1.4rem",
     fontWeight: 500,
@@ -75,11 +82,11 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontWeight: 400,
     color: theme.palette.text.primary,
     borderBottom: `1px solid ${theme.palette.table.tableBorderColor}`,
-    height: "4.8rem",
-    padding: "0 .8rem",
-    lineHeight: "4.8rem",
+    padding: ".8rem",
     background: `${theme.palette.table.tableBackground}`,
-    fontFamily: "inherit",
+    fontFamily: "inherit",    
+    height: "4.8rem",
+    lineHeight: "2.4rem",
   },
   
 }));

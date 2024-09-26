@@ -140,6 +140,8 @@ export const theme = {
   gapPage: ".8rem",
   iconCopyColor: "#55657e",
   iconCopyColorHover: "#fff",
+  winAmountColor: "#189EFF",
+  lossAmountColor: "#FF1818",
 
   // Tab
   tabBackground:
@@ -234,6 +236,6 @@ export const theme = {
   calendarHeaderColor: "#55657E",
   calendarHighlight: "#E2FE26",
   calendarHighlightBackground: "#374000",
-  calendarFontSize: "1.8rem",
+  calendarFontSize: "1.6rem",
   calendarBoxshadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.40)",
 };

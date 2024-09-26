@@ -5,14 +5,12 @@ import DateRangeWithDatePicker from "@/pages/report/components/DateRangeWithDate
 import DateRangeWithIntervalSelector from "@/pages/report/components/DateRangeWithIntervalSelector";
 import ReportJoinPromotion from "@/pages/report/components/reports/JoinPromotion";
 import ReportBalanceChange from "@/pages/report/components/reports/ReportBalanceChange";
-import ReportBetting from "@/pages/report/components/reports/ReportBetting";
 import ReportDeposit from "@/pages/report/components/reports/ReportDeposit";
 import Index from "@/pages/report/components/reports/ReportTransfer";
 import ReportWithdraw from "@/pages/report/components/reports/ReportWithdraw";
 import ReportTypeTabs from "@/pages/report/components/ReportTypeTabs";
 import { i18n } from "@tgs-web-nx/utils";
 import React, { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { ReportTabIndexEnum } from "./hooks/useReportTypeTabs";
 

@@ -1,4 +1,5 @@
 import {
+  CustomizeTablePagination,
   CustomWinLose,
   ReportCardsContainer,
   ReportTable,
@@ -6,7 +7,7 @@ import {
 import NoRecord from "@/pages/report/components/NoRecord";
 import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 import { theme } from "@/theme";
-import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import moment from "moment";
@@ -77,45 +78,31 @@ const TransactionDetailTable = ({
           <TableRow>
             <TableCell
               sx={{
-                border: "none",
-                color: `${theme.text} !important`,
+                borderTopLeftRadius: `${theme.tableBorderRadius}`, 
+                width: "40rem",
               }}
             >
               <>
                 {i18n.t("report.betDateTime")}/{i18n.t("report.betid")}
               </>
             </TableCell>
-            <TableCell
-              sx={{
-                border: "none",
-                color: `${theme.text} !important`,
-              }}
-            >
-              <>{i18n.t("Game Provider")}</>
+            <TableCell>
+              Provider
             </TableCell>
             <TableCell
               align={"right"}
-              sx={{
-                border: "none",
-                color: `${theme.text} !important`,
-              }}
             >
               <>{i18n.t("report.totalBet")}</>
             </TableCell>
             <TableCell
               align={"right"}
-              sx={{
-                border: "none",
-                color: `${theme.text} !important`,
-              }}
             >
               <>{i18n.t("report.winloss")}</>
             </TableCell>
             <TableCell
               align={"right"}
               sx={{
-                border: "none",
-                color: `${theme.text} !important`,
+                borderTopRightRadius: `${theme.tableBorderRadius}`
               }}
             >
               <>{i18n.t("report.status")}</>
@@ -126,29 +113,26 @@ const TransactionDetailTable = ({
         <TableBody>
           {transactionDetails
             // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((transactionDetail) => {
+            .map((transactionDetail, index) => {
               const { id, createdOn, betAmount, winLoss, gameProviderName, status } =
                 transactionDetail;
 
               const date = moment(createdOn).format("YYYY-MM-DD hh:mm a");
-
+              const lastRow = index === transactionDetails.length - 1;
               return (
                 <TableRow key={id}>
-                  <TableCell>
+                  <TableCell sx={{borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}>
                     <div>{date}</div>
                     <div>{id}</div>
                   </TableCell>
-                  <TableCell>{gameProviderName}</TableCell>
-                  <TableCell align={"right"}>{betAmount}</TableCell>
-                  <TableCell align={"right"}>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{gameProviderName}</TableCell>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"right"}>{betAmount}</TableCell>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"right"}>
                     <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
                   </TableCell>
                   <TableCell
                     align={"center"}
-                    sx={{
-                      border: "none",
-                      color: `${getStatusColor(status)} !important`,
-                    }}
+                    sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}
                   >
                     <div>{status != null && BetHistoryStatus[status]}</div>
                   </TableCell>
@@ -157,8 +141,7 @@ const TransactionDetailTable = ({
             })}
         </TableBody>
       </ReportTable>
-      <TablePagination
-        component="div"
+      <CustomizeTablePagination
         rowsPerPageOptions={[]}
         count={totalCount}
         rowsPerPage={pageSize}

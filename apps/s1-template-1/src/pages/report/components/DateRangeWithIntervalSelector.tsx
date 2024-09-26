@@ -29,6 +29,10 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   justify-content: center;
 `;
 
+const TodaySelection = styled(DateRangSelection)`
+  background: #95A90B;
+`;
+
 export enum DateRangeEnum {
   TODAY,
   WEEKLY,
@@ -47,12 +51,12 @@ const DateRangeWithIntervalSelector = ({
 }: Props) => {
   return (
     <DateRangContainer>
-      <DateRangSelection
+      <TodaySelection
         onClick={() => handleDateRangeChange(DateRangeEnum.TODAY)}
         $isSelected={dateRange === DateRangeEnum.TODAY && !isSelectedDateRange}
       >
         {i18n.t("report.today")}
-      </DateRangSelection>
+      </TodaySelection>
       <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.WEEKLY)}
         $isSelected={dateRange === DateRangeEnum.WEEKLY && !isSelectedDateRange}
