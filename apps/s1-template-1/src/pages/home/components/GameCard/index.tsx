@@ -64,7 +64,8 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
       {
         // @ts-ignore
         ({ hasBeenVisible }) => (
-          <GameCardBg onClick={launchGameHandler}>
+          // @ts-ignore
+          <GameCardBg id={id} onClick={launchGameHandler}>
             <GameCardContent>
               {hasBeenVisible && (
                 <Img
