@@ -70,7 +70,7 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     whiteSpace: "nowrap",
     padding: "0 5px",
     color: `${theme.palette.table.tableHeaderColor}`,
-    height: "3.6rem",
+    height: "4.8rem",
     background: `${theme.palette.table.tableHeaderBackground}`,
     textAlign: "center",
     borderBottom:  `1px solid ${theme.palette.table.tableHeaderBorderColor}`,   

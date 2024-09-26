@@ -3,7 +3,9 @@ import {
   CustomWinLose,
   ReportCardsContainer,
   ReportTable,
+  WinLossZero,
 } from "@/components/styled-component/Report";
+import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
 import NoRecord from "@/pages/report/components/NoRecord";
 import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
 import { theme } from "@/theme";
@@ -12,6 +14,7 @@ import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import moment from "moment";
 import React from "react";
+import styled from "styled-components";
 
 const TicketStatus = {
   Waiting: 0,
@@ -25,6 +28,10 @@ const TicketStatus = {
   HaftWin: 8,
   HaftLoss: 9,
 };
+
+const IdWrapper = styled.div`
+  position: relative;
+`;
 
 const BetHistoryStatus: { [key: number]: string } = {
   [TicketStatus.Waiting]: "Open",
@@ -122,13 +129,13 @@ const TransactionDetailTable = ({
               return (
                 <TableRow key={id}>
                   <TableCell sx={{borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}>
+                    <IdWrapper><span>{id}</span><CopyIconStyled copyContent={id} /></IdWrapper>
                     <div>{date}</div>
-                    <div>{id}</div>
                   </TableCell>
                   <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{gameProviderName}</TableCell>
                   <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"right"}>{betAmount}</TableCell>
                   <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"right"}>
-                    <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
+                    {winLoss === 0 ? <WinLossZero>{winLoss}</WinLossZero> : <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>}
                   </TableCell>
                   <TableCell
                     align={"center"}
