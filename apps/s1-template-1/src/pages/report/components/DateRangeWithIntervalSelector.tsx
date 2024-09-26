@@ -17,7 +17,7 @@ type DateRangSelectionTypes = {
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
   cursor: pointer;
   white-space: nowrap;
-  background: ${({ theme }) => theme.buttonReportBackgroundColor};
+  background: ${({ $isSelected, theme }) => $isSelected ? theme.buttonReportHighlightColor : theme.buttonReportBackgroundColor};
   color: ${({ theme }) => theme.buttonReportColor};
   padding: .8rem;
   display: flex;
@@ -51,12 +51,12 @@ const DateRangeWithIntervalSelector = ({
 }: Props) => {
   return (
     <DateRangContainer>
-      <TodaySelection
+      <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.TODAY)}
         $isSelected={dateRange === DateRangeEnum.TODAY && !isSelectedDateRange}
       >
         {i18n.t("report.today")}
-      </TodaySelection>
+      </DateRangSelection>
       <DateRangSelection
         onClick={() => handleDateRangeChange(DateRangeEnum.WEEKLY)}
         $isSelected={dateRange === DateRangeEnum.WEEKLY && !isSelectedDateRange}

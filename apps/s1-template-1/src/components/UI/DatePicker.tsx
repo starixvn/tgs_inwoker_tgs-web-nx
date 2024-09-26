@@ -67,40 +67,29 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                 fontSize: theme.calendarFontSize,
                 color: theme.calendarTextColor,
                 width: "42rem",
-                height: "57.5rem",
+                height: "58rem",
                 padding: "2.4rem 1.2rem",
+                overflow: "hidden",
                 "& .MuiDayCalendar-header .MuiDayCalendar-weekDayLabel": {
                   fontSize: "inherit",
                   color: theme.calendarHeaderColor,
                   justifySelf: "center",
-                  height: "3.6rem",
-                }, 
-                "& .MuiDayCalendar-header": {
-                  display: "grid",
-                  gridTemplateColumns: "repeat(7, 1fr)",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "1.6rem",
+                  height: "5rem",
+                  width: "5rem",
                 },
-                "& .MuiDayCalendar-weekContainer": {
-                  display: "grid",
-                  gridTemplateColumns: "repeat(7, 1fr)",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginBottom: "1.6rem",
-                },
-                "& .MuiDayCalendar-weekContainer .MuiButtonBase-root": {
+                
+                "& .MuiDayCalendar-weekContainer .MuiPickersDay-root": {
                   fontSize: "inherit",
                   color: `${theme.calendarTextColor}` ,
                   justifySelf: "center",
+                  height: "4.8rem",
+                  width: "5rem",
                   "&.Mui-disabled": {
                     color: theme.calendarTextDisabledColor,
                   },
                   "&.Mui-selected": {
                     background: theme.calendarHighlightBackground,
                     color: theme.calendarHighlight,
-                    width: "4rem", 
-                    height: "4rem",
                   }
                 },
                 "& .MuiDateCalendar-root": {
@@ -125,16 +114,7 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                     letterSpacing: "0.44px",
                   }
                 },
-                "& .MuiPickersSlideTransition-root": {
-                  minHeight: "unset",
-                  overflow: "hidden",
-                },
-                "& .MuiDayCalendar-monthContainer": {
-                  overflow: "unset",
-                  position: "relative",
-                  top: "unset",
-                  left: "unset",
-                },
+                
                 "& .MuiDialogActions-root": {
                   position: "absolute",
                   bottom: "2.4rem",
@@ -152,7 +132,10 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                     borderBottomWidth: "0.2rem",
                     borderStyle: "solid",
                     transition: "all 0.1s ease-in-out", 
-                    color: theme.white,                  
+                    color: theme.white,    
+                    "& .MuiSvgIcon-root": {
+                      fill: theme.white,
+                    },         
                     "&:hover": {
                       borderBottomWidth: "0.4rem",
                       transition: "all 0.2s ease-in-out",
@@ -167,6 +150,41 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                     }
                   },
                   
+                },
+                "& .MuiPickersCalendarHeader-root": {
+                  paddingLeft: 0,
+                  "& .MuiPickersCalendarHeader-labelContainer": {
+                    background: "#0A131E", 
+                    padding: ".8rem 1.2rem",
+                    fontSize: theme.calendarFontSize,
+                    fontFamily: "inherit",
+                    borderRadius: ".8rem",
+                    "& .MuiButtonBase-root": {
+                      color: theme.white,
+                    }
+                  }
+                },
+
+                "& .MuiDayCalendar-slideTransition": {
+                  minHeight: "32rem",
+                },
+                "& .MuiYearCalendar-root": {
+                  "& .MuiPickersYear-yearButton": {
+                    fontSize: "1.6rem",
+                  }
+                },
+                "& .MuiPickersArrowSwitcher-root": {
+                  gap: ".4rem",
+                  "& .MuiPickersArrowSwitcher-button": {
+                    padding: ".4rem",
+                    borderRadius: ".8rem",
+                    background: theme.slideNextButtonBackground,
+                    color: theme.slideNextButtonColor,
+                    fontSize: "2.4rem",
+                    "&.Mui-disabled": {
+                      background: theme.disabledSlideNextButtonBackground,
+                    }
+                  }
                 }
               },
             },

@@ -36,18 +36,20 @@ const WithdrawalDetailTable = ({
           <TableRow>
             <TableCell
               sx={{
-                borderTopLeftRadius: `${theme.tableBorderRadius}`
+                borderTopLeftRadius: `${theme.tableBorderRadius}`,
+                width: "25rem"
               }}
+              align={"center"}
             >
               <>{i18n.t("report.RequestDate")}</>
             </TableCell>
-            <TableCell>
+            <TableCell align={"center"}>
               <>{i18n.t("report.NewOrderNumber")}</>
             </TableCell>
-            <TableCell>
+            <TableCell align={"center"}>
               <>{i18n.t("remark")}</>
             </TableCell>
-            <TableCell>
+            <TableCell align={"center"}>
               <>{i18n.t("report.status")}</>
             </TableCell>
             <TableCell
@@ -69,9 +71,9 @@ const WithdrawalDetailTable = ({
 
             return (
               <TableRow key={id}>
-                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}>{date}</TableCell>
-                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{orderno}</TableCell>
-                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{remark}</TableCell>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }} align={"center"}>{date}</TableCell>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>{orderno}</TableCell>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>{remark}</TableCell>
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>
                   <TagStatus>{i18n.t(`report.withdrawal.status${status}`)}</TagStatus>
                 </TableCell>

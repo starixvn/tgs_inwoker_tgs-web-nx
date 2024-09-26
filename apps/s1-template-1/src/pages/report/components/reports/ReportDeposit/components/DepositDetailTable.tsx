@@ -36,15 +36,19 @@ const DepositDetailTable = ({
           <TableRow>
             <TableCell
               sx={{
-                borderTopLeftRadius: `${theme.tableBorderRadius}`
+                borderTopLeftRadius: `${theme.tableBorderRadius}`,
+                width: "28rem"
               }}
+              align={"center"}
             >
               <>{i18n.t("report.submitDate")}</>
             </TableCell>
-            <TableCell>
+            <TableCell align={"center"} sx={{
+                width: "28rem"
+              }}>
               <>{i18n.t("report.NewOrderNumber")}</>
             </TableCell>
-            <TableCell>
+            <TableCell align={"center"}>
               <>{i18n.t("report.status")}</>
             </TableCell>
             <TableCell
@@ -68,8 +72,8 @@ const DepositDetailTable = ({
 
               return (
                 <TableRow key={id}>
-                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}>{date}</TableCell>
-                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{orderno}</TableCell>
+                  <TableCell align={"center"} sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}>{date}</TableCell>
+                  <TableCell align={"center"} sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{orderno}</TableCell>
                   <TableCell align={"center"} sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>
                     <TagStatus>{i18n.t(`report.deposit.status${status}`)}</TagStatus>
                   </TableCell>

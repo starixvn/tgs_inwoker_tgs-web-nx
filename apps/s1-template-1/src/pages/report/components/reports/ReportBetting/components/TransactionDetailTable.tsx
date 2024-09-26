@@ -83,17 +83,17 @@ const TransactionDetailTable = ({
       <ReportTable aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell
+            <TableCell align={"center"}
               sx={{
                 borderTopLeftRadius: `${theme.tableBorderRadius}`, 
-                width: "40rem",
+                width: "36rem",
               }}
             >
               <>
                 {i18n.t("report.betDateTime")}/{i18n.t("report.betid")}
               </>
             </TableCell>
-            <TableCell>
+            <TableCell  align={"center"}>
               Provider
             </TableCell>
             <TableCell
@@ -107,7 +107,7 @@ const TransactionDetailTable = ({
               <>{i18n.t("report.winloss")}</>
             </TableCell>
             <TableCell
-              align={"right"}
+              align={"center"}
               sx={{
                 borderTopRightRadius: `${theme.tableBorderRadius}`
               }}
@@ -132,7 +132,7 @@ const TransactionDetailTable = ({
                     <IdWrapper><span>{id}</span><CopyIconStyled copyContent={id} /></IdWrapper>
                     <div>{date}</div>
                   </TableCell>
-                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{gameProviderName}</TableCell>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>{gameProviderName}</TableCell>
                   <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"right"}>{betAmount}</TableCell>
                   <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"right"}>
                     {winLoss === 0 ? <WinLossZero>{winLoss}</WinLossZero> : <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>}
