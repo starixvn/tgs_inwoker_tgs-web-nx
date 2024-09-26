@@ -282,14 +282,13 @@ class DepositPrev extends Component {
 
   handleOpenDepositPopup(paymenturl,expirationtime = "") {
     const expirationTimeStamp = Date.now() + Number.parseInt(expirationtime) * 60 * 1000;
-    console.log(Date.now());
-    console.log(expirationTimeStamp);
+    if (isNaN(expirationTimeStamp)) return window.open(paymenturl, "_blank");
     const queryParams = new URLSearchParams({
       paymenturl,
       expirationTimeStamp
     }).toString();
     const newTabUrl = `${window.location.origin}/deposit/popup?${queryParams}`;
-    window.open(newTabUrl, '_blank');
+    return window.open(newTabUrl, '_blank');
   }
 
   handleRestartClick = async (e) => {
