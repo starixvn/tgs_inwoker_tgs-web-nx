@@ -32,7 +32,7 @@ export function useNewPasswordStage() {
         // alert("", i18n.t("forgotPassword.updateSuccess"));
 
         enqueueSnackbar(i18n.t("forgotPassword.updateSuccess"), {
-          key: "info",
+          variant: "success",
         });
 
         handleToggleForgotPasswordDialog(false);

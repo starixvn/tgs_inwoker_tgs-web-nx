@@ -1,12 +1,13 @@
+import { media } from "@tgs-web-nx/constants";
+import { useAuthDialog, useRedirectToLoginHint } from "@tgs-web-nx/core/features";
+import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
+import styled from "styled-components";
+import { i18n } from "@tgs-web-nx/utils";
 import ForgotPasswordForm from "@/components/project/auth/ForgotPasswordForm";
 import { MainWrapper } from "@/components/styled-component/AuthFormContainer";
 import { ArrowLeftIcon } from "@/components/UI/CustomizeIcon";
 import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import AuthBanner from "@/components/UI/Dialog/AuthDialog/components/AuthBanner";
-import { media } from "@tgs-web-nx/constants";
-import { useAuthDialog, useRedirectToLoginHint } from "@tgs-web-nx/core/features";
-import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
-import styled from "styled-components";
 
 const ContentWrapper = styled.div`
   padding: 2.2rem 2.4rem;
@@ -63,7 +64,7 @@ const ForgotPasswordDialog = () => {
                 viewBox="0 0 10 15"
               />
             </BackLoginButton>
-            Reset password
+            {i18n.t("web.resetPassword.title")}
           </Header>
           <ForgotPasswordForm />
         </ContentWrapper>

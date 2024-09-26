@@ -1,8 +1,3 @@
-import BaseProfile from "@/components/account/Profile/PrevComponents/BaseProfile";
-import { CustomTextField } from "@/components/project/FormikForm/FormInputFactory/style";
-import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
-import BottomNote from "@/components/UI/BottomNote";
-import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
 import config from "@tgs-web-nx/config";
 import { accountAction, AccountService } from "@tgs-web-nx/core";
 import { ForgotPasswordStageEnum } from "@tgs-web-nx/types";
@@ -10,6 +5,11 @@ import { i18n } from "@tgs-web-nx/utils";
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import TextFieldWithButton from "@/components/UI/TextFieldWithButton";
+import BottomNote from "@/components/UI/BottomNote";
+import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
+import { CustomTextField } from "@/components/project/FormikForm/FormInputFactory/style";
+import BaseProfile from "@/components/account/Profile/PrevComponents/BaseProfile";
 
 class VerifyEmail extends BaseProfile {
   constructor(props) {
@@ -110,13 +110,13 @@ class VerifyEmail extends BaseProfile {
   showErrorMessage = (msg) => {
     // this.props.alert("", msg);
     this.props.enqueueSnackbar(msg, {
-      key: "error",
+      variant: "error",
     });
   };
   showInfoMessage = (msg) => {
     // this.props.alert("", msg);
     this.props.enqueueSnackbar(msg, {
-      key: "info",
+      variant: "info",
     });
   };
 
