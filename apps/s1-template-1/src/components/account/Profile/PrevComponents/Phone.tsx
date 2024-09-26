@@ -223,7 +223,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
     if (isProceedRegisterV2) {
       response = await AccountService.UpdatePhoneV2(securityKey, code);
     } else {
-      //   response = await AccountService.UpdatePhone(securityKey, code);
+      // response = await AccountService.UpdatePhone(securityKey, code);
       response = await AccountService.SetPhone(areacode, phone);
     }
 

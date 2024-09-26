@@ -18,6 +18,7 @@ import {
   UpdatePhoneResDto,
   VerifyForgotPasswordResDto,
   RegisterV2SetRealNameDto,
+  SetPhoneResDto,
 } from "@tgs-web-nx/types";
 import { ApiService } from "../api-services/services/ApiService";
 import config from "../config/config";
@@ -178,7 +179,7 @@ function SetPhone(phone: string, areacode: string) {
     return ApiService.patch("player/phone", {
       phone: phone,
       area: areacode,
-    });
+    })as unknown as Promise<SetPhoneResDto>;
   }
 
 function UpdatePassword(oldpwd: string, newpwd: string) {
