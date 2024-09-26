@@ -1,7 +1,7 @@
 import i18n, { InitOptions } from "i18next";
-import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpBackend from "i18next-http-backend";
+import { initReactI18next } from "react-i18next";
 
 //localstorage language
 const language = localStorage.getItem("i18nextLng");
@@ -13,8 +13,8 @@ i18n
   .init(
     {
       backend: {
-        loadPath: `https://assets.nexentgame.com/translations/{{lng}}.json`,
-        addPath: `https://assets.nexentgame.com/translations/{{lng}}`,
+        loadPath: import.meta.env.VITE_I18N_LOADPATH,
+        addPath: import.meta.env.VITE_I18N_ADDPATH,
       },
       load: "currentOnly",
       whitelist: ["en-US", "zh-CN", "zh-TW", "th-TH", "id-ID", "vi-VN"],
