@@ -1,4 +1,3 @@
-import { useLocation } from "react-router";
 import styled from "styled-components";
 
 const CenteredLayout = styled.div`
@@ -18,12 +17,7 @@ const CenteredLayout = styled.div`
 
 const DepositStatusIframe = () => {
 
-  const search = useLocation().search;
-  const status = new URLSearchParams(search).get("status")
-
   return<CenteredLayout>
-    {status === 'fail' && <h1>FAIL</h1>}
-    {status === 'success' && <h1>SUCCESS</h1>}
     <p>Please close this page.</p>
   </CenteredLayout>
 
