@@ -1,6 +1,6 @@
 // @ts-nocheck
+import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import axios, { AxiosRequestConfig } from "axios";
-import { ErrorSwitcher } from "@tgs-web-nx/utils";
 import { UNAUTHORIZE } from "../api-services/constant/actionType";
 import { AppHistory } from "../history/History";
 
@@ -145,14 +145,14 @@ export const InterceptorService = {
               // }
             }
           }
-
           return {
             IsSuccess: false,
-            info: ErrorSwitcher.getTranslation(error.response.data.errmsgid),
+            info: i18n.t(error.response.data.errmsgid),// ErrorSwitcher.getTranslation(error.response.data.errmsgid),
             code: error.response.data.err,
             data: error.response.data,
           };
         } else {
+
           return {
             IsSuccess: false,
             info: "Internal Server Error",
