@@ -1,10 +1,10 @@
-import BottomNote from "@/components/UI/BottomNote";
-import { GreenGradientButton } from "@/components/UI/Button";
-import Loading from "@/components/UI/Loading";
 import { store, UPDATE_INFO } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import { Component } from "react";
 import styled from "styled-components";
+import Loading from "@/components/UI/Loading";
+import { GreenGradientButton } from "@/components/UI/Button";
+import BottomNote from "@/components/UI/BottomNote";
 
 const Container = styled.div`
   width: 100%;
@@ -82,7 +82,7 @@ class BaseProfile extends Component {
         {this.state.message}
         <GreenGradientButton
           fullWidth
-          disabled={this.checkButtonState() || this.state.disableButton}
+          disabled={this.checkButtonState() || this.isDisableButton() || this.state.disableButton}
           onClick={this.handleSubmitClicked}
           style={{ marginBottom: "20px" }}
         >
