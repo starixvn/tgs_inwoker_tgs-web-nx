@@ -59,6 +59,7 @@ stages:
 
       if [[ $image_count -gt 1 ]]; then
           docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}' > image.txt
+          cat image.txt
           image_list=$(docker image ls | grep pgtgs/tgs-web | awk '{print $1":"$2}')
 
           for image in $image_list; do
