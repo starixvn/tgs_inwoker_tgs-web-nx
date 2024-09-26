@@ -14,6 +14,7 @@ import { ConditionType, MilestoneType } from "@tgs-web-nx/types";
 import moment from "moment";
 import RewardCard from "../../MilestoneList/components/RewardCard";
 import { contextType, RewardContext } from "@tgs-web-nx/core/features";
+import Subtitle from "../../MilestoneList/components/Subtitle";
 
 const backgrounds = [bg1, bg2, bg3];
 
@@ -162,19 +163,24 @@ const PromotionCard = (props: { index: number; milestone: MilestoneType }) => {
         </Content>
       </CardContainer>
       {isMobileSize && (
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          {conditions?.map((condition: ConditionType, index: number) => {
-            return (
-              <RewardCard
-                key={index}
-                condition={condition}
-                index={index}
-                totalValidBetAmount={totalValidBetAmount}
-                totalDepositAmount={totalDepositAmount}
-              />
-            );
-          })}
-        </Collapse>
+        <>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Subtitle subTitle={subSubject} />
+            {conditions?.map((condition: ConditionType, index: number) => {
+              return (
+                <>
+                  <RewardCard
+                    key={index}
+                    condition={condition}
+                    index={index}
+                    totalValidBetAmount={totalValidBetAmount}
+                    totalDepositAmount={totalDepositAmount}
+                  />
+                </>
+              );
+            })}
+          </Collapse>
+        </>
       )}
     </>
   );
