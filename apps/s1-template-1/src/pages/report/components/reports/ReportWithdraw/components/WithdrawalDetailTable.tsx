@@ -44,7 +44,7 @@ const WithdrawalDetailTable = ({
               <>{i18n.t("report.RequestDate")}</>
             </TableCell>
             <TableCell align={"center"}>
-              <>{i18n.t("report.NewOrderNumber")}</>
+              <>{i18n.t("report.OrderNumber")}</>
             </TableCell>
             <TableCell align={"center"}>
               <>{i18n.t("remark")}</>

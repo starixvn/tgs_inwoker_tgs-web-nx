@@ -46,7 +46,7 @@ const DepositDetailTable = ({
             <TableCell align={"center"} sx={{
                 width: "28rem"
               }}>
-              <>{i18n.t("report.NewOrderNumber")}</>
+              <>{i18n.t("report.OrderNumber")}</>
             </TableCell>
             <TableCell align={"center"}>
               <>{i18n.t("report.status")}</>
