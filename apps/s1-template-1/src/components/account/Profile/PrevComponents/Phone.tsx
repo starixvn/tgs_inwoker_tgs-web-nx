@@ -1,24 +1,24 @@
-import {
-  FormControl,
-  ItemContainer,
-  LabelContainer
-} from "@/components/styled-component/ProfileForms";
-import BottomNote from "@/components/UI/BottomNote";
-import Loading from "@/components/UI/Loading";
-import { TextField } from "@/components/UI/TextField";
 import config from "@tgs-web-nx/config";
 import { AccountService, useAccountStore } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
-import { UpdatePhoneResDto } from "@tgs-web-nx/types";
+import { SetPhoneResDto } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { EnqueueSnackbar } from "notistack";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 // import { Select } from "@/components/UI/Select";
+import MenuItem from "@mui/material/MenuItem/MenuItem";
 import { GreenGradientButton } from "@/components/UI/Button";
 import { Select } from "@/components/UI/Select";
-import MenuItem from "@mui/material/MenuItem/MenuItem";
+import { TextField } from "@/components/UI/TextField";
+import Loading from "@/components/UI/Loading";
+import BottomNote from "@/components/UI/BottomNote";
+import {
+  FormControl,
+  ItemContainer,
+  LabelContainer,
+} from "@/components/styled-component/ProfileForms";
 
 const PhoneContainer = styled.div`
   display: flex;
@@ -219,11 +219,12 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
   };
 
   const handleUpdatePhone = async () => {
-    let response: UpdatePhoneResDto;
+    let response: SetPhoneResDto;
     if (isProceedRegisterV2) {
       response = await AccountService.UpdatePhoneV2(securityKey, code);
     } else {
-      response = await AccountService.UpdatePhone(securityKey, code);
+      //   response = await AccountService.UpdatePhone(securityKey, code);
+      response = await AccountService.SetPhone(areacode, phone);
     }
 
     if (response?.IsSuccess) {

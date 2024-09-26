@@ -174,6 +174,13 @@ function UpdatePhone(securitykey: string, validateCode: string) {
   }) as unknown as Promise<UpdatePhoneResDto>;
 }
 
+function SetPhone(phone: string, areacode: string) {
+    return ApiService.patch("player/phone", {
+      phone: phone,
+      area: areacode,
+    });
+  }
+
 function UpdatePassword(oldpwd: string, newpwd: string) {
   return ApiService.put("player/password", {
     oldpwd: oldpwd,
@@ -227,18 +234,18 @@ function UpdateMemberName(token: string, name: string) {
 function UpdateMemberNameAndIC(realname: string, id: string, file: File | null) {
   const request = file
     ? ApiService.postFile(
-      `player/identity/upload`,
-      file,
-      {
+        `player/identity/upload`,
+        file,
+        {
+          realname,
+          id,
+        },
+        true,
+      )
+    : ApiService.patch(`player/identity`, {
         realname,
         id,
-      },
-      true,
-    )
-    : ApiService.patch(`player/identity`, {
-      realname,
-      id,
-    });
+      });
 
   return request as unknown as Promise<UpdateMemberNameAndICResDto>;
 }
@@ -338,6 +345,7 @@ export const AccountService = {
   UpdateEmail,
   VerifyPhone,
   UpdatePhone,
+  SetPhone,
   UpdatePassword,
   VerifyForgotPassword,
   ResetPassword,
