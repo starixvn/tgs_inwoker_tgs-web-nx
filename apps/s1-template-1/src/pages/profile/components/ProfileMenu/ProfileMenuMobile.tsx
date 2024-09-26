@@ -1,3 +1,12 @@
+import { Select } from "@/components/UI/Select";
+import { imageMap } from "@/components/project/LanguageSwitch";
+import {
+  FormControl,
+  ItemContainer,
+  LabelContainer,
+  LabelLargeContainer,
+} from "@/components/styled-component/ProfileForms";
+import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
 import { MenuItem, SelectChangeEvent } from "@mui/material";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { useProfileMenu } from "@tgs-web-nx/core/hooks";
@@ -5,15 +14,6 @@ import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import React, { useState } from "react";
 import styled from "styled-components";
-import ProfileRowInMobile from "@/pages/profile/components/ProfileMenu/ProfileRowInMobile";
-import { Select } from "@/components/UI/Select";
-import {
-  FormControl,
-  ItemContainer,
-  LabelContainer,
-  LabelLargeContainer,
-} from "@/components/styled-component/ProfileForms";
-import { imageMap } from "@/components/project/LanguageSwitch";
 
 const ProfileCard = styled.div`
   width: 100%;
@@ -79,7 +79,6 @@ const ProfileMenuMobile = () => {
   return (
     <ProfileSettings>
       <LabelLargeContainer>Profile Settings</LabelLargeContainer>
-      <ProfileCard>
         <ProfileRowInMobile
           profileItem={profileItemDictionary["name"]}
           handleClick={handleClickProfileItem}
@@ -98,9 +97,6 @@ const ProfileMenuMobile = () => {
           profileItem={profileItemDictionary["birth"]}
           handleClick={handleClickProfileItem}
         />
-      </ProfileCard>
-
-      <ProfileCard>
         {customMessagingList.map((messagingItem) => {
           return (
             <ProfileRowInMobile
@@ -110,7 +106,6 @@ const ProfileMenuMobile = () => {
             />
           );
         })}
-      </ProfileCard>
       <ItemContainer style={{ marginBottom: "1.2rem" }}>
         <LabelContainer>Languages</LabelContainer>
         <FormControl variant="outlined">

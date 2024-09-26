@@ -1,18 +1,17 @@
-import React from "react";
-import styled from "styled-components";
-import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import { useAccountStore } from "@tgs-web-nx/core";
 import { TextField } from "@/components/UI/TextField";
 import { FormControl, ItemContainer } from "@/components/styled-component/ProfileForms";
+import config from "@tgs-web-nx/config";
+import { useAccountStore } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 
 const WaitingVerificationHint = styled.div`
   width: 100%;
   margin: 0 auto 24px;
-  font-size: 15px;
   text-align: center;
   padding: 0 30px;
-  color: ${({ theme }) => theme.secondary};
+  font-size: 1.4rem;
+  color: ${({ theme }) => theme.white};
 `;
 
 function WaitingVerification() {

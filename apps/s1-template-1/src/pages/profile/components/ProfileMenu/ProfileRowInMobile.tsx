@@ -10,6 +10,11 @@ export const ProfileItemContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  &:last-child {
+    > div {
+     border-bottom: none;
+    }
+  }
 
   & .label {
     color: ${({ theme }) => theme.text};
@@ -32,27 +37,12 @@ export const ProfileItemContainer = styled.div`
   }
 `;
 
-const FormWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 10rem;
-  grid-column-gap: 1.2rem;
-  align-items: center;
-`;
-
 export const FormWrapperExtend = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
-`;
-
-const VerifyButton = styled.span`
-  position: absolute;
-  right: .8rem;
-  top: 1.6rem;
-  color: #fff;
-  font-size: 1.2rem;
 `;
 
 export const ItemInfo = styled.div`
