@@ -1,15 +1,15 @@
 import Skeleton from "@mui/material/Skeleton/Skeleton";
 
-import { BigWinsAmount, GameContainer, GameIcon, GameName, RecentBigWinsSlide } from "./style";
+import { BigWinsAmount, GameContainer, GameIcon, PlayerName, RecentBigWinsSlide } from "./style";
 
 const RecentBigWinSKeleton = () => {
   return (
     <RecentBigWinsSlide className="embla__slide">
       <GameContainer>
         <GameIcon></GameIcon>
-        <GameName>
+        <PlayerName>
           <Skeleton animation="wave" />
-        </GameName>
+        </PlayerName>
         <BigWinsAmount>
           <Skeleton animation="wave" />
         </BigWinsAmount>
