@@ -1,3 +1,4 @@
+import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
 const CenteredLayout = styled.div`
@@ -18,7 +19,7 @@ const CenteredLayout = styled.div`
 const DepositStatusIframe = () => {
 
   return<CenteredLayout>
-    <p>Please close this page.</p>
+    <p>{i18n.t("deposit.msgDepositCompleted")}</p>
   </CenteredLayout>
 
 }
