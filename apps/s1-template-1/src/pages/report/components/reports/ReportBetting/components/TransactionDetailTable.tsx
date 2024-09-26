@@ -90,7 +90,7 @@ const TransactionDetailTable = ({
               }}
             >
               <>
-                {i18n.t("report.betDateTime")}/{i18n.t("report.betid")}
+                {i18n.t("report.betid")} & {i18n.t("report.dateTime")}
               </>
             </TableCell>
             <TableCell  align={"center"}>
