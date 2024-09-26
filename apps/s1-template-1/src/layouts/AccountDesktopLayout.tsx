@@ -29,7 +29,7 @@ const ContentWrapper = styled.div<ContentWrapperProps>`
   transition: all ease-in-out 0.2s;
 
   ${media.md} {
-    min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
+    min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - 1.7rem - 27rem);
   }
 `;
 
