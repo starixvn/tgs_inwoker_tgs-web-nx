@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import CardIndicator from "./CardIndicator";
-import { contextType, RewardContext, useRwd } from "@tgs-web-nx/core/hooks";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import React, { useContext } from "react";
 import { media } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
 import { ConditionType } from "@tgs-web-nx/types";
 import config from "@tgs-web-nx/config";
+import { contextType, RewardContext } from "@tgs-web-nx/core/features";
 
 const Container = styled.div`
   display: flex;

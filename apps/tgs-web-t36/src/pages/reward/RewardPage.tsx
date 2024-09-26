@@ -8,23 +8,28 @@ import iconReward from "@/assets/t36/images/badge/icon-reward.svg";
 import Loading from "@/components/UI/Loading";
 import { theme } from "@/theme";
 
-import { contextType, useRwd } from "@tgs-web-nx/core/hooks";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { AccountService, MilestoneList, MilestonePromotionList } from "@tgs-web-nx/core";
-import { RewardContext, RewardContextProvider } from "@tgs-web-nx/core/hooks";
-import { useUpdatePageName } from "@tgs-web-nx/core/features";
+import { contextType, RewardContext, useUpdatePageName } from "@tgs-web-nx/core/features";
 import { GetMilestoneListResDto } from "@tgs-web-nx/types";
 
 const RewardPage = () => {
   useUpdatePageName(i18n.t("reward.milestone"));
-  const [loading, setLoading] = useState<boolean>(false);
-  const { isDesktopSize } = useRwd();
   const context = useContext(RewardContext) as contextType;
+
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const { isDesktopSize } = useRwd();
   const { data, isFetching } = useQuery({
     queryKey: ["MilestoneList"],
     queryFn: async () => {
       const res = await AccountService.getMilestoneList();
-      context.setSelectedMilestone(res.data[0]);
-      return res;
+      if (res.IsSuccess) {
+        if (context.selectedMilestone.promotionId === "") {
+          context.setSelectedMilestone(res.data[0]);
+        }
+        return res;
+      }
     },
     enabled: true,
     refetchOnWindowFocus: false,
@@ -60,10 +65,4 @@ const RewardPage = () => {
   );
 };
 
-const RewardWithProvider = memo(() => (
-  <RewardContextProvider>
-    <RewardPage />
-  </RewardContextProvider>
-));
-
-export default RewardWithProvider;
+export default RewardPage;

@@ -13,10 +13,12 @@ type Colors = {
 };
 
 export type contextType = {
+  expandPromotions: string[];
+  changeExpandedPromotions: (promotionId: string) => void;
   colors: Colors;
   setColors: (colors: Colors) => void;
   selectedMilestone: MilestoneType;
-  setSelectedMilestone: (milestone: any) => void;
+  setSelectedMilestone: (milestone: MilestoneType) => void;
 };
 
 export const RewardContext = createContext<contextType | null>(null);
@@ -29,7 +31,7 @@ export const RewardContextProvider = ({ children }: Props) => {
     indicatorBg: "",
   });
 
-  const [selectedMilestone, setSelectedMilestone] = useState({
+  const [selectedMilestone, setSelectedMilestone] = useState<MilestoneType>({
     name: "",
     subSubject: "",
     totalValidBetAmount: 0,
@@ -40,9 +42,28 @@ export const RewardContextProvider = ({ children }: Props) => {
     conditions: [],
   });
 
+  const [expandPromotions, setExpandedPromotions] = useState<string[]>([]);
+
+  const changeExpandedPromotions = (promotionId: string) => {
+    setExpandedPromotions((prevState: string[]) => {
+      if (prevState.includes(promotionId)) {
+        return prevState.filter((id: string) => id !== promotionId);
+      } else {
+        return [...prevState, promotionId];
+      }
+    });
+  };
+
   const contextValue = useMemo(
-    () => ({ colors, setColors, selectedMilestone, setSelectedMilestone }),
-    [colors, selectedMilestone],
+    () => ({
+      colors,
+      setColors,
+      selectedMilestone,
+      setSelectedMilestone,
+      expandPromotions,
+      changeExpandedPromotions,
+    }),
+    [colors, selectedMilestone, expandPromotions],
   );
 
   return (
