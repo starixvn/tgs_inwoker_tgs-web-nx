@@ -14,7 +14,12 @@ const BannerContainer = styled.div`
 const AuthBanner = () => {
   return (
     <BannerContainer>
-      <img src="/assets/images/auth/login-banner.png" alt="Login Banner" width={325} height={548} />
+      <img
+        src="/assets/images/auth/login-banner.webp"
+        alt="Login Banner"
+        width={325}
+        height={548}
+      />
     </BannerContainer>
   );
 };

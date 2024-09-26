@@ -1,46 +1,72 @@
-import React from "react";
-import { useAuthDialog } from "@tgs-web-nx/core/features";
-import styled from "styled-components";
-import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
-import BrandLogo from "../../BrandLogo";
-import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
 import ForgotPasswordForm from "@/components/project/auth/ForgotPasswordForm";
-import { DialogContentWithBG } from "@/components/styled-component/DialogContentWithBG";
-import treasureImg from "@/assets/t28/images/account/treasureImg.png";
+import { MainWrapper } from "@/components/styled-component/AuthFormContainer";
+import { ArrowLeftIcon } from "@/components/UI/CustomizeIcon";
+import AuthDialog from "@/components/UI/Dialog/AuthDialog/AuthDialog";
+import AuthBanner from "@/components/UI/Dialog/AuthDialog/components/AuthBanner";
+import { media } from "@tgs-web-nx/constants";
+import { useAuthDialog, useRedirectToLoginHint } from "@tgs-web-nx/core/features";
+import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
+import styled from "styled-components";
 
-const MainWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+const ContentWrapper = styled.div`
+  padding: 2.2rem 2.4rem;
+
+  ${media.sm} {
+    padding-top: 6.6rem;
+  }
 `;
-const LogoImgContainer = styled.div`
+
+const Header = styled.div`
   display: flex;
-  flex-direction: column;
-  background: linear-gradient(199.8deg, #3219cc 2.15%, #7623b7 49%, #9f0963 100%);
+  gap: 0.8rem;
+  align-items: center;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 700;
+`;
+
+const BackLoginButton = styled.div`
+  display: flex;
+  padding: 0.8rem;
   justify-content: center;
-`;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.8rem;
+  background: #2e353e;
 
-const LoginFormContainer = styled.div`
-  width: 100%;
-  min-height: 600px;
+  ${media.sm} {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 const ForgotPasswordDialog = () => {
   const { isForgotPasswordDialogOpen, handleToggleForgotPasswordDialog } = useAuthDialog();
   useDetectDialogClose(isForgotPasswordDialogOpen, () => handleToggleForgotPasswordDialog(false));
-
+  const { handleRedirect } = useRedirectToLoginHint();
   return (
     <AuthDialog
       open={isForgotPasswordDialogOpen}
       onClose={() => handleToggleForgotPasswordDialog(false)}
     >
       <MainWrapper>
-        <LogoImgContainer>
-          <BrandLogo />
-          <img src={treasureImg} alt="treasure" />
-        </LogoImgContainer>
-        <LoginFormContainer>
+        <AuthBanner />
+        <ContentWrapper>
+          <Header>
+            <BackLoginButton onClick={handleRedirect}>
+              <ArrowLeftIcon
+                className="icon"
+                height={15}
+                width={10}
+                sx={{ width: "1rem", height: "1.5rem" }}
+                viewBox="0 0 10 15"
+              />
+            </BackLoginButton>
+            Reset password
+          </Header>
           <ForgotPasswordForm />
-        </LoginFormContainer>
+        </ContentWrapper>
       </MainWrapper>
     </AuthDialog>
   );

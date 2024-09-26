@@ -54,7 +54,6 @@ const ProviderList: React.FC<{ providerList: ProviderDto[] }> = ({ providerList 
                   <img
                     src={utility.imagePathGenerator(`provider/dark/${providerName}.webp`)}
                     alt={providerName}
-                    title={providerName}
                   />
                 )}
               </ProviderItem>

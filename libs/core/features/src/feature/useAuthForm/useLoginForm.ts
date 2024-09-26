@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useState } from "react";
-import { FormikValues } from "formik";
-import { useHistory } from "react-router-dom";
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { useRwd } from "@tgs-web-nx/core/hooks";
+import { FormikValues } from "formik";
+import { useCallback, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import { useAuthContext } from "../useAuth";
 import { useAuthDialog } from "../useAuthDialog/hooks/useAuthDialog";
 import { useGenerateLoginFormik } from "./hooks/useGenerateLoginFormik";
 
+// eslint-disable-next-line @nx/enforce-module-boundaries
 export function useLoginForm() {
   const { loginState, handleLogin, handleLoginGoogle, clearLoginError } = useAuthContext();
   const [needToRemember, setNeedToRemember] = useState<boolean>(getNeedToRememberInitValue());
@@ -36,13 +37,8 @@ export function useLoginForm() {
   });
 
   const handleClickForgotPassword = () => {
-    if (isDesktopSize) {
-      handleToggleLoginDialog(false);
-      handleToggleForgotPasswordDialog(true);
-      return;
-    }
-
-    history.push("/forgot-password");
+    handleToggleLoginDialog(false);
+    handleToggleForgotPasswordDialog(true);
   };
 
   useEffect(() => {

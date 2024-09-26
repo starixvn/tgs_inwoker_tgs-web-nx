@@ -1,14 +1,16 @@
+import { DarkBlueGradientButton } from "@/components/UI/Button";
+import { TextField } from "@/components/UI/TextField";
+import { TextFieldProps } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import { TextFieldProps } from "@mui/material";
-import { TextField } from "@/components/UI/TextField";
-import { Button } from "@/components/UI/Button";
 
 const CustomText = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   overflow: visible;
+  gap: 0.8rem;
+
   & .MuiInputAdornment-root {
     overflow: visible;
     border-radius: 5px;
@@ -17,14 +19,9 @@ const CustomText = styled.div`
 
 const ButtonContainer = styled.div`
   flex-shrink: 0;
+
   & > button {
-    font-size: 0.75rem;
-    border-radius: 8px;
-    padding: 10px 12px;
-    background: ${({ theme }) => theme.primary};
-    &:hover {
-      background: ${({ theme }) => theme.primary};
-    }
+    padding: 0 1.6rem;
   }
 `;
 
@@ -54,9 +51,9 @@ const TextFieldWithButton = (
       />
 
       <ButtonContainer>
-        <Button onClick={props.onClick} disabled={!!props.buttonDisabled}>
+        <DarkBlueGradientButton onClick={props.onClick} disabled={!!props.buttonDisabled}>
           {props.buttonLabel}
-        </Button>
+        </DarkBlueGradientButton>
       </ButtonContainer>
     </CustomText>
   );

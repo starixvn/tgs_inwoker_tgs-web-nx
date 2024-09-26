@@ -62,8 +62,8 @@ const AuthCommunity = () => {
   return (
     <>
       <SocialIcons>
-        {socialList.map((social) => {
-          return <img src={social.url} width={46} height={46} alt={social.name} />;
+        {socialList.map((social, index) => {
+          return <img key={index} src={social.url} width={46} height={46} alt={social.name} />;
         })}
       </SocialIcons>
       <Devider>

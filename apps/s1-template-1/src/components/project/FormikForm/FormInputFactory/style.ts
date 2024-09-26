@@ -26,6 +26,7 @@ export const CustomTextField = styled(TextField)`
   }
 
   &.email:before {
+    top: 1.5rem;
     background: url("/assets/images/auth/icon-email.svg");
   }
 `;
