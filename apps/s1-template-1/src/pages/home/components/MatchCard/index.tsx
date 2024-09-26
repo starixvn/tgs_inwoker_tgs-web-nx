@@ -129,7 +129,7 @@ const MatchCard = ({ match }: MatchCardProps) => {
     if (!isLogin) {
       goToLogin();
     } else {
-      // window.open(`/joingame/${id}/${gpcode}`, "_blank");
+       window.open(`/joingame/${import.meta.env.VITE_SABA_GAME_PATH}`, "_blank");
     }
   };
   return (
