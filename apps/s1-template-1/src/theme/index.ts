@@ -224,13 +224,13 @@ export const theme = {
   popupBorderRadius: "1.2rem",
 
   // Button Report
-  buttonReportBackgroundColor: "#304056", 
-  buttonReportColor: "#fff", 
+  buttonReportBackgroundColor: "#304056",
+  buttonReportColor: "#fff",
   buttonReportHighlightColor: "#95A90B",
 
   // Calendar
   calendarBackground: "#1C2532",
-  calendarBorderRadius: "1.2rem", 
+  calendarBorderRadius: "1.2rem",
   calendarTextColor: "#fff",
   calendarTextDisabledColor: "#888",
   calendarHeaderColor: "#55657E",
@@ -238,4 +238,10 @@ export const theme = {
   calendarHighlightBackground: "#374000",
   calendarFontSize: "1.6rem",
   calendarBoxshadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.40)",
+
+  // Highlight matches
+  highlightMatchLeagueName: "#CBCBCB",
+  highlightMatchTime: "#6AC5FF",
+  highlightMatchTextColor: "#fff",
+  highlightMatchOdds: "#CBCBCB",
 };
