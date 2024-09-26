@@ -268,7 +268,7 @@ class AddCard extends Component {
         phone: trimAndRemoveSpace(phone),
       };
     } else if (selected.banktype === "EWallet") {
-      if (name.trim() ==="") {
+      if (bankAccountName.trim() ==="") {
         this.props.enqueueSnackbar(
           i18n.t("common.msgWithdrawalEWalletName"),
           {
