@@ -268,6 +268,15 @@ class AddCard extends Component {
         phone: trimAndRemoveSpace(phone),
       };
     } else if (selected.banktype === "EWallet") {
+      if (name.trim() ==="") {
+        this.props.enqueueSnackbar(
+          i18n.t("common.msgWithdrawalEWalletName"),
+          {
+            variant: "error",
+          },
+        );
+        return;
+      }
       if (number.trim() === "") {
         this.props.enqueueSnackbar(
           i18n.t("common.msgWithdrawalEWalletId"),

@@ -404,7 +404,6 @@ const AddCard = ({
               ? i18n.t("hk28.card.addCard.BankAccountName")
               : i18n.t("card.addCard.BankAccountName")} */}
               {i18n.t("common.withdrawalEWalletName")}
-              <OptionalText>{i18n.t("common.optional")}</OptionalText>
           </LabelContainer>
           <FormControl>
             <TextField
