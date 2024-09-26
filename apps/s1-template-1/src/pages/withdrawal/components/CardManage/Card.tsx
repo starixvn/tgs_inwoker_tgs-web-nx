@@ -68,8 +68,6 @@ const ContentRow = styled.div<CardContentProps>`
    display: flex;
    justify-content: center;
    ${media.sm} {
-      justify-content: ${({ $isHeader, theme }: CardContentProps) =>
-      $isHeader ? "center" : "flex-start"};
       padding: .8rem;
    }
    
