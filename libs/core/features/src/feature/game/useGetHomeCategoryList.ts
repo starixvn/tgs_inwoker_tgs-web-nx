@@ -132,9 +132,17 @@ export function useGetHomeCategoryList() {
   const getHightLightMatch = async () => {
     try {
       setHighlightMatchList({ ...initHighlightMatchList, isLoading: true });
-      const response = await GameService.GetHightLightMatches(5, 10);
+
+      const today = (new Date()).toISOString().split('T')[0] + 'T00:00:00';
+      const twoDaysAfter = new Date();
+      twoDaysAfter.setDate((new Date()).getDate() + 2);
+
+      const twoDaysAfterString = twoDaysAfter.toISOString().split('T')[0] + 'T00:00:00';
+
+      const response = await GameService.GetHightLightMatches(1, 5, 10, today, twoDaysAfterString);
       setHighlightMatchList({ ...initHighlightMatchList, isLoading: false, matches: response.data });
       return response;
+
     } catch (error: any) {
       console.error(error);
       setHighlightMatchList({ ...initHighlightMatchList, isLoading: false });
@@ -151,9 +159,14 @@ export function useGetHomeCategoryList() {
   };
 
   useEffect(() => {
+    // const interval = setInterval(() => {
+    getHightLightMatch();
+    // }, 10000);
+
     getHomeGameList();
     getGameByTag();
-    getHightLightMatch();
+
+    // return () => clearInterval(interval);
   }, []);
 
   return {

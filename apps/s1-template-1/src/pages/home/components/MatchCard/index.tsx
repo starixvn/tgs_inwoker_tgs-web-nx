@@ -1,3 +1,5 @@
+import { useAccountStore } from "@tgs-web-nx/core";
+import { useAuth } from "@tgs-web-nx/core/features";
 import { HightLightMatchDto } from "@tgs-web-nx/types";
 import { format, isToday, isTomorrow } from "date-fns";
 import styled from "styled-components";
@@ -27,10 +29,8 @@ const LeagueName = styled.div`
     color: ${({ theme }) => theme.white};
     `;
 
-const KickOffTimeContainer = styled.div`
+const KickOffTimeContainer = styled.p`
     width: 100%;
-    display: flex;
-    position: relative;
     line-height: 16px;
     font-size: 1.4rem;
     font-weight: 700;
@@ -95,12 +95,26 @@ const SelectionPoint = styled.div`
   text-align: left;
 `;
 
+const Score = styled.div`
+  font-size: 1.4rem;
+  text-align: center;
+  `;
+
+const Period  = styled.div`
+  font-size: 1.4rem;
+  text-align: center;
+  `;
+
+
 interface MatchCardProps {
   match: HightLightMatchDto;
 }
 
 const MatchCard = ({ match }: MatchCardProps) => {
   const { teamInfo} = match;
+  const { account } = useAccountStore();
+  const { goToLogin } = useAuth();
+  const isLogin = !!account.token;
   const getTime = () => {
     const givenTime = new Date(match.kickOffTime);
 
@@ -110,15 +124,31 @@ const MatchCard = ({ match }: MatchCardProps) => {
       ? `Tomorrow ${formatTime(givenTime)}` 
       : isToday(givenTime) ? `Today ${formatTime(givenTime)}` : format(givenTime, 'yyyy-MM-dd HH:mm');
   }
+
+  const launchGame = () => {
+    if (!isLogin) {
+      goToLogin();
+    } else {
+      // window.open(`/joingame/${id}/${gpcode}`, "_blank");
+    }
+  };
   return (
-    <MatchCardBg>
-        <LeagueName> {match.leagueName}</LeagueName>
+    <MatchCardBg onClick={launchGame}>
+        <LeagueName > {match.leagueName}</LeagueName>
         {/* leagueICon match.LeagueIconUrl */}
         <KickOffTimeContainer> {getTime()}</KickOffTimeContainer>
         <TeamInfo>
             <img src={teamInfo.homeIconUrl} alt={teamInfo.homeName} />
             <span>{teamInfo.homeName}</span>
         </TeamInfo>
+        {match.isLive && (<>
+        <Score>
+          {match.gameInfo.liveHomeScore} - {match.gameInfo.liveAwayScore}
+        </Score>
+          <Period>{match.gameInfo.isHt ? "1st half" : "2nd half"}</Period>  
+          </>
+      )}
+        
         <TeamInfo>
             <img src={teamInfo.awayIconUrl} alt={teamInfo.awayName} />
             <span>{teamInfo.awayName}</span>
