@@ -134,7 +134,7 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
 
   const isDisableButton =
     (config.features.Register_CustomFlow_IDR && !account.registercompleted && !phone) ||
-    !(code && phone);
+    !(areacode && phone);
 
   const handleSubmitSucceed = () => {
     enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
@@ -219,6 +219,12 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
   };
 
   const handleUpdatePhone = async () => {
+    const re = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}$`);
+    if (!phone.match(re)) {
+      alert("", i18n.t("common.msgInvalidPhone"));
+      return;
+    }
+
     let response: SetPhoneResDto;
     if (isProceedRegisterV2) {
       response = await AccountService.UpdatePhoneV2(securityKey, code);
@@ -266,11 +272,6 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
               onChange={(e) => {
                 setAreacode(`${e.target.value}`);
               }}
-              disabled={
-                (isConfigured ? isConfigured : false) ||
-                (config.features.Profile_DisableVerifyPhone &&
-                  !config.features.InitPhone_WithoutVerify)
-              }
               MenuProps={{
                 PaperProps: {
                   sx: {
@@ -288,9 +289,6 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
               type={"number"}
               value={phone}
               placeholder={i18n.t("common.phoneNumber")}
-              disabled={
-                (isConfigured ? isConfigured : false) || config.features.Profile_DisableVerifyPhone
-              }
               onChange={handleChangePhone}
             />
           </FormControl>
@@ -330,36 +328,18 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
 
       <GreenGradientButton
         fullWidth
-        //disabled={isDisableButton}
+        disabled={isDisableButton}
         onClick={handleSubmitClicked}
         style={{ marginBottom: "20px" }}
       >
         {i18n.t("common.submit")}
       </GreenGradientButton>
 
-      {isConfigured || config.features.InitPhone_WithoutVerify ? (
-        config.features.Profile_DisableEditPhone ? (
-          <BottomNote
-            text1={i18n.t("profile.phone.toEdit")}
-            link={"../chat"}
-            text2={i18n.t("common.customerService")}
-          />
-        ) : (
-          <BottomNote
-            text1={i18n.t("profile.phone.toEdit")}
-            link={
-              config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly
-                ? "../chat"
-                : "./changephone"
-            }
-            text2={i18n.t(
-              config.features.ChangesNotAllowed || config.features.Profile_ExistingDetails_ViewOnly
-                ? "common.customerService"
-                : "profile.phone.here",
-            )}
-          />
-        )
-      ) : null}
+      <BottomNote
+        text1={i18n.t("share.bottomNote.pleaseContact")}
+        link={"../chat"}
+        text2={i18n.t("share.bottomNote.liveChat")}
+      />
 
       <Loading show={isLoading} />
     </>

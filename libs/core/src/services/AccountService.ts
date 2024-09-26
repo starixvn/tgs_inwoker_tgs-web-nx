@@ -175,10 +175,10 @@ function UpdatePhone(securitykey: string, validateCode: string) {
   }) as unknown as Promise<UpdatePhoneResDto>;
 }
 
-function SetPhone(phone: string, areacode: string) {
+function SetPhone(areacode: string, phone: string) {
     return ApiService.patch("player/phone", {
-      phone: phone,
-      area: areacode,
+        area: areacode,
+        phone: phone,
     })as unknown as Promise<SetPhoneResDto>;
   }
 
