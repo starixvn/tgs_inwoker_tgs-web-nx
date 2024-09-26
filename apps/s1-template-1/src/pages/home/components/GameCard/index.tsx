@@ -32,7 +32,7 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
     launchGame();
   };
 
-  let gameStatusClassName = "";
+  let gameStatusClassName = "normal";
   let isShowGameStatus = false;
   let gameStatus = "";
 
@@ -64,7 +64,7 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
       {
         // @ts-ignore
         ({ hasBeenVisible }) => (
-          <GameCardBg onClick={launchGameHandler}>
+          <GameCardBg className={gameStatusClassName} onClick={launchGameHandler}>
             <GameCardContent>
               {hasBeenVisible && (
                 <Img
@@ -77,7 +77,7 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
               {!isHideProviderName && <ProviderName>{gpname}</ProviderName>}
 
               {isShowGameStatus && (
-                <GameStatusBg className={gameStatusClassName}>
+                <GameStatusBg>
                   <div className="status-text">{gameStatus}</div>
                 </GameStatusBg>
               )}

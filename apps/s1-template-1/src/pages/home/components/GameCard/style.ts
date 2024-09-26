@@ -63,7 +63,7 @@ export const GameCardBg = styled.div`
   ${media.sm} {
     flex-shrink: 0;
 
-    &:hover {
+    &:is(.normal):hover {
       border: 2px solid ${({ theme }) => theme.gameCardBorder};
 
       .game-icon {
@@ -74,6 +74,16 @@ export const GameCardBg = styled.div`
         opacity: 1;
       }
     }
+  }
+
+  &.maintenance .status-text {
+    color: ${({ theme }) => theme.maintenanceLabelColor};
+    background-color: ${({ theme }) => theme.maintenanceLabelBackground};
+  }
+
+  &.testing .status-text {
+    color: ${({ theme }) => theme.testingLabelColor};
+    background-color: ${({ theme }) => theme.testingLabelBackground};
   }
 `;
 
@@ -92,16 +102,6 @@ export const GameStatusBg = styled.div`
   justify-content: center;
   z-index: 3;
   background: ${({ theme }) => theme.gameStatusBackground};
-
-  &.maintenance .status-text {
-    color: ${({ theme }) => theme.maintenanceLabelColor};
-    background-color: ${({ theme }) => theme.maintenanceLabelBackground};
-  }
-
-  &.testing .status-text {
-    color: ${({ theme }) => theme.testingLabelColor};
-    background-color: ${({ theme }) => theme.testingLabelBackground};
-  }
 
   .status-text {
     display: flex;
