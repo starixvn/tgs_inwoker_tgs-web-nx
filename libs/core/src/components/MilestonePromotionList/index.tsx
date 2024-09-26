@@ -11,9 +11,32 @@ const Container = styled.div`
   width: 100%;
   height: fit-content;
   overflow: auto;
+
   ::-webkit-scrollbar {
-    display: none;
+    width: 10px;
+    height: 10px;
   }
+  ::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #a8a8a8;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #c7c7c7;
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #a8a8a8;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+
   ${media.sm} {
     flex-direction: row;
     padding: 10px;
