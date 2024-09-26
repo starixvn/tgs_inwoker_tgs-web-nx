@@ -7,8 +7,13 @@ const CenteredLayout = styled.div`
   gap: 1.5rem;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 6.5rem - 1.6rem - 1.5rem - 27rem);
   text-align: center;
+  color: #fff;
+  font-size: 1.4rem;
+  > h1 {
+    font-size: 1.8rem;
+   }
 `
 
 const DepositStatusIframe = () => {
@@ -19,7 +24,7 @@ const DepositStatusIframe = () => {
   return<CenteredLayout>
     {status === 'fail' && <h1>FAIL</h1>}
     {status === 'success' && <h1>SUCCESS</h1>}
-    Please close this page.
+    <p>Please close this page.</p>
   </CenteredLayout>
 
 }
