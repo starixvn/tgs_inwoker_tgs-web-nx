@@ -1,5 +1,6 @@
-import { ArrowRightIcon, CloseIcon, CopyIcon } from "@/components/UI/CustomizeIcon";
+import { ArrowRightIcon, CloseIcon } from "@/components/UI/CustomizeIcon";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
+import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
 import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
 import { Dialog as MuiDialog, DialogProps } from "@mui/material";
 import { media } from "@tgs-web-nx/constants";
@@ -138,12 +139,7 @@ const BetSlipDialog = ({
             <BetID>
               {i18n.t("betSlip.betID")}: {betId}
               <span>
-                <CopyIcon
-                  className="icon-copy"
-                  sx={{ fontSize: "2rem" }}
-                  viewBox="0 0 16 16"
-                  onClick={() => utility.copyText(betId)}
-                />
+                <CopyIconStyled copyContent={betId} />
               </span>
             </BetID>
           </PlayerInfo>

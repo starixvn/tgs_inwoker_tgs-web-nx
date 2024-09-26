@@ -53,15 +53,6 @@ function getGameUrl(gameProviderCode: string, gameCode: string, isSmallSize?: bo
   );
 }
 
-function copyText(text: string) {
-  try {
-    navigator.clipboard.writeText(text);
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
 function convertStringToNumber(str: string, maxLimit = 29): number {
   if (!str || typeof str !== "string" || str.trim() === "") {
     throw new Error("Input string must be a non-empty string.");
@@ -89,6 +80,5 @@ export const utility = {
   removeSpace,
   replaceUnderscoresWithSpace,
   getGameUrl,
-  copyText,
   getAvatarUrl,
 };

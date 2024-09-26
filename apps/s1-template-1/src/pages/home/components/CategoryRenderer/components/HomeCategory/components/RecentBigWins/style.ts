@@ -255,13 +255,7 @@ export const BetID = styled.p`
 
   .icon-copy {
     position: absolute;
-    top: 0;
+    top: -0.6rem;
     right: 0;
-    color: ${({ theme }) => theme.iconCopyColor};
-
-    &:hover {
-      cursor: pointer;
-      color: ${({ theme }) => theme.iconCopyColorHover};
-    }
   }
 `;

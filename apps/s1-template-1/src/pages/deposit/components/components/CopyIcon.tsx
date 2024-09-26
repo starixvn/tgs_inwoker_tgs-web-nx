@@ -1,11 +1,8 @@
-import {
-  CopyIcon
-} from "@/components/UI/CustomizeIcon";
+import { CopyIcon } from "@/components/UI/CustomizeIcon";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { i18n, utility } from "@tgs-web-nx/utils";
 import { useSnackbar } from "notistack";
 import styled from "styled-components";
-
 
 const CopyIconContainer = styled.div`
   width: 30px;
@@ -19,7 +16,7 @@ const CopyIconContainer = styled.div`
   right: 0;
   bottom: 0;
   transition: all ease-in-out 0.2s;
-  color: #55657E;
+  color: #55657e;
   &:hover {
     color: #fff;
   }
@@ -43,11 +40,12 @@ const CopyIconStyled = ({ copyContent }: Props) => {
 
   return (
     <CopyIconContainer
+      className="icon-copy"
       onClick={() => {
         performCopy(copyContent);
       }}
     >
-      <CopyIcon sx={{fontSize: "2rem", color: "inherit"}} viewBox="0 0 16 16"></CopyIcon>
+      <CopyIcon sx={{ fontSize: "2rem", color: "inherit" }} viewBox="0 0 16 16"></CopyIcon>
     </CopyIconContainer>
   );
 };
