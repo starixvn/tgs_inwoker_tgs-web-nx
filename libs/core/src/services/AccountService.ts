@@ -161,6 +161,12 @@ function UpdateEmail(securitykey: string, validateCode: string) {
   });
 }
 
+function SetEmail(email: string) {
+  return ApiService.patch("player/email", {
+    email,
+  }) as unknown as Promise<SetPhoneResDto>;
+}
+
 function VerifyPhone(phone: string, areacode: string) {
   return ApiService.post("player/phone", {
     phone: phone,
@@ -176,11 +182,11 @@ function UpdatePhone(securitykey: string, validateCode: string) {
 }
 
 function SetPhone(areacode: string, phone: string) {
-    return ApiService.patch("player/phone", {
-        area: areacode,
-        phone: phone,
-    })as unknown as Promise<SetPhoneResDto>;
-  }
+  return ApiService.patch("player/phone", {
+    area: areacode,
+    phone: phone,
+  }) as unknown as Promise<SetPhoneResDto>;
+}
 
 function UpdatePassword(oldpwd: string, newpwd: string) {
   return ApiService.put("player/password", {
@@ -347,6 +353,7 @@ export const AccountService = {
   VerifyPhone,
   UpdatePhone,
   SetPhone,
+  SetEmail,
   UpdatePassword,
   VerifyForgotPassword,
   ResetPassword,

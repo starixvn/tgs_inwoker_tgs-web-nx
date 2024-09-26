@@ -221,7 +221,9 @@ function Phone({ enqueueSnackbar, handleCloseDialog, isProceedRegisterV2 }: Prop
   const handleUpdatePhone = async () => {
     const re = new RegExp(`^[0-9]{8,${config.features.MAX_PHONE_LENGTH || 10}}$`);
     if (!phone.match(re)) {
-      alert("", i18n.t("common.msgInvalidPhone"));
+      enqueueSnackbar(i18n.t("common.msgInvalidPhone"), {
+        variant: "error",
+      });
       return;
     }
 
