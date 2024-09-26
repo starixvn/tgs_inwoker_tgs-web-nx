@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-const Title = styled.div`
+export const Title = styled.div`
   color: ${({ theme }) => theme.text};
   font-size: 1.25rem;
   font-weight: 700;
@@ -57,7 +57,7 @@ const Report = () => {
   return (
     <ReportMainContainer>
       <ReportTypeTabs
-        selectedType={selectedType}
+        selectedType={4}
         handleChangeTab={handleChangeTab}
         style={{ marginBottom: "20px" }}
       />

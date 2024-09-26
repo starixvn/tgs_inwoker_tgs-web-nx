@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import moment from "moment";
-import { TableBody, TableCell, TableHead, TableRow, TablePagination } from "@mui/material";
-import { TransactionDetail, RoundTotalDto } from "@tgs-web-nx/types";
-import config from "@tgs-web-nx/config";
-import { i18n } from "@tgs-web-nx/utils";
-import NoRecord from "@/pages/report/components/NoRecord";
 import {
   CustomWinLose,
   ReportCardsContainer,
   ReportTable,
 } from "@/components/styled-component/Report";
-import { theme } from "@/theme";
+import NoRecord from "@/pages/report/components/NoRecord";
 import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
+import { theme } from "@/theme";
+import { TableBody, TableCell, TableHead, TablePagination, TableRow } from "@mui/material";
+import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import moment from "moment";
+import React from "react";
 
 const TicketStatus = {
   Waiting: 0,
@@ -145,7 +144,7 @@ const TransactionDetailTable = ({
                     <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
                   </TableCell>
                   <TableCell
-                    align={"right"}
+                    align={"center"}
                     sx={{
                       border: "none",
                       color: `${getStatusColor(status)} !important`,
