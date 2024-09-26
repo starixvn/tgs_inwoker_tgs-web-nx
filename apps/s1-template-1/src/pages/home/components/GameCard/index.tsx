@@ -64,8 +64,7 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
       {
         // @ts-ignore
         ({ hasBeenVisible }) => (
-          // @ts-ignore
-          <GameCardBg id={id} onClick={launchGameHandler}>
+          <GameCardBg onClick={launchGameHandler}>
             <GameCardContent>
               {hasBeenVisible && (
                 <Img
@@ -84,9 +83,12 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
               )}
             </GameCardContent>
 
-            {isDesktopSize && isActive && (
+            {isActive && (
               <CardHoverBg onClick={launchGameHandler}>
-                {name && <GameName>{name}</GameName>}
+                {name && (
+                  // @ts-ignore
+                  <GameName id={id}>{name}</GameName>
+                )}
                 <PlayIcon />
               </CardHoverBg>
             )}
