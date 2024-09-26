@@ -27,13 +27,14 @@ export function useReportTypeTabs() {
         label: i18n.t("report.bettingDetails"),
       },
       {
-        index: ReportTabIndexEnum.WITHDRAW,
-        label: i18n.t("report.withdrawalDetails"),
-      },
-      {
         index: ReportTabIndexEnum.DEPOSIT,
         label: i18n.t("report.depositDetails"),
       },
+      {
+        index: ReportTabIndexEnum.WITHDRAW,
+        label: i18n.t("report.withdrawalDetails"),
+      },
+     
       // (() => {
       //   if (game.containTransferWallet) {
       //     return {
