@@ -25,15 +25,14 @@ export const BannerContainerEmbla = styled.section`
     backdrop-filter: blur(2px);
     border-radius: 1.2rem;
     overflow: hidden;
+    margin-right: 1.6rem;
 
     ${media.sm} {
       flex: 0 0 calc(50% - 8px);
-      margin-right: 1.6rem;
     }
 
     ${media.md} {
       flex: 0 0 calc(33% - 8px);
-      margin-right: 1.6rem;
     }
   }
 

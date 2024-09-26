@@ -124,16 +124,22 @@ export const GameStatusBg = styled.div`
 
 export const GameName = styled.div`
   position: absolute;
-  top: 2rem;
+  top: 1.4rem;
   color: ${({ theme }) => theme.gameCardGameNameColor};
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1;
   text-align: center;
   text-transform: capitalize;
   padding: 0 0.8rem;
   overflow-wrap: break-word;
   inline-size: 100%;
+
+  ${media.sm} {
+    top: 2rem;
+    line-height: 1.2;
+    font-size: 1.3rem;
+  }
 `;
 
 export const ProviderName = styled.div`
@@ -161,10 +167,6 @@ export const NoImage = styled.img`
   height: 6.8rem;
   transform: scale(0.6);
 
-  ${media.xs} {
-    transform: scale(0.7);
-  }
-
   ${media.sm} {
     transform: scale(0.8);
   }
@@ -174,7 +176,7 @@ export const NoImage = styled.img`
   }
 
   ${media.lg} {
-    transform: 1;
+    transform: scale(1);
   }
 `;
 

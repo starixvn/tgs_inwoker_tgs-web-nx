@@ -13,9 +13,10 @@ import { CardHoverBg, GameCardBg, GameCardContent, GameName, GameStatusBg, Provi
 type GameCardProps = {
   gameItem: GameItem;
   imageUrl: string;
+  isHideProviderName?: boolean;
 };
 
-const GameCard = ({ gameItem, imageUrl }: GameCardProps) => {
+const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => {
   const { account } = useAccountStore();
   const { isDesktopSize } = useRwd();
   const { goToLogin } = useAuth();
@@ -73,7 +74,7 @@ const GameCard = ({ gameItem, imageUrl }: GameCardProps) => {
                   unloader={<NoGameIcon gameName={name} />}
                 />
               )}
-              <ProviderName>{gpname}</ProviderName>
+              {!isHideProviderName && <ProviderName>{gpname}</ProviderName>}
 
               {isShowGameStatus && (
                 <GameStatusBg className={gameStatusClassName}>

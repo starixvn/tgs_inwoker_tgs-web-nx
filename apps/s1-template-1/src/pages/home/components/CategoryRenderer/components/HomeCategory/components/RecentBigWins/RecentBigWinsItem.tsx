@@ -1,60 +1,58 @@
-import AppearSensor from "@/components/project/AppearSensor";
-import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
+import GameCard from "@/pages/home/components/GameCard";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { utility } from "@tgs-web-nx/utils";
-import { Img } from "react-image";
 
-import { BigWinsAmount, BottomArea, CardHoverBg, CustomPlayButton, GameContainer, GameIcon, GameName, RecentBigWinsSlide } from "./style";
+import { BigWinsAmount, BottomArea, GameContainer, PlayerName, RecentBigWinsSlide } from "./style";
 
 const RecentBigWinsItem: React.FC<{
   item: RecentBigWinItem;
   launchGame: (gameId: number, gameProviderCode: string) => void;
   handleOpenDialog: (data: RecentBigWinItem) => void;
 }> = ({ item, launchGame, handleOpenDialog }) => {
-  const { gameId, gameProviderCode, gameCode, playerName, winAmount } = item;
+  const {
+    gameId,
+    gameType,
+    gameProviderCode,
+    gameProviderName,
+    gameCode,
+    playerName,
+    winAmount,
+    gameName,
+  } = item;
   const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
+  // convert recent big wins data to game data
+  const gameItem = {
+    id: gameId,
+    code: gameCode,
+    name: gameName,
+    description: "",
+    gpcode: gameProviderCode,
+    gpname: gameProviderName,
+    status: 0,
+    type: gameType,
+    tag: {
+      new: true,
+      hot: false,
+      recommend: false,
+    },
+    gamestatus: 0,
+  };
   return (
-    <AppearSensor>
-      {
-        // @ts-ignore
-        ({ hasBeenVisible }) => (
-          <RecentBigWinsSlide className="embla__slide">
-            <GameContainer>
-              <GameIcon
-                onClick={() => {
-                  launchGame(gameId, gameProviderCode);
-                }}
-              >
-                {hasBeenVisible && (
-                  <Img
-                    className="icon"
-                    src={utility.getGameUrl(gameProviderCode, gameCode, true)}
-                    loader={<LoadingIcon />}
-                    unloader={<NoGameIcon />}
-                  />
-                )}
+    <RecentBigWinsSlide className="embla__slide">
+      <GameContainer>
+        <GameCard
+          isHideProviderName={true}
+          gameItem={gameItem}
+          imageUrl={utility.getGameUrl(gameProviderCode, gameCode)}
+        />
 
-                <CardHoverBg>
-                  <CustomPlayButton>
-                    <img
-                      src="/assets/images/common/icon-play.svg"
-                      width={18}
-                      height={24}
-                      alt="Icon Play"
-                    />
-                  </CustomPlayButton>
-                </CardHoverBg>
-              </GameIcon>
-              <BottomArea onClick={() => handleOpenDialog(item)}>
-                <GameName>{playerName}</GameName>
-                <BigWinsAmount>{`${formatter.format(winAmount)}`}</BigWinsAmount>
-              </BottomArea>
-            </GameContainer>
-          </RecentBigWinsSlide>
-        )
-      }
-    </AppearSensor>
+        <BottomArea onClick={() => handleOpenDialog(item)}>
+          <PlayerName>{playerName}</PlayerName>
+          <BigWinsAmount>{`${formatter.format(winAmount)}`}</BigWinsAmount>
+        </BottomArea>
+      </GameContainer>
+    </RecentBigWinsSlide>
   );
 };
 

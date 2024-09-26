@@ -1,38 +1,22 @@
-import {useGetGamesByTag, useHomeGameContext } from "@tgs-web-nx/core/features";
-import styled from "styled-components";
+import { useGetGamesByTag, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { getGameTypeName } from "@tgs-web-nx/utils";
+import { useEffect, useState } from "react";
 
-import { FilterTagWrapper } from "../../../HomeGameFilterTag/style";
 import { GameTypeTitle } from "../HomeCategory/style";
 import GamesWrapper from "../NonLobbyCategory/GamesWrapper";
-import { useEffect, useState } from "react";
-import { getGameTypeName } from "@tgs-web-nx/utils";
-
-const ProviderContainer = styled.div`
-  width: 100%;
-  position: relative;
-
-  ${GameTypeTitle} {
-    margin-bottom: 0;
-  }
-
-  ${FilterTagWrapper} {
-    position: absolute;
-    top: -4.8rem;
-    right: 0;
-  }
-`;
+import { ContainerWithTitle } from "./style";
 
 const GamesByTag = () => {
   const { gameList, isLoading, total } = useGetGamesByTag();
   const { activeGameType } = useHomeGameContext();
-  const  [ title, setTitle ] = useState<string>('');
+  const [title, setTitle] = useState<string>("");
 
   useEffect(() => {
     setTitle(getGameTypeName(activeGameType));
   }, []);
 
   return (
-    <ProviderContainer>
+    <ContainerWithTitle>
       <GameTypeTitle>{title}</GameTypeTitle>
       <GamesWrapper
         isHideOrderDropdown={true}
@@ -40,7 +24,7 @@ const GamesByTag = () => {
         isLoading={isLoading}
         totalGames={total}
       />
-    </ProviderContainer>
+    </ContainerWithTitle>
   );
 };
 

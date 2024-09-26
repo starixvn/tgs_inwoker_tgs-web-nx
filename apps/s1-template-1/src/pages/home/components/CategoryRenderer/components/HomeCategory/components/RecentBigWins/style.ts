@@ -1,4 +1,4 @@
-import { NoGameIconWrapper, SpinnerBox } from "@/pages/home/components/GameCard/style";
+import { GameName, NoImage, SpinnerBox } from "@/pages/home/components/GameCard/style";
 import { PlayButton } from "@/pages/home/components/PlayIcon";
 import { media } from "@tgs-web-nx/constants";
 import styled from "styled-components";
@@ -31,30 +31,6 @@ export const GameIcon = styled.div`
   backdrop-filter: blur(2px);
   border-radius: 0.8rem;
   overflow: hidden;
-
-  ${media.sm} {
-    &:hover {
-      cursor: pointer;
-      border: 1px solid ${({ theme }) => theme.gameCardBorder};
-
-      ${CardHoverBg} {
-        opacity: 1;
-      }
-    }
-  }
-
-  .icon {
-    width: 100%;
-    flex-shrink: 0;
-  }
-
-  ${NoGameIconWrapper} {
-    transform: scale(0.5);
-  }
-
-  ${SpinnerBox} {
-    transform: scale(0.5);
-  }
 `;
 
 export const GameContainer = styled.div`
@@ -70,9 +46,23 @@ export const GameContainer = styled.div`
 
 export const RecentBigWinsSlide = styled.div`
   --slide-size: 7.4rem;
+
+  &:last-child {
+    margin-right: 0.8rem;
+  }
+
+  ${SpinnerBox},${PlayButton}, ${NoImage} {
+    transform: scale(0.5);
+  }
+
+  ${GameName} {
+    top: 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1;
+  }
 `;
 
-export const GameName = styled.div`
+export const PlayerName = styled.div`
   color: ${({ theme }) => theme.white};
 `;
 
