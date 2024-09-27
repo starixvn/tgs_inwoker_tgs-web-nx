@@ -14,10 +14,6 @@ export const TransferPageContainer = styled.div`
   flex: 1;
   margin: 0 auto;
 
-  ${media.sm} {
-    padding: 0;
-  }
-
   & .MuiButton-fullWidth {
     ${media.sm} {
       max-width: 242px !important;
