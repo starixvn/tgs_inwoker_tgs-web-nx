@@ -434,13 +434,8 @@ class DepositPrev extends Component {
         }
       }
       if (method.methodcode === "EWallet") {
-        let emoneyname = this.props.wallet.bankCardList[bankCardIndex]
-          ? this.props.wallet.bankCardList[bankCardIndex].detail.name ||
-            this.props.wallet.bankCardList[bankCardIndex].detail.eMoneyName
-          : "";
-        let phone = this.props.wallet.bankCardList[bankCardIndex]
-          ? this.props.wallet.bankCardList[bankCardIndex].detail.phone
-          : "";
+        let emoneyname = this.state.name ?? "";
+        let phone = this.state.account ?? "";
         if (config.features.Deposit_AddCard) {
           this.props.doEWalletDepositWithDetail(
             this.state.amount.replace(/,/g, ""),
