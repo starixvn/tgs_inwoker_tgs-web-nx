@@ -36,25 +36,25 @@ export function useForgotPasswordNewPasswordFormikV2({ handleClickSubmit }: Prop
         type: FormInputTypeEnum.AREA_CODE,
       },
       {
-        label: i18n.t("common.password"),
+        label: i18n.t("common.msgEnterNewPass"),
         name: "pwd",
         type: FormInputTypeEnum.PASSWORD,
         initialValue: "",
         validationSchema: Yup.string()
-          .required("Password is required")
+          .required(i18n.t("common.msgPasswordRequired"))
           .matches(/^.{6,20}$/, {
             message: i18n.t("common.msgRegisterPassInvalid"),
           }),
       },
       {
-        label: i18n.t("wap.register.confirmPassword"),
+        label: i18n.t("common.ConfirmPass"),
         name: "confirmPwd",
         type: FormInputTypeEnum.PASSWORD,
         initialValue: "",
         validationSchema: Yup.string()
-          .required()
+          .required(i18n.t("common.msgConfirmPasswordRequired"))
           //@ts-ignore
-          .oneOf([Yup.ref("pwd"), null], "Passwords must match"),
+          .oneOf([Yup.ref("pwd"), null], i18n.t("common.msgInvalidConfirmPass")),
       },
     ].filter((item) => !!item) as FormikFormInput[];
   }, []);
