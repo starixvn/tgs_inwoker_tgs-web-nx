@@ -118,6 +118,14 @@ class NameVerify extends BaseProfile {
     const memberCard = this.state.ic || "";
     const icUpload = this.state.icUpload || "";
 
+    const icRegex = /^\d{13}$/;
+    if (!memberCard.match(icRegex)) {
+      this.props.enqueueSnackbar(i18n.t("common.msgInvalidIC"), {
+        variant: "error",
+      });
+      return;
+    }
+
     if (!memberName) {
       return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterName"));
     }
