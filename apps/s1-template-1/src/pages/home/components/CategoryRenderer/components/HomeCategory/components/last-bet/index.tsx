@@ -1,7 +1,7 @@
-import { HubConnection } from '@microsoft/signalr';
-import { LastBetDto } from '@tgs-web-nx/types';
-import React, { useEffect, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import { HubConnection } from "@microsoft/signalr";
+import { LastBetDto } from "@tgs-web-nx/types";
+import React, { useEffect, useState } from "react";
+import styled, { css, keyframes } from "styled-components";
 
 const fadeIn = keyframes`
   0% {
@@ -62,9 +62,9 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
 
         connection.on('ReceiveLastBet', (item: LastBetDto) => {
             setBetList(items => {
-                const updatedMessages = [item, ...items]; 
-    
-                return updatedMessages.slice(0, 10); 
+                const updatedMessages = [item, ...items];
+
+                return updatedMessages.slice(0, 10);
             });
         });
 
@@ -88,7 +88,7 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
                 </thead>
                 <tbody>
                     {betList.map((item, index) => (
-                        <TableRow key={item.id} $isNew={index === 0}>
+                        <TableRow key={index} $isNew={index === 0}>
                             <TableCell>{item.playerName}</TableCell>
                             <TableCell>{item.betAmount}</TableCell>
                             <TableCell>{item.gameId}</TableCell>
