@@ -17,7 +17,7 @@ export const ContainerWithTitle = styled.div`
 
     ${media.sm} {
       position: absolute;
-      top: -4.8rem;
+      top: -5.8rem;
       right: 0;
     }
   }
