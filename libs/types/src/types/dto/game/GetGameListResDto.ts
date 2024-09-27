@@ -156,3 +156,15 @@ interface OddsPriceInfo {
   americanPrice: number;
 }
 
+export interface LastBetDto {
+  id: string;
+  playerName: string;
+  PlayerCode: string;
+  brandId: string;
+  betAmount: number;
+  gameId: number;
+  gameName: string;
+  gameProviderCode: string;
+  payout: string
+}
+

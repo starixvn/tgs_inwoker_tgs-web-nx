@@ -55,25 +55,25 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
     const { connection } = props;
     const [betList, setBetList] = useState<LastBetDto[]>([]);
 
-    // useEffect(() => {
-    //     if (!connection) return;
+    useEffect(() => {
+        if (!connection) return;
 
-    //     connection.start().catch(err => console.error(err.toString()));
+        connection.start().catch(err => console.error(err.toString()));
 
-    //     connection.on('ReceiveLastBet', (item: LastBetDto) => {
-    //         setBetList(items => {
-    //             const updatedMessages = [item, ...items]; 
+        connection.on('ReceiveLastBet', (item: LastBetDto) => {
+            setBetList(items => {
+                const updatedMessages = [item, ...items]; 
     
-    //             return updatedMessages.slice(0, 10); 
-    //         });
-    //     });
+                return updatedMessages.slice(0, 10); 
+            });
+        });
 
 
-    //     return () => {
-    //         connection.off('ReceiveLastBet');
-    //         connection.stop();
-    //     };
-    // }, [connection]);
+        return () => {
+            connection.off('ReceiveLastBet');
+            connection.stop();
+        };
+    }, [connection]);
 
     return (
         <TableContainer>

@@ -15,7 +15,8 @@ export const GameService = {
   GetGameType,
   GetGameListByTag,
   GetRecentBigWins,
-  GetHightLightMatches
+  GetHightLightMatches,
+  ConnectBetHub
 };
 
 const languageFromLocalStorage = localStorage.getItem("i18nextLng");
@@ -105,4 +106,8 @@ function GetRecentBigWins() {
 
 function GetHightLightMatches(sportType: number, betType: number, top: number, from: string, to: string) {
   return ApiService.getSabaAPI(`saba/event?sportType=${sportType}&betType=${betType}&top=${top}&from=${from}&to=${to}`) as unknown as Promise<ResponseResDto<HightLightMatchDto>>;
+}
+
+function ConnectBetHub() {
+  return ApiService.GetConnection("last-bet-hub");
 }

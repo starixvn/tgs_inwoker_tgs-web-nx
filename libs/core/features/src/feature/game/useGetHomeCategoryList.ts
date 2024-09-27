@@ -2,6 +2,7 @@ import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GameService } from "@tgs-web-nx/core";
 import { GameItem, GameTagListResDto, GameTypeDto, HightLightMatchDto, RecentBigWinItem } from "@tgs-web-nx/types";
 import { useEffect, useState } from "react";
+import { HubConnection } from "@microsoft/signalr";
 
 import { TagTypeEnum } from "./types";
 
@@ -51,6 +52,7 @@ const initHighlightMatchList: HightLightMatchList = {
   error: null
 };
 
+
 const HomeCategory = [
   GameTypeEnum.SPORTS,
   // GameTypeEnum.ESPORTS,
@@ -65,6 +67,8 @@ export function useGetHomeCategoryList() {
   const [tagGameList, setTagGameList] = useState<TagGameList>(initTagGameList);
 
   const [highlightMatchList, setHighlightMatchList] = useState<HightLightMatchList>(initHighlightMatchList);
+
+  const [hubConnection, setHubConnection] = useState<HubConnection | undefined>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -158,15 +162,22 @@ export function useGetHomeCategoryList() {
     return [];
   };
 
-  useEffect(() => {
-    // const interval = setInterval(() => {
-    getHightLightMatch();
-    // }, 10000);
+  const getHubConnection = async () => {
+    const connection = await GameService.ConnectBetHub();
 
+    setHubConnection(connection);
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getHightLightMatch();
+    }, 60000);
+    getHightLightMatch();
     getHomeGameList();
     getGameByTag();
+    getHubConnection();
 
-    // return () => clearInterval(interval);
+    return () => clearInterval(interval);
   }, []);
 
   return {
@@ -180,5 +191,6 @@ export function useGetHomeCategoryList() {
     sportGameList: homeGameList.sportGameList,
     recentBigWins: homeGameList.recentBigWins,
     highlightMatches: highlightMatchList.matches,
+    betHubConnection: hubConnection
   };
 }
