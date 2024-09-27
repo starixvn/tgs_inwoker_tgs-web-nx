@@ -67,7 +67,7 @@ class Email extends BaseProfile {
   handleGetCodeClick = async (e) => {
     if (this.state.countdownToken > 0) return;
     if (!this.state.email) return this.showErrorMessage(i18n.t("common.msgEnterEmail"));
-    console.log(this.props.general);
+
     try {
       this.showLoading(true);
       const response = await AccountService.VerifyEmail(
