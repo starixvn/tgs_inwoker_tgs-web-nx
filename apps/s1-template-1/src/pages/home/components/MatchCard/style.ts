@@ -120,11 +120,11 @@ export const LiveIcon = styled.div`
   top: -0.5rem;
   display: flex;
   min-width: 3rem;
-  height: 3rem;
+  height: 2.4rem;
   align-items: center;
   justify-content: center;
   border-radius: 0.8rem;
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%),
-    rgba(255, 255, 255, 0.2);
+  background: #fff;
   backdrop-filter: blur(2px);
+  overflow: hidden;
 `;
