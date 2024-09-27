@@ -37,16 +37,11 @@ class Line extends BaseProfile {
   handleSubmitClicked = () => {
     const line = this.state.line;
     //validate here
-    //sdasdasdasda
     // const re = new RegExp("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
     // if (!line.match(re)) {
-    //   this.props.alert(
-    //     '',
-    //     i18n.t('profile.line.msgInvalidLine')
-    //   )
-    //   // this.props.enqueueSnackbar("微信号码格式不正确", {
-    //   //   key: "error"
-    //   // });
+    //   this.props.enqueueSnackbar(i18n.t('profile.line.msgInvalidLine'), {
+    //     variant: "error"
+    //   });
     //   return
     // }
 

@@ -39,16 +39,11 @@ class Telegram extends BaseProfile {
   handleSubmitClicked = () => {
     const telegram = this.state.telegram;
     //validate here
-    //sdasdasdasda
     // const re = new RegExp("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
     // if (!telegram.match(re)) {
-    //   this.props.alert(
-    //     '',
-    //     i18n.t('profile.telegram.msgInvalidTelegram')
-    //   )
-    //   // this.props.enqueueSnackbar("微信号码格式不正确", {
-    //   //   key: "error"
-    //   // });
+    //   this.props.enqueueSnackbar(i18n.t('profile.telegram.msgInvalidTelegram'), {
+    //     variant: "error"
+    //   });
     //   return
     // }
 
