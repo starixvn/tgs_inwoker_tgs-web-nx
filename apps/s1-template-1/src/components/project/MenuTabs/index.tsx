@@ -1,8 +1,4 @@
-import { NavCardKey } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
-import { useHistory, useLocation } from "react-router";
-import styled from "styled-components";
-import { theme } from "@/theme";
+import Icon from "@/components/project/Icon";
 import {
   AccountInfoIcon,
   DepositIcon,
@@ -11,6 +7,12 @@ import {
   TransactionIcon,
   WithdrawIcon,
 } from "@/components/UI/CustomizeIcon";
+import { DialogTitle } from "@/components/UI/Dialog/DialogHeader";
+import { theme } from "@/theme";
+import { NavCardKey } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { useHistory, useLocation } from "react-router";
+import styled from "styled-components";
 
 type MenuItem = {
   key: NavCardKey;
@@ -57,6 +59,21 @@ const Tab = styled.div<{ $isActived: boolean }>`
     flex-shrink: 0;
   }
   background: ${({ theme }) => theme.tabBackground};
+`;
+
+const NavigationContainer = styled.div`
+  display: flex;
+  flex-direction: column;  
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  color: #fff;
+  margin-bottom: 2.4rem;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 15rem;
 `;
 
 const MenuTabs = () => {
@@ -135,30 +152,38 @@ const MenuTabs = () => {
     // },
   ];
   return (
-    <TabContainer>
-      {accountMenuList.map((item: MenuItem) => {
-        const isActived = item.router === location.pathname;
-        return (
-          <Tab
-            key={item.key}
-            $isActived={isActived}
-            onClick={() => {
-              history.push(item.router);
-            }}
-          >
-            <item.icon
-              sx={{
-                fontSize: item.fontSizeIcon,
-                color: theme.text,
-                filter: "drop-shadow(0 0 0.4rem rgba(255, 255, 255, 0.50))",
+    <NavigationContainer>
+      <IconContainer onClick={() => {
+                history.push("/");
+              }}>
+        <Icon iconUrl="/assets/images/common/icon-back.svg" width={"32px"} height={"32px"}  />
+        <DialogTitle>Home</DialogTitle>
+      </IconContainer>
+      <TabContainer>
+        {accountMenuList.map((item: MenuItem) => {
+          const isActived = item.router === location.pathname;
+          return (
+            <Tab
+              key={item.key}
+              $isActived={isActived}
+              onClick={() => {
+                history.push(item.router);
               }}
-              viewBox={item.viewBox}
-            />
-            <span>{item.label}</span>
-          </Tab>
-        );
-      })}
-    </TabContainer>
+            >
+              <item.icon
+                sx={{
+                  fontSize: item.fontSizeIcon,
+                  color: theme.text,
+                  filter: "drop-shadow(0 0 0.4rem rgba(255, 255, 255, 0.50))",
+                }}
+                viewBox={item.viewBox}
+              />
+              <span>{item.label}</span>
+            </Tab>
+          );
+        })}
+      </TabContainer>
+    </NavigationContainer>
   );
 };
 

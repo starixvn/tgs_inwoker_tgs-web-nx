@@ -19,7 +19,7 @@ const DialogHeaderContainer = styled.div`
   gap: 14px;
 `;
 
-const ReturnIconContainer = styled.div`
+export const ReturnIconContainer = styled.div`
   position: absolute;
   left: ${({ theme }) => theme.gapPage};
   display: flex;
@@ -27,7 +27,7 @@ const ReturnIconContainer = styled.div`
   cursor: pointer;
 `;
 
-const DialogTitle = styled.div`
+export const DialogTitle = styled.div`
   font-size: 2rem;
   font-weight: 700;
   padding-left: 1.2rem;
