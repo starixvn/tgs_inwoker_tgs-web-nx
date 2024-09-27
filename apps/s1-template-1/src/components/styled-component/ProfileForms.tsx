@@ -12,7 +12,7 @@ export const Remark = styled.div`
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1.2rem;
+  margin-bottom: 2.4rem;
 `;
 
 export const ItemContainerSmall = styled(ItemContainer)`
