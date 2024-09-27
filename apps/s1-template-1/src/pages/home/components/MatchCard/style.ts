@@ -63,13 +63,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const TeamName = styled.div`
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1) 40%,
-    rgba(255, 255, 255, 0) 96%
-  );
-  color: transparent;
-  background-clip: text;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 47%, rgba(0, 0, 0, 0) 94%);
   overflow: hidden;
   white-space: nowrap;
 `;
