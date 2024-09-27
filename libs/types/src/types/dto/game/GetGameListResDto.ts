@@ -102,7 +102,6 @@ interface TeamInfo {
   awayIconUrl: string;
 }
 
-
 interface GameInfo {
   livePeriod: number;
   clockDirection: string;
@@ -118,7 +117,6 @@ interface GameInfo {
   liveHomeScore: number;
   liveAwayScore: number;
 }
-
 
 interface Market {
   sportType: number;
@@ -159,12 +157,12 @@ interface OddsPriceInfo {
 export interface LastBetDto {
   id: string;
   playerName: string;
-  PlayerCode: string;
+  playerCode: string;
   brandId: string;
   betAmount: number;
   gameId: number;
   gameName: string;
   gameProviderCode: string;
-  payout: string
+  payout: number;
+  multiplier: number;
 }
-

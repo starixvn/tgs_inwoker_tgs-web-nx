@@ -7,10 +7,10 @@ import { useHistory } from "react-router-dom";
 
 import ProviderList from "../ProviderList";
 import GameCardSlider from "./components/GameSlider/GameCardSlider";
+import LastBets from "./components/last-bet";
 import MatchCardSlider from "./components/MatchSlider/MatchCardSlider";
 import RecentBigWins from "./components/RecentBigWins";
 import { DesktopContainer, GameTypeContainer, GameTypeTitle, Group, ViewAll } from "./style";
-import LastBets from "./components/last-bet";
 
 const HomeCategory = () => {
   const history = useHistory();
@@ -24,7 +24,7 @@ const HomeCategory = () => {
     tableGameList,
     recentBigWins,
     highlightMatches,
-    betHubConnection
+    betHubConnection,
   } = useGetHomeCategoryList();
 
   const navigateTo = (pageName: string, gameType: GameTypeEnum) => {
@@ -146,7 +146,10 @@ const HomeCategory = () => {
           </EmblaCarousel>
         </Group>
 
-        <LastBets connection={betHubConnection}></LastBets>
+        <Group className="game-area">
+          <GameTypeTitle>Latest Bets</GameTypeTitle>
+          <LastBets connection={betHubConnection}></LastBets>
+        </Group>
       </GameTypeContainer>
     </DesktopContainer>
   );
