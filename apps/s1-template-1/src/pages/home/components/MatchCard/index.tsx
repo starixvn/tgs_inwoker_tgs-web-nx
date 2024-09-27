@@ -4,6 +4,8 @@ import { HightLightMatchDto } from "@tgs-web-nx/types";
 import { format, isToday, isTomorrow } from "date-fns";
 import { Img } from "react-image";
 
+import { CardHoverBg } from "../GameCard/style";
+import PlayIcon from "../PlayIcon";
 import { KickOffTimeContainer, LeagueName, LiveIcon, LogoContainer, MatchCardBg, Score, SelectionButton, SelectionContainer, SelectionOdds, SelectionPoint, TeamInfo, TeamName } from "./style";
 
 interface MatchCardProps {
@@ -40,11 +42,17 @@ const MatchCard = ({ match }: MatchCardProps) => {
       <LeagueName> {match.leagueName}</LeagueName>
       <KickOffTimeContainer>
         {getTime()}
+
         {match.isLive && (
           <>
             {match.gameInfo.isHt ? "1st half" : "2nd half"}
             <LiveIcon>
-              <img src="/assets/images/highlight-matches/icon-live.webp" alt="live" />
+              <img
+                src="/assets/images/highlight-matches/icon-live.gif"
+                width={24}
+                height={24}
+                alt="live"
+              />
             </LiveIcon>
           </>
         )}
@@ -85,6 +93,9 @@ const MatchCard = ({ match }: MatchCardProps) => {
           );
         })}
       </SelectionContainer>
+      <CardHoverBg>
+        <PlayIcon />
+      </CardHoverBg>
     </MatchCardBg>
   );
 };

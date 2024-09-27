@@ -109,6 +109,7 @@ export const GameStatusBg = styled.div`
     max-width: 99%;
     justify-content: center;
     height: 3.4rem;
+    line-height: 1;
     padding: 0 1.4rem;
     border-radius: 3rem;
     text-transform: uppercase;

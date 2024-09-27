@@ -58,12 +58,12 @@ export const GameList = styled.ul`
   transition: grid-template-columns 0.1s ease-in-out;
   list-style: none;
 
-  @media (min-width: 250px) {
+  @media (min-width: 300px) {
     --column-count: 2 !important;
     grid-template-columns: repeat(var(--column-count), var(--single-column-width));
   }
 
-  @media (min-width: 350px) {
+  @media (min-width: 460px) {
     --column-count: 3 !important;
   }
 

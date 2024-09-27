@@ -96,9 +96,13 @@ export const Group = styled.div`
       grid-auto-flow: column;
       grid-auto-columns: calc(var(--min-width) + var(--gap));
 
-      @media (min-width: 555px) {
-        --column-count: 3 !important;
+      @media (min-width: 300px) {
+        --column-count: 2 !important;
         grid-auto-columns: var(--column-width, var(--single-column-width));
+      }
+
+      @media (min-width: 460px) {
+        --column-count: 3 !important;
       }
 
       @media (min-width: 729px) {

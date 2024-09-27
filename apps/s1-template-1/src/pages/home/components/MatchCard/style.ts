@@ -1,4 +1,7 @@
+import { media } from "@tgs-web-nx/constants";
 import styled from "styled-components";
+
+import { CardHoverBg } from "../GameCard/style";
 
 export const MatchCardBg = styled.div`
   display: flex;
@@ -11,9 +14,20 @@ export const MatchCardBg = styled.div`
   vertical-align: top;
   flex-direction: column;
   padding: 1.2rem;
+  border-radius: 1.2rem;
   cursor: pointer;
   font-size: 1.3rem;
   font-weight: 700;
+  overflow: hidden;
+
+  ${media.sm} {
+    &:hover {
+      ${CardHoverBg} {
+        border: 2px solid ${({ theme }) => theme.gameCardBorder};
+        opacity: 1;
+      }
+    }
+  }
 `;
 
 export const LeagueName = styled.div`

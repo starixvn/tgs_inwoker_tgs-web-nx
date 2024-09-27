@@ -8,7 +8,6 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import GameType from "./GameType";
-import { Tag } from "@mui/icons-material";
 
 const GameTypesEmbla = styled.section`
   &.game-types {
@@ -27,11 +26,15 @@ const GameTypesEmbla = styled.section`
 const GameTypesEmblaContainer = styled.div`
   &.embla__container {
     --slide-height: 6rem;
-    --column-size: 4;
+    --column-size: 3;
     --slide-spacing: 0.8rem;
     --slide-size: calc(
       (100% / var(--column-size)) - ((0.8rem * (var(--column-size) - 1)) / var(--column-size))
     );
+
+    @media (min-width: 400px) {
+      --column-size: 4;
+    }
 
     ${media.sm} {
       --column-size: 5;
@@ -50,10 +53,19 @@ const GameTypesEmblaContainer = styled.div`
 const GameTypes = () => {
   const { sideNavGameTypeItemList } = useGetNavGameTypeItemList();
   const [emblaGameTypeRef] = useEmblaCarousel({ dragFree: true });
-  const { activeGameType, providerList, handleChangeGameType, handleGamesByProvider, handleChangeActiveTag } = useHomeGameContext();
+  const {
+    activeGameType,
+    providerList,
+    handleChangeGameType,
+    handleGamesByProvider,
+    handleChangeActiveTag,
+  } = useHomeGameContext();
   const scrollDemoRef = useRef(null);
 
-  const { gameType: urlGameType, sports: urlSport } = useParams<{ gameType: string, sports: string }>();
+  const { gameType: urlGameType, sports: urlSport } = useParams<{
+    gameType: string;
+    sports: string;
+  }>();
   const gameTypeList = useGameTypeList();
 
   const getGameTypeFromKey = (key: string) => {
@@ -64,7 +76,7 @@ const GameTypes = () => {
   const getProviderFromKey = (key: string) => {
     const matchingProvider = providerList.find((provider) => provider.route === key);
     return matchingProvider ? matchingProvider : null;
-  }
+  };
 
   useEffect(() => {
     // //@ts-ignore
@@ -91,25 +103,25 @@ const GameTypes = () => {
         handleChangeGameType(gameType);
         return;
       }
-  
+
       if (getGameTypeFromKey(urlSport)) {
         handleChangeGameType(GameTypeEnum.SPORTS);
         return;
       }
-      
+
       const provider = getProviderFromKey(urlGameType);
       if (provider) {
         handleChangeGameType(GameTypeEnum.ALL);
         handleGamesByProvider(provider);
         return;
       }
-  
+
       switch (urlGameType) {
-        case 'new':
+        case "new":
           handleChangeGameType(GameTypeEnum.NEW);
           handleChangeActiveTag(TagTypeEnum.NEW);
           break;
-        case 'hot':
+        case "hot":
           handleChangeGameType(GameTypeEnum.HOT);
           handleChangeActiveTag(TagTypeEnum.HOT);
           break;
@@ -117,10 +129,9 @@ const GameTypes = () => {
           break;
       }
     };
-  
+
     handleGameTypeChange();
   }, [urlGameType, urlSport, gameTypeList, providerList]);
-  
 
   const handleClickNav = (navItem: NavItem & { gameType: GameTypeEnum }) => {
     if (navItem.navType !== "action") return;
