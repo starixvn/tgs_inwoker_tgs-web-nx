@@ -689,7 +689,7 @@ class Main extends Component {
                         style={{ display: "none" }}
                       />
                       <UploadFileTag>
-                        {this.props.files ? this.props.files[0].name : "abcd.jpg"}
+                        {this.props.files ? this.props.files[0].name : i18n.t("common.uploadFile")}
                       </UploadFileTag>
                     </UploadFileControl>
                   </FormControl>
