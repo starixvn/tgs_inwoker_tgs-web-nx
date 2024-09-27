@@ -140,9 +140,12 @@ function GetChangeWithdrawalPasswordVerificationCode() {
   return ApiService.post("pay/password/validate-code", {});
 }
 
-function VerifyEmail(email: string) {
+function VerifyEmail(email: string, username: string, brandCode: string) {
   return ApiService.post("player/email", {
     email: email,
+    //下列參數解決TGS-5340的issue，實際此API不需要回傳下列參數
+    username: username,
+    brandCode: brandCode,
   });
 }
 
