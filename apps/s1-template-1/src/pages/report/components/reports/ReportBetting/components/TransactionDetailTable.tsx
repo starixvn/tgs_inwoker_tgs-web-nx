@@ -1,3 +1,13 @@
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import moment from "moment";
+import React from "react";
+import styled from "styled-components";
+import { theme } from "@/theme";
+import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
+import NoRecord from "@/pages/report/components/NoRecord";
+import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
 import {
   CustomizeTablePagination,
   CustomWinLose,
@@ -5,16 +15,6 @@ import {
   ReportTable,
   WinLossZero,
 } from "@/components/styled-component/Report";
-import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
-import NoRecord from "@/pages/report/components/NoRecord";
-import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
-import { theme } from "@/theme";
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
-import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
-import moment from "moment";
-import React from "react";
-import styled from "styled-components";
 
 const IdWrapper = styled.div`
   position: relative;
@@ -29,11 +29,11 @@ const TicketStatus = {
 };
 
 const BetHistoryStatus: { [key: number]: string } = {
-  [TicketStatus.Open]: "Open",
-  [TicketStatus.Void]: "Void",
-  [TicketStatus.Won]: "Won",
-  [TicketStatus.Lost]: "Lost",
-  [TicketStatus.Draw]: "Draw",
+  [TicketStatus.Open]: i18n.t("common.open"),
+  [TicketStatus.Void]: i18n.t("common.void"),
+  [TicketStatus.Won]: i18n.t("common.won"),
+  [TicketStatus.Lost]: i18n.t("common.lost"),
+  [TicketStatus.Draw]: i18n.t("common.draw"),
 };
 
 type Props = {
