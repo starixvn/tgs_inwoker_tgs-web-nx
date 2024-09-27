@@ -241,7 +241,7 @@ export const theme = {
   calendarBoxshadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.40)",
 
   // Highlight matches
-  highlightMatchLeagueName: "#CBCBCB",
+  highlightMatchLeagueName: "#E9E9E9",
   highlightMatchTime: "#6AC5FF",
   highlightMatchTextColor: "#fff",
   highlightMatchOdds: "#CBCBCB",

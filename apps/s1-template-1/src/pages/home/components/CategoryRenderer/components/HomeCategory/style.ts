@@ -136,6 +136,11 @@ export const Group = styled.div`
     }
   }
 
+  .embla__container.highlight-matches {
+    display: flex;
+    --slide-size: 33.7rem;
+  }
+
   .embla__controls {
     position: absolute;
     right: 0;

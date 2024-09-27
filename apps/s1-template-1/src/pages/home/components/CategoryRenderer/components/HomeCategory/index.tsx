@@ -49,9 +49,18 @@ const HomeCategory = () => {
             <GameCardSlider data={sportGameList} />
           </EmblaCarousel>
         </Group>
-        <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={false}>
-          <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
-        </EmblaCarousel>
+
+        <Group className="game-area">
+          <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
+          <EmblaCarousel
+            options={gameTypeEmblaOptions}
+            hasControlButton={true}
+            extraClassName="highlight-matches"
+          >
+            <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
+          </EmblaCarousel>
+        </Group>
+
         <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />

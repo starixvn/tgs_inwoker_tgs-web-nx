@@ -2,8 +2,9 @@ import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { HightLightMatchDto } from "@tgs-web-nx/types";
 import { format, isToday, isTomorrow } from "date-fns";
+import { Img } from "react-image";
 
-import { KickOffTimeContainer, LeagueName, LiveIcon, MatchCardBg, Score, SelectionButton, SelectionContainer, SelectionOdds, SelectionPoint, TeamInfo } from "./style";
+import { KickOffTimeContainer, LeagueName, LiveIcon, LogoContainer, MatchCardBg, Score, SelectionButton, SelectionContainer, SelectionOdds, SelectionPoint, TeamInfo, TeamName } from "./style";
 
 interface MatchCardProps {
   match: HightLightMatchDto;
@@ -43,25 +44,34 @@ const MatchCard = ({ match }: MatchCardProps) => {
           <>
             {match.gameInfo.isHt ? "1st half" : "2nd half"}
             <LiveIcon>
-              <img
-                src="/assets/images/highlight-matches/icon-live.webp"
-                width={24}
-                height={24}
-                alt="live"
-              />
+              <img src="/assets/images/highlight-matches/icon-live.webp" alt="live" />
             </LiveIcon>
           </>
         )}
       </KickOffTimeContainer>
       <TeamInfo>
-        <img className="logo" src={teamInfo.homeIconUrl} alt={teamInfo.homeName} />
-        <span>{teamInfo.homeName}</span>
+        <LogoContainer>
+          <Img
+            className="logo"
+            src={teamInfo.homeIconUrl}
+            alt={teamInfo.homeName}
+            unloader={<DefaultLogo isSoccer={true} />}
+          />
+        </LogoContainer>
+        <TeamName>{teamInfo.homeName}</TeamName>
         {match.isLive && <Score>{match.gameInfo.liveHomeScore}</Score>}
       </TeamInfo>
 
       <TeamInfo>
-        <img className="logo" src={teamInfo.awayIconUrl} alt={teamInfo.awayName} />
-        <span>{teamInfo.awayName}</span>
+        <LogoContainer>
+          <Img
+            className="logo"
+            src={teamInfo.awayIconUrl}
+            alt={teamInfo.awayName}
+            unloader={<DefaultLogo isSoccer={true} />}
+          />
+        </LogoContainer>
+        <TeamName>{teamInfo.awayName}</TeamName>
         {match.isLive && <Score>{match.gameInfo.liveAwayScore}</Score>}
       </TeamInfo>
       <SelectionContainer>
@@ -76,6 +86,17 @@ const MatchCard = ({ match }: MatchCardProps) => {
         })}
       </SelectionContainer>
     </MatchCardBg>
+  );
+};
+
+const DefaultLogo: React.FC<{ isSoccer: boolean }> = ({ isSoccer }) => {
+  return (
+    <img
+      width={26}
+      height={26}
+      src={`/assets/images/highlight-matches/${isSoccer ? "soccer-logo" : "basket-ball-logo"}.webp`}
+      alt="Logo"
+    />
   );
 };
 

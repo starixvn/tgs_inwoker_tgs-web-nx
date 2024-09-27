@@ -18,6 +18,13 @@ export const MatchCardBg = styled.div`
 
 export const LeagueName = styled.div`
   color: ${({ theme }) => theme.highlightMatchLeagueName};
+  text-transform: lowercase;
+
+  &::first-letter,
+  &::first-line {
+    text-transform: capitalize;
+  }
+}
 `;
 
 export const KickOffTimeContainer = styled.div`
@@ -30,26 +37,51 @@ export const KickOffTimeContainer = styled.div`
 
 export const TeamInfo = styled.div`
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 3rem 1fr 3rem;
   align-items: center;
   gap: 0.4rem;
   margin-bottom: 1rem;
+`;
+
+export const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  padding: 0.2rem;
+  border-radius: 50%;
+  background: rgba(212, 212, 212, 0.4);
+  backdrop-filter: blur(0.2rem);
+  overflow: hidden;
 
   .logo {
-    width: 2.6rem;
-    height: 2.6rem;
     border-radius: 50%;
+    width: 100%;
+    max-width: 100%;
   }
 `;
 
-export const BetTypeName = styled.div`
+export const TeamName = styled.div`
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 1) 40%,
+    rgba(255, 255, 255, 0) 96%
+  );
+  color: transparent;
+  background-clip: text;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+export const Score = styled.div`
   display: flex;
-  position: relative;
-  width: 100%;
-  padding: 1%;
-  opacity: 0.5;
-  font-size: 12px;
-  text-align: left;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 1.6rem;
 `;
 
 export const SelectionContainer = styled.div`
@@ -70,31 +102,16 @@ export const SelectionButton = styled.div`
   border-radius: 0.8rem;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
+  font-size: 1.3rem;
 `;
 
 export const SelectionOdds = styled.div`
-  font-size: 1.3rem;
   text-align: right;
 `;
 
 export const SelectionPoint = styled.div`
-  font-size: 1.3rem;
   text-align: left;
-  color: #cbcbcb;
-`;
-
-export const Score = styled.div`
-  position: absolute;
-  right: 0;
-  display: flex;
-  min-width: 3rem;
-  height: 3rem;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.8rem;
-  background: rgba(255, 255, 255, 0.1);
-  font-size: 1.6rem;
-  font-weight: 700;
+  color: ${({ theme }) => theme.highlightMatchLeagueName};
 `;
 
 export const LiveIcon = styled.div`
