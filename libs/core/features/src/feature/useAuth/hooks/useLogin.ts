@@ -11,6 +11,7 @@ import {
 } from "@tgs-web-nx/core";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { GetBankCardListResDto } from "@tgs-web-nx/types";
+import { enqueueSnackbar } from "notistack";
 import { useAuthDialog } from "../../useAuthDialog";
 import { useHomeGameContext } from "../../game/useHomeGameContext";
 import { useTransferWallets } from "../../useUserWalletInfo/hooks/useTransferWallets";
@@ -114,7 +115,11 @@ export function useLogin() {
     if (code === 210) {
       throw new Error("banned");
     } else {
-      throw new Error(i18n.t("common.msgInvalidUsername"));
+      enqueueSnackbar(i18n.t("common.msgInvalidUsername"), {
+        variant: "error",
+      });
+      throw new Error("");
+      //   throw new Error(i18n.t("common.msgInvalidUsername"));
     }
   };
 

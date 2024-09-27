@@ -21,14 +21,14 @@ export function useGenerateLoginFormik({ handleClickSubmit }: Props) {
         name: "username",
         initialValue: remember === "true" ? username : "",
         type: FormInputTypeEnum.TEXT,
-        validationSchema: Yup.string().required("Username is required"),
+        validationSchema: Yup.string().required(i18n.t("common.msgUsernameRequired")),
       },
       {
         label: i18n.t("common.password"),
         name: "password",
         type: FormInputTypeEnum.PASSWORD,
         initialValue: "",
-        validationSchema: Yup.string().required("Password is required"),
+        validationSchema: Yup.string().required(i18n.t("common.msgPasswordRequired")),
       },
     ].filter((item) => !!item) as FormikFormInput[];
   }, []);
