@@ -245,4 +245,18 @@ export const theme = {
   highlightMatchTime: "#6AC5FF",
   highlightMatchTextColor: "#fff",
   highlightMatchOdds: "#CBCBCB",
+
+  // Tag Status Transactions
+  statusProcessingBackground: "rgba(9, 255, 78, 0.20)",
+  circleProcessingBackground: "#09FF4E",
+  statusApprovedBackground: "rgba(128, 255, 50, 0.20)",
+  circleApprovedBackground: "#80FF32",
+  statusPendingBackground: "rgba(255, 92, 0, 0.20)",
+  circlePendingBackground: "#FF5C00",
+  statusRejectBackground: "rgba(255, 50, 50, 0.20)",
+  circleRejectBackground: "#FF3232",
+  statusPayingBackground: "rgba(235, 109, 255, 0.20)",
+  circlePayingBackground: "#EB6DFF",
+  statusPaidBackground: "rgba(0, 178, 255, 0.20)",
+  circlePaidBackground: "#00B2FF",
 };

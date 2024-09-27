@@ -1,4 +1,4 @@
-import { CustomizeTablePagination, ReportCardsContainer, ReportTable, TagStatus } from "@/components/styled-component/Report";
+import { CustomizeTablePagination, ReportCardsContainer, ReportTable, TagStatusApproved, TagStatusPending, TagStatusProcessing, TagStatusRejected } from "@/components/styled-component/Report";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { theme } from "@/theme";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
@@ -75,7 +75,10 @@ const DepositDetailTable = ({
                   <TableCell align={"center"} sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }}>{date}</TableCell>
                   <TableCell align={"center"} sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>{orderno}</TableCell>
                   <TableCell align={"center"} sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>
-                    <TagStatus>{i18n.t(`report.deposit.status${status}`)}</TagStatus>
+                    {status === 1 && <TagStatusPending>{i18n.t(`report.deposit.status${status}`)}</TagStatusPending>}
+                    {status === 2 && <TagStatusProcessing>{i18n.t(`report.deposit.status${status}`)}</TagStatusProcessing>}
+                    {status === 3 && <TagStatusApproved>{i18n.t(`report.deposit.status${status}`)}</TagStatusApproved>}
+                    {status === 4 && <TagStatusRejected>{i18n.t(`report.deposit.status${status}`)}</TagStatusRejected>}                   
                   </TableCell>
                   <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0", color: `${theme.amountColor} !important`, fontWeight: "700 !important" }} align={"right"}>{amount}</TableCell>
                 </TableRow>

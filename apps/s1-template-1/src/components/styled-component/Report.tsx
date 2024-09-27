@@ -133,15 +133,61 @@ export const DateRangeSelector = styled.div`
 
 
 export const TagStatus = styled.span`
-  padding: .8rem 1.2rem;
+  padding: .6rem 1.2rem .6rem 3.2rem;
   border-radius: 2rem;
   font-size: 1.4rem;
   color: ${({ theme }) => theme.text};
   position: relative;
   display: inline-block;
   &:before {
-    content: "&\2B24";
+    content: "";
     position:absolute;
-    left: 0;
+    left: 1.4rem;
+    width: 1rem;
+    height: 1rem;
+    top: 1.3rem;
+    border-radius: 2rem;
+  }
+`;
+
+export const TagStatusProcessing = styled(TagStatus)`
+  background: ${({ theme }) => theme.statusProcessingBackground};
+  &:before {
+    background: ${({ theme }) => theme.circleProcessingBackground};
+  }
+`;
+
+export const TagStatusPending = styled(TagStatus)`
+  background: ${({ theme }) => theme.statusPendingBackground};
+  &:before {
+    background: ${({ theme }) => theme.circlePendingBackground};
+  }
+`;
+
+export const TagStatusApproved = styled(TagStatus)`
+  background: ${({ theme }) => theme.statusApprovedBackground};
+  &:before {
+    background: ${({ theme }) => theme.circleApprovedBackground};
+  }
+`;
+
+export const TagStatusRejected = styled(TagStatus)`
+  background: ${({ theme }) => theme.statusRejectBackground};
+  &:before {
+    background: ${({ theme }) => theme.circleRejectBackground};
+  }
+`;
+
+export const TagStatusPaying = styled(TagStatus)`
+  background: ${({ theme }) => theme.statusPayingBackground};
+  &:before {
+    background: ${({ theme }) => theme.circlePayingBackground};
+  }
+`;
+
+export const TagStatusPaid = styled(TagStatus)`
+  background: ${({ theme }) => theme.statusPaidBackground};
+  &:before {
+    background: ${({ theme }) => theme.circlePaidBackground};
   }
 `;
