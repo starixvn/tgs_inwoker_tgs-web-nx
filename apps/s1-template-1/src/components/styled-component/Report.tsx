@@ -1,6 +1,6 @@
 import { theme } from "@/theme";
 import { media } from "@/theme/breakpoints";
-import { styled as muiStyled, Table, TablePagination } from "@mui/material";
+import { styled as muiStyled, Table, TableCell, TablePagination } from "@mui/material";
 import styled from "styled-components";
 
 export const ReportContainer = styled.div`
@@ -63,29 +63,43 @@ export const WinLossZero = styled.span`
 
 export const ReportTable = muiStyled(Table)(({ theme }) => ({
   borderRadius: `${theme.palette.table.tableBorderRadius}`,
-  tableLayout: "fixed",
   "& .MuiTableHead-root .MuiTableCell-root": {
-    fontSize: "1.4rem",
+    fontSize: "1.2rem",
     fontWeight: 500,
     whiteSpace: "nowrap",
-    padding: "0 1.6rem",
+    padding: "0 .4rem",
     color: `${theme.palette.table.tableHeaderColor}`,
-    height: "4.8rem",
+    height: "3.6rem",
     background: `${theme.palette.table.tableHeaderBackground}`,
     borderBottom:  `1px solid ${theme.palette.table.tableHeaderBorderColor}`,   
     fontFamily: "inherit",
+    [theme.breakpoints.up('sm')]: {
+      padding: "0 1.6rem",
+      fontSize: "1.4rem",
+      height: "4.8rem",
+    },
+    
   },
 
   "& .MuiTableBody-root .MuiTableCell-root": {
-    fontSize: "1.4rem",
+    fontSize: "1.1rem",
     fontWeight: 400,
     color: theme.palette.text.primary,
     borderBottom: `1px solid ${theme.palette.table.tableBorderColor}`,
-    padding: ".8rem 1.6rem",
+    padding: ".8rem .4rem",
     background: `${theme.palette.table.tableBackground}`,
     fontFamily: "inherit",    
-    height: "4.8rem",
-    lineHeight: "2.4rem",
+    height: "3.6rem",
+    lineHeight: "1.2rem",    
+    [theme.breakpoints.up('sm')]: {
+      fontSize: "1.2rem",
+      padding: ".8rem 1.6rem",
+      lineHeight: "2.4rem",
+      height: "4.8rem",
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: "1.4rem"
+    },
   },
   
 }));
@@ -118,6 +132,14 @@ export const CustomizeTablePagination = muiStyled(TablePagination)(({ theme }) =
   }
 }));
 
+export const DateTimeTableCell = muiStyled(TableCell)(({ theme }) => ({
+  width: "9rem",
+  [theme.breakpoints.up('sm')]: {
+    width: "28rem",
+  }
+
+}));
+
 export const ReportMainContainer = styled.div`
   width: 100%;
   display: flex;
@@ -129,64 +151,101 @@ export const DateRangeSelector = styled.div`
   align-items: flex-start;
   gap: .8rem;
   margin-right: 1.2rem;
+  margin-bottom: 1.2rem;
 `;
 
 
 export const TagStatus = styled.span`
-  padding: .6rem 1.2rem .6rem 3.2rem;
+  padding: .3rem .6rem .3rem .6rem;
   border-radius: 2rem;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: ${({ theme }) => theme.text};
   position: relative;
   display: inline-block;
+  line-height: 2rem;
+  background: transparent;
   &:before {
-    content: "";
     position:absolute;
-    left: 1.4rem;
-    width: 1rem;
-    height: 1rem;
-    top: 1.3rem;
+    left: .5rem;
+    width: .8rem;
+    height: .8rem;
+    top: .9rem;
     border-radius: 2rem;
+  }
+  ${media.sm} {
+    font-size: 1.2rem;
+    padding: .6rem 1.2rem .6rem 3.2rem;
+    line-height: 2.4rem;
+    &:before {
+    left: 1.4rem;
+    top: 1.3rem;
+    content: "";
+  }
+  ${media.lg} {
+    font-size: 1.4rem;
+  }
   }
 `;
 
-export const TagStatusProcessing = styled(TagStatus)`
-  background: ${({ theme }) => theme.statusProcessingBackground};
+export const TagStatusProcessing = styled(TagStatus)`  
+  color: ${({ theme }) => theme.circleProcessingBackground};
+  ${media.sm} {
+    background: ${({ theme }) => theme.statusProcessingBackground};
+  }
   &:before {
     background: ${({ theme }) => theme.circleProcessingBackground};
   }
 `;
 
 export const TagStatusPending = styled(TagStatus)`
-  background: ${({ theme }) => theme.statusPendingBackground};
+  color: ${({ theme }) => theme.circlePendingBackground};
+  ${media.sm} {
+    background: ${({ theme }) => theme.statusPendingBackground};
+  }  
   &:before {
     background: ${({ theme }) => theme.circlePendingBackground};
   }
 `;
 
 export const TagStatusApproved = styled(TagStatus)`
-  background: ${({ theme }) => theme.statusApprovedBackground};
+  color: ${({ theme }) => theme.circleApprovedBackground};
+  ${media.sm} { 
+    background: ${({ theme }) => theme.statusApprovedBackground};
+  }
+  
   &:before {
     background: ${({ theme }) => theme.circleApprovedBackground};
   }
 `;
 
 export const TagStatusRejected = styled(TagStatus)`
+  color: ${({ theme }) => theme.circleRejectBackground};
+ ${media.sm} {
   background: ${({ theme }) => theme.statusRejectBackground};
+ }
+  
   &:before {
     background: ${({ theme }) => theme.circleRejectBackground};
   }
 `;
 
 export const TagStatusPaying = styled(TagStatus)`
-  background: ${({ theme }) => theme.statusPayingBackground};
+  color: ${({ theme }) => theme.circlePayingBackground};
+  ${media.sm} { 
+    background: ${({ theme }) => theme.statusPayingBackground};
+  }
+  
   &:before {
     background: ${({ theme }) => theme.circlePayingBackground};
   }
 `;
 
 export const TagStatusPaid = styled(TagStatus)`
-  background: ${({ theme }) => theme.statusPaidBackground};
+  color: ${({ theme }) => theme.circlePaidBackground};
+  ${media.sm} { 
+    background: ${({ theme }) => theme.statusPaidBackground};
+  }
+  
   &:before {
     background: ${({ theme }) => theme.circlePaidBackground};
   }

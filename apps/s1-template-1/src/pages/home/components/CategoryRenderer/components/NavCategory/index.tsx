@@ -1,13 +1,10 @@
-import { useHistory } from "react-router";
-import styled from "styled-components";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { GameService, useAccountStore } from "@tgs-web-nx/core";
-import { FilterTagTypeEnum, useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { utility } from "@tgs-web-nx/utils";
 import DesktopVendorCard from "@/pages/home/components/VendorCard/desktop";
 import { media } from "@/theme/breakpoints";
 import { SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { useGetLobbyCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { i18n, utility } from "@tgs-web-nx/utils";
+import { useHistory } from "react-router";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +29,6 @@ const DesktopCategoryContentWrapper = styled.div`
 
 const NoDataText = styled.div`
   color: #333;
-  font-size: 1rem;
   font-weight: 700;
   text-align: center;
 `;

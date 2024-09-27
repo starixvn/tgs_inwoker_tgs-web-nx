@@ -1,4 +1,4 @@
-import { CustomizeTablePagination, ReportCardsContainer, ReportTable, TagStatusApproved, TagStatusPending, TagStatusProcessing, TagStatusRejected } from "@/components/styled-component/Report";
+import { CustomizeTablePagination, DateTimeTableCell, ReportCardsContainer, ReportTable, TagStatusApproved, TagStatusPending, TagStatusProcessing, TagStatusRejected } from "@/components/styled-component/Report";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { theme } from "@/theme";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
@@ -34,15 +34,14 @@ const DepositDetailTable = ({
       <ReportTable aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell
+            <DateTimeTableCell
               sx={{
-                borderTopLeftRadius: `${theme.tableBorderRadius}`,
-                width: "28rem"
+                borderTopLeftRadius: `${theme.tableBorderRadius}`
               }}
               align={"center"}
             >
               <>{i18n.t("report.submitDate")}</>
-            </TableCell>
+            </DateTimeTableCell>
             <TableCell align={"center"} sx={{
                 width: "28rem"
               }}>

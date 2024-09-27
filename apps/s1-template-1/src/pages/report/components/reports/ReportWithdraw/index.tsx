@@ -2,7 +2,6 @@ import Loading from "@/components/UI/Loading";
 import { DateRangeInfo, useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import { useWithdrawalStatus } from "@/components/account/Report/hooks/useWithdrawalStatus";
 import { ReportContainer } from "@/components/styled-component/Report";
-import WithdrawalDetailCards from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailCards";
 import WithdrawalDetailTable from "@/pages/report/components/reports/ReportWithdraw/components/WithdrawalDetailTable";
 import { ReportService } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
@@ -125,7 +124,6 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
         handleStatusChange={handleStatusChange}
       />
       <ReportContainer>
-        {isDesktopSize ? (
           <WithdrawalDetailTable
             withdrawalDetails={withdrawalDetails}
             totalCount={totalCount}
@@ -133,9 +131,6 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
             pageSize={PAGE_SIZE}
             onPageChange={(page: number) => handlePageChange(page)}
           />
-        ) : (
-          <WithdrawalDetailCards withdrawalDetails={withdrawalDetailsForMobile} />
-        )}
         <Loading show={isLoading} />
       </ReportContainer>
       {/*@ts-ignore*/}

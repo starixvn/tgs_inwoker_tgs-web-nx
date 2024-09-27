@@ -15,8 +15,8 @@ import styled from "styled-components";
 import { ReportTabIndexEnum } from "./hooks/useReportTypeTabs";
 
 export const Title = styled.div`
-  color: ${({ theme }) => theme.text};
-  font-size: 1.25rem;
+  color: ${({ theme }) => theme.noDataTextColor};
+  font-size: 1.4rem;
   font-weight: 700;
 `;
 

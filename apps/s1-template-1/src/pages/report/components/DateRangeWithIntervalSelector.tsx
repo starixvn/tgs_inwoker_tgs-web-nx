@@ -1,4 +1,5 @@
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
 
@@ -6,8 +7,15 @@ const DateRangContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 1.2rem;
-  align-items: flex-end;
-  margin-right: 1.2rem;
+  align-items: flex-end;  
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 1.2rem;
+  ${media.sm} {
+    margin-right: 1.2rem;
+    width: unset;
+  }
+  
 `;
 
 type DateRangSelectionTypes = {
@@ -24,14 +32,22 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   align-items: center;
   font-weight: 700;
   height: 3.6rem;
-  border-radius: 1rem;
-  min-width: 13.8rem;
+  border-radius: 1rem;  
   justify-content: center;
+  flex-grow: 1;
+  flex-basic: 0;
+  max-width: 100%;
+  font-size: 1.4rem;
+  ${media.lg} {
+    width: 13.8rem;   
+    flex-grow: 0;
+  }
+  ${media.sm} {
+   flex-grow: 0;
+   min-width: 10rem;   
+  }
 `;
 
-const TodaySelection = styled(DateRangSelection)`
-  background: #95A90B;
-`;
 
 export enum DateRangeEnum {
   TODAY,

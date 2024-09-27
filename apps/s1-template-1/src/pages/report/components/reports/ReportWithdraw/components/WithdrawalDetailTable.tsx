@@ -1,7 +1,9 @@
-import { CustomizeTablePagination, ReportCardsContainer, ReportTable, TagStatusApproved, TagStatusPaid, TagStatusPaying, TagStatusPending, TagStatusProcessing, TagStatusRejected } from "@/components/styled-component/Report";
+import { CustomizeTablePagination, DateTimeTableCell, ReportCardsContainer, ReportTable, TagStatusApproved, TagStatusPaid, TagStatusPaying, TagStatusPending, TagStatusProcessing, TagStatusRejected } from "@/components/styled-component/Report";
+import { EditIcon } from "@/components/UI/CustomizeIcon";
 import NoRecord from "@/pages/report/components/NoRecord";
 import { theme } from "@/theme";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import moment from "moment";
@@ -24,6 +26,7 @@ const WithdrawalDetailTable = ({
   const handleChangePage = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     onPageChange(newPage);
   };
+  const { isDesktopSize } = useRwd();
 
   if (withdrawalDetails.length <= 0) {
     return <NoRecord />;
@@ -34,21 +37,19 @@ const WithdrawalDetailTable = ({
       <ReportTable aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell
+            <DateTimeTableCell
               sx={{
-                borderTopLeftRadius: `${theme.tableBorderRadius}`,
-                width: "25rem"
+                borderTopLeftRadius: `${theme.tableBorderRadius}`
               }}
               align={"center"}
             >
               <>{i18n.t("report.RequestDate")}</>
-            </TableCell>
+            </DateTimeTableCell>
             <TableCell align={"center"}>
               <>{i18n.t("report.OrderNumber")}</>
             </TableCell>
-            <TableCell align={"center"}>
-              <>{i18n.t("remark")}</>
-            </TableCell>
+            {isDesktopSize && <TableCell align={"center"}><>{i18n.t("remark")}</></TableCell>}
+            
             <TableCell align={"center"}>
               <>{i18n.t("report.status")}</>
             </TableCell>
@@ -73,14 +74,14 @@ const WithdrawalDetailTable = ({
               <TableRow key={id}>
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomLeftRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }} align={"center"}>{date}</TableCell>
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>{orderno}</TableCell>
-                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>{remark}</TableCell>
+                {isDesktopSize && <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>{remark}</TableCell>}
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>
-                  {status === 1 && <TagStatusPending>{i18n.t(`report.deposit.status${status}`)}</TagStatusPending>}
-                  {status === 2 && <TagStatusProcessing>{i18n.t(`report.deposit.status${status}`)}</TagStatusProcessing>}
-                  {status === 3 && <TagStatusApproved>{i18n.t(`report.deposit.status${status}`)}</TagStatusApproved>}
-                  {status === 4 && <TagStatusRejected>{i18n.t(`report.deposit.status${status}`)}</TagStatusRejected>} 
-                  {status === 5 && <TagStatusPaying>{i18n.t(`report.deposit.status${status}`)}</TagStatusPaying>}  
-                  {status === 6 && <TagStatusPaid>{i18n.t(`report.deposit.status${status}`)}</TagStatusPaid>}
+                  {status === 1 && <TagStatusPending>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <EditIcon sx={{fontSize: "1rem"}} viewBox="0 0 10 10"></EditIcon>}</TagStatusPending>}
+                  {status === 2 && <TagStatusProcessing>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <EditIcon sx={{fontSize: "1rem"}} viewBox="0 0 10 10"></EditIcon>}</TagStatusProcessing>}
+                  {status === 3 && <TagStatusApproved>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <EditIcon sx={{fontSize: "1rem"}} viewBox="0 0 10 10"></EditIcon>}</TagStatusApproved>}
+                  {status === 4 && <TagStatusRejected>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <EditIcon sx={{fontSize: "1rem"}} viewBox="0 0 10 10"></EditIcon>}</TagStatusRejected>} 
+                  {status === 5 && <TagStatusPaying>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <EditIcon sx={{fontSize: "1rem"}} viewBox="0 0 10 10"></EditIcon>}</TagStatusPaying>}  
+                  {status === 6 && <TagStatusPaid>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <EditIcon sx={{fontSize: "1rem"}} viewBox="0 0 10 10"></EditIcon>}</TagStatusPaid>}
                 </TableCell>
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0", color: `${theme.amountColor} !important`, fontWeight: "700 !important" }} align={"right"}>{amount}</TableCell>
               </TableRow>

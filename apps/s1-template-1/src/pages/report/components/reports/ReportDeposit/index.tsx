@@ -2,7 +2,6 @@ import Loading from "@/components/UI/Loading";
 import { DateRangeInfo, useDateRange } from "@/components/account/Report/hooks/useDateRange";
 import { useDepositStatus } from "@/components/account/Report/hooks/useDepositStatus";
 import { ReportContainer } from "@/components/styled-component/Report";
-import DepositDetailCards from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailCards";
 import DepositDetailTable from "@/pages/report/components/reports/ReportDeposit/components/DepositDetailTable";
 import { ReportService } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
@@ -129,7 +128,6 @@ const ReportDeposit = ({ dateRangeInfo}: Props) => {
           handleStatusChange={handleStatusChange}
         />
       <ReportContainer>
-        {isDesktopSize ? (
           <DepositDetailTable
             transferDetails={depositDetails}
             totalCount={totalCount}
@@ -137,10 +135,6 @@ const ReportDeposit = ({ dateRangeInfo}: Props) => {
             pageSize={PAGE_SIZE}
             onPageChange={(page: number) => handlePageChange(page)}
           />
-        ) : (
-          <DepositDetailCards transferDetails={depositDetailsForMobile} />
-        )}
-
         <Loading show={isLoading} />
       </ReportContainer>
       

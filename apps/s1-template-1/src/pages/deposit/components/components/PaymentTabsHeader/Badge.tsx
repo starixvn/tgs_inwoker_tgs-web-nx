@@ -1,6 +1,5 @@
 
 import { theme } from "@/theme";
-import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
 
@@ -25,12 +24,9 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  ${media.sm} {
-    flex-basis: 0;
-    max-width: 100%;
-    flex-grow: 1;
-  }
+  flex-basis: 0;
+  max-width: 100%;
+  flex-grow: 1;
 `;
 
 type Props = {
