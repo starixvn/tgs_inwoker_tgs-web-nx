@@ -11,7 +11,7 @@ import { theme } from "@/theme";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { AccountService, MilestoneList, MilestonePromotionList } from "@tgs-web-nx/core";
 import { contextType, RewardContext, useUpdatePageName } from "@tgs-web-nx/core/features";
-import { GetMilestoneListResDto } from "@tgs-web-nx/types";
+import { GetMilestoneListResDto, MilestoneType } from "@tgs-web-nx/types";
 
 const RewardPage = () => {
   useUpdatePageName(i18n.t("reward.milestone"));
@@ -25,9 +25,10 @@ const RewardPage = () => {
     queryFn: async () => {
       const res = await AccountService.getMilestoneList();
       if (res.IsSuccess) {
-        if (context.selectedMilestone.promotionId === "") {
-          context.setSelectedMilestone(res.data[0]);
-        }
+        const newSelectedMilestone = res.data.find(
+          (item: MilestoneType) => item.promotionId === context.selectedMilestone.promotionId,
+        );
+        context.setSelectedMilestone(newSelectedMilestone ? newSelectedMilestone : res.data[0]);
         return res;
       }
     },
