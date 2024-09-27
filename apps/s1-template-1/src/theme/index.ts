@@ -142,6 +142,7 @@ export const theme = {
   iconCopyColorHover: "#fff",
   winAmountColor: "#189EFF",
   lossAmountColor: "#FF1818",
+  amountColor: "#FFDA18",
 
   // Tab
   tabBackground:

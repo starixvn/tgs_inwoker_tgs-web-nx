@@ -77,7 +77,7 @@ const WithdrawalDetailTable = ({
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>
                   <TagStatus>{i18n.t(`report.withdrawal.status${status}`)}</TagStatus>
                 </TableCell>
-                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }} align={"right"}>{amount}</TableCell>
+                <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0", color: `${theme.amountColor} !important`, fontWeight: "700 !important" }} align={"right"}>{amount}</TableCell>
               </TableRow>
             );
           })}

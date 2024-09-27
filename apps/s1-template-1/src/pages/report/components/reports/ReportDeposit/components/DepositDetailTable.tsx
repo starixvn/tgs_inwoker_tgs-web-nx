@@ -77,7 +77,7 @@ const DepositDetailTable = ({
                   <TableCell align={"center"} sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }}>
                     <TagStatus>{i18n.t(`report.deposit.status${status}`)}</TagStatus>
                   </TableCell>
-                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0" }} align={"right"}>{amount}</TableCell>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0", color: `${theme.amountColor} !important`, fontWeight: "700 !important" }} align={"right"}>{amount}</TableCell>
                 </TableRow>
               );
             })}
