@@ -29,11 +29,11 @@ const TicketStatus = {
 };
 
 const BetHistoryStatus: { [key: number]: string } = {
-  [TicketStatus.Open]: i18n.t("common.open"),
-  [TicketStatus.Void]: i18n.t("common.void"),
-  [TicketStatus.Won]: i18n.t("common.won"),
-  [TicketStatus.Lost]: i18n.t("common.lost"),
-  [TicketStatus.Draw]: i18n.t("common.draw"),
+  [TicketStatus.Open]: "Open",
+  [TicketStatus.Void]: "Void",
+  [TicketStatus.Won]: "Won",
+  [TicketStatus.Lost]: "Lost",
+  [TicketStatus.Draw]: "Draw",
 };
 
 type Props = {
@@ -146,7 +146,10 @@ const TransactionDetailTable = ({
                       borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0",
                     }}
                   >
-                    <div>{status != null && BetHistoryStatus[status]}</div>
+                    <div>
+                      {status != null &&
+                        i18n.t(`common.${BetHistoryStatus[status].toString().toLowerCase()}`)}
+                    </div>
                   </TableCell>
                 </TableRow>
               );
