@@ -38,7 +38,7 @@
   "HomePage_PromoRoulette": true,
   "PromoRoulette_SMSVerification": true,
   "ForcedVerification": true,
-  "MAX_PHONE_LENGTH": 32,
+  "MAX_PHONE_LENGTH": 10,
   "OnlineUser": true,
   "AddCard_HideCertainField": false,
   "SlotGame_Sorting_IDR": true,
