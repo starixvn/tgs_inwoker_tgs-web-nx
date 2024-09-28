@@ -30,8 +30,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
     if (!isLogin) {
       goToLogin();
     } else {
-      Common.closePreviousPopup();
-      Common.PopupCenter(`/joingame/${gameId}/${gameProviderCode}`, "gamewindow");
+      window.open(`/joingame/${gameId}/${gameProviderCode}`, "gamewindow");
     }
   };
 
