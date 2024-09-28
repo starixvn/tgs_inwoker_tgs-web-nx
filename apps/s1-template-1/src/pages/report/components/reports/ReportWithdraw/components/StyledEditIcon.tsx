@@ -1,5 +1,5 @@
-import { EditIcon } from "@/components/UI/CustomizeIcon";
 import styled from "styled-components";
+import { EditIcon } from "@/components/UI/CustomizeIcon";
 
 const EditIconContainer = styled.div`
   width: 1.6rem;
@@ -13,10 +13,7 @@ const EditIconContainer = styled.div`
   cursor: pointer;
 `;
 
-type Props = {
-  content: any;
-};
-const StyledEditIcon = ({ content }: Props) => {
+const StyledEditIcon = () => {
   return (
     <EditIconContainer >
       <EditIcon sx={{fontSize: "1rem", color: "#C3D6F1"}} viewBox="0 0 10 10"></EditIcon>
