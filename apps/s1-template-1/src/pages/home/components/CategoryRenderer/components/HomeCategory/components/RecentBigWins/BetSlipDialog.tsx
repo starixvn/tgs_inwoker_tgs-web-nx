@@ -126,7 +126,7 @@ const BetSlipDialog = ({
           </BetInfo>
           <BetInfo>
             <BetInfoText>{i18n.t("betSlip.multiplier")}</BetInfoText>
-            <BetInfoValue>{payout / betAmount}x</BetInfoValue>
+            <BetInfoValue>{(payout / betAmount).toFixed(4)}x</BetInfoValue>
           </BetInfo>
         </BetArea>
         <Divider></Divider>
