@@ -214,7 +214,7 @@ export const theme = {
   // Toast
   toastErrorBorderColor: "#F90B44",
   toastSuccessBorderColor: "#E2FE26",
-  toastWarningBorderColor: "FFC700",
+  toastWarningBorderColor: "#FFC700",
   toastBackgroundColor: "#212A39",
   toastTextColor: "#878EA1",
   toastFontzise: "1.3rem",
