@@ -28,7 +28,7 @@ export const ReturnIconContainer = styled.div`
 `;
 
 export const DialogTitle = styled.div`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   padding-left: 1.2rem;
   letter-spacing: .04rem;

@@ -53,6 +53,11 @@ const ProfileSettings = styled.div`
   padding: 1.2rem;
 `;
 
+const LabelTitle = styled(LabelLargeContainer)`
+  margin-bottom: 1.2rem;
+  height: 3.6rem;
+`;
+
 const ProfileMenuMobile = () => {
   const { general } = useGeneralStore();
   const languageList = general.brandLanguage;
@@ -78,7 +83,7 @@ const ProfileMenuMobile = () => {
   console.log("profileItemDictionary", profileItemDictionary);
   return (
     <ProfileSettings>
-      <LabelLargeContainer>Profile Settings</LabelLargeContainer>
+      <LabelTitle>Profile Settings</LabelTitle>
         <ProfileRowInMobile
           profileItem={profileItemDictionary["name"]}
           handleClick={handleClickProfileItem}

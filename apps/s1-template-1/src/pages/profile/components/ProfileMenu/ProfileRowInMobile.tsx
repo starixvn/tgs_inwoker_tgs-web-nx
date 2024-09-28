@@ -61,6 +61,7 @@ export const ItemContainer = styled.div`
   width: 100%;
   marginBottom: 1.2rem;
   display: flex;
+  height: 4.8rem;
 `;
 
 type ProfileItemProps = {

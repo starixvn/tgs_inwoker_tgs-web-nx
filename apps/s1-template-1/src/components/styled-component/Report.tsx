@@ -176,7 +176,7 @@ export const DateRangeSelector = styled.div`
 
 
 export const TagStatus = styled.span`
-  padding: .3rem .6rem .3rem .6rem;
+  padding: .3rem;
   border-radius: 2rem;
   font-size: 1.1rem;
   color: ${({ theme }) => theme.text};
