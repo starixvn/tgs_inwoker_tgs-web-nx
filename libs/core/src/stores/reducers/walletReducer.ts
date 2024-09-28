@@ -169,8 +169,7 @@ function mapDepositList(result) {
   return { depositList };
 }
 function mapDepositType(result) {
-  const data = result.data;
-
+  const data = result.data.sort((a,b) => a.displayorder - b.displayorder);
   const depositTypeList = [];
   const checkDuplicate = [];
   let depositMinLimit = 99999999;
