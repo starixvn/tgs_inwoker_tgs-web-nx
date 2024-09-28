@@ -20,7 +20,7 @@ const MatchCardSlider: React.FC<IMatchSlider> = (props: IMatchSlider) => {
   return (
     <>
       {matches && matches.length === 0 && <NoGame></NoGame>}
-      {matches?.map((match, index) => {
+      {matches && matches.length > 0 && matches?.map((match, index) => {
         return (
           <div className="embla__slide" key={index}>
             <MatchCard key={match.eventId} match={match} />

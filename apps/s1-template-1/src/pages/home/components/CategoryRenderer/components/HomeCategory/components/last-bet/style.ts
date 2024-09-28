@@ -97,6 +97,6 @@ export const PlayerName = styled.div`
   width: 8rem;
   text-align: left;
   white-space: nowrap;
-  /* overflow: hidden; */
+   /* overflow: hidden; */
   text-overflow: ellipsis;
 `;

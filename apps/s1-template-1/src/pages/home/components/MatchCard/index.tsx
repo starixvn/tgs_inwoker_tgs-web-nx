@@ -41,19 +41,18 @@ const MatchCard = ({ match }: MatchCardProps) => {
     <MatchCardBg onClick={launchGame}>
       <LeagueName> {match.leagueName}</LeagueName>
       <KickOffTimeContainer>
-        {getTime()}
-
+        {match.isLive ? `${Math.floor(match.gameInfo.seconds / 60)}' ` : getTime()}
         {match.isLive && (
           <>
             {match.gameInfo.isHt ? "1st half" : "2nd half"}
-            <LiveIcon>
+            {/* <LiveIcon>
               <img
                 src="/assets/images/highlight-matches/icon-live.gif"
                 width={24}
                 height={24}
                 alt="live"
               />
-            </LiveIcon>
+            </LiveIcon> */}
           </>
         )}
       </KickOffTimeContainer>
