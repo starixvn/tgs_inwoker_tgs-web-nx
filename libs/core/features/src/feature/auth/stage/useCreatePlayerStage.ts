@@ -8,6 +8,7 @@ import {
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 
+import { enqueueSnackbar } from "notistack";
 import {
   InvitationType,
   useAuthDialog,
@@ -60,15 +61,24 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
       }
 
       if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.UsernameExisted) {
-        throw new Error(i18n.t("common.msgAlreadyExist"));
+        enqueueSnackbar(i18n.t("common.msgAlreadyExist"), {
+            variant: "error",
+          });
+        throw new Error("")
       }
 
       if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.EmailExisted) {
-        throw new Error(i18n.t("common.msgEmailExist"));
+        enqueueSnackbar(i18n.t("common.msgEmailExist"), {
+            variant: "error",
+          });
+        throw new Error("")
       }
 
       if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.EmailInvalid) {
-        throw new Error(i18n.t("common.msgInvalidEmail"));
+        enqueueSnackbar(i18n.t("common.msgInvalidEmail"), {
+            variant: "error",
+          });
+        throw new Error("")
       }
       //for MOVN2 customization
       if (brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isAddRealNameFieldBrand) {
