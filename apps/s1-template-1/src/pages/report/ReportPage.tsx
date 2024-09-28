@@ -8,7 +8,7 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 
 const ReportPage = () => {
-  useUpdatePageName(i18n.t("affiliate.report"));
+  useUpdatePageName(i18n.t("common.transactions"));
 
   const { isDesktopSize } = useRwd();
 
@@ -16,7 +16,7 @@ const ReportPage = () => {
     <PageContainer>
       {/* {isDesktopSize && <UserWalletInfo />} */}
       {isDesktopSize && <MenuTabs />}
-      <AccountPaper pageName={i18n.t("affiliate.report")} iconUrl={iconReport}>
+      <AccountPaper pageName={i18n.t("common.transactions")} iconUrl={iconReport}>
         <Report />
       </AccountPaper>
     </PageContainer>

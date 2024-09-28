@@ -4,14 +4,15 @@ import AccountPaper from "@/components/project/AccountPaper";
 import MenuTabs from "@/components/project/MenuTabs";
 import { PageContainer } from "@/components/styled-component/PageContainer";
 import { DateRangeSelector, ReportMainContainer } from "@/components/styled-component/Report";
+import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
-import styled from "styled-components";
 import DateRangeWithDatePicker from "../report/components/DateRangeWithDatePicker";
 import DateRangeWithIntervalSelector from "../report/components/DateRangeWithIntervalSelector";
 import ReportBetting from "../report/components/reports/ReportBetting";
 
 const BetHistoryPage = () => {
+  useUpdatePageName(i18n.t("common.betHistory"));
   const { isDesktopSize } = useRwd();
   const {
     dateRangeInfo,
