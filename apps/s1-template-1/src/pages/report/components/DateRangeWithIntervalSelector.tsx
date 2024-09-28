@@ -38,13 +38,9 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   flex-basic: 0;
   max-width: 100%;
   font-size: 1.4rem;
-  ${media.lg} {
-    width: 13.8rem;   
-    flex-grow: 0;
-  }
   ${media.sm} {
    flex-grow: 0;
-   min-width: 10rem;   
+   width: 13.8rem; 
   }
 `;
 

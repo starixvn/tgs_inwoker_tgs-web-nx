@@ -158,8 +158,13 @@ export const DateRangeSelector = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: .8rem;
-  margin-right: 1.2rem;
+  margin-right: 0;
   margin-bottom: 1.2rem;
+  width: 100%;
+  ${media.sm} {
+    margin-right: 1.2rem;
+    width: unset;
+  }
 `;
 
 

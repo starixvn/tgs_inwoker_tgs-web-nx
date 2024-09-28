@@ -1,25 +1,27 @@
 import { useMemo } from "react";
 
 import { DatePickerForReport } from "@/components/UI/DatePicker";
+import { media } from "@/theme/breakpoints";
 import addDays from "date-fns/addDays";
 import styled from "styled-components";
 
 const DateContainer = styled.div`
+  width: 100%;
 `;
 
 const FlatStraightLine = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1.2rem 1fr;
   align-items: center;
-  justify-content: space-between;
 `;
 
 const DateSpliter = styled.div`
-  width: 1.2rem;
 `;
-const DateInner = styled.div`
-  width: 159px;
+const DateInner = styled.div` 
   height: 100%;
+  ${media.sm} {
+     width: 15.9rem;
+  }
 `;
 
 type Props = {

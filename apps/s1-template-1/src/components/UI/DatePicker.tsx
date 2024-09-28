@@ -248,13 +248,18 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
     return $disabled && `pointer-events: none;`;
   }}
   position: relative;
-   background: ${({ theme }) => theme.dropDownBackground};
-   border-radius: 1rem;
-   border: none !important;
+  background: ${({ theme }) => theme.dropDownBackground};
+  border-radius: 1rem;
+  border: none !important;
+  .MuiFormControl-root {
+     width: 100%;
+  }
+  
   .MuiInputBase-root {
     font-size: 1.4rem;
     font-family: inherit;
     font-weight: 700;
+    width: 100%;
   }
   .MuiInputBase-input {   
     color: ${({ theme }) => theme.formInputColor};    

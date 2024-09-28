@@ -1,5 +1,6 @@
 import { Select } from "@/components/UI/Select";
 import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 import { MenuItem } from "@mui/material";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
@@ -10,6 +11,10 @@ const StatusSelectWrapper = styled.div`
   align-items: flex-start;
   flex-direction: column;
   margin-bottom: 1.2rem;
+  width: 100%;
+  ${media.sm} {
+    width: 23rem;
+  }
 `;
 
 const StatusSelectContainer = styled.div`
@@ -17,7 +22,7 @@ const StatusSelectContainer = styled.div`
   border-radius: 1rem;
   display: flex;
   align-items: center;
-  width: 23rem;
+  width: 100%;
  
 `;
 
