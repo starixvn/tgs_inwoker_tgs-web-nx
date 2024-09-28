@@ -1,4 +1,3 @@
-import EmblaCarousel from "@/components/project/embla-carousel";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
@@ -11,6 +10,7 @@ import { GameTypeTitle, Group } from "../../style";
 import BetSlipDialog from "./BetSlipDialog";
 import RecentBigWinsItem from "./RecentBigWinsItem";
 import RecentBigWinSKeleton from "./RecentBigWinSKeleton";
+import EmblaCarousel from "@/components/project/embla-carousel";
 
 type BigWinType = {
   data: RecentBigWinItem[];

@@ -1,7 +1,3 @@
-import { ArrowRightIcon, CloseIcon } from "@/components/UI/CustomizeIcon";
-import { UpTransition } from "@/components/UI/Dialog/Transition";
-import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
-import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
 import { Dialog as MuiDialog, DialogProps } from "@mui/material";
 import { media } from "@tgs-web-nx/constants";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
@@ -11,6 +7,10 @@ import { Img } from "react-image";
 import styled from "styled-components";
 
 import { Avatar, BetArea, BetID, BetInfo, BetInfoText, BetInfoValue, Divider, Game, GameIcon, GameInfo, PlayerArea, PlayerInfo, PlayNow, ProfitText, ProfitValue, Title } from "./style";
+import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
+import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
+import { UpTransition } from "@/components/UI/Dialog/Transition";
+import { ArrowRightIcon, CloseIcon } from "@/components/UI/CustomizeIcon";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
@@ -79,12 +79,12 @@ const BetSlipDialog = ({
     gameProviderCode,
     gameCode,
     betAmount,
-    payout,
     playerName,
     createTime,
     betId,
     profit,
     playerCode,
+    payout
   } = data;
 
   return (
@@ -124,8 +124,8 @@ const BetSlipDialog = ({
             <BetInfoValue>{betAmount}</BetInfoValue>
           </BetInfo>
           <BetInfo>
-            <BetInfoText>{i18n.t("betSlip.payout")}</BetInfoText>
-            <BetInfoValue>{payout}</BetInfoValue>
+            <BetInfoText>{i18n.t("betSlip.multiplier")}</BetInfoText>
+            <BetInfoValue>{payout / betAmount}x</BetInfoValue>
           </BetInfo>
         </BetArea>
         <Divider></Divider>

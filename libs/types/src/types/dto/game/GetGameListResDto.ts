@@ -46,15 +46,14 @@ export interface RecentBigWinItem {
   gameProviderCode: string;
   gameProviderName: string;
   createTime: string;
-  currencyName: string;
+  currencyCode: string;
   playerName: string;
   playerCode: string;
   playerVipLevel: number;
   betId: string;
-  winAmount: number;
   betAmount: number;
   profit: number;
-  payout: string;
+  payout: number;
 }
 
 export interface ResponseResDto<T> {
