@@ -5,6 +5,7 @@ import { i18n, utility } from "@tgs-web-nx/utils";
 import React from "react";
 import { Img } from "react-image";
 import styled from "styled-components";
+import { format } from 'date-fns';
 
 import { Avatar, BetArea, BetID, BetInfo, BetInfoText, BetInfoValue, Divider, Game, GameIcon, GameInfo, PlayerArea, PlayerInfo, PlayNow, ProfitText, ProfitValue, Title } from "./style";
 import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
@@ -135,7 +136,7 @@ const BetSlipDialog = ({
           </Avatar>
           <PlayerInfo>
             <div className="bold">{playerName}</div>
-            <p>{createTime}</p>
+            <p>{format(new Date(createTime), 'MM/dd/yyyy hh:mm:ss a')}</p>
             <BetID>
               {i18n.t("betSlip.betID")}: {betId}
               <span>
