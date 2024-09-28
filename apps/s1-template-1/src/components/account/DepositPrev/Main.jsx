@@ -1,3 +1,10 @@
+import { MenuItem } from "@mui/material";
+import config from "@tgs-web-nx/config";
+import { media } from "@tgs-web-nx/constants";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { Component } from "react";
+import { connect } from "react-redux";
+import styled from "styled-components";
 import {
   AmountHint,
   ExchangeRateContainer,
@@ -27,14 +34,7 @@ import { TextField } from "@/components/UI/TextField";
 import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
-import { MenuItem } from "@mui/material";
-import config from "@tgs-web-nx/config";
-import { media } from "@tgs-web-nx/constants";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { Component } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { connect } from "react-redux";
-import styled from "styled-components";
 
 
 const LabelContainer = styled(ProfileLabelContainer)`
@@ -290,7 +290,7 @@ class Main extends Component {
                   />
                 </QRCodeBounding>
                  <ChannelExtend>
-                  <ChannelExtendTitle>Transfer To</ChannelExtendTitle>
+                  <ChannelExtendTitle>{i18n.t("transfer.transferTo")}</ChannelExtendTitle>
                   {Object.keys(content)
                     .sort((a, b) => {
                       return displaysequence.indexOf(a) - displaysequence.indexOf(b);

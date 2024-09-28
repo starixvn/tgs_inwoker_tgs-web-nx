@@ -1,3 +1,7 @@
+import { NavCardKey } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { useHistory, useLocation } from "react-router";
+import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 import {
   AccountInfoIcon,
@@ -9,10 +13,6 @@ import {
 } from "@/components/UI/CustomizeIcon";
 import { DialogTitle } from "@/components/UI/Dialog/DialogHeader";
 import { theme } from "@/theme";
-import { NavCardKey } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
-import { useHistory, useLocation } from "react-router";
-import styled from "styled-components";
 
 type MenuItem = {
   key: NavCardKey;
@@ -63,7 +63,7 @@ const Tab = styled.div<{ $isActived: boolean }>`
 
 const NavigationContainer = styled.div`
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 `;
 
 const IconContainer = styled.div`
@@ -153,11 +153,13 @@ const MenuTabs = () => {
   ];
   return (
     <NavigationContainer>
-      <IconContainer onClick={() => {
-                history.push("/");
-              }}>
-        <Icon iconUrl="/assets/images/common/icon-back.svg" width={"32px"} height={"32px"}  />
-        <DialogTitle>Home</DialogTitle>
+      <IconContainer
+        onClick={() => {
+          history.push("/");
+        }}
+      >
+        <Icon iconUrl="/assets/images/common/icon-back.svg" width={"32px"} height={"32px"} />
+        <DialogTitle>{i18n.t("common.home")}</DialogTitle>
       </IconContainer>
       <TabContainer>
         {accountMenuList.map((item: MenuItem) => {
