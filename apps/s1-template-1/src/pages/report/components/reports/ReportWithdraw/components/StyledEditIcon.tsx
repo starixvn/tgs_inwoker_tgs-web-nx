@@ -1,5 +1,5 @@
 import { EditIcon } from "@/components/UI/CustomizeIcon";
-import { useSnackbar } from "notistack";
+import { useNotifications } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 
 const EditIconContainer = styled.div`
@@ -18,12 +18,9 @@ type Props = {
   content: any;
 };
 const StyledEditIcon = ({ content }: Props) => {
-  const { enqueueSnackbar } = useSnackbar();
+  const { alert } = useNotifications();
   const handleRemark = (content: any) => {
-    enqueueSnackbar(content, {
-      variant: "info",
-    });
-
+    alert("", content);
   };
   return (
     <EditIconContainer onClick={() => {
