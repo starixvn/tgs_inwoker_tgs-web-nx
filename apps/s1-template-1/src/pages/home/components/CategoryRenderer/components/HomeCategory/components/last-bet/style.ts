@@ -95,7 +95,7 @@ export const TextColor = styled(TableCell) <{ payout: number }>`
 
 export const PlayerName = styled.div`
   width: 8rem;
-  text-align: center;
+  text-align: left;
   white-space: nowrap;
   /* overflow: hidden; */
   text-overflow: ellipsis;
