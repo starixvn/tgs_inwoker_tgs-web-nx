@@ -1,5 +1,6 @@
 import Icon from "@/components/project/Icon";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
+import { media } from "@/theme/breakpoints";
 import { DialogProps, Dialog as MuiDialog } from "@mui/material";
 import { usePageName } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -7,6 +8,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledDialog = styled(MuiDialog)`
+  margin: .8rem;
   & .MuiPaper-root {
     position: relative;
     background: ${({ theme }) => theme.popupBackground};
@@ -14,9 +16,15 @@ const StyledDialog = styled(MuiDialog)`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 3.2rem 3.6rem;
-    min-width: 40.8rem;
+    padding: 2.4rem;
     border-radius: 1.6rem;
+    width: unset;
+    height: unset;
+    min-width: 100%;
+    ${media.sm} {
+      min-width: 40.8rem;
+      padding: 3.2rem 3.6rem;
+    }
   }
 `;
 
