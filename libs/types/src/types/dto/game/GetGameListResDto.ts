@@ -164,4 +164,6 @@ export interface LastBetDto {
   gameProviderCode: string;
   payout: number;
   multiplier: number;
+  gameIconUrl: string;
+  gameType: number;
 }

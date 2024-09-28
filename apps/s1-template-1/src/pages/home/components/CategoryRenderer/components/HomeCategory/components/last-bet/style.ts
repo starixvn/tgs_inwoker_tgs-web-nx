@@ -55,7 +55,7 @@ export const TableWrapper = styled.div`
   }
 `;
 
-export const TableRow = styled(LayoutGrid)<AnimationProps>`
+export const TableRow = styled(LayoutGrid) <AnimationProps>`
   border-radius: 0.8rem;
   border-bottom: 1px solid #151d29;
   background: #151d29;
@@ -67,7 +67,7 @@ export const TableRow = styled(LayoutGrid)<AnimationProps>`
   ${({ $isNew }) =>
     $isNew &&
     css`
-      animation: ${fadeIn} 0.5s ease-in;
+      animation: ${fadeIn} 0.7s ease-in;
     `}
 `;
 
@@ -79,7 +79,7 @@ export const InfoContainer = styled.div`
   gap: 0.4rem;
 `;
 
-export const TextColor = styled(TableCell)<{ payout: number }>`
+export const TextColor = styled(TableCell) <{ payout: number }>`
   text-align: right;
   font-weight: bold;
   color: ${({ payout }) => {
@@ -95,8 +95,8 @@ export const TextColor = styled(TableCell)<{ payout: number }>`
 
 export const PlayerName = styled.div`
   width: 8rem;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
 `;
