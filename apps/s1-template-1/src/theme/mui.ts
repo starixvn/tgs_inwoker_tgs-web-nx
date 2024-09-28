@@ -83,6 +83,22 @@ declare module "@mui/material/styles/createPalette" {
       tableFontSize: string,
       tableHeaderFontSize: string,
       tableBorderRadius: string,
+    };
+
+    calendar: {
+      calendarBackground: string,
+      calendarBorderRadius: string,
+      calendarTextColor: string,
+      calendarTextDisabledColor: string,
+      calendarHeaderColor: string,
+      calendarHighlight: string,
+      calendarHighlightBackground: string,
+      calendarFontSize: string,
+      calendarBoxshadow: string,
+      nextButtonBackground: string,
+      nextButtonColor: string,
+      disabledNextButtonBackground: string,
+      calendarFontSizeMobile: string,
     }
   }
 }
@@ -186,7 +202,23 @@ const muiTheme = createTheme({
       tableFontSize: theme.tableFontSize,
       tableHeaderFontSize: theme.tableHeaderFontSize,
       tableBorderRadius: theme.tableBorderRadius,
-    }
+    }, 
+
+    calendar: {
+      calendarBackground: theme.calendarBackground,
+      calendarBorderRadius: theme.calendarBorderRadius,
+      calendarTextColor: theme.calendarTextColor,
+      calendarTextDisabledColor: theme.calendarTextDisabledColor,
+      calendarHeaderColor: theme.calendarHeaderColor,
+      calendarHighlight: theme.calendarHighlight,
+      calendarHighlightBackground: theme.calendarHighlightBackground,
+      calendarFontSize: theme.calendarFontSize,
+      calendarBoxshadow: theme.calendarBoxshadow,
+      nextButtonBackground: theme.slideNextButtonBackground,
+      nextButtonColor: theme.slideNextButtonColor,
+      disabledNextButtonBackground: theme.disabledSlideNextButtonBackground,
+      calendarFontSizeMobile: theme.calendarFontSizeMobile
+    },
   },
   typography: {
     fontWeightLight: 300,

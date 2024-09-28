@@ -1,5 +1,6 @@
 import { theme } from "@/theme";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/system";
 import {
   DatePickerProps,
   LocalizationProvider,
@@ -46,6 +47,8 @@ const muiTheme = createTheme({
 // }));
 
 export const DatePicker = (props: MobileDatePickerProps<any>) => {
+  const theme = useTheme();
+  const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <LocalizationProvider
       dateAdapter={AdapterDateFns}
@@ -62,34 +65,34 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
             layout: {
               sx: {
                 display: "block !important",
-                background: theme.calendarBackground,
-                boxShadow: theme.calendarBoxshadow,
-                fontSize: theme.calendarFontSize,
-                color: theme.calendarTextColor,
-                width: "42rem",
-                height: "58rem",
+                background: theme.palette.calendar.calendarBackground,
+                boxShadow: theme.palette.calendar.calendarBoxshadow,
+                fontSize: onlySmallScreen ? `${theme.palette.calendar.calendarFontSizeMobile}` : `${theme.palette.calendar.calendarFontSize}`,
+                color: theme.palette.calendar.calendarTextColor,
+                width: onlySmallScreen ? "32rem" : "42rem",
+                height: onlySmallScreen ? "52rem" : "58rem",
                 padding: "2.4rem 1.2rem",
                 overflow: "hidden",
                 "& .MuiDayCalendar-header .MuiDayCalendar-weekDayLabel": {
                   fontSize: "inherit",
-                  color: theme.calendarHeaderColor,
+                  color: theme.palette.calendar.calendarHeaderColor,
                   justifySelf: "center",
-                  height: "5rem",
-                  width: "5rem",
+                  height: onlySmallScreen ? "4rem" : "5rem",
+                  width: onlySmallScreen ? "4rem" : "5rem",
                 },
                 
                 "& .MuiDayCalendar-weekContainer .MuiPickersDay-root": {
                   fontSize: "inherit",
-                  color: `${theme.calendarTextColor}` ,
+                  color: `${theme.palette.calendar.calendarTextColor}` ,
                   justifySelf: "center",
-                  height: "4.8rem",
-                  width: "5rem",
+                  height: onlySmallScreen ? "4rem" : "5rem",
+                  width: onlySmallScreen ? "4rem" : "5rem",
                   "&.Mui-disabled": {
-                    color: theme.calendarTextDisabledColor,
+                    color: theme.palette.calendar.calendarTextDisabledColor,
                   },
                   "&.Mui-selected": {
-                    background: theme.calendarHighlightBackground,
-                    color: theme.calendarHighlight,
+                    background: theme.palette.calendar.calendarHighlightBackground,
+                    color: theme.palette.calendar.calendarHighlight,
                   }
                 },
                 "& .MuiDateCalendar-root": {
@@ -110,7 +113,7 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                   },
                   "& .MuiDatePickerToolbar-title": {
                     fontSize: "2.2rem",
-                    color: theme.calendarTextColor,
+                    color: theme.palette.calendar.calendarTextColor,
                     letterSpacing: "0.44px",
                   }
                 },
@@ -132,9 +135,9 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                     borderBottomWidth: "0.2rem",
                     borderStyle: "solid",
                     transition: "all 0.1s ease-in-out", 
-                    color: theme.white,    
+                    color: theme.palette.white,    
                     "& .MuiSvgIcon-root": {
-                      fill: theme.white,
+                      fill: theme.palette.white,
                     },         
                     "&:hover": {
                       borderBottomWidth: "0.4rem",
@@ -145,8 +148,8 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                       borderBottomColor: "#072341",
                     },
                     "&:last-child":{
-                      background: theme.signInButtonBackground,
-                      borderBottomColor: theme.signInButtonBottomBorderColor,
+                      background: theme.palette.header.signIn.background,
+                      borderBottomColor: theme.palette.header.signIn.bottomBorderColor,
                     }
                   },
                   
@@ -156,11 +159,11 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                   "& .MuiPickersCalendarHeader-labelContainer": {
                     background: "#0A131E", 
                     padding: ".8rem 1.2rem",
-                    fontSize: theme.calendarFontSize,
+                    fontSize: theme.palette.calendar.calendarFontSize,
                     fontFamily: "inherit",
                     borderRadius: ".8rem",
                     "& .MuiButtonBase-root": {
-                      color: theme.white,
+                      color: theme.palette.white,
                     }
                   }
                 },
@@ -178,11 +181,11 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                   "& .MuiPickersArrowSwitcher-button": {
                     padding: ".4rem",
                     borderRadius: ".8rem",
-                    background: theme.slideNextButtonBackground,
-                    color: theme.slideNextButtonColor,
+                    background: theme.palette.calendar.nextButtonBackground,
+                    color: theme.palette.calendar.nextButtonColor,
                     fontSize: "2.4rem",
                     "&.Mui-disabled": {
-                      background: theme.disabledSlideNextButtonBackground,
+                      background: theme.palette.calendar.disabledNextButtonBackground,
                     }
                   }
                 }

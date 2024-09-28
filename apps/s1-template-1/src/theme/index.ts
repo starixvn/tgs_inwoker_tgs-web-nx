@@ -239,6 +239,7 @@ export const theme = {
   calendarHighlightBackground: "#374000",
   calendarFontSize: "1.6rem",
   calendarBoxshadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.40)",
+  calendarFontSizeMobile: "1.4rem",
 
   // Highlight matches
   highlightMatchLeagueName: "#E9E9E9",
