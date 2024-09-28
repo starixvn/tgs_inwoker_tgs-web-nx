@@ -110,8 +110,11 @@ export const CustomizeTablePagination = muiStyled(TablePagination)(({ theme }) =
   justifyContent: "flex-end",
   borderBottom: "none",
   "& .MuiTablePagination-displayedRows": {
-    fontSize: "1.6rem",
+    fontSize: "1.4rem",
     fontFamily: "inherit",
+    [theme.breakpoints.up('sm')]: {
+      fontSize: "1.6rem",
+    }
   },
   "& .MuiIconButton-root": {
     padding: ".4rem", 
@@ -124,8 +127,12 @@ export const CustomizeTablePagination = muiStyled(TablePagination)(({ theme }) =
   },
   "& .MuiTablePagination-actions": {
     display: "flex",
-    gap: "1.2rem",
-    marginLeft: "1.6rem",
+    gap: ".8rem",
+    marginLeft: "1.2rem",
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: "1.6rem",
+      gap: "1.2rem",
+    },
     "& .MuiSvgIcon-root": {
       fontSize: "2.4rem",
     }

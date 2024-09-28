@@ -85,7 +85,7 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                   fontSize: "inherit",
                   color: `${theme.palette.calendar.calendarTextColor}` ,
                   justifySelf: "center",
-                  height: onlySmallScreen ? "4rem" : "5rem",
+                  height: onlySmallScreen ? "4rem" : "4.8rem",
                   width: onlySmallScreen ? "4rem" : "5rem",
                   "&.Mui-disabled": {
                     color: theme.palette.calendar.calendarTextDisabledColor,
