@@ -38,15 +38,15 @@ const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
 
 const routes: RouteType[] = [
   {
-    path: "/deposit/status/noniframe",
+    path: "/deposit/status/iframe",
     component: DepositStatusIframe,
-    layout: DialogLayout,
+    layout: IframeLayout,
     isAnonymousAllowed: true
   },
   {
-    path: "/deposit/status",
+    path: "/deposit/status/",
     component: DepositStatusIframe,
-    layout: IframeLayout,
+    layout: DialogLayout,
     isAnonymousAllowed: true
   },
   {
@@ -393,3 +393,4 @@ if (!config.features.NewTransferUI) {
 }
 
 export { routes };
+
