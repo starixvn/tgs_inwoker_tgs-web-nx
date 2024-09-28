@@ -13,7 +13,7 @@ import { theme } from "@/theme";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import moment from "moment";
 import React from "react";
 import styled from "styled-components";
@@ -134,7 +134,7 @@ const TransactionDetailTable = ({
                     sx={{ borderBottom: lastRow ? `none !important` : `inherit` }}
                     align={"right"}
                   >
-                    {betAmount}
+                    {Common.formatNumberWithThousand(betAmount || 0)}
                   </TableCell>
                   <TableCell
                     sx={{ borderBottom: lastRow ? `none !important` : `inherit` }}
@@ -143,7 +143,7 @@ const TransactionDetailTable = ({
                     {winLoss === 0 ? (
                       <WinLossZero>{winLoss}</WinLossZero>
                     ) : (
-                      <CustomWinLose $value={winLoss}>{winLoss}</CustomWinLose>
+                      <CustomWinLose $value={winLoss}>{Common.formatNumberWithThousand(winLoss || 0)}</CustomWinLose>
                     )}
                   </TableCell>
                   <TableCell

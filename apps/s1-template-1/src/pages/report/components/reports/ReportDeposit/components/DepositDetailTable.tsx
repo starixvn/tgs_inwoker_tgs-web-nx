@@ -3,7 +3,7 @@ import NoRecord from "@/pages/report/components/NoRecord";
 import { theme } from "@/theme";
 import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import moment from "moment";
 
 type Props = {
@@ -79,7 +79,7 @@ const DepositDetailTable = ({
                     {status === 3 && <TagStatusApproved>{i18n.t(`report.deposit.status${status}`)}</TagStatusApproved>}
                     {status === 4 && <TagStatusRejected>{i18n.t(`report.deposit.status${status}`)}</TagStatusRejected>}                   
                   </TableCell>
-                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0", color: `${theme.amountColor} !important`, fontWeight: "700 !important" }} align={"right"}>{amount}</TableCell>
+                  <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0", color: `${theme.amountColor} !important`, fontWeight: "700 !important" }} align={"right"}>{Common.formatNumberWithThousand(amount || 0)}</TableCell>
                 </TableRow>
               );
             })}
