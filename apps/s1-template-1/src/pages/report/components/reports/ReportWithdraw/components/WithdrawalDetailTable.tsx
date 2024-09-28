@@ -76,12 +76,12 @@ const WithdrawalDetailTable = ({
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>{orderno}</TableCell>
                 {isDesktopSize && <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>{remark}</TableCell>}
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit` }} align={"center"}>
-                  {status === 1 && <TagStatusPending>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon />}</TagStatusPending>}
-                  {status === 2 && <TagStatusProcessing>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon />}</TagStatusProcessing>}
-                  {status === 3 && <TagStatusApproved>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon />}</TagStatusApproved>}
-                  {status === 4 && <TagStatusRejected>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon />}</TagStatusRejected>} 
-                  {status === 5 && <TagStatusPaying>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon />}</TagStatusPaying>}  
-                  {status === 6 && <TagStatusPaid>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon />}</TagStatusPaid>}
+                  {status === 1 && <TagStatusPending>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon content={remark} />}</TagStatusPending>}
+                  {status === 2 && <TagStatusProcessing>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon content={remark} />}</TagStatusProcessing>}
+                  {status === 3 && <TagStatusApproved>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon content={remark} />}</TagStatusApproved>}
+                  {status === 4 && <TagStatusRejected>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon content={remark} />}</TagStatusRejected>} 
+                  {status === 5 && <TagStatusPaying>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon content={remark} />}</TagStatusPaying>}  
+                  {status === 6 && <TagStatusPaid>{i18n.t(`report.withdrawal.status${status}`)}{!isDesktopSize && !!remark && <StyledEditIcon content={remark} />}</TagStatusPaid>}
                 </TableCell>
                 <TableCell sx={{ borderBottom: lastRow ?  `none !important` : `inherit`, borderBottomRightRadius: lastRow ? `${theme.tableBorderRadius}` : "0", color: `${theme.amountColor} !important`, fontWeight: "700 !important" }} align={"right"}>{amount}</TableCell>
               </TableRow>

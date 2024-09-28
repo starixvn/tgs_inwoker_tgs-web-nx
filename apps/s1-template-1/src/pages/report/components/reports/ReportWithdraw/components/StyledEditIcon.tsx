@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { EditIcon } from "@/components/UI/CustomizeIcon";
+import { useSnackbar } from "notistack";
+import styled from "styled-components";
 
 const EditIconContainer = styled.div`
   width: 1.6rem;
@@ -13,9 +14,21 @@ const EditIconContainer = styled.div`
   cursor: pointer;
 `;
 
-const StyledEditIcon = () => {
+type Props = {
+  content: any;
+};
+const StyledEditIcon = ({ content }: Props) => {
+  const { enqueueSnackbar } = useSnackbar();
+  const handleRemark = (content: any) => {
+    enqueueSnackbar(content, {
+      variant: "info",
+    });
+
+  };
   return (
-    <EditIconContainer >
+    <EditIconContainer onClick={() => {
+      handleRemark(content);
+    }}>
       <EditIcon sx={{fontSize: "1rem", color: "#C3D6F1"}} viewBox="0 0 10 10"></EditIcon>
     </EditIconContainer>
   );

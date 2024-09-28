@@ -1,23 +1,29 @@
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
-import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
-import moment from "moment";
-import React from "react";
-import styled from "styled-components";
-import { theme } from "@/theme";
-import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
-import NoRecord from "@/pages/report/components/NoRecord";
-import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
 import {
   CustomizeTablePagination,
   CustomWinLose,
   ReportCardsContainer,
   ReportTable,
-  WinLossZero,
+  TimeIDTableCell,
+  WinLossZero
 } from "@/components/styled-component/Report";
+import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
+import NoRecord from "@/pages/report/components/NoRecord";
+import TotalState from "@/pages/report/components/reports/ReportBetting/components/TotalState";
+import { theme } from "@/theme";
+import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import moment from "moment";
+import React from "react";
+import styled from "styled-components";
 
 const IdWrapper = styled.div`
   position: relative;
+  .icon-copy {
+    position: absolute;
+    top: -7px;
+  }
 `;
 
 const TicketStatus = {
@@ -56,6 +62,7 @@ const TransactionDetailTable = ({
     onPageChange(newPage);
   };
 
+  const { isDesktopSize } = useRwd();
   if (!transactionDetails?.length) {
     return <NoRecord />;
   }
@@ -65,17 +72,16 @@ const TransactionDetailTable = ({
       <ReportTable aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell
+            <TimeIDTableCell
               align={"center"}
               sx={{
-                borderTopLeftRadius: `${theme.tableBorderRadius}`,
-                width: "36rem",
+                borderTopLeftRadius: `${theme.tableBorderRadius}`
               }}
             >
               <>
                 {i18n.t("report.betid")} & {i18n.t("report.dateTime")}
               </>
-            </TableCell>
+            </TimeIDTableCell>
             <TableCell align={"center"}>Provider</TableCell>
             <TableCell align={"right"}>
               <>{i18n.t("report.totalBet")}</>
@@ -103,6 +109,7 @@ const TransactionDetailTable = ({
 
               const date = moment(createdOn).format("YYYY-MM-DD hh:mm a");
               const lastRow = index === transactionDetails.length - 1;
+              const idShort = id.substring(0,7).concat("...");
               return (
                 <TableRow key={id}>
                   <TableCell
@@ -112,10 +119,10 @@ const TransactionDetailTable = ({
                     }}
                   >
                     <IdWrapper>
-                      <span>{id}</span>
-                      <CopyIconStyled copyContent={id} />
-                    </IdWrapper>
-                    <div>{date}</div>
+                      <span>{idShort}</span>
+                      <div>{date}</div>        
+                      <CopyIconStyled copyContent={id} />              
+                    </IdWrapper>                    
                   </TableCell>
                   <TableCell
                     sx={{ borderBottom: lastRow ? `none !important` : `inherit` }}

@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import moment from "moment";
-import { BottomScrollListener } from "react-bottom-scroll-listener";
-import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
+import Loading from "@/components/UI/Loading";
+import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
+import { ReportContainer } from "@/components/styled-component/Report";
+import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
 import config from "@tgs-web-nx/config";
 import { ReportService } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import Loading from "@/components/UI/Loading";
-import { DateRangeInfo } from "@/components/account/Report/hooks/useDateRange";
-import TransactionDetailCards from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailCards";
-import TransactionDetailTable from "@/pages/report/components/reports/ReportBetting/components/TransactionDetailTable";
-import { ReportContainer } from "@/components/styled-component/Report";
+import { RoundTotalDto, TransactionDetail } from "@tgs-web-nx/types";
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 type Props = {
   dateRangeInfo: DateRangeInfo;
@@ -103,7 +102,6 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
 
   return (
     <ReportContainer>
-      {isDesktopSize ? (
         <TransactionDetailTable
           transactionDetails={transactionDetails}
           roundTotal={roundTotal}
@@ -112,9 +110,7 @@ const ReportBetting = ({ dateRangeInfo }: Props) => {
           pageSize={PAGE_SIZE}
           onPageChange={(page: number) => handlePageChange(page)}
         />
-      ) : (
-        <TransactionDetailCards transactionDetails={transactionDetailsForMobile} />
-      )}
+     
       <Loading show={isLoading} />
       {/*@ts-ignore*/}
       <BottomScrollListener

@@ -86,11 +86,11 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
     fontWeight: 400,
     color: theme.palette.text.primary,
     borderBottom: `1px solid ${theme.palette.table.tableBorderColor}`,
-    padding: ".8rem .4rem",
+    padding: ".6rem .4rem",
     background: `${theme.palette.table.tableBackground}`,
     fontFamily: "inherit",    
     height: "3.6rem",
-    lineHeight: "1.2rem",    
+    lineHeight: "1.6rem",    
     [theme.breakpoints.up('sm')]: {
       fontSize: "1.2rem",
       padding: ".8rem 1.6rem",
@@ -134,6 +134,14 @@ export const CustomizeTablePagination = muiStyled(TablePagination)(({ theme }) =
 
 export const DateTimeTableCell = muiStyled(TableCell)(({ theme }) => ({
   width: "9rem",
+  [theme.breakpoints.up('sm')]: {
+    width: "28rem",
+  }
+
+}));
+
+export const TimeIDTableCell = muiStyled(TableCell)(({ theme }) => ({
+  width: "10rem",
   [theme.breakpoints.up('sm')]: {
     width: "28rem",
   }
