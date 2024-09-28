@@ -30,7 +30,10 @@ const RemarkContent = ({ content, status }: Props) => {
   const { alert } = useNotifications();
   const { isDesktopSize } = useRwd();
   const handleRemark = (content: any) => {
-    alert("", content);
+    if(content) {
+      alert("", content);
+    }
+    
   };
   return (
     <RemarkWrapper onClick={() => {
