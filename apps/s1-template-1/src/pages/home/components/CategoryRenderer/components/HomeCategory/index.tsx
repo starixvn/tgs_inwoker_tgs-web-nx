@@ -52,16 +52,18 @@ const HomeCategory = () => {
           </EmblaCarousel>
         </Group>
 
-        <Group className="game-area">
-          <GameTypeTitle>{i18n.t("web.home.liveMatches")}</GameTypeTitle>
-          <EmblaCarousel
-            options={gameTypeEmblaOptions}
-            hasControlButton={true}
-            extraClassName="highlight-matches"
-          >
-            <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
-          </EmblaCarousel>
-        </Group>
+        {highlightMatches.length > 0 && (
+          <Group className="game-area">
+            <GameTypeTitle>{i18n.t("web.home.liveMatches")}</GameTypeTitle>
+            <EmblaCarousel
+              options={gameTypeEmblaOptions}
+              hasControlButton={true}
+              extraClassName="highlight-matches"
+            >
+              <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
+            </EmblaCarousel>
+          </Group>
+        )}
 
         <Group className="game-area">
           <GameTypeTitle>
