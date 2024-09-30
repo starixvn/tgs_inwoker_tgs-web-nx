@@ -1,48 +1,13 @@
-import styled, { css, keyframes } from "styled-components";
-
-export const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
+import styled from "styled-components";
 
 interface AnimationProps {
   $isNew: boolean;
 }
 
 export const TableContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
-`;
-
-const LayoutGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 4.4rem;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.4rem 0.8rem;
-  text-align: center;
-`;
-
-export const TableHeader = styled(LayoutGrid)`
-  gap: 0.8rem;
-
-  border-radius: 0.8rem;
-  background: #1a2335;
-  color: #7a8597;
-  font-size: 1.3rem;
-  font-weight: 700;
-`;
-
-export const TableWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  max-height: 46rem;
-  overflow: hidden;
 
   &:after {
     content: "";
@@ -55,7 +20,28 @@ export const TableWrapper = styled.div`
   }
 `;
 
-export const TableRow = styled(LayoutGrid) <AnimationProps>`
+const LayoutGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 4.4rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  text-align: center;
+  gap: 0.8rem;
+`;
+
+export const TableHeader = styled(LayoutGrid)`
+  position: relative;
+  border-radius: 0.8rem;
+  background: #1a2335;
+  color: #7a8597;
+  font-size: 1.3rem;
+  font-weight: 700;
+  z-index: 2;
+`;
+
+export const TableRow = styled(LayoutGrid)<AnimationProps>`
   border-radius: 0.8rem;
   border-bottom: 1px solid #151d29;
   background: #151d29;
@@ -63,12 +49,28 @@ export const TableRow = styled(LayoutGrid) <AnimationProps>`
   color: #7a8597;
   font-size: 1.3rem;
   font-weight: 500;
+`;
 
-  ${({ $isNew }) =>
-    $isNew &&
-    css`
-      animation: ${fadeIn} 0.7s ease-in;
-    `}
+export const TableWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  max-height: 46rem;
+  overflow: hidden;
+  will-change: transform;
+
+  &.start-animation {
+    animation: shuffle 1s ease-out infinite;
+  }
+
+  @keyframes shuffle {
+    0% {
+      transform: translateY(-50px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const TableCell = styled.div``;
@@ -79,7 +81,7 @@ export const InfoContainer = styled.div`
   gap: 0.4rem;
 `;
 
-export const TextColor = styled(TableCell) <{ payout: number }>`
+export const TextColor = styled(TableCell)<{ payout: number }>`
   text-align: right;
   font-weight: bold;
   color: ${({ payout }) => {
@@ -97,6 +99,11 @@ export const PlayerName = styled.div`
   width: 8rem;
   text-align: left;
   white-space: nowrap;
-   /* overflow: hidden; */
+  /* overflow: hidden; */
   text-overflow: ellipsis;
+`;
+
+export const GameName = styled.div`
+  text-align: left;
+  text-transform: capitalize;
 `;

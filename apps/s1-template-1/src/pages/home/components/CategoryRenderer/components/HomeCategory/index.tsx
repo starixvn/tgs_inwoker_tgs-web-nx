@@ -1,3 +1,4 @@
+import EmblaCarousel from "@/components/project/embla-carousel";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useGetHomeCategoryList, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { i18n } from "@tgs-web-nx/utils";
@@ -10,7 +11,6 @@ import LastBets from "./components/last-bet";
 import MatchCardSlider from "./components/MatchSlider/MatchCardSlider";
 import RecentBigWins from "./components/RecentBigWins";
 import { DesktopContainer, GameTypeContainer, GameTypeTitle, Group, ViewAll } from "./style";
-import EmblaCarousel from "@/components/project/embla-carousel";
 
 const HomeCategory = () => {
   const history = useHistory();
@@ -147,7 +147,7 @@ const HomeCategory = () => {
         </Group>
 
         <Group className="game-area">
-          <GameTypeTitle>{i18n.t("web.home.latestBets")}</GameTypeTitle>
+          <GameTypeTitle>{i18n.t("web.latestBets.title")}</GameTypeTitle>
           <LastBets connection={betHubConnection}></LastBets>
         </Group>
       </GameTypeContainer>
