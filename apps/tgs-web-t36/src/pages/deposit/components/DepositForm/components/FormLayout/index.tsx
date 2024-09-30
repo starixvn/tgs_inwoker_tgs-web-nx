@@ -13,61 +13,73 @@ import { PulsaLayout } from "./PulsaLayout";
 import ResultPopupDialog from "@/pages/deposit/components/ResultPopupDialog";
 
 export type LayoutProps = {
-  filterGroupList: FilterDepositList[]
-  groupCode: string
+  filterGroupList: FilterDepositList[];
+  groupCode: string;
   handlePerformDeposit?: () => void;
   isThirdPartyPending?: boolean;
-}
+};
 
 /**
  * 自訂義 Group UI + 對應 UI
  */
 const FormLayout = () => {
-  const {groupCode, groupList, filterGroupList} = useGroupList();
-  const {handlePerformDeposit, isDialogOpen, handleOpenPopupUrl, handleOnClose, isPending} = useThirdPartyDeposit();
+  const { groupCode, groupList, filterGroupList } = useGroupList();
+  const { handlePerformDeposit, isDialogOpen, handleOpenPopupUrl, handleOnClose, isPending } =
+    useThirdPartyDeposit();
   const props = {
     i18nParam: "depositAndWithdrawalStatus.depositMode",
     list: groupList,
   };
 
-
-  const layoutProps: LayoutProps = {groupCode, filterGroupList};
+  const layoutProps: LayoutProps = { groupCode, filterGroupList };
 
   /**
- * 對應 UI
- */
+   * 對應 UI
+   */
   const mapLayout = () => {
     switch (groupCode) {
       case GroupCodeEnum.Bank:
-        return <BankLayout {...layoutProps} handlePerformDeposit={handlePerformDeposit} isThirdPartyPending={isPending} />
+        return (
+          <BankLayout
+            {...layoutProps}
+            handlePerformDeposit={handlePerformDeposit}
+            isThirdPartyPending={isPending}
+          />
+        );
 
       case GroupCodeEnum.FPS:
-        return <FpsLayout {...layoutProps} />
+        return <FpsLayout {...layoutProps} />;
 
       case GroupCodeEnum.TRC:
-        return <TrcLayout {...layoutProps} />
+        return <TrcLayout {...layoutProps} />;
 
       case GroupCodeEnum.ALI2ALI:
-        return <ThirdPartyLayout {...layoutProps} />
+        return <ThirdPartyLayout {...layoutProps} handlePerformDeposit={handlePerformDeposit} />;
 
       case GroupCodeEnum.EWallet:
-        return <EWalletLayout {...layoutProps} />
+        return <EWalletLayout {...layoutProps} />;
 
       case GroupCodeEnum.Coinsph:
-        return <CoinsphLayout {...layoutProps} />
+        return <CoinsphLayout {...layoutProps} />;
 
       case GroupCodeEnum.Pulsa:
-        return <PulsaLayout {...layoutProps} />
+        return <PulsaLayout {...layoutProps} />;
 
       default:
-        return <DefaultLayout {...layoutProps} handlePerformDeposit={handlePerformDeposit} isThirdPartyPending={isPending}/>
+        return (
+          <DefaultLayout
+            {...layoutProps}
+            handlePerformDeposit={handlePerformDeposit}
+            isThirdPartyPending={isPending}
+          />
+        );
     }
-  }
+  };
 
   return (
     <>
       {/* 自訂義 Group UI */}
-      <GroupCards {...props}/>
+      <GroupCards {...props} />
 
       {/* 對應 UI */}
       {mapLayout()}
@@ -78,7 +90,7 @@ const FormLayout = () => {
         handleOpenPopupUrl={handleOpenPopupUrl}
       />
     </>
-  )
-}
+  );
+};
 
 export default FormLayout;
