@@ -14,6 +14,7 @@ import styled from "styled-components";
 
 const InboxTableContainer = styled.div`
   min-height: 50vh;
+  padding-top: 1.6rem;
 `;
 
 const InboxList = () => {
@@ -35,24 +36,26 @@ const InboxList = () => {
 
   return (
     <InboxTableContainer>
-      <CustomizeTablePagination
-        count={totalCount}
-        rowsPerPage={INBOX_TABLE_ROW_COUNT}
-        page={page > 0 ? page - 1 : 0}
-        onPageChange={handleChangePage}
-        rowsPerPageOptions={[]}
-        sx={{
-          width: "100%",
-          color: theme.text,
-          "& button": {},
-        }}
-      />
+      
 
       {isLoading ? (
         <LoadingBlock size={30} style={{ marginTop: "90px" }} />
       ) : (
         <InboxListTable inboxList={inboxList} handleItemClick={handleSelectInboxItem} />
       )}
+
+      <CustomizeTablePagination
+              count={totalCount}
+              rowsPerPage={INBOX_TABLE_ROW_COUNT}
+              page={page > 0 ? page - 1 : 0}
+              onPageChange={handleChangePage}
+              rowsPerPageOptions={[]}
+              sx={{
+                width: "100%",
+                color: theme.text,
+                "& button": {},
+              }}
+            />
 
       <InboxItemDetailDialog />
       <InboxReplyDialog />

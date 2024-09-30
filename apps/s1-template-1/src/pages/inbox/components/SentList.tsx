@@ -12,6 +12,7 @@ import styled from "styled-components";
 
 const SentTableContainer = styled.div`
   min-height: 50vh;
+  padding-top: 1.6rem;
 `;
 
 const SentList = () => {
@@ -33,6 +34,12 @@ const SentList = () => {
 
   return (
     <SentTableContainer>
+
+      {isLoading ? (
+        <LoadingBlock size={30} style={{ marginTop: "90px" }} />
+      ) : (
+        <SendListTable sendList={sendList} handleItemClick={handleSelectInboxItem} />
+      )}
       <CustomizeTablePagination
         count={totalCount}
         rowsPerPage={INBOX_TABLE_ROW_COUNT}
@@ -45,12 +52,6 @@ const SentList = () => {
           "& button": {},
         }}
       />
-
-      {isLoading ? (
-        <LoadingBlock size={30} style={{ marginTop: "90px" }} />
-      ) : (
-        <SendListTable sendList={sendList} handleItemClick={handleSelectInboxItem} />
-      )}
 
       <SendItemDetailDialog />
     </SentTableContainer>
