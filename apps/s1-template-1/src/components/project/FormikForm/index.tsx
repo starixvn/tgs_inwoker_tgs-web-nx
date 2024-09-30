@@ -47,6 +47,8 @@ const FormikForm = ({
       if (!(formik.touched[formInput.name] && formik.errors[formInput.name])) continue;
 
       errorMsg = formik.errors[formInput.name];
+
+      formik.errors = { [formInput.name]: formik.errors[formInput.name] };
       break;
     }
 
