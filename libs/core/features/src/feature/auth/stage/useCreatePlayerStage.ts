@@ -100,6 +100,9 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
 
       localStorage.setItem("remember", "true");
       localStorage.setItem("username", username);
+      enqueueSnackbar(i18n.t("common.msgSuccessRegister"), {
+        variant: "success",
+      });
       handleToggleRegisterDialog(false);
 
       //Set realname時已經login,不需要再彈出登入視窗
