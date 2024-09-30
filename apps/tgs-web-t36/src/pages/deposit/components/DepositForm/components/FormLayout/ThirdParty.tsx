@@ -23,6 +23,7 @@ export const ThirdPartyLayout = ({
 }: LayoutProps) => {
   const { channelList, currentChannel, extended } = useChannelList(filterGroupList, groupCode);
   const { formData } = useContext(DepositFormContext);
+  const { amount, id, promotionid, type, paymentcode } = formData;
   const { doThirdPartyDeposit } = useWalletStore();
   const { handleUploadFile, isPending, uploadKey } = useUploadFile();
 
@@ -44,7 +45,6 @@ export const ThirdPartyLayout = ({
    * 送出表單
    */
   const handleOnSubmit = () => {
-    const { amount, id, promotionid, type, paymentcode } = formData;
     //TGS-5343 兼容三方和手動支付
     if (paymentcode !== "Manual") {
       if (handlePerformDeposit) {
@@ -69,7 +69,8 @@ export const ThirdPartyLayout = ({
       {/* 選擇優惠活動 */}
       <DepositPromotion />
 
-      <Upload key={uploadKey} />
+      {/* 因TGS-5343會有手動存款的狀況，所以需要判斷是手動的話就顯示上傳按鈕 */}
+      {paymentcode === "Manual" && <Upload key={uploadKey} />}
 
       {/* 提交表單 */}
       <DepositSubmitButton handleOnSubmit={handleOnSubmit} isDisabled={isPending || isDisabled} />
