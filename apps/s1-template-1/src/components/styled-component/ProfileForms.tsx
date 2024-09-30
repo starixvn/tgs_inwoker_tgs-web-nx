@@ -93,6 +93,11 @@ export const InfoContainer = styled.div`
   color: ${({ theme }) => theme.text};
   position: relative;
   padding-top: 1rem;
+  ${media.sm} {
+    display: flex;
+    align-items: flex-end;
+    padding-top: 0;
+  }
 `;
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({

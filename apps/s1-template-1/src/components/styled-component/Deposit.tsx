@@ -1,3 +1,4 @@
+import { media } from "@/theme/breakpoints";
 import styled from "styled-components";
 
 export const LimitLabel = styled.span`
@@ -18,6 +19,9 @@ export const TransferValue = styled.div`
   padding-top: .2rem;
   line-height: 1.8rem;
   letter-spacing: 0.28px;
+  ${media.sm} {
+    padding-left: .8rem;
+  }
 `;
 
 export const ExchangeRateContainer = styled.div`
@@ -39,10 +43,10 @@ export const HintText = styled.div`
 
 export const AmountHint = styled.div`
   color: ${({ theme }) => theme.text};
-  font-size: 0.937rem;
   font-weight: 400;
-  text-align: center;
   max-width: 500px;
+  font-size: 1.4rem;
+  margin-top: 1.2rem;
 `;
 
 export const FeeSpot = styled.div`

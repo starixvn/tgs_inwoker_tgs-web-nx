@@ -1,10 +1,3 @@
-import { MenuItem } from "@mui/material";
-import config from "@tgs-web-nx/config";
-import { media } from "@tgs-web-nx/constants";
-import { Common, i18n } from "@tgs-web-nx/utils";
-import { Component } from "react";
-import { connect } from "react-redux";
-import styled from "styled-components";
 import {
   AmountHint,
   ExchangeRateContainer,
@@ -34,7 +27,14 @@ import { TextField } from "@/components/UI/TextField";
 import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
 import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import ResultPopupDialog from "@/pages/deposit/components/components/ResultPopupDialog";
+import { MenuItem } from "@mui/material";
+import config from "@tgs-web-nx/config";
+import { media } from "@tgs-web-nx/constants";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { Component } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { connect } from "react-redux";
+import styled from "styled-components";
 
 
 const LabelContainer = styled(ProfileLabelContainer)`
@@ -51,10 +51,6 @@ const LabelLargeContainer = styled(LabelContainer)`
   float: unset;
   letter-spacing: 0.32px;
   margin-bottom: 1.2rem;
-`;
-
-const WarningText = styled.div`
-  color: ${({ theme }) => theme.red};
 `;
 
 const TransferHint = styled.div`
@@ -75,22 +71,37 @@ const QRCodeBounding = styled.div`
 const AccountInfo = styled.div`
   display: flex;
   align-items: center;
-  margin-top: -1rem;
+  margin-top: -1rem; 
 `;
 
 const ChannelExtend = styled.div`
   display: block;
   width: calc(100% - 9rem);
   ${media.sm} {
-   width: 30rem;
+   width: unset;
   }
+   .icon-copy {
+    ${media.sm} {
+      position: relative;
+      right: unset;
+      bottom: -6px;
+     }
+      
+   }
 `;
 
 const ChannelExtendTitle = styled(LabelLargeContainer)`
   margin-bottom: -.2rem;
 `;
 
+const CopyIconCustomize = styled(CopyIconStyled)`
+  ${media.sm} {
+    position: relative;
+    right: unset;
+    bottom: unset;
+  }
 
+`;
 
 class Main extends Component {
   render() {
@@ -304,7 +315,7 @@ class Main extends Component {
                             <InfoContainer key={index}>
                               <TransferLabel>{i18n.t("extended." + [key])}:</TransferLabel>
                               <TransferValue>{content[key]}</TransferValue>
-                              <CopyIconStyled copyContent={content[key]} />
+                              <CopyIconCustomize copyContent={content[key]} className="icon-copy" />
                             </InfoContainer>
                           )
                         }
@@ -329,7 +340,7 @@ class Main extends Component {
                       <InfoContainer key={index}>
                         <TransferLabel>{i18n.t("extended." + [key])}:</TransferLabel>
                         <TransferValue>{content[key]}</TransferValue>
-                        <CopyIconStyled copyContent={content[key]} />
+                        <CopyIconCustomize copyContent={content[key]} />
                       </InfoContainer>
                     );
                   }
