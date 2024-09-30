@@ -4,13 +4,10 @@ import { useMemo } from "react";
 
 import { GameName, InfoContainer, PlayerName, TableCell, TableRow, TableWrapper, TextColor } from "./style";
 
-const LastBetsTable: React.FC<{ betList: LastBetDto[]; startAnimation: boolean }> = ({
-  betList,
-  startAnimation,
-}) => {
+const LastBetsTable: React.FC<{ betList: LastBetDto[] }> = ({ betList }) => {
   return useMemo(() => {
     return (
-      <TableWrapper className={startAnimation ? "start-animation" : ""}>
+      <TableWrapper>
         {betList.map((item, index) => {
           const { gameName, playerName, playerCode, multiplier, payout } = item;
 
@@ -35,7 +32,7 @@ const LastBetsTable: React.FC<{ betList: LastBetDto[]; startAnimation: boolean }
         })}
       </TableWrapper>
     );
-  }, [betList, startAnimation]);
+  }, [betList]);
 };
 
 export default LastBetsTable;

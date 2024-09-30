@@ -15,7 +15,6 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
   const { connection } = props;
   const [betList, setBetList] = useState<LastBetDto[]>([]);
   const navGameType = useGameTypeList();
-  const [startAnimation, setStartAnimation] = useState<boolean>(false);
 
   useEffect(() => {
     if (!connection) return;
@@ -26,11 +25,6 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
       setBetList((items) => {
         item.gameIconUrl = navGameType.find((x) => x.gameType === item.gameType)?.iconUrl || "";
         const updatedMessages = [item, ...items];
-        if (items !== updatedMessages) {
-          setStartAnimation(true);
-        } else {
-          setStartAnimation(false);
-        }
         return updatedMessages;
       });
     });
@@ -38,7 +32,6 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
     return () => {
       connection.off("ReceiveLastBet");
       connection.stop();
-      setStartAnimation(false);
     };
   }, [connection]);
 
@@ -50,7 +43,7 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
         <span>{i18n.t("web.latestBets.multiplier")}</span>
         <span className="text-right">{i18n.t("web.latestBets.payout")}</span>
       </TableHeader>
-      <LastBetsTable startAnimation={startAnimation} betList={betList} />
+      <LastBetsTable betList={betList} />
     </TableContainer>
   );
 };
