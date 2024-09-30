@@ -6,6 +6,8 @@ import { Props } from "./type";
 const FormText = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
 
+  const errorClass = formik.errors[name] ? "error" : "";
+
   return (
     <CustomTextField
       variant="outlined"
@@ -13,7 +15,7 @@ const FormText = ({ formInput, formik, showErrorOn }: Props) => {
       placeholder={label}
       fullWidth
       name={name}
-      className={name}
+      className={`${name} ${errorClass}`}
       value={formik.values[name]}
       onChange={formik.handleChange}
       onBlur={formik.handleBlur}

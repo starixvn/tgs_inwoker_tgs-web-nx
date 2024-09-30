@@ -20,6 +20,8 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
 
   const inputType = isShowPassword ? "text" : "password";
 
+  const errorClass = formik.errors[formInput.name] ? "error" : "";
+
   return (
     <CustomTextField
       type={inputType}
@@ -27,7 +29,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
       variant={"outlined"}
       fullWidth
       name={name}
-      className={name}
+      className={`${name} ${errorClass}`}
       value={formik.values[name]}
       onChange={formik.handleChange}
       onBlur={formik.handleBlur}
@@ -36,7 +38,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
       InputProps={{
         autoComplete: "new-password",
         endAdornment: (
-          <InputAdornment position="end" style={{ height: "20px" }}>
+          <InputAdornment position="end" style={{ height: "2rem" }}>
             <IconButton
               aria-label="toggle password visibility"
               onClick={handleClickShowPassword}

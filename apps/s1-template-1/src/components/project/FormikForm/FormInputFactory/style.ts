@@ -7,6 +7,10 @@ export const CustomTextField = styled(TextField)`
   &.email {
     padding-left: 2.4rem;
 
+    &.error {
+      border-color: ${({ theme }) => theme.toastErrorBorderColor};
+    }
+
     &:before {
       content: "";
       position: absolute;
