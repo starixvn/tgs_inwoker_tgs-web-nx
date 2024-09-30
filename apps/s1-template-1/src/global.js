@@ -13,7 +13,6 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     height: 100vh;
-    overflow: hidden;
     margin: 0;
     background: ${({ theme }) => theme.mainBackground};
     background-size: 100%;
