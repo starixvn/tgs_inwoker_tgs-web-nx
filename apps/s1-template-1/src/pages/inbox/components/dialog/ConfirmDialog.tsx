@@ -1,13 +1,15 @@
-import React from "react";
+import { GreenGradientButton } from "@/components/UI/Button";
+import DialogPopup from "@/components/UI/Dialog/DialogPopup";
+import { DialogContainer, DialogContent } from "@/components/UI/Dialog/dialogStyles";
 import { i18n } from "@tgs-web-nx/utils";
+import React from "react";
 import styled from "styled-components";
-import Dialog from "@/components/UI/Dialog/Dialog";
-import { SubmitButton } from "@/components/styled-component/ProfileForms";
 
 const Hint = styled.div`
   color: ${({ theme }) => theme.text};
   text-align: center;
   margin-bottom: 20px;
+  font-size: 1.4rem;
 `;
 
 type Props = {
@@ -17,13 +19,15 @@ type Props = {
 };
 const ConfirmDialog = ({ isDialogOpen, handleConfirm, handleCancel }: Props) => {
   return (
-    <Dialog open={isDialogOpen} onClose={handleCancel} fullWidth maxWidth={"sm"}>
-      <Hint>{i18n.t("confirmSubmit")}?</Hint>
-
-      <SubmitButton fullWidth onClick={handleConfirm}>
-        {i18n.t("common.submit")}
-      </SubmitButton>
-    </Dialog>
+    <DialogPopup open={isDialogOpen} onClose={handleCancel} >
+      <DialogContainer>
+        <DialogContent>{i18n.t("confirmSubmit")}?</DialogContent>
+        <GreenGradientButton fullWidth onClick={handleConfirm}>
+          {i18n.t("common.submit")}
+        </GreenGradientButton>
+      </DialogContainer>
+     
+    </DialogPopup>
   );
 };
 
