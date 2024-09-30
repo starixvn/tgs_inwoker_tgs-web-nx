@@ -32,9 +32,10 @@ export const ThirdPartyLayout = ({
     formData.maxAmount,
     formData.minAmount,
   );
-  const isDisabled = config.features.Deposit_UploadRequired
-    ? isDefaultDisabled || formData.files === null
-    : isDefaultDisabled;
+  const isDisabled =
+    config.features.Deposit_UploadRequired && paymentcode === "Manual"
+      ? isDefaultDisabled || formData.files === null
+      : isDefaultDisabled;
 
   const props = {
     i18nParam: "depositAndWithdrawalStatus.channel",
