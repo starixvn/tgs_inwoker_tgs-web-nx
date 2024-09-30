@@ -1,5 +1,6 @@
 import DialogHeader, { DIALOG_HEADER_HEIGHT } from "@/components/UI/Dialog/DialogHeader";
 import AccountDesktopLayout from "@/layouts/AccountDesktopLayout";
+import { media } from "@/theme/breakpoints";
 import { MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { usePageName } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -14,13 +15,15 @@ const DialogLayoutContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  min-height: calc(100vh - ${DIALOG_HEADER_HEIGHT} - ${MOBILE_HEADER_HEIGHT});
   margin: calc(${`${DIALOG_HEADER_HEIGHT} + ${MOBILE_HEADER_HEIGHT}) auto 0`};
   position: relative;
   z-index: 1;
-
   display: flex;
   justify-content: center;
+  padding-bottom: 10rem;
+  ${media.sm} {
+     min-height: calc(100vh - ${DIALOG_HEADER_HEIGHT} - ${MOBILE_HEADER_HEIGHT});
+  }
 `;
 
 const DockHeader = styled.div`

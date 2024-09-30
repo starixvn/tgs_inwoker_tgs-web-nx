@@ -755,8 +755,6 @@ class Main extends Component {
             <div></div>
           </GreenGradientButton>
         </ItemContainer>
-        <button className='btn' onClick={window.open("https://www.google.com", "_blank")}>Open Google search</button>
-        <a id="myLink" href="www.google.com" target="_blank">google</a>
 
         <ResultPopupDialog
           isDialogOpen={this.props.openPopup}
