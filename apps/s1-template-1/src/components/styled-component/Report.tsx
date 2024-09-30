@@ -65,7 +65,7 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
   borderRadius: `${theme.palette.table.tableBorderRadius}`,
   "& .MuiTableHead-root .MuiTableCell-root": {
     fontSize: "1.2rem",
-    fontWeight: 500,
+    fontWeight: 700,
     whiteSpace: "nowrap",
     padding: "0 .4rem",
     color: `${theme.palette.table.tableHeaderColor}`,
@@ -211,9 +211,11 @@ export const TagStatusProcessing = styled(TagStatus)`
   color: ${({ theme }) => theme.circleProcessingBackground};
   ${media.sm} {
     background: ${({ theme }) => theme.statusProcessingBackground};
+    color: ${({ theme }) => theme.text};
   }
   &:before {
     background: ${({ theme }) => theme.circleProcessingBackground};
+    
   }
 `;
 
@@ -221,6 +223,7 @@ export const TagStatusPending = styled(TagStatus)`
   color: ${({ theme }) => theme.circlePendingBackground};
   ${media.sm} {
     background: ${({ theme }) => theme.statusPendingBackground};
+    color: ${({ theme }) => theme.text};
   }  
   &:before {
     background: ${({ theme }) => theme.circlePendingBackground};
@@ -231,6 +234,7 @@ export const TagStatusApproved = styled(TagStatus)`
   color: ${({ theme }) => theme.circleApprovedBackground};
   ${media.sm} { 
     background: ${({ theme }) => theme.statusApprovedBackground};
+    color: ${({ theme }) => theme.text};
   }
   
   &:before {
@@ -242,6 +246,7 @@ export const TagStatusRejected = styled(TagStatus)`
   color: ${({ theme }) => theme.circleRejectBackground};
  ${media.sm} {
   background: ${({ theme }) => theme.statusRejectBackground};
+  color: ${({ theme }) => theme.text};
  }
   
   &:before {
@@ -253,6 +258,7 @@ export const TagStatusPaying = styled(TagStatus)`
   color: ${({ theme }) => theme.circlePayingBackground};
   ${media.sm} { 
     background: ${({ theme }) => theme.statusPayingBackground};
+    color: ${({ theme }) => theme.text};
   }
   
   &:before {
@@ -264,6 +270,7 @@ export const TagStatusPaid = styled(TagStatus)`
   color: ${({ theme }) => theme.circlePaidBackground};
   ${media.sm} { 
     background: ${({ theme }) => theme.statusPaidBackground};
+    color: ${({ theme }) => theme.text};
   }
   
   &:before {

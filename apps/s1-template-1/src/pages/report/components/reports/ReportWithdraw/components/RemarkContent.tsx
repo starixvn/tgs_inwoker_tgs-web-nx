@@ -30,7 +30,7 @@ const RemarkContent = ({ content, status }: Props) => {
   const { alert } = useNotifications();
   const { isDesktopSize } = useRwd();
   const handleRemark = (content: any) => {
-    if(content) {
+    if(content && !isDesktopSize) {
       alert("", content);
     }
     
