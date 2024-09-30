@@ -1,12 +1,13 @@
+import { FormControl, ItemContainer, LabelContainer } from "@/components/styled-component/ProfileForms";
+import { GreenGradientButton } from "@/components/UI/Button";
+import { TextArea } from "@/components/UI/TextArea";
+import { TextField } from "@/components/UI/TextField";
+import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
+import { useConfirmDialog } from "@tgs-web-nx/core/features";
+import { InboxItemDetail, ReplyInboxItemReqDto } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import { InboxItemDetail, ReplyInboxItemReqDto } from "@tgs-web-nx/types";
-import { useConfirmDialog } from "@tgs-web-nx/core/features";
-import { TextField } from "@/components/UI/TextField";
-import { FormControl, SubmitButton } from "@/components/styled-component/ProfileForms";
-import { TextArea } from "@/components/UI/TextArea";
-import ConfirmDialog from "@/pages/inbox/components/dialog/ConfirmDialog";
 
 const InboxComposeFormContainer = styled.div`
   padding: 16px;
@@ -59,8 +60,8 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
 
   return (
     <InboxComposeFormContainer>
-      <InputWrapper>
-        <Label>{i18n.t("subject")}</Label>
+      <ItemContainer>
+        <LabelContainer>{i18n.t("subject")}</LabelContainer>
         <FormControl variant="outlined">
           <TextField
             value={displayedSubject}
@@ -72,23 +73,23 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
             disabled={true}
           />
         </FormControl>
-      </InputWrapper>
+      </ItemContainer>
 
-      <InputWrapper>
-        <Label>{i18n.t("yourmessage")}</Label>
+      <ItemContainer>
+        <LabelContainer>{i18n.t("yourmessage")}</LabelContainer>
         <TextArea
           value={message}
           onChange={updateMessage}
           placeholder={`${i18n.t("pleaseenter")}${`${i18n.t("yourmessage")}`.toLowerCase()}`}
         />
-      </InputWrapper>
+      </ItemContainer>
 
       <InputWrapper>
         <Label>{i18n.t("originalmessage")}</Label>
         <OriginalMessage>{content}</OriginalMessage>
       </InputWrapper>
 
-      <SubmitButton
+      <GreenGradientButton
         onClick={handleSubmit}
         variant={"contained"}
         color={"primary"}
@@ -96,7 +97,7 @@ const ReplyForm = ({ inboxItemDetail, handleSubmitReply }: Props) => {
         disabled={isSubmitted}
       >
         {i18n.t("common.submit")}
-      </SubmitButton>
+      </GreenGradientButton>
 
       <ConfirmDialog
         isDialogOpen={isConfirmDialogOpen}

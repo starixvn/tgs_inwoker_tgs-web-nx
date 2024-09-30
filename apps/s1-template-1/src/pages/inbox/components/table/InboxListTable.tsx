@@ -1,16 +1,15 @@
-import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { InboxItem } from "@tgs-web-nx/types";
-import moment from "moment";
 import {
-  Table,
   TableBody,
   TableCell,
   TableDateCell,
   TableHead,
   TableRow,
-  TableSubjectCell,
+  TableSubjectCell
 } from "@/components/styled-component/Inbox";
+import { ReportTable } from "@/components/styled-component/Report";
+import { InboxItem } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import moment from "moment";
 
 type Props = {
   inboxList: InboxItem[];
@@ -19,7 +18,7 @@ type Props = {
 
 const InboxListTable = ({ inboxList, handleItemClick }: Props) => {
   return (
-    <Table>
+    <ReportTable>
       <TableHead>
         <TableRow>
           <TableCell>{i18n.t("subject")}</TableCell>
@@ -47,7 +46,7 @@ const InboxListTable = ({ inboxList, handleItemClick }: Props) => {
           );
         })}
       </TableBody>
-    </Table>
+    </ReportTable>
   );
 };
 

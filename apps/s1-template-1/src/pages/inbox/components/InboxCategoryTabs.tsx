@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { InboxCategoryTab } from "@tgs-web-nx/core/hooks";
+import { BadgeContainer } from "@/components/styled-component/ProfileForms";
+import Badge from "@/pages/deposit/components/components/PaymentTabsHeader/Badge";
 import { theme } from "@/theme";
+import { InboxCategoryTab } from "@tgs-web-nx/core/hooks";
+import styled from "styled-components";
 
 const InboxCategoryTabsContainer = styled.div`
   display: flex;
@@ -35,20 +36,19 @@ type Props = {
 
 const InboxCategoryTabs = ({ selectedTab, tabList, handleClickTab }: Props) => {
   return (
-    <InboxCategoryTabsContainer>
+    <BadgeContainer>
       {tabList.map((tab) => {
         const { key, label } = tab;
         return (
-          <CategoryTab
+          <Badge
             key={key}
-            onClick={() => handleClickTab(tab)}
-            $isActive={key === selectedTab.key}
-          >
-            {label}
-          </CategoryTab>
+            text={label}
+            isActive={key === selectedTab.key}
+            handleClick={() => handleClickTab(tab)}
+          />
         );
       })}
-    </InboxCategoryTabsContainer>
+    </BadgeContainer>
   );
 };
 

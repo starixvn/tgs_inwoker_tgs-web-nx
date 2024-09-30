@@ -1,18 +1,15 @@
-import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { SendItem } from "@tgs-web-nx/types";
-import moment from "moment";
-import { Pagination, TablePagination } from "@mui/material";
-import { INBOX_TABLE_ROW_COUNT } from "@tgs-web-nx/core/features";
 import {
-  Table,
   TableBody,
   TableCell,
   TableDateCell,
   TableHead,
   TableRow,
-  TableSubjectCell,
+  TableSubjectCell
 } from "@/components/styled-component/Inbox";
+import { ReportTable } from "@/components/styled-component/Report";
+import { SendItem } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import moment from "moment";
 
 type Props = {
   sendList: SendItem[];
@@ -21,7 +18,7 @@ type Props = {
 
 const SendListTable = ({ sendList, handleItemClick }: Props) => {
   return (
-    <Table>
+    <ReportTable>
       <TableHead>
         <TableRow>
           <TableCell>{i18n.t("subject")}</TableCell>
@@ -42,7 +39,7 @@ const SendListTable = ({ sendList, handleItemClick }: Props) => {
           );
         })}
       </TableBody>
-    </Table>
+    </ReportTable>
   );
 };
 

@@ -1,13 +1,12 @@
-import React from "react";
 import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "@mui/material";
 
 const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
-  overflow: "visible",
+  background: theme.palette.form.backgroundColor,
+  borderRadius: "1rem",
+  border: `1px solid ${theme.palette.form.borderColor}`,
   textarea: {
     padding: "10px",
     color: theme.palette.text.primary,
-    fontSize: "0.875rem",
-    fontWeight: 400,
     border: "none",
     height: "100% !important",
     minHeight: "100px",
@@ -18,35 +17,23 @@ const StyledTextArea = muiStyled(MuiTextField)(({ theme }) => ({
   },
   "& .MuiInputBase-root": {
     padding: 0,
-    border: `1px solid ${theme.palette.inputBGC}`,
+    fontFamily: "inherit",
+    fontSize: "1.4rem",
   },
   label: {
-    color: "rgba(255,255,255,0.3)",
+    color: theme.palette.text.primary,
     alignItems: "center",
-    fontSize: "0.875rem",
     fontWeight: 400,
-  },
-  placeholder: {
-    // color: "red",
+    fontSize: "1.4rem",
   },
 
   "& textarea::placeholder": {
-    color: "#828282",
+    color: `${theme.palette.form.textColor}`,
     opacity: 1,
-    fontSize: "0.875rem",
-    fontWeight: 400,
+    fontWeight: 700,
+    fontSize: "1.4rem",
   },
-  [theme.breakpoints.up("sm")]: {
-    input: {
-      fontSize: "0.875rem",
-    },
-    label: {
-      fontSize: "0.875rem",
-    },
-    "& input::placeholder": {
-      fontSize: "0.875rem",
-    },
-  },
+
 
   "& .MuiInput-underline:after": {
     borderBottom: "none",

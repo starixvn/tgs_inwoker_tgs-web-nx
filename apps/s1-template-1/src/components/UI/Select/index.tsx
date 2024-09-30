@@ -36,6 +36,11 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
     height: "100%",
     display: "flex",
     alignItems: "center",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+    [theme.breakpoints.down(400)]: {
+      maxWidth: "31rem",
+    },
 
     "&:focus": {
       background: "none",

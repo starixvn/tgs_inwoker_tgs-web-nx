@@ -244,7 +244,9 @@ const AccountHeaderContent = () => {
           ></AccountInfoIcon>
           {i18n.t("deposit.details.account")}
         </MenuItem>
-        <MenuItem onClick={handleClickLogout}>
+        <MenuItem onClick={() => {
+            history.push("/inbox");
+          }}>
           <InboxIcon
             sx={{
               fill: `${theme.formInputColor}`,

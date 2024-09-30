@@ -22,8 +22,6 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   label: {
     color: "rgba(255,255,255,0.3)",
     alignItems: "center",
-    fontSize: "0.875rem",
-    fontWeight: 400,
   },
 
   "& input::placeholder": {

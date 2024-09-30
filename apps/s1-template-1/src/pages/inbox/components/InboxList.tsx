@@ -1,16 +1,16 @@
-import React from "react";
-import styled from "styled-components";
+import LoadingBlock from "@/components/project/LoadingBlock";
+import { CustomizeTablePagination } from "@/components/styled-component/Report";
+import InboxItemDetailDialog from "@/pages/inbox/components/dialog/InboxItemDetailDialog";
+import InboxReplyDialog from "@/pages/inbox/components/dialog/InboxReplyDialog";
+import InboxListTable from "@/pages/inbox/components/table/InboxListTable";
+import { theme } from "@/theme";
 import {
   INBOX_TABLE_ROW_COUNT,
   useInboxDetailContext,
   useInboxList,
 } from "@tgs-web-nx/core/features";
-import { TablePagination } from "@mui/material";
-import InboxItemDetailDialog from "@/pages/inbox/components/dialog/InboxItemDetailDialog";
-import LoadingBlock from "@/components/project/LoadingBlock";
-import InboxListTable from "@/pages/inbox/components/table/InboxListTable";
-import InboxReplyDialog from "@/pages/inbox/components/dialog/InboxReplyDialog";
-import { theme } from "@/theme";
+import React from "react";
+import styled from "styled-components";
 
 const InboxTableContainer = styled.div`
   min-height: 50vh;
@@ -35,8 +35,7 @@ const InboxList = () => {
 
   return (
     <InboxTableContainer>
-      <TablePagination
-        component={"div"}
+      <CustomizeTablePagination
         count={totalCount}
         rowsPerPage={INBOX_TABLE_ROW_COUNT}
         page={page > 0 ? page - 1 : 0}
