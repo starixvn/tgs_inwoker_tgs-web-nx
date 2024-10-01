@@ -27,8 +27,9 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
     connection.on("ReceiveLastBet", (item: LastBetDto) => {
       setBetList((items) => {
         item.gameIconUrl = navGameType.find((x) => x.gameType === item.gameType)?.iconUrl || "";
-        const updatedMessages = [item, ...items];
+        const updatedMessages = [item, ...items].slice(0, 10);
 
+        timeOut && clearTimeout(timeOut);
         setStartAnimation(true);
 
         timeOut = setTimeout(() => {
