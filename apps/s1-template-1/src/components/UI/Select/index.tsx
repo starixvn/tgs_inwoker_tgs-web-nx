@@ -100,7 +100,8 @@ export const Select = (props: SelectProps) => {
               },
             },
           },
-        },
+        },       
+        marginThreshold: 0,
       }}
       // IconComponent={() => (
       //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
