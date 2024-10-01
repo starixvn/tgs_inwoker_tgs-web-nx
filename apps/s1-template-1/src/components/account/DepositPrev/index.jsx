@@ -282,7 +282,7 @@ class DepositPrev extends Component {
 
   handleOpenDepositPopup(paymenturl,expirationtime = "") {
     const expirationTimeStamp = Date.now() + Number.parseInt(expirationtime) * 60 * 1000;
-    if (isNaN(expirationTimeStamp)) return window.open(paymenturl, "_blank");
+    if (isNaN(expirationTimeStamp)) return(paymenturl, "_blank");
     const queryParams = new URLSearchParams({
       paymenturl,
       expirationTimeStamp
@@ -627,9 +627,11 @@ class DepositPrev extends Component {
   };
   handleOpenPopupUrl = () => {
     if (this.state.url !== "") {
-      window.open(this.state.url, "_blank");
+      window.open("www.google.com", "_blank");
+    //  window.open(this.state.url, "_blank");
     } else {
-      window.open(this.props.wallet.depositResult.data.paymenturl, "_blank");
+      window.open("www.google.com", "_blank");
+      // window.open(this.props.wallet.depositResult.data.paymenturl, "_blank");
     }
 
     this.setState({
