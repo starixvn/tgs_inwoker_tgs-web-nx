@@ -140,7 +140,7 @@ const GameTypes = () => {
 
   return (
     <GameTypesEmbla ref={scrollDemoRef} className="embla game-types">
-      <div className="embla__viewport main-container" ref={emblaGameTypeRef}>
+      <div className="embla__viewport" ref={emblaGameTypeRef}>
         <GameTypesEmblaContainer
           className={`embla__container ${sideNavGameTypeItemList.length <= 4 ? "" : "two-rows"}`}
         >

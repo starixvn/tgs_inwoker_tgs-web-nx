@@ -55,7 +55,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   };
 
   return (
-    <Group className="main-container">
+    <Group>
       <GameTypeTitle>
         <img src="/assets/images/common/icon-big-wins.svg" alt="hot" />
         {i18n.t("web.home.Section1RecentBigWins")}

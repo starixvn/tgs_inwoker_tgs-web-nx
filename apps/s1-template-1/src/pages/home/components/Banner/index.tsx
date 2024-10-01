@@ -33,7 +33,7 @@ const Banner = () => {
     }
   };
   return (
-    <BannerContainerEmbla className="embla main-container">
+    <BannerContainerEmbla className="embla">
       <div className="embla__viewport" ref={emblaBannerRef}>
         <div className="embla__container">
           {general.banner.map((banner, index) => {
