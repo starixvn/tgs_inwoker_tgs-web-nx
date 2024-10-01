@@ -287,12 +287,13 @@ class DepositPrev extends Component {
       paymenturl,
       expirationTimeStamp
     }).toString();
-    // let a = document.createElement("a");
-    // document.body.appendChild(a);
-    // a.href = `${window.location.origin}/deposit/popup?${queryParams}`;
-    // a.click();
-    const newTabUrl = `${window.location.origin}/deposit/popup?${queryParams}`;
-    return window.open(newTabUrl, '_blank');
+    let a = document.createElement("a");
+    document.body.appendChild(a);
+    a.href = `${window.location.origin}/deposit/popup?${queryParams}`;
+    a.target = "_blank";
+    a.click();
+    //const newTabUrl = `${window.location.origin}/deposit/popup?${queryParams}`;
+    // return window.open(newTabUrl, '_blank');
   }
 
   handleRestartClick = async (e) => {
