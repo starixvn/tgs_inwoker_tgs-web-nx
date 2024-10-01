@@ -292,7 +292,7 @@ class DepositPrev extends Component {
     // a.href = `${window.location.origin}/deposit/popup?${queryParams}`;
     // a.click();
     const newTabUrl = `${window.location.origin}/deposit/popup?${queryParams}`;
-    return window.open("www.google.com", '_blank');
+    return setTimeout(() => window.open(newTabUrl, '_blank'), 1);
   }
 
   handleRestartClick = async (e) => {
