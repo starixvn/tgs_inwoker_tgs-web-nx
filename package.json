@@ -31,7 +31,8 @@
     "docker-build:prod": "nx affected --target=docker-build --base=origin/master~1 --head=origin/master --parallel=3",
     "docker-build:force": "nx run-many --target=docker-build",
     "docker-build:single": "nx docker-build",
-    "build-all": "nx run-many --target=build"
+    "build-all": "nx run-many --target=build",
+    "test-coverage": "nx test s1-template-1 --codeCoverage"
   },
   "private": true,
   "dependencies": {
