@@ -36,30 +36,35 @@ const Banner = () => {
     <BannerContainerEmbla className="embla">
       <div className="embla__viewport" ref={emblaBannerRef}>
         <div className="embla__container">
-          {general.banner.map((banner, index) => (
-            <AppearSensor key={index}>
-              {
-                // @ts-ignore
-                ({ hasBeenVisible }) => (
-                  <div
-                    className="embla__slide"
-                    onClick={() => {
-                      launchGame(banner.navurl);
-                    }}
-                  >
-                    {hasBeenVisible && (
-                      <Img
-                        className="banner"
-                        src={isDesktopSize ? banner.desktopurl : banner.mobileurl}
-                        loader={<LoadingIcon />}
-                        unloader={<NoGameIcon gameName={banner.title} />}
-                      />
-                    )}
-                  </div>
-                )
-              }
-            </AppearSensor>
-          ))}
+          {general.banner.map((banner, index) => {
+            const { navurl, desktopurl, mobileurl, title } = banner;
+
+            return (
+              <AppearSensor key={index}>
+                {
+                  // @ts-ignore
+                  ({ hasBeenVisible }) => (
+                    <div
+                      className="embla__slide"
+                      onClick={() => {
+                        navurl && launchGame(navurl);
+                      }}
+                    >
+                      {hasBeenVisible && (
+                        <Img
+                          className="banner"
+                          src={isDesktopSize ? desktopurl : mobileurl}
+                          loader={<LoadingIcon />}
+                          unloader={<NoGameIcon gameName={title} />}
+                          alt={title}
+                        />
+                      )}
+                    </div>
+                  )
+                }
+              </AppearSensor>
+            );
+          })}
         </div>
         <div className="embla__controls">
           <div className="embla__dots">

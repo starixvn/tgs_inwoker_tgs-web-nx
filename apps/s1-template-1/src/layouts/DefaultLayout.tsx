@@ -1,7 +1,7 @@
 import Header from "@/layouts/components/Header";
 import Marquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
-import { MAIN_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useAccountStore, useUiStore } from "@tgs-web-nx/core";
 import React from "react";
 import styled from "styled-components";
@@ -27,8 +27,13 @@ const ContentWrapper = styled.div`
   position: relative;
   flex-grow: 1;
   margin: 0 auto;
-  transition: all ease-in-out 0.2s;
   width: 100%;
+  min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT});
+
+  ${media.lg} {
+    --footer: 270px;
+    min-height: calc(100vh - ${MOBILE_HEADER_HEIGHT} - var(--footer));
+  }
 `;
 
 type Props = {
