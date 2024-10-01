@@ -19,6 +19,7 @@ import JoinGamePage from "@/pages/joinGame/JoinGamePage";
 import JoinLobbyGamePage from "@/pages/joinLobbyGame/JoinLobbyGamePage";
 import LoginPage from "@/pages/login/LoginPage";
 import MaintenancePage from "@/pages/MaintenancePage";
+import MakeDepositPage from "@/pages/makeDeposit/MakeDepositPage";
 import PrivacyPolicy from "@/pages/PrivacyPolicy";
 import ProfilePage from "@/pages/profile/ProfilePage";
 import PromotionDetailPage from "@/pages/promotion/PromotionDetailPage";
@@ -66,6 +67,11 @@ const routes: RouteType[] = [
     path: "/account",
     component: AccountPage,
     layout: DefaultLayout,
+  },
+  {
+    path: "/makedeposit",
+    component: MakeDepositPage,
+    layout: DialogLayout
   },
   {
     path: "/deposit/popup",

@@ -467,7 +467,7 @@ class DepositPrev extends Component {
         }
       }
     } else {
-      this.props.performDeposit(
+      this.performDepositInPopUp(
         this.state.amount.replace(/,/g, ""),
         channel.id,
         this.state.depositPromotion,
@@ -570,6 +570,20 @@ class DepositPrev extends Component {
       }
     }
   };
+  performDepositInPopUp = (amount = "", payment_id = "", promotionid = "", paymentcode = "", type = "") => {
+    const queryParams = new URLSearchParams({
+      amount,
+      payment_id,
+      promotionid,
+      paymentcode,
+      type
+    }).toString();
+
+    const url = `${window.location.origin}/makedeposit?${queryParams}`;
+
+    window.open(url);
+  }
+
   handlePlayerNoteChange = (e) => {
     this.setState({
       ...this.state,
@@ -709,6 +723,8 @@ const mapStateToProps = (state) => {
     ui: state.ui,
   };
 };
+
+
 const mapDispatchToProps = (dispatch) => {
   return {
     doDepositUpload: (file, fileType, orderId) =>
