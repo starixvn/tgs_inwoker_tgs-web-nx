@@ -37,6 +37,10 @@ const LayoutGrid = styled.div`
 
   .hide-xs-md {
     display: none;
+
+    ${media.md} {
+      display: block;
+    }
   }
 `;
 
