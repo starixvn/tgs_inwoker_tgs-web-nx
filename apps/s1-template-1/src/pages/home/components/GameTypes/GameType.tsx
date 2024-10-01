@@ -13,6 +13,7 @@ const GameTypeNav = styled.div`
   cursor: pointer;
   position: relative;
   text-transform: capitalize;
+  color: ${({ theme }) => theme.categoryTextColor};
 
   ${media.lg} {
     padding: 0.4rem;

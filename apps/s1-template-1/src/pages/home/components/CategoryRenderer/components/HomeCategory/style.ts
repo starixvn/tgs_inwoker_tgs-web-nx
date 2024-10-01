@@ -33,6 +33,7 @@ export const GameTypeTitle = styled.div`
   margin-bottom: 1.8rem;
   gap: 0.8rem;
   text-transform: capitalize;
+  color: ${({ theme }) => theme.gameTypeTitle};
 
   & > img {
     width: 2.4rem;
@@ -49,8 +50,8 @@ export const ViewAll = styled.div`
   line-height: 1;
   padding: 0 3.2rem 0 0.8rem;
   border-radius: 0.8rem;
-  background: #2e353e;
-  color: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.viewAllBackground};
+  color: ${({ theme }) => theme.viewAllTextColor};
   font-size: 1.4rem;
   font-weight: 700;
   text-transform: capitalize;
@@ -82,6 +83,7 @@ export const GameTypeContainer = styled.div`
 
 export const Group = styled.div`
   position: relative;
+  background: ${({ theme }) => theme.groupAreaBackground};
 
   &.game-area {
     .embla__container {

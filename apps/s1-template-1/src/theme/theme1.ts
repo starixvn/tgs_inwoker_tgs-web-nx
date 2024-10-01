@@ -49,10 +49,12 @@ export const theme1 = {
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
+  categoryAreaBackground: "#0d131c",
   categoryBackground: "radial-gradient(57.7% 89.62% at 50.57% 23.58%, #293978 0%, #1D2738 100%)",
   categoryBackgroundActive: "#849709",
   categoryBackgroundHover: "#243260",
   categoryBorder: "#161F2C",
+  categoryTextColor: "#fff",
 
   // Recent Big Wins
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
@@ -60,6 +62,7 @@ export const theme1 = {
   recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
   recentBigWinsBottomBackground:
     "linear-gradient(180deg, rgba(22, 75, 153, 0) 4.38%, #065cdc 169.37%)",
+  recentBigWinsPlayerName: "#fff",
 
   // Bet slip
   betSlipBackground: "linear-gradient(180deg, #032f63 0%, #111923 50.9%)",
@@ -153,12 +156,15 @@ export const theme1 = {
   tabActiveTextColor: "#ffffff",
 
   // Announcement
+  announceBackground: "transparent",
   announceTextColor: "#F6254B",
 
   // Play button on game icon
   playButtonBackground: "rgba(0, 0, 0, 0.5)",
 
   // Home page
+  viewAllBackground: "#2e353e",
+  viewAllTextColor: "#fff",
   slideNextButtonBackground: "#465262",
   slideNextButtonColor: "#fff",
   slideNextButtonBackgroundHover: "#606e82",
@@ -172,6 +178,14 @@ export const theme1 = {
   maintenanceLabelColor: "#fff",
   testingLabelBackground: "#b0003f",
   testingLabelColor: "#fff",
+
+  gameTypeTitle: "#fff",
+  groupAreaBackground: "transparent",
+
+  latestBetsTableHeaderBg: "#E0E0E0",
+  latestBetsTableHeaderColor: "#474D58",
+  latestBetsTableRowBg: "#F5F6FA",
+  latestBetsTableRowColor: "#474D58",
 
   // Game Card
   gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",
@@ -260,4 +274,9 @@ export const theme1 = {
   circlePayingBackground: "#EB6DFF",
   statusPaidBackground: "rgba(0, 178, 255, 0.20)",
   circlePaidBackground: "#00B2FF",
+
+  // Banner
+  bannerAreaBackground: "transparent",
+  bannerDotBackground: "rgba(255, 255, 255, 0.5)",
+  bannerDotBackgroundActive: "#E2FE26",
 };

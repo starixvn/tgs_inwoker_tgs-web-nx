@@ -58,7 +58,7 @@ export const GlobalStyles = createGlobalStyle`
 
   .main-container {
     padding-left: 0.8rem;
-      padding-right: 0.8rem;
+    padding-right: 0.8rem;
 
     ${media.sm} {
       padding-left: 1.6rem;

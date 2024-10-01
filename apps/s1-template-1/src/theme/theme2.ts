@@ -49,17 +49,20 @@ export const theme2 = {
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
-  categoryBackground: "radial-gradient(57.7% 89.62% at 50.57% 23.58%, #293978 0%, #1D2738 100%)",
-  categoryBackgroundActive: "#849709",
-  categoryBackgroundHover: "#243260",
-  categoryBorder: "#161F2C",
+  categoryAreaBackground: "#fff",
+  categoryBackground: "#fff",
+  categoryBackgroundActive: "radial-gradient(50% 50% at 50% 50%, #C3DC15 0%, #A5BB10 100%)",
+  categoryBackgroundHover: "radial-gradient(50% 50% at 50% 50%, #FFF 0%, #F1F1F1 100%)",
+  categoryBorder: "#D9D9D9",
+  categoryTextColor: "#2E353E",
 
   // Recent Big Wins
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
-  bigWinsAmountColor: "#e2fe26",
+  bigWinsAmountColor: "#60AB00",
   recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
   recentBigWinsBottomBackground:
     "linear-gradient(180deg, rgba(22, 75, 153, 0) 4.38%, #065cdc 169.37%)",
+  recentBigWinsPlayerName: "#2E353E",
 
   // Bet slip
   betSlipBackground: "linear-gradient(180deg, #032f63 0%, #111923 50.9%)",
@@ -98,12 +101,12 @@ export const theme2 = {
   optionHoverBgColor: "#2A3546",
 
   // Common
-  mainBackground: "#0d131c",
-  text: "#FFFFFF",
+  mainBackground: "#F5F5F5",
+  text: "#2E353E",
 
   errorColor: "#F90B44",
 
-  linkColor: "#E2FE26",
+  linkColor: "#60AB00",
 
   dropDownBackground: "#1C2532",
   dropDownItemSelectedBackground: "#2A3546",
@@ -113,7 +116,7 @@ export const theme2 = {
   scrollbarBackground: "#1C2532",
   scrollbarThumbBackground: "#2A3546",
 
-  primary: "#E2FE26",
+  primary: "#60AB00",
   secondary: "#19212C",
   white: "#FFFFFF",
   gray: "#6E7E92",
@@ -153,17 +156,20 @@ export const theme2 = {
   tabActiveTextColor: "#ffffff",
 
   // Announcement
-  announceTextColor: "#F6254B",
+  announceBackground: "#fff",
+  announceTextColor: "#0099DB",
 
   // Play button on game icon
   playButtonBackground: "rgba(0, 0, 0, 0.5)",
 
   // Home page
-  slideNextButtonBackground: "#465262",
-  slideNextButtonColor: "#fff",
+  viewAllBackground: "#F2F2F2",
+  viewAllTextColor: "#27272A",
+  slideNextButtonBackground: "#F2F2F2",
+  slideNextButtonColor: "#27272A",
   slideNextButtonBackgroundHover: "#606e82",
-  disabledSlideNextButtonBackground: "#2e353e",
-  disabledSlideNextButtonColor: "#6e7e92",
+  disabledSlideNextButtonBackground: "#F2F2F2",
+  disabledSlideNextButtonColor: "#27272A",
 
   providerItemBackground: "#1c2532",
 
@@ -173,8 +179,16 @@ export const theme2 = {
   testingLabelBackground: "#b0003f",
   testingLabelColor: "#fff",
 
+  gameTypeTitle: "#2E353E",
+  groupAreaBackground: "#fff",
+
+  latestBetsTableHeaderBg: "#E0E0E0",
+  latestBetsTableHeaderColor: "#474D58",
+  latestBetsTableRowBg: "#F5F6FA",
+  latestBetsTableRowColor: "#474D58",
+
   // Game Card
-  gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",
+  gameCardBackground: "linear-gradient(149deg, #CCC 2%, #EDEDED 49.83%, #BEBCBC 97.67%)",
   gameCardGameNameColor: "#fff",
   gameCardBackgroundHover: "rgba(0, 0, 0, 0.6)",
   gameCardAspectRatio: "156 / 210",
@@ -260,4 +274,9 @@ export const theme2 = {
   circlePayingBackground: "#EB6DFF",
   statusPaidBackground: "rgba(0, 178, 255, 0.20)",
   circlePaidBackground: "#00B2FF",
+
+  // Banner
+  bannerAreaBackground: "#fff",
+  bannerDotBackground: "#C4CAD1",
+  bannerDotBackgroundActive: "#60AB00",
 };

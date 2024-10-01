@@ -14,6 +14,7 @@ const MarqueeContainer = styled.div`
   padding: 0 0.8rem;
   color: ${({ theme }) => theme.announceTextColor};
   flex-shrink: 0;
+  background: ${({ theme }) => theme.announceBackground};
 
   ${media.sm} {
     height: ${DESKTOP_ANNOUNCEMENT_HEIGHT};

@@ -63,7 +63,7 @@ export const RecentBigWinsSlide = styled.div`
 `;
 
 export const PlayerName = styled.div`
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.recentBigWinsPlayerName};
 `;
 
 export const BigWinsAmount = styled.div`

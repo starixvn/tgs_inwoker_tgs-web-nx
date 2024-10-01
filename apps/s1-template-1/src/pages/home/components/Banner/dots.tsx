@@ -13,7 +13,7 @@ const Dot = styled.button`
   height: var(--dot-height);
   border-radius: 2rem;
   border: none;
-  background: rgba(255, 255, 255, 0.5);
+  background: ${({ theme }) => theme.bannerDotBackground};
   overflow: hidden;
   transition:
     max-width 0.2s ease-in-out,
@@ -33,7 +33,7 @@ const Dot = styled.button`
       animation-name: fill-dot;
       animation-play-state: running;
       animation-timing-function: ease;
-      background-color: ${({ theme }) => theme.primary};
+      background-color: ${({ theme }) => theme.bannerDotBackgroundActive};
       border-radius: 2rem;
       height: 100%;
       margin-left: -0.6rem;

@@ -47,8 +47,8 @@ const LayoutGrid = styled.div`
 export const TableHeader = styled(LayoutGrid)`
   position: relative;
   border-radius: 0.8rem;
-  background: #1a2335;
-  color: #7a8597;
+  background: ${({ theme }) => theme.latestBetsTableHeaderBg};
+  color: ${({ theme }) => theme.latestBetsTableHeaderColor};
   font-size: 1.3rem;
   font-weight: 700;
   z-index: 2;
@@ -57,9 +57,9 @@ export const TableHeader = styled(LayoutGrid)`
 export const TableRow = styled(LayoutGrid)<AnimationProps>`
   border-radius: 0.8rem;
   border-bottom: 1px solid #151d29;
-  background: #151d29;
+  background: ${({ theme }) => theme.latestBetsTableRowBg};
   margin-top: 0.6rem;
-  color: #7a8597;
+  color: ${({ theme }) => theme.latestBetsTableRowColor};
   font-size: 1.3rem;
   font-weight: 500;
 `;

@@ -7,6 +7,7 @@ export const BannerContainerEmbla = styled.section`
   --slide-spacing: 0;
 
   position: relative;
+  background: ${({ theme }) => theme.bannerAreaBackground};
 
   .emble {
     container-type: inline-size;

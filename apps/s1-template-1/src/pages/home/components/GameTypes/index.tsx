@@ -15,7 +15,7 @@ const GameTypesEmbla = styled.section`
     top: ${MOBILE_HEADER_HEIGHT};
     z-index: 9;
     padding: 1.6rem 0;
-    background-color: ${({ theme }) => theme.mainBackground};
+    background-color: ${({ theme }) => theme.categoryAreaBackground};
 
     ${media.sm} {
       top: ${DESKTOP_HEADER_HEIGHT};
