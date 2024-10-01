@@ -71,7 +71,7 @@ const QRCodeBounding = styled.div`
 const AccountInfo = styled.div`
   display: flex;
   align-items: center;
-  margin-top: -1rem; 
+  margin-top: -1rem;
 `;
 
 const ChannelExtend = styled.div`
@@ -86,7 +86,7 @@ const ChannelExtend = styled.div`
       right: unset;
       bottom: -6px;
      }
-      
+
    }
 `;
 
@@ -731,7 +731,7 @@ class Main extends Component {
 
         {/*提交*/}
         <ItemContainer>
-          
+
           <GreenGradientButton
             onClick={this.props.handleDepositClick}
             variant={"contained"}
@@ -756,7 +756,7 @@ class Main extends Component {
             <div></div>
           </GreenGradientButton>
         </ItemContainer>
-        
+
         <ResultPopupDialog
           isDialogOpen={this.props.openPopup}
           handleClose={this.props.handleClosePopup}
