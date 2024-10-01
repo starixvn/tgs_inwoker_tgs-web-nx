@@ -13,6 +13,7 @@ import {
   InvitationType,
   useAuthDialog,
   useConfirmAdult,
+    useEncryptPassword,
   useGenerateRegisterCreatePlayerFormik,
 } from "../../..";
 
@@ -22,6 +23,8 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
   const { registerV2CreatePlayer, registerV2SetRealName, accountLogin, getAccountInfo } =
     useAccountStore();
   const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
+
+    const { encryptPassword } = useEncryptPassword();
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
 
@@ -39,11 +42,12 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
       const email = values.email as string;
       const userType = values.userType as InvitationType;
       const promoteCode = values.promoteCode as string;
+      const encryptedPassword = encryptPassword(values.password);
 
       const createPlayerReqDto: RegisterV2CreatePlayerReqDto = {
         username,
         email,
-        pwd: values.password as string,
+        pwd: encryptedPassword,
         upper: userType === InvitationType.PLAYER ? promoteCode : undefined,
         invitationcode: userType === InvitationType.AGENT ? promoteCode : undefined,
         //@ts-ignore
@@ -62,28 +66,28 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
 
       if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.UsernameExisted) {
         enqueueSnackbar(i18n.t("common.msgAlreadyExist"), {
-            variant: "error",
-          });
-        throw new Error("")
+          variant: "error",
+        });
+        throw new Error("");
       }
 
       if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.EmailExisted) {
         enqueueSnackbar(i18n.t("common.msgEmailExist"), {
-            variant: "error",
-          });
-        throw new Error("")
+          variant: "error",
+        });
+        throw new Error("");
       }
 
       if (newRegisterResDto.data.stepResponse.stepstatus === StepStatus.EmailInvalid) {
         enqueueSnackbar(i18n.t("common.msgInvalidEmail"), {
-            variant: "error",
-          });
-        throw new Error("")
+          variant: "error",
+        });
+        throw new Error("");
       }
       //for MOVN2 customization
       if (brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isAddRealNameFieldBrand) {
         //Set realname之前必須先login
-        await accountLogin(values.username, values.pwd);
+        await accountLogin(encryptedPassword, values.pwd);
 
         const setRealNameReqDto: RegisterV2SetRealNameDto = {
           realname: values.realName,

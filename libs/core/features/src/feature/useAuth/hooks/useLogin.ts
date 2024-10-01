@@ -15,6 +15,7 @@ import { enqueueSnackbar } from "notistack";
 import { useAuthDialog } from "../../useAuthDialog";
 import { useHomeGameContext } from "../../game/useHomeGameContext";
 import { useTransferWallets } from "../../useUserWalletInfo/hooks/useTransferWallets";
+import { useEncryptPassword } from "../../auth";
 
 export type LoginState = {
   data: any | null;
@@ -38,6 +39,7 @@ export function useLogin() {
   const { updateStage } = useAuthDialog();
   const { handleChangeGameType } = useHomeGameContext();
   const { fetchTransferWalletBalance } = useTransferWallets();
+  const {encryptPassword} = useEncryptPassword();
 
   useEffect(() => {
     if (loginState.data) {
@@ -49,6 +51,7 @@ export function useLogin() {
     try {
       setLoginState({ isLoading: true, data: null, error: null });
 
+      password = encryptPassword(password);
       const result = await accountLogin(username, password);
 
       if (!result?.IsSuccess) {

@@ -1,14 +1,15 @@
-import { TextField } from "@/components/UI/TextField";
+import { AccountService } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { useEncryptPassword } from "@tgs-web-nx/core/features";
+import BaseProfile from "./BaseProfile";
 import {
   FormControl,
   ItemContainer,
   LabelContainer,
 } from "@/components/styled-component/ProfileForms";
-import { AccountService } from "@tgs-web-nx/core";
-import { i18n } from "@tgs-web-nx/utils";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import BaseProfile from "./BaseProfile";
+import { TextField } from "@/components/UI/TextField";
 
 class ChangePassword extends BaseProfile {
   componentDidMount() {}
@@ -39,8 +40,13 @@ class ChangePassword extends BaseProfile {
       return;
     }
 
+    const {encryptPassword} = useEncryptPassword();
+
+    const encryptedOldPassword = encryptPassword(oldpassword);
+    const encryptedNewPassword = encryptPassword(newpassword);
+
     this.showLoading(true);
-    AccountService.UpdatePassword(oldpassword, newpassword)
+    AccountService.UpdatePassword(encryptedOldPassword, encryptedNewPassword)
       .then((response) => {
         if (response.IsSuccess) {
           this.updateInfo({});
