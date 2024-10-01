@@ -12,7 +12,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    height: 100vh;
+    height: 100%;
+    overflow: hidden;
     margin: 0;
     background: ${({ theme }) => theme.mainBackground};
     background-size: 100%;
@@ -24,11 +25,16 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   #root {
+    position: absolute;
+    left: 0;
+    top: 0;
     height: 100%;
+    width: 100%;
     overflow: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+
   }
 
 
