@@ -579,9 +579,9 @@ class DepositPrev extends Component {
       type
     }).toString();
 
-    const url = `${window.location.origin}/makedeposit?${queryParams}`;
+    const url = `/makedeposit?${queryParams}`;
 
-    window.open(url);
+    window.open(url, '_blank');
   }
 
   handlePlayerNoteChange = (e) => {
