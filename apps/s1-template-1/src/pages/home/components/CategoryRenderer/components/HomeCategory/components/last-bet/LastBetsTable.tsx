@@ -5,10 +5,13 @@ import { useMemo } from "react";
 
 import { GameName, InfoContainer, PlayerName, TableCell, TableRow, TableWrapper, TextColor } from "./style";
 
-const LastBetsTable: React.FC<{ betList: LastBetDto[] }> = ({ betList }) => {
+const LastBetsTable: React.FC<{ betList: LastBetDto[]; startAnimation: boolean }> = ({
+  betList,
+  startAnimation,
+}) => {
   return useMemo(() => {
     return (
-      <TableWrapper>
+      <TableWrapper className={startAnimation ? "start-animation" : ""}>
         {betList.map((item, index) => {
           const { gameName, playerName, playerCode, multiplier, payout, timeBet } = item;
 
@@ -36,7 +39,7 @@ const LastBetsTable: React.FC<{ betList: LastBetDto[] }> = ({ betList }) => {
         })}
       </TableWrapper>
     );
-  }, [betList]);
+  }, [betList, startAnimation]);
 };
 
 export default LastBetsTable;

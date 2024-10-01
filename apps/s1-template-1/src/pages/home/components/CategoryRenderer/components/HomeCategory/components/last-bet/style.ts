@@ -65,6 +65,21 @@ export const TableWrapper = styled.div`
   width: 100%;
   max-height: 46rem;
   overflow: hidden;
+  will-change: transform;
+
+  &.start-animation {
+    animation: shuffle 0.5s ease-out;
+  }
+
+  @keyframes shuffle {
+    0% {
+      transform: translateY(-50px);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const TableCell = styled.div``;

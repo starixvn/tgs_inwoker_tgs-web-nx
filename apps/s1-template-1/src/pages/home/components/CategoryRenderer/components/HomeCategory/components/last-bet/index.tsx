@@ -15,9 +15,12 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
   const { connection } = props;
   const [betList, setBetList] = useState<LastBetDto[]>([]);
   const navGameType = useGameTypeList();
+  const [startAnimation, setStartAnimation] = useState<boolean>(false);
+  const clearAnimDelayTime = 600;
 
   useEffect(() => {
     if (!connection) return;
+    let timeOut: NodeJS.Timeout;
 
     connection.start().catch((err) => console.error(err.toString()));
 
@@ -25,6 +28,13 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
       setBetList((items) => {
         item.gameIconUrl = navGameType.find((x) => x.gameType === item.gameType)?.iconUrl || "";
         const updatedMessages = [item, ...items];
+
+        setStartAnimation(true);
+
+        timeOut = setTimeout(() => {
+          setStartAnimation(false);
+        }, clearAnimDelayTime);
+
         return updatedMessages;
       });
     });
@@ -32,6 +42,7 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
     return () => {
       connection.off("ReceiveLastBet");
       connection.stop();
+      timeOut && clearTimeout(timeOut);
     };
   }, [connection]);
 
@@ -39,12 +50,12 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
     <TableContainer>
       <TableHeader>
         <span>{i18n.t("web.latestBets.game")}</span>
-        <span className="hide-xs-md">Time</span>
+        <span className="hide-xs-md">{i18n.t("web.latestBets.time")}</span>
         <span>{i18n.t("web.latestBets.user")}</span>
         <span className="hide-xs-md">{i18n.t("web.latestBets.multiplier")}</span>
         <span className="text-right">{i18n.t("web.latestBets.payout")}</span>
       </TableHeader>
-      <LastBetsTable betList={betList} />
+      <LastBetsTable startAnimation={startAnimation} betList={betList} />
     </TableContainer>
   );
 };
