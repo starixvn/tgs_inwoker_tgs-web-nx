@@ -103,21 +103,6 @@ const CopyIconCustomize = styled(CopyIconStyled)`
 
 `;
 
-const ButtonLink = styled.a`
-  height: "3.6rem";
-  padding: "0 1rem";
-  borderRadius: "0.8rem";
-  fontSize: "1.3rem";
-  fontFamily: "var(--main-font-family)";
-  fontWeight: 700;
-  textTransform: "capitalize";
-  lineHeight: "1";
-  minWidth: "7.8rem";
-  borderBottomWidth: "0.2rem";
-  borderStyle: "solid";
-  transition: "all 0.1s ease-in-out";
-`;
-
 class Main extends Component {
   render() {
     const selectedDepositType = this.props.wallet.depositTypeList[this.props.selectedPaymentIndex];
@@ -771,7 +756,7 @@ class Main extends Component {
             <div></div>
           </GreenGradientButton>
         </ItemContainer>
-        <ButtonLink id="myLink" href="https://www.google.com/" target="_blank" rel='noreferrer'>google</ButtonLink>
+        
         <ResultPopupDialog
           isDialogOpen={this.props.openPopup}
           handleClose={this.props.handleClosePopup}
