@@ -55,7 +55,7 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
     if (!isLogin) {
       goToLogin();
     } else {
-      window.open(`/joingame/${id}/${gpcode}`, "_blank");
+      window.open(`/joingame/${id}/${gpcode}`, `${gpcode}-${id}`);
     }
   };
 

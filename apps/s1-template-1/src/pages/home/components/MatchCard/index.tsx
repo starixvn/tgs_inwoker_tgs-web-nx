@@ -33,7 +33,7 @@ const MatchCard = ({ match }: MatchCardProps) => {
     if (!isLogin) {
       goToLogin();
     } else {
-      window.open(`/joingame/${import.meta.env.VITE_SABA_GAME_PATH}`, "_blank");
+      window.open(`/joingame/${import.meta.env.VITE_SABA_GAME_PATH}`, import.meta.env.VITE_SABA_GAME_PATH);
     }
   };
 
