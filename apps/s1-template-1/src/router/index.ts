@@ -1,6 +1,7 @@
 import AuthDialogLayout from "@/layouts/AuthDialogLayout";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import DialogLayout from "@/layouts/DialogLayout";
+import DialogLayoutWithoutBack from "@/layouts/DialogLayoutWithoutBack";
 import IframeLayout from "@/layouts/IframeLayout";
 import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 import VipLayout from "@/layouts/VipLayout";
@@ -41,13 +42,13 @@ const routes: RouteType[] = [
     path: "/deposit/status/iframe",
     component: DepositStatusIframe,
     layout: IframeLayout,
-    isAnonymousAllowed: true
+    isAnonymousAllowed: true,
   },
   {
     path: "/deposit/status/",
     component: DepositStatusIframe,
     layout: DialogLayout,
-    isAnonymousAllowed: true
+    isAnonymousAllowed: true,
   },
   {
     path: "/",
@@ -69,7 +70,7 @@ const routes: RouteType[] = [
   {
     path: "/deposit/popup",
     component: DepositPopupPage,
-    layout: DialogLayout
+    layout: DialogLayoutWithoutBack,
   },
   {
     path: "/deposit",
@@ -380,7 +381,7 @@ const routes: RouteType[] = [
     path: "/:sports",
     component: MainPage,
     layout: DefaultLayout,
-    isAnonymousAllowed: true
+    isAnonymousAllowed: true,
   },
 ];
 
@@ -393,4 +394,3 @@ if (!config.features.NewTransferUI) {
 }
 
 export { routes };
-
