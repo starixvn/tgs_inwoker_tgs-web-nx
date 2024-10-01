@@ -13,6 +13,7 @@ import enLocale from "date-fns/locale/en-US";
 import thLocale from "date-fns/locale/th";
 import zhLocale from "date-fns/locale/zh-CN";
 import styled from "styled-components";
+import { ArrowLeftIcon, ArrowRightIcon } from "./CustomizeIcon";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -46,6 +47,10 @@ const muiTheme = createTheme({
 //   }
 // }));
 
+export const ArrowIcon = () => (
+  <img src={"/assets/images/common/icon-arrow-down.svg"} alt="Arrow" width={"14px"} height={"9px"} />
+);
+
 export const DatePicker = (props: MobileDatePickerProps<any>) => {
   const theme = useTheme();
   const onlySmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -60,7 +65,12 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
           disableFuture
           format="MM/dd/yyyy"
           orientation={"portrait"}
-          sx={{background: "transparent"}}
+          sx={{background: "transparent", borderRadius:"1.2rem"}}
+          slots={{
+            switchViewIcon: ArrowIcon, 
+            leftArrowIcon: ArrowLeftIcon,
+            rightArrowIcon: ArrowRightIcon
+          }}
           slotProps={{
             layout: {
               sx: {
@@ -187,11 +197,33 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                     fontSize: "2.4rem",
                     "&.Mui-disabled": {
                       background: theme.palette.calendar.disabledNextButtonBackground,
+                    },
+                    "& .MuiSvgIcon-root": {
+                      position: "relative",
+                      top: "5px", 
+                      left: "7px",
                     }
                   }
                 }
               },
             },
+            dialog: {
+              sx: {
+                "& .MuiPaper-root": {
+                   borderRadius: "1.2rem",
+                   background: "transparent"
+                }
+              }
+            }, 
+            switchViewIcon: {
+              sx: {
+              "&.MuiIconButton-root": {
+                width: "2rem",
+                height: "2rem", 
+              }
+              
+              }
+            }
           }}
         />
       </ThemeProvider>

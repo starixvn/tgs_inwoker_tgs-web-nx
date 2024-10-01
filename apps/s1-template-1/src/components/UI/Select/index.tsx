@@ -74,6 +74,7 @@ export const Select = (props: SelectProps) => {
         PaperProps: {
           sx: {
             width: 214,
+            maxHeight: 262,
             background: theme.dropDownBackground,
             padding: "0.8rem",
             borderRadius: "1rem",
