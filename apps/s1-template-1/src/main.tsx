@@ -1,5 +1,4 @@
 import "./sentry";
-import "@/assets/styles/custom-primereact.css";
 import "@/assets/styles/embla.css";
 import "@/assets/styles/index.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";

@@ -279,4 +279,17 @@ export const theme2 = {
   bannerAreaBackground: "#fff",
   bannerDotBackground: "#C4CAD1",
   bannerDotBackgroundActive: "#60AB00",
+
+  // Multiple select
+  multipleSelectBackground: "#1c2532",
+  multipleSelectColor: "#6e7e92",
+  multipleSelectShadow: "rgba(0, 0, 0, 0.1)",
+  multipleSelectCheckboxBackground: "transparent",
+  multipleSelectCheckboxBorder: "#65759b",
+  multipleSelectCheckboxChecked: "#90a405",
+
+  dropdownBackground: "#1c2532",
+  dropdownColor: "#6e7e92",
+  dropdownItemBackgroundHighlight: "#2a3546",
+  dropdownItemColorHighlight: "#fff",
 };

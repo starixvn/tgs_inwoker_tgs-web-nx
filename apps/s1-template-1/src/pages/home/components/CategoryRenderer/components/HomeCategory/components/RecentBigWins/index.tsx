@@ -1,7 +1,8 @@
+import EmblaCarousel from "@/components/project/embla-carousel";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
-import { Common, i18n } from "@tgs-web-nx/utils";
+import { i18n } from "@tgs-web-nx/utils";
 import { EmblaOptionsType } from "embla-carousel";
 import AutoScroll from "embla-carousel-auto-scroll";
 import React, { useState } from "react";
@@ -10,7 +11,6 @@ import { GameTypeTitle, Group } from "../../style";
 import BetSlipDialog from "./BetSlipDialog";
 import RecentBigWinsItem from "./RecentBigWinsItem";
 import RecentBigWinSKeleton from "./RecentBigWinSKeleton";
-import EmblaCarousel from "@/components/project/embla-carousel";
 
 type BigWinType = {
   data: RecentBigWinItem[];
@@ -55,7 +55,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
   };
 
   return (
-    <Group>
+    <Group className="main-container">
       <GameTypeTitle>
         <img src="/assets/images/common/icon-big-wins.svg" alt="hot" />
         {i18n.t("web.home.Section1RecentBigWins")}

@@ -13,7 +13,6 @@ const MainWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: ${({ theme }) => theme.white};
-  gap: 1.2rem;
   flex-shrink: 0;
   flex: 1;
 
@@ -29,9 +28,9 @@ const MainContentWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: ${({ theme }) => theme.white};
-  gap: 0.6rem;
   flex-shrink: 0;
   flex: 1;
+  margin-top: 0.8rem;
 
   ${media.sm} {
     margin: 0 auto;

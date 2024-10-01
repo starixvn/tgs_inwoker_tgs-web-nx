@@ -182,10 +182,10 @@ export const theme1 = {
   gameTypeTitle: "#fff",
   groupAreaBackground: "transparent",
 
-  latestBetsTableHeaderBg: "#E0E0E0",
-  latestBetsTableHeaderColor: "#474D58",
-  latestBetsTableRowBg: "#F5F6FA",
-  latestBetsTableRowColor: "#474D58",
+  latestBetsTableHeaderBg: "#1a2335",
+  latestBetsTableHeaderColor: "#7a8597",
+  latestBetsTableRowBg: "#151d29",
+  latestBetsTableRowColor: "#7a8597",
 
   // Game Card
   gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",
@@ -279,4 +279,17 @@ export const theme1 = {
   bannerAreaBackground: "transparent",
   bannerDotBackground: "rgba(255, 255, 255, 0.5)",
   bannerDotBackgroundActive: "#E2FE26",
+
+  // Multiple select
+  multipleSelectBackground: "#1c2532",
+  multipleSelectColor: "#6e7e92",
+  multipleSelectShadow: "rgba(0, 0, 0, 0.1)",
+  multipleSelectCheckboxBackground: "transparent",
+  multipleSelectCheckboxBorder: "#65759b",
+  multipleSelectCheckboxChecked: "#90a405",
+
+  dropdownBackground: "#1c2532",
+  dropdownColor: "#6e7e92",
+  dropdownItemBackgroundHighlight: "#2a3546",
+  dropdownItemColorHighlight: "#fff",
 };

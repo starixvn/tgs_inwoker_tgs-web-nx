@@ -81,4 +81,85 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
+  // customize multiple select
+.p-multiselect-panel {
+  padding: 0.8rem;
+  margin-top: 0.1rem;
+  background: ${({ theme }) => theme.multipleSelectBackground};
+  color: ${({ theme }) => theme.multipleSelectColor};
+  border: 0 none;
+  border-radius: 1rem;
+  box-shadow: 0 0.2rem 1.2rem 0 ${({ theme }) => theme.multipleSelectShadow};
+}
+
+.p-multiselect-items-wrapper {
+  max-height: 32rem !important;
+}
+
+.p-multiselect-panel .p-multiselect-header {
+  display: none;
+}
+
+.p-multiselect-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.p-checkbox .p-checkbox-box {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid ${({ theme }) => theme.multipleSelectCheckboxBorder};
+  background: ${({ theme }) => theme.multipleSelectCheckboxBackground};
+}
+
+.p-checkbox.p-highlight .p-checkbox-box {
+  border-color: ${({ theme }) => theme.multipleSelectCheckboxChecked};
+  background: ${({ theme }) => theme.multipleSelectCheckboxChecked};
+}
+
+.p-multiselect-checkbox {
+  position: relative;
+  top: 0.2rem;
+  margin-right: 0.8rem;
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  min-height: 4.4rem;
+  padding: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 1rem;
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight.p-focus {
+  background: ${({ theme }) => theme.dropdownItemBackgroundHighlight};
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  color: ${({ theme }) => theme.dropdownItemColorHighlight};
+  background: ${({ theme }) => theme.dropdownItemBackgroundHighlight};
+}
+
+.p-multiselect-panel
+  .p-multiselect-items
+  .p-multiselect-item:not(.p-highlight):not(.p-disabled).p-focus,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled).p-focus {
+  color: ${({ theme }) => theme.dropdownItemColorHighlight};
+  background: transparent;
+}
+
+.p-dropdown-panel {
+  padding: 0.8rem;
+  margin-top: 0.1rem;
+  background: ${({ theme }) => theme.dropdownBackground};
+  color: ${({ theme }) => theme.dropdownColor};
+  border: 0 none;
+  border-radius: 1rem;
+  box-shadow: 0 0.2rem 1.2rem 0 rgba(0, 0, 0, 0.1);
+}
+
+
 `;
