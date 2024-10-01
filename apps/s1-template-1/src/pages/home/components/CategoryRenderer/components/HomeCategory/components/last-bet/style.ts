@@ -1,3 +1,4 @@
+import { media } from "@tgs-web-nx/constants";
 import styled from "styled-components";
 
 interface AnimationProps {
@@ -22,13 +23,21 @@ export const TableContainer = styled.div`
 
 const LayoutGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 40% repeat(2, calc(30% - 0.8rem));
   grid-template-rows: 4.4rem;
   justify-content: space-between;
   align-items: center;
   padding: 0.4rem 0.8rem;
   text-align: center;
   gap: 0.8rem;
+
+  ${media.md} {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .hide-xs-md {
+    display: none;
+  }
 `;
 
 export const TableHeader = styled(LayoutGrid)`
@@ -81,14 +90,15 @@ export const TextColor = styled(TableCell)<{ payout: number }>`
 `;
 
 export const PlayerName = styled.div`
-  width: 8rem;
   text-align: left;
-  white-space: nowrap;
-  /* overflow: hidden; */
-  text-overflow: ellipsis;
 `;
 
 export const GameName = styled.div`
   text-align: left;
   text-transform: capitalize;
+  line-height: 1.2;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

@@ -39,8 +39,9 @@ const LastBets: React.FC<LastBetsType> = (props: LastBetsType) => {
     <TableContainer>
       <TableHeader>
         <span>{i18n.t("web.latestBets.game")}</span>
+        <span className="hide-xs-md">Time</span>
         <span>{i18n.t("web.latestBets.user")}</span>
-        <span>{i18n.t("web.latestBets.multiplier")}</span>
+        <span className="hide-xs-md">{i18n.t("web.latestBets.multiplier")}</span>
         <span className="text-right">{i18n.t("web.latestBets.payout")}</span>
       </TableHeader>
       <LastBetsTable betList={betList} />

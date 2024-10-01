@@ -166,4 +166,5 @@ export interface LastBetDto {
   multiplier: number;
   gameIconUrl: string;
   gameType: number;
+  timeBet: string;
 }
