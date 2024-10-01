@@ -31,7 +31,7 @@ const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   },
 
   "& .MuiInputBase-input": {
-    color: `${theme.palette.form.textColor}`,
+    color: `${theme.palette.white}`,
     fontWeight: "bold",
     height: "100%",
     display: "flex",

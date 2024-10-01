@@ -58,7 +58,7 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
         <MobileDatePicker
           {...props}
           disableFuture
-          format="yyyy/MM/dd"
+          format="MM/dd/yyyy"
           orientation={"portrait"}
           sx={{background: "transparent"}}
           slotProps={{
@@ -110,6 +110,7 @@ export const DatePicker = (props: MobileDatePickerProps<any>) => {
                     fontFamily: "inherit",
                     letterSpacing: "0.32px",
                     lineHeight: "3rem",
+                    textTransform: "none",
                   },
                   "& .MuiDatePickerToolbar-title": {
                     fontSize: "2.2rem",
@@ -262,7 +263,7 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
     width: 100%;
   }
   .MuiInputBase-input {   
-    color: ${({ theme }) => theme.formInputColor};    
+    color: ${({ theme }) => theme.white};    
     padding: 0 .8rem !important;
     text-align: left;
     cursor: pointer;
