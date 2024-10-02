@@ -260,6 +260,7 @@ export const theme = {
   highlightMatchTime: "#6AC5FF",
   highlightMatchTextColor: "#fff",
   highlightMatchOdds: "#CBCBCB",
+  highlightMatchLiveIconBackground: "#fff",
 
   // Tag Status Transactions
   statusProcessingBackground: "rgba(9, 255, 78, 0.20)",

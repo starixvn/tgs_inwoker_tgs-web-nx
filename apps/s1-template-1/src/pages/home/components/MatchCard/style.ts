@@ -30,9 +30,17 @@ export const MatchCardBg = styled.div`
   }
 `;
 
-export const LeagueName = styled.div`
+const TruncateText = styled.div`
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 47%, rgba(0, 0, 0, 0) 94%);
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+export const LeagueName = styled(TruncateText)`
+flex-shrink: 0;
   color: ${({ theme }) => theme.highlightMatchLeagueName};
   text-transform: lowercase;
+
 
   &::first-letter,
   &::first-line {
@@ -76,10 +84,8 @@ export const LogoContainer = styled.div`
   }
 `;
 
-export const TeamName = styled.div`
-  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 47%, rgba(0, 0, 0, 0) 94%);
-  overflow: hidden;
-  white-space: nowrap;
+export const TeamName = styled(TruncateText)`
+  color: ${({ theme }) => theme.highlightMatchTextColor};
 `;
 
 export const Score = styled.div`
@@ -90,6 +96,7 @@ export const Score = styled.div`
   border-radius: 0.8rem;
   background: rgba(255, 255, 255, 0.1);
   font-size: 1.6rem;
+  color: ${({ theme }) => theme.highlightMatchTextColor};
 `;
 
 export const SelectionContainer = styled.div`
@@ -115,6 +122,7 @@ export const SelectionButton = styled.div`
 
 export const SelectionOdds = styled.div`
   text-align: right;
+  color: ${({ theme }) => theme.highlightMatchTextColor};
 `;
 
 export const SelectionPoint = styled.div`
@@ -132,7 +140,7 @@ export const LiveIcon = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 0.8rem;
-  background: #fff;
+  background: ${({ theme }) => theme.highlightMatchLiveIconBackground};
   backdrop-filter: blur(2px);
   overflow: hidden;
 `;
