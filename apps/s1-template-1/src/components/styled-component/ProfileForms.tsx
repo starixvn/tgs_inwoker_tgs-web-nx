@@ -125,6 +125,10 @@ export const UploadFileTag = styled.span`
   align-items: center;
   height: 4.8rem;
   font-weight: 700;
+  background: ${({ theme }) => theme.formInputBackground};
+  border-radius: 1rem;
+  border: 1px solid ${({ theme }) => theme.formInputBorder};
+  padding-left: 1.2rem;
 `;
 
 export const AccountIcon = styled.div`

@@ -18,7 +18,6 @@ import {
   LabelContainer as ProfileLabelContainer,
   Remark,
   UploadFileButton,
-  UploadFileControl,
   UploadFileTag
 } from "@/components/styled-component/ProfileForms";
 import { GreenGradientButton } from "@/components/UI/Button";
@@ -683,7 +682,6 @@ class Main extends Component {
                   <LabelLargeContainer>{i18n.t("deposit.uploadReceipt")}</LabelLargeContainer>
 
                   <FormControl>
-                    <UploadFileControl>
                       <UploadFileButton
                         onClick={() => {
                           document.getElementById("getFile").click();
@@ -702,7 +700,6 @@ class Main extends Component {
                       <UploadFileTag>
                         {this.props.files ? this.props.files[0].name : i18n.t("common.uploadFile")}
                       </UploadFileTag>
-                    </UploadFileControl>
                   </FormControl>
                 </ItemContainer>
                 {/* <Remark>
