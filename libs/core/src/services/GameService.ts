@@ -104,8 +104,9 @@ function GetRecentBigWins() {
   ) as unknown as Promise<ResponseResDto<RecentBigWinItem>>;
 }
 
-function GetHightLightMatches(sportType: number, betType: number, isLive: boolean, top: number, from: string, to: string) {
-  return ApiService.getSabaAPI(`saba/event?sportType=${sportType}&betType=${betType}&isLive=${isLive}&top=${top}&from=${from}&to=${to}`) as unknown as Promise<ResponseResDto<HightLightMatchDto>>;
+function GetHightLightMatches(sportType: number, betType: number[], isLive: boolean, top: number, from: string, to: string) {
+  const bettypeQuery = betType.map(b => "&betType=" + b).join("");
+  return ApiService.getSabaAPI(`saba/event?sportType=${sportType}${bettypeQuery}&isLive=${isLive}&top=${top}&from=${from}&to=${to}`) as unknown as Promise<ResponseResDto<HightLightMatchDto>>;
 }
 
 function ConnectBetHub() {

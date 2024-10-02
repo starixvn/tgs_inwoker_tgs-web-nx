@@ -135,7 +135,7 @@ export function useGetHomeCategoryList() {
 
   const getHightLightMatch = async () => {
     try {
-      setHighlightMatchList({ ...initHighlightMatchList, isLoading: true });
+      setHighlightMatchList(current => ({ ...current, isLoading: true }));
 
       const today = (new Date()).toISOString().split('T')[0] + 'T00:00:00';
       const twoDaysAfter = new Date();
@@ -143,7 +143,7 @@ export function useGetHomeCategoryList() {
 
       const twoDaysAfterString = twoDaysAfter.toISOString().split('T')[0] + 'T00:00:00';
 
-      const response = await GameService.GetHightLightMatches(1, 5, true, 10, today, twoDaysAfterString);
+      const response = await GameService.GetHightLightMatches(1, [5], true, 10, today, twoDaysAfterString);
       setHighlightMatchList({ ...initHighlightMatchList, isLoading: false, matches: response.data });
       return response;
 

@@ -33,7 +33,7 @@ const MatchCard = ({ match }: MatchCardProps) => {
     if (!isLogin) {
       goToLogin();
     } else {
-      window.open(`/joingame/${import.meta.env.VITE_SABA_GAME_PATH}`, import.meta.env.VITE_SABA_GAME_PATH);
+      window.open(`/joingame/${import.meta.env.VITE_SABA_GAME_PATH}`, import.meta.env.VITE_GAME_WINDOW_NAME);
     }
   };
 
@@ -83,7 +83,7 @@ const MatchCard = ({ match }: MatchCardProps) => {
       </TeamInfo>
       <SelectionContainer>
         {(match.markets[0].selections || []).map((s) => {
-          const key = s.key;
+          const key = s.keyName;
           return (
             <SelectionButton key={key}>
               <SelectionPoint>{key === "x" ? "Draw" : key}</SelectionPoint>
