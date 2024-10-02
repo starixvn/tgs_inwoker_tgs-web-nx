@@ -6,7 +6,7 @@ const AppearSensor: React.FC<any> = ({ children }) => {
   const [containmentElement, setContainmentElement] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    setContainmentElement(document.body);
+    setContainmentElement(document.getElementById("root"));
   }, []);
 
   const handleVisibilityChange = (isVisible: boolean) => {
