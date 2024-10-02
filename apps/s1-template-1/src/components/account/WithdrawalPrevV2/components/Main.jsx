@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { connect } from "react-redux";
+import MainT1 from "@/pages/withdrawal/components/T1/MainTamplate";
 import config from "@tgs-web-nx/config";
 import { walletAction } from "@tgs-web-nx/core";
-import MainT1 from "@/pages/withdrawal/components/T1/MainTamplate";
+import { Common } from "@tgs-web-nx/utils";
+import { useCallback, useEffect, useState } from "react";
+import { connect } from "react-redux";
 
 const Main = (props) => {
   const [selectedCardIndex, setSelectedCardIndex] = useState(props.defaultCard);
@@ -28,7 +29,9 @@ const Main = (props) => {
   }, []);
 
   const handleAmountChange = useCallback((e) => {
-    setAmount(e.target.value);
+    const amount = e.target.value.replace(/[^\d.]/g, '');
+    const formattedAmount = Common.formatWithThousandSeparator(parseFloat(amount))
+    setAmount(formattedAmount);
   }, []);
 
   const handlePlayerNote = useCallback((e) => {
@@ -37,9 +40,10 @@ const Main = (props) => {
 
   const handleWithdrawalClick = useCallback(
     (e) => {
+      const formattedAmount = parseFloat(amount.replace(/,/g, ""));
       props.onhandleWithdrawalClick(
         props.cardList[selectedCardIndex].id,
-        amount,
+        formattedAmount,
         undefined,
         playerNote,
       );

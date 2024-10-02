@@ -1,4 +1,4 @@
-import { mapBrandName, brandConfig } from "@tgs-web-nx/config";
+import { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { i18n } from "../index";
 let newWindow: Window | undefined;
 
@@ -179,6 +179,13 @@ function roundUpToTwoDecimals(amount: number) {
   );
 }
 
+function formatWithThousandSeparator(amount: number) {
+  if (isNaN(amount)) return ""
+  const nf = new Intl.NumberFormat();
+  const formattedAmount = nf.format(amount);
+  return formattedAmount;
+}
+
 const Common = {
   formatNumberWithCommas,
   formatNumberWithThousand,
@@ -193,6 +200,7 @@ const Common = {
   formatCurrency,
   isWebview,
   roundUpToTwoDecimals,
+  formatWithThousandSeparator
 };
 
 export default Common;

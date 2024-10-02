@@ -6,7 +6,7 @@ import {
   walletAction,
   WalletService,
 } from "@tgs-web-nx/core";
-import { i18n } from "@tgs-web-nx/utils";
+import { Common, i18n } from "@tgs-web-nx/utils";
 import { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -308,9 +308,12 @@ class DepositPrev extends Component {
   };
 
   handleAmountChange = (e) => {
+    const amount = e.target.value.replace(/,/g, "").replace('/D/g', "");
+    const formattedAmount = Common.formatWithThousandSeparator(parseInt(amount))
+
     this.setState({
       ...this.state,
-      amount: e.target.value.replace(/,/g, ""),
+      amount: formattedAmount,
     });
   };
 

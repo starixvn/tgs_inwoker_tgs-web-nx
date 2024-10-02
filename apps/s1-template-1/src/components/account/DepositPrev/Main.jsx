@@ -548,7 +548,7 @@ class Main extends Component {
               fullWidth
               value={this.props.amount}
               onChange={this.props.handleAmountChange}
-              type={"number"}
+              type={"text"}
               placeholder={`${Common.formatNumberWithThousand(
                 transferLimitFrom,
               )} - ${Common.formatNumberWithThousand(transferLimitTo)}`}

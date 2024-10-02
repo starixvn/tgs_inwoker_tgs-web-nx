@@ -150,7 +150,7 @@ const MainMobile = ({
             fullWidth
             value={amount}
             onChange={handleAmountChange}
-            type={"number"}
+            type={"text"}
             placeholder={`${Common.formatNumberWithThousand(min)} - ${Common.formatNumberWithThousand(max)}`}
           />
         </FormControl>
@@ -200,9 +200,9 @@ const MainMobile = ({
       <GreenGradientButton
         fullWidth
         disabled={Boolean(
-          isNaN(parseFloat(amount)) ||
-            parseFloat(amount) < min ||
-            parseFloat(amount) > max ||
+          isNaN(parseFloat(amount.replace(/,/g, ""))) ||
+            parseFloat(amount.replace(/,/g, "")) < min ||
+            parseFloat(amount.replace(/,/g, "")) > max ||
             !!disabled,
         )}
         onClick={handleWithdrawalClick}
