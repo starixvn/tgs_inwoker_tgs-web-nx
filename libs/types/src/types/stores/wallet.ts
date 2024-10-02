@@ -44,7 +44,7 @@ export type UsdtExtended = {
   address?: string,
 }
 
-export type Extended = 
+export type Extended =
   BankExtended & CoinsphExtended & EWalletExtended
   & FPSExtended & PulsaExtended & ThirdPartyExtended & UsdtExtended
 
@@ -73,7 +73,7 @@ export interface TransferChannel {
 export interface FilterDepositList {
   code: string;
   channels: TransferChannel[];
-} 
+}
 
 // export interface DepositChannelList {
 //   channelCode: string;
@@ -111,7 +111,7 @@ export interface WalletState {
   depositChannelList: FilterDepositList[];
   depositData: TransferChannel[];
   depositLoading: false;
-  depositResult: null;
+  depositResult: any;
   cancelDepositResult: null;
   depositUploadResult: null;
   addBankCardResult: null;

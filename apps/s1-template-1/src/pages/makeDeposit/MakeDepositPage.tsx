@@ -1,15 +1,17 @@
+import { HintText } from "@/components/styled-component/Deposit";
 import { LabelContainer } from "@/components/styled-component/ProfileForms";
 import { useWalletStore } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 import styled from "styled-components";
 
-// amount, payment_id, promotionid, paymentcode, type
-const TestContainer = styled.div`
+const ErrorMessageContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 2.4rem;
-`
+  align-items:center;
+`;
 
 const getDepositInfoFromUrlSearchParams = (search: string) => {
   const amount = new URLSearchParams(search).get("amount") ?? "";
@@ -42,6 +44,23 @@ function handleOpenDepositRedirect(paymenturl: string, expirationtime = "") {
   return redirect(url);
 }
 
+const RedirectingMessage = () => {
+  return <LabelContainer>
+    Redirecting to Payment Gateway
+  </LabelContainer>
+}
+
+const ErrorMessage = ({ errmsgid = i18n.t("SystemError") }: { errmsgid?: string}) => {
+  return <ErrorMessageContainer>
+    <LabelContainer>
+      Unable to connect to the payment gateway. Please try again or contact support.
+    </LabelContainer>
+    <HintText>
+      Error: {i18n.t(errmsgid)}
+    </HintText>
+  </ErrorMessageContainer>
+}
+
 const MakeDepositPage = () => {
 
   const search = useLocation().search;
@@ -49,26 +68,45 @@ const MakeDepositPage = () => {
 
   const { wallet, performDeposit } = useWalletStore();
 
+  const isDepositFailed = () => {
+      if (wallet.depositResult && !wallet.depositResult.IsSuccess) {
+        return true;
+      }
+
+      return false;
+  }
+
+  const getErrMsgId = () => {
+    if (!wallet.depositResult) return i18n.t("SystemError");
+    return wallet.depositResult.data.errmsgid;
+  }
+
   useEffect(() => {
     if (!wallet.depositResult)
       performDeposit(amount, payment_id, promotionid, paymentcode, type);
     else {
       // TypeScript typing is currently broken, so temporarily get value with square brackets
-      if (wallet.depositResult["IsSuccess"]) {
+      console.log(wallet.depositResult)
+      if (wallet.depositResult.IsSuccess) {
         const response = wallet.depositResult;
-        const data = response["data"];
-        const url = data ? data["paymenturl"] : "";
+        const data = response.data;
+        const url = data ? data.paymenturl : "";
         if (url) {
-          const expirationTime = data["expirationtime"];
+          const expirationTime = data.expirationtime;
           handleOpenDepositRedirect(url, expirationTime)
         }
       }
     }
   }, [wallet.depositResult, amount, payment_id, promotionid, paymentcode, type, performDeposit])
 
-  return<LabelContainer>
-    REDIRECTING TO PAYMENT GATEWAY
-  </LabelContainer>
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>
+    {
+      isDepositFailed()
+      ? <ErrorMessage errmsgid={getErrMsgId()}/>
+      : <RedirectingMessage/>
+    }
+  </>
 }
 
 export default MakeDepositPage;
