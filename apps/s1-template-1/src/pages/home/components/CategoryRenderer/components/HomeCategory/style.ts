@@ -98,38 +98,34 @@ export const Group = styled.div`
       grid-auto-flow: column;
       grid-auto-columns: calc(var(--min-width) + var(--gap));
 
-      @media (min-width: 300px) {
-        --column-count: 2 !important;
+      @media (min-width: 420px) {
+        --column-count: 3;
         grid-auto-columns: var(--column-width, var(--single-column-width));
-      }
-
-      @media (min-width: 460px) {
-        --column-count: 3 !important;
       }
 
       @media (min-width: 729px) {
         --gap: 1.6rem;
-        --column-count: 4 !important;
+        --column-count: 4;
       }
 
       @media (min-width: 995px) {
-        --column-count: 5 !important;
+        --column-count: 5;
       }
 
       @media (min-width: 1171px) {
-        --column-count: 6 !important;
+        --column-count: 6;
       }
 
       @media (min-width: 1347px) {
-        --column-count: 7 !important;
+        --column-count: 7;
       }
 
       @media (min-width: 1523px) {
-        --column-count: 8 !important;
+        --column-count: 8;
       }
 
       @media (min-width: 1699px) {
-        --column-count: 9 !important;
+        --column-count: 9;
       }
     }
   }

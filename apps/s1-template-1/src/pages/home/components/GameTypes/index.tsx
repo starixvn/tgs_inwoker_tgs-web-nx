@@ -27,21 +27,23 @@ const GameTypesEmblaContainer = styled.div`
   &.embla__container {
     --slide-height: 6rem;
     --column-size: 3;
-    --slide-spacing: 0.8rem;
+    --slide-spacing: 0.6rem;
     --slide-size: calc(
-      (100% / var(--column-size)) - ((0.8rem * (var(--column-size) - 1)) / var(--column-size))
+      (100% / var(--column-size)) -
+        ((var(--slide-spacing) * (var(--column-size) - 1)) / var(--column-size))
     );
 
-    @media (min-width: 400px) {
+    ${media.xs} {
       --column-size: 4;
     }
 
     ${media.sm} {
-      --column-size: 5;
+      --slide-spacing: 0.8rem;
+      --column-size: 5.5;
     }
 
     ${media.md} {
-      --column-size: 6;
+      --column-size: 6.5;
     }
 
     ${media.lg} {
@@ -148,12 +150,13 @@ const GameTypes = () => {
             sideNavGameTypeItemList.map((navItem: any, index: number) => {
               const isActive = navItem.gameType === activeGameType;
               return (
-                <GameType
-                  isActive={isActive}
-                  key={index}
-                  navItem={navItem}
-                  handleClickNav={() => handleClickNav(navItem)}
-                />
+                <div className="embla__slide" key={index}>
+                  <GameType
+                    isActive={isActive}
+                    navItem={navItem}
+                    handleClickNav={() => handleClickNav(navItem)}
+                  />
+                </div>
               );
             })}
         </GameTypesEmblaContainer>

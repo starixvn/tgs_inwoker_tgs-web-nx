@@ -1,7 +1,7 @@
 type BreakpointType = "xs" | "sm" | "md" | "lg" | "xl";
 
 export const breakpoints: Record<BreakpointType, number> = {
-  xs: 0,
+  xs: 360,
   sm: 600,
   md: 900,
   lg: 1200,
@@ -9,8 +9,7 @@ export const breakpoints: Record<BreakpointType, number> = {
 };
 
 // for styled component
-const customMediaQuery = (maxWidth: number) =>
-  `@media (min-width: ${maxWidth}px)`;
+const customMediaQuery = (maxWidth: number) => `@media (min-width: ${maxWidth}px)`;
 export const media = {
   xs: customMediaQuery(breakpoints.xs),
   sm: customMediaQuery(breakpoints.sm),

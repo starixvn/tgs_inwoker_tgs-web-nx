@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const GameTypeNav = styled.div`
   flex-shrink: 0;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
   white-space: nowrap;
   display: flex;
@@ -13,7 +13,12 @@ const GameTypeNav = styled.div`
   cursor: pointer;
   position: relative;
   text-transform: capitalize;
+  letter-spacing: 0.2px;
   color: ${({ theme }) => theme.categoryTextColor};
+
+  ${media.sm} {
+    font-size: 1.2rem;
+  }
 
   ${media.lg} {
     padding: 0.4rem;
@@ -63,7 +68,6 @@ const Wrapper = styled.div<{
 
 type PropsType = {
   isActive: boolean;
-  key: number;
   navItem: NavItem;
   handleClickNav: (navItem: NavItem) => void;
 };
