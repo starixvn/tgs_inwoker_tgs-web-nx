@@ -18,13 +18,13 @@ export const useLobbyCategoryList = () => {
     const lobbyCategoryList: { [key: string]: LobbyCategoryIcon } = {
       slotsHot: {
         key: "slotsHot",
-        iconUrl: hot,
+        iconUrl: "",
         text: i18n.t("slot.hotGame"),
         gameType: GameTypeEnum.SLOT,
       },
       slotsNew: {
         key: "slotsNew",
-        iconUrl: newIcon,
+        iconUrl: "",
         text: i18n.t("slot.newGame"),
         gameType: GameTypeEnum.SLOT,
       },

@@ -19,7 +19,7 @@ const GameLabel = ({ gameName }: { gameName: string }) => {
   const getGameIconUrl = () => {
     switch (gameName) {
       default:
-        return ranking_1;
+        return "";
     }
   };
 

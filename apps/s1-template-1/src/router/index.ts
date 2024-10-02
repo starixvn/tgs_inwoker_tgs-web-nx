@@ -36,8 +36,6 @@ import { ProfilePathEnum } from "@tgs-web-nx/core";
 import { RouteType } from "@tgs-web-nx/types";
 import React from "react";
 
-const AccountPage = React.lazy(() => import("@/pages/account/AccountPage"));
-
 const routes: RouteType[] = [
   {
     path: "/deposit/status/iframe",
@@ -63,15 +61,15 @@ const routes: RouteType[] = [
   //   layout: HomeLayout,
   //   isAnonymousAllowed: true,
   // },
-  {
-    path: "/account",
-    component: AccountPage,
-    layout: DefaultLayout,
-  },
+  // {
+  //   path: "/account",
+  //   component: AccountPage,
+  //   layout: DefaultLayout,
+  // },
   {
     path: "/makedeposit",
     component: MakeDepositPage,
-    layout: DialogLayout
+    layout: DialogLayout,
   },
   {
     path: "/deposit/popup",
