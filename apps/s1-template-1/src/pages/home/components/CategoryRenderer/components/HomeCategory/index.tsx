@@ -51,7 +51,7 @@ const HomeCategory = () => {
             <GameCardSlider data={sportGameList} />
           </EmblaCarousel>
         </Group>
-
+        lele
         {highlightMatches.length > 0 && (
           <Group className="game-area">
             <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
@@ -64,7 +64,6 @@ const HomeCategory = () => {
             </EmblaCarousel>
           </Group>
         )}
-
         <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
@@ -81,7 +80,6 @@ const HomeCategory = () => {
             <GameCardSlider data={slotGameList} />
           </EmblaCarousel>
         </Group>
-
         <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-live-casino-group.svg" alt="live-casino" />
@@ -94,7 +92,6 @@ const HomeCategory = () => {
             <GameCardSlider data={liveCasinoList} />
           </EmblaCarousel>
         </Group>
-
         <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-new-release.svg" alt="new-release" />
@@ -107,7 +104,6 @@ const HomeCategory = () => {
             <GameCardSlider data={newGameList} />
           </EmblaCarousel>
         </Group>
-
         <Group>
           <GameTypeTitle>
             <img src="/assets/images/common/icon-game-providers.svg" alt="game-providers" />
@@ -121,7 +117,6 @@ const HomeCategory = () => {
             <ProviderList providerList={providerList} />
           </EmblaCarousel>
         </Group>
-
         <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-table-game-group.svg" alt="table-game" />
@@ -134,7 +129,6 @@ const HomeCategory = () => {
             <GameCardSlider data={tableGameList} />
           </EmblaCarousel>
         </Group>
-
         <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
@@ -147,7 +141,6 @@ const HomeCategory = () => {
             <GameCardSlider data={hotGameList} />
           </EmblaCarousel>
         </Group>
-
         <Group className="game-area">
           <GameTypeTitle>{i18n.t("web.latestBets.title")}</GameTypeTitle>
           <LastBets connection={betHubConnection}></LastBets>
