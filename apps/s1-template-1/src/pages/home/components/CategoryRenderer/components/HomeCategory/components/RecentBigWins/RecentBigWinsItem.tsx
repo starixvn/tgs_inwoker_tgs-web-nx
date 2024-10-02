@@ -1,8 +1,8 @@
+import GameCard from "@/pages/home/components/GameCard";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { utility } from "@tgs-web-nx/utils";
 
 import { BigWinsAmount, BottomArea, GameContainer, PlayerName, RecentBigWinsSlide } from "./style";
-import GameCard from "@/pages/home/components/GameCard";
 
 const RecentBigWinsItem: React.FC<{
   item: RecentBigWinItem;
@@ -19,7 +19,7 @@ const RecentBigWinsItem: React.FC<{
     gameName,
     profit,
     currencyCode,
-    payout
+    payout,
   } = item;
   const formatter = Intl.NumberFormat("en", { notation: "compact" });
 
@@ -39,10 +39,10 @@ const RecentBigWinsItem: React.FC<{
       recommend: false,
     },
     gamestatus: 0,
-    payout: payout
+    payout: payout,
   };
   return (
-    <RecentBigWinsSlide className="embla__slide">
+    <RecentBigWinsSlide>
       <GameContainer>
         <GameCard
           isHideProviderName={true}

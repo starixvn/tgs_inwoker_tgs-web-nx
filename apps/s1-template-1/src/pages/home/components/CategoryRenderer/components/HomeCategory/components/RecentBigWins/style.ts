@@ -3,6 +3,16 @@ import { PlayButton } from "@/pages/home/components/PlayIcon";
 import { media } from "@tgs-web-nx/constants";
 import styled from "styled-components";
 
+export const RecentBigWinsContainer = styled.div`
+  --gap: 0.8rem;
+  --item-width: 7.4rem;
+  --item-height: 9.9rem;
+  display: grid;
+  gap: var(--gap);
+  grid-auto-flow: column;
+  grid-auto-columns: calc(var(--item-width) + var(--gap));
+`;
+
 export const CardHoverBg = styled.div`
   position: absolute;
   width: 100%;
@@ -25,7 +35,7 @@ export const GameIcon = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
-  width: 7.4rem;
+  width: var(--item-width);
   height: 9.9rem;
   background: ${({ theme }) => theme.gameCardBackground};
   backdrop-filter: blur(2px);
@@ -45,8 +55,6 @@ export const GameContainer = styled.div`
 `;
 
 export const RecentBigWinsSlide = styled.div`
-  --slide-size: 7.4rem;
-
   &:last-child {
     margin-right: 0.8rem;
   }

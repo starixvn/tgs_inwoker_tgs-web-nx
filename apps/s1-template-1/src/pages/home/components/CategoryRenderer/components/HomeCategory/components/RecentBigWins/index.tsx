@@ -1,26 +1,21 @@
-import EmblaCarousel from "@/components/project/embla-carousel";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
-import { EmblaOptionsType } from "embla-carousel";
-import AutoScroll from "embla-carousel-auto-scroll";
 import React, { useState } from "react";
+import Marquee from "react-fast-marquee";
 
 import { GameTypeTitle, Group } from "../../style";
 import BetSlipDialog from "./BetSlipDialog";
 import RecentBigWinsItem from "./RecentBigWinsItem";
 import RecentBigWinSKeleton from "./RecentBigWinSKeleton";
+import { RecentBigWinsContainer } from "./style";
 
 type BigWinType = {
   data: RecentBigWinItem[];
 };
 
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
-  const emblaOptions: EmblaOptionsType = { loop: true, skipSnaps: true, align: "start" };
-  const emblaPlugins: any = [
-    AutoScroll({ playOnInit: true, stopOnInteraction: false, stopOnMouseEnter: true, speed: 0.5 }),
-  ];
   const { account } = useAccountStore();
   const isLogin = !!account.token;
   const { goToLogin } = useAuth();
@@ -60,20 +55,22 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
         <img src="/assets/images/common/icon-big-wins.svg" alt="hot" />
         {i18n.t("web.home.Section1RecentBigWins")}
       </GameTypeTitle>
-      <EmblaCarousel options={emblaOptions} plugins={emblaPlugins}>
-        {!hasData && createSkeletonGames()}
-        {hasData &&
-          recentBigWins.data.map((item, index) => {
-            return (
-              <RecentBigWinsItem
-                key={index}
-                handleOpenDialog={handleOpenDialog}
-                item={item}
-                launchGame={launchGame}
-              />
-            );
-          })}
-      </EmblaCarousel>
+      <Marquee className="marquee" pauseOnHover={true} pauseOnClick={true}>
+        <RecentBigWinsContainer>
+          {!hasData && createSkeletonGames()}
+          {hasData &&
+            recentBigWins.data.map((item, index) => {
+              return (
+                <RecentBigWinsItem
+                  key={index}
+                  handleOpenDialog={handleOpenDialog}
+                  item={item}
+                  launchGame={launchGame}
+                />
+              );
+            })}
+        </RecentBigWinsContainer>
+      </Marquee>
       <BetSlipDialog
         launchGame={launchGame}
         data={itemDetail}
