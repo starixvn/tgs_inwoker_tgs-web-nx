@@ -54,7 +54,7 @@ const HomeCategory = () => {
 
         {highlightMatches.length > 0 && (
           <Group className="game-area">
-            <GameTypeTitle>{i18n.t("web.home.liveMatches")}</GameTypeTitle>
+            <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
             <EmblaCarousel
               options={gameTypeEmblaOptions}
               hasControlButton={true}
