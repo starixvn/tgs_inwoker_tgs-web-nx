@@ -30,6 +30,8 @@ const RocketChatLiveChat = () => {
         };
 
     }, []);
+
+    return null;
 }
 
 export default RocketChatLiveChat;
