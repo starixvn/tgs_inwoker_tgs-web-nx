@@ -1,5 +1,5 @@
 import Header from "@/layouts/components/Header";
-import Marquee from "@/pages/home/components/Marquee";
+import CustomMarquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useAccountStore, useUiStore } from "@tgs-web-nx/core";
@@ -49,7 +49,7 @@ const DefaultLayout = ({ children }: Props) => {
   return (
     <DefaultLayoutContainer>
       <Header />
-      <Marquee />
+      <CustomMarquee />
       <DashboardContainer className="main-container" hasAnnouncement={hasAnnouncement}>
         <ContentWrapper>
           <div>{children}</div>

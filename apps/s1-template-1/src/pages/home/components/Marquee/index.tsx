@@ -1,6 +1,7 @@
 import { media } from "@/theme/breakpoints";
 import { DESKTOP_ANNOUNCEMENT_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_ANNOUNCEMENT_HEIGHT } from "@/theme/constants";
 import { useUiStore } from "@tgs-web-nx/core";
+import Marquee from "react-fast-marquee";
 import styled from "styled-components";
 
 const MarqueeContainer = styled.div`
@@ -21,7 +22,7 @@ const MarqueeContainer = styled.div`
     background: transparent;
   }
 
-  marquee {
+  .marquee {
     margin-left: 0.4rem;
   }
 `;
@@ -43,7 +44,7 @@ const MarqueesBackground = styled.div`
   overflow: visible;
 `;
 
-const Marquee = () => {
+const CustomMarquee = () => {
   const {
     ui: { marquees },
   } = useUiStore();
@@ -64,11 +65,7 @@ const Marquee = () => {
           width={22}
         />
         {
-          // Disable TypeScript check for unknown HTML elements
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          // eslint-disable-next-line jsx-a11y/no-distracting-elements
-          <marquee>
+          <Marquee className="marquee" pauseOnHover={true}>
             {marquees.map((item, index) => {
               const content = `${
                 item.localization !== null && item.localization.content
@@ -78,12 +75,11 @@ const Marquee = () => {
 `;
               return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
             })}
-            {/*@ts-ignore*/}
-          </marquee>
+          </Marquee>
         }
       </MarqueeContent>
     </MarqueeContainer>
   );
 };
 
-export default Marquee;
+export default CustomMarquee;
