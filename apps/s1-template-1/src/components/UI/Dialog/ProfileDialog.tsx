@@ -1,4 +1,4 @@
-import Icon from "@/components/project/Icon";
+import { CloseIcon } from "@/components/UI/CustomizeIcon";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
 import { media } from "@/theme/breakpoints";
 import { DialogProps, Dialog as MuiDialog } from "@mui/material";
@@ -78,7 +78,23 @@ const ProfileDialog = ({ open, onClose, children, ...others }: Props) => {
       <TitleWrapper>        
         <ProfileDialogTitle>{pageName}</ProfileDialogTitle>
         <CloseIconContainer onClick={onClose}>
-          <Icon iconUrl="/assets/images/common/icon-close.svg"/>
+        <CloseIcon
+        sx={{
+          position: "absolute",
+          top: "1.9rem",
+          right: "2.4rem !important",
+          width: "3.2rem",
+          height: "3.2rem",
+          color: "#324354",
+          zIndex: "4",
+          cursor: "pointer",
+          "&:hover": {
+            color: "#6F7E93",
+          },
+        }}
+        viewBox="0 0 33 32"
+        className="icon-close"
+      />
         </CloseIconContainer>
       </TitleWrapper>
       <ChildContainer>{children}</ChildContainer>
