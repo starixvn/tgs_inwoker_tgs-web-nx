@@ -1,6 +1,7 @@
 import { media } from "@/theme/breakpoints";
 import { DESKTOP_ANNOUNCEMENT_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_ANNOUNCEMENT_HEIGHT } from "@/theme/constants";
 import { useUiStore } from "@tgs-web-nx/core";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import Marquee from "react-fast-marquee";
 import styled from "styled-components";
 
@@ -45,6 +46,7 @@ const MarqueesBackground = styled.div`
 `;
 
 const CustomMarquee = () => {
+  const { isDesktopSize } = useRwd();
   const {
     ui: { marquees },
   } = useUiStore();
@@ -65,7 +67,7 @@ const CustomMarquee = () => {
           width={22}
         />
         {
-          <Marquee className="marquee" pauseOnHover={true}>
+          <Marquee className="marquee" pauseOnHover={isDesktopSize}>
             {marquees.map((item, index) => {
               const content = `${
                 item.localization !== null && item.localization.content

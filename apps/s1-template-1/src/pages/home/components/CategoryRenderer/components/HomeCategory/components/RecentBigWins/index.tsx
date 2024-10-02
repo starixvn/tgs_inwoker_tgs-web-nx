@@ -1,5 +1,6 @@
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import React, { useState } from "react";
@@ -16,6 +17,7 @@ type BigWinType = {
 };
 
 const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
+  const { isDesktopSize } = useRwd();
   const { account } = useAccountStore();
   const isLogin = !!account.token;
   const { goToLogin } = useAuth();
@@ -55,7 +57,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
         <img src="/assets/images/common/icon-big-wins.svg" alt="hot" />
         {i18n.t("web.home.Section1RecentBigWins")}
       </GameTypeTitle>
-      <Marquee className="marquee" autoFill={true} pauseOnHover={true} pauseOnClick={true}>
+      <Marquee className="marquee" autoFill={true} pauseOnHover={isDesktopSize}>
         <RecentBigWinsContainer>
           {!hasData && createSkeletonGames()}
           {hasData &&
