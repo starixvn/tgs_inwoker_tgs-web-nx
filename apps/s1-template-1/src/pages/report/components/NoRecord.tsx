@@ -32,7 +32,7 @@ const NoRecord = () => {
   return (
     <NoRecordWrapper>
       <NoRecordContainer>
-        <img src={""} alt={"no-result"} />
+        <img src={"/assets/images/common/no-result.svg"} alt={"no-result"} />
       </NoRecordContainer>
       <NoDataText>{i18n.t("common.nodata")}</NoDataText>
     </NoRecordWrapper>
