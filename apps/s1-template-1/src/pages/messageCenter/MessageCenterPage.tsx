@@ -1,12 +1,11 @@
-import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { useUpdatePageName } from "@tgs-web-nx/core/features";
 import MessageCenter from "@/components/account/MessageCenter";
-import UserWalletInfo from "@/components/project/UserWalletInfo";
-import iconInbox from "@/assets/t29/images/account/navItem/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
+import UserWalletInfo from "@/components/project/UserWalletInfo";
 import { PageContainer } from "@/components/styled-component/PageContainer";
+import { useUpdatePageName } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import React from "react";
 
 const MessageCenterPage = () => {
   useUpdatePageName(i18n.t("inbox.title"));
@@ -17,7 +16,7 @@ const MessageCenterPage = () => {
     <PageContainer>
       {isDesktopSize && <UserWalletInfo />}
 
-      <AccountPaper pageName={i18n.t("inbox.title")} iconUrl={iconInbox}>
+      <AccountPaper pageName={i18n.t("inbox.title")} iconUrl={""}>
         <MessageCenter />
       </AccountPaper>
     </PageContainer>

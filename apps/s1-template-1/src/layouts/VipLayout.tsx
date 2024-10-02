@@ -1,20 +1,15 @@
-import React, { useCallback } from "react";
-import styled from "styled-components";
-import { useRwd } from "@tgs-web-nx/core/hooks";
-import { usePageName } from "@tgs-web-nx/core/features";
-import { useHistory, useLocation } from "react-router-dom";
-import AccountDesktopLayout from "./AccountDesktopLayout";
-import DefaultLayout from "./DefaultLayout";
+import DialogHeader from "@/components/UI/Dialog/DialogHeader";
 import Footer from "@/layouts/components/Footer";
 import { media } from "@/theme/breakpoints";
-import {
-  BOTTOM_APP_BAR_HEIGHT,
-  DESKTOP_HEADER_HEIGHT,
-  MOBILE_HEADER_HEIGHT,
-  SUB_CONTENT_MAX_WIDTH,
-} from "@/theme/constants";
-import BottomAppBar from "@/layouts/components/BottomAppBar";
-import DialogHeader from "@/components/UI/Dialog/DialogHeader";
+import { BOTTOM_APP_BAR_HEIGHT, DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT, SUB_CONTENT_MAX_WIDTH } from "@/theme/constants";
+import { usePageName } from "@tgs-web-nx/core/features";
+import { useRwd } from "@tgs-web-nx/core/hooks";
+import React, { useCallback } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import styled from "styled-components";
+
+import AccountDesktopLayout from "./AccountDesktopLayout";
+import DefaultLayout from "./DefaultLayout";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
@@ -88,7 +83,6 @@ const VipLayout = ({ children }: Props) => {
         </ContentWrapper>
       </DashboardContainer>
       <Footer />
-      {isMobileSize && <BottomAppBar />}
     </DefaultLayoutContainer>
   );
 };

@@ -1,4 +1,3 @@
-import BG from "@/assets/t29/images/loginBG.png";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { styled as muiStyled } from "@mui/material";
@@ -32,7 +31,7 @@ export const FormContainer = styled.div`
 
 export const FormContainerWithBG = styled.div`
   height: 100%;
-  background: url(${BG}) no-repeat center center;
+  background: url("") no-repeat center center;
 `;
 
 export const MainWrapper = styled.div`

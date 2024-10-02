@@ -1,8 +1,7 @@
+import Icon from "@/components/project/Icon";
+import CardAddButton from "@/pages/withdrawal/components/CardManage/CardAddButton";
 import React from "react";
 import styled from "styled-components";
-import Icon from "@/components/project/Icon";
-import iconArrow from "@/assets/t29/images/withdraw/icon-arrow.svg";
-import CardAddButton from "@/pages/withdrawal/components/CardManage/CardAddButton";
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -24,7 +23,7 @@ type Props = {
 const FormTitle = ({ title, isShowAddCardButton, handleClickAddCard }: Props) => {
   return (
     <TitleWrapper>
-      <Icon iconUrl={iconArrow} width={"16px"} height={"16px"} />
+      <Icon iconUrl={""} width={"16px"} height={"16px"} />
       <Title>{title}</Title>
 
       {isShowAddCardButton && handleClickAddCard && (

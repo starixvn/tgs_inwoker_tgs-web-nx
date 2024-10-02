@@ -1,17 +1,6 @@
-import { useEffect, useState } from "react";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { i18n } from "@tgs-web-nx/utils";
-import cardgame from "@/assets/t23/images/home/gameType/cardGame.svg";
-import egame from "@/assets/t23/images/home/gameType/egame.svg";
-import esports from "@/assets/t23/images/home/gameType/esports.svg";
-import fishing from "@/assets/t23/images/home/gameType/fishing.svg";
-import live from "@/assets/t23/images/home/gameType/liveCasino.svg";
-import lottery from "@/assets/t23/images/home/gameType/lottery.svg";
-import sabong from "@/assets/t23/images/home/gameType/sabong.svg";
-import sports from "@/assets/t23/images/home/gameType/sports.svg";
-import hot from "@/assets/t23/images/home/hot.svg";
-import newIcon from "@/assets/t23/images/home/new.svg";
-import recommend from "@/assets/t23/images/home/recommend.svg";
+import { useEffect, useState } from "react";
 
 type LobbyCategoryIcon = {
   key: string;
@@ -41,55 +30,55 @@ export const useLobbyCategoryList = () => {
       },
       slotsRecommend: {
         key: "slotsRecommend",
-        iconUrl: recommend,
+        iconUrl: "",
         text: i18n.t("slot.recommendGame"),
         gameType: GameTypeEnum.SLOT,
       },
       liveCasino: {
         key: "liveCasino",
-        iconUrl: live,
+        iconUrl: "",
         text: i18n.t("common.live"),
         gameType: GameTypeEnum.LIVELOBBY,
       },
       lottery: {
         key: "lottery",
-        iconUrl: lottery,
+        iconUrl: "",
         text: i18n.t("common.lottery"),
         gameType: GameTypeEnum.LOTTERYLOBBY,
       },
       fishing: {
         key: "fishing",
-        iconUrl: fishing,
+        iconUrl: "",
         text: i18n.t("common.fish"),
         gameType: GameTypeEnum.FISH,
       },
       sports: {
         key: "sports",
-        iconUrl: sports,
+        iconUrl: "",
         text: i18n.t("common.sports"),
         gameType: GameTypeEnum.SPORTS,
       },
       sabong: {
         key: "sabong",
-        iconUrl: sabong,
+        iconUrl: "",
         text: i18n.t("common.cockfight"),
         gameType: GameTypeEnum.COCKFIGHT,
       },
       egame: {
         key: "egame",
-        iconUrl: egame,
+        iconUrl: "",
         text: i18n.t("common.egame"),
         gameType: GameTypeEnum.TABLEGAME,
       },
       cardGame: {
         key: "cardGame",
-        iconUrl: cardgame,
+        iconUrl: "",
         text: i18n.t("common.chess"),
         gameType: GameTypeEnum.QIPAILOBBY,
       },
       esports: {
         key: "esports",
-        iconUrl: esports,
+        iconUrl: "",
         text: i18n.t("common.esports"),
         gameType: GameTypeEnum.ESPORTS,
       },

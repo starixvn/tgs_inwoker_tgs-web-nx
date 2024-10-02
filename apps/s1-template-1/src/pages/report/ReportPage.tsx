@@ -1,4 +1,3 @@
-import iconReport from "@/assets/t29/images/account/navItem/icon-report.svg";
 import Report from "@/components/account/Report";
 import AccountPaper from "@/components/project/AccountPaper";
 import MenuTabs from "@/components/project/MenuTabs";
@@ -16,7 +15,7 @@ const ReportPage = () => {
     <PageContainer>
       {/* {isDesktopSize && <UserWalletInfo />} */}
       {isDesktopSize && <MenuTabs />}
-      <AccountPaper pageName={i18n.t("common.transactions")} iconUrl={iconReport}>
+      <AccountPaper pageName={i18n.t("common.transactions")} iconUrl={""}>
         <Report />
       </AccountPaper>
     </PageContainer>

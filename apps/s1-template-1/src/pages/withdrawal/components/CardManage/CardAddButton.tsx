@@ -1,8 +1,7 @@
+import Icon from "@/components/project/Icon";
+import { i18n } from "@tgs-web-nx/utils";
 import React from "react";
 import styled from "styled-components";
-import { i18n } from "@tgs-web-nx/utils";
-import iconPlus from "@/assets/t29/images/withdraw/icon-plus.svg";
-import Icon from "@/components/project/Icon";
 
 const CardAddButtonContainer = styled.div`
   margin-left: auto;
@@ -22,7 +21,7 @@ type Props = {
 const CardAddButton = ({ handleClick }: Props) => {
   return (
     <CardAddButtonContainer onClick={handleClick}>
-      <Icon iconUrl={iconPlus} width={"20px"} height={"20px"} />
+      <Icon iconUrl={""} width={"20px"} height={"20px"} />
       {i18n.t("card.msgAddCard")}
     </CardAddButtonContainer>
   );

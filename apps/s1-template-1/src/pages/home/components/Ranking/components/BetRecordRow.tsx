@@ -1,8 +1,7 @@
+import MaskPlayerName from "@/pages/home/components/Ranking/components/MaskPlayerName";
+import { RankTableCol, RankTableRow } from "@/pages/home/components/Ranking/styles";
 import React, { forwardRef, LegacyRef } from "react";
 import styled from "styled-components";
-import { RankTableCol, RankTableRow } from "@/pages/home/components/Ranking/styles";
-import ranking_1 from "@/assets/t18/images/home/mobile/ranking_1.svg";
-import MaskPlayerName from "@/pages/home/components/Ranking/components/MaskPlayerName";
 
 const GameLabelContainer = styled.div`
   width: 28px;
@@ -59,6 +58,6 @@ export default BetRecordRow;
 function getGameIconUrl(gameName: string) {
   switch (gameName) {
     default:
-      return ranking_1;
+      return "";
   }
 }

@@ -1,10 +1,7 @@
+import MaskPlayerName from "@/pages/home/components/Ranking/components/MaskPlayerName";
+import { RankTableCol, RankTableRow } from "@/pages/home/components/Ranking/styles";
 import React, { forwardRef, Ref } from "react";
 import styled from "styled-components";
-import { RankTableCol, RankTableRow } from "@/pages/home/components/Ranking/styles";
-import ranking_1 from "@/assets/t18/images/home/mobile/ranking_1.svg";
-import ranking_2 from "@/assets/t18/images/home/mobile/ranking_2.svg";
-import ranking_3 from "@/assets/t18/images/home/mobile/ranking_3.svg";
-import MaskPlayerName from "@/pages/home/components/Ranking/components/MaskPlayerName";
 
 const RankLabelContainer = styled.div`
   width: 28px;
@@ -21,11 +18,11 @@ const RankLabel = ({ rank }: { rank: number }) => {
   const RankContent = () => {
     switch (rank) {
       case 1:
-        return <img src={ranking_1} alt={"ranking_1"} />;
+        return <img src={""} alt={"ranking_1"} />;
       case 2:
-        return <img src={ranking_2} alt={"ranking_2"} />;
+        return <img src={""} alt={"ranking_2"} />;
       case 3:
-        return <img src={ranking_3} alt={"ranking_3"} />;
+        return <img src={""} alt={"ranking_3"} />;
       default:
         return <span>{rank}</span>;
     }

@@ -4,11 +4,7 @@ import InboxItemDetailDialog from "@/pages/inbox/components/dialog/InboxItemDeta
 import InboxReplyDialog from "@/pages/inbox/components/dialog/InboxReplyDialog";
 import InboxListTable from "@/pages/inbox/components/table/InboxListTable";
 import { theme } from "@/theme";
-import {
-  INBOX_TABLE_ROW_COUNT,
-  useInboxDetailContext,
-  useInboxList,
-} from "@tgs-web-nx/core/features";
+import { INBOX_TABLE_ROW_COUNT, useInboxDetailContext, useInboxList } from "@tgs-web-nx/core/features";
 import React from "react";
 import styled from "styled-components";
 
@@ -36,8 +32,6 @@ const InboxList = () => {
 
   return (
     <InboxTableContainer>
-      
-
       {isLoading ? (
         <LoadingBlock size={30} style={{ marginTop: "90px" }} />
       ) : (
@@ -45,17 +39,19 @@ const InboxList = () => {
       )}
 
       <CustomizeTablePagination
-              count={totalCount}
-              rowsPerPage={INBOX_TABLE_ROW_COUNT}
-              page={page > 0 ? page - 1 : 0}
-              onPageChange={handleChangePage}
-              rowsPerPageOptions={[]}
-              sx={{
-                width: "100%",
-                color: theme.text,
-                "& button": {},
-              }}
-            />
+        //@ts-ignore
+        component={"div"}
+        count={totalCount}
+        rowsPerPage={INBOX_TABLE_ROW_COUNT}
+        page={page > 0 ? page - 1 : 0}
+        onPageChange={handleChangePage}
+        rowsPerPageOptions={[]}
+        sx={{
+          width: "100%",
+          color: theme.text,
+          "& button": {},
+        }}
+      />
 
       <InboxItemDetailDialog />
       <InboxReplyDialog />

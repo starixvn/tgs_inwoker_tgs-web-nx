@@ -1,10 +1,8 @@
-import styled from "styled-components";
-import { utility } from "@tgs-web-nx/utils";
-import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
-import Arrow from "@/assets/t18/images/bettingBonus/icon_arrow.svg";
 import LevelIcon from "@/components/UI/LevelIcon";
 import { media } from "@/theme/breakpoints";
-
+import { TypeProductRebateByLevel } from "@tgs-web-nx/core/hooks";
+import { utility } from "@tgs-web-nx/utils";
+import styled from "styled-components";
 
 const CurrentLevelBannerContainer = styled.div`
   width: 100%;
@@ -106,7 +104,7 @@ const CurrentLevelBanner = ({
             <TableRow key={index}>
               <GameName>{product.name}</GameName>
               <CurrentRate>{currentRate}%</CurrentRate>
-              <img src={Arrow} width={"32px"} height={"32px"} />
+              <img src={""} width={"32px"} height={"32px"} />
               <NextRate>{nextRate}%</NextRate>
             </TableRow>
           );

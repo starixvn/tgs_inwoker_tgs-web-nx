@@ -1,4 +1,3 @@
-import iconTransfer from "@/assets/t29/images/account/navItem/icon-transfer.svg";
 import TransferPrevV2 from "@/components/account/TransferPrevV2";
 import AccountPaper from "@/components/project/AccountPaper";
 import MenuTabs from "@/components/project/MenuTabs";
@@ -21,7 +20,7 @@ const TransferPage = () => {
     <PageContainer>
       {/* {isDesktopSize && <UserWalletInfo />} */}
       {isDesktopSize && <MenuTabs />}
-      <AccountPaper pageName={i18n.t("common.transfer")} iconUrl={iconTransfer}>
+      <AccountPaper pageName={i18n.t("common.transfer")} iconUrl={""}>
         <TransferPrevV2
           alert={alert}
           history={history}

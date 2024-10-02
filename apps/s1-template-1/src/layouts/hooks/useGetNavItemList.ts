@@ -1,19 +1,3 @@
-import contactImg from "@/assets/t29/images/account/navItem/icon-contact.svg";
-import depositImg from "@/assets/t29/images/account/navItem/icon-deposit.svg";
-import downloadImg from "@/assets/t29/images/account/navItem/icon-download.svg";
-import inboxImg from "@/assets/t29/images/account/navItem/icon-inbox.svg";
-import profileImg from "@/assets/t29/images/account/navItem/icon-profile.svg";
-import reportImg from "@/assets/t29/images/account/navItem/icon-report.svg";
-import transferImg from "@/assets/t29/images/account/navItem/icon-transfer.svg";
-import vipImg from "@/assets/t29/images/account/navItem/icon-vip.svg";
-import contactWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-contact.svg";
-import depositWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-deposit.svg";
-import downloadWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-download.svg";
-import inboxWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-inbox.svg";
-import profileWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-profile.svg";
-import reportWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-report.svg";
-import transferWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-transfer.svg";
-import vipWhiteImg from "@/assets/t29/images/account/navItemWhite/icon-vip.svg";
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
@@ -32,15 +16,15 @@ export type NavItem = {
   router?: string;
   routePath?: string;
 } & (
-    | {
+  | {
       navType: "route";
       routePath: string;
     }
-    | {
+  | {
       navType: "action";
       callback: () => void;
     }
-  );
+);
 
 export function useGetNavItemList() {
   const gameTypeList = useGameTypeList();
@@ -85,16 +69,16 @@ export function useGetNavItemList() {
       {
         key: NavCardKey.PROFILE,
         label: i18n.t("wap.main.my"),
-        iconUrl: profileImg,
-        iconSecondaryUrl: profileWhiteImg,
+        iconUrl: "",
+        iconSecondaryUrl: "",
         navType: "route",
         routePath: "/profile",
       },
       {
         key: NavCardKey.DEPOSIT,
         label: i18n.t("common.deposit"),
-        iconUrl: depositImg,
-        iconSecondaryUrl: depositWhiteImg,
+        iconUrl: "",
+        iconSecondaryUrl: "",
         navType: "route",
         routePath: "/deposit",
       },
@@ -117,16 +101,16 @@ export function useGetNavItemList() {
       {
         key: NavCardKey.TRANSFER,
         label: i18n.t("common.transfer"),
-        iconUrl: transferImg,
-        iconSecondaryUrl: transferWhiteImg,
+        iconUrl: "",
+        iconSecondaryUrl: "",
         navType: "route",
         routePath: "/transfer",
       },
       {
         key: NavCardKey.REPORT,
         label: i18n.t("report.title"),
-        iconUrl: reportImg,
-        iconSecondaryUrl: reportWhiteImg,
+        iconUrl: "",
+        iconSecondaryUrl: "",
         navType: "route",
         routePath: "/report",
       },
@@ -141,8 +125,8 @@ export function useGetNavItemList() {
       {
         key: NavCardKey.INBOX,
         label: i18n.t("wap.main.account.inbox"),
-        iconUrl: inboxImg,
-        iconSecondaryUrl: inboxWhiteImg,
+        iconUrl: "",
+        iconSecondaryUrl: "",
         navType: "route",
         routePath: "/inbox",
       },
@@ -157,24 +141,24 @@ export function useGetNavItemList() {
       {
         key: NavCardKey.VIP,
         label: "VIP",
-        iconUrl: vipImg,
-        iconSecondaryUrl: vipWhiteImg,
+        iconUrl: "",
+        iconSecondaryUrl: "",
         navType: "route",
         routePath: "/vip",
       },
       {
         key: NavCardKey.CONTACT_US,
         label: i18n.t("common.contact"),
-        iconUrl: contactImg,
-        iconSecondaryUrl: contactWhiteImg,
+        iconUrl: "",
+        iconSecondaryUrl: "",
         navType: "route",
         routePath: "/support",
       },
       {
         key: NavCardKey.APP_DOWNLOAD,
         label: i18n.t("wap.main.account.appDownload"),
-        iconUrl: downloadImg,
-        iconSecondaryUrl: downloadWhiteImg,
+        iconUrl: "",
+        iconSecondaryUrl: "",
         navType: "route",
         routePath: "/appDownload",
       },

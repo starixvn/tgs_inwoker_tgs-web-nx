@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import contactGirlImg from "@/assets/t29/images/contact/contact.png";
 
 const HeaderImageContainer = styled.div`
   width: 100%;
@@ -15,7 +14,7 @@ const HeaderImageContainer = styled.div`
 const HeaderImage = () => {
   return (
     <HeaderImageContainer>
-      <img src={contactGirlImg} alt={"contact"} />
+      <img src={""} alt={"contact"} />
     </HeaderImageContainer>
   );
 };

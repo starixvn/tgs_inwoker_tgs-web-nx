@@ -3,11 +3,7 @@ import { CustomizeTablePagination } from "@/components/styled-component/Report";
 import SendItemDetailDialog from "@/pages/inbox/components/dialog/SendItemDetailDialog";
 import SendListTable from "@/pages/inbox/components/table/SendListTable";
 import { theme } from "@/theme";
-import {
-  INBOX_TABLE_ROW_COUNT,
-  useSendDetailContext,
-  useSendList,
-} from "@tgs-web-nx/core/features";
+import { INBOX_TABLE_ROW_COUNT, useSendDetailContext, useSendList } from "@tgs-web-nx/core/features";
 import styled from "styled-components";
 
 const SentTableContainer = styled.div`
@@ -34,13 +30,14 @@ const SentList = () => {
 
   return (
     <SentTableContainer>
-
       {isLoading ? (
         <LoadingBlock size={30} style={{ marginTop: "90px" }} />
       ) : (
         <SendListTable sendList={sendList} handleItemClick={handleSelectInboxItem} />
       )}
       <CustomizeTablePagination
+        //@ts-ignore
+        component={"div"}
         count={totalCount}
         rowsPerPage={INBOX_TABLE_ROW_COUNT}
         page={page > 0 ? page - 1 : 0}

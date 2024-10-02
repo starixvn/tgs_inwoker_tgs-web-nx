@@ -1,8 +1,8 @@
-import InfoPNG from "@/assets/t18/images/info.png";
 import { theme } from "@/theme";
 import { SnackbarProvider } from "notistack";
 import React from "react";
 import styled from "styled-components";
+
 import { ErrorIcon, SuccessIcon, WarningIcon } from "./CustomizeIcon";
 
 const Dismiss = styled.a`
@@ -24,19 +24,19 @@ const CustomizedSnackbarProvider = styled(SnackbarProvider)`
     background-color: ${({ theme }) => theme.toastBackgroundColor};
   }
   &.notistack-MuiContent-error {
-    border: 2px solid ${({ theme }) => theme.toastErrorBorderColor};    
+    border: 2px solid ${({ theme }) => theme.toastErrorBorderColor};
   }
   &.notistack-MuiContent-success {
-    border: 2px solid ${({ theme }) => theme.toastSuccessBorderColor};    
+    border: 2px solid ${({ theme }) => theme.toastSuccessBorderColor};
   }
   &.notistack-MuiContent-warning {
-    border: 2px solid ${({ theme }) => theme.toastWarningBorderColor};    
+    border: 2px solid ${({ theme }) => theme.toastWarningBorderColor};
   }
 
   #notistack-snackbar {
     font-size: ${({ theme }) => theme.toastFontzise};
     font-weight: 500;
-    gap: .8rem;
+    gap: 0.8rem;
   }
 `;
 
@@ -50,19 +50,29 @@ const onClickDismiss = (key: string | number) => () => {
   notistackRef.current.closeSnackbar(key);
 };
 
-
-
 const StyledSnakeBarProvider = ({ children }: Props) => {
- 
-
   return (
     <CustomizedSnackbarProvider
-      
       iconVariant={{
-        success: <SuccessIcon sx={{color: theme.toastSuccessBorderColor, fontSize: "2.2rem"}} viewBox="0 0 14 14"></SuccessIcon>,
-        error: <ErrorIcon sx={{color: theme.toastErrorBorderColor, fontSize: "2.2rem"}} viewBox="0 0 14 14"></ErrorIcon>,
-        warning: <WarningIcon sx={{color: theme.toastWarningBorderColor, fontSize: "2.2rem"}} viewBox="0 0 16 16"></WarningIcon>,
-        info: <Icon src={InfoPNG}></Icon>,
+        success: (
+          <SuccessIcon
+            sx={{ color: theme.toastSuccessBorderColor, fontSize: "2.2rem" }}
+            viewBox="0 0 14 14"
+          ></SuccessIcon>
+        ),
+        error: (
+          <ErrorIcon
+            sx={{ color: theme.toastErrorBorderColor, fontSize: "2.2rem" }}
+            viewBox="0 0 14 14"
+          ></ErrorIcon>
+        ),
+        warning: (
+          <WarningIcon
+            sx={{ color: theme.toastWarningBorderColor, fontSize: "2.2rem" }}
+            viewBox="0 0 16 16"
+          ></WarningIcon>
+        ),
+        info: <Icon src={""}></Icon>,
       }}
       action={""}
       maxSnack={3}

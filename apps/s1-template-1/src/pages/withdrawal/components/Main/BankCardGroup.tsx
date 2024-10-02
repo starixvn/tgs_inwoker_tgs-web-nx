@@ -1,13 +1,9 @@
-import React from "react";
-import { i18n } from "@tgs-web-nx/utils";
-import { Grid } from "@mui/material";
-import styled from "styled-components";
-import { useShowAddCardButton } from "@tgs-web-nx/core/features";
-import iconCard from "@/assets/t29/images/withdraw/icon-card.svg";
-import iconCardActive from "@/assets/t29/images/withdraw/icon-card-active.svg";
-import iconManage from "@/assets/t29/images/withdraw/icon-manage.svg";
-import { theme } from "@/theme";
 import Icon from "@/components/project/Icon";
+import { theme } from "@/theme";
+import { Grid } from "@mui/material";
+import { i18n } from "@tgs-web-nx/utils";
+import React from "react";
+import styled from "styled-components";
 
 const BankCardGroupContainer = styled.div`
   display: flex;
@@ -75,7 +71,7 @@ const BankCardGroup = ({
               getTransferLimit(item.paymentchannelid);
             }}
           >
-            <Icon iconUrl={isActive ? iconCardActive : iconCard} width={"20px"} height={"20px"} />
+            <Icon iconUrl={isActive ? "" : ""} width={"20px"} height={"20px"} />
             <BankCardButtonLabel>{i18n.t("withdrawal.bankCard")}</BankCardButtonLabel>
             <BankCardButtonCardNoHL>
               {(() => {
@@ -128,7 +124,7 @@ const BankCardGroup = ({
       })}
 
       <BankCardButton onClick={onhandleManageCardClick} $active={true}>
-        <Icon iconUrl={iconManage} width={"20px"} height={"20px"} />
+        <Icon iconUrl={""} width={"20px"} height={"20px"} />
 
         <Grid>{i18n.t("withdrawal.manageBank")}</Grid>
       </BankCardButton>

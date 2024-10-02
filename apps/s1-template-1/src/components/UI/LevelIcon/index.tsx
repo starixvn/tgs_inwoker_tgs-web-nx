@@ -1,8 +1,4 @@
 import styled from "styled-components";
-import Level1Icon from "@/assets/t18/images/bettingBonus/level_1.svg";
-import Level3Icon from "@/assets/t18/images/bettingBonus/level_3.svg";
-import Level5Icon from "@/assets/t18/images/bettingBonus/level_5.svg";
-import CurrentLevelTag from "@/assets/t18/images/bettingBonus/current_level_tag.svg";
 
 const type1 = "type1";
 const type3 = "type3";
@@ -87,9 +83,9 @@ const levelTypeMap: {
 const levelIconMap: {
   [key: string]: any;
 } = {
-  type1: Level1Icon,
-  type3: Level3Icon,
-  type5: Level5Icon,
+  type1: "",
+  type3: "",
+  type5: "",
 };
 
 const LevelIcon = ({
@@ -115,7 +111,7 @@ const LevelIcon = ({
       </LevelIconWrapper>
       {isCurrentLevel && (
         <CurrentLevelTagWrapper>
-          <img src={CurrentLevelTag} alt={"level"} />
+          <img src={""} alt={"level"} />
         </CurrentLevelTagWrapper>
       )}
     </LevelIconContainer>

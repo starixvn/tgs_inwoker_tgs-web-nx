@@ -1,14 +1,12 @@
-import styled from "styled-components";
-import moment from "moment";
-import { usePromotionDetailPage } from "@tgs-web-nx/core/hooks";
-import { i18n } from "@tgs-web-nx/utils";
-import { useState } from "react";
+import Loading from "@/components/UI/Loading";
 import BannerImage from "@/pages/promotion/components/BannerImage";
 import JoinPromotionButton from "@/pages/promotion/components/JoinPromotionButton";
 import { media } from "@/theme/breakpoints";
-import Loading from "@/components/UI/Loading";
-import extend from "@/assets/t28/images/promotion/IconExtend.svg";
-import cost from "@/assets/t28/images/promotion/IconCost.svg";
+import { usePromotionDetailPage } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import moment from "moment";
+import { useState } from "react";
+import styled from "styled-components";
 
 const PromotionDetailContainer = styled.div`
   width: 100%;
@@ -140,9 +138,9 @@ const PromotionDetail = () => {
             <TncContainer>
               <Title>{i18n.t("T13.quickLink.tnc")}</Title>
               {contentCollapse ? (
-                <img src={cost} alt="cost" onClick={handleClickCollapse} />
+                <img src={""} alt="cost" onClick={handleClickCollapse} />
               ) : (
-                <img src={extend} alt="extend" onClick={handleClickCollapse} />
+                <img src={""} alt="extend" onClick={handleClickCollapse} />
               )}
             </TncContainer>
             {contentCollapse && (

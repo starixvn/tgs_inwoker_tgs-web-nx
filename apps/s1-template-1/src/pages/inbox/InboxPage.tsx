@@ -1,4 +1,3 @@
-import iconInbox from "@/assets/t29/images/account/navItem/icon-inbox.svg";
 import AccountPaper from "@/components/project/AccountPaper";
 import MenuTabs from "@/components/project/MenuTabs";
 import { PageContainer } from "@/components/styled-component/PageContainer";
@@ -6,11 +5,7 @@ import ComposeForm from "@/pages/inbox/components/form/ComposeForm";
 import InboxCategoryTabs from "@/pages/inbox/components/InboxCategoryTabs";
 import InboxList from "@/pages/inbox/components/InboxList";
 import SentList from "@/pages/inbox/components/SentList";
-import {
-  InboxDetailContextProvider,
-  InboxReplyContextProvider,
-  SendDetailContextProvider,
-} from "@tgs-web-nx/core/features";
+import { InboxDetailContextProvider, InboxReplyContextProvider, SendDetailContextProvider } from "@tgs-web-nx/core/features";
 import { InboxCategoryKeyEnum, useInboxPage, useRwd } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import styled from "styled-components";
@@ -47,7 +42,7 @@ const MessageCenterPage = () => {
     <PageContainer>
       {/* {isDesktopSize && <UserWalletInfo />} */}
       {isDesktopSize && <MenuTabs />}
-      <AccountPaper pageName={i18n.t("wap.main.account.inbox")} iconUrl={iconInbox}>
+      <AccountPaper pageName={i18n.t("wap.main.account.inbox")} iconUrl={""}>
         <InboxContainer>
           <InboxCategoryTabs
             tabList={tabList}

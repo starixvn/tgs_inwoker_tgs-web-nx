@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import WhiteMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/WhiteMemberMenu";
 import { Drawer } from "@mui/material";
 import { useRwd } from "@tgs-web-nx/core/hooks";
-import avatarImg from "@/assets/t33/images/account/avatar.svg";
-import { theme } from "@/theme";
-import WhiteMemberMenu from "@/layouts/components/Header/components/ContextMenuButton/components/WhiteMemberMenu";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const ContextMenuButtonContainer = styled.div`
   cursor: pointer;
@@ -13,7 +11,7 @@ const ContextMenuButtonContainer = styled.div`
 const AvatarContainer = styled.div`
   width: 33px;
   height: 33px;
-  background: url(${avatarImg}) no-repeat center center;
+  background: url("") no-repeat center center;
   background-size: cover;
 `;
 

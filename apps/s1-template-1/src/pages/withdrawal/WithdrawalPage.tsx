@@ -1,5 +1,4 @@
 //@ts-nocheck
-import iconWithdrawal from "@/assets/t29/images/account/navItem/icon-withdraw.svg";
 import WithdrawalPrevV2 from "@/components/account/WithdrawalPrevV2";
 import AccountPaper from "@/components/project/AccountPaper";
 import MenuTabs from "@/components/project/MenuTabs";
@@ -28,7 +27,7 @@ const WithdrawalPage = () => {
     <TransferPageContainer>
       {/* {isDesktopSize && <UserWalletInfo />} */}
       {isDesktopSize && <MenuTabs />}
-      <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={iconWithdrawal}>
+      <AccountPaper pageName={i18n.t("common.withdrawal")} iconUrl={""}>
         <WithdrawalPrevV2
           appHistory={history}
           alert={alert}

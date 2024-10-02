@@ -7,8 +7,6 @@ import { useRwd } from "@tgs-web-nx/core/hooks";
 import React from "react";
 import styled from "styled-components";
 
-// import bg from "@/assets/t29/images/bg.png";
-
 const DefaultLayoutContainer = styled.div`
   position: relative;
   background: ${({ theme }) => theme.mainBackground};

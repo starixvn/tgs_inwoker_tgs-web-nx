@@ -1,10 +1,9 @@
-import styled, { css, keyframes } from "styled-components";
-import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
-import { useAccountStore } from "@tgs-web-nx/core";
-import { i18n, utility } from "@tgs-web-nx/utils";
-import refreshIcon from "@/assets/t28/images/account/icon-refresh.svg";
 import Icon from "@/components/project/Icon";
 import { theme } from "@/theme";
+import { useAccountStore } from "@tgs-web-nx/core";
+import { useUserWalletInfoContext } from "@tgs-web-nx/core/features";
+import { i18n, utility } from "@tgs-web-nx/utils";
+import styled, { css, keyframes } from "styled-components";
 
 const VipProgressWidgetWrapper = styled.div`
   display: grid;
@@ -140,8 +139,7 @@ const VipProgressWidgetWrapper = styled.div`
       .icon {
         width: 30px;
         height: 30px;
-        mask: url(${utility.imagePathGenerator("iconpack/reload.png")}) no-repeat
-          center;
+        mask: url(${utility.imagePathGenerator("iconpack/reload.png")}) no-repeat center;
         mask-size: contain;
         background: ${({ theme }) => theme.primaryText};
       }
@@ -270,7 +268,7 @@ const VipProgressWidget = () => {
             <RefreshButton
               width={"44px"}
               height={"44px"}
-              iconUrl={refreshIcon}
+              iconUrl={""}
               onClick={getAccountInfo}
               $isLoading={isMainWalletLoading}
             />

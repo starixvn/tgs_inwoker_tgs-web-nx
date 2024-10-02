@@ -1,10 +1,9 @@
-import styled from "styled-components";
-import { GameTypeItem, useHomeGameContext } from "@tgs-web-nx/core/features";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHistory } from "react-router-dom";
-import { media } from "@/theme/breakpoints";
-import emphasizedLine from "@/assets/t33/images/home/emphasized-line.svg";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
+import { media } from "@/theme/breakpoints";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -251,11 +250,11 @@ const Introduction = () => {
         </Content>
       </ArticleSection>
       <EmphasizeSection>
-        <img src={emphasizedLine} alt="notice" />
+        <img src={""} alt="notice" />
         <EmphasizeTitle>
           GO AHEAD AND DISCOVER ALL THE ADVANTAGES THAT PG OFFERS YOU!
         </EmphasizeTitle>
-        <img src={emphasizedLine} alt="notice" />
+        <img src={""} alt="notice" />
       </EmphasizeSection>
       <PromoSection>
         <BonusBtn>WELCOME BONUS</BonusBtn>

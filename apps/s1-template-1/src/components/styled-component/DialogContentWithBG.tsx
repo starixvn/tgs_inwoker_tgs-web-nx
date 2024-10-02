@@ -1,8 +1,7 @@
-import styled from "styled-components";
 import { DialogContent } from "@mui/material";
-import BG from "@/assets/t29/images/loginBG-big.png";
+import styled from "styled-components";
 
 export const DialogContentWithBG = styled(DialogContent)`
-  background: url(${BG}) no-repeat center center;
-  background-size: cover
+  background: url("") no-repeat center center;
+  background-size: cover;
 `;

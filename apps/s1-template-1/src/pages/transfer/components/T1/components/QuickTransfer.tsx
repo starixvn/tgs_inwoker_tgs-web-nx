@@ -1,16 +1,14 @@
-import React, { ChangeEvent } from "react";
-import { i18n } from "@tgs-web-nx/utils";
+import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
+import { Button } from "@/components/UI/Button";
+import { Select } from "@/components/UI/Select";
+import { theme } from "@/theme";
+import { media } from "@/theme/breakpoints";
 import { SelectChangeEvent } from "@mui/material";
 import config from "@tgs-web-nx/config";
-import styled from "styled-components";
 import { useGameStore } from "@tgs-web-nx/core";
-import { TextField } from "@/components/UI/TextField";
-import { Select } from "@/components/UI/Select";
-import arrowRightIcon from "@/assets/t28/images/transfer/arrow-right.svg";
-import { Button } from "@/components/UI/Button";
-import { theme } from "@/theme";
-import { GrayInputWrapper } from "@/components/styled-component/auth/GrayInputWrapper";
-import { media } from "@/theme/breakpoints";
+import { i18n } from "@tgs-web-nx/utils";
+import React, { ChangeEvent } from "react";
+import styled from "styled-components";
 
 const QuickTransferContainer = styled.div`
   display: flex;
@@ -123,7 +121,7 @@ const QuickTransfer = ({
       </GrayInputWrapper>
 
       <QuickTransferArrow>
-        <img src={arrowRightIcon} alt="arrow-right" />
+        <img src={""} alt="arrow-right" />
       </QuickTransferArrow>
 
       <GrayInputWrapper>

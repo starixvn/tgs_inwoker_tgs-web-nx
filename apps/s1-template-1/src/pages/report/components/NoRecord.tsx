@@ -1,4 +1,3 @@
-import noResultImg from "@/assets/t18/images/report/no_result.svg";
 import { i18n } from "@tgs-web-nx/utils";
 import React from "react";
 import styled from "styled-components";
@@ -33,7 +32,7 @@ const NoRecord = () => {
   return (
     <NoRecordWrapper>
       <NoRecordContainer>
-        <img src={noResultImg} alt={"no-result"} />
+        <img src={""} alt={"no-result"} />
       </NoRecordContainer>
       <NoDataText>{i18n.t("common.nodata")}</NoDataText>
     </NoRecordWrapper>

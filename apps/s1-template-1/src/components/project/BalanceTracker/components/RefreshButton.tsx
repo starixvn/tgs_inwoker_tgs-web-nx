@@ -1,7 +1,6 @@
+import Icon from "@/components/project/Icon";
 import React, { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
-import refreshImg from "@/assets/t29/images/account/balanceTracker/refresh.svg";
-import Icon from "@/components/project/Icon";
 
 type StyledRefreshButtonProps = {
   $isSpinning: boolean;
@@ -40,7 +39,7 @@ const RefreshButton = ({ handleClick }: Props) => {
 
   return (
     <StyledRefreshButton $isSpinning={isSpinning} onClick={handleRefreshClick}>
-      <Icon iconUrl={refreshImg} width={"28px"} height={"28px"} />
+      <Icon iconUrl={""} width={"28px"} height={"28px"} />
     </StyledRefreshButton>
   );
 };
