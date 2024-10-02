@@ -11,7 +11,6 @@ import Header from "./components/Header";
 
 const DialogLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.dialogBackground};
 `;
 
 const ContentWrapper = styled.div`
