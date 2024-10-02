@@ -55,7 +55,7 @@ const RecentBigWins: React.FC<BigWinType> = (recentBigWins: BigWinType) => {
         <img src="/assets/images/common/icon-big-wins.svg" alt="hot" />
         {i18n.t("web.home.Section1RecentBigWins")}
       </GameTypeTitle>
-      <Marquee className="marquee" pauseOnHover={true} pauseOnClick={true}>
+      <Marquee className="marquee" autoFill={true} pauseOnHover={true} pauseOnClick={true}>
         <RecentBigWinsContainer>
           {!hasData && createSkeletonGames()}
           {hasData &&

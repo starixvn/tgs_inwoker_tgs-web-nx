@@ -1,7 +1,6 @@
 import AppearSensor from "@/components/project/AppearSensor";
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
-import { useRwd } from "@tgs-web-nx/core/hooks";
 import { GameItem, GameStatus } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import { Img } from "react-image";
@@ -18,7 +17,6 @@ type GameCardProps = {
 
 const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => {
   const { account } = useAccountStore();
-  const { isDesktopSize } = useRwd();
   const { goToLogin } = useAuth();
   const isLogin = !!account.token;
   const { id, gpcode, name, gpname, gamestatus } = gameItem;
