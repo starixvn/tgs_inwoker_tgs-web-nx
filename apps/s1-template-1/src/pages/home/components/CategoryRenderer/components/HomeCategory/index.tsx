@@ -51,7 +51,7 @@ const HomeCategory = () => {
             <GameCardSlider data={sportGameList} />
           </EmblaCarousel>
         </Group>
-        lele
+
         {highlightMatches.length > 0 && (
           <Group className="game-area">
             <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
