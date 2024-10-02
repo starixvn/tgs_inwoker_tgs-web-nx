@@ -31,6 +31,7 @@ import ForgotPasswordDialog from "@/components/project/auth/Dialogs/ForgotPasswo
 import useGameTypeList from "@/hooks/home/useGameTypeList";
 import RegisterV2InitPhoneDialog from "@/components/project/auth/Dialogs/RegisterV2InitPhoneDialog";
 import RegisterV2InitEmailDialog from "@/components/project/auth/Dialogs/RegisterV2InitEmailDialog";
+import RocketChatLiveChat from "./rocketChat";
 
 const App: React.FC = () => {
   const { isLoading } = useInitSite();
@@ -90,7 +91,7 @@ const App: React.FC = () => {
                             : "0"
                         }
                       />
-
+                      <RocketChatLiveChat />
                       <PopupAnnouncement />
                       <PopupPromotion />
 
