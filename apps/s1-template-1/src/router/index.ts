@@ -34,7 +34,6 @@ import WithdrawalPage from "@/pages/withdrawal/WithdrawalPage";
 import config from "@tgs-web-nx/config";
 import { ProfilePathEnum } from "@tgs-web-nx/core";
 import { RouteType } from "@tgs-web-nx/types";
-import React from "react";
 
 const routes: RouteType[] = [
   {
@@ -69,7 +68,7 @@ const routes: RouteType[] = [
   {
     path: "/makedeposit",
     component: MakeDepositPage,
-    layout: DialogLayout,
+    layout: DialogLayoutWithoutBack,
   },
   {
     path: "/deposit/popup",

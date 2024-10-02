@@ -9,8 +9,13 @@ import styled from "styled-components";
 const ErrorMessageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 2.4rem;
+  margin: 2.4rem 0;
   align-items:center;
+`;
+
+const LabelContainerDeposit = styled(LabelContainer)`
+  line-height: 2rem;
+  padding: 0 2.4rem;
 `;
 
 const getDepositInfoFromUrlSearchParams = (search: string) => {
@@ -52,9 +57,9 @@ const RedirectingMessage = () => {
 
 const ErrorMessage = ({ errmsgid = i18n.t("SystemError") }: { errmsgid?: string}) => {
   return <ErrorMessageContainer>
-    <LabelContainer>
+    <LabelContainerDeposit>
       Unable to connect to the payment gateway. Please try again or contact support.
-    </LabelContainer>
+    </LabelContainerDeposit>
     <HintText>
       Error: {i18n.t(errmsgid)}
     </HintText>
