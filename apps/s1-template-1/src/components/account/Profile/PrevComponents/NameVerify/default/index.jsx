@@ -1,18 +1,17 @@
+import {
+  FormControl,
+  ItemContainerSmall,
+  LabelContainer,
+  UploadFileButton,
+  UploadFileTag
+} from "@/components/styled-component/ProfileForms";
+import { TextField } from "@/components/UI/TextField";
 import config from "@tgs-web-nx/config";
 import { accountAction, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
 import { i18n } from "@tgs-web-nx/utils";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import BaseProfile from "../../BaseProfile";
-import {
-  FormControl,
-  ItemContainerSmall,
-  LabelContainer,
-  UploadFileButton,
-  UploadFileControl,
-  UploadFileTag,
-} from "@/components/styled-component/ProfileForms";
-import { TextField } from "@/components/UI/TextField";
 
 class Default extends BaseProfile {
   constructor(props) {
@@ -63,8 +62,8 @@ class Default extends BaseProfile {
         {config.features.ICVerificationUpload && (
           <ItemContainerSmall>
             <LabelContainer>{i18n.t("common.upload")}</LabelContainer>
-            <UploadFileControl>
-              <UploadFileButton
+            <FormControl>
+            <UploadFileButton
                 variant={"outlined"}
                 onClick={() => {
                   document.getElementById("getFile").click();
@@ -83,7 +82,8 @@ class Default extends BaseProfile {
               <UploadFileTag>
                 {this.props.icUpload ? this.props.icUpload[0].name : i18n.t("common.uploadFile")}
               </UploadFileTag>
-            </UploadFileControl>
+            </FormControl>
+             
           </ItemContainerSmall>
         )}
       </>
