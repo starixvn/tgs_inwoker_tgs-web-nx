@@ -6,7 +6,7 @@ import { Props } from "./type";
 const FormText = ({ formInput, formik, showErrorOn }: Props) => {
   const { label, name, type } = formInput;
 
-  const errorClass = formik.errors[name] ? "error" : "";
+  const errorClass = formik.errors[name] && formik.touched[formInput.name] ? "error" : "";
 
   return (
     <CustomTextField

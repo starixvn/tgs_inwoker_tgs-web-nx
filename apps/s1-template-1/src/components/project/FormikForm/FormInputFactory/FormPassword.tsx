@@ -20,7 +20,7 @@ const FormPassword = ({ formInput, formik, showErrorOn }: Props) => {
 
   const inputType = isShowPassword ? "text" : "password";
 
-  const errorClass = formik.errors[formInput.name] ? "error" : "";
+  const errorClass = formik.errors[name] && formik.touched[formInput.name] ? "error" : "";
 
   return (
     <CustomTextField
