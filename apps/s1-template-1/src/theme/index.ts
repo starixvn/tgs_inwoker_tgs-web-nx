@@ -1,8 +1,8 @@
 import { dark } from "./theme-dark";
 import { light } from "./theme-light";
 
-const getTheme = (themeNumber: string) => {
-  switch (themeNumber) {
+const getTheme = (theme: string) => {
+  switch (theme) {
     case "light":
       return light;
     default:
