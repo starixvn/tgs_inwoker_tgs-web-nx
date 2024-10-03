@@ -48,7 +48,7 @@ const Loading = ({ show, opacity, noShrink }: Props) => {
   return (
     <LoadingContainer $open={show} $opacity={backgroundOpacity} $isMenuOpen={false}>
       <Inner>
-        <CircularProgress size={80} color={"secondary"} style={{ margin: "6rem 0 0 0" }} />
+        <CircularProgress size={80} color={"primary"} style={{ margin: "6rem 0 0 0" }} />
       </Inner>
     </LoadingContainer>
   );

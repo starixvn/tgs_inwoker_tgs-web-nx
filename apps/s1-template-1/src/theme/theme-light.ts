@@ -22,9 +22,9 @@ export const light = {
 
   // New template
   // Header
-  headerBackground: "#19212C",
-  headerBorderColor: "hsla(0,0%,100%,.04)",
-  headerShadow: "#0d131c78",
+  headerBackground: "linear-gradient(180deg, #FFF 0%, #EFEFEF 100%)",
+  headerBorderColor: "#E6E6E6",
+  headerShadow: "0px 2px 10px 0px rgba(0, 0, 0, 0.10)",
 
   signUpButtonBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   signUpButtonBottomBorderColor: "#A96300",
@@ -57,6 +57,8 @@ export const light = {
   categoryTextColor: "#2E353E",
 
   // Recent Big Wins
+  recentBigWinsSpace: "1.6rem",
+  recentBigWinsAreaBorder: "8px solid #F5F5F5",
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
   bigWinsAmountColor: "#60AB00",
   recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
@@ -101,7 +103,7 @@ export const light = {
   optionHoverBgColor: "#2A3546",
 
   // Common
-  mainBackground: "#F5F5F5",
+  mainBackground: "#fff",
   text: "#2E353E",
 
   errorColor: "#F90B44",
@@ -171,7 +173,7 @@ export const light = {
   disabledSlideNextButtonBackground: "#F2F2F2",
   disabledSlideNextButtonColor: "#27272A",
 
-  providerItemBackground: "#1c2532",
+  providerItemBackground: "#4B5F7C",
 
   gameStatusBackground: "rgba(0, 0, 0, 0.25)",
   maintenanceLabelBackground: "#0099CA",
@@ -181,11 +183,18 @@ export const light = {
 
   gameTypeTitle: "#2E353E",
   groupAreaBackground: "#fff",
+  gameTypeContainerPaddingTop: "1.6rem",
+  gameTypeContainerGapSmall: "3.6rem",
+  gameTypeContainerGapLarge: "5rem",
 
+  latestBetsAreaSpace: "1.6rem",
+  latestBetsAreaBorder: "8px solid #F5F5F5",
   latestBetsTableHeaderBg: "#E0E0E0",
   latestBetsTableHeaderColor: "#474D58",
   latestBetsTableRowBg: "#F5F6FA",
+  latestBetsTableRowBorder: "#F5F6FA",
   latestBetsTableRowColor: "#474D58",
+  latestBetsOverlayColor: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)",
 
   // Game Card
   gameCardBackground: "linear-gradient(149deg, #CCC 2%, #EDEDED 49.83%, #BEBCBC 97.67%)",

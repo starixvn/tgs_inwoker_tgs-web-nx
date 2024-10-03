@@ -20,7 +20,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   height: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
-  box-shadow: 0 4px 26px ${({ theme }) => theme.headerShadow};
+  box-shadow: ${({ theme }) => theme.headerShadow};
   z-index: 10;
   margin-bottom: 1.6rem;
 

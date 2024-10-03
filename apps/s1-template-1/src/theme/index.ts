@@ -1,9 +1,10 @@
 import { dark } from "./theme-dark";
 import { light } from "./theme-light";
+import { ThemeType } from "./theme-type";
 
 const getTheme = (theme: string) => {
   switch (theme) {
-    case "light":
+    case ThemeType.LIGHT:
       return light;
     default:
       return dark;

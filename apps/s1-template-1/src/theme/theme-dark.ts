@@ -24,7 +24,7 @@ export const dark = {
   // Header
   headerBackground: "#19212C",
   headerBorderColor: "hsla(0,0%,100%,.04)",
-  headerShadow: "#0d131c78",
+  headerShadow: "0 4px 26px #0d131c78",
 
   signUpButtonBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   signUpButtonBottomBorderColor: "#A96300",
@@ -57,6 +57,8 @@ export const dark = {
   categoryTextColor: "#fff",
 
   // Recent Big Wins
+  recentBigWinsSpace: "0",
+  recentBigWinsAreaBorder: "none",
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
   bigWinsAmountColor: "#e2fe26",
   recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
@@ -181,11 +183,18 @@ export const dark = {
 
   gameTypeTitle: "#fff",
   groupAreaBackground: "transparent",
+  gameTypeContainerPaddingTop: "3.6rem",
+  gameTypeContainerGapSmall: "3.6rem",
+  gameTypeContainerGapLarge: "5rem",
 
+  latestBetsAreaSpace: "0",
+  latestBetsAreaBorder: "none",
   latestBetsTableHeaderBg: "#1a2335",
   latestBetsTableHeaderColor: "#7a8597",
   latestBetsTableRowBg: "#151d29",
+  latestBetsTableRowBorder: "#151d29",
   latestBetsTableRowColor: "#7a8597",
+  latestBetsOverlayColor: "linear-gradient(180deg, rgba(13, 19, 28, 0) 0%, #0d131c 100%)",
 
   // Game Card
   gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",

@@ -17,7 +17,7 @@ export const TableContainer = styled.div`
     left: 0;
     width: 100%;
     height: 15rem;
-    background: linear-gradient(180deg, rgba(13, 19, 28, 0) 0%, #0d131c 100%);
+    background: ${({ theme }) => theme.latestBetsOverlayColor};
   }
 `;
 
@@ -56,7 +56,7 @@ export const TableHeader = styled(LayoutGrid)`
 
 export const TableRow = styled(LayoutGrid)<AnimationProps>`
   border-radius: 0.8rem;
-  border-bottom: 1px solid #151d29;
+  border-bottom: 1px solid ${({ theme }) => theme.latestBetsTableRowBorder};
   background: ${({ theme }) => theme.latestBetsTableRowBg};
   margin-top: 0.6rem;
   color: ${({ theme }) => theme.latestBetsTableRowColor};

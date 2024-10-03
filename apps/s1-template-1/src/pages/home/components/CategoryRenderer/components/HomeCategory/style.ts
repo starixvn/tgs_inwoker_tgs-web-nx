@@ -41,6 +41,11 @@ export const GameTypeTitle = styled.div`
   }
 `;
 
+export const Container = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const ViewAll = styled.div`
   position: absolute;
   right: 7.6rem;
@@ -74,10 +79,11 @@ export const ViewAll = styled.div`
 export const GameTypeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3.6rem;
+  padding-top: ${({ theme }) => theme.gameTypeContainerPaddingTop};
+  gap: ${({ theme }) => theme.gameTypeContainerGapSmall};
 
   ${media.md} {
-    gap: 5rem;
+    gap: ${({ theme }) => theme.gameTypeContainerGapLarge};
   }
 `;
 
@@ -177,5 +183,17 @@ export const Group = styled.div`
     &:hover:not([disabled]) {
       background-color: ${({ theme }) => theme.slideNextButtonBackgroundHover};
     }
+  }
+
+  &.recent-big-wins-area {
+    padding-top: ${({ theme }) => theme.recentBigWinsSpace};
+    padding-bottom: ${({ theme }) => theme.recentBigWinsSpace};
+    border-top: ${({ theme }) => theme.recentBigWinsAreaBorder};
+    border-bottom: ${({ theme }) => theme.recentBigWinsAreaBorder};
+  }
+
+  &.latest-bets {
+    padding-top: ${({ theme }) => theme.latestBetsAreaSpace};
+    border-top: ${({ theme }) => theme.latestBetsAreaBorder};
   }
 `;
