@@ -1,7 +1,6 @@
 import { imageMap } from "@/components/project/LanguageSwitch";
 import { theme } from "@/theme";
-import ExpandMoreRoundedIcon from "@mui/icons-material/ExpandMoreRounded";
-import { MenuItem as MuiMenuItem, Select as MuiSelect, SelectChangeEvent, SelectProps } from "@mui/material";
+import { MenuItem as MuiMenuItem, Select as MuiSelect, SelectChangeEvent, SelectProps, SvgIcon, SvgIconProps } from "@mui/material";
 import { media } from "@tgs-web-nx/constants";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { BrandLanguage } from "@tgs-web-nx/types";
@@ -29,7 +28,7 @@ const StyledSelect = styled(MuiSelect)`
   &:after {
     content: "";
     position: absolute;
-    left: 3.6rem;
+    right: 2.4rem;
     display: flex;
     justify-content: center;
     height: 2.8rem;
@@ -56,8 +55,10 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   .MuiSvgIcon-root {
+    position: relative;
+    right: 0.8rem;
+
     color: ${({ theme }) => theme.dropDownIconColor};
-    right: 0.6rem;
   }
 `;
 
@@ -71,7 +72,6 @@ const FlagContainer = styled.div`
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 50%;
-  margin-right: 0.8rem;
 
   & > img {
     width: 100%;
@@ -117,7 +117,7 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
       value={culturecode}
       onChange={handleChange}
       displayEmpty={true}
-      IconComponent={ExpandMoreRoundedIcon}
+      IconComponent={ArrowIcon}
       MenuProps={{
         PaperProps: {
           sx: {
@@ -162,4 +162,16 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
   );
 };
 
+const ArrowIcon: React.FC = (props: SvgIconProps) => {
+  return (
+    <SvgIcon sx={{ height: "10px", width: "10px" }} viewBox="0 0 11 10">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M5.50025 6.34278L8.08573 3.75729C8.47626 3.36677 9.03028 3.28762 9.32317 3.58052C9.61607 3.87341 9.53692 4.42743 9.1464 4.81795L6.31797 7.64638C6.07468 7.88967 5.76793 8.01211 5.5004 7.99904C5.2328 8.01222 4.92592 7.88977 4.68254 7.64639L1.85411 4.81797C1.46359 4.42744 1.38444 3.87342 1.67734 3.58053C1.97023 3.28764 2.52425 3.36678 2.91478 3.75731L5.50025 6.34278Z"
+        fill="#A7B5CA"
+      />
+    </SvgIcon>
+  );
+};
 export default React.memo(HeaderLanguageSwitch);
