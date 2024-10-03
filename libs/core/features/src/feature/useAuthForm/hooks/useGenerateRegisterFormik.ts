@@ -24,7 +24,7 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required(i18n.t("common.msgUsernameRequired"))
-          .matches(/^[a-z0-9]{6,16}$/, {
+          .matches(/^[a-zA-Z0-9]{6,16}$/, {
             message: i18n.t("common.msgRegisterUserNameInvalid"),
           }),
       },
@@ -35,7 +35,8 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
         initialValue: "",
         validationSchema: Yup.string()
           .required(i18n.t("common.msgPasswordRequired"))
-          .matches(/^.{6,20}$/, {
+          // eslint-disable-next-line no-control-regex
+          .matches(/^[\x00-\x7F]{6,20}$/, {
             message: i18n.t("common.msgRegisterPassInvalid"),
           }),
       },
