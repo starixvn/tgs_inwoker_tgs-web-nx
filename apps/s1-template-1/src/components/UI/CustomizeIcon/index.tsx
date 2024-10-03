@@ -155,3 +155,11 @@ export const EditIcon = (props: SvgIconProps) => {
     </SvgIcon>
   );
 };
+
+export const ArrowDownSelectIcon = (props: SvgIconProps) => {
+  return (
+    <SvgIcon {...props}>
+      <path d="M8.67726 9.41769C7.88866 10.6318 6.11134 10.6318 5.32274 9.4177L1.2124 3.08941C0.348189 1.75887 1.30309 6.22503e-07 2.88966 7.61206e-07L11.1103 1.47988e-06C12.6969 1.61858e-06 13.6518 1.75887 12.7876 3.08941L8.67726 9.41769Z"/>
+    </SvgIcon>
+  );
+};

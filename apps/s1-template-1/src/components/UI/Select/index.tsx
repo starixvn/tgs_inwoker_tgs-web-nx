@@ -1,5 +1,6 @@
 import { theme } from "@/theme";
 import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/material";
+import { ArrowDownSelectIcon } from "../CustomizeIcon";
 
 export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: `#f00fff`,
@@ -104,9 +105,9 @@ export const Select = (props: SelectProps) => {
         },       
         marginThreshold: 0,
       }}
-      // IconComponent={() => (
-      //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
-      // )}
+      IconComponent={() => (
+        <ArrowDownSelectIcon sx={{fontSize: "1.8rem", color: `${theme.formInputColor} !important`, position: "relative", top: "6px"}}/>
+      )}
     />
   );
 };
