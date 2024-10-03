@@ -1,22 +1,11 @@
 import { CloseIcon } from "@/components/UI/CustomizeIcon";
-import React from "react";
 import styled from "styled-components";
 
 const PopupHeaderContainer = styled.div`
-  background: ${({ theme }) => theme.secBTNBGC};
-  position: relative;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
 `;
 
-const IconContainer = styled.div`
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  cursor: pointer;
-`;
+
 
 type Props = {
   title: string;
@@ -25,7 +14,6 @@ type Props = {
 const PopupHeader = ({ title, handleClose }: Props) => {
   return (
     <PopupHeaderContainer>
-      <IconContainer onClick={handleClose}>
         <CloseIcon
           sx={{
             position: "absolute",
@@ -42,8 +30,8 @@ const PopupHeader = ({ title, handleClose }: Props) => {
           }}
           viewBox="0 0 33 32"
           className="icon-close"
+          onClick={handleClose}
         />
-      </IconContainer>
     </PopupHeaderContainer>
   );
 };

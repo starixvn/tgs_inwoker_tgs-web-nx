@@ -151,8 +151,7 @@ const AccountHeaderContent = () => {
           <DepositIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "1.8rem",
-              height: "1.8rem",
+              fontSize: "2.2rem",
               marginRight: "0.6rem",
               position: "relative",
               top: "0.2rem",
@@ -168,8 +167,7 @@ const AccountHeaderContent = () => {
           <WithdrawIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "1.8rem",
-              height: "1.8rem",
+              fontSize: "2.2rem",
               marginRight: "0.6rem",
               position: "relative",
               top: "0.2rem",
@@ -188,11 +186,10 @@ const AccountHeaderContent = () => {
           <TransactionIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "1.8rem",
-              height: "1.8rem",
+              fontSize: "2.4rem",
               marginRight: "0.6rem",
               position: "relative",
-              top: "0.2rem",
+              top: "0.5rem",
             }}
           ></TransactionIcon>
           {i18n.t("common.transactions")}
@@ -205,11 +202,10 @@ const AccountHeaderContent = () => {
           <HistoryIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "1.8rem",
-              height: "1.8rem",
+              fontSize: "2.4rem",
               marginRight: "0.6rem",
               position: "relative",
-              top: "0.2rem",
+              top: "0.5rem",
             }}
           ></HistoryIcon>
           {i18n.t("common.bethistory")}
@@ -222,11 +218,10 @@ const AccountHeaderContent = () => {
           <AccountInfoIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "1.8rem",
-              height: "1.8rem",
+              fontSize: "2.4rem",
               marginRight: "0.6rem",
               position: "relative",
-              top: "0.2rem",
+              top: "0.4rem",
             }}
           ></AccountInfoIcon>
           {i18n.t("deposit.details.account")}
@@ -237,11 +232,10 @@ const AccountHeaderContent = () => {
           <InboxIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "1.8rem",
-              height: "1.8rem",
+              fontSize: "2.2rem",
               marginRight: "0.6rem",
               position: "relative",
-              top: "0.5rem",
+              top: "0.6rem",
             }}
           ></InboxIcon>
           {i18n.t("wap.main.account.inbox")}
@@ -250,11 +244,10 @@ const AccountHeaderContent = () => {
           <LogoutIcon
             sx={{
               fill: `${theme.formInputColor}`,
-              width: "1.8rem",
-              height: "1.8rem",
+              fontSize: "2.2rem",
               marginRight: "0.6rem",
               position: "relative",
-              top: "0.3rem",
+              top: "0.5rem",
             }}
           ></LogoutIcon>
           {i18n.t("common.logout")}

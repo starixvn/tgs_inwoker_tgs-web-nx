@@ -1,70 +1,30 @@
-import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { Dialog as MuiDialog } from "@mui/material";
-import { i18n } from "@tgs-web-nx/utils";
-import { useUiStore } from "@tgs-web-nx/core";
-import { useDetectDialogClose, useRwd } from "@tgs-web-nx/core/hooks";
-import { usePopup } from "@tgs-web-nx/core/features";
-import Carousel from "@/components/UI/Carousel";
-import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
-import { media } from "@/theme/breakpoints";
-import { SubmitButton as Button } from "@/components/styled-component/ProfileForms";
-import { UpTransition } from "@/components/UI/Dialog/Transition";
 import PopupHeader from "@/components/project/Popup/components/PopupHeader";
+import NotShowAgainHint from "@/components/project/Popup/NotShowAgainHint";
+import { LabelContainer, LabelLargeContainer } from "@/components/styled-component/ProfileForms";
+import { GreenGradientButton } from "@/components/UI/Button";
+import Carousel from "@/components/UI/Carousel";
+import { StyledDialog } from "@/components/UI/Dialog/DialogPopup";
+import { UpTransition } from "@/components/UI/Dialog/Transition";
+import { media } from "@/theme/breakpoints";
+import { useUiStore } from "@tgs-web-nx/core";
+import { usePopup } from "@tgs-web-nx/core/features";
+import { useDetectDialogClose, useRwd } from "@tgs-web-nx/core/hooks";
+import { i18n } from "@tgs-web-nx/utils";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
-const StyledDialog = styled(MuiDialog)`
-  position: relative;
-  & .MuiPaper-root {
-    background: ${({ theme }) => theme.secBTNBGC};
-    width: calc(100vw - 10px * 2);
-    height: auto;
-    margin: 4px;
-    overflow: visible;
-
-    ${media.sm} {
-      max-width: 478px;
-    }
-  }
-`;
 
 const ChildContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 20px 20px;
-
-  ${media.sm} {
-    padding: 0 40px 40px;
-  }
-`;
-
-const Title = styled.div`
-  font-size: 1.062rem;
-  font-weight: 700;
-  color: #58addd;
-  ${media.sm} {
-    font-size: 1.5rem;
-  }
-`;
-
-const Content = styled.div`
-  font-size: 0.875rem;
-  color: ${({ theme }) => theme.gray60};
-  margin-top: 1rem;
-  white-space: pre-line;
-
-  ${media.sm} {
-    font-size: 1rem;
-  }
+  padding: 3.2rem;
 `;
 
 const AnnouncementCardContainer = styled.div`
-  //min-height: 120px;
   height: auto;
-
   ${media.sm} {
-    //min-height: 150px;
   }
 `;
 
@@ -81,8 +41,8 @@ const doNotShowAnnouncementDialogKey = "doNotShowAnnouncementDialog";
 const AnnouncementCard = ({ subject, content }: { subject: string; content: string }) => {
   return (
     <AnnouncementCardContainer>
-      <Title>{subject}</Title>
-      <Content>{content}</Content>
+      <LabelLargeContainer>{subject}</LabelLargeContainer>
+      <LabelContainer>{content}</LabelContainer>
     </AnnouncementCardContainer>
   );
 };
@@ -151,15 +111,11 @@ const PopupAnnouncement = () => {
         <NotShowAgainHint onClick={handleClickCheckbox} isCheck={isCheck} />
 
         <ButtonWrapper>
-          <Button
+          <GreenGradientButton
             onClick={handleCloseDialog}
-            style={{
-              width: isDesktopSize ? "242px" : "100%",
-              textAlign: "center",
-            }}
           >
-            <>{i18n.t("common.close")}</>
-          </Button>
+            <>{i18n.t("common.submit")}</>
+          </GreenGradientButton>
         </ButtonWrapper>
       </ChildContainer>
     </StyledDialog>

@@ -4,7 +4,7 @@ import { Dialog as MuiDialog } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 
-const StyledDialog = styled(MuiDialog)`
+export const StyledDialog = styled(MuiDialog)`
   & .MuiPaper-root {
     background: ${({ theme }) => theme.popupBackground};
     width: 48rem;
