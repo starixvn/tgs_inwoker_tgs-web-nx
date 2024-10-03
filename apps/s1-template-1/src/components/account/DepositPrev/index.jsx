@@ -493,6 +493,8 @@ class DepositPrev extends Component {
       //   );
       // }
     }
+    this.resetInfoInput();
+
     setTimeout(() => {
       this.setState({ ...this.state, disabled: false });
     }, 1000);
@@ -640,6 +642,16 @@ class DepositPrev extends Component {
       name: this.props.wallet.bankCardList[bankCardIndex].detail.name || "",
     });
   };
+
+  resetInfoInput() {
+    this.setState({
+      ...this.state,
+      name: "",
+      account: "",
+      amount: ""
+    })
+  }
+
   handleClosePopup = () => {
     this.setState({ ...this.state, openPopup: false });
   };
