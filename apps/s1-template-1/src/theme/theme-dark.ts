@@ -167,9 +167,15 @@ export const dark = {
   // Home page
   viewAllBackground: "#2e353e",
   viewAllTextColor: "#fff",
+  viewAllBorder: "none",
+  viewAllBoxShadow: "none",
   slideNextButtonBackground: "#465262",
   slideNextButtonColor: "#fff",
+  slideNextButtonBorder: "none",
+  slideNextButtonShadow: "none",
   slideNextButtonBackgroundHover: "#606e82",
+  slideNextButtonBorderHover: "none",
+  slideNextButtonColorHover: "#fff",
   disabledSlideNextButtonBackground: "#2e353e",
   disabledSlideNextButtonColor: "#6e7e92",
 

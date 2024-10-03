@@ -50,11 +50,15 @@ export const ViewAll = styled.div`
   position: absolute;
   right: 7.6rem;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  min-width: 6.2rem;
   height: 3.2rem;
   line-height: 1;
-  padding: 0 3.2rem 0 0.8rem;
+  padding: 0 0.8rem;
   border-radius: 0.8rem;
+  border: ${({ theme }) => theme.viewAllBorder};
+  box-shadow: ${({ theme }) => theme.viewAllBoxShadow};
   background: ${({ theme }) => theme.viewAllBackground};
   color: ${({ theme }) => theme.viewAllTextColor};
   font-size: 1.4rem;
@@ -63,16 +67,9 @@ export const ViewAll = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ theme }) => theme.slideNextButtonBackground};
-  }
-
-  &:after {
-    content: "";
-    position: absolute;
-    right: 1rem;
-    width: 0.9rem;
-    height: 1.4rem;
-    background: url("/assets/images/common/icon-view-all.svg") center;
+    border: ${({ theme }) => theme.viewAllBorderHover};
+    color: ${({ theme }) => theme.viewAllTextColorHover};
+    background: ${({ theme }) => theme.viewAllBackgroundHover};
   }
 `;
 
@@ -170,18 +167,22 @@ export const Group = styled.div`
     height: 3.2rem;
     padding: 0.8rem;
     border-radius: 0.8rem;
-    background-color: ${({ theme }) => theme.slideNextButtonBackground};
+    border: ${({ theme }) => theme.slideNextButtonBorder};
+    box-shadow: ${({ theme }) => theme.slideNextButtonShadow};
+    background: ${({ theme }) => theme.slideNextButtonBackground};
     color: ${({ theme }) => theme.slideNextButtonColor};
 
     &[disabled] {
-      background-color: ${({ theme }) => theme.disabledSlideNextButtonBackground};
+      background: ${({ theme }) => theme.disabledSlideNextButtonBackground};
       .icon {
         color: ${({ theme }) => theme.disabledSlideNextButtonColor};
       }
     }
 
     &:hover:not([disabled]) {
-      background-color: ${({ theme }) => theme.slideNextButtonBackgroundHover};
+      border: ${({ theme }) => theme.slideNextButtonBorderHover};
+      color: ${({ theme }) => theme.slideNextButtonColorHover};
+      background: ${({ theme }) => theme.slideNextButtonBackgroundHover};
     }
   }
 

@@ -10,7 +10,8 @@ import GameCardSlider from "./components/GameSlider/GameCardSlider";
 import LastBets from "./components/last-bet";
 import MatchCardSlider from "./components/MatchSlider/MatchCardSlider";
 import RecentBigWins from "./components/RecentBigWins";
-import { Container, DesktopContainer, GameTypeContainer, GameTypeTitle, Group, ViewAll } from "./style";
+import ViewAllButton from "./components/ViewAllButton";
+import { Container, DesktopContainer, GameTypeContainer, GameTypeTitle, Group } from "./style";
 
 const HomeCategory = () => {
   const history = useHistory();
@@ -44,9 +45,7 @@ const HomeCategory = () => {
             <GameTypeTitle>
               <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
               {i18n.t("web.home.Section1Slot")}
-              <ViewAll onClick={() => navigateTo("/casino/slots", GameTypeEnum.SLOT)}>
-                {i18n.t("common.all")}
-              </ViewAll>
+              <ViewAllButton handleClick={() => navigateTo("/casino/slots", GameTypeEnum.SLOT)} />
             </GameTypeTitle>
             <EmblaCarousel
               options={gameTypeEmblaOptions}
@@ -62,9 +61,9 @@ const HomeCategory = () => {
             <GameTypeTitle>
               <img src="/assets/images/common/icon-live-casino-group.svg" alt="live-casino" />
               {i18n.t("web.home.Section1Live")}
-              <ViewAll onClick={() => navigateTo("/casino/live-casino", GameTypeEnum.LIVE)}>
-                {i18n.t("common.all")}
-              </ViewAll>
+              <ViewAllButton
+                handleClick={() => navigateTo("/casino/live-casino", GameTypeEnum.LIVE)}
+              />
             </GameTypeTitle>
             <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
               <GameCardSlider data={liveCasinoList} />
@@ -76,9 +75,7 @@ const HomeCategory = () => {
             <GameTypeTitle>
               <img src="/assets/images/common/icon-sports-group.svg" alt="sports" />
               {i18n.t("web.home.Section1Sport")}
-              <ViewAll onClick={() => navigateTo("sports", GameTypeEnum.SPORTS)}>
-                {i18n.t("common.all")}
-              </ViewAll>
+              <ViewAllButton handleClick={() => navigateTo("sports", GameTypeEnum.SPORTS)} />
             </GameTypeTitle>
             <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
               <GameCardSlider data={sportGameList} />
@@ -106,9 +103,7 @@ const HomeCategory = () => {
             <GameTypeTitle>
               <img src="/assets/images/common/icon-new-release.svg" alt="new-release" />
               {i18n.t("web.home.Section1NewRelease")}
-              <ViewAll onClick={() => navigateTo("/tag/new", GameTypeEnum.NEW)}>
-                {i18n.t("common.all")}
-              </ViewAll>
+              <ViewAllButton handleClick={() => navigateTo("/tag/new", GameTypeEnum.NEW)} />
             </GameTypeTitle>
             <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
               <GameCardSlider data={newGameList} />
@@ -135,9 +130,9 @@ const HomeCategory = () => {
             <GameTypeTitle>
               <img src="/assets/images/common/icon-table-game-group.svg" alt="table-game" />
               {i18n.t("web.home.Section1Electron")}
-              <ViewAll onClick={() => navigateTo("/casino/table-game", GameTypeEnum.TABLEGAME)}>
-                {i18n.t("common.all")}
-              </ViewAll>
+              <ViewAllButton
+                handleClick={() => navigateTo("/casino/table-game", GameTypeEnum.TABLEGAME)}
+              />
             </GameTypeTitle>
             <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
               <GameCardSlider data={tableGameList} />
@@ -149,9 +144,7 @@ const HomeCategory = () => {
             <GameTypeTitle>
               <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
               {i18n.t("web.home.Section1HotGames")}
-              <ViewAll onClick={() => navigateTo("/tag/hot", GameTypeEnum.HOT)}>
-                {i18n.t("common.all")}
-              </ViewAll>
+              <ViewAllButton handleClick={() => navigateTo("/tag/hot", GameTypeEnum.HOT)} />
             </GameTypeTitle>
             <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
               <GameCardSlider data={hotGameList} />
