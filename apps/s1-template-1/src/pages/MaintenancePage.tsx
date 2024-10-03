@@ -1,58 +1,22 @@
-import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import { Common, i18n, utility } from "@tgs-web-nx/utils";
-import { UiService, useGeneralStore } from "@tgs-web-nx/core";
-import { useLocation } from "react-router";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { useHomeGameContext } from "@tgs-web-nx/core/features";
-import { media } from "@/theme/breakpoints";
+import { DarkBlueGradientButton } from "@/components/UI/Button";
 import { useGoToHomePage } from "@/hooks/useGoToHomePage";
+import { UiService, useGeneralStore } from "@tgs-web-nx/core";
+import { Common, i18n } from "@tgs-web-nx/utils";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const MaintenanceContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  //height: calc(100vh - 80px - 82px);
-  height: 100vh;
-  color: ${({ theme }) => theme.white};
-  background: black;
-`;
-const MaintenanceBg = styled.div`
-  position: fixed;
-  width: 100%;
   height: 100%;
-  background: url(${utility.imagePathGenerator("assets/images/maintenance/maintenance_bg.png")}) center;
-  background-size: cover;
-  //background-position: center;
-
-  ${media.sm} {
-    background: url(${utility.imagePathGenerator("assets/images/maintenance/maintenance_desktop_bg.png")})
-      center;
-  }
+  color: ${({ theme }) => theme.white};
 `;
 
 const ContentContainer = styled.div`
-  position: absolute;
-  left: 42px;
-  top: 44px;
-  width: 232px;
-
-  ${media.sm} {
-    left: 26.4%;
-    top: 5.6%;
-    width: 25.2%;
-  }
-`;
-const TextContainer = styled.div`
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 23px;
-  letter-spacing: 0em;
-  text-align: left;
-  max-height: 300px;
-  overflow: auto;
+  margin-top: 6rem;
 `;
 const ButtonGroupContainer = styled.div`
   display: flex;
@@ -80,6 +44,56 @@ const IMButton = styled(Button)`
   background: ${({ theme }) => theme.primary};
   cursor: pointer;
 `;
+
+const LabelContainer = styled.div`
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 0.4px;
+  text-transform: capitalize;
+  text-align: center;
+`;
+
+const LabelSmall = styled.div`
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0.32px;
+  text-transform: capitalize;
+  text-align: center;
+`;
+
+const LabelTime = styled(LabelSmall)`
+  font-weight: 700;
+  color: #DFFF03;
+`;
+
+const ImgWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BottomWrapper = styled.div`
+  position: relative;
+  top: -8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1.2rem;
+`;
+
+const ContentMsg = styled.div`
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.32px;
+  text-align: center;
+  padding-top: 1.2rem;
+`
+  
 
 const DefaultMaintenance = () => {
   return (
@@ -154,31 +168,23 @@ const MaintenancePage = () => {
 
   const showContactButton = !!newURL?.length;
   const showImButton = !!brandsSupport.length;
+  
   return (
     <MaintenanceContainer>
-      <MaintenanceBg />
       <ContentContainer>
-        <TextContainer>
-          {isFailed && <DefaultMaintenance />}
-          {content && (
-            <>
-              <p>
-                {i18n.t("common.maintenance")}: <br />
-                {beginTime} ~ {endTime} (GMT+8){" "}
-              </p>
-              <p
-                style={{ color: "#ffffff" }}
-                dangerouslySetInnerHTML={{
-                  __html: content,
-                }}
-              />
-            </>
-          )}
-        </TextContainer>
-        <ButtonGroupContainer>
+          {/* {isFailed && <DefaultMaintenance />} */}
+          <LabelContainer>We are under maintainace</LabelContainer>
+          <LabelSmall>Will be back soon</LabelSmall>
+          {beginTime && <LabelTime>Time {beginTime} to {endTime}</LabelTime>}
+          <ImgWrapper><img alt="maintainance" src="/assets/images/maintainance/image-error.png"/></ImgWrapper>          
+          <BottomWrapper>
+            <DarkBlueGradientButton sx={{width: "20rem"}} onClick={() => {history.push("/")}}>Go to home page </DarkBlueGradientButton>
+            <ContentMsg>{content}</ContentMsg>
+          </BottomWrapper>
+        {/* <ButtonGroupContainer>
           {showContactButton && <CSButton onClick={handleCSClick}>Contact Customer</CSButton>}
           {showImButton && <IMButton onClick={handleIMClick}>Instant Messaging</IMButton>}
-        </ButtonGroupContainer>
+        </ButtonGroupContainer> */}
       </ContentContainer>
     </MaintenanceContainer>
   );

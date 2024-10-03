@@ -3,7 +3,6 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import DialogLayout from "@/layouts/DialogLayout";
 import DialogLayoutWithoutBack from "@/layouts/DialogLayoutWithoutBack";
 import IframeLayout from "@/layouts/IframeLayout";
-import MaintenanceLayout from "@/layouts/MaintenanceLayout";
 import VipLayout from "@/layouts/VipLayout";
 import BetHistoryPage from "@/pages/betHistory/BetHistoryPage";
 import BettingBonusPage from "@/pages/BettingBonusPage";
@@ -269,7 +268,7 @@ const routes: RouteType[] = [
     path: "/maintenance",
     component: MaintenancePage,
     isAnonymousAllowed: true,
-    layout: MaintenanceLayout,
+    layout: DialogLayoutWithoutBack,
   },
 
   {
@@ -397,3 +396,4 @@ if (!config.features.NewTransferUI) {
 }
 
 export { routes };
+
