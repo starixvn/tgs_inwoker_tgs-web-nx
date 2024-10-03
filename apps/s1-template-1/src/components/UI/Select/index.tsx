@@ -1,7 +1,7 @@
 import { theme } from "@/theme";
 import { Select as MuiSelect, SelectProps, styled as muiStyled } from "@mui/material";
 
-const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
+export const StyledSelect = muiStyled(MuiSelect)(({ theme }) => ({
   color: `#f00fff`,
   fontSize: `1.4rem`,
   fontWeight: 400,

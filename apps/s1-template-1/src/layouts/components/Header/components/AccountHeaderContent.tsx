@@ -11,7 +11,7 @@ import {
   TransactionIcon,
   WithdrawIcon,
 } from "@/components/UI/CustomizeIcon";
-import { Select } from "@/components/UI/Select";
+import { SelectUnlitmitHeight } from "@/components/UI/SelectUnlimitHeight";
 import { theme } from "@/theme";
 import { MenuItem } from "@mui/material";
 import { useAuthContext, useUserWalletInfoContext } from "@tgs-web-nx/core/features";
@@ -116,7 +116,7 @@ const AccountHeaderContent = () => {
           <Icon iconUrl="/assets/images/common/icon-plus.svg" width={"18px"} height={"18px"} />
         </GreenGradientButton>
       </ButtonContainer>
-      <Select
+      <SelectUnlitmitHeight
         renderValue={() => {
           return (
             <AccountIcon>
@@ -134,27 +134,14 @@ const AccountHeaderContent = () => {
           },
           "& .MuiSvgIcon-root": {
             display: "none",
-          },
+          }       
         }}
         MenuProps={{
-          PaperProps: {
-            sx: {
-              ".MuiList-root": {
-                padding: "0",
-                color: theme.formInputColor,
-              },
-              "& .MuiMenuItem-root": {
-                color: theme.formInputColor,
-              },
-              "& .Mui-selected": {
-                background: `${theme.dropDownItemSelectedBackground} !important`,
-                "&:hover": {
-                  background: `${theme.dropDownItemSelectedBackground} !important`,
-                },
-              },
-            },
-          },
+          classes: {
+
+          }
         }}
+       
       >
         <MenuItem
           onClick={() => {
@@ -272,7 +259,7 @@ const AccountHeaderContent = () => {
           ></LogoutIcon>
           {i18n.t("common.logout")}
         </MenuItem>
-      </Select>
+      </SelectUnlitmitHeight>
       {isDesktopSize && <HeaderLanguageSwitch />}
     </>
   );
