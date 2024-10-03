@@ -7,6 +7,7 @@ import { ReportService } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { WithdrawFormViewModel } from "@tgs-web-nx/types";
+import { Common } from "@tgs-web-nx/utils";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
@@ -16,6 +17,10 @@ import StatusSelect from "../../StatusSelect";
 type Props = {
   dateRangeInfo: DateRangeInfo;
 };
+
+function sortWithdrawalFormsByDateTime(inputArray: WithdrawFormViewModel[]) {
+  return inputArray.sort((a,b) => Common.compareISODatetimeString(a.createdon, b.createdon));
+}
 
 const PAGE_SIZE = 10;
 const ReportWithdraw = ({ dateRangeInfo }: Props) => {
@@ -49,11 +54,14 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
     );
 
     if (getWithdrawalDetailsRes.IsSuccess) {
+      const withdrawalResponse = sortWithdrawalFormsByDateTime(getWithdrawalDetailsRes.data.items);
+
       const newWithdrawalDetails =
         page > 1
-          ? withdrawalDetailsForMobile.concat(getWithdrawalDetailsRes.data.items)
-          : getWithdrawalDetailsRes.data.items;
-      setWithdrawalDetails(getWithdrawalDetailsRes.data.items);
+          ? sortWithdrawalFormsByDateTime(withdrawalDetailsForMobile)
+            .concat(withdrawalResponse)
+          : withdrawalResponse;
+      setWithdrawalDetails(withdrawalResponse);
       setWithdrawalDetailsForMobile(newWithdrawalDetails);
       setTotalCount(getWithdrawalDetailsRes.data.totalCount || 0);
       setIsMaxPage(getWithdrawalDetailsRes.data.totalCount == newWithdrawalDetails.length);
@@ -107,16 +115,16 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
             handleDateFromChange={handleDateFromChange}
             handleDateToChange={handleDateToChange}
             selectedType={3}
-          />          
+          />
         </DateRangeSelector>
         <DateRangeWithIntervalSelector
             dateRange={dateRangeInfo.dateRange}
             handleDateRangeChange={changeDateRange}
             isSelectedDateRange={isSelectedDateRange}
           />
-         
+
       </FilterWrapper> */}
-     
+
     <StatusSelect
         type="withdrawal"
         statusDictionary={statusDictionary}

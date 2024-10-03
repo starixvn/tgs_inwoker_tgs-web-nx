@@ -7,6 +7,7 @@ import { ReportService } from "@tgs-web-nx/core";
 import { useNotifications } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import { DepositFormViewModel } from "@tgs-web-nx/types";
+import { Common } from "@tgs-web-nx/utils";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
@@ -15,6 +16,11 @@ import StatusSelect from "../../StatusSelect";
 type Props = {
   dateRangeInfo: DateRangeInfo;
 };
+
+function sortDepositFormsByDateTime(inputArray: DepositFormViewModel[]) {
+
+  return inputArray.sort((a,b) => Common.compareISODatetimeString(a.createdon, b.createdon));
+}
 
 const PAGE_SIZE = 10;
 const ReportDeposit = ({ dateRangeInfo}: Props) => {
@@ -48,12 +54,14 @@ const ReportDeposit = ({ dateRangeInfo}: Props) => {
     );
 
     if (getDepositDetailsRes.IsSuccess) {
+      const depositResponse = sortDepositFormsByDateTime(getDepositDetailsRes.data.items);
+
       const newDepositDetails =
         page > 1
-          ? depositDetailsForMobile.concat(getDepositDetailsRes.data.items)
-          : getDepositDetailsRes.data.items;
+          ? depositDetailsForMobile.concat(depositResponse)
+          : depositResponse;
 
-      setDepositDetails(getDepositDetailsRes.data.items);
+      setDepositDetails(depositResponse);
       setDepositDetailsForMobile(newDepositDetails);
       setTotalCount(getDepositDetailsRes.data.totalCount || 0);
       setIsMaxPage(getDepositDetailsRes.data.totalCount == newDepositDetails.length);
@@ -106,7 +114,7 @@ const ReportDeposit = ({ dateRangeInfo}: Props) => {
             handleDateFromChange={handleDateFromChange}
             handleDateToChange={handleDateToChange}
             selectedType={selectedType}
-          />          
+          />
         </DateRangeSelector>
         <DateRangeWithIntervalSelector
             dateRange={dateRangeInfo.dateRange}
@@ -120,7 +128,7 @@ const ReportDeposit = ({ dateRangeInfo}: Props) => {
           handleStatusChange={handleStatusChange}
         />
       </FilterWrapper> */}
-      
+
       <StatusSelect
           type="deposit"
           statusDictionary={statusDictionary}
@@ -137,7 +145,7 @@ const ReportDeposit = ({ dateRangeInfo}: Props) => {
           />
         <Loading show={isLoading} />
       </ReportContainer>
-      
+
       {/*@ts-ignore*/}
       <BottomScrollListener
         onBottom={() => {

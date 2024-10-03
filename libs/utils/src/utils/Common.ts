@@ -186,7 +186,17 @@ function formatWithThousandSeparator(amount: number) {
   return formattedAmount;
 }
 
+function compareISODatetimeString(dateAString: string, dateBString: string) {
+  const dateA = new Date(dateAString)
+  const dateB = new Date(dateBString)
+
+  if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) throw new Error(`either ${dateAString} or ${dateBString} is not a valid iso datetime format`);
+
+  return dateB.getTime() - dateA.getTime();
+}
+
 const Common = {
+  compareISODatetimeString,
   formatNumberWithCommas,
   formatNumberWithThousand,
   formatNumberWithCommasNoRounding,
