@@ -39,31 +39,7 @@ const HomeCategory = () => {
     <DesktopContainer>
       <GameTypeContainer>
         <RecentBigWins data={recentBigWins} />
-        <Group className="game-area">
-          <GameTypeTitle>
-            <img src="/assets/images/common/icon-sports-group.svg" alt="sports" />
-            {i18n.t("web.home.Section1Sport")}
-            <ViewAll onClick={() => navigateTo("sports", GameTypeEnum.SPORTS)}>
-              {i18n.t("common.all")}
-            </ViewAll>
-          </GameTypeTitle>
-          <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
-            <GameCardSlider data={sportGameList} />
-          </EmblaCarousel>
-        </Group>
 
-        {highlightMatches.length > 0 && (
-          <Group className="game-area">
-            <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
-            <EmblaCarousel
-              options={gameTypeEmblaOptions}
-              hasControlButton={true}
-              extraClassName="highlight-matches"
-            >
-              <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
-            </EmblaCarousel>
-          </Group>
-        )}
         <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
@@ -92,6 +68,32 @@ const HomeCategory = () => {
             <GameCardSlider data={liveCasinoList} />
           </EmblaCarousel>
         </Group>
+        <Group className="game-area">
+          <GameTypeTitle>
+            <img src="/assets/images/common/icon-sports-group.svg" alt="sports" />
+            {i18n.t("web.home.Section1Sport")}
+            <ViewAll onClick={() => navigateTo("sports", GameTypeEnum.SPORTS)}>
+              {i18n.t("common.all")}
+            </ViewAll>
+          </GameTypeTitle>
+          <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
+            <GameCardSlider data={sportGameList} />
+          </EmblaCarousel>
+        </Group>
+
+        {highlightMatches.length > 0 && (
+          <Group className="game-area">
+            <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
+            <EmblaCarousel
+              options={gameTypeEmblaOptions}
+              hasControlButton={true}
+              extraClassName="highlight-matches"
+            >
+              <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
+            </EmblaCarousel>
+          </Group>
+        )}
+
         <Group className="game-area">
           <GameTypeTitle>
             <img src="/assets/images/common/icon-new-release.svg" alt="new-release" />
