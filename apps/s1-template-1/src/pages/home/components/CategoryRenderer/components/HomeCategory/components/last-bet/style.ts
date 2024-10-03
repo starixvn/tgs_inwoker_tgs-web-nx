@@ -67,7 +67,7 @@ export const TableRow = styled(LayoutGrid)<AnimationProps>`
 export const TableWrapper = styled.div`
   position: relative;
   width: 100%;
-  max-height: 46rem;
+  height: 46rem;
   overflow: hidden;
   will-change: transform;
 
