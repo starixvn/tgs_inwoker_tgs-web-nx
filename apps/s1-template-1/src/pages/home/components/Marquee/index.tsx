@@ -33,6 +33,7 @@ const MarqueeContent = styled.div`
   align-items: center;
   font-size: 1.4rem;
   font-weight: 500;
+  width: 100%;
 
   ${media.lg} {
     margin: 0 auto;
