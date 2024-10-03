@@ -6,6 +6,7 @@ export * from "./deposit/useDepositPage";
 export * from "./deposit/useDepositPopupCounter";
 export * from "./forgotPassword/useForgotPasswordPage";
 export * from "./inbox";
+export * from "./joinGame/useJoinGame";
 export * from "./joinGame/useJoinGamePage";
 export * from "./joinLobbyGame/useJoinLobbyGamePage";
 export * from "./login/useLoginPage";
@@ -19,4 +20,5 @@ export * from "./vip/useVipBonusListV2";
 export * from "./wagering/useWageringPage";
 export * from "./withdrawal/useGetChannelCode";
 export * from "./withdrawal/useWithdrawalPage";
+export * from "./loading/useLoading";
 

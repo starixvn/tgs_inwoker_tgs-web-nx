@@ -13,6 +13,7 @@ import { useNavPopupGameType } from "../hooks/useNavPopupGameType";
 import { usePagination } from "../hooks/usePagination";
 import { useProvider } from "../hooks/useProvider";
 import { FilterTag, OrderTypeEnum, TagTypeEnum } from "../types";
+import { useLoading } from "@tgs-web-nx/core/hooks";
 
 export type GameTypeItem = {
   key: string;
@@ -26,6 +27,9 @@ export type GameTypeItem = {
 };
 
 const initialState: {
+  //loading
+  isLoading: boolean;
+  handleLoading: (isLoading: boolean) => void;
   // provider
   providerList: ProviderDto[];
   searchedGameProviderCode: string;
@@ -69,6 +73,9 @@ const initialState: {
   pageSize: number;
   handleChangePageIndex: (pageIndex: number) => void;
 } = {
+  //loading
+  isLoading: false,
+  handleLoading: () => {},
   // provider
   providerList: [],
   searchedGameProviderCode: "",
@@ -123,6 +130,7 @@ type ProviderProps = {
 };
 
 export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProps) => {
+  const { isLoading, handleLoading } = useLoading();
   const { activeGameType, handleChangeGameType } = useGameType();
   const { activeGameProvider, handleChangeProvider } = useGameByProvider();
   const { activeNavPopupGameType, handleChangeNavPopupGameType, isHovered, setIsHovered } =
@@ -183,6 +191,9 @@ export const HomeGameContextProvider = ({ children, gameTypeList }: ProviderProp
   return (
     <HomeGameContext.Provider
       value={{
+        //loading
+        isLoading,
+        handleLoading,
         // provider
         providerList,
         searchedGameProviderCode: activeGameProvider,

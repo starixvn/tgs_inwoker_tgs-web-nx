@@ -1,13 +1,16 @@
 import AppearSensor from "@/components/project/AppearSensor";
 import { useAccountStore } from "@tgs-web-nx/core";
-import { useAuth } from "@tgs-web-nx/core/features";
+import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
 import { GameItem, GameStatus } from "@tgs-web-nx/types";
+import { useInitApp, useJoinGame } from "@tgs-web-nx/core/hooks";
 import { i18n } from "@tgs-web-nx/utils";
 import { Img } from "react-image";
+import Loading from "@/components/UI/Loading";
 
 import PlayIcon from "../PlayIcon";
 import { LoadingIcon, NoGameIcon } from "./icons";
 import { CardHoverBg, GameCardBg, GameCardContent, GameName, GameStatusBg, ProviderName } from "./style";
+import { useEffect } from "react";
 
 type GameCardProps = {
   gameItem: GameItem;
@@ -18,6 +21,8 @@ type GameCardProps = {
 const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => {
   const { account } = useAccountStore();
   const { goToLogin } = useAuth();
+  const { isLoading, handleJoinGame } = useJoinGame();
+  const {handleLoading} = useHomeGameContext();
   const isLogin = !!account.token;
   const { id, gpcode, name, gpname, gamestatus } = gameItem;
 
@@ -53,9 +58,17 @@ const GameCard = ({ gameItem, imageUrl, isHideProviderName }: GameCardProps) => 
     if (!isLogin) {
       goToLogin();
     } else {
-      window.open(`/joingame/${id}/${gpcode}`, import.meta.env.VITE_GAME_WINDOW_NAME);
+       handleJoinGame(id, gpcode);
     }
   };
+
+  useEffect(() => {
+    if (isLoading) {
+      handleLoading(true);
+    }  else {
+      handleLoading(false);
+    }
+  }, [isLoading]);
 
   return (
     <AppearSensor>

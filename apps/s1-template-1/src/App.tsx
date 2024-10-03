@@ -10,6 +10,7 @@ import {
   AuthDialogContextProvider,
   AuthGuard,
   HeaderContextProvider,
+  HomeGameContextConsumer,
   HomeGameContextProvider,
   PageNameContextProvider,
   PopupContextProvider,
@@ -103,6 +104,9 @@ const App: React.FC = () => {
                       <RegisterV2InitEmailDialog />
                       <ForgotPasswordDialog />
 
+                      <HomeGameContextConsumer>
+                        {(homeGameState) => <Loading show={homeGameState.isLoading} noShrink={true} />}
+                      </HomeGameContextConsumer>
                       <AuthContextConsumer>
                         {(authState) => <Loading show={authState.isAuthLoading} noShrink={true} />}
                       </AuthContextConsumer>
