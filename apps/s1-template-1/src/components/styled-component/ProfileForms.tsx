@@ -102,24 +102,24 @@ export const InfoContainer = styled.div`
 
 export const UploadFileButton = muiStyled(MuiButton)(({ theme }) => ({
   fontSize: "1.2rem",
-  backgroundColor: "#272E37",
+  backgroundColor: `${theme.palette.uploadButton.backgroundColor}`,
   padding: ".5rem 1.2rem .4rem",
-  color: `${theme.palette.text.primary}`,
-  border: "none",
+  color: `${theme.palette.form.textColor}`,
+  border: `1px solid ${theme.palette.uploadButton.borderColor}`,
   position: "absolute",
   right: "1.2rem",
   top: ".8rem",
   borderRadius: ".8rem",
   "&:hover": {
     border: "none",
-    backgroundColor: "#272E37",
+    backgroundColor: `${theme.palette.uploadButton.backgroundColor}`,
   },
 })) as typeof MuiButton;
 
 export const UploadFileTag = styled.span`
   width: 100%;
   font-size: 1.4rem;
-  color: ${({ theme }) => theme.formInputColor};
+  color: ${({ theme }) => theme.formInputPlaceHolderColor};
 
   display: flex;
   align-items: center;

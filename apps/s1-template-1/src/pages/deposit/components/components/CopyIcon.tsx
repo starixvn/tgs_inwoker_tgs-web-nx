@@ -16,9 +16,9 @@ const CopyIconContainer = styled.div`
   right: 0;
   bottom: 0;
   transition: all ease-in-out 0.2s;
-  color: #55657e;
+  color:  ${({ theme }) => theme.iconCopyColor};
   &:hover {
-    color: #fff;
+    color: ${({ theme }) => theme.iconCopyColorHover};
   }
 `;
 

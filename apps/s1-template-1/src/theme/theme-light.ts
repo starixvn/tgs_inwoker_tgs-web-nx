@@ -90,18 +90,21 @@ export const light = {
   transferSecondText: "#ffffff",
   placeHolderText: "#55657E",
   transferTabMenu: "#E1EDFF",
+  transferToTextColor: "#55657E",
 
   // Forms
   formInputBackground: "#fff",
   formInputBorder: "#CACACA",
   formInputColor: "#1C2532",
   formInputPlaceHolderColor: "#55657E",
+  formInputFocusColor: "#85970C",
 
   //Select
   selectBorderColor: "#2E373E",
   selectBackgroundColor: "#091016",
   selectTextColor: "#1C2532",
   optionHoverBgColor: "#2A3546",
+  selectIconArrow: "#B3B8C0",
 
   // Common
   mainBackground: "#fff",
@@ -145,7 +148,7 @@ export const light = {
   textHighlight: "#FFDA18",
   gapPage: ".8rem",
   iconCopyColor: "#55657e",
-  iconCopyColorHover: "#fff",
+  iconCopyColorHover: "#4885E4",
   winAmountColor: "#189EFF",
   lossAmountColor: "#FF1818",
   amountColor: "#FFDA18",
@@ -313,4 +316,8 @@ export const light = {
   dropdownColor: "#6e7e92",
   dropdownItemBackgroundHighlight: "#2a3546",
   dropdownItemColorHighlight: "#fff",
+
+  // Upload Button 
+  uploadButtonBgColor: "#DFDFDF",
+  uploadButtonBorderColor: "#CACACA",
 };

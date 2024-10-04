@@ -10,7 +10,7 @@ export const LimitAmount = styled.span`
 `;
 
 export const TransferLabel = styled.div`
-  color: ${({ theme }) => theme.transferPrimaryText};
+  color: ${({ theme }) => theme.transferToTextColor};
   line-height: 1.8rem;
   letter-spacing: 0.28px;
 

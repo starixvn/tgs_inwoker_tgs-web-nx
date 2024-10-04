@@ -106,7 +106,7 @@ export const Select = (props: SelectProps) => {
         marginThreshold: 0,
       }}
       IconComponent={() => (
-        <ArrowDownSelectIcon sx={{fontSize: "1.8rem", color: `${theme.formInputColor} !important`, position: "relative", top: "6px"}}/>
+        <ArrowDownSelectIcon sx={{fontSize: "1.8rem", color: `${theme.selectIconArrow} !important`, position: "relative", top: "6px"}}/>
       )}
     />
   );

@@ -90,18 +90,21 @@ export const dark = {
   transferSecondText: "#ffffff",
   placeHolderText: "#55657E",
   transferTabMenu: "#E1EDFF",
+  transferToTextColor: "#8FA7CE",
 
   // Forms
   formInputBackground: "#091016",
   formInputBorder: "#2e373e",
   formInputColor: "#fff",
   formInputPlaceHolderColor: "#55657E",
+  formInputFocusColor: "#2e373e",
 
   //Select
   selectBorderColor: "#2E373E",
   selectBackgroundColor: "#091016",
   selectTextColor: "#55657E",
   optionHoverBgColor: "#2A3546",
+  selectIconArrow: "#55657E",
 
   // Common
   mainBackground: "#0d131c",
@@ -310,4 +313,8 @@ export const dark = {
   dropdownColor: "#6e7e92",
   dropdownItemBackgroundHighlight: "#2a3546",
   dropdownItemColorHighlight: "#fff",
+
+  // Upload Button 
+  uploadButtonBgColor: "#272E37",
+  uploadButtonBorderColor: "#272E37",
 };

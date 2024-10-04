@@ -72,6 +72,7 @@ declare module "@mui/material/styles/createPalette" {
       textColor: string;
       optionHoverBgColor: string;
       placeHolderTextColor: string;
+      inputFocusColor: string;
     };
 
     table: {
@@ -100,6 +101,11 @@ declare module "@mui/material/styles/createPalette" {
       nextButtonColor: string,
       disabledNextButtonBackground: string,
       calendarFontSizeMobile: string,
+    }
+
+    uploadButton: {
+      backgroundColor: string;
+      borderColor: string;
     }
   }
 }
@@ -192,6 +198,7 @@ const muiTheme = createTheme({
       backgroundColor: theme.formInputBackground,
       optionHoverBgColor: theme.optionHoverBgColor,
       placeHolderTextColor: theme.formInputPlaceHolderColor,
+      inputFocusColor: theme.formInputFocusColor,
     },
 
     table: {
@@ -221,6 +228,11 @@ const muiTheme = createTheme({
       disabledNextButtonBackground: theme.disabledSlideNextButtonBackground,
       calendarFontSizeMobile: theme.calendarFontSizeMobile
     },
+
+    uploadButton: {
+      backgroundColor: theme.uploadButtonBgColor,
+      borderColor: theme.uploadButtonBorderColor,
+    }
   },
   typography: {
     fontWeightLight: 300,
