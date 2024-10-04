@@ -95,6 +95,7 @@ export const light = {
   formInputBackground: "#fff",
   formInputBorder: "#CACACA",
   formInputColor: "#1C2532",
+  formInputPlaceHolderColor: "#55657E",
 
   //Select
   selectBorderColor: "#2E373E",

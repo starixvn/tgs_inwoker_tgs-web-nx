@@ -94,7 +94,8 @@ export const dark = {
   // Forms
   formInputBackground: "#091016",
   formInputBorder: "#2e373e",
-  formInputColor: "#55657E",
+  formInputColor: "#fff",
+  formInputPlaceHolderColor: "#55657E",
 
   //Select
   selectBorderColor: "#2E373E",

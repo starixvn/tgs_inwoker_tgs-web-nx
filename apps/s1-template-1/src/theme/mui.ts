@@ -71,6 +71,7 @@ declare module "@mui/material/styles/createPalette" {
       backgroundColor: string;
       textColor: string;
       optionHoverBgColor: string;
+      placeHolderTextColor: string;
     };
 
     table: {
@@ -190,6 +191,7 @@ const muiTheme = createTheme({
       textColor: theme.formInputColor,
       backgroundColor: theme.formInputBackground,
       optionHoverBgColor: theme.optionHoverBgColor,
+      placeHolderTextColor: theme.formInputPlaceHolderColor,
     },
 
     table: {

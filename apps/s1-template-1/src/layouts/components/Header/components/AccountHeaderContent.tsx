@@ -150,7 +150,7 @@ const AccountHeaderContent = () => {
         >
           <DepositIcon
             sx={{
-              fill: `${theme.formInputColor}`,
+              fill: `${theme.formInputPlaceHolderColor}`,
               fontSize: "2.2rem",
               marginRight: "0.6rem",
               position: "relative",
@@ -166,7 +166,7 @@ const AccountHeaderContent = () => {
         >
           <WithdrawIcon
             sx={{
-              fill: `${theme.formInputColor}`,
+              fill: `${theme.formInputPlaceHolderColor}`,
               fontSize: "2.2rem",
               marginRight: "0.6rem",
               position: "relative",
@@ -185,7 +185,7 @@ const AccountHeaderContent = () => {
         >
           <TransactionIcon
             sx={{
-              fill: `${theme.formInputColor}`,
+              fill: `${theme.formInputPlaceHolderColor}`,
               fontSize: "2.4rem",
               marginRight: "0.6rem",
               position: "relative",
@@ -201,7 +201,7 @@ const AccountHeaderContent = () => {
         >
           <HistoryIcon
             sx={{
-              fill: `${theme.formInputColor}`,
+              fill: `${theme.formInputPlaceHolderColor}`,
               fontSize: "2.4rem",
               marginRight: "0.6rem",
               position: "relative",
@@ -217,7 +217,7 @@ const AccountHeaderContent = () => {
         >
           <AccountInfoIcon
             sx={{
-              fill: `${theme.formInputColor}`,
+              fill: `${theme.formInputPlaceHolderColor}`,
               fontSize: "2.4rem",
               marginRight: "0.6rem",
               position: "relative",
@@ -231,7 +231,7 @@ const AccountHeaderContent = () => {
           }}>
           <InboxIcon
             sx={{
-              fill: `${theme.formInputColor}`,
+              fill: `${theme.formInputPlaceHolderColor}`,
               fontSize: "2.2rem",
               marginRight: "0.6rem",
               position: "relative",
@@ -243,7 +243,7 @@ const AccountHeaderContent = () => {
         <MenuItem onClick={handleClickLogout}>
           <LogoutIcon
             sx={{
-              fill: `${theme.formInputColor}`,
+              fill: `${theme.formInputPlaceHolderColor}`,
               fontSize: "2.2rem",
               marginRight: "0.6rem",
               position: "relative",
