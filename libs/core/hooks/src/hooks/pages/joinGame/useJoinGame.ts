@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GameService } from "@tgs-web-nx/core";
 
 export function useJoinGame() {
@@ -11,21 +11,12 @@ export function useJoinGame() {
         const joinGameRes = await GameService.JoinGame(gameId, gpCode);
 
         if (joinGameRes.IsSuccess) {
-            window.open(joinGameRes.data.url, import.meta.env.VITE_GAME_WINDOW_NAME)?.focus();
+            window.open(joinGameRes.data.url, `${gameId}-${gpCode}`)?.focus();
         } else {
-            handleJoinGameMaintenance();
+            window.open(window.location.origin + "/maintenance?isGameMaintenance=true", "maintenance-game")?.focus();
         }
         setIsLoading(false);
     };
-
-    const handleJoinGameMaintenance = () => {
-        setIsMaintenance(true);
-        setIsLoading(false);
-    };
-
-    if (isMaintenance) {
-        window.open(window.location.origin + "/maintenance?isGameMaintenance=true", import.meta.env.VITE_GAME_WINDOW_NAME)?.focus();
-    }
 
     return {
         isLoading,
