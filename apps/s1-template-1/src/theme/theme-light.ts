@@ -114,7 +114,7 @@ export const light = {
 
   dropDownBackground: "#fff",
   dropDownItemSelectedBackground: "#E4F3CA",  
-  dropDownItemSelectedTextColor: "#E4F3CA",
+  dropDownItemSelectedTextColor: "#1C2532",
   dropDownColor: "#1C2532",
   dropDownIconColor: "#A7B5CA",
 
