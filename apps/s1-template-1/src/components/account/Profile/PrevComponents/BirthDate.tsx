@@ -19,6 +19,10 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
+const SubmitWrapper = styled.div`
+  margin-bottom: 2.4rem;
+`;
+
 const Birthdate = () => {
   const { alert } = useNotifications();
   const { account, getAccountProfile } = useAccountStore();
@@ -98,33 +102,35 @@ const Birthdate = () => {
         />
       </ItemContainer>
 
-      <ItemContainer>
+     
+
+      {isConfigured && config.features.Profile_SetUpBirthdateOnce ? null : (
+        <SubmitWrapper>
+            <GreenGradientButton
+            fullWidth
+            disabled={isDisableButton() || isLoading}
+            onClick={handleSubmitClicked}
+          >
+            {i18n.t("common.submit")}
+          </GreenGradientButton>
+        </SubmitWrapper>
+        
+      )}
+      
+    <ItemContainer>
         {isConfigured && config.features.Profile_SetUpBirthdateOnce ? (
           <BottomNote
             text1={i18n.t("profile.birthdate.toEdit")}
-            text2={i18n.t(
-              config.features.Profile_SetUpBirthdateOnce
-                ? "common.customerService"
-                : "profile.birthdate.here",
-            )}
+            text2={i18n.t("common.customerService")}
           />
         ) : (
-          birthdate !== account.info.member_birthdate && (
-            <BottomNote text1={i18n.t("common.complete")} />
-          )
+          <BottomNote
+            text1={i18n.t("share.bottomNote.pleaseContact")}
+            text2={i18n.t("share.bottomNote.liveChat")}
+          />
         )}
         {message}
       </ItemContainer>
-
-      {isConfigured && config.features.Profile_SetUpBirthdateOnce ? null : (
-        <GreenGradientButton
-          fullWidth
-          disabled={isDisableButton() || isLoading}
-          onClick={handleSubmitClicked}
-        >
-          {i18n.t("common.submit")}
-        </GreenGradientButton>
-      )}
 
       <Loading show={isLoading} />
     </Container>
