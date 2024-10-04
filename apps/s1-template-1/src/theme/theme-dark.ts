@@ -321,13 +321,10 @@ export const dark = {
   multipleSelectCheckboxBorder: "#65759b",
   multipleSelectCheckboxBorderChecked: "#90a405",
   multipleSelectCheckboxChecked: "#90a405",
+  multipleSelectItemBackgroundHighlight: "#2a3546",
+  multipleSelectItemColorHighlight: "#fff",
 
-  dropdownBackground: "#1c2532",
-  dropdownColor: "#6e7e92",
-  dropdownItemBackgroundHighlight: "#2a3546",
-  dropdownItemColorHighlight: "#fff",
-
-  // Upload Button 
+  // Upload Button
   uploadButtonBgColor: "#272E37",
   uploadButtonBorderColor: "#272E37",
 

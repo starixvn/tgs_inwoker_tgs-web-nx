@@ -139,28 +139,28 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight.p-focus {
-  background: ${({ theme }) => theme.dropdownItemBackgroundHighlight};
+  background: ${({ theme }) => theme.multipleSelectItemBackgroundHighlight};
 }
 
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight,
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
-  color: ${({ theme }) => theme.dropdownItemColorHighlight};
-  background: ${({ theme }) => theme.dropdownItemBackgroundHighlight};
+  color: ${({ theme }) => theme.multipleSelectItemColorHighlight};
+  background: ${({ theme }) => theme.multipleSelectItemBackgroundHighlight};
 }
 
 .p-multiselect-panel
   .p-multiselect-items
   .p-multiselect-item:not(.p-highlight):not(.p-disabled).p-focus,
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled).p-focus {
-  color: ${({ theme }) => theme.dropdownItemColorHighlight};
+  color: ${({ theme }) => theme.multipleSelectItemColorHighlight};
   background: transparent;
 }
 
 .p-dropdown-panel {
   padding: 0.8rem;
   margin-top: 0.1rem;
-  background: ${({ theme }) => theme.dropdownBackground};
-  color: ${({ theme }) => theme.dropdownColor};
+  background: ${({ theme }) => theme.multipleSelectBackground};
+  color: ${({ theme }) => theme.multipleSelectColor};
   border: 0 none;
   border-radius: 1rem;
   box-shadow: 0 0.2rem 1.2rem 0 rgba(0, 0, 0, 0.1);
