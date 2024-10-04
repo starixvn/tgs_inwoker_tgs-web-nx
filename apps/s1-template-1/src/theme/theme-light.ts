@@ -333,4 +333,11 @@ export const light = {
   // Upload Button 
   uploadButtonBgColor: "#DFDFDF",
   uploadButtonBorderColor: "#CACACA",
+
+  //Back Button for Header Dialog
+  backIconHeaderDialogColor: "#252525",
+  backIconHeaderDialogBgColor: "linear-gradient(180deg, #FFF 0%, #EDEDED 100%)",
+  backIconHeaderDialogBoderColor: "#D3D3D3",
+  backIconHeaderDialogBoxshadow: "-4px 2px 4px 0px rgba(0, 0, 0, 0.06)",
+  headerDialogTextColor: "#1C2532",
 };

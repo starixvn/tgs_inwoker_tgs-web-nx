@@ -1,5 +1,6 @@
-import Icon from "@/components/project/Icon";
+import { theme } from "@/theme";
 import styled from "styled-components";
+import { ArrowLeftIcon } from "../CustomizeIcon";
 
 export const DIALOG_HEADER_HEIGHT = "54px";
 
@@ -32,6 +33,15 @@ export const DialogTitle = styled.div`
   font-weight: 700;
   padding-left: 1.2rem;
   letter-spacing: .04rem;
+  color: ${({ theme }) => theme.headerDialogTextColor}
+`;
+
+const IconWrapper = styled.div`
+  background: ${({ theme }) => theme.backIconHeaderDialogBgColor};
+  border: 1px solid ${({ theme }) => theme.backIconHeaderDialogBoderColor};
+  box-shadow: ${({ theme }) => theme.backIconHeaderDialogBoxshadow};
+  border-radius: .8rem;
+  padding: .3rem .4rem;
 `;
 
 type Props = {
@@ -43,7 +53,7 @@ const DialogHeader = ({ dialogHeaderTitle, handleClose }: Props) => {
   return (
     <DialogHeaderContainer>
       <ReturnIconContainer onClick={handleClose}>
-        <Icon iconUrl="/assets/images/common/icon-back.svg" width={"32px"} height={"32px"} />
+        <IconWrapper><ArrowLeftIcon sx={{color: `${theme.backIconHeaderDialogColor}`, fontSize: "2rem", position: "relative", top: "5px", left: "6px"}}/></IconWrapper>
         <DialogTitle>{dialogHeaderTitle}</DialogTitle>
       </ReturnIconContainer>
     </DialogHeaderContainer>
