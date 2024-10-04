@@ -1,5 +1,4 @@
 import Header from "@/layouts/components/Header";
-import CustomMarquee from "@/pages/home/components/Marquee";
 import { media } from "@/theme/breakpoints";
 import { MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { useAccountStore, useUiStore } from "@tgs-web-nx/core";
@@ -10,7 +9,7 @@ import Footer from "./components/Footer";
 
 const DefaultLayoutContainer = styled.div`
   position: relative;
-  background: ${({ theme }) => theme.mainBackground};
+  // background: ${({ theme }) => theme.mainBackground};
 `;
 
 const DashboardContainer = styled.div<{ hasAnnouncement: boolean }>`
@@ -49,8 +48,7 @@ const DefaultLayout = ({ children }: Props) => {
   return (
     <DefaultLayoutContainer>
       <Header />
-      <CustomMarquee />
-      <DashboardContainer hasAnnouncement={hasAnnouncement}>
+      <DashboardContainer className="main-container" hasAnnouncement={hasAnnouncement}>
         <ContentWrapper>
           <div>{children}</div>
         </ContentWrapper>

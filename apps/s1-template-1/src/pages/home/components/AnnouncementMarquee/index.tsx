@@ -46,7 +46,7 @@ const MarqueesBackground = styled.div`
   overflow: visible;
 `;
 
-const CustomMarquee = () => {
+const AnnouncementMarquee = () => {
   const { isDesktopSize } = useRwd();
   const {
     ui: { marquees },
@@ -59,7 +59,7 @@ const CustomMarquee = () => {
 
   return (
     <MarqueeContainer className="marquee-container">
-      <MarqueeContent className="main-container">
+      <MarqueeContent>
         <img
           className="icon"
           src="/assets/images/common/icon-announcement.png"
@@ -85,4 +85,4 @@ const CustomMarquee = () => {
   );
 };
 
-export default CustomMarquee;
+export default AnnouncementMarquee;

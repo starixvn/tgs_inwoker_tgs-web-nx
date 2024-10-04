@@ -38,9 +38,10 @@ const HomeCategory = () => {
 
   return (
     <DesktopContainer>
-      <RecentBigWins data={recentBigWins} />
       <GameTypeContainer>
-        <Group className="game-area main-container">
+        <RecentBigWins data={recentBigWins} />
+
+        <Group className="game-area">
           <Container>
             <GameTypeTitle>
               <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
@@ -56,7 +57,7 @@ const HomeCategory = () => {
             </EmblaCarousel>
           </Container>
         </Group>
-        <Group className="game-area main-container">
+        <Group className="game-area">
           <Container>
             <GameTypeTitle>
               <img src="/assets/images/common/icon-live-casino-group.svg" alt="live-casino" />
@@ -70,7 +71,7 @@ const HomeCategory = () => {
             </EmblaCarousel>
           </Container>
         </Group>
-        <Group className="game-area main-container">
+        <Group className="game-area">
           <Container>
             <GameTypeTitle>
               <img src="/assets/images/common/icon-sports-group.svg" alt="sports" />
@@ -84,7 +85,7 @@ const HomeCategory = () => {
         </Group>
 
         {highlightMatches.length > 0 && (
-          <Group className="game-area main-container">
+          <Group className="game-area">
             <Container>
               <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
               <EmblaCarousel
@@ -98,7 +99,7 @@ const HomeCategory = () => {
           </Group>
         )}
 
-        <Group className="game-area main-container">
+        <Group className="game-area">
           <Container>
             <GameTypeTitle>
               <img src="/assets/images/common/icon-new-release.svg" alt="new-release" />
@@ -110,7 +111,7 @@ const HomeCategory = () => {
             </EmblaCarousel>
           </Container>
         </Group>
-        <Group className="main-container">
+        <Group>
           <Container>
             <GameTypeTitle>
               <img src="/assets/images/common/icon-game-providers.svg" alt="game-providers" />
@@ -125,7 +126,7 @@ const HomeCategory = () => {
             </EmblaCarousel>
           </Container>
         </Group>
-        <Group className="game-area main-container">
+        <Group>
           <Container>
             <GameTypeTitle>
               <img src="/assets/images/common/icon-table-game-group.svg" alt="table-game" />
@@ -139,7 +140,7 @@ const HomeCategory = () => {
             </EmblaCarousel>
           </Container>
         </Group>
-        <Group className="game-area main-container">
+        <Group className="game-area">
           <Container>
             <GameTypeTitle>
               <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
@@ -151,7 +152,7 @@ const HomeCategory = () => {
             </EmblaCarousel>
           </Container>
         </Group>
-        <Group className="game-area main-container latest-bets">
+        <Group className="game-area">
           <GameTypeTitle>{i18n.t("web.latestBets.title")}</GameTypeTitle>
           <LastBets connection={betHubConnection}></LastBets>
         </Group>

@@ -10,11 +10,22 @@ import styled from "styled-components";
 import GameType from "./GameType";
 
 const GameTypesEmbla = styled.section`
+  border-radius: 0 0 ${({ theme }) => theme.blockBorderRadiusMobile}
+    ${({ theme }) => theme.blockBorderRadiusMobile};
+  padding: ${({ theme }) => theme.blockPaddingMobile};
+
+  ${media.sm} {
+    padding: ${({ theme }) => theme.blockPadding};
+    border-bottom-right-radius: ${({ theme }) => theme.blockBorderRadius};
+    border-bottom-left-radius: ${({ theme }) => theme.blockBorderRadius};
+  }
+
   &.game-types {
     position: sticky;
     top: ${MOBILE_HEADER_HEIGHT};
     z-index: 9;
-    padding: 1.6rem 0;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
     background-color: ${({ theme }) => theme.categoryAreaBackground};
 
     ${media.sm} {
@@ -142,7 +153,7 @@ const GameTypes = () => {
 
   return (
     <GameTypesEmbla ref={scrollDemoRef} className="embla game-types">
-      <div className="embla__viewport main-container" ref={emblaGameTypeRef}>
+      <div className="embla__viewport" ref={emblaGameTypeRef}>
         <GameTypesEmblaContainer
           className={`embla__container ${sideNavGameTypeItemList.length <= 4 ? "" : "two-rows"}`}
         >

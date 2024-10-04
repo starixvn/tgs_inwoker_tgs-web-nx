@@ -22,11 +22,10 @@ const HeaderContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
   box-shadow: ${({ theme }) => theme.headerShadow};
   z-index: 10;
-  margin-bottom: 1.6rem;
 
-  &:has(+ .marquee-container) {
-    margin-bottom: 0;
-  }
+  // &:has(+ .marquee-container) {
+  //   margin-bottom: 0;
+  // }
 `;
 
 const HeaderWrapper = styled.div`

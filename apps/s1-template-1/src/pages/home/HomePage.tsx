@@ -3,7 +3,9 @@ import { media } from "@/theme/breakpoints";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
+import AnnouncementMarquee from "./components/AnnouncementMarquee";
 import Banner from "./components/Banner";
+import { Block } from "./components/CategoryRenderer/components/HomeCategory/style";
 import GameTypes from "./components/GameTypes";
 
 const MainWrapper = styled.div`
@@ -15,10 +17,6 @@ const MainWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   flex-shrink: 0;
   flex: 1;
-
-  ${media.md} {
-    gap: 0.8rem;
-  }
 `;
 
 const MainContentWrapper = styled.div`
@@ -30,7 +28,6 @@ const MainContentWrapper = styled.div`
   color: ${({ theme }) => theme.white};
   flex-shrink: 0;
   flex: 1;
-  margin-top: 0.8rem;
 
   ${media.sm} {
     margin: 0 auto;
@@ -38,11 +35,23 @@ const MainContentWrapper = styled.div`
   }
 `;
 
+const BannerAnnouncementBlock = styled(Block)`
+  border-radius: 0;
+  padding-top: 1.6rem;
+  padding-bottom: 0;
+
+  &:has(.marquee-container) {
+    padding-top: 0;
+  }
+`;
+
 const HomePage = () => {
   return (
     <MainWrapper>
-      <Banner />
-
+      <BannerAnnouncementBlock>
+        <AnnouncementMarquee />
+        <Banner />
+      </BannerAnnouncementBlock>
       <GameTypes />
       <MainContentWrapper>
         <CategoryRenderer />

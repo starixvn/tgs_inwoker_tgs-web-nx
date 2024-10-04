@@ -6,10 +6,10 @@ export const DesktopContainer = styled.div`
   justify-content: center;
   width: 100%;
   margin: 0 auto;
-  padding: 0.2rem 0 4.8rem;
+  padding: ${({ theme }) => theme.desktopContainerPaddingTop};
 
   ${media.md} {
-    padding-top: 3rem;
+    padding-top: ${({ theme }) => theme.desktopContainerPaddingTopMd};
   }
 `;
 
@@ -17,7 +17,6 @@ export const GameContainer = styled.div`
   width: 100%;
   overflow: auto;
   display: flex;
-  gap: 0.8rem;
 
   ::-webkit-scrollbar {
     display: none;
@@ -66,17 +65,18 @@ export const ViewAll = styled.div`
   text-transform: capitalize;
   cursor: pointer;
 
-  &:hover {
-    border: ${({ theme }) => theme.viewAllBorderHover};
-    color: ${({ theme }) => theme.viewAllTextColorHover};
-    background: ${({ theme }) => theme.viewAllBackgroundHover};
+  ${media.sm} {
+    &:hover {
+      border: ${({ theme }) => theme.viewAllBorderHover};
+      color: ${({ theme }) => theme.viewAllTextColorHover};
+      background: ${({ theme }) => theme.viewAllBackgroundHover};
+    }
   }
 `;
 
 export const GameTypeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: ${({ theme }) => theme.gameTypeContainerPaddingTop};
   gap: ${({ theme }) => theme.gameTypeContainerGapSmall};
 
   ${media.md} {
@@ -84,9 +84,22 @@ export const GameTypeContainer = styled.div`
   }
 `;
 
-export const Group = styled.div`
+export const Block = styled.div`
+  width: 100%;
+  background: ${({ theme }) => theme.blockBackground};
+  border: ${({ theme }) => theme.blockBorder};
+  border-radius: ${({ theme }) => theme.blockBorderRadiusMobile};
+  box-shadow: ${({ theme }) => theme.blockBoxShadow};
+  padding: ${({ theme }) => theme.blockPaddingMobile};
+
+  ${media.sm} {
+    padding: ${({ theme }) => theme.blockPadding};
+    border-radius: ${({ theme }) => theme.blockBorderRadius};
+  }
+`;
+
+export const Group = styled(Block)`
   position: relative;
-  background: ${({ theme }) => theme.groupAreaBackground};
 
   &.game-area {
     .embla__container {
@@ -179,22 +192,12 @@ export const Group = styled.div`
       }
     }
 
-    &:hover:not([disabled]) {
-      border: ${({ theme }) => theme.slideNextButtonBorderHover};
-      color: ${({ theme }) => theme.slideNextButtonColorHover};
-      background: ${({ theme }) => theme.slideNextButtonBackgroundHover};
+    ${media.sm} {
+      &:hover:not([disabled]) {
+        border: ${({ theme }) => theme.slideNextButtonBorderHover};
+        color: ${({ theme }) => theme.slideNextButtonColorHover};
+        background: ${({ theme }) => theme.slideNextButtonBackgroundHover};
+      }
     }
-  }
-
-  &.recent-big-wins-area {
-    padding-top: ${({ theme }) => theme.recentBigWinsSpace};
-    padding-bottom: ${({ theme }) => theme.recentBigWinsSpace};
-    border-top: ${({ theme }) => theme.recentBigWinsAreaBorder};
-    border-bottom: ${({ theme }) => theme.recentBigWinsAreaBorder};
-  }
-
-  &.latest-bets {
-    padding-top: ${({ theme }) => theme.latestBetsAreaSpace};
-    border-top: ${({ theme }) => theme.latestBetsAreaBorder};
   }
 `;

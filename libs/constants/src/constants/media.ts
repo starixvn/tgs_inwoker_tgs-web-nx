@@ -1,7 +1,7 @@
 type BreakpointType = "xs" | "tiny" | "sm" | "md" | "lg" | "xl";
 
 export const breakpoints: Record<BreakpointType, number> = {
-  xs: 0,
+  xs: 360,
   tiny: 400,
   sm: 600,
   md: 900,

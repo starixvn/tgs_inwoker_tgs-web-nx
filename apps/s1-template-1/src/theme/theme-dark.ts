@@ -57,8 +57,6 @@ export const dark = {
   categoryTextColor: "#fff",
 
   // Recent Big Wins
-  recentBigWinsSpace: "0",
-  recentBigWinsAreaBorder: "none",
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
   bigWinsAmountColor: "#e2fe26",
   recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
@@ -191,20 +189,34 @@ export const dark = {
   testingLabelBackground: "#b0003f",
   testingLabelColor: "#fff",
 
+  desktopContainerPaddingTop: "1rem 0 4.8rem",
+  desktopContainerPaddingTopMd: "3rem",
+
   gameTypeTitle: "#fff",
-  groupAreaBackground: "transparent",
-  gameTypeContainerPaddingTop: "3.6rem",
   gameTypeContainerGapSmall: "3.6rem",
   gameTypeContainerGapLarge: "5rem",
 
-  latestBetsAreaSpace: "0",
-  latestBetsAreaBorder: "none",
   latestBetsTableHeaderBg: "#1a2335",
   latestBetsTableHeaderColor: "#7a8597",
   latestBetsTableRowBg: "#151d29",
   latestBetsTableRowBorder: "#151d29",
   latestBetsTableRowColor: "#7a8597",
   latestBetsOverlayColor: "linear-gradient(180deg, rgba(13, 19, 28, 0) 0%, #0d131c 100%)",
+
+  blockBackground: "none",
+  blockBoxShadow: "none",
+  blockBorder: "none",
+  blockBorderRadiusMobile: "0",
+  blockBorderRadius: "0",
+  blockPaddingMobile: "0",
+  blockPadding: "0",
+
+  mainContainerSpace: "0.8rem",
+  mainContainerSpaceXs: "0.8rem",
+  mainContainerSpaceSm: "1.6rem",
+  mainContainerSpaceMd: "3.2rem",
+  mainContainerSpaceLg: "6.4rem",
+  mainContainerFullWidthSpace: "0",
 
   // Game Card
   gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",
@@ -307,6 +319,7 @@ export const dark = {
   multipleSelectShadow: "rgba(0, 0, 0, 0.1)",
   multipleSelectCheckboxBackground: "transparent",
   multipleSelectCheckboxBorder: "#65759b",
+  multipleSelectCheckboxBorderChecked: "#90a405",
   multipleSelectCheckboxChecked: "#90a405",
 
   dropdownBackground: "#1c2532",

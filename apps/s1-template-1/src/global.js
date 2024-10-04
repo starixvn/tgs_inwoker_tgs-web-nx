@@ -57,27 +57,32 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .main-container {
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    padding-left: ${({ theme }) => theme.mainContainerSpace};
+    padding-right: ${({ theme }) => theme.mainContainerSpace};
 
     ${media.xs} {
-      padding-left: 1.6rem;
-      padding-right: 1.6rem;
+      padding-left: ${({ theme }) => theme.mainContainerSpaceXs};
+      padding-right:${({ theme }) => theme.mainContainerSpaceXs};
+    }
+
+    ${media.sm} {
+      padding-left: ${({ theme }) => theme.mainContainerSpaceSm};
+      padding-right:${({ theme }) => theme.mainContainerSpaceSm};
     }
 
     ${media.md} {
-      padding-left: 3.2rem;
-      padding-right: 3.2rem;
+      padding-left: ${({ theme }) => theme.mainContainerSpaceMd};
+      padding-right: ${({ theme }) => theme.mainContainerSpaceMd};
     }
 
     ${media.lg} {
-      padding-left: 6.4rem;
-      padding-right: 6.4rem;
+      padding-left: ${({ theme }) => theme.mainContainerSpaceLg};
+      padding-right: ${({ theme }) => theme.mainContainerSpaceLg};
     }
 
     @media screen and (min-width: 1700px){
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: ${({ theme }) => theme.mainContainerFullWidthSpace};
+      padding-right: ${({ theme }) => theme.mainContainerFullWidthSpace};
     }
   }
 
@@ -114,7 +119,7 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 .p-checkbox.p-highlight .p-checkbox-box {
-  border-color: ${({ theme }) => theme.multipleSelectCheckboxChecked};
+  border-color: ${({ theme }) => theme.multipleSelectCheckboxBorderChecked};
   background: ${({ theme }) => theme.multipleSelectCheckboxChecked};
 }
 

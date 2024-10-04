@@ -57,8 +57,6 @@ export const light = {
   categoryTextColor: "#2E353E",
 
   // Recent Big Wins
-  recentBigWinsSpace: "1.6rem",
-  recentBigWinsAreaBorder: "8px solid #F5F5F5",
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
   bigWinsAmountColor: "#60AB00",
   recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
@@ -107,7 +105,7 @@ export const light = {
   selectIconArrow: "#B3B8C0",
 
   // Common
-  mainBackground: "#fff",
+  mainBackground: "#F0F0F0",
   text: "#2E353E",
 
   errorColor: "#F90B44",
@@ -119,8 +117,8 @@ export const light = {
   dropDownColor: "#fff",
   dropDownIconColor: "#A7B5CA",
 
-  scrollbarBackground: "#1C2532",
-  scrollbarThumbBackground: "#2A3546",
+  scrollbarBackground: "#fff",
+  scrollbarThumbBackground: "#D3D3D3",
 
   primary: "#60AB00",
   secondary: "#19212C",
@@ -194,20 +192,34 @@ export const light = {
   testingLabelBackground: "#b0003f",
   testingLabelColor: "#fff",
 
-  gameTypeTitle: "#2E353E",
-  groupAreaBackground: "#fff",
-  gameTypeContainerPaddingTop: "1.6rem",
-  gameTypeContainerGapSmall: "3.6rem",
-  gameTypeContainerGapLarge: "5rem",
+  desktopContainerPaddingTop: "1.6rem 0 4.8rem",
+  desktopContainerPaddingTopMd: "1.6rem",
 
-  latestBetsAreaSpace: "1.6rem",
-  latestBetsAreaBorder: "8px solid #F5F5F5",
+  gameTypeTitle: "#2E353E",
+  gameTypeContainerGapSmall: "1.6rem",
+  gameTypeContainerGapLarge: "1.6rem",
+
   latestBetsTableHeaderBg: "#E0E0E0",
   latestBetsTableHeaderColor: "#474D58",
   latestBetsTableRowBg: "#F5F6FA",
   latestBetsTableRowBorder: "#F5F6FA",
   latestBetsTableRowColor: "#474D58",
   latestBetsOverlayColor: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%)",
+
+  blockBackground: "#FFF",
+  blockBoxShadow: "0px 6px 12px 0px rgba(151, 160, 178, 0.26)",
+  blockBorder: "none",
+  blockBorderRadiusMobile: "0",
+  blockBorderRadius: "1.6rem",
+  blockPaddingMobile: "1.6rem 0.8rem",
+  blockPadding: "1.6rem 2.8rem",
+
+  mainContainerSpace: "0",
+  mainContainerSpaceXs: "0",
+  mainContainerSpaceSm: "1.6rem",
+  mainContainerSpaceMd: "3.2rem",
+  mainContainerSpaceLg: "6.4rem",
+  mainContainerFullWidthSpace: "1.6rem",
 
   // Game Card
   gameCardBackground: "linear-gradient(149deg, #CCC 2%, #EDEDED 49.83%, #BEBCBC 97.67%)",
@@ -310,6 +322,7 @@ export const light = {
   multipleSelectShadow: "rgba(0, 0, 0, 0.1)",
   multipleSelectCheckboxBackground: "transparent",
   multipleSelectCheckboxBorder: "#65759b",
+  multipleSelectCheckboxBorderChecked: "#90a405",
   multipleSelectCheckboxChecked: "#90a405",
 
   dropdownBackground: "#1c2532",
