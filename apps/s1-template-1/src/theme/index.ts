@@ -1,6 +1,6 @@
+import { ThemeType } from "./constants";
 import { dark } from "./theme-dark";
 import { light } from "./theme-light";
-import { ThemeType } from "./theme-type";
 
 const getTheme = (theme: string) => {
   switch (theme) {

@@ -1,5 +1,4 @@
-import config from "@tgs-web-nx/config";
-import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { GameTypeEnum, Theme } from "@tgs-web-nx/constants";
 import { getGameTypeName, i18n } from "@tgs-web-nx/utils";
 import { useEffect, useState } from "react";
 
@@ -8,8 +7,8 @@ import { GameTypeItem } from "../useHomeGameContext";
 const gameTypeList: GameTypeItem[] = [
   {
     key: "home",
-    iconUrl: "/assets/images/game-type-icons/icon-home.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-home.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-home.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-home.webp`,
     text: "common.home",
     fontSize: "small",
     gameType: GameTypeEnum.NONE,
@@ -17,8 +16,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "sports",
-    iconUrl: "/assets/images/game-type-icons/icon-sports.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-sports.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-sports.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-sports.webp`,
     text: "common.sports",
     fontSize: "small",
     gameType: GameTypeEnum.SPORTS,
@@ -26,8 +25,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "virtual-sports",
-    iconUrl: "/assets/images/game-type-icons/icon-virtual-sports.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-virtual-sports.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-virtual-sports.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-virtual-sports.webp`,
     text: "common.virtualsports",
     fontSize: "smaller",
     gameType: GameTypeEnum.RNGSPORTS,
@@ -35,8 +34,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "esports",
-    iconUrl: "/assets/images/game-type-icons/icon-e-sports.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-e-sports.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-e-sports.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-e-sports.webp`,
     text: "common.esports",
     fontSize: "smaller",
     gameType: GameTypeEnum.ESPORTS,
@@ -44,8 +43,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "live-casino",
-    iconUrl: "/assets/images/game-type-icons/icon-live-casino.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-live-casino.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-live-casino.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-live-casino.webp`,
     text: "common.live",
     fontSize: "small",
     gameType: GameTypeEnum.LIVE,
@@ -53,8 +52,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "card-game",
-    iconUrl: "/assets/images/game-type-icons/icon-card-game.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-card-game.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-card-game.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-card-game.webp`,
     text: "common.chess",
     fontSize: "smaller",
     gameType: GameTypeEnum.QIPAI,
@@ -62,8 +61,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "fishing",
-    iconUrl: "/assets/images/game-type-icons/icon-fishing.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-fishing.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-fishing.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-fishing.webp`,
     text: "common.fish",
     fontSize: "smaller",
     gameType: GameTypeEnum.FISH,
@@ -71,8 +70,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "arcade",
-    iconUrl: "/assets/images/game-type-icons/icon-arcade.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-arcade.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-arcade.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-arcade.webp`,
     text: "common.arcade",
     fontSize: "small",
     gameType: GameTypeEnum.ARCADE,
@@ -80,8 +79,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "lottery",
-    iconUrl: "/assets/images/game-type-icons/icon-lottery.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-lottery.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-lottery.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-lottery.webp`,
     text: "common.lottery",
     fontSize: "small",
     gameType: GameTypeEnum.LOTTERY,
@@ -89,8 +88,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "slots",
-    iconUrl: "/assets/images/game-type-icons/icon-slots.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-slots.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-slots.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-slots.webp`,
     text: "common.slot",
     fontSize: "small",
     gameType: GameTypeEnum.SLOT,
@@ -98,8 +97,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "table-game",
-    iconUrl: "/assets/images/game-type-icons/icon-table-games.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-table-games.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-table-games.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-table-games.webp`,
     text: "common.tableGame",
     fontSize: "smaller",
     gameType: GameTypeEnum.TABLEGAME,
@@ -107,8 +106,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "cock-fighting",
-    iconUrl: "/assets/images/game-type-icons/icon-cock-fighting.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-cock-fighting.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-cock-fighting.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-cock-fighting.webp`,
     text: "common.cockfight",
     fontSize: "smaller",
     gameType: GameTypeEnum.COCKFIGHT,
@@ -116,8 +115,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "instant-play",
-    iconUrl: "/assets/images/game-type-icons/icon-instant-play.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-instant-play.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-instant-play.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-instant-play.webp`,
     text: "common.instantPlay",
     fontSize: "smaller",
     gameType: GameTypeEnum.INSTANTPLAY,
@@ -125,8 +124,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "casino",
-    iconUrl: "/assets/images/game-type-icons/icon-casino.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-casino.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-casino.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-casino.webp`,
     text: "common.casino",
     fontSize: "smaller",
     gameType: GameTypeEnum.CASINO,
@@ -134,8 +133,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "keno",
-    iconUrl: "/assets/images/game-type-icons/icon-keno.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-keno.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-keno.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-keno.webp`,
     text: "common.keno",
     fontSize: "smaller",
     gameType: GameTypeEnum.KENO,
@@ -143,8 +142,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "bingo",
-    iconUrl: "/assets/images/game-type-icons/icon-bingo.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-bingo.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-bingo.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-bingo.webp`,
     text: "common.bingo",
     fontSize: "smaller",
     gameType: GameTypeEnum.BINGO,
@@ -152,8 +151,8 @@ const gameTypeList: GameTypeItem[] = [
   },
   {
     key: "racing",
-    iconUrl: "/assets/images/game-type-icons/icon-racing.webp",
-    iconActiveUrl: "/assets/images/game-type-icons/active-icon-racing.webp",
+    iconUrl: `/assets/images/game-type-icons/${Theme}/icon-racing.webp`,
+    iconActiveUrl: `/assets/images/game-type-icons/${Theme}/active-icon-racing.webp`,
     text: "common.racing",
     fontSize: "smaller",
     gameType: GameTypeEnum.RACING,
@@ -165,9 +164,12 @@ export const useGameTypeList = () => {
   const [translatedGameTypeList, setTranslatedGameTypeList] = useState<GameTypeItem[]>([]);
   useEffect(() => {
     const offeredGameTypes = import.meta.env.VITE_OFFERED_GAME_TYPES || [];
-    const translatedList = offeredGameTypes.split(",")
+    const translatedList = offeredGameTypes
+      .split(",")
       .map((key: string) => gameTypeList.find((type) => type.key === key))
-      .filter((gameType: GameTypeItem | undefined): gameType is GameTypeItem => gameType !== undefined)
+      .filter(
+        (gameType: GameTypeItem | undefined): gameType is GameTypeItem => gameType !== undefined,
+      )
       .map((gameItem: GameTypeItem) => ({
         ...gameItem,
         text: i18n.t(getGameTypeName(gameItem.gameType)),

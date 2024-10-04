@@ -1,3 +1,4 @@
+import { Theme } from "@tgs-web-nx/constants";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import React from "react";
 import styled from "styled-components";
@@ -28,7 +29,7 @@ const BrandLogo = (props: React.HTMLProps<HTMLDivElement>) => {
   // using asset site
   // const logoUrl = brand.loadingUrl;
 
-  const logoUrl = "/assets/images/common/logo.svg";
+  const logoUrl = `/assets/images/common/logo-${Theme}.webp`;
 
   if (!logoUrl) return null;
 

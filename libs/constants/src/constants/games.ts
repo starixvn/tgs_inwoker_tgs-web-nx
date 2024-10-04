@@ -7,3 +7,6 @@ export const providerStatus = {
 
 export const SHOW_BIG_WINS_AMOUNT = 12;
 export const SHOW_CATEGORY_AMOUNT = 8;
+
+// @ts-ignore
+export const Theme = import.meta.env.VITE_THEME;

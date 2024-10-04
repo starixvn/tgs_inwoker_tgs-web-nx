@@ -29,7 +29,6 @@ export const GameTypeTitle = styled.div`
   line-height: 1.5;
   display: flex;
   align-items: center;
-  margin-bottom: 1.8rem;
   gap: 0.8rem;
   text-transform: capitalize;
   color: ${({ theme }) => theme.gameTypeTitle};
@@ -102,6 +101,10 @@ export const Group = styled(Block)`
   position: relative;
 
   &.game-area {
+    .embla__viewport {
+      padding-top: 1.8rem;
+      padding-bottom: 1rem;
+    }
     .embla__container {
       --gap: 1.2rem;
       --min-width: 13.1rem;
