@@ -2,6 +2,8 @@ import { styled as muiStyled, TextField as MuiTextField, TextFieldProps } from "
 
 const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
   background: theme.palette.form.backgroundColor,
+  border: `1px solid ${theme.palette.form.borderColor}`,
+  borderRadius: "1rem",
  
   "& .MuiInputBase-root": {
     fontFamily: "inherit",
@@ -13,9 +15,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
     height: "4.8rem",
     lineHeight: "4.8rem",
     fontWeight: "700",
-    color: theme.palette.form.textColor,
-    border: `1px solid ${theme.palette.form.borderColor}`,
-    borderRadius: "1rem",
+    color: theme.palette.form.textColor,   
 
     "&:-webkit-autofill": {
       WebkitTextFillColor: `${theme.palette.form.textColor} !important`,
@@ -45,7 +45,7 @@ const StyledTextField = muiStyled(MuiTextField)(({ theme }) => ({
       border: "none",
     },
     "&.Mui-focused fieldset": {
-      border: `1px solid ${theme.palette.form.inputFocusColor}`,
+      border: "none",
     },
     "&.Mui-disabled": {
       input: {
