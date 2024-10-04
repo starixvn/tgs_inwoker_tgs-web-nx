@@ -112,9 +112,10 @@ export const light = {
 
   linkColor: "#60AB00",
 
-  dropDownBackground: "#1C2532",
-  dropDownItemSelectedBackground: "#2A3546",
-  dropDownColor: "#fff",
+  dropDownBackground: "#fff",
+  dropDownItemSelectedBackground: "#E4F3CA",  
+  dropDownItemSelectedTextColor: "#E4F3CA",
+  dropDownColor: "#1C2532",
   dropDownIconColor: "#A7B5CA",
 
   scrollbarBackground: "#fff",

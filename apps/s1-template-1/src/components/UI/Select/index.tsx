@@ -84,11 +84,15 @@ export const Select = (props: SelectProps) => {
             },
             "& .MuiMenuItem-root": {
               padding: "1rem 1.2rem",
-              color: theme.gray,
+              color: theme.dropDownColor,
               borderRadius: "1rem",
               fontSize: "1.3rem",
               fontWeight: "bold",
               fontFamily: "var(--main-font-family)",
+              "&:hover": {
+                background: `${theme.dropDownItemSelectedBackground}`,
+                color: theme.dropDownItemSelectedTextColor,
+              },
 
               "@media (min-width: 1200px)": {
                 fontSize: "1.4rem",
@@ -96,10 +100,8 @@ export const Select = (props: SelectProps) => {
             },
             "& .Mui-selected": {
               background: `${theme.dropDownItemSelectedBackground} !important`,
-              color: theme.text,
-              "&:hover": {
-                background: `${theme.dropDownItemSelectedBackground} !important`,
-              },
+              color: theme.dropDownItemSelectedTextColor,
+              
             },
           },
         },       

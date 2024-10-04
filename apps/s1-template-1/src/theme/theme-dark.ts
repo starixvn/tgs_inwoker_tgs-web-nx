@@ -114,7 +114,8 @@ export const dark = {
 
   dropDownBackground: "#1C2532",
   dropDownItemSelectedBackground: "#2A3546",
-  dropDownColor: "#fff",
+  dropDownItemSelectedTextColor: "#fff",
+  dropDownColor: "#6E7E92",
   dropDownIconColor: "#A7B5CA",
 
   scrollbarBackground: "#1C2532",
