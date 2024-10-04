@@ -28,6 +28,11 @@ header / {
     Cache-Control "no-cache, no-store, must-revalidate"
 }
 
+@websocket {
+    header Connection *Upgrade*
+    header Upgrade websocket
+}
+
 @try_files {
     not path /api/* /fs/* /healthcheck
     file {
