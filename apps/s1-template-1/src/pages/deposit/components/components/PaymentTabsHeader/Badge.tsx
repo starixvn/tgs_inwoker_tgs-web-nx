@@ -13,14 +13,13 @@ const BadgeContainer = styled.div<BadgeContainerProps>`
   text-align: center;
   color: ${({ $isActive, theme }: BadgeContainerProps) =>
     $isActive ? `${theme.badgeActiveTextColor}` : `${theme.badgeTextColor}`};
-  background: ${({ theme }) => theme.bagdeBackgroundColor};
+  background: ${({ $isActive, theme }: BadgeContainerProps) =>
+    $isActive ? `${theme.bagdeActiveBackgroundColor}` : `${theme.bagdeBackgroundColor}`};
   border: ${({ $isActive, theme }: BadgeContainerProps) =>
     $isActive ? `1px solid ${theme.badgeActiveBorderColor}` : `1px solid ${theme.badgeBorderColor}`};
   font-size: 1.4rem;
   font-weight: bold;
   border-radius: .8rem;
-  box-shadow: ${({ $isActive, theme }: BadgeContainerProps) =>
-    $isActive ? `0px 0px 10px 0px rgba(160, 218, 66, 0.60) inset` : `unset`} ;
   display: flex;
   align-items: center;
   justify-content: center;

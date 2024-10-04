@@ -92,14 +92,14 @@ export const light = {
   transferTabMenu: "#E1EDFF",
 
   // Forms
-  formInputBackground: "#091016",
-  formInputBorder: "#2e373e",
-  formInputColor: "#55657E",
+  formInputBackground: "#fff",
+  formInputBorder: "#CACACA",
+  formInputColor: "#1C2532",
 
   //Select
   selectBorderColor: "#2E373E",
   selectBackgroundColor: "#091016",
-  selectTextColor: "#55657E",
+  selectTextColor: "#1C2532",
   optionHoverBgColor: "#2A3546",
 
   // Common
@@ -232,11 +232,12 @@ export const light = {
   tableBorderRadius: ".8rem",
 
   //Badge
-  bagdeBackgroundColor: "#304056",
-  badgeActiveBorderColor: "#D1F42D",
-  badgeBorderColor: "#151D28",
-  badgeTextColor: "#B3CDF8",
-  badgeActiveTextColor: "#ffffff",
+  bagdeBackgroundColor: "#DAE6FF",
+  bagdeActiveBackgroundColor: "#ECFFDA",
+  badgeActiveBorderColor: "#5FC300",
+  badgeBorderColor: "#DAE6FF",
+  badgeTextColor: "#294785",
+  badgeActiveTextColor: "#1C2532",
 
   // main content
   mainContentWidth: "108.8rem",

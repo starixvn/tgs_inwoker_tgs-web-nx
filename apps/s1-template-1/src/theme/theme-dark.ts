@@ -230,6 +230,7 @@ export const dark = {
 
   //Badge
   bagdeBackgroundColor: "#304056",
+  bagdeActiveBackgroundColor: "#304056",
   badgeActiveBorderColor: "#D1F42D",
   badgeBorderColor: "#151D28",
   badgeTextColor: "#B3CDF8",
