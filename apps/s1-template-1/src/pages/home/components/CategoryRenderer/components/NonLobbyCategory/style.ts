@@ -1,6 +1,16 @@
 import { media } from "@tgs-web-nx/constants";
 import styled from "styled-components";
 
+import { Block } from "../HomeCategory/style";
+
+export const GamesWrapperBlock = styled(Block)`
+  margin: ${({ theme }) => theme.gameTypePageAreaPaddingMobile};
+
+  ${media.sm} {
+    margin: ${({ theme }) => theme.gameTypePageAreaPadding};
+  }
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
@@ -10,7 +20,6 @@ export const Wrapper = styled.div`
 
   ${media.sm} {
     margin: 0 auto;
-    padding: 15px 0px;
   }
 `;
 

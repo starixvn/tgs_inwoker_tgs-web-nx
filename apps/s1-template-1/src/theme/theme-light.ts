@@ -229,6 +229,11 @@ export const light = {
   mainContainerSpaceLg: "6.4rem",
   mainContainerFullWidthSpace: "1.6rem",
 
+  // Game Type Page
+  gameTypePageAreaPaddingMobile: "0.8rem 0 0",
+  gameTypePageAreaPadding: "1.6rem 0 0",
+  gameTypeTitleInGamePageMargin: "1.2rem",
+
   // Game Card
   gameAreaPaddingMobile: "1.6rem 0.8rem 0.8rem",
   gameAreaPadding: "2rem 0.8rem 0.8rem",
@@ -284,8 +289,8 @@ export const light = {
   popupBackground: "#fff",
   popupBoxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.50)",
   popupBorderRadius: "1.2rem",
-  popupCloseButtonBgColor:"#C2C2C2", 
-  popupCloseButtonHoverBgColor:"#C2C2C2",
+  popupCloseButtonBgColor: "#C2C2C2",
+  popupCloseButtonHoverBgColor: "#C2C2C2",
 
   // Calendar
   calendarBackground: "#1C2532",
@@ -300,7 +305,7 @@ export const light = {
   calendarFontSizeMobile: "1.4rem",
 
   // Date Picker
-  datePickerBackground:"#ECECEC",
+  datePickerBackground: "#ECECEC",
   datePickerColor: "#1C2532",
   iconCalendarBgColor: "#DEDEDE",
   iconCalendarColor: "#1C2532",
@@ -337,15 +342,21 @@ export const light = {
   bannerDotBackgroundActive: "#60AB00",
 
   // Multiple select
-  multipleSelectBackground: "#1c2532",
-  multipleSelectColor: "#6e7e92",
-  multipleSelectShadow: "rgba(0, 0, 0, 0.1)",
+  multipleSelectBackground: "#ECECEC",
+  multipleSelectTextColor: "#2E353E",
+  multipleSelectPlaceHolderColor: "#6E7E92",
+  multipleSelectTriggerButtonBackground: "#DEDEDE",
+  multipleSelectArrowColor: "#2E353E",
+
+  multipleSelectPanelBackground: "#fff",
+  multipleSelectPanelColor: "#1C2532",
+  multipleSelectPanelShadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.60)",
   multipleSelectCheckboxBackground: "transparent",
-  multipleSelectCheckboxBorder: "#65759b",
+  multipleSelectCheckboxBorder: "#CACACA",
   multipleSelectCheckboxBorderChecked: "#90a405",
   multipleSelectCheckboxChecked: "#90a405",
-  multipleSelectItemBackgroundHighlight: "#2a3546",
-  multipleSelectItemColorHighlight: "#fff",
+  multipleSelectItemBackgroundHighlight: "#E4F3CA",
+  multipleSelectItemColorHighlight: "#1C2532",
 
   // Upload Button
   uploadButtonBgColor: "#DFDFDF",

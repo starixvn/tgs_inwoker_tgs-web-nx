@@ -3,13 +3,15 @@ import styled from "styled-components";
 
 import { FilterTagWrapper } from "../../../HomeGameFilterTag/style";
 import { GameTypeTitle } from "../HomeCategory/style";
+import { GamesWrapperBlock } from "../NonLobbyCategory/style";
 
-export const ContainerWithTitle = styled.div`
+export const ContainerWithTitle = styled(GamesWrapperBlock)`
   width: 100%;
   position: relative;
+  gap: 0;
 
   ${GameTypeTitle} {
-    margin-bottom: 0;
+    margin-bottom: ${({ theme }) => theme.gameTypeTitleInGamePageMargin};
   }
 
   ${FilterTagWrapper} {
@@ -17,7 +19,7 @@ export const ContainerWithTitle = styled.div`
 
     ${media.sm} {
       position: absolute;
-      top: -5.8rem;
+      top: -5.6rem;
       right: 0;
     }
   }

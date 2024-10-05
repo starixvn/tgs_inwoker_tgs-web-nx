@@ -90,11 +90,11 @@ export const GlobalStyles = createGlobalStyle`
 .p-multiselect-panel {
   padding: 0.8rem;
   margin-top: 0.1rem;
-  background: ${({ theme }) => theme.multipleSelectBackground};
-  color: ${({ theme }) => theme.multipleSelectColor};
+  background: ${({ theme }) => theme.multipleSelectPanelBackground};
+  color: ${({ theme }) => theme.multipleSelectPanelColor};
   border: 0 none;
   border-radius: 1rem;
-  box-shadow: 0 0.2rem 1.2rem 0 ${({ theme }) => theme.multipleSelectShadow};
+  box-shadow: ${({ theme }) => theme.multipleSelectPanelShadow};
 }
 
 .p-multiselect-items-wrapper {
@@ -159,8 +159,8 @@ export const GlobalStyles = createGlobalStyle`
 .p-dropdown-panel {
   padding: 0.8rem;
   margin-top: 0.1rem;
-  background: ${({ theme }) => theme.multipleSelectBackground};
-  color: ${({ theme }) => theme.multipleSelectColor};
+  background: ${({ theme }) => theme.multipleSelectPanelBackground};
+  color: ${({ theme }) => theme.multipleSelectPanelColor};
   border: 0 none;
   border-radius: 1rem;
   box-shadow: 0 0.2rem 1.2rem 0 rgba(0, 0, 0, 0.1);

@@ -40,7 +40,7 @@ export const CommonSearchWrapper = styled.div`
     padding: 0px var(--spacing-sm, 8px);
     border-radius: 1rem;
     border: none;
-    background: #1c2532;
+    background: ${({ theme }) => theme.multipleSelectBackground};
 
     ${media.sm} {
       width: 20rem;
@@ -55,6 +55,11 @@ export const CommonSearchWrapper = styled.div`
     .p-multiselect-label {
       font-size: 1.4rem;
       font-weight: 700;
+      color: ${({ theme }) => theme.multipleSelectTextColor};
+    }
+
+    .p-placeholder {
+      color: ${({ theme }) => theme.multipleSelectPlaceHolderColor};
     }
 
     .p-multiselect-trigger {
@@ -66,10 +71,10 @@ export const CommonSearchWrapper = styled.div`
       height: 24px;
       padding: var(--spacing-sm, 8px);
       border-radius: 6px;
-      background: #253144;
+      background: ${({ theme }) => theme.multipleSelectTriggerButtonBackground};
 
       .p-icon {
-        color: #6e7e92;
+        color: ${({ theme }) => theme.multipleSelectArrowColor};
         transform: scale(1.5);
       }
     }
@@ -80,7 +85,7 @@ export const CommonSearchWrapper = styled.div`
     padding: 0px var(--spacing-sm, 8px);
     border-radius: 1rem;
     border: none;
-    background: #1c2532;
+    background: ${({ theme }) => theme.multipleSelectBackground};
 
     ${media.sm} {
       width: 20rem;
@@ -97,7 +102,7 @@ export const CommonSearchWrapper = styled.div`
       align-items: center;
       font-size: 1.4rem;
       font-weight: 700;
-      color: #fff;
+      color: ${({ theme }) => theme.multipleSelectTextColor};
     }
 
     .p-dropdown-trigger {
@@ -111,10 +116,10 @@ export const CommonSearchWrapper = styled.div`
       height: 24px;
       padding: var(--spacing-sm, 8px);
       border-radius: 6px;
-      background: #253144;
+      background: ${({ theme }) => theme.multipleSelectTriggerButtonBackground};
 
       .p-icon {
-        color: #6e7e92;
+        color: ${({ theme }) => theme.multipleSelectArrowColor};
         transform: scale(1.5);
       }
     }

@@ -49,9 +49,11 @@ export const dark = {
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
-  categoryAreaPadding: "1.6rem 0",
-  categoryAreaMargin: "0px",
+  categoryAreaPaddingMobile: "1.6rem 0",
+  categoryAreaPadding: "2rem 0",
   categoryAreaBackground: "#0d131c",
+  categoryListMargin: "0",
+  categoryListPadding: "0",
   categoryBackground: "radial-gradient(57.7% 89.62% at 50.57% 23.58%, #293978 0%, #1D2738 100%)",
   categoryBackgroundActive: "#849709",
   categoryBackgroundHover: "#243260",
@@ -224,6 +226,11 @@ export const dark = {
   mainContainerSpaceLg: "6.4rem",
   mainContainerFullWidthSpace: "0",
 
+  // Game Type Page
+  gameTypePageAreaPaddingMobile: "0",
+  gameTypePageAreaPadding: "1.6rem 0",
+  gameTypeTitleInGamePageMargin: "0",
+
   // Game Card
   gameAreaPaddingMobile: "1.6rem 0 0 0",
   gameAreaPadding: "2rem 0 0 0",
@@ -279,8 +286,8 @@ export const dark = {
   popupBackground: "linear-gradient(180deg, #032F63 0%, #111923 47.92%)",
   popupBoxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.50)",
   popupBorderRadius: "1.2rem",
-  popupCloseButtonBgColor:"#324354", 
-  popupCloseButtonHoverBgColor:"#6F7E93",
+  popupCloseButtonBgColor: "#324354",
+  popupCloseButtonHoverBgColor: "#6F7E93",
 
   // Calendar
   calendarBackground: "#1C2532",
@@ -295,7 +302,7 @@ export const dark = {
   calendarFontSizeMobile: "1.4rem",
 
   // Date Picker
-  datePickerBackground:"#1C2532",
+  datePickerBackground: "#1C2532",
   datePickerColor: "#fff",
   iconCalendarBgColor: "#253144",
   iconCalendarColor: "#55657E",
@@ -304,8 +311,6 @@ export const dark = {
   buttonRangeTimeSelectedBgColor: "#95A90B",
   buttonRangeTimeSelectedColor: "#fff",
   titleFilter: "#6E7E92",
-
-
 
   // Highlight matches
   highlightMatchLeagueName: "#E9E9E9",
@@ -335,8 +340,14 @@ export const dark = {
 
   // Multiple select
   multipleSelectBackground: "#1c2532",
-  multipleSelectColor: "#6e7e92",
-  multipleSelectShadow: "rgba(0, 0, 0, 0.1)",
+  multipleSelectTextColor: "#fff",
+  multipleSelectPlaceHolderColor: "#6E7E92",
+  multipleSelectTriggerButtonBackground: "#253144",
+  multipleSelectArrowColor: "#6e7e92",
+
+  multipleSelectPanelBackground: "#1c2532",
+  multipleSelectPanelColor: "#6e7e92",
+  multipleSelectPanelShadow: "rgba(0, 0, 0, 0.1)",
   multipleSelectCheckboxBackground: "transparent",
   multipleSelectCheckboxBorder: "#65759b",
   multipleSelectCheckboxBorderChecked: "#90a405",
