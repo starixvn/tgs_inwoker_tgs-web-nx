@@ -106,25 +106,6 @@ const ReportWithdraw = ({ dateRangeInfo }: Props) => {
 
   return (
     <>
-    {/* <FilterWrapper>
-        <DateRangeSelector>
-          <Title>{i18n.t("report.date")}</Title>
-          <DateRangeWithDatePicker
-            dateFrom={dateRangeInfo.dateFrom}
-            dateTo={dateRangeInfo.dateTo}
-            handleDateFromChange={handleDateFromChange}
-            handleDateToChange={handleDateToChange}
-            selectedType={3}
-          />
-        </DateRangeSelector>
-        <DateRangeWithIntervalSelector
-            dateRange={dateRangeInfo.dateRange}
-            handleDateRangeChange={changeDateRange}
-            isSelectedDateRange={isSelectedDateRange}
-          />
-
-      </FilterWrapper> */}
-
     <StatusSelect
         type="withdrawal"
         statusDictionary={statusDictionary}

@@ -25,8 +25,8 @@ type DateRangSelectionTypes = {
 const DateRangSelection = styled.div<DateRangSelectionTypes>`
   cursor: pointer;
   white-space: nowrap;
-  background: ${({ $isSelected, theme }) => $isSelected ? theme.buttonReportHighlightColor : theme.buttonReportBackgroundColor};
-  color: ${({ theme }) => theme.buttonReportColor};
+  background: ${({ $isSelected, theme }) => $isSelected ? theme.buttonRangeTimeSelectedBgColor : theme.buttonRangeTimeBgColor};
+  color: ${({ $isSelected, theme }) => $isSelected ? theme.buttonRangeTimeSelectedColor : theme.buttonRangeTimeColor};;
   padding: .8rem;
   display: flex;
   align-items: center;

@@ -29,7 +29,7 @@ const StatusSelectContainer = styled.div`
 const SelectLabel = styled.div`
   margin-right: 5px;
   margin-bottom: .6rem;
-  color: ${({ theme }) => theme.noDataTextColor};
+  color: ${({ theme }) => theme.titleFilter};
   font-size: 1.4rem;
   font-weight: 700;
 `;
@@ -54,7 +54,7 @@ const StatusSelect = ({ statusDictionary, handleStatusChange, status, type }: Pr
       <SelectLabel>{i18n.t("report.status")}</SelectLabel>
       <StatusSelectContainer>
         {/* <SelectFormControl variant="outlined"> */}
-        <Select sx={{height: "3.6rem", background: theme.dropDownBackground, border: "none"}}  onChange={handleStatusChange} value={status} fullWidth>
+        <Select sx={{height: "3.6rem", background: theme.datePickerBackground, border: "none"}}  onChange={handleStatusChange} value={status} fullWidth>
           <MenuItem value={""}>{i18n.t("report.all")}</MenuItem>
 
           {Object.keys(statusDictionary).map((key) => {

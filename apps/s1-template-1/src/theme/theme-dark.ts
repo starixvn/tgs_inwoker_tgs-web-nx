@@ -279,11 +279,8 @@ export const dark = {
   popupBackground: "linear-gradient(180deg, #032F63 0%, #111923 47.92%)",
   popupBoxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.50)",
   popupBorderRadius: "1.2rem",
-
-  // Button Report
-  buttonReportBackgroundColor: "#304056",
-  buttonReportColor: "#fff",
-  buttonReportHighlightColor: "#95A90B",
+  popupCloseButtonBgColor:"#324354", 
+  popupCloseButtonHoverBgColor:"#6F7E93",
 
   // Calendar
   calendarBackground: "#1C2532",
@@ -296,6 +293,19 @@ export const dark = {
   calendarFontSize: "1.6rem",
   calendarBoxshadow: "0px 0px 8px 0px rgba(0, 0, 0, 0.40)",
   calendarFontSizeMobile: "1.4rem",
+
+  // Date Picker
+  datePickerBackground:"#1C2532",
+  datePickerColor: "#fff",
+  iconCalendarBgColor: "#253144",
+  iconCalendarColor: "#55657E",
+  buttonRangeTimeBgColor: "#304056",
+  buttonRangeTimeColor: "#fff",
+  buttonRangeTimeSelectedBgColor: "#95A90B",
+  buttonRangeTimeSelectedColor: "#fff",
+  titleFilter: "#6E7E92",
+
+
 
   // Highlight matches
   highlightMatchLeagueName: "#E9E9E9",

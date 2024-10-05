@@ -76,7 +76,7 @@ const DateRangeWithDatePicker = ({
           />
         </DateInner>
 
-        <DateSpliter>-</DateSpliter>
+        <DateSpliter></DateSpliter>
 
         <DateInner>
           {/*<DateLabel>{i18n.t("report.endDate")}</DateLabel>*/}

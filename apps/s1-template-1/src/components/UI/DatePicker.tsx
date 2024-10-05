@@ -13,7 +13,7 @@ import enLocale from "date-fns/locale/en-US";
 import thLocale from "date-fns/locale/th";
 import zhLocale from "date-fns/locale/zh-CN";
 import styled from "styled-components";
-import { ArrowLeftIcon, ArrowRightIcon } from "./CustomizeIcon";
+import { ArrowLeftIcon, ArrowRightIcon, CalendarIcon } from "./CustomizeIcon";
 
 const localeMap: { [key in string]: Locale } = {
   zh: zhLocale,
@@ -281,7 +281,7 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
     return $disabled && `pointer-events: none;`;
   }}
   position: relative;
-  background: ${({ theme }) => theme.dropDownBackground};
+  background: ${({ theme }) => theme.datePickerBackground};
   border-radius: 1rem;
   border: none !important;
   .MuiFormControl-root {
@@ -295,7 +295,7 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
     width: 100%;
   }
   .MuiInputBase-input {   
-    color: ${({ theme }) => theme.white};    
+    color: ${({ theme }) => theme.datePickerColor};    
     padding: 0 .8rem !important;
     text-align: left;
     cursor: pointer;
@@ -305,6 +305,9 @@ const ReportDatePickerContainer = styled.div<CustomDatepickerProps>`
   .MuiInput-underline:before,
   .MuiInput-underline:after {
     border-bottom: 0px;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    border: none;
   }
 `;
 
@@ -316,11 +319,12 @@ const Wrapper = styled.div`
   width: 2.4rem;
   height: 2.4rem;
   pointer-events: none;
-  background: #253144;
+  background: ${({ theme }) => theme.iconCalendarBgColor} ;
   border-radius: .6rem;
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.iconCalendarColor};
   > img {
     
    }
@@ -336,7 +340,7 @@ export const DatePickerForReport = ({ disabled, ...others }: DatePickerForReport
     <ReportDatePickerContainer $disabled={!!disabled}>
       <DatePicker {...others} />
       <Wrapper>
-        <img src={"/assets/images/common/icon-calendar.svg"} alt="calendar" width={"16px"} height={"16px"}/>
+        <CalendarIcon sx={{fontSize: "2.2rem", position: "relative", top: "3px", left: "5px"}} />
       </Wrapper>
     </ReportDatePickerContainer>
   );
