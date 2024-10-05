@@ -1,4 +1,3 @@
-import AppearSensor from "@/components/project/AppearSensor";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useAuth } from "@tgs-web-nx/core/features";
 import { useRwd } from "@tgs-web-nx/core/hooks";
@@ -10,6 +9,7 @@ import { Img } from "react-image";
 import { LoadingIcon, NoGameIcon } from "../GameCard/icons";
 import { DotButton, useDotButton } from "./dots";
 import { BannerContainerEmbla } from "./style";
+import AppearSensor from "@/components/project/AppearSensor";
 
 const Banner = () => {
   const { isDesktopSize } = useRwd();
@@ -38,32 +38,36 @@ const Banner = () => {
         <div className="embla__container">
           {general.banner.map((banner, index) => {
             const { navurl, desktopurl, mobileurl, title, alt } = banner;
+            const imageUrl = isDesktopSize ? desktopurl : mobileurl;
 
-            return (
-              <AppearSensor key={index}>
-                {
-                  // @ts-ignore
-                  ({ hasBeenVisible }) => (
-                    <div
-                      className="embla__slide"
-                      onClick={() => {
-                        navurl && launchGame(navurl);
-                      }}
-                    >
-                      {hasBeenVisible && (
-                        <Img
-                          className="banner"
-                          src={isDesktopSize ? desktopurl : mobileurl}
-                          loader={<LoadingIcon />}
-                          unloader={<NoGameIcon gameName={title} />}
-                          alt={alt}
-                        />
-                      )}
-                    </div>
-                  )
-                }
-              </AppearSensor>
-            );
+            if (imageUrl) {
+                return (
+                    <AppearSensor key={index}>
+                      {
+                        // @ts-ignore
+                        ({ hasBeenVisible }) => (
+                          <div
+                            className="embla__slide"
+                            onClick={() => {
+                              navurl && launchGame(navurl);
+                            }}
+                          >
+                            {hasBeenVisible && (
+                              <Img
+                                className="banner"
+                                src={isDesktopSize ? desktopurl : mobileurl}
+                                loader={<LoadingIcon />}
+                                unloader={<NoGameIcon gameName={title} />}
+                                alt={alt}
+                              />
+                            )}
+                          </div>
+                        )
+                      }
+                    </AppearSensor>
+                  );    
+            }
+            
           })}
         </div>
         <div className="embla__controls">
