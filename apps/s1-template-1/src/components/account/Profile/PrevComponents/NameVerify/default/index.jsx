@@ -1,3 +1,10 @@
+import config from "@tgs-web-nx/config";
+import { accountAction, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import BaseProfile from "../../BaseProfile";
+import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
   ItemContainerSmall,
@@ -5,13 +12,6 @@ import {
   UploadFileButton,
   UploadFileTag
 } from "@/components/styled-component/ProfileForms";
-import { TextField } from "@/components/UI/TextField";
-import config from "@tgs-web-nx/config";
-import { accountAction, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
-import { i18n } from "@tgs-web-nx/utils";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import BaseProfile from "../../BaseProfile";
 
 class Default extends BaseProfile {
   constructor(props) {
@@ -76,7 +76,7 @@ class Default extends BaseProfile {
                 type="file"
                 id="getFile"
                 onChange={this.props.handleFileChange}
-                accept="image/jpg, image/jpeg, image/png, image/tiff"
+                accept=".jpg,.jpeg,.png,.tiff"
                 style={{ display: "none" }}
               />
               <UploadFileTag>
