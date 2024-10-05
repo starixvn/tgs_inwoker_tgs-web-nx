@@ -40,7 +40,7 @@ const DateRangSelection = styled.div<DateRangSelectionTypes>`
   font-size: 1.4rem;
   ${media.sm} {
    flex-grow: 0;
-   width: 13.8rem; 
+   width: 13.2rem; 
   }
 `;
 

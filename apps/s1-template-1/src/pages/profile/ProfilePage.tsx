@@ -16,9 +16,11 @@ import ProfileRowInDesktop from "./components/ProfileMenu/ProfileRowInDesktop";
 
 const AccountContainer = styled.div`
   width: 100%;
+  padding-bottom: ${({ theme }) => theme.paddingBottomContent};
   ${media.md} {
     max-width: 108.8rem;
     margin: auto;
+    padding-bottom: 0;
   }
 `;
 

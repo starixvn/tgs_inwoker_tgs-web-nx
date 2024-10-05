@@ -84,7 +84,7 @@ export const ReportTable = muiStyled(Table)(({ theme }) => ({
   "& .MuiTableBody-root .MuiTableCell-root": {
     fontSize: "1.1rem",
     fontWeight: 400,
-    color: theme.palette.text.primary,
+    color: theme.palette.table.tableColor,
     borderBottom: `1px solid ${theme.palette.table.tableBorderColor}`,
     padding: ".6rem .4rem",
     background: `${theme.palette.table.tableBackground}`,

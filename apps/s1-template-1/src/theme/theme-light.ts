@@ -156,14 +156,19 @@ export const light = {
   winAmountColor: "#189EFF",
   lossAmountColor: "#FF1818",
   amountColor: "#F99E1E",
+  dialogLayoutBackground: "#fff",
+  pageContainerBackground: "#fff",
+  paddingBottomContent: "6rem",
 
   // Tab
   tabBackground:
-    "radial-gradient(52.82% 92.71% at 50% 7.29%, rgba(66, 107, 255, 0.45) 0%, rgba(25, 72, 164, 0.25) 100%)",
-  borderTabActive: "#D1F42D",
-  borderTab: "#0D2951",
-  tabTextColor: "#B3CDF8",
-  tabActiveTextColor: "#ffffff",
+    "radial-gradient(60.48% 104.17% at 52.02% 9.72%, #CCDAFF 0%, #90BDFF 100%)",
+  tabActiveBackground: "radial-gradient(100% 100% at 50% 0%, #DCFFC0 0%, #B5F575 100%)",
+  borderTabActive: "#82F627",
+  borderTab: "transparent",
+  tabTextColor: "#1C2532",
+  tabActiveTextColor: "#1C2532",
+  tabIconColor: "#404995",
 
   // Announcement
   announceBackground: "#fff",
@@ -274,8 +279,8 @@ export const light = {
 
   // main content
   mainContentWidth: "108.8rem",
-  mainContentBorderColor: "#161F2C",
-  mainContentBackgroundColor: "#111923",
+  mainContentBorderColor: "#fff",
+  mainContentBackgroundColor: "#fff",
 
   // Toast
   toastErrorBorderColor: "#F90B44",
@@ -323,18 +328,18 @@ export const light = {
   highlightMatchLiveIconBackground: "#fff",
 
   // Tag Status Transactions
-  statusProcessingBackground: "rgba(9, 255, 78, 0.20)",
-  circleProcessingBackground: "#09FF4E",
-  statusApprovedBackground: "rgba(128, 255, 50, 0.20)",
-  circleApprovedBackground: "#80FF32",
-  statusPendingBackground: "rgba(255, 92, 0, 0.20)",
+  statusProcessingBackground: "#BFFFD1",
+  circleProcessingBackground: "#00952A",
+  statusApprovedBackground: "#D6FFBC",
+  circleApprovedBackground: "#4FD000",
+  statusPendingBackground: "#FFDECC",
   circlePendingBackground: "#FF5C00",
-  statusRejectBackground: "rgba(255, 50, 50, 0.20)",
-  circleRejectBackground: "#FF3232",
-  statusPayingBackground: "rgba(235, 109, 255, 0.20)",
-  circlePayingBackground: "#EB6DFF",
-  statusPaidBackground: "rgba(0, 178, 255, 0.20)",
-  circlePaidBackground: "#00B2FF",
+  statusRejectBackground: "#FFD6D6",
+  circleRejectBackground: "#D10000",
+  statusPayingBackground: "#FADDFF",
+  circlePayingBackground: "#C100DF",
+  statusPaidBackground: "#CCF0FF",
+  circlePaidBackground: "#009ADC",
 
   // Banner
   bannerAreaBackground: "#fff",

@@ -6,6 +6,11 @@ export const PageContainer = styled.div`
   margin: 0 auto;
   padding: ${({ theme }) => theme.gapPage};
   max-width: ${({ theme }) => theme.mainContentWidth};
+  border-radius: 1.6rem;
+  ${media.sm} {
+    padding: 1.2rem;
+    background: ${({ theme }) => theme.pageContainerBackground};
+  }
 `;
 
 export const TransferPageContainer = styled.div`
@@ -13,6 +18,11 @@ export const TransferPageContainer = styled.div`
   max-width: ${({ theme }) => theme.mainContentWidth};
   flex: 1;
   margin: 0 auto;
+  border-radius: 1.6rem;
+  ${media.sm} {
+    padding: 1.2rem;
+     background: ${({ theme }) => theme.pageContainerBackground};
+  }
 
   & .MuiButton-fullWidth {
     ${media.sm} {

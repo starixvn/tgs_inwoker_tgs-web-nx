@@ -1,7 +1,3 @@
-import { NavCardKey } from "@tgs-web-nx/types";
-import { i18n } from "@tgs-web-nx/utils";
-import { useHistory, useLocation } from "react-router";
-import styled from "styled-components";
 import Icon from "@/components/project/Icon";
 import {
   AccountInfoIcon,
@@ -13,6 +9,10 @@ import {
 } from "@/components/UI/CustomizeIcon";
 import { DialogTitle } from "@/components/UI/Dialog/DialogHeader";
 import { theme } from "@/theme";
+import { NavCardKey } from "@tgs-web-nx/types";
+import { i18n } from "@tgs-web-nx/utils";
+import { useHistory, useLocation } from "react-router";
+import styled from "styled-components";
 
 type MenuItem = {
   key: NavCardKey;
@@ -58,7 +58,8 @@ const Tab = styled.div<{ $isActived: boolean }>`
   & svg {
     flex-shrink: 0;
   }
-  background: ${({ theme }) => theme.tabBackground};
+  background: ${({ theme, $isActived }) =>
+      $isActived ? `${theme.tabActiveBackground}` : `${theme.tabBackground}`};
 `;
 
 const NavigationContainer = styled.div`
@@ -175,7 +176,7 @@ const MenuTabs = () => {
               <item.icon
                 sx={{
                   fontSize: item.fontSizeIcon,
-                  color: theme.text,
+                  color: theme.tabIconColor,
                   filter: "drop-shadow(0 0 0.4rem rgba(255, 255, 255, 0.50))",
                 }}
                 viewBox={item.viewBox}

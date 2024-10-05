@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 export const AccountPaperContainer = styled.div`
   width: 100%;
+  padding-bottom: ${({ theme }) => theme.paddingBottomContent};
   ${media.sm} {
     max-width: ${({ theme }) => theme.mainContentWidth};
     padding: 2.4rem;

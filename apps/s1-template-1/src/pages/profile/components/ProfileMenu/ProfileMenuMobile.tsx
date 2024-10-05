@@ -49,7 +49,7 @@ export const PasswordContainer = styled.div`
 const ProfileSettings = styled.div`
   background: ${({ theme }) => theme.accountInfoBackgroundColor};
   border-radius: 1.2rem;
-  margin: 2.4rem 0 25rem;
+  margin: 2.4rem 0 5rem;
   padding: 1.2rem;
 `;
 

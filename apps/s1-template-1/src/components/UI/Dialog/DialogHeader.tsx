@@ -7,7 +7,7 @@ export const DIALOG_HEADER_HEIGHT = "54px";
 const DialogHeaderContainer = styled.div`
   width: 100%;
   height: ${DIALOG_HEADER_HEIGHT};
-  background: ${({ theme }) => theme.mainBackground};
+  background: ${({ theme }) => theme.dialogLayoutBackground};
   display: flex;
   align-items: center;
   justify-content: center;

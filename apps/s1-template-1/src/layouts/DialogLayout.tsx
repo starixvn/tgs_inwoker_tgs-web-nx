@@ -10,16 +10,24 @@ import styled from "styled-components";
 import Header from "./components/Header";
 
 const DialogLayoutContainer = styled.div`
-  position: relative;
+  background: ${({ theme }) => theme.dialogLayoutBackground};
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+  width: 100%;
 `;
 
 const ContentWrapper = styled.div`
-  margin: calc(${`${DIALOG_HEADER_HEIGHT} + ${MOBILE_HEADER_HEIGHT}) auto 0`};
   position: relative;
   z-index: 1;
   display: flex;
   justify-content: center;
   padding-bottom: 10rem;
+  padding-top: calc(${DIALOG_HEADER_HEIGHT} + ${MOBILE_HEADER_HEIGHT});
+  padding-bottom: 6rem;
+  height: 100%;
   ${media.sm} {
      min-height: calc(100vh - ${DIALOG_HEADER_HEIGHT} - ${MOBILE_HEADER_HEIGHT});
   }
