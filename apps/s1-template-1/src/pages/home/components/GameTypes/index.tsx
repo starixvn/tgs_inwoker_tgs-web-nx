@@ -15,19 +15,19 @@ const GameTypesEmbla = styled.section`
   z-index: 9;
   border-radius: 0 0 ${({ theme }) => theme.blockBorderRadiusMobile}
     ${({ theme }) => theme.blockBorderRadiusMobile};
-  padding: ${({ theme }) => theme.blockPaddingMobile};
+  padding: ${({ theme }) => theme.categoryAreaPaddingMobile};
   background-color: ${({ theme }) => theme.categoryAreaBackground};
 
   ${media.sm} {
     top: ${DESKTOP_HEADER_HEIGHT};
-    padding: ${({ theme }) => theme.blockPadding};
+    padding: ${({ theme }) => theme.categoryAreaPadding};
     border-bottom-right-radius: ${({ theme }) => theme.blockBorderRadius};
     border-bottom-left-radius: ${({ theme }) => theme.blockBorderRadius};
   }
 
   .embla__viewport {
-    margin-left: ${({ theme }) => theme.categoryAreaMargin};
-    padding: ${({ theme }) => theme.categoryAreaPadding};
+    margin-left: ${({ theme }) => theme.categoryListMargin};
+    padding: ${({ theme }) => theme.categoryListPadding};
   }
 `;
 

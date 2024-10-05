@@ -49,9 +49,11 @@ export const light = {
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
-  categoryAreaPadding: "1rem 0.8rem",
-  categoryAreaMargin: "-0.8rem",
+  categoryAreaPaddingMobile: "1rem 0.8rem 0",
+  categoryAreaPadding: "1rem 2.8rem",
   categoryAreaBackground: "#fff",
+  categoryListMargin: "-0.8rem",
+  categoryListPadding: "1rem 0.8rem",
   categoryBackground: "#fff",
   categoryBackgroundActive: "radial-gradient(50% 50% at 50% 50%, #C3DC15 0%, #A5BB10 100%)",
   categoryBackgroundHover: "radial-gradient(50% 50% at 50% 50%, #FFF 0%, #F1F1F1 100%)",

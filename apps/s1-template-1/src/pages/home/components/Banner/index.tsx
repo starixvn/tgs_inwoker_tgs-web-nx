@@ -37,7 +37,7 @@ const Banner = () => {
       <div className="embla__viewport" ref={emblaBannerRef}>
         <div className="embla__container">
           {general.banner.map((banner, index) => {
-            const { navurl, desktopurl, mobileurl, title } = banner;
+            const { navurl, desktopurl, mobileurl, title, alt } = banner;
 
             return (
               <AppearSensor key={index}>
@@ -56,7 +56,7 @@ const Banner = () => {
                           src={isDesktopSize ? desktopurl : mobileurl}
                           loader={<LoadingIcon />}
                           unloader={<NoGameIcon gameName={title} />}
-                          alt={title}
+                          alt={alt}
                         />
                       )}
                     </div>
