@@ -90,6 +90,8 @@ export function useAccountStore() {
           payload: response,
           loading: false,
         });
+        localStorage.setItem("session", response.data.session);
+
       } else {
         dispatch({
           type: LOGIN_FAILURE,
@@ -152,6 +154,8 @@ export function useAccountStore() {
         payload: response,
         loading: false,
       });
+
+      localStorage.removeItem("session");
     } else {
       dispatch({
         type: LOGOUT_FAILURE,

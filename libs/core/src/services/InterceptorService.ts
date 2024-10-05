@@ -118,11 +118,12 @@ export const InterceptorService = {
         return newResponse;
       },
       function (error: any) {
+
         if (error.response) {
           if (
-            error.response.data.err == 102 ||
-            error.response.data.err == 101 ||
-            error.response.data.err == 210 ||
+            error.response.data.err === 102 ||
+            error.response.data.err === 101 ||
+            error.response.data.err === 210 ||
             error.response.data.errmsg ===
             "request platform is not matched with player login platform."
           ) {
@@ -139,6 +140,10 @@ export const InterceptorService = {
 
               if (error.response.data.err == 210) {
                 AppHistory.replace(`/banned`);
+              }
+              if (error.response.data.err === 102) {
+                localStorage.setItem("AuthenticateFailed", "true");
+                AppHistory.replace(`/`);
               }
               // else {
               //   AppHistory.replace(`/`);

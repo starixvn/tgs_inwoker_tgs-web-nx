@@ -4,6 +4,7 @@ class DataDto {
   errmsgid = "";
   token = "";
   logintime = 0;
+  session = "";
 }
 
 export class LoginResDto {

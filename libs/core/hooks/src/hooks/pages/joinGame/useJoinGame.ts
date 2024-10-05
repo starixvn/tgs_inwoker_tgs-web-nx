@@ -1,14 +1,21 @@
-import { useEffect, useState } from "react";
 import { GameService } from "@tgs-web-nx/core";
+import { useAuth } from "@tgs-web-nx/core/features";
+import { StatusCodeEnum } from "@tgs-web-nx/constants";
+import { useState } from "react";
 
 export function useJoinGame() {
     const [isLoading, setIsLoading] = useState(false);
-    const [isMaintenance, setIsMaintenance] = useState(false);
-
+    const { goToLogin } = useAuth();
 
     const handleJoinGame = async (gameId: number, gpCode: string) => {
         setIsLoading(true);
         const joinGameRes = await GameService.JoinGame(gameId, gpCode);
+
+        if (joinGameRes.code === StatusCodeEnum.Unauthenticated) {
+            goToLogin();
+            setIsLoading(false);
+            return;
+        }
 
         if (joinGameRes.IsSuccess) {
             window.open(joinGameRes.data.url, `${gameId}-${gpCode}`)?.focus();

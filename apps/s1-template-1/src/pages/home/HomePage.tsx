@@ -7,6 +7,8 @@ import AnnouncementMarquee from "./components/AnnouncementMarquee";
 import Banner from "./components/Banner";
 import { Block } from "./components/CategoryRenderer/components/HomeCategory/style";
 import GameTypes from "./components/GameTypes";
+import { i18n } from "@tgs-web-nx/utils";
+import { useSnackbar } from "notistack";
 
 const MainWrapper = styled.div`
   width: 100%;
@@ -47,6 +49,17 @@ const BannerAnnouncementBlock = styled(Block)`
 `;
 
 const HomePage = () => {
+  const { enqueueSnackbar} = useSnackbar();
+
+  useEffect(() => {
+    if (localStorage.getItem("AuthenticateFailed") === "true") {
+      enqueueSnackbar(i18n.t("common.authenticateFailed"), {
+        variant: "error",
+      });
+      localStorage.removeItem("AuthenticateFailed");
+    }
+
+  },  [localStorage.getItem("AuthenticateFailed")]);
   return (
     <MainWrapper>
       <BannerAnnouncementBlock>
