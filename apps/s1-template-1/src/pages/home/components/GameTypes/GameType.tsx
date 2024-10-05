@@ -39,6 +39,7 @@ const Wrapper = styled.div<{
   cursor: pointer;
   border-radius: 1rem;
   border: 1px solid ${({ theme }) => theme.categoryBorder};
+  box-shadow: ${({ theme }) => theme.categoryShadow};
   background: ${({ theme, $isActive }) =>
     $isActive ? theme.categoryBackgroundActive : theme.categoryBackground};
 

@@ -39,6 +39,7 @@ const BannerAnnouncementBlock = styled(Block)`
   border-radius: 0;
   padding-top: 1.6rem;
   padding-bottom: 0;
+  gap: 0;
 
   &:has(.marquee-container) {
     padding-top: 0;

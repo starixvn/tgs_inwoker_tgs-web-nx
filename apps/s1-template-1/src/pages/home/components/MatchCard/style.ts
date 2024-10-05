@@ -7,10 +7,11 @@ export const MatchCardBg = styled.div`
   display: flex;
   flex-shrink: 0;
   position: relative;
-  background: url("/assets/images/highlight-matches/soccer-match-bg.webp");
   height: 18.6rem;
   width: 33.7rem;
   backdrop-filter: blur(2px);
+  background: url("/assets/images/highlight-matches/soccer-match-bg.webp");
+  box-shadow: ${({ theme }) => theme.gameCardShadow};
   vertical-align: top;
   flex-direction: column;
   padding: 1.2rem;

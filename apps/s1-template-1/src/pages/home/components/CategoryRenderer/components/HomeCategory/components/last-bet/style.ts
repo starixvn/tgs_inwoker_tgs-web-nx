@@ -9,6 +9,7 @@ export const TableContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
 
   &:after {
     content: "";

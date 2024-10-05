@@ -1,3 +1,5 @@
+import { Theme } from "@tgs-web-nx/constants";
+
 import { ThemeType } from "./constants";
 import { dark } from "./theme-dark";
 import { light } from "./theme-light";
@@ -11,4 +13,4 @@ const getTheme = (theme: string) => {
   }
 };
 
-export const theme = getTheme(import.meta.env.VITE_THEME);
+export const theme = getTheme(Theme);

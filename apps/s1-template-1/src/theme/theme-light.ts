@@ -49,12 +49,15 @@ export const light = {
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
+  categoryAreaPadding: "1rem 0.8rem",
+  categoryAreaMargin: "-0.8rem",
   categoryAreaBackground: "#fff",
   categoryBackground: "#fff",
   categoryBackgroundActive: "radial-gradient(50% 50% at 50% 50%, #C3DC15 0%, #A5BB10 100%)",
   categoryBackgroundHover: "radial-gradient(50% 50% at 50% 50%, #FFF 0%, #F1F1F1 100%)",
   categoryBorder: "#D9D9D9",
   categoryTextColor: "#2E353E",
+  categoryShadow: "0px 4px 9px 0px rgba(0, 0, 0, 0.10)",
 
   // Recent Big Wins
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
@@ -113,7 +116,7 @@ export const light = {
   linkColor: "#60AB00",
 
   dropDownBackground: "#fff",
-  dropDownItemSelectedBackground: "#E4F3CA",  
+  dropDownItemSelectedBackground: "#E4F3CA",
   dropDownItemSelectedTextColor: "#1C2532",
   dropDownColor: "#1C2532",
   dropDownIconColor: "#A7B5CA",
@@ -213,7 +216,9 @@ export const light = {
   blockBorderRadiusMobile: "0",
   blockBorderRadius: "1.6rem",
   blockPaddingMobile: "1.6rem 0.8rem",
-  blockPadding: "1.6rem 2.8rem",
+  blockPadding: "1.6rem 2.8rem 2.4rem",
+  blockGapMobile: "2.6rem",
+  blockGap: "3.8rem",
 
   mainContainerSpace: "0",
   mainContainerSpaceXs: "0",
@@ -223,11 +228,15 @@ export const light = {
   mainContainerFullWidthSpace: "1.6rem",
 
   // Game Card
+  gameAreaPaddingMobile: "1.6rem 0.8rem 0.8rem",
+  gameAreaPadding: "2rem 0.8rem 0.8rem",
+  gameAreaMargin: "-0.8rem",
   gameCardBackground: "linear-gradient(149deg, #CCC 2%, #EDEDED 49.83%, #BEBCBC 97.67%)",
   gameCardGameNameColor: "#fff",
   gameCardBackgroundHover: "rgba(0, 0, 0, 0.6)",
   gameCardAspectRatio: "156 / 210",
-  gameCardBorder: "#fff",
+  gameCardBorder: "none",
+  gameCardShadow: "0px 0px 5px 0px rgba(30, 31, 34, 0.7)",
 
   // Load more button
   loadingMoreButtonBackground: "#2A3038",

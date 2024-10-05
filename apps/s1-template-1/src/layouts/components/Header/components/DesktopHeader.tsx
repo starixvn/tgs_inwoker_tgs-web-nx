@@ -22,10 +22,6 @@ const HeaderContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.headerBorderColor};
   box-shadow: ${({ theme }) => theme.headerShadow};
   z-index: 10;
-
-  // &:has(+ .marquee-container) {
-  //   margin-bottom: 0;
-  // }
 `;
 
 const HeaderWrapper = styled.div`
@@ -48,7 +44,7 @@ const HeaderWrapper = styled.div`
 const LogoWrapper = styled.div`
   & > img {
     display: block;
-    height: 2.9rem;
+    height: 95%;
     cursor: pointer;
   }
 `;

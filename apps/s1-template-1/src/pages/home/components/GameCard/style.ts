@@ -41,7 +41,7 @@ export const GameCardBg = styled.div`
   border-radius: 1.2rem;
   background: ${({ theme }) => theme.gameCardBackground};
   backdrop-filter: blur(2px);
-  box-shadow: 0px 0px 5px 0px rgba(30, 31, 34, 0.7);
+  box-shadow: ${({ theme }) => theme.gameCardShadow};
   opacity: 0;
   animation: appear-game 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 
@@ -65,7 +65,7 @@ export const GameCardBg = styled.div`
     flex-shrink: 0;
 
     &:is(.normal):hover {
-      border: 2px solid ${({ theme }) => theme.gameCardBorder};
+      border: ${({ theme }) => theme.gameCardBorder};
 
       .game-icon {
         transform: scale(1.1);

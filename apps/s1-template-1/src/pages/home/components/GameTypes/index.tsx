@@ -10,27 +10,24 @@ import styled from "styled-components";
 import GameType from "./GameType";
 
 const GameTypesEmbla = styled.section`
+  position: sticky;
+  top: ${MOBILE_HEADER_HEIGHT};
+  z-index: 9;
   border-radius: 0 0 ${({ theme }) => theme.blockBorderRadiusMobile}
     ${({ theme }) => theme.blockBorderRadiusMobile};
   padding: ${({ theme }) => theme.blockPaddingMobile};
+  background-color: ${({ theme }) => theme.categoryAreaBackground};
 
   ${media.sm} {
+    top: ${DESKTOP_HEADER_HEIGHT};
     padding: ${({ theme }) => theme.blockPadding};
     border-bottom-right-radius: ${({ theme }) => theme.blockBorderRadius};
     border-bottom-left-radius: ${({ theme }) => theme.blockBorderRadius};
   }
 
-  &.game-types {
-    position: sticky;
-    top: ${MOBILE_HEADER_HEIGHT};
-    z-index: 9;
-    padding-top: 1.6rem;
-    padding-bottom: 1.6rem;
-    background-color: ${({ theme }) => theme.categoryAreaBackground};
-
-    ${media.sm} {
-      top: ${DESKTOP_HEADER_HEIGHT};
-    }
+  .embla__viewport {
+    margin-left: ${({ theme }) => theme.categoryAreaMargin};
+    padding: ${({ theme }) => theme.categoryAreaPadding};
   }
 `;
 

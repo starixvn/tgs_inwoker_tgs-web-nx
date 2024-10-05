@@ -84,6 +84,9 @@ export const GameTypeContainer = styled.div`
 `;
 
 export const Block = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.blockGapMobile};
   width: 100%;
   background: ${({ theme }) => theme.blockBackground};
   border: ${({ theme }) => theme.blockBorder};
@@ -92,19 +95,26 @@ export const Block = styled.div`
   padding: ${({ theme }) => theme.blockPaddingMobile};
 
   ${media.sm} {
+    gap: ${({ theme }) => theme.blockGap};
     padding: ${({ theme }) => theme.blockPadding};
     border-radius: ${({ theme }) => theme.blockBorderRadius};
   }
 `;
 
-export const Group = styled(Block)`
+export const Group = styled.div`
   position: relative;
 
-  &.game-area {
-    .embla__viewport {
-      padding-top: 1.8rem;
-      padding-bottom: 1rem;
+  .embla__viewport {
+    margin-left: ${({ theme }) => theme.gameAreaMargin};
+    margin-right: ${({ theme }) => theme.gameAreaMargin};
+    padding: ${({ theme }) => theme.gameAreaPaddingMobile};
+
+    ${media.sm} {
+      padding: ${({ theme }) => theme.gameAreaPadding};
     }
+  }
+
+  &.game-area {
     .embla__container {
       --gap: 1.2rem;
       --min-width: 13.1rem;

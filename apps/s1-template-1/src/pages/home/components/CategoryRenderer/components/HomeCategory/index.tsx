@@ -11,7 +11,7 @@ import LastBets from "./components/last-bet";
 import MatchCardSlider from "./components/MatchSlider/MatchCardSlider";
 import RecentBigWins from "./components/RecentBigWins";
 import ViewAllButton from "./components/ViewAllButton";
-import { Container, DesktopContainer, GameTypeContainer, GameTypeTitle, Group } from "./style";
+import { Block, Container, DesktopContainer, GameTypeContainer, GameTypeTitle, Group } from "./style";
 
 const HomeCategory = () => {
   const history = useHistory();
@@ -39,123 +39,141 @@ const HomeCategory = () => {
   return (
     <DesktopContainer>
       <GameTypeContainer>
-        <RecentBigWins data={recentBigWins} />
+        <Block>
+          <RecentBigWins data={recentBigWins} />
+        </Block>
 
-        <Group className="game-area">
-          <Container>
-            <GameTypeTitle>
-              <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
-              {i18n.t("web.home.Section1Slot")}
-              <ViewAllButton handleClick={() => navigateTo("/casino/slots", GameTypeEnum.SLOT)} />
-            </GameTypeTitle>
-            <EmblaCarousel
-              options={gameTypeEmblaOptions}
-              hasControlButton={true}
-              extraClassName="two-rows"
-            >
-              <GameCardSlider data={slotGameList} />
-            </EmblaCarousel>
-          </Container>
-        </Group>
-        <Group className="game-area">
-          <Container>
-            <GameTypeTitle>
-              <img src="/assets/images/common/icon-live-casino-group.svg" alt="live-casino" />
-              {i18n.t("web.home.Section1Live")}
-              <ViewAllButton
-                handleClick={() => navigateTo("/casino/live-casino", GameTypeEnum.LIVE)}
-              />
-            </GameTypeTitle>
-            <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
-              <GameCardSlider data={liveCasinoList} />
-            </EmblaCarousel>
-          </Container>
-        </Group>
-        <Group className="game-area">
-          <Container>
-            <GameTypeTitle>
-              <img src="/assets/images/common/icon-sports-group.svg" alt="sports" />
-              {i18n.t("web.home.Section1Sport")}
-              <ViewAllButton handleClick={() => navigateTo("sports", GameTypeEnum.SPORTS)} />
-            </GameTypeTitle>
-            <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
-              <GameCardSlider data={sportGameList} />
-            </EmblaCarousel>
-          </Container>
-        </Group>
-
-        {highlightMatches.length > 0 && (
+        <Block>
           <Group className="game-area">
             <Container>
-              <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
+              <GameTypeTitle>
+                <img src="/assets/images/common/icon-popular-slots.svg" alt="slot" />
+                {i18n.t("web.home.Section1Slot")}
+                <ViewAllButton handleClick={() => navigateTo("/casino/slots", GameTypeEnum.SLOT)} />
+              </GameTypeTitle>
               <EmblaCarousel
                 options={gameTypeEmblaOptions}
                 hasControlButton={true}
-                extraClassName="highlight-matches"
+                extraClassName="two-rows"
               >
-                <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
+                <GameCardSlider data={slotGameList} />
               </EmblaCarousel>
             </Container>
           </Group>
-        )}
+          <Group className="game-area">
+            <Container>
+              <GameTypeTitle>
+                <img src="/assets/images/common/icon-live-casino-group.svg" alt="live-casino" />
+                {i18n.t("web.home.Section1Live")}
+                <ViewAllButton
+                  handleClick={() => navigateTo("/casino/live-casino", GameTypeEnum.LIVE)}
+                />
+              </GameTypeTitle>
+              <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
+                <GameCardSlider data={liveCasinoList} />
+              </EmblaCarousel>
+            </Container>
+          </Group>
+        </Block>
 
-        <Group className="game-area">
-          <Container>
-            <GameTypeTitle>
-              <img src="/assets/images/common/icon-new-release.svg" alt="new-release" />
-              {i18n.t("web.home.Section1NewRelease")}
-              <ViewAllButton handleClick={() => navigateTo("/tag/new", GameTypeEnum.NEW)} />
-            </GameTypeTitle>
-            <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
-              <GameCardSlider data={newGameList} />
-            </EmblaCarousel>
-          </Container>
-        </Group>
-        <Group>
-          <Container>
-            <GameTypeTitle>
-              <img src="/assets/images/common/icon-game-providers.svg" alt="game-providers" />
-              {i18n.t("web.home.Section1GameProviders")}
-            </GameTypeTitle>
-            <EmblaCarousel
-              options={gameTypeEmblaOptions}
-              hasControlButton={true}
-              extraClassName="providers two-rows"
-            >
-              <ProviderList providerList={providerList} />
-            </EmblaCarousel>
-          </Container>
-        </Group>
-        <Group>
-          <Container>
-            <GameTypeTitle>
-              <img src="/assets/images/common/icon-table-game-group.svg" alt="table-game" />
-              {i18n.t("web.home.Section1Electron")}
-              <ViewAllButton
-                handleClick={() => navigateTo("/casino/table-game", GameTypeEnum.TABLEGAME)}
-              />
-            </GameTypeTitle>
-            <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
-              <GameCardSlider data={tableGameList} />
-            </EmblaCarousel>
-          </Container>
-        </Group>
-        <Group className="game-area">
-          <Container>
-            <GameTypeTitle>
-              <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
-              {i18n.t("web.home.Section1HotGames")}
-              <ViewAllButton handleClick={() => navigateTo("/tag/hot", GameTypeEnum.HOT)} />
-            </GameTypeTitle>
-            <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
-              <GameCardSlider data={hotGameList} />
-            </EmblaCarousel>
-          </Container>
-        </Group>
-        <Group className="game-area">
-          <GameTypeTitle>{i18n.t("web.latestBets.title")}</GameTypeTitle>
-          <LastBets connection={betHubConnection}></LastBets>
-        </Group>
+        <Block>
+          <Group className="game-area">
+            <Container>
+              <GameTypeTitle>
+                <img src="/assets/images/common/icon-sports-group.svg" alt="sports" />
+                {i18n.t("web.home.Section1Sport")}
+                <ViewAllButton handleClick={() => navigateTo("sports", GameTypeEnum.SPORTS)} />
+              </GameTypeTitle>
+              <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
+                <GameCardSlider data={sportGameList} />
+              </EmblaCarousel>
+            </Container>
+          </Group>
+
+          {highlightMatches.length > 0 && (
+            <Group className="game-area">
+              <Container>
+                <GameTypeTitle>{i18n.t("web.home.highlightMatches")}</GameTypeTitle>
+                <EmblaCarousel
+                  options={gameTypeEmblaOptions}
+                  hasControlButton={true}
+                  extraClassName="highlight-matches"
+                >
+                  <MatchCardSlider matches={highlightMatches}></MatchCardSlider>
+                </EmblaCarousel>
+              </Container>
+            </Group>
+          )}
+        </Block>
+        <Block>
+          <Group className="game-area">
+            <Container>
+              <GameTypeTitle>
+                <img src="/assets/images/common/icon-new-release.svg" alt="new-release" />
+                {i18n.t("web.home.Section1NewRelease")}
+                <ViewAllButton handleClick={() => navigateTo("/tag/new", GameTypeEnum.NEW)} />
+              </GameTypeTitle>
+              <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
+                <GameCardSlider data={newGameList} />
+              </EmblaCarousel>
+            </Container>
+          </Group>
+        </Block>
+
+        <Block>
+          <Group>
+            <Container>
+              <GameTypeTitle>
+                <img src="/assets/images/common/icon-game-providers.svg" alt="game-providers" />
+                {i18n.t("web.home.Section1GameProviders")}
+              </GameTypeTitle>
+              <EmblaCarousel
+                options={gameTypeEmblaOptions}
+                hasControlButton={true}
+                extraClassName="providers two-rows"
+              >
+                <ProviderList providerList={providerList} />
+              </EmblaCarousel>
+            </Container>
+          </Group>
+        </Block>
+
+        <Block>
+          <Group className="game-area">
+            <Container>
+              <GameTypeTitle>
+                <img src="/assets/images/common/icon-table-game-group.svg" alt="table-game" />
+                {i18n.t("web.home.Section1Electron")}
+                <ViewAllButton
+                  handleClick={() => navigateTo("/casino/table-game", GameTypeEnum.TABLEGAME)}
+                />
+              </GameTypeTitle>
+              <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
+                <GameCardSlider data={tableGameList} />
+              </EmblaCarousel>
+            </Container>
+          </Group>
+
+          <Group className="game-area">
+            <Container>
+              <GameTypeTitle>
+                <img src="/assets/images/common/icon-hot-game.svg" alt="hot" />
+                {i18n.t("web.home.Section1HotGames")}
+                <ViewAllButton handleClick={() => navigateTo("/tag/hot", GameTypeEnum.HOT)} />
+              </GameTypeTitle>
+              <EmblaCarousel options={gameTypeEmblaOptions} hasControlButton={true}>
+                <GameCardSlider data={hotGameList} />
+              </EmblaCarousel>
+            </Container>
+          </Group>
+        </Block>
+
+        <Block>
+          <Group className="game-area">
+            <GameTypeTitle>{i18n.t("web.latestBets.title")}</GameTypeTitle>
+            <LastBets connection={betHubConnection}></LastBets>
+          </Group>
+        </Block>
       </GameTypeContainer>
     </DesktopContainer>
   );

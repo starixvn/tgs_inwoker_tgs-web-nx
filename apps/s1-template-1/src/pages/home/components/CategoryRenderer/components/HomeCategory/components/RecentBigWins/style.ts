@@ -11,6 +11,11 @@ export const RecentBigWinsContainer = styled.div`
   gap: var(--gap);
   grid-auto-flow: column;
   grid-auto-columns: calc(var(--item-width) + var(--gap));
+  padding: ${({ theme }) => theme.gameAreaPaddingMobile};
+
+  ${media.sm} {
+    padding: ${({ theme }) => theme.gameAreaPadding};
+  }
 `;
 
 export const CardHoverBg = styled.div`

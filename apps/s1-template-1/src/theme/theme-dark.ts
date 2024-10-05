@@ -49,12 +49,15 @@ export const dark = {
   languageLineColor: "linear-gradient(180deg, #32455F 0%, #4D678D 50.5%, #2A3B53 100%)",
 
   // Category
+  categoryAreaPadding: "1.6rem 0",
+  categoryAreaMargin: "0px",
   categoryAreaBackground: "#0d131c",
   categoryBackground: "radial-gradient(57.7% 89.62% at 50.57% 23.58%, #293978 0%, #1D2738 100%)",
   categoryBackgroundActive: "#849709",
   categoryBackgroundHover: "#243260",
   categoryBorder: "#161F2C",
   categoryTextColor: "#fff",
+  categoryShadow: "none",
 
   // Recent Big Wins
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
@@ -211,6 +214,8 @@ export const dark = {
   blockBorderRadius: "0",
   blockPaddingMobile: "0",
   blockPadding: "0",
+  blockGapMobile: "3.2rem",
+  blockGap: "4.8rem",
 
   mainContainerSpace: "0.8rem",
   mainContainerSpaceXs: "0.8rem",
@@ -220,11 +225,15 @@ export const dark = {
   mainContainerFullWidthSpace: "0",
 
   // Game Card
+  gameAreaPaddingMobile: "1.6rem 0 0 0",
+  gameAreaPadding: "2rem 0 0 0",
+  gameAreaMargin: "0px",
   gameCardBackground: "linear-gradient(149deg, #2e4667 2%, #2b486f 49.83%, #162c4a 97.67%)",
   gameCardGameNameColor: "#fff",
   gameCardBackgroundHover: "rgba(0, 0, 0, 0.6)",
   gameCardAspectRatio: "156 / 210",
-  gameCardBorder: "#fff",
+  gameCardBorder: "2px solid #fff",
+  gameCardShadow: "none",
 
   // Load more button
   loadingMoreButtonBackground: "#2A3038",

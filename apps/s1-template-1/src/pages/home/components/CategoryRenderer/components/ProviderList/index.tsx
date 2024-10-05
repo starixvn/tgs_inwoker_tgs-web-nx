@@ -11,6 +11,7 @@ const ProviderItem = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.providerItemBackground};
+  box-shadow: ${({ theme }) => theme.gameCardShadow};
   min-width: 11.3rem;
   height: 6rem;
   padding: 0 0.8rem;
