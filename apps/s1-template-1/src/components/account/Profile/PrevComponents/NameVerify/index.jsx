@@ -150,6 +150,9 @@ class NameVerify extends BaseProfile {
           identityformstatus: 0,
           identityformid: "confirm not empty",
         });
+        this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
+            variant: "success",
+          });
       } else {
         this.props.alert("", ErrorSwitcher.getTranslation(response.info));
       }
