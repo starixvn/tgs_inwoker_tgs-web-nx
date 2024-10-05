@@ -47,7 +47,7 @@ export const PasswordContainer = styled.div`
 `;
 
 const ProfileSettings = styled.div`
-  background: #19212c;
+  background: ${({ theme }) => theme.accountInfoBackgroundColor};
   border-radius: 1.2rem;
   margin: 2.4rem 0 25rem;
   padding: 1.2rem;

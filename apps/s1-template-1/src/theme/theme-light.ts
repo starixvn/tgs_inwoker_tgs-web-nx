@@ -106,7 +106,7 @@ export const light = {
 
   // Common
   mainBackground: "#F0F0F0",
-  text: "#2E353E",
+  text: "#1C2532",
 
   errorColor: "#F90B44",
 
@@ -150,7 +150,7 @@ export const light = {
   iconCopyColorHover: "#4885E4",
   winAmountColor: "#189EFF",
   lossAmountColor: "#FF1818",
-  amountColor: "#FFDA18",
+  amountColor: "#F99E1E",
 
   // Tab
   tabBackground:
@@ -238,12 +238,12 @@ export const light = {
 
   noDataTextColor: "#6E7E92",
   // Table
-  tableBorderColor: "#293849",
-  tableBackground: "#1C2836",
-  tableHeaderBackground: "#263343",
-  tableHeaderColor: "#B3CDF8",
-  tableHeaderBorderColor: "#3A4F69",
-  tableColor: "#ffffff",
+  tableBorderColor: "#DCDCDC",
+  tableBackground: "#F6F6F6",
+  tableHeaderBackground: "#D8ECFD",
+  tableHeaderColor: "#2B3A50",
+  tableHeaderBorderColor: "#DCDCDC",
+  tableColor: "#1C2532",
   tableFontSize: "1.1rem",
   tableHeaderFontSize: "1.2rem",
   tableBorderRadius: ".8rem",
@@ -338,4 +338,10 @@ export const light = {
   backIconHeaderDialogBoderColor: "#D3D3D3",
   backIconHeaderDialogBoxshadow: "-4px 2px 4px 0px rgba(0, 0, 0, 0.06)",
   headerDialogTextColor: "#1C2532",
+
+  // Account Info Page
+  accountInfoBackgroundColor: "#EAF7FD",
+  playerNameColor: "#1C2532",
+  walletInfoColor: "#1C2532",
+  borderAvartar: "rgba(0, 0, 0, 0.20)",
 };

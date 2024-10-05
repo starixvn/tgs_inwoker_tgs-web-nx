@@ -65,6 +65,10 @@ const BalanceContainer = styled.div<{ $runAnim: boolean }>`
   }
 `;
 
+const AccountIconHeader = styled(AccountIcon)`
+  border-width: 2px;
+`;
+
 const AccountHeaderContent = () => {
   const history = useHistory();
   const { handleLogout } = useAuthContext();
@@ -119,9 +123,9 @@ const AccountHeaderContent = () => {
       <SelectUnlitmitHeight
         renderValue={() => {
           return (
-            <AccountIcon>
+            <AccountIconHeader>
               <img src={avatarUrl} alt="avatar" />
-            </AccountIcon>
+            </AccountIconHeader>
           );
         }}
         value={""}

@@ -135,7 +135,7 @@ export const AccountIcon = styled.div`
   cursor: pointer;
   margin: 0 0 0 0.6rem;
   border-radius: 50%;
-  border: 0.2rem solid rgba(255, 255, 255, 0.2);
+  border: 4px solid ${({ theme }) => theme.borderAvartar};
   width: 4rem;
   height: 4rem;
   display: flex;
@@ -171,7 +171,7 @@ export const BadgeContainer = styled.div`
 `;
 
 export const LabelHighlight = styled.div`
-  color: ${({ theme }) => theme.textHighlight};
+  color: ${({ theme }) => theme.amountColor};
 `;
 
 export const SubmitButton = muiStyled(MuiButton)(({ theme }) => ({

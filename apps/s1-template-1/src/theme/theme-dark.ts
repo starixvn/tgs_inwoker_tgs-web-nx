@@ -335,4 +335,10 @@ export const dark = {
   backIconHeaderDialogBoderColor: "#2A3546",
   backIconHeaderDialogBoxshadow: "none",
   headerDialogTextColor: "#ffffff",
+
+  // Account Info Page
+  accountInfoBackgroundColor: "#19212c",
+  playerNameColor: "#fff",
+  walletInfoColor: "#B3CDF8",
+  borderAvartar: "rgba(255, 255, 255, 0.20)",
 };
