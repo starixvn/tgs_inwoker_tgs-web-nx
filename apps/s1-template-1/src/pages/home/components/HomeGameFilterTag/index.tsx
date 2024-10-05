@@ -57,9 +57,9 @@ const HomeGameFilterTag: React.FC<{
 
   useEffect(() => {
     if(activeGameType === GameTypeEnum.SPORTS) {
-        setProviderOptions(providerFilterTagList.filter(item => item.name === "Saba Sports"));
+        setProviderOptions(providerFilterTagList.filter(item => item.gpCode === "SABASW"));
     } else {
-        setProviderOptions(providerFilterTagList.filter(item => item.name !== "Saba Sports"));
+        setProviderOptions(providerFilterTagList.filter(item => item.gpCode !== "SABASW"));
     }
   }, [activeGameType, providerFilterTagList]);
 
