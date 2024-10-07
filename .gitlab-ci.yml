@@ -93,7 +93,6 @@ stages:
     - |
       echo "domain=$domain"
       echo "brand=$brand"
-      cat image.txt
       if [[ $domain != "" && $brand != "" && -e image.txt ]]; then 
         cat image.txt
         export image=$(awk -F':' '{print $1}' image.txt)
@@ -179,7 +178,6 @@ stages:
       # echo "KUBECONFIG=$KUBECONFIG"
   script:
     - |
-      cat image.txt
       if [[ -e image.txt && $domain == "" && $brand == "" ]]; then 
           cat image.txt
           for image in $(cat image.txt); do
