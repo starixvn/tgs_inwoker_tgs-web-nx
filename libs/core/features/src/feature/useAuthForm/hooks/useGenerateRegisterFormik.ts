@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import * as Yup from "yup";
 import { FormikValues, useFormik } from "formik";
-import config from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { i18n } from "@tgs-web-nx/utils";
 import { FormInputTypeEnum } from "../types";
 import { InvitationType } from "../types";
@@ -14,6 +14,8 @@ type Props = {
 
 export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
   const { promotionData } = usePromotionCode();
+  const isUserNameLowerCaseOnly = brandConfig[mapBrandName(config.brand)].isUserNameLowerCaseOnly;
+
   // ===== init form input config =====
   const formInputConfigList = useMemo<FormikFormInput[]>(() => {
     return [
@@ -24,8 +26,10 @@ export function useGenerateRegisterFormik({ handleClickSubmit }: Props) {
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required("Username is required")
-          .matches(/^[a-z0-9]{6,16}$/, {
-            message: i18n.t("common.msgRegisterUserNameInvalid"),
+          .matches(isUserNameLowerCaseOnly ? /^[a-z0-9]{6,16}$/ : /^[a-zA-Z0-9]{6,16}$/, {
+            message: isUserNameLowerCaseOnly
+              ? i18n.t("common.msgRegisterUserNameInvalid")
+              : i18n.t("common.msgRegisterUserNameInvalidOri"),
           }),
       },
       {

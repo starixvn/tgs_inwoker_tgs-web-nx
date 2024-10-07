@@ -18,6 +18,7 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
     const invitationType = getInvitationType() || InvitationType.AGENT;
     const promotionCode = getPromotionCode() || "";
     const isPromotionCodeReadOnly = Boolean(invitationType && promotionCode);
+    const isUserNameLowerCaseOnly = brandConfig[mapBrandName(config.brand)].isUserNameLowerCaseOnly;
 
     return [
       {
@@ -27,8 +28,10 @@ export function useGenerateRegisterCreatePlayerWithSMSFormik({ handleClickSubmit
         type: FormInputTypeEnum.TEXT,
         validationSchema: Yup.string()
           .required("Username is required")
-          .matches(/^[a-z0-9]{6,16}$/, {
-            message: i18n.t("common.msgRegisterUserNameInvalid"),
+          .matches(isUserNameLowerCaseOnly ? /^[a-z0-9]{6,16}$/ : /^[a-zA-Z0-9]{6,16}$/, {
+            message: isUserNameLowerCaseOnly
+              ? i18n.t("common.msgRegisterUserNameInvalid")
+              : i18n.t("common.msgRegisterUserNameInvalidOri"),
           }),
       },
       {
