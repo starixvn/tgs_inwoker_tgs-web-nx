@@ -66,12 +66,7 @@ class VerifyEmail extends BaseProfile {
 
     try {
       this.showLoading(true);
-      const response = await AccountService.VerifyEmail(
-        this.state.email,
-        //下列參數解決TGS-5340的issue，實際此API不需要回傳下列參數
-        this.props.account.info.member_username,
-        this.props.general.brand.code,
-      );
+      const response = await AccountService.VerifyEmail(this.state.email);
       if (response.IsSuccess) {
         const securityKey = response.data;
 
@@ -268,7 +263,6 @@ class VerifyEmail extends BaseProfile {
 const mapStateToProps = (state) => {
   return {
     account: state.account,
-    general: state.general,
   };
 };
 const mapDispatchToProps = (dispatch) => {
