@@ -281,6 +281,8 @@ deploy-staging:
       artifacts: true
   variables:
     env: staging
+  tags:
+    - staging
   environment:
     name: staging
   only:
@@ -295,6 +297,8 @@ deploy-prod:
       artifacts: true
   variables:
     env: prod
+  tags:
+    - prod
   environment:
     name: prod
   only:
