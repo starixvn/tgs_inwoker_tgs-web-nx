@@ -470,12 +470,20 @@ class DepositPrev extends Component {
         }
       }
     } else {
+      const customData = payment.paymentcode.toUpperCase() === "LNWPAY"
+        ? JSON.stringify({
+          clientAccountName: this.state.name,
+          clientAccountNo: this.state.account
+        })
+        : ""
+
       this.performDepositInPopUp(
         this.state.amount.replace(/,/g, ""),
         channel.id,
         this.state.depositPromotion,
         payment.paymentcode,
         depositMethodSwitcher(method.methodcode.toLowerCase()),
+        customData
       );
       // if (method.methodcode === "Crypto") {
       //   this.props.doCryptoDeposit(
@@ -575,13 +583,14 @@ class DepositPrev extends Component {
       }
     }
   };
-  performDepositInPopUp = (amount = "", payment_id = "", promotionid = "", paymentcode = "", type = "") => {
+  performDepositInPopUp = (amount = "", payment_id = "", promotionid = "", paymentcode = "", type = "", customData ="") => {
     const queryParams = new URLSearchParams({
       amount,
       payment_id,
       promotionid,
       paymentcode,
-      type
+      type,
+      customData
     }).toString();
 
     const url = `/makedeposit?${queryParams}`;

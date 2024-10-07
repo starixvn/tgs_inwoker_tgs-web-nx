@@ -379,7 +379,7 @@ class Main extends Component {
           if (config.features.Deposit_ManualApplePayHideBankAcc) {
             //empty
           } else {
-            if (paymentCode("MANUAL") || paymentCode("APPLEPAY") || alteredPaymentCode("manual")) {
+            if (paymentCode("MANUAL") || paymentCode("APPLEPAY") || alteredPaymentCode("manual") || paymentCode("LNWPAY")) {
               return (
                 <>
                   {!(

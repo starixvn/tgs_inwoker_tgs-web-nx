@@ -1,23 +1,4 @@
 // @ts-nocheck
-import { useDispatch, useSelector } from "react-redux";
-import { useCallback } from "react";
-import {
-  DoTransferResDto,
-  GetDepositMethodResDto,
-  GetGameBalanceResDto,
-  GetListOfWithdrawChannelResDto,
-  GetWalletBalanceResDto,
-  PerformEWalletDepositResDto,
-  PerformLeePayDepositResDto,
-  PerformManualBankDepositResDto,
-  PerformManualFPSDepositResDto,
-  PerformManualFPSDepositWithNameResDto,
-  PerformManualThirdPartyDepositResDto,
-  PerformPulsaDepositResDto,
-  PerformUsdtDepositResDto,
-  PerformCoinsphDepositResDto,
-  WalletState,
-} from "@tgs-web-nx/types";
 import {
   ADDBANKCARD_BEGIN,
   ADDBANKCARD_FAIL,
@@ -93,6 +74,24 @@ import {
   UPDATEBALANCELIST_SUCCESS,
   WalletService,
 } from "@tgs-web-nx/core";
+import {
+  DoTransferResDto,
+  GetDepositMethodResDto,
+  GetGameBalanceResDto,
+  GetListOfWithdrawChannelResDto,
+  GetWalletBalanceResDto,
+  PerformCoinsphDepositResDto,
+  PerformEWalletDepositResDto,
+  PerformLeePayDepositResDto,
+  PerformManualBankDepositResDto,
+  PerformManualFPSDepositWithNameResDto,
+  PerformManualThirdPartyDepositResDto,
+  PerformPulsaDepositResDto,
+  PerformUsdtDepositResDto,
+  WalletState
+} from "@tgs-web-nx/types";
+import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export function useWalletStore() {
   const dispatch = useDispatch();
@@ -255,7 +254,7 @@ export function useWalletStore() {
             loading: false,
           });
         }
-        
+
         return response;
       } catch (error: any) {
         dispatch({
@@ -875,7 +874,7 @@ export function useWalletStore() {
 
     try {
       const response = await WalletService.PerformUploadDepositProof(id, file);
-      
+
       //@ts-ignore
       if (response?.IsSuccess) {
         dispatch({
@@ -1408,15 +1407,15 @@ export function useWalletStore() {
   );
 
   const performDeposit = useCallback(
-    (amount: string, paymentid: string, promotionid: string, paymentcode: string, type: string) => {
+    (amount: string, paymentid: string, promotionid: string, paymentcode: string, type: string, customData: string) => {
       dispatch({
         type: DODEPOSIT_BEGIN,
         loading: true,
       });
-      const result = WalletService.PerformDeposit(amount, paymentid, promotionid, paymentcode, type)
+      const result = WalletService.PerformDeposit(amount, paymentid, promotionid, paymentcode, type, customData)
         .then((response) => {
           console.log(response);
-          
+
           if (response?.IsSuccess) {
             dispatch({
               type: DODEPOSIT_SUCCESS,
@@ -1670,8 +1669,8 @@ export function useWalletStore() {
     },
     [],
   );
-  
-  
+
+
 
   return {
     wallet,

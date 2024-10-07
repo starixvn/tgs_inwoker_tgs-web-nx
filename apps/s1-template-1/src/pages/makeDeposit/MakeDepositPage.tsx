@@ -24,13 +24,15 @@ const getDepositInfoFromUrlSearchParams = (search: string) => {
   const promotionid = new URLSearchParams(search).get("promotionid") ?? "";
   const paymentcode = new URLSearchParams(search).get("paymentcode") ?? "";
   const type = new URLSearchParams(search).get("type") ?? "";
+  const customData = new URLSearchParams(search).get("customData") ?? "";
 
   return {
     amount,
     payment_id,
     promotionid,
     paymentcode,
-    type
+    type,
+    customData
   }
 }
 
@@ -69,7 +71,7 @@ const ErrorMessage = ({ errmsgid = i18n.t("SystemError") }: { errmsgid?: string}
 const MakeDepositPage = () => {
 
   const search = useLocation().search;
-  const {amount, payment_id, promotionid, paymentcode, type} = getDepositInfoFromUrlSearchParams(search);
+  const {amount, payment_id, promotionid, paymentcode, type, customData } = getDepositInfoFromUrlSearchParams(search);
 
   const { wallet, performDeposit } = useWalletStore();
 
@@ -88,7 +90,7 @@ const MakeDepositPage = () => {
 
   useEffect(() => {
     if (!wallet.depositResult)
-      performDeposit(amount, payment_id, promotionid, paymentcode, type);
+      performDeposit(amount, payment_id, promotionid, paymentcode, type, customData);
     else {
       // TypeScript typing is currently broken, so temporarily get value with square brackets
       console.log(wallet.depositResult)
@@ -102,7 +104,7 @@ const MakeDepositPage = () => {
         }
       }
     }
-  }, [wallet.depositResult, amount, payment_id, promotionid, paymentcode, type, performDeposit])
+  }, [wallet.depositResult, amount, payment_id, promotionid, paymentcode, type, performDeposit, customData])
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>
