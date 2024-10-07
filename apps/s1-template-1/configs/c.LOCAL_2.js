@@ -13,7 +13,7 @@ window.envConfig = {
     brandName: "nsDemoUUS",
     sourceUrl: "https://images.srvptt.com/",
     liveChatDepartment: "S1_Live_Chat",
-    defaultLanguage: "en-US",
+    defaultLanguage: "th-TH",
     affiliateId: "",
     brandTitle: "GMO",
     agentAdminUrl: null,

@@ -12,7 +12,7 @@ window.envConfig = {
     brandId: "8acacf5a-d808-4a55-8302-d832ee3da6dc",
     brandName: "GMO",
     sourceUrl: "https://images.srvptt.com/",
-    defaultLanguage: "en-US",
+    defaultLanguage: "th-TH",
     affiliateId: "",
     brandTitle: "GMO",
     agentAdminUrl: null,

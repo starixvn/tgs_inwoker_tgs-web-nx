@@ -12,7 +12,7 @@ window.envConfig = {
     brandId: "01922855-7737-0000-0001-07e86253a3be",
     brandName: "nsDemoUUS",
     sourceUrl: "https://images.srvptt.com/",
-    defaultLanguage: "en-US",
+    defaultLanguage: "th-TH",
     affiliateId: "",
     brandTitle: "nsDemoUUS",
     agentAdminUrl: null,
