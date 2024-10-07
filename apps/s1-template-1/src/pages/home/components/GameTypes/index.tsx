@@ -1,7 +1,13 @@
 import { media } from "@/theme/breakpoints";
 import { DESKTOP_HEADER_HEIGHT, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
-import { NavItem, TagTypeEnum, useGameTypeList, useGetNavGameTypeItemList, useHomeGameContext } from "@tgs-web-nx/core/features";
+import {
+  NavItem,
+  TagTypeEnum,
+  useGameTypeList,
+  useGetNavGameTypeItemList,
+  useHomeGameContext,
+} from "@tgs-web-nx/core/features";
 import useEmblaCarousel from "embla-carousel-react";
 import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
@@ -99,7 +105,7 @@ const GameTypes = () => {
     //   });
     // }
 
-    window.scrollTo({
+    document.getElementById("root")?.scrollTo({
       top: 0,
       behavior: "smooth",
     });

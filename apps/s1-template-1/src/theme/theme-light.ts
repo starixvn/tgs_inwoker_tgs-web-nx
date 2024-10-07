@@ -80,7 +80,7 @@ export const light = {
   // AuthForm
   authTabsBackground: "#fff",
   authTabsShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.20)",
-  authActiveTabBackground: "#8FA400",
+  authActiveTabBackground: "linear-gradient(276deg, #b3cd0a 2.32%, #7f9303 99.1%)",
   authActiveTabColor: "#fff",
   authTabColor: "#6E7E92",
 
@@ -135,7 +135,6 @@ export const light = {
   tabColor: "#6E7E92",
   tabActiveColor: "#fff",
   tabActiveLineColor: "radial-gradient(circle, rgba(226,254,38,1) 5%, rgba(226,254,38,0) 95%)",
-
   submitButtonBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   submitButtonColor: "#fff",
   submitButtonShadow: "0 0 13px 0px rgba(255,160,18,0.7)",
