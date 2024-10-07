@@ -1,6 +1,7 @@
 import Icon from "@/components/project/Icon";
 import { LabelContainer } from "@/components/styled-component/ProfileForms";
 import { OrangeGradientButton } from "@/components/UI/Button";
+import { theme } from "@/theme";
 import { ProfileItem } from "@tgs-web-nx/core/hooks";
 import styled from "styled-components";
 
@@ -45,10 +46,16 @@ export const FormWrapperExtend = styled.div`
   gap: 1rem;
 `;
 
-export const ItemInfo = styled.div`
+type StatusInfo = {
+  isVerified: boolean, 
+  theme: typeof theme
+};
+export const ItemInfo = styled.div<StatusInfo>`
   font-size: 1.3rem;
   color: #fff;
-  color: ${({ theme }) => theme.placeHolderText}
+  color: ${({ isVerified, theme }: StatusInfo) => {
+    return isVerified ? theme.text : theme.placeHolderText;
+   }};
 `;
 
 export const ItemContainer = styled.div`
@@ -97,7 +104,7 @@ const ProfileRowInMobile = ({ profileItem, handleClick }: ProfileItemProps) => {
         <ItemContainer >
           <LabelContainer>{label}</LabelContainer>
           <FormWrapperExtend>
-            <ItemInfo>{profileItem.status}</ItemInfo>
+            <ItemInfo isVerified={profileItem.isVerified || false}>{profileItem.status}</ItemInfo>
             {/* <FormControl variant="outlined" >
               <TextField fullWidth disabled={true} value={profileItem.status}/>
             </FormControl> */}
