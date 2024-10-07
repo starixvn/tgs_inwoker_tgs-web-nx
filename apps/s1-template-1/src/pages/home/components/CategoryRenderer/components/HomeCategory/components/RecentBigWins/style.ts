@@ -108,7 +108,6 @@ export const BottomArea = styled.div`
 `;
 
 export const Title = styled.div`
-  color: #fff;
   text-align: left;
   font-size: 1.8rem;
   font-weight: 700;
@@ -116,7 +115,6 @@ export const Title = styled.div`
 
 export const ProfitText = styled.div`
   margin-top: 2rem;
-  color: #fff;
   text-align: center;
   font-weight: 700;
 `;
@@ -124,7 +122,7 @@ export const ProfitText = styled.div`
 export const ProfitValue = styled.div`
   margin-top: 0.8rem;
   margin-bottom: 1.6rem;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.betSlipProfitValue};
   text-align: center;
   font-size: 3.2rem;
   font-weight: 700;
@@ -137,7 +135,6 @@ export const BetArea = styled.div`
   justify-content: center;
   align-items: center;
   column-gap: 1.6rem;
-  color: #fff;
   border-radius: 1.2rem;
   background: ${({ theme }) => theme.betSlipBetAreaBackground};
 `;
@@ -175,7 +172,8 @@ export const Divider = styled.div`
     border-radius: 1.2rem;
     width: 3.3rem;
     height: 3rem;
-    background-color: ${({ theme }) => theme.betSlipDividerPattern};
+    background-color: ${({ theme }) => theme.betSlipDividerBefore};
+    box-shadow: ${({ theme }) => theme.betSlipDividerBeforeShadow};
   }
 
   &:before {
@@ -200,7 +198,7 @@ export const Avatar = styled.div`
   border-radius: 50%;
   height: 5.2rem;
   width: 5.2rem;
-  border: 0.2rem solid rgba(255, 255, 255, 0.2);
+  border: ${({ theme }) => theme.betSlipAvatarBorder};
 
   img {
     width: 100%;
@@ -265,6 +263,7 @@ export const PlayNow = styled.div`
 export const BetID = styled.p`
   position: relative;
   width: 100%;
+  padding-right: 3rem;
   font-weight: bold;
 
   .icon-copy {
@@ -272,4 +271,8 @@ export const BetID = styled.p`
     top: -0.6rem;
     right: 0;
   }
+`;
+
+export const BetTime = styled.p`
+  color: ${({ theme }) => theme.betSlipBetTime};
 `;

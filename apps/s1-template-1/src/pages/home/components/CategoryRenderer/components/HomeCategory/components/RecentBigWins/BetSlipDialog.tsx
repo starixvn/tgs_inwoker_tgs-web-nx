@@ -1,17 +1,36 @@
+import { ArrowRightIcon, CloseIcon } from "@/components/UI/CustomizeIcon";
+import { UpTransition } from "@/components/UI/Dialog/Transition";
+import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
+import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
+import { theme } from "@/theme";
 import { Dialog as MuiDialog, DialogProps } from "@mui/material";
 import { media } from "@tgs-web-nx/constants";
 import { RecentBigWinItem } from "@tgs-web-nx/types";
 import { i18n, utility } from "@tgs-web-nx/utils";
+import { format } from "date-fns";
 import React from "react";
 import { Img } from "react-image";
 import styled from "styled-components";
-import { format } from 'date-fns';
 
-import { Avatar, BetArea, BetID, BetInfo, BetInfoText, BetInfoValue, Divider, Game, GameIcon, GameInfo, PlayerArea, PlayerInfo, PlayNow, ProfitText, ProfitValue, Title } from "./style";
-import { LoadingIcon, NoGameIcon } from "@/pages/home/components/GameCard/icons";
-import CopyIconStyled from "@/pages/deposit/components/components/CopyIcon";
-import { UpTransition } from "@/components/UI/Dialog/Transition";
-import { ArrowRightIcon, CloseIcon } from "@/components/UI/CustomizeIcon";
+import {
+  Avatar,
+  BetArea,
+  BetID,
+  BetInfo,
+  BetInfoText,
+  BetInfoValue,
+  BetTime,
+  Divider,
+  Game,
+  GameIcon,
+  GameInfo,
+  PlayerArea,
+  PlayerInfo,
+  PlayNow,
+  ProfitText,
+  ProfitValue,
+  Title,
+} from "./style";
 
 const StyledDialog = styled(MuiDialog)`
   position: relative;
@@ -31,11 +50,13 @@ const StyledDialog = styled(MuiDialog)`
     justify-content: flex-start;
     left: 0;
     right: 0;
+    width: auto;
     margin: 0;
     border-radius: 2.4rem;
     background: ${({ theme }) => theme.betSlipBackground};
+    border: ${({ theme }) => theme.betSlipBorder};
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.8);
-    width: auto;
+    color: ${({ theme }) => theme.text};
 
     ${media.sm} {
       max-width: 39rem;
@@ -85,7 +106,7 @@ const BetSlipDialog = ({
     betId,
     profit,
     playerCode,
-    payout
+    payout,
   } = data;
 
   return (
@@ -104,11 +125,11 @@ const BetSlipDialog = ({
           right: "2.4rem !important",
           width: "3.2rem",
           height: "3.2rem",
-          color: "#9CACC2",
+          color: theme.betSlipCloseIconColor,
           zIndex: "4",
           cursor: "pointer",
           "&:hover": {
-            color: "#6F7E93",
+            color: theme.betSlipCloseIconColorHover,
           },
         }}
         viewBox="0 0 33 32"
@@ -136,7 +157,7 @@ const BetSlipDialog = ({
           </Avatar>
           <PlayerInfo>
             <div className="bold">{playerName}</div>
-            <p>{format(new Date(createTime), 'MM/dd/yyyy hh:mm:ss a')}</p>
+            <BetTime>{format(new Date(createTime), "MM/dd/yyyy hh:mm:ss a")}</BetTime>
             <BetID>
               {i18n.t("betSlip.betID")}: {betId}
               <span>

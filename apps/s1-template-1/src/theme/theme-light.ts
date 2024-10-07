@@ -74,12 +74,19 @@ export const light = {
   recentBigWinsPlayerNameShadow: "0px 0px 4px rgba(215, 255, 149, 0.50)",
 
   // Bet slip
-  betSlipBackground: "linear-gradient(180deg, #032f63 0%, #111923 50.9%)",
-  betSlipBetAreaBackground: "rgba(255, 255, 255, 0.1)",
-  betSlipDividerColor: "#404b58",
-  betSlipDividerPattern: "rgba(0, 0, 0, 0.70)",
-  betSlipGameAreaBackground: "rgba(255, 255, 255, 0.1)",
-  betSlipGameAreaBackgroundHover: "rgba(255, 255, 255, 0.15)",
+  betSlipBackground: "#fff",
+  betSlipBorder: "#CACACA",
+  betSlipBetAreaBackground: "rgba(0, 0, 0, 0.10)",
+  betSlipProfitValue: "#8FA400",
+  betSlipDividerColor: "#CACACA",
+  betSlipDividerBefore: "#C4C4C4",
+  betSlipDividerBeforeShadow: "0px 2px 3px rgba(0, 0, 0, 0.25) inset",
+  betSlipGameAreaBackground: "rgba(0, 0, 0, 0.10)",
+  betSlipGameAreaBackgroundHover: "rgba(0, 0, 0, 0.15)",
+  betSlipCloseIconColor: "#C2C2C2",
+  betSlipCloseIconColorHover: "#C2C2C2",
+  betSlipBetTime: "#55657E",
+  betSlipAvatarBorder: "0.2rem solid rgba(0, 0, 0, 0.20)",
 
   // AuthForm
   authTabsBackground: "#fff",
@@ -120,7 +127,7 @@ export const light = {
 
   errorColor: "#F90B44",
 
-  linkColor: "#60AB00",
+  linkColor: "#8FA400",
 
   dropDownBackground: "#fff",
   dropDownItemSelectedBackground: "#E4F3CA",

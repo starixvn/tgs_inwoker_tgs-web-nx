@@ -75,11 +75,18 @@ export const dark = {
 
   // Bet slip
   betSlipBackground: "linear-gradient(180deg, #032f63 0%, #111923 50.9%)",
+  betSlipBorder: "none",
   betSlipBetAreaBackground: "rgba(255, 255, 255, 0.1)",
+  betSlipProfitValue: "#E2FE26",
   betSlipDividerColor: "#404b58",
-  betSlipDividerPattern: "rgba(0, 0, 0, 0.70)",
+  betSlipDividerBefore: "rgba(0, 0, 0, 0.70)",
+  betSlipDividerBeforeShadow: "none",
   betSlipGameAreaBackground: "rgba(255, 255, 255, 0.1)",
   betSlipGameAreaBackgroundHover: "rgba(255, 255, 255, 0.15)",
+  betSlipCloseIconColor: "#9CACC2",
+  betSlipCloseIconColorHover: "#6F7E93",
+  betSlipBetTime: "#fff",
+  betSlipAvatarBorder: "0.2rem solid rgba(255, 255, 255, 0.2)",
 
   // AuthForm
   authTabsBackground: "#1d2635",
