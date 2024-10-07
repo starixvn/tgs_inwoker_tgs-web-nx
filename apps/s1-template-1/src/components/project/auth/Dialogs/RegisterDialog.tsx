@@ -2,7 +2,7 @@ import TabContext from "@mui/lab/TabContext";
 import Box from "@mui/material/Box";
 import { useAuthDialog } from "@tgs-web-nx/core/features";
 import { useDetectDialogClose } from "@tgs-web-nx/core/hooks";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { i18n } from "@tgs-web-nx/utils";
 import LoginForm from "../LoginForm";
@@ -19,12 +19,17 @@ import RegisterForm from "@/components/project/auth/RegisterForm";
 
 const RegisterDialog = () => {
   const [value, setValue] = useState("2");
-  const { isRegisterDialogOpen, handleToggleRegisterDialog } = useAuthDialog();
+  const { isRegisterDialogOpen, handleToggleRegisterDialog, tabValue, handleChangeTabValue } =
+    useAuthDialog();
   useDetectDialogClose(isRegisterDialogOpen, () => handleToggleRegisterDialog(false));
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
+    handleChangeTabValue(newValue);
   };
+
+  useEffect(() => {
+    setValue(tabValue);
+  }, [tabValue]);
 
   return (
     <AuthDialog open={isRegisterDialogOpen} onClose={() => handleToggleRegisterDialog(false)}>
