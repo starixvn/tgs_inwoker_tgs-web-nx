@@ -326,25 +326,31 @@ class Main extends Component {
               )
             }
             else {
-              return Object.keys(content)
-              .sort((a, b) => {
-                return displaysequence.indexOf(a) - displaysequence.indexOf(b);
-              })
-              .map((key, index) => {
-                if (content[key] !== "" && content[key]) {
-                  if (typeof content[key] === "number") {
-                    return null;
-                  } else {
-                    return (
-                      <InfoContainer key={index}>
-                        <TransferLabel>{i18n.t("extended." + [key])}:</TransferLabel>
-                        <TransferValue>{content[key]}</TransferValue>
-                        <CopyIconCustomize copyContent={content[key]} />
-                      </InfoContainer>
-                    );
-                  }
-                }
-              });
+              return (
+                <ChannelExtend>
+                  <ChannelExtendTitle>{Object.keys(content).length > 0 ? i18n.t("transfer.transferTo") : ""}</ChannelExtendTitle>
+                  {Object.keys(content)
+                  .sort((a, b) => {
+                    return displaysequence.indexOf(a) - displaysequence.indexOf(b);
+                  })
+                  .map((key, index) => {
+                    if (content[key] !== "" && content[key]) {
+                      if (typeof content[key] === "number") {
+                        return null;
+                      } else {
+                        return (
+                          <InfoContainer key={index}>
+                            <TransferLabel>{i18n.t("extended." + [key])}:</TransferLabel>
+                            <TransferValue>{content[key]}</TransferValue>
+                            <CopyIconCustomize copyContent={content[key]} />
+                          </InfoContainer>
+                        );
+                      }
+                    }
+                  })}
+                </ChannelExtend>
+              )
+              
             }
 
 
@@ -359,15 +365,13 @@ class Main extends Component {
           ) {
             if (methodCode("THIRDPARTY")) {
               return (
-                <ItemContainer>
-                  {/* <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer> */}
+                <ItemContainer>                  
                   <QRCodeImg src={channelExtend.qrCode} style={{ marginBottom: "10px" }} />
                 </ItemContainer>
               );
             } else {
               return (
-                <ItemContainer>
-                  {/* <LabelContainer>{i18n.t("deposit.transferAccount")}</LabelContainer> */}
+                <ItemContainer>                 
                   <AccountInfo>{generateDisplayContent(channelExtend)}</AccountInfo>
                 </ItemContainer>
               );
@@ -555,13 +559,13 @@ class Main extends Component {
             />
           </FormControl>
 
-          <AmountHint>
-            {transferFee === 0 ? null : (
+          {transferFee === 0 ? null : 
+            <AmountHint>
               <FeeSpot>
                 {i18n.t("fees.deposit")}: <span>{`${transferFee} %`}</span>
               </FeeSpot>
-            )}
-          </AmountHint>
+          </AmountHint>}
+          
         </ItemContainer>
 
         {paymentCode("umpay") && <Remark>{i18n.t("deposit.ppRemark")}</Remark>}
