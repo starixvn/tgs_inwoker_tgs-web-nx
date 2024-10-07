@@ -116,7 +116,7 @@ class VerifyEmail extends BaseProfile {
   showInfoMessage = (msg) => {
     // this.props.alert("", msg);
     this.props.enqueueSnackbar(msg, {
-      variant: "info",
+      variant: "success",
     });
   };
 
