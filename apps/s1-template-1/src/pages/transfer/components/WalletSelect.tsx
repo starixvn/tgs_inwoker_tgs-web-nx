@@ -16,7 +16,7 @@ const WalletSelect = ({ value, handleChange, providerList, mainAccountId }: Prop
   const { game } = useGameStore();
 
   const gpNameSwitcher = ({ abbreviation, name }: Provider) => {
-    if (abbreviation && abbreviation.toLowerCase() === "wgfm" && import.meta.env.VITE_BRAND_NAME === "TIGER")
+    if (abbreviation && abbreviation.toLowerCase() === "wgfm" && config.brandName === "TIGER")
       return "Tiger Sports";
     else return name ? name : "";
   };

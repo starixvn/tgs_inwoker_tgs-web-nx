@@ -77,10 +77,10 @@ const TransferDetailTable = ({
               <TableRow key={index}>
                 <TableCell>{date}</TableCell>
                 <TableCell>
-                  {from ? (from === "BTI" && import.meta.env.VITE_CURRENCY === "PHP" ? "PHSB" : from) : ""}
+                  {from ? (from === "BTI" && config.currency === "PHP" ? "PHSB" : from) : ""}
                 </TableCell>
                 <TableCell>
-                  {to ? (to === "BTI" && import.meta.env.VITE_CURRENCY === "PHP" ? "PHSB" : to) : ""}
+                  {to ? (to === "BTI" && config.currency === "PHP" ? "PHSB" : to) : ""}
                 </TableCell>
                 <TableCell align={"right"}>{amount}</TableCell>
               </TableRow>

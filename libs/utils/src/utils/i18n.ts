@@ -2,6 +2,7 @@ import i18n, { InitOptions } from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpBackend from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
+import config from "@tgs-web-nx/config";
 
 //localstorage language
 const language = localStorage.getItem("i18nextLng");
@@ -13,12 +14,12 @@ i18n
   .init(
     {
       backend: {
-        loadPath: import.meta.env.VITE_I18N_LOADPATH,
-        addPath: import.meta.env.VITE_I18N_ADDPATH,
+        loadPath: config.i18nLoadPath,
+        addPath: config.i18nAddPath,
       },
       load: "currentOnly",
       whitelist: ["en-US", "zh-CN", "zh-TW", "th-TH", "id-ID", "vi-VN"],
-      fallbackLng: [language || import.meta.env.VITE_DEFAULT_LANGUAGE],
+      fallbackLng: [language || config.defaultLanguage],
       interpolation: {
         escapeValue: false,
         formatSeparator: ".",

@@ -368,7 +368,7 @@ const AddCard = ({
               />
             </FormControl>
           </ItemContainer>
-          {import.meta.env.VITE_CURRENCY === "INR" &&
+          {config.currency === "INR" &&
             ((!isDeposit &&
               withdrawalList.length > 0 &&
               withdrawalList[selectedBankTypeIndex].banktype === "Bank") ||

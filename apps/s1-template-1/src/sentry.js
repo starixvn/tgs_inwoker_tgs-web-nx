@@ -1,7 +1,8 @@
 import * as Sentry from "@sentry/react";
+import config from "@tgs-web-nx/config";
 
 Sentry.init({
-  dsn: import.meta.env.VITE_SENTRY_PATH,
+  dsn: config.sentryPath,
   integrations: [
     // See docs for support of different versions of variation of react router
     // https://docs.sentry.io/platforms/javascript/guides/react/configuration/integrations/react-router/

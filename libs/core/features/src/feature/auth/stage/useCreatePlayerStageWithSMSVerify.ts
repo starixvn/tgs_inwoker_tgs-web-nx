@@ -36,7 +36,7 @@ export function useCreatePlayerStageWithSMSVerify() {
     let res = false;
 
     if (
-      (brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isFixedPhoneLength &&
+      (brandConfig[mapBrandName(config.brand)].isFixedPhoneLength &&
         values.phone.length !== config.features.MAX_PHONE_LENGTH) ||
       (values.phone.length === config.features.MAX_PHONE_LENGTH && values.phone[0] !== "0")
     ) {
@@ -50,8 +50,8 @@ export function useCreatePlayerStageWithSMSVerify() {
     }
 
     if (
-      (!brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isFixedPhoneLength && values.phone.length < 8) ||
-      (!brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isFixedPhoneLength &&
+      (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength && values.phone.length < 8) ||
+      (!brandConfig[mapBrandName(config.brand)].isFixedPhoneLength &&
         values.phone.length > (config.features.MAX_PHONE_LENGTH || 10))
     ) {
       alert(
@@ -115,7 +115,7 @@ export function useCreatePlayerStageWithSMSVerify() {
       input: "Init",
       data: {
         areacode: values.areaCode,
-        phone: brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isFixedPhoneLength
+        phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
           ? values.phone.slice(1)
           : values.phone,
       },
@@ -150,14 +150,14 @@ export function useCreatePlayerStageWithSMSVerify() {
       // 檢查phone number是否被使用過
       const chechPhoneRes = (await AccountService.checkPhoneDuplicate(
         values.areaCode,
-        brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isFixedPhoneLength
+        brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
           ? values.phone.slice(1)
           : values.phone,
       )) as any;
 
       if (chechPhoneRes.data) {
         //如有開啟set real name功能,call set realName API(register)
-        if (brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isAddRealNameFieldBrand) {
+        if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
           await setRealName(values);
         }
         //send Verification code
@@ -185,7 +185,7 @@ export function useCreatePlayerStageWithSMSVerify() {
       input: "Init",
       data: {
         areacode: values.areaCode,
-        phone: brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isFixedPhoneLength
+        phone: brandConfig[mapBrandName(config.brand)].isFixedPhoneLength
           ? values.phone.slice(1)
           : values.phone,
       },

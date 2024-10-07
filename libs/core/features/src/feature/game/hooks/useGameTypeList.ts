@@ -1,5 +1,6 @@
 import { GameTypeEnum, Theme } from "@tgs-web-nx/constants";
 import { getGameTypeName, i18n } from "@tgs-web-nx/utils";
+import config from "@tgs-web-nx/config";
 import { useEffect, useState } from "react";
 
 import { GameTypeItem } from "../useHomeGameContext";
@@ -163,7 +164,7 @@ const gameTypeList: GameTypeItem[] = [
 export const useGameTypeList = () => {
   const [translatedGameTypeList, setTranslatedGameTypeList] = useState<GameTypeItem[]>([]);
   useEffect(() => {
-    const offeredGameTypes = import.meta.env.VITE_OFFERED_GAME_TYPES || [];
+    const offeredGameTypes = config.offeredGameTypes || [];
     const translatedList = offeredGameTypes
       .split(",")
       .map((key: string) => gameTypeList.find((type) => type.key === key))

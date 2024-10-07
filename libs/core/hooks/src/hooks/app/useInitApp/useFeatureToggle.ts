@@ -15,11 +15,11 @@ export function useFeatureToggle() {
   }
 
   useEffect(() => {
-    const apiUrl = import.meta.env.VITE_BASE_URL;
+    const apiUrl = config.baseUrl;
 
     async function fetchFeatureToggle() {
-      const res = (await axios.get(`${apiUrl}${import.meta.env.VITE_OPERATOR_PATH}brand`, {
-        headers: { "b-id": import.meta.env.VITE_BRAND_ID },
+      const res = (await axios.get(`${apiUrl}${config.operatorPath}brand`, {
+        headers: { "b-id": config.brandId },
       })) as GetBrandResDto;
       if (res.info !== "UnderMaintenance") {
         const branId = res.data.brandId;

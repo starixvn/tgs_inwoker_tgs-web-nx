@@ -21,7 +21,7 @@ export const GameService = {
 
 const languageFromLocalStorage = localStorage.getItem("i18nextLng");
 
-const detectLanguage = languageFromLocalStorage || i18n.language || import.meta.env.VITE_DEFAULT_LANGUAGE;
+const detectLanguage = languageFromLocalStorage || i18n.language || config.defaultLanguage;
 
 function JoinGame(gid: number, gpcode: string) {
   return ApiService.post(`Game/geturl`, {
@@ -50,14 +50,14 @@ function JoinLobbyGame(gtype: string, gpcode: string) {
 function GetProviderList() {
   return ApiService.get(
     //@ts-ignore
-    `GameProvider?platformtype=${config.isPC}&language=${i18n.language}&currency=${import.meta.env.VITE_CURRENCY}`,
+    `GameProvider?platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency}`,
   ) as unknown as Promise<GetProviderListResDto>;
 }
 
 function GetGameList(gpCode: string, gametypes?: number) {
   return ApiService.get(
     //@ts-ignore
-    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${import.meta.env.VITE_CURRENCY
+    `Game/list?gpcode=${gpCode}&platformtype=${config.isPC}&language=${i18n.language}&currency=${config.currency
     }${gametypes ? `&gametypes=${gametypes}` : ""}`,
   ) as unknown as Promise<GetGameListResDto>;
 }
@@ -73,7 +73,7 @@ function GetGameType(
   const result = ApiService.post("games", {
     PlatformType: config.isPC,
     Language: i18n.language,
-    Currency: import.meta.env.VITE_CURRENCY,
+    Currency: config.currency,
     GameTypes: gameTypes,
     Tag: tag,
     PageIndex: pageIndex,
@@ -88,7 +88,7 @@ function GetGameListByTag(tags: number[], pageIndex: number, pageSize: number, s
   return ApiService.post("games/by-tag", {
     PlatformType: config.isPC,
     language: i18n.language,
-    currency: import.meta.env.VITE_CURRENCY,
+    currency: config.currency,
     tags,
     pageIndex,
     pageSize,

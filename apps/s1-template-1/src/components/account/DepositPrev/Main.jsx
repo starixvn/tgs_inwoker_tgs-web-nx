@@ -582,7 +582,7 @@ class Main extends Component {
                 <ExchangeRateContainer>
                   {/*汇率*/}
                   <LimitLabel>
-                    {i18n.t("deposit.exchangeRate")} 1 {`${import.meta.env.VITE_CURRENCY}`} :{" "}
+                    {i18n.t("deposit.exchangeRate")} 1 {`${config.currency}`} :{" "}
                   </LimitLabel>
                   <LimitAmount>{` ${usdtRate} `}</LimitAmount>
                   <LimitLabel>USDT</LimitLabel>
