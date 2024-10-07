@@ -11,7 +11,7 @@ export const DialogContainer = styled.div`
 export const DialogTitle = styled.div`
   font-size: 1.5rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.text};
   margin-bottom: 20px;
 `;
 export const DialogContent = styled.div`
