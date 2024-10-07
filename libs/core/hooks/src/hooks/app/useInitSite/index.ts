@@ -6,6 +6,7 @@ import { useCheckRegisterProcess } from "./useCheckRegisterProcess";
 import { useInitSiteApiData } from "./useInitSiteApiData";
 import { useEffect } from "react";
 
+
 export function useInitSite() {
   const { general, getAffiliateStatus } = useGeneralStore();
 
