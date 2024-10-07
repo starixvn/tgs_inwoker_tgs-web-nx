@@ -1,9 +1,3 @@
-import config from "@tgs-web-nx/config";
-import { accountAction, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
-import { i18n } from "@tgs-web-nx/utils";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import BaseProfile from "../../BaseProfile";
 import { TextField } from "@/components/UI/TextField";
 import {
   FormControl,
@@ -12,6 +6,12 @@ import {
   UploadFileButton,
   UploadFileTag
 } from "@/components/styled-component/ProfileForms";
+import config from "@tgs-web-nx/config";
+import { accountAction, RESET_ACCOUNTRESULT } from "@tgs-web-nx/core";
+import { i18n } from "@tgs-web-nx/utils";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import BaseProfile from "../../BaseProfile";
 
 class Default extends BaseProfile {
   constructor(props) {
@@ -69,7 +69,7 @@ class Default extends BaseProfile {
                   document.getElementById("getFile").click();
                 }}
               >
-                {i18n.t("common.uploadFile")}
+                {i18n.t("common.uploadButton")}
               </UploadFileButton>
 
               <input
