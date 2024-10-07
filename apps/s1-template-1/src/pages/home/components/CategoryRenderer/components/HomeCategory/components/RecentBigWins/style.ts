@@ -7,6 +7,7 @@ export const RecentBigWinsContainer = styled.div`
   --gap: 0.8rem;
   --item-width: 7.4rem;
   --item-height: 9.9rem;
+
   display: grid;
   gap: var(--gap);
   grid-auto-flow: column;
@@ -37,9 +38,9 @@ export const CardHoverBg = styled.div`
 `;
 
 export const GameIcon = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
-  position: relative;
   width: var(--item-width);
   height: 9.9rem;
   background: ${({ theme }) => theme.gameCardBackground};
@@ -76,7 +77,7 @@ export const RecentBigWinsSlide = styled.div`
 `;
 
 export const PlayerName = styled.div`
-  color: ${({ theme }) => theme.recentBigWinsPlayerName};
+  color: ${({ theme }) => theme.recentBigWinsPlayerNameColor};
 `;
 
 export const BigWinsAmount = styled.div`
@@ -93,14 +94,14 @@ export const BottomArea = styled.div`
       cursor: pointer;
       font-weight: bold;
 
-      ${GameName} {
-        color: #e2f2ff;
-        text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.5);
+      ${PlayerName} {
+        color: ${({ theme }) => theme.recentBigWinsPlayerNameColorHover};
+        text-shadow: ${({ theme }) => theme.recentBigWinsPlayerNameShadow};
       }
 
       ${BigWinsAmount} {
-        color: #edff76;
-        text-shadow: 0px 0px 8px rgba(215, 255, 149, 0.5);
+        color: ${({ theme }) => theme.bigWinsAmountColorHover};
+        text-shadow: ${({ theme }) => theme.bigWinsAmountShadow};
       }
     }
   }

@@ -64,10 +64,14 @@ export const light = {
   // Recent Big Wins
   playNowButtonBackground: "linear-gradient(180deg, #194D9A 0%, #104799 100%)",
   bigWinsAmountColor: "#60AB00",
+  bigWinsAmountColorHover: "#869A00",
+  bigWinsAmountShadow: "0px 0px 4px rgba(255, 255, 255, 0.50)",
   recentBigWinsBackground: "linear-gradient(180deg, #1c2532 0%, #1c2532 100%)",
   recentBigWinsBottomBackground:
     "linear-gradient(180deg, rgba(22, 75, 153, 0) 4.38%, #065cdc 169.37%)",
-  recentBigWinsPlayerName: "#2E353E",
+  recentBigWinsPlayerNameColor: "#2E353E",
+  recentBigWinsPlayerNameColorHover: "#2E353E",
+  recentBigWinsPlayerNameShadow: "0px 0px 4px rgba(215, 255, 149, 0.50)",
 
   // Bet slip
   betSlipBackground: "linear-gradient(180deg, #032f63 0%, #111923 50.9%)",
