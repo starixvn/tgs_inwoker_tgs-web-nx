@@ -1,5 +1,6 @@
 import { CloseIcon } from "@/components/UI/CustomizeIcon";
 import { UpTransition } from "@/components/UI/Dialog/Transition";
+import { theme } from "@/theme";
 import { Dialog as MuiDialog } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
@@ -37,11 +38,11 @@ const DialogPopup = ({ open, onClose, children }: Props) => {
           right: "2.4rem !important",
           width: "3.2rem",
           height: "3.2rem",
-          color: "#324354",
+          color: `${theme.popupCloseButtonBgColor}`,
           zIndex: "4",
           cursor: "pointer",
           "&:hover": {
-            color: "#6F7E93",
+            color: `${theme.popupCloseButtonHoverBgColor}`,
           },
         }}
         viewBox="0 0 33 32"

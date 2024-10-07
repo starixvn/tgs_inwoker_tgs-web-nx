@@ -1,36 +1,14 @@
-import React from "react";
-import styled from "styled-components";
-import { Dialog as MuiDialog } from "@mui/material";
-import { useHistory } from "react-router-dom"; // Import useHistory
+import { GreenGradientButton } from "@/components/UI/Button";
+import DialogPopup from "@/components/UI/Dialog/DialogPopup";
+import { DialogContainer, DialogContent, DialogTitle } from "@/components/UI/Dialog/dialogStyles";
+
 import { i18n } from "@tgs-web-nx/utils";
-import { Button } from "@/components/UI/Button";
+import { useHistory } from "react-router-dom"; // Import useHistory
+import styled from "styled-components";
 
-const StyledDialog = styled(MuiDialog)`
-  & .MuiPaper-root {
-    position: relative;
-    background: ${({ theme }) => theme.mainBackground};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    color: ${({ theme }) => theme.text};
-    background-attachment: fixed;
-    background-position: center;
-    padding: 20px;
-    align-items: center;
-  }
-`;
-
-const TitleContainer = styled.div`
-  text-align: center;
-  font-size: 1.812rem;
-  font-weight: 700;
-`;
 const FormContainer = styled.div`
-  margin: 30px 60px 40px 60px;
   padding: 0 3px;
-  width: 100%;
-  font-size: 0.875rem;
   font-weight: 400;
   text-align: justify;
   overflow: auto;
@@ -82,10 +60,10 @@ const DepositPopupAnnouncement = ({ open, onClose, header, type, content, text }
   };
 
   return (
-    <StyledDialog open={open} onClose={onClose} fullWidth maxWidth={"xs"}>
-      <div className="clear" />
-      <TitleContainer>{header}</TitleContainer>
-
+    <DialogPopup open={open} onClose={onClose} >
+      <DialogContainer>
+      <DialogTitle>{header}</DialogTitle>
+      <DialogContent>
       {type === "promo" && content ? (
         <ContentContainer>
           {content
@@ -113,11 +91,12 @@ const DepositPopupAnnouncement = ({ open, onClose, header, type, content, text }
           }}
         />
       )}
-
-      <Button fullWidth onClick={onClose}>
+      </DialogContent>
+      <GreenGradientButton fullWidth onClick={onClose}>
         <>{i18n.t("common.confirm")}</>
-      </Button>
-    </StyledDialog>
+      </GreenGradientButton>
+      </DialogContainer>
+    </DialogPopup>
   );
 };
 

@@ -46,7 +46,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
   else {
     return (
       <ProfileItemContainer>
-        <ItemContainer style={{padding: "1.6rem", margin: 0}}>
+        <ItemContainer style={{padding: "1.6rem 0", margin: 0}}>
           <LabelContainer >
             {label}
           </LabelContainer>
