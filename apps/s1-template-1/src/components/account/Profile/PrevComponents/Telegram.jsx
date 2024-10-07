@@ -40,12 +40,13 @@ class Telegram extends BaseProfile {
     const telegram = this.state.telegram;
     //validate here
     // const re = new RegExp("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
-    // if (!telegram.match(re)) {
-    //   this.props.enqueueSnackbar(i18n.t('profile.telegram.msgInvalidTelegram'), {
-    //     variant: "error"
-    //   });
-    //   return
-    // }
+    const re = new RegExp("^.{5,32}$");
+    if (!telegram.match(re)) {
+      this.props.enqueueSnackbar(i18n.t("profile.telegram.msgInvalidTelegram"), {
+        variant: "error",
+      });
+      return;
+    }
 
     this.showLoading(true);
     //api

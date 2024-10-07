@@ -126,6 +126,14 @@ class NameVerify extends BaseProfile {
       return;
     }
 
+    const nameRegex = new RegExp("^.{1,256}$");
+    if (!memberName.match(nameRegex)) {
+      this.props.enqueueSnackbar(i18n.t("common.msgInvalidName"), {
+        variant: "error",
+      });
+      return;
+    }
+
     if (!memberName) {
       return this.props.alert("", i18n.t("profile.nameVerify.msgPlsEnterName"));
     }
@@ -151,8 +159,8 @@ class NameVerify extends BaseProfile {
           identityformid: "confirm not empty",
         });
         this.props.enqueueSnackbar(i18n.t("common.msgSuccessUpdateProfile"), {
-            variant: "success",
-          });
+          variant: "success",
+        });
       } else {
         this.props.alert("", ErrorSwitcher.getTranslation(response.info));
       }
