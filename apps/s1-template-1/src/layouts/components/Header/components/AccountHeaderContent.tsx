@@ -69,6 +69,15 @@ const BalanceContainer = styled.div<{ $runAnim: boolean }>`
 
 const AccountIconHeader = styled(AccountIcon)`
   border-width: 2px;
+  margin: 0 0 0 0.2rem !important;
+`;
+
+const DepositButton = styled(GreenGradientButton)`
+  position: relative;
+  right: -0.4rem;
+  min-width: unset !important;
+  width: 3.6rem !important;
+  height: 3.6rem !important;
 `;
 
 const AccountHeaderContent = () => {
@@ -113,14 +122,13 @@ const AccountHeaderContent = () => {
           {currentBalance}
         </BalanceContainer>
 
-        <GreenGradientButton
-          style={{ minWidth: "unset", width: "3.6rem", height: "3.6rem" }}
+        <DepositButton
           onClick={() => {
             history.push("/deposit");
           }}
         >
           <Icon iconUrl="/assets/images/common/icon-plus.svg" width={"18px"} height={"18px"} />
-        </GreenGradientButton>
+        </DepositButton>
       </ButtonContainer>
       <SelectUnlitmitHeight
         renderValue={() => {
