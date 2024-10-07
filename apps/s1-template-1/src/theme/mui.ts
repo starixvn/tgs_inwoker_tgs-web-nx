@@ -41,6 +41,7 @@ declare module "@mui/material/styles/createPalette" {
     };
     authForm: {
       tabsBackground: string;
+      tabsShadow: string;
       activeTabBackground: string;
       activeTabColor: string;
       tabColor: string;
@@ -76,37 +77,37 @@ declare module "@mui/material/styles/createPalette" {
     };
 
     table: {
-      tableBorderColor: string,
-      tableBackground: string,
-      tableHeaderBackground: string,
-      tableHeaderColor: string,
-      tableHeaderBorderColor: string,
-      tableColor: string,
-      tableFontSize: string,
-      tableHeaderFontSize: string,
-      tableBorderRadius: string,
+      tableBorderColor: string;
+      tableBackground: string;
+      tableHeaderBackground: string;
+      tableHeaderColor: string;
+      tableHeaderBorderColor: string;
+      tableColor: string;
+      tableFontSize: string;
+      tableHeaderFontSize: string;
+      tableBorderRadius: string;
     };
 
     calendar: {
-      calendarBackground: string,
-      calendarBorderRadius: string,
-      calendarTextColor: string,
-      calendarTextDisabledColor: string,
-      calendarHeaderColor: string,
-      calendarHighlight: string,
-      calendarHighlightBackground: string,
-      calendarFontSize: string,
-      calendarBoxshadow: string,
-      nextButtonBackground: string,
-      nextButtonColor: string,
-      disabledNextButtonBackground: string,
-      calendarFontSizeMobile: string,
-    }
+      calendarBackground: string;
+      calendarBorderRadius: string;
+      calendarTextColor: string;
+      calendarTextDisabledColor: string;
+      calendarHeaderColor: string;
+      calendarHighlight: string;
+      calendarHighlightBackground: string;
+      calendarFontSize: string;
+      calendarBoxshadow: string;
+      nextButtonBackground: string;
+      nextButtonColor: string;
+      disabledNextButtonBackground: string;
+      calendarFontSizeMobile: string;
+    };
 
     uploadButton: {
       backgroundColor: string;
       borderColor: string;
-    }
+    };
   }
 }
 
@@ -167,6 +168,7 @@ const muiTheme = createTheme({
     },
     authForm: {
       tabsBackground: theme.authTabsBackground,
+      tabsShadow: theme.authTabsShadow,
       activeTabBackground: theme.authActiveTabBackground,
       activeTabColor: theme.authActiveTabColor,
       tabColor: theme.authTabColor,
@@ -211,7 +213,7 @@ const muiTheme = createTheme({
       tableFontSize: theme.tableFontSize,
       tableHeaderFontSize: theme.tableHeaderFontSize,
       tableBorderRadius: theme.tableBorderRadius,
-    }, 
+    },
 
     calendar: {
       calendarBackground: theme.calendarBackground,
@@ -226,13 +228,13 @@ const muiTheme = createTheme({
       nextButtonBackground: theme.slideNextButtonBackground,
       nextButtonColor: theme.slideNextButtonColor,
       disabledNextButtonBackground: theme.disabledSlideNextButtonBackground,
-      calendarFontSizeMobile: theme.calendarFontSizeMobile
+      calendarFontSizeMobile: theme.calendarFontSizeMobile,
     },
 
     uploadButton: {
       backgroundColor: theme.uploadButtonBgColor,
       borderColor: theme.uploadButtonBorderColor,
-    }
+    },
   },
   typography: {
     fontWeightLight: 300,
@@ -252,7 +254,6 @@ const muiTheme = createTheme({
     //           // backgroundColor: "#your_hover_color_here", // 设置鼠标悬停时的背景颜色
     //         },
     //       },
-         
     //     },
     //   },
     //   "& .MuiTablePagination-displayedRows": {
@@ -263,4 +264,3 @@ const muiTheme = createTheme({
 } as ThemeOptions);
 
 export { muiTheme };
-

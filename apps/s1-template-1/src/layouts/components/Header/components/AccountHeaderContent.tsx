@@ -24,6 +24,8 @@ import styled from "styled-components";
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
+  border: ${({ theme }) => theme.balanceHeaderBorder};
+  box-shadow: ${({ theme }) => theme.balanceHeaderShadow};
   background-color: ${({ theme }) => theme.balanceHeaderBackground};
   border-radius: 1.2rem;
   justify-content: space-between;
@@ -41,7 +43,7 @@ const BalanceContainer = styled.div<{ $runAnim: boolean }>`
   padding: 1rem 0.6rem 1rem 3.2rem;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #ffc909;
+  color: ${({ theme }) => theme.balanceHeaderColor};
   cursor: pointer;
 
   &:before {
@@ -138,14 +140,11 @@ const AccountHeaderContent = () => {
           },
           "& .MuiSvgIcon-root": {
             display: "none",
-          }       
+          },
         }}
         MenuProps={{
-          classes: {
-
-          }
+          classes: {},
         }}
-       
       >
         <MenuItem
           onClick={() => {
@@ -230,9 +229,11 @@ const AccountHeaderContent = () => {
           ></AccountInfoIcon>
           {i18n.t("deposit.details.account")}
         </MenuItem>
-        <MenuItem onClick={() => {
+        <MenuItem
+          onClick={() => {
             history.push("/inbox");
-          }}>
+          }}
+        >
           <InboxIcon
             sx={{
               fill: `${theme.formInputPlaceHolderColor}`,

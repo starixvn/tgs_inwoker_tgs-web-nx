@@ -79,6 +79,7 @@ export const dark = {
 
   // AuthForm
   authTabsBackground: "#1d2635",
+  authTabsShadow: "none",
   authActiveTabBackground: "linear-gradient(276deg, #b3cd0a 2.32%, #7f9303 99.1%)",
   authActiveTabColor: "#fff",
   authTabColor: "#55657e",
@@ -148,6 +149,9 @@ export const dark = {
   greenGradientBackround: "linear-gradient(180deg, #BAD30F 0%, #7E8F0C 100%)",
   orangeGradientBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
   balanceHeaderBackground: "rgba(68, 88, 116, 0.24)",
+  balanceHeaderBorder: "none",
+  balanceHeaderShadow: "none",
+  balanceHeaderColor: "#ffc909",
   noteTextColor: "#6F809A",
   textHighlight: "#FFDA18",
   gapPage: ".8rem",
@@ -163,7 +167,8 @@ export const dark = {
   // Tab
   tabBackground:
     "radial-gradient(52.82% 92.71% at 50% 7.29%, rgba(66, 107, 255, 0.45) 0%, rgba(25, 72, 164, 0.25) 100%)",
-  tabActiveBackground: "radial-gradient(52.82% 92.71% at 50% 7.29%, rgba(66, 107, 255, 0.45) 0%, rgba(25, 72, 164, 0.25) 100%)",
+  tabActiveBackground:
+    "radial-gradient(52.82% 92.71% at 50% 7.29%, rgba(66, 107, 255, 0.45) 0%, rgba(25, 72, 164, 0.25) 100%)",
   borderTabActive: "#D1F42D",
   borderTab: "#0D2951",
   tabTextColor: "#B3CDF8",

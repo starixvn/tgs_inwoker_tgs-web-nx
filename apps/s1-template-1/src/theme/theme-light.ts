@@ -78,10 +78,11 @@ export const light = {
   betSlipGameAreaBackgroundHover: "rgba(255, 255, 255, 0.15)",
 
   // AuthForm
-  authTabsBackground: "#1d2635",
-  authActiveTabBackground: "linear-gradient(276deg, #b3cd0a 2.32%, #7f9303 99.1%)",
+  authTabsBackground: "#fff",
+  authTabsShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.20)",
+  authActiveTabBackground: "#8FA400",
   authActiveTabColor: "#fff",
-  authTabColor: "#55657e",
+  authTabColor: "#6E7E92",
 
   // Footer
   footerBackground: "#19212C",
@@ -139,15 +140,18 @@ export const light = {
   submitButtonColor: "#fff",
   submitButtonShadow: "0 0 13px 0px rgba(255,160,18,0.7)",
 
-  dialogBackground: "#121b24",
-  dialogLineBackground: "#1c2a37",
+  dialogBackground: "#fff",
+  dialogLineBackground: "#DCDCDC",
 
   checkBoxBackground: "#65759b",
   activeCheckBoxBackground: "#90A405",
   dialogTitleBackground: "linear-gradient(270deg, #213757 0%, #283D5A 100%)",
   greenGradientBackround: "linear-gradient(180deg, #BAD30F 0%, #7E8F0C 100%)",
   orangeGradientBackground: "linear-gradient(180deg, #FDA120 0%, #D6820D 100%)",
-  balanceHeaderBackground: "rgba(68, 88, 116, 0.24)",
+  balanceHeaderBackground: "rgba(255, 255, 255, 0.20)",
+  balanceHeaderBorder: "none",
+  balanceHeaderShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.20)",
+  balanceHeaderColor: "#F99E1E",
   noteTextColor: "#6F809A",
   textHighlight: "#FFDA18",
   gapPage: ".8rem",
@@ -161,8 +165,7 @@ export const light = {
   paddingBottomContent: "6rem",
 
   // Tab
-  tabBackground:
-    "radial-gradient(60.48% 104.17% at 52.02% 9.72%, #CCDAFF 0%, #90BDFF 100%)",
+  tabBackground: "radial-gradient(60.48% 104.17% at 52.02% 9.72%, #CCDAFF 0%, #90BDFF 100%)",
   tabActiveBackground: "radial-gradient(100% 100% at 50% 0%, #DCFFC0 0%, #B5F575 100%)",
   borderTabActive: "#82F627",
   borderTab: "transparent",
@@ -232,7 +235,7 @@ export const light = {
   mainContainerSpaceSm: "1.6rem",
   mainContainerSpaceMd: "3.2rem",
   mainContainerSpaceLg: "6.4rem",
-  mainContainerFullWidthSpace: "1.6rem",
+  mainContainerFullWidthSpace: "0",
 
   // Game Type Page
   gameTypePageAreaPaddingMobile: "0.8rem 0 0",
@@ -253,9 +256,9 @@ export const light = {
   // Load more button
   loadingMoreButtonBackground: "#2A3038",
   loadingMoreButtonColor: "#fff",
-  progress: "#292F42",
-  progressBar: "#E2FE26",
-  captionTextColor: "#6E7E92",
+  progress: "#D3D3D3",
+  progressBar: "#8FA400",
+  captionTextColor: "#55657E",
 
   noDataTextColor: "#6E7E92",
   // Table

@@ -46,6 +46,7 @@ export const CustomTabList = muiStyled(TabList)(({ theme }) => ({
   width: "60%",
   minWidth: "20rem",
   background: theme.palette.authForm.tabsBackground,
+  boxShadow: theme.palette.authForm.tabsShadow,
   borderRadius: "1rem",
   padding: "0.4rem",
   minHeight: "4.4rem",

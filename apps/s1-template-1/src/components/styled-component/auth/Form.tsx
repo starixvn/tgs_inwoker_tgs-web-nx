@@ -19,6 +19,7 @@ export const ForgotPasswordContainer = styled.span`
   font-weight: 400;
   white-space: nowrap;
   cursor: pointer;
+  color: ${({ theme }) => theme.text};
 
   &:hover {
     color: ${({ theme }) => theme.primary};
