@@ -3,6 +3,7 @@ import { useAccountStore } from "@tgs-web-nx/core";
 import {
   RegisterV2CreatePlayerReqDto,
   RegisterV2SetRealNameDto,
+  SignInSignUpTabEnum,
   StepStatus,
 } from "@tgs-web-nx/types";
 import { ErrorSwitcher, i18n } from "@tgs-web-nx/utils";
@@ -22,7 +23,8 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
   const { isConfirmedAdult, handleClickConfirmAdult } = useConfirmAdult();
   const { registerV2CreatePlayer, registerV2SetRealName, accountLogin, getAccountInfo } =
     useAccountStore();
-  const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
+  const { handleToggleLoginDialog, handleToggleRegisterDialog, handleChangeTabValue } =
+    useAuthDialog();
 
   const { encryptPassword } = useEncryptPassword();
 
@@ -31,8 +33,10 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleClickSubmit = async (values: any) => {
     if (!isConfirmedAdult) {
-      setRegisterError(new Error(i18n.t("common.msgRegisterTermAndCondition")));
-      return;
+      enqueueSnackbar(i18n.t("common.msgRegisterTermAndCondition"), {
+        variant: "error",
+      });
+      throw new Error("");
     }
 
     try {
@@ -108,6 +112,7 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
         variant: "success",
       });
       handleToggleRegisterDialog(false);
+      handleChangeTabValue(SignInSignUpTabEnum.SignIn);
 
       //Set realname時已經login,不需要再彈出登入視窗
       if (!brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {

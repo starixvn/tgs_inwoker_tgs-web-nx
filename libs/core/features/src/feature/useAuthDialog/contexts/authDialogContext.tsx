@@ -29,6 +29,8 @@ const initialState: {
   handleChangeSendCodeSuccess: (value: boolean) => void;
   countdownToken: number;
   handleChangeCountdownToken: (value: number) => void;
+  tabValue: string;
+  handleChangeTabValue: (value: string) => void;
 } = {
   isLoginDialogOpen: false,
   isRegisterDialogOpen: false,
@@ -52,6 +54,8 @@ const initialState: {
   handleChangeSendCodeSuccess: () => {},
   countdownToken: 0,
   handleChangeCountdownToken: () => {},
+  tabValue: "",
+  handleChangeTabValue: () => {},
 };
 
 export const AuthDialogContext = createContext({
@@ -78,6 +82,8 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
     handleChangeSendCodeSuccess,
     countdownToken,
     handleChangeCountdownToken,
+    tabValue,
+    handleChangeTabValue,
   } = useAuthV1Dialog();
   const { getAccountInfo } = useAccountStore();
   const { isLogin } = useAuth();
@@ -103,7 +109,6 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         handleToggleLoginDialog(false);
         handleToggleRegisterDialog(false);
         handleToggleInitEmailDialog(false);
-        
         handleToggleInitPhoneDialog(true);
         break;
 
@@ -164,7 +169,9 @@ export const AuthDialogContextProvider = ({ children }: ProviderProps) => {
         handleChangeSendCodeSuccess,
         //countdownToken
         countdownToken,
-        handleChangeCountdownToken
+        handleChangeCountdownToken,
+        tabValue,
+        handleChangeTabValue,
       }}
     >
       {children}

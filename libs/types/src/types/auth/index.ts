@@ -11,3 +11,8 @@ export const ForgotPasswordStageEnum = {
   VerifyEmail: "VerifyEmail",
   NewPassword: "NewPassword",
 };
+
+export const SignInSignUpTabEnum = {
+  SignIn: "1",
+  SignUp: "2",
+};

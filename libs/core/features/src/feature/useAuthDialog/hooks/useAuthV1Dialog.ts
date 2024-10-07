@@ -2,6 +2,7 @@ import { useHistory } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import { i18n } from "@tgs-web-nx/utils";
 import { GameTypeEnum } from "@tgs-web-nx/constants";
+import { SignInSignUpTabEnum } from "@tgs-web-nx/types";
 import { usePageName } from "../../usePageName/index";
 import { useHomeGameContext } from "../../game/useHomeGameContext";
 
@@ -18,6 +19,7 @@ export function useAuthV1Dialog() {
   const [securitykey, setSecuritykey] = useState<string>("");
   const [isSendCodeSuccess, setiIsSendCodeSuccess] = useState<boolean>(false);
   const [countdownToken, setCountdownToken] = useState<number>(0);
+  const [tabValue, setTabValue] = useState<string>("1");
 
   const handleToggleLoginDialog = useCallback(
     (isOpen?: boolean) => {
@@ -28,6 +30,7 @@ export function useAuthV1Dialog() {
 
         if (isOpen) {
           updatePageName(i18n.t("common.login"));
+          setTabValue(SignInSignUpTabEnum.SignIn);
         }
       }
 
@@ -52,6 +55,7 @@ export function useAuthV1Dialog() {
 
         if (isOpen) {
           updatePageName(i18n.t("common.register"));
+          setTabValue(SignInSignUpTabEnum.SignUp);
         }
       }
 
@@ -102,6 +106,10 @@ export function useAuthV1Dialog() {
     setCountdownToken(value);
   };
 
+  const handleChangeTabValue = (value: string) => {
+    setTabValue(value);
+  };
+
   return {
     isLoginDialogOpen,
     isRegisterDialogOpen,
@@ -117,5 +125,7 @@ export function useAuthV1Dialog() {
     handleChangeSendCodeSuccess,
     countdownToken,
     handleChangeCountdownToken,
+    tabValue,
+    handleChangeTabValue,
   };
 }
