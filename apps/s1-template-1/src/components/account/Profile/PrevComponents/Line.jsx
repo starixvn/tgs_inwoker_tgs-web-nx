@@ -38,12 +38,13 @@ class Line extends BaseProfile {
     const line = this.state.line;
     //validate here
     // const re = new RegExp("^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$");
-    // if (!line.match(re)) {
-    //   this.props.enqueueSnackbar(i18n.t('profile.line.msgInvalidLine'), {
-    //     variant: "error"
-    //   });
-    //   return
-    // }
+    const re = new RegExp("^.{4,18}$");
+    if (!line.match(re)) {
+      this.props.enqueueSnackbar(i18n.t("profile.line.msgInvalidLine"), {
+        variant: "error",
+      });
+      return;
+    }
 
     this.showLoading(true);
     //api

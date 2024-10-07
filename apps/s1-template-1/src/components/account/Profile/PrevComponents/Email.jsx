@@ -39,7 +39,7 @@ class Email extends BaseProfile {
     const EMAIL_INVALID = "EmailInvalid";
     const email = this.state.email;
     //validate here
-    const re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,4}$/;
+    const re = /^(?=.{1,64}$)[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,4}$/;
     if (!email.match(re)) {
       this.props.enqueueSnackbar(i18n.t("common.msgInvalidEmail"), {
         variant: "error",
