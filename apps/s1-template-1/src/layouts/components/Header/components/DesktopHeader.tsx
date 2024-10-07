@@ -1,5 +1,9 @@
 import { media } from "@/theme/breakpoints";
-import { DESKTOP_HEADER_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_HEADER_HEIGHT } from "@/theme/constants";
+import {
+  DESKTOP_HEADER_HEIGHT,
+  MAIN_CONTENT_MAX_WIDTH,
+  MOBILE_HEADER_HEIGHT,
+} from "@/theme/constants";
 import { GameTypeEnum, Theme } from "@tgs-web-nx/constants";
 import { useAccountStore, useGeneralStore } from "@tgs-web-nx/core";
 import { useHomeGameContext } from "@tgs-web-nx/core/features";
@@ -55,6 +59,7 @@ const HeaderContentContainer = styled.div`
   align-items: center;
   justify-content: end;
   height: 100%;
+  gap: 1.6rem;
 `;
 
 const DesktopHeader = () => {

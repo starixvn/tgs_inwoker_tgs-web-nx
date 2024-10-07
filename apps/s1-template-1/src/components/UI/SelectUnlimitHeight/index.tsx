@@ -1,8 +1,7 @@
 import { theme } from "@/theme";
 import { SelectProps } from "@mui/material";
+
 import { StyledSelect } from "../Select";
-
-
 
 export const SelectUnlitmitHeight = (props: SelectProps) => {
   return (
@@ -38,15 +37,11 @@ export const SelectUnlitmitHeight = (props: SelectProps) => {
             "& .Mui-selected": {
               background: `${theme.dropDownItemSelectedBackground} !important`,
               color: theme.dropDownItemSelectedTextColor,
-              
             },
           },
-        },       
+        },
         marginThreshold: 0,
       }}
-      // IconComponent={() => (
-      //   <Icon iconUrl={iconDown} width={"16px"} height={"16px"} style={{ marginRight: "10px" }} />
-      // )}
     />
   );
 };
