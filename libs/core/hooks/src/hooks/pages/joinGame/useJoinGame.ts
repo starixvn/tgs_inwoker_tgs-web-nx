@@ -19,9 +19,7 @@ export function useJoinGame() {
 
         setTimeout(() => {
             if (joinGameRes.IsSuccess) {
-            setTimeout(() => {
                 window.open(joinGameRes.data.url, `${gameId}-${gpCode}`)?.focus();
-            })
             } else {
                 window.open(window.location.origin + "/maintenance?isGameMaintenance=true", "maintenance-game")?.focus();
             }
