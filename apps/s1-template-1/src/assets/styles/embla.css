@@ -32,6 +32,7 @@
 }
 
 .embla__slide {
+  will-change: transform;
   transform: translate3d(0, 0, 0);
   flex: 0 0 var(--slide-size);
   min-width: 0;
