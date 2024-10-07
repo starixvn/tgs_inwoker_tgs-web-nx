@@ -43,6 +43,7 @@ type MOVN2Config = {
   customGameProviderSort: string[]; //game provider客製化排序(空陣列代表沒有客製化排序) https://raypro.atlassian.net/browse/TGS-4420
   isInitYuriJs: boolean; // FB推廣碼埋點需求 TGS-4265
   SMSVerifyInRegister: boolean; //是否在註冊時候就進行SMS驗證 https://raypro.atlassian.net/browse/TGS-4417
+  isUserNameLowerCaseOnly: boolean; // 註冊時候username是否只允許小寫字母
 };
 
 type MOPHConfig = {
@@ -99,6 +100,7 @@ export const defaultConfig: Config = {
   customGameProviderSort: [],
   isInitYuriJs: false,
   SMSVerifyInRegister: false,
+  isUserNameLowerCaseOnly: false,
   // new brand config start here
   // NewBrand
 };
@@ -375,17 +377,19 @@ export const brandConfig: Record<BrandName, Config> = {
     contractAge: 21,
     isShowDownloadApp: false,
     SMSVerifyInRegister: true,
+    isUserNameLowerCaseOnly: true,
   },
   SBO: {
     ...defaultConfig,
     isInitYuriJs: true,
     currencyRate: 1000,
     socialMediaLink: {
-      fb: 'https://www.facebook.com/people/SBO-Cash/61558870387114/',
-      ig: 'https://www.instagram.com/sbocash88/',
-      telegram: 'https://direct.lc.chat/17487456/2',
+      fb: "https://www.facebook.com/people/SBO-Cash/61558870387114/",
+      ig: "https://www.instagram.com/sbocash88/",
+      telegram: "https://direct.lc.chat/17487456/2",
     },
-  }
+    isUserNameLowerCaseOnly: true,
+  },
 };
 
 export const mapBrandName = (brand: string): BrandName => {
@@ -395,4 +399,3 @@ export const mapBrandName = (brand: string): BrandName => {
 
   return "GPI";
 };
-
