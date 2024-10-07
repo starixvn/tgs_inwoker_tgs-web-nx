@@ -16,7 +16,6 @@ export interface ProfileItem {
 
 export function useProfileMenu() {
   const { account } = useAccountStore();
-  console.log("account", account);
   const history = useHistory();
 
   const getStatus = useCallback(() => {
