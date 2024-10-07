@@ -1,5 +1,9 @@
 import { media } from "@/theme/breakpoints";
-import { DESKTOP_ANNOUNCEMENT_HEIGHT, MAIN_CONTENT_MAX_WIDTH, MOBILE_ANNOUNCEMENT_HEIGHT } from "@/theme/constants";
+import {
+  DESKTOP_ANNOUNCEMENT_HEIGHT,
+  MAIN_CONTENT_MAX_WIDTH,
+  MOBILE_ANNOUNCEMENT_HEIGHT,
+} from "@/theme/constants";
 import { useUiStore } from "@tgs-web-nx/core";
 import { useRwd } from "@tgs-web-nx/core/hooks";
 import Marquee from "react-fast-marquee";
@@ -41,9 +45,9 @@ const MarqueeContent = styled.div`
   }
 `;
 
-const MarqueesBackground = styled.div`
-  display: inline;
-  overflow: visible;
+const MarqueesContent = styled.div`
+  margin-left: 1.2rem;
+  margin-right: 1.2rem;
 `;
 
 const AnnouncementMarquee = () => {
@@ -76,7 +80,7 @@ const AnnouncementMarquee = () => {
                   : item.content
               }
 `;
-              return <MarqueesBackground key={index}>{content}</MarqueesBackground>;
+              return <MarqueesContent key={index}>{content}</MarqueesContent>;
             })}
           </Marquee>
         }
