@@ -6,16 +6,13 @@ import { FormWrapperExtend, ItemContainer, ItemInfo, ProfileItemContainer } from
 
 
 
-const ProfileRowLabel = styled.div`
-  color: ${({ theme }) => theme.text};
-  font-size: 1.25rem;
-  font-weight: 400;
-`;
+
 const ProfileStatus = styled.div`
   color: ${({ theme }) => theme.text};
   font-size: 0.937rem;
   font-weight: 400;
 `;
+
 
 const ItemInfoDesktop = styled(ItemInfo)`
   font-size: 1.4rem;
@@ -51,7 +48,7 @@ const ProfileRowInDesktop = ({ profileItem, handleClick }: Props) => {
             {label}
           </LabelContainer>
           <FormWrapperExtend style={{gap: "2.4rem", width: "calc(100% - 18rem)"}}>
-            <ItemInfoDesktop>
+            <ItemInfoDesktop isVerified={isVerified || false}>
               {status}
             </ItemInfoDesktop>
             {isVerified ? 
