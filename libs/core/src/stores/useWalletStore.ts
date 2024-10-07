@@ -1407,7 +1407,7 @@ export function useWalletStore() {
   );
 
   const performDeposit = useCallback(
-    (amount: string, paymentid: string, promotionid: string, paymentcode: string, type: string, customData: string) => {
+    (amount: string, paymentid: string, promotionid: string, paymentcode: string, type: string, customData = "") => {
       dispatch({
         type: DODEPOSIT_BEGIN,
         loading: true,
