@@ -688,7 +688,7 @@ class Main extends Component {
                         }}
                         variant={"outlined"}
                       >
-                        Upload
+                        {i18n.t("common.uploadButton")}
                       </UploadFileButton>
                       <input
                         type="file"
