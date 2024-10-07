@@ -14,12 +14,12 @@ export function usePromotionCode() {
   // ===== promotion =====
   const [promotionData, setPromotionData] = useState({
     withPromo: !(
-      import.meta.env.VITE_AFFILIATE_ID === "" &&
+      config.affiliateId === "" &&
       localStorage.getItem("promotionId") === "" &&
       !localStorage.getItem("promotionId")
     ),
     promoId:
-      import.meta.env.VITE_AFFILIATE_ID !== "" ? import.meta.env.VITE_AFFILIATE_ID : localStorage.getItem("promotionId") || "",
+      config.affiliateId !== "" ? config.affiliateId : localStorage.getItem("promotionId") || "",
     promotionChannelId: localStorage.getItem("promotionChannelId") || "",
     //TGS-357
     upper: localStorage.getItem("upper") || "",

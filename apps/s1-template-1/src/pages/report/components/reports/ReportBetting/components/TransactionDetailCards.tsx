@@ -33,7 +33,7 @@ const TransactionDetailCards = ({ transactionDetails }: Props) => {
             <ReportCardRow>
               <ReportCardCol>
                 {row.gameProviderName
-                  ? row.gameProviderName === "BTI" &&  import.meta.env.VITE_CURRENCY === "PHP"
+                  ? row.gameProviderName === "BTI" &&  config.currency === "PHP"
                     ? "PHSB"
                     : row.gameProviderName
                   : ""}

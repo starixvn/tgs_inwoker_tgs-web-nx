@@ -29,14 +29,14 @@ const TransferDetailCard = ({ transferDetails }: Props) => {
             <ReportCardRow>
               {i18n.t("report.transfer.table.from")} :{" "}
               <ReportCardCol>
-                {from ? (from === "BTI" && import.meta.env.VITE_CURRENCY === "PHP" ? "PHSB" : from) : ""}
+                {from ? (from === "BTI" && config.currency === "PHP" ? "PHSB" : from) : ""}
               </ReportCardCol>
             </ReportCardRow>
 
             <ReportCardRow>
               {i18n.t("report.transfer.table.to")} :{" "}
               <ReportCardCol>
-                {to ? (to === "BTI" && import.meta.env.VITE_CURRENCY === "PHP" ? "PHSB" : to) : ""}
+                {to ? (to === "BTI" && config.currency === "PHP" ? "PHSB" : to) : ""}
               </ReportCardCol>
             </ReportCardRow>
 

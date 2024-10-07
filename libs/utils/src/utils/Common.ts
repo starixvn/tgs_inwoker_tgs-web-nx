@@ -1,4 +1,4 @@
-import { brandConfig, mapBrandName } from "@tgs-web-nx/config";
+import config, { brandConfig, mapBrandName } from "@tgs-web-nx/config";
 import { i18n } from "../index";
 let newWindow: Window | undefined;
 
@@ -152,7 +152,7 @@ const validateDepositAndWithdrawAmount = (
 const formatCurrency = (amount?: number) => {
   if (amount === undefined) return "";
 
-  return new Intl.NumberFormat(brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].countryCode).format(amount);
+  return new Intl.NumberFormat(brandConfig[mapBrandName(config.brand)].countryCode).format(amount);
 };
 
 /**

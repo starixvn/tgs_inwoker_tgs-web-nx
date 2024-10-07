@@ -1,14 +1,15 @@
 import { useAccountStore } from "@tgs-web-nx/core";
 import { useAuth, useHomeGameContext } from "@tgs-web-nx/core/features";
+import { useJoinGame } from "@tgs-web-nx/core/hooks";
+import { useEffect } from "react";
 import { HightLightMatchDto } from "@tgs-web-nx/types";
 import { format, isToday, isTomorrow } from "date-fns";
 import { Img } from "react-image";
+import config from "@tgs-web-nx/config";
 
 import { CardHoverBg } from "../GameCard/style";
 import PlayIcon from "../PlayIcon";
 import { KickOffTimeContainer, LeagueName, LiveIcon, LogoContainer, MatchCardBg, Score, SelectionButton, SelectionContainer, SelectionOdds, SelectionPoint, TeamInfo, TeamName } from "./style";
-import { useJoinGame } from "@tgs-web-nx/core/hooks";
-import { useEffect } from "react";
 
 interface MatchCardProps {
   match: HightLightMatchDto;
@@ -37,7 +38,7 @@ const MatchCard = ({ match }: MatchCardProps) => {
     if (!isLogin) {
       goToLogin();
     } else {
-      handleJoinGame(import.meta.env.VITE_SABA_GAME_PATH.split("/")[0], import.meta.env.VITE_SABA_GAME_PATH.split("/")[1]);
+      handleJoinGame(config.sabaGamePath.split("/")[0], config.sabaGamePath.split("/")[1]);
     }
   };
 

@@ -16,7 +16,7 @@ export const useTrackFacebookPixel = () => {
     const sendFbTrack = (key: YuriJsParam) => {
 
         // MOMO 客製化設定
-        if (!brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isInitYuriJs) {
+        if (!brandConfig[mapBrandName(config.brand)].isInitYuriJs) {
             return;
         }
 

@@ -15,7 +15,7 @@ export function useProvider(updateGpCodeList: (providers: ProviderDto[]) => void
     providerList: [],
     error: null,
   });
-  const gpCustomSort = brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].customGameProviderSort;
+  const gpCustomSort = brandConfig[mapBrandName(config.brand)].customGameProviderSort;
 
   useEffect(() => {
     const getProviderList = async () => {
@@ -67,7 +67,7 @@ function getFormattedProviderList(providerList: ProviderDto[]): ProviderDto[] {
   return (
     providerList &&
     providerList.map((provider) => {
-      if (provider.code === "BTI" && import.meta.env.VITE_CURRENCY === "PHP") {
+      if (provider.code === "BTI" && config.currency === "PHP") {
         return {
           ...provider,
           code: "PHSB",

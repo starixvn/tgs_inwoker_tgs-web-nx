@@ -157,7 +157,7 @@ class DepositPrev extends Component {
               this.setState({
                 ...this.state,
                 openPopup: true,
-                url: import.meta.env.VITE_BASE_URL.replace("/api/", "") + response.data.paymenturl,
+                url: config.baseUrl.replace("/api/", "") + response.data.paymenturl,
                 showTabContainer: false,
               });
             } else {
@@ -168,7 +168,7 @@ class DepositPrev extends Component {
             }
 
             if (payment.paymentcode.toUpperCase() === "HELP2PAY") {
-              url = import.meta.env.VITE_BASE_URL.replace("/api/", "") + response.data.paymenturl;
+              url = config.baseUrl.replace("/api/", "") + response.data.paymenturl;
             }
             if (response.data.paymenturl) {
               url = response.data.paymenturl;

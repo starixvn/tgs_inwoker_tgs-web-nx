@@ -3,13 +3,13 @@ import config from "@tgs-web-nx/config";
 
 export const useFAQPage = () => {
   const getBrand = () => {
-    switch (import.meta.env.VITE_BRAND) {
+    switch (config.brand) {
       case "TEP":
         return "TEP";
       case "PGG":
         return "Pega Gaming";
       default:
-        return import.meta.env.VITE_BRAND;
+        return config.brand;
     }
   };
 

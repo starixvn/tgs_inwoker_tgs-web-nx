@@ -13,7 +13,7 @@ import {
   InvitationType,
   useAuthDialog,
   useConfirmAdult,
-    useEncryptPassword,
+  useEncryptPassword,
   useGenerateRegisterCreatePlayerFormik,
 } from "../../..";
 
@@ -24,7 +24,7 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
     useAccountStore();
   const { handleToggleLoginDialog, handleToggleRegisterDialog } = useAuthDialog();
 
-    const { encryptPassword } = useEncryptPassword();
+  const { encryptPassword } = useEncryptPassword();
 
   const [registerError, setRegisterError] = useState<Error | null>(null);
 
@@ -85,7 +85,7 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
         throw new Error("");
       }
       //for MOVN2 customization
-      if (brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isAddRealNameFieldBrand) {
+      if (brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
         //Set realname之前必須先login
         await accountLogin(encryptedPassword, values.pwd);
 
@@ -110,7 +110,7 @@ export function useCreatePlayerStage(handleRegisterSuccess?: () => void) {
       handleToggleRegisterDialog(false);
 
       //Set realname時已經login,不需要再彈出登入視窗
-      if (!brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isAddRealNameFieldBrand) {
+      if (!brandConfig[mapBrandName(config.brand)].isAddRealNameFieldBrand) {
         handleToggleLoginDialog(true);
       }
 
