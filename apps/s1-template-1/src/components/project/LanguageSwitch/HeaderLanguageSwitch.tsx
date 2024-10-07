@@ -1,12 +1,40 @@
 import { imageMap } from "@/components/project/LanguageSwitch";
 import { theme } from "@/theme";
-import { MenuItem as MuiMenuItem, Select as MuiSelect, SelectChangeEvent, SelectProps, SvgIcon, SvgIconProps } from "@mui/material";
+import {
+  MenuItem as MuiMenuItem,
+  Select as MuiSelect,
+  SelectChangeEvent,
+  SelectProps,
+  SvgIcon,
+  SvgIconProps,
+} from "@mui/material";
 import { media } from "@tgs-web-nx/constants";
 import { useGeneralStore } from "@tgs-web-nx/core";
 import { BrandLanguage } from "@tgs-web-nx/types";
 import { i18n } from "@tgs-web-nx/utils";
 import React, { useState } from "react";
 import styled from "styled-components";
+
+const NameContainer = styled.div`
+  font-size: 1.3rem;
+
+  ${media.lg} {
+    font-size: 1.4rem;
+  }
+`;
+
+const FlagContainer = styled.div`
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  margin-right: 0.8rem;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
 
 const StyledSelect = styled(MuiSelect)`
   position: relative;
@@ -37,16 +65,21 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   .MuiSelect-select {
-    position: relative;
-    padding: 0 !important;
+    position: absolute;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    left: -0.6rem;
     height: 100% !important;
+    padding: 0 !important;
   }
 
-  .NameContainer-rajv0b-3 {
+  ${FlagContainer} {
+    margin-right: 2.4rem;
+  }
+
+  ${NameContainer} {
     display: none;
   }
 
@@ -55,36 +88,10 @@ const StyledSelect = styled(MuiSelect)`
   }
 
   .MuiSvgIcon-root {
-    position: relative;
+    position: absolute;
     right: 0.8rem;
 
     color: ${({ theme }) => theme.dropDownIconColor};
-  }
-`;
-
-const StyledMenuItem = styled(MuiMenuItem)`
-  & > img {
-    margin-right: 0.8rem;
-  }
-`;
-
-const FlagContainer = styled.div`
-  width: 1.8rem;
-  height: 1.8rem;
-  border-radius: 50%;
-
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
-
-const NameContainer = styled.div`
-  font-size: 1.3rem;
-
-  ${media.lg} {
-    font-size: 1.4rem;
   }
 `;
 
@@ -150,12 +157,12 @@ const HeaderLanguageSwitch = (props: SelectProps) => {
         languageList.map((languageItem) => {
           const { culturecode } = languageItem;
           return (
-            <StyledMenuItem key={culturecode} value={culturecode}>
+            <MuiMenuItem key={culturecode} value={culturecode}>
               <FlagContainer>
                 <img src={imageMap[culturecode] || ""} alt={culturecode} />
               </FlagContainer>
               <NameContainer>{i18n.t("lang." + culturecode)}</NameContainer>
-            </StyledMenuItem>
+            </MuiMenuItem>
           );
         })}
     </StyledSelect>
