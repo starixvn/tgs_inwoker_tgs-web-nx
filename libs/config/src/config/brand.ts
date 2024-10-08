@@ -1,4 +1,4 @@
-import { GameTypeEnum } from "../../../constants/src/constants/GameTypeEnum";
+import { GameTypeEnum } from "@tgs-web-nx/constants";
 
 /*
  * 若有新增站台 先在這邊加入對應設定

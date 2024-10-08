@@ -50,7 +50,7 @@ function Register(
   invitationcode = "",
   upper: any,
 ) {
-  const currency = config.currency;
+  const currency = import.meta.env.VITE_CURRENCY;
   return ApiService.post("Player/create", {
     username,
     currency,
@@ -241,18 +241,18 @@ function UpdateMemberName(token: string, name: string) {
 function UpdateMemberNameAndIC(realname: string, id: string, file: File | null) {
   const request = file
     ? ApiService.postFile(
-      `player/identity/upload`,
-      file,
-      {
+        `player/identity/upload`,
+        file,
+        {
+          realname,
+          id,
+        },
+        true,
+      )
+    : ApiService.patch(`player/identity`, {
         realname,
         id,
-      },
-      true,
-    )
-    : ApiService.patch(`player/identity`, {
-      realname,
-      id,
-    });
+      });
 
   return request as unknown as Promise<UpdateMemberNameAndICResDto>;
 }

@@ -1,8 +1,7 @@
-import config from '@tgs-web-nx/config';
 import { copyImageToClipboard } from "copy-image-clipboard";
 
 function imagePathGenerator(path: string): string {
-  return `${config.assetsPath}${path}`;
+  return `${import.meta.env.VITE_ASSETS_PATH}${path}`;
 }
 
 export function copy(item: string): void {
