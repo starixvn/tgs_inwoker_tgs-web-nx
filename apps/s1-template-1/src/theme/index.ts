@@ -1,4 +1,4 @@
-import { Theme } from "@tgs-web-nx/constants";
+import config from "@tgs-web-nx/config";
 
 import { ThemeType } from "./constants";
 import { dark } from "./theme-dark";
@@ -13,4 +13,4 @@ const getTheme = (theme: string) => {
   }
 };
 
-export const theme = getTheme(Theme);
+export const theme = getTheme(config.theme);

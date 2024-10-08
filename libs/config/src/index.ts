@@ -1,7 +1,7 @@
-import config from "./config/config.js";
-
-import featureList from "./config/features";
 import { brandConfig, defaultConfig, mapBrandName } from "./config/brand";
+import config from "./config/config";
+import featureList from "./config/features";
+
 declare global {
   interface Window {
     envConfig: any;
