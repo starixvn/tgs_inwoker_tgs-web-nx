@@ -6,10 +6,10 @@ window.envConfig = {
   sentryPath: "https://131857795c713ddb8e03feda9e928c2d@sentry-s1.nexentgame.com/9",
   sabaApiUrl: "https://sbsports-odds-api.nexentgame.com/api/",
   operatorSignalr: "https://operator-signalr.nexentgame.com/",
-  client: "XJY9uX5RarE5wrOkTHAgkQoGKMuNFxKIXF4A6zR4BfgCHNs1tC7zDv",
+  client: "JEKgWuqtyRfpf3aQeLcssIkUQbCGhY5jZH2zfQ9Qe0JOmawaFpPonBi",
   currency: "THB",
   brand: "nsDemoUUS",
-  brandId: "01922855-7737-0000-0001-07e86253a3be",
+  brandId: "01925104-a8d1-0000-0001-07e8ed978be6",
   brandName: "nsDemoUUS",
   sourceUrl: "https://images.srvptt.com/",
   liveChatDepartment: "S1_Live_Chat",
@@ -17,7 +17,9 @@ window.envConfig = {
   affiliateId: "",
   brandTitle: "nsDemoUUS",
   agentAdminUrl: null,
-  offeredGameTypes: "slots,live-casino,sports,fishing,table-game,lottery,cock-fighting,instant-play",
-  encryptPublicKey: "-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDX8zEHyerJpU5UWOIxy4wG6GywAZfHEPPAcxYZ8I4ncDn7aD2TW92tNLbdVQbikRcsHTCw+6yOY5f+rvXEwLECp0oLyDnv3zr+49lQqZ1N8mwC9UmSvxMk911P+RlQkHJVeZftT3zIB65jbnD34Dh5BGHKK9x8l1aD3mbvGiBZFQIDAQAB-----END PUBLIC KEY-----",
-  theme: "dark"
+  offeredGameTypes:
+    "slots,live-casino,sports,fishing,table-game,lottery,cock-fighting,instant-play",
+  encryptPublicKey:
+    "-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDX8zEHyerJpU5UWOIxy4wG6GywAZfHEPPAcxYZ8I4ncDn7aD2TW92tNLbdVQbikRcsHTCw+6yOY5f+rvXEwLECp0oLyDnv3zr+49lQqZ1N8mwC9UmSvxMk911P+RlQkHJVeZftT3zIB65jbnD34Dh5BGHKK9x8l1aD3mbvGiBZFQIDAQAB-----END PUBLIC KEY-----",
+  theme: "light",
 };
