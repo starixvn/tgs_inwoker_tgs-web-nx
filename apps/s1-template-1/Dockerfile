@@ -1,18 +1,20 @@
-FROM node:16.14.2-stretch-slim AS dependencies
+FROM node:16.14.2-alpine AS dependencies
 WORKDIR /app
 ENV YARN_CACHE_FOLDER=/root/.yarn
 COPY package.json yarn.lock ./
 RUN --mount=type=cache,target=$YARN_CACHE_FOLDER \
      yarn install --frozen-lockfile --verbose
 
-FROM node:16.14.2-stretch-slim AS builder
+FROM node:16.14.2-alpine AS builder
 WORKDIR /app
+ARG TRANSFORM_CONFIG 
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY ./libs ./libs
 COPY ./apps/s1-template-1 ./apps/s1-template-1
 COPY ./caddy ./caddy
 COPY .editorconfig tsconfig.base.json .eslintrc.json .eslintignore nx.json .nxignore package.json ./
-RUN yarn nx build s1-template-1
+RUN echo "Building with mode: ${TRANSFORM_CONFIG}"
+RUN yarn nx build s1-template-1 --mode ${TRANSFORM_CONFIG}
 
 FROM caddy:2.1.1-alpine AS runner
 COPY --from=builder /app/caddy/Caddyfile /etc/caddy/Caddyfile

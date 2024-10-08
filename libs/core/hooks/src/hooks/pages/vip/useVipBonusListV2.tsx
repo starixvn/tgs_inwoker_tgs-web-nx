@@ -18,11 +18,11 @@ export const useVipBonusListV2 = () => {
         key: "Level Up Bonus",
         label: i18n.t("vip.levelUpBonus"),
       },
-      !brandConfig[mapBrandName(config.brand)].isHideVIPBirthdayBonus && {
+      !brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isHideVIPBirthdayBonus && {
         key: "Birthday Bonus",
         label: i18n.t("vip.birthBenefit"),
       },
-      !brandConfig[mapBrandName(config.brand)].isHideVIPQuarterlyBonus && {
+      !brandConfig[mapBrandName(import.meta.env.VITE_BRAND)].isHideVIPQuarterlyBonus && {
         key: "Quarterly Bonus",
         label: i18n.t("vip.quarterlyBenefit"),
       },

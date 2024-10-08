@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import config from "@tgs-web-nx/config";
 
 const RocketChatLiveChat = () => {
     useEffect(() => {
@@ -19,7 +18,7 @@ const RocketChatLiveChat = () => {
 
           RocketChat(function() {
     
-            this.setDepartment('${config.liveChatDepartment}');
+            this.setDepartment('${import.meta.env.VITE_LIVE_CHAT_DEPARTMENT}');
 
             });
         `;
